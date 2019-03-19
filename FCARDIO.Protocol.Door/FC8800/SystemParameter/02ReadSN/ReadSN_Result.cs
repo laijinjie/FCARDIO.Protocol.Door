@@ -7,6 +7,9 @@ using FCARDIO.Core.Command;
 
 namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadSN
 {
+    /// <summary>
+    /// 获取控制器SN_结果
+    /// </summary>
     public class ReadSN_Result : INCommandResult
     {
         /// <summary>

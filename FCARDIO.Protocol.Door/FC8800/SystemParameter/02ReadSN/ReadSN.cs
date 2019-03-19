@@ -11,6 +11,9 @@ using FCARDIO.Core.Command;
 
 namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadSN
 {
+    /// <summary>
+    /// 获取控制器SN
+    /// </summary>
     public class ReadSN : FC8800Command
     {
         public ReadSN(INCommandDetail cd) : base(cd, null)
@@ -18,7 +21,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadSN
         }
 
         /// <summary>
-        /// 命令再次进行拼装
+        /// 命令在此进行拼装
         /// </summary>
         protected override void CreatePacket0()
         {
