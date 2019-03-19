@@ -1,0 +1,523 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+FCARDIO.Protocol
+</name>
+</assembly>
+<members>
+<member name="T:FCARDIO.Protocol.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:FCARDIO.Protocol.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:FCARDIO.Protocol.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:FCARDIO.Protocol.FC8800.FC8800Transaction">
+ <summary>
+ 适用于使用FC8800协议格式的监控消息
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.FC8800.FC8800Transaction.Connector">
+ <summary>
+ 事务发生时的连接通道信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Protocol.FC8800.FC8800Transaction.CmdIndex">
+ <summary>
+ 命令索引
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.FC8800.FC8800Transaction.CmdPar">
+ <summary>
+ 命令参数
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.FC8800.FC8800Transaction.SN">
+ <summary>
+ 发送者的身份
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.FC8800.FC8800Transaction.EventData">
+ <summary>
+ 事务的据结构
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Transaction.#ctor(FCARDIO.Core.Connector.INConnectorDetail,System.String,System.Byte,System.Byte,FCARDIO.Protocol.Transaction.INTransaction)">
+ <summary>
+ 初始化一个事务
+ </summary>
+ <param name="cdtl">连接通道信息</param>
+ <param name="s">控制器的SN</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+</member>
+<member name="F:FCARDIO.Protocol.FC8800.FC8800RequestHandle.TransactionFactory">
+ <summary>
+ 事务工厂，用于处理获取各种类型的事物的类型
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CreatePacket0">
+ <summary>
+ 生成命令
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.Packet(System.Byte,System.Byte,System.Byte,System.UInt32,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 修改当前的数据包
+ </summary>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+ <param name="dl">数据长度</param>
+ <param name="cd">命令数据</param>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.Packet(System.Byte,System.Byte)">
+ <summary>
+ 修改当前的数据包
+ </summary>
+ <param name="ct"></param>
+ <param name="ci"></param>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.Packet(System.Byte,System.Byte,System.Byte)">
+ <summary>
+ 修改当前的数据包
+ </summary>
+ <param name="ct"></param>
+ <param name="ci"></param>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CommandNext(FCARDIO.Core.Packet.INPacket)">
+ <summary>
+ 检查并进行命令的下一部分
+ </summary>
+ <param name="readPacket">收到的数据包</param>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CommandNext1(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket)">
+ <summary>
+ 继续检查响应是否为命令的下一步骤
+ </summary>
+ <param name="oPck"></param>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse_OK(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket)">
+ <summary>
+ 命令返回值成功
+ </summary>
+ <param name="oPck"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse_PasswordErr(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket)">
+ <summary>
+ 通讯密码错误
+ </summary>
+ <param name="oPck"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse_CheckSumErr(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket)">
+ <summary>
+ 检验和错误
+ </summary>
+ <param name="oPck"></param>
+ <returns></returns>
+</member>
+<member name="F:FCARDIO.Protocol.FC8800.FC8800Command.ResultCmdTypeAddValkue">
+ <summary>
+ 指定命令的返回值中的CmdType需要增加的量
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket)">
+ <summary>
+ 检查返回指令是否正确
+ </summary>
+ <param name="oPck"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket,System.UInt32)">
+ <summary>
+ 检查返回指令是否正确
+ </summary>
+ <param name="oPck"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket,System.Byte,System.Byte,System.Byte,System.UInt32)">
+ <summary>
+ 检查返回指令是否符合规则
+ </summary>
+ <param name="oPck"></param>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Protocol.Transaction.AbstractTransaction">
+ <summary>
+ 表示一个事务
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.Transaction.AbstractTransaction._TransactionDate">
+ <summary>
+ 事务时间
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.Transaction.AbstractTransaction._TransactionType">
+ <summary>
+ 事务类型
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.Transaction.AbstractTransaction._TransactionCode">
+ <summary>
+ 事务代码
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.Transaction.AbstractTransaction._IsNull">
+ <summary>
+ 记录是否为空记录
+ </summary>
+</member>
+<member name="T:FCARDIO.Protocol.Transaction.INTransaction">
+ <summary>
+ 表示一个事务
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.Transaction.INTransaction.SerialNumber">
+ <summary>
+ 事务序列号
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Protocol.Transaction.INTransaction.TransactionDate">
+ <summary>
+ 事务时间
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Protocol.Transaction.INTransaction.TransactionType">
+ <summary>
+ 事务类型
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Protocol.Transaction.INTransaction.TransactionCode">
+ <summary>
+ 事务代码
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.Transaction.INTransaction.IsNull">
+ <summary>
+ 记录是否为空记录
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.INOnlineAccessPacket_DecompileStep.DecompileStep(FCARDIO.Protocol.OnlineAccess.OnlineAccessDecompile,System.Byte)">
+ <summary>
+ 解析步骤，命令包完整解析后返回true
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.BaseDecompileStep.Code">
+ <summary>
+ 解析信息代码
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.BaseDecompileStep.ReadBufLen">
+ <summary>
+ buf需要存储的长度
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.BaseDecompileStep.DecompileNext(FCARDIO.Protocol.OnlineAccess.OnlineAccessDecompile,DotNetty.Buffers.IByteBuffer,FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket)">
+ <summary>
+ 解析缓冲区，并接入下一个步骤
+ </summary>
+ <param name="decompile"></param>
+</member>
+<member name="T:FCARDIO.Protocol.OnlineAccess.DecompileStep_CommandCode">
+ <summary>
+ 解析信息代码
+ </summary>
+</member>
+<member name="T:FCARDIO.Protocol.OnlineAccess.DecompileStep_SN">
+ <summary>
+ 解析SN
+ </summary>
+</member>
+<member name="T:FCARDIO.Protocol.OnlineAccess.DecompileStep_Password">
+ <summary>
+ 解析密码
+ </summary>
+</member>
+<member name="T:FCARDIO.Protocol.OnlineAccess.DecompileStep_Command">
+ <summary>
+ 解析命令
+ </summary>
+</member>
+<member name="T:FCARDIO.Protocol.OnlineAccess.DecompileStep_DataLen">
+ <summary>
+ 解析命令长度
+ </summary>
+</member>
+<member name="T:FCARDIO.Protocol.OnlineAccess.DecompileStep_CmdData">
+ <summary>
+ 解析命令数据
+ </summary>
+</member>
+<member name="T:FCARDIO.Protocol.OnlineAccess.DecompileStep_CheckSum">
+ <summary>
+ 解析命令校验和
+ </summary>
+</member>
+<member name="T:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail">
+ <summary>
+ 用于在线门禁的身份详情记录
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.SN">
+ <summary>
+ 控制器的SN
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.Password">
+ <summary>
+ 控制器的密码
+ 即长度为8的十六进制字符串
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.#ctor(FCARDIO.Core.Connector.INConnectorDetail,System.String,System.String)">
+ <summary>
+ 初始化一个新的控制器命令详情类
+ </summary>
+ <param name="cnt">只是通讯连接通道</param>
+ <param name="s">控制器的SN，16个字符</param>
+ <param name="p">控制器的密码，8个字符的十六进制字符串</param>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessDecompile._Step">
+ <summary>
+ 接收数据的步骤
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessDecompile._Buf">
+ <summary>
+ 存储临时数据的缓冲区
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessDecompile._Translate">
+ <summary>
+ 接收到转移码
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessDecompile._Checksum">
+ <summary>
+ 校验和
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessDecompile._Packet">
+ <summary>
+ 命令包
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessDecompile.DecompileByte(System.Byte)">
+ <summary>
+ 对字节进行转译
+ </summary>
+ <param name="value"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessDecompile.AddBuf(System.Byte)">
+ <summary>
+ 加入到缓冲
+ </summary>
+ <param name="value"></param>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.BroadcastCode">
+ <summary>
+ 广播代码
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.ConnectPassordLen">
+ <summary>
+ 密码长度
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.Code">
+ <summary>
+ 信息代码
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.SN">
+ <summary>
+ 设备SN
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.Password">
+ <summary>
+ 通讯密码
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.CmdType">
+ <summary>
+ 命令类型
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.CmdIndex">
+ <summary>
+ 命令索引
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.CmdPar">
+ <summary>
+ 命令参数
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.DataLen">
+ <summary>
+ 数据长度
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.CmdData">
+ <summary>
+ 命令数据
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.Check">
+ <summary>
+ 校验和
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.#ctor(FCARDIO.Core.Command.INCommandDetail)">
+ <summary>
+ 初始化数据包类
+ </summary>
+ <param name="detail">在线门禁的身份详情，要求包含SN和通讯密码</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.#ctor(FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail,System.UInt32,System.Byte,System.Byte,System.Byte)">
+ <summary>
+ 初始化数据包类
+ </summary>
+ <param name="detail">在线门禁的身份详情，要求包含SN和通讯密码</param>
+ <param name="cc">信息代码</param>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.#ctor(FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail,System.UInt32,System.Byte,System.Byte,System.Byte,System.UInt32,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 初始化数据包类
+ </summary>
+ <param name="detail">在线门禁的身份详情，要求包含SN和通讯密码</param>
+ <param name="cc">信息代码</param>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+ <param name="dl">数据长度</param>
+ <param name="cd">命令数据</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.#ctor(FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail,System.Byte,System.Byte,System.Byte)">
+ <summary>
+ 初始化数据包类
+ </summary>
+ <param name="detail">在线门禁的身份详情，要求包含SN和通讯密码</param>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.#ctor(FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail,System.Byte,System.Byte,System.Byte,System.UInt32,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 初始化数据包类
+ </summary>
+ <param name="detail">在线门禁的身份详情，要求包含SN和通讯密码</param>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+ <param name="dl">数据长度</param>
+ <param name="cd">命令数据</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.#ctor(System.Byte[],System.Byte[],System.Byte,System.Byte,System.Byte)">
+ <summary>
+ 初始化数据包类
+ </summary>
+ <param name="s">设备SN</param>
+ <param name="ps">通讯密码</param>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.#ctor(System.Byte[],System.Byte[],System.Byte,System.Byte,System.Byte,System.UInt32,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 初始化数据包类
+ </summary>
+ <param name="s">设备SN</param>
+ <param name="ps">通讯密码</param>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+ <param name="dl">数据长度</param>
+ <param name="cd">命令数据</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.#ctor(System.Byte[],System.Byte[],System.UInt32,System.Byte,System.Byte,System.Byte)">
+ <summary>
+ 初始化数据包类
+ </summary>
+ <param name="s">设备SN</param>
+ <param name="ps">通讯密码</param>
+ <param name="cc">信息代码</param>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.#ctor(System.Byte[],System.Byte[],System.UInt32,System.Byte,System.Byte,System.Byte,System.UInt32,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 初始化数据包类
+ </summary>
+ <param name="s">设备SN</param>
+ <param name="ps">通讯密码</param>
+ <param name="cc">信息代码</param>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+ <param name="dl">数据长度</param>
+ <param name="cd">命令数据</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.SetPacket(System.Byte,System.Byte,System.Byte,System.UInt32,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 设置包裹数据
+ </summary>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+ <param name="dl">数据长度</param>
+ <param name="cd">命令数据</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.SetPacket(System.Byte,System.Byte,System.Byte)">
+ <summary>
+ 设置包裹数据
+ </summary>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.SetPacket(System.UInt32,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 设置包裹数据
+ </summary>
+ <param name="dl">数据长度</param>
+ <param name="cd">命令数据</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.GetRandomCode">
+ <summary>
+ 获取一个随机的信息代码
+ </summary>
+ <returns></returns>
+</member>
+</members>
+</doc>

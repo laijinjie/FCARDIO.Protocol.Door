@@ -1,0 +1,1730 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+FCARDIO.Core
+</name>
+</assembly>
+<members>
+<member name="T:FCARDIO.Core.My.Resources.Resources">
+<summary>
+  一个强类型的资源类，用于查找本地化的字符串等。
+</summary>
+</member>
+<member name="P:FCARDIO.Core.My.Resources.Resources.ResourceManager">
+<summary>
+  返回此类使用的缓存的 ResourceManager 实例。
+</summary>
+</member>
+<member name="P:FCARDIO.Core.My.Resources.Resources.Culture">
+<summary>
+  重写当前线程的 CurrentUICulture 属性
+  重写当前线程的 CurrentUICulture 属性。
+</summary>
+</member>
+<member name="T:FCARDIO.Core.Command.AbstractCommand">
+ <summary>
+ 命令类的基类，定义了一组基本命令逻辑
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._Parameter">
+ <summary>
+ 保存用于命令的各种参数
+ 包含了通道连接参数，对端身份信息,以及命令参数等数据
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._Result">
+ <summary>
+ 用于存储命令完毕后的返回值
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._Connector">
+ <summary>
+ 此命令所依附的通讯通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._Status">
+ <summary>
+ 命令的当前工作状态
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._EventArgs">
+ <summary>
+ 包含一个命令事件对象
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._ProcessMax">
+ <summary>
+ 最大进度数<br/>
+ 当有发生变化时，会触发 CommandProcessEvent() 事件
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._ProcessStep">
+ <summary>
+ 当前进度<br/>
+ 当有发生变化时，会触发 CommandProcessEvent() 事件
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._SendDate">
+ <summary>
+ 最近一次发送的时间
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._IsWaitResponse">
+ <summary>
+ 命令是否需要等待回应
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._Packet">
+ <summary>
+ 用于存储当前命令发送的包
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._Decompile">
+ <summary>
+ 解析器，将收到的数据按包的规则拆包，以便命令类进行下一步业务处理
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._ReSendCount">
+ <summary>
+ 命令重发次数
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._IsRelease">
+ <summary>
+ 用于指示此命令是否已释放
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.CheckCommandParameter(FCARDIO.Core.Command.INCommandParameter)">
+ <summary>
+ 获取检查命令的参数类型
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.GetStatus_Completed">
+ <summary>
+ 获取表示命令已完成的状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.GetStatus_Runing">
+ <summary>
+ 获取用于处理正在运行中的状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.GetStatus_Timeout">
+ <summary>
+ 获取用于处理已超时的状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.GetStatus_WaitResponse">
+ <summary>
+ 获取用于处理等待响应的状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.CommandNext(FCARDIO.Core.Packet.INPacket)">
+ <summary>
+ 检查并进行命令的下一部分
+ </summary>
+ <param name="readPacket">收到的数据包</param>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.CheckTimeout">
+ <summary>
+ 检查此命令是否超时
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.CommandReSend">
+ <summary>
+ 准备重新发送命令，可能子类需要清空一些标志或缓冲区，则再此函数中执行
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.CommandOver">
+ <summary>
+ 命令结束的时候调用
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.CommandReady">
+ <summary>
+ 命令准备就绪
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.CommandWaitResponse">
+ <summary>
+ 命令继续等待
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.SendPacket">
+ <summary>
+ 发送数据包
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.fireCommandProcessEvent">
+ <summary>
+ 命令发生进程发生变化
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.fireCommandTimeout">
+ <summary>
+ 当命令超时时发生
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.fireAuthenticationErrorEvent">
+ <summary>
+ 身份校验错误
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.fireFireCommandErrorEvent">
+ <summary>
+ 命令错误
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.Release0">
+ <summary>
+ 释放资源
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.AbstractRequestHandle._Decompile">
+ <summary>
+ 命令解析器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.AbstractRequestHandle.fireRequestEvent(FCARDIO.Core.Connector.INConnector,FCARDIO.Core.Packet.INPacket)">
+ <summary>
+ 触发数据请求事件
+ </summary>
+ <param name="connector"></param>
+ <param name="p"></param>
+</member>
+<member name="F:FCARDIO.Core.Command.CommandStatus.Completed">
+ <summary>
+ 命令已完成的状态
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.CommandStatus.Faulted">
+ <summary>
+ 命令由于发生错误而完成
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.CommandStatus.Timeout">
+ <summary>
+ 命令发生超时错误时的状态
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.CommandStatus.Runing">
+ <summary>
+ 命令正在执行
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.CommandStatus.Waiting">
+ <summary>
+ 命令还未开始执行
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.CommandStatus.WaitResponse">
+ <summary>
+ 命令正在等待对端的响应
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.CommandStatus.Stop">
+ <summary>
+ 命令由于用户取消而完成
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.CommandStatus_Completed">
+ <summary>
+ 命令已完成的状态
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.CommandStatus_Faulted">
+ <summary>
+ 命令由于发生错误而完成
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.CommandStatus_Timeout">
+ <summary>
+ 命令由于对端超过指定时间后为接收到响应（命令超时）而完成
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.CommandStatus_Runing">
+ <summary>
+ 命令正在执行
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.CommandStatus_WaitResponse">
+ <summary>
+ 命令已发送数据包，等待对端的响应
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.CommandStatus_Waiting">
+ <summary>
+ 命令还未开始执行
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.CommandStatus_Stop">
+ <summary>
+ 命令由于用户取消而完成
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.INCommandDetail">
+ <summary>
+ 包含命令的执行时的一些必要信息，命令执行的连接器通道，命令身份验证信息，用户附加数据，超时重试参数
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Command.INCommandDetail.Connector">
+ <summary>
+ 用来存储命令将要使用的连接器信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Command.INCommandDetail.BeginTime">
+ <summary>
+ 起始时间
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Command.INCommandDetail.EndTime">
+ <summary>
+ 命令执行完毕时间
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Command.INCommandDetail.Timeout">
+ <summary>
+ 命令在通道中发送后的最大等待应答事件，单位毫秒
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Command.INCommandDetail.RestartCount">
+ <summary>
+ 当命令发生超时后，最大重试次数。
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Command.INCommandParameter">
+ <summary>
+ 命令参数
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.INCommandResult">
+ <summary>
+ 命令返回值的存储接口
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommandRuntime.GetStatus_Stop">
+ <summary>
+ 获取用于表示命令已停止的状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommandRuntime.GetStatus_Faulted">
+ <summary>
+ 获取用于表示命令已失败的状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommandRuntime.GetStatus_Wating">
+ <summary>
+ 获取用于表示命令正在准备中的状态(还未开始发送数据)
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommandRuntime.GetStatus_Runing">
+ <summary>
+ 获取用于表示命令正在运行中的状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommandRuntime.GetEventArgs">
+ <summary>
+ 获取一个用户触发事件时发送到事件中的参数
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommandRuntime.SetConnector(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 命令加入到连接器
+ </summary>
+ <param name="connect"></param>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommandRuntime.SetStatus(FCARDIO.Core.Command.INCommandStatus)">
+ <summary>
+ 设置命令的状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommandRuntime.PushReadByteBuf(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 由连接通道推送来的接收缓冲区中的 Bytebuf
+ </summary>
+ <param name="buf"></param>
+</member>
+<member name="P:FCARDIO.Core.Command.INCommandStatus.IsCompleted">
+ <summary>
+ 命令是否已完成
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Command.INCommandStatus.IsFaulted">
+ <summary>
+ 是否由于未经处理异常的原因而完成
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Command.INCommandStatus.IsRuning">
+ <summary>
+ 命令知否正在执行
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Command.INCommandStatus.IsCanceled">
+ <summary>
+ 是否已取消执行
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommandStatus.CheckStatus(FCARDIO.Core.Command.INCommand)">
+ <summary>
+ 触发命令事件
+ </summary>
+ <param name="cmd"></param>
+</member>
+<member name="T:FCARDIO.Core.Command.AbstractCommandStatus_Completed">
+ <summary>
+ 命令已完成的状态
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.AbstractCommandStatus_Faulted">
+ <summary>
+ 命令由于发生错误而完成
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.AbstractCommandStatus_Timeout">
+ <summary>
+ 命令由于对端超过指定时间后为接收到响应（命令超时）而完成
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.AbstractCommandStatus_Runing">
+ <summary>
+ 命令正在执行
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.AbstractCommandStatus_WaitResponse">
+ <summary>
+ 命令已发送数据包，等待对端的响应
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.AbstractCommandStatus_Waiting">
+ <summary>
+ 命令还未开始执行
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.AbstractCommandStatus_Stop">
+ <summary>
+ 命令由于用户取消而完成
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.INRequestHandle">
+ <summary>
+ 处理连接通道上接收到的数据
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.INRequestHandle.DisposeRequest(FCARDIO.Core.Connector.INConnector,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 处理接收的数据
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.INCommand">
+ <summary>
+ 命令的封装主体类
+ 包含协议中具体的命令包装，数据分析，数值判断等一系列逻辑
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Command.INCommand.CommandDetail">
+ <summary>
+ 命令所需要的连接通道，对端信息等数据
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Command.INCommand.Parameter">
+ <summary>
+ 保存用于命令的各种参数
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommand.getResult">
+ <summary>
+ 命令返回结果
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommand.GetStatus">
+ <summary>
+ 获取命令状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommand.getProcessMax">
+ <summary>
+ 总步骤数
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommand.getProcessStep">
+ <summary>
+ 当前指令进度
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Command.CommandEventArgs">
+ <summary>
+ 命令返回事件的事件参数
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Command.CommandEventArgs.Command">
+ <summary>
+ 命令的主体
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Command.CommandEventArgs.CommandDetail">
+ <summary>
+ 命令所包含的连接器，目标设备信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Command.CommandEventArgs.ConnectorDetail">
+ <summary>
+ 命令所包含的连接器，目标设备信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Command.CommandEventArgs.Result">
+ <summary>
+ 命令执行完毕后包含的结果
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.CommandEventArgs.#ctor(FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 初始化事件值
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.CommandEventArgs.#ctor(FCARDIO.Core.Command.INCommand)">
+ <summary>
+ 初始化事件值
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.CommandEventArgs.GetStatus">
+ <summary>
+ 事件的状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Command.CommandEventArgs.IsCompleted">
+ <summary>
+ 命令是否已完成
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Command.CommandEventArgs.IsFaulted">
+ <summary>
+ 是否由于未经处理异常的原因而完成
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:FCARDIO.Core.Connector.AbstractConnector._CommandList">
+ <summary>
+ 连接通道中存在于队列中的命令列表，先进先出集合
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.AbstractConnector._DecompileList">
+ <summary>
+ 连接通道中附加的消息解释器集合，可对通道收到的数据进行解码，并生成事物消息事件 TransactionMessage
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.AbstractConnector._IsForcibly">
+ <summary>
+ 表示此连接是否一致保持连接
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.AbstractConnector._ActivityCommand">
+ <summary>
+ 正在活动中的命令
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.AbstractConnector._Status">
+ <summary>
+ 连接器通道的状态
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.AbstractConnector._isRelease">
+ <summary>
+ 指示此通道是否已释放
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.AbstractConnector._isInvalid">
+ <summary>
+ 表示此通道已失效
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.AbstractConnector._ActivityDate">
+ <summary>
+ 表示此通道上次的活动时间
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.AbstractConnector._IsRuning">
+ <summary>
+ 任务是否已加入队列或正在执行
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.GetInitializationStatus">
+ <summary>
+ 获取初始化通道状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.UpdateActivityTime">
+ <summary>
+ 更新通道活动时间
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.CheckIsInvalid">
+ <summary>
+ 检查通道是否已失效 1分钟无连接，无命令任务则自动失效
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.RaiseConnectorErrorEvent(System.Boolean)">
+ <summary>
+ 连接错误时，触发此回到函数
+ </summary>
+ <param name="bIsStopCommand"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.RaiseCommandErrorEvent(FCARDIO.Core.Command.INCommandRuntime,System.Boolean)">
+ <summary>
+ 连接错误时，触发此回到函数
+ </summary>
+ <param name="cmd"></param>
+ <param name="bIsStopCommand"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.fireConnectError(System.Boolean)">
+ <summary>
+ 触发连接错误消息
+ </summary>
+ <param name="bIsStopCommand"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.RemoveCommand(FCARDIO.Core.Command.INCommandRuntime)">
+ <summary>
+ 从队列中删除一个命令
+ </summary>
+ <param name="eventCommand"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.fireCommandCompleteEvent(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 触发命令完成消息
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.fireCommandProcessEvent(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 触发事件--命令进度指示
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.fireCommandTimeout(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 触发事件-- 命令超时
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.fireAuthenticationErrorEvent(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 触发事件--身份鉴权错误
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.fireTransactionMessage(FCARDIO.Core.Data.INData)">
+ <summary>
+ 触发事件--事务消息
+ </summary>
+ <param name="EventData"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.FireCommandErrorEvent(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 触发事件--命令错误事件
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.FireClientOnline(FCARDIO.Core.Connector.ServerEventArgs)">
+ <summary>
+ 触发事件--客户端上线通知
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.FireClientOffline(FCARDIO.Core.Connector.ServerEventArgs)">
+ <summary>
+ 触发事件--客户端离线通知
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.GetConnectorDetail">
+ <summary>
+ 获取关于本通道的详情
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.DisposeRequest(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 解析收到的监控数据包
+ </summary>
+ <param name="msg"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.CheckConnectingStatus">
+ <summary>
+ 检查正在连接中的状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.CheckCommandList">
+ <summary>
+ 检查命令状态
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Connector.AbstractConnectorDetail">
+ <summary>
+ 通讯连接器详情基类基本定义
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.ConnectorAllocator.Connectors">
+ <summary>
+ 保存所有的连接通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.ConnectorAllocator._IsRelease">
+ <summary>
+ 是否已释放
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorAllocator.IsRelease">
+ <summary>
+ 是否已释放
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Connector.ConnectorStatus_Free">
+ <summary>
+ 连接器状态--空闲
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorStatus_Free.OpenConnector(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 打开连接器
+ </summary>
+ <param name="connector"></param>
+</member>
+<member name="T:FCARDIO.Core.Connector.ConnectorStatus_Connecting">
+ <summary>
+ 连接器状态--正在连接
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorStatus_Connecting.CheckConnectingStatus(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 检查连接状态
+ </summary>
+ <param name="connector"></param>
+</member>
+<member name="T:FCARDIO.Core.Connector.ConnectorStatus_Connected">
+ <summary>
+ 连接器状态--已连接
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorStatus_Connected.CheckCommandList(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 检查命令队列中是否有需要发送的命令
+ </summary>
+ <param name="connector"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorStatus_Connected.CloseConnector(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 无命令也无需占用，通道需要关闭
+ </summary>
+ <param name="connector"></param>
+</member>
+<member name="F:FCARDIO.Core.Connector.DotNettyAllocator.ServerParentEventLoopGroup">
+ <summary>
+ 服务端主节点事件循环组
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.DotNettyAllocator.ServerChildEventLoopGroup">
+ <summary>
+ 服务端子节点事件循环组
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.DotNettyAllocator.ClientEventLoopGroup">
+ <summary>
+ 客户端事件循环组 TCP/Client, UDP Client
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Connector.DotNettyAllocator.UseLibuv">
+ <summary>
+ 使用 Libuv 库
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.DotNettyAllocator.mIsRelease">
+ <summary>
+ 是否已释放
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Connector.DotNettyAllocator.IsRelease">
+ <summary>
+ 检查事件循环组是否已释放
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.DotNettyAllocator.GetServerParentEventLoopGroup">
+ <summary>
+ 返回用于初始化服务器 ServerBootstrap 的主节点 EventLoopGroup
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.DotNettyAllocator.GetServerChildLoopGroup">
+ <summary>
+ 返回用于初始化服务器 ServerBootstrap 的子节点 EventLoopGroup
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.DotNettyAllocator.GetClientEventLoopGroup">
+ <summary>
+ 返回用于初始化客户端通道的 Bootstrap (TCPClient or UDP) 的 EventLoopGroup
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.DotNettyAllocator.shutdownGracefully">
+ <summary>
+ 释放所有已创建的 EventLoopGroup
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.E_ConnectorType.OnSerialPort">
+ <summary>
+ 使用 RS232、RS485 通讯
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.E_ConnectorType.OnTCPClient">
+ <summary>
+ 使用 TCP 协议，作为客户端连接到指定IP和端口的服务器
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.E_ConnectorType.OnTCPServer_Client">
+ <summary>
+ 使用 TCP 协议，在本地服务器中查询已连接到的客户端，需要指定客户端Key值
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.E_ConnectorType.OnUDP">
+ <summary>
+ 使用 UDP 协议，发送数据到指定IP和端口，可指定本地绑定的IP和端口
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.E_ConnectorType.OnFile">
+ <summary>
+ 将需要指令写入到指定的文件地址中，需要指定文件路径和名称，并确保有可写权限
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorAllocator.GetConnectorType">
+ <summary>
+ 获取分配器可分配的连机器名称
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorAllocator.GetNewConnector(FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 创建一个新的连接通道
+ </summary>
+ <param name="detail"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorAllocator.shutdownGracefully">
+ <summary>
+ 关闭这个连接通道分配器
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.SerialPort.SerialPortDetail.Port">
+ <summary>
+ 电脑上的串口号
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientAllocator.CONNECT_TIMEOUT_MILLIS_MAX">
+ <summary>
+ 最大40秒连接超时，单位毫秒
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientAllocator.CONNECT_TIMEOUT_MILLIS_MIN">
+ <summary>
+ 最小1秒连接超时，单位毫秒
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientAllocator.CONNECT_RECONNECT_MAX">
+ <summary>
+ 最大重新连接次数
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientAllocator.Connect(System.String,System.Int32,System.Int32)">
+ <summary>
+ 连接到TCPServer
+ </summary>
+ <param name="addr"></param>
+ <param name="iPort"></param>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.TCPClient.TCPClientConnector">
+ <summary>
+ 用于和TCP Server进行通讯的TCP Client
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.IPDetail">
+ <summary>
+ 保存IP信息 -- IPv4
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.IPDetail.Addr">
+ <summary>
+ IP地址或网址
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.IPDetail.Port">
+ <summary>
+ 网络端口 1-65535
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.RemoteDetail">
+ <summary>
+ 远程IP信息和端口信息
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.LocalDetail">
+ <summary>
+ 本地IP信息
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._ClientChannel">
+ <summary>
+ 连接管理器所管理的通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._ConnectDate">
+ <summary>
+ 连接开始时间
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._IsCancelConnect">
+ <summary>
+ 连接是否已取消
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._ConnectFuture">
+ <summary>
+ 连接的异步操作类
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._ConnectTimeoutMSEL">
+ <summary>
+ 最大连接等待时间
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._ReconnectMax">
+ <summary>
+ 最大重新连接次数
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._ConnectFailCount">
+ <summary>
+ 连接超时时间和连接失败次数
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._Handler">
+ <summary>
+ 客户端操作的操作类
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.SetConnectOption(FCARDIO.Core.Connector.TCPClient.TCPClientDetail)">
+ <summary>
+ 设置连接参数，超时上限和重连上限
+ </summary>
+ <param name="detail"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.Allocator(FCARDIO.Core.Connector.INConnectorAllocator)">
+ <summary>
+ 绑定分配器
+ </summary>
+ <param name="acr"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ConnectServer">
+ <summary>
+ 开始连接到远端服务器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ConnectFail">
+ <summary>
+ 远程连接失败的处理过程
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ConnectSuccess">
+ <summary>
+ 远程连接成功
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.CloseConnect">
+ <summary>
+ 关闭连接
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ChannelInactive(DotNetty.Transport.Channels.IChannelHandlerContext)">
+ <summary>
+ 在连接正常或不正常关闭时发生
+ </summary>
+ <param name="ctx"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.channelRead0(DotNetty.Transport.Channels.IChannelHandlerContext,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 接收到数据
+ </summary>
+ <param name="ctx"></param>
+ <param name="msg"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ExceptionCaught(DotNetty.Transport.Channels.IChannelHandlerContext,System.Exception)">
+ <summary>
+ 发生错误时，触发此事件
+ </summary>
+ <param name="ctx"></param>
+ <param name="ex"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.CloseConnector">
+ <summary>
+ 关闭连接
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Connector.TCPClient.TCPClientDetail_Readonly.Addr">
+ <summary>
+ 远程服务器的IP或域名
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Connector.TCPClient.TCPClientDetail_Readonly.Port">
+ <summary>
+ 远程服务器的监听端口
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnectorStatus.Free">
+ <summary>
+ 空闲状态
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnectorStatus.Connecting">
+ <summary>
+ 正在连接远程主机的状态
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnectorStatus.Connected">
+ <summary>
+ 远程连接成功的状态
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnectorStatus.Fail">
+ <summary>
+ 远程连接失败的状态
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Connector.TCPClient.TCPClientDetail.Addr">
+ <summary>
+ 远程服务器的IP或域名
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Connector.TCPClient.TCPClientDetail.Port">
+ <summary>
+ 远程服务器的监听端口
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientDetail.#ctor(System.String,System.Int32)">
+ <summary>
+ 一个有效的地址
+ </summary>
+ <param name="sAddr"></param>
+ <param name="iPort"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler.ExceptionCaught(DotNetty.Transport.Channels.IChannelHandlerContext,System.Exception)">
+ <summary>
+ 发生错误时，触发此事件
+ </summary>
+ <param name="ctx"></param>
+ <param name="ex"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler.ChannelRead0(DotNetty.Transport.Channels.IChannelHandlerContext,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 接收到数据事件
+ </summary>
+ <param name="ctx"></param>
+ <param name="msg"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler.ChannelInactive(DotNetty.Transport.Channels.IChannelHandlerContext)">
+ <summary>
+ 不活跃事件，一般就是关闭连接
+ </summary>
+ <param name="ctx"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler.UserEventTriggered(DotNetty.Transport.Channels.IChannelHandlerContext,System.Object)">
+ <summary>
+ 自定义用户事件，在这里用于接收超时事件
+ </summary>
+ <param name="ctx"></param>
+ <param name="evt"></param>
+</member>
+<member name="T:FCARDIO.Core.Connector.INConnector">
+ <summary>
+ 所有连接器的顶级接口
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.GetConnectorType">
+ <summary>
+ 获取此通道的连接器类型
+ </summary>
+ <returns>连接器类型</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.GetConnectorDetail">
+ <summary>
+ 获取连接器的详情对象
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.CheckIsInvalid">
+ <summary>''' 检查通道是否已失效 1分钟无连接，无命令任务则自动失效
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.GetCommandCount">
+ <summary>
+ 获取通道中的命令队列数量
+ </summary>
+ <returns>命令队列数量</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.CommandListIsEmpty">
+ <summary>
+ 命令队列是否为空
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.AddCommand(FCARDIO.Core.Command.INCommandRuntime)">
+ <summary>
+ 将一个命令添加到本通道的命令队列中
+ </summary>
+ <param name="cd">命令封装类，执行具体指令</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.AddWatchDecompile(FCARDIO.Core.Command.INRequestHandle)">
+ <summary>
+ 当需要解析监控指令时，添加数据包解析器到解析器列表中
+ </summary>
+ <param name="decompile">数据包解析器</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.RemoveWatchDecompile(System.Type)">
+ <summary>
+ 从连接通道中删除指定类型的数据包解析器
+ </summary>
+ <param name="decompile"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.IsForciblyConnect">
+ <summary>
+  判断此通道是否保持连接，即通道在发送完毕命令后保持连接
+ </summary>
+ <returns> true 表示通道保持打开</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.OpenForciblyConnect">
+ <summary>
+ 设定此连接器通道为保持打开状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.CloseForciblyConnect">
+ <summary>
+ 禁止此连接器通道为保持连接状态，即命令发送完毕后关闭连接。
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Connector.INConnector.IsInvalid">
+ <summary>
+ 确定通道是否已失效
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.GetStatus">
+ <summary>
+ 获取此连接通道的状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.StopCommand(FCARDIO.Core.Command.INCommandDetail)">
+ <summary>
+ 停止指定类型的命令，终止命令继续执行
+ </summary>
+ <param name="cdt">命令详情，如果为Null表示停止此通道中的所有命令</param>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Connector.INConnector.TaskIsBegin">
+ <summary>
+ 用来指示任务是否已经加入任务队列，正在排队等待或者正在执行中
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.SetTaskIsBegin">
+ <summary>
+ 当此通道已加入Task的任务队列时，需要调用此函数来改变此通道的任务状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.UpdateActivityTime">
+ <summary>
+ 更新通道活动时间
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.Allocator(FCARDIO.Core.Connector.INConnectorAllocator)">
+ <summary>
+ 绑定连接通道分配器
+ </summary>
+ <param name="acr"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.GetByteBufAllocator">
+ <summary>
+ 获取连接通道支持的bytebuf分配器
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.WriteByteBuf(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将生成的bytebuf写入到通道中
+ 写入完毕后自动释放
+ </summary>
+ <param name="buf"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.GetEventLoop">
+ <summary>
+ 获取此通道所依附的事件循环通道
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.INConnectorDetail">
+ <summary>
+ 连接指示接口，用来告诉连接工厂应该使用哪种连接器连接对端。
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorDetail.GetConnectorType">
+ <summary>
+ 获取通讯连接所以使用的连接器类型
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Connector.INConnectorDetail.Timeout">
+ <summary>
+ 连接器连接到对端时最大等待时间，单位毫秒
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Connector.INConnectorDetail.RestartCount">
+ <summary>
+ 连接器连接到对端失败后，最大重试次数
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorDetail.GetKey">
+ <summary>
+ 获取一个用于界定此通道的唯一Key值
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.INConnectorStatus">
+ <summary>
+ 连接器的状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorStatus.Status">
+ <summary>
+ 获取当前状态的描述
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorStatus.CheckStatus(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 检查状态是否需要变化
+ </summary>
+ <param name="connector"></param>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.INConnectorEvent">
+ <summary>
+ 当通讯连接器有事件需要通知时，调用对应的事件函数
+ </summary>
+</member>
+<member name="E:FCARDIO.Core.Connector.INConnectorEvent.CommandCompleteEvent">
+ <summary>
+ 当命令完成时，会触发此函数回调
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e"></param>
+</member>
+<member name="E:FCARDIO.Core.Connector.INConnectorEvent.CommandProcessEvent">
+ <summary>
+ 命令进度指示，当命令开始执行会连续触发，汇报命令执行的进度
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e"></param>
+</member>
+<member name="E:FCARDIO.Core.Connector.INConnectorEvent.CommandErrorEvent">
+ <summary>
+ 发生错误时触发事件，一般是连接握手失败，串口不存在，usb不存在，没有写文件权限等
+ 还有可能是用户调用Stop指令强制停止命令
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+</member>
+<member name="E:FCARDIO.Core.Connector.INConnectorEvent.CommandTimeout">
+ <summary>
+ 命令超时时，触发此回到函数
+ </summary>
+ <param name="sender"></param>
+</member>
+<member name="E:FCARDIO.Core.Connector.INConnectorEvent.ConnectorErrorEvent">
+ <summary>
+ 连接通道发生错误时触发事件
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+</member>
+<member name="E:FCARDIO.Core.Connector.INConnectorEvent.AuthenticationErrorEvent">
+ <summary>
+ 身份鉴权时发生错误的事件,
+ 一般发生于密码错误，校验失败等情况！
+ </summary>
+</member>
+<member name="E:FCARDIO.Core.Connector.INConnectorEvent.TransactionMessage">
+ <summary>
+ 事务消息，有些命令发生后会需要异步等待对端传回结果，结果将自动序列化为事物消息，并触发此事件
+ </summary>
+ <param name="connector"></param>
+ <param name="EventData"></param>
+</member>
+<member name="E:FCARDIO.Core.Connector.INConnectorEvent.ClientOnline">
+ <summary>
+ 客户端上线
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="E:FCARDIO.Core.Connector.INConnectorEvent.ClientOffline">
+ <summary>
+ 客户端离线
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="T:FCARDIO.Core.Connector.INConnectorFireEvent">
+ <summary>
+ 触发事件 ,用于激活 INConnectorEvent 接口定义的事件
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireCommandCompleteEvent(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 当命令完成时，会触发此函数回调
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireCommandProcessEvent(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 命令进度指示，当命令开始执行会连续触发，汇报命令执行的进度
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireCommandErrorEvent(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 发生错误时触发事件，一般是连接握手失败，串口不存在，usb不存在，没有写文件权限等
+ 还有可能是用户调用Stop指令强制停止命令
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireCommandTimeout(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 命令超时时，触发此回到函数
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireAuthenticationErrorEvent(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 身份鉴权时发生错误的事件,
+ 一般发生于密码错误，校验失败等情况！
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireTransactionMessage(FCARDIO.Core.Data.INData)">
+ <summary>
+ 事务消息，有些命令发生后会需要异步等待对端传回结果，结果将自动序列化为事物消息，并触发此事件
+ </summary>
+ <param name="EventData"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireClientOnline(FCARDIO.Core.Connector.ServerEventArgs)">
+ <summary>
+ 客户端上线
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireClientOffline(FCARDIO.Core.Connector.ServerEventArgs)">
+ <summary>
+ 客户端离线
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="T:FCARDIO.Core.Connector.ServerEventArgs">
+ <summary>
+ 服务器事件参数
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.ServerEventArgs.ClientKey">
+ <summary>
+ 客户端的key值，后续通过此值和其通讯
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.ServerEventArgs.Local">
+ <summary>
+ 服务器本地IP信息(仅供查看，不可修改)
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.ServerEventArgs.Remote">
+ <summary>
+ 远程计算机IP信息(仅供查看，不可修改)
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.ServerEventArgs.EventTime">
+ <summary>
+ 事件发生的时间
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Data.INData.GetDataLen">
+ <summary>
+ 获取数据的字节长度
+ </summary>
+ <returns>返回数据的字节长度</returns>
+</member>
+<member name="M:FCARDIO.Core.Data.INData.SetBytes(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将一个缓冲区 ByteBuf 设置到数据结构中
+ </summary>
+ <param name="databuf">需要设置到结构中的ByteBuf</param>
+</member>
+<member name="M:FCARDIO.Core.Data.INData.GetBytes">
+ <summary>
+ 获取一个 ByteBuf 此 缓冲中包含了此数据结构的所有数据
+ </summary>
+ <returns>返回一个包含此结构的ByteBuf</returns>
+</member>
+<member name="M:FCARDIO.Core.Data.INData.GetBytes(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将数据序列化到指定的 ByteBuf 中
+ </summary>
+ <param name="databuf">具有足够缓冲空间的bytebuf</param>
+ <returns>返回传入的bytebuf</returns>
+</member>
+<member name="M:FCARDIO.Core.Extension.ByteBufferExtension.WriteUnsignedInt(DotNetty.Buffers.IByteBuffer,System.UInt32)">
+ <summary>
+ 将UINT32类型写入到缓冲区
+ </summary>
+ <param name="buf"></param>
+ <param name="v"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Extension.BytesExtensions.GetString(System.Byte[])">
+ <summary>
+ 转换字节编码为字符串
+ </summary>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Extension.BytesExtensions.ToHex(System.Byte[])">
+ <summary>
+ 转换字节数组为十六进制字符串
+ </summary>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Extension.NumExtensions.ToBytes(System.Int64)">
+ <summary>
+ 返回8个字节
+ </summary>
+ <param name="l"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Extension.NumExtensions.To8Bytes(System.UInt64)">
+ <summary>
+ 返回8个字节
+ </summary>
+ <param name="l"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Extension.StringExtensions.IsNum(System.String)">
+ <summary>
+ 检查是否为数字
+ </summary>
+ <param name="aString"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Extension.StringExtensions.IsHex(System.String)">
+ <summary>
+ 检查字符串是否为十六进制
+ </summary>
+ <param name="s"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Extension.StringExtensions.HexToByte(System.String)">
+ <summary>
+ 十六进制转为字节数字
+ </summary>
+ <param name="s"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Extension.StringExtensions.GetBytes(System.String)">
+ <summary>
+ 获取字符串的字节编码
+ </summary>
+ <param name="s"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Extension.StringExtensions.FillString(System.String,System.Int32,System.String)">
+ <summary>
+ 填充字符串
+ </summary>
+ <param name="s"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Packet.INPacket.GetPacketData(DotNetty.Buffers.IByteBufferAllocator)">
+ <summary>
+ 获取数据包的打包后的ByteBuf，用于发送数据
+ </summary>
+ <param name="Allocator">用于分配ByteBuf的分配器</param>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Packet.INPacketDecompile">
+ <summary>
+ 用于将数据解析成指定格式的数据包的解析器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Packet.INPacketDecompile.Decompile(DotNetty.Buffers.IByteBuffer,System.Collections.Generic.List{FCARDIO.Core.Packet.INPacket})">
+ <summary>
+ 将数据解析成特定的数据包，并返回结果
+ </summary>
+ <param name="buf">待解析数据缓冲区</param>
+ <param name="retPacketList">已解析的包会放在这个列表中</param>
+ <returns>解析出完整包则返回True</returns>
+</member>
+<member name="M:FCARDIO.Core.Util.Arrays`1.copyOfRange(`0[],System.Int32,System.Int32)">
+ <summary>
+ 拷贝数组
+ </summary>
+ <param name="src">源数组，从此数组中取数据</param>
+ <param name="iBegin">开始截取数组的起始索引，从0开始。</param>
+ <param name="lLen">截取数组元素的长度。</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Arrays`1.BytesEquals(`0[],`0[])">
+ <summary>
+ 检查两个数组是否匹配
+ </summary>
+ <param name="src"></param>
+ <param name="sDec"></param>
+ <returns>true--匹配；false--不匹配</returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.BytesToLong(System.Byte[])">
+ <summary>
+ 字节数组转长整形
+ </summary>
+ <param name="b">字节数组 1-8个元素</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.BytesToLong(System.Byte[],System.Int32,System.Int32)">
+ <summary>
+ 字节数组转长整形
+ </summary>
+ <param name="b">需要计算的数组</param>
+ <param name="iBeginIndex">数组起始索引号</param>
+ <param name="iLen">数据长度 最大8字节</param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.LongToBytes(System.UInt64)">
+ <summary>
+ 将长整形转为字节数组
+ </summary>
+ <param name="lValue"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.ByteToHex(System.Byte[])">
+ <summary>
+ 字节转十六进制
+ </summary>
+ <param name="bData"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.HexToByte(System.String)">
+ <summary>
+ 十六进制转字节
+ </summary>
+ <param name="sHex"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.ByteToBit(System.Byte)">
+ <summary>
+ 字节转Bit
+ </summary>
+ <param name="iNum"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.BitToByte(System.Byte[])">
+ <summary>
+ Bit转字节
+ </summary>
+ <param name="iBits">存储位数据的8元素数组</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.ByteToBCDNUM(System.Byte)">
+ <summary>
+ 字节转BCD码
+ </summary>
+ <param name="iNum"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.ByteToBCDNUM(System.Byte[])">
+ <summary>
+ 字节转BCD码
+ </summary>
+ <param name="iNum"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.BCDToByte(System.Byte)">
+ <summary>
+ BCD转字节值
+ </summary>
+ <param name="iNum"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.BCDToByte(System.Byte[])">
+ <summary>
+ BCD转字节值
+ </summary>
+ <param name="iNum"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.ByteToSByte(System.Byte)">
+ <summary>
+ 无符号8位整形，转换为有符号8位整形。
+ </summary>
+ <param name="bValue"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.SBytetobyte(System.SByte)">
+ <summary>
+ 有符号8位整形，转换为无符号8位整形。
+ </summary>
+ <param name="b"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.ByteToInt16(System.Byte[])">
+ <summary>
+ 字节数组转短整型 Int16 高位在前
+ </summary>
+ <param name="bData"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.ByteToInt16(System.Byte[],System.Int32)">
+ <summary>
+ 字节数组转短整型 Int16 高位在前
+ </summary>
+ <param name="bData">需要计算的数组</param>
+ <param name="iBeginIndex">数组起始索引号</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.ByteToInt32(System.Byte[])">
+ <summary>
+ 字节数组转 Int32 整形 高位在前
+ </summary>
+ <param name="bData"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.ByteToInt32(System.Byte[],System.Int32,System.Int32)">
+ <summary>
+ 字节数组转 Int32 整形 高位在前
+ </summary>
+ <param name="bData">需要计算的数组</param>
+ <param name="iBeginIndex">数组起始索引号</param>
+ <param name="iLen">数据长度 最大4字节</param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.Int32ToByte(System.UInt32)">
+ <summary>
+ Int32 整形 转 字节数组 高位在前
+ </summary>
+ <param name="iValue"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.Int16ToByte(System.UInt16)">
+ <summary>
+ Int16 整形 转 字节数组  高位在前
+ </summary>
+ <param name="iValue"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.ByteToDateTime(System.Byte[])">
+ <summary>
+ BCD格式日期字节数组转换为日期类型   需要传入6字节
+ 格式 yyMMddHHmmss
+ </summary>
+ <param name="bData"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.Conversion.ByteToDate(System.Byte[])">
+ <summary>
+ 字节数组转换为日期类型  BCD日期 需要传入3字节
+ </summary>
+ <param name="bData"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.DataCheck.IsHex(System.String)">
+ <summary>
+ 检查字符串是否为十六进制
+ </summary>
+ <param name="sValue"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.DataCheck.CheckHexLen(System.String,System.Int32)">
+ <summary>
+ 检查十六进制字符串格式及长度
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.DataCheck.CheckStringLen(System.String,System.Int32,System.String)">
+ <summary>
+ 检查字符串是否为指定长度
+ </summary>
+ <param name="sValue">待检查字符串</param>
+ <param name="iLength">需要的长度</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:FCARDIO.Core.Util.DataCheck.CheckBuffLen(System.Byte[],System.Int32)">
+ <summary>
+ 检查输入的缓冲区长度是否达到指定最大值
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+</members>
+</doc>
