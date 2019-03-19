@@ -22,6 +22,16 @@ FCARDIO.Protocol
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="T:FCARDIO.Protocol.FC8800.FC8800CommandStatus_CheckSumError">
+ <summary>
+ 表示校验和错误的状态
+ </summary>
+</member>
+<member name="T:FCARDIO.Protocol.FC8800.FC8800CommandStatus_PasswordErrorStatus">
+ <summary>
+ 表示通讯密码错误的状态
+ </summary>
+</member>
 <member name="T:FCARDIO.Protocol.FC8800.FC8800Transaction">
  <summary>
  适用于使用FC8800协议格式的监控消息
@@ -62,14 +72,92 @@ FCARDIO.Protocol
  <param name="ci">命令索引</param>
  <param name="cp">命令参数</param>
 </member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Transaction.SetBytes(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 未使用
+ </summary>
+ <param name="databuf"></param>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Transaction.GetDataLen">
+ <summary>
+ 返回这个消息的数据长度
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Transaction.GetBytes">
+ <summary>
+ 未使用
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Transaction.GetBytes(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 未使用
+ </summary>
+</member>
+<member name="T:FCARDIO.Protocol.FC8800.FC8800RequestHandle">
+ <summary>
+ 用于处理关于FC8800系列协议中产生的设备主动上报消息的处理类
+ </summary>
+</member>
 <member name="F:FCARDIO.Protocol.FC8800.FC8800RequestHandle.TransactionFactory">
  <summary>
  事务工厂，用于处理获取各种类型的事物的类型
  </summary>
 </member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800RequestHandle.#ctor(DotNetty.Buffers.IByteBufferAllocator,System.Func{System.String,System.Byte,System.Byte,System.Type})">
+ <summary>
+ 
+ </summary>
+ <param name="allocator">用于保存临时数据的ByteBuf分配器</param>
+ <param name="factory">用于根据SN，命令参数、命令索引生产用于处理对应消息的处理类工厂</param>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800RequestHandle.fireRequestEvent(FCARDIO.Core.Connector.INConnector,FCARDIO.Core.Packet.INPacket)">
+ <summary>
+ 当处理类接收并验证完毕数据包后，由此产生消息
+ </summary>
+ <param name="connector">消息所在连接通道</param>
+ <param name="p">接收到的数据包</param>
+</member>
+<member name="F:FCARDIO.Protocol.FC8800.FC8800Command.NULLPassword">
+ <summary>
+ 通讯密码空密码常量
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.FC8800.FC8800Command.NULLPasswordBuf">
+ <summary>
+ 通讯密码默认密码的字节常量
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.FC8800.FC8800Command.FCPacket">
+ <summary>
+ 处理当前命令逻辑的数据包和 _Packet 是统一个对象
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.FC8800.FC8800Command.CheckSumErrorStatus">
+ <summary>
+ 表示校验和错误的状态
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.FC8800.FC8800Command.PasswordErrorStatus">
+ <summary>
+ 表示通讯密码错误的状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.#ctor(FCARDIO.Core.Command.INCommandDetail,FCARDIO.Core.Command.INCommandParameter)">
+ <summary>
+ 初始化两个重要参数，并进行参数检查
+ </summary>
+ <param name="cd">表示命令详情，包含通道信息，对端信息，超时时间，重发次数</param>
+ <param name="par">表示此命令逻辑所需要的命令参数</param>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CreatePacket">
+ <summary>
+ 指令开始执行时，用于让命令组装第一个用于发送的数据包 CommandNext0 中组装（如果有的话）
+ </summary>
+</member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CreatePacket0">
  <summary>
- 生成命令
+ 生成命令的第一个数据包，后续的数据包应该在
  </summary>
 </member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.Packet(System.Byte,System.Byte,System.Byte,System.UInt32,DotNetty.Buffers.IByteBuffer)">
@@ -86,21 +174,38 @@ FCARDIO.Protocol
  <summary>
  修改当前的数据包
  </summary>
- <param name="ct"></param>
- <param name="ci"></param>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
 </member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.Packet(System.Byte,System.Byte,System.Byte)">
  <summary>
  修改当前的数据包
  </summary>
- <param name="ct"></param>
- <param name="ci"></param>
+ <param name="ct">命令分类</param>
+ <param name="ci">命令索引</param>
+ <param name="cp">命令参数</param>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.Release0">
+ <summary>
+ 释放使用的资源
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.Release1">
+ <summary>
+ 让派生类主动释放资源
+ </summary>
 </member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CommandNext(FCARDIO.Core.Packet.INPacket)">
  <summary>
  检查并进行命令的下一部分
  </summary>
  <param name="readPacket">收到的数据包</param>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CommandNext0(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket)">
+ <summary>
+ 命令收到响应，解析响应并继续执行命令
+ </summary>
+ <param name="oPck"></param>
 </member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CommandNext1(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket)">
  <summary>
@@ -226,6 +331,16 @@ FCARDIO.Protocol
  解析信息代码
  </summary>
 </member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.BaseDecompileStep.SN">
+ <summary>
+ 
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.BaseDecompileStep.Password">
+ <summary>
+ 
+ </summary>
+</member>
 <member name="P:FCARDIO.Protocol.OnlineAccess.BaseDecompileStep.ReadBufLen">
  <summary>
  buf需要存储的长度
@@ -278,11 +393,36 @@ FCARDIO.Protocol
  用于在线门禁的身份详情记录
  </summary>
 </member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.ASCII">
+ <summary>
+ 用于ASCII 字符串数据编解码
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.EmptySN">
+ <summary>
+ 指示了一个空的SN
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.EmptyPassword">
+ <summary>
+ 默认的空密码
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.mSN">
+ <summary>
+ 控制器的SN
+ </summary>
+</member>
 <member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.SN">
  <summary>
  控制器的SN
  </summary>
  <returns></returns>
+</member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.mPassword">
+ <summary>
+ 控制器的密码
+ </summary>
 </member>
 <member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.Password">
  <summary>
@@ -298,6 +438,36 @@ FCARDIO.Protocol
  <param name="cnt">只是通讯连接通道</param>
  <param name="s">控制器的SN，16个字符</param>
  <param name="p">控制器的密码，8个字符的十六进制字符串</param>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.SNByte">
+ <summary>
+ 控制器SN的字节数组
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.PasswordByte">
+ <summary>
+ 控制器密码的字节数组
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.Release0">
+ <summary>
+ 释放当前实例所使用的资源
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.Clone">
+ <summary>
+ 返回一个浅表副本
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail.Equals(FCARDIO.Core.Command.INCommandDetail)">
+ <summary>
+ 比较连接通道指向和SN是否相同
+ </summary>
+ <param name="other"></param>
+ <returns></returns>
 </member>
 <member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessDecompile._Step">
  <summary>
