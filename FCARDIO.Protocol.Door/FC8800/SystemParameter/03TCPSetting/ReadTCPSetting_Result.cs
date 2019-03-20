@@ -5,16 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadTCPSetting
+namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
 {
     /// <summary>
     /// 获取TCP参数_结果
     /// </summary>
     public class ReadTCPSetting_Result : INCommandResult
     {
-        /// <summary>
-        /// 控制器TCP信息
-        /// </summary>
         public TCPDetail TCP;
 
         public ReadTCPSetting_Result(TCPDetail _TCP)
@@ -22,9 +19,6 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadTCPSetting
             TCP = _TCP;
         }
 
-        /// <summary>
-        /// 释放资源
-        /// </summary>
         public void Dispose()
         {
             return;

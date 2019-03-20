@@ -26,7 +26,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SN
         public SN_Parameter(byte[] _SN)
         {
             SNBuf = _SN;
-            if (checkedParameter())
+            if (!checkedParameter())
             {
                 throw new ArgumentException("SN Error");
             }

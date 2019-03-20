@@ -7,16 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadConnectPassword
+namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Version
 {
     /// <summary>
-    /// 获取控制器通讯密码
+    /// 获取设备版本号
     /// </summary>
-    public class ReadConnectPassword : FC8800Command
+    public class ReadVersion : FC8800Command
     {
-        private static readonly byte[] DataStrt = new byte[] { 0x46, 0x43, 0x61, 0x72, 0x64, 0x59, 0x7A };
-
-        public ReadConnectPassword(INCommandDetail cd) : base(cd, null) { }
+        public ReadVersion(INCommandDetail cd) : base(cd, null) { }
 
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
@@ -25,12 +23,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadConnectPassword
 
         protected override void CreatePacket0()
         {
-            var acl = _Connector.GetByteBufAllocator();
-
-            var buf = acl.Buffer(7);
-            buf.WriteBytes(DataStrt);
-
-            Packet(0x01, 0x04, 0x00, 0x07, buf);
+            Packet(0x01, 0x08);
         }
 
         protected override void CommandNext1(OnlineAccessPacket oPck)

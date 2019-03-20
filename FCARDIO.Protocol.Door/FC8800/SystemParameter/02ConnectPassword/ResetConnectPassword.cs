@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ResetConnectPassword
+namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
 {
     /// <summary>
     /// 重置控制器通讯密码
@@ -33,10 +33,6 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ResetConnectPassword
             Packet(0x01, 0x05, 0x00, 0x07, buf);
         }
 
-        /// <summary>
-        /// 【应答：OK】 => 父类已处理
-        /// </summary>
-        /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
             return;

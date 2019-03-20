@@ -1,5 +1,4 @@
 ﻿using FCARDIO.Core.Command;
-using FCARDIO.Core.Extension;
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 using System;
@@ -8,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.WriteConnectPassword
+namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
 {
     /// <summary>
     /// 设置控制器通讯密码
@@ -25,7 +24,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.WriteConnectPassword
                 return false;
             }
 
-            return true;
+            return model.checkedParameter();
         }
 
         protected override void CreatePacket0()
@@ -34,24 +33,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.WriteConnectPassword
 
             var acl = _Connector.GetByteBufAllocator();
 
-            var buf = acl.Buffer(4);
+            var buf = acl.Buffer(model.GetDataLen());
 
-            if (string.IsNullOrEmpty(model.PWD))
-            {
-                buf.WriteBytes(NULLPassword.HexToByte());
-            }
-            else
-            {
-                buf.WriteBytes(model.PWD.GetBytes());
-            }
-
-            Packet(0x01, 0x03, 0x00, 0x04, buf);
+            Packet(0x01, 0x03, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
 
-        /// <summary>
-        /// 【应答：OK】 => 父类已处理
-        /// </summary>
-        /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
             return;

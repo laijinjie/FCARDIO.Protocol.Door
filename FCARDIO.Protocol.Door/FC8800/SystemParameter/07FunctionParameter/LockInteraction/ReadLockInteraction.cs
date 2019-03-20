@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadTCPSetting
+namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
 {
     /// <summary>
-    /// 获取TCP参数
+    /// 获取互锁参数
     /// </summary>
-    public class ReadTCPSetting : FC8800Command
+    public class ReadLockInteraction : FC8800Command
     {
-        public ReadTCPSetting(INCommandDetail cd) : base(cd, null) { }
+        public ReadLockInteraction(INCommandDetail cd) : base(cd, null) { }
 
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
@@ -23,7 +23,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadTCPSetting
 
         protected override void CreatePacket0()
         {
-            Packet(0x01, 0x06);
+            Packet(0x01, 0x0A, 0x84);
         }
 
         protected override void CommandNext1(OnlineAccessPacket oPck)
