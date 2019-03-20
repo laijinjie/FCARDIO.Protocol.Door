@@ -81,6 +81,16 @@
     <Compile Include="FC8800\Door\02RelayOption\RelayOption_Parameter.cs" />
     <Compile Include="FC8800\Door\02RelayOption\RelayOption_Result.cs" />
     <Compile Include="FC8800\Door\02RelayOption\WriteRelayOption.cs" />
+    <Compile Include="FC8800\Door\04ReaderWorkSetting\ReadReaderWorkSetting_Parameter.cs" />
+    <Compile Include="FC8800\Door\04ReaderWorkSetting\WriteReaderWorkSetting_Parameter.cs" />
+    <Compile Include="FC8800\Door\04ReaderWorkSetting\ReaderWorkSetting_Result.cs" />
+    <Compile Include="FC8800\Door\04ReaderWorkSetting\ReadReaderWorkSetting.cs" />
+    <Compile Include="FC8800\Door\04ReaderWorkSetting\WriteReaderWorkSetting.cs" />
+    <Compile Include="FC8800\Door\05DoorWorkSetting\DoorWorkSetting_Result.cs" />
+    <Compile Include="FC8800\Door\05DoorWorkSetting\ReadDoorWorkSetting.cs" />
+    <Compile Include="FC8800\Door\05DoorWorkSetting\ReadDoorWorkSetting_Parameter.cs" />
+    <Compile Include="FC8800\Door\05DoorWorkSetting\WriteDoorWorkSetting.cs" />
+    <Compile Include="FC8800\Door\05DoorWorkSetting\WriteDoorWorkSetting_Parameter.cs" />
     <Compile Include="FC8800\SystemParameter\01SN\SN_Result.cs" />
     <Compile Include="FC8800\SystemParameter\02ConnectPassword\ReadConnectPassword.cs" />
     <Compile Include="FC8800\SystemParameter\02ConnectPassword\ReadConnectPassword_Result.cs" />

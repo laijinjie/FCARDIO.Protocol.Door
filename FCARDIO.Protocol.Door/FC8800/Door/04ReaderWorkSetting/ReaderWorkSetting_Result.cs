@@ -1,0 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
+{
+    public class ReaderWorkSetting_Result:ReadReaderWorkSetting_Parameter,FCARDIO.Core.Command.INCommandResult
+    {
+    }
+}

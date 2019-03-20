@@ -13,7 +13,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayOption
         public RelayOption_Parameter() { }
         public RelayOption_Parameter(byte[] relay)
         {
-
+            _Relay = relay;
         }
         public override bool checkedParameter()
         {
