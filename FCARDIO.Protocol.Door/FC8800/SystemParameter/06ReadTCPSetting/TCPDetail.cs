@@ -12,7 +12,8 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadTCPSetting
     /// <summary>
     /// 获取控制器通讯密码_模型
     /// </summary>
-    public class TCPDetail : INData
+    public class TCPDetail : AbstractData
+
     {
         /// <summary>
         /// MAC地址
@@ -79,38 +80,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadTCPSetting
         /// </summary>
         public string mServerAddr { get; set; }
 
-        public IByteBuffer GetBytes()
-        {
-            IByteBuffer buf = UnpooledByteBufferAllocator.Default.Buffer(0x89);
-            SaveMACToByteBuf(mMAC, buf);
-            SaveIPToByteBuf(mIP, buf);
-            SaveIPToByteBuf(mIPMask, buf);
-            SaveIPToByteBuf(mIPGateway, buf);
-            SaveIPToByteBuf(mDNS, buf);
-            SaveIPToByteBuf(mDNSBackup, buf);
-            buf.WriteByte(mProtocolType);
-            buf.WriteUnsignedShort(mTCPPort);
-            buf.WriteUnsignedShort(Convert.ToUInt16(mUDPPort));
-            buf.WriteUnsignedShort(Convert.ToUInt16(mServerPort));
-            SaveIPToByteBuf(mServerIP, buf);
-            buf.WriteByte(mAutoIP ? 1 : 0);
 
-            if (string.IsNullOrEmpty(mServerAddr))
-            {
-                Save0toByteBuf(buf, 99);
-            }
-            else
-            {
-                byte[] tmp = mServerAddr.GetBytes();
-                buf.WriteBytes(tmp);
-                int iCount = 99 - tmp.Length;
-                if (iCount > 0)
-                {
-                    Save0toByteBuf(buf, iCount);
-                }
-            }
-            return buf;
-        }
 
         private void SaveMACToByteBuf(String mac, IByteBuffer buf)
         {
@@ -222,7 +192,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadTCPSetting
             return true;
         }
 
-        public IByteBuffer GetBytes(IByteBuffer databuf)
+        public override  IByteBuffer GetBytes(IByteBuffer databuf)
         {
             SaveMACToByteBuf(mMAC, databuf);
             SaveIPToByteBuf(mIP, databuf);
@@ -254,12 +224,12 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadTCPSetting
             return databuf;
         }
 
-        public int GetDataLen()
+        public override int GetDataLen()
         {
             return 0x89;
         }
 
-        public void SetBytes(IByteBuffer databuf)
+        public override void SetBytes(IByteBuffer databuf)
         {
             throw new NotImplementedException();
         }
