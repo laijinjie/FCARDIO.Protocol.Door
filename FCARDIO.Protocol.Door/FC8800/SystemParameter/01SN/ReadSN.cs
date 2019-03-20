@@ -9,7 +9,7 @@ using FCARDIO.Core.Extension;
 using FCARDIO.Core.Command;
 
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadSN
+namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SN
 {
     /// <summary>
     /// 获取控制器SN
@@ -31,7 +31,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadSN
 
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         protected override void CommandNext1(OnlineAccessPacket oPck)
@@ -39,10 +39,9 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ReadSN
             if (CheckResponse(oPck, 16))
             {
                 var buf = oPck.CmdData;
-                byte[] snBuf = new byte[16];
-                buf.ReadBytes(snBuf);
-                var SN = snBuf.GetString();
-                _Result = new ReadSN_Result(SN, snBuf);
+                SN_Result rst = new SN_Result();
+                _Result = rst;
+                rst.SetBytes(buf);
                 CommandCompleted();
             }
         }

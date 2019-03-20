@@ -1,4 +1,5 @@
-﻿using FCARDIO.Core.Command;
+﻿using DotNetty.Buffers;
+using FCARDIO.Core.Command;
 using FCARDIO.Core.Extension;
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
@@ -8,51 +9,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.WriteSN
+namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SN
 {
     /// <summary>
-    /// 广播写入控制器SN
+    /// 写入控制器SN
     /// </summary>
-    public class WriteSN_Broadcast : FC8800Command
+    public class WriteSN : FC8800Command
     {
-        private static readonly byte[] DataStrt = new byte[] { 0xFC, 0x65, 0x65, 0x33, 0xFF };
-        private static readonly byte[] DataEnd = new byte[] { 0xCF, 0x35, 0x92 };
+        protected virtual byte[] DataStrt { get { return new byte[] { 0x03, 0xC5, 0x89, 0x12, 0x3E }; } }
+        protected virtual byte[] DataEnd { get { return new byte[] { 0x90, 0x7F, 0x78 }; } }
 
-        public WriteSN_Broadcast(INCommandDetail cd, INCommandParameter par) : base(cd, par) { }
+        public WriteSN(INCommandDetail cd, INCommandParameter par) : base(cd, par) { }
 
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            WriteSN_Parameter model = value as WriteSN_Parameter;
-            if (model == null)
-            {
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(model.SN))
-            {
-                return false;
-            }
-
-            if (model.SN.Length != 16)
-            {
-                return false;
-            }
-
-            return true;
+            SN_Parameter model = value as SN_Parameter;
+            if (model == null) return false;
+            return model.checkedParameter();
         }
 
         protected override void CreatePacket0()
         {
-            WriteSN_Parameter model = _Parameter as WriteSN_Parameter;
+            Packet(0x01, 0x01, 0x00, 0x18, GetCmdData());
+        }
+
+        protected IByteBuffer GetCmdData()
+        {
+            SN_Parameter model = _Parameter as SN_Parameter;
 
             var acl = _Connector.GetByteBufAllocator();
 
             var buf = acl.Buffer(18);
             buf.WriteBytes(DataStrt);
-            buf.WriteBytes(model.SN.GetBytes());
+            model.GetBytes(buf);
             buf.WriteBytes(DataEnd);
-
-            Packet(0xC1, 0xD1, 0xF7, 0x18, buf);
+            return buf;
         }
 
         /// <summary>
