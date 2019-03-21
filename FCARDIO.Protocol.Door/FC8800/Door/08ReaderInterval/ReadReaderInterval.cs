@@ -8,49 +8,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
+namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderInterval
 {
-    public class ReadDoorWorkSetting : FC8800Command
+    public class ReadReaderInterval
+         : FC8800Command
     {
-        //0x03	0x06	0x00	0x01
-
-        public ReadDoorWorkSetting(INCommandDetail cd, ReadDoorWorkSetting_Parameter value) : base(cd, value)
-        {
-        }
+        public ReadReaderInterval(INCommandDetail cd, ReadReaderInterval_Parameter parameter) : base(cd, parameter) { }
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            ReadDoorWorkSetting_Parameter model = value as ReadDoorWorkSetting_Parameter;
+            ReadReaderInterval_Parameter model = value as ReadReaderInterval_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
 
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0xE5))
+            if (CheckResponse(oPck, 0x01))
             {
                 var buf = oPck.CmdData;
-                DoorWorkSetting_Result rst = new DoorWorkSetting_Result();
+                ReaderInterval_Result rst = new ReaderInterval_Result();
                 _Result = rst;
                 rst.SetBytes(buf);
                 CommandCompleted();
             }
         }
-        protected IByteBuffer GetCmdData()
-        {
-            ReadDoorWorkSetting_Parameter model = _Parameter as ReadDoorWorkSetting_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
-        }
+
         protected override void CommandReSend()
         {
-            return;
         }
 
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x05, 0x01, 0x1, GetCmdData());
+            Packet(0x03, 0x09, 0x00, 0x01, GetCmdData());
+        }
+
+        private IByteBuffer GetCmdData()
+        {
+            ReadReaderInterval_Parameter model = _Parameter as ReadReaderInterval_Parameter;
+            var acl = _Connector.GetByteBufAllocator();
+            var buf = acl.Buffer(model.GetDataLen());
+            model.GetBytes(buf);
+            return buf;
         }
 
         protected override void Release1()

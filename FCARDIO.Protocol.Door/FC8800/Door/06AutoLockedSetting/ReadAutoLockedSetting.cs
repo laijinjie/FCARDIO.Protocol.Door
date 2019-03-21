@@ -8,49 +8,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
+namespace FCARDIO.Protocol.Door.FC8800.Door.AutoLockedSetting
 {
-    public class ReadDoorWorkSetting : FC8800Command
+    public class ReadAutoLockedSettin
+        : FC8800Command
     {
-        //0x03	0x06	0x00	0x01
-
-        public ReadDoorWorkSetting(INCommandDetail cd, ReadDoorWorkSetting_Parameter value) : base(cd, value)
-        {
-        }
+        public ReadAutoLockedSettin(INCommandDetail cd, AutoLockedSetting_Parameter parameter) : base(cd, parameter)
+        { }
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            ReadDoorWorkSetting_Parameter model = value as ReadDoorWorkSetting_Parameter;
+            AutoLockedSetting_Parameter model = value as AutoLockedSetting_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
 
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0xE5))
+            if (CheckResponse(oPck, 0xE2))
             {
                 var buf = oPck.CmdData;
-                DoorWorkSetting_Result rst = new DoorWorkSetting_Result();
+                AutoLockedSetting_Result rst = new AutoLockedSetting_Result();
                 _Result = rst;
                 rst.SetBytes(buf);
                 CommandCompleted();
             }
         }
-        protected IByteBuffer GetCmdData()
-        {
-            ReadDoorWorkSetting_Parameter model = _Parameter as ReadDoorWorkSetting_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
-        }
+
         protected override void CommandReSend()
         {
-            return;
         }
 
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x05, 0x01, 0x1, GetCmdData());
+            Packet(0x03, 0x07, 0x01, 0x01, GetCmdData());
+        }
+
+        private IByteBuffer GetCmdData()
+        {
+            AutoLockedSetting_Parameter model = _Parameter as AutoLockedSetting_Parameter;
+            var acl = _Connector.GetByteBufAllocator();
+            var buf = acl.Buffer(model.GetDataLen());
+            model.GetBytes(buf);
+            return buf;
         }
 
         protected override void Release1()

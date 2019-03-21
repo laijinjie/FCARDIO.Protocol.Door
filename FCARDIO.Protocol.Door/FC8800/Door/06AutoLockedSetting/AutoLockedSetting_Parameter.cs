@@ -5,29 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.RelayOption
+namespace FCARDIO.Protocol.Door.FC8800.Door.AutoLockedSetting
 {
-    public class RelayOption_Parameter : AbstractParameter
+    public class AutoLockedSetting_Parameter
+        : AbstractParameter
     {
-        private const int _DataLength = 0x04;
-        private byte[] _Relay = null;
-        public RelayOption_Parameter() { }
-        public RelayOption_Parameter(byte[] relay)
+        private const int _DataLength = 0x05;
+        private byte[] _AutoLock = null;
+        public AutoLockedSetting_Parameter() { }
+        public AutoLockedSetting_Parameter(byte[] autoLock)
         {
-            _Relay = relay;
+            _AutoLock = autoLock;
         }
         public override bool checkedParameter()
         {
-            if (_Relay == null)
-                throw new ArgumentException("relay Is Null!");
-            if (_Relay.Length != _DataLength)
-                throw new ArgumentException("relay Length Error!");
+            if (_AutoLock == null)
+                throw new ArgumentException("autoLock Is Null!");
+            if (_AutoLock.Length != _DataLength)
+                throw new ArgumentException("autoLock Length Error!");
             return true;
         }
 
         public override void Dispose()
         {
-            _Relay = null;
+            _AutoLock = null;
         }
 
         public override IByteBuffer GetBytes(IByteBuffer databuf)
@@ -36,7 +37,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayOption
             {
                 throw new ArgumentException("databuf Error!");
             }
-            return databuf.WriteBytes(_Relay);
+            return databuf.WriteBytes(_AutoLock);
         }
 
         public override int GetDataLen()
@@ -46,15 +47,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayOption
 
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (_Relay == null)
+            if (_AutoLock == null)
             {
-                _Relay = new byte[_DataLength];
+                _AutoLock = new byte[_DataLength];
             }
             if (databuf.ReadableBytes != _DataLength)
             {
                 throw new ArgumentException("databuf Error");
             }
-            databuf.ReadBytes(_Relay);
+            databuf.ReadBytes(_AutoLock);
         }
     }
 }

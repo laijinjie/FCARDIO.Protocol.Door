@@ -1,33 +1,34 @@
-﻿using System;
+﻿using DotNetty.Buffers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.RelayOption
+namespace FCARDIO.Protocol.Door.FC8800.Door.Remote
 {
-    public class RelayOption_Parameter : AbstractParameter
+    public class Remote_CheckNum_Parameter
+        : AbstractParameter
     {
-        private const int _DataLength = 0x04;
-        private byte[] _Relay = null;
-        public RelayOption_Parameter() { }
-        public RelayOption_Parameter(byte[] relay)
+        private const int _DataLength = 0x05;
+        private byte[] _Door = null;
+        public Remote_CheckNum_Parameter() { }
+        public Remote_CheckNum_Parameter(byte[] door)
         {
-            _Relay = relay;
+            _Door = door;
         }
         public override bool checkedParameter()
         {
-            if (_Relay == null)
-                throw new ArgumentException("relay Is Null!");
-            if (_Relay.Length != _DataLength)
-                throw new ArgumentException("relay Length Error!");
+            if (_Door == null)
+                throw new ArgumentException("door Is Null!");
+            if (_Door.Length != _DataLength)
+                throw new ArgumentException("door Length Error!");
             return true;
         }
 
         public override void Dispose()
         {
-            _Relay = null;
+            _Door = null;
         }
 
         public override IByteBuffer GetBytes(IByteBuffer databuf)
@@ -36,7 +37,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayOption
             {
                 throw new ArgumentException("databuf Error!");
             }
-            return databuf.WriteBytes(_Relay);
+            return databuf.WriteBytes(_Door);
         }
 
         public override int GetDataLen()
@@ -46,15 +47,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayOption
 
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (_Relay == null)
+            if (_Door == null)
             {
-                _Relay = new byte[_DataLength];
+                _Door = new byte[_DataLength];
             }
             if (databuf.ReadableBytes != _DataLength)
             {
                 throw new ArgumentException("databuf Error");
             }
-            databuf.ReadBytes(_Relay);
+            databuf.ReadBytes(_Door);
         }
     }
 }

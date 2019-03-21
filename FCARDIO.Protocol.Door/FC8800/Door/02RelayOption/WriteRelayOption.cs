@@ -33,7 +33,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayOption
         {
             RelayOption_Parameter model = _Parameter as RelayOption_Parameter;
             var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(18);
+            var buf = acl.Buffer(model.GetDataLen());
             model.GetBytes(buf);
             return buf;
         }

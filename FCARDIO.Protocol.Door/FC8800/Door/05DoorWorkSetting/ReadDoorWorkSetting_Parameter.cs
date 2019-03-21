@@ -10,24 +10,24 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
     public class ReadDoorWorkSetting_Parameter : AbstractParameter
     {
         private const int _DataLength = 0xE5;
-        private byte[] _DoorWorkSetting_ = null;
+        private byte[] _DoorWorkSetting = null;
         public ReadDoorWorkSetting_Parameter() { }
         public ReadDoorWorkSetting_Parameter(byte[] doorWorkSetting)
         {
-            _DoorWorkSetting_ = doorWorkSetting;
+            _DoorWorkSetting = doorWorkSetting;
         }
         public override bool checkedParameter()
         {
-            if (_DoorWorkSetting_ == null)
+            if (_DoorWorkSetting == null)
                 throw new ArgumentException("doorWorkSetting Is Null!");
-            if (_DoorWorkSetting_.Length != _DataLength)
+            if (_DoorWorkSetting.Length != _DataLength)
                 throw new ArgumentException("doorWorkSetting Length Error!");
             return true;
         }
 
         public override void Dispose()
         {
-            _DoorWorkSetting_ = null;
+            _DoorWorkSetting = null;
         }
 
         public override IByteBuffer GetBytes(IByteBuffer databuf)
@@ -36,7 +36,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
             {
                 throw new ArgumentException("databuf Error!");
             }
-            return databuf.WriteBytes(_DoorWorkSetting_);
+            return databuf.WriteBytes(_DoorWorkSetting);
         }
 
         public override int GetDataLen()
@@ -46,15 +46,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
 
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (_DoorWorkSetting_ == null)
+            if (_DoorWorkSetting == null)
             {
-                _DoorWorkSetting_ = new byte[_DataLength];
+                _DoorWorkSetting = new byte[_DataLength];
             }
             if (databuf.ReadableBytes != _DataLength)
             {
                 throw new ArgumentException("databuf Error");
             }
-            databuf.ReadBytes(_DoorWorkSetting_);
+            databuf.ReadBytes(_DoorWorkSetting);
         }
     }
 }

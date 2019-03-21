@@ -8,33 +8,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
+namespace FCARDIO.Protocol.Door.FC8800.Door.Remote
 {
-    public class WriteDoorWorkSetting:FC8800Command
+    public class OpenDoor_CheckNum
+        : FC8800Command
     {
-        //0x03	0x06	0x01	0xE5
-
-        public WriteDoorWorkSetting(INCommandDetail cd, WriteDoorWorkSetting_Parameter value) : base(cd, value)
+        public OpenDoor_CheckNum(INCommandDetail cd, Remote_CheckNum_Parameter parameter) : base(cd, parameter)
         {
         }
+
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            WriteDoorWorkSetting_Parameter model = value as WriteDoorWorkSetting_Parameter;
+            Remote_Parameter model = value as Remote_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
 
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
+            return;
         }
-        protected IByteBuffer GetCmdData()
-        {
-            WriteDoorWorkSetting_Parameter model = _Parameter as WriteDoorWorkSetting_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(18);
-            model.GetBytes(buf);
-            return buf;
-        }
+
         protected override void CommandReSend()
         {
             return;
@@ -42,13 +36,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
 
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x06, 0x01, 0xE5, GetCmdData());
+            Packet(0x03, 0x03, 0x08, 0x05, GetCmdData());
+        }
+        protected IByteBuffer GetCmdData()
+        {
+            Remote_Parameter model = _Parameter as Remote_Parameter;
+            var acl = _Connector.GetByteBufAllocator();
+            var buf = acl.Buffer(18);
+            model.GetBytes(buf);
+            return buf;
         }
 
         protected override void Release1()
         {
             return;
         }
-
     }
 }

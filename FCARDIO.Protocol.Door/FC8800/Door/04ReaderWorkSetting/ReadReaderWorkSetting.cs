@@ -12,7 +12,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
 {
     public class ReadReaderWorkSetting : FC8800Command
     {
-        //0x03	0x05	0x00	0x01
+        //0x03	0x05	0x00	0x119
         public ReadReaderWorkSetting(INCommandDetail cd, ReadReaderWorkSetting_Parameter value) : base(cd, value)
         {
         }
@@ -25,13 +25,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
 
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            Packet(0x03, 0x05, 0x00, 0x01, GetCmdData());
+            if (CheckResponse(oPck, 0x119))
+            {
+                var buf = oPck.CmdData;
+                ReaderWorkSetting_Result rst = new ReaderWorkSetting_Result();
+                _Result = rst;
+                rst.SetBytes(buf);
+                CommandCompleted();
+            }
         }
         protected IByteBuffer GetCmdData()
         {
             WriteReaderWorkSetting_Parameter model = _Parameter as WriteReaderWorkSetting_Parameter;
             var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(18);
+            var buf = acl.Buffer(model.GetDataLen());
             model.GetBytes(buf);
             return buf;
         }
@@ -42,7 +49,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
 
         protected override void CreatePacket0()
         {
-            return;
+            Packet(0x03, 0x05, 0x00, 0x01, GetCmdData());
         }
 
         protected override void Release1()

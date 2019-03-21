@@ -8,18 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
+namespace FCARDIO.Protocol.Door.FC8800.Door.RelayReleaseTime
 {
-    public class WriteDoorWorkSetting:FC8800Command
+    public class WriteRelayReleaseTime
+        : FC8800Command
     {
-        //0x03	0x06	0x01	0xE5
-
-        public WriteDoorWorkSetting(INCommandDetail cd, WriteDoorWorkSetting_Parameter value) : base(cd, value)
-        {
-        }
+        public WriteRelayReleaseTime(INCommandDetail cd, WriteRelayReleaseTime_Parameter parameter) : base(cd, parameter) { }
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            WriteDoorWorkSetting_Parameter model = value as WriteDoorWorkSetting_Parameter;
+            ReadRelayReleaseTime_Parameter model = value as ReadRelayReleaseTime_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
@@ -27,28 +24,28 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
         }
-        protected IByteBuffer GetCmdData()
-        {
-            WriteDoorWorkSetting_Parameter model = _Parameter as WriteDoorWorkSetting_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(18);
-            model.GetBytes(buf);
-            return buf;
-        }
+
         protected override void CommandReSend()
         {
-            return;
         }
 
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x06, 0x01, 0xE5, GetCmdData());
+            Packet(0x03, 0x08, 0x01, 0x03, GetCmdData());
+        }
+
+        private IByteBuffer GetCmdData()
+        {
+            ReadRelayReleaseTime_Parameter model = _Parameter as ReadRelayReleaseTime_Parameter;
+            var acl = _Connector.GetByteBufAllocator();
+            var buf = acl.Buffer(model.GetDataLen());
+            model.GetBytes(buf);
+            return buf;
         }
 
         protected override void Release1()
         {
             return;
         }
-
     }
 }

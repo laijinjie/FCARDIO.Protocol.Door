@@ -35,7 +35,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
 
             var acl = _Connector.GetByteBufAllocator();
 
-            var buf = acl.Buffer(18);
+            var buf = acl.Buffer(model.GetDataLen());
             model.GetBytes(buf);
             return buf;
         }

@@ -1,31 +1,29 @@
-﻿using System;
+﻿using DotNetty.Buffers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
+namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderInterval
 {
-    /// <summary>
-    /// 控制器4个门的读卡器字节数
-    /// </summary>
-    public class ReaderOption_Parameter : AbstractParameter
+    public class ReadReaderInterval_Parameter
+         : AbstractParameter
     {
-        private const int _DataLength = 0x04;
-        private byte[] _Door = null;
+        private const int _DataLength = 0x01;
+        private byte[] _ReaderInterval = null;
 
-        public ReaderOption_Parameter()
+        public ReadReaderInterval_Parameter()
         {
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="door"></param>
-        public ReaderOption_Parameter(byte[] door)
+        /// <param name="readerInterval"></param>
+        public ReadReaderInterval_Parameter(byte[] readerInterval)
         {
-            _Door = door;
+            _ReaderInterval = readerInterval;
             checkedParameter();
         }
         /// <summary>
@@ -34,10 +32,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (_Door == null)
-                throw new ArgumentException("door Is Null!");
-            if (_Door.Length != _DataLength)
-                throw new ArgumentException("door Length Error!");
+            if (_ReaderInterval == null)
+                throw new ArgumentException("readerInterval Is Null!");
+            if (_ReaderInterval.Length != _DataLength)
+                throw new ArgumentException("readerInterval Length Error!");
             return true;
         }
 
@@ -46,7 +44,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
         /// </summary>
         public override void Dispose()
         {
-            _Door = null;
+            _ReaderInterval = null;
         }
 
         /// <summary>
@@ -56,11 +54,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if(databuf.ReadableBytes != _DataLength)
+            if (databuf.ReadableBytes != _DataLength)
             {
                 throw new ArgumentException("databuf Error!");
             }
-           return databuf.WriteBytes(_Door);
+            return databuf.WriteBytes(_ReaderInterval);
         }
 
         public override int GetDataLen()
@@ -74,15 +72,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (_Door == null)
+            if (_ReaderInterval == null)
             {
-                _Door = new byte[_DataLength];
+                _ReaderInterval = new byte[_DataLength];
             }
             if (databuf.ReadableBytes != _DataLength)
             {
                 throw new ArgumentException("databuf Error");
             }
-            databuf.ReadBytes(_Door);
+            databuf.ReadBytes(_ReaderInterval);
         }
     }
 }
