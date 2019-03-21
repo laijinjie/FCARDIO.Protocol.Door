@@ -22,6 +22,74 @@ FCARDIO.Protocol
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="T:FCARDIO.Protocol.CommandDetailFactory">
+ <summary>
+ 命令详情的创造工厂
+ </summary>
+</member>
+<member name="T:FCARDIO.Protocol.CommandDetailFactory.ConnectType">
+ <summary>
+ 连接参数
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ConnectType.TCPClient">
+ <summary>
+ TCP客户端
+ </summary>
+</member>
+<member name="T:FCARDIO.Protocol.CommandDetailFactory.ControllerType">
+ <summary>
+ 控制器型号
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ControllerType.FC88">
+ <summary>
+ FC8800系列控制器，已知型号：
+ FC-8810A\FC-8820A\FC-8840A
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ControllerType.MC58">
+ <summary>
+ MC5800系列控制器，已知型号：
+ MC-5812R\MC-5812T\MC-5824R\MC-5824T\MC-5848R\MC-5848T
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ControllerType.MC59">
+ <summary>
+ MC-5900系列控制器，已知型号：
+ MC-5912T\MC-5924T\MC-5948T
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ControllerType.MC5926T">
+ <summary>
+ MC-5926T道闸控制器，已知型号：
+ MC-5926T
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ControllerType.FC89A">
+ <summary>
+ FC8900A系列控制器，已知型号：
+ FC-8910A\FC-8920A\FC-8940A
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ControllerType.FC89H">
+ <summary>
+ FC8900H系列控制器，已知型号：
+ FC-8910H\FC-8920H\FC-8940H
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ControllerType.FC989">
+ <summary>
+ FC989脱机刷卡门禁系列，已知型号：
+ FCL-988M\FC-1882M\FC-2882M\FCL-989M
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.CommandDetailFactory.CreateDetail(FCARDIO.Protocol.CommandDetailFactory.ConnectType,System.String,System.Int32,FCARDIO.Protocol.CommandDetailFactory.ControllerType,System.String,System.String)">
+ <summary>
+ 创建一个命令详情
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:FCARDIO.Protocol.FC8800.FC8800CommandStatus_CheckSumError">
  <summary>
  表示校验和错误的状态
@@ -118,6 +186,12 @@ FCARDIO.Protocol
  <param name="connector">消息所在连接通道</param>
  <param name="p">接收到的数据包</param>
 </member>
+<member name="T:FCARDIO.Protocol.FC8800.FC8800Command">
+ <summary>
+ FC8800系列命令格式的基类
+ 适用于：FC8800，FC8900，MC5800，MC5900，FC989，FC1882，FC2882
+ </summary>
+</member>
 <member name="F:FCARDIO.Protocol.FC8800.FC8800Command.NULLPassword">
  <summary>
  通讯密码空密码常量
@@ -170,6 +244,12 @@ FCARDIO.Protocol
  <param name="dl">数据长度</param>
  <param name="cd">命令数据</param>
 </member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.VerifyError(System.String)">
+ <summary>
+ 产生一个错误
+ </summary>
+ <param name="sText">错误描述</param>
+</member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.Packet(System.Byte,System.Byte)">
  <summary>
  修改当前的数据包
@@ -205,33 +285,33 @@ FCARDIO.Protocol
  <summary>
  命令收到响应，解析响应并继续执行命令
  </summary>
- <param name="oPck"></param>
+ <param name="oPck">待处理的数据包(接收到的数据包)</param>
 </member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CommandNext1(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket)">
  <summary>
  继续检查响应是否为命令的下一步骤
  </summary>
- <param name="oPck"></param>
+ <param name="oPck">待处理的数据包(接收到的数据包)</param>
 </member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse_OK(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket)">
  <summary>
  命令返回值成功
  </summary>
- <param name="oPck"></param>
+ <param name="oPck">需要检查的指令--一般值接收到的数据包</param>
  <returns></returns>
 </member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse_PasswordErr(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket)">
  <summary>
  通讯密码错误
  </summary>
- <param name="oPck"></param>
+ <param name="oPck">需要检查的指令--一般值接收到的数据包</param>
  <returns></returns>
 </member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse_CheckSumErr(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket)">
  <summary>
  检验和错误
  </summary>
- <param name="oPck"></param>
+ <param name="oPck">需要检查的指令--一般值接收到的数据包</param>
  <returns></returns>
 </member>
 <member name="F:FCARDIO.Protocol.FC8800.FC8800Command.ResultCmdTypeAddValkue">
@@ -243,21 +323,26 @@ FCARDIO.Protocol
  <summary>
  检查返回指令是否正确
  </summary>
- <param name="oPck"></param>
+ <param name="oPck">需要检查的指令--一般值接收到的数据包</param>
  <returns></returns>
 </member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket,System.UInt32)">
  <summary>
  检查返回指令是否正确
  </summary>
- <param name="oPck"></param>
+ <param name="oPck">需要检查的指令--一般值接收到的数据包</param>
+ <param name="dl">返回值的长度要求</param>
  <returns></returns>
 </member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket,System.Byte,System.Byte,System.Byte,System.UInt32)">
  <summary>
  检查返回指令是否符合规则
  </summary>
- <param name="oPck"></param>
+ <param name="oPck">需要检查的指令--一般值接收到的数据包</param>
+ <param name="CmdType">返回值的命令类型</param>
+ <param name="CmdIndex">返回值的命令索引</param>
+ <param name="CmdPar">返回值的命令参数</param>
+ <param name="DataLen">返回值的长度要求</param>
  <returns></returns>
 </member>
 <member name="T:FCARDIO.Protocol.Transaction.AbstractTransaction">
@@ -688,6 +773,18 @@ FCARDIO.Protocol
  获取一个随机的信息代码
  </summary>
  <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.GetPacketData(DotNetty.Buffers.IByteBufferAllocator)">
+ <summary>
+ 获取数据包的打包后的ByteBuf，用于发送数据
+ </summary>
+ <param name="Allocator">用于分配ByteBuf的分配器</param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.ReleaseDataBuf">
+ <summary>
+ 释放数据包中的缓冲区
+ </summary>
 </member>
 </members>
 </doc>

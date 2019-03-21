@@ -95,6 +95,11 @@ FCARDIO.Core
  用于指示此命令是否已释放
  </summary>
 </member>
+<member name="F:FCARDIO.Core.Command.AbstractCommand._PacketInitialize">
+ <summary>
+ 指示数据包是否已经初始化（已经创建完毕）
+ </summary>
+</member>
 <member name="M:FCARDIO.Core.Command.AbstractCommand.#ctor(FCARDIO.Core.Command.INCommandDetail,FCARDIO.Core.Command.INCommandParameter)">
  <summary>
  初始化两个重要参数，并进行参数检查
@@ -309,6 +314,12 @@ FCARDIO.Core
  </summary>
  <returns></returns>
 </member>
+<member name="P:FCARDIO.Core.Command.AbstractCommandDetail.UserData">
+ <summary>
+ 用户数据，可以用于保存临时数据
+ </summary>
+ <returns></returns>
+</member>
 <member name="E:FCARDIO.Core.Command.AbstractCommandDetail.CommandCompleteEvent">
  <summary>
  当命令完成时，会触发此函数回调
@@ -338,20 +349,6 @@ FCARDIO.Core
  <param name="sender">触发事件的调用者</param>
  <param name="e">事件参数，包含此事件所代表的命令信息</param>
 </member>
-<member name="E:FCARDIO.Core.Command.AbstractCommandDetail.ConnectorErrorEvent">
- <summary>
- 连接通道发生错误时触发事件
- </summary>
- <param name="sender">触发事件的调用者</param>
- <param name="connector">触发事件的连接通道信息</param>
-</member>
-<member name="E:FCARDIO.Core.Command.AbstractCommandDetail.ConnectorConnectedEvent">
- <summary>
- 连接通道连接建立成功时发生
- </summary>
- <param name="sender">触发事件的调用者</param>
- <param name="connector">触发事件的连接通道信息</param>
-</member>
 <member name="E:FCARDIO.Core.Command.AbstractCommandDetail.AuthenticationErrorEvent">
  <summary>
  身份鉴权时发生错误的事件,
@@ -359,27 +356,6 @@ FCARDIO.Core
  </summary>
  <param name="sender">触发事件的调用者</param>
  <param name="e">事件参数，包含此事件所代表的命令信息</param>
-</member>
-<member name="E:FCARDIO.Core.Command.AbstractCommandDetail.TransactionMessage">
- <summary>
- 事务消息，有些命令发生后会需要异步等待对端传回结果，结果将自动序列化为事物消息，并触发此事件
- </summary>
- <param name="connector">触发事件的连接通道信息</param>
- <param name="EventData">事件所包含数据</param>
-</member>
-<member name="E:FCARDIO.Core.Command.AbstractCommandDetail.ClientOnline">
- <summary>
- 客户端上线
- </summary>
- <param name="sender">触发事件的连接通道信息</param>
- <param name="e">包含事件所代表的客户端及服务器信息</param>
-</member>
-<member name="E:FCARDIO.Core.Command.AbstractCommandDetail.ClientOffline">
- <summary>
- 客户端离线
- </summary>
- <param name="sender">触发事件的连接通道信息</param>
- <param name="e">包含事件所代表的客户端及服务器信息</param>
 </member>
 <member name="M:FCARDIO.Core.Command.AbstractCommandDetail.fireCommandCompleteEvent(FCARDIO.Core.Command.CommandEventArgs)">
  <summary>
@@ -404,29 +380,11 @@ FCARDIO.Core
  </summary>
  <param name="e">事件参数，包含此事件所代表的命令信息</param>
 </member>
-<member name="M:FCARDIO.Core.Command.AbstractCommandDetail.fireTransactionMessage(FCARDIO.Core.Data.INData)">
- <summary>
- 触发事件--事务消息
- </summary>
- <param name="EventData">事件所包含数据</param>
-</member>
 <member name="M:FCARDIO.Core.Command.AbstractCommandDetail.FireCommandErrorEvent(FCARDIO.Core.Command.CommandEventArgs)">
  <summary>
  触发事件--命令错误事件
  </summary>
  <param name="e">事件参数，包含此事件所代表的命令信息</param>
-</member>
-<member name="M:FCARDIO.Core.Command.AbstractCommandDetail.FireClientOnline(FCARDIO.Core.Connector.ServerEventArgs)">
- <summary>
- 触发事件--客户端上线通知
- </summary>
- <param name="e">包含事件所代表的客户端及服务器信息</param>
-</member>
-<member name="M:FCARDIO.Core.Command.AbstractCommandDetail.FireClientOffline(FCARDIO.Core.Connector.ServerEventArgs)">
- <summary>
- 触发事件--客户端离线通知
- </summary>
- <param name="e">包含事件所代表的客户端及服务器信息</param>
 </member>
 <member name="M:FCARDIO.Core.Command.AbstractCommandDetail.#ctor(FCARDIO.Core.Connector.INConnectorDetail)">
  <summary>
@@ -564,6 +522,49 @@ FCARDIO.Core
  </summary>
  <returns></returns>
 </member>
+<member name="P:FCARDIO.Core.Command.INCommandDetail.UserData">
+ <summary>
+ 用户数据，可以用于保存临时数据
+ </summary>
+ <returns></returns>
+</member>
+<member name="E:FCARDIO.Core.Command.INCommandEvent.CommandCompleteEvent">
+ <summary>
+ 当命令完成时，会触发此函数回调
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="E:FCARDIO.Core.Command.INCommandEvent.CommandProcessEvent">
+ <summary>
+ 命令进度指示，当命令开始执行会连续触发，汇报命令执行的进度
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="E:FCARDIO.Core.Command.INCommandEvent.CommandErrorEvent">
+ <summary>
+ 发生错误时触发事件，一般是连接握手失败，串口不存在，usb不存在，没有写文件权限等
+ 还有可能是用户调用Stop指令强制停止命令
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="E:FCARDIO.Core.Command.INCommandEvent.CommandTimeout">
+ <summary>
+ 命令超时时，触发此回到函数
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="E:FCARDIO.Core.Command.INCommandEvent.AuthenticationErrorEvent">
+ <summary>
+ 身份鉴权时发生错误的事件,
+ 一般发生于密码错误，校验失败等情况！
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
 <member name="T:FCARDIO.Core.Command.INCommandParameter">
  <summary>
  命令参数
@@ -620,6 +621,11 @@ FCARDIO.Core
  由连接通道推送来的接收缓冲区中的 Bytebuf
  </summary>
  <param name="buf"></param>
+</member>
+<member name="M:FCARDIO.Core.Command.INCommandRuntime.CommandOver">
+ <summary>
+ 让命令强制完结，释放掉临时缓冲
+ </summary>
 </member>
 <member name="P:FCARDIO.Core.Command.INCommandStatus.IsCompleted">
  <summary>
@@ -685,6 +691,38 @@ FCARDIO.Core
  <summary>
  命令由于用户取消而完成
  </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.INFireCommandEvent.FireCommandCompleteEvent(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 当命令完成时，会触发此函数回调
+ </summary>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="M:FCARDIO.Core.Command.INFireCommandEvent.FireCommandProcessEvent(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 命令进度指示，当命令开始执行会连续触发，汇报命令执行的进度
+ </summary>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="M:FCARDIO.Core.Command.INFireCommandEvent.FireCommandErrorEvent(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 发生错误时触发事件，一般是连接握手失败，串口不存在，usb不存在，没有写文件权限等
+ 还有可能是用户调用Stop指令强制停止命令
+ </summary>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="M:FCARDIO.Core.Command.INFireCommandEvent.FireCommandTimeout(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 命令超时时，触发此回到函数
+ </summary>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="M:FCARDIO.Core.Command.INFireCommandEvent.FireAuthenticationErrorEvent(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 身份鉴权时发生错误的事件,
+ 一般发生于密码错误，校验失败等情况！
+ </summary>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
 </member>
 <member name="T:FCARDIO.Core.Command.INRequestHandle">
  <summary>
@@ -841,6 +879,11 @@ FCARDIO.Core
  任务是否已加入队列或正在执行
  </summary>
 </member>
+<member name="F:FCARDIO.Core.Connector.AbstractConnector._IsActivity">
+ <summary>
+ 检查通道是否为活动的状态（已连接的）
+ </summary>
+</member>
 <member name="E:FCARDIO.Core.Connector.AbstractConnector.CommandCompleteEvent">
  <summary>
  当命令完成时，会触发此函数回调
@@ -869,20 +912,6 @@ FCARDIO.Core
  </summary>
  <param name="sender">触发事件的调用者</param>
  <param name="e">事件参数，包含此事件所代表的命令信息</param>
-</member>
-<member name="E:FCARDIO.Core.Connector.AbstractConnector.ConnectorErrorEvent">
- <summary>
- 连接通道发生错误时触发事件
- </summary>
- <param name="sender">触发事件的调用者</param>
- <param name="connector">触发事件的连接通道信息</param>
-</member>
-<member name="E:FCARDIO.Core.Connector.AbstractConnector.ConnectorConnectedEvent">
- <summary>
- 连接通道连接建立成功时发生
- </summary>
- <param name="sender">触发事件的调用者</param>
- <param name="connector">触发事件的连接通道信息</param>
 </member>
 <member name="E:FCARDIO.Core.Connector.AbstractConnector.AuthenticationErrorEvent">
  <summary>
@@ -913,6 +942,27 @@ FCARDIO.Core
  <param name="sender">触发事件的连接通道信息</param>
  <param name="e">包含事件所代表的客户端及服务器信息</param>
 </member>
+<member name="E:FCARDIO.Core.Connector.AbstractConnector.ConnectorErrorEvent">
+ <summary>
+ 连接通道发生错误时触发事件
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="connector">触发事件的连接通道信息</param>
+</member>
+<member name="E:FCARDIO.Core.Connector.AbstractConnector.ConnectorConnectedEvent">
+ <summary>
+ 连接通道连接建立成功时发生
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="connector">触发事件的连接通道信息</param>
+</member>
+<member name="E:FCARDIO.Core.Connector.AbstractConnector.ConnectorClosedEvent">
+ <summary>
+ 连接通道连接关闭时发生
+ </summary>
+ <param name="sender"></param>
+ <param name="connector"></param>
+</member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.#ctor">
  <summary>
  初始化连接通道中的队列列表和解析器列表，并初始化连接通道状态
@@ -923,21 +973,37 @@ FCARDIO.Core
  获取初始化通道状态
  </summary>
 </member>
-<member name="P:FCARDIO.Core.Connector.AbstractConnector.IsInvalid">
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.GetConnectorType">
  <summary>
- 确定通道是否已失效
+ 获取此通道的连接器类型
+ </summary>
+ <returns>连接器类型</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.GetConnectorDetail">
+ <summary>
+ 获取关于本通道的详情
  </summary>
  <returns></returns>
 </member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.UpdateActivityTime">
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.GetByteBufAllocator">
  <summary>
- 更新通道活动时间
+ 获取连接通道支持的bytebuf分配器
  </summary>
+ <returns></returns>
 </member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.CheckIsInvalid">
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.WriteByteBuf(DotNetty.Buffers.IByteBuffer)">
  <summary>
- 检查通道是否已失效 1分钟无连接，无命令任务则自动失效
+ 将生成的bytebuf写入到通道中
+ 写入完毕后自动释放
  </summary>
+ <param name="buf"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.GetEventLoop">
+ <summary>
+ 获取此通道所依附的事件循环通道
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.GetCommandCount">
  <summary>
@@ -957,17 +1023,58 @@ FCARDIO.Core
  </summary>
  <param name="cd"></param>
 </member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.AddRequestHandle(FCARDIO.Core.Command.INRequestHandle)">
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.RemoveCommand(FCARDIO.Core.Command.INCommandRuntime)">
  <summary>
- 当需要解析监控指令时，添加数据包解析器到解析器列表中
+ 从队列中删除一个命令
  </summary>
- <param name="handle">数据包解析器</param>
+ <param name="eventCommand"></param>
 </member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.RemoveRequestHandle(System.Type)">
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.CheckCommandList">
  <summary>
- 从连接通道中删除指定类型的数据包解析器
+ 检查命令状态
  </summary>
- <param name="handle">数据包解析器的类型</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.StopCommand(FCARDIO.Core.Command.INCommandDetail)">
+ <summary>
+ 停止指定类型的命令，终止命令继续执行
+ </summary>
+ <param name="cdt">命令详情，如果为Null表示停止此通道中的所有命令</param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.ClearCommand(System.Boolean)">
+ <summary>
+ 清空所有在缓冲中的命令
+ </summary>
+ <param name="isStop"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.RaiseCommandErrorEvent(FCARDIO.Core.Command.INCommandRuntime,System.Boolean)">
+ <summary>
+ 连接错误时，触发此回到函数
+ </summary>
+ <param name="cmd"></param>
+ <param name="bIsStopCommand"></param>
+</member>
+<member name="P:FCARDIO.Core.Connector.AbstractConnector.IsInvalid">
+ <summary>
+ 确定通道是否已失效
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.IsActivity">
+ <summary>
+ 检查通道是否为活动的状态（已连接的）
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.UpdateActivityTime">
+ <summary>
+ 更新通道活动时间
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.CheckIsInvalid">
+ <summary>
+ 检查通道是否已失效 1分钟无活动，无命令任务则自动失效
+ </summary>
 </member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.IsForciblyConnect">
  <summary>
@@ -985,30 +1092,32 @@ FCARDIO.Core
  禁止此连接器通道为保持连接状态，即命令发送完毕后关闭连接。
  </summary>
 </member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.RemoveCommand(FCARDIO.Core.Command.INCommandRuntime)">
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.GetStatus">
  <summary>
- 从队列中删除一个命令
+ 获取此连接通道的状态
  </summary>
- <param name="eventCommand"></param>
+ <returns></returns>
 </member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.RaiseConnectorErrorEvent(System.Boolean)">
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.Run">
  <summary>
- 连接错误时，触发此回到函数
+ 开始执行这个连接通道
  </summary>
- <param name="bIsStopCommand"></param>
 </member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.RaiseCommandErrorEvent(FCARDIO.Core.Command.INCommandRuntime,System.Boolean)">
+<member name="P:FCARDIO.Core.Connector.AbstractConnector.TaskIsBegin">
  <summary>
- 连接错误时，触发此回到函数
+ 用来指示任务是否已经加入任务队列，正在排队等待或者正在执行中
  </summary>
- <param name="cmd"></param>
- <param name="bIsStopCommand"></param>
+ <returns></returns>
 </member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.fireConnectError(System.Boolean)">
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.SetTaskIsBegin">
  <summary>
- 触发连接错误消息
+ 当此通道已加入Task的任务队列时，需要调用此函数来改变此通道的任务状态
  </summary>
- <param name="bIsStopCommand"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.CheckStatus">
+ <summary>
+ 检查当前状态
+ </summary>
 </member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.fireCommandCompleteEvent(FCARDIO.Core.Command.CommandEventArgs)">
  <summary>
@@ -1033,17 +1142,17 @@ FCARDIO.Core
  </summary>
  <param name="e"></param>
 </member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.fireTransactionMessage(FCARDIO.Core.Data.INData)">
- <summary>
- 触发事件--事务消息
- </summary>
- <param name="EventData">事件所包含数据</param>
-</member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.FireCommandErrorEvent(FCARDIO.Core.Command.CommandEventArgs)">
  <summary>
  触发事件--命令错误事件
  </summary>
  <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.fireTransactionMessage(FCARDIO.Core.Data.INData)">
+ <summary>
+ 触发事件--事务消息
+ </summary>
+ <param name="EventData">事件所包含数据</param>
 </member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.FireClientOnline(FCARDIO.Core.Connector.ServerEventArgs)">
  <summary>
@@ -1057,54 +1166,40 @@ FCARDIO.Core
  </summary>
  <param name="e">包含事件所代表的客户端及服务器信息</param>
 </member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.GetConnectorDetail">
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.FireConnectorConnectedEvent(FCARDIO.Core.Connector.INConnectorDetail)">
  <summary>
- 获取关于本通道的详情
+ 产生通道已连接的事件
  </summary>
- <returns></returns>
 </member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.StopCommand(FCARDIO.Core.Command.INCommandDetail)">
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.FireConnectorClosedEvent(FCARDIO.Core.Connector.INConnectorDetail)">
  <summary>
- 停止指定类型的命令，终止命令继续执行
+ 连接通道连接关闭时发生
  </summary>
- <param name="cdt">命令详情，如果为Null表示停止此通道中的所有命令</param>
- <returns></returns>
+ <param name="connector">触发事件的连接通道信息</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.FireConnectorErrorEvent(FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 连接通道发生错误时触发事件
+ </summary>
+ <param name="connector">触发事件的连接通道信息</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.AddRequestHandle(FCARDIO.Core.Command.INRequestHandle)">
+ <summary>
+ 当需要解析监控指令时，添加数据包解析器到解析器列表中
+ </summary>
+ <param name="handle">数据包解析器</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.RemoveRequestHandle(System.Type)">
+ <summary>
+ 从连接通道中删除指定类型的数据包解析器
+ </summary>
+ <param name="handle">数据包解析器的类型</param>
 </member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.DisposeRequest(DotNetty.Buffers.IByteBuffer)">
  <summary>
  解析收到的监控数据包
  </summary>
  <param name="msg"></param>
-</member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.GetByteBufAllocator">
- <summary>
- 获取连接通道支持的bytebuf分配器
- </summary>
- <returns></returns>
-</member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.WriteByteBuf(DotNetty.Buffers.IByteBuffer)">
- <summary>
- 将生成的bytebuf写入到通道中
- 写入完毕后自动释放
- </summary>
- <param name="buf"></param>
- <returns></returns>
-</member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.GetEventLoop">
- <summary>
- 获取此通道所依附的事件循环通道
- </summary>
- <returns></returns>
-</member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.CheckConnectingStatus">
- <summary>
- 检查正在连接中的状态
- </summary>
-</member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.CheckCommandList">
- <summary>
- 检查命令状态
- </summary>
 </member>
 <member name="T:FCARDIO.Core.Connector.AbstractConnectorDetail">
  <summary>
@@ -1364,6 +1459,11 @@ FCARDIO.Core
  用于和TCP Server进行通讯的TCP Client
  </summary>
 </member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ClientAllocator">
+ <summary>
+ 本连接通道绑定的通道分配器
+ </summary>
+</member>
 <member name="T:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.IPDetail">
  <summary>
  保存IP信息 -- IPv4
@@ -1378,6 +1478,19 @@ FCARDIO.Core
  <summary>
  网络端口 1-65535
  </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.IPDetail.#ctor(System.Net.EndPoint)">
+ <summary>
+ 将IP参数保存起来
+ </summary>
+ <param name="localAddress"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.IPDetail.#ctor(System.String,System.Int32)">
+ <summary>
+ 将IP参数保存起来
+ </summary>
+ <param name="ip"></param>
+ <param name="iPort"></param>
 </member>
 <member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.RemoteDetail">
  <summary>
@@ -1429,16 +1542,57 @@ FCARDIO.Core
  客户端操作的操作类
  </summary>
 </member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.#ctor(FCARDIO.Core.Connector.TCPClient.TCPClientAllocator,FCARDIO.Core.Connector.TCPClient.TCPClientDetail)">
+ <summary>
+ 初始化TCP客户端对象
+ </summary>
+ <param name="acr">通道分配器</param>
+ <param name="detail">标识此通道的信息类</param>
+</member>
 <member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.SetConnectOption(FCARDIO.Core.Connector.TCPClient.TCPClientDetail)">
  <summary>
  设置连接参数，超时上限和重连上限
  </summary>
  <param name="detail"></param>
 </member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.SetConnectOptionByDefault">
+ <summary>
+ 设定默认的超时等待和重连参数
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.GetConnectorType">
+ <summary>
+ 返回此通道的类路径
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.GetInitializationStatus">
+ <summary>
+ 返回此通道的初始化状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ThisConnectorDetail">
+ <summary>
+ 标识本通道的信息类，只读
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.GetConnectorDetail">
+ <summary>
+ 返回记录此通道信息的类
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ConnectServer">
  <summary>
  开始连接到远端服务器
  </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.connectCallback(System.Threading.Tasks.Task{DotNetty.Transport.Channels.IChannel})">
+ <summary>
+ 连接完毕时的回调函数，指示连接是否已完成
+ </summary>
+ <param name="tak"></param>
 </member>
 <member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ConnectFail">
  <summary>
@@ -1450,16 +1604,10 @@ FCARDIO.Core
  远程连接成功
  </summary>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.CloseConnect">
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.CloseConnector">
  <summary>
  关闭连接
  </summary>
-</member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ChannelInactive(DotNetty.Transport.Channels.IChannelHandlerContext)">
- <summary>
- 在连接正常或不正常关闭时发生
- </summary>
- <param name="ctx"></param>
 </member>
 <member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.channelRead0(DotNetty.Transport.Channels.IChannelHandlerContext,DotNetty.Buffers.IByteBuffer)">
  <summary>
@@ -1468,6 +1616,39 @@ FCARDIO.Core
  <param name="ctx"></param>
  <param name="msg"></param>
 </member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.WriteByteBuf(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将生成的bytebuf写入到通道中
+ 写入完毕后自动释放
+ </summary>
+ <param name="buf"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.GetByteBufAllocator">
+ <summary>
+ 获取连接通道支持的bytebuf分配器
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.GetEventLoop">
+ <summary>
+ 获取此通道所依附的事件循环通道
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.UserEventTriggered(DotNetty.Transport.Channels.IChannelHandlerContext,System.Object)">
+ <summary>
+ 自定义通道事件
+ </summary>
+ <param name="ctx"></param>
+ <param name="evt"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ChannelInactive(DotNetty.Transport.Channels.IChannelHandlerContext)">
+ <summary>
+ 在连接正常或不正常关闭时发生
+ </summary>
+ <param name="ctx"></param>
+</member>
 <member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ExceptionCaught(DotNetty.Transport.Channels.IChannelHandlerContext,System.Exception)">
  <summary>
  发生错误时，触发此事件
@@ -1475,9 +1656,9 @@ FCARDIO.Core
  <param name="ctx"></param>
  <param name="ex"></param>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.CloseConnector">
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.Release0">
  <summary>
- 关闭连接
+ 释放资源
  </summary>
 </member>
 <member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientDetail_Readonly._Addr">
@@ -1570,6 +1751,16 @@ FCARDIO.Core
  获取一个用于界定此通道的唯一Key值
  </summary>
  <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler">
+ <summary>
+ TCP Client 连接通道的 Netty处理器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler.Release">
+ <summary>
+ 释放关联
+ </summary>
 </member>
 <member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler.ExceptionCaught(DotNetty.Transport.Channels.IChannelHandlerContext,System.Exception)">
  <summary>
@@ -1669,6 +1860,12 @@ FCARDIO.Core
  <summary>
  确定通道是否已失效`
  </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.IsActivity">
+ <summary>
+ 通道是否为活动状态(已连接)
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:FCARDIO.Core.Connector.INConnector.GetStatus">
  <summary>
@@ -1779,35 +1976,6 @@ FCARDIO.Core
  当通讯连接器有事件需要通知时，调用对应的事件函数
  </summary>
 </member>
-<member name="E:FCARDIO.Core.Connector.INConnectorEvent.CommandCompleteEvent">
- <summary>
- 当命令完成时，会触发此函数回调
- </summary>
- <param name="sender">触发事件的调用者</param>
- <param name="e">事件参数，包含此事件所代表的命令信息</param>
-</member>
-<member name="E:FCARDIO.Core.Connector.INConnectorEvent.CommandProcessEvent">
- <summary>
- 命令进度指示，当命令开始执行会连续触发，汇报命令执行的进度
- </summary>
- <param name="sender">触发事件的调用者</param>
- <param name="e">事件参数，包含此事件所代表的命令信息</param>
-</member>
-<member name="E:FCARDIO.Core.Connector.INConnectorEvent.CommandErrorEvent">
- <summary>
- 发生错误时触发事件，一般是连接握手失败，串口不存在，usb不存在，没有写文件权限等
- 还有可能是用户调用Stop指令强制停止命令
- </summary>
- <param name="sender">触发事件的调用者</param>
- <param name="e">事件参数，包含此事件所代表的命令信息</param>
-</member>
-<member name="E:FCARDIO.Core.Connector.INConnectorEvent.CommandTimeout">
- <summary>
- 命令超时时，触发此回到函数
- </summary>
- <param name="sender">触发事件的调用者</param>
- <param name="e">事件参数，包含此事件所代表的命令信息</param>
-</member>
 <member name="E:FCARDIO.Core.Connector.INConnectorEvent.ConnectorErrorEvent">
  <summary>
  连接通道发生错误时触发事件
@@ -1822,13 +1990,12 @@ FCARDIO.Core
  <param name="sender">触发事件的调用者</param>
  <param name="connector">触发事件的连接通道信息</param>
 </member>
-<member name="E:FCARDIO.Core.Connector.INConnectorEvent.AuthenticationErrorEvent">
+<member name="E:FCARDIO.Core.Connector.INConnectorEvent.ConnectorClosedEvent">
  <summary>
- 身份鉴权时发生错误的事件,
- 一般发生于密码错误，校验失败等情况！
+ 连接通道连接关闭时发生
  </summary>
  <param name="sender">触发事件的调用者</param>
- <param name="e">事件参数，包含此事件所代表的命令信息</param>
+ <param name="connector">触发事件的连接通道信息</param>
 </member>
 <member name="E:FCARDIO.Core.Connector.INConnectorEvent.TransactionMessage">
  <summary>
@@ -1851,56 +2018,42 @@ FCARDIO.Core
  <param name="sender">触发事件的连接通道信息</param>
  <param name="e">包含事件所代表的客户端及服务器信息</param>
 </member>
-<member name="T:FCARDIO.Core.Connector.INConnectorFireEvent">
+<member name="T:FCARDIO.Core.Connector.INFireConnectorEvent">
  <summary>
  触发事件 ,用于激活 INConnectorEvent 接口定义的事件
  </summary>
 </member>
-<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireCommandCompleteEvent(FCARDIO.Core.Command.CommandEventArgs)">
+<member name="M:FCARDIO.Core.Connector.INFireConnectorEvent.FireConnectorErrorEvent(FCARDIO.Core.Connector.INConnectorDetail)">
  <summary>
- 当命令完成时，会触发此函数回调
+ 连接通道发生错误时触发事件
  </summary>
- <param name="e">事件参数，包含此事件所代表的命令信息</param>
+ <param name="connector">触发事件的连接通道信息</param>
 </member>
-<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireCommandProcessEvent(FCARDIO.Core.Command.CommandEventArgs)">
+<member name="M:FCARDIO.Core.Connector.INFireConnectorEvent.FireConnectorConnectedEvent(FCARDIO.Core.Connector.INConnectorDetail)">
  <summary>
- 命令进度指示，当命令开始执行会连续触发，汇报命令执行的进度
+ 连接通道连接建立成功时发生
  </summary>
- <param name="e">事件参数，包含此事件所代表的命令信息</param>
+ <param name="connector">触发事件的连接通道信息</param>
 </member>
-<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireCommandErrorEvent(FCARDIO.Core.Command.CommandEventArgs)">
+<member name="M:FCARDIO.Core.Connector.INFireConnectorEvent.FireConnectorClosedEvent(FCARDIO.Core.Connector.INConnectorDetail)">
  <summary>
- 发生错误时触发事件，一般是连接握手失败，串口不存在，usb不存在，没有写文件权限等
- 还有可能是用户调用Stop指令强制停止命令
+ 连接通道连接关闭时发生
  </summary>
- <param name="e">事件参数，包含此事件所代表的命令信息</param>
+ <param name="connector">触发事件的连接通道信息</param>
 </member>
-<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireCommandTimeout(FCARDIO.Core.Command.CommandEventArgs)">
+<member name="M:FCARDIO.Core.Connector.INFireConnectorEvent.FireTransactionMessage(FCARDIO.Core.Data.INData)">
  <summary>
- 命令超时时，触发此回到函数
- </summary>
- <param name="e">事件参数，包含此事件所代表的命令信息</param>
-</member>
-<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireAuthenticationErrorEvent(FCARDIO.Core.Command.CommandEventArgs)">
- <summary>
- 身份鉴权时发生错误的事件,
- 一般发生于密码错误，校验失败等情况！
- </summary>
- <param name="e">事件参数，包含此事件所代表的命令信息</param>
-</member>
-<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireTransactionMessage(FCARDIO.Core.Data.INData)">
- <summary>
- 事务消息，有些命令发生后会需要异步等待对端传回结果，结果将自动序列化为事物消息，并触发此事件
+ 事务消息，对端主动传送到本地的请求数据，此数据解码后产生此事件
  </summary>
  <param name="EventData"></param>
 </member>
-<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireClientOnline(FCARDIO.Core.Connector.ServerEventArgs)">
+<member name="M:FCARDIO.Core.Connector.INFireConnectorEvent.FireClientOnline(FCARDIO.Core.Connector.ServerEventArgs)">
  <summary>
  客户端上线
  </summary>
  <param name="e">包含事件所代表的客户端及服务器信息</param>
 </member>
-<member name="M:FCARDIO.Core.Connector.INConnectorFireEvent.FireClientOffline(FCARDIO.Core.Connector.ServerEventArgs)">
+<member name="M:FCARDIO.Core.Connector.INFireConnectorEvent.FireClientOffline(FCARDIO.Core.Connector.ServerEventArgs)">
  <summary>
  客户端离线
  </summary>
@@ -2008,6 +2161,14 @@ FCARDIO.Core
  <param name="sender">触发事件的调用者</param>
  <param name="e">事件参数，包含此事件所代表的命令信息</param>
 </member>
+<member name="E:FCARDIO.Core.ConnectorAllocator.AuthenticationErrorEvent">
+ <summary>
+ 身份鉴权时发生错误的事件,
+ 一般发生于密码错误，校验失败等情况！
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
 <member name="E:FCARDIO.Core.ConnectorAllocator.ConnectorErrorEvent">
  <summary>
  连接通道发生错误时触发事件
@@ -2022,13 +2183,12 @@ FCARDIO.Core
  <param name="sender">触发事件的调用者</param>
  <param name="connector">触发事件的连接通道信息</param>
 </member>
-<member name="E:FCARDIO.Core.ConnectorAllocator.AuthenticationErrorEvent">
+<member name="E:FCARDIO.Core.ConnectorAllocator.ConnectorClosedEvent">
  <summary>
- 身份鉴权时发生错误的事件,
- 一般发生于密码错误，校验失败等情况！
+ 连接通道连接关闭时发生
  </summary>
  <param name="sender">触发事件的调用者</param>
- <param name="e">事件参数，包含此事件所代表的命令信息</param>
+ <param name="connector">触发事件的连接通道信息</param>
 </member>
 <member name="E:FCARDIO.Core.ConnectorAllocator.TransactionMessage">
  <summary>
@@ -2051,20 +2211,54 @@ FCARDIO.Core
  <param name="sender">触发事件的连接通道信息</param>
  <param name="e">包含事件所代表的客户端及服务器信息</param>
 </member>
-<member name="M:FCARDIO.Core.ConnectorAllocator.#ctor">
- <summary>
- 初始化分配器参数
- </summary>
-</member>
 <member name="M:FCARDIO.Core.ConnectorAllocator.IsRelease">
  <summary>
  是否已释放
  </summary>
 </member>
-<member name="M:FCARDIO.Core.ConnectorAllocator.Run">
+<member name="M:FCARDIO.Core.ConnectorAllocator.#ctor">
  <summary>
- 工作线程，检查各通道状态，是否需要删除通道
+ 初始化分配器参数
  </summary>
+</member>
+<member name="T:FCARDIO.Core.ConnectorAllocator.ConnectorManager">
+ <summary>
+ 通道管理员
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.ConnectorManager.AddConnector(System.String,FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 添加一个连接通道
+ </summary>
+ <param name="sKey"></param>
+ <param name="conn"></param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.ConnectorManager.RemoveConnector(System.String)">
+ <summary>
+ 删除一个连接通道
+ </summary>
+ <param name="sKey"></param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.ConnectorManager.Run">
+ <summary>
+ 任务处理器，再此检查各通道的状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.IniManages">
+ <summary>
+ 初始化任务管理器
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.ConnectorAllocator.mConnectorCreateCount">
+ <summary>
+ 已创建的通道数
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.GetManager">
+ <summary>
+ 返回一个管理者
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:FCARDIO.Core.ConnectorAllocator.GetOrCreateConnector(FCARDIO.Core.Connector.INConnectorDetail)">
  <summary>
@@ -2119,6 +2313,85 @@ FCARDIO.Core
  解除连接通道的事件绑定
  </summary>
  <param name="conn"></param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.FireCommandCompleteEvent(System.Object,FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 当命令完成时，会触发此函数回调
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.FireCommandProcessEvent(System.Object,FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 命令进度指示，当命令开始执行会连续触发，汇报命令执行的进度
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.FireCommandErrorEvent(System.Object,FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 发生错误时触发事件，一般是连接握手失败，串口不存在，usb不存在，没有写文件权限等
+ 还有可能是用户调用Stop指令强制停止命令
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.FireCommandTimeout(System.Object,FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 命令超时时，触发此回到函数
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.FireAuthenticationErrorEvent(System.Object,FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 身份鉴权时发生错误的事件,
+ 一般发生于密码错误，校验失败等情况！
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.FireConnectorErrorEvent(System.Object,FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 连接通道发生错误时触发事件
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="connector">触发事件的连接通道信息</param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.FireConnectorConnectedEvent(System.Object,FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 连接通道连接建立成功时发生
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="connector">触发事件的连接通道信息</param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.FireConnectorClosedEvent(System.Object,FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 连接通道连接关闭时发生
+ </summary>
+ <param name="sender">触发事件的调用者</param>
+ <param name="connector">触发事件的连接通道信息</param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.FireTransactionMessage(FCARDIO.Core.Connector.INConnectorDetail,FCARDIO.Core.Data.INData)">
+ <summary>
+ 事务消息，有些命令发生后会需要异步等待对端传回结果，结果将自动序列化为事物消息，并触发此事件
+ </summary>
+ <param name="connector">触发事件的连接通道信息</param>
+ <param name="EventData">事件所包含数据</param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.FireClientOnline(System.Object,FCARDIO.Core.Connector.ServerEventArgs)">
+ <summary>
+ 客户端上线
+ </summary>
+ <param name="sender">触发事件的连接通道信息</param>
+ <param name="e">包含事件所代表的客户端及服务器信息</param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.FireClientOffline(System.Object,FCARDIO.Core.Connector.ServerEventArgs)">
+ <summary>
+ 客户端离线
+ </summary>
+ <param name="sender">触发事件的连接通道信息</param>
+ <param name="e">包含事件所代表的客户端及服务器信息</param>
 </member>
 <member name="T:FCARDIO.Core.Data.AbstractData">
  <summary>
@@ -2259,6 +2532,11 @@ FCARDIO.Core
  </summary>
  <param name="Allocator">用于分配ByteBuf的分配器</param>
  <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Packet.INPacket.ReleaseDataBuf">
+ <summary>
+ 指示数据包可以释放数据缓冲区
+ </summary>
 </member>
 <member name="T:FCARDIO.Core.Packet.INPacketDecompile">
  <summary>
