@@ -106,6 +106,9 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
             ReadCardSpeak = _ReadCardSpeak;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public void Dispose()
         {
             return;

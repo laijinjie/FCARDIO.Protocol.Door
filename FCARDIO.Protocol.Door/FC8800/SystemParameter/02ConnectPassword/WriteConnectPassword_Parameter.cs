@@ -29,6 +29,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
 
         public WriteConnectPassword_Parameter(string _PWD) : this(_PWD.GetBytes()) { }
 
+        /// <summary>
+        /// 检查参数
+        /// </summary>
+        /// <returns></returns>
         public override bool checkedParameter()
         {
             if (PWDBuf == null)
@@ -39,6 +43,9 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
             return true;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public override void Dispose()
         {
             if (PWDBuf != null)
@@ -49,6 +56,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
             return;
         }
 
+        /// <summary>
+        /// 编码参数
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             databuf.WriteBytes(PWDBuf);
@@ -56,11 +68,19 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
             return databuf;
         }
 
+        /// <summary>
+        /// 获取数据长度
+        /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
             return 0x04;
         }
 
+        /// <summary>
+        /// 解码参数
+        /// </summary>
+        /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
             if (PWDBuf == null)

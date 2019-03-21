@@ -19,8 +19,13 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             TCP = _TCP;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public void Dispose()
         {
+            TCP = null;
+
             return;
         }
     }

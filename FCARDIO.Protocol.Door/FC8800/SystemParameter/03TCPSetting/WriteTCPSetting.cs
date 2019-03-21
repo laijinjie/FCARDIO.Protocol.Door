@@ -16,6 +16,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
     {
         public WriteTCPSetting(INCommandDetail cd, INCommandParameter par) : base(cd, par) { }
 
+        /// <summary>
+        /// 检查命令参数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
             WriteTCPSetting_Parameter model = value as WriteTCPSetting_Parameter;
@@ -27,6 +32,9 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             return model.checkedParameter();
         }
 
+        /// <summary>
+        /// 拼装命令
+        /// </summary>
         protected override void CreatePacket0()
         {
             WriteTCPSetting_Parameter model = _Parameter as WriteTCPSetting_Parameter;

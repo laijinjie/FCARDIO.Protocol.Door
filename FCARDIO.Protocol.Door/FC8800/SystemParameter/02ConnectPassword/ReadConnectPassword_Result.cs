@@ -19,6 +19,9 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
             Password = _Password;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public void Dispose()
         {
             return;

@@ -19,8 +19,13 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
             DoorPort = _DoorPort;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public void Dispose()
         {
+            DoorPort = null;
+
             return;
         }
     }

@@ -16,6 +16,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Deadline
     {
         public WriteDeadline(INCommandDetail cd, INCommandParameter par) : base(cd, par) { }
 
+        /// <summary>
+        /// 检查命令参数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
             WriteDeadline_Parameter model = value as WriteDeadline_Parameter;
@@ -27,6 +32,9 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Deadline
             return model.checkedParameter();
         }
 
+        /// <summary>
+        /// 拼装命令
+        /// </summary>
         protected override void CreatePacket0()
         {
             WriteDeadline_Parameter model = _Parameter as WriteDeadline_Parameter;

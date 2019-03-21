@@ -58,6 +58,9 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SystemStatus
             Voltage = _Voltage;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public void Dispose()
         {
             return;

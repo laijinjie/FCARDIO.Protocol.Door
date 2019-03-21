@@ -16,6 +16,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
     {
         public WriteLockInteraction(INCommandDetail cd, INCommandParameter par) : base(cd, par) { }
 
+        /// <summary>
+        /// 检查命令参数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
             WriteLockInteraction_Parameter model = value as WriteLockInteraction_Parameter;
@@ -27,6 +32,9 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
             return model.checkedParameter();
         }
 
+        /// <summary>
+        /// 拼装命令
+        /// </summary>
         protected override void CreatePacket0()
         {
             WriteLockInteraction_Parameter model = _Parameter as WriteLockInteraction_Parameter;

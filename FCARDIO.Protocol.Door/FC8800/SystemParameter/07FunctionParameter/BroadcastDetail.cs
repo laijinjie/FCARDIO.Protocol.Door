@@ -12,5 +12,20 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
     public class BroadcastDetail
     {
         public byte[] Broadcast { get; set; }
+
+        public BroadcastDetail()
+        {
+            Broadcast = new byte[10];
+        }
+
+        public BroadcastDetail(byte[] data)
+        {
+            if (data.Length != 10)
+            {
+                throw new ArgumentException("data Length Error");
+            }
+
+            Broadcast = data;
+        }
     }
 }

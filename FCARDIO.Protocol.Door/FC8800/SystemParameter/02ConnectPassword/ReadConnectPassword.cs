@@ -18,11 +18,19 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
 
         public ReadConnectPassword(INCommandDetail cd) : base(cd, null) { }
 
+        /// <summary>
+        /// 检查命令参数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
             return true;
         }
 
+        /// <summary>
+        /// 拼装命令
+        /// </summary>
         protected override void CreatePacket0()
         {
             var acl = _Connector.GetByteBufAllocator();

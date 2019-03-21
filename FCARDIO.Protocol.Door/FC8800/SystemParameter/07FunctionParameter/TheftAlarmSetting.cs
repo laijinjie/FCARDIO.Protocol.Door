@@ -39,6 +39,6 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// <summary>
         /// 报警时长；单位：秒 ,取值：0-65535
         /// </summary>
-        public int AlarmTime { get; set; }
+        public ushort AlarmTime { get; set; }
     }
 }

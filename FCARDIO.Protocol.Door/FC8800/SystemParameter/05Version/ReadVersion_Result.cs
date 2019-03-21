@@ -19,6 +19,9 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Version
             Version = _Version;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public void Dispose()
         {
             return;

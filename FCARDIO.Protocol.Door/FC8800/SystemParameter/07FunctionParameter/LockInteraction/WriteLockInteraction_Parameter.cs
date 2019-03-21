@@ -19,6 +19,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
             DoorPort = _DoorPort;
         }
 
+        /// <summary>
+        /// 检查参数
+        /// </summary>
+        /// <returns></returns>
         public override bool checkedParameter()
         {
             if (DoorPort == null)
@@ -29,6 +33,9 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
             return true;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public override void Dispose()
         {
             DoorPort = null;
@@ -36,16 +43,29 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
             return;
         }
 
+        /// <summary>
+        /// 编码参数
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             return databuf.WriteBytes(DoorPort.DoorPort);
         }
 
+        /// <summary>
+        /// 获取数据长度
+        /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
             return 0x04;
         }
 
+        /// <summary>
+        /// 解码参数
+        /// </summary>
+        /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
             DoorPort = new DoorPortDetail(databuf.ReadShort());

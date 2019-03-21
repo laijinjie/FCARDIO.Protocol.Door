@@ -24,6 +24,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             }
         }
 
+        /// <summary>
+        /// 检查参数
+        /// </summary>
+        /// <returns></returns>
         public override bool checkedParameter()
         {
             if (TCP == null)
@@ -34,6 +38,9 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             return true;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public override void Dispose()
         {
             if (TCP != null)
@@ -44,16 +51,29 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             return;
         }
 
+        /// <summary>
+        /// 编码参数
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             return TCP.GetBytes(databuf);
         }
 
+        /// <summary>
+        /// 获取数据长度
+        /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
             return TCP.GetDataLen();
         }
 
+        /// <summary>
+        /// 解码参数
+        /// </summary>
+        /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
             TCP.SetBytes(databuf);

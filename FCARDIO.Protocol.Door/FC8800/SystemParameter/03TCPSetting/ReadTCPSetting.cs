@@ -16,11 +16,19 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
     {
         public ReadTCPSetting(INCommandDetail cd) : base(cd, null) { }
 
+        /// <summary>
+        /// 检查命令参数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
             return true;
         }
 
+        /// <summary>
+        /// 拼装命令
+        /// </summary>
         protected override void CreatePacket0()
         {
             Packet(0x01, 0x06);
