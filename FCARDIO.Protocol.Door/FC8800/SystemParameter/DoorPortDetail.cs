@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
+namespace FCARDIO.Protocol.Door.FC8800.SystemParameter
 {
     /// <summary>
-    /// 门端口参数_模型
+    /// 门端口参数详情_模型
     /// </summary>
     public class DoorPortDetail
     {
-        public short DoorMax { get; set; }
+        public ushort DoorMax { get; set; }
 
         public byte[] DoorPort { get; set; }
 
-        public DoorPortDetail(short _DoorMax)
+        public DoorPortDetail(ushort _DoorMax)
         {
             DoorMax = _DoorMax;
             DoorPort = new byte[_DoorMax];

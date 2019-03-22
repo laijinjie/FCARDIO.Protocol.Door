@@ -1,22 +1,25 @@
-﻿using DotNetty.Buffers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
+namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.KeepAliveInterval
 {
     /// <summary>
-    /// 设置互锁参数_参数
+    /// 设置控制器作为客户端时，和服务器的保活间隔时间_参数
     /// </summary>
-    public class WriteLockInteraction_Parameter : AbstractParameter
+    public class WriteKeepAliveInterval_Parameter : AbstractParameter
     {
-        public DoorPortDetail DoorPort;
+        /// <summary>
+        /// 保活间隔时间（取值范围：0-3600,0--关闭功能）
+        /// </summary>
+        public ushort IntervalTime;
 
-        public WriteLockInteraction_Parameter(DoorPortDetail _DoorPort)
+        public WriteKeepAliveInterval_Parameter(ushort _IntervalTime)
         {
-            DoorPort = _DoorPort;
+            IntervalTime = _IntervalTime;
         }
 
         /// <summary>
@@ -25,7 +28,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DoorPort == null)
+            if (IntervalTime < 0 || IntervalTime > 3600)
             {
                 return false;
             }
@@ -38,8 +41,6 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// </summary>
         public override void Dispose()
         {
-            DoorPort = null;
-
             return;
         }
 
@@ -50,7 +51,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            return databuf.WriteBytes(DoorPort.DoorPort);
+            return databuf.WriteUnsignedShort(IntervalTime);
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 0x04;
+            return 0x02;
         }
 
         /// <summary>
@@ -68,7 +69,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            DoorPort = new DoorPortDetail(databuf.ReadUnsignedShort());
+            IntervalTime = databuf.ReadUnsignedShort();
         }
     }
 }

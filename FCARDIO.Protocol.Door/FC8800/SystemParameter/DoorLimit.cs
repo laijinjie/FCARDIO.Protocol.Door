@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
+namespace FCARDIO.Protocol.Door.FC8800.SystemParameter
 {
     /// <summary>
     /// 门内人数限制_模型

@@ -1,22 +1,25 @@
-﻿using DotNetty.Buffers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
+namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.EquptOnNetNum
 {
     /// <summary>
-    /// 设置互锁参数_参数
+    /// 设置网络标记_参数
     /// </summary>
-    public class WriteLockInteraction_Parameter : AbstractParameter
+    public class SearchEquptOnNetNum_Parameter : AbstractParameter
     {
-        public DoorPortDetail DoorPort;
+        /// <summary>
+        /// 网络标记 取值范围：1-65535
+        /// </summary>
+        public ushort NetNum;
 
-        public WriteLockInteraction_Parameter(DoorPortDetail _DoorPort)
+        public SearchEquptOnNetNum_Parameter(ushort _NetNum)
         {
-            DoorPort = _DoorPort;
+            NetNum = _NetNum;
         }
 
         /// <summary>
@@ -25,7 +28,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DoorPort == null)
+            if (NetNum < 1 || NetNum > 65535)
             {
                 return false;
             }
@@ -38,8 +41,6 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// </summary>
         public override void Dispose()
         {
-            DoorPort = null;
-
             return;
         }
 
@@ -50,7 +51,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            return databuf.WriteBytes(DoorPort.DoorPort);
+            return databuf.WriteUnsignedShort(NetNum);
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 0x04;
+            return 0x02;
         }
 
         /// <summary>
@@ -68,7 +69,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            DoorPort = new DoorPortDetail(databuf.ReadUnsignedShort());
+            NetNum = databuf.ReadUnsignedShort();
         }
     }
 }
