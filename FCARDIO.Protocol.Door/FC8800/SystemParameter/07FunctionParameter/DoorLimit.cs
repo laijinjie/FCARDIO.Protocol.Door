@@ -11,18 +11,18 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
     /// </summary>
     public class DoorLimit
     {
-        public UInt64 GlobalLimit { get; set; }
+        public uint GlobalLimit { get; set; }
 
-        public long[] DoorLimitArray { get; set; }
+        public uint[] DoorLimitArray { get; set; }
 
-        public long GlobalEnter { get; set; }
+        public uint GlobalEnter { get; set; }
 
-        public long[] DoorEnterArray { get; set; }
+        public uint[] DoorEnterArray { get; set; }
 
         public DoorLimit()
         {
-            DoorLimitArray = new long[4];
-            DoorEnterArray = new long[4];
+            DoorLimitArray = new uint[4];
+            DoorEnterArray = new uint[4];
         }
     }
 }
