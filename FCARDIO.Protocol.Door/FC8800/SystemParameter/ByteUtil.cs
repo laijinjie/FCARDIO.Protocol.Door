@@ -29,5 +29,26 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter
         {
             return byte0 & 0x000000ff;
         }
+
+        // BCD 转 字节
+      
+        public static byte BCDToByte(byte iNum)
+        {
+            int iValue = uByte(iNum);
+            iValue = ((iValue / 16) * 10) + (iValue % 16);
+            return (byte)iValue;
+        }
+
+        //BCD 转 字节
+        public static byte[] BCDToByte(byte [] iNum)
+        {
+            int iLen = iNum.Length;
+            for (int i = 0; i < iLen; i++)
+            {
+                iNum[i] = BCDToByte(iNum[i]);
+            }
+            return iNum;
+        }
+      
     }
 }

@@ -4,53 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
-using FCARDIO.Core.Extension;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
+namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
 {
-    ///
-    public class WritePushButtonSetting_Parameter
-        : AbstractParameter
+    public class WriteSensorAlarmSetting_Parameter
+        :AbstractParameter
     {
         /// <summary>
         /// 门号
-        /// 门端口在控制版中的索引号，取值：1-4
+        /// 门端口在控制版中的索引号.取值:1-4
         /// </summary>
         public int DoorNum;
 
         /// <summary>
-        /// 是否启用出门按钮功能
+        /// 是否启用门磁报警功能
         /// </summary>
         public bool Use;
 
-        /// <summary>
-        /// 是否启用出门按钮常开功能
-        /// 出门按钮按下5秒后门进入常开状态，再次按5秒退出常开
-        /// </summary>
-        public bool NormallyOpen;
+        public WriteSensorAlarmSetting_Parameter() { }
 
         /// <summary>
-        /// 出门按钮的使用时段
-        /// </summary>
-        public DateTime TimeGroup;
-
-        public WritePushButtonSetting_Parameter()
-        {
-        }
-
-        /// <summary>
-        /// 创建结构，并传入门号和是否开启此功能
+        /// 创建结构,并传入门号和是否开启此功能
         /// </summary>
         /// <param name="door">门号</param>
         /// <param name="use">是否开启此功能</param>
-        /// <param name="normallOpen">是否启用出门按钮常开功能</param>
-        public WritePushButtonSetting_Parameter(byte door, bool use, bool normallyOpen)
+        public WriteSensorAlarmSetting_Parameter(byte door, bool use)
         {
             DoorNum = door;
             Use = use;
-            NormallyOpen = normallyOpen;
-            //时间
-            TimeGroup = new DateTime(8);
         }
 
         /// <summary>
@@ -79,17 +60,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 4)
+            if (databuf.WritableBytes != 2)
             {
-                throw new ArgumentException("databuf Error!");
+                throw new ArgumentException("door Error!");
             }
             databuf.WriteByte(DoorNum);
             databuf.WriteBoolean(Use);
-            databuf.WriteBoolean(NormallyOpen);
-            //时间？？？
-            string time = TimeGroup.ToString();
-            databuf.WriteBytes(time.HexToByte());
-
             return databuf;
         }
 
@@ -99,7 +75,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 4;
+            return 2;
         }
 
         /// <summary>
@@ -110,10 +86,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
         {
             DoorNum = databuf.ReadByte();
             Use = databuf.ReadBoolean();
-            NormallyOpen = databuf.ReadBoolean();
-
-            //时间
-            TimeGroup = DateTime.Parse(databuf.ReadByte().ToString());
         }
     }
 }

@@ -106,7 +106,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != 4)
+            if (databuf.WritableBytes != 4)
             {
                 throw new ArgumentException("databuf Error!");
             }

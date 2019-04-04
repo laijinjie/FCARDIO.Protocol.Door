@@ -73,6 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FC8800\AbstractParameter.cs" />
+    <Compile Include="FC8800\Data\E_WeekDay.cs" />
+    <Compile Include="FC8800\Data\TimeGroup\DayTimeGroup.cs" />
+    <Compile Include="FC8800\Data\TimeGroup\TimeSegment.cs" />
+    <Compile Include="FC8800\Data\TimeGroup\WeekTimeGroup.cs" />
     <Compile Include="FC8800\Door\01ReaderOption\ReaderOption_Result.cs" />
     <Compile Include="FC8800\Door\01ReaderOption\ReadReaderOption.cs" />
     <Compile Include="FC8800\Door\01ReaderOption\WriteReaderOption.cs" />
@@ -134,6 +138,10 @@
     <Compile Include="FC8800\Door\13PushButtonSetting\ReadPushButtonSetting.cs" />
     <Compile Include="FC8800\Door\13PushButtonSetting\WritePushButtonSetting.cs" />
     <Compile Include="FC8800\Door\13PushButtonSetting\WritePushButtonSetting_Parameter.cs" />
+    <Compile Include="FC8800\Door\14SensorAlarmSetting\ReadSensorAlarmSetting.cs" />
+    <Compile Include="FC8800\Door\14SensorAlarmSetting\SensorAlarmSetting_Result.cs" />
+    <Compile Include="FC8800\Door\14SensorAlarmSetting\WriteSensorAlarmSetting.cs" />
+    <Compile Include="FC8800\Door\14SensorAlarmSetting\WriteSensorAlarmSetting_Parameter.cs" />
     <Compile Include="FC8800\Door\DoorPort_Parameter.cs" />
     <Compile Include="FC8800\SystemParameter\01SN\SN_Result.cs" />
     <Compile Include="FC8800\SystemParameter\02ConnectPassword\ReadConnectPassword.cs" />

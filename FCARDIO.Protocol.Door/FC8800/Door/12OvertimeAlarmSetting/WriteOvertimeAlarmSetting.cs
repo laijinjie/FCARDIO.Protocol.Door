@@ -64,7 +64,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-
+            return;
         }
 
         /// <summary>
