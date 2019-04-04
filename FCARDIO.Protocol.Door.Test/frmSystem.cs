@@ -50,6 +50,7 @@ namespace FCARDIO.Protocol.Door.Test
             ReadSN cmd = new ReadSN(cmdDtl);
             mMainForm.AddCommand(cmd);
 
+
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 SN_Result result = cmd.getResult() as SN_Result;
