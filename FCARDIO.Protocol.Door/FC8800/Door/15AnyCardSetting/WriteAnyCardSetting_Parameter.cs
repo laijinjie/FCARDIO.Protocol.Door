@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
+namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
 {
     /// <summary>
-    /// 未注册卡的功能参数结构
+    /// 全卡开门功能
+    /// 所有的卡都能开门，不需要权限首选注册，只要读卡器能识别就能开门。
     /// </summary>
-    public class WriteInvalidCardAlarmOption_Parameter
-        : AbstractParameter
+    public class WriteAnyCardSetting_Parameter
+        :AbstractParameter
     {
         /// <summary>
         /// 门号
@@ -20,33 +21,42 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         public int DoorNum;
 
         /// <summary>
-        /// 是否报警功能
+        /// 是否启用全卡开门功能
         /// </summary>
         public bool Use;
 
-        public WriteInvalidCardAlarmOption_Parameter()
-        {
-        }
+        /// <summary>
+        /// 是否启用在刷卡开门后保存卡片权限
+        /// 保存后，以后关闭全卡功能，此卡也能开门。
+        /// </summary>
+        public bool AutoSave;
+
+        public WriteAnyCardSetting_Parameter() { }
+
         /// <summary>
         /// 创建结构,并传入门号和是否开启此功能
         /// </summary>
         /// <param name="door">门号</param>
-        /// <param name="use">是否开启此功能</param>
-        public WriteInvalidCardAlarmOption_Parameter(byte door,bool use)
+        /// <param name="use">是否启用全卡开门功能</param>
+        /// <param name="auto">是否启用在刷卡开门后保存卡片权限</param>
+        public WriteAnyCardSetting_Parameter(byte door,bool use,bool auto)
         {
             DoorNum = door;
             Use = use;
+            AutoSave = auto;
         }
 
         /// <summary>
         /// 检查参数
         /// </summary>
+        /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DoorNum  > 4)
+            if (DoorNum > 4)
                 throw new ArgumentException("door Is Max!");
             return true;
         }
+
 
         /// <summary>
         /// 释放资源
@@ -60,20 +70,23 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         /// 将结构编码为字节缓冲
         /// </summary>
         /// <param name="databuf"></param>
+        /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             if (databuf.WritableBytes != 2)
             {
-                throw new ArgumentException("databuf Error!");
+                throw new ArgumentException("door Error!");
             }
             databuf.WriteByte(DoorNum);
             databuf.WriteBoolean(Use);
+            databuf.WriteBoolean(AutoSave);
             return databuf;
         }
 
         /// <summary>
-        /// 指示此类结构编码为字节缓冲后的长度
+        /// 指定此类结构编码为字节缓冲后的长度
         /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
             return 2;
@@ -87,6 +100,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         {
             DoorNum = databuf.ReadByte();
             Use = databuf.ReadBoolean();
+            AutoSave = databuf.ReadBoolean();
         }
     }
 }

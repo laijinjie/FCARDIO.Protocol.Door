@@ -41,7 +41,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         /// 创建一个通讯指令
         /// </summary>
         protected override void CreatePacket0()
-        {
+        { 
             Packet(0x03, 0x0A, 0x01, 0x01, GetCmdDate());
         }
 

@@ -32,7 +32,7 @@ namespace FCARDIO.Protocol.Door.Test
             }
         }
             
-
+        
         bool _IsClosed;
 
         public frmMain()
@@ -135,7 +135,7 @@ namespace FCARDIO.Protocol.Door.Test
         {
             mAllocator.AddCommand(cmd);
         }
-
+        
 
         /// <summary>
         /// 获取一个命令详情，已经装配好通讯目标的所有信息

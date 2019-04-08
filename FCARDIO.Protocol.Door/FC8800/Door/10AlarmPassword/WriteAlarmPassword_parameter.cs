@@ -9,7 +9,7 @@ using FCARDIO.Core.Extension;
 namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
 {
     /// <summary>
-    /// 胁迫报警功能
+    /// 写入胁迫报警功能
     /// 功能开启后，在密码键盘读卡器上输入特定密码后就会报警；
     /// </summary>
     public class WriteAlarmPassword_parameter
@@ -29,7 +29,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
         /// <summary>
         /// 胁迫报警密码，最大长度8个字符，由数字组成。
         /// </summary>
-        protected String Password;
+        public String Password;
 
         /// <summary>
         /// 报警选项
@@ -74,10 +74,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
                 {
                     throw new ArgumentException("pwd is error!");
                 }
-                
+
                 this.Password = pwd;
             }
-         }
+        }
 
 
         /// <summary>
@@ -140,8 +140,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
             Use = databuf.ReadBoolean();
 
             Password = databuf.ReadByte().ToString();
-
             AlarmOption = databuf.ReadByte();
         }
+
     }
 }

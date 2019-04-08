@@ -41,7 +41,6 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void frmDoor_Load(object sender, EventArgs e)
         {
-
             cmdDoorNum.Items.Clear();
             cmdDoorNum.Items.AddRange(new string[] { "1", "2", "3", "4" });
             cmdDoorNum.SelectedIndex = 0;
@@ -56,11 +55,15 @@ namespace FCARDIO.Protocol.Door.Test
             //开门超时提示参数
             OvertimeAlarmSetting();
             Alarm();
+            Overtime();
 
             //门磁报警参数
             SensorAlarmSetting();
             Week();
+
+            
         }
+
 
         #region "未注册卡报警"
 
@@ -78,11 +81,9 @@ namespace FCARDIO.Protocol.Door.Test
             var cmd = new FC8800.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Door.InvalidCardAlarmOption.InvalidCardAlarmOption_Result;
-
                 mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use}");
             };
         }
@@ -96,7 +97,6 @@ namespace FCARDIO.Protocol.Door.Test
             var par = new FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption_Parameter(door, use);
             var cmd = new FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
@@ -117,7 +117,7 @@ namespace FCARDIO.Protocol.Door.Test
         {
             cmbAlarmOption.Items.Clear();
             cmbAlarmOption.Items.AddRange(new string[] { "不开门，报警输出", "开门，报警输出", "锁定门，报警，只能软件解锁" });
-            cmbAlarmOption.SelectedIndex = 0;
+            cmbAlarmOption.SelectedIndex = 1;
         }
         private void butReadAlarmPassword_Click(object sender, EventArgs e)
         {
@@ -125,33 +125,29 @@ namespace FCARDIO.Protocol.Door.Test
             var par = new FC8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
             var cmd = new FC8800.Door.AlarmPassword.ReadAlarmPassword(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-
-
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Door.AlarmPassword.AlarmPassword_Result;
-
-                mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use}");
+                mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use},报警密码：{result.Password},报警选项：{result.AlarmOption}");
             };
         }
         private void butWriteAlarmPassword_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
-
             bool use = (cmdAlarmPassword.SelectedIndex == 0);
             byte door = byte.Parse(cmdDoorNum.Text);
             String pwd = Password.Text.ToString();
-            int alarmOption = int.Parse(cmbAlarmOption.Text) + 1;
+            int alarmOption = cmbAlarmOption.SelectedIndex;
 
-            var par = new FC8800.Door.AlarmPassword.WriteAlarmPassword_parameter(door, use, pwd, alarmOption);
+            var par = new FC8800.Door.AlarmPassword.WriteAlarmPassword_parameter(door, use,pwd,alarmOption);
             var cmd = new FC8800.Door.AlarmPassword.WriteAlarmPassword(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-
-
+        
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddLog($"命令成功：门号:{door},功能开关:{use}");
+                mMainForm.AddLog($"命令成功：门号:{door},功能开关:{use},密码：{Password},报警选项：{alarmOption}");
             };
+
         }
         #endregion
 
@@ -172,10 +168,16 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void Overtime()
         {
-            cmbAlarm.Items.Clear();
-            cmbAlarm.Items.AddRange(new string[] { "1秒", "2秒" });
-            cmbAlarm.SelectedIndex = 0;
+            cmbOverTime.Items.Clear();
+            string[] time = new string[100];
+            for (int i = 0; i < 100; i++)
+            {
+                time[i] = i+1 + "秒";
+            }
+            cmbOverTime.Items.AddRange(time);
+            cmbOverTime.SelectedIndex = 0;
         }
+
 
         private void butReadOvertimeAlarmSetting_Click(object sender, EventArgs e)
         {
@@ -183,23 +185,22 @@ namespace FCARDIO.Protocol.Door.Test
             var par = new FC8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
             var cmd = new FC8800.Door.OvertimeAlarmSetting.ReadOvertimeAlarmSetting(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-
-
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Door.OvertimeAlarmSetting.OvertimeAlarmSetting_Result;
-
-                mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use}");
+                mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use}，超时时间：{result.Overtime},是否报警 ：{result.Alarm}");
             };
         }
 
         private void butWriteOvertimeAlarmSetting_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
+
             bool use = (cmbOvertimeAlarmSetting.SelectedIndex == 0);
             byte door = byte.Parse(cmdDoorNum.Text);
-            byte overtime = byte.Parse(cmdOvertime.Text);
+            byte overtime = byte.Parse((cmbOverTime.SelectedIndex + 1).ToString());
             bool alarm = (cmdAlarmPassword.SelectedIndex == 0);
+
             var par = new FC8800.Door.OvertimeAlarmSetting.WriteOvertimeAlarmSetting_Parameter(door, use, overtime, alarm);
             var cmd = new FC8800.Door.OvertimeAlarmSetting.WriteOvertimeAlarmSetting(cmdDtl, par);
             mMainForm.AddCommand(cmd);
@@ -228,7 +229,18 @@ namespace FCARDIO.Protocol.Door.Test
         //改变下拉框
         private void cmbSensorAlarmSetting_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            if (cmbSensorAlarmSetting.Text == "启用")
+            {
+                cmbWeek.Hide();
+                label10.Hide();
+            }
+            else
+            {
+                cmbWeek.Show();
+                label10.Show ();
+            }
+            
+
         }
         private void butReadSensorAlarmSetting_Click(object sender, EventArgs e)
         {
@@ -265,6 +277,6 @@ namespace FCARDIO.Protocol.Door.Test
 
         }
 
-        
+
     }
 }
