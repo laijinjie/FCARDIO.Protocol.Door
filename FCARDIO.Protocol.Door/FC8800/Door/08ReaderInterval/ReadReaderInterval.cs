@@ -14,6 +14,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderInterval
          : FC8800Command
     {
         public ReadReaderInterval(INCommandDetail cd, ReadReaderInterval_Parameter parameter) : base(cd, parameter) { }
+
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
             ReadReaderInterval_Parameter model = value as ReadReaderInterval_Parameter;

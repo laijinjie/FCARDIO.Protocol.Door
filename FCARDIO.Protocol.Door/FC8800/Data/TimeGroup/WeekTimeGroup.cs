@@ -167,5 +167,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             }
             return w;
         }
+        
     }
 }
