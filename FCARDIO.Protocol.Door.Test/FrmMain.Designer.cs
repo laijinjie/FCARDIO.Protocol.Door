@@ -98,7 +98,7 @@
             this.txtTCPClientAddr.Name = "txtTCPClientAddr";
             this.txtTCPClientAddr.Size = new System.Drawing.Size(164, 21);
             this.txtTCPClientAddr.TabIndex = 3;
-            this.txtTCPClientAddr.Text = "192.168.1.66";
+            this.txtTCPClientAddr.Text = "192.168.1.241";
             // 
             // label2
             // 
@@ -183,7 +183,7 @@
             this.txtSN.Name = "txtSN";
             this.txtSN.Size = new System.Drawing.Size(164, 21);
             this.txtSN.TabIndex = 7;
-            this.txtSN.Text = "FC-8940H09030001";
+            this.txtSN.Text = "MC-5824T25070244";
             // 
             // label6
             // 
