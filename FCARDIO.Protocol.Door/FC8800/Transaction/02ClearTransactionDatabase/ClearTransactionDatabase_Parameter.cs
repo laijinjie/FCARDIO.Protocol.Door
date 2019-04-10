@@ -5,31 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
+namespace FCARDIO.Protocol.Door.FC8800.Transaction.ClearTransactionDatabase
 {
     /// <summary>
-    /// 读取卡片数据库中的所有卡数据
+    /// 清空指定类型的记录数据库
     /// </summary>
-    public class ReadCardDataBase_Parameter
-        :AbstractParameter
+    public class ClearTransactionDatabase_Parameter:AbstractParameter
     {
         /// <summary>
-        /// 带读取的卡片数据类型
-        /// 1 &emsp; 排序卡区域
-        /// 2 &emsp; 非排序卡区域 
-        /// 3 &emsp; 所有区域 
+        /// 记录数据库类型
+        /// 1 &emsp; 读卡记录 
+        /// 2 &emsp; 出门开关记录
+        /// 3 &emsp; 门磁记录  
+        /// 4 &emsp; 软件操作记录
+        /// 5 &emsp; 报警记录 
+        /// 6 &emsp; 系统记录  
         /// </summary>
-        public int CardType;
-
-        public ReadCardDataBase_Parameter() { }
-
+        public e_TransactionDatabaseType DatabaseType;
+        
         /// <summary>
-        /// 创建结构
+        /// 清空指定类型的记录数据库
         /// </summary>
-        /// <param name="cardType">带读取的卡片数据类型</param>
-        public ReadCardDataBase_Parameter(int cardType)
+        /// <param name="type">取值范围 1-6</param>
+        public ClearTransactionDatabase_Parameter(e_TransactionDatabaseType type)
         {
-            CardType = cardType;
+            DatabaseType = type;
         }
 
         /// <summary>
@@ -56,11 +56,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != 1)
-            {
-                throw new ArgumentException("Crad Error");
-            }
-            databuf.WriteByte(CardType);
+            if(databuf.ReadableBytes != 1)
+                throw new NotImplementedException();
             return databuf;
         }
 
@@ -79,7 +76,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            CardType = databuf.ReadByte();
+            
         }
     }
 }

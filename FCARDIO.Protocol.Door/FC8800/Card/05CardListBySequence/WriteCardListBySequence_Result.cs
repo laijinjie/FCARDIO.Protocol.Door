@@ -46,6 +46,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         {
             CardList = null;
         }
-        
+
+        internal void SetBytes(IByteBuffer buf)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

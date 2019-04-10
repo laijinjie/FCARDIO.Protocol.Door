@@ -5,31 +5,45 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
+namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
 {
     /// <summary>
-    /// 读取卡片数据库中的所有卡数据
+    /// 读取新记录
     /// </summary>
-    public class ReadCardDataBase_Parameter
-        :AbstractParameter
+    public class ReadTransactionDatabase_Parameter
+        : AbstractParameter
     {
-        /// <summary>
-        /// 带读取的卡片数据类型
-        /// 1 &emsp; 排序卡区域
-        /// 2 &emsp; 非排序卡区域 
-        /// 3 &emsp; 所有区域 
-        /// </summary>
-        public int CardType;
+       /// <summary>
+       ///  记录数据库类型
+       ///  1 &emsp; 读卡记录
+       ///  2 &emsp; 出门开关记录
+       ///  3 &emsp; 门磁记录
+       ///  4 &emsp; 软件操作记录
+       ///  5 &emsp; 报警记录
+       ///  6 &emsp; 系统记录
+       /// </summary>
+        public e_TransactionDatabaseType DatabaseType;
 
-        public ReadCardDataBase_Parameter() { }
+        /// <summary>
+        /// 读取数量 0-160000,0表示都取所有新记录
+        /// </summary>
+        public int Quantity;
 
         /// <summary>
-        /// 创建结构
+        ///  每次读取数量 1-300
         /// </summary>
-        /// <param name="cardType">带读取的卡片数据类型</param>
-        public ReadCardDataBase_Parameter(int cardType)
+        public int PacketSize;
+
+       /// <summary>
+       ///  创建结构
+       /// </summary>
+       /// <param name="detail"> 包含命令的执行时的一些必要信息，命令执行的连接器通道，命令身份验证信息，用户附加数据，超时重试参数</param>
+       /// <param name="type"> 取值范围 1-6</param>
+        public ReadTransactionDatabase_Parameter(e_TransactionDatabaseType type,int _PacketSize, int _Quantity)
         {
-            CardType = cardType;
+            DatabaseType = type;
+            PacketSize = _PacketSize;
+            Quantity = _Quantity;
         }
 
         /// <summary>
@@ -56,11 +70,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != 1)
+            if (databuf.ReadableBytes != 3)
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.WriteByte(CardType);
+            databuf.WriteByte(PacketSize);
+            databuf.WriteByte(Quantity);
             return databuf;
         }
 
@@ -70,7 +85,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 1;
+            return 3;
         }
 
         /// <summary>
@@ -79,7 +94,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            CardType = databuf.ReadByte();
+            PacketSize = databuf.ReadByte();
+            Quantity = databuf.ReadByte();
         }
     }
 }

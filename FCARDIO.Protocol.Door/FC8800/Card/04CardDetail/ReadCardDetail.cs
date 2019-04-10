@@ -68,16 +68,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
             }
         }
 
+        /// <summary>
+        /// 命令重发时需要的函数
+        /// </summary>
         protected override void CommandReSend()
         {
-            throw new NotImplementedException();
+            return;
         }
-
-        
-
+        /// <summary>
+        /// 命令释放时需要的函数
+        /// </summary>
         protected override void Release1()
         {
-            throw new NotImplementedException();
+            return;
         }
     }
 }

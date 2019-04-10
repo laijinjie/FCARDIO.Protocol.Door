@@ -5,31 +5,45 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
+namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseReadIndex
 {
     /// <summary>
-    /// 读取卡片数据库中的所有卡数据
+    /// 更新记录指针
     /// </summary>
-    public class ReadCardDataBase_Parameter
-        :AbstractParameter
+    public class WriteTransactionDatabaseReadIndex_Parameter : AbstractParameter
     {
+
+       /// <summary>
+       ///  记录数据库类型
+       ///  1 &emsp; 读卡记录
+       ///  2 &emsp; 出门开关记录
+       ///  3 &emsp; 门磁记录
+       ///  4 &emsp; 软件操作记录
+       ///  5 &emsp; 报警记录
+       ///  6 &emsp; 系统记录
+       /// </summary>
+        public e_TransactionDatabaseType DatabaseType;
         /// <summary>
-        /// 带读取的卡片数据类型
-        /// 1 &emsp; 排序卡区域
-        /// 2 &emsp; 非排序卡区域 
-        /// 3 &emsp; 所有区域 
+        /// 数据库中的读索引号
         /// </summary>
-        public int CardType;
+        public int ReadIndex;
+        /// <summary>
+        /// 循环标记
+        /// </summary>
+        public bool IsCircle;
 
-        public ReadCardDataBase_Parameter() { }
-
+        public WriteTransactionDatabaseReadIndex_Parameter(){}
         /// <summary>
         /// 创建结构
         /// </summary>
-        /// <param name="cardType">带读取的卡片数据类型</param>
-        public ReadCardDataBase_Parameter(int cardType)
+        /// <param name="_DatabaseType">记录数据库类型</param>
+        /// <param name="_ReadIndex">数据库中的读索引号</param>
+        /// <param name="_IsCircle">循环标记</param>
+        public WriteTransactionDatabaseReadIndex_Parameter(e_TransactionDatabaseType _DatabaseType, int _ReadIndex,bool _IsCircle)
         {
-            CardType = cardType;
+            DatabaseType = _DatabaseType;
+            ReadIndex = _ReadIndex;
+            IsCircle = _IsCircle;
         }
 
         /// <summary>
@@ -56,11 +70,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != 1)
+            if (databuf.ReadableBytes != 3)
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.WriteByte(CardType);
+            databuf.WriteByte(ReadIndex);
+            databuf.WriteBoolean(IsCircle);
             return databuf;
         }
 
@@ -70,7 +85,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 1;
+            return 3;
         }
 
         /// <summary>
@@ -79,7 +94,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            CardType = databuf.ReadByte();
+            ReadIndex = databuf.ReadByte();
+            IsCircle = databuf.ReadBoolean();
         }
     }
 }
