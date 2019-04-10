@@ -18,7 +18,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
     {
         private int mIndex;//指示当前命令进行的步骤
         private List<FC8800.Data.CardDetail> _List;
-        private ConcurrentLinkedQueue<IByteBuffer> mBufs;
+        private Queue<IByteBuffer> mBufs;
 
         /// <summary>
         /// 初始化命令结构 
@@ -44,7 +44,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x07, 0x04, 0x00, 0x04 + 0x21 * n, getCmdData());
+            uint iLen = (5 * 0x21) + 4;
+            Packet(0x07, 0x04, 0x00, iLen, getCmdData());
         }
 
         /// <summary>

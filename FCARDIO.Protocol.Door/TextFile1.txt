@@ -2,11 +2,4 @@
 胁迫报警功能写入,开门超时报警功能读写，门磁报警功能读写，测试无反应
 
 2019/4/9
-FC8800.Data.CardDetail  中多个错误
-FC8800.Card.CardListBySequence.WriteCardListBySequence		中 private ConcurrentLinkedQueue<IByteBuffer> mBufs; 
-															以及指令    Packet(0x07, 0x07, 0x01, 04 + 04++0x21 * n, getCmdData());
-FC8800.Card.CardListBySequence.WriteCardListBySort			中 CardList = databuf.ReadByte();
-FC8800.Card.CardListBySort.WriteCardListBySort_Parameter    中  CardList = databuf.ReadByte();
-FC8800.Card.CardListBySort.WriteCardListBySort				中指令      Packet(0x07, 0x07, 0x01, 04 + 04++0x21 * n, getCmdData());
-
 frmCard中 上传排列区  上传到非排列区   删除授权卡   读取单个卡信息   获取数据

@@ -30,31 +30,31 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardData10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardData16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardStatus1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OpenTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.door1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.door2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.door3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.door4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeGroup1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeGroup2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeGroup3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeGroup4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilege1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilege2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilege3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilege4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Holiday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnterStatus1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnterStatus2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnterStatus3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnterStatus4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HolidayUse = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button6 = new System.Windows.Forms.Button();
             this.butCardListBySort = new System.Windows.Forms.Button();
             this.butCardListBySequence = new System.Windows.Forms.Button();
@@ -66,7 +66,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCardData16 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -74,38 +74,35 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.txtCardData = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtCardDataID = new System.Windows.Forms.TextBox();
+            this.cbbit0 = new System.Windows.Forms.CheckBox();
+            this.cbbit1 = new System.Windows.Forms.CheckBox();
+            this.cbbit2 = new System.Windows.Forms.CheckBox();
+            this.cbbit3 = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.cmbTimeGroup1 = new System.Windows.Forms.ComboBox();
+            this.cmbTimeGroup2 = new System.Windows.Forms.ComboBox();
+            this.cmbTimeGroup3 = new System.Windows.Forms.ComboBox();
+            this.cmbTimeGroup4 = new System.Windows.Forms.ComboBox();
+            this.cmbEnterStatus1 = new System.Windows.Forms.ComboBox();
+            this.cmbEnterStatus2 = new System.Windows.Forms.ComboBox();
+            this.cmbEnterStatus3 = new System.Windows.Forms.ComboBox();
+            this.cmbEnterStatus4 = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.rbutPrivilege1 = new System.Windows.Forms.RadioButton();
+            this.rbutPrivilege2 = new System.Windows.Forms.RadioButton();
+            this.rbutPrivilege3 = new System.Windows.Forms.RadioButton();
+            this.rbutPrivilege4 = new System.Windows.Forms.RadioButton();
+            this.rbutPrivilege0 = new System.Windows.Forms.RadioButton();
+            this.cbHolidayUse = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.butInsertList = new System.Windows.Forms.Button();
+            this.butDelList = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -117,7 +114,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.comboBox9 = new System.Windows.Forms.ComboBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txtCardData1 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.button16 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
@@ -131,6 +128,10 @@
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.cmbCardStatus = new System.Windows.Forms.ComboBox();
+            this.cmbOpenTimes = new System.Windows.Forms.ComboBox();
+            this.txtExpiry = new System.Windows.Forms.TextBox();
+            this.txtCardList = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -160,161 +161,163 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.Column9,
-            this.Column10,
-            this.Column11,
-            this.Column12,
-            this.Column13,
-            this.Column14,
-            this.Column15,
-            this.Column16,
-            this.Column17,
-            this.Column18,
-            this.Column19,
-            this.Column20,
-            this.Column21,
-            this.Column22,
-            this.Column23,
-            this.Column24,
-            this.Column25});
+            this.ID,
+            this.CardData10,
+            this.CardData16,
+            this.Password,
+            this.Expiry,
+            this.CardStatus1,
+            this.OpenTime,
+            this.door1,
+            this.door2,
+            this.door3,
+            this.door4,
+            this.TimeGroup1,
+            this.TimeGroup2,
+            this.TimeGroup3,
+            this.TimeGroup4,
+            this.Privilege1,
+            this.Privilege2,
+            this.Privilege3,
+            this.Privilege4,
+            this.Holiday,
+            this.EnterStatus1,
+            this.EnterStatus2,
+            this.EnterStatus3,
+            this.EnterStatus4,
+            this.HolidayUse});
             this.dataGridView1.Location = new System.Drawing.Point(6, 58);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(686, 150);
             this.dataGridView1.TabIndex = 9;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // Column1
+            // ID
             // 
-            this.Column1.HeaderText = "序号";
-            this.Column1.Name = "Column1";
+            this.ID.HeaderText = "序号";
+            this.ID.Name = "ID";
             // 
-            // Column2
+            // CardData10
             // 
-            this.Column2.HeaderText = "10进制卡号";
-            this.Column2.Name = "Column2";
+            this.CardData10.HeaderText = "10进制卡号";
+            this.CardData10.Name = "CardData10";
             // 
-            // Column3
+            // CardData16
             // 
-            this.Column3.HeaderText = "十六进制卡号";
-            this.Column3.Name = "Column3";
+            this.CardData16.HeaderText = "十六进制卡号";
+            this.CardData16.Name = "CardData16";
             // 
-            // Column4
+            // Password
             // 
-            this.Column4.HeaderText = "密码";
-            this.Column4.Name = "Column4";
+            this.Password.HeaderText = "密码";
+            this.Password.Name = "Password";
             // 
-            // Column5
+            // Expiry
             // 
-            this.Column5.HeaderText = "有效期";
-            this.Column5.Name = "Column5";
+            this.Expiry.HeaderText = "有效期";
+            this.Expiry.Name = "Expiry";
             // 
-            // Column6
+            // CardStatus1
             // 
-            this.Column6.HeaderText = "卡片状态";
-            this.Column6.Name = "Column6";
+            this.CardStatus1.HeaderText = "卡片状态";
+            this.CardStatus1.Name = "CardStatus1";
             // 
-            // Column7
+            // OpenTime
             // 
-            this.Column7.HeaderText = "有效次数";
-            this.Column7.Name = "Column7";
+            this.OpenTime.HeaderText = "有效次数";
+            this.OpenTime.Name = "OpenTime";
             // 
-            // Column8
+            // door1
             // 
-            this.Column8.HeaderText = "门1权限";
-            this.Column8.Name = "Column8";
+            this.door1.HeaderText = "门1权限";
+            this.door1.Name = "door1";
             // 
-            // Column9
+            // door2
             // 
-            this.Column9.HeaderText = "门2权限";
-            this.Column9.Name = "Column9";
+            this.door2.HeaderText = "门2权限";
+            this.door2.Name = "door2";
             // 
-            // Column10
+            // door3
             // 
-            this.Column10.HeaderText = "门3权限";
-            this.Column10.Name = "Column10";
+            this.door3.HeaderText = "门3权限";
+            this.door3.Name = "door3";
             // 
-            // Column11
+            // door4
             // 
-            this.Column11.HeaderText = "门4权限";
-            this.Column11.Name = "Column11";
+            this.door4.HeaderText = "门4权限";
+            this.door4.Name = "door4";
             // 
-            // Column12
+            // TimeGroup1
             // 
-            this.Column12.HeaderText = "1门常开时段";
-            this.Column12.Name = "Column12";
+            this.TimeGroup1.HeaderText = "1门常开时段";
+            this.TimeGroup1.Name = "TimeGroup1";
             // 
-            // Column13
+            // TimeGroup2
             // 
-            this.Column13.HeaderText = "2门常开时段";
-            this.Column13.Name = "Column13";
+            this.TimeGroup2.HeaderText = "2门常开时段";
+            this.TimeGroup2.Name = "TimeGroup2";
             // 
-            // Column14
+            // TimeGroup3
             // 
-            this.Column14.HeaderText = "3门常开时段";
-            this.Column14.Name = "Column14";
+            this.TimeGroup3.HeaderText = "3门常开时段";
+            this.TimeGroup3.Name = "TimeGroup3";
             // 
-            // Column15
+            // TimeGroup4
             // 
-            this.Column15.HeaderText = "4门常开时段";
-            this.Column15.Name = "Column15";
+            this.TimeGroup4.HeaderText = "4门常开时段";
+            this.TimeGroup4.Name = "TimeGroup4";
             // 
-            // Column16
+            // Privilege1
             // 
-            this.Column16.HeaderText = "首卡";
-            this.Column16.Name = "Column16";
+            this.Privilege1.HeaderText = "首卡";
+            this.Privilege1.Name = "Privilege1";
             // 
-            // Column17
+            // Privilege2
             // 
-            this.Column17.HeaderText = "常开";
-            this.Column17.Name = "Column17";
+            this.Privilege2.HeaderText = "常开";
+            this.Privilege2.Name = "Privilege2";
             // 
-            // Column18
+            // Privilege3
             // 
-            this.Column18.HeaderText = "巡更";
-            this.Column18.Name = "Column18";
+            this.Privilege3.HeaderText = "巡更";
+            this.Privilege3.Name = "Privilege3";
             // 
-            // Column19
+            // Privilege4
             // 
-            this.Column19.HeaderText = "防盗设置卡";
-            this.Column19.Name = "Column19";
+            this.Privilege4.HeaderText = "防盗设置卡";
+            this.Privilege4.Name = "Privilege4";
             // 
-            // Column20
+            // Holiday
             // 
-            this.Column20.HeaderText = "节假日限制";
-            this.Column20.Name = "Column20";
+            this.Holiday.HeaderText = "节假日限制";
+            this.Holiday.Name = "Holiday";
             // 
-            // Column21
+            // EnterStatus1
             // 
-            this.Column21.HeaderText = "门1出入状态";
-            this.Column21.Name = "Column21";
+            this.EnterStatus1.HeaderText = "门1出入状态";
+            this.EnterStatus1.Name = "EnterStatus1";
             // 
-            // Column22
+            // EnterStatus2
             // 
-            this.Column22.HeaderText = "门2出入状态";
-            this.Column22.Name = "Column22";
+            this.EnterStatus2.HeaderText = "门2出入状态";
+            this.EnterStatus2.Name = "EnterStatus2";
             // 
-            // Column23
+            // EnterStatus3
             // 
-            this.Column23.HeaderText = "门3出入状态";
-            this.Column23.Name = "Column23";
+            this.EnterStatus3.HeaderText = "门3出入状态";
+            this.EnterStatus3.Name = "EnterStatus3";
             // 
-            // Column24
+            // EnterStatus4
             // 
-            this.Column24.HeaderText = "门4出入状态";
-            this.Column24.Name = "Column24";
+            this.EnterStatus4.HeaderText = "门4出入状态";
+            this.EnterStatus4.Name = "EnterStatus4";
             // 
-            // Column25
+            // HolidayUse
             // 
-            this.Column25.HeaderText = "节假日开关";
-            this.Column25.Name = "Column25";
+            this.HolidayUse.HeaderText = "节假日开关";
+            this.HolidayUse.Name = "HolidayUse";
             // 
             // button6
             // 
@@ -420,12 +423,12 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "卡号（十六进制）：";
             // 
-            // textBox1
+            // txtCardData16
             // 
-            this.textBox1.Location = new System.Drawing.Point(141, 263);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(424, 21);
-            this.textBox1.TabIndex = 3;
+            this.txtCardData16.Location = new System.Drawing.Point(141, 263);
+            this.txtCardData16.Name = "txtCardData16";
+            this.txtCardData16.Size = new System.Drawing.Size(424, 21);
+            this.txtCardData16.TabIndex = 3;
             // 
             // label4
             // 
@@ -490,87 +493,66 @@
             this.label10.TabIndex = 10;
             this.label10.Text = "卡门权限：";
             // 
-            // textBox2
+            // txtCardData
             // 
-            this.textBox2.Location = new System.Drawing.Point(103, 291);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(192, 21);
-            this.textBox2.TabIndex = 11;
+            this.txtCardData.Location = new System.Drawing.Point(103, 291);
+            this.txtCardData.Name = "txtCardData";
+            this.txtCardData.Size = new System.Drawing.Size(192, 21);
+            this.txtCardData.TabIndex = 11;
             // 
-            // textBox3
+            // txtPassword
             // 
-            this.textBox3.Location = new System.Drawing.Point(103, 317);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(192, 21);
-            this.textBox3.TabIndex = 12;
+            this.txtPassword.Location = new System.Drawing.Point(103, 317);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(192, 21);
+            this.txtPassword.TabIndex = 12;
             // 
-            // textBox4
+            // txtCardDataID
             // 
-            this.textBox4.Location = new System.Drawing.Point(103, 344);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(192, 21);
-            this.textBox4.TabIndex = 13;
+            this.txtCardDataID.Location = new System.Drawing.Point(373, 291);
+            this.txtCardDataID.Name = "txtCardDataID";
+            this.txtCardDataID.Size = new System.Drawing.Size(192, 21);
+            this.txtCardDataID.TabIndex = 14;
             // 
-            // textBox8
+            // cbbit0
             // 
-            this.textBox8.Location = new System.Drawing.Point(373, 344);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(192, 21);
-            this.textBox8.TabIndex = 16;
+            this.cbbit0.AutoSize = true;
+            this.cbbit0.Location = new System.Drawing.Point(156, 371);
+            this.cbbit0.Name = "cbbit0";
+            this.cbbit0.Size = new System.Drawing.Size(42, 16);
+            this.cbbit0.TabIndex = 17;
+            this.cbbit0.Text = "门1";
+            this.cbbit0.UseVisualStyleBackColor = true;
             // 
-            // textBox9
+            // cbbit1
             // 
-            this.textBox9.Location = new System.Drawing.Point(373, 317);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(192, 21);
-            this.textBox9.TabIndex = 15;
+            this.cbbit1.AutoSize = true;
+            this.cbbit1.Location = new System.Drawing.Point(267, 371);
+            this.cbbit1.Name = "cbbit1";
+            this.cbbit1.Size = new System.Drawing.Size(42, 16);
+            this.cbbit1.TabIndex = 18;
+            this.cbbit1.Text = "门2";
+            this.cbbit1.UseVisualStyleBackColor = true;
             // 
-            // textBox10
+            // cbbit2
             // 
-            this.textBox10.Location = new System.Drawing.Point(373, 291);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(192, 21);
-            this.textBox10.TabIndex = 14;
+            this.cbbit2.AutoSize = true;
+            this.cbbit2.Location = new System.Drawing.Point(383, 371);
+            this.cbbit2.Name = "cbbit2";
+            this.cbbit2.Size = new System.Drawing.Size(42, 16);
+            this.cbbit2.TabIndex = 19;
+            this.cbbit2.Text = "门3";
+            this.cbbit2.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // cbbit3
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(156, 371);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(42, 16);
-            this.checkBox2.TabIndex = 17;
-            this.checkBox2.Text = "门1";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(267, 371);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(42, 16);
-            this.checkBox3.TabIndex = 18;
-            this.checkBox3.Text = "门2";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(383, 371);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(42, 16);
-            this.checkBox4.TabIndex = 19;
-            this.checkBox4.Text = "门3";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(497, 371);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(42, 16);
-            this.checkBox5.TabIndex = 20;
-            this.checkBox5.Text = "门4";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.cbbit3.AutoSize = true;
+            this.cbbit3.Location = new System.Drawing.Point(497, 371);
+            this.cbbit3.Name = "cbbit3";
+            this.cbbit3.Size = new System.Drawing.Size(42, 16);
+            this.cbbit3.TabIndex = 20;
+            this.cbbit3.Text = "门4";
+            this.cbbit3.UseVisualStyleBackColor = true;
             // 
             // label11
             // 
@@ -590,69 +572,69 @@
             this.label12.TabIndex = 22;
             this.label12.Text = "出入标志：";
             // 
-            // comboBox1
+            // cmbTimeGroup1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(124, 393);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(99, 20);
-            this.comboBox1.TabIndex = 23;
+            this.cmbTimeGroup1.FormattingEnabled = true;
+            this.cmbTimeGroup1.Location = new System.Drawing.Point(124, 393);
+            this.cmbTimeGroup1.Name = "cmbTimeGroup1";
+            this.cmbTimeGroup1.Size = new System.Drawing.Size(99, 20);
+            this.cmbTimeGroup1.TabIndex = 23;
             // 
-            // comboBox2
+            // cmbTimeGroup2
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(238, 393);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(99, 20);
-            this.comboBox2.TabIndex = 24;
+            this.cmbTimeGroup2.FormattingEnabled = true;
+            this.cmbTimeGroup2.Location = new System.Drawing.Point(238, 393);
+            this.cmbTimeGroup2.Name = "cmbTimeGroup2";
+            this.cmbTimeGroup2.Size = new System.Drawing.Size(99, 20);
+            this.cmbTimeGroup2.TabIndex = 24;
             // 
-            // comboBox3
+            // cmbTimeGroup3
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(352, 393);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(99, 20);
-            this.comboBox3.TabIndex = 25;
+            this.cmbTimeGroup3.FormattingEnabled = true;
+            this.cmbTimeGroup3.Location = new System.Drawing.Point(352, 393);
+            this.cmbTimeGroup3.Name = "cmbTimeGroup3";
+            this.cmbTimeGroup3.Size = new System.Drawing.Size(99, 20);
+            this.cmbTimeGroup3.TabIndex = 25;
             // 
-            // comboBox4
+            // cmbTimeGroup4
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(466, 393);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(99, 20);
-            this.comboBox4.TabIndex = 26;
+            this.cmbTimeGroup4.FormattingEnabled = true;
+            this.cmbTimeGroup4.Location = new System.Drawing.Point(466, 393);
+            this.cmbTimeGroup4.Name = "cmbTimeGroup4";
+            this.cmbTimeGroup4.Size = new System.Drawing.Size(99, 20);
+            this.cmbTimeGroup4.TabIndex = 26;
             // 
-            // comboBox5
+            // cmbEnterStatus1
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(121, 419);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(99, 20);
-            this.comboBox5.TabIndex = 27;
+            this.cmbEnterStatus1.FormattingEnabled = true;
+            this.cmbEnterStatus1.Location = new System.Drawing.Point(121, 419);
+            this.cmbEnterStatus1.Name = "cmbEnterStatus1";
+            this.cmbEnterStatus1.Size = new System.Drawing.Size(99, 20);
+            this.cmbEnterStatus1.TabIndex = 27;
             // 
-            // comboBox6
+            // cmbEnterStatus2
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(236, 419);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(99, 20);
-            this.comboBox6.TabIndex = 28;
+            this.cmbEnterStatus2.FormattingEnabled = true;
+            this.cmbEnterStatus2.Location = new System.Drawing.Point(236, 419);
+            this.cmbEnterStatus2.Name = "cmbEnterStatus2";
+            this.cmbEnterStatus2.Size = new System.Drawing.Size(99, 20);
+            this.cmbEnterStatus2.TabIndex = 28;
             // 
-            // comboBox7
+            // cmbEnterStatus3
             // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(351, 419);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(99, 20);
-            this.comboBox7.TabIndex = 29;
+            this.cmbEnterStatus3.FormattingEnabled = true;
+            this.cmbEnterStatus3.Location = new System.Drawing.Point(351, 419);
+            this.cmbEnterStatus3.Name = "cmbEnterStatus3";
+            this.cmbEnterStatus3.Size = new System.Drawing.Size(99, 20);
+            this.cmbEnterStatus3.TabIndex = 29;
             // 
-            // comboBox8
+            // cmbEnterStatus4
             // 
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(466, 419);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(99, 20);
-            this.comboBox8.TabIndex = 30;
+            this.cmbEnterStatus4.FormattingEnabled = true;
+            this.cmbEnterStatus4.Location = new System.Drawing.Point(466, 419);
+            this.cmbEnterStatus4.Name = "cmbEnterStatus4";
+            this.cmbEnterStatus4.Size = new System.Drawing.Size(99, 20);
+            this.cmbEnterStatus4.TabIndex = 30;
             // 
             // label13
             // 
@@ -663,70 +645,70 @@
             this.label13.TabIndex = 31;
             this.label13.Text = "特殊权限：";
             // 
-            // radioButton1
+            // rbutPrivilege1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(111, 449);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(47, 16);
-            this.radioButton1.TabIndex = 32;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "首卡";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbutPrivilege1.AutoSize = true;
+            this.rbutPrivilege1.Location = new System.Drawing.Point(111, 449);
+            this.rbutPrivilege1.Name = "rbutPrivilege1";
+            this.rbutPrivilege1.Size = new System.Drawing.Size(47, 16);
+            this.rbutPrivilege1.TabIndex = 32;
+            this.rbutPrivilege1.TabStop = true;
+            this.rbutPrivilege1.Text = "首卡";
+            this.rbutPrivilege1.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbutPrivilege2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(171, 449);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(47, 16);
-            this.radioButton2.TabIndex = 33;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "常开";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbutPrivilege2.AutoSize = true;
+            this.rbutPrivilege2.Location = new System.Drawing.Point(171, 449);
+            this.rbutPrivilege2.Name = "rbutPrivilege2";
+            this.rbutPrivilege2.Size = new System.Drawing.Size(47, 16);
+            this.rbutPrivilege2.TabIndex = 33;
+            this.rbutPrivilege2.TabStop = true;
+            this.rbutPrivilege2.Text = "常开";
+            this.rbutPrivilege2.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rbutPrivilege3
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(231, 449);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(47, 16);
-            this.radioButton3.TabIndex = 34;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "巡更";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rbutPrivilege3.AutoSize = true;
+            this.rbutPrivilege3.Location = new System.Drawing.Point(231, 449);
+            this.rbutPrivilege3.Name = "rbutPrivilege3";
+            this.rbutPrivilege3.Size = new System.Drawing.Size(47, 16);
+            this.rbutPrivilege3.TabIndex = 34;
+            this.rbutPrivilege3.TabStop = true;
+            this.rbutPrivilege3.Text = "巡更";
+            this.rbutPrivilege3.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // rbutPrivilege4
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(291, 449);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(83, 16);
-            this.radioButton4.TabIndex = 35;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "防盗设置卡";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.rbutPrivilege4.AutoSize = true;
+            this.rbutPrivilege4.Location = new System.Drawing.Point(291, 449);
+            this.rbutPrivilege4.Name = "rbutPrivilege4";
+            this.rbutPrivilege4.Size = new System.Drawing.Size(83, 16);
+            this.rbutPrivilege4.TabIndex = 35;
+            this.rbutPrivilege4.TabStop = true;
+            this.rbutPrivilege4.Text = "防盗设置卡";
+            this.rbutPrivilege4.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // rbutPrivilege0
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(387, 449);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(47, 16);
-            this.radioButton5.TabIndex = 36;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "普通";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.rbutPrivilege0.AutoSize = true;
+            this.rbutPrivilege0.Location = new System.Drawing.Point(387, 449);
+            this.rbutPrivilege0.Name = "rbutPrivilege0";
+            this.rbutPrivilege0.Size = new System.Drawing.Size(47, 16);
+            this.rbutPrivilege0.TabIndex = 36;
+            this.rbutPrivilege0.TabStop = true;
+            this.rbutPrivilege0.Text = "普通";
+            this.rbutPrivilege0.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // cbHolidayUse
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(461, 450);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(84, 16);
-            this.checkBox6.TabIndex = 37;
-            this.checkBox6.Text = "使用节假日";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.cbHolidayUse.AutoSize = true;
+            this.cbHolidayUse.Location = new System.Drawing.Point(461, 450);
+            this.cbHolidayUse.Name = "cbHolidayUse";
+            this.cbHolidayUse.Size = new System.Drawing.Size(84, 16);
+            this.cbHolidayUse.TabIndex = 37;
+            this.cbHolidayUse.Text = "使用节假日";
+            this.cbHolidayUse.UseVisualStyleBackColor = true;
             // 
             // label14
             // 
@@ -753,23 +735,24 @@
             this.button7.Text = "设置节假日开关";
             this.button7.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // butInsertList
             // 
-            this.button1.Location = new System.Drawing.Point(37, 506);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 41;
-            this.button1.Text = "新增至列表";
-            this.button1.UseVisualStyleBackColor = true;
+            this.butInsertList.Location = new System.Drawing.Point(37, 506);
+            this.butInsertList.Name = "butInsertList";
+            this.butInsertList.Size = new System.Drawing.Size(75, 23);
+            this.butInsertList.TabIndex = 41;
+            this.butInsertList.Text = "新增至列表";
+            this.butInsertList.UseVisualStyleBackColor = true;
+            this.butInsertList.Click += new System.EventHandler(this.butInsertList_Click);
             // 
-            // button3
+            // butDelList
             // 
-            this.button3.Location = new System.Drawing.Point(132, 506);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 42;
-            this.button3.Text = "从列表删除";
-            this.button3.UseVisualStyleBackColor = true;
+            this.butDelList.Location = new System.Drawing.Point(132, 506);
+            this.butDelList.Name = "butDelList";
+            this.butDelList.Size = new System.Drawing.Size(75, 23);
+            this.butDelList.TabIndex = 42;
+            this.butDelList.Text = "从列表删除";
+            this.butDelList.UseVisualStyleBackColor = true;
             // 
             // button8
             // 
@@ -807,7 +790,7 @@
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.comboBox9);
             this.groupBox2.Controls.Add(this.textBox12);
-            this.groupBox2.Controls.Add(this.textBox11);
+            this.groupBox2.Controls.Add(this.txtCardData1);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.button16);
             this.groupBox2.Controls.Add(this.button15);
@@ -878,12 +861,12 @@
             this.textBox12.Size = new System.Drawing.Size(87, 21);
             this.textBox12.TabIndex = 54;
             // 
-            // textBox11
+            // txtCardData1
             // 
-            this.textBox11.Location = new System.Drawing.Point(205, 30);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(87, 21);
-            this.textBox11.TabIndex = 53;
+            this.txtCardData1.Location = new System.Drawing.Point(205, 30);
+            this.txtCardData1.Name = "txtCardData1";
+            this.txtCardData1.Size = new System.Drawing.Size(87, 21);
+            this.txtCardData1.TabIndex = 53;
             // 
             // label17
             // 
@@ -1005,11 +988,45 @@
             this.checkBox7.Text = "自动刷卡增加卡片";
             this.checkBox7.UseVisualStyleBackColor = true;
             // 
+            // cmbCardStatus
+            // 
+            this.cmbCardStatus.FormattingEnabled = true;
+            this.cmbCardStatus.Location = new System.Drawing.Point(373, 344);
+            this.cmbCardStatus.Name = "cmbCardStatus";
+            this.cmbCardStatus.Size = new System.Drawing.Size(192, 20);
+            this.cmbCardStatus.TabIndex = 51;
+            // 
+            // cmbOpenTimes
+            // 
+            this.cmbOpenTimes.FormattingEnabled = true;
+            this.cmbOpenTimes.Location = new System.Drawing.Point(103, 345);
+            this.cmbOpenTimes.Name = "cmbOpenTimes";
+            this.cmbOpenTimes.Size = new System.Drawing.Size(192, 20);
+            this.cmbOpenTimes.TabIndex = 52;
+            // 
+            // txtExpiry
+            // 
+            this.txtExpiry.Location = new System.Drawing.Point(373, 317);
+            this.txtExpiry.Name = "txtExpiry";
+            this.txtExpiry.Size = new System.Drawing.Size(192, 21);
+            this.txtExpiry.TabIndex = 15;
+            // 
+            // txtCardList
+            // 
+            this.txtCardList.Location = new System.Drawing.Point(763, 33);
+            this.txtCardList.Multiline = true;
+            this.txtCardList.Name = "txtCardList";
+            this.txtCardList.Size = new System.Drawing.Size(346, 603);
+            this.txtCardList.TabIndex = 53;
+            // 
             // frmCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 667);
+            this.ClientSize = new System.Drawing.Size(1158, 667);
+            this.Controls.Add(this.txtCardList);
+            this.Controls.Add(this.cmbOpenTimes);
+            this.Controls.Add(this.cmbCardStatus);
             this.Controls.Add(this.checkBox7);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.button13);
@@ -1018,38 +1035,36 @@
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.butDelList);
+            this.Controls.Add(this.butInsertList);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.checkBox6);
-            this.Controls.Add(this.radioButton5);
-            this.Controls.Add(this.radioButton4);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.cbHolidayUse);
+            this.Controls.Add(this.rbutPrivilege0);
+            this.Controls.Add(this.rbutPrivilege4);
+            this.Controls.Add(this.rbutPrivilege3);
+            this.Controls.Add(this.rbutPrivilege2);
+            this.Controls.Add(this.rbutPrivilege1);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.comboBox8);
-            this.Controls.Add(this.comboBox7);
-            this.Controls.Add(this.comboBox6);
-            this.Controls.Add(this.comboBox5);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbEnterStatus4);
+            this.Controls.Add(this.cmbEnterStatus3);
+            this.Controls.Add(this.cmbEnterStatus2);
+            this.Controls.Add(this.cmbEnterStatus1);
+            this.Controls.Add(this.cmbTimeGroup4);
+            this.Controls.Add(this.cmbTimeGroup3);
+            this.Controls.Add(this.cmbTimeGroup2);
+            this.Controls.Add(this.cmbTimeGroup1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.checkBox5);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.cbbit3);
+            this.Controls.Add(this.cbbit2);
+            this.Controls.Add(this.cbbit1);
+            this.Controls.Add(this.cbbit0);
+            this.Controls.Add(this.txtExpiry);
+            this.Controls.Add(this.txtCardDataID);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtCardData);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -1057,7 +1072,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCardData16);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox1);
@@ -1085,38 +1100,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column25;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button butCardListBySort;
         private System.Windows.Forms.Button butCardListBySequence;
         private System.Windows.Forms.ComboBox cmbcardType;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCardData16;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
@@ -1124,38 +1114,35 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.TextBox txtCardData;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtCardDataID;
+        private System.Windows.Forms.CheckBox cbbit0;
+        private System.Windows.Forms.CheckBox cbbit1;
+        private System.Windows.Forms.CheckBox cbbit2;
+        private System.Windows.Forms.CheckBox cbbit3;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox6;
-        private System.Windows.Forms.ComboBox comboBox7;
-        private System.Windows.Forms.ComboBox comboBox8;
+        private System.Windows.Forms.ComboBox cmbTimeGroup1;
+        private System.Windows.Forms.ComboBox cmbTimeGroup2;
+        private System.Windows.Forms.ComboBox cmbTimeGroup3;
+        private System.Windows.Forms.ComboBox cmbTimeGroup4;
+        private System.Windows.Forms.ComboBox cmbEnterStatus1;
+        private System.Windows.Forms.ComboBox cmbEnterStatus2;
+        private System.Windows.Forms.ComboBox cmbEnterStatus3;
+        private System.Windows.Forms.ComboBox cmbEnterStatus4;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.RadioButton rbutPrivilege1;
+        private System.Windows.Forms.RadioButton rbutPrivilege2;
+        private System.Windows.Forms.RadioButton rbutPrivilege3;
+        private System.Windows.Forms.RadioButton rbutPrivilege4;
+        private System.Windows.Forms.RadioButton rbutPrivilege0;
+        private System.Windows.Forms.CheckBox cbHolidayUse;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button butInsertList;
+        private System.Windows.Forms.Button butDelList;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
@@ -1167,7 +1154,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox comboBox9;
         private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox txtCardData1;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button15;
@@ -1181,5 +1168,34 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.ComboBox cmbCardStatus;
+        private System.Windows.Forms.ComboBox cmbOpenTimes;
+        private System.Windows.Forms.TextBox txtExpiry;
+        private System.Windows.Forms.TextBox txtCardList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CardData10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CardData16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Expiry;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CardStatus1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OpenTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn door1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn door2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn door3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn door4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeGroup1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeGroup2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeGroup3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeGroup4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Privilege1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Privilege2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Privilege3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Privilege4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Holiday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EnterStatus1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EnterStatus2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EnterStatus3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EnterStatus4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HolidayUse;
     }
 }

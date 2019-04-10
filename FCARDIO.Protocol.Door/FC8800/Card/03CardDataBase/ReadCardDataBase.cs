@@ -18,7 +18,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         :FC8800Command
     {
         private int mStep;//指示当前命令进行的步骤
-        private ConcurrentLinkedQueue<ByteBuf> mBufs;
+        private Queue<IByteBuffer> mBufs;
         private int mRecordCardSize;//记录的卡数量
 
         /// <summary>

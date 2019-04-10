@@ -91,7 +91,8 @@
     <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort.cs" />
     <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort_Parameter.cs" />
     <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort_Result.cs" />
-    <Compile Include="FC8800\Card\TimeUtil.cs" />
+    <Compile Include="StringUtil.cs" />
+    <Compile Include="TimeUtil.cs" />
     <Compile Include="FC8800\Data\CardDetail.cs" />
     <Compile Include="FC8800\Data\E_WeekDay.cs" />
     <Compile Include="FC8800\Data\TimeGroup\DayTimeGroup.cs" />

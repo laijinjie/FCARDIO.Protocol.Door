@@ -75,7 +75,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            CardList = databuf.ReadByte();
+
         }
     }
 }

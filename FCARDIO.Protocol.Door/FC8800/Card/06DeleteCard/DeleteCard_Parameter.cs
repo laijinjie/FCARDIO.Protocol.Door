@@ -55,7 +55,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.ReadLong(CardList);
+            
             return databuf;
         }
 
@@ -74,7 +74,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            CardList = databuf.ReadLong();
+           
         }
     }
 }

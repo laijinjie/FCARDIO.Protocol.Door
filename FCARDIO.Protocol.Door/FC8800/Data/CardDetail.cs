@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
-
+using FCARDIO.Core.Extension;
 namespace FCARDIO.Protocol.Door.FC8800.Data
 {
     /// <summary>
@@ -61,7 +61,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
 
             byte[] btData = new byte[4];
             data.ReadBytes(btData, 0, 4);
-            Password = ByteUtil.ByteToHex(btData);
+            Password = btData.ToHex();
 
             byte[] btTime = new byte[6];
             data.ReadBytes(btTime, 0, 5);
@@ -75,7 +75,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
 
             OpenTimes = data.ReadUnsignedShort();
 
-            int bData = data.ReadUnsignedByte();//特权
+            int bData = data.ReadByte();//特权
             Door = bData >> 4;
             bData = bData & 15;
             Privilege = bData & 7;
@@ -97,7 +97,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
 
         public IByteBuffer GetBytes()
         {
-
             return null;
         }
 
@@ -105,9 +104,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         {
             data.WriteByte(0);
             data.WriteInt((int)CardData);
-
+            //Password = btData.ToHex();
             Password = StringUtil.FillHexString(Password, 8, "F", true);
-            long pwd = Long.parseLong(Password, 16);
+            long pwd = long.Parse(Password);
             data.WriteInt((int)pwd);
 
             byte[] btTime = new byte[6];
@@ -131,8 +130,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             data.WriteByte(EnterStatus);
 
             TimeUtil.DateToBCD_yyMMddhhmmss(btTime, RecordTime);
-            data.riteBytes(btTime, 0, 6);
-
+            data.WriteBytes(btTime, 0, 6);
         }
 
         /**
@@ -146,7 +144,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /**
          * 截止日期，最大2089年12月31日
          */
-        public Calendar Expiry;
+        public DateTime Expiry;
         /**
          * 开门时段<br/>
          * 1-4门的开门时段；时段取值范围：1-64<br/>
@@ -208,19 +206,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /**
          * 最近一次读卡的记录时间
          */
-        public Calendar RecordTime;
+        public DateTime RecordTime;
 
         public CardDetail()
         {
             CardData = 0;
             Password = null;
-            Expiry = null;
+            Expiry = DateTime.Now;
             TimeGroup = new byte[4];
             Door = 0;
             Privilege = 0;
             CardStatus = 0;
             Holiday = new byte[] { (byte)255, (byte)255, (byte)255, (byte)255 };
-            RecordTime = null;
+            RecordTime = DateTime.Now;
             EnterStatus = 0;
             HolidayUse = false;
         }
@@ -500,7 +498,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             while (min <= max)
             {
                 mid = (max + min) >> 1;
-                CardDetail cd = list.GetType(mid);
+                CardDetail cd = list[mid];
                 int num = cd.compareTo(search);
                 if (num > 0)
                 {

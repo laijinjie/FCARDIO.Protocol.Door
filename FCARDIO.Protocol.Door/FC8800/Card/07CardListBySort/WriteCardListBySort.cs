@@ -41,14 +41,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x07, 0x07, 0x01, 04 + 04++0x21 * n, getCmdData());
+            uint iLen = (10 * 0x21) + 8;
+            Packet(0x07, 0x07, 0x01, iLen, getCmdData());
         }
-        
         /// <summary>
         /// 获取参数结构的字节编码
         /// </summary>
         /// <returns></returns>
-        private object getCmdData()
+        private IByteBuffer getCmdData()
         {
             WriteCardListBySort_Parameter model = _Parameter as WriteCardListBySort_Parameter;
             var acl = _Connector.GetByteBufAllocator();
@@ -56,6 +56,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
             model.GetBytes(buf);
             return buf;
         }
+
+        
 
         /// <summary>
         /// 处理返回值

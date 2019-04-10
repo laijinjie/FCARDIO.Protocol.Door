@@ -85,7 +85,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         public override void SetBytes(IByteBuffer databuf)
         {
             FailTotal = databuf.ReadByte();
-            CardList = databuf.ReadBytes();
         }
     }
 }

@@ -39,7 +39,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x07, 0x05, 0x00, 0x04 + 0x5 * n, getCmdData());
+            uint iLen = (40 * 5) + 4;
+            Packet(0x07, 0x05, 0x00, iLen, getCmdData());
         }
 
         /// <summary>
