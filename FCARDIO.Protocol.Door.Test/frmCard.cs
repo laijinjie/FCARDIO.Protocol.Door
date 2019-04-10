@@ -94,6 +94,10 @@ namespace FCARDIO.Protocol.Door.Test
             var par = new FC8800.Card.ClearCardDataBase.ClearCardDataBase_Parameter(cmbcardType.SelectedIndex);
             var cmd = new FC8800.Card.ClearCardDataBase.ClearCardDataBase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddLog($"命令成功");
+            };
         }
         #endregion
 
@@ -198,6 +202,10 @@ namespace FCARDIO.Protocol.Door.Test
             var par = new FC8800.Card.DeleteCard.DeleteCard_Parameter(CardList);
             var cmd = new FC8800.Card.DeleteCard.DeleteCard(cmdDtl, par);
             mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddLog($"命令成功");
+            };
         }
         #endregion
 
@@ -309,7 +317,7 @@ namespace FCARDIO.Protocol.Door.Test
             string Password = txtPassword.Text;                 //密码
             string Expiry = txtExpiry.Text;                     //有效期
             int CardStatus1 = cmbCardStatus.SelectedIndex;      //卡片状态
-            string OpenTime = cmbOpenTimes.Text;                //有效次数
+            int OpenTime = cmbOpenTimes.SelectedIndex;                //有效次数
             bool door1 = cbbit0.Checked ? true : false;         //门1权限
             int TimeGroup1 = 0;
             int EnterStatus1 = 0;

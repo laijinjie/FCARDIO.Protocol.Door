@@ -66,7 +66,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.WriteTransactionDatabaseWrite
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != 2)
+            if (databuf.WritableBytes != 5)
             {
                 throw new ArgumentException("Crad Error");
             }
@@ -80,7 +80,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.WriteTransactionDatabaseWrite
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 2;
+            return 5;
         }
 
         /// <summary>

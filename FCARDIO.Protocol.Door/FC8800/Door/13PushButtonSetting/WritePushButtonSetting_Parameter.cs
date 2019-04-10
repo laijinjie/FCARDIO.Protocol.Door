@@ -79,7 +79,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 4)
+            if (databuf.WritableBytes != 3)
             {
                 throw new ArgumentException("databuf Error!");
             }
@@ -99,7 +99,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 4;
+            return 3;
         }
 
         /// <summary>

@@ -56,7 +56,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ClearTransactionDatabase
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if(databuf.ReadableBytes != 1)
+            if(databuf.WritableBytes != 1)
                 throw new NotImplementedException();
             return databuf;
         }

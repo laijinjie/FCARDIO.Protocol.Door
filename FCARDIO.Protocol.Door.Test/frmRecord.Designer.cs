@@ -29,31 +29,31 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.textBox28 = new System.Windows.Forms.TextBox();
-            this.textBox29 = new System.Windows.Forms.TextBox();
-            this.textBox30 = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.textBox24 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.butTransactionDatabaseDetail = new System.Windows.Forms.Button();
+            this.txtIsCircle6 = new System.Windows.Forms.TextBox();
+            this.txtIsCircle5 = new System.Windows.Forms.TextBox();
+            this.txtIsCircle4 = new System.Windows.Forms.TextBox();
+            this.txtIsCircle3 = new System.Windows.Forms.TextBox();
+            this.txtIsCircle2 = new System.Windows.Forms.TextBox();
+            this.txtIsCircle1 = new System.Windows.Forms.TextBox();
+            this.txtReadIndex6 = new System.Windows.Forms.TextBox();
+            this.txtReadIndex5 = new System.Windows.Forms.TextBox();
+            this.txtReadIndex4 = new System.Windows.Forms.TextBox();
+            this.txtReadIndex3 = new System.Windows.Forms.TextBox();
+            this.txtReadIndex2 = new System.Windows.Forms.TextBox();
+            this.txtReadIndex1 = new System.Windows.Forms.TextBox();
+            this.txtWriteIndex6 = new System.Windows.Forms.TextBox();
+            this.txtWriteIndex5 = new System.Windows.Forms.TextBox();
+            this.txtWriteIndex4 = new System.Windows.Forms.TextBox();
+            this.txtWriteIndex3 = new System.Windows.Forms.TextBox();
+            this.txtWriteIndex2 = new System.Windows.Forms.TextBox();
+            this.txtWriteIndex1 = new System.Windows.Forms.TextBox();
+            this.txttxtQuantity6 = new System.Windows.Forms.TextBox();
+            this.txttxtQuantity5 = new System.Windows.Forms.TextBox();
+            this.txttxtQuantity4 = new System.Windows.Forms.TextBox();
+            this.txttxtQuantity3 = new System.Windows.Forms.TextBox();
+            this.txttxtQuantity2 = new System.Windows.Forms.TextBox();
+            this.txttxtQuantity1 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -72,30 +72,30 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.butTransactionDatabaseReadIndex = new System.Windows.Forms.Button();
+            this.butTransactionDatabaseWriteIndex = new System.Windows.Forms.Button();
+            this.cbIsCircle = new System.Windows.Forms.CheckBox();
             this.cboe_TransactionDatabaseType1 = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.txtReadIndex = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox32 = new System.Windows.Forms.TextBox();
+            this.txtWriteIndex = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.cboe_TransactionDatabaseType2 = new System.Windows.Forms.ComboBox();
-            this.textBox31 = new System.Windows.Forms.TextBox();
+            this.txttxtQuantity0 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.butTransactionDatabaseByIndex = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
             this.cboe_TransactionDatabaseType3 = new System.Windows.Forms.ComboBox();
-            this.textBox34 = new System.Windows.Forms.TextBox();
+            this.txtReadIndex0 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.textBox35 = new System.Windows.Forms.TextBox();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.butClearTransactionDatabase = new System.Windows.Forms.Button();
@@ -112,31 +112,31 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.textBox25);
-            this.groupBox1.Controls.Add(this.textBox26);
-            this.groupBox1.Controls.Add(this.textBox27);
-            this.groupBox1.Controls.Add(this.textBox28);
-            this.groupBox1.Controls.Add(this.textBox29);
-            this.groupBox1.Controls.Add(this.textBox30);
-            this.groupBox1.Controls.Add(this.textBox19);
-            this.groupBox1.Controls.Add(this.textBox20);
-            this.groupBox1.Controls.Add(this.textBox21);
-            this.groupBox1.Controls.Add(this.textBox22);
-            this.groupBox1.Controls.Add(this.textBox23);
-            this.groupBox1.Controls.Add(this.textBox24);
-            this.groupBox1.Controls.Add(this.textBox13);
-            this.groupBox1.Controls.Add(this.textBox14);
-            this.groupBox1.Controls.Add(this.textBox15);
-            this.groupBox1.Controls.Add(this.textBox16);
-            this.groupBox1.Controls.Add(this.textBox17);
-            this.groupBox1.Controls.Add(this.textBox18);
-            this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.textBox8);
-            this.groupBox1.Controls.Add(this.textBox9);
-            this.groupBox1.Controls.Add(this.textBox10);
-            this.groupBox1.Controls.Add(this.textBox11);
-            this.groupBox1.Controls.Add(this.textBox12);
+            this.groupBox1.Controls.Add(this.butTransactionDatabaseDetail);
+            this.groupBox1.Controls.Add(this.txtIsCircle6);
+            this.groupBox1.Controls.Add(this.txtIsCircle5);
+            this.groupBox1.Controls.Add(this.txtIsCircle4);
+            this.groupBox1.Controls.Add(this.txtIsCircle3);
+            this.groupBox1.Controls.Add(this.txtIsCircle2);
+            this.groupBox1.Controls.Add(this.txtIsCircle1);
+            this.groupBox1.Controls.Add(this.txtReadIndex6);
+            this.groupBox1.Controls.Add(this.txtReadIndex5);
+            this.groupBox1.Controls.Add(this.txtReadIndex4);
+            this.groupBox1.Controls.Add(this.txtReadIndex3);
+            this.groupBox1.Controls.Add(this.txtReadIndex2);
+            this.groupBox1.Controls.Add(this.txtReadIndex1);
+            this.groupBox1.Controls.Add(this.txtWriteIndex6);
+            this.groupBox1.Controls.Add(this.txtWriteIndex5);
+            this.groupBox1.Controls.Add(this.txtWriteIndex4);
+            this.groupBox1.Controls.Add(this.txtWriteIndex3);
+            this.groupBox1.Controls.Add(this.txtWriteIndex2);
+            this.groupBox1.Controls.Add(this.txtWriteIndex1);
+            this.groupBox1.Controls.Add(this.txttxtQuantity6);
+            this.groupBox1.Controls.Add(this.txttxtQuantity5);
+            this.groupBox1.Controls.Add(this.txttxtQuantity4);
+            this.groupBox1.Controls.Add(this.txttxtQuantity3);
+            this.groupBox1.Controls.Add(this.txttxtQuantity2);
+            this.groupBox1.Controls.Add(this.txttxtQuantity1);
             this.groupBox1.Controls.Add(this.textBox6);
             this.groupBox1.Controls.Add(this.textBox5);
             this.groupBox1.Controls.Add(this.textBox4);
@@ -161,182 +161,183 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "存储器状况";
             // 
-            // button1
+            // butTransactionDatabaseDetail
             // 
-            this.button1.Location = new System.Drawing.Point(610, 171);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 23);
-            this.button1.TabIndex = 41;
-            this.button1.Text = "采集记录信息";
-            this.button1.UseVisualStyleBackColor = true;
+            this.butTransactionDatabaseDetail.Location = new System.Drawing.Point(610, 171);
+            this.butTransactionDatabaseDetail.Name = "butTransactionDatabaseDetail";
+            this.butTransactionDatabaseDetail.Size = new System.Drawing.Size(89, 23);
+            this.butTransactionDatabaseDetail.TabIndex = 41;
+            this.butTransactionDatabaseDetail.Text = "采集记录信息";
+            this.butTransactionDatabaseDetail.UseVisualStyleBackColor = true;
+            this.butTransactionDatabaseDetail.Click += new System.EventHandler(this.butTransactionDatabaseDetail_Click);
             // 
-            // textBox25
+            // txtIsCircle6
             // 
-            this.textBox25.Location = new System.Drawing.Point(510, 172);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(100, 21);
-            this.textBox25.TabIndex = 40;
+            this.txtIsCircle6.Location = new System.Drawing.Point(510, 172);
+            this.txtIsCircle6.Name = "txtIsCircle6";
+            this.txtIsCircle6.Size = new System.Drawing.Size(100, 21);
+            this.txtIsCircle6.TabIndex = 40;
             // 
-            // textBox26
+            // txtIsCircle5
             // 
-            this.textBox26.Location = new System.Drawing.Point(510, 145);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(100, 21);
-            this.textBox26.TabIndex = 39;
+            this.txtIsCircle5.Location = new System.Drawing.Point(510, 145);
+            this.txtIsCircle5.Name = "txtIsCircle5";
+            this.txtIsCircle5.Size = new System.Drawing.Size(100, 21);
+            this.txtIsCircle5.TabIndex = 39;
             // 
-            // textBox27
+            // txtIsCircle4
             // 
-            this.textBox27.Location = new System.Drawing.Point(510, 118);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(100, 21);
-            this.textBox27.TabIndex = 38;
+            this.txtIsCircle4.Location = new System.Drawing.Point(510, 118);
+            this.txtIsCircle4.Name = "txtIsCircle4";
+            this.txtIsCircle4.Size = new System.Drawing.Size(100, 21);
+            this.txtIsCircle4.TabIndex = 38;
             // 
-            // textBox28
+            // txtIsCircle3
             // 
-            this.textBox28.Location = new System.Drawing.Point(510, 91);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(100, 21);
-            this.textBox28.TabIndex = 37;
+            this.txtIsCircle3.Location = new System.Drawing.Point(510, 91);
+            this.txtIsCircle3.Name = "txtIsCircle3";
+            this.txtIsCircle3.Size = new System.Drawing.Size(100, 21);
+            this.txtIsCircle3.TabIndex = 37;
             // 
-            // textBox29
+            // txtIsCircle2
             // 
-            this.textBox29.Location = new System.Drawing.Point(510, 64);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(100, 21);
-            this.textBox29.TabIndex = 36;
+            this.txtIsCircle2.Location = new System.Drawing.Point(510, 64);
+            this.txtIsCircle2.Name = "txtIsCircle2";
+            this.txtIsCircle2.Size = new System.Drawing.Size(100, 21);
+            this.txtIsCircle2.TabIndex = 36;
             // 
-            // textBox30
+            // txtIsCircle1
             // 
-            this.textBox30.Location = new System.Drawing.Point(510, 37);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new System.Drawing.Size(100, 21);
-            this.textBox30.TabIndex = 35;
+            this.txtIsCircle1.Location = new System.Drawing.Point(510, 37);
+            this.txtIsCircle1.Name = "txtIsCircle1";
+            this.txtIsCircle1.Size = new System.Drawing.Size(100, 21);
+            this.txtIsCircle1.TabIndex = 35;
             // 
-            // textBox19
+            // txtReadIndex6
             // 
-            this.textBox19.Location = new System.Drawing.Point(404, 172);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(100, 21);
-            this.textBox19.TabIndex = 34;
+            this.txtReadIndex6.Location = new System.Drawing.Point(404, 172);
+            this.txtReadIndex6.Name = "txtReadIndex6";
+            this.txtReadIndex6.Size = new System.Drawing.Size(100, 21);
+            this.txtReadIndex6.TabIndex = 34;
             // 
-            // textBox20
+            // txtReadIndex5
             // 
-            this.textBox20.Location = new System.Drawing.Point(404, 145);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(100, 21);
-            this.textBox20.TabIndex = 33;
+            this.txtReadIndex5.Location = new System.Drawing.Point(404, 145);
+            this.txtReadIndex5.Name = "txtReadIndex5";
+            this.txtReadIndex5.Size = new System.Drawing.Size(100, 21);
+            this.txtReadIndex5.TabIndex = 33;
             // 
-            // textBox21
+            // txtReadIndex4
             // 
-            this.textBox21.Location = new System.Drawing.Point(404, 118);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(100, 21);
-            this.textBox21.TabIndex = 32;
+            this.txtReadIndex4.Location = new System.Drawing.Point(404, 118);
+            this.txtReadIndex4.Name = "txtReadIndex4";
+            this.txtReadIndex4.Size = new System.Drawing.Size(100, 21);
+            this.txtReadIndex4.TabIndex = 32;
             // 
-            // textBox22
+            // txtReadIndex3
             // 
-            this.textBox22.Location = new System.Drawing.Point(404, 91);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(100, 21);
-            this.textBox22.TabIndex = 31;
+            this.txtReadIndex3.Location = new System.Drawing.Point(404, 91);
+            this.txtReadIndex3.Name = "txtReadIndex3";
+            this.txtReadIndex3.Size = new System.Drawing.Size(100, 21);
+            this.txtReadIndex3.TabIndex = 31;
             // 
-            // textBox23
+            // txtReadIndex2
             // 
-            this.textBox23.Location = new System.Drawing.Point(404, 64);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(100, 21);
-            this.textBox23.TabIndex = 30;
+            this.txtReadIndex2.Location = new System.Drawing.Point(404, 64);
+            this.txtReadIndex2.Name = "txtReadIndex2";
+            this.txtReadIndex2.Size = new System.Drawing.Size(100, 21);
+            this.txtReadIndex2.TabIndex = 30;
             // 
-            // textBox24
+            // txtReadIndex1
             // 
-            this.textBox24.Location = new System.Drawing.Point(404, 37);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(100, 21);
-            this.textBox24.TabIndex = 29;
+            this.txtReadIndex1.Location = new System.Drawing.Point(404, 37);
+            this.txtReadIndex1.Name = "txtReadIndex1";
+            this.txtReadIndex1.Size = new System.Drawing.Size(100, 21);
+            this.txtReadIndex1.TabIndex = 29;
             // 
-            // textBox13
+            // txtWriteIndex6
             // 
-            this.textBox13.Location = new System.Drawing.Point(298, 172);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(100, 21);
-            this.textBox13.TabIndex = 28;
+            this.txtWriteIndex6.Location = new System.Drawing.Point(298, 172);
+            this.txtWriteIndex6.Name = "txtWriteIndex6";
+            this.txtWriteIndex6.Size = new System.Drawing.Size(100, 21);
+            this.txtWriteIndex6.TabIndex = 28;
             // 
-            // textBox14
+            // txtWriteIndex5
             // 
-            this.textBox14.Location = new System.Drawing.Point(298, 145);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(100, 21);
-            this.textBox14.TabIndex = 27;
+            this.txtWriteIndex5.Location = new System.Drawing.Point(298, 145);
+            this.txtWriteIndex5.Name = "txtWriteIndex5";
+            this.txtWriteIndex5.Size = new System.Drawing.Size(100, 21);
+            this.txtWriteIndex5.TabIndex = 27;
             // 
-            // textBox15
+            // txtWriteIndex4
             // 
-            this.textBox15.Location = new System.Drawing.Point(298, 118);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(100, 21);
-            this.textBox15.TabIndex = 26;
+            this.txtWriteIndex4.Location = new System.Drawing.Point(298, 118);
+            this.txtWriteIndex4.Name = "txtWriteIndex4";
+            this.txtWriteIndex4.Size = new System.Drawing.Size(100, 21);
+            this.txtWriteIndex4.TabIndex = 26;
             // 
-            // textBox16
+            // txtWriteIndex3
             // 
-            this.textBox16.Location = new System.Drawing.Point(298, 91);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(100, 21);
-            this.textBox16.TabIndex = 25;
+            this.txtWriteIndex3.Location = new System.Drawing.Point(298, 91);
+            this.txtWriteIndex3.Name = "txtWriteIndex3";
+            this.txtWriteIndex3.Size = new System.Drawing.Size(100, 21);
+            this.txtWriteIndex3.TabIndex = 25;
             // 
-            // textBox17
+            // txtWriteIndex2
             // 
-            this.textBox17.Location = new System.Drawing.Point(298, 64);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(100, 21);
-            this.textBox17.TabIndex = 24;
+            this.txtWriteIndex2.Location = new System.Drawing.Point(298, 64);
+            this.txtWriteIndex2.Name = "txtWriteIndex2";
+            this.txtWriteIndex2.Size = new System.Drawing.Size(100, 21);
+            this.txtWriteIndex2.TabIndex = 24;
             // 
-            // textBox18
+            // txtWriteIndex1
             // 
-            this.textBox18.Location = new System.Drawing.Point(298, 37);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(100, 21);
-            this.textBox18.TabIndex = 23;
+            this.txtWriteIndex1.Location = new System.Drawing.Point(298, 37);
+            this.txtWriteIndex1.Name = "txtWriteIndex1";
+            this.txtWriteIndex1.Size = new System.Drawing.Size(100, 21);
+            this.txtWriteIndex1.TabIndex = 23;
             // 
-            // textBox7
+            // txttxtQuantity6
             // 
-            this.textBox7.Location = new System.Drawing.Point(191, 173);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 21);
-            this.textBox7.TabIndex = 22;
+            this.txttxtQuantity6.Location = new System.Drawing.Point(191, 173);
+            this.txttxtQuantity6.Name = "txttxtQuantity6";
+            this.txttxtQuantity6.Size = new System.Drawing.Size(100, 21);
+            this.txttxtQuantity6.TabIndex = 22;
             // 
-            // textBox8
+            // txttxtQuantity5
             // 
-            this.textBox8.Location = new System.Drawing.Point(191, 146);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 21);
-            this.textBox8.TabIndex = 21;
+            this.txttxtQuantity5.Location = new System.Drawing.Point(191, 146);
+            this.txttxtQuantity5.Name = "txttxtQuantity5";
+            this.txttxtQuantity5.Size = new System.Drawing.Size(100, 21);
+            this.txttxtQuantity5.TabIndex = 21;
             // 
-            // textBox9
+            // txttxtQuantity4
             // 
-            this.textBox9.Location = new System.Drawing.Point(191, 119);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 21);
-            this.textBox9.TabIndex = 20;
+            this.txttxtQuantity4.Location = new System.Drawing.Point(191, 119);
+            this.txttxtQuantity4.Name = "txttxtQuantity4";
+            this.txttxtQuantity4.Size = new System.Drawing.Size(100, 21);
+            this.txttxtQuantity4.TabIndex = 20;
             // 
-            // textBox10
+            // txttxtQuantity3
             // 
-            this.textBox10.Location = new System.Drawing.Point(191, 92);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(100, 21);
-            this.textBox10.TabIndex = 19;
+            this.txttxtQuantity3.Location = new System.Drawing.Point(191, 92);
+            this.txttxtQuantity3.Name = "txttxtQuantity3";
+            this.txttxtQuantity3.Size = new System.Drawing.Size(100, 21);
+            this.txttxtQuantity3.TabIndex = 19;
             // 
-            // textBox11
+            // txttxtQuantity2
             // 
-            this.textBox11.Location = new System.Drawing.Point(191, 65);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(100, 21);
-            this.textBox11.TabIndex = 18;
+            this.txttxtQuantity2.Location = new System.Drawing.Point(191, 65);
+            this.txttxtQuantity2.Name = "txttxtQuantity2";
+            this.txttxtQuantity2.Size = new System.Drawing.Size(100, 21);
+            this.txttxtQuantity2.TabIndex = 18;
             // 
-            // textBox12
+            // txttxtQuantity1
             // 
-            this.textBox12.Location = new System.Drawing.Point(191, 38);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(100, 21);
-            this.textBox12.TabIndex = 17;
+            this.txttxtQuantity1.Location = new System.Drawing.Point(191, 38);
+            this.txttxtQuantity1.Name = "txttxtQuantity1";
+            this.txttxtQuantity1.Size = new System.Drawing.Size(100, 21);
+            this.txttxtQuantity1.TabIndex = 17;
             // 
             // textBox6
             // 
@@ -481,14 +482,14 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.butTransactionDatabaseReadIndex);
+            this.groupBox2.Controls.Add(this.butTransactionDatabaseWriteIndex);
+            this.groupBox2.Controls.Add(this.cbIsCircle);
             this.groupBox2.Controls.Add(this.cboe_TransactionDatabaseType1);
             this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.textBox33);
+            this.groupBox2.Controls.Add(this.txtReadIndex);
             this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.textBox32);
+            this.groupBox2.Controls.Add(this.txtWriteIndex);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Location = new System.Drawing.Point(12, 222);
@@ -498,33 +499,35 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "存储指针操作";
             // 
-            // button3
+            // butTransactionDatabaseReadIndex
             // 
-            this.button3.Location = new System.Drawing.Point(611, 41);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(89, 23);
-            this.button3.TabIndex = 23;
-            this.button3.Text = "跟新上传断点";
-            this.button3.UseVisualStyleBackColor = true;
+            this.butTransactionDatabaseReadIndex.Location = new System.Drawing.Point(611, 41);
+            this.butTransactionDatabaseReadIndex.Name = "butTransactionDatabaseReadIndex";
+            this.butTransactionDatabaseReadIndex.Size = new System.Drawing.Size(89, 23);
+            this.butTransactionDatabaseReadIndex.TabIndex = 23;
+            this.butTransactionDatabaseReadIndex.Text = "更新上传断点";
+            this.butTransactionDatabaseReadIndex.UseVisualStyleBackColor = true;
+            this.butTransactionDatabaseReadIndex.Click += new System.EventHandler(this.butTransactionDatabaseReadIndex_Click);
             // 
-            // button2
+            // butTransactionDatabaseWriteIndex
             // 
-            this.button2.Location = new System.Drawing.Point(518, 41);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 23);
-            this.button2.TabIndex = 22;
-            this.button2.Text = "上传记录尾号";
-            this.button2.UseVisualStyleBackColor = true;
+            this.butTransactionDatabaseWriteIndex.Location = new System.Drawing.Point(518, 41);
+            this.butTransactionDatabaseWriteIndex.Name = "butTransactionDatabaseWriteIndex";
+            this.butTransactionDatabaseWriteIndex.Size = new System.Drawing.Size(87, 23);
+            this.butTransactionDatabaseWriteIndex.TabIndex = 22;
+            this.butTransactionDatabaseWriteIndex.Text = "上传记录尾号";
+            this.butTransactionDatabaseWriteIndex.UseVisualStyleBackColor = true;
+            this.butTransactionDatabaseWriteIndex.Click += new System.EventHandler(this.butTransactionDatabaseWriteIndex_Click);
             // 
-            // checkBox1
+            // cbIsCircle
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(384, 41);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(60, 16);
-            this.checkBox1.TabIndex = 21;
-            this.checkBox1.Text = "已存满";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbIsCircle.AutoSize = true;
+            this.cbIsCircle.Location = new System.Drawing.Point(384, 41);
+            this.cbIsCircle.Name = "cbIsCircle";
+            this.cbIsCircle.Size = new System.Drawing.Size(60, 16);
+            this.cbIsCircle.TabIndex = 21;
+            this.cbIsCircle.Text = "已存满";
+            this.cbIsCircle.UseVisualStyleBackColor = true;
             // 
             // cboe_TransactionDatabaseType1
             // 
@@ -543,13 +546,13 @@
             this.label15.TabIndex = 18;
             this.label15.Text = "循环标志";
             // 
-            // textBox33
+            // txtReadIndex
             // 
-            this.textBox33.Location = new System.Drawing.Point(263, 39);
-            this.textBox33.Name = "textBox33";
-            this.textBox33.Size = new System.Drawing.Size(100, 21);
-            this.textBox33.TabIndex = 17;
-            this.textBox33.Text = "0";
+            this.txtReadIndex.Location = new System.Drawing.Point(263, 39);
+            this.txtReadIndex.Name = "txtReadIndex";
+            this.txtReadIndex.Size = new System.Drawing.Size(100, 21);
+            this.txtReadIndex.TabIndex = 17;
+            this.txtReadIndex.Text = "0";
             // 
             // label14
             // 
@@ -560,13 +563,13 @@
             this.label14.TabIndex = 16;
             this.label14.Text = "上传断点";
             // 
-            // textBox32
+            // txtWriteIndex
             // 
-            this.textBox32.Location = new System.Drawing.Point(149, 39);
-            this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new System.Drawing.Size(100, 21);
-            this.textBox32.TabIndex = 15;
-            this.textBox32.Text = "0";
+            this.txtWriteIndex.Location = new System.Drawing.Point(149, 39);
+            this.txtWriteIndex.Name = "txtWriteIndex";
+            this.txtWriteIndex.Size = new System.Drawing.Size(100, 21);
+            this.txtWriteIndex.TabIndex = 15;
+            this.txtWriteIndex.Text = "0";
             // 
             // label13
             // 
@@ -588,11 +591,11 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button6);
             this.groupBox3.Controls.Add(this.button7);
             this.groupBox3.Controls.Add(this.button4);
-            this.groupBox3.Controls.Add(this.button5);
             this.groupBox3.Controls.Add(this.cboe_TransactionDatabaseType2);
-            this.groupBox3.Controls.Add(this.textBox31);
+            this.groupBox3.Controls.Add(this.txttxtQuantity0);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Location = new System.Drawing.Point(13, 300);
@@ -601,6 +604,15 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "记录操作";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(66, 64);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(86, 23);
+            this.button6.TabIndex = 29;
+            this.button6.Text = "采集记录";
+            this.button6.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
@@ -620,15 +632,6 @@
             this.button4.Text = "修复记录";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(65, 64);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(87, 23);
-            this.button5.TabIndex = 25;
-            this.button5.Text = "采集记录";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
             // cboe_TransactionDatabaseType2
             // 
             this.cboe_TransactionDatabaseType2.FormattingEnabled = true;
@@ -637,13 +640,13 @@
             this.cboe_TransactionDatabaseType2.Size = new System.Drawing.Size(121, 20);
             this.cboe_TransactionDatabaseType2.TabIndex = 24;
             // 
-            // textBox31
+            // txttxtQuantity0
             // 
-            this.textBox31.Location = new System.Drawing.Point(191, 38);
-            this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new System.Drawing.Size(100, 21);
-            this.textBox31.TabIndex = 23;
-            this.textBox31.Text = "0";
+            this.txttxtQuantity0.Location = new System.Drawing.Point(191, 38);
+            this.txttxtQuantity0.Name = "txttxtQuantity0";
+            this.txttxtQuantity0.Size = new System.Drawing.Size(100, 21);
+            this.txttxtQuantity0.TabIndex = 23;
+            this.txttxtQuantity0.Text = "0";
             // 
             // label16
             // 
@@ -663,13 +666,23 @@
             this.label17.TabIndex = 21;
             this.label17.Text = "记录类型";
             // 
+            // butTransactionDatabaseByIndex
+            // 
+            this.butTransactionDatabaseByIndex.Location = new System.Drawing.Point(510, 34);
+            this.butTransactionDatabaseByIndex.Name = "butTransactionDatabaseByIndex";
+            this.butTransactionDatabaseByIndex.Size = new System.Drawing.Size(170, 23);
+            this.butTransactionDatabaseByIndex.TabIndex = 25;
+            this.butTransactionDatabaseByIndex.Text = "按序号采集记录";
+            this.butTransactionDatabaseByIndex.UseVisualStyleBackColor = true;
+            this.butTransactionDatabaseByIndex.Click += new System.EventHandler(this.butTransactionDatabaseByIndex_Click);
+            // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button6);
             this.groupBox4.Controls.Add(this.cboe_TransactionDatabaseType3);
-            this.groupBox4.Controls.Add(this.textBox34);
+            this.groupBox4.Controls.Add(this.butTransactionDatabaseByIndex);
+            this.groupBox4.Controls.Add(this.txtReadIndex0);
             this.groupBox4.Controls.Add(this.label18);
-            this.groupBox4.Controls.Add(this.textBox35);
+            this.groupBox4.Controls.Add(this.txtQuantity);
             this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Location = new System.Drawing.Point(13, 400);
@@ -679,15 +692,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "记录操作";
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(498, 36);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(167, 23);
-            this.button6.TabIndex = 29;
-            this.button6.Text = "按序号采集记录";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
             // cboe_TransactionDatabaseType3
             // 
             this.cboe_TransactionDatabaseType3.FormattingEnabled = true;
@@ -696,13 +700,13 @@
             this.cboe_TransactionDatabaseType3.Size = new System.Drawing.Size(121, 20);
             this.cboe_TransactionDatabaseType3.TabIndex = 28;
             // 
-            // textBox34
+            // txtReadIndex0
             // 
-            this.textBox34.Location = new System.Drawing.Point(305, 36);
-            this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new System.Drawing.Size(100, 21);
-            this.textBox34.TabIndex = 27;
-            this.textBox34.Text = "0";
+            this.txtReadIndex0.Location = new System.Drawing.Point(305, 36);
+            this.txtReadIndex0.Name = "txtReadIndex0";
+            this.txtReadIndex0.Size = new System.Drawing.Size(100, 21);
+            this.txtReadIndex0.TabIndex = 27;
+            this.txtReadIndex0.Text = "0";
             // 
             // label18
             // 
@@ -713,13 +717,13 @@
             this.label18.TabIndex = 26;
             this.label18.Text = "其实序号";
             // 
-            // textBox35
+            // txtQuantity
             // 
-            this.textBox35.Location = new System.Drawing.Point(191, 36);
-            this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new System.Drawing.Size(100, 21);
-            this.textBox35.TabIndex = 25;
-            this.textBox35.Text = "1";
+            this.txtQuantity.Location = new System.Drawing.Point(191, 36);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(100, 21);
+            this.txtQuantity.TabIndex = 25;
+            this.txtQuantity.Text = "1";
             // 
             // label19
             // 
@@ -818,31 +822,31 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox25;
-        private System.Windows.Forms.TextBox textBox26;
-        private System.Windows.Forms.TextBox textBox27;
-        private System.Windows.Forms.TextBox textBox28;
-        private System.Windows.Forms.TextBox textBox29;
-        private System.Windows.Forms.TextBox textBox30;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.TextBox textBox23;
-        private System.Windows.Forms.TextBox textBox24;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Button butTransactionDatabaseDetail;
+        private System.Windows.Forms.TextBox txtIsCircle6;
+        private System.Windows.Forms.TextBox txtIsCircle5;
+        private System.Windows.Forms.TextBox txtIsCircle4;
+        private System.Windows.Forms.TextBox txtIsCircle3;
+        private System.Windows.Forms.TextBox txtIsCircle2;
+        private System.Windows.Forms.TextBox txtIsCircle1;
+        private System.Windows.Forms.TextBox txtReadIndex6;
+        private System.Windows.Forms.TextBox txtReadIndex5;
+        private System.Windows.Forms.TextBox txtReadIndex4;
+        private System.Windows.Forms.TextBox txtReadIndex3;
+        private System.Windows.Forms.TextBox txtReadIndex2;
+        private System.Windows.Forms.TextBox txtReadIndex1;
+        private System.Windows.Forms.TextBox txtWriteIndex6;
+        private System.Windows.Forms.TextBox txtWriteIndex5;
+        private System.Windows.Forms.TextBox txtWriteIndex4;
+        private System.Windows.Forms.TextBox txtWriteIndex3;
+        private System.Windows.Forms.TextBox txtWriteIndex2;
+        private System.Windows.Forms.TextBox txtWriteIndex1;
+        private System.Windows.Forms.TextBox txttxtQuantity6;
+        private System.Windows.Forms.TextBox txttxtQuantity5;
+        private System.Windows.Forms.TextBox txttxtQuantity4;
+        private System.Windows.Forms.TextBox txttxtQuantity3;
+        private System.Windows.Forms.TextBox txttxtQuantity2;
+        private System.Windows.Forms.TextBox txttxtQuantity1;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
@@ -861,30 +865,30 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button butTransactionDatabaseReadIndex;
+        private System.Windows.Forms.Button butTransactionDatabaseWriteIndex;
+        private System.Windows.Forms.CheckBox cbIsCircle;
         private System.Windows.Forms.ComboBox cboe_TransactionDatabaseType1;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox33;
+        private System.Windows.Forms.TextBox txtReadIndex;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox32;
+        private System.Windows.Forms.TextBox txtWriteIndex;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button butTransactionDatabaseByIndex;
         private System.Windows.Forms.ComboBox cboe_TransactionDatabaseType2;
-        private System.Windows.Forms.TextBox textBox31;
+        private System.Windows.Forms.TextBox txttxtQuantity0;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ComboBox cboe_TransactionDatabaseType3;
-        private System.Windows.Forms.TextBox textBox34;
+        private System.Windows.Forms.TextBox txtReadIndex0;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBox35;
+        private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button butClearTransactionDatabase;

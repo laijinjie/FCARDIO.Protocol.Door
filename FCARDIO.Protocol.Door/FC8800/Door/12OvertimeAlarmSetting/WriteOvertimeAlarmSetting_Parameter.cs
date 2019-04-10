@@ -77,7 +77,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 2)
+            if (databuf.WritableBytes != 5)
             {
                 throw new ArgumentException("databuf Error!");
             }
@@ -94,7 +94,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 4;
+            return 5;
         }
     
         /// <summary>

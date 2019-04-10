@@ -74,7 +74,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != 4)
+            if (databuf.WritableBytes != 9)
             {
                 throw new ArgumentException("Crad Error");
             }
@@ -89,7 +89,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 4;
+            return 9;
         }
 
         /// <summary>

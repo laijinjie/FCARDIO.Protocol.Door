@@ -10,7 +10,12 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Transaction.WriteTransactionDatabaseWriteIndex
 {
-   public class WriteTransactionDatabaseWriteIndex :FC8800Command
+
+    /// <summary>
+    /// 修改指定记录数据库的写索引
+    /// 记录尾地址
+    /// </summary>
+    public class WriteTransactionDatabaseWriteIndex :FC8800Command
     {
         /// <summary>
         /// 初始化命令结构

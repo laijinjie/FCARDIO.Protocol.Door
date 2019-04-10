@@ -106,7 +106,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 4)
+            if (databuf.WritableBytes != 7)
             {
                 throw new ArgumentException("databuf Error!");
             }
@@ -115,7 +115,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
 
             string shex = Password;
             if (shex.Length < 8) shex = shex + new string('f', 8 - shex.Length);
-            databuf.WriteBytes(Password.HexToByte());
+            databuf.WriteBytes(shex.HexToByte());
 
             databuf.WriteByte(AlarmOption);
             return databuf;
@@ -127,7 +127,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 4;
+            return 7;
         }
 
         /// <summary>

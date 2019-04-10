@@ -54,7 +54,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != 1)
+            if (databuf.WritableBytes != 5)
             {
                 throw new ArgumentException("Crad Error");
             }
@@ -68,7 +68,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 1;
+            return 5;
         }
 
         /// <summary>

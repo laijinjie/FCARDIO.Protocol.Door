@@ -68,12 +68,17 @@ namespace FCARDIO.Protocol.Door.Test
             var par = new FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type));
             var cmd = new FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-        } 
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddLog($"命令成功");
+            };
+        }
         #endregion
 
         #region 判断记录类型
         private static FC8800.Transaction.e_TransactionDatabaseType Gete_TransactionDatabaseType(int type)
         {
+            type = type + 1;
             var i = FC8800.Transaction.e_TransactionDatabaseType.OnCardTransaction;
 
             if (type == 2)
@@ -97,7 +102,68 @@ namespace FCARDIO.Protocol.Door.Test
                 i = FC8800.Transaction.e_TransactionDatabaseType.OnSystemTransaction;
             }
             return i;
-        } 
+        }
         #endregion
+
+        #region 上传记录尾号
+        private void butTransactionDatabaseWriteIndex_Click(object sender, EventArgs e)
+        {
+            int type = cboe_TransactionDatabaseType1.SelectedIndex;
+            int WriteIndex = int.Parse(txtWriteIndex.Text.ToString());
+            var cmdDtl = mMainForm.GetCommandDetail();
+            var par = new FC8800.Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex_Parameter(Gete_TransactionDatabaseType(type), WriteIndex);
+            var cmd = new FC8800.Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddLog($"命令成功");
+            };
+        }
+        #endregion
+
+        #region 更新上传断点
+        private void butTransactionDatabaseReadIndex_Click(object sender, EventArgs e)
+        {
+            int type = cboe_TransactionDatabaseType1.SelectedIndex;
+            int ReadIndex = int.Parse(txtReadIndex.Text.ToString());
+            bool IsCircle = cbIsCircle.Checked ? true : false;
+            var cmdDtl = mMainForm.GetCommandDetail();
+            var par = new FC8800.Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex_Parameter(Gete_TransactionDatabaseType(type), ReadIndex, IsCircle);
+            var cmd = new FC8800.Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddLog($"命令成功");
+            };
+        }
+        #endregion
+
+        #region 按序号采集信息
+        private void butTransactionDatabaseByIndex_Click(object sender, EventArgs e)
+        {
+            int type = cboe_TransactionDatabaseType2.SelectedIndex;
+            int Quantity = int.Parse(txtQuantity.Text.ToString());
+            int ReadIndex = int.Parse(txtReadIndex0.Text.ToString());
+            var cmdDtl = mMainForm.GetCommandDetail();
+            var par = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Parameter(Gete_TransactionDatabaseType(type), Quantity, ReadIndex);
+            var cmd = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddLog($"命令成功");
+            };
+        }
+        #endregion
+
+        private void butTransactionDatabaseDetail_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            var cmd = new FC8800.Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmd.getResult() as FC8800.Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail_Result;
+            };
+        }
     }
 }

@@ -52,11 +52,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != 1)
+            uint iLen = (10 * 0x21) + 8;
+            if (databuf.WritableBytes != iLen)
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.WriteByte(byte.Parse(CardList.ToString()));
             return databuf;
         }
 
@@ -66,7 +66,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 1;
+            int iLen = (10 * 0x21) + 8;
+            return iLen;
         }
 
         /// <summary>

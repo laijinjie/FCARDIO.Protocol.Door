@@ -247,8 +247,6 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             var par = new FC8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
             var cmd = new FC8800.Door.SensorAlarmSetting.ReadSensorAlarmSetting(cmdDtl, par);
-            mMainForm.AddCommand(cmd);
-
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Door.SensorAlarmSetting.SensorAlarmSetting_Result;

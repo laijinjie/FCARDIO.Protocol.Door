@@ -60,7 +60,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != 2)
+            uint iLen = (5 * 0x21) + 4;
+            if (databuf.WritableBytes != iLen)
             {
                 throw new ArgumentException("Crad Error");
             }
@@ -75,7 +76,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 2;
+            int iLen = (5 * 0x21) + 4;
+            return iLen;
         }
 
         /// <summary>

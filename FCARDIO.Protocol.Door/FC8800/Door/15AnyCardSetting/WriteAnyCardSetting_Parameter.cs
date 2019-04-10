@@ -73,7 +73,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 2)
+            if (databuf.WritableBytes != 4)
             {
                 throw new ArgumentException("door Error!");
             }
@@ -89,7 +89,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 2;
+            return 4;
         }
 
         /// <summary>
