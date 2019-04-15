@@ -417,6 +417,79 @@ FCARDIO.Core
  <param name="connector"></param>
  <param name="p"></param>
 </member>
+<member name="M:FCARDIO.Core.Command.AbstractRequestHandle.DisposeResponse(FCARDIO.Core.Connector.INConnector,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 处理响应
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.Byte.ByteCommand">
+ <summary>
+ 用于将一个字节流命令发送出去
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.Byte.ByteCommand.#ctor(FCARDIO.Core.Command.INCommandDetail,FCARDIO.Core.Command.Byte.ByteCommandParameter)">
+ <summary>
+ 初始化两个重要参数，并进行参数检查
+ </summary>
+ <param name="cd">表示命令详情，包含通道信息，对端信息，超时时间，重发次数</param>
+</member>
+<member name="M:FCARDIO.Core.Command.Byte.ByteCommand.CreatePacket">
+ <summary>
+ 指令开始执行时，用于让命令组装第一个用于发送的数据包 CommandNext0 中组装（如果有的话）
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.Byte.ByteCommand.Release0">
+ <summary>
+ 释放使用的资源
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.Byte.ByteCommand.CommandNext(FCARDIO.Core.Packet.INPacket)">
+ <summary>
+ 检查并进行命令的下一部分
+ </summary>
+ <param name="readPacket">收到的数据包</param>
+</member>
+<member name="M:FCARDIO.Core.Command.Byte.ByteCommand.CommandReSend">
+ <summary>
+ 重发时的设置参数
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.Byte.ByteCommand.CheckCommandParameter(FCARDIO.Core.Command.INCommandParameter)">
+ <summary>
+ 检查命令参数
+ </summary>
+ <param name="value"></param>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Command.Byte.ByteCommandParameter">
+ <summary>
+ 表示一个字节流的参数
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.Byte.ByteCommandParameter.Buffer">
+ <summary>
+ 需要发送的文本
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.Byte.ByteCommandParameter.#ctor(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 使用字节流初始化参数
+ </summary>
+ <param name="buf"></param>
+</member>
+<member name="M:FCARDIO.Core.Command.Byte.BytePacket.#ctor(FCARDIO.Core.Command.Byte.ByteCommandParameter)">
+ <summary>
+ 初始化数据包，让数据包和参数关联
+ </summary>
+ <param name="par"></param>
+</member>
+<member name="M:FCARDIO.Core.Command.Byte.BytePacket.GetPacketData(DotNetty.Buffers.IByteBufferAllocator)">
+ <summary>
+ 获取一个buf用于发送数据
+ </summary>
+ <param name="Allocator"></param>
+ <returns></returns>
+</member>
 <member name="F:FCARDIO.Core.Command.CommandStatus.Completed">
  <summary>
  命令已完成的状态
@@ -734,6 +807,90 @@ FCARDIO.Core
  处理接收的数据
  </summary>
 </member>
+<member name="M:FCARDIO.Core.Command.INRequestHandle.DisposeResponse(FCARDIO.Core.Connector.INConnector,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 处理响应
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Command.Text.TextCommandParameter">
+ <summary>
+ 表示一个文本的参数
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.Text.TextCommandParameter.Text">
+ <summary>
+ 需要发送的文本
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Command.Text.TextCommandParameter.Encoding">
+ <summary>
+ 文本的编码方式
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.Text.TextCommandParameter.#ctor(System.String,System.Text.Encoding)">
+ <summary>
+ 使用一个文本和指定编码方式初始化参数
+ </summary>
+ <param name="t"></param>
+ <param name="enc"></param>
+</member>
+<member name="T:FCARDIO.Core.Command.Text.TextPacket">
+ <summary>
+ 包含一个文本数据的数据包
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.Text.TextPacket.#ctor(FCARDIO.Core.Command.Text.TextCommandParameter)">
+ <summary>
+ 初始化数据包，让数据包和一个参数关联
+ </summary>
+ <param name="par"></param>
+</member>
+<member name="M:FCARDIO.Core.Command.Text.TextPacket.GetPacketData(DotNetty.Buffers.IByteBufferAllocator)">
+ <summary>
+ 获取一个buf用于发送数据
+ </summary>
+ <param name="Allocator"></param>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Command.Text.TextCommand">
+ <summary>
+ 文本命令，可用于发送一个文本
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.Text.TextCommand.#ctor(FCARDIO.Core.Command.INCommandDetail,FCARDIO.Core.Command.Text.TextCommandParameter)">
+ <summary>
+ 初始化两个重要参数，并进行参数检查
+ </summary>
+ <param name="cd">表示命令详情，包含通道信息，对端信息，超时时间，重发次数</param>
+</member>
+<member name="M:FCARDIO.Core.Command.Text.TextCommand.CreatePacket">
+ <summary>
+ 指令开始执行时，用于让命令组装第一个用于发送的数据包 CommandNext0 中组装（如果有的话）
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.Text.TextCommand.Release0">
+ <summary>
+ 释放使用的资源
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.Text.TextCommand.CommandNext(FCARDIO.Core.Packet.INPacket)">
+ <summary>
+ 检查并进行命令的下一部分
+ </summary>
+ <param name="readPacket">收到的数据包</param>
+</member>
+<member name="M:FCARDIO.Core.Command.Text.TextCommand.CommandReSend">
+ <summary>
+ 重发时的设置参数
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Command.Text.TextCommand.CheckCommandParameter(FCARDIO.Core.Command.INCommandParameter)">
+ <summary>
+ 检查命令参数
+ </summary>
+ <param name="value"></param>
+ <returns></returns>
+</member>
 <member name="T:FCARDIO.Core.Command.INCommand">
  <summary>
  命令的封装主体类
@@ -1005,6 +1162,12 @@ FCARDIO.Core
  </summary>
  <returns></returns>
 </member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.LocalAddress">
+ <summary>
+ 获取本地绑定地址
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.GetCommandCount">
  <summary>
  命令队列数量
@@ -1160,11 +1323,22 @@ FCARDIO.Core
  </summary>
  <param name="e">包含事件所代表的客户端及服务器信息</param>
 </member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.FireClientOnline(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 客户端上线通知
+ </summary>
+ <param name="conn">客户端所绑定的连接器</param>
+</member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.FireClientOffline(FCARDIO.Core.Connector.ServerEventArgs)">
  <summary>
  触发事件--客户端离线通知
  </summary>
  <param name="e">包含事件所代表的客户端及服务器信息</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.FireClientOffline(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 触发事件--客户端离线通知
+ </summary> 
 </member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.FireConnectorConnectedEvent(FCARDIO.Core.Connector.INConnectorDetail)">
  <summary>
@@ -1200,6 +1374,17 @@ FCARDIO.Core
  解析收到的监控数据包
  </summary>
  <param name="msg"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.DisposeResponse(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 处理命令的响应包
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.ReadByteBuffer(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 读取到数据后的处理
+ </summary>
+ <param name="msg">将读取到的数据打包到bytebuffer</param>
 </member>
 <member name="T:FCARDIO.Core.Connector.AbstractConnectorDetail">
  <summary>
@@ -1239,7 +1424,7 @@ FCARDIO.Core
 </member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnectorDetail.Clone">
  <summary>
- 复制当前通道的浅表副本
+ 复制当前通道信息的浅表副本
  </summary>
  <returns>表示连接通道信息的副本</returns>
 </member>
@@ -1255,6 +1440,226 @@ FCARDIO.Core
  获取一个用于界定此通道的唯一Key值
  </summary>
  <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector">
+ <summary>
+ 基于Netty的通讯通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.RemoteDetail">
+ <summary>
+ 远程IP信息和端口信息
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.LocalDetail">
+ <summary>
+ 本地IP信息
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector._ClientChannel">
+ <summary>
+ 连接管理器所管理的通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector._Handler">
+ <summary>
+ 客户端操作的操作类
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector._ConnectFailCount">
+ <summary>
+ 连接超时时间和连接失败次数
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.GetConnectorType">
+ <summary>
+ 返回此通道的类路径
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.GetInitializationStatus">
+ <summary>
+ 返回此通道的初始化状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.ThisConnectorDetail">
+ <summary>
+ 标识本通道的信息类，只读
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.GetConnectorDetail">
+ <summary>
+ 返回记录此通道信息的类
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.GetConnectorDetail0">
+ <summary>
+ 创建一个连接头像详情对象，包含用于描述当前连接通道的信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.ConnectFail">
+ <summary>
+ 远程连接失败的处理过程
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.ConnectFail0">
+ <summary>
+ 当连接通道连接已失效时调用
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.GetStatus_Fail">
+ <summary>
+ 获取一个状态表示连接通道连接失败
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.ConnectSuccess">
+ <summary>
+ 远程连接成功
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.LocalAddress">
+ <summary>
+ 获取本地绑定地址
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.ConnectSuccess0">
+ <summary>
+ 连接通道建立连接成功后的后续处理
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.GetStatus_Connected">
+ <summary>
+ 获取一个状态表示连接通道连接已建立并工作正常的状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.CloseConnector">
+ <summary>
+ 关闭连接
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.CloseConnector0">
+ <summary>
+ 连接关闭后的后续处理
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.channelRead0(DotNetty.Transport.Channels.IChannelHandlerContext,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 接收到数据
+ </summary>
+ <param name="ctx"></param>
+ <param name="msg"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.WriteByteBuf(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将生成的bytebuf写入到通道中
+ 写入完毕后自动释放
+ </summary>
+ <param name="buf"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.GetByteBufAllocator">
+ <summary>
+ 获取连接通道支持的bytebuf分配器
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.GetEventLoop">
+ <summary>
+ 获取此通道所依附的事件循环通道
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.UserEventTriggered(DotNetty.Transport.Channels.IChannelHandlerContext,System.Object)">
+ <summary>
+ 自定义通道事件
+ </summary>
+ <param name="ctx"></param>
+ <param name="evt"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.ChannelInactive(DotNetty.Transport.Channels.IChannelHandlerContext)">
+ <summary>
+ 在连接正常或不正常关闭时发生
+ </summary>
+ <param name="ctx"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.ExceptionCaught(DotNetty.Transport.Channels.IChannelHandlerContext,System.Exception)">
+ <summary>
+ 发生错误时，触发此事件
+ </summary>
+ <param name="ctx"></param>
+ <param name="ex"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.Release0">
+ <summary>
+ 释放资源
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.AbstractNettyClientConnector.Release1">
+ <summary>
+ 下一级子类释放资源时调用
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Connector.Client.TCPClientNettyChannelHandler">
+ <summary>
+ TCP Client 连接通道的 Netty处理器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.TCPClientNettyChannelHandler.Release">
+ <summary>
+ 释放关联
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.TCPClientNettyChannelHandler.ExceptionCaught(DotNetty.Transport.Channels.IChannelHandlerContext,System.Exception)">
+ <summary>
+ 发生错误时，触发此事件
+ </summary>
+ <param name="ctx"></param>
+ <param name="ex"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.TCPClientNettyChannelHandler.ChannelRead0(DotNetty.Transport.Channels.IChannelHandlerContext,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 接收到数据事件
+ </summary>
+ <param name="ctx"></param>
+ <param name="msg"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.TCPClientNettyChannelHandler.ChannelInactive(DotNetty.Transport.Channels.IChannelHandlerContext)">
+ <summary>
+ 不活跃事件，一般就是关闭连接
+ </summary>
+ <param name="ctx"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.Client.TCPClientNettyChannelHandler.UserEventTriggered(DotNetty.Transport.Channels.IChannelHandlerContext,System.Object)">
+ <summary>
+ 自定义用户事件，在这里用于接收超时事件
+ </summary>
+ <param name="ctx"></param>
+ <param name="evt"></param>
+</member>
+<member name="T:FCARDIO.Core.Connector.ConnectorObserverHandler">
+ <summary>
+ 连接通道观察者，可以观察连接通道上的数据收发
+ </summary>
+</member>
+<member name="E:FCARDIO.Core.Connector.ConnectorObserverHandler.DisposeRequestEvent">
+ <summary>
+ 接收到数据
+ </summary>
+ <param name="connector"></param>
+ <param name="msg"></param>
+</member>
+<member name="E:FCARDIO.Core.Connector.ConnectorObserverHandler.DisposeResponseEvent">
+ <summary>
+ 准备发送数据
+ </summary>
+ <param name="connector"></param>
+ <param name="msg"></param>
 </member>
 <member name="T:FCARDIO.Core.Connector.ConnectorStatus_Free">
  <summary>
@@ -1283,6 +1688,12 @@ FCARDIO.Core
  连接器状态--已连接
  </summary>
 </member>
+<member name="F:FCARDIO.Core.Connector.ConnectorStatus_Connected.TimeInterval">
+ <summary>
+ 连接建立完毕后，每次检查连接器状态的间隔时间
+ 默认为10毫秒
+ </summary>
+</member>
 <member name="M:FCARDIO.Core.Connector.ConnectorStatus_Connected.CheckCommandList(FCARDIO.Core.Connector.INConnector)">
  <summary>
  检查命令队列中是否有需要发送的命令
@@ -1294,6 +1705,11 @@ FCARDIO.Core
  无命令也无需占用，通道需要关闭
  </summary>
  <param name="connector"></param>
+</member>
+<member name="F:FCARDIO.Core.Connector.DotNettyAllocator.BufferAllocator">
+ <summary>
+ 本系统使用的Buffer分配器
+ </summary>
 </member>
 <member name="F:FCARDIO.Core.Connector.DotNettyAllocator.ServerParentEventLoopGroup">
  <summary>
@@ -1332,7 +1748,7 @@ FCARDIO.Core
  </summary>
  <returns></returns>
 </member>
-<member name="M:FCARDIO.Core.Connector.DotNettyAllocator.GetServerChildLoopGroup">
+<member name="M:FCARDIO.Core.Connector.DotNettyAllocator.GetServerChildEventLoopGroup">
  <summary>
  返回用于初始化服务器 ServerBootstrap 的子节点 EventLoopGroup
  </summary>
@@ -1392,6 +1808,228 @@ FCARDIO.Core
  关闭这个连接通道分配器
  </summary>
 </member>
+<member name="T:FCARDIO.Core.Connector.SerialPort.SerialPortDetail">
+ <summary>
+ 表示一个串口通讯的通道详情
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.SerialPort.SerialPortDetail.Port">
+ <summary>
+ 电脑上的串口号
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.SerialPort.SerialPortDetail.Baudrate">
+ <summary>
+ 波特率；
+ 可选值：19200,115200 等标准值
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortDetail.#ctor(System.Byte)">
+ <summary>
+ 根据串口号和波特率初始化
+ </summary>
+ <param name="iport">串口号</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortDetail.#ctor(System.Byte,System.Int32)">
+ <summary>
+ 根据串口号和波特率初始化
+ </summary>
+ <param name="iport">串口号</param>
+ <param name="iBaudrate">波特率</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortDetail.GetTypeName">
+ <summary>
+ 获取连接通道的类名
+ </summary>
+ <returns>类名的全名</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortDetail.Equals(FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 用来比较此连接通道是否为同一个
+ </summary>
+ <param name="other"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortDetail.GetKey">
+ <summary>
+ 获取一个用于界定此通道的唯一Key值
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortDetail.ToString">
+ <summary>
+ 打印此详情所指示的连接信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortDetail.GetAssemblyName">
+ <summary>
+ 获取连接通道所在的程序集
+ 例如：FCARDIO.Core
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.SerialPort.SerialPortConnector">
+ <summary>
+ 表示一个串口通道，使用RS232、RS485方式或USB转串口方式和硬件通讯
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.mSerialPort">
+ <summary>
+ 串口操作类
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.SerialPort.SerialPortConnector._Detail">
+ <summary>
+ 保存和此通道相关联的描述
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.SerialPort.SerialPortConnector._EventLoop">
+ <summary>
+ 此通道所在的事件循环
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.#ctor(FCARDIO.Core.Connector.SerialPort.SerialPortDetail)">
+ <summary>
+ 根据指定的串口参数，创建连接通道
+ </summary>
+ <param name="dtl"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.GetConnectorDetail">
+ <summary>
+ 返回描述此通道的连接对象描述符
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.GetInitializationStatus">
+ <summary>
+ 返回此通道的初始化状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.GetConnectorType">
+ <summary>
+ 返回此通道的类路径
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.GetByteBufAllocator">
+ <summary>
+ 获取连接通道支持的bytebuf分配器
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.GetEventLoop">
+ <summary>
+ 获取此通道所依附的事件循环通道
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.LocalAddress">
+ <summary>
+ 获取本地绑定地址
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.Open">
+ <summary>
+ 打开串口
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.CloseConnector">
+ <summary>
+ 关闭串口
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.CheckConnector">
+ <summary>
+ 检查通道是否已开启
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.ReadConnector">
+ <summary>
+ 读通道中的数据
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.WriteByteBuf(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 发送数据
+ </summary>
+ <param name="buf"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortConnector.Release0">
+ <summary>
+ 释放资源
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Connector.SerialPort.SerialPortStatus_Free">
+ <summary>
+ 表示通道空闲，未开启串口的状态
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.SerialPort.SerialPortStatus_Free.Free">
+ <summary>
+ 空闲状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortStatus_Free.OpenConnector(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 打开通道，打开串口
+ </summary>
+ <param name="connector"></param>
+</member>
+<member name="T:FCARDIO.Core.Connector.SerialPort.SerialPortStatus_Opened">
+ <summary>
+ 表示串口已开启的状态
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.SerialPort.SerialPortStatus_Opened.Opened">
+ <summary>
+  表示串口已开启的状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortStatus_Opened.CheckCommandList(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 检查通道中的命令列表，执行命令
+ </summary>
+ <param name="connector"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.SerialPort.SerialPortStatus_Opened.CloseConnector(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 关闭串口
+ </summary>
+ <param name="connector"></param>
+</member>
+<member name="T:FCARDIO.Core.Connector.IPDetail">
+ <summary>
+ 保存IP信息 -- IPv4
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.IPDetail.Addr">
+ <summary>
+ IP地址或网址
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.IPDetail.Port">
+ <summary>
+ 网络端口 1-65535
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.IPDetail.#ctor(System.Net.EndPoint)">
+ <summary>
+ 将IP参数保存起来
+ </summary>
+ <param name="localAddress"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.IPDetail.#ctor(System.String,System.Int32)">
+ <summary>
+ 将IP参数保存起来
+ </summary>
+ <param name="ip"></param>
+ <param name="iPort"></param>
+</member>
 <member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientAllocator.lockobj">
  <summary>
  用于单例模式加锁的
@@ -1402,7 +2040,7 @@ FCARDIO.Core
  用于生成TCPClient的分配器
  </summary>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientAllocator.GetTCPClientAllocator">
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientAllocator.GetAllocator">
  <summary>
  获取用于生成TCPClient的分配器
  </summary>
@@ -1446,7 +2084,7 @@ FCARDIO.Core
  <param name="detail"></param>
  <returns></returns>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientAllocator.Connect(System.String,System.Int32,System.Int32)">
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientAllocator.Connect(FCARDIO.Core.Connector.TCPClient.TCPClientDetail,System.Int32)">
  <summary>
  连接到远程服务器
  </summary>
@@ -1464,57 +2102,9 @@ FCARDIO.Core
  本连接通道绑定的通道分配器
  </summary>
 </member>
-<member name="T:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.IPDetail">
- <summary>
- 保存IP信息 -- IPv4
- </summary>
-</member>
-<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.IPDetail.Addr">
- <summary>
- IP地址或网址
- </summary>
-</member>
-<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.IPDetail.Port">
- <summary>
- 网络端口 1-65535
- </summary>
-</member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.IPDetail.#ctor(System.Net.EndPoint)">
- <summary>
- 将IP参数保存起来
- </summary>
- <param name="localAddress"></param>
-</member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.IPDetail.#ctor(System.String,System.Int32)">
- <summary>
- 将IP参数保存起来
- </summary>
- <param name="ip"></param>
- <param name="iPort"></param>
-</member>
-<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.RemoteDetail">
- <summary>
- 远程IP信息和端口信息
- </summary>
-</member>
-<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.LocalDetail">
- <summary>
- 本地IP信息
- </summary>
-</member>
-<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._ClientChannel">
- <summary>
- 连接管理器所管理的通道
- </summary>
-</member>
 <member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._ConnectDate">
  <summary>
  连接开始时间
- </summary>
-</member>
-<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._IsCancelConnect">
- <summary>
- 连接是否已取消
  </summary>
 </member>
 <member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._ConnectFuture">
@@ -1530,16 +2120,6 @@ FCARDIO.Core
 <member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._ReconnectMax">
  <summary>
  最大重新连接次数
- </summary>
-</member>
-<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._ConnectFailCount">
- <summary>
- 连接超时时间和连接失败次数
- </summary>
-</member>
-<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector._Handler">
- <summary>
- 客户端操作的操作类
  </summary>
 </member>
 <member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.#ctor(FCARDIO.Core.Connector.TCPClient.TCPClientAllocator,FCARDIO.Core.Connector.TCPClient.TCPClientDetail)">
@@ -1572,14 +2152,9 @@ FCARDIO.Core
  </summary>
  <returns></returns>
 </member>
-<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ThisConnectorDetail">
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.GetConnectorDetail0">
  <summary>
- 标识本通道的信息类，只读
- </summary>
-</member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.GetConnectorDetail">
- <summary>
- 返回记录此通道信息的类
+ 创建一个连接对像详情对象，包含用于描述当前连接通道的信息
  </summary>
  <returns></returns>
 </member>
@@ -1594,69 +2169,34 @@ FCARDIO.Core
  </summary>
  <param name="tak"></param>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ConnectFail">
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ConnectFail0">
  <summary>
- 远程连接失败的处理过程
+ 当连接通道连接已失效时调用
  </summary>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ConnectSuccess">
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.GetStatus_Fail">
  <summary>
- 远程连接成功
- </summary>
-</member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.CloseConnector">
- <summary>
- 关闭连接
- </summary>
-</member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.channelRead0(DotNetty.Transport.Channels.IChannelHandlerContext,DotNetty.Buffers.IByteBuffer)">
- <summary>
- 接收到数据
- </summary>
- <param name="ctx"></param>
- <param name="msg"></param>
-</member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.WriteByteBuf(DotNetty.Buffers.IByteBuffer)">
- <summary>
- 将生成的bytebuf写入到通道中
- 写入完毕后自动释放
- </summary>
- <param name="buf"></param>
- <returns></returns>
-</member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.GetByteBufAllocator">
- <summary>
- 获取连接通道支持的bytebuf分配器
+ 获取一个状态表示连接通道连接失败
  </summary>
  <returns></returns>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.GetEventLoop">
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ConnectSuccess0">
  <summary>
- 获取此通道所依附的事件循环通道
+ 连接通道建立连接成功后的后续处理
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.GetStatus_Connected">
+ <summary>
+ 获取一个状态表示连接通道连接已建立并工作正常的状态
  </summary>
  <returns></returns>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.UserEventTriggered(DotNetty.Transport.Channels.IChannelHandlerContext,System.Object)">
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.CloseConnector0">
  <summary>
- 自定义通道事件
+ 连接关闭后的后续处理
  </summary>
- <param name="ctx"></param>
- <param name="evt"></param>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ChannelInactive(DotNetty.Transport.Channels.IChannelHandlerContext)">
- <summary>
- 在连接正常或不正常关闭时发生
- </summary>
- <param name="ctx"></param>
-</member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.ExceptionCaught(DotNetty.Transport.Channels.IChannelHandlerContext,System.Exception)">
- <summary>
- 发生错误时，触发此事件
- </summary>
- <param name="ctx"></param>
- <param name="ex"></param>
-</member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.Release0">
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientConnector.Release1">
  <summary>
  释放资源
  </summary>
@@ -1671,12 +2211,24 @@ FCARDIO.Core
  远程服务器的监听端口
  </summary>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientDetail_Readonly.#ctor(System.String,System.Int32)">
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientDetail_Readonly._LocalAddr">
+ <summary>
+ 连接远程服务器的本地IP
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientDetail_Readonly._LocalPort">
+ <summary>
+ 连接远程服务器的本地端口
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientDetail_Readonly.#ctor(System.String,System.Int32,System.String,System.Int32)">
  <summary>
  初始化连接器详细
  </summary>
  <param name="sAddr">远程服务器的IP或域名</param>
  <param name="iPort">远程服务器的监听端口</param>
+ <param name="slocal">指定本地IP</param>
+ <param name="ilocalPort">指定本地端口</param>
 </member>
 <member name="P:FCARDIO.Core.Connector.TCPClient.TCPClientDetail_Readonly.Addr">
  <summary>
@@ -1689,6 +2241,16 @@ FCARDIO.Core
  远程服务器的监听端口
  </summary>
  <returns></returns>
+</member>
+<member name="P:FCARDIO.Core.Connector.TCPClient.TCPClientDetail_Readonly.LocalAddr">
+ <summary>
+ 连接远程服务器的本地IP
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Connector.TCPClient.TCPClientDetail_Readonly.LocalPort">
+ <summary>
+ 连接远程服务器的本地端口
+ </summary>
 </member>
 <member name="F:FCARDIO.Core.Connector.TCPClient.TCPClientConnectorStatus.Free">
  <summary>
@@ -1710,6 +2272,16 @@ FCARDIO.Core
  远程连接失败的状态
  </summary>
 </member>
+<member name="T:FCARDIO.Core.Connector.TCPClient.TCPClientConnectorStatus_Free">
+ <summary>
+ 表示通道空闲，连接已关闭的状态
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Connector.TCPClient.TCPClientDetail">
+ <summary>
+ 表示一个 TCP Client 通道的详情
+ </summary>
+</member>
 <member name="P:FCARDIO.Core.Connector.TCPClient.TCPClientDetail.Addr">
  <summary>
  远程服务器的IP或域名
@@ -1720,12 +2292,31 @@ FCARDIO.Core
  远程服务器的监听端口
  </summary>
 </member>
+<member name="P:FCARDIO.Core.Connector.TCPClient.TCPClientDetail.LocalAddr">
+ <summary>
+ 连接远程服务器的本地IP
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Connector.TCPClient.TCPClientDetail.LocalPort">
+ <summary>
+ 连接远程服务器的本地端口
+ </summary>
+</member>
 <member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientDetail.#ctor(System.String,System.Int32)">
  <summary>
  初始化连接器详细
  </summary>
  <param name="sAddr">远程服务器的IP或域名</param>
  <param name="iPort">远程服务器的监听端口</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientDetail.#ctor(System.String,System.Int32,System.String,System.Int32)">
+ <summary>
+ 初始化连接器详细
+ </summary>
+ <param name="sAddr">远程服务器的IP或域名</param>
+ <param name="iPort">远程服务器的监听端口</param>
+ <param name="slocal">指定本地IP</param>
+ <param name="ilocalPort">指定本地端口</param>
 </member>
 <member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientDetail.GetAssemblyName">
  <summary>
@@ -1752,42 +2343,848 @@ FCARDIO.Core
  </summary>
  <returns></returns>
 </member>
-<member name="T:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler">
+<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientDetail.ToString">
  <summary>
- TCP Client 连接通道的 Netty处理器
+ 打印此详情所指示的连接信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.TCPServer.Client.TCPClientChannelInitializer">
+ <summary>
+ TCP 客户端通道初始化类，在此类中初始化  TCPServer.Client.TCPClientConnector 类
  </summary>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler.Release">
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientChannelInitializer.InitChannel(DotNetty.Transport.Channels.IChannel)">
+ <summary>
+ 初始化服务器客户端(子节点)
+ </summary>
+ <param name="channel"></param>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.mKey">
+ <summary>
+ 表示一个代表在TCP服务器节点下的唯一键值，通过此键值查询通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.EventArg">
+ <summary>
+ 表示此通道的事件参数，当发生通道事件时传输给事件订阅者
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.#ctor(System.String,DotNetty.Transport.Channels.IChannel)">
+ <summary>
+ 创建一个客户端
+ </summary>
+ <param name="sKey"></param>
+ <param name="channel"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.GetInitializationStatus">
+ <summary>
+ 返回此通道的初始化状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.GetStatus_Fail">
+ <summary>
+ 获取一个状态表示连接通道连接失败
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.GetStatus_Connected">
+ <summary>
+ 获取一个状态表示连接通道连接已建立并工作正常的状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.GetConnectorDetail0">
+ <summary>
+ 创建一个连接头像详情对象，包含用于描述当前连接通道的信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.ConnectFail0">
+ <summary>
+ 当连接通道连接已失效时调用
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.CloseConnector0">
+ <summary>
+ 连接关闭后的后续处理
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.ConnectSuccess0">
+ <summary>
+ 连接通道建立连接成功后的后续处理
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.Release1">
+ <summary>
+ 释放资源时调用
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.GetConnectorType">
+ <summary>
+ 返回此通道的类路径
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail_ReadOnly">
+ <summary>
+ 表示一个TCP服务器节点下的客户端通道详情,只读的
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail_ReadOnly._Key">
+ <summary>
+ 表示一个代表在TCP服务器节点下的唯一键值，通过此键值查询通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail_ReadOnly.Remote">
+ <summary>
+ 远程客户端身份
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail_ReadOnly.Local">
+ <summary>
+ 本地端点
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail_ReadOnly.#ctor(System.String,System.Net.IPEndPoint,System.Net.IPEndPoint)">
+ <summary>
+ 指定一个唯一Key值，用于表示一个服务器下的节点客户端
+ </summary>
+ <param name="skey">指示此节点的唯一Key值</param>
+ <param name="_remote">远程客户端身份</param>
+</member>
+<member name="P:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail_ReadOnly.Key">
+ <summary>
+ 表示一个代表在TCP服务器节点下的唯一键值，通过此键值查询通道
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail">
+ <summary>
+ 表示一个TCP服务器节点下的客户端通道详情
+ </summary>
+</member>
+<member name="P:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail.Key">
+ <summary>
+ 表示一个代表在TCP服务器节点下的唯一键值，通过此键值查询通道
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail.#ctor(System.String)">
+ <summary>
+ 指定一个唯一Key值，用于表示一个服务器下的节点客户端
+ </summary>
+ <param name="skey"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail.GetAssemblyName">
+ <summary>
+ 获取连接通道所在的程序集
+ </summary>
+ <returns>程序集名称</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail.GetTypeName">
+ <summary>
+ 获取连接通道的类名
+ </summary>
+ <returns>类名的全名</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail.Equals(FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 进行比较，看是否指向同一个客户端节点
+ </summary>
+ <param name="other"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail.GetKey">
+ <summary>
+ 获取一个关于客户端节点的Key值
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPServerClientDetail.ToString">
+ <summary>
+ 打印此详情所指示的连接信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.TCPServerAllocator.lockobj">
+ <summary>
+ 用于单例模式加锁的
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.TCPServerAllocator.mTCPServerAllocator">
+ <summary>
+ 用于生成TCP Server的分配器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerAllocator.GetAllocator">
+ <summary>
+ 获取用于生成TCPServer的分配器
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.TCPServerAllocator.ClientID">
+ <summary>
+ 所有客户端的ID
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerAllocator.GetClientKey(DotNetty.Transport.Channels.IChannel)">
+ <summary>
+ 获取客户端的Key值
+ </summary>
+ <param name="channel"></param>
+ <returns></returns>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.TCPServerAllocator.mServerBootstrap">
+ <summary>
+ 服务器快速启动器
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.TCPServerAllocator.mTCPClientHandler">
+ <summary>
+ 用于管理tcp客户端创建的处理程序
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerAllocator.#ctor">
+ <summary>
+ 类初始化，初始化 ServerBootstrap
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerAllocator.GetConnectorTypeName">
+ <summary>
+ 获取分配器可分配的连接器类全名
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerAllocator.GetNewConnector(FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 创建一个新的连接通道
+ </summary>
+ <param name="detail"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerAllocator.shutdownGracefully">
+ <summary>
+ 关闭这个连接通道分配器
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Connector.TCPServer.TcpServerSocketChannelEx">
+ <summary>
+ 处理服务器连接的通道类
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.TcpServerSocketChannelEx.ServerConnector">
+ <summary>
+ 和通道相关联的连接器处理类
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Connector.TCPServer.TCPServerConnector">
+ <summary>
+ TCPServer监听通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.TCPServerConnector._ServerChannel">
+ <summary>
+ 服务器监听通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.TCPServerConnector._Detail">
+ <summary>
+ 表示当前监听器的信息
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.TCPServerConnector.mLocal">
+ <summary>
+ 本地端点信息
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerConnector.BindOver(System.Threading.Tasks.Task{DotNetty.Transport.Channels.IChannel})">
+ <summary>
+ 绑定完毕
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerConnector.LocalAddress">
+ <summary>
+ 返回本地绑定信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerConnector.GetConnectorType">
+ <summary>
+ 获取此通道的连接器类型
+ </summary>
+ <returns>连接器类型</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerConnector.CloseConnector">
+ <summary>
+ 关闭连接
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerConnector.GetInitializationStatus">
+ <summary>
+ 获取初始化通道状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerConnector.Release0">
+ <summary>
+ 释放资源
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerConnector.GetConnectorDetail">
+ <summary>
+ 获取关于本通道的详情
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerConnector.GetByteBufAllocator">
+ <summary>
+ 获取连接通道支持的bytebuf分配器
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerConnector.WriteByteBuf(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将生成的bytebuf写入到通道中
+ 写入完毕后自动释放
+ </summary>
+ <param name="buf"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerConnector.GetEventLoop">
+ <summary>
+ 获取此通道所依附的事件循环通道
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.TCPServer.TCPServerDetail">
+ <summary>
+ 表示一个TCP服务器的连接通道信息
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.LocalAddr">
+ <summary>
+ 表示一个IP地址，IPV4，IPV6都可以
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.LocalPort">
+ <summary>
+ 表示本地监听的端口号
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.#ctor(System.Int32)">
+ <summary>
+ 初始化详情，本地地址指向 "0.0.0.0"
+ </summary>
+ <param name="Port">本地监听端口</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.#ctor(System.String,System.Int32)">
+ <summary>
+ 初始化详情
+ </summary>
+ <param name="Addr">本地监听地址</param>
+ <param name="Port">本地监听端口</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.Equals(FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 进行比较，看是否指向同一个服务端点
+ </summary>
+ <param name="other"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.GetKey">
+ <summary>
+ 获取一个关于服务端点的Key值
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.GetTypeName">
+ <summary>
+ 获取连接通道的类名
+ </summary>
+ <returns>类名的全名</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.GetAssemblyName">
+ <summary>
+ 获取连接通道所在的程序集
+ </summary>
+ <returns>程序集名称</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.ToString">
+ <summary>
+ 打印此详情所指示的连接信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.ConnectorStatus_Invalid">
+ <summary>
+ 指示通道已失效的状态
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.ConnectorStatus_Invalid.Invalid">
+ <summary>
+ 指示通道已失效
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorStatus_Invalid.Status">
+ <summary>
+ 获取当前状态的描述
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorStatus_Invalid.CheckStatus(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 检查状态是否需要变化
+ </summary>
+ <param name="connector"></param>
+</member>
+<member name="T:FCARDIO.Core.Connector.ConnectorStatus_Bind">
+ <summary>
+ 指示通道已绑定本地端口
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.ConnectorStatus_Bind.Bind">
+ <summary>
+ 指示通道正在绑定本地端口的状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorStatus_Bind.CheckStatus(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 检查状态是否需要变化
+ </summary>
+ <param name="connector"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorStatus_Bind.Status">
+ <summary>
+ 获取当前状态的描述
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.UDP.UDPAllocator">
+ <summary>
+ 创建分配一个UDP连接通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.UDP.UDPAllocator.lockobj">
+ <summary>
+ 用于单例模式加锁的
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.UDP.UDPAllocator.mAllocator">
+ <summary>
+ 用于生成TCP Server的分配器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPAllocator.GetAllocator">
+ <summary>
+ 获取用于生成TCPServer的分配器
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:FCARDIO.Core.Connector.UDP.UDPAllocator.mServerList">
+ <summary>
+ 保存有UDPServer的服务器列表
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.UDP.UDPAllocator.mUDPBootstrap">
+ <summary>
+ 用于创建UDP通道的快速启动器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPAllocator.#ctor">
+ <summary>
+ 创建一个UDP分配器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPAllocator.shutdownGracefully">
+ <summary>
+ 关闭这个连接通道分配器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPAllocator.GetConnectorTypeName">
+ <summary>
+ 获取分配器可分配的连接器类全名
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPAllocator.GetNewConnector(FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 创建一个新的连接通道
+ </summary>
+ <param name="detail"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPAllocator.GetNewUDPServer(FCARDIO.Core.Connector.UDP.UDPServerDetail)">
+ <summary>
+ 创建一个UDP服务器通道
+ </summary>
+ <param name="dtl"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPAllocator.GetIPAddress(System.String)">
+ <summary>
+ 将一个地址转换为IPAddress
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPClientDetail.#ctor(System.String,System.Int32)">
+ <summary>
+ 初始化连接器详细
+ </summary>
+ <param name="sAddr">远程服务器的IP或域名</param>
+ <param name="iPort">远程服务器的监听端口</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPClientDetail.#ctor(System.String,System.Int32,System.String,System.Int32)">
+ <summary>
+ 初始化连接器详细
+ </summary>
+ <param name="sAddr">远程服务器的IP或域名</param>
+ <param name="iPort">远程服务器的监听端口</param>
+ <param name="slocal">指定本地IP</param>
+ <param name="ilocalPort">指定本地端口</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPClientDetail.GetTypeName">
+ <summary>
+ 获取连接通道的类名
+ </summary>
+ <returns>类名的全名</returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.UDP.UDPClientDetail_ReadOnly">
+ <summary>
+ 只读的UDP连接器客户端详情
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPClientDetail_ReadOnly.#ctor(System.String,System.Int32,System.String,System.Int32)">
+ <summary>
+ 初始化连接器详细
+ </summary>
+ <param name="sAddr">远程服务器的IP或域名</param>
+ <param name="iPort">远程服务器的监听端口</param>
+ <param name="slocal">指定本地IP</param>
+ <param name="ilocalPort">指定本地端口</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPClientDetail_ReadOnly.GetTypeName">
+ <summary>
+ 获取连接通道的类名
+ </summary>
+ <returns>类名的全名</returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.UDP.UDPServerChannelHandler">
+ <summary>
+ UDP Server的 Netty 通道处理器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerChannelHandler.Release">
  <summary>
  释放关联
  </summary>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler.ExceptionCaught(DotNetty.Transport.Channels.IChannelHandlerContext,System.Exception)">
- <summary>
- 发生错误时，触发此事件
- </summary>
- <param name="ctx"></param>
- <param name="ex"></param>
-</member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler.ChannelRead0(DotNetty.Transport.Channels.IChannelHandlerContext,DotNetty.Buffers.IByteBuffer)">
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerChannelHandler.ChannelRead0(DotNetty.Transport.Channels.IChannelHandlerContext,DotNetty.Transport.Channels.Sockets.DatagramPacket)">
  <summary>
  接收到数据事件
  </summary>
  <param name="ctx"></param>
  <param name="msg"></param>
 </member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler.ChannelInactive(DotNetty.Transport.Channels.IChannelHandlerContext)">
- <summary>
- 不活跃事件，一般就是关闭连接
- </summary>
- <param name="ctx"></param>
-</member>
-<member name="M:FCARDIO.Core.Connector.TCPClient.TCPClientNettyHandler.UserEventTriggered(DotNetty.Transport.Channels.IChannelHandlerContext,System.Object)">
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerChannelHandler.UserEventTriggered(DotNetty.Transport.Channels.IChannelHandlerContext,System.Object)">
  <summary>
  自定义用户事件，在这里用于接收超时事件
  </summary>
  <param name="ctx"></param>
  <param name="evt"></param>
+</member>
+<member name="T:FCARDIO.Core.Connector.UDP.UDPServerClientConnector">
+ <summary>
+ 附属于UDPServer Connector 下的UDP子节点，每个子节点对应了一个远程主机
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.RemoteIP">
+ <summary>
+ 记录远程主机的IP
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.UDP.UDPServerClientConnector._EventLoop">
+ <summary>
+ 此通道所在的EventLoop
+ </summary>
+</member>
+<member name="E:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.ConnectorDisposeEvent">
+ <summary>
+ 通道销毁事件
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.#ctor(System.Net.EndPoint,DotNetty.Transport.Channels.IChannel,FCARDIO.Core.Connector.UDP.UDPServerDetail)">
+ <summary>
+ 通过远程主机和本地绑定的Netty通道初始化此类
+ </summary>
+ <param name="Remote"></param>
+ <param name="server"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.ConnectSuccess">
+ <summary>
+ 远程连接成功
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.GetConnectorType">
+ <summary>
+ 返回此通道的类路径
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.GetInitializationStatus">
+ <summary>
+ 返回此通道的初始化状态
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.GetEventLoop">
+ <summary>
+ 获取此通道所依附的事件循环通道
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.channelRead0(DotNetty.Transport.Channels.IChannelHandlerContext,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 接收到数据
+ </summary>
+ <param name="ctx"></param>
+ <param name="msg"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.WriteByteBuf(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将生成的bytebuf写入到通道中
+ 写入完毕后自动释放
+ </summary>
+ <param name="buf"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.GetConnectorDetail0">
+ <summary>
+ 创建一个连接头像详情对象，包含用于描述当前连接通道的信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.ConnectFail0">
+ <summary>
+ 当连接通道连接已失效时调用
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.ConnectSuccess0">
+ <summary>
+ 表示通道建立完毕时调用
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.CloseConnector">
+ <summary>
+ 关闭连接
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.CloseConnector0">
+ <summary>
+ 连接关闭后的后续处理
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientConnector.Release1">
+ <summary>
+ 释放资源
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientDetail.#ctor(System.String)">
+ <summary>
+ 指定一个唯一Key值，用于表示一个服务器下的节点客户端
+ </summary>
+ <param name="skey"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerClientDetail.GetTypeName">
+ <summary>
+ 获取连接通道的类名
+ </summary>
+ <returns>类名的全名</returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.UDP.UDPServerConnector">
+ <summary>
+ 表示一个UDP监听服务器，当收到一个新的请求时，将创建一个UDPClient通道用户处理请求
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.UDP.UDPServerConnector._Channel">
+ <summary>
+ 服务器监听通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.UDP.UDPServerConnector._Detail">
+ <summary>
+ 表示当前监听器的信息
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.UDP.UDPServerConnector.mHandler">
+ <summary>
+ UDP服务器的通道处理器
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.UDP.UDPServerConnector.ChildChannel">
+ <summary>
+ 通道的子节点
+ </summary>
+</member>
+<member name="E:FCARDIO.Core.Connector.UDP.UDPServerConnector.ConnectorDisposeEvent">
+ <summary>
+ 通道销毁事件
+ </summary>
+ <param name="dtl"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.#ctor(System.Threading.Tasks.Task{DotNetty.Transport.Channels.IChannel},FCARDIO.Core.Connector.UDP.UDPServerDetail)">
+ <summary>
+ 初始化通道
+ </summary>
+ <param name="tsk"></param>
+ <param name="serverdtl"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.BindOver(System.Threading.Tasks.Task{DotNetty.Transport.Channels.IChannel})">
+ <summary>
+ 绑定完毕
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.LocalAddress">
+ <summary>
+ 返回本地绑定信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.GetConnectorType">
+ <summary>
+ 获取此通道的连接器类型
+ </summary>
+ <returns>连接器类型</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.CloseConnector">
+ <summary>
+ 关闭连接
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.CloseClientConnector">
+ <summary>
+ 关闭所有子节点通道
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.AddClientConnector(System.String,System.Net.EndPoint)">
+ <summary>
+ 给通道添加一个UDP子节点
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.ConnectorDisposeEventCallBlack(FCARDIO.Core.Connector.UDP.UDPServerClientConnector)">
+ <summary>
+ 回调解除通道绑定
+ </summary>
+ <param name="client"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.GetInitializationStatus">
+ <summary>
+ 获取初始化通道状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.Release0">
+ <summary>
+ 释放资源
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.GetConnectorDetail">
+ <summary>
+ 获取关于本通道的详情
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.GetByteBufAllocator">
+ <summary>
+ 获取连接通道支持的bytebuf分配器
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.WriteByteBuf(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将生成的bytebuf写入到通道中
+ 写入完毕后自动释放
+ </summary>
+ <param name="buf"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.GetEventLoop">
+ <summary>
+ 获取此通道所依附的事件循环通道
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.ChannelRead0(DotNetty.Transport.Channels.IChannelHandlerContext,DotNetty.Transport.Channels.Sockets.DatagramPacket)">
+ <summary>
+ 接收到数据事件
+ </summary>
+ <param name="ctx"></param>
+ <param name="msg"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerConnector.UserEventTriggered(DotNetty.Transport.Channels.IChannelHandlerContext,System.Object)">
+ <summary>
+ 自定义用户事件，在这里用于接收超时事件
+ </summary>
+ <param name="ctx"></param>
+ <param name="evt"></param>
+</member>
+<member name="T:FCARDIO.Core.Connector.UDP.UDPServerDetail">
+ <summary>
+ 指示一个UDP服务器的详细信息
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.UDP.UDPServerDetail.LocalAddr">
+ <summary>
+ 连接远程服务器的本地IP
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.UDP.UDPServerDetail.LocalPort">
+ <summary>
+ 连接远程服务器的本地端口
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerDetail.#ctor(System.Int32)">
+ <summary>
+ 初始化连接器详细
+ </summary>
+ <param name="ilocalPort">指定本地端口</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerDetail.#ctor(System.String,System.Int32)">
+ <summary>
+ 初始化连接器详细
+ </summary>
+ <param name="slocal">指定本地IP</param>
+ <param name="ilocalPort">指定本地端口</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerDetail.GetAssemblyName">
+ <summary>
+ 获取连接通道所在的程序集
+ </summary>
+ <returns>程序集名称</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerDetail.GetTypeName">
+ <summary>
+ 获取连接通道的类名
+ </summary>
+ <returns>类名的全名</returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerDetail.Equals(FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 用来比较此连接通道是否为同一个
+ </summary>
+ <param name="other"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerDetail.GetKey">
+ <summary>
+ 获取一个用于界定此通道的唯一Key值
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.UDP.UDPServerDetail.ToString">
+ <summary>
+ 打印此详情所指示的连接信息
+ </summary>
+ <returns></returns>
 </member>
 <member name="T:FCARDIO.Core.Connector.INConnector">
  <summary>
@@ -1858,12 +3255,18 @@ FCARDIO.Core
 </member>
 <member name="P:FCARDIO.Core.Connector.INConnector.IsInvalid">
  <summary>
- 确定通道是否已失效`
+ 确定通道是否已失效
  </summary>
 </member>
 <member name="M:FCARDIO.Core.Connector.INConnector.IsActivity">
  <summary>
  通道是否为活动状态(已连接)
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Connector.INConnector.LocalAddress">
+ <summary>
+ 获取本地绑定地址
  </summary>
  <returns></returns>
 </member>
@@ -1969,7 +3372,6 @@ FCARDIO.Core
  检查状态是否需要变化
  </summary>
  <param name="connector"></param>
- <returns></returns>
 </member>
 <member name="T:FCARDIO.Core.Connector.INConnectorEvent">
  <summary>
@@ -2077,11 +3479,6 @@ FCARDIO.Core
 <member name="F:FCARDIO.Core.Connector.ServerEventArgs.Remote">
  <summary>
  远程计算机IP信息(仅供查看，不可修改)
- </summary>
-</member>
-<member name="F:FCARDIO.Core.Connector.ServerEventArgs.EventTime">
- <summary>
- 事件发生的时间
  </summary>
 </member>
 <member name="T:FCARDIO.Core.ConnectorAllocator">
@@ -2211,6 +3608,11 @@ FCARDIO.Core
  <param name="sender">触发事件的连接通道信息</param>
  <param name="e">包含事件所代表的客户端及服务器信息</param>
 </member>
+<member name="E:FCARDIO.Core.ConnectorAllocator.DisposeCallBlack">
+ <summary>
+ 表示对象已完成销毁工作
+ </summary>
+</member>
 <member name="M:FCARDIO.Core.ConnectorAllocator.IsRelease">
  <summary>
  是否已释放
@@ -2238,6 +3640,11 @@ FCARDIO.Core
  删除一个连接通道
  </summary>
  <param name="sKey"></param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.ConnectorManager.Release">
+ <summary>
+ 释放资源
+ </summary>
 </member>
 <member name="M:FCARDIO.Core.ConnectorAllocator.ConnectorManager.Run">
  <summary>
@@ -2286,6 +3693,12 @@ FCARDIO.Core
  获取一个连接通道
  </summary>
  <param name="connectDtl"></param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.AddConnector(System.String,FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 添加一个连接通道
+ </summary>
  <returns></returns>
 </member>
 <member name="M:FCARDIO.Core.ConnectorAllocator.AddCommand(FCARDIO.Core.Command.INCommand)">
@@ -2392,6 +3805,11 @@ FCARDIO.Core
  </summary>
  <param name="sender">触发事件的连接通道信息</param>
  <param name="e">包含事件所代表的客户端及服务器信息</param>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.Dispose">
+ <summary>
+ 释放所有线程，关闭所有通道，这个过程需要大概60秒
+ </summary>
 </member>
 <member name="T:FCARDIO.Core.Data.AbstractData">
  <summary>
@@ -2524,6 +3942,35 @@ FCARDIO.Core
  默认的连接通道分配工厂，可以分配一下几种类型的连接器
  TCPClient、TCPServer、UDPServer、UDPClient、SerialPort、WebSocketClient、WebSocketServer
  
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Factory.DefaultConnectorFactory.Release">
+ <summary>
+ 释放资源
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Factory.DefaultConnectorFactory.CreateConnector(FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 创建一个连接通道
+ </summary>
+ <param name="cd">包含一个描述连接通道详情的内容用于创建连接通道</param>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Factory.INConnectorFactory">
+ <summary>
+ 连接通道分配器工厂
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Factory.INConnectorFactory.CreateConnector(FCARDIO.Core.Connector.INConnectorDetail)">
+ <summary>
+ 创建一个连接通道
+ </summary>
+ <param name="cd">包含一个描述连接通道详情的内容用于创建连接通道</param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.Factory.INConnectorFactory.Release">
+ <summary>
+ 释放资源
  </summary>
 </member>
 <member name="M:FCARDIO.Core.Packet.INPacket.GetPacketData(DotNetty.Buffers.IByteBufferAllocator)">

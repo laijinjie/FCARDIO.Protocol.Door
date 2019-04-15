@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FCARDIO.Core;
 using FCARDIO.Core.Command;
+using FCARDIO.Core.Connector;
+using FCARDIO.Core.Connector.TCPClient;
+using FCARDIO.Core.Connector.TCPServer;
+using FCARDIO.Core.Connector.TCPServer.Client;
+using FCARDIO.Core.Connector.UDP;
 using FCARDIO.Core.Extension;
 using FCARDIO.Protocol.FC8800;
 
@@ -17,6 +22,7 @@ namespace FCARDIO.Protocol.Door.Test
     public partial class frmMain : Form, INMain
     {
         ConnectorAllocator mAllocator;
+        ConnectorObserverHandler mObserver;
         private static HashSet<Form> NodeForms;
 
         static frmMain()
@@ -26,13 +32,13 @@ namespace FCARDIO.Protocol.Door.Test
 
         public static void AddNodeForms(Form frm)
         {
-            if(!NodeForms.Contains(frm))
+            if (!NodeForms.Contains(frm))
             {
                 NodeForms.Add(frm);
             }
         }
-            
-        
+
+
         bool _IsClosed;
 
         public frmMain()
@@ -40,6 +46,7 @@ namespace FCARDIO.Protocol.Door.Test
             InitializeComponent();
 
             mAllocator = ConnectorAllocator.GetAllocator();
+            mObserver = new ConnectorObserverHandler();
 
             mAllocator.CommandCompleteEvent += mAllocator_CommandCompleteEvent;
             mAllocator.CommandErrorEvent += mAllocator_CommandErrorEvent;
@@ -49,6 +56,9 @@ namespace FCARDIO.Protocol.Door.Test
             mAllocator.ConnectorClosedEvent += mAllocator_ConnectorClosedEvent;
             mAllocator.ConnectorErrorEvent += mAllocator_ConnectorErrorEvent;
 
+            mObserver.DisposeRequestEvent += MObserver_DisposeRequestEvent;
+            mObserver.DisposeResponseEvent += MObserver_DisposeResponseEvent; ;
+
             cmdConnType.Items.Add("TCP客户端");
             cmdConnType.SelectedIndex = 0;
             cmdProtocolType.Items.Add("FC8800系列");
@@ -56,39 +66,101 @@ namespace FCARDIO.Protocol.Door.Test
             _IsClosed = false;
         }
 
+        private void MObserver_DisposeResponseEvent(INConnector connector, string msg)
+        {
+            
+            AddLog($"发送数据：{GetConnectorDetail(connector)} \r\n{msg}");
+
+        }
+
+
+        private void MObserver_DisposeRequestEvent(INConnector connector, string msg)
+        {
+            AddLog($"接收数据：{GetConnectorDetail(connector)} \r\n{msg}");
+        }
+
         private void mAllocator_ConnectorErrorEvent(object sender, Core.Connector.INConnectorDetail connector)
         {
-            AddLog("mAllocator_ConnectorErrorEvent");
+            AddLog($"连接超时：{GetConnectorDetail(connector)}");
         }
 
         private void mAllocator_ConnectorClosedEvent(object sender, Core.Connector.INConnectorDetail connector)
         {
-            AddLog("mAllocator_ConnectorClosedEvent");
+            AddLog($"连接关闭：{GetConnectorDetail(connector)}");
         }
 
         private void mAllocator_ConnectorConnectedEvent(object sender, Core.Connector.INConnectorDetail connector)
         {
-            AddLog("mAllocator_ConnectorConnectedEvent");
+            mAllocator.GetConnector(connector).AddRequestHandle(mObserver);
+            AddLog($"连接成功：{GetConnectorDetail(connector)}");
         }
 
         private void mAllocator_CommandTimeout(object sender, CommandEventArgs e)
         {
-            AddLog("mAllocator_CommandProcessEvent");
+            AddLog($"命令超时：{GetConnectorDetail(e.ConnectorDetail)} {e.Command.ToString()}");
         }
 
         private void mAllocator_CommandProcessEvent(object sender, CommandEventArgs e)
         {
-            AddLog("mAllocator_CommandProcessEvent");
+            AddLog($"命令进度：{GetConnectorDetail(e.ConnectorDetail)} {e.Command.ToString()} \r\n {e.Command.getProcessStep()} / {e.Command.getProcessMax()}");
         }
 
         private void mAllocator_CommandErrorEvent(object sender, CommandEventArgs e)
         {
-            AddLog("mAllocator_CommandErrorEvent");
+            AddLog($"命令错误：{GetConnectorDetail(e.ConnectorDetail)} {e.Command.ToString()}");
         }
 
         private void mAllocator_CommandCompleteEvent(object sender, CommandEventArgs e)
         {
-            AddLog("mAllocator_CommandCompleteEvent");
+            AddLog($"命令完成：{GetConnectorDetail(e.ConnectorDetail)} {e.Command.ToString()}");
+        }
+
+        private string GetConnectorDetail(INConnector conn)
+        {
+            return GetConnectorDetail(conn.GetConnectorDetail());
+        }
+        private string GetConnectorDetail(INConnectorDetail conn)
+        {
+            string ret = string.Empty;
+
+            switch (conn.GetTypeName())
+            {
+                case ConnectorType.TCPClient:
+                    var tcpclient = conn as TCPClientDetail;
+                    ret = $"通道类型：TCP客户端 本地IP：{tcpclient.LocalAddr}:{tcpclient.LocalPort} ,远端IP：{tcpclient.Addr}:{tcpclient.Port}";
+                    break;
+                case ConnectorType.TCPServerClient:
+                    var tcpclientOnly = conn as TCPServerClientDetail_ReadOnly;
+                    if (tcpclientOnly == null)
+                    {
+                        var tcd = conn as TCPServerClientDetail;
+
+                        ret = $"通道类型：TCPServer_Client key：{tcd.Key}";
+                    }
+                    else
+                        ret = $"通道类型：TCPServer_Client key：{tcpclientOnly.Key},远端IP：{tcpclientOnly.Remote.ToString()}";
+
+
+                    break;
+                case ConnectorType.UDPClient:
+                    var udpOnly = conn as TCPClientDetail;
+                    ret = $"类型：UDP 本地IP：{udpOnly.LocalAddr}:{udpOnly.LocalPort} ,远端IP：{udpOnly.Addr}:{udpOnly.Port}";
+                    break;
+                case ConnectorType.UDPServer:
+                    var udpserver = conn as UDPServerDetail;
+                    ret = $"类型：UDP 服务器  本地绑定IP：{udpserver.LocalAddr}:{udpserver.LocalPort}";
+                    break;
+                case ConnectorType.TCPServer:
+                    var tcpserver = conn as TCPServerDetail;
+                    ret = $"类型：TCP服务器  本地绑定IP：{tcpserver.LocalAddr}:{tcpserver.LocalPort}";
+                    break;
+                default:
+                    ret = $"通道：{conn.GetKey()}";
+                    break;
+            }
+
+            return $"{ret}:{DateTime.Now.ToTimeffff()}";
+
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -135,7 +207,7 @@ namespace FCARDIO.Protocol.Door.Test
         {
             mAllocator.AddCommand(cmd);
         }
-        
+
 
         /// <summary>
         /// 获取一个命令详情，已经装配好通讯目标的所有信息

@@ -34,7 +34,22 @@ FCARDIO.Protocol
 </member>
 <member name="F:FCARDIO.Protocol.CommandDetailFactory.ConnectType.TCPClient">
  <summary>
- TCP客户端
+ 访问远程TCP服务器
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ConnectType.TCPServerClient">
+ <summary>
+ 本地开启的TCP 服务器中，查找已连接到服务器的客户端
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ConnectType.UDPClient">
+ <summary>
+ 访问远程UDP服务器
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ConnectType.SerialPort">
+ <summary>
+ 串口通讯
  </summary>
 </member>
 <member name="T:FCARDIO.Protocol.CommandDetailFactory.ControllerType">
@@ -178,6 +193,11 @@ FCARDIO.Protocol
  </summary>
  <param name="allocator">用于保存临时数据的ByteBuf分配器</param>
  <param name="factory">用于根据SN，命令参数、命令索引生产用于处理对应消息的处理类工厂</param>
+</member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800RequestHandle.DisposeResponse(FCARDIO.Core.Connector.INConnector,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 处理响应
+ </summary>
 </member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800RequestHandle.fireRequestEvent(FCARDIO.Core.Connector.INConnector,FCARDIO.Core.Packet.INPacket)">
  <summary>
