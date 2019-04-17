@@ -15,13 +15,18 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SN
     /// </summary>
     public class WriteSN_Broadcast : WriteSN
     {
-        protected override byte[] DataStrt { get { return new byte[] { 0xFC, 0x65, 0x65, 0x33, 0xFF }; } }
-        protected override byte[] DataEnd { get { return new byte[] { 0xCF, 0x35, 0x92 }; } }
-
-        public WriteSN_Broadcast(INCommandDetail cd, INCommandParameter par) : base(cd, par) { }
+        /// <summary>
+        /// 广播写入控制器SN 初始化命令
+        /// </summary>
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        /// <param name="par">包含SN数据</param>
+        public WriteSN_Broadcast(INCommandDetail cd, SN_Parameter par) : base(cd, par) {
+            DataStrt = new byte[] { 0xFC, 0x65, 0x65, 0x33, 0xFF };
+            DataEnd = new byte[] { 0xCF, 0x35, 0x92 };
+        }
 
         /// <summary>
-        /// 创建指令
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {

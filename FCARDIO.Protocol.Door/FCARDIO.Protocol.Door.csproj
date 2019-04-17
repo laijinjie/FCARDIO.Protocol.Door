@@ -95,6 +95,8 @@
     <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort_Result.cs" />
     <Compile Include="FC8800\Data\TransactionDatabaseDetail.cs" />
     <Compile Include="FC8800\Data\TransactionDetail.cs" />
+    <Compile Include="FC8800\FC8800Command_ReadParameter.cs" />
+    <Compile Include="FC8800\FC8800Command_WriteParameter.cs" />
     <Compile Include="FC8800\Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail.cs" />
     <Compile Include="FC8800\Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail_Result.cs" />
     <Compile Include="FC8800\Transaction\02ClearTransactionDatabase\ClearTransactionDatabase.cs" />
@@ -111,8 +113,6 @@
     <Compile Include="FC8800\Transaction\06WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex.cs" />
     <Compile Include="FC8800\Transaction\06WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex_Parameter.cs" />
     <Compile Include="FC8800\Transaction\e_TransactionDatabaseType.cs" />
-    <Compile Include="StringUtil.cs" />
-    <Compile Include="TimeUtil.cs" />
     <Compile Include="FC8800\Data\CardDetail.cs" />
     <Compile Include="FC8800\Data\E_WeekDay.cs" />
     <Compile Include="FC8800\Data\TimeGroup\DayTimeGroup.cs" />
@@ -190,13 +190,13 @@
     <Compile Include="FC8800\Door\DoorPort_Parameter.cs" />
     <Compile Include="FC8800\SystemParameter\01SN\SN_Result.cs" />
     <Compile Include="FC8800\SystemParameter\02ConnectPassword\ReadConnectPassword.cs" />
-    <Compile Include="FC8800\SystemParameter\02ConnectPassword\ReadConnectPassword_Result.cs" />
+    <Compile Include="FC8800\SystemParameter\02ConnectPassword\Password_Result.cs" />
     <Compile Include="FC8800\SystemParameter\02ConnectPassword\ResetConnectPassword.cs" />
     <Compile Include="FC8800\SystemParameter\02ConnectPassword\WriteConnectPassword.cs" />
     <Compile Include="FC8800\SystemParameter\01SN\WriteSN.cs" />
     <Compile Include="FC8800\SystemParameter\01SN\WriteSN_Broadcast.cs" />
     <Compile Include="FC8800\SystemParameter\01SN\SN_Parameter.cs" />
-    <Compile Include="FC8800\SystemParameter\02ConnectPassword\WriteConnectPassword_Parameter.cs" />
+    <Compile Include="FC8800\SystemParameter\02ConnectPassword\Password_Parameter.cs" />
     <Compile Include="FC8800\SystemParameter\03TCPSetting\ReadTCPSetting.cs" />
     <Compile Include="FC8800\SystemParameter\03TCPSetting\ReadTCPSetting_Result.cs" />
     <Compile Include="FC8800\SystemParameter\03TCPSetting\TCPDetail.cs" />
@@ -322,16 +322,16 @@
     <Compile Include="FC8800\Time\ReadTime_Result.cs" />
     <Compile Include="FC8800\Time\WriteTime.cs" />
     <Compile Include="FC8800\Time\WriteTimeBroadcast.cs" />
-    <Compile Include="FC8800\SystemParameter\ByteUtil.cs" />
     <Compile Include="FC8800\SystemParameter\DoorLimit.cs" />
     <Compile Include="FC8800\SystemParameter\DoorPortDetail.cs" />
-    <Compile Include="FC8800\SystemParameter\TimeUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FC8800\SystemParameter\01SN\ReadSN.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TextFile1.txt" />
+    <ProjectReference Include="..\FCARDIO.Protocol.Util\FCARDIO.Protocol.Util.csproj">
+      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
+      <Name>FCARDIO.Protocol.Util</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

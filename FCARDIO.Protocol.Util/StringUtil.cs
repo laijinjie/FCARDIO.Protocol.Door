@@ -5,37 +5,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door
+namespace FCARDIO.Protocol.Util
 {
+    /// <summary>
+    /// 字符串实用工具
+    /// </summary>
     public class StringUtil
     {
+        /// <summary>
+        /// 十六进制转字节的转换表
+        /// </summary>
         private static byte[] HexToByte_Digit;
+        /// <summary>
+        /// 字符串转数组的值表
+        /// </summary>
         private static byte[] NumDigit;
 
-        //初始化 HexToByte 的转换表
-        //        static {
-        //             int i;
-        //        byte[] digits = new byte[256];
-        //        byte[] tmp;
-        //        tmp = "0123456789abcdef".getBytes();
-        //        for (i = 0; i<tmp.length; i++) {
-        //            digits[tmp[i]] = (byte) i;
-        //    }
-        //    tmp = "ABCDEF".getBytes();
-        //        for (i = 0; i<tmp.length; i++) {
-        //            digits[tmp[i]] = (byte) (i + 10);
-        //        }
-        //HexToByte_Digit = digits;
+        /// <summary>
+        /// 初始化 HexToByte 的转换表
+        /// </summary>
+        static StringUtil()
+        {
+            int i;
+            byte[] digits = new byte[256];
+            byte[] tmp;
+            tmp = System.Text.Encoding.ASCII.GetBytes("0123456789abcdef");
+            for (i = 0; i < tmp.Length; i++)
+            {
+                digits[tmp[i]] = (byte)i;
+            }
+            tmp = Encoding.ASCII.GetBytes("ABCDEF");
+            for (i = 0; i < tmp.Length; i++)
+            {
+                digits[tmp[i]] = (byte)(i + 10);
+            }
+            HexToByte_Digit = digits;
 
-        //        digits = new byte[256];
-        //        tmp = "0123456789".getBytes();
-        //        for (i = 0; i<tmp.length; i++) {
-        //            digits[tmp[i]] = (byte) i;
-        //        }
+            digits = new byte[256];
+            tmp = Encoding.ASCII.GetBytes("0123456789"); 
+            for (i = 0; i < tmp.Length; i++)
+            {
+                digits[tmp[i]] = (byte)i;
+            }
 
-        //        NumDigit = digits;
+            NumDigit = digits;
+        }
 
-        //    }
 
         /**
          * 十六进制字符串转字节数组
@@ -46,7 +61,7 @@ namespace FCARDIO.Protocol.Door
         public static byte[] HexToByte(String hexString)
         {
             int i, iIndex = 0, iData;
-            if (IsNullOrEmpty(hexString))
+            if (string.IsNullOrEmpty(hexString))
             {
                 return null;
             }
@@ -81,21 +96,15 @@ namespace FCARDIO.Protocol.Door
             return buf;
         }
 
-        /**
-         * 将十六进制字符串添加到ByteBuf中
-         *
-         * @param hexString
-         * @param buf
-         */
-
+        /// <summary>
+        ///  将十六进制字符串添加到ByteBuf中
+        /// </summary>
+        /// <param name="hexString">需要转换的十六进制字符串</param>
+        /// <param name="buf">保存这些数据的缓冲区</param>
         public static void HextoByteBuf(String hexString, IByteBuffer buf)
         {
             int i, iIndex = 0, iData;
-            if (IsNullOrEmpty(hexString))
-            {
-                return;
-            }
-            if (!IsHex(hexString))
+            if (string.IsNullOrEmpty(hexString))
             {
                 return;
             }
@@ -114,23 +123,28 @@ namespace FCARDIO.Protocol.Door
             //开始转换
             for (i = 0; i < ilen; i++)
             {
-                iData = digits[sbuf[i++] & 0x000000ff] * 16;
+                //判断是否为十六进制字符串
+                if (digits[sbuf[i]] == 0 && sbuf[i] != 0x30)
+                {
+                    return ;
+                }
+
+                iData = digits[sbuf[i++]] * 16;
                 iData = iData + digits[sbuf[i]];
 
-                buf.WriteByte((byte)iData);
+                buf.WriteByte(iData);
                 iIndex++;
             }
         }
 
-        /**
-         * 检查是否为十六进制字符串
-         *
-         * @param hexString 需要检查的字符串
-         * @return true 表示是十六进制，false 表示包含非十六进制字符
-         */
+        /// <summary>
+        /// 检查是否为十六进制字符串
+        /// </summary>
+        /// <param name="hexString">需要检查的字符串</param>
+        /// <returns>表示是十六进制，false 表示包含非十六进制字符</returns>
         public static bool IsHex(String hexString)
         {
-            if (IsNullOrEmpty(hexString))
+            if (string.IsNullOrEmpty(hexString))
             {
                 return false;
             }
@@ -140,7 +154,7 @@ namespace FCARDIO.Protocol.Door
             //开始转换
             for (i = 0; i < ilen; i++)
             {
-                if (digits[sbuf[i] & 0x000000ff] == 0 && sbuf[i] != 0x30)
+                if (digits[sbuf[i]] == 0 && sbuf[i] != 0x30)
                 {
                     return false;
                 }

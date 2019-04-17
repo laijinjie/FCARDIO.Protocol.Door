@@ -1,6 +1,7 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
+using FCARDIO.Protocol.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;

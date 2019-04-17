@@ -1,24 +1,19 @@
-﻿using FCARDIO.Protocol.Door.FC8800.SystemParameter;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
-namespace FCARDIO.Protocol.Door
+
+namespace FCARDIO.Protocol.Util
 {
    public class TimeUtil
     {
         public static DateTime BCDTimeToDate_ssmmhhddMMyy(byte[]  btTime)
         {
             btTime = ByteUtil.BCDToByte(btTime);
-            int year = ByteUtil.uByte(btTime[5]);
-            int month = ByteUtil.uByte(btTime[4]);
-            int dayOfMonth = ByteUtil.uByte(btTime[3]);
-            int hourOfDay = ByteUtil.uByte(btTime[2]);
-            int minute = ByteUtil.uByte(btTime[1]);
-            int second = ByteUtil.uByte(btTime[0]);
+            int year = btTime[5];
+            int month = btTime[4];
+            int dayOfMonth = btTime[3];
+            int hourOfDay = btTime[2];
+            int minute = btTime[1];
+            int second = btTime[0];
 
 
             if (year > 99)
@@ -55,10 +50,10 @@ namespace FCARDIO.Protocol.Door
         public static DateTime BCDTimeToDate_yyMMddhh(byte [] btTime)
         {
             btTime = ByteUtil.BCDToByte(btTime);
-            int year = ByteUtil.uByte(btTime[0]);
-            int month = ByteUtil.uByte(btTime[1]);
-            int dayOfMonth = ByteUtil.uByte(btTime[2]);
-            int hourOfDay = ByteUtil.uByte(btTime[3]);
+            int year = btTime[0];
+            int month = btTime[1];
+            int dayOfMonth = btTime[2];
+            int hourOfDay = btTime[3];
 
 
             if (year > 99)
@@ -132,11 +127,11 @@ namespace FCARDIO.Protocol.Door
         public static DateTime BCDTimeToDate_yyMMddhhmm(byte [] btTime)
         {
             btTime = ByteUtil.BCDToByte(btTime);
-            int year = ByteUtil.uByte(btTime[0]);
-            int month = ByteUtil.uByte(btTime[1]);
-            int dayOfMonth = ByteUtil.uByte(btTime[2]);
-            int hourOfDay = ByteUtil.uByte(btTime[3]);
-            int minute = ByteUtil.uByte(btTime[4]);
+            int year = btTime[0];
+            int month = btTime[1];
+            int dayOfMonth = btTime[2];
+            int hourOfDay = btTime[3];
+            int minute = btTime[4];
 
             if (year > 99)
             {
@@ -187,12 +182,12 @@ namespace FCARDIO.Protocol.Door
         public static DateTime BCDTimeToDate_yyMMddhhmmss(byte [] btTime)
         {
             btTime = ByteUtil.BCDToByte(btTime);
-            int year = ByteUtil.uByte(btTime[0]);
-            int month = ByteUtil.uByte(btTime[1]);
-            int dayOfMonth = ByteUtil.uByte(btTime[2]);
-            int hourOfDay = ByteUtil.uByte(btTime[3]);
-            int minute = ByteUtil.uByte(btTime[4]);
-            int second = ByteUtil.uByte(btTime[5]);
+            int year = btTime[0];
+            int month = btTime[1];
+            int dayOfMonth = btTime[2];
+            int hourOfDay = btTime[3];
+            int minute = btTime[4];
+            int second = btTime[5];
 
             if (year > 99)
             {

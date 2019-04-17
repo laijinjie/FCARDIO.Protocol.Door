@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using FCARDIO.Core.Extension;
+using FCARDIO.Protocol.Util;
+
 namespace FCARDIO.Protocol.Door.FC8800.Data
 {
     /// <summary>

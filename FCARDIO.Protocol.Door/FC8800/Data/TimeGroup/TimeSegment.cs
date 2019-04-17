@@ -1,5 +1,6 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Protocol.Door.FC8800.SystemParameter;
+using FCARDIO.Protocol.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;

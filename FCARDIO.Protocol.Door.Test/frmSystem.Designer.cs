@@ -34,7 +34,14 @@
             this.butReadSN = new System.Windows.Forms.Button();
             this.txtSN = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.gbPassword = new System.Windows.Forms.GroupBox();
+            this.butResetConnectPassword = new System.Windows.Forms.Button();
+            this.butWriteConnectPassword = new System.Windows.Forms.Button();
+            this.butReadConnectPassword = new System.Windows.Forms.Button();
+            this.txtConnectPassword = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.gbPassword.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -98,16 +105,82 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "SN：";
             // 
+            // gbPassword
+            // 
+            this.gbPassword.Controls.Add(this.butResetConnectPassword);
+            this.gbPassword.Controls.Add(this.butWriteConnectPassword);
+            this.gbPassword.Controls.Add(this.butReadConnectPassword);
+            this.gbPassword.Controls.Add(this.txtConnectPassword);
+            this.gbPassword.Controls.Add(this.label2);
+            this.gbPassword.Location = new System.Drawing.Point(229, 12);
+            this.gbPassword.Name = "gbPassword";
+            this.gbPassword.Size = new System.Drawing.Size(200, 75);
+            this.gbPassword.TabIndex = 1;
+            this.gbPassword.TabStop = false;
+            this.gbPassword.Text = "通讯密码";
+            // 
+            // butResetConnectPassword
+            // 
+            this.butResetConnectPassword.Location = new System.Drawing.Point(129, 45);
+            this.butResetConnectPassword.Name = "butResetConnectPassword";
+            this.butResetConnectPassword.Size = new System.Drawing.Size(48, 23);
+            this.butResetConnectPassword.TabIndex = 4;
+            this.butResetConnectPassword.Text = "重置";
+            this.butResetConnectPassword.UseVisualStyleBackColor = true;
+            this.butResetConnectPassword.Click += new System.EventHandler(this.butResetConnectPassword_Click);
+            // 
+            // butWriteConnectPassword
+            // 
+            this.butWriteConnectPassword.Location = new System.Drawing.Point(75, 45);
+            this.butWriteConnectPassword.Name = "butWriteConnectPassword";
+            this.butWriteConnectPassword.Size = new System.Drawing.Size(48, 23);
+            this.butWriteConnectPassword.TabIndex = 3;
+            this.butWriteConnectPassword.Text = "写入";
+            this.butWriteConnectPassword.UseVisualStyleBackColor = true;
+            this.butWriteConnectPassword.Click += new System.EventHandler(this.butWriteConnectPassword_Click);
+            // 
+            // butReadConnectPassword
+            // 
+            this.butReadConnectPassword.Location = new System.Drawing.Point(21, 45);
+            this.butReadConnectPassword.Name = "butReadConnectPassword";
+            this.butReadConnectPassword.Size = new System.Drawing.Size(48, 23);
+            this.butReadConnectPassword.TabIndex = 2;
+            this.butReadConnectPassword.Text = "读取";
+            this.butReadConnectPassword.UseVisualStyleBackColor = true;
+            this.butReadConnectPassword.Click += new System.EventHandler(this.butReadConnectPassword_Click);
+            // 
+            // txtConnectPassword
+            // 
+            this.txtConnectPassword.Location = new System.Drawing.Point(54, 18);
+            this.txtConnectPassword.MaxLength = 8;
+            this.txtConnectPassword.Name = "txtConnectPassword";
+            this.txtConnectPassword.Size = new System.Drawing.Size(140, 21);
+            this.txtConnectPassword.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "密码：";
+            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(657, 481);
+            this.Controls.Add(this.gbPassword);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmSystem";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSystem";
+            this.Load += new System.EventHandler(this.frmSystem_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gbPassword.ResumeLayout(false);
+            this.gbPassword.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -120,5 +193,11 @@
         private System.Windows.Forms.Button butReadSN;
         private System.Windows.Forms.TextBox txtSN;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox gbPassword;
+        private System.Windows.Forms.Button butResetConnectPassword;
+        private System.Windows.Forms.Button butWriteConnectPassword;
+        private System.Windows.Forms.Button butReadConnectPassword;
+        private System.Windows.Forms.TextBox txtConnectPassword;
+        private System.Windows.Forms.Label label2;
     }
 }

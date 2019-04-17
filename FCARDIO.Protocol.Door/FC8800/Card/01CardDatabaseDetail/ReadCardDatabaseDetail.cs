@@ -10,6 +10,9 @@ using FCARDIO.Protocol.OnlineAccess;
 
 namespace FCARDIO.Protocol.Door.FC8800.Card.CardDatabaseDetail
 {
+    /// <summary>
+    /// 读取卡片存储详情
+    /// </summary>
     public class ReadCardDatabaseDetail
         : FC8800Command
     {
