@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSN = new System.Windows.Forms.TextBox();
             this.butReadSN = new System.Windows.Forms.Button();
@@ -77,13 +77,11 @@
             this.rBtnCheck485Line = new System.Windows.Forms.RadioButton();
             this.btnWriteCheck485Line = new System.Windows.Forms.Button();
             this.btnReadCheck485Line = new System.Windows.Forms.Button();
-            this.label72 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.rBtnNoExploreLockMode = new System.Windows.Forms.RadioButton();
             this.rBtnExploreLockMode = new System.Windows.Forms.RadioButton();
             this.btnWriteExploreLockMode = new System.Windows.Forms.Button();
             this.btnReadExploreLockMode = new System.Windows.Forms.Button();
-            this.label71 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.rBtnNoBalcklistAlarm = new System.Windows.Forms.RadioButton();
             this.rBtnBalcklistAlarm = new System.Windows.Forms.RadioButton();
@@ -301,6 +299,11 @@
             this.lbSWatchState = new System.Windows.Forms.Label();
             this.btnWorkStatusInfo = new System.Windows.Forms.Button();
             this.label65 = new System.Windows.Forms.Label();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.label73 = new System.Windows.Forms.Label();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.label74 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gbPassword.SuspendLayout();
             this.gbTCP.SuspendLayout();
@@ -334,6 +337,9 @@
             this.tabPage1.SuspendLayout();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentStatusInfo)).BeginInit();
+            this.groupBox13.SuspendLayout();
+            this.groupBox14.SuspendLayout();
+            this.groupBox15.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -761,18 +767,9 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.panel11);
-            this.tabPage3.Controls.Add(this.btnWriteCheck485Line);
-            this.tabPage3.Controls.Add(this.btnReadCheck485Line);
-            this.tabPage3.Controls.Add(this.label72);
-            this.tabPage3.Controls.Add(this.panel10);
-            this.tabPage3.Controls.Add(this.btnWriteExploreLockMode);
-            this.tabPage3.Controls.Add(this.btnReadExploreLockMode);
-            this.tabPage3.Controls.Add(this.label71);
-            this.tabPage3.Controls.Add(this.panel9);
-            this.tabPage3.Controls.Add(this.btnWriteBalcklistAlarmOption);
-            this.tabPage3.Controls.Add(this.btnReadBalcklistAlarmOption);
-            this.tabPage3.Controls.Add(this.label70);
+            this.tabPage3.Controls.Add(this.groupBox15);
+            this.tabPage3.Controls.Add(this.groupBox14);
+            this.tabPage3.Controls.Add(this.groupBox13);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -785,7 +782,7 @@
             // 
             this.panel11.Controls.Add(this.rBtnNoCheck485Line);
             this.panel11.Controls.Add(this.rBtnCheck485Line);
-            this.panel11.Location = new System.Drawing.Point(132, 69);
+            this.panel11.Location = new System.Drawing.Point(13, 25);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(144, 21);
             this.panel11.TabIndex = 88;
@@ -814,7 +811,7 @@
             // 
             // btnWriteCheck485Line
             // 
-            this.btnWriteCheck485Line.Location = new System.Drawing.Point(350, 69);
+            this.btnWriteCheck485Line.Location = new System.Drawing.Point(231, 25);
             this.btnWriteCheck485Line.Name = "btnWriteCheck485Line";
             this.btnWriteCheck485Line.Size = new System.Drawing.Size(48, 23);
             this.btnWriteCheck485Line.TabIndex = 87;
@@ -824,7 +821,7 @@
             // 
             // btnReadCheck485Line
             // 
-            this.btnReadCheck485Line.Location = new System.Drawing.Point(296, 69);
+            this.btnReadCheck485Line.Location = new System.Drawing.Point(177, 25);
             this.btnReadCheck485Line.Name = "btnReadCheck485Line";
             this.btnReadCheck485Line.Size = new System.Drawing.Size(48, 23);
             this.btnReadCheck485Line.TabIndex = 86;
@@ -832,20 +829,11 @@
             this.btnReadCheck485Line.UseVisualStyleBackColor = true;
             this.btnReadCheck485Line.Click += new System.EventHandler(this.BtnReadCheck485Line_Click);
             // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(4, 74);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(131, 12);
-            this.label72.TabIndex = 85;
-            this.label72.Text = "485线路反接检测开关：";
-            // 
             // panel10
             // 
             this.panel10.Controls.Add(this.rBtnNoExploreLockMode);
             this.panel10.Controls.Add(this.rBtnExploreLockMode);
-            this.panel10.Location = new System.Drawing.Point(132, 42);
+            this.panel10.Location = new System.Drawing.Point(6, 25);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(144, 21);
             this.panel10.TabIndex = 84;
@@ -874,7 +862,7 @@
             // 
             // btnWriteExploreLockMode
             // 
-            this.btnWriteExploreLockMode.Location = new System.Drawing.Point(350, 42);
+            this.btnWriteExploreLockMode.Location = new System.Drawing.Point(224, 25);
             this.btnWriteExploreLockMode.Name = "btnWriteExploreLockMode";
             this.btnWriteExploreLockMode.Size = new System.Drawing.Size(48, 23);
             this.btnWriteExploreLockMode.TabIndex = 83;
@@ -884,7 +872,7 @@
             // 
             // btnReadExploreLockMode
             // 
-            this.btnReadExploreLockMode.Location = new System.Drawing.Point(296, 42);
+            this.btnReadExploreLockMode.Location = new System.Drawing.Point(170, 25);
             this.btnReadExploreLockMode.Name = "btnReadExploreLockMode";
             this.btnReadExploreLockMode.Size = new System.Drawing.Size(48, 23);
             this.btnReadExploreLockMode.TabIndex = 82;
@@ -892,20 +880,11 @@
             this.btnReadExploreLockMode.UseVisualStyleBackColor = true;
             this.btnReadExploreLockMode.Click += new System.EventHandler(this.BtnReadExploreLockMode_Click);
             // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.Location = new System.Drawing.Point(58, 47);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(77, 12);
-            this.label71.TabIndex = 81;
-            this.label71.Text = "防探测功能：";
-            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.rBtnNoBalcklistAlarm);
             this.panel9.Controls.Add(this.rBtnBalcklistAlarm);
-            this.panel9.Location = new System.Drawing.Point(132, 15);
+            this.panel9.Location = new System.Drawing.Point(13, 25);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(144, 21);
             this.panel9.TabIndex = 80;
@@ -934,7 +913,7 @@
             // 
             // btnWriteBalcklistAlarmOption
             // 
-            this.btnWriteBalcklistAlarmOption.Location = new System.Drawing.Point(350, 15);
+            this.btnWriteBalcklistAlarmOption.Location = new System.Drawing.Point(232, 25);
             this.btnWriteBalcklistAlarmOption.Name = "btnWriteBalcklistAlarmOption";
             this.btnWriteBalcklistAlarmOption.Size = new System.Drawing.Size(48, 23);
             this.btnWriteBalcklistAlarmOption.TabIndex = 79;
@@ -944,7 +923,7 @@
             // 
             // btnReadBalcklistAlarmOption
             // 
-            this.btnReadBalcklistAlarmOption.Location = new System.Drawing.Point(296, 15);
+            this.btnReadBalcklistAlarmOption.Location = new System.Drawing.Point(178, 25);
             this.btnReadBalcklistAlarmOption.Name = "btnReadBalcklistAlarmOption";
             this.btnReadBalcklistAlarmOption.Size = new System.Drawing.Size(48, 23);
             this.btnReadBalcklistAlarmOption.TabIndex = 78;
@@ -955,11 +934,10 @@
             // label70
             // 
             this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(58, 20);
+            this.label70.Location = new System.Drawing.Point(7, 25);
             this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(77, 12);
+            this.label70.Size = new System.Drawing.Size(0, 12);
             this.label70.TabIndex = 77;
-            this.label70.Text = "黑名单报警：";
             // 
             // tabSysParameterPage
             // 
@@ -3220,8 +3198,8 @@
             // 
             // Column1
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle9;
             this.Column1.HeaderText = "门号";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -3297,6 +3275,61 @@
             this.label65.TabIndex = 9;
             this.label65.Text = "监控状态：";
             // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.panel9);
+            this.groupBox13.Controls.Add(this.label70);
+            this.groupBox13.Controls.Add(this.btnReadBalcklistAlarmOption);
+            this.groupBox13.Controls.Add(this.btnWriteBalcklistAlarmOption);
+            this.groupBox13.Location = new System.Drawing.Point(10, 15);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(318, 66);
+            this.groupBox13.TabIndex = 89;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "黑名单报警";
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.label73);
+            this.groupBox14.Controls.Add(this.panel10);
+            this.groupBox14.Controls.Add(this.btnReadExploreLockMode);
+            this.groupBox14.Controls.Add(this.btnWriteExploreLockMode);
+            this.groupBox14.Location = new System.Drawing.Point(366, 15);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(318, 66);
+            this.groupBox14.TabIndex = 90;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "防探测功能开关";
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(7, 25);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(0, 12);
+            this.label73.TabIndex = 77;
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.label74);
+            this.groupBox15.Controls.Add(this.panel11);
+            this.groupBox15.Controls.Add(this.btnReadCheck485Line);
+            this.groupBox15.Controls.Add(this.btnWriteCheck485Line);
+            this.groupBox15.Location = new System.Drawing.Point(10, 87);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(318, 66);
+            this.groupBox15.TabIndex = 91;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "485线路反接检测开关";
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(7, 25);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(0, 12);
+            this.label74.TabIndex = 77;
+            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3315,7 +3348,6 @@
             this.gbTCP.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.panel10.ResumeLayout(false);
@@ -3367,6 +3399,12 @@
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentStatusInfo)).EndInit();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3637,12 +3675,15 @@
         private System.Windows.Forms.RadioButton rBtnExploreLockMode;
         private System.Windows.Forms.Button btnWriteExploreLockMode;
         private System.Windows.Forms.Button btnReadExploreLockMode;
-        private System.Windows.Forms.Label label71;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.RadioButton rBtnNoCheck485Line;
         private System.Windows.Forms.RadioButton rBtnCheck485Line;
         private System.Windows.Forms.Button btnWriteCheck485Line;
         private System.Windows.Forms.Button btnReadCheck485Line;
-        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.Label label73;
     }
 }
