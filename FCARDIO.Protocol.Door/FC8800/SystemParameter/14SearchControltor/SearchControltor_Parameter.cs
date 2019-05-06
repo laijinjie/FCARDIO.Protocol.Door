@@ -13,7 +13,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
     public class SearchControltor_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 网络标记 取值范围：1-65535
+        /// 网络标识 取值范围：1-65535
         /// </summary>
         public ushort NetNum;
 
@@ -23,16 +23,12 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         public SearchControltor_Parameter() { }
 
         /// <summary>
-        /// 使用网络标记参数初始化实例
+        /// 使用网络标识参数初始化实例
         /// </summary>
-        /// <param name="_NetNum">网络标记参数</param>
+        /// <param name="_NetNum">网络标识参数</param>
         public SearchControltor_Parameter(ushort _NetNum)
         {
             NetNum = _NetNum;
-            if (!checkedParameter())
-            {
-                throw new ArgumentException("NetNum Error");
-            }
         }
 
         /// <summary>
@@ -41,8 +37,6 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         /// <returns></returns>
         public override bool checkedParameter()
         {
-
-
             return true;
         }
 
@@ -55,7 +49,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         }
 
         /// <summary>
-        /// 对网络标记参数进行编码
+        /// 对网络标识参数进行编码
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
@@ -74,7 +68,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         }
 
         /// <summary>
-        /// 对网络标记参数进行解码
+        /// 对网络标识参数进行解码
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)

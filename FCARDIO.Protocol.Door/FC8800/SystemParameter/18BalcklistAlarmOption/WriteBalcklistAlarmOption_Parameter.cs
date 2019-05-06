@@ -17,9 +17,22 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.BalcklistAlarmOption
         /// </summary>
         public byte Use;
 
+        /// <summary>
+        /// 构建一个空的实例
+        /// </summary>
+        public WriteBalcklistAlarmOption_Parameter() { }
+
+        /// <summary>
+        /// 使用黑名单报警功能开关参数初始化实例
+        /// </summary>
+        /// <param name="_Use">黑名单报警功能开关参数</param>
         public WriteBalcklistAlarmOption_Parameter(byte _Use)
         {
             Use = _Use;
+            if (!checkedParameter())
+            {
+                throw new ArgumentException("Use Error");
+            }
         }
 
         /// <summary>
@@ -45,7 +58,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.BalcklistAlarmOption
         }
 
         /// <summary>
-        /// 编码参数
+        /// 对黑名单报警功能开关参数进行编码
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
@@ -64,7 +77,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.BalcklistAlarmOption
         }
 
         /// <summary>
-        /// 解码参数
+        /// 对黑名单报警功能开关参数进行解码
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)

@@ -12,8 +12,13 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Check485Line
     /// <summary>
     /// 设置485线路反接检测开关
     /// </summary>
-    public class WriteCheck485Line : FC8800Command
+    public class WriteCheck485Line : FC8800Command_WriteParameter
     {
+        /// <summary>
+        /// 设置485线路反接检测开关
+        /// </summary>
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        /// <param name="par">包含485线路反接检测开关参数</param>
         public WriteCheck485Line(INCommandDetail cd, INCommandParameter par) : base(cd, par) { }
 
         /// <summary>
@@ -33,7 +38,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Check485Line
         }
 
         /// <summary>
-        /// 拼装命令
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
@@ -44,21 +49,6 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Check485Line
             var buf = acl.Buffer(model.GetDataLen());
 
             Packet(0x01, 0x13, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
-        }
-
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-            return;
-        }
-
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        protected override void Release1()
-        {
-            return;
         }
     }
 }

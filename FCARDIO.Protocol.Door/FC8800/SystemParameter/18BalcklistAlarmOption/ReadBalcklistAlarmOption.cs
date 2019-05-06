@@ -12,41 +12,36 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.BalcklistAlarmOption
     /// <summary>
     /// 获取黑名单报警功能开关
     /// </summary>
-    public class ReadBalcklistAlarmOption : FC8800Command
+    public class ReadBalcklistAlarmOption : FC8800Command_ReadParameter
     {
-        public ReadBalcklistAlarmOption(INCommandDetail cd) : base(cd, null) { }
-
         /// <summary>
-        /// 检查命令参数
+        /// 获取黑名单报警功能开关
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        protected override bool CheckCommandParameter(INCommandParameter value)
-        {
-            return true;
-        }
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        public ReadBalcklistAlarmOption(INCommandDetail cd) : base(cd) { }
 
         /// <summary>
-        /// 拼装命令
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
             Packet(0x01, 0x12, 0x01);
         }
 
+        /// <summary>
+        /// 命令返回值的判断
+        /// </summary>
+        /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            return;
-        }
-
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        protected override void Release1()
-        {
-            return;
+            if (CheckResponse(oPck, 0x01))
+            {
+                var buf = oPck.CmdData;
+                ReadBalcklistAlarmOption_Result rst = new ReadBalcklistAlarmOption_Result();
+                _Result = rst;
+                rst.SetBytes(buf);
+                CommandCompleted();
+            }
         }
     }
 }

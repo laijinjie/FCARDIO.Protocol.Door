@@ -13,13 +13,26 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.KeepAliveInterval
     public class WriteKeepAliveInterval_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 保活间隔时间（取值范围：0-3600,0--关闭功能）
+        /// 保活间隔时间（取值0-65535，单位秒。0表示不使用心跳保活间隔参数。）
         /// </summary>
         public ushort IntervalTime;
 
+        /// <summary>
+        /// 构建一个空的实例
+        /// </summary>
+        public WriteKeepAliveInterval_Parameter() { }
+
+        /// <summary>
+        /// 使用保活间隔时间参数初始化实例
+        /// </summary>
+        /// <param name="_IntervalTime">保活间隔时间</param>
         public WriteKeepAliveInterval_Parameter(ushort _IntervalTime)
         {
             IntervalTime = _IntervalTime;
+            if (!checkedParameter())
+            {
+                throw new ArgumentException("IntervalTime Error");
+            }
         }
 
         /// <summary>
@@ -28,7 +41,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.KeepAliveInterval
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (IntervalTime < 0 || IntervalTime > 3600)
+            if (IntervalTime < 0 || IntervalTime > 65535)
             {
                 return false;
             }
@@ -45,7 +58,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.KeepAliveInterval
         }
 
         /// <summary>
-        /// 编码参数
+        /// 对保活间隔时间参数进行编码
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
@@ -64,7 +77,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.KeepAliveInterval
         }
 
         /// <summary>
-        /// 解码参数
+        /// 对保活间隔时间参数进行解码
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)

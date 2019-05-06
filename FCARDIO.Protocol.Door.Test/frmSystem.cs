@@ -26,6 +26,12 @@ using FCARDIO.Protocol.Door.FC8800.SystemParameter.WorkStatus;
 using FCARDIO.Protocol.Door.FC8800.SystemParameter.Controller;
 using FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor;
 using FCARDIO.Protocol.OnlineAccess;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.CacheContent;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.KeepAliveInterval;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.TheftFortify;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.BalcklistAlarmOption;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.ExploreLockMode;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.Check485Line;
 
 namespace FCARDIO.Protocol.Door.Test
 {
@@ -1627,6 +1633,31 @@ namespace FCARDIO.Protocol.Door.Test
             WriteTheftAlarmSetting cmd = new WriteTheftAlarmSetting(cmdDtl, new WriteTheftAlarmSetting_Parameter(ts));
             mMainForm.AddCommand(cmd);
         }
+        private void BtnSetTheftFortify_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            SetTheftFortify cmd = new SetTheftFortify(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddCmdLog(cmde, "防盗报警布防");
+            };
+        }
+
+        private void BtnSetTheftDisarming_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            SetTheftDisarming cmd = new SetTheftDisarming(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddCmdLog(cmde, "防盗报警撤防");
+            };
+        }
         #endregion
 
         #region 设置防潜回模式
@@ -2403,6 +2434,7 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void BtnSearchEquptOnNetNum_Click(object sender, EventArgs e)
         {
+
             ushort NetCode = (ushort)GetRandomNum(100, 60000);
             var cmdDtl = mMainForm.GetCommandDetail();
             cmdDtl.Timeout = 4000;
@@ -2417,6 +2449,7 @@ namespace FCARDIO.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
+                //搜索控制器
                 SearchControltor_Result result = cmde.Command.getResult() as SearchControltor_Result;
                 string log = "SN:" + result.SN + "," + DebugTCPDetail(result.TCP);
 
@@ -2447,6 +2480,259 @@ namespace FCARDIO.Protocol.Door.Test
              };
 
 
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 缓存区操作
+        private void BtnReadCacheContent_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadCacheContent cmd = new ReadCacheContent(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                CacheContent_Result result = cmde.Command.getResult() as CacheContent_Result;
+                string CacheContent = result.CacheContent;
+                Invoke(() =>
+                {
+                    txtCacheContent.Text = CacheContent;
+                });
+                CacheContent = "缓存区内容：" + CacheContent;
+                mMainForm.AddCmdLog(cmde, CacheContent);
+            };
+        }
+
+        private void BtnWriteCacheContent_Click(object sender, EventArgs e)
+        {
+            string reg = @"^\+?[0-9]*$";
+            if (!Regex.IsMatch(txtCacheContent.Text.Trim(), reg) || txtCacheContent.Text.Trim().Length > 30 || string.IsNullOrEmpty(txtCacheContent.Text.Trim()))
+            {
+                MsgErr("请输入正确缓存区内容！");
+                return;
+            }
+            string cacheContent = txtCacheContent.Text.Trim();
+
+            //CacheContent_Parameter wp = new CacheContent_Parameter();
+            //wp.CacheContent = cacheContent;
+            //var buf = DotNetty.Buffers.UnpooledByteBufferAllocator.Default.Buffer(0x1E);
+            //wp.GetBytes(buf);
+
+            //CacheContent_Parameter wp2 = new CacheContent_Parameter();
+            //wp2.SetBytes(buf);
+
+            //cacheContent = "缓存区内容：" + cacheContent;
+            //mMainForm.AddCmdLog(null, cacheContent);
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteCacheContent cmd = new WriteCacheContent(cmdDtl, new CacheContent_Parameter(cacheContent));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 客户端控制器保活间隔
+        private void BtnReadKeepAliveInterval_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadKeepAliveInterval cmd = new ReadKeepAliveInterval(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadKeepAliveInterval_Result result = cmde.Command.getResult() as ReadKeepAliveInterval_Result;
+
+                ushort IntervalTime = result.IntervalTime; //保活间隔时间
+                string IntervalTimeInfo = string.Empty;
+                if (IntervalTime == 0)
+                {
+                    IntervalTimeInfo = "禁用";
+                }
+                else
+                {
+                    IntervalTimeInfo = IntervalTime.ToString() + "秒";
+                }
+
+                Invoke(() =>
+                {
+                    cbxKeepAliveInterval.Text = IntervalTimeInfo.Replace("秒", "");
+                });
+                string IntervalTimeStr = "与服务器建立连接后，每隔：" + IntervalTimeInfo + "，发送一次保活包";
+                mMainForm.AddCmdLog(cmde, IntervalTimeStr);
+            };
+        }
+
+        private void BtnWriteKeepAliveInterval_Click(object sender, EventArgs e)
+        {
+            string reg = @"^\+?[0-9]*$";
+            if (!Regex.IsMatch(cbxKeepAliveInterval.Text.Trim(), reg))
+            {
+                if (cbxKeepAliveInterval.Text != "禁用")
+                {
+                    MsgErr("请输入正确保活间隔时间！");
+                    return;
+                }
+            }
+            if (Regex.IsMatch(cbxKeepAliveInterval.Text.Trim(), reg))
+            {
+                if (Convert.ToUInt32(cbxKeepAliveInterval.Text) < 0 || Convert.ToUInt32(cbxKeepAliveInterval.Text) > 65535)
+                {
+                    MsgErr("请输入正确保活间隔时间！");
+                    return;
+                }
+            }
+
+            ushort IntervalTime = 0;
+            string deadlineInfo = cbxKeepAliveInterval.Text;
+            if (deadlineInfo == "禁用")
+            {
+                IntervalTime = 0;
+            }
+            else
+            {
+                IntervalTime = Convert.ToUInt16(cbxKeepAliveInterval.Text);
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteKeepAliveInterval cmd = new WriteKeepAliveInterval(cmdDtl, new WriteKeepAliveInterval_Parameter(IntervalTime));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 黑名单报警
+        private void BtnReadBalcklistAlarmOption_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadBalcklistAlarmOption cmd = new ReadBalcklistAlarmOption(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadBalcklistAlarmOption_Result result = cmde.Command.getResult() as ReadBalcklistAlarmOption_Result;
+                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //黑名单报警功能是否启用
+                Invoke(() =>
+                {
+                    if (result.Use == 0)
+                    {
+                        rBtnNoBalcklistAlarm.Checked = true;
+                    }
+                    else
+                    {
+                        rBtnBalcklistAlarm.Checked = true;
+                    }
+                });
+                ModeStr = "黑名单报警：" + ModeStr;
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriteBalcklistAlarmOption_Click(object sender, EventArgs e)
+        {
+            byte use = 0;
+            if (rBtnBalcklistAlarm.Checked == true)
+            {
+                use = 1;
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteBalcklistAlarmOption cmd = new WriteBalcklistAlarmOption(cmdDtl, new WriteBalcklistAlarmOption_Parameter(use));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 防探测功能
+        private void BtnReadExploreLockMode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadExploreLockMode cmd = new ReadExploreLockMode(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadExploreLockMode_Result result = cmde.Command.getResult() as ReadExploreLockMode_Result;
+                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //防探测功能是否启用
+                Invoke(() =>
+                {
+                    if (result.Use == 0)
+                    {
+                        rBtnNoExploreLockMode.Checked = true;
+                    }
+                    else
+                    {
+                        rBtnExploreLockMode.Checked = true;
+                    }
+                });
+                ModeStr = "防探测功能：" + ModeStr;
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriteExploreLockMode_Click(object sender, EventArgs e)
+        {
+            byte use = 0;
+            if (rBtnExploreLockMode.Checked == true)
+            {
+                use = 1;
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteExploreLockMode cmd = new WriteExploreLockMode(cmdDtl, new WriteExploreLockMode_Parameter(use));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 485线路反接检测开关
+        private void BtnReadCheck485Line_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadCheck485Line cmd = new ReadCheck485Line(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadCheck485Line_Result result = cmde.Command.getResult() as ReadCheck485Line_Result;
+                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //485线路反接检测开关是否启用
+                Invoke(() =>
+                {
+                    if (result.Use == 0)
+                    {
+                        rBtnNoCheck485Line.Checked = true;
+                    }
+                    else
+                    {
+                        rBtnCheck485Line.Checked = true;
+                    }
+                });
+                ModeStr = "485线路反接检测开关：" + ModeStr;
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriteCheck485Line_Click(object sender, EventArgs e)
+        {
+            byte use = 0;
+            if (rBtnCheck485Line.Checked == true)
+            {
+                use = 1;
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteCheck485Line cmd = new WriteCheck485Line(cmdDtl, new WriteCheck485Line_Parameter(use));
             mMainForm.AddCommand(cmd);
         }
         #endregion

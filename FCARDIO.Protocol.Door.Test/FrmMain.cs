@@ -874,6 +874,23 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.SystemParameter.SearchControltor.SearchControltor).FullName, "自动搜索设备");
             mCommandClasss.Add(typeof(FC8800.SystemParameter.SearchControltor.WriteControltorNetCode).FullName, "修改设备的网络代码");
 
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.CacheContent.ReadCacheContent).FullName, "读取缓存区内容");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.CacheContent.WriteCacheContent).FullName, "设置缓存区内容");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.KeepAliveInterval.ReadKeepAliveInterval).FullName, "读取保活间隔时间");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.KeepAliveInterval.WriteKeepAliveInterval).FullName, "设置保活间隔时间");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.TheftFortify.SetTheftFortify).FullName, "防盗报警布防");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.TheftFortify.SetTheftDisarming).FullName, "防盗报警撤防");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.BalcklistAlarmOption.ReadBalcklistAlarmOption).FullName, "读取黑名单报警参数");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.BalcklistAlarmOption.WriteBalcklistAlarmOption).FullName, "设置黑名单报警功能");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.ExploreLockMode.ReadExploreLockMode).FullName, "读取防探测功能开关参数");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.ExploreLockMode.WriteExploreLockMode).FullName, "设置防探测功能开关");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.Check485Line.ReadCheck485Line).FullName, "读取485线路反接检测开关");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.Check485Line.WriteCheck485Line).FullName, "设置485线路反接检测开关");
         }
 
 

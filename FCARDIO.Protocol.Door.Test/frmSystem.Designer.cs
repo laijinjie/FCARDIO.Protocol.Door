@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSN = new System.Windows.Forms.TextBox();
             this.butReadSN = new System.Windows.Forms.Button();
@@ -71,23 +71,37 @@
             this.txtIPMask = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.txtAllNum = new System.Windows.Forms.TextBox();
-            this.label66 = new System.Windows.Forms.Label();
-            this.dgvEquipmentStatusInfo = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbSWatchState = new System.Windows.Forms.Label();
-            this.btnWorkStatusInfo = new System.Windows.Forms.Button();
-            this.label65 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.rBtnNoCheck485Line = new System.Windows.Forms.RadioButton();
+            this.rBtnCheck485Line = new System.Windows.Forms.RadioButton();
+            this.btnWriteCheck485Line = new System.Windows.Forms.Button();
+            this.btnReadCheck485Line = new System.Windows.Forms.Button();
+            this.label72 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.rBtnNoExploreLockMode = new System.Windows.Forms.RadioButton();
+            this.rBtnExploreLockMode = new System.Windows.Forms.RadioButton();
+            this.btnWriteExploreLockMode = new System.Windows.Forms.Button();
+            this.btnReadExploreLockMode = new System.Windows.Forms.Button();
+            this.label71 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.rBtnNoBalcklistAlarm = new System.Windows.Forms.RadioButton();
+            this.rBtnBalcklistAlarm = new System.Windows.Forms.RadioButton();
+            this.btnWriteBalcklistAlarmOption = new System.Windows.Forms.Button();
+            this.btnReadBalcklistAlarmOption = new System.Windows.Forms.Button();
+            this.label70 = new System.Windows.Forms.Label();
             this.tabSysParameterPage = new System.Windows.Forms.TabPage();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.cbxKeepAliveInterval = new System.Windows.Forms.ComboBox();
+            this.btnWriteKeepAliveInterval = new System.Windows.Forms.Button();
+            this.btnReadKeepAliveInterval = new System.Windows.Forms.Button();
+            this.label69 = new System.Windows.Forms.Label();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.btnWriteCacheContent = new System.Windows.Forms.Button();
+            this.btnReadCacheContent = new System.Windows.Forms.Button();
+            this.txtCacheContent = new System.Windows.Forms.TextBox();
+            this.label67 = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.cbxCloseAlarmDoor = new System.Windows.Forms.ComboBox();
             this.label63 = new System.Windows.Forms.Label();
@@ -128,6 +142,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnSearchEquptOnNetNum = new System.Windows.Forms.Button();
+            this.btnInitalData = new System.Windows.Forms.Button();
             this.btnSmogAlarmState = new System.Windows.Forms.Button();
             this.btnCloseSmogAlarm = new System.Windows.Forms.Button();
             this.btnSmogAlarm = new System.Windows.Forms.Button();
@@ -164,6 +180,8 @@
             this.btnWriteCheckInOut = new System.Windows.Forms.Button();
             this.btnReadCheckInOut = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnSetTheftDisarming = new System.Windows.Forms.Button();
+            this.btnSetTheftFortify = new System.Windows.Forms.Button();
             this.txtBeginState = new System.Windows.Forms.TextBox();
             this.label64 = new System.Windows.Forms.Label();
             this.btnTheftAlarmSettingState = new System.Windows.Forms.Button();
@@ -267,16 +285,33 @@
             this.btnWriteRecordMode = new System.Windows.Forms.Button();
             this.btnReadRecordMode = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
-            this.btnInitalData = new System.Windows.Forms.Button();
-            this.btnSearchEquptOnNetNum = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.txtAllNum = new System.Windows.Forms.TextBox();
+            this.label66 = new System.Windows.Forms.Label();
+            this.dgvEquipmentStatusInfo = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbSWatchState = new System.Windows.Forms.Label();
+            this.btnWorkStatusInfo = new System.Windows.Forms.Button();
+            this.label65 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gbPassword.SuspendLayout();
             this.gbTCP.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentStatusInfo)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.tabSysParameterPage.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlarmType)).BeginInit();
             this.groupBox8.SuspendLayout();
@@ -296,6 +331,9 @@
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentStatusInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -710,9 +748,10 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabSysParameterPage);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabSysParameterPage);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -720,150 +759,212 @@
             this.tabControl1.Size = new System.Drawing.Size(825, 939);
             this.tabControl1.TabIndex = 3;
             // 
-            // tabPage1
+            // tabPage3
             // 
-            this.tabPage1.Controls.Add(this.groupBox9);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(817, 913);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "设备状态信息";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage3.Controls.Add(this.panel11);
+            this.tabPage3.Controls.Add(this.btnWriteCheck485Line);
+            this.tabPage3.Controls.Add(this.btnReadCheck485Line);
+            this.tabPage3.Controls.Add(this.label72);
+            this.tabPage3.Controls.Add(this.panel10);
+            this.tabPage3.Controls.Add(this.btnWriteExploreLockMode);
+            this.tabPage3.Controls.Add(this.btnReadExploreLockMode);
+            this.tabPage3.Controls.Add(this.label71);
+            this.tabPage3.Controls.Add(this.panel9);
+            this.tabPage3.Controls.Add(this.btnWriteBalcklistAlarmOption);
+            this.tabPage3.Controls.Add(this.btnReadBalcklistAlarmOption);
+            this.tabPage3.Controls.Add(this.label70);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(817, 913);
+            this.tabPage3.TabIndex = 3;
+            this.tabPage3.Text = "扩展功能";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // groupBox9
+            // panel11
             // 
-            this.groupBox9.Controls.Add(this.txtAllNum);
-            this.groupBox9.Controls.Add(this.label66);
-            this.groupBox9.Controls.Add(this.dgvEquipmentStatusInfo);
-            this.groupBox9.Controls.Add(this.lbSWatchState);
-            this.groupBox9.Controls.Add(this.btnWorkStatusInfo);
-            this.groupBox9.Controls.Add(this.label65);
-            this.groupBox9.Location = new System.Drawing.Point(8, 6);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(801, 336);
-            this.groupBox9.TabIndex = 0;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "设备端口状态信息";
+            this.panel11.Controls.Add(this.rBtnNoCheck485Line);
+            this.panel11.Controls.Add(this.rBtnCheck485Line);
+            this.panel11.Location = new System.Drawing.Point(132, 69);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(144, 21);
+            this.panel11.TabIndex = 88;
             // 
-            // txtAllNum
+            // rBtnNoCheck485Line
             // 
-            this.txtAllNum.Location = new System.Drawing.Point(100, 304);
-            this.txtAllNum.MaxLength = 16;
-            this.txtAllNum.Name = "txtAllNum";
-            this.txtAllNum.ReadOnly = true;
-            this.txtAllNum.Size = new System.Drawing.Size(88, 21);
-            this.txtAllNum.TabIndex = 20;
+            this.rBtnNoCheck485Line.AutoSize = true;
+            this.rBtnNoCheck485Line.Location = new System.Drawing.Point(0, 3);
+            this.rBtnNoCheck485Line.Name = "rBtnNoCheck485Line";
+            this.rBtnNoCheck485Line.Size = new System.Drawing.Size(59, 16);
+            this.rBtnNoCheck485Line.TabIndex = 51;
+            this.rBtnNoCheck485Line.Text = "不启用";
+            this.rBtnNoCheck485Line.UseVisualStyleBackColor = true;
             // 
-            // label66
+            // rBtnCheck485Line
             // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(6, 307);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(101, 12);
-            this.label66.TabIndex = 19;
-            this.label66.Text = "控制器门内人数：";
+            this.rBtnCheck485Line.AutoSize = true;
+            this.rBtnCheck485Line.Checked = true;
+            this.rBtnCheck485Line.Location = new System.Drawing.Point(72, 3);
+            this.rBtnCheck485Line.Name = "rBtnCheck485Line";
+            this.rBtnCheck485Line.Size = new System.Drawing.Size(47, 16);
+            this.rBtnCheck485Line.TabIndex = 52;
+            this.rBtnCheck485Line.TabStop = true;
+            this.rBtnCheck485Line.Text = "启用";
+            this.rBtnCheck485Line.UseVisualStyleBackColor = true;
             // 
-            // dgvEquipmentStatusInfo
+            // btnWriteCheck485Line
             // 
-            this.dgvEquipmentStatusInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEquipmentStatusInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8});
-            this.dgvEquipmentStatusInfo.Location = new System.Drawing.Point(6, 20);
-            this.dgvEquipmentStatusInfo.Name = "dgvEquipmentStatusInfo";
-            this.dgvEquipmentStatusInfo.RowHeadersVisible = false;
-            this.dgvEquipmentStatusInfo.RowTemplate.Height = 23;
-            this.dgvEquipmentStatusInfo.Size = new System.Drawing.Size(789, 268);
-            this.dgvEquipmentStatusInfo.TabIndex = 0;
+            this.btnWriteCheck485Line.Location = new System.Drawing.Point(350, 69);
+            this.btnWriteCheck485Line.Name = "btnWriteCheck485Line";
+            this.btnWriteCheck485Line.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteCheck485Line.TabIndex = 87;
+            this.btnWriteCheck485Line.Text = "写入";
+            this.btnWriteCheck485Line.UseVisualStyleBackColor = true;
+            this.btnWriteCheck485Line.Click += new System.EventHandler(this.BtnWriteCheck485Line_Click);
             // 
-            // Column1
+            // btnReadCheck485Line
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column1.HeaderText = "门号";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.btnReadCheck485Line.Location = new System.Drawing.Point(296, 69);
+            this.btnReadCheck485Line.Name = "btnReadCheck485Line";
+            this.btnReadCheck485Line.Size = new System.Drawing.Size(48, 23);
+            this.btnReadCheck485Line.TabIndex = 86;
+            this.btnReadCheck485Line.Text = "读取";
+            this.btnReadCheck485Line.UseVisualStyleBackColor = true;
+            this.btnReadCheck485Line.Click += new System.EventHandler(this.BtnReadCheck485Line_Click);
             // 
-            // Column2
+            // label72
             // 
-            this.Column2.HeaderText = "常开状态";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(4, 74);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(131, 12);
+            this.label72.TabIndex = 85;
+            this.label72.Text = "485线路反接检测开关：";
             // 
-            // Column3
+            // panel10
             // 
-            this.Column3.HeaderText = "门磁状态";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.panel10.Controls.Add(this.rBtnNoExploreLockMode);
+            this.panel10.Controls.Add(this.rBtnExploreLockMode);
+            this.panel10.Location = new System.Drawing.Point(132, 42);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(144, 21);
+            this.panel10.TabIndex = 84;
             // 
-            // Column4
+            // rBtnNoExploreLockMode
             // 
-            this.Column4.HeaderText = "继电器状态";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.rBtnNoExploreLockMode.AutoSize = true;
+            this.rBtnNoExploreLockMode.Location = new System.Drawing.Point(0, 3);
+            this.rBtnNoExploreLockMode.Name = "rBtnNoExploreLockMode";
+            this.rBtnNoExploreLockMode.Size = new System.Drawing.Size(59, 16);
+            this.rBtnNoExploreLockMode.TabIndex = 51;
+            this.rBtnNoExploreLockMode.Text = "不启用";
+            this.rBtnNoExploreLockMode.UseVisualStyleBackColor = true;
             // 
-            // Column5
+            // rBtnExploreLockMode
             // 
-            this.Column5.HeaderText = "锁定状态";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
+            this.rBtnExploreLockMode.AutoSize = true;
+            this.rBtnExploreLockMode.Checked = true;
+            this.rBtnExploreLockMode.Location = new System.Drawing.Point(72, 3);
+            this.rBtnExploreLockMode.Name = "rBtnExploreLockMode";
+            this.rBtnExploreLockMode.Size = new System.Drawing.Size(47, 16);
+            this.rBtnExploreLockMode.TabIndex = 52;
+            this.rBtnExploreLockMode.TabStop = true;
+            this.rBtnExploreLockMode.Text = "启用";
+            this.rBtnExploreLockMode.UseVisualStyleBackColor = true;
             // 
-            // Column6
+            // btnWriteExploreLockMode
             // 
-            this.Column6.HeaderText = "门内人数";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
+            this.btnWriteExploreLockMode.Location = new System.Drawing.Point(350, 42);
+            this.btnWriteExploreLockMode.Name = "btnWriteExploreLockMode";
+            this.btnWriteExploreLockMode.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteExploreLockMode.TabIndex = 83;
+            this.btnWriteExploreLockMode.Text = "写入";
+            this.btnWriteExploreLockMode.UseVisualStyleBackColor = true;
+            this.btnWriteExploreLockMode.Click += new System.EventHandler(this.BtnWriteExploreLockMode_Click);
             // 
-            // Column7
+            // btnReadExploreLockMode
             // 
-            this.Column7.HeaderText = "报警状态";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
+            this.btnReadExploreLockMode.Location = new System.Drawing.Point(296, 42);
+            this.btnReadExploreLockMode.Name = "btnReadExploreLockMode";
+            this.btnReadExploreLockMode.Size = new System.Drawing.Size(48, 23);
+            this.btnReadExploreLockMode.TabIndex = 82;
+            this.btnReadExploreLockMode.Text = "读取";
+            this.btnReadExploreLockMode.UseVisualStyleBackColor = true;
+            this.btnReadExploreLockMode.Click += new System.EventHandler(this.BtnReadExploreLockMode_Click);
             // 
-            // Column8
+            // label71
             // 
-            this.Column8.HeaderText = "继电器物理状态";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(58, 47);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(77, 12);
+            this.label71.TabIndex = 81;
+            this.label71.Text = "防探测功能：";
             // 
-            // lbSWatchState
+            // panel9
             // 
-            this.lbSWatchState.AutoSize = true;
-            this.lbSWatchState.ForeColor = System.Drawing.Color.Red;
-            this.lbSWatchState.Location = new System.Drawing.Point(264, 309);
-            this.lbSWatchState.Name = "lbSWatchState";
-            this.lbSWatchState.Size = new System.Drawing.Size(65, 12);
-            this.lbSWatchState.TabIndex = 10;
-            this.lbSWatchState.Text = "未开启监控";
+            this.panel9.Controls.Add(this.rBtnNoBalcklistAlarm);
+            this.panel9.Controls.Add(this.rBtnBalcklistAlarm);
+            this.panel9.Location = new System.Drawing.Point(132, 15);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(144, 21);
+            this.panel9.TabIndex = 80;
             // 
-            // btnWorkStatusInfo
+            // rBtnNoBalcklistAlarm
             // 
-            this.btnWorkStatusInfo.Location = new System.Drawing.Point(635, 302);
-            this.btnWorkStatusInfo.Name = "btnWorkStatusInfo";
-            this.btnWorkStatusInfo.Size = new System.Drawing.Size(160, 23);
-            this.btnWorkStatusInfo.TabIndex = 8;
-            this.btnWorkStatusInfo.Text = "获得端口状态信息";
-            this.btnWorkStatusInfo.UseVisualStyleBackColor = true;
-            this.btnWorkStatusInfo.Click += new System.EventHandler(this.BtnWorkStatusInfo_Click);
+            this.rBtnNoBalcklistAlarm.AutoSize = true;
+            this.rBtnNoBalcklistAlarm.Location = new System.Drawing.Point(0, 3);
+            this.rBtnNoBalcklistAlarm.Name = "rBtnNoBalcklistAlarm";
+            this.rBtnNoBalcklistAlarm.Size = new System.Drawing.Size(59, 16);
+            this.rBtnNoBalcklistAlarm.TabIndex = 51;
+            this.rBtnNoBalcklistAlarm.Text = "不启用";
+            this.rBtnNoBalcklistAlarm.UseVisualStyleBackColor = true;
             // 
-            // label65
+            // rBtnBalcklistAlarm
             // 
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(205, 309);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(65, 12);
-            this.label65.TabIndex = 9;
-            this.label65.Text = "监控状态：";
+            this.rBtnBalcklistAlarm.AutoSize = true;
+            this.rBtnBalcklistAlarm.Checked = true;
+            this.rBtnBalcklistAlarm.Location = new System.Drawing.Point(72, 3);
+            this.rBtnBalcklistAlarm.Name = "rBtnBalcklistAlarm";
+            this.rBtnBalcklistAlarm.Size = new System.Drawing.Size(47, 16);
+            this.rBtnBalcklistAlarm.TabIndex = 52;
+            this.rBtnBalcklistAlarm.TabStop = true;
+            this.rBtnBalcklistAlarm.Text = "启用";
+            this.rBtnBalcklistAlarm.UseVisualStyleBackColor = true;
+            // 
+            // btnWriteBalcklistAlarmOption
+            // 
+            this.btnWriteBalcklistAlarmOption.Location = new System.Drawing.Point(350, 15);
+            this.btnWriteBalcklistAlarmOption.Name = "btnWriteBalcklistAlarmOption";
+            this.btnWriteBalcklistAlarmOption.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteBalcklistAlarmOption.TabIndex = 79;
+            this.btnWriteBalcklistAlarmOption.Text = "写入";
+            this.btnWriteBalcklistAlarmOption.UseVisualStyleBackColor = true;
+            this.btnWriteBalcklistAlarmOption.Click += new System.EventHandler(this.BtnWriteBalcklistAlarmOption_Click);
+            // 
+            // btnReadBalcklistAlarmOption
+            // 
+            this.btnReadBalcklistAlarmOption.Location = new System.Drawing.Point(296, 15);
+            this.btnReadBalcklistAlarmOption.Name = "btnReadBalcklistAlarmOption";
+            this.btnReadBalcklistAlarmOption.Size = new System.Drawing.Size(48, 23);
+            this.btnReadBalcklistAlarmOption.TabIndex = 78;
+            this.btnReadBalcklistAlarmOption.Text = "读取";
+            this.btnReadBalcklistAlarmOption.UseVisualStyleBackColor = true;
+            this.btnReadBalcklistAlarmOption.Click += new System.EventHandler(this.BtnReadBalcklistAlarmOption_Click);
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(58, 20);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(77, 12);
+            this.label70.TabIndex = 77;
+            this.label70.Text = "黑名单报警：";
             // 
             // tabSysParameterPage
             // 
+            this.tabSysParameterPage.Controls.Add(this.groupBox12);
+            this.tabSysParameterPage.Controls.Add(this.groupBox11);
             this.tabSysParameterPage.Controls.Add(this.groupBox10);
             this.tabSysParameterPage.Controls.Add(this.groupBox8);
             this.tabSysParameterPage.Controls.Add(this.groupBox2);
@@ -878,6 +979,141 @@
             this.tabSysParameterPage.TabIndex = 0;
             this.tabSysParameterPage.Text = "设备参数设置";
             this.tabSysParameterPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.label68);
+            this.groupBox12.Controls.Add(this.cbxKeepAliveInterval);
+            this.groupBox12.Controls.Add(this.btnWriteKeepAliveInterval);
+            this.groupBox12.Controls.Add(this.btnReadKeepAliveInterval);
+            this.groupBox12.Controls.Add(this.label69);
+            this.groupBox12.Location = new System.Drawing.Point(289, 445);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(520, 75);
+            this.groupBox12.TabIndex = 10;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "TCP客户端模式";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(249, 26);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(113, 12);
+            this.label68.TabIndex = 44;
+            this.label68.Text = "秒，发送一次保活包";
+            // 
+            // cbxKeepAliveInterval
+            // 
+            this.cbxKeepAliveInterval.FormattingEnabled = true;
+            this.cbxKeepAliveInterval.IntegralHeight = false;
+            this.cbxKeepAliveInterval.ItemHeight = 12;
+            this.cbxKeepAliveInterval.Items.AddRange(new object[] {
+            "禁用",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "65535"});
+            this.cbxKeepAliveInterval.Location = new System.Drawing.Point(162, 23);
+            this.cbxKeepAliveInterval.Name = "cbxKeepAliveInterval";
+            this.cbxKeepAliveInterval.Size = new System.Drawing.Size(81, 20);
+            this.cbxKeepAliveInterval.TabIndex = 43;
+            // 
+            // btnWriteKeepAliveInterval
+            // 
+            this.btnWriteKeepAliveInterval.Location = new System.Drawing.Point(463, 21);
+            this.btnWriteKeepAliveInterval.Name = "btnWriteKeepAliveInterval";
+            this.btnWriteKeepAliveInterval.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteKeepAliveInterval.TabIndex = 42;
+            this.btnWriteKeepAliveInterval.Text = "写入";
+            this.btnWriteKeepAliveInterval.UseVisualStyleBackColor = true;
+            this.btnWriteKeepAliveInterval.Click += new System.EventHandler(this.BtnWriteKeepAliveInterval_Click);
+            // 
+            // btnReadKeepAliveInterval
+            // 
+            this.btnReadKeepAliveInterval.Location = new System.Drawing.Point(407, 21);
+            this.btnReadKeepAliveInterval.Name = "btnReadKeepAliveInterval";
+            this.btnReadKeepAliveInterval.Size = new System.Drawing.Size(48, 23);
+            this.btnReadKeepAliveInterval.TabIndex = 41;
+            this.btnReadKeepAliveInterval.Text = "读取";
+            this.btnReadKeepAliveInterval.UseVisualStyleBackColor = true;
+            this.btnReadKeepAliveInterval.Click += new System.EventHandler(this.BtnReadKeepAliveInterval_Click);
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(7, 26);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(149, 12);
+            this.label69.TabIndex = 40;
+            this.label69.Text = "与服务器建立连接后，每隔";
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.btnWriteCacheContent);
+            this.groupBox11.Controls.Add(this.btnReadCacheContent);
+            this.groupBox11.Controls.Add(this.txtCacheContent);
+            this.groupBox11.Controls.Add(this.label67);
+            this.groupBox11.Location = new System.Drawing.Point(289, 364);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(520, 75);
+            this.groupBox11.TabIndex = 9;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "缓存区操作";
+            // 
+            // btnWriteCacheContent
+            // 
+            this.btnWriteCacheContent.Location = new System.Drawing.Point(135, 47);
+            this.btnWriteCacheContent.Name = "btnWriteCacheContent";
+            this.btnWriteCacheContent.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteCacheContent.TabIndex = 3;
+            this.btnWriteCacheContent.Text = "写入";
+            this.btnWriteCacheContent.UseVisualStyleBackColor = true;
+            this.btnWriteCacheContent.Click += new System.EventHandler(this.BtnWriteCacheContent_Click);
+            // 
+            // btnReadCacheContent
+            // 
+            this.btnReadCacheContent.Location = new System.Drawing.Point(79, 47);
+            this.btnReadCacheContent.Name = "btnReadCacheContent";
+            this.btnReadCacheContent.Size = new System.Drawing.Size(48, 23);
+            this.btnReadCacheContent.TabIndex = 2;
+            this.btnReadCacheContent.Text = "读取";
+            this.btnReadCacheContent.UseVisualStyleBackColor = true;
+            this.btnReadCacheContent.Click += new System.EventHandler(this.BtnReadCacheContent_Click);
+            // 
+            // txtCacheContent
+            // 
+            this.txtCacheContent.Location = new System.Drawing.Point(79, 18);
+            this.txtCacheContent.MaxLength = 30;
+            this.txtCacheContent.Name = "txtCacheContent";
+            this.txtCacheContent.Size = new System.Drawing.Size(430, 21);
+            this.txtCacheContent.TabIndex = 1;
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(7, 21);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(77, 12);
+            this.label67.TabIndex = 0;
+            this.label67.Text = "缓存区内容：";
             // 
             // groupBox10
             // 
@@ -1377,6 +1613,28 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "功能参数";
             // 
+            // btnSearchEquptOnNetNum
+            // 
+            this.btnSearchEquptOnNetNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnSearchEquptOnNetNum.Location = new System.Drawing.Point(564, 742);
+            this.btnSearchEquptOnNetNum.Name = "btnSearchEquptOnNetNum";
+            this.btnSearchEquptOnNetNum.Size = new System.Drawing.Size(102, 23);
+            this.btnSearchEquptOnNetNum.TabIndex = 86;
+            this.btnSearchEquptOnNetNum.Text = "自动搜索设备";
+            this.btnSearchEquptOnNetNum.UseVisualStyleBackColor = false;
+            this.btnSearchEquptOnNetNum.Click += new System.EventHandler(this.BtnSearchEquptOnNetNum_Click);
+            // 
+            // btnInitalData
+            // 
+            this.btnInitalData.BackColor = System.Drawing.Color.Red;
+            this.btnInitalData.Location = new System.Drawing.Point(564, 802);
+            this.btnInitalData.Name = "btnInitalData";
+            this.btnInitalData.Size = new System.Drawing.Size(85, 23);
+            this.btnInitalData.TabIndex = 85;
+            this.btnInitalData.Text = "初始化数据";
+            this.btnInitalData.UseVisualStyleBackColor = false;
+            this.btnInitalData.Click += new System.EventHandler(this.BtnInitalData_Click);
+            // 
             // btnSmogAlarmState
             // 
             this.btnSmogAlarmState.Location = new System.Drawing.Point(628, 306);
@@ -1561,7 +1819,7 @@
             // rBtnNoEnableReadCardSpeak
             // 
             this.rBtnNoEnableReadCardSpeak.AutoSize = true;
-            this.rBtnNoEnableReadCardSpeak.Location = new System.Drawing.Point(2, 5);
+            this.rBtnNoEnableReadCardSpeak.Location = new System.Drawing.Point(3, 3);
             this.rBtnNoEnableReadCardSpeak.Name = "rBtnNoEnableReadCardSpeak";
             this.rBtnNoEnableReadCardSpeak.Size = new System.Drawing.Size(59, 16);
             this.rBtnNoEnableReadCardSpeak.TabIndex = 51;
@@ -1735,6 +1993,8 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.btnSetTheftDisarming);
+            this.groupBox5.Controls.Add(this.btnSetTheftFortify);
             this.groupBox5.Controls.Add(this.txtBeginState);
             this.groupBox5.Controls.Add(this.label64);
             this.groupBox5.Controls.Add(this.btnTheftAlarmSettingState);
@@ -1761,6 +2021,26 @@
             this.groupBox5.TabIndex = 67;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "防盗报警";
+            // 
+            // btnSetTheftDisarming
+            // 
+            this.btnSetTheftDisarming.Location = new System.Drawing.Point(325, 106);
+            this.btnSetTheftDisarming.Name = "btnSetTheftDisarming";
+            this.btnSetTheftDisarming.Size = new System.Drawing.Size(48, 23);
+            this.btnSetTheftDisarming.TabIndex = 89;
+            this.btnSetTheftDisarming.Text = "撤防";
+            this.btnSetTheftDisarming.UseVisualStyleBackColor = true;
+            this.btnSetTheftDisarming.Click += new System.EventHandler(this.BtnSetTheftDisarming_Click);
+            // 
+            // btnSetTheftFortify
+            // 
+            this.btnSetTheftFortify.Location = new System.Drawing.Point(269, 106);
+            this.btnSetTheftFortify.Name = "btnSetTheftFortify";
+            this.btnSetTheftFortify.Size = new System.Drawing.Size(48, 23);
+            this.btnSetTheftFortify.TabIndex = 88;
+            this.btnSetTheftFortify.Text = "布防";
+            this.btnSetTheftFortify.UseVisualStyleBackColor = true;
+            this.btnSetTheftFortify.Click += new System.EventHandler(this.BtnSetTheftFortify_Click);
             // 
             // txtBeginState
             // 
@@ -2875,27 +3155,147 @@
             this.label20.TabIndex = 0;
             this.label20.Text = "记录存储方式：记录满盘后：";
             // 
-            // btnInitalData
+            // tabPage1
             // 
-            this.btnInitalData.BackColor = System.Drawing.Color.Red;
-            this.btnInitalData.Location = new System.Drawing.Point(564, 802);
-            this.btnInitalData.Name = "btnInitalData";
-            this.btnInitalData.Size = new System.Drawing.Size(85, 23);
-            this.btnInitalData.TabIndex = 85;
-            this.btnInitalData.Text = "初始化数据";
-            this.btnInitalData.UseVisualStyleBackColor = false;
-            this.btnInitalData.Click += new System.EventHandler(this.BtnInitalData_Click);
+            this.tabPage1.Controls.Add(this.groupBox9);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(817, 913);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "设备状态信息";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // btnSearchEquptOnNetNum
+            // groupBox9
             // 
-            this.btnSearchEquptOnNetNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnSearchEquptOnNetNum.Location = new System.Drawing.Point(564, 742);
-            this.btnSearchEquptOnNetNum.Name = "btnSearchEquptOnNetNum";
-            this.btnSearchEquptOnNetNum.Size = new System.Drawing.Size(102, 23);
-            this.btnSearchEquptOnNetNum.TabIndex = 86;
-            this.btnSearchEquptOnNetNum.Text = "自动搜索设备";
-            this.btnSearchEquptOnNetNum.UseVisualStyleBackColor = false;
-            this.btnSearchEquptOnNetNum.Click += new System.EventHandler(this.BtnSearchEquptOnNetNum_Click);
+            this.groupBox9.Controls.Add(this.txtAllNum);
+            this.groupBox9.Controls.Add(this.label66);
+            this.groupBox9.Controls.Add(this.dgvEquipmentStatusInfo);
+            this.groupBox9.Controls.Add(this.lbSWatchState);
+            this.groupBox9.Controls.Add(this.btnWorkStatusInfo);
+            this.groupBox9.Controls.Add(this.label65);
+            this.groupBox9.Location = new System.Drawing.Point(8, 6);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(801, 336);
+            this.groupBox9.TabIndex = 0;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "设备端口状态信息";
+            // 
+            // txtAllNum
+            // 
+            this.txtAllNum.Location = new System.Drawing.Point(100, 304);
+            this.txtAllNum.MaxLength = 16;
+            this.txtAllNum.Name = "txtAllNum";
+            this.txtAllNum.ReadOnly = true;
+            this.txtAllNum.Size = new System.Drawing.Size(88, 21);
+            this.txtAllNum.TabIndex = 20;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(6, 307);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(101, 12);
+            this.label66.TabIndex = 19;
+            this.label66.Text = "控制器门内人数：";
+            // 
+            // dgvEquipmentStatusInfo
+            // 
+            this.dgvEquipmentStatusInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEquipmentStatusInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column7,
+            this.Column8});
+            this.dgvEquipmentStatusInfo.Location = new System.Drawing.Point(6, 20);
+            this.dgvEquipmentStatusInfo.Name = "dgvEquipmentStatusInfo";
+            this.dgvEquipmentStatusInfo.RowHeadersVisible = false;
+            this.dgvEquipmentStatusInfo.RowTemplate.Height = 23;
+            this.dgvEquipmentStatusInfo.Size = new System.Drawing.Size(789, 268);
+            this.dgvEquipmentStatusInfo.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column1.HeaderText = "门号";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "常开状态";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "门磁状态";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "继电器状态";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "锁定状态";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "门内人数";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "报警状态";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "继电器物理状态";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // lbSWatchState
+            // 
+            this.lbSWatchState.AutoSize = true;
+            this.lbSWatchState.ForeColor = System.Drawing.Color.Red;
+            this.lbSWatchState.Location = new System.Drawing.Point(264, 309);
+            this.lbSWatchState.Name = "lbSWatchState";
+            this.lbSWatchState.Size = new System.Drawing.Size(65, 12);
+            this.lbSWatchState.TabIndex = 10;
+            this.lbSWatchState.Text = "未开启监控";
+            // 
+            // btnWorkStatusInfo
+            // 
+            this.btnWorkStatusInfo.Location = new System.Drawing.Point(635, 302);
+            this.btnWorkStatusInfo.Name = "btnWorkStatusInfo";
+            this.btnWorkStatusInfo.Size = new System.Drawing.Size(160, 23);
+            this.btnWorkStatusInfo.TabIndex = 8;
+            this.btnWorkStatusInfo.Text = "获得端口状态信息";
+            this.btnWorkStatusInfo.UseVisualStyleBackColor = true;
+            this.btnWorkStatusInfo.Click += new System.EventHandler(this.BtnWorkStatusInfo_Click);
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(205, 309);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(65, 12);
+            this.label65.TabIndex = 9;
+            this.label65.Text = "监控状态：";
             // 
             // frmSystem
             // 
@@ -2914,11 +3314,19 @@
             this.gbTCP.ResumeLayout(false);
             this.gbTCP.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentStatusInfo)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.tabSysParameterPage.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlarmType)).EndInit();
@@ -2955,6 +3363,10 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentStatusInfo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3200,5 +3612,37 @@
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.Button btnInitalData;
         private System.Windows.Forms.Button btnSearchEquptOnNetNum;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Button btnWriteCacheContent;
+        private System.Windows.Forms.Button btnReadCacheContent;
+        private System.Windows.Forms.TextBox txtCacheContent;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.ComboBox cbxKeepAliveInterval;
+        private System.Windows.Forms.Button btnWriteKeepAliveInterval;
+        private System.Windows.Forms.Button btnReadKeepAliveInterval;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Button btnSetTheftDisarming;
+        private System.Windows.Forms.Button btnSetTheftFortify;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.RadioButton rBtnNoBalcklistAlarm;
+        private System.Windows.Forms.RadioButton rBtnBalcklistAlarm;
+        private System.Windows.Forms.Button btnWriteBalcklistAlarmOption;
+        private System.Windows.Forms.Button btnReadBalcklistAlarmOption;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.RadioButton rBtnNoExploreLockMode;
+        private System.Windows.Forms.RadioButton rBtnExploreLockMode;
+        private System.Windows.Forms.Button btnWriteExploreLockMode;
+        private System.Windows.Forms.Button btnReadExploreLockMode;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.RadioButton rBtnNoCheck485Line;
+        private System.Windows.Forms.RadioButton rBtnCheck485Line;
+        private System.Windows.Forms.Button btnWriteCheck485Line;
+        private System.Windows.Forms.Button btnReadCheck485Line;
+        private System.Windows.Forms.Label label72;
     }
 }

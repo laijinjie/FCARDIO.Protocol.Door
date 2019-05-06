@@ -10,21 +10,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.KeepAliveInterval
     /// <summary>
     /// 读取控制器作为客户端时，和服务器的保活间隔时间_结果
     /// </summary>
-    public class ReadKeepAliveInterval_Result : INCommandResult
+    public class ReadKeepAliveInterval_Result : WriteKeepAliveInterval_Parameter, INCommandResult
     {
-        public ushort IntervalTime;
-
-        public ReadKeepAliveInterval_Result(ushort _IntervalTime)
-        {
-            IntervalTime = _IntervalTime;
-        }
-
-        /// <summary>
-        /// 释放资源
-        /// </summary>
-        public void Dispose()
-        {
-            return;
-        }
     }
 }

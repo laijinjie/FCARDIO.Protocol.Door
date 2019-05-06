@@ -27,19 +27,19 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         protected override void CreatePacket0()
         {
             
-            Packet(0x01, 0xFE,0,2, GetParameter());
+            Packet(0x01, 0xFE, 0, 2, GetParameter());
         }
 
+        /// <summary>
+        /// 命令数据
+        /// </summary>
+        /// <returns></returns>
         private DotNetty.Buffers.IByteBuffer GetParameter()
         {
             SearchControltor_Parameter par = Parameter as SearchControltor_Parameter;
             var acl = _Connector.GetByteBufAllocator();
-
             var buf = acl.Buffer(2);
-
-
             par.GetBytes(buf);
-
             return buf;
         }
 
@@ -49,22 +49,15 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck,0x1,0xfe,0, 0x89))
+
+            if (CheckResponse(oPck, 0x1, 0xfe, 0, 0x89))
             {
                 var buf = oPck.CmdData;
-
-
                 SearchControltor_Result rst = new SearchControltor_Result();
                 rst.SetBytes(buf);
                 rst.SN = oPck.SN.GetString();
-
                 _Result = rst;
-
-                _Connector.fireCommandCompleteEventNotRemoveCommand(_EventArgs);
-
-
-                                
-            }
+                _Connector.fireCommandCompleteEventNotRemoveCommand(_EventArgs);            }
         }
     }
 }

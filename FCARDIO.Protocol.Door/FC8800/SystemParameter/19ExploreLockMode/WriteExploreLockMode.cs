@@ -12,9 +12,14 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ExploreLockMode
     /// <summary>
     /// 设置防探测功能开关
     /// </summary>
-    public class WriteExploreLockMode : FC8800Command
+    public class WriteExploreLockMode : FC8800Command_WriteParameter
     {
-        public WriteExploreLockMode(INCommandDetail cd, INCommandParameter par) : base(cd, par) { }
+        /// <summary>
+        /// 设置防探测功能开关
+        /// </summary>
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        /// <param name="par">包含防探测功能开关参数</param>
+        public WriteExploreLockMode(INCommandDetail cd, WriteExploreLockMode_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数
@@ -33,7 +38,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ExploreLockMode
         }
 
         /// <summary>
-        /// 拼装命令
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
@@ -44,21 +49,6 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ExploreLockMode
             var buf = acl.Buffer(model.GetDataLen());
 
             Packet(0x01, 0x12, 0x02, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
-        }
-
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-            return;
-        }
-
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        protected override void Release1()
-        {
-            return;
         }
     }
 }

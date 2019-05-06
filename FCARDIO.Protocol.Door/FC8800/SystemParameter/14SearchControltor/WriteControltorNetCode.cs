@@ -48,7 +48,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
 
             var buf = acl.Buffer(model.GetDataLen());
 
-            Packet(0x01, 0xFE, 0x01,2, model.GetBytes(buf));
+            Packet(0x01, 0xFE, 0x01, 2, model.GetBytes(buf));
         }
     }
 }

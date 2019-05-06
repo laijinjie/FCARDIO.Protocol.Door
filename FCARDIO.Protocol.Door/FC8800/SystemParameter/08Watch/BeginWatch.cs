@@ -15,7 +15,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Watch
     public class BeginWatch : FC8800Command_ReadParameter
     {
         /// <summary>
-        /// 获取设备有效期 初始化命令
+        /// 获取开启数据监控 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public BeginWatch(INCommandDetail cd) : base(cd) { }

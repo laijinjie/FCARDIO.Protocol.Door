@@ -17,9 +17,22 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Check485Line
         /// </summary>
         public byte Use;
 
+        /// <summary>
+        /// 构建一个空的实例
+        /// </summary>
+        public WriteCheck485Line_Parameter() { }
+
+        /// <summary>
+        /// 使用485线路反接检测开关参数初始化实例
+        /// </summary>
+        /// <param name="_Use">485线路反接检测开关参数</param>
         public WriteCheck485Line_Parameter(byte _Use)
         {
             Use = _Use;
+            if (!checkedParameter())
+            {
+                throw new ArgumentException("Use Error");
+            }
         }
 
         /// <summary>
@@ -45,7 +58,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Check485Line
         }
 
         /// <summary>
-        /// 编码参数
+        /// 对485线路反接检测开关参数进行编码
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
@@ -64,7 +77,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Check485Line
         }
 
         /// <summary>
-        /// 解码参数
+        /// 对485线路反接检测开关参数进行解码
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)

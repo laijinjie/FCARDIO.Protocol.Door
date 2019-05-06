@@ -10,21 +10,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Check485Line
     /// <summary>
     /// 读取485线路反接检测开关_结果
     /// </summary>
-    public class ReadCheck485Line_Result : INCommandResult
+    public class ReadCheck485Line_Result : WriteCheck485Line_Parameter, INCommandResult
     {
-        public byte Use;
-
-        public ReadCheck485Line_Result(byte _Use)
-        {
-            Use = _Use;
-        }
-
-        /// <summary>
-        /// 释放资源
-        /// </summary>
-        public void Dispose()
-        {
-            return;
-        }
     }
 }
