@@ -1,4 +1,5 @@
-﻿using FCARDIO.Core.Command;
+﻿using DotNetty.Buffers;
+using FCARDIO.Core.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,15 +31,22 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.WorkStatus
         /// </summary>
         public byte TheftAlarm;
 
-        public ReadTheftAlarmState_Result(byte _TheftState, byte _TheftAlarm)
-        {
-            TheftState = _TheftState;
-            TheftAlarm = _TheftAlarm;
-        }
-
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public void Dispose()
         {
             return;
+        }
+
+        /// <summary>
+        /// 对防盗主机布防状态参数进行解码
+        /// </summary>
+        /// <param name="databuf"></param>
+        public void SetBytes(IByteBuffer databuf)
+        {
+            TheftState = databuf.ReadByte();
+            TheftAlarm = databuf.ReadByte();
         }
     }
 }

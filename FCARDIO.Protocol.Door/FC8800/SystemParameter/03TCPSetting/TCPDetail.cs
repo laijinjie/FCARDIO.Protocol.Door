@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
 {
     /// <summary>
-    /// TCP参数_模型
+    /// TCP/IP信息
     /// </summary>
     public class TCPDetail : AbstractData
     {
@@ -20,7 +20,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
         public string mMAC { get; set; }
 
         /// <summary>
-        /// IP地址
+        /// IP地址 
         /// </summary>
         public string mIP { get; set; }
 
@@ -79,6 +79,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
         /// </summary>
         public string mServerAddr { get; set; }
 
+        /// <summary>
+        /// 对IP信息参数进行编码
+        /// </summary>
+        /// <param name="databuf">需要填充参数结构的字节缓冲区</param>
+        /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             SaveMACToByteBuf(mMAC, databuf);
@@ -88,9 +93,9 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             SaveIPToByteBuf(mDNS, databuf);
             SaveIPToByteBuf(mDNSBackup, databuf);
             databuf.WriteByte(mProtocolType);
-            databuf.WriteInt(mTCPPort);
-            databuf.WriteInt(mUDPPort);
-            databuf.WriteInt(mServerPort);
+            databuf.WriteShort(mTCPPort);
+            databuf.WriteShort(mUDPPort);
+            databuf.WriteShort(mServerPort);
             SaveIPToByteBuf(mServerIP, databuf);
             databuf.WriteByte(mAutoIP ? 1 : 0);
 
@@ -111,6 +116,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             return databuf;
         }
 
+        /// <summary>
+        /// MAC地址从结构转换成数组字节
+        /// </summary>
+        /// <param name="mac"></param>
+        /// <param name="buf"></param>
         private void SaveMACToByteBuf(string mac, IByteBuffer buf)
         {
             if (!CheckMAC(mac))
@@ -129,6 +139,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             }
         }
 
+        /// <summary>
+        /// 检查MAC地址
+        /// </summary>
+        /// <param name="mac"></param>
+        /// <returns></returns>
         public static bool CheckMAC(string mac)
         {
             if (string.IsNullOrEmpty(mac))
@@ -160,6 +175,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             return true;
         }
 
+        /// <summary>
+        /// IP地址及与之相同格式的结构转换成数组字节
+        /// </summary>
+        /// <param name="IP"></param>
+        /// <param name="buf"></param>
         private void SaveIPToByteBuf(string IP, IByteBuffer buf)
         {
             if (!CheckIP(IP))
@@ -178,6 +198,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             }
         }
 
+        /// <summary>
+        /// 检查IP地址及与之相同格式数据
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
         public static bool CheckIP(string ip)
         {
             if (string.IsNullOrEmpty(ip))
@@ -209,6 +234,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             return true;
         }
 
+        /// <summary>
+        /// 写入字节
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <param name="iCount"></param>
         private void Save0toByteBuf(IByteBuffer buf, int iCount)
         {
             for (int i = 0; i < iCount; i++)
@@ -217,11 +247,19 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             }
         }
 
+        /// <summary>
+        /// 字节长度
+        /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
             return 0x89;
         }
 
+        /// <summary>
+        /// 对IP信息参数进行解码
+        /// </summary>
+        /// <param name="databuf">包含参数结构的缓冲区</param>
         public override void SetBytes(IByteBuffer databuf)
         {
             StringBuilder strbuilder = new StringBuilder(30);
@@ -229,8 +267,8 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             //MAC地址
             for (int i = 0; i < 6; i++)
             {
-                ushort iMacValue = databuf.ReadUnsignedShort();
-                string hex = Convert.ToString(iMacValue, 16);
+                ushort iMacValue = databuf.ReadByte();
+                string hex = iMacValue.ToString("X2");
                 strbuilder.Append(hex);
                 if (i < 5)
                 {
@@ -241,27 +279,27 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             mMAC = strbuilder.ToString();
 
             //IP地址
-            strbuilder.Remove(0, strbuilder.Length);
+            strbuilder.Clear();
             ReadIPByByteBuf(databuf, strbuilder);
             mIP = strbuilder.ToString();
 
             //IP掩码
-            strbuilder.Remove(0, strbuilder.Length);
+            strbuilder.Clear();
             ReadIPByByteBuf(databuf, strbuilder);
             mIPMask = strbuilder.ToString();
 
             //网关
-            strbuilder.Remove(0, strbuilder.Length);
+            strbuilder.Clear();
             ReadIPByByteBuf(databuf, strbuilder);
             mIPGateway = strbuilder.ToString();
 
             //DNS
-            strbuilder.Remove(0, strbuilder.Length);
+            strbuilder.Clear();
             ReadIPByByteBuf(databuf, strbuilder);
             mDNS = strbuilder.ToString();
 
             //DNS
-            strbuilder.Remove(0, strbuilder.Length);
+            strbuilder.Clear();
             ReadIPByByteBuf(databuf, strbuilder);
             mDNSBackup = strbuilder.ToString();
 
@@ -275,7 +313,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             //控制器作为客户端时，目标服务器的端口
             mServerPort = databuf.ReadUnsignedShort();
             //控制器作为客户端时，目标服务器的IP 
-            strbuilder.Remove(0, strbuilder.Length);
+            strbuilder.Clear();
             ReadIPByByteBuf(databuf, strbuilder);
             mServerIP = strbuilder.ToString();
             //自动获得IP
@@ -305,15 +343,17 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             else
             {
                 byte[] tmp = new byte[iCharCount];
-                databuf.ReadBytes(tmp, 0, iCharCount);
-                mServerAddr = Encoding.ASCII.GetString(tmp);
+                mServerAddr=databuf.ReadString( iCharCount, Encoding.ASCII);
             }
-
-            //data.resetReaderIndex();
             strbuilder = null;
-            return;
+            return ;
         }
 
+        /// <summary>
+        /// 字节转换成字符串
+        /// </summary>
+        /// <param name="data">包含参数结构的缓冲区</param>
+        /// <param name="strbuilder">字符串</param>
         private void ReadIPByByteBuf(IByteBuffer data, StringBuilder strbuilder)
         {
             for (int i = 0; i < 4; i++)

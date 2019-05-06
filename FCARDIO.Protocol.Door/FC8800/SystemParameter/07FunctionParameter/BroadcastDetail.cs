@@ -11,13 +11,23 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
     /// </summary>
     public class BroadcastDetail
     {
+        /// <summary>
+        /// 语音段开关的字节数组
+        /// </summary>
         public byte[] Broadcast { get; set; }
 
+        /// <summary>
+        /// 定义语音段开关的字节数组的长度
+        /// </summary>
         public BroadcastDetail()
         {
             Broadcast = new byte[10];
         }
 
+        /// <summary>
+        /// 语音段开关的字节数组信息
+        /// </summary>
+        /// <param name="data"></param>
         public BroadcastDetail(byte[] data)
         {
             if (data.Length != 10)

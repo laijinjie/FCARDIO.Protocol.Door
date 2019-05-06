@@ -1,9 +1,11 @@
-﻿using FCARDIO.Core.Command;
+﻿using DotNetty.Buffers;
+using FCARDIO.Core.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FCARDIO.Core.Extension;
 
 namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Version
 {
@@ -12,19 +14,35 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Version
     /// </summary>
     public class ReadVersion_Result : INCommandResult
     {
+        /// <summary>
+        /// 版本号
+        /// </summary>
         public string Version;
-
-        public ReadVersion_Result(string _Version)
-        {
-            Version = _Version;
-        }
+        /// <summary>
+        /// 修正号
+        /// </summary>
+        public string CorrectionNumber;
 
         /// <summary>
         /// 释放资源
         /// </summary>
         public void Dispose()
         {
+            Version = null;
+            CorrectionNumber = null;
             return;
+        }
+
+        /// <summary>
+        /// 对设备版本号参数进行解码
+        /// </summary>
+        /// <param name="databuf">包含参数结构的缓冲区</param>
+        public void SetBytes(IByteBuffer databuf)
+        {
+            Version = databuf.ReadString(2, System.Text.Encoding.ASCII);
+            CorrectionNumber = databuf.ReadString(2, System.Text.Encoding.ASCII);
+            //版本号与修正号拼接
+            Version = $"{Version}.{CorrectionNumber}";
         }
     }
 }

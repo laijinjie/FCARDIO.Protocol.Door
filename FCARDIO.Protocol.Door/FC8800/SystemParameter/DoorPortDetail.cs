@@ -7,14 +7,24 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.Door.FC8800.SystemParameter
 {
     /// <summary>
-    /// 门端口参数详情_模型
+    /// 互锁参数信息
     /// </summary>
     public class DoorPortDetail
     {
+        /// <summary>
+        /// 最大门数
+        /// </summary>
         public ushort DoorMax { get; set; }
 
+        /// <summary>
+        /// 门的端口
+        /// </summary>
         public byte[] DoorPort { get; set; }
 
+        /// <summary>
+        /// 设置几个门的端口
+        /// </summary>
+        /// <param name="_DoorMax"></param>
         public DoorPortDetail(ushort _DoorMax)
         {
             DoorMax = _DoorMax;

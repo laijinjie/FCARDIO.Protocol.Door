@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetty.Buffers, Version=0.6.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetty.Common">
       <HintPath>..\DLL\DotNetty.Common.dll</HintPath>
     </Reference>

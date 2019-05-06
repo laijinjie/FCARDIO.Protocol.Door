@@ -18,14 +18,28 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Alarm
         public byte Door;
 
         /// <summary>
-        /// 需要解除的报警类型（0 - 非法卡报警、1 - 门磁报警、2 - 胁迫报警、3 - 开门超时报警、4 - 黑名单报警、5 - 匪警报警、6 - 防盗主机报警、7 - 消防报警、8 - 烟雾报警、9 - 关闭电锁出错报警、10 - 防拆报警、11 - 强制关锁报警、12 - 强制开锁报警）   注：9-12 为一体锁或一体机报警类型
+        /// 需要解除的报警类型（Bit0 - 非法卡报警、Bit1 - 门磁报警、Bit2 - 胁迫报警、Bit3 - 开门超时报警、Bit4 - 黑名单报警、Bit5 - 匪警报警、Bit6 - 防盗主机报警、Bit7 - 消防报警、Bit8 - 烟雾报警、Bit9 - 关闭电锁出错报警、Bit10 - 防拆报警、Bit11 - 强制关锁报警、Bit12 - 强制开锁报警）   注：9-12 为一体锁或一体机报警类型
         /// </summary>
         public ushort Alarm;
 
+        /// <summary>
+        /// 构建一个空的实例
+        /// </summary>
+        public CloseAlarm_Parameter() { }
+
+        /// <summary>
+        /// 使用解除报警参数初始化实例
+        /// </summary>
+        /// <param name="_Door">需要解除报警的门</param>
+        /// <param name="_Alarm">需要解除的报警类型</param>
         public CloseAlarm_Parameter(byte _Door, ushort _Alarm)
         {
             Door = _Door;
             Alarm = _Alarm;
+            if (!checkedParameter())
+            {
+                throw new ArgumentException("Alarm Error");
+            }
         }
 
         /// <summary>
@@ -34,7 +48,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Alarm
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if ((Door != 1 && Door != 2 && Door != 3 && Door != 4 && Door != 255) || (Alarm < 0 || Alarm > 12))
+            if (Door != 1 && Door != 2 && Door != 3 && Door != 4 && Door != 255)
             {
                 return false;
             }
@@ -51,7 +65,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Alarm
         }
 
         /// <summary>
-        /// 编码参数
+        /// 对解除报警参数进行编码
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
@@ -73,7 +87,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Alarm
         }
 
         /// <summary>
-        /// 解码参数
+        /// 对解除报警参数进行解码
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)

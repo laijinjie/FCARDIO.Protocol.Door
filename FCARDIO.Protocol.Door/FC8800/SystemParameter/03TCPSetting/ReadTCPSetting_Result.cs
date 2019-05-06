@@ -10,23 +10,8 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
     /// <summary>
     /// 获取TCP参数_结果
     /// </summary>
-    public class ReadTCPSetting_Result : INCommandResult
+    public class ReadTCPSetting_Result : WriteTCPSetting_Parameter, INCommandResult
     {
-        public TCPDetail TCP;
-
-        public ReadTCPSetting_Result(TCPDetail _TCP)
-        {
-            TCP = _TCP;
-        }
-
-        /// <summary>
-        /// 释放资源
-        /// </summary>
-        public void Dispose()
-        {
-            TCP = null;
-
-            return;
-        }
+      
     }
 }

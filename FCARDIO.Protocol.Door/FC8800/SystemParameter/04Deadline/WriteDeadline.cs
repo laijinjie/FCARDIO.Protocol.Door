@@ -12,9 +12,14 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Deadline
     /// <summary>
     /// 设置设备有效期
     /// </summary>
-    public class WriteDeadline : FC8800Command
+    public class WriteDeadline : FC8800Command_WriteParameter
     {
-        public WriteDeadline(INCommandDetail cd, INCommandParameter par) : base(cd, par) { }
+        /// <summary>
+        /// 设置设备有效期 初始化命令
+        /// </summary>
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        /// <param name="par">包含设备有效期</param>
+        public WriteDeadline(INCommandDetail cd, WriteDeadline_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数
@@ -33,7 +38,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Deadline
         }
 
         /// <summary>
-        /// 拼装命令
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
@@ -44,21 +49,6 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Deadline
             var buf = acl.Buffer(model.GetDataLen());
 
             Packet(0x01, 0x07, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
-        }
-
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-            return;
-        }
-
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        protected override void Release1()
-        {
-            return;
         }
     }
 }

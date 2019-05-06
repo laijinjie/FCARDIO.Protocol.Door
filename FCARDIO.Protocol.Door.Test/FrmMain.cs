@@ -28,7 +28,16 @@ namespace FCARDIO.Protocol.Door.Test
         private static HashSet<Form> NodeForms;
         private void Invoke(Action p)
         {
-            Invoke((Delegate)p);
+            try
+            {
+                Invoke((Delegate)p);
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+            
         }
 
         static frmMain()
@@ -580,6 +589,8 @@ namespace FCARDIO.Protocol.Door.Test
                 password = FC8800Command.NULLPassword;
             }
 
+           
+
             var cmdDtl = CommandDetailFactory.CreateDetail(connectType, addr, port,
                 protocolType, sn, password);
 
@@ -776,6 +787,83 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.SystemParameter.ConnectPassword.ReadConnectPassword).FullName, "获取通讯密码");
             mCommandClasss.Add(typeof(FC8800.SystemParameter.ConnectPassword.WriteConnectPassword).FullName, "设置通讯密码");
             mCommandClasss.Add(typeof(FC8800.SystemParameter.ConnectPassword.ResetConnectPassword).FullName, "重置通讯密码");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.TCPSetting.ReadTCPSetting).FullName, "读取TCP参数");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.TCPSetting.WriteTCPSetting).FullName, "写入TCP参数");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.Deadline.ReadDeadline).FullName, "读取设备有效期");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.Deadline.WriteDeadline).FullName, "写入设备有效期");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.Version.ReadVersion).FullName, "读取设备版本号");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.SystemStatus.ReadSystemStatus).FullName, "读取设备运行信息");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadRecordMode).FullName, "读取记录存储方式");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteRecordMode).FullName, "写入记录存储方式");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadKeyboard).FullName, "读取键盘开关");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteKeyboard).FullName, "设置键盘开关");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadLockInteraction).FullName, "读取互锁参数");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteLockInteraction).FullName, "设置互锁参数");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadFireAlarmOption).FullName, "读取消防报警参数");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteFireAlarmOption).FullName, "设置消防报警参数");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadOpenAlarmOption).FullName, "读取匪警报警参数");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteOpenAlarmOption).FullName, "设置匪警报警参数");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadReaderIntervalTime).FullName, "读取读卡间隔时间");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteReaderIntervalTime).FullName, "设置读卡间隔时间");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadBroadcast).FullName, "读取语音段开关");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteBroadcast).FullName, "设置语音段开关");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadReaderCheckMode).FullName, "读取读卡器校验");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteReaderCheckMode).FullName, "设置读卡器校验");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadBuzzer).FullName, "读取主板蜂鸣器");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteBuzzer).FullName, "设置主板蜂鸣器");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadSmogAlarmOption).FullName, "读取烟雾报警参数");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteSmogAlarmOption).FullName, "设置烟雾报警参数");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadEnterDoorLimit).FullName, "读取门内人数限制");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteEnterDoorLimit).FullName, "设置门内人数限制");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadTheftAlarmSetting).FullName, "读取智能防盗主机参数");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteTheftAlarmSetting).FullName, "设置智能防盗主机参数");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadCheckInOut).FullName, "读取防潜回模式");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteCheckInOut).FullName, "设置防潜回模式");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadCardPeriodSpeak).FullName, "读取卡片到期提示");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteCardPeriodSpeak).FullName, "设置卡片到期提示");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadReadCardSpeak).FullName, "读取定时读卡播报语音消息参数");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteReadCardSpeak).FullName, "设置定时读卡播报语音消息参数");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.Watch.ReadWatchState).FullName, "读取实时监控状态");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.Watch.BeginWatch).FullName, "开启实时监控");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.Watch.CloseWatch).FullName, "关闭实时监控");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.Watch.BeginWatch_Broadcast).FullName, "开启实时监控_广播");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.Watch.CloseWatch_Broadcast).FullName, "关闭实时监控_广播");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FireAlarm.ReadFireAlarmState).FullName, "读取消防报警状态");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FireAlarm.SendFireAlarm).FullName, "消防报警通知");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.FireAlarm.CloseFireAlarm).FullName, "解除消防报警");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.SmogAlarm.ReadSmogAlarmState).FullName, "读取烟雾报警状态");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.SmogAlarm.SendSmogAlarm).FullName, "烟雾报警通知");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.SmogAlarm.CloseSmogAlarm).FullName, "解除烟雾报警");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.Alarm.CloseAlarm).FullName, "解除报警");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.WorkStatus.ReadWorkStatus).FullName, "获取设备状态信息");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.WorkStatus.ReadTheftAlarmState).FullName, "获取防盗主机布防状态信息");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.Controller.FormatController).FullName, "初始化数据");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.SearchControltor.SearchControltor).FullName, "自动搜索设备");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.SearchControltor.WriteControltorNetCode).FullName, "修改设备的网络代码");
 
         }
 
@@ -1183,40 +1271,55 @@ namespace FCARDIO.Protocol.Door.Test
         /// <param name="txt">命令需要输出的内容</param>
         public void AddCmdLog(CommandEventArgs e, string txt)
         {
-            INCommandDetail cmdDtl = e.CommandDetail; string sType = e.Command.GetType().FullName;
-            if (_IsClosed) return;
-
-            double Timemill = 0;
-            if (cmdDtl.EndTime == DateTime.MinValue || cmdDtl.BeginTime == DateTime.MinValue)
-            {
-                Timemill = 0;
-            }
-            else
-            {
-                Timemill = (cmdDtl.EndTime - cmdDtl.BeginTime).TotalMilliseconds;//命令耗时毫秒数
-            }
-
-
-
             ListViewItem oItem = new ListViewItem();
-            if (mCommandClasss.ContainsKey(sType))
+
+            INCommandDetail cmdDtl = e?.CommandDetail; string sType = e?.Command.GetType().FullName;
+            if (_IsClosed) return;
+            if(e!=null)
             {
-                oItem.Text = mCommandClasss[sType];
+                double Timemill = 0;
+                if (cmdDtl.EndTime == DateTime.MinValue || cmdDtl.BeginTime == DateTime.MinValue)
+                {
+                    Timemill = 0;
+                }
+                else
+                {
+                    Timemill = (cmdDtl.EndTime - cmdDtl.BeginTime).TotalMilliseconds;//命令耗时毫秒数
+                }
+
+
+
+                
+                if (mCommandClasss.ContainsKey(sType))
+                {
+                    oItem.Text = mCommandClasss[sType];
+                }
+                else
+                {
+                    oItem.Text = sType;
+                }
+
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, txt));
+                string Local, Remote, cType;
+                GetConnectorDetail(cmdDtl.Connector, out cType, out Local, out Remote);
+                OnlineAccess.OnlineAccessCommandDetail fcDtl = cmdDtl as OnlineAccess.OnlineAccessCommandDetail;
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, fcDtl.SN));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Remote));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, DateTime.Now.ToTimeffff()));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Timemill.ToString("0")));
+                oItem.ToolTipText = txt;
             }
             else
             {
-                oItem.Text = sType;
+                oItem.Text = "-";
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, txt));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
+                oItem.ToolTipText = txt;
             }
-
-            oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, txt));
-            string Local, Remote, cType;
-            GetConnectorDetail(cmdDtl.Connector, out cType, out Local, out Remote);
-            OnlineAccess.OnlineAccessCommandDetail fcDtl = cmdDtl as OnlineAccess.OnlineAccessCommandDetail;
-            oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, fcDtl.SN));
-            oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Remote));
-            oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, DateTime.Now.ToTimeffff()));
-            oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Timemill.ToString("0")));
-            oItem.ToolTipText = txt;
+            
             AddCmdItem(oItem);
         }
 

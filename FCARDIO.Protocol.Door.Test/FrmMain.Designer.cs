@@ -137,7 +137,7 @@
             this.txtTCPClientAddr.Name = "txtTCPClientAddr";
             this.txtTCPClientAddr.Size = new System.Drawing.Size(164, 21);
             this.txtTCPClientAddr.TabIndex = 3;
-            this.txtTCPClientAddr.Text = "192.168.1.241";
+            this.txtTCPClientAddr.Text = "192.168.1.66";
             // 
             // label2
             // 
@@ -223,7 +223,7 @@
             this.txtSN.Name = "txtSN";
             this.txtSN.Size = new System.Drawing.Size(164, 21);
             this.txtSN.TabIndex = 7;
-            this.txtSN.Text = "MC-5824T25070244";
+            this.txtSN.Text = "FC-8940H09030001";
             // 
             // label6
             // 
@@ -612,7 +612,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(612, 526);
+            this.tabPage2.Size = new System.Drawing.Size(612, 497);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "命令结果";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -624,7 +624,7 @@
             this.lstCommand.GridLines = true;
             this.lstCommand.Location = new System.Drawing.Point(3, 32);
             this.lstCommand.Name = "lstCommand";
-            this.lstCommand.Size = new System.Drawing.Size(606, 491);
+            this.lstCommand.Size = new System.Drawing.Size(606, 462);
             this.lstCommand.TabIndex = 16;
             this.lstCommand.UseCompatibleStateImageBehavior = false;
             this.lstCommand.View = System.Windows.Forms.View.Details;
@@ -684,7 +684,6 @@
             this.Controls.Add(this.tbEvent);
             this.Controls.Add(this.cmbLocalIP);
             this.Controls.Add(this.lblLocalAddress);
-            this.Controls.Add(this.gbServer);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cmdProtocolType);
@@ -694,6 +693,7 @@
             this.Controls.Add(this.gbTCPClient);
             this.Controls.Add(this.gbSerialPort);
             this.Controls.Add(this.gbUDP);
+            this.Controls.Add(this.gbServer);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

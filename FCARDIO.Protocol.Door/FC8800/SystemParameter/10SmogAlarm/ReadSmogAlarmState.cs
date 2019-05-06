@@ -12,41 +12,39 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SmogAlarm
     /// <summary>
     /// 获取烟雾报警状态
     /// </summary>
-    public class ReadSmogAlarmState : FC8800Command
+    public class ReadSmogAlarmState : FC8800Command_ReadParameter
     {
-        public ReadSmogAlarmState(INCommandDetail cd) : base(cd, null) { }
-
         /// <summary>
-        /// 检查命令参数
+        /// 烟雾报警状态（0 - 未开启报警、1 - 已开启报警）
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        protected override bool CheckCommandParameter(INCommandParameter value)
-        {
-            return true;
-        }
+        public byte SmogAlarmState;
 
         /// <summary>
-        /// 拼装命令
+        /// 获取烟雾报警状态 初始化命令
+        /// </summary>
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        public ReadSmogAlarmState(INCommandDetail cd) : base(cd) { }
+
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
             Packet(0x01, 0x0C, 0x12);
         }
 
+        /// <summary>
+        /// 命令返回值的判断
+        /// </summary>
+        /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            return;
-        }
-
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        protected override void Release1()
-        {
-            return;
+            if (CheckResponse(oPck, 0x01))
+            {
+                var buf = oPck.CmdData;
+                SmogAlarmState = buf.ReadByte();
+                CommandCompleted();
+            }
         }
     }
 }

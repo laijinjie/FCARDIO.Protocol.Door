@@ -12,39 +12,28 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Controller
     /// <summary>
     /// 初始化控制器（控制器初始化后的数据状态：清空所有授权卡，清空所有节假日，清空所有开门时段，清空所有密码，清空所有记录，复位键盘密码，开锁保持时间为3秒）
     /// </summary>
-    public class FormatController : FC8800Command
+    public class FormatController : FC8800Command_ReadParameter
     {
-        public FormatController(INCommandDetail cd) : base(cd, null) { }
-
         /// <summary>
-        /// 检查命令参数
+        /// 初始化控制器 初始化命令
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        protected override bool CheckCommandParameter(INCommandParameter value)
-        {
-            return true;
-        }
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        public FormatController(INCommandDetail cd) : base(cd) { }
+
 
         /// <summary>
-        /// 拼装命令
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
             Packet(0x01, 0x0F, 0x00);
         }
 
+        /// <summary>
+        /// 命令返回值的判断
+        /// </summary>
+        /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-            return;
-        }
-
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        protected override void Release1()
         {
             return;
         }

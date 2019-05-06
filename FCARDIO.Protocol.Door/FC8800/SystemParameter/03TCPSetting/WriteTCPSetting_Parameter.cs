@@ -12,8 +12,20 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
     /// </summary>
     public class WriteTCPSetting_Parameter : AbstractParameter
     {
+        /// <summary>
+        /// TCP参数信息
+        /// </summary>
         public TCPDetail TCP;
 
+        /// <summary>
+        /// 构建一个空的实例
+        /// </summary>
+        public WriteTCPSetting_Parameter() { }
+
+        /// <summary>
+        /// 使用TCP参数信息初始化实例
+        /// </summary>
+        /// <param name="_TCP">TCP参数信息</param>
         public WriteTCPSetting_Parameter(TCPDetail _TCP)
         {
             TCP = _TCP;
@@ -31,6 +43,24 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
         public override bool checkedParameter()
         {
             if (TCP == null)
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(TCP.mMAC) || 
+                string.IsNullOrEmpty(TCP.mIP) ||
+                string.IsNullOrEmpty(TCP.mIPMask) ||
+                string.IsNullOrEmpty(TCP.mIPGateway) ||
+                string.IsNullOrEmpty(TCP.mDNS) ||
+                string.IsNullOrEmpty(TCP.mDNSBackup) ||
+                string.IsNullOrEmpty(TCP.mServerIP) || 
+                string.IsNullOrEmpty(TCP.mServerAddr))
+            {
+                return false;
+            }
+            if (TCP.mTCPPort <= 0 || TCP.mTCPPort > 65535 ||
+                TCP.mUDPPort <= 0 || TCP.mUDPPort > 65535 ||
+                TCP.mServerPort <= 0 || TCP.mServerPort > 65535)
             {
                 return false;
             }
@@ -76,6 +106,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
+            if (TCP == null)
+            {
+                TCP = new TCPDetail();
+            }
             TCP.SetBytes(databuf);
         }
     }
