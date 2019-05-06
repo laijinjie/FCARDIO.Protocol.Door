@@ -50,10 +50,12 @@
     <Reference Include="DotNetty.Transport.Libuv">
       <HintPath>..\DLL\DotNetty.Transport.Libuv.dll</HintPath>
     </Reference>
-    <Reference Include="FCARDIO.Core">
+    <Reference Include="FCARDIO.Core, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\FCARDIO.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FCARDIO.Protocol">
+    <Reference Include="FCARDIO.Protocol, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Logging">

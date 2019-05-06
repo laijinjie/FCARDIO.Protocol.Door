@@ -24,7 +24,8 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _TCP = null;
+            return;
         }
 
         public override IByteBuffer GetBytes(IByteBuffer databuf)

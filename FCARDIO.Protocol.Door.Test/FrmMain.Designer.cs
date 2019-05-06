@@ -541,7 +541,7 @@
             this.txtUDPAddr.Name = "txtUDPAddr";
             this.txtUDPAddr.Size = new System.Drawing.Size(138, 21);
             this.txtUDPAddr.TabIndex = 3;
-            this.txtUDPAddr.Text = "192.168.1.241";
+            this.txtUDPAddr.Text = "255.255.255.255";
             // 
             // label11
             // 
@@ -690,10 +690,10 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmdConnType);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.gbTCPClient);
-            this.Controls.Add(this.gbSerialPort);
             this.Controls.Add(this.gbUDP);
             this.Controls.Add(this.gbServer);
+            this.Controls.Add(this.gbTCPClient);
+            this.Controls.Add(this.gbSerialPort);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

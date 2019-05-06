@@ -65,7 +65,7 @@ namespace FCARDIO.Protocol.Door.Test
             this.dgvAlarmType.Columns[0].HeaderText = "选择";
             this.dgvAlarmType.Columns[0].Width = 38;
             this.dgvAlarmType.Rows.Add(13);
-            this.dgvAlarmType.Columns.Add("","报警类型");
+            this.dgvAlarmType.Columns.Add("", "报警类型");
             this.dgvAlarmType.Columns[1].Width = 130;
             this.dgvAlarmType.Rows[0].Cells[1].Value = "非法卡报警";
             this.dgvAlarmType.Rows[1].Cells[1].Value = "门磁报警";
@@ -81,7 +81,7 @@ namespace FCARDIO.Protocol.Door.Test
             this.dgvAlarmType.Rows[11].Cells[1].Value = "强制关锁报警";
             this.dgvAlarmType.Rows[12].Cells[1].Value = "强制开锁报警";
 
-            this.dgvAlarmType.AllowUserToAddRows = false; 
+            this.dgvAlarmType.AllowUserToAddRows = false;
             for (int i = 0; i < this.dgvAlarmType.Rows.Count; i++)
             {
                 this.dgvAlarmType.Rows[i].Cells[0].Value = true;
@@ -232,7 +232,7 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadTCPSetting_Result result = cmde.Command.getResult() as ReadTCPSetting_Result;
-                
+
                 Invoke(() =>
                 {
                     txtMAC.Text = result.TCP.mMAC;
@@ -2026,14 +2026,14 @@ namespace FCARDIO.Protocol.Door.Test
                 Invoke(() =>
                 {
                     //继电器物理状态
-                    for (int i = 0; i < result.RelayState.DoorMax; i++) 
+                    for (int i = 0; i < result.RelayState.DoorMax; i++)
                     {
                         if (result.RelayState.DoorPort[i] == 0)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[7].Value = RelayState1Str;
-                            DoorInfo.Append("  门" + (i + 1) + " 物理状态：" + RelayState1Str +  "");
+                            DoorInfo.Append("  门" + (i + 1) + " 物理状态：" + RelayState1Str + "");
                         }
-                        else if(result.RelayState.DoorPort[i] == 1)
+                        else if (result.RelayState.DoorPort[i] == 1)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[7].Value = RelayState2Str;
                             DoorInfo.Append("  门" + (i + 1) + " 物理状态：" + RelayState1Str + "");
@@ -2063,7 +2063,7 @@ namespace FCARDIO.Protocol.Door.Test
                     mMainForm.AddCmdLog(cmde, DoorInfo.ToString());
                     DoorInfo.Clear();
                     //门磁开关
-                    for (int i = 0; i < result.DoorState.DoorMax; i++) 
+                    for (int i = 0; i < result.DoorState.DoorMax; i++)
                     {
                         if (result.DoorState.DoorPort[i] == 0)
                         {
@@ -2387,10 +2387,27 @@ namespace FCARDIO.Protocol.Door.Test
         #endregion
 
         #region 搜索设备
+        private Random mRandom = new Random();
+
+        /// <summary>
+        /// 获取一个随机数
+        /// </summary>
+        /// <param name="iMin"></param>
+        /// <param name="iMax"></param>
+        /// <returns></returns>
+        private int GetRandomNum(int iMin, int iMax)
+        {
+            var rnd = mRandom.NextDouble();
+            return iMin + (int)(rnd * (iMax - iMin + 1));
+        }
+
         private void BtnSearchEquptOnNetNum_Click(object sender, EventArgs e)
         {
-            ushort NetCode = 1234;
+            ushort NetCode = (ushort)GetRandomNum(100, 60000);
             var cmdDtl = mMainForm.GetCommandDetail();
+            cmdDtl.Timeout = 4000;
+            cmdDtl.RestartCount = 0;
+            int ReSend = 0;
             if (cmdDtl == null) return;
 
             SearchControltor_Parameter par = new SearchControltor_Parameter(NetCode);
@@ -2401,7 +2418,7 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 SearchControltor_Result result = cmde.Command.getResult() as SearchControltor_Result;
-                string log ="SN:" + result.SN + "," + DebugTCPDetail(result.TCP);
+                string log = "SN:" + result.SN + "," + DebugTCPDetail(result.TCP);
 
                 mMainForm.AddCmdLog(cmde, log);
 
@@ -2409,13 +2426,26 @@ namespace FCARDIO.Protocol.Door.Test
                 Invoke(() =>
                 {
                     var tmpCmdDtl = mMainForm.GetCommandDetail();
+                    tmpCmdDtl.Timeout = 2000;
                     OnlineAccessCommandDetail detail = tmpCmdDtl as OnlineAccessCommandDetail;
                     detail.SN = result.SN;
                     WriteControltorNetCode writeCmd = new WriteControltorNetCode(tmpCmdDtl, par);
                     mMainForm.AddCommand(writeCmd);
                 });
-                
+
             };
+            //超时
+            cmdDtl.CommandTimeout += (sdr1, cmde1) =>
+             {
+                 ReSend += 1;
+                 if(ReSend < 3)
+                 {
+                     SearchControltor recmd = new SearchControltor(cmde1.CommandDetail, par);
+                     mMainForm.AddCommand(recmd);
+                 }
+                 
+             };
+
 
             mMainForm.AddCommand(cmd);
         }

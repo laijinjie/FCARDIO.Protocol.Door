@@ -60,8 +60,8 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
 
                 _Result = rst;
 
-                _Connector.FireCommandCompleteEvent(_EventArgs);
-                oPck.Dispose();
+                _Connector.fireCommandCompleteEventNotRemoveCommand(_EventArgs);
+
 
                                 
             }

@@ -767,7 +767,13 @@ FCARDIO.Core
 </member>
 <member name="M:FCARDIO.Core.Command.INFireCommandEvent.FireCommandCompleteEvent(FCARDIO.Core.Command.CommandEventArgs)">
  <summary>
- 当命令完成时，会触发此函数回调
+ 当命令完成时，并将当前命令从队列中移除,会触发此函数回调
+ </summary>
+ <param name="e">事件参数，包含此事件所代表的命令信息</param>
+</member>
+<member name="M:FCARDIO.Core.Command.INFireCommandEvent.fireCommandCompleteEventNotRemoveCommand(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 触发命令完成消息 ，但是并不移除当前命令
  </summary>
  <param name="e">事件参数，包含此事件所代表的命令信息</param>
 </member>
@@ -1284,7 +1290,12 @@ FCARDIO.Core
 </member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.fireCommandCompleteEvent(FCARDIO.Core.Command.CommandEventArgs)">
  <summary>
- 触发命令完成消息
+ 触发命令完成消息，并将当前命令从队列中移除
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.fireCommandCompleteEventNotRemoveCommand(FCARDIO.Core.Command.CommandEventArgs)">
+ <summary>
+ 触发命令完成消息 ，但是并不移除当前命令
  </summary>
 </member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.fireCommandProcessEvent(FCARDIO.Core.Command.CommandEventArgs)">

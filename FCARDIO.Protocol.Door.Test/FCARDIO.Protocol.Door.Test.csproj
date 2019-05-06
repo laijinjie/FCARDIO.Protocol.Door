@@ -40,10 +40,12 @@
     <Reference Include="DotNetty.Common">
       <HintPath>..\DLL\DotNetty.Common.dll</HintPath>
     </Reference>
-    <Reference Include="FCARDIO.Core">
+    <Reference Include="FCARDIO.Core, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\FCARDIO.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FCARDIO.Protocol">
+    <Reference Include="FCARDIO.Protocol, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -188,6 +190,10 @@
     <ProjectReference Include="..\FCARDIO.Protocol.Door\FCARDIO.Protocol.Door.csproj">
       <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
       <Name>FCARDIO.Protocol.Door</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FCARDIO.Protocol.Util\FCARDIO.Protocol.Util.csproj">
+      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
+      <Name>FCARDIO.Protocol.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

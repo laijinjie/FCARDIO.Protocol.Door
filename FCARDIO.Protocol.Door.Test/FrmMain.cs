@@ -37,7 +37,7 @@ namespace FCARDIO.Protocol.Door.Test
 
                 return;
             }
-            
+
         }
 
         static frmMain()
@@ -225,6 +225,11 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void mAllocator_CommandTimeout(object sender, CommandEventArgs e)
         {
+            if (e.Command.GetType().FullName == typeof(FC8800.SystemParameter.SearchControltor.SearchControltor).FullName)
+            {
+                AddCmdLog(e, "搜索完毕");
+                return;
+            }
             AddCmdLog(e, "命令超时");
         }
 
@@ -244,6 +249,10 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void mAllocator_CommandCompleteEvent(object sender, CommandEventArgs e)
         {
+            if (e.Command.GetType().FullName == typeof(FC8800.SystemParameter.SearchControltor.SearchControltor).FullName)
+            {
+                return;
+            }
             mAllocator_CommandProcessEvent(sender, e);
             AddCmdLog(e, "命令完成");
             string cName = e.Command.GetType().FullName;
@@ -589,7 +598,7 @@ namespace FCARDIO.Protocol.Door.Test
                 password = FC8800Command.NULLPassword;
             }
 
-           
+
 
             var cmdDtl = CommandDetailFactory.CreateDetail(connectType, addr, port,
                 protocolType, sn, password);
@@ -1275,7 +1284,7 @@ namespace FCARDIO.Protocol.Door.Test
 
             INCommandDetail cmdDtl = e?.CommandDetail; string sType = e?.Command.GetType().FullName;
             if (_IsClosed) return;
-            if(e!=null)
+            if (e != null)
             {
                 double Timemill = 0;
                 if (cmdDtl.EndTime == DateTime.MinValue || cmdDtl.BeginTime == DateTime.MinValue)
@@ -1289,7 +1298,7 @@ namespace FCARDIO.Protocol.Door.Test
 
 
 
-                
+
                 if (mCommandClasss.ContainsKey(sType))
                 {
                     oItem.Text = mCommandClasss[sType];
@@ -1319,7 +1328,7 @@ namespace FCARDIO.Protocol.Door.Test
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
                 oItem.ToolTipText = txt;
             }
-            
+
             AddCmdItem(oItem);
         }
 
