@@ -8,13 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Time
+namespace FCARDIO.Protocol.Door.FC8800.Time
 {
     /// <summary>
     /// 将电脑的最新时间写入到控制器中
     /// </summary>
-    public class WriteTime : FC8800Command
+    public class WriteTime : FC8800Command_WriteParameter
     {
+        /// <summary>
+        /// 将电脑的最新时间写入到控制器中
+        /// </summary>
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public WriteTime(INCommandDetail cd) : base(cd, null) { }
 
         /// <summary>
@@ -28,7 +32,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Time
         }
 
         /// <summary>
-        /// 拼装命令
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
@@ -42,22 +46,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Time
 
             buf.WriteBytes(Datebuf);
 
-            Packet(0x02, 0x02, 0x00, 0x07, buf);
-        }
-
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-            return;
-        }
-
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        protected override void Release1()
-        {
-            return;
+            //Packet(0x02, 0x02, 0x00, 0x07, buf);
         }
     }
 }

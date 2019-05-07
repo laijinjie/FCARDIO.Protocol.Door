@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace FCARDIO.Protocol.Door.Test
 {
-    public partial class frmDoor : Form
+    public partial class frmDoor : frmNodeForm
     {
 
         private static object lockobj = new object();

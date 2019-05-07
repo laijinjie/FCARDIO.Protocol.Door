@@ -280,5 +280,52 @@ namespace FCARDIO.Protocol.Util
             string format = date.ToString("HH:mm:ss.sss");
             return format;
         }
+
+        /// <summary>
+        /// BCD格式日期字节数组转换为日期类型
+        /// </summary>
+        /// <param name="btTime"></param>
+        /// <returns></returns>
+        public static DateTime BCDTimeToDate_ssmmHHddMMWWyy(byte[] btTime)
+        {
+            btTime = ByteUtil.BCDToByte(btTime);
+            int year = btTime[6];
+            int month = btTime[4];
+            int dayOfMonth = btTime[3];
+            int hourOfDay = btTime[2];
+            int minute = btTime[1];
+            int second = btTime[0];
+
+
+            if (year > 99)
+            {
+                return DateTime.Now;
+            }
+            if (month == 0 || month > 12)
+            {
+                return DateTime.Now;
+            }
+            if (dayOfMonth == 0 || dayOfMonth > 31)
+            {
+                return DateTime.Now;
+            }
+            if (hourOfDay > 23)
+            {
+                return DateTime.Now;
+            }
+
+            if (minute > 59)
+            {
+                return DateTime.Now;
+            }
+
+            if (second > 59)
+            {
+                return DateTime.Now;
+            }
+
+            DateTime dTime = new DateTime(2000 + year, month, dayOfMonth, hourOfDay, minute, second);
+            return dTime;
+        }
     }
 }

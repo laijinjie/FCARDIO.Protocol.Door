@@ -32,6 +32,11 @@ using FCARDIO.Protocol.Door.FC8800.SystemParameter.TheftFortify;
 using FCARDIO.Protocol.Door.FC8800.SystemParameter.BalcklistAlarmOption;
 using FCARDIO.Protocol.Door.FC8800.SystemParameter.ExploreLockMode;
 using FCARDIO.Protocol.Door.FC8800.SystemParameter.Check485Line;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPClient;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.CardDeadlineTipDay;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.ControlPanelTamperAlarm;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.HTTPPageLandingSwitch;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.LawfulCardReleaseAlarmSwitch;
 
 namespace FCARDIO.Protocol.Door.Test
 {
@@ -2733,6 +2738,289 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             WriteCheck485Line cmd = new WriteCheck485Line(cmdDtl, new WriteCheck485Line_Parameter(use));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region TCP客户端操作
+        private void BtnReadTCPClientList_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadTCPClientList cmd = new ReadTCPClientList(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                Invoke(() =>
+                {
+                    TCPClient_Result result = cmde.Command.getResult() as TCPClient_Result;
+                    this.dgvTCPClientList.AllowUserToAddRows = false;
+                    this.dgvTCPClientList.Rows.Clear();
+                    if (result.tCPClientDetail.TCPClientNum > 0)
+                    {
+                        this.dgvTCPClientList.Rows.Add(result.tCPClientDetail.TCPClientNum);
+                    }
+                    for (int i = 0; i < result.tCPClientDetail.TCPClientNum; i++)
+                    {
+                        this.dgvTCPClientList.Rows[i].Cells[1].Value = i + 1;
+                        this.dgvTCPClientList.Rows[i].Cells[2].Value = result.tCPClientDetail.IP[i];
+                        this.dgvTCPClientList.Rows[i].Cells[3].Value = result.tCPClientDetail.TCPPort[i];
+                        if (result.tCPClientDetail.ConnectTime[i].Year != 1)
+                        {
+                            this.dgvTCPClientList.Rows[i].Cells[4].Value = result.tCPClientDetail.ConnectTime[i];
+                        }
+                    }
+                    mMainForm.AddCmdLog(cmde, "已连接客户端数量：" + result.tCPClientDetail.TCPClientNum);
+                });
+            };
+        }
+
+        private void BtnStopTCPClientConnection_Click(object sender, EventArgs e)
+        {
+            TCPClientDetail tCPClientDetail = new TCPClientDetail();
+            if (this.dgvTCPClientList.Rows.Count > 0)
+            {
+                tCPClientDetail.IP = new string[this.dgvTCPClientList.Rows.Count];
+                tCPClientDetail.TCPPort = new ushort[this.dgvTCPClientList.Rows.Count];
+                for (int i = 0; i < this.dgvTCPClientList.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(this.dgvTCPClientList.Rows[i].Cells[0].EditedFormattedValue))
+                    {
+                        tCPClientDetail.IP[0] = this.dgvTCPClientList.Rows[i].Cells[2].Value.ToString();
+                        tCPClientDetail.TCPPort[0] = Convert.ToUInt16(this.dgvTCPClientList.Rows[i].Cells[3].Value);
+                        break;
+                    }
+                }
+                if (string.IsNullOrEmpty(tCPClientDetail.IP[0])) //没有选择，默认选择列表第一条数据进行断开连接
+                {
+                    tCPClientDetail.IP[0] = this.dgvTCPClientList.Rows[0].Cells[2].Value.ToString();
+                    tCPClientDetail.TCPPort[0] = Convert.ToUInt16(this.dgvTCPClientList.Rows[0].Cells[3].Value);
+                }
+            }
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            StopTCPClientConnection cmd = new StopTCPClientConnection(cmdDtl, new TCPClient_Parameter(tCPClientDetail));
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                Invoke(() =>
+                {
+                    string TCPClientInfo = "IP：" + tCPClientDetail.IP[0] +
+                                           " 端口：" + tCPClientDetail.TCPPort[0];
+                    mMainForm.AddCmdLog(cmde, TCPClientInfo);
+                });
+            };
+        }
+
+        private void BtnStopAllTCPClientConnection_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            //cmdDtl.Timeout = 5000;
+            if (cmdDtl == null) return;
+            StopAllTCPClientConnection cmd = new StopAllTCPClientConnection(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddCmdLog(cmde, "停止所有连接成功！");
+            };
+        }
+        #endregion
+
+        #region 有效期即将过期提醒时间
+        private void BtnReadCardDeadlineTipDay_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadCardDeadlineTipDay cmd = new ReadCardDeadlineTipDay(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadCardDeadlineTipDay_Result result = cmde.Command.getResult() as ReadCardDeadlineTipDay_Result;
+                string TipDayInfo = string.Empty;
+                Invoke(() =>
+                {
+                    cbxCardDeadlineTipDay.Text = result.Day == 0 ? "禁用" : ""+ result.Day + "";
+                });
+                if (result.Day == 0)
+                {
+                    TipDayInfo = "禁用提前提醒卡片即将过期";
+                }
+                else
+                {
+                    TipDayInfo = "卡片有效期即将过期时，刷卡时提前：" + result.Day + "天提醒";
+                }
+                mMainForm.AddCmdLog(cmde, TipDayInfo);
+            };
+        }
+
+        private void BtnWriteCardDeadlineTipDay_Click(object sender, EventArgs e)
+        {
+            string reg = @"^\+?[0-9]*$";
+            if (!Regex.IsMatch(cbxCardDeadlineTipDay.Text.Trim(), reg) || string.IsNullOrEmpty(cbxCardDeadlineTipDay.Text.Trim()))
+            {
+                if (cbxCardDeadlineTipDay.Text != "禁用")
+                {
+                    MsgErr("请输入正确提前天数！");
+                    return;
+                }
+            }
+            if (Regex.IsMatch(cbxCardDeadlineTipDay.Text.Trim(), reg))
+            {
+                if (Convert.ToUInt32(cbxCardDeadlineTipDay.Text) < 0 || Convert.ToUInt32(cbxCardDeadlineTipDay.Text) > 255)
+                {
+                    MsgErr("请输入正确提前天数！");
+                    return;
+                }
+            }
+
+            byte tipDay = 0;
+            string tipDayInfo = cbxCardDeadlineTipDay.Text;
+            if (tipDayInfo == "禁用")
+            {
+                tipDay = 0;
+            }
+            else
+            {
+                tipDay = Convert.ToByte(tipDayInfo);
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteCardDeadlineTipDay cmd = new WriteCardDeadlineTipDay(cmdDtl, new WriteCardDeadlineTipDay_Parameter(tipDay));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 控制板防拆报警功能
+        private void BtnReadrBtnControlPanelTamperAlarm_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadControlPanelTamperAlarm cmd = new ReadControlPanelTamperAlarm(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadControlPanelTamperAlarm_Result result = cmde.Command.getResult() as ReadControlPanelTamperAlarm_Result;
+                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //控制板防拆报警开关是否启用
+                Invoke(() =>
+                {
+                    if (result.Use == 0)
+                    {
+                        rBtnNoControlPanelTamperAlarm.Checked = true;
+                    }
+                    else
+                    {
+                        rBtnControlPanelTamperAlarm.Checked = true;
+                    }
+                });
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriterBtnControlPanelTamperAlarm_Click(object sender, EventArgs e)
+        {
+            byte use = 0;
+            if (rBtnControlPanelTamperAlarm.Checked == true)
+            {
+                use = 1;
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteControlPanelTamperAlarm cmd = new WriteControlPanelTamperAlarm(cmdDtl, new WriteControlPanelTamperAlarm_Parameter(use));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region HTTP网页登陆开关
+        private void BtnReadHTTPPageLandingSwitch_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadHTTPPageLandingSwitch cmd = new ReadHTTPPageLandingSwitch(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadHTTPPageLandingSwitch_Result result = cmde.Command.getResult() as ReadHTTPPageLandingSwitch_Result;
+                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //HTTP网页登陆开关是否启用
+                Invoke(() =>
+                {
+                    if (result.Use == 0)
+                    {
+                        rBtnNoHTTPPageLandingSwitch.Checked = true;
+                    }
+                    else
+                    {
+                        rBtnHTTPPageLandingSwitch.Checked = true;
+                    }
+                });
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriteHTTPPageLandingSwitch_Click(object sender, EventArgs e)
+        {
+            byte use = 0;
+            if (rBtnHTTPPageLandingSwitch.Checked == true)
+            {
+                use = 1;
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteHTTPPageLandingSwitch cmd = new WriteHTTPPageLandingSwitch(cmdDtl, new WriteHTTPPageLandingSwitch_Parameter(use));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 开门超时报警时，合法卡解除报警开关
+        private void BtnReadLawfulCardReleaseAlarmSwitch_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadLawfulCardReleaseAlarmSwitch cmd = new ReadLawfulCardReleaseAlarmSwitch(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadLawfulCardReleaseAlarmSwitch_Result result = cmde.Command.getResult() as ReadLawfulCardReleaseAlarmSwitch_Result;
+                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //合法卡解除报警开关是否启用
+                Invoke(() =>
+                {
+                    if (result.Use == 0)
+                    {
+                        rBtnNoLawfulCardReleaseAlarmSwitch.Checked = true;
+                    }
+                    else
+                    {
+                        rBtnLawfulCardReleaseAlarmSwitch.Checked = true;
+                    }
+                });
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriteLawfulCardReleaseAlarmSwitch_Click(object sender, EventArgs e)
+        {
+            byte use = 0;
+            if (rBtnLawfulCardReleaseAlarmSwitch.Checked == true)
+            {
+                use = 1;
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteLawfulCardReleaseAlarmSwitch cmd = new WriteLawfulCardReleaseAlarmSwitch(cmdDtl, new WriteLawfulCardReleaseAlarmSwitch_Parameter(use));
             mMainForm.AddCommand(cmd);
         }
         #endregion

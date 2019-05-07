@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotNetty.Buffers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -205,6 +206,82 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
             int iValue = uByte(iNum);
             iValue = (iValue / 10) * 16 + (iValue % 10);
             return (byte)iValue;
+        }
+
+        /// <summary>
+        /// 字节转换成IP格式字符串
+        /// </summary>
+        /// <param name="data">包含参数结构的缓冲区</param>
+        /// <param name="strbuilder">字符串</param>
+        public static void ReadIPByByteBuf(IByteBuffer data, StringBuilder strbuilder)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                strbuilder.Append(data.ReadByte());
+                if (i < 3)
+                {
+                    strbuilder.Append(".");
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// IP地址及与之相同格式的结构转换成数组字节
+        /// </summary>
+        /// <param name="IP"></param>
+        /// <param name="buf"></param>
+        public static void SaveIPToByteBuf(string IP, IByteBuffer buf)
+        {
+            if (!CheckIP(IP))
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    buf.WriteByte(0);
+                }
+                return;
+            }
+            String[] ipList = IP.Split('.');
+            int iLen = ipList.Length;
+            for (int i = 0; i < iLen; i++)
+            {
+                buf.WriteByte(Convert.ToInt32(ipList[i]));
+            }
+        }
+        /// <summary>
+        /// 检查IP地址及与之相同格式数据
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool CheckIP(string ip)
+        {
+            if (string.IsNullOrEmpty(ip))
+            {
+                return false;
+            }
+            string[] ipList = ip.Split('.');
+            int iLen = ipList.Length;
+            if (iLen != 4)
+            {
+                return false;
+            }
+            try
+            {
+                int iValue;
+                for (int i = 0; i < iLen; i++)
+                {
+                    iValue = Convert.ToInt32(ipList[i]);
+                    if (iValue < 0 || iValue > 255)
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

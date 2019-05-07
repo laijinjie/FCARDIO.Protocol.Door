@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Time
+namespace FCARDIO.Protocol.Door.FC8800.Time
 {
     /// <summary>
     /// 校时广播

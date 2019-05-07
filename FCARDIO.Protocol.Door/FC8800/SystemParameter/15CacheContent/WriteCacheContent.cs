@@ -1,25 +1,23 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FCARDIO.Core.Command;
 
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Check485Line
+namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.CacheContent
 {
     /// <summary>
-    /// 设置485线路反接检测开关
+    /// 设置缓存区内容
     /// </summary>
-    public class WriteCheck485Line : FC8800Command_WriteParameter
+    public class WriteCacheContent : FC8800Command_WriteParameter
     {
         /// <summary>
-        /// 设置485线路反接检测开关
+        /// 设置缓存区内容 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        /// <param name="par">包含485线路反接检测开关参数</param>
-        public WriteCheck485Line(INCommandDetail cd, WriteCheck485Line_Parameter par) : base(cd, par) { }
+        /// <param name="par">包含缓存区内容</param>
+        public WriteCacheContent(INCommandDetail cd, CacheContent_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数
@@ -28,7 +26,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Check485Line
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            WriteCheck485Line_Parameter model = value as WriteCheck485Line_Parameter;
+            CacheContent_Parameter model = value as CacheContent_Parameter;
             if (model == null)
             {
                 return false;
@@ -42,13 +40,13 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Check485Line
         /// </summary>
         protected override void CreatePacket0()
         {
-            WriteCheck485Line_Parameter model = _Parameter as WriteCheck485Line_Parameter;
+            CacheContent_Parameter model = _Parameter as CacheContent_Parameter;
 
             var acl = _Connector.GetByteBufAllocator();
 
             var buf = acl.Buffer(model.GetDataLen());
 
-            Packet(0x01, 0x13, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            Packet(0x01, 0xF0, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
     }
 }

@@ -891,6 +891,25 @@ namespace FCARDIO.Protocol.Door.Test
 
             mCommandClasss.Add(typeof(FC8800.SystemParameter.Check485Line.ReadCheck485Line).FullName, "读取485线路反接检测开关");
             mCommandClasss.Add(typeof(FC8800.SystemParameter.Check485Line.WriteCheck485Line).FullName, "设置485线路反接检测开关");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.TCPClient.ReadTCPClientList).FullName, "读取TCP客户端列表");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.TCPClient.StopTCPClientConnection).FullName, "停止TCP客户端连接");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.TCPClient.StopAllTCPClientConnection).FullName, "停止所有客户端连接");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.CardDeadlineTipDay.ReadCardDeadlineTipDay).FullName, "读取有效期提醒阀值");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.CardDeadlineTipDay.WriteCardDeadlineTipDay).FullName, "设置有效期提醒阀值");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.ControlPanelTamperAlarm.ReadControlPanelTamperAlarm).FullName, "读取控制板防拆报警功能开关");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.ControlPanelTamperAlarm.WriteControlPanelTamperAlarm).FullName, "设置控制板防拆报警功能开关");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.HTTPPageLandingSwitch.ReadHTTPPageLandingSwitch).FullName, "读取HTTP网页登陆开关");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.HTTPPageLandingSwitch.WriteHTTPPageLandingSwitch).FullName, "设置HTTP网页登陆开关");
+
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.LawfulCardReleaseAlarmSwitch.ReadLawfulCardReleaseAlarmSwitch).FullName, "读取合法卡解除报警开关");
+            mCommandClasss.Add(typeof(FC8800.SystemParameter.LawfulCardReleaseAlarmSwitch.WriteLawfulCardReleaseAlarmSwitch).FullName, "设置合法卡解除报警开关");
+
+            mCommandClasss.Add(typeof(FC8800.Time.ReadTime).FullName, "读系统时间");
+            mCommandClasss.Add(typeof(FC8800.Time.WriteTime).FullName, "写系统时间");
         }
 
 

@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSN = new System.Windows.Forms.TextBox();
             this.butReadSN = new System.Windows.Forms.Button();
@@ -72,22 +73,73 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.label76 = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.rBtnNoHTTPPageLandingSwitch = new System.Windows.Forms.RadioButton();
+            this.rBtnHTTPPageLandingSwitch = new System.Windows.Forms.RadioButton();
+            this.btnReadHTTPPageLandingSwitch = new System.Windows.Forms.Button();
+            this.btnWriteHTTPPageLandingSwitch = new System.Windows.Forms.Button();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.label71 = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.rBtnNoControlPanelTamperAlarm = new System.Windows.Forms.RadioButton();
+            this.rBtnControlPanelTamperAlarm = new System.Windows.Forms.RadioButton();
+            this.btnReadrBtnControlPanelTamperAlarm = new System.Windows.Forms.Button();
+            this.btnWriterBtnControlPanelTamperAlarm = new System.Windows.Forms.Button();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.label72 = new System.Windows.Forms.Label();
+            this.cbxCardDeadlineTipDay = new System.Windows.Forms.ComboBox();
+            this.btnWriteCardDeadlineTipDay = new System.Windows.Forms.Button();
+            this.btnReadCardDeadlineTipDay = new System.Windows.Forms.Button();
+            this.label75 = new System.Windows.Forms.Label();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.label74 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.rBtnNoCheck485Line = new System.Windows.Forms.RadioButton();
             this.rBtnCheck485Line = new System.Windows.Forms.RadioButton();
-            this.btnWriteCheck485Line = new System.Windows.Forms.Button();
             this.btnReadCheck485Line = new System.Windows.Forms.Button();
+            this.btnWriteCheck485Line = new System.Windows.Forms.Button();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.label73 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.rBtnNoExploreLockMode = new System.Windows.Forms.RadioButton();
             this.rBtnExploreLockMode = new System.Windows.Forms.RadioButton();
-            this.btnWriteExploreLockMode = new System.Windows.Forms.Button();
             this.btnReadExploreLockMode = new System.Windows.Forms.Button();
+            this.btnWriteExploreLockMode = new System.Windows.Forms.Button();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.panel9 = new System.Windows.Forms.Panel();
             this.rBtnNoBalcklistAlarm = new System.Windows.Forms.RadioButton();
             this.rBtnBalcklistAlarm = new System.Windows.Forms.RadioButton();
-            this.btnWriteBalcklistAlarmOption = new System.Windows.Forms.Button();
-            this.btnReadBalcklistAlarmOption = new System.Windows.Forms.Button();
             this.label70 = new System.Windows.Forms.Label();
+            this.btnReadBalcklistAlarmOption = new System.Windows.Forms.Button();
+            this.btnWriteBalcklistAlarmOption = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.btnReadTCPClientList = new System.Windows.Forms.Button();
+            this.btnStopTCPClientConnection = new System.Windows.Forms.Button();
+            this.dgvTCPClientList = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnStopAllTCPClientConnection = new System.Windows.Forms.Button();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.txtAllNum = new System.Windows.Forms.TextBox();
+            this.label66 = new System.Windows.Forms.Label();
+            this.dgvEquipmentStatusInfo = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbSWatchState = new System.Windows.Forms.Label();
+            this.btnWorkStatusInfo = new System.Windows.Forms.Button();
+            this.label65 = new System.Windows.Forms.Label();
             this.tabSysParameterPage = new System.Windows.Forms.TabPage();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.label68 = new System.Windows.Forms.Label();
@@ -283,35 +335,34 @@
             this.btnWriteRecordMode = new System.Windows.Forms.Button();
             this.btnReadRecordMode = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.txtAllNum = new System.Windows.Forms.TextBox();
-            this.label66 = new System.Windows.Forms.Label();
-            this.dgvEquipmentStatusInfo = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbSWatchState = new System.Windows.Forms.Label();
-            this.btnWorkStatusInfo = new System.Windows.Forms.Button();
-            this.label65 = new System.Windows.Forms.Label();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.label73 = new System.Windows.Forms.Label();
-            this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.label74 = new System.Windows.Forms.Label();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.label77 = new System.Windows.Forms.Label();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.rBtnNoLawfulCardReleaseAlarmSwitch = new System.Windows.Forms.RadioButton();
+            this.rBtnLawfulCardReleaseAlarmSwitch = new System.Windows.Forms.RadioButton();
+            this.btnReadLawfulCardReleaseAlarmSwitch = new System.Windows.Forms.Button();
+            this.btnWriteLawfulCardReleaseAlarmSwitch = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gbPassword.SuspendLayout();
             this.gbTCP.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox19.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.groupBox18.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.groupBox17.SuspendLayout();
+            this.groupBox15.SuspendLayout();
             this.panel11.SuspendLayout();
+            this.groupBox14.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTCPClientList)).BeginInit();
+            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentStatusInfo)).BeginInit();
             this.tabSysParameterPage.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -334,12 +385,8 @@
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentStatusInfo)).BeginInit();
-            this.groupBox13.SuspendLayout();
-            this.groupBox14.SuspendLayout();
-            this.groupBox15.SuspendLayout();
+            this.groupBox20.SuspendLayout();
+            this.panel14.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -755,9 +802,9 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabSysParameterPage);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -767,6 +814,10 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.groupBox20);
+            this.tabPage3.Controls.Add(this.groupBox19);
+            this.tabPage3.Controls.Add(this.groupBox18);
+            this.tabPage3.Controls.Add(this.groupBox17);
             this.tabPage3.Controls.Add(this.groupBox15);
             this.tabPage3.Controls.Add(this.groupBox14);
             this.tabPage3.Controls.Add(this.groupBox13);
@@ -777,6 +828,258 @@
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "扩展功能";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox19
+            // 
+            this.groupBox19.Controls.Add(this.label76);
+            this.groupBox19.Controls.Add(this.panel13);
+            this.groupBox19.Controls.Add(this.btnReadHTTPPageLandingSwitch);
+            this.groupBox19.Controls.Add(this.btnWriteHTTPPageLandingSwitch);
+            this.groupBox19.Location = new System.Drawing.Point(366, 159);
+            this.groupBox19.Name = "groupBox19";
+            this.groupBox19.Size = new System.Drawing.Size(318, 66);
+            this.groupBox19.TabIndex = 94;
+            this.groupBox19.TabStop = false;
+            this.groupBox19.Text = "HTTP网页登陆开关";
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Location = new System.Drawing.Point(7, 25);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(0, 12);
+            this.label76.TabIndex = 77;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.rBtnNoHTTPPageLandingSwitch);
+            this.panel13.Controls.Add(this.rBtnHTTPPageLandingSwitch);
+            this.panel13.Location = new System.Drawing.Point(13, 25);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(144, 21);
+            this.panel13.TabIndex = 88;
+            // 
+            // rBtnNoHTTPPageLandingSwitch
+            // 
+            this.rBtnNoHTTPPageLandingSwitch.AutoSize = true;
+            this.rBtnNoHTTPPageLandingSwitch.Location = new System.Drawing.Point(0, 3);
+            this.rBtnNoHTTPPageLandingSwitch.Name = "rBtnNoHTTPPageLandingSwitch";
+            this.rBtnNoHTTPPageLandingSwitch.Size = new System.Drawing.Size(59, 16);
+            this.rBtnNoHTTPPageLandingSwitch.TabIndex = 51;
+            this.rBtnNoHTTPPageLandingSwitch.Text = "不启用";
+            this.rBtnNoHTTPPageLandingSwitch.UseVisualStyleBackColor = true;
+            // 
+            // rBtnHTTPPageLandingSwitch
+            // 
+            this.rBtnHTTPPageLandingSwitch.AutoSize = true;
+            this.rBtnHTTPPageLandingSwitch.Checked = true;
+            this.rBtnHTTPPageLandingSwitch.Location = new System.Drawing.Point(72, 3);
+            this.rBtnHTTPPageLandingSwitch.Name = "rBtnHTTPPageLandingSwitch";
+            this.rBtnHTTPPageLandingSwitch.Size = new System.Drawing.Size(47, 16);
+            this.rBtnHTTPPageLandingSwitch.TabIndex = 52;
+            this.rBtnHTTPPageLandingSwitch.TabStop = true;
+            this.rBtnHTTPPageLandingSwitch.Text = "启用";
+            this.rBtnHTTPPageLandingSwitch.UseVisualStyleBackColor = true;
+            // 
+            // btnReadHTTPPageLandingSwitch
+            // 
+            this.btnReadHTTPPageLandingSwitch.Location = new System.Drawing.Point(177, 25);
+            this.btnReadHTTPPageLandingSwitch.Name = "btnReadHTTPPageLandingSwitch";
+            this.btnReadHTTPPageLandingSwitch.Size = new System.Drawing.Size(48, 23);
+            this.btnReadHTTPPageLandingSwitch.TabIndex = 86;
+            this.btnReadHTTPPageLandingSwitch.Text = "读取";
+            this.btnReadHTTPPageLandingSwitch.UseVisualStyleBackColor = true;
+            this.btnReadHTTPPageLandingSwitch.Click += new System.EventHandler(this.BtnReadHTTPPageLandingSwitch_Click);
+            // 
+            // btnWriteHTTPPageLandingSwitch
+            // 
+            this.btnWriteHTTPPageLandingSwitch.Location = new System.Drawing.Point(231, 25);
+            this.btnWriteHTTPPageLandingSwitch.Name = "btnWriteHTTPPageLandingSwitch";
+            this.btnWriteHTTPPageLandingSwitch.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteHTTPPageLandingSwitch.TabIndex = 87;
+            this.btnWriteHTTPPageLandingSwitch.Text = "写入";
+            this.btnWriteHTTPPageLandingSwitch.UseVisualStyleBackColor = true;
+            this.btnWriteHTTPPageLandingSwitch.Click += new System.EventHandler(this.BtnWriteHTTPPageLandingSwitch_Click);
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.label71);
+            this.groupBox18.Controls.Add(this.panel12);
+            this.groupBox18.Controls.Add(this.btnReadrBtnControlPanelTamperAlarm);
+            this.groupBox18.Controls.Add(this.btnWriterBtnControlPanelTamperAlarm);
+            this.groupBox18.Location = new System.Drawing.Point(10, 159);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(318, 66);
+            this.groupBox18.TabIndex = 93;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "控制板防拆报警开关";
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(7, 25);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(0, 12);
+            this.label71.TabIndex = 77;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.rBtnNoControlPanelTamperAlarm);
+            this.panel12.Controls.Add(this.rBtnControlPanelTamperAlarm);
+            this.panel12.Location = new System.Drawing.Point(13, 25);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(144, 21);
+            this.panel12.TabIndex = 88;
+            // 
+            // rBtnNoControlPanelTamperAlarm
+            // 
+            this.rBtnNoControlPanelTamperAlarm.AutoSize = true;
+            this.rBtnNoControlPanelTamperAlarm.Checked = true;
+            this.rBtnNoControlPanelTamperAlarm.Location = new System.Drawing.Point(0, 3);
+            this.rBtnNoControlPanelTamperAlarm.Name = "rBtnNoControlPanelTamperAlarm";
+            this.rBtnNoControlPanelTamperAlarm.Size = new System.Drawing.Size(59, 16);
+            this.rBtnNoControlPanelTamperAlarm.TabIndex = 51;
+            this.rBtnNoControlPanelTamperAlarm.TabStop = true;
+            this.rBtnNoControlPanelTamperAlarm.Text = "不启用";
+            this.rBtnNoControlPanelTamperAlarm.UseVisualStyleBackColor = true;
+            // 
+            // rBtnControlPanelTamperAlarm
+            // 
+            this.rBtnControlPanelTamperAlarm.AutoSize = true;
+            this.rBtnControlPanelTamperAlarm.Location = new System.Drawing.Point(72, 3);
+            this.rBtnControlPanelTamperAlarm.Name = "rBtnControlPanelTamperAlarm";
+            this.rBtnControlPanelTamperAlarm.Size = new System.Drawing.Size(47, 16);
+            this.rBtnControlPanelTamperAlarm.TabIndex = 52;
+            this.rBtnControlPanelTamperAlarm.Text = "启用";
+            this.rBtnControlPanelTamperAlarm.UseVisualStyleBackColor = true;
+            // 
+            // btnReadrBtnControlPanelTamperAlarm
+            // 
+            this.btnReadrBtnControlPanelTamperAlarm.Location = new System.Drawing.Point(177, 25);
+            this.btnReadrBtnControlPanelTamperAlarm.Name = "btnReadrBtnControlPanelTamperAlarm";
+            this.btnReadrBtnControlPanelTamperAlarm.Size = new System.Drawing.Size(48, 23);
+            this.btnReadrBtnControlPanelTamperAlarm.TabIndex = 86;
+            this.btnReadrBtnControlPanelTamperAlarm.Text = "读取";
+            this.btnReadrBtnControlPanelTamperAlarm.UseVisualStyleBackColor = true;
+            this.btnReadrBtnControlPanelTamperAlarm.Click += new System.EventHandler(this.BtnReadrBtnControlPanelTamperAlarm_Click);
+            // 
+            // btnWriterBtnControlPanelTamperAlarm
+            // 
+            this.btnWriterBtnControlPanelTamperAlarm.Location = new System.Drawing.Point(231, 25);
+            this.btnWriterBtnControlPanelTamperAlarm.Name = "btnWriterBtnControlPanelTamperAlarm";
+            this.btnWriterBtnControlPanelTamperAlarm.Size = new System.Drawing.Size(48, 23);
+            this.btnWriterBtnControlPanelTamperAlarm.TabIndex = 87;
+            this.btnWriterBtnControlPanelTamperAlarm.Text = "写入";
+            this.btnWriterBtnControlPanelTamperAlarm.UseVisualStyleBackColor = true;
+            this.btnWriterBtnControlPanelTamperAlarm.Click += new System.EventHandler(this.BtnWriterBtnControlPanelTamperAlarm_Click);
+            // 
+            // groupBox17
+            // 
+            this.groupBox17.Controls.Add(this.label72);
+            this.groupBox17.Controls.Add(this.cbxCardDeadlineTipDay);
+            this.groupBox17.Controls.Add(this.btnWriteCardDeadlineTipDay);
+            this.groupBox17.Controls.Add(this.btnReadCardDeadlineTipDay);
+            this.groupBox17.Controls.Add(this.label75);
+            this.groupBox17.Location = new System.Drawing.Point(366, 87);
+            this.groupBox17.Name = "groupBox17";
+            this.groupBox17.Size = new System.Drawing.Size(318, 66);
+            this.groupBox17.TabIndex = 92;
+            this.groupBox17.TabStop = false;
+            this.groupBox17.Text = "有效期即将过期提醒天数";
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(156, 30);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(23, 12);
+            this.label72.TabIndex = 5;
+            this.label72.Text = "/天";
+            // 
+            // cbxCardDeadlineTipDay
+            // 
+            this.cbxCardDeadlineTipDay.FormattingEnabled = true;
+            this.cbxCardDeadlineTipDay.IntegralHeight = false;
+            this.cbxCardDeadlineTipDay.ItemHeight = 12;
+            this.cbxCardDeadlineTipDay.Items.AddRange(new object[] {
+            "禁用",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "255"});
+            this.cbxCardDeadlineTipDay.Location = new System.Drawing.Point(71, 27);
+            this.cbxCardDeadlineTipDay.MaxLength = 3;
+            this.cbxCardDeadlineTipDay.Name = "cbxCardDeadlineTipDay";
+            this.cbxCardDeadlineTipDay.Size = new System.Drawing.Size(79, 20);
+            this.cbxCardDeadlineTipDay.TabIndex = 4;
+            this.cbxCardDeadlineTipDay.Text = "30";
+            // 
+            // btnWriteCardDeadlineTipDay
+            // 
+            this.btnWriteCardDeadlineTipDay.Location = new System.Drawing.Point(239, 25);
+            this.btnWriteCardDeadlineTipDay.Name = "btnWriteCardDeadlineTipDay";
+            this.btnWriteCardDeadlineTipDay.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteCardDeadlineTipDay.TabIndex = 3;
+            this.btnWriteCardDeadlineTipDay.Text = "写入";
+            this.btnWriteCardDeadlineTipDay.UseVisualStyleBackColor = true;
+            this.btnWriteCardDeadlineTipDay.Click += new System.EventHandler(this.BtnWriteCardDeadlineTipDay_Click);
+            // 
+            // btnReadCardDeadlineTipDay
+            // 
+            this.btnReadCardDeadlineTipDay.Location = new System.Drawing.Point(185, 24);
+            this.btnReadCardDeadlineTipDay.Name = "btnReadCardDeadlineTipDay";
+            this.btnReadCardDeadlineTipDay.Size = new System.Drawing.Size(48, 23);
+            this.btnReadCardDeadlineTipDay.TabIndex = 2;
+            this.btnReadCardDeadlineTipDay.Text = "读取";
+            this.btnReadCardDeadlineTipDay.UseVisualStyleBackColor = true;
+            this.btnReadCardDeadlineTipDay.Click += new System.EventHandler(this.BtnReadCardDeadlineTipDay_Click);
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(6, 30);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(65, 12);
+            this.label75.TabIndex = 0;
+            this.label75.Text = "提前天数：";
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.label74);
+            this.groupBox15.Controls.Add(this.panel11);
+            this.groupBox15.Controls.Add(this.btnReadCheck485Line);
+            this.groupBox15.Controls.Add(this.btnWriteCheck485Line);
+            this.groupBox15.Location = new System.Drawing.Point(10, 87);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(318, 66);
+            this.groupBox15.TabIndex = 91;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "485线路反接检测开关";
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(7, 25);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(0, 12);
+            this.label74.TabIndex = 77;
             // 
             // panel11
             // 
@@ -809,6 +1112,16 @@
             this.rBtnCheck485Line.Text = "启用";
             this.rBtnCheck485Line.UseVisualStyleBackColor = true;
             // 
+            // btnReadCheck485Line
+            // 
+            this.btnReadCheck485Line.Location = new System.Drawing.Point(177, 25);
+            this.btnReadCheck485Line.Name = "btnReadCheck485Line";
+            this.btnReadCheck485Line.Size = new System.Drawing.Size(48, 23);
+            this.btnReadCheck485Line.TabIndex = 86;
+            this.btnReadCheck485Line.Text = "读取";
+            this.btnReadCheck485Line.UseVisualStyleBackColor = true;
+            this.btnReadCheck485Line.Click += new System.EventHandler(this.BtnReadCheck485Line_Click);
+            // 
             // btnWriteCheck485Line
             // 
             this.btnWriteCheck485Line.Location = new System.Drawing.Point(231, 25);
@@ -819,15 +1132,26 @@
             this.btnWriteCheck485Line.UseVisualStyleBackColor = true;
             this.btnWriteCheck485Line.Click += new System.EventHandler(this.BtnWriteCheck485Line_Click);
             // 
-            // btnReadCheck485Line
+            // groupBox14
             // 
-            this.btnReadCheck485Line.Location = new System.Drawing.Point(177, 25);
-            this.btnReadCheck485Line.Name = "btnReadCheck485Line";
-            this.btnReadCheck485Line.Size = new System.Drawing.Size(48, 23);
-            this.btnReadCheck485Line.TabIndex = 86;
-            this.btnReadCheck485Line.Text = "读取";
-            this.btnReadCheck485Line.UseVisualStyleBackColor = true;
-            this.btnReadCheck485Line.Click += new System.EventHandler(this.BtnReadCheck485Line_Click);
+            this.groupBox14.Controls.Add(this.label73);
+            this.groupBox14.Controls.Add(this.panel10);
+            this.groupBox14.Controls.Add(this.btnReadExploreLockMode);
+            this.groupBox14.Controls.Add(this.btnWriteExploreLockMode);
+            this.groupBox14.Location = new System.Drawing.Point(366, 15);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(318, 66);
+            this.groupBox14.TabIndex = 90;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "防探测功能开关";
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(7, 25);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(0, 12);
+            this.label73.TabIndex = 77;
             // 
             // panel10
             // 
@@ -860,6 +1184,16 @@
             this.rBtnExploreLockMode.Text = "启用";
             this.rBtnExploreLockMode.UseVisualStyleBackColor = true;
             // 
+            // btnReadExploreLockMode
+            // 
+            this.btnReadExploreLockMode.Location = new System.Drawing.Point(170, 25);
+            this.btnReadExploreLockMode.Name = "btnReadExploreLockMode";
+            this.btnReadExploreLockMode.Size = new System.Drawing.Size(48, 23);
+            this.btnReadExploreLockMode.TabIndex = 82;
+            this.btnReadExploreLockMode.Text = "读取";
+            this.btnReadExploreLockMode.UseVisualStyleBackColor = true;
+            this.btnReadExploreLockMode.Click += new System.EventHandler(this.BtnReadExploreLockMode_Click);
+            // 
             // btnWriteExploreLockMode
             // 
             this.btnWriteExploreLockMode.Location = new System.Drawing.Point(224, 25);
@@ -870,15 +1204,18 @@
             this.btnWriteExploreLockMode.UseVisualStyleBackColor = true;
             this.btnWriteExploreLockMode.Click += new System.EventHandler(this.BtnWriteExploreLockMode_Click);
             // 
-            // btnReadExploreLockMode
+            // groupBox13
             // 
-            this.btnReadExploreLockMode.Location = new System.Drawing.Point(170, 25);
-            this.btnReadExploreLockMode.Name = "btnReadExploreLockMode";
-            this.btnReadExploreLockMode.Size = new System.Drawing.Size(48, 23);
-            this.btnReadExploreLockMode.TabIndex = 82;
-            this.btnReadExploreLockMode.Text = "读取";
-            this.btnReadExploreLockMode.UseVisualStyleBackColor = true;
-            this.btnReadExploreLockMode.Click += new System.EventHandler(this.BtnReadExploreLockMode_Click);
+            this.groupBox13.Controls.Add(this.panel9);
+            this.groupBox13.Controls.Add(this.label70);
+            this.groupBox13.Controls.Add(this.btnReadBalcklistAlarmOption);
+            this.groupBox13.Controls.Add(this.btnWriteBalcklistAlarmOption);
+            this.groupBox13.Location = new System.Drawing.Point(10, 15);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(318, 66);
+            this.groupBox13.TabIndex = 89;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "黑名单报警";
             // 
             // panel9
             // 
@@ -911,15 +1248,13 @@
             this.rBtnBalcklistAlarm.Text = "启用";
             this.rBtnBalcklistAlarm.UseVisualStyleBackColor = true;
             // 
-            // btnWriteBalcklistAlarmOption
+            // label70
             // 
-            this.btnWriteBalcklistAlarmOption.Location = new System.Drawing.Point(232, 25);
-            this.btnWriteBalcklistAlarmOption.Name = "btnWriteBalcklistAlarmOption";
-            this.btnWriteBalcklistAlarmOption.Size = new System.Drawing.Size(48, 23);
-            this.btnWriteBalcklistAlarmOption.TabIndex = 79;
-            this.btnWriteBalcklistAlarmOption.Text = "写入";
-            this.btnWriteBalcklistAlarmOption.UseVisualStyleBackColor = true;
-            this.btnWriteBalcklistAlarmOption.Click += new System.EventHandler(this.BtnWriteBalcklistAlarmOption_Click);
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(7, 25);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(0, 12);
+            this.label70.TabIndex = 77;
             // 
             // btnReadBalcklistAlarmOption
             // 
@@ -931,13 +1266,257 @@
             this.btnReadBalcklistAlarmOption.UseVisualStyleBackColor = true;
             this.btnReadBalcklistAlarmOption.Click += new System.EventHandler(this.BtnReadBalcklistAlarmOption_Click);
             // 
-            // label70
+            // btnWriteBalcklistAlarmOption
             // 
-            this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(7, 25);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(0, 12);
-            this.label70.TabIndex = 77;
+            this.btnWriteBalcklistAlarmOption.Location = new System.Drawing.Point(232, 25);
+            this.btnWriteBalcklistAlarmOption.Name = "btnWriteBalcklistAlarmOption";
+            this.btnWriteBalcklistAlarmOption.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteBalcklistAlarmOption.TabIndex = 79;
+            this.btnWriteBalcklistAlarmOption.Text = "写入";
+            this.btnWriteBalcklistAlarmOption.UseVisualStyleBackColor = true;
+            this.btnWriteBalcklistAlarmOption.Click += new System.EventHandler(this.BtnWriteBalcklistAlarmOption_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox16);
+            this.tabPage1.Controls.Add(this.groupBox9);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(817, 913);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "设备状态信息";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.btnReadTCPClientList);
+            this.groupBox16.Controls.Add(this.btnStopTCPClientConnection);
+            this.groupBox16.Controls.Add(this.dgvTCPClientList);
+            this.groupBox16.Controls.Add(this.btnStopAllTCPClientConnection);
+            this.groupBox16.Location = new System.Drawing.Point(8, 357);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(801, 336);
+            this.groupBox16.TabIndex = 1;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "TCP服务器模式时，已接入客户端管理";
+            // 
+            // btnReadTCPClientList
+            // 
+            this.btnReadTCPClientList.Location = new System.Drawing.Point(6, 302);
+            this.btnReadTCPClientList.Name = "btnReadTCPClientList";
+            this.btnReadTCPClientList.Size = new System.Drawing.Size(160, 23);
+            this.btnReadTCPClientList.TabIndex = 10;
+            this.btnReadTCPClientList.Text = "获得客户端列表";
+            this.btnReadTCPClientList.UseVisualStyleBackColor = true;
+            this.btnReadTCPClientList.Click += new System.EventHandler(this.BtnReadTCPClientList_Click);
+            // 
+            // btnStopTCPClientConnection
+            // 
+            this.btnStopTCPClientConnection.Location = new System.Drawing.Point(455, 302);
+            this.btnStopTCPClientConnection.Name = "btnStopTCPClientConnection";
+            this.btnStopTCPClientConnection.Size = new System.Drawing.Size(160, 23);
+            this.btnStopTCPClientConnection.TabIndex = 9;
+            this.btnStopTCPClientConnection.Text = "停止客户端连接";
+            this.btnStopTCPClientConnection.UseVisualStyleBackColor = true;
+            this.btnStopTCPClientConnection.Click += new System.EventHandler(this.BtnStopTCPClientConnection_Click);
+            // 
+            // dgvTCPClientList
+            // 
+            this.dgvTCPClientList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTCPClientList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.Column9,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.dgvTCPClientList.Location = new System.Drawing.Point(6, 20);
+            this.dgvTCPClientList.Name = "dgvTCPClientList";
+            this.dgvTCPClientList.RowHeadersVisible = false;
+            this.dgvTCPClientList.RowTemplate.Height = 23;
+            this.dgvTCPClientList.Size = new System.Drawing.Size(789, 268);
+            this.dgvTCPClientList.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.NullValue = false;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewTextBoxColumn1.HeaderText = "选择";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn1.Width = 38;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "序号";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "IP";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "端口";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "接入时间";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 150;
+            // 
+            // btnStopAllTCPClientConnection
+            // 
+            this.btnStopAllTCPClientConnection.Location = new System.Drawing.Point(635, 302);
+            this.btnStopAllTCPClientConnection.Name = "btnStopAllTCPClientConnection";
+            this.btnStopAllTCPClientConnection.Size = new System.Drawing.Size(160, 23);
+            this.btnStopAllTCPClientConnection.TabIndex = 8;
+            this.btnStopAllTCPClientConnection.Text = "停止所有连接";
+            this.btnStopAllTCPClientConnection.UseVisualStyleBackColor = true;
+            this.btnStopAllTCPClientConnection.Click += new System.EventHandler(this.BtnStopAllTCPClientConnection_Click);
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.txtAllNum);
+            this.groupBox9.Controls.Add(this.label66);
+            this.groupBox9.Controls.Add(this.dgvEquipmentStatusInfo);
+            this.groupBox9.Controls.Add(this.lbSWatchState);
+            this.groupBox9.Controls.Add(this.btnWorkStatusInfo);
+            this.groupBox9.Controls.Add(this.label65);
+            this.groupBox9.Location = new System.Drawing.Point(8, 6);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(801, 336);
+            this.groupBox9.TabIndex = 0;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "设备端口状态信息";
+            // 
+            // txtAllNum
+            // 
+            this.txtAllNum.Location = new System.Drawing.Point(100, 304);
+            this.txtAllNum.MaxLength = 16;
+            this.txtAllNum.Name = "txtAllNum";
+            this.txtAllNum.ReadOnly = true;
+            this.txtAllNum.Size = new System.Drawing.Size(88, 21);
+            this.txtAllNum.TabIndex = 20;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(6, 307);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(101, 12);
+            this.label66.TabIndex = 19;
+            this.label66.Text = "控制器门内人数：";
+            // 
+            // dgvEquipmentStatusInfo
+            // 
+            this.dgvEquipmentStatusInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEquipmentStatusInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column7,
+            this.Column8});
+            this.dgvEquipmentStatusInfo.Location = new System.Drawing.Point(6, 20);
+            this.dgvEquipmentStatusInfo.Name = "dgvEquipmentStatusInfo";
+            this.dgvEquipmentStatusInfo.RowHeadersVisible = false;
+            this.dgvEquipmentStatusInfo.RowTemplate.Height = 23;
+            this.dgvEquipmentStatusInfo.Size = new System.Drawing.Size(789, 268);
+            this.dgvEquipmentStatusInfo.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Column1.HeaderText = "门号";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "常开状态";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "门磁状态";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "继电器状态";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "锁定状态";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "门内人数";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "报警状态";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "继电器物理状态";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // lbSWatchState
+            // 
+            this.lbSWatchState.AutoSize = true;
+            this.lbSWatchState.ForeColor = System.Drawing.Color.Red;
+            this.lbSWatchState.Location = new System.Drawing.Point(264, 309);
+            this.lbSWatchState.Name = "lbSWatchState";
+            this.lbSWatchState.Size = new System.Drawing.Size(65, 12);
+            this.lbSWatchState.TabIndex = 10;
+            this.lbSWatchState.Text = "未开启监控";
+            // 
+            // btnWorkStatusInfo
+            // 
+            this.btnWorkStatusInfo.Location = new System.Drawing.Point(635, 302);
+            this.btnWorkStatusInfo.Name = "btnWorkStatusInfo";
+            this.btnWorkStatusInfo.Size = new System.Drawing.Size(160, 23);
+            this.btnWorkStatusInfo.TabIndex = 8;
+            this.btnWorkStatusInfo.Text = "获得端口状态信息";
+            this.btnWorkStatusInfo.UseVisualStyleBackColor = true;
+            this.btnWorkStatusInfo.Click += new System.EventHandler(this.BtnWorkStatusInfo_Click);
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(205, 309);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(65, 12);
+            this.label65.TabIndex = 9;
+            this.label65.Text = "监控状态：";
             // 
             // tabSysParameterPage
             // 
@@ -3133,202 +3712,77 @@
             this.label20.TabIndex = 0;
             this.label20.Text = "记录存储方式：记录满盘后：";
             // 
-            // tabPage1
+            // groupBox20
             // 
-            this.tabPage1.Controls.Add(this.groupBox9);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(817, 913);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "设备状态信息";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.groupBox20.Controls.Add(this.label77);
+            this.groupBox20.Controls.Add(this.panel14);
+            this.groupBox20.Controls.Add(this.btnReadLawfulCardReleaseAlarmSwitch);
+            this.groupBox20.Controls.Add(this.btnWriteLawfulCardReleaseAlarmSwitch);
+            this.groupBox20.Location = new System.Drawing.Point(10, 231);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(318, 66);
+            this.groupBox20.TabIndex = 95;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "合法卡解除报警开关";
             // 
-            // groupBox9
+            // label77
             // 
-            this.groupBox9.Controls.Add(this.txtAllNum);
-            this.groupBox9.Controls.Add(this.label66);
-            this.groupBox9.Controls.Add(this.dgvEquipmentStatusInfo);
-            this.groupBox9.Controls.Add(this.lbSWatchState);
-            this.groupBox9.Controls.Add(this.btnWorkStatusInfo);
-            this.groupBox9.Controls.Add(this.label65);
-            this.groupBox9.Location = new System.Drawing.Point(8, 6);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(801, 336);
-            this.groupBox9.TabIndex = 0;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "设备端口状态信息";
+            this.label77.AutoSize = true;
+            this.label77.Location = new System.Drawing.Point(7, 25);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(0, 12);
+            this.label77.TabIndex = 77;
             // 
-            // txtAllNum
+            // panel14
             // 
-            this.txtAllNum.Location = new System.Drawing.Point(100, 304);
-            this.txtAllNum.MaxLength = 16;
-            this.txtAllNum.Name = "txtAllNum";
-            this.txtAllNum.ReadOnly = true;
-            this.txtAllNum.Size = new System.Drawing.Size(88, 21);
-            this.txtAllNum.TabIndex = 20;
+            this.panel14.Controls.Add(this.rBtnNoLawfulCardReleaseAlarmSwitch);
+            this.panel14.Controls.Add(this.rBtnLawfulCardReleaseAlarmSwitch);
+            this.panel14.Location = new System.Drawing.Point(13, 25);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(144, 21);
+            this.panel14.TabIndex = 88;
             // 
-            // label66
+            // rBtnNoLawfulCardReleaseAlarmSwitch
             // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(6, 307);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(101, 12);
-            this.label66.TabIndex = 19;
-            this.label66.Text = "控制器门内人数：";
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.AutoSize = true;
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.Location = new System.Drawing.Point(0, 3);
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.Name = "rBtnNoLawfulCardReleaseAlarmSwitch";
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.Size = new System.Drawing.Size(59, 16);
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.TabIndex = 51;
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.Text = "不启用";
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.UseVisualStyleBackColor = true;
             // 
-            // dgvEquipmentStatusInfo
+            // rBtnLawfulCardReleaseAlarmSwitch
             // 
-            this.dgvEquipmentStatusInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEquipmentStatusInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8});
-            this.dgvEquipmentStatusInfo.Location = new System.Drawing.Point(6, 20);
-            this.dgvEquipmentStatusInfo.Name = "dgvEquipmentStatusInfo";
-            this.dgvEquipmentStatusInfo.RowHeadersVisible = false;
-            this.dgvEquipmentStatusInfo.RowTemplate.Height = 23;
-            this.dgvEquipmentStatusInfo.Size = new System.Drawing.Size(789, 268);
-            this.dgvEquipmentStatusInfo.TabIndex = 0;
+            this.rBtnLawfulCardReleaseAlarmSwitch.AutoSize = true;
+            this.rBtnLawfulCardReleaseAlarmSwitch.Checked = true;
+            this.rBtnLawfulCardReleaseAlarmSwitch.Location = new System.Drawing.Point(72, 3);
+            this.rBtnLawfulCardReleaseAlarmSwitch.Name = "rBtnLawfulCardReleaseAlarmSwitch";
+            this.rBtnLawfulCardReleaseAlarmSwitch.Size = new System.Drawing.Size(47, 16);
+            this.rBtnLawfulCardReleaseAlarmSwitch.TabIndex = 52;
+            this.rBtnLawfulCardReleaseAlarmSwitch.TabStop = true;
+            this.rBtnLawfulCardReleaseAlarmSwitch.Text = "启用";
+            this.rBtnLawfulCardReleaseAlarmSwitch.UseVisualStyleBackColor = true;
             // 
-            // Column1
+            // btnReadLawfulCardReleaseAlarmSwitch
             // 
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Column1.HeaderText = "门号";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.btnReadLawfulCardReleaseAlarmSwitch.Location = new System.Drawing.Point(177, 25);
+            this.btnReadLawfulCardReleaseAlarmSwitch.Name = "btnReadLawfulCardReleaseAlarmSwitch";
+            this.btnReadLawfulCardReleaseAlarmSwitch.Size = new System.Drawing.Size(48, 23);
+            this.btnReadLawfulCardReleaseAlarmSwitch.TabIndex = 86;
+            this.btnReadLawfulCardReleaseAlarmSwitch.Text = "读取";
+            this.btnReadLawfulCardReleaseAlarmSwitch.UseVisualStyleBackColor = true;
+            this.btnReadLawfulCardReleaseAlarmSwitch.Click += new System.EventHandler(this.BtnReadLawfulCardReleaseAlarmSwitch_Click);
             // 
-            // Column2
+            // btnWriteLawfulCardReleaseAlarmSwitch
             // 
-            this.Column2.HeaderText = "常开状态";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "门磁状态";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "继电器状态";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "锁定状态";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "门内人数";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "报警状态";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "继电器物理状态";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // lbSWatchState
-            // 
-            this.lbSWatchState.AutoSize = true;
-            this.lbSWatchState.ForeColor = System.Drawing.Color.Red;
-            this.lbSWatchState.Location = new System.Drawing.Point(264, 309);
-            this.lbSWatchState.Name = "lbSWatchState";
-            this.lbSWatchState.Size = new System.Drawing.Size(65, 12);
-            this.lbSWatchState.TabIndex = 10;
-            this.lbSWatchState.Text = "未开启监控";
-            // 
-            // btnWorkStatusInfo
-            // 
-            this.btnWorkStatusInfo.Location = new System.Drawing.Point(635, 302);
-            this.btnWorkStatusInfo.Name = "btnWorkStatusInfo";
-            this.btnWorkStatusInfo.Size = new System.Drawing.Size(160, 23);
-            this.btnWorkStatusInfo.TabIndex = 8;
-            this.btnWorkStatusInfo.Text = "获得端口状态信息";
-            this.btnWorkStatusInfo.UseVisualStyleBackColor = true;
-            this.btnWorkStatusInfo.Click += new System.EventHandler(this.BtnWorkStatusInfo_Click);
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(205, 309);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(65, 12);
-            this.label65.TabIndex = 9;
-            this.label65.Text = "监控状态：";
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.panel9);
-            this.groupBox13.Controls.Add(this.label70);
-            this.groupBox13.Controls.Add(this.btnReadBalcklistAlarmOption);
-            this.groupBox13.Controls.Add(this.btnWriteBalcklistAlarmOption);
-            this.groupBox13.Location = new System.Drawing.Point(10, 15);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(318, 66);
-            this.groupBox13.TabIndex = 89;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "黑名单报警";
-            // 
-            // groupBox14
-            // 
-            this.groupBox14.Controls.Add(this.label73);
-            this.groupBox14.Controls.Add(this.panel10);
-            this.groupBox14.Controls.Add(this.btnReadExploreLockMode);
-            this.groupBox14.Controls.Add(this.btnWriteExploreLockMode);
-            this.groupBox14.Location = new System.Drawing.Point(366, 15);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(318, 66);
-            this.groupBox14.TabIndex = 90;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "防探测功能开关";
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(7, 25);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(0, 12);
-            this.label73.TabIndex = 77;
-            // 
-            // groupBox15
-            // 
-            this.groupBox15.Controls.Add(this.label74);
-            this.groupBox15.Controls.Add(this.panel11);
-            this.groupBox15.Controls.Add(this.btnReadCheck485Line);
-            this.groupBox15.Controls.Add(this.btnWriteCheck485Line);
-            this.groupBox15.Location = new System.Drawing.Point(10, 87);
-            this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(318, 66);
-            this.groupBox15.TabIndex = 91;
-            this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "485线路反接检测开关";
-            // 
-            // label74
-            // 
-            this.label74.AutoSize = true;
-            this.label74.Location = new System.Drawing.Point(7, 25);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(0, 12);
-            this.label74.TabIndex = 77;
+            this.btnWriteLawfulCardReleaseAlarmSwitch.Location = new System.Drawing.Point(231, 25);
+            this.btnWriteLawfulCardReleaseAlarmSwitch.Name = "btnWriteLawfulCardReleaseAlarmSwitch";
+            this.btnWriteLawfulCardReleaseAlarmSwitch.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteLawfulCardReleaseAlarmSwitch.TabIndex = 87;
+            this.btnWriteLawfulCardReleaseAlarmSwitch.Text = "写入";
+            this.btnWriteLawfulCardReleaseAlarmSwitch.UseVisualStyleBackColor = true;
+            this.btnWriteLawfulCardReleaseAlarmSwitch.Click += new System.EventHandler(this.BtnWriteLawfulCardReleaseAlarmSwitch_Click);
             // 
             // frmSystem
             // 
@@ -3348,12 +3802,34 @@
             this.gbTCP.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.groupBox19.ResumeLayout(false);
+            this.groupBox19.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
+            this.groupBox18.ResumeLayout(false);
+            this.groupBox18.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            this.groupBox17.ResumeLayout(false);
+            this.groupBox17.PerformLayout();
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox16.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTCPClientList)).EndInit();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentStatusInfo)).EndInit();
             this.tabSysParameterPage.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
@@ -3395,16 +3871,10 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentStatusInfo)).EndInit();
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox13.PerformLayout();
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
-            this.groupBox15.ResumeLayout(false);
-            this.groupBox15.PerformLayout();
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3685,5 +4155,42 @@
         private System.Windows.Forms.Label label74;
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.GroupBox groupBox16;
+        private System.Windows.Forms.DataGridView dgvTCPClientList;
+        private System.Windows.Forms.Button btnStopAllTCPClientConnection;
+        private System.Windows.Forms.Button btnReadTCPClientList;
+        private System.Windows.Forms.Button btnStopTCPClientConnection;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.GroupBox groupBox17;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.ComboBox cbxCardDeadlineTipDay;
+        private System.Windows.Forms.Button btnWriteCardDeadlineTipDay;
+        private System.Windows.Forms.Button btnReadCardDeadlineTipDay;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.GroupBox groupBox18;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.RadioButton rBtnNoControlPanelTamperAlarm;
+        private System.Windows.Forms.RadioButton rBtnControlPanelTamperAlarm;
+        private System.Windows.Forms.Button btnReadrBtnControlPanelTamperAlarm;
+        private System.Windows.Forms.Button btnWriterBtnControlPanelTamperAlarm;
+        private System.Windows.Forms.GroupBox groupBox19;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.RadioButton rBtnNoHTTPPageLandingSwitch;
+        private System.Windows.Forms.RadioButton rBtnHTTPPageLandingSwitch;
+        private System.Windows.Forms.Button btnReadHTTPPageLandingSwitch;
+        private System.Windows.Forms.Button btnWriteHTTPPageLandingSwitch;
+        private System.Windows.Forms.GroupBox groupBox20;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.RadioButton rBtnNoLawfulCardReleaseAlarmSwitch;
+        private System.Windows.Forms.RadioButton rBtnLawfulCardReleaseAlarmSwitch;
+        private System.Windows.Forms.Button btnReadLawfulCardReleaseAlarmSwitch;
+        private System.Windows.Forms.Button btnWriteLawfulCardReleaseAlarmSwitch;
     }
 }
