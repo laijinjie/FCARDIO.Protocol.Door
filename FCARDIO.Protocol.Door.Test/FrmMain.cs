@@ -910,6 +910,12 @@ namespace FCARDIO.Protocol.Door.Test
 
             mCommandClasss.Add(typeof(FC8800.Time.ReadTime).FullName, "读系统时间");
             mCommandClasss.Add(typeof(FC8800.Time.WriteTime).FullName, "写系统时间");
+
+
+            mCommandClasss.Add(typeof(FC8800.Holiday.ReadHolidayDetail).FullName, "读取节假日存储详情");
+            mCommandClasss.Add(typeof(FC8800.Holiday.ClearHoliday).FullName, "清空节假日");
+            mCommandClasss.Add(typeof(FC8800.Holiday.ReadAllHoliday).FullName, "读取所有节假日");
+            
         }
 
 

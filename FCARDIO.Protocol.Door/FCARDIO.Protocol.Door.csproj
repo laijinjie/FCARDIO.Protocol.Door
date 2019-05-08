@@ -99,6 +99,13 @@
     <Compile Include="FC8800\Data\TransactionDetail.cs" />
     <Compile Include="FC8800\FC8800Command_ReadParameter.cs" />
     <Compile Include="FC8800\FC8800Command_WriteParameter.cs" />
+    <Compile Include="FC8800\Holiday\ClearHoliday\ClearHoliday.cs" />
+    <Compile Include="FC8800\Holiday\HolidayDetail.cs" />
+    <Compile Include="FC8800\Holiday\ReadAllHoliday\ReadAllHoliday.cs" />
+    <Compile Include="FC8800\Holiday\HolidayDBDetail.cs" />
+    <Compile Include="FC8800\Holiday\ReadAllHoliday\ReadAllHoliday_Result.cs" />
+    <Compile Include="FC8800\Holiday\ReadHolidayDetail\ReadHolidayDetail.cs" />
+    <Compile Include="FC8800\Holiday\ReadHolidayDetail\ReadHolidayDetail_Result.cs" />
     <Compile Include="FC8800\SystemParameter\14SearchControltor\SearchControltor_Result.cs" />
     <Compile Include="FC8800\SystemParameter\15CacheContent\CacheContent_Parameter.cs" />
     <Compile Include="FC8800\SystemParameter\15CacheContent\CacheContent_Result.cs" />
