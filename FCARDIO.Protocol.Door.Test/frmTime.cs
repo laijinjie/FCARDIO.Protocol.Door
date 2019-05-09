@@ -1,4 +1,5 @@
 ﻿using FCARDIO.Protocol.Door.FC8800.Time;
+using FCARDIO.Protocol.Door.FC8800.Time.TimeErrorCorrection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -40,7 +42,7 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void frmTime_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         #region 设备时间读写
@@ -62,8 +64,9 @@ namespace FCARDIO.Protocol.Door.Test
                 {
                     txtSystemTime.Text = ControllerDate;
                     txtComputerTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    Seconds = Convert.ToDateTime(txtComputerTime.Text).Subtract(result.ControllerDate).Seconds;
-                    if (Seconds < 4)
+                    TimeSpan ts = Convert.ToDateTime(txtComputerTime.Text) - result.ControllerDate;
+                    Seconds = Math.Abs(Convert.ToInt32(ts.TotalSeconds));
+                    if (Seconds < 4 && Seconds > -4)
                     {
                         tip = "无误差";
                     }
@@ -89,10 +92,98 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void BtnWriteBroadcastTime_Click(object sender, EventArgs e)
         {
-
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteTimeBroadcast cmd = new WriteTimeBroadcast(cmdDtl);
+            mMainForm.AddCommand(cmd);
+        }
+        private void BtnWriteCustomDateTime_Click(object sender, EventArgs e)
+        {
+            DateTime CustomTime = Convert.ToDateTime(CustomDateTime.Text);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteCustomTime cmd = new WriteCustomTime(cmdDtl, new WriteCustomTime_Parameter(CustomTime));
+            mMainForm.AddCommand(cmd);
         }
         #endregion
 
+        #region 误差自修正参数读写
+        private void BtnReadTimeCorrectionParameter_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadTimeError cmd = new ReadTimeError(cmdDtl);
+            mMainForm.AddCommand(cmd);
 
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadTimeError_Result result = cmde.Command.getResult() as ReadTimeError_Result;
+                string CorrectionState = result.TimeErrorCorrection[0] == 0 ? "调慢" : "调快"; //误差修正状态
+                int CorrectionSeconds = result.TimeErrorCorrection[1]; //误差修正秒数
+                string tip = string.Empty;
+                if (CorrectionSeconds == 0)
+                {
+                    tip = "禁用";
+                }
+                else
+                {
+                    tip = "每天自动" + CorrectionState + CorrectionSeconds + "秒";
+                }
+
+                Invoke(() =>
+                {
+                    cbxCorrectionSeconds.Text = CorrectionSeconds == 0 ? "禁用" : CorrectionSeconds.ToString();
+                });
+                mMainForm.AddCmdLog(cmde, tip);
+            };
+        }
+
+        private void BtnWriteTimeCorrectionParameter_Click(object sender, EventArgs e)
+        {
+            string reg = @"^\+?[0-9]*$";
+            if (!Regex.IsMatch(cbxCorrectionSeconds.Text.Trim(), reg) || string.IsNullOrEmpty(cbxCorrectionSeconds.Text.Trim()))
+            {
+                if (cbxCorrectionSeconds.Text != "禁用")
+                {
+                    MsgErr("请输入正确修正秒数！");
+                    return;
+                }
+            }
+            if (Regex.IsMatch(cbxCorrectionSeconds.Text.Trim(), reg))
+            {
+                if (Convert.ToUInt32(cbxCorrectionSeconds.Text) < 0 || Convert.ToUInt32(cbxCorrectionSeconds.Text) > 255)
+                {
+                    MsgErr("请输入正确修正秒数！");
+                    return;
+                }
+            }
+
+            byte[] TimeErrorCorrection = new byte[2];
+
+            if (rBtnSpeedUp.Checked == true)
+            {
+                TimeErrorCorrection[0] = 1;
+            }
+            else
+            {
+                TimeErrorCorrection[0] = 0;
+            }
+
+            if (cbxCorrectionSeconds.Text == "禁用")
+            {
+                TimeErrorCorrection[1] = 0;
+            }
+            else
+            {
+                TimeErrorCorrection[1] = Convert.ToByte(cbxCorrectionSeconds.Text);
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteTimeError cmd = new WriteTimeError(cmdDtl, new WriteTimeError_Parameter(TimeErrorCorrection));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
     }
 }

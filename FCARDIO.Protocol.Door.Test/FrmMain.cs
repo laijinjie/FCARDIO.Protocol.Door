@@ -910,11 +910,30 @@ namespace FCARDIO.Protocol.Door.Test
 
             mCommandClasss.Add(typeof(FC8800.Time.ReadTime).FullName, "读系统时间");
             mCommandClasss.Add(typeof(FC8800.Time.WriteTime).FullName, "写系统时间");
+            mCommandClasss.Add(typeof(FC8800.Time.WriteCustomTime).FullName, "写系统时间");
+            mCommandClasss.Add(typeof(FC8800.Time.WriteTimeBroadcast).FullName, "写设备时间_广播命令");
+
+            mCommandClasss.Add(typeof(FC8800.Time.TimeErrorCorrection.ReadTimeError).FullName, "读取误差自修正参数");
+            mCommandClasss.Add(typeof(FC8800.Time.TimeErrorCorrection.WriteTimeError).FullName, "写入误差自修正参数");
+
+            mCommandClasss.Add(typeof(FC8800.Door.ReaderOption.ReadReaderOption).FullName, "读取读卡器字节数");
+            mCommandClasss.Add(typeof(FC8800.Door.ReaderOption.WriteReaderOption).FullName, "写入读卡器字节数");
+
+            mCommandClasss.Add(typeof(FC8800.Door.RelayOption.ReadRelayOption).FullName, "读取继电器参数");
+            mCommandClasss.Add(typeof(FC8800.Door.RelayOption.WriteRelayOption).FullName, "写入继电器参数");
+
+            mCommandClasss.Add(typeof(FC8800.Door.Remote.OpenDoor).FullName, "远程开门");
+            mCommandClasss.Add(typeof(FC8800.Door.Remote.CloseDoor).FullName, "远程关门");
+            mCommandClasss.Add(typeof(FC8800.Door.Remote.HoldDoor).FullName, "设置门常开");
+            mCommandClasss.Add(typeof(FC8800.Door.Remote.OpenDoor_CheckNum).FullName, "远程开门_验证");
+            mCommandClasss.Add(typeof(FC8800.Door.Remote.LockDoor).FullName, "远程开门");
+            mCommandClasss.Add(typeof(FC8800.Door.Remote.OpenDoor).FullName, "远程开门");
 
 
             mCommandClasss.Add(typeof(FC8800.Holiday.ReadHolidayDetail).FullName, "读取节假日存储详情");
             mCommandClasss.Add(typeof(FC8800.Holiday.ClearHoliday).FullName, "清空节假日");
             mCommandClasss.Add(typeof(FC8800.Holiday.ReadAllHoliday).FullName, "读取所有节假日");
+            
             
         }
 

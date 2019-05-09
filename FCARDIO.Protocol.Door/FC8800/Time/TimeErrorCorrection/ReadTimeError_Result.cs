@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
+namespace FCARDIO.Protocol.Door.FC8800.Time.TimeErrorCorrection
 {
     /// <summary>
-    /// 控制器4个门的读卡器字节数_结果
+    /// 读取读取误差自修正参数_结果
     /// </summary>
-    public class ReaderOption_Result : ReaderOption_Parameter, INCommandResult
+    public class ReadTimeError_Result : WriteTimeError_Parameter, INCommandResult
     {
     }
 }

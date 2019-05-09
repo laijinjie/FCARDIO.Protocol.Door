@@ -129,6 +129,12 @@
     <Compile Include="FC8800\SystemParameter\25LawfulCardReleaseAlarmSwitch\ReadLawfulCardReleaseAlarmSwitch_Result.cs" />
     <Compile Include="FC8800\SystemParameter\25LawfulCardReleaseAlarmSwitch\WriteLawfulCardReleaseAlarmSwitch.cs" />
     <Compile Include="FC8800\SystemParameter\25LawfulCardReleaseAlarmSwitch\WriteLawfulCardReleaseAlarmSwitch_Parameter.cs" />
+    <Compile Include="FC8800\Time\TimeErrorCorrection\ReadTimeError.cs" />
+    <Compile Include="FC8800\Time\TimeErrorCorrection\ReadTimeError_Result.cs" />
+    <Compile Include="FC8800\Time\TimeErrorCorrection\WriteTimeError.cs" />
+    <Compile Include="FC8800\Time\TimeErrorCorrection\WriteTimeError_Parameter.cs" />
+    <Compile Include="FC8800\Time\WriteCustomTime.cs" />
+    <Compile Include="FC8800\Time\WriteCustomTime_Parameter.cs" />
     <Compile Include="FC8800\Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail.cs" />
     <Compile Include="FC8800\Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail_Result.cs" />
     <Compile Include="FC8800\Transaction\02ClearTransactionDatabase\ClearTransactionDatabase.cs" />

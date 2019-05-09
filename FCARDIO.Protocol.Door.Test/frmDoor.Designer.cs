@@ -64,12 +64,48 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmdDoorNum = new System.Windows.Forms.ComboBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.cbxDoor1ReaderOption = new System.Windows.Forms.ComboBox();
+            this.btnWriteReaderOption = new System.Windows.Forms.Button();
+            this.btnReadReaderOption = new System.Windows.Forms.Button();
+            this.label24 = new System.Windows.Forms.Label();
+            this.cbxDoor2ReaderOption = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbxDoor4ReaderOption = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbxDoor3ReaderOption = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.cbxDoor1RelayOption = new System.Windows.Forms.ComboBox();
+            this.btnWriteRelayOption = new System.Windows.Forms.Button();
+            this.btnReadRelayOption = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cbxDoor2RelayOption = new System.Windows.Forms.ComboBox();
+            this.cbxDoor3RelayOption = new System.Windows.Forms.ComboBox();
+            this.cbxDoor4RelayOption = new System.Windows.Forms.ComboBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnOpenDoor = new System.Windows.Forms.Button();
+            this.btnHoldOpenDoor = new System.Windows.Forms.Button();
+            this.btnCloseDoor = new System.Windows.Forms.Button();
+            this.btnOpenDoor_CheckNum = new System.Windows.Forms.Button();
+            this.cBoxDoor4 = new System.Windows.Forms.CheckBox();
+            this.cBoxDoor3 = new System.Windows.Forms.CheckBox();
+            this.cBoxDoor2 = new System.Windows.Forms.CheckBox();
+            this.cBoxDoor1 = new System.Windows.Forms.CheckBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -81,16 +117,18 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(757, 593);
             this.tabControl1.TabIndex = 0;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox7);
+            this.tabPage1.Controls.Add(this.groupBox6);
+            this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(749, 567);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "参数1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
@@ -415,22 +453,397 @@
             // 
             this.cmdDoorNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdDoorNum.FormattingEnabled = true;
-            this.cmdDoorNum.Location = new System.Drawing.Point(57, 10);
+            this.cmdDoorNum.Location = new System.Drawing.Point(546, 13);
             this.cmdDoorNum.Name = "cmdDoorNum";
             this.cmdDoorNum.Size = new System.Drawing.Size(121, 20);
             this.cmdDoorNum.TabIndex = 1;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.cbxDoor4ReaderOption);
+            this.groupBox5.Controls.Add(this.label11);
+            this.groupBox5.Controls.Add(this.cbxDoor3ReaderOption);
+            this.groupBox5.Controls.Add(this.label12);
+            this.groupBox5.Controls.Add(this.cbxDoor2ReaderOption);
+            this.groupBox5.Controls.Add(this.label5);
+            this.groupBox5.Controls.Add(this.cbxDoor1ReaderOption);
+            this.groupBox5.Controls.Add(this.btnWriteReaderOption);
+            this.groupBox5.Controls.Add(this.btnReadReaderOption);
+            this.groupBox5.Controls.Add(this.label24);
+            this.groupBox5.Location = new System.Drawing.Point(6, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(725, 52);
+            this.groupBox5.TabIndex = 0;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "读卡器字节数";
+            // 
+            // cbxDoor1ReaderOption
+            // 
+            this.cbxDoor1ReaderOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDoor1ReaderOption.FormattingEnabled = true;
+            this.cbxDoor1ReaderOption.Items.AddRange(new object[] {
+            "禁用",
+            "二字节",
+            "三字节",
+            "四字节"});
+            this.cbxDoor1ReaderOption.Location = new System.Drawing.Point(35, 22);
+            this.cbxDoor1ReaderOption.Name = "cbxDoor1ReaderOption";
+            this.cbxDoor1ReaderOption.Size = new System.Drawing.Size(74, 20);
+            this.cbxDoor1ReaderOption.TabIndex = 37;
+            // 
+            // btnWriteReaderOption
+            // 
+            this.btnWriteReaderOption.Location = new System.Drawing.Point(578, 20);
+            this.btnWriteReaderOption.Name = "btnWriteReaderOption";
+            this.btnWriteReaderOption.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteReaderOption.TabIndex = 36;
+            this.btnWriteReaderOption.Text = "写入";
+            this.btnWriteReaderOption.UseVisualStyleBackColor = true;
+            this.btnWriteReaderOption.Click += new System.EventHandler(this.BtnWriteReaderOption_Click);
+            // 
+            // btnReadReaderOption
+            // 
+            this.btnReadReaderOption.Location = new System.Drawing.Point(524, 20);
+            this.btnReadReaderOption.Name = "btnReadReaderOption";
+            this.btnReadReaderOption.Size = new System.Drawing.Size(48, 23);
+            this.btnReadReaderOption.TabIndex = 35;
+            this.btnReadReaderOption.Text = "读取";
+            this.btnReadReaderOption.UseVisualStyleBackColor = true;
+            this.btnReadReaderOption.Click += new System.EventHandler(this.BtnReadReaderOption_Click);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(6, 25);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(35, 12);
+            this.label24.TabIndex = 34;
+            this.label24.Text = "门1：";
+            // 
+            // cbxDoor2ReaderOption
+            // 
+            this.cbxDoor2ReaderOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDoor2ReaderOption.FormattingEnabled = true;
+            this.cbxDoor2ReaderOption.Items.AddRange(new object[] {
+            "禁用",
+            "二字节",
+            "三字节",
+            "四字节"});
+            this.cbxDoor2ReaderOption.Location = new System.Drawing.Point(155, 22);
+            this.cbxDoor2ReaderOption.Name = "cbxDoor2ReaderOption";
+            this.cbxDoor2ReaderOption.Size = new System.Drawing.Size(74, 20);
+            this.cbxDoor2ReaderOption.TabIndex = 39;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(126, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 12);
+            this.label5.TabIndex = 38;
+            this.label5.Text = "门2：";
+            // 
+            // cbxDoor4ReaderOption
+            // 
+            this.cbxDoor4ReaderOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDoor4ReaderOption.FormattingEnabled = true;
+            this.cbxDoor4ReaderOption.Items.AddRange(new object[] {
+            "禁用",
+            "二字节",
+            "三字节",
+            "四字节"});
+            this.cbxDoor4ReaderOption.Location = new System.Drawing.Point(395, 22);
+            this.cbxDoor4ReaderOption.Name = "cbxDoor4ReaderOption";
+            this.cbxDoor4ReaderOption.Size = new System.Drawing.Size(74, 20);
+            this.cbxDoor4ReaderOption.TabIndex = 43;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(366, 25);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(35, 12);
+            this.label11.TabIndex = 42;
+            this.label11.Text = "门4：";
+            // 
+            // cbxDoor3ReaderOption
+            // 
+            this.cbxDoor3ReaderOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDoor3ReaderOption.FormattingEnabled = true;
+            this.cbxDoor3ReaderOption.Items.AddRange(new object[] {
+            "禁用",
+            "二字节",
+            "三字节",
+            "四字节"});
+            this.cbxDoor3ReaderOption.Location = new System.Drawing.Point(275, 22);
+            this.cbxDoor3ReaderOption.Name = "cbxDoor3ReaderOption";
+            this.cbxDoor3ReaderOption.Size = new System.Drawing.Size(74, 20);
+            this.cbxDoor3ReaderOption.TabIndex = 41;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(246, 25);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(35, 12);
+            this.label12.TabIndex = 40;
+            this.label12.Text = "门3：";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.cbxDoor4RelayOption);
+            this.groupBox6.Controls.Add(this.cbxDoor3RelayOption);
+            this.groupBox6.Controls.Add(this.cbxDoor2RelayOption);
+            this.groupBox6.Controls.Add(this.label13);
+            this.groupBox6.Controls.Add(this.label14);
+            this.groupBox6.Controls.Add(this.label15);
+            this.groupBox6.Controls.Add(this.cbxDoor1RelayOption);
+            this.groupBox6.Controls.Add(this.btnWriteRelayOption);
+            this.groupBox6.Controls.Add(this.btnReadRelayOption);
+            this.groupBox6.Controls.Add(this.label16);
+            this.groupBox6.Location = new System.Drawing.Point(6, 64);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(725, 52);
+            this.groupBox6.TabIndex = 1;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "继电器参数";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(366, 25);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 12);
+            this.label13.TabIndex = 42;
+            this.label13.Text = "门4：";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(246, 25);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(35, 12);
+            this.label14.TabIndex = 40;
+            this.label14.Text = "门3：";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(126, 25);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(35, 12);
+            this.label15.TabIndex = 38;
+            this.label15.Text = "门2：";
+            // 
+            // cbxDoor1RelayOption
+            // 
+            this.cbxDoor1RelayOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDoor1RelayOption.FormattingEnabled = true;
+            this.cbxDoor1RelayOption.Items.AddRange(new object[] {
+            "COM & NC",
+            "COM & NO",
+            "双稳态"});
+            this.cbxDoor1RelayOption.Location = new System.Drawing.Point(35, 22);
+            this.cbxDoor1RelayOption.Name = "cbxDoor1RelayOption";
+            this.cbxDoor1RelayOption.Size = new System.Drawing.Size(74, 20);
+            this.cbxDoor1RelayOption.TabIndex = 37;
+            // 
+            // btnWriteRelayOption
+            // 
+            this.btnWriteRelayOption.Location = new System.Drawing.Point(578, 20);
+            this.btnWriteRelayOption.Name = "btnWriteRelayOption";
+            this.btnWriteRelayOption.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteRelayOption.TabIndex = 36;
+            this.btnWriteRelayOption.Text = "写入";
+            this.btnWriteRelayOption.UseVisualStyleBackColor = true;
+            this.btnWriteRelayOption.Click += new System.EventHandler(this.BtnWriteRelayOption_Click);
+            // 
+            // btnReadRelayOption
+            // 
+            this.btnReadRelayOption.Location = new System.Drawing.Point(524, 20);
+            this.btnReadRelayOption.Name = "btnReadRelayOption";
+            this.btnReadRelayOption.Size = new System.Drawing.Size(48, 23);
+            this.btnReadRelayOption.TabIndex = 35;
+            this.btnReadRelayOption.Text = "读取";
+            this.btnReadRelayOption.UseVisualStyleBackColor = true;
+            this.btnReadRelayOption.Click += new System.EventHandler(this.BtnReadRelayOption_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 25);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(35, 12);
+            this.label16.TabIndex = 34;
+            this.label16.Text = "门1：";
+            // 
+            // cbxDoor2RelayOption
+            // 
+            this.cbxDoor2RelayOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDoor2RelayOption.FormattingEnabled = true;
+            this.cbxDoor2RelayOption.Items.AddRange(new object[] {
+            "COM & NC",
+            "COM & NO",
+            "双稳态"});
+            this.cbxDoor2RelayOption.Location = new System.Drawing.Point(155, 22);
+            this.cbxDoor2RelayOption.Name = "cbxDoor2RelayOption";
+            this.cbxDoor2RelayOption.Size = new System.Drawing.Size(74, 20);
+            this.cbxDoor2RelayOption.TabIndex = 43;
+            // 
+            // cbxDoor3RelayOption
+            // 
+            this.cbxDoor3RelayOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDoor3RelayOption.FormattingEnabled = true;
+            this.cbxDoor3RelayOption.Items.AddRange(new object[] {
+            "COM & NC",
+            "COM & NO",
+            "双稳态"});
+            this.cbxDoor3RelayOption.Location = new System.Drawing.Point(275, 22);
+            this.cbxDoor3RelayOption.Name = "cbxDoor3RelayOption";
+            this.cbxDoor3RelayOption.Size = new System.Drawing.Size(74, 20);
+            this.cbxDoor3RelayOption.TabIndex = 44;
+            // 
+            // cbxDoor4RelayOption
+            // 
+            this.cbxDoor4RelayOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDoor4RelayOption.FormattingEnabled = true;
+            this.cbxDoor4RelayOption.Items.AddRange(new object[] {
+            "COM & NC",
+            "COM & NO",
+            "双稳态"});
+            this.cbxDoor4RelayOption.Location = new System.Drawing.Point(395, 22);
+            this.cbxDoor4RelayOption.Name = "cbxDoor4RelayOption";
+            this.cbxDoor4RelayOption.Size = new System.Drawing.Size(74, 20);
+            this.cbxDoor4RelayOption.TabIndex = 45;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.btnOpenDoor_CheckNum);
+            this.groupBox7.Controls.Add(this.btnCloseDoor);
+            this.groupBox7.Controls.Add(this.btnHoldOpenDoor);
+            this.groupBox7.Controls.Add(this.btnOpenDoor);
+            this.groupBox7.Location = new System.Drawing.Point(6, 122);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(349, 52);
+            this.groupBox7.TabIndex = 2;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "远程开门";
+            // 
+            // btnOpenDoor
+            // 
+            this.btnOpenDoor.Location = new System.Drawing.Point(8, 20);
+            this.btnOpenDoor.Name = "btnOpenDoor";
+            this.btnOpenDoor.Size = new System.Drawing.Size(68, 23);
+            this.btnOpenDoor.TabIndex = 35;
+            this.btnOpenDoor.Text = "远程开门";
+            this.btnOpenDoor.UseVisualStyleBackColor = true;
+            this.btnOpenDoor.Click += new System.EventHandler(this.BtnOpenDoor_Click);
+            // 
+            // btnHoldOpenDoor
+            // 
+            this.btnHoldOpenDoor.Location = new System.Drawing.Point(156, 20);
+            this.btnHoldOpenDoor.Name = "btnHoldOpenDoor";
+            this.btnHoldOpenDoor.Size = new System.Drawing.Size(68, 23);
+            this.btnHoldOpenDoor.TabIndex = 36;
+            this.btnHoldOpenDoor.Text = "门常开";
+            this.btnHoldOpenDoor.UseVisualStyleBackColor = true;
+            this.btnHoldOpenDoor.Click += new System.EventHandler(this.BtnHoldOpenDoor_Click);
+            // 
+            // btnCloseDoor
+            // 
+            this.btnCloseDoor.Location = new System.Drawing.Point(82, 20);
+            this.btnCloseDoor.Name = "btnCloseDoor";
+            this.btnCloseDoor.Size = new System.Drawing.Size(68, 23);
+            this.btnCloseDoor.TabIndex = 37;
+            this.btnCloseDoor.Text = "远程关门";
+            this.btnCloseDoor.UseVisualStyleBackColor = true;
+            this.btnCloseDoor.Click += new System.EventHandler(this.BtnCloseDoor_Click);
+            // 
+            // btnOpenDoor_CheckNum
+            // 
+            this.btnOpenDoor_CheckNum.Location = new System.Drawing.Point(230, 20);
+            this.btnOpenDoor_CheckNum.Name = "btnOpenDoor_CheckNum";
+            this.btnOpenDoor_CheckNum.Size = new System.Drawing.Size(100, 23);
+            this.btnOpenDoor_CheckNum.TabIndex = 38;
+            this.btnOpenDoor_CheckNum.Text = "远程开门_验证";
+            this.btnOpenDoor_CheckNum.UseVisualStyleBackColor = true;
+            this.btnOpenDoor_CheckNum.Click += new System.EventHandler(this.BtnOpenDoor_CheckNum_Click);
+            // 
+            // cBoxDoor4
+            // 
+            this.cBoxDoor4.AutoSize = true;
+            this.cBoxDoor4.Checked = true;
+            this.cBoxDoor4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBoxDoor4.Location = new System.Drawing.Point(277, 12);
+            this.cBoxDoor4.Name = "cBoxDoor4";
+            this.cBoxDoor4.Size = new System.Drawing.Size(42, 16);
+            this.cBoxDoor4.TabIndex = 30;
+            this.cBoxDoor4.Text = "门4";
+            this.cBoxDoor4.UseVisualStyleBackColor = true;
+            // 
+            // cBoxDoor3
+            // 
+            this.cBoxDoor3.AutoSize = true;
+            this.cBoxDoor3.Checked = true;
+            this.cBoxDoor3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBoxDoor3.Location = new System.Drawing.Point(205, 11);
+            this.cBoxDoor3.Name = "cBoxDoor3";
+            this.cBoxDoor3.Size = new System.Drawing.Size(42, 16);
+            this.cBoxDoor3.TabIndex = 29;
+            this.cBoxDoor3.Text = "门3";
+            this.cBoxDoor3.UseVisualStyleBackColor = true;
+            // 
+            // cBoxDoor2
+            // 
+            this.cBoxDoor2.AutoSize = true;
+            this.cBoxDoor2.Checked = true;
+            this.cBoxDoor2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBoxDoor2.Location = new System.Drawing.Point(133, 11);
+            this.cBoxDoor2.Name = "cBoxDoor2";
+            this.cBoxDoor2.Size = new System.Drawing.Size(42, 16);
+            this.cBoxDoor2.TabIndex = 28;
+            this.cBoxDoor2.Text = "门2";
+            this.cBoxDoor2.UseVisualStyleBackColor = true;
+            // 
+            // cBoxDoor1
+            // 
+            this.cBoxDoor1.AutoSize = true;
+            this.cBoxDoor1.Checked = true;
+            this.cBoxDoor1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBoxDoor1.Location = new System.Drawing.Point(61, 12);
+            this.cBoxDoor1.Name = "cBoxDoor1";
+            this.cBoxDoor1.Size = new System.Drawing.Size(42, 16);
+            this.cBoxDoor1.TabIndex = 27;
+            this.cBoxDoor1.Text = "门1";
+            this.cBoxDoor1.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(14, 13);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(41, 12);
+            this.label22.TabIndex = 26;
+            this.label22.Text = "门号：";
             // 
             // frmDoor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 644);
+            this.Controls.Add(this.cBoxDoor4);
+            this.Controls.Add(this.cBoxDoor3);
+            this.Controls.Add(this.cBoxDoor2);
+            this.Controls.Add(this.cBoxDoor1);
+            this.Controls.Add(this.label22);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cmdDoorNum);
             this.Name = "frmDoor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDoor";
             this.Load += new System.EventHandler(this.frmDoor_Load);
             this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -440,7 +853,13 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -481,5 +900,37 @@
         private System.Windows.Forms.Button butWriteSensorAlarmSetting;
         private System.Windows.Forms.Button butReadSensorAlarmSetting;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.ComboBox cbxDoor1ReaderOption;
+        private System.Windows.Forms.Button btnWriteReaderOption;
+        private System.Windows.Forms.Button btnReadReaderOption;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ComboBox cbxDoor2ReaderOption;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbxDoor4ReaderOption;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cbxDoor3ReaderOption;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cbxDoor1RelayOption;
+        private System.Windows.Forms.Button btnWriteRelayOption;
+        private System.Windows.Forms.Button btnReadRelayOption;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cbxDoor4RelayOption;
+        private System.Windows.Forms.ComboBox cbxDoor3RelayOption;
+        private System.Windows.Forms.ComboBox cbxDoor2RelayOption;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Button btnOpenDoor;
+        private System.Windows.Forms.Button btnCloseDoor;
+        private System.Windows.Forms.Button btnHoldOpenDoor;
+        private System.Windows.Forms.Button btnOpenDoor_CheckNum;
+        private System.Windows.Forms.CheckBox cBoxDoor4;
+        private System.Windows.Forms.CheckBox cBoxDoor3;
+        private System.Windows.Forms.CheckBox cBoxDoor2;
+        private System.Windows.Forms.CheckBox cBoxDoor1;
+        private System.Windows.Forms.Label label22;
     }
 }

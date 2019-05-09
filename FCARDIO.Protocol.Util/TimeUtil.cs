@@ -96,6 +96,11 @@ namespace FCARDIO.Protocol.Util
             }
         }
 
+        /// <summary>
+        /// 日期类型转换为BCD格式日期字节数组
+        /// </summary>
+        /// <param name="btData"></param>
+        /// <param name="date"></param>
         public static void DateToBCD_ssmmhhddMMwwyy(byte[] btData, DateTime date)
         {
             if (date == null)
@@ -107,14 +112,9 @@ namespace FCARDIO.Protocol.Util
             }
             else
             {
-                int MONTH = date.Day - 1;//这里获取到的周，周日表示1，周一表示2 ... 周六表示 7
-                if (MONTH == 0)
-                {
-                    MONTH = 7;
-                }
                 btData[6] = (byte)(date.Year - 2000);
-                btData[5] = (byte)MONTH;
-                btData[4] = (byte)(date.Month + 1);
+                btData[5] = (byte)GetWeekNum();
+                btData[4] = (byte)date.Month;
                 btData[3] = (byte)date.Day;
                 btData[2] = (byte)date.Hour;
                 btData[1] = (byte)date.Minute;
@@ -123,6 +123,39 @@ namespace FCARDIO.Protocol.Util
             }
         }
 
+        /// <summary>
+        /// 定义星期代表数值（星期表示：1表示星期一；2表示星期二。。。。6表示星期六；7表示星期日；）
+        /// </summary>
+        /// <returns></returns>
+        public static int GetWeekNum()
+        {
+            int weekNum = 1;
+            switch (DateTime.Now.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    weekNum = 1;
+                    break;
+                case DayOfWeek.Tuesday:
+                    weekNum = 2;
+                    break;
+                case DayOfWeek.Wednesday:
+                    weekNum = 3;
+                    break;
+                case DayOfWeek.Thursday:
+                    weekNum = 4;
+                    break;
+                case DayOfWeek.Friday:
+                    weekNum = 5;
+                    break;
+                case DayOfWeek.Saturday:
+                    weekNum = 6;
+                    break;
+                case DayOfWeek.Sunday:
+                    weekNum = 7;
+                    break;
+            }
+            return weekNum;
+        }
 
         public static DateTime BCDTimeToDate_yyMMddhhmm(byte [] btTime)
         {

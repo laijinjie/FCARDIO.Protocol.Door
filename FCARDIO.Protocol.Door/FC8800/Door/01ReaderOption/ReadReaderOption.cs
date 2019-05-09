@@ -10,31 +10,29 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
 {
-    public class ReadReaderOption : FC8800Command
+    /// <summary>
+    /// 读取控制器4个门的读卡器字节数
+    /// </summary>
+    public class ReadReaderOption : FC8800Command_ReadParameter
     {
-        public ReadReaderOption(INCommandDetail cd) : base(cd, null)
-        {
-
-        }
-        protected override bool CheckCommandParameter(INCommandParameter value)
-        {
-            return true;
-        }
+        /// <summary>
+        /// 读取控制器4个门的读卡器字节数
+        /// </summary>
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        public ReadReaderOption(INCommandDetail cd) : base(cd) { }
 
         /// <summary>
-        /// 命令在此进行拼装
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
             Packet(0x03, 0x01);
         }
 
-
-
         /// <summary>
-        /// 【应答：OK】 => 父类已处理
+        /// 命令返回值的判断
         /// </summary>
-        /// <param name="oPck"></param>
+        /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
             if (CheckResponse(oPck, 4))
@@ -45,23 +43,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
                 rst.SetBytes(buf);
                 CommandCompleted();
             }
-            return;
-        }
-        /// <summary>
-        /// 准备重新发送命令，可能子类需要清空一些标志或缓冲区，则再此函数中执行
-        /// 本命令不需要
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 释放资源
-        /// </summary>
-        protected override void Release1()
-        {
-            return;
         }
     }
 }

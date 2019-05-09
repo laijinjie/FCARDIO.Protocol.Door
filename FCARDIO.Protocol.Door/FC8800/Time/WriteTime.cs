@@ -46,7 +46,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Time
 
             buf.WriteBytes(Datebuf);
 
-            //Packet(0x02, 0x02, 0x00, 0x07, buf);
+            Packet(0x02, 0x02, 0x00, 0x07, buf);
         }
     }
 }

@@ -38,7 +38,25 @@
             this.txtSystemTime = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.btnReadSystemTime = new System.Windows.Forms.Button();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.label77 = new System.Windows.Forms.Label();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.rBtnSpeedUp = new System.Windows.Forms.RadioButton();
+            this.rBtnSlowDown = new System.Windows.Forms.RadioButton();
+            this.btnReadTimeCorrectionParameter = new System.Windows.Forms.Button();
+            this.label72 = new System.Windows.Forms.Label();
+            this.cbxCorrectionSeconds = new System.Windows.Forms.ComboBox();
+            this.label75 = new System.Windows.Forms.Label();
+            this.btnWriteTimeCorrectionParameter = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnWriteCustomDateTime = new System.Windows.Forms.Button();
+            this.CustomDateTime = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
+            this.groupBox20.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -54,7 +72,7 @@
             this.groupBox1.Controls.Add(this.btnReadSystemTime);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(616, 85);
+            this.groupBox1.Size = new System.Drawing.Size(607, 85);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设备时间";
@@ -143,17 +161,203 @@
             this.btnReadSystemTime.UseVisualStyleBackColor = true;
             this.btnReadSystemTime.Click += new System.EventHandler(this.BtnReadSystemTime_Click);
             // 
+            // groupBox20
+            // 
+            this.groupBox20.Controls.Add(this.btnWriteTimeCorrectionParameter);
+            this.groupBox20.Controls.Add(this.label72);
+            this.groupBox20.Controls.Add(this.cbxCorrectionSeconds);
+            this.groupBox20.Controls.Add(this.label75);
+            this.groupBox20.Controls.Add(this.label77);
+            this.groupBox20.Controls.Add(this.panel14);
+            this.groupBox20.Controls.Add(this.btnReadTimeCorrectionParameter);
+            this.groupBox20.Location = new System.Drawing.Point(12, 113);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(291, 123);
+            this.groupBox20.TabIndex = 96;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "时钟自动修正参数";
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Location = new System.Drawing.Point(7, 25);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(0, 12);
+            this.label77.TabIndex = 77;
+            // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.rBtnSpeedUp);
+            this.panel14.Controls.Add(this.rBtnSlowDown);
+            this.panel14.Location = new System.Drawing.Point(13, 25);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(144, 21);
+            this.panel14.TabIndex = 88;
+            // 
+            // rBtnSpeedUp
+            // 
+            this.rBtnSpeedUp.AutoSize = true;
+            this.rBtnSpeedUp.Location = new System.Drawing.Point(0, 3);
+            this.rBtnSpeedUp.Name = "rBtnSpeedUp";
+            this.rBtnSpeedUp.Size = new System.Drawing.Size(47, 16);
+            this.rBtnSpeedUp.TabIndex = 51;
+            this.rBtnSpeedUp.Text = "调快";
+            this.rBtnSpeedUp.UseVisualStyleBackColor = true;
+            // 
+            // rBtnSlowDown
+            // 
+            this.rBtnSlowDown.AutoSize = true;
+            this.rBtnSlowDown.Checked = true;
+            this.rBtnSlowDown.Location = new System.Drawing.Point(72, 3);
+            this.rBtnSlowDown.Name = "rBtnSlowDown";
+            this.rBtnSlowDown.Size = new System.Drawing.Size(47, 16);
+            this.rBtnSlowDown.TabIndex = 52;
+            this.rBtnSlowDown.TabStop = true;
+            this.rBtnSlowDown.Text = "调慢";
+            this.rBtnSlowDown.UseVisualStyleBackColor = true;
+            // 
+            // btnReadTimeCorrectionParameter
+            // 
+            this.btnReadTimeCorrectionParameter.Location = new System.Drawing.Point(9, 85);
+            this.btnReadTimeCorrectionParameter.Name = "btnReadTimeCorrectionParameter";
+            this.btnReadTimeCorrectionParameter.Size = new System.Drawing.Size(90, 23);
+            this.btnReadTimeCorrectionParameter.TabIndex = 86;
+            this.btnReadTimeCorrectionParameter.Text = "读取修正参数";
+            this.btnReadTimeCorrectionParameter.UseVisualStyleBackColor = true;
+            this.btnReadTimeCorrectionParameter.Click += new System.EventHandler(this.BtnReadTimeCorrectionParameter_Click);
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(163, 62);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(23, 12);
+            this.label72.TabIndex = 91;
+            this.label72.Text = "/秒";
+            // 
+            // cbxCorrectionSeconds
+            // 
+            this.cbxCorrectionSeconds.FormattingEnabled = true;
+            this.cbxCorrectionSeconds.IntegralHeight = false;
+            this.cbxCorrectionSeconds.ItemHeight = 12;
+            this.cbxCorrectionSeconds.Items.AddRange(new object[] {
+            "禁用",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "255"});
+            this.cbxCorrectionSeconds.Location = new System.Drawing.Point(53, 59);
+            this.cbxCorrectionSeconds.MaxLength = 3;
+            this.cbxCorrectionSeconds.Name = "cbxCorrectionSeconds";
+            this.cbxCorrectionSeconds.Size = new System.Drawing.Size(104, 20);
+            this.cbxCorrectionSeconds.TabIndex = 90;
+            this.cbxCorrectionSeconds.Text = "禁用";
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(11, 62);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(41, 12);
+            this.label75.TabIndex = 89;
+            this.label75.Text = "秒数：";
+            // 
+            // btnWriteTimeCorrectionParameter
+            // 
+            this.btnWriteTimeCorrectionParameter.Location = new System.Drawing.Point(105, 85);
+            this.btnWriteTimeCorrectionParameter.Name = "btnWriteTimeCorrectionParameter";
+            this.btnWriteTimeCorrectionParameter.Size = new System.Drawing.Size(90, 23);
+            this.btnWriteTimeCorrectionParameter.TabIndex = 92;
+            this.btnWriteTimeCorrectionParameter.Text = "设置修正参数";
+            this.btnWriteTimeCorrectionParameter.UseVisualStyleBackColor = true;
+            this.btnWriteTimeCorrectionParameter.Click += new System.EventHandler(this.BtnWriteTimeCorrectionParameter_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.CustomDateTime);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.btnWriteCustomDateTime);
+            this.groupBox2.Location = new System.Drawing.Point(314, 113);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(305, 123);
+            this.groupBox2.TabIndex = 97;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "自定义时间";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 44);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 89;
+            this.label4.Text = "时间日期：";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 12);
+            this.label5.TabIndex = 77;
+            // 
+            // btnWriteCustomDateTime
+            // 
+            this.btnWriteCustomDateTime.Location = new System.Drawing.Point(12, 85);
+            this.btnWriteCustomDateTime.Name = "btnWriteCustomDateTime";
+            this.btnWriteCustomDateTime.Size = new System.Drawing.Size(90, 23);
+            this.btnWriteCustomDateTime.TabIndex = 86;
+            this.btnWriteCustomDateTime.Text = "更新设备时间";
+            this.btnWriteCustomDateTime.UseVisualStyleBackColor = true;
+            this.btnWriteCustomDateTime.Click += new System.EventHandler(this.BtnWriteCustomDateTime_Click);
+            // 
+            // CustomDateTime
+            // 
+            this.CustomDateTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.CustomDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.CustomDateTime.Location = new System.Drawing.Point(78, 38);
+            this.CustomDateTime.Name = "CustomDateTime";
+            this.CustomDateTime.Size = new System.Drawing.Size(172, 21);
+            this.CustomDateTime.TabIndex = 90;
+            // 
             // frmTime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 394);
+            this.ClientSize = new System.Drawing.Size(633, 247);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox20);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmTime";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTime";
             this.Load += new System.EventHandler(this.frmTime_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -170,5 +374,20 @@
         private System.Windows.Forms.Button btnWriteSystemTime;
         private System.Windows.Forms.TextBox txtErrorTime;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox20;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.RadioButton rBtnSpeedUp;
+        private System.Windows.Forms.RadioButton rBtnSlowDown;
+        private System.Windows.Forms.Button btnReadTimeCorrectionParameter;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.ComboBox cbxCorrectionSeconds;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.Button btnWriteTimeCorrectionParameter;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnWriteCustomDateTime;
+        private System.Windows.Forms.DateTimePicker CustomDateTime;
     }
 }

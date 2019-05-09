@@ -1,5 +1,4 @@
-﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 using System;
@@ -8,19 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
+namespace FCARDIO.Protocol.Door.FC8800.Time.TimeErrorCorrection
 {
     /// <summary>
-    /// 设置控制器4个门的读卡器字节数
+    /// 设置误差自修正参数
     /// </summary>
-    public class WriteReaderOption : FC8800Command_WriteParameter
+    public class WriteTimeError : FC8800Command_WriteParameter
     {
         /// <summary>
-        /// 设置控制器4个门的读卡器字节数
+        /// 设置误差自修正参数
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        /// <param name="par">包含控制器4个门的读卡器字节数</param>
-        public WriteReaderOption(INCommandDetail cd, ReaderOption_Parameter par) : base(cd, par) { }
+        /// <param name="par">包含误差自修正参数</param>
+        public WriteTimeError(INCommandDetail cd, WriteTimeError_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数
@@ -29,7 +28,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            ReaderOption_Parameter model = value as ReaderOption_Parameter;
+            WriteTimeError_Parameter model = value as WriteTimeError_Parameter;
             if (model == null)
             {
                 return false;
@@ -42,21 +41,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x01, 0x01, 0x04, GetCmdData());
-        }
+            WriteTimeError_Parameter model = _Parameter as WriteTimeError_Parameter;
 
-        /// <summary>
-        /// 创建命令所需的命令数据<br/>
-        /// 将命令打包到ByteBuffer中
-        /// </summary>
-        /// <returns>包含命令数据的ByteBuffer</returns>
-        protected IByteBuffer GetCmdData()
-        {
-            ReaderOption_Parameter model = _Parameter as ReaderOption_Parameter;
             var acl = _Connector.GetByteBufAllocator();
+
             var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
+
+            Packet(0x02, 0x03, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
     }
 }

@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.Remote
 {
-    public class Remote_Result
-        : Remote_Parameter, INCommandResult
+    /// <summary>
+    /// 远程开关门_结果
+    /// </summary>
+    public class Remote_Result: Remote_Parameter, INCommandResult
     {
-
     }
 }

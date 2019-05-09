@@ -7,54 +7,95 @@ using DotNetty.Buffers;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.RelayOption
 {
+    /// <summary>
+    /// 控制器4个门的继电器参数
+    /// </summary>
     public class RelayOption_Parameter : AbstractParameter
     {
-        private const int _DataLength = 0x04;
-        private byte[] _Relay = null;
+        /// <summary>
+        /// 数据长度
+        /// </summary>
+        public int DataLength = 0x04;
+
+        /// <summary>
+        /// 门的继电器字节数组
+        /// </summary>
+        public byte[] Relay = null;
+
+        /// <summary>
+        /// 构建一个空的实例
+        /// </summary>
         public RelayOption_Parameter() { }
-        public RelayOption_Parameter(byte[] relay)
+
+        /// <summary>
+        /// 控制器4个门的继电器参数初始化实例
+        /// </summary>
+        /// <param name="_Relay">门的继电器字节数组</param>
+        public RelayOption_Parameter(byte[] _Relay)
         {
-            _Relay = relay;
+            Relay = _Relay;
+            checkedParameter();
         }
+
+        /// <summary>
+        /// 检查参数
+        /// </summary>
+        /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (_Relay == null)
+            if (Relay == null)
                 throw new ArgumentException("relay Is Null!");
-            if (_Relay.Length != _DataLength)
+            if (Relay.Length != DataLength)
                 throw new ArgumentException("relay Length Error!");
             return true;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public override void Dispose()
         {
-            _Relay = null;
+            Relay = null;
         }
 
+        /// <summary>
+        /// 对控制器4个门的继电器参数进行编码
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != _DataLength)
+            if (databuf.WritableBytes != DataLength)
             {
                 throw new ArgumentException("databuf Error!");
             }
-            return databuf.WriteBytes(_Relay);
+            return databuf.WriteBytes(Relay);
         }
 
+        /// <summary>
+        /// 获取数据长度
+        /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
-            return _DataLength;
+            return DataLength;
         }
 
+        /// <summary>
+        /// 对控制器4个门的继电器参数进行解码
+        /// </summary>
+        /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (_Relay == null)
+            if (Relay == null)
             {
-                _Relay = new byte[_DataLength];
+                Relay = new byte[DataLength];
             }
-            if (databuf.ReadableBytes != _DataLength)
+            if (databuf.ReadableBytes != DataLength)
             {
                 throw new ArgumentException("databuf Error");
             }
-            databuf.ReadBytes(_Relay);
+            databuf.ReadBytes(Relay);
         }
     }
 }

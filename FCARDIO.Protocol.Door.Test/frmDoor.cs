@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FCARDIO.Protocol.Door.FC8800.Door.ReaderOption;
+using FCARDIO.Protocol.Door.FC8800.Door.RelayOption;
+using FCARDIO.Protocol.Door.FC8800.Door.Remote;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +15,7 @@ namespace FCARDIO.Protocol.Door.Test
 {
     public partial class frmDoor : frmNodeForm
     {
-
+        #region 单例模式
         private static object lockobj = new object();
         private static frmDoor onlyObj;
         public static frmDoor GetForm(INMain main)
@@ -31,13 +34,11 @@ namespace FCARDIO.Protocol.Door.Test
             return onlyObj;
         }
 
-        INMain mMainForm;
-
-        private frmDoor(INMain main)
+        private frmDoor(INMain main) : base(main)
         {
             InitializeComponent();
-            mMainForm = main;
         }
+        #endregion
 
         private void frmDoor_Load(object sender, EventArgs e)
         {
@@ -61,7 +62,19 @@ namespace FCARDIO.Protocol.Door.Test
             SensorAlarmSetting();
             Week();
 
-            
+            #region 读卡器字节数默认选项
+            cbxDoor1ReaderOption.SelectedIndex = 2;
+            cbxDoor2ReaderOption.SelectedIndex = 2;
+            cbxDoor3ReaderOption.SelectedIndex = 2;
+            cbxDoor4ReaderOption.SelectedIndex = 2;
+            #endregion
+
+            #region 继电器参数默认选项
+            cbxDoor1RelayOption.SelectedIndex = 0;
+            cbxDoor2RelayOption.SelectedIndex = 0;
+            cbxDoor3RelayOption.SelectedIndex = 0;
+            cbxDoor4RelayOption.SelectedIndex = 0;
+            #endregion
         }
 
 
@@ -270,11 +283,398 @@ namespace FCARDIO.Protocol.Door.Test
         }
         #endregion
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        #region 读卡器参数读写
+        private void BtnReadReaderOption_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadReaderOption cmd = new ReadReaderOption(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReaderOption_Result result = cmde.Command.getResult() as ReaderOption_Result;
+                StringBuilder sb = new StringBuilder();
+                string[] str = new string[4];
+                str[0] = "字节数：【1、韦根26(三字节)】";
+                str[1] = "字节数：【2、韦根34(四字节)】";
+                str[2] = "字节数：【3、韦根26(二字节)】";
+                str[3] = "字节数：【4、禁用】";
+
+                Invoke(() =>
+                {
+                    for (int i = 0; i < result.DataLength; i++)
+                    {
+                        //门1读卡器字节数
+                        if (i == 0)
+                        {
+                            if (result.Door[i] == 1)
+                            {
+                                cbxDoor1ReaderOption.SelectedIndex = 2;
+                                sb.Append("门"+ (i + 1) + str[0]);
+                            }
+                            else if (result.Door[i] == 2)
+                            {
+                                cbxDoor1ReaderOption.SelectedIndex = 3;
+                                sb.Append("门" + (i + 1) + str[1]);
+                            }
+                            else if (result.Door[i] == 3)
+                            {
+                                cbxDoor1ReaderOption.SelectedIndex = 1;
+                                sb.Append("门" + (i + 1) + str[2]);
+                            }
+                            else if (result.Door[i] == 4)
+                            {
+                                cbxDoor1ReaderOption.SelectedIndex = 0;
+                                sb.Append("门" + (i + 1) + str[3]);
+                            }
+                        }
+                        //门2读卡器字节数
+                        if (i == 1)
+                        {
+                            if (result.Door[i] == 1)
+                            {
+                                cbxDoor2ReaderOption.SelectedIndex = 2;
+                                sb.Append("  门" + (i + 1) + str[0]);
+                            }
+                            else if (result.Door[i] == 2)
+                            {
+                                cbxDoor2ReaderOption.SelectedIndex = 3;
+                                sb.Append("  门" + (i + 1) + str[1]);
+                            }
+                            else if (result.Door[i] == 3)
+                            {
+                                cbxDoor2ReaderOption.SelectedIndex = 1;
+                                sb.Append("  门" + (i + 1) + str[2]);
+                            }
+                            else if (result.Door[i] == 4)
+                            {
+                                cbxDoor2ReaderOption.SelectedIndex = 0;
+                                sb.Append("  门" + (i + 1) + str[3]);
+                            }
+                        }
+                        //门3读卡器字节数
+                        if (i == 2)
+                        {
+                            if (result.Door[i] == 1)
+                            {
+                                cbxDoor3ReaderOption.SelectedIndex = 2;
+                                sb.Append("  门" + (i + 1) + str[0]);
+                            }
+                            else if (result.Door[i] == 2)
+                            {
+                                cbxDoor3ReaderOption.SelectedIndex = 3;
+                                sb.Append("  门" + (i + 1) + str[1]);
+                            }
+                            else if (result.Door[i] == 3)
+                            {
+                                cbxDoor3ReaderOption.SelectedIndex = 1;
+                                sb.Append("  门" + (i + 1) + str[2]);
+                            }
+                            else if (result.Door[i] == 4)
+                            {
+                                cbxDoor3ReaderOption.SelectedIndex = 0;
+                                sb.Append("  门" + (i + 1) + str[3]);
+                            }
+                        }
+                        //门4读卡器字节数
+                        if (i == 3)
+                        {
+                            if (result.Door[i] == 1)
+                            {
+                                cbxDoor4ReaderOption.SelectedIndex = 2;
+                                sb.Append("  门" + (i + 1) + str[0]);
+                            }
+                            else if (result.Door[i] == 2)
+                            {
+                                cbxDoor4ReaderOption.SelectedIndex = 3;
+                                sb.Append("  门" + (i + 1) + str[1]);
+                            }
+                            else if (result.Door[i] == 3)
+                            {
+                                cbxDoor4ReaderOption.SelectedIndex = 1;
+                                sb.Append("  门" + (i + 1) + str[2]);
+                            }
+                            else if (result.Door[i] == 4)
+                            {
+                                cbxDoor4ReaderOption.SelectedIndex = 0;
+                                sb.Append("  门" + (i + 1) + str[3]);
+                            }
+                        }
+                    }
+                });
+                mMainForm.AddCmdLog(cmde, sb.ToString());
+            };
+        }
+
+        private void BtnWriteReaderOption_Click(object sender, EventArgs e)
+        {
+            byte[] Door = new byte[4];
+            //门1读卡器字节数
+            int Door1ReaderOption = cbxDoor1ReaderOption.SelectedIndex;
+            if (Door1ReaderOption == 0) //禁用
+            {
+                Door[0] = 4;
+            }
+            else if(Door1ReaderOption == 1) //二字节
+            {
+                Door[0] = 3;
+            }
+            else if (Door1ReaderOption == 2) //三字节
+            {
+                Door[0] = 1;
+            }
+            else if (Door1ReaderOption == 3) //四字节
+            {
+                Door[0] = 2;
+            }
+            //门2读卡器字节数
+            int Door2ReaderOption = cbxDoor2ReaderOption.SelectedIndex;
+            if (Door2ReaderOption == 0) //禁用
+            {
+                Door[1] = 4;
+            }
+            else if (Door2ReaderOption == 1) //二字节
+            {
+                Door[1] = 3;
+            }
+            else if (Door2ReaderOption == 2) //三字节
+            {
+                Door[1] = 1;
+            }
+            else if (Door2ReaderOption == 3) //四字节
+            {
+                Door[1] = 2;
+            }
+            //门3读卡器字节数
+            int Door3ReaderOption = cbxDoor3ReaderOption.SelectedIndex;
+            if (Door3ReaderOption == 0) //禁用
+            {
+                Door[2] = 4;
+            }
+            else if (Door3ReaderOption == 1) //二字节
+            {
+                Door[2] = 3;
+            }
+            else if (Door3ReaderOption == 2) //三字节
+            {
+                Door[2] = 1;
+            }
+            else if (Door3ReaderOption == 3) //四字节
+            {
+                Door[2] = 2;
+            }
+            //门4读卡器字节数
+            int Door4ReaderOption = cbxDoor4ReaderOption.SelectedIndex;
+            if (Door4ReaderOption == 0) //禁用
+            {
+                Door[3] = 4;
+            }
+            else if (Door4ReaderOption == 1) //二字节
+            {
+                Door[3] = 3;
+            }
+            else if (Door4ReaderOption == 2) //三字节
+            {
+                Door[3] = 1;
+            }
+            else if (Door4ReaderOption == 3) //四字节
+            {
+                Door[3] = 2;
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteReaderOption cmd = new WriteReaderOption(cmdDtl, new ReaderOption_Parameter(Door));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 继电器参数读写
+        private void BtnReadRelayOption_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadRelayOption cmd = new ReadRelayOption(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                RelayOption_Result result = cmde.Command.getResult() as RelayOption_Result;
+                StringBuilder sb = new StringBuilder();
+                string[] str = new string[3];
+                str[0] = "继电器类型：【1、COM & NC】";
+                str[1] = "继电器类型：【2、COM & NO】";
+                str[2] = "继电器类型：【3、双稳态】";
+
+                Invoke(() =>
+                {
+                    for (int i = 0; i < result.DataLength; i++)
+                    {
+                        //门1继电器参数
+                        if (i == 0)
+                        {
+                            if (result.Relay[i] == 1)
+                            {
+                                cbxDoor1RelayOption.SelectedIndex = 0;
+                                sb.Append("门" + (i + 1) + str[0]);
+                            }
+                            else if (result.Relay[i] == 2)
+                            {
+                                cbxDoor1RelayOption.SelectedIndex = 1;
+                                sb.Append("门" + (i + 1) + str[1]);
+                            }
+                            else if (result.Relay[i] == 3)
+                            {
+                                cbxDoor1RelayOption.SelectedIndex = 2;
+                                sb.Append("门" + (i + 1) + str[2]);
+                            }
+                        }
+                        //门2继电器参数
+                        if (i == 1)
+                        {
+                            if (result.Relay[i] == 1)
+                            {
+                                cbxDoor2RelayOption.SelectedIndex = 0;
+                                sb.Append("  门" + (i + 1) + str[0]);
+                            }
+                            else if (result.Relay[i] == 2)
+                            {
+                                cbxDoor2RelayOption.SelectedIndex = 1;
+                                sb.Append("  门" + (i + 1) + str[1]);
+                            }
+                            else if (result.Relay[i] == 3)
+                            {
+                                cbxDoor2RelayOption.SelectedIndex = 2;
+                                sb.Append("  门" + (i + 1) + str[2]);
+                            }
+                        }
+                        //门3继电器参数
+                        if (i == 2)
+                        {
+                            if (result.Relay[i] == 1)
+                            {
+                                cbxDoor3RelayOption.SelectedIndex = 0;
+                                sb.Append("  门" + (i + 1) + str[0]);
+                            }
+                            else if (result.Relay[i] == 2)
+                            {
+                                cbxDoor3RelayOption.SelectedIndex = 1;
+                                sb.Append("  门" + (i + 1) + str[1]);
+                            }
+                            else if (result.Relay[i] == 3)
+                            {
+                                cbxDoor3RelayOption.SelectedIndex = 2;
+                                sb.Append("  门" + (i + 1) + str[2]);
+                            }
+                        }
+                        //门4继电器参数
+                        if (i == 3)
+                        {
+                            if (result.Relay[i] == 1)
+                            {
+                                cbxDoor4RelayOption.SelectedIndex = 0;
+                                sb.Append("  门" + (i + 1) + str[0]);
+                            }
+                            else if (result.Relay[i] == 2)
+                            {
+                                cbxDoor4RelayOption.SelectedIndex = 1;
+                                sb.Append("  门" + (i + 1) + str[1]);
+                            }
+                            else if (result.Relay[i] == 3)
+                            {
+                                cbxDoor4RelayOption.SelectedIndex = 2;
+                                sb.Append("  门" + (i + 1) + str[2]);
+                            }
+                        }
+                    }
+                });
+                mMainForm.AddCmdLog(cmde, sb.ToString());
+            };
+        }
+
+        private void BtnWriteRelayOption_Click(object sender, EventArgs e)
+        {
+            byte[] Relay = new byte[4];
+            Relay[0] = Convert.ToByte(cbxDoor1RelayOption.SelectedIndex + 1); //门1继电器参数
+            Relay[1] = Convert.ToByte(cbxDoor2RelayOption.SelectedIndex + 1); //门2继电器参数
+            Relay[2] = Convert.ToByte(cbxDoor3RelayOption.SelectedIndex + 1); //门3继电器参数
+            Relay[3] = Convert.ToByte(cbxDoor4RelayOption.SelectedIndex + 1); //门4继电器参数
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteRelayOption cmd = new WriteRelayOption(cmdDtl, new RelayOption_Parameter(Relay));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 远程开关门
+        private void BtnOpenDoor_Click(object sender, EventArgs e)
+        {
+            if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
+            {
+                MsgErr("请勾选需要操作的门！");
+                return;
+            }
+
+            byte[] Door = new byte[4];
+            Door[0] = Convert.ToByte(cBoxDoor1.Checked ? 1 : 0);
+            Door[1] = Convert.ToByte(cBoxDoor2.Checked ? 1 : 0);
+            Door[2] = Convert.ToByte(cBoxDoor3.Checked ? 1 : 0);
+            Door[3] = Convert.ToByte(cBoxDoor4.Checked ? 1 : 0);
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            OpenDoor cmd = new OpenDoor(cmdDtl, new Remote_Parameter(Door));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnCloseDoor_Click(object sender, EventArgs e)
+        {
+            if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
+            {
+                MsgErr("请勾选需要操作的门！");
+                return;
+            }
+
+            byte[] Door = new byte[4];
+            Door[0] = Convert.ToByte(cBoxDoor1.Checked ? 1 : 0);
+            Door[1] = Convert.ToByte(cBoxDoor2.Checked ? 1 : 0);
+            Door[2] = Convert.ToByte(cBoxDoor3.Checked ? 1 : 0);
+            Door[3] = Convert.ToByte(cBoxDoor4.Checked ? 1 : 0);
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            CloseDoor cmd = new CloseDoor(cmdDtl, new Remote_Parameter(Door));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnHoldOpenDoor_Click(object sender, EventArgs e)
+        {
+            if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
+            {
+                MsgErr("请勾选需要操作的门！");
+                return;
+            }
+
+            byte[] Door = new byte[4];
+            Door[0] = Convert.ToByte(cBoxDoor1.Checked ? 1 : 0);
+            Door[1] = Convert.ToByte(cBoxDoor2.Checked ? 1 : 0);
+            Door[2] = Convert.ToByte(cBoxDoor3.Checked ? 1 : 0);
+            Door[3] = Convert.ToByte(cBoxDoor4.Checked ? 1 : 0);
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            HoldDoor cmd = new HoldDoor(cmdDtl, new Remote_Parameter(Door));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnOpenDoor_CheckNum_Click(object sender, EventArgs e)
         {
 
         }
-
-
+        #endregion
     }
 }
