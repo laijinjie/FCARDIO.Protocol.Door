@@ -97,6 +97,7 @@
     <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort_Result.cs" />
     <Compile Include="FC8800\Data\TransactionDatabaseDetail.cs" />
     <Compile Include="FC8800\Data\TransactionDetail.cs" />
+    <Compile Include="FC8800\Door\DoorDetail.cs" />
     <Compile Include="FC8800\FC8800Command_ReadParameter.cs" />
     <Compile Include="FC8800\FC8800Command_WriteParameter.cs" />
     <Compile Include="FC8800\Holiday\ClearHoliday\ClearHoliday.cs" />
