@@ -283,5 +283,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
             }
             return true;
         }
+
+        /// <summary>
+        /// 获取一个随机数
+        /// </summary>
+        /// <param name="iMin">最小值</param>
+        /// <param name="iMax">最大值</param>
+        /// <returns></returns>
+        public static int GetRandomNum(int iMin, int iMax)
+        {
+            Random mRandom = new Random();
+            var rnd = mRandom.NextDouble();
+            return iMin + (int)(rnd * (iMax - iMin + 1));
+        }
     }
 }

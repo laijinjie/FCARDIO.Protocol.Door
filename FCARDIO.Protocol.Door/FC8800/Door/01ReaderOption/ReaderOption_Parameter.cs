@@ -15,7 +15,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
         /// <summary>
         /// 数据长度
         /// </summary>
-        public int DataLength = 0x04;
+        private readonly int DataLength = 0x04;
         /// <summary>
         /// 门字节数组
         /// </summary>

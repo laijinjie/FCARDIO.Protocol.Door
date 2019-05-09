@@ -95,6 +95,9 @@
     <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort.cs" />
     <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort_Parameter.cs" />
     <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort_Result.cs" />
+    <Compile Include="FC8800\Data\TimeGroup\ReaderWork\DayTimeGroup_ReaderWork.cs" />
+    <Compile Include="FC8800\Data\TimeGroup\ReaderWork\TimeSegment_ReaderWork.cs" />
+    <Compile Include="FC8800\Data\TimeGroup\ReaderWork\WeekTimeGroup_ReaderWork.cs" />
     <Compile Include="FC8800\Data\TransactionDatabaseDetail.cs" />
     <Compile Include="FC8800\Data\TransactionDetail.cs" />
     <Compile Include="FC8800\Door\DoorDetail.cs" />

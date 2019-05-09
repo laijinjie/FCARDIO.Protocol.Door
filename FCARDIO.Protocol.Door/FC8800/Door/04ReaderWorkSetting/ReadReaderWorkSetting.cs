@@ -10,7 +10,10 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
 {
-    public class ReadReaderWorkSetting : FC8800Command
+    /// <summary>
+    /// 读取门认证方式
+    /// </summary>
+    public class ReadReaderWorkSetting : FC8800Command_ReadParameter
     {
         //0x03	0x05	0x00	0x119
         public ReadReaderWorkSetting(INCommandDetail cd, ReadReaderWorkSetting_Parameter value) : base(cd, value)
@@ -18,25 +21,25 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         }
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            WriteReaderWorkSetting_Parameter model = value as WriteReaderWorkSetting_Parameter;
+            ReadReaderWorkSetting_Parameter model = value as ReadReaderWorkSetting_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
 
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x119))
-            {
-                var buf = oPck.CmdData;
-                ReaderWorkSetting_Result rst = new ReaderWorkSetting_Result();
-                _Result = rst;
-                rst.SetBytes(buf);
-                CommandCompleted();
-            }
+            //if (CheckResponse(oPck, 0x119))
+            //{
+            //    var buf = oPck.CmdData;
+            //    ReaderWorkSetting_Result rst = new ReaderWorkSetting_Result();
+            //    _Result = rst;
+            //    rst.SetBytes(buf);
+            //    CommandCompleted();
+            //}
         }
         protected IByteBuffer GetCmdData()
         {
-            WriteReaderWorkSetting_Parameter model = _Parameter as WriteReaderWorkSetting_Parameter;
+            ReadReaderWorkSetting_Parameter model = _Parameter as ReadReaderWorkSetting_Parameter;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
             model.GetBytes(buf);

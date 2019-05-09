@@ -25,7 +25,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
          *
          * @param SegmentCount 时段数量
          */
-        public void SetSegmentCount(int SegmentCount)
+        public virtual void SetSegmentCount(int SegmentCount)
         {
             mSegment = new TimeSegment[SegmentCount];
             for (int i = 0; i < SegmentCount; i++)

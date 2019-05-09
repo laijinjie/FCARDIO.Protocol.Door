@@ -15,11 +15,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.Remote
         /// <summary>
         /// 数据长度
         /// </summary>
-        public int DataLength = 0x04;
+        private readonly int DataLength = 0x04;
         /// <summary>
-        /// 门字节数组
+        /// 门
         /// </summary>
-        public byte[] Door = null;
+        private DoorDetail<bool> Door = null;
 
         /// <summary>
         /// 构建一个空的实例
@@ -30,7 +30,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.Remote
         /// 远程开关门参数初始化实例
         /// </summary>
         /// <param name="_Door">门字节数组</param>
-        public Remote_Parameter(byte[] _Door)
+        public Remote_Parameter(DoorDetail<bool> _Door)
         {
             Door = _Door;
             checkedParameter();
@@ -44,8 +44,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.Remote
         {
             if (Door == null)
                 throw new ArgumentException("door Is Null!");
-            if (Door.Length != DataLength)
-                throw new ArgumentException("door Length Error!");
             return true;
         }
 
@@ -68,7 +66,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.Remote
             {
                 throw new ArgumentException("databuf Error!");
             }
-            return databuf.WriteBytes(Door);
+            for (int i = 1; i <= 4; i++)
+            {
+                databuf.WriteBoolean(Door.GetDoor(i));
+            }
+            return databuf;
         }
 
         /// <summary>
@@ -88,13 +90,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.Remote
         {
             if (Door == null)
             {
-                Door = new byte[DataLength];
+                Door = new DoorDetail<bool>();
             }
             if (databuf.ReadableBytes != DataLength)
             {
                 throw new ArgumentException("databuf Error");
             }
-            databuf.ReadBytes(Door);
+            for (int i = 1; i <= 4; i++)
+            {
+                Door.SetDoor(i, databuf.ReadBoolean());
+            }
         }
     }
 }

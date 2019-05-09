@@ -7,55 +7,95 @@ using DotNetty.Buffers;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
 {
+    /// <summary>
+    /// 门读卡认证方式
+    /// </summary>
     public class WriteReaderWorkSetting_Parameter : AbstractParameter
     {
-        private const int _DataLength = 119;
-        private byte[] _ReaderWorkSetting = null;
+        /// <summary>
+        /// 数据长度
+        /// </summary>
+        private const int DataLength = 119;
+        /// <summary>
+        /// 门读卡认证方式
+        /// </summary>
+        private byte[] ReaderWorkSetting = null;
+
+        /// <summary>
+        /// 构建一个空的实例
+        /// </summary>
         public WriteReaderWorkSetting_Parameter() { }
+
+        /// <summary>
+        /// 门读卡认证方式参数初始化实例
+        /// </summary>
+        /// <param name="readerWorkSetting">门读卡认证方式</param>
         public WriteReaderWorkSetting_Parameter(byte[] readerWorkSetting)
         {
-            _ReaderWorkSetting = readerWorkSetting;
+            ReaderWorkSetting = readerWorkSetting;
+            checkedParameter();
         }
 
+        /// <summary>
+        /// 检查参数
+        /// </summary>
+        /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (_ReaderWorkSetting == null)
+            if (ReaderWorkSetting == null)
                 throw new ArgumentException("readerWorkSetting Is Null!");
-            if (_ReaderWorkSetting.Length != _DataLength)
+            if (ReaderWorkSetting.Length != DataLength)
                 throw new ArgumentException("readerWorkSetting Length Error!");
             return true;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public override void Dispose()
         {
-            _ReaderWorkSetting = null;
+            ReaderWorkSetting = null;
         }
 
+        /// <summary>
+        /// 对门认证方式参数进行编码
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != _DataLength)
+            if (databuf.WritableBytes != DataLength)
             {
                 throw new ArgumentException("databuf Error!");
             }
-            return databuf.WriteBytes(_ReaderWorkSetting);
+            return databuf.WriteBytes(ReaderWorkSetting);
         }
 
+        /// <summary>
+        /// 获得数据长度
+        /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
-            return _DataLength;
+            return DataLength;
         }
 
+        /// <summary>
+        /// 对门认证方式参数进行解码
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (_ReaderWorkSetting == null)
+            if (ReaderWorkSetting == null)
             {
-                _ReaderWorkSetting = new byte[_DataLength];
+                ReaderWorkSetting = new byte[DataLength];
             }
-            if (databuf.ReadableBytes != _DataLength)
+            if (databuf.ReadableBytes != DataLength)
             {
                 throw new ArgumentException("databuf Error");
             }
-            databuf.ReadBytes(_ReaderWorkSetting);
+            databuf.ReadBytes(ReaderWorkSetting);
         }
     }
 }

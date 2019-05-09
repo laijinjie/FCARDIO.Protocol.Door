@@ -11,13 +11,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
 {
     public class TimeSegment
     {
-        protected short[] mBeginTime;
-        protected short[] mEndTime;
+        protected DateTime mBeginTime;
+        protected DateTime mEndTime;
 
         public TimeSegment()
         {
-            mBeginTime = new short[2];
-            mEndTime = new short[2];
+
         }
 
         /**
@@ -29,8 +28,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         public void SetBeginTime(int Hour, int Minute)
         {
             CheckTime(Hour, Minute);
-            mBeginTime[0] = (short)Hour;
-            mBeginTime[1] = (short)Minute;
+            DateTime n = DateTime.Now;
+            mBeginTime = new DateTime(n.Year, n.Month, n.Day, Hour, Minute, 0);
         }
 
         /**
@@ -38,10 +37,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
          *
          * @param time 开始时间返回的数组，传入时需要数组保持有2个元素 即 new short[2]
          */
-        public void GetBeginTime(short[] time)
+        public DateTime GetBeginTime()
         {
-            time[0] = mBeginTime[0];
-            time[1] = mBeginTime[1];
+            return mBeginTime;
         }
 
         /**
@@ -53,8 +51,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         public void SetEndTime(int Hour, int Minute)
         {
             CheckTime(Hour, Minute);
-            mEndTime[0] = (short)Hour;
-            mEndTime[1] = (short)Minute;
+            DateTime n = DateTime.Now;
+            mEndTime = new DateTime(n.Year, n.Month, n.Day, Hour, Minute, 0);
         }
 
         /**
@@ -62,23 +60,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
          *
          * @param time 开始时间返回的数组，传入时需要数组保持有2个元素 即 new short[2]
          */
-        public void GetEndTime(short[] time)
+        public DateTime GetEndTime()
         {
-            time[0] = mEndTime[0];
-            time[1] = mEndTime[1];
+            return mEndTime;
         }
 
 
         public String toString()
         {
             StringBuilder buf = new StringBuilder(15);
-            buf.Append(String.Format("%02d", mBeginTime[0]));
-            buf.Append(":");
-            buf.Append(String.Format("%02d", mBeginTime[1]));
+            buf.Append(mBeginTime.ToString("HH:mm"));
             buf.Append(" - ");
-            buf.Append(String.Format("%02d", mEndTime[0]));
-            buf.Append(":");
-            buf.Append(String.Format("%02d", mEndTime[1]));
+            buf.Append(mEndTime.ToString("HH:mm"));
             return buf.ToString();
         }
 
@@ -100,13 +93,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
          *
          * @param bBuf
          */
-        public void GetBytes(IByteBuffer bBuf)
+        public virtual void GetBytes(IByteBuffer bBuf)
         {
 
-            bBuf.WriteByte(ByteUtil.ByteToBCD((byte)mBeginTime[0]));
-            bBuf.WriteByte(ByteUtil.ByteToBCD((byte)mBeginTime[1]));
-            bBuf.WriteByte(ByteUtil.ByteToBCD((byte)mEndTime[0]));
-            bBuf.WriteByte(ByteUtil.ByteToBCD((byte)mEndTime[1]));
+            bBuf.WriteByte(ByteUtil.ByteToBCD((byte)mBeginTime.Hour));
+            bBuf.WriteByte(ByteUtil.ByteToBCD((byte)mBeginTime.Minute));
+            bBuf.WriteByte(ByteUtil.ByteToBCD((byte)mEndTime.Hour));
+            bBuf.WriteByte(ByteUtil.ByteToBCD((byte)mEndTime.Minute));
         }
 
         /**
@@ -114,13 +107,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
          *
          * @param bBuf
          */
-        public void SetBytes(IByteBuffer bBuf)
+        public virtual void SetBytes(IByteBuffer bBuf)
         {
-            mBeginTime[0] = ByteUtil.BCDToByte(bBuf.ReadByte());
-            mBeginTime[1] = ByteUtil.BCDToByte(bBuf.ReadByte());
-
-            mEndTime[0] = ByteUtil.BCDToByte(bBuf.ReadByte());
-            mEndTime[1] = ByteUtil.BCDToByte(bBuf.ReadByte());
+            DateTime n = DateTime.Now;
+            mBeginTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(bBuf.ReadByte()), ByteUtil.BCDToByte(bBuf.ReadByte()), 0);
+            mEndTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(bBuf.ReadByte()), ByteUtil.BCDToByte(bBuf.ReadByte()), 0);
         }
     }
 }

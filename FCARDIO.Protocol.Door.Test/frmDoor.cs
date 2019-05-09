@@ -10,6 +10,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FCARDIO.Protocol.Door.FC8800.Utility;
+using FCARDIO.Protocol.Door.FC8800.Door;
+using System.Collections;
+using FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting;
 
 namespace FCARDIO.Protocol.Door.Test
 {
@@ -75,6 +79,7 @@ namespace FCARDIO.Protocol.Door.Test
             cbxDoor3RelayOption.SelectedIndex = 0;
             cbxDoor4RelayOption.SelectedIndex = 0;
             #endregion
+
         }
 
 
@@ -152,10 +157,10 @@ namespace FCARDIO.Protocol.Door.Test
             String pwd = Password.Text.ToString();
             int alarmOption = cmbAlarmOption.SelectedIndex;
 
-            var par = new FC8800.Door.AlarmPassword.WriteAlarmPassword_parameter(door, use,pwd,alarmOption);
+            var par = new FC8800.Door.AlarmPassword.WriteAlarmPassword_parameter(door, use, pwd, alarmOption);
             var cmd = new FC8800.Door.AlarmPassword.WriteAlarmPassword(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-        
+
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 mMainForm.AddLog($"命令成功：门号:{door},功能开关:{use},密码：{Password},报警选项：{alarmOption}");
@@ -185,7 +190,7 @@ namespace FCARDIO.Protocol.Door.Test
             string[] time = new string[100];
             for (int i = 0; i < 100; i++)
             {
-                time[i] = i+1 + "秒";
+                time[i] = i + 1 + "秒";
             }
             cmbOverTime.Items.AddRange(time);
             cmbOverTime.SelectedIndex = 0;
@@ -250,9 +255,9 @@ namespace FCARDIO.Protocol.Door.Test
             else
             {
                 cmbWeek.Show();
-                label10.Show ();
+                label10.Show();
             }
-            
+
 
         }
         private void butReadSensorAlarmSetting_Click(object sender, EventArgs e)
@@ -304,7 +309,7 @@ namespace FCARDIO.Protocol.Door.Test
 
                 Invoke(() =>
                 {
-                    for (int i = 0; i < result.DataLength; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         //门1读卡器字节数
                         if (i == 0)
@@ -312,7 +317,7 @@ namespace FCARDIO.Protocol.Door.Test
                             if (result.Door[i] == 1)
                             {
                                 cbxDoor1ReaderOption.SelectedIndex = 2;
-                                sb.Append("门"+ (i + 1) + str[0]);
+                                sb.Append("门" + (i + 1) + str[0]);
                             }
                             else if (result.Door[i] == 2)
                             {
@@ -417,7 +422,7 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 Door[0] = 4;
             }
-            else if(Door1ReaderOption == 1) //二字节
+            else if (Door1ReaderOption == 1) //二字节
             {
                 Door[0] = 3;
             }
@@ -511,7 +516,7 @@ namespace FCARDIO.Protocol.Door.Test
 
                 Invoke(() =>
                 {
-                    for (int i = 0; i < result.DataLength; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         //门1继电器参数
                         if (i == 0)
@@ -619,11 +624,11 @@ namespace FCARDIO.Protocol.Door.Test
                 return;
             }
 
-            byte[] Door = new byte[4];
-            Door[0] = Convert.ToByte(cBoxDoor1.Checked ? 1 : 0);
-            Door[1] = Convert.ToByte(cBoxDoor2.Checked ? 1 : 0);
-            Door[2] = Convert.ToByte(cBoxDoor3.Checked ? 1 : 0);
-            Door[3] = Convert.ToByte(cBoxDoor4.Checked ? 1 : 0);
+            DoorDetail<bool> Door = new DoorDetail<bool>();
+            Door.SetDoor(1, cBoxDoor1.Checked);
+            Door.SetDoor(2, cBoxDoor2.Checked);
+            Door.SetDoor(3, cBoxDoor3.Checked);
+            Door.SetDoor(4, cBoxDoor4.Checked);
 
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
@@ -639,11 +644,11 @@ namespace FCARDIO.Protocol.Door.Test
                 return;
             }
 
-            byte[] Door = new byte[4];
-            Door[0] = Convert.ToByte(cBoxDoor1.Checked ? 1 : 0);
-            Door[1] = Convert.ToByte(cBoxDoor2.Checked ? 1 : 0);
-            Door[2] = Convert.ToByte(cBoxDoor3.Checked ? 1 : 0);
-            Door[3] = Convert.ToByte(cBoxDoor4.Checked ? 1 : 0);
+            DoorDetail<bool> Door = new DoorDetail<bool>();
+            Door.SetDoor(1, cBoxDoor1.Checked);
+            Door.SetDoor(2, cBoxDoor2.Checked);
+            Door.SetDoor(3, cBoxDoor3.Checked);
+            Door.SetDoor(4, cBoxDoor4.Checked);
 
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
@@ -659,11 +664,11 @@ namespace FCARDIO.Protocol.Door.Test
                 return;
             }
 
-            byte[] Door = new byte[4];
-            Door[0] = Convert.ToByte(cBoxDoor1.Checked ? 1 : 0);
-            Door[1] = Convert.ToByte(cBoxDoor2.Checked ? 1 : 0);
-            Door[2] = Convert.ToByte(cBoxDoor3.Checked ? 1 : 0);
-            Door[3] = Convert.ToByte(cBoxDoor4.Checked ? 1 : 0);
+            DoorDetail<bool> Door = new DoorDetail<bool>();
+            Door.SetDoor(1, cBoxDoor1.Checked);
+            Door.SetDoor(2, cBoxDoor2.Checked);
+            Door.SetDoor(3, cBoxDoor3.Checked);
+            Door.SetDoor(4, cBoxDoor4.Checked);
 
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
@@ -672,6 +677,93 @@ namespace FCARDIO.Protocol.Door.Test
         }
 
         private void BtnOpenDoor_CheckNum_Click(object sender, EventArgs e)
+        {
+            if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
+            {
+                MsgErr("请勾选需要操作的门！");
+                return;
+            }
+
+            byte CheckNum;
+            CheckNum = Convert.ToByte(StringUtility.GetRandomNum(1, 254));
+
+            DoorDetail<bool> Door = new DoorDetail<bool>();
+            Door.SetDoor(1, cBoxDoor1.Checked);
+            Door.SetDoor(2, cBoxDoor2.Checked);
+            Door.SetDoor(3, cBoxDoor3.Checked);
+            Door.SetDoor(4, cBoxDoor4.Checked);
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            OpenDoor_CheckNum cmd = new OpenDoor_CheckNum(cmdDtl, new Remote_CheckNum_Parameter(Door, CheckNum));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 门的锁定与解除
+        private void BtnLockDoor_Click(object sender, EventArgs e)
+        {
+            if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
+            {
+                MsgErr("请勾选需要操作的门！");
+                return;
+            }
+
+            DoorDetail<bool> Door = new DoorDetail<bool>();
+            Door.SetDoor(1, cBoxDoor1.Checked);
+            Door.SetDoor(2, cBoxDoor2.Checked);
+            Door.SetDoor(3, cBoxDoor3.Checked);
+            Door.SetDoor(4, cBoxDoor4.Checked);
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            LockDoor cmd = new LockDoor(cmdDtl, new Remote_Parameter(Door));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnUnLockDoor_Click(object sender, EventArgs e)
+        {
+            if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
+            {
+                MsgErr("请勾选需要操作的门！");
+                return;
+            }
+
+            DoorDetail<bool> Door = new DoorDetail<bool>();
+            Door.SetDoor(1, cBoxDoor1.Checked);
+            Door.SetDoor(2, cBoxDoor2.Checked);
+            Door.SetDoor(3, cBoxDoor3.Checked);
+            Door.SetDoor(4, cBoxDoor4.Checked);
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            UnlockDoor cmd = new UnlockDoor(cmdDtl, new Remote_Parameter(Door));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 读卡认证方式的读写
+        private void BtnReadDoorWorkSetting_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl,new ReadReaderWorkSetting_Parameter(1));
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReaderWorkSetting_Result result = cmde.Command.getResult() as ReaderWorkSetting_Result;
+
+
+                Invoke(() =>
+                {
+
+                });
+                mMainForm.AddCmdLog(cmde, "");
+            };
+        }
+        private void BtnWriteDoorWorkSetting_Click(object sender, EventArgs e)
         {
 
         }

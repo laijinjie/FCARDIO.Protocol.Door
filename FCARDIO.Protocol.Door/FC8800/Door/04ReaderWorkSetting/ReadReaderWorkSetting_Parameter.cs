@@ -7,54 +7,77 @@ using DotNetty.Buffers;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
 {
+    /// <summary>
+    /// 门端口
+    /// </summary>
     public class ReadReaderWorkSetting_Parameter : AbstractParameter
     {
-        private const int _DataLength = 1;
-        private byte[] _ReaderWorkSetting = null;
+        /// <summary>
+        /// 门号
+        /// </summary>
+        private byte Door;
+
+        /// <summary>
+        /// 构建一个空的实例
+        /// </summary>
         public ReadReaderWorkSetting_Parameter() { }
-        public ReadReaderWorkSetting_Parameter(byte[] readerWorkSetting)
+
+        /// <summary>
+        /// 门端口参数初始化实例
+        /// </summary>
+        /// <param name="door">门号</param>
+        public ReadReaderWorkSetting_Parameter(byte door)
         {
-            _ReaderWorkSetting = readerWorkSetting;
+            Door = door;
+            checkedParameter();
         }
+
+        /// <summary>
+        /// 检查参数
+        /// </summary>
+        /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (_ReaderWorkSetting == null)
-                throw new ArgumentException("readerWorkSetting Is Null!");
-            if (_ReaderWorkSetting.Length != _DataLength)
-                throw new ArgumentException("readerWorkSetting Length Error!");
+            if (Door < 1 || Door > 4)
+                throw new ArgumentException("Door Error!");
             return true;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public override void Dispose()
         {
-            _ReaderWorkSetting = null;
+            return;
         }
 
+        /// <summary>
+        /// 对门端口参数进行编码
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != _DataLength)
-            {
-                throw new ArgumentException("databuf Error!");
-            }
-            return databuf.WriteBytes(_ReaderWorkSetting);
+            return databuf.WriteByte(Door);
         }
 
+        /// <summary>
+        /// 获取数据长度
+        /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
-            return _DataLength;
+            return 0x01;
         }
 
+        /// <summary>
+        /// 对门端口参数进行解码
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (_ReaderWorkSetting == null)
-            {
-                _ReaderWorkSetting = new byte[_DataLength];
-            }
-            if (databuf.ReadableBytes != _DataLength)
-            {
-                throw new ArgumentException("databuf Error");
-            }
-            databuf.ReadBytes(_ReaderWorkSetting);
+            Door = databuf.ReadByte();
         }
     }
 }

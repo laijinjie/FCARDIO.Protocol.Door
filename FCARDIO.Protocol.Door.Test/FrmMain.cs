@@ -926,9 +926,8 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.Door.Remote.CloseDoor).FullName, "远程关门");
             mCommandClasss.Add(typeof(FC8800.Door.Remote.HoldDoor).FullName, "设置门常开");
             mCommandClasss.Add(typeof(FC8800.Door.Remote.OpenDoor_CheckNum).FullName, "远程开门_验证");
-            mCommandClasss.Add(typeof(FC8800.Door.Remote.LockDoor).FullName, "远程开门");
-            mCommandClasss.Add(typeof(FC8800.Door.Remote.OpenDoor).FullName, "远程开门");
-
+            mCommandClasss.Add(typeof(FC8800.Door.Remote.LockDoor).FullName, "锁定门");
+            mCommandClasss.Add(typeof(FC8800.Door.Remote.UnlockDoor).FullName, "解除锁定门");
 
             mCommandClasss.Add(typeof(FC8800.Holiday.ReadHolidayDetail).FullName, "读取节假日存储详情");
             mCommandClasss.Add(typeof(FC8800.Holiday.ClearHoliday).FullName, "清空节假日");

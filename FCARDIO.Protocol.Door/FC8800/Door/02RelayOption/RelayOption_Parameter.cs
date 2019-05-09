@@ -15,7 +15,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayOption
         /// <summary>
         /// 数据长度
         /// </summary>
-        public int DataLength = 0x04;
+        private readonly int DataLength = 0x04;
 
         /// <summary>
         /// 门的继电器字节数组

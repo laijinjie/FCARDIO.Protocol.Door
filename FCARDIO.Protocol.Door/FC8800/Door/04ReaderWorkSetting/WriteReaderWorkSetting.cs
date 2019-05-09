@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
 {
-    public class WriteReaderWorkSetting : FC8800Command
+    public class WriteReaderWorkSetting : FC8800Command_WriteParameter
     {
         public WriteReaderWorkSetting(INCommandDetail cd, WriteReaderWorkSetting_Parameter value) : base(cd, value)
         {

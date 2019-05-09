@@ -32,7 +32,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         /**
          * 创建一周中的天时段
          */
-        protected void CreateDayTimeGroup()
+        protected virtual void CreateDayTimeGroup()
         {
             mDay = new DayTimeGroup[7];
             for (int i = 0; i < 7; i++)
@@ -73,7 +73,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         }
 
 
-        public int GetDataLen()
+        public virtual int GetDataLen()
         {
             return 7 * DaySegmentCount * 4;
         }
@@ -155,13 +155,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
          *
          * @return
          */
-        public WeekTimeGroup Clone()
+        public virtual WeekTimeGroup Clone()
         {
             WeekTimeGroup w = new WeekTimeGroup(DaySegmentCount);
             IByteBuffer bBuf = DotNetty.Buffers.UnpooledByteBufferAllocator.Default.Buffer(DaySegmentCount * 4);
             for (int i = 0; i < 10; i++)
             {
-                mDay[i].GetBytes(bBuf);
+                mDay[i].GetBytes(bBuf);   
                 w.mDay[i].SetBytes(bBuf);
                 bBuf.Clear();
             }
