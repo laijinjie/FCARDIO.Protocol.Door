@@ -929,11 +929,13 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.Door.Remote.LockDoor).FullName, "锁定门");
             mCommandClasss.Add(typeof(FC8800.Door.Remote.UnlockDoor).FullName, "解除锁定门");
 
+            mCommandClasss.Add(typeof(FC8800.Door.ReaderWorkSetting.ReadReaderWorkSetting).FullName, "读取门认证方式");
+            mCommandClasss.Add(typeof(FC8800.Door.ReaderWorkSetting.WriteReaderWorkSetting).FullName, "设置门认证方式");
+
             mCommandClasss.Add(typeof(FC8800.Holiday.ReadHolidayDetail).FullName, "读取节假日存储详情");
             mCommandClasss.Add(typeof(FC8800.Holiday.ClearHoliday).FullName, "清空节假日");
             mCommandClasss.Add(typeof(FC8800.Holiday.ReadAllHoliday).FullName, "读取所有节假日");
-            
-            
+
         }
 
 

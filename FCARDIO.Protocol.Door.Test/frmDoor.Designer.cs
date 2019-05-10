@@ -32,16 +32,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.txtDoorWorkSetting = new System.Windows.Forms.TextBox();
             this.btnWriteDoorWorkSetting = new System.Windows.Forms.Button();
             this.btnReadDoorWorkSetting = new System.Windows.Forms.Button();
-            this.dgvDoorWorkSetting = new System.Windows.Forms.DataGridView();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.btnUnLockDoor = new System.Windows.Forms.Button();
             this.btnLockDoor = new System.Windows.Forms.Button();
@@ -113,7 +106,6 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDoorWorkSetting)).BeginInit();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -152,15 +144,25 @@
             // 
             // groupBox16
             // 
+            this.groupBox16.Controls.Add(this.txtDoorWorkSetting);
             this.groupBox16.Controls.Add(this.btnWriteDoorWorkSetting);
             this.groupBox16.Controls.Add(this.btnReadDoorWorkSetting);
-            this.groupBox16.Controls.Add(this.dgvDoorWorkSetting);
             this.groupBox16.Location = new System.Drawing.Point(6, 189);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(725, 323);
+            this.groupBox16.Size = new System.Drawing.Size(725, 184);
             this.groupBox16.TabIndex = 4;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "门认证方式";
+            // 
+            // txtDoorWorkSetting
+            // 
+            this.txtDoorWorkSetting.Location = new System.Drawing.Point(6, 22);
+            this.txtDoorWorkSetting.Multiline = true;
+            this.txtDoorWorkSetting.Name = "txtDoorWorkSetting";
+            this.txtDoorWorkSetting.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDoorWorkSetting.Size = new System.Drawing.Size(659, 152);
+            this.txtDoorWorkSetting.TabIndex = 38;
+            this.txtDoorWorkSetting.WordWrap = false;
             // 
             // btnWriteDoorWorkSetting
             // 
@@ -181,67 +183,6 @@
             this.btnReadDoorWorkSetting.Text = "读取";
             this.btnReadDoorWorkSetting.UseVisualStyleBackColor = true;
             this.btnReadDoorWorkSetting.Click += new System.EventHandler(this.BtnReadDoorWorkSetting_Click);
-            // 
-            // dgvDoorWorkSetting
-            // 
-            this.dgvDoorWorkSetting.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDoorWorkSetting.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column9,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            this.dgvDoorWorkSetting.Location = new System.Drawing.Point(8, 20);
-            this.dgvDoorWorkSetting.Name = "dgvDoorWorkSetting";
-            this.dgvDoorWorkSetting.RowHeadersVisible = false;
-            this.dgvDoorWorkSetting.RowTemplate.Height = 23;
-            this.dgvDoorWorkSetting.Size = new System.Drawing.Size(643, 203);
-            this.dgvDoorWorkSetting.TabIndex = 0;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "星期";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "开始时间";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 95;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "结束时间";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 95;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "读卡";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 78;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "密码";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 78;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "卡加密码";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 78;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "手动输入卡加密码";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 125;
             // 
             // groupBox8
             // 
@@ -988,7 +929,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox16.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDoorWorkSetting)).EndInit();
+            this.groupBox16.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
@@ -1082,15 +1023,8 @@
         private System.Windows.Forms.Button btnUnLockDoor;
         private System.Windows.Forms.Button btnLockDoor;
         private System.Windows.Forms.GroupBox groupBox16;
-        private System.Windows.Forms.DataGridView dgvDoorWorkSetting;
         private System.Windows.Forms.Button btnWriteDoorWorkSetting;
         private System.Windows.Forms.Button btnReadDoorWorkSetting;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.TextBox txtDoorWorkSetting;
     }
 }

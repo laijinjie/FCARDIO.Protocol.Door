@@ -14,6 +14,8 @@ using FCARDIO.Protocol.Door.FC8800.Utility;
 using FCARDIO.Protocol.Door.FC8800.Door;
 using System.Collections;
 using FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting;
+using FCARDIO.Core.Util;
+using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
 
 namespace FCARDIO.Protocol.Door.Test
 {
@@ -745,27 +747,147 @@ namespace FCARDIO.Protocol.Door.Test
         #region 读卡认证方式的读写
         private void BtnReadDoorWorkSetting_Click(object sender, EventArgs e)
         {
+            if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
+            {
+                MsgErr("请勾选需要操作的门！");
+                return;
+            }
+            StringBuilder sb = new StringBuilder();
+            byte door = 1;
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl,new ReadReaderWorkSetting_Parameter(1));
-            mMainForm.AddCommand(cmd);
+            if (cBoxDoor1.Checked)
+            {
+                door = 1;
+                ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl, new ReadReaderWorkSetting_Parameter(door));
+                mMainForm.AddCommand(cmd);
+            }
+            if (cBoxDoor2.Checked)
+            {
+                door = 2;
+                ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl, new ReadReaderWorkSetting_Parameter(door));
+                mMainForm.AddCommand(cmd);
+            }
+            if (cBoxDoor3.Checked)
+            {
+                door = 3;
+                ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl, new ReadReaderWorkSetting_Parameter(door));
+                mMainForm.AddCommand(cmd);
+            }
+            if (cBoxDoor4.Checked)
+            {
+                door = 4;
+                ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl, new ReadReaderWorkSetting_Parameter(door));
+                mMainForm.AddCommand(cmd);
+            }
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReaderWorkSetting_Result result = cmde.Command.getResult() as ReaderWorkSetting_Result;
+                string tip = "门认证方式_门" + result.Door.ToString() + "，时段详情：";
+                StringBuilder sbCheckWay = new StringBuilder(8);
+                StringBuilder sbCheckWayStr = new StringBuilder();
+                byte[] ByteDoorAlarmStateSet = null;
+                BitArray bitSet = null;
+                sb.AppendLine(tip);
+                for (int i = 0; i < 7; i++)
+                {
 
+                    sb.AppendLine(StringUtility.GetWeekStr(i));
+                    for (int j = 0; j < 8; j++)
+                    {
+                        sb.Append("  时段" + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j).GetEndTime()));
+                        var tz = result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j) as TimeSegment_ReaderWork;
+                        ByteDoorAlarmStateSet = new byte[] { tz.GetCheckWay() };
+                        bitSet = new BitArray(ByteDoorAlarmStateSet);
+                        sbCheckWay.Clear();
+                        sbCheckWayStr.Clear();
+                        for (int k = 7; k >= 0; k--)
+                        {
+                            sbCheckWay.Append(bitSet[k] ? 1 : 0);
+                            if (k == 0)
+                            {
+                                sbCheckWayStr.Append(bitSet[k] ? "读卡开门；" : "");
+                            }
+                            else if (k == 1)
+                            {
+                                sbCheckWayStr.Append(bitSet[k] ? "密码开门；" : "");
+                            }
+                            else if (k == 2)
+                            {
+                                sbCheckWayStr.Append(bitSet[k] ? "读卡加密码；" : "");
+                            }
+                            else if (k == 3)
+                            {
+                                sbCheckWayStr.Append(bitSet[k] ? "手动输入卡加密码" : "");
+                            }
+                        }
+                        sb.AppendLine("  认证方式：【" + sbCheckWay + "(" + sbCheckWayStr + ")】");
+                    }
+                }
 
                 Invoke(() =>
                 {
-
+                    txtDoorWorkSetting.Text = sb.ToString();
                 });
-                mMainForm.AddCmdLog(cmde, "");
+
             };
         }
         private void BtnWriteDoorWorkSetting_Click(object sender, EventArgs e)
         {
+            if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
+            {
+                MsgErr("请勾选需要操作的门！");
+                return;
+            }
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
 
+            WeekTimeGroup_ReaderWork tg = new WeekTimeGroup_ReaderWork(8);
+
+            for (int i = 0; i < 7; i++)
+            {
+                var day = tg.GetItem(i);
+                //for (int j = 0; j < 8; j++)
+                //{
+                DateTime nw = DateTime.Now;
+                var tz = day.GetItem(0) as TimeSegment_ReaderWork;
+                tz.SetBeginTime(0, 0);
+                tz.SetEndTime(23, 59);
+                tz.SetCheckWay(7);
+                //}
+            }
+
+            byte door = 1;
+            if (cBoxDoor1.Checked)
+            {
+                door = 1;
+                WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(door, tg);
+                WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
+                mMainForm.AddCommand(write);
+            }
+            if (cBoxDoor2.Checked)
+            {
+                door = 2;
+                WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(door, tg);
+                WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
+                mMainForm.AddCommand(write);
+            }
+            if (cBoxDoor3.Checked)
+            {
+                door = 3;
+                WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(door, tg);
+                WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
+                mMainForm.AddCommand(write);
+            }
+            if (cBoxDoor4.Checked)
+            {
+                door = 4;
+                WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(door, tg);
+                WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
+                mMainForm.AddCommand(write);
+            }
         }
         #endregion
     }

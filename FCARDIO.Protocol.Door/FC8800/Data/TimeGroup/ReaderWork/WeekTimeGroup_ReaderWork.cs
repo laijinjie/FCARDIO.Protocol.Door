@@ -9,7 +9,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
 {
     public class WeekTimeGroup_ReaderWork : WeekTimeGroup
     {
-        DayTimeGroup_ReaderWork[] mDay;
+
         public WeekTimeGroup_ReaderWork(int iDaySegmentCount) : base(iDaySegmentCount)
         {
         }
@@ -30,6 +30,27 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         public override int GetDataLen()
         {
             return 7 * DaySegmentCount * 5;
+        }
+
+        /**
+         * 从缓冲区中获取值并初始化周时段
+         *
+         * @param FistWeek 一周的第一天
+         * @param data
+         */
+        public override void SetBytes(E_WeekDay FistWeek, IByteBuffer data)
+        {
+            int[] WeekList = new int[7];
+            GetWeekList(FistWeek, WeekList);
+            for (int i = 0; i < 7; i++)
+            {
+                mDay[WeekList[i]].SetBytes(data);
+            }
+        }
+
+        public DayTimeGroup GetItem(int index)
+        {
+            return mDay[index];
         }
     }
 }

@@ -13,6 +13,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
     {
         protected DateTime mBeginTime;
         protected DateTime mEndTime;
+        
 
         public TimeSegment()
         {
@@ -113,5 +114,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             mBeginTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(bBuf.ReadByte()), ByteUtil.BCDToByte(bBuf.ReadByte()), 0);
             mEndTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(bBuf.ReadByte()), ByteUtil.BCDToByte(bBuf.ReadByte()), 0);
         }
+
+        
     }
 }

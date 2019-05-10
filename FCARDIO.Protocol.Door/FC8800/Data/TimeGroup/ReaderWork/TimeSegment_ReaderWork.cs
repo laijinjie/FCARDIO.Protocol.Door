@@ -12,6 +12,23 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
     {
         protected byte CheckWay;
 
+        /// <summary>
+        /// 获取认证方式
+        /// </summary>
+        /// <returns></returns>
+        public byte GetCheckWay()
+        {
+            return CheckWay;
+        }
+
+        /// <summary>
+        /// 设置认证方式
+        /// </summary>
+        public void SetCheckWay(byte v)
+        {
+            CheckWay=v;
+        }
+
         /**
          * 将对象写入到字节缓冲区
          *
@@ -31,7 +48,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
          *
          * @param bBuf
          */
-        public virtual void SetBytes(IByteBuffer bBuf)
+        public override void SetBytes(IByteBuffer bBuf)
         {
             DateTime n = DateTime.Now;
             mBeginTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(bBuf.ReadByte()), ByteUtil.BCDToByte(bBuf.ReadByte()), 0);

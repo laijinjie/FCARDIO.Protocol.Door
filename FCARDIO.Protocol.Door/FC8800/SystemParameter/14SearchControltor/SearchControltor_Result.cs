@@ -19,6 +19,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         /// </summary>
         private TCPSetting.TCPDetail _TCP;
 
+
         /// <summary>
         /// SN参数
         /// </summary>

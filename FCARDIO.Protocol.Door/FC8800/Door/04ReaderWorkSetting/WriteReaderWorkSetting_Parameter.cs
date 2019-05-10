@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
+using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
 {
@@ -13,27 +14,31 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
     public class WriteReaderWorkSetting_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 数据长度
+        /// 门
         /// </summary>
-        private const int DataLength = 119;
+        public byte Door;
+
         /// <summary>
-        /// 门读卡认证方式
+        /// 门认证方式时段
         /// </summary>
-        private byte[] ReaderWorkSetting = null;
+        public WeekTimeGroup_ReaderWork weekTimeGroup_ReaderWork;
 
         /// <summary>
         /// 构建一个空的实例
         /// </summary>
-        public WriteReaderWorkSetting_Parameter() { }
+        public WriteReaderWorkSetting_Parameter() {
+            weekTimeGroup_ReaderWork = new WeekTimeGroup_ReaderWork(8);
+        }
 
         /// <summary>
         /// 门读卡认证方式参数初始化实例
         /// </summary>
-        /// <param name="readerWorkSetting">门读卡认证方式</param>
-        public WriteReaderWorkSetting_Parameter(byte[] readerWorkSetting)
+        /// <param name="iDoor">门</param>
+        /// <param name="tg">门认证方式时段</param>
+        public WriteReaderWorkSetting_Parameter(byte iDoor, WeekTimeGroup_ReaderWork tg)
         {
-            ReaderWorkSetting = readerWorkSetting;
-            checkedParameter();
+            Door = iDoor;
+            weekTimeGroup_ReaderWork = tg;
         }
 
         /// <summary>
@@ -42,10 +47,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (ReaderWorkSetting == null)
+            if (weekTimeGroup_ReaderWork == null)
                 throw new ArgumentException("readerWorkSetting Is Null!");
-            if (ReaderWorkSetting.Length != DataLength)
-                throw new ArgumentException("readerWorkSetting Length Error!");
+            
             return true;
         }
 
@@ -54,7 +58,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         /// </summary>
         public override void Dispose()
         {
-            ReaderWorkSetting = null;
+            weekTimeGroup_ReaderWork = null;
         }
 
         /// <summary>
@@ -64,20 +68,22 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != DataLength)
+            if (databuf.WritableBytes != GetDataLen())
             {
                 throw new ArgumentException("databuf Error!");
             }
-            return databuf.WriteBytes(ReaderWorkSetting);
+            databuf.WriteByte(Door);
+            weekTimeGroup_ReaderWork.GetBytes(databuf);
+            return databuf;
         }
 
         /// <summary>
-        /// 获得数据长度
+        /// 获取数据长度
         /// </summary>
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return DataLength;
+            return 0x119;
         }
 
         /// <summary>
@@ -87,15 +93,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         /// <returns></returns>
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (ReaderWorkSetting == null)
+            if (weekTimeGroup_ReaderWork == null)
             {
-                ReaderWorkSetting = new byte[DataLength];
+                weekTimeGroup_ReaderWork = new WeekTimeGroup_ReaderWork(8);
             }
-            if (databuf.ReadableBytes != DataLength)
+            if (databuf.ReadableBytes != GetDataLen())
             {
                 throw new ArgumentException("databuf Error");
             }
-            databuf.ReadBytes(ReaderWorkSetting);
+            Door = databuf.ReadByte();
+            weekTimeGroup_ReaderWork.SetBytes(databuf);
         }
     }
 }

@@ -90,7 +90,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
          * @param FistWeek 一周的第一天
          * @param data
          */
-        public void SetBytes(E_WeekDay FistWeek, IByteBuffer data)
+        public virtual void SetBytes(E_WeekDay FistWeek, IByteBuffer data)
         {
             int [] WeekList = new int[7];
             GetWeekList(FistWeek, WeekList);
