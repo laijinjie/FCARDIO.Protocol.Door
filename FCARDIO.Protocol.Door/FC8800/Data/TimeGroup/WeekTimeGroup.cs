@@ -72,6 +72,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             return mDay[(int)week];
         }
 
+        public DayTimeGroup GetItem(int index)
+        {
+            return mDay[index];
+        }
+
 
         public virtual int GetDataLen()
         {

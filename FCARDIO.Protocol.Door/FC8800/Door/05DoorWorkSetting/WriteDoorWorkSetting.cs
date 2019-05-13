@@ -10,45 +10,49 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
 {
-    public class WriteDoorWorkSetting:FC8800Command
+    /// <summary>
+    /// 设置门工作方式
+    /// </summary>
+    public class WriteDoorWorkSetting : FC8800Command_WriteParameter
     {
-        //0x03	0x06	0x01	0xE5
+        /// <summary>
+        /// 设置门工作方式
+        /// </summary>
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        /// <param name="par">包含门工作方式参数</param>
+        public WriteDoorWorkSetting(INCommandDetail cd, ReadDoorWorkSetting_Parameter par) : base(cd, par) { }
 
-        public WriteDoorWorkSetting(INCommandDetail cd, WriteDoorWorkSetting_Parameter value) : base(cd, value)
-        {
-        }
+        /// <summary>
+        /// 检查命令参数
+        /// </summary>
+        /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            WriteDoorWorkSetting_Parameter model = value as WriteDoorWorkSetting_Parameter;
+            ReadDoorWorkSetting_Parameter model = value as ReadDoorWorkSetting_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
 
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-        }
+        /// <summary>
+        /// 创建命令所需的命令数据<br/>
+        /// 将命令打包到ByteBuffer中
+        /// </summary>
+        /// <returns>包含命令数据的ByteBuffer</returns>
         protected IByteBuffer GetCmdData()
         {
-            WriteDoorWorkSetting_Parameter model = _Parameter as WriteDoorWorkSetting_Parameter;
+            ReadDoorWorkSetting_Parameter model = _Parameter as ReadDoorWorkSetting_Parameter;
             var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(18);
+            var buf = acl.Buffer(model.GetDataLen());
             model.GetBytes(buf);
             return buf;
         }
-        protected override void CommandReSend()
-        {
-            return;
-        }
 
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
         protected override void CreatePacket0()
         {
             Packet(0x03, 0x06, 0x01, 0xE5, GetCmdData());
         }
-
-        protected override void Release1()
-        {
-            return;
-        }
-
     }
 }

@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderInterval
 {
-    public class ReaderInterval_Result
-        : WriteReaderInterval_Parameter,INCommandResult
+    /// <summary>
+    /// 重复读卡间隔_结果
+    /// </summary>
+    public class ReaderInterval_Result : WriteReaderInterval_Parameter, INCommandResult
     {
     }
 }

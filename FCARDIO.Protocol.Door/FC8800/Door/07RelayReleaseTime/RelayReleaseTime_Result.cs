@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.RelayReleaseTime
 {
-    public class RelayReleaseTime_Result
-        : WriteRelayReleaseTime_Parameter,INCommandResult
+    /// <summary>
+    /// 开锁时输出时长_结果
+    /// </summary>
+    public class RelayReleaseTime_Result : WriteRelayReleaseTime_Parameter, INCommandResult
     {
     }
 }

@@ -8,10 +8,9 @@ using DotNetty.Buffers;
 namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
 {
     /// <summary>
-    /// 未注册卡的功能参数结构
+    /// 非法读卡报警_参数
     /// </summary>
-    public class WriteInvalidCardAlarmOption_Parameter
-        : AbstractParameter
+    public class WriteInvalidCardAlarmOption_Parameter : AbstractParameter
     {
         /// <summary>
         /// 门号
@@ -24,15 +23,17 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         /// </summary>
         public bool Use;
 
-        public WriteInvalidCardAlarmOption_Parameter()
-        {
-        }
         /// <summary>
-        /// 创建结构,并传入门号和是否开启此功能
+        /// 构建一个空的实例
+        /// </summary>
+        public WriteInvalidCardAlarmOption_Parameter() { }
+
+        /// <summary>
+        /// 非法读卡报警参数初始化实例
         /// </summary>
         /// <param name="door">门号</param>
         /// <param name="use">是否开启此功能</param>
-        public WriteInvalidCardAlarmOption_Parameter(byte door,bool use)
+        public WriteInvalidCardAlarmOption_Parameter(byte door, bool use)
         {
             DoorNum = door;
             Use = use;
@@ -43,8 +44,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         /// </summary>
         public override bool checkedParameter()
         {
-            if (DoorNum  > 4)
-                throw new ArgumentException("door Is Max!");
+            if (DoorNum < 1 || DoorNum > 4 )
+                throw new ArgumentException("door Error!");
             return true;
         }
 
@@ -57,12 +58,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         }
 
         /// <summary>
-        /// 将结构编码为字节缓冲
+        /// 对非法读卡报警参数进行编码
         /// </summary>
         /// <param name="databuf"></param>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 2)
+            if (databuf.WritableBytes != GetDataLen())
             {
                 throw new ArgumentException("databuf Error!");
             }
@@ -76,15 +77,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         /// </summary>
         public override int GetDataLen()
         {
-            return 2;
+            return 0x02;
         }
 
         /// <summary>
-        /// 将字节缓冲解码为类结构
+        /// 对非法读卡报警参数进行解码
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
+            if (databuf.ReadableBytes != GetDataLen())
+            {
+                throw new ArgumentException("databuf Error");
+            }
             DoorNum = databuf.ReadByte();
             Use = databuf.ReadBoolean();
         }

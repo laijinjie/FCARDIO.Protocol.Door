@@ -47,10 +47,5 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
                 mDay[WeekList[i]].SetBytes(data);
             }
         }
-
-        public DayTimeGroup GetItem(int index)
-        {
-            return mDay[index];
-        }
     }
 }

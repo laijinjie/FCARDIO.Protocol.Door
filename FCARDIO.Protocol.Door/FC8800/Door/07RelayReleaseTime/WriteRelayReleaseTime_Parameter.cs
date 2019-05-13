@@ -7,35 +7,46 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.RelayReleaseTime
 {
-    public class WriteRelayReleaseTime_Parameter
-        :AbstractParameter
+    /// <summary>
+    /// 开锁时输出时长_参数
+    /// </summary>
+    public class WriteRelayReleaseTime_Parameter : AbstractParameter
     {
-        private const int _DataLength = 0x03;
-        private byte[] _ReleaseTime = null;
-
-        public WriteRelayReleaseTime_Parameter()
-        {
-        }
+        /// <summary>
+        /// 门
+        /// </summary>
+        public byte Door;
 
         /// <summary>
-        /// 
+        /// 开锁时输出时长（输出时长2字节，最大65535秒。0表示0.5秒）
         /// </summary>
-        /// <param name="releaseTime"></param>
-        public WriteRelayReleaseTime_Parameter(byte[] releaseTime)
+        public ushort ReleaseTime;
+
+        /// <summary>
+        /// 构建一个空的实例
+        /// </summary>
+        public WriteRelayReleaseTime_Parameter() { }
+
+        /// <summary>
+        /// 开锁时输出时长参数初始化实例
+        /// </summary>
+        /// <param name="door">门端口</param>
+        /// <param name="releaseTime">开锁时输出时长</param>
+        public WriteRelayReleaseTime_Parameter(byte door, ushort releaseTime)
         {
-            _ReleaseTime = releaseTime;
+            Door = door;
+            ReleaseTime = releaseTime;
             checkedParameter();
         }
+
         /// <summary>
         /// 检查参数
         /// </summary>
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (_ReleaseTime == null)
-                throw new ArgumentException("door Is Null!");
-            if (_ReleaseTime.Length != _DataLength)
-                throw new ArgumentException("door Length Error!");
+            if (ReleaseTime < 0 || ReleaseTime > 65535)
+                throw new ArgumentException("releaseTime Error!");
             return true;
         }
 
@@ -44,43 +55,46 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayReleaseTime
         /// </summary>
         public override void Dispose()
         {
-            _ReleaseTime = null;
+            return;
         }
 
         /// <summary>
-        /// 对SN参数进行编码
+        /// 对开锁时输出时长参数进行编码
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != _DataLength)
+            if (databuf.WritableBytes != GetDataLen())
             {
                 throw new ArgumentException("databuf Error!");
             }
-            return databuf.WriteBytes(_ReleaseTime);
-        }
-
-        public override int GetDataLen()
-        {
-            return _DataLength;
+            databuf.WriteByte(Door);
+            databuf.WriteUnsignedShort(ReleaseTime);
+            return databuf;
         }
 
         /// <summary>
-        /// 对SN参数进行解码
+        /// 获取数据长度
+        /// </summary>
+        /// <returns></returns>
+        public override int GetDataLen()
+        {
+            return 0x03;
+        }
+
+        /// <summary>
+        /// 对开锁时输出时长参数进行解码
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (_ReleaseTime == null)
-            {
-                _ReleaseTime = new byte[_DataLength];
-            }
-            if (databuf.ReadableBytes != _DataLength)
+            if (databuf.ReadableBytes != GetDataLen())
             {
                 throw new ArgumentException("databuf Error");
             }
-            databuf.ReadBytes(_ReleaseTime);
+            Door = databuf.ReadByte();
+            ReleaseTime = databuf.ReadUnsignedShort();
         }
     }
 }

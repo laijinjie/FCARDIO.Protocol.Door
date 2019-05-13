@@ -20,7 +20,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含门</param>
-        public ReadReaderWorkSetting(INCommandDetail cd, ReadReaderWorkSetting_Parameter par) : base(cd, par) { }
+        public ReadReaderWorkSetting(INCommandDetail cd, DoorPort_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数
@@ -29,7 +29,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            ReadReaderWorkSetting_Parameter model = value as ReadReaderWorkSetting_Parameter;
+            DoorPort_Parameter model = value as DoorPort_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
@@ -57,7 +57,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         /// <returns>包含命令数据的ByteBuffer</returns>
         protected IByteBuffer GetCmdData()
         {
-            ReadReaderWorkSetting_Parameter model = _Parameter as ReadReaderWorkSetting_Parameter;
+            DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
             model.GetBytes(buf);

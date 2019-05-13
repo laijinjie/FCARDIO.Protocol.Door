@@ -10,20 +10,34 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
 {
-    public class ReadDoorWorkSetting : FC8800Command
+    /// <summary>
+    /// 读取门工作方式
+    /// </summary>
+    public class ReadDoorWorkSetting : FC8800Command_ReadParameter
     {
-        //0x03	0x06	0x00	0x01
+        /// <summary>
+        /// 读取门工作方式
+        /// </summary>
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        /// <param name="par">包含门端口</param>
+        public ReadDoorWorkSetting(INCommandDetail cd, DoorPort_Parameter par) : base(cd, par) { }
 
-        public ReadDoorWorkSetting(INCommandDetail cd, ReadDoorWorkSetting_Parameter value) : base(cd, value)
-        {
-        }
+        /// <summary>
+        /// 检查命令参数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            ReadDoorWorkSetting_Parameter model = value as ReadDoorWorkSetting_Parameter;
+            DoorPort_Parameter model = value as DoorPort_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
 
+        /// <summary>
+        /// 命令返回值的判断
+        /// </summary>
+        /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
             if (CheckResponse(oPck, 0xE5))
@@ -35,27 +49,27 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
                 CommandCompleted();
             }
         }
+
+        /// <summary>
+        /// 创建命令所需的命令数据<br/>
+        /// 将命令打包到ByteBuffer中
+        /// </summary>
+        /// <returns>包含命令数据的ByteBuffer</returns>
         protected IByteBuffer GetCmdData()
         {
-            ReadDoorWorkSetting_Parameter model = _Parameter as ReadDoorWorkSetting_Parameter;
+            DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
             model.GetBytes(buf);
             return buf;
         }
-        protected override void CommandReSend()
-        {
-            return;
-        }
 
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x05, 0x01, 0x1, GetCmdData());
-        }
-
-        protected override void Release1()
-        {
-            return;
+            Packet(0x03, 0x06, 0x00, 0x01, GetCmdData());
         }
     }
 }

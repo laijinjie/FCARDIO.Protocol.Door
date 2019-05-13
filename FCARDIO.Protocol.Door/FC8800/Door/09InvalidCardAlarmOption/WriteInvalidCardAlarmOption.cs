@@ -11,21 +11,20 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
 {
     /// <summary>
-    /// 写入未注册卡读卡时报警功能
+    /// 设置非法读卡报警参数
     /// </summary>
-    public class WriteInvalidCardAlarmOption
-        : FC8800Command
+    public class WriteInvalidCardAlarmOption : FC8800Command_WriteParameter
     {
         /// <summary>
-        /// 初始化命令结构
+        /// 设置非法读卡报警参数
         /// </summary>
-        /// <param name="cd"></param>
-        /// <param name="parameter">包含门号和报警功能开关的结构</param>
-        public WriteInvalidCardAlarmOption(INCommandDetail cd, WriteInvalidCardAlarmOption_Parameter parameter) : base(cd, parameter) { }
-        
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        /// <param name="par">包含非法读卡报警参数</param>
+        public WriteInvalidCardAlarmOption(INCommandDetail cd, WriteInvalidCardAlarmOption_Parameter par) : base(cd, par) { }
+
 
         /// <summary>
-        /// 检查参数
+        /// 检查命令参数
         /// </summary>
         /// <param name="value"></param>
         protected override bool CheckCommandParameter(INCommandParameter value)
@@ -34,9 +33,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
             if (model == null) return false;
             return model.checkedParameter();
         }
-        
+
         /// <summary>
-        /// 创建一个通讯指令
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
@@ -44,8 +43,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         }
 
         /// <summary>
-        /// 获取参数结构的字节编码
+        /// 创建命令所需的命令数据<br/>
+        /// 将命令打包到ByteBuffer中
         /// </summary>
+        /// <returns>包含命令数据的ByteBuffer</returns>
         private IByteBuffer getCmdData()
         {
             WriteInvalidCardAlarmOption_Parameter model = _Parameter as WriteInvalidCardAlarmOption_Parameter;
@@ -53,31 +54,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
             var buf = acl.Buffer(model.GetDataLen());
             model.GetBytes(buf);
             return buf;
-        }
-
-        /// <summary>
-        /// 处理返回值
-        /// </summary>
-        /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 命令重发时需要处理的函数
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
-        
-        /// <summary>
-        /// 命令释放时需要处理的函数
-        /// </summary>
-        protected override void Release1()
-        {
-            return;
         }
     }
 }

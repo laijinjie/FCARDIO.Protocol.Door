@@ -11,20 +11,16 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
 {
     /// <summary>
-    /// 读取未注册卡读卡时报警功能参数
-    /// 成功返回结果参考  ReadInvalidCardAlarmOption_Result
+    /// 读取非法读卡报警参数
     /// </summary>
-    public class ReadInvalidCardAlarmOption
-        : FC8800Command
+    public class ReadInvalidCardAlarmOption : FC8800Command_ReadParameter
     {
         /// <summary>
-        /// 初始化命令结构
+        /// 读取非法读卡报警参数
         /// </summary>
-        /// <param name="cd"></param>
-        /// <param name="value">需要读取的门号结构</param>
-        public ReadInvalidCardAlarmOption(INCommandDetail cd, DoorPort_Parameter value) : base(cd, value)
-        {
-        }
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        /// <param name="par">包含门号</param>
+        public ReadInvalidCardAlarmOption(INCommandDetail cd, DoorPort_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查参数
@@ -38,7 +34,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         }
 
         /// <summary>
-        /// 创建一个通讯指令
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         { 
@@ -46,8 +42,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         }
 
         /// <summary>
-        /// 获取参数结构的字节编码
+        /// 创建命令所需的命令数据<br/>
+        /// 将命令打包到ByteBuffer中
         /// </summary>
+        /// <returns>包含命令数据的ByteBuffer</returns>
         private IByteBuffer GetCmdDate()
         {
             DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
@@ -58,9 +56,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         }
 
         /// <summary>
-        /// 处理返回值
+        /// 命令返回值的判断
         /// </summary>
-        /// <param name="oPck"></param>
+        /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
             if (CheckResponse(oPck, 0x02))
@@ -71,23 +69,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
                 rst.SetBytes(buf);
                 CommandCompleted();
             }
-        }
-
-        /// <summary>
-        /// 命令重发时需要处理的函数
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-
-        /// <summary>
-        /// 命令释放时需要处理的函数
-        /// </summary>
-        protected override void Release1()
-        {
-            return;
         }
     }
 }

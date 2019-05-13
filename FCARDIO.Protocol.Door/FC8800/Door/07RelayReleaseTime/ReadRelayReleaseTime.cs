@@ -10,20 +10,37 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.RelayReleaseTime
 {
-    public class ReadRelayReleaseTime
-         : FC8800Command
+    /// <summary>
+    /// 获取开锁时输出时长
+    /// </summary>
+    public class ReadRelayReleaseTime : FC8800Command_ReadParameter
     {
-        public ReadRelayReleaseTime(INCommandDetail cd, ReadRelayReleaseTime_Parameter parameter) : base(cd, parameter) { }
+        /// <summary>
+        /// 读取门工作方式
+        /// </summary>
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        /// <param name="par">包含门端口</param>
+        public ReadRelayReleaseTime(INCommandDetail cd, DoorPort_Parameter par) : base(cd, par) { }
+
+        /// <summary>
+        /// 检查命令参数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            ReadRelayReleaseTime_Parameter model = value as ReadRelayReleaseTime_Parameter;
+            DoorPort_Parameter model = value as DoorPort_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
 
+        /// <summary>
+        /// 命令返回值的判断
+        /// </summary>
+        /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x01))
+            if (CheckResponse(oPck, 0x03))
             {
                 var buf = oPck.CmdData;
                 RelayReleaseTime_Result rst = new RelayReleaseTime_Result();
@@ -33,27 +50,26 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayReleaseTime
             }
         }
 
-        protected override void CommandReSend()
-        {
-        }
-
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
         protected override void CreatePacket0()
         {
             Packet(0x03, 0x08, 0x00, 0x01, GetCmdData());
         }
 
+        /// <summary>
+        /// 创建命令所需的命令数据<br/>
+        /// 将命令打包到ByteBuffer中
+        /// </summary>
+        /// <returns>包含命令数据的ByteBuffer</returns>
         private IByteBuffer GetCmdData()
         {
-            ReadRelayReleaseTime_Parameter model = _Parameter as ReadRelayReleaseTime_Parameter;
+            DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
             model.GetBytes(buf);
             return buf;
-        }
-
-        protected override void Release1()
-        {
-            return;
         }
     }
 }

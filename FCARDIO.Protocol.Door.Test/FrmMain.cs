@@ -932,6 +932,18 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.Door.ReaderWorkSetting.ReadReaderWorkSetting).FullName, "读取门认证方式");
             mCommandClasss.Add(typeof(FC8800.Door.ReaderWorkSetting.WriteReaderWorkSetting).FullName, "设置门认证方式");
 
+            mCommandClasss.Add(typeof(FC8800.Door.DoorWorkSetting.ReadDoorWorkSetting).FullName, "读取门工作方式");
+            mCommandClasss.Add(typeof(FC8800.Door.DoorWorkSetting.WriteDoorWorkSetting).FullName, "设置门工作方式");
+
+            mCommandClasss.Add(typeof(FC8800.Door.RelayReleaseTime.ReadRelayReleaseTime).FullName, "读取开锁时输出时长");
+            mCommandClasss.Add(typeof(FC8800.Door.RelayReleaseTime.WriteRelayReleaseTime).FullName, "设置开锁时输出时长");
+
+            mCommandClasss.Add(typeof(FC8800.Door.AutoLockedSetting.ReadAutoLockedSetting).FullName, "读取定时锁定门参数");
+            mCommandClasss.Add(typeof(FC8800.Door.AutoLockedSetting.WriteAutoLockedSetting).FullName, "设置定时锁定门参数");
+
+            mCommandClasss.Add(typeof(FC8800.Door.ReaderInterval.ReadReaderInterval).FullName, "读取重复读卡间隔参数");
+            mCommandClasss.Add(typeof(FC8800.Door.ReaderInterval.WriteReaderInterval).FullName, "设置重复读卡间隔参数");
+
             mCommandClasss.Add(typeof(FC8800.Holiday.ReadHolidayDetail).FullName, "读取节假日存储详情");
             mCommandClasss.Add(typeof(FC8800.Holiday.ClearHoliday).FullName, "清空节假日");
             mCommandClasss.Add(typeof(FC8800.Holiday.ReadAllHoliday).FullName, "读取所有节假日");

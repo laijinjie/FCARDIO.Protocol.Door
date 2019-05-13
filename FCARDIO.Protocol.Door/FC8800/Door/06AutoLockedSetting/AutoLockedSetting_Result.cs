@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.AutoLockedSetting
 {
-    public class AutoLockedSetting_Result
-        :AutoLockedSetting_Parameter,INCommandResult
+    /// <summary>
+    /// 定时锁定门_结果
+    /// </summary>
+    public class AutoLockedSetting_Result : AutoLockedSetting_Parameter,INCommandResult
     {
     }
 }

@@ -205,7 +205,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(164, 21);
             this.txtPassword.TabIndex = 9;
-            this.txtPassword.Text = "FFFFFFFF";
+            this.txtPassword.Text = "00000000";
             // 
             // label5
             // 

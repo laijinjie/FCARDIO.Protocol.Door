@@ -10,11 +10,22 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.AutoLockedSetting
 {
-    class WriteAutoLockedSetting
-        : FC8800Command
+    /// <summary>
+    /// 设置定时锁定门参数
+    /// </summary>
+    public class WriteAutoLockedSetting : FC8800Command_WriteParameter
     {
-        public WriteAutoLockedSetting(INCommandDetail cd, AutoLockedSetting_Parameter parameter) : base(cd, parameter)
-        { }
+        /// <summary>
+        /// 设置定时锁定门参数
+        /// </summary>
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        /// <param name="par">包含定时锁定门参数</param>
+        public WriteAutoLockedSetting(INCommandDetail cd, AutoLockedSetting_Parameter par) : base(cd, par) { }
+
+        /// <summary>
+        /// 检查命令参数
+        /// </summary>
+        /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
             AutoLockedSetting_Parameter model = value as AutoLockedSetting_Parameter;
@@ -22,14 +33,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AutoLockedSetting
             return model.checkedParameter();
         }
 
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-        }
-
-        protected override void CommandReSend()
-        {
-
-        }
+        /// <summary>
+        /// 创建命令所需的命令数据<br/>
+        /// 将命令打包到ByteBuffer中
+        /// </summary>
+        /// <returns>包含命令数据的ByteBuffer</returns>
         protected IByteBuffer GetCmdData()
         {
             AutoLockedSetting_Parameter model = _Parameter as AutoLockedSetting_Parameter;
@@ -38,12 +46,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AutoLockedSetting
             model.GetBytes(buf);
             return buf;
         }
+
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
         protected override void CreatePacket0()
         {
             Packet(0x03, 0x07, 0x00, 0xE2, GetCmdData());
         }
-
-        protected override void Release1()
-        { }
     }
 }

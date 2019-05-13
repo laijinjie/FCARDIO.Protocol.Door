@@ -10,8 +10,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door
     /// <summary>
     /// 门号参数，取值范围 1-4
     /// </summary>
-    public class DoorPort_Parameter
-         : AbstractParameter
+    public class DoorPort_Parameter : AbstractParameter
     {
         /// <summary>
         ///  门索引号
@@ -20,12 +19,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Door
         public int Door;
 
         /// <summary>
-        /// 
+        /// 门号参数初始化实例
         /// </summary>
         /// <param name="iDoor"></param>
         public DoorPort_Parameter(int iDoor)
         {
             Door = iDoor;
+            checkedParameter();
         }
         /// <summary>
         /// 检查参数的统一接口
@@ -33,6 +33,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (Door < 1 || Door > 4)
+                throw new ArgumentException("Door Error!");
             return true;
         }
 

@@ -168,7 +168,6 @@
     <Compile Include="FC8800\Door\02RelayOption\RelayOption_Parameter.cs" />
     <Compile Include="FC8800\Door\02RelayOption\RelayOption_Result.cs" />
     <Compile Include="FC8800\Door\02RelayOption\WriteRelayOption.cs" />
-    <Compile Include="FC8800\Door\04ReaderWorkSetting\ReadReaderWorkSetting_Parameter.cs" />
     <Compile Include="FC8800\Door\04ReaderWorkSetting\WriteReaderWorkSetting_Parameter.cs" />
     <Compile Include="FC8800\Door\04ReaderWorkSetting\ReaderWorkSetting_Result.cs" />
     <Compile Include="FC8800\Door\04ReaderWorkSetting\ReadReaderWorkSetting.cs" />
@@ -177,7 +176,6 @@
     <Compile Include="FC8800\Door\05DoorWorkSetting\ReadDoorWorkSetting.cs" />
     <Compile Include="FC8800\Door\05DoorWorkSetting\ReadDoorWorkSetting_Parameter.cs" />
     <Compile Include="FC8800\Door\05DoorWorkSetting\WriteDoorWorkSetting.cs" />
-    <Compile Include="FC8800\Door\05DoorWorkSetting\WriteDoorWorkSetting_Parameter.cs" />
     <Compile Include="FC8800\Door\03Remote\CloseDoor.cs" />
     <Compile Include="FC8800\Door\03Remote\HoldDoor.cs" />
     <Compile Include="FC8800\Door\03Remote\LockDoor.cs" />
@@ -192,13 +190,11 @@
     <Compile Include="FC8800\Door\06AutoLockedSetting\ReadAutoLockedSetting.cs" />
     <Compile Include="FC8800\Door\06AutoLockedSetting\WriteAutoLockedSetting.cs" />
     <Compile Include="FC8800\Door\07RelayReleaseTime\ReadRelayReleaseTime.cs" />
-    <Compile Include="FC8800\Door\07RelayReleaseTime\ReadRelayReleaseTime_Parameter.cs" />
     <Compile Include="FC8800\Door\07RelayReleaseTime\RelayReleaseTime_Result.cs" />
     <Compile Include="FC8800\Door\07RelayReleaseTime\WriteRelayReleaseTime.cs" />
     <Compile Include="FC8800\Door\07RelayReleaseTime\WriteRelayReleaseTime_Parameter.cs" />
     <Compile Include="FC8800\Door\08ReaderInterval\ReaderInterval_Result.cs" />
     <Compile Include="FC8800\Door\08ReaderInterval\ReadReaderInterval.cs" />
-    <Compile Include="FC8800\Door\08ReaderInterval\ReadReaderInterval_Parameter.cs" />
     <Compile Include="FC8800\Door\08ReaderInterval\WriteReaderInterval.cs" />
     <Compile Include="FC8800\Door\08ReaderInterval\WriteReaderInterval_Parameter.cs" />
     <Compile Include="FC8800\Door\09InvalidCardAlarmOption\InvalidCardAlarmOption_Result.cs" />
