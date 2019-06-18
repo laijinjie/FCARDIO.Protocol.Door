@@ -64,7 +64,8 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SN
             SN_Parameter model = _Parameter as SN_Parameter;
 
             var acl = _Connector.GetByteBufAllocator();
-
+            string strDataStrt = System.Text.Encoding.ASCII.GetString(DataStrt);
+            string strDataEnd = System.Text.Encoding.ASCII.GetString(DataEnd);
             var buf = acl.Buffer(0x18);
             buf.WriteBytes(DataStrt);
             model.GetBytes(buf);

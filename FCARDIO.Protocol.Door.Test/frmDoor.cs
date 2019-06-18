@@ -119,6 +119,14 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Door.AlarmPassword.AlarmPassword_Result;
+                Invoke(() =>
+                {
+                    cmdAlarmPassword.SelectedIndex = result.Use ? 0 : 1;
+                    cmbAlarmOption.SelectedIndex = result.AlarmOption;
+                    Password.Text = result.Password;
+
+                });
+
                 mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use},报警密码：{result.Password},报警选项：{result.AlarmOption}");
             };
         }
@@ -241,7 +249,11 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Door.SensorAlarmSetting.SensorAlarmSetting_Result;
-
+                //cmbSensorAlarmSetting
+                Invoke(() =>
+                {
+                    cmdDoorNum.Text = result.DoorNum.ToString();
+                });
                 mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use}");
             };
         }
@@ -1066,7 +1078,7 @@ namespace FCARDIO.Protocol.Door.Test
                 return;
             }
             var cmdDtl = mMainForm.GetCommandDetail();
-            if (cmdDtl == null) return;                    
+            if (cmdDtl == null) return;
 
             byte door = 1; //门
             byte use = 0; //功能是否启用
@@ -1287,7 +1299,7 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 AutoLockedSetting_Result result = cmde.Command.getResult() as AutoLockedSetting_Result;
                 string useStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】";
-                string tip = "定时锁定门_门" + result.Door.ToString() + "：是否启用："+ useStr + "，时段详情：";
+                string tip = "定时锁定门_门" + result.Door.ToString() + "：是否启用：" + useStr + "，时段详情：";
                 sb.AppendLine(tip);
                 for (int i = 0; i < 7; i++)
                 {
@@ -1464,7 +1476,7 @@ namespace FCARDIO.Protocol.Door.Test
             if (cmdDtl == null) return;
             if (cbxReleaseTime.Text != "0.5")
             {
-                releaseTime = Convert.ToUInt16(cbxReleaseTime.Text); 
+                releaseTime = Convert.ToUInt16(cbxReleaseTime.Text);
             }
             if (cBoxDoor1.Checked)
             {
@@ -1641,6 +1653,11 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Door.InvalidCardAlarmOption.InvalidCardAlarmOption_Result;
+                Invoke(() =>
+                {
+                    cmdInvalidCardAlarmOptionUse.SelectedIndex = result.Use ? 0 : 1;
+                });
+
                 mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use}");
             };
         }

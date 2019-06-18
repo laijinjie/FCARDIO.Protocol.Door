@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "frmPassword";
             this.Text = "frmPassword";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPassword_FormClosed);
             this.Load += new System.EventHandler(this.frmPassword_Load);
             this.ResumeLayout(false);
 

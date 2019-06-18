@@ -17,12 +17,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <summary>
         /// 节假日的索引号
         /// </summary>
-        public byte Index;
+        public byte Index { get; set; }
 
         /// <summary>
         /// 节假日日期
         /// </summary>
-        public DateTime Holiday;
+        public DateTime Holiday { get; set; }
 
         /// <summary>
         /// 节假日类型：<br/>
@@ -31,6 +31,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// 3、全天 (00:00:00  -  23:59:59)
         /// </summary>
         public byte HolidayType;
+
 
 
         /// <summary>
@@ -45,6 +46,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             databuf.WriteByte(ByteUtil.ByteToBCD((byte)(Holiday.Month)));
             databuf.WriteByte(ByteUtil.ByteToBCD((byte)(Holiday.Day)));
             databuf.WriteByte(HolidayType);
+            //databuf.WriteByte(Year);
 
             return databuf;
         }
@@ -72,6 +74,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             iDay = ByteUtil.BCDToByte(databuf.ReadByte());
             Holiday = new DateTime(iYear, iMonth, iDay);
             HolidayType = databuf.ReadByte();
+            //Year = databuf.ReadByte();
         }
     }
 }

@@ -31,6 +31,25 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\FCARDIO.Protocol.Door.xml</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
@@ -103,13 +122,26 @@
     <Compile Include="FC8800\Door\DoorDetail.cs" />
     <Compile Include="FC8800\FC8800Command_ReadParameter.cs" />
     <Compile Include="FC8800\FC8800Command_WriteParameter.cs" />
-    <Compile Include="FC8800\Holiday\ClearHoliday\ClearHoliday.cs" />
+    <Compile Include="FC8800\Holiday\02ClearHoliday\ClearHoliday.cs" />
+    <Compile Include="FC8800\Holiday\04AddHoliday\AddHoliday.cs" />
+    <Compile Include="FC8800\Holiday\04AddHoliday\AddHoliday_Parameter.cs" />
+    <Compile Include="FC8800\Holiday\05DeleteHoliday\DeleteHoliday_Parameter.cs" />
+    <Compile Include="FC8800\Holiday\05DeleteHoliday\DeleteHoliday.cs" />
     <Compile Include="FC8800\Holiday\HolidayDetail.cs" />
-    <Compile Include="FC8800\Holiday\ReadAllHoliday\ReadAllHoliday.cs" />
+    <Compile Include="FC8800\Holiday\03ReadAllHoliday\ReadAllHoliday.cs" />
     <Compile Include="FC8800\Holiday\HolidayDBDetail.cs" />
-    <Compile Include="FC8800\Holiday\ReadAllHoliday\ReadAllHoliday_Result.cs" />
-    <Compile Include="FC8800\Holiday\ReadHolidayDetail\ReadHolidayDetail.cs" />
-    <Compile Include="FC8800\Holiday\ReadHolidayDetail\ReadHolidayDetail_Result.cs" />
+    <Compile Include="FC8800\Holiday\03ReadAllHoliday\ReadAllHoliday_Result.cs" />
+    <Compile Include="FC8800\Holiday\01ReadHolidayDetail\ReadHolidayDetail.cs" />
+    <Compile Include="FC8800\Holiday\01ReadHolidayDetail\ReadHolidayDetail_Result.cs" />
+    <Compile Include="FC8800\Holiday\HolidayDetailDto.cs" />
+    <Compile Include="FC8800\Password\01ReadPasswordDetail\ReadPasswordDetail.cs" />
+    <Compile Include="FC8800\Password\01ReadPasswordDetail\ReadPasswordDetail_Result.cs" />
+    <Compile Include="FC8800\Password\02ClearPassword\ClearPassword.cs" />
+    <Compile Include="FC8800\Password\03ReadAllPassword\ReadAllPassword.cs" />
+    <Compile Include="FC8800\Password\03ReadAllPassword\ReadAllPassword_Result.cs" />
+    <Compile Include="FC8800\Password\04AddPassword\AddPassword.cs" />
+    <Compile Include="FC8800\Password\05DeletePassword\DeletePassword.cs" />
+    <Compile Include="FC8800\Password\PasswordDetail.cs" />
     <Compile Include="FC8800\SystemParameter\14SearchControltor\SearchControltor_Result.cs" />
     <Compile Include="FC8800\SystemParameter\15CacheContent\CacheContent_Parameter.cs" />
     <Compile Include="FC8800\SystemParameter\15CacheContent\CacheContent_Result.cs" />

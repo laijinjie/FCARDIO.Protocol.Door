@@ -42,5 +42,10 @@ namespace FCARDIO.Protocol.Door.Test
         {
 
         }
+
+        private void FrmTimeGroup_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            onlyObj = null;
+        }
     }
 }

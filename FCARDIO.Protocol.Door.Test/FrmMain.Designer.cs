@@ -137,7 +137,7 @@
             this.txtTCPClientAddr.Name = "txtTCPClientAddr";
             this.txtTCPClientAddr.Size = new System.Drawing.Size(164, 21);
             this.txtTCPClientAddr.TabIndex = 3;
-            this.txtTCPClientAddr.Text = "192.168.1.66";
+            this.txtTCPClientAddr.Text = "192.168.1.245";
             // 
             // label2
             // 
@@ -205,7 +205,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(164, 21);
             this.txtPassword.TabIndex = 9;
-            this.txtPassword.Text = "00000000";
+            this.txtPassword.Text = "ffffffff";
             // 
             // label5
             // 
@@ -223,7 +223,7 @@
             this.txtSN.Name = "txtSN";
             this.txtSN.Size = new System.Drawing.Size(164, 21);
             this.txtSN.TabIndex = 7;
-            this.txtSN.Text = "FC-8940H09030001";
+            this.txtSN.Text = "MC-5824T25070244";
             // 
             // label6
             // 
@@ -565,6 +565,7 @@
             // 
             this.lstIO.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstIO.GridLines = true;
+            this.lstIO.HideSelection = false;
             this.lstIO.Location = new System.Drawing.Point(3, 32);
             this.lstIO.Name = "lstIO";
             this.lstIO.Size = new System.Drawing.Size(606, 462);
@@ -622,6 +623,7 @@
             this.lstCommand.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstCommand.FullRowSelect = true;
             this.lstCommand.GridLines = true;
+            this.lstCommand.HideSelection = false;
             this.lstCommand.Location = new System.Drawing.Point(3, 32);
             this.lstCommand.Name = "lstCommand";
             this.lstCommand.Size = new System.Drawing.Size(606, 462);

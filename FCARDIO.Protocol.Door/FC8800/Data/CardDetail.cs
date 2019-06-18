@@ -14,6 +14,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     /// <summary>
     /// 卡片权限详情
     /// </summary>
+    //public abstract class CardDetailBase
     public class CardDetail
     {
         public int compareTo(CardDetail o)
@@ -56,9 +57,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         {
             return 0x21;//33字节
         }
+
+        //protected virtual void WriteCardData(IByteBuffer data);
+
         public void SetBytes(IByteBuffer data)
         {
             data.ReadByte();
+           
             CardData = data.ReadUnsignedInt();
 
             byte[] btData = new byte[4];
@@ -105,7 +110,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         public void GetBytes(IByteBuffer data)
         {
             data.WriteByte(0);
-            data.WriteInt((int)CardData);
+            data.WriteLong((long)CardData);
             //Password = btData.ToHex();
             Password = StringUtil.FillHexString(Password, 8, "F", true);
             long pwd = long.Parse(Password);
@@ -138,7 +143,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /**
          * 卡号，取值范围 0x1-0xFFFFFFFF
          */
-        public long CardData;
+        public UInt64 CardData;
         /**
          * 卡密码,无密码不填。密码是4-8位的数字。
          */
@@ -225,7 +230,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             HolidayUse = false;
         }
 
-        public CardDetail(long data)
+        public CardDetail(UInt64 data)
         {
             CardData = data;
         }
@@ -474,7 +479,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
          * @return 在集合中的索引号
          */
          
-        public static int SearchCardDetail(List<CardDetail> list, long SearchCard)
+        public static int SearchCardDetail(List<CardDetail> list, UInt64 SearchCard)
         {
             int max, min, mid;
             CardDetail search = new CardDetail();

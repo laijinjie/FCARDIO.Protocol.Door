@@ -158,7 +158,7 @@ namespace FCARDIO.Protocol.Door.Test
             string HolidayUse = dataGridView1.Rows[0].Cells["HolidayUse"].Value.ToString();
 
             FC8800.Data.CardDetail detail = new FC8800.Data.CardDetail();
-            detail.CardData = long.Parse(CardData10);
+            detail.CardData = Convert.ToUInt64(CardData10);
             detail.CardStatus = byte.Parse(CardStatus1);
             detail.EnterStatus = int.Parse(EnterStatus1);
             detail.Expiry = DateTime.Parse(Expiry);

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DotNetty.Buffers;
+﻿using DotNetty.Buffers;
+using System;
 
 namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
 {

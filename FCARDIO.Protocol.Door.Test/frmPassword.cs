@@ -42,5 +42,10 @@ namespace FCARDIO.Protocol.Door.Test
         {
 
         }
+
+        private void FrmPassword_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            onlyObj = null;
+        }
     }
 }

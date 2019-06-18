@@ -756,6 +756,8 @@ namespace FCARDIO.Protocol.Door.Test
         private void ButTimeGroup_Click(object sender, EventArgs e)
         {
             frmTimeGroup frm = frmTimeGroup.GetForm(this);
+            if (!frm.IsDisposed)
+                //frm = new frmTimeGroup();
             frm.Show();
         }
 

@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "frmTimeGroup";
             this.Text = "frmTimeGroup";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmTimeGroup_FormClosed);
             this.Load += new System.EventHandler(this.frmTimeGroup_Load);
             this.ResumeLayout(false);
 

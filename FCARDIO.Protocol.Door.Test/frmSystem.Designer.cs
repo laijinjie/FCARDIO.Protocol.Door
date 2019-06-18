@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSN = new System.Windows.Forms.TextBox();
             this.butReadSN = new System.Windows.Forms.Button();
@@ -73,6 +73,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.label77 = new System.Windows.Forms.Label();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.rBtnNoLawfulCardReleaseAlarmSwitch = new System.Windows.Forms.RadioButton();
+            this.rBtnLawfulCardReleaseAlarmSwitch = new System.Windows.Forms.RadioButton();
+            this.btnReadLawfulCardReleaseAlarmSwitch = new System.Windows.Forms.Button();
+            this.btnWriteLawfulCardReleaseAlarmSwitch = new System.Windows.Forms.Button();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.label76 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -335,18 +342,13 @@
             this.btnWriteRecordMode = new System.Windows.Forms.Button();
             this.btnReadRecordMode = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
-            this.groupBox20 = new System.Windows.Forms.GroupBox();
-            this.label77 = new System.Windows.Forms.Label();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.rBtnNoLawfulCardReleaseAlarmSwitch = new System.Windows.Forms.RadioButton();
-            this.rBtnLawfulCardReleaseAlarmSwitch = new System.Windows.Forms.RadioButton();
-            this.btnReadLawfulCardReleaseAlarmSwitch = new System.Windows.Forms.Button();
-            this.btnWriteLawfulCardReleaseAlarmSwitch = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gbPassword.SuspendLayout();
             this.gbTCP.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox20.SuspendLayout();
+            this.panel14.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.panel13.SuspendLayout();
             this.groupBox18.SuspendLayout();
@@ -385,8 +387,6 @@
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox20.SuspendLayout();
-            this.panel14.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -801,9 +801,9 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabSysParameterPage);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabSysParameterPage);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -828,6 +828,78 @@
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "扩展功能";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox20
+            // 
+            this.groupBox20.Controls.Add(this.label77);
+            this.groupBox20.Controls.Add(this.panel14);
+            this.groupBox20.Controls.Add(this.btnReadLawfulCardReleaseAlarmSwitch);
+            this.groupBox20.Controls.Add(this.btnWriteLawfulCardReleaseAlarmSwitch);
+            this.groupBox20.Location = new System.Drawing.Point(10, 231);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(318, 66);
+            this.groupBox20.TabIndex = 95;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "合法卡解除报警开关";
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Location = new System.Drawing.Point(7, 25);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(0, 12);
+            this.label77.TabIndex = 77;
+            // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.rBtnNoLawfulCardReleaseAlarmSwitch);
+            this.panel14.Controls.Add(this.rBtnLawfulCardReleaseAlarmSwitch);
+            this.panel14.Location = new System.Drawing.Point(13, 25);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(144, 21);
+            this.panel14.TabIndex = 88;
+            // 
+            // rBtnNoLawfulCardReleaseAlarmSwitch
+            // 
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.AutoSize = true;
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.Location = new System.Drawing.Point(0, 3);
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.Name = "rBtnNoLawfulCardReleaseAlarmSwitch";
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.Size = new System.Drawing.Size(59, 16);
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.TabIndex = 51;
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.Text = "不启用";
+            this.rBtnNoLawfulCardReleaseAlarmSwitch.UseVisualStyleBackColor = true;
+            // 
+            // rBtnLawfulCardReleaseAlarmSwitch
+            // 
+            this.rBtnLawfulCardReleaseAlarmSwitch.AutoSize = true;
+            this.rBtnLawfulCardReleaseAlarmSwitch.Checked = true;
+            this.rBtnLawfulCardReleaseAlarmSwitch.Location = new System.Drawing.Point(72, 3);
+            this.rBtnLawfulCardReleaseAlarmSwitch.Name = "rBtnLawfulCardReleaseAlarmSwitch";
+            this.rBtnLawfulCardReleaseAlarmSwitch.Size = new System.Drawing.Size(47, 16);
+            this.rBtnLawfulCardReleaseAlarmSwitch.TabIndex = 52;
+            this.rBtnLawfulCardReleaseAlarmSwitch.TabStop = true;
+            this.rBtnLawfulCardReleaseAlarmSwitch.Text = "启用";
+            this.rBtnLawfulCardReleaseAlarmSwitch.UseVisualStyleBackColor = true;
+            // 
+            // btnReadLawfulCardReleaseAlarmSwitch
+            // 
+            this.btnReadLawfulCardReleaseAlarmSwitch.Location = new System.Drawing.Point(177, 25);
+            this.btnReadLawfulCardReleaseAlarmSwitch.Name = "btnReadLawfulCardReleaseAlarmSwitch";
+            this.btnReadLawfulCardReleaseAlarmSwitch.Size = new System.Drawing.Size(48, 23);
+            this.btnReadLawfulCardReleaseAlarmSwitch.TabIndex = 86;
+            this.btnReadLawfulCardReleaseAlarmSwitch.Text = "读取";
+            this.btnReadLawfulCardReleaseAlarmSwitch.UseVisualStyleBackColor = true;
+            this.btnReadLawfulCardReleaseAlarmSwitch.Click += new System.EventHandler(this.BtnReadLawfulCardReleaseAlarmSwitch_Click);
+            // 
+            // btnWriteLawfulCardReleaseAlarmSwitch
+            // 
+            this.btnWriteLawfulCardReleaseAlarmSwitch.Location = new System.Drawing.Point(231, 25);
+            this.btnWriteLawfulCardReleaseAlarmSwitch.Name = "btnWriteLawfulCardReleaseAlarmSwitch";
+            this.btnWriteLawfulCardReleaseAlarmSwitch.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteLawfulCardReleaseAlarmSwitch.TabIndex = 87;
+            this.btnWriteLawfulCardReleaseAlarmSwitch.Text = "写入";
+            this.btnWriteLawfulCardReleaseAlarmSwitch.UseVisualStyleBackColor = true;
+            this.btnWriteLawfulCardReleaseAlarmSwitch.Click += new System.EventHandler(this.BtnWriteLawfulCardReleaseAlarmSwitch_Click);
             // 
             // groupBox19
             // 
@@ -1339,10 +1411,10 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.NullValue = false;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.NullValue = false;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn1.HeaderText = "选择";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -1441,8 +1513,8 @@
             // 
             // Column1
             // 
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column1.HeaderText = "门号";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -3712,78 +3784,6 @@
             this.label20.TabIndex = 0;
             this.label20.Text = "记录存储方式：记录满盘后：";
             // 
-            // groupBox20
-            // 
-            this.groupBox20.Controls.Add(this.label77);
-            this.groupBox20.Controls.Add(this.panel14);
-            this.groupBox20.Controls.Add(this.btnReadLawfulCardReleaseAlarmSwitch);
-            this.groupBox20.Controls.Add(this.btnWriteLawfulCardReleaseAlarmSwitch);
-            this.groupBox20.Location = new System.Drawing.Point(10, 231);
-            this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(318, 66);
-            this.groupBox20.TabIndex = 95;
-            this.groupBox20.TabStop = false;
-            this.groupBox20.Text = "合法卡解除报警开关";
-            // 
-            // label77
-            // 
-            this.label77.AutoSize = true;
-            this.label77.Location = new System.Drawing.Point(7, 25);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(0, 12);
-            this.label77.TabIndex = 77;
-            // 
-            // panel14
-            // 
-            this.panel14.Controls.Add(this.rBtnNoLawfulCardReleaseAlarmSwitch);
-            this.panel14.Controls.Add(this.rBtnLawfulCardReleaseAlarmSwitch);
-            this.panel14.Location = new System.Drawing.Point(13, 25);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(144, 21);
-            this.panel14.TabIndex = 88;
-            // 
-            // rBtnNoLawfulCardReleaseAlarmSwitch
-            // 
-            this.rBtnNoLawfulCardReleaseAlarmSwitch.AutoSize = true;
-            this.rBtnNoLawfulCardReleaseAlarmSwitch.Location = new System.Drawing.Point(0, 3);
-            this.rBtnNoLawfulCardReleaseAlarmSwitch.Name = "rBtnNoLawfulCardReleaseAlarmSwitch";
-            this.rBtnNoLawfulCardReleaseAlarmSwitch.Size = new System.Drawing.Size(59, 16);
-            this.rBtnNoLawfulCardReleaseAlarmSwitch.TabIndex = 51;
-            this.rBtnNoLawfulCardReleaseAlarmSwitch.Text = "不启用";
-            this.rBtnNoLawfulCardReleaseAlarmSwitch.UseVisualStyleBackColor = true;
-            // 
-            // rBtnLawfulCardReleaseAlarmSwitch
-            // 
-            this.rBtnLawfulCardReleaseAlarmSwitch.AutoSize = true;
-            this.rBtnLawfulCardReleaseAlarmSwitch.Checked = true;
-            this.rBtnLawfulCardReleaseAlarmSwitch.Location = new System.Drawing.Point(72, 3);
-            this.rBtnLawfulCardReleaseAlarmSwitch.Name = "rBtnLawfulCardReleaseAlarmSwitch";
-            this.rBtnLawfulCardReleaseAlarmSwitch.Size = new System.Drawing.Size(47, 16);
-            this.rBtnLawfulCardReleaseAlarmSwitch.TabIndex = 52;
-            this.rBtnLawfulCardReleaseAlarmSwitch.TabStop = true;
-            this.rBtnLawfulCardReleaseAlarmSwitch.Text = "启用";
-            this.rBtnLawfulCardReleaseAlarmSwitch.UseVisualStyleBackColor = true;
-            // 
-            // btnReadLawfulCardReleaseAlarmSwitch
-            // 
-            this.btnReadLawfulCardReleaseAlarmSwitch.Location = new System.Drawing.Point(177, 25);
-            this.btnReadLawfulCardReleaseAlarmSwitch.Name = "btnReadLawfulCardReleaseAlarmSwitch";
-            this.btnReadLawfulCardReleaseAlarmSwitch.Size = new System.Drawing.Size(48, 23);
-            this.btnReadLawfulCardReleaseAlarmSwitch.TabIndex = 86;
-            this.btnReadLawfulCardReleaseAlarmSwitch.Text = "读取";
-            this.btnReadLawfulCardReleaseAlarmSwitch.UseVisualStyleBackColor = true;
-            this.btnReadLawfulCardReleaseAlarmSwitch.Click += new System.EventHandler(this.BtnReadLawfulCardReleaseAlarmSwitch_Click);
-            // 
-            // btnWriteLawfulCardReleaseAlarmSwitch
-            // 
-            this.btnWriteLawfulCardReleaseAlarmSwitch.Location = new System.Drawing.Point(231, 25);
-            this.btnWriteLawfulCardReleaseAlarmSwitch.Name = "btnWriteLawfulCardReleaseAlarmSwitch";
-            this.btnWriteLawfulCardReleaseAlarmSwitch.Size = new System.Drawing.Size(48, 23);
-            this.btnWriteLawfulCardReleaseAlarmSwitch.TabIndex = 87;
-            this.btnWriteLawfulCardReleaseAlarmSwitch.Text = "写入";
-            this.btnWriteLawfulCardReleaseAlarmSwitch.UseVisualStyleBackColor = true;
-            this.btnWriteLawfulCardReleaseAlarmSwitch.Click += new System.EventHandler(this.BtnWriteLawfulCardReleaseAlarmSwitch_Click);
-            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3802,6 +3802,10 @@
             this.gbTCP.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
             this.groupBox19.ResumeLayout(false);
             this.groupBox19.PerformLayout();
             this.panel13.ResumeLayout(false);
@@ -3871,10 +3875,6 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox20.ResumeLayout(false);
-            this.groupBox20.PerformLayout();
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
             this.ResumeLayout(false);
 
         }

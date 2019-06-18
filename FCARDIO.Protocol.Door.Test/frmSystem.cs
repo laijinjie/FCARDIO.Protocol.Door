@@ -1433,53 +1433,107 @@ namespace FCARDIO.Protocol.Door.Test
         private void BtnWriteEnterDoorLimit_Click(object sender, EventArgs e)
         {
             string reg = @"^\+?[0-9]*$";
-
+            UInt32 ui32 = 0;
             if (!Regex.IsMatch(txtGlobalLimit.Text.Trim(), reg))
             {
                 MsgErr("请输入正确全局上限！");
                 return;
             }
+            if (!UInt32.TryParse(txtGlobalLimit.Text.Trim(), out ui32))
+            {
+                MsgErr("全局上限 太大或太小！");
+                return;
+            }
+
             if (!Regex.IsMatch(txtDoor1Limit.Text.Trim(), reg))
             {
                 MsgErr("请输入正确1号门上限！");
                 return;
             }
+            if (!UInt32.TryParse(txtDoor1Limit.Text.Trim(), out ui32))
+            {
+                MsgErr("1号门上限 太大或太小！");
+                return;
+            }
+
             if (!Regex.IsMatch(txtDoor2Limit.Text.Trim(), reg))
             {
                 MsgErr("请输入正确2号门上限！");
                 return;
             }
+            if (!UInt32.TryParse(txtDoor2Limit.Text.Trim(), out ui32))
+            {
+                MsgErr("2号门上限 太大或太小！");
+                return;
+            }
+
             if (!Regex.IsMatch(txtDoor3Limit.Text.Trim(), reg))
             {
                 MsgErr("请输入正确3号门上限！");
                 return;
             }
+            if (!UInt32.TryParse(txtDoor3Limit.Text.Trim(), out ui32))
+            {
+                MsgErr("3号门上限 太大或太小！");
+                return;
+            }
+
             if (!Regex.IsMatch(txtDoor4Limit.Text.Trim(), reg))
             {
                 MsgErr("请输入正确4号门上限！");
                 return;
             }
+            if (!UInt32.TryParse(txtDoor4Limit.Text.Trim(), out ui32))
+            {
+                MsgErr("4号门上限 太大或太小！");
+                return;
+            }
+
             if (!Regex.IsMatch(txtDoor1Enter.Text.Trim(), reg))
             {
                 MsgErr("请输入正确1号门人数！");
                 return;
             }
+            if (!UInt32.TryParse(txtDoor1Enter.Text.Trim(), out ui32))
+            {
+                MsgErr("1号门人数 太大或太小！");
+                return;
+            }
+
             if (!Regex.IsMatch(txtDoor2Enter.Text.Trim(), reg))
             {
                 MsgErr("请输入正确2号门人数！");
                 return;
             }
+            if (!UInt32.TryParse(txtDoor2Enter.Text.Trim(), out ui32))
+            {
+                MsgErr("2号门人数 太大或太小！");
+                return;
+            }
+
             if (!Regex.IsMatch(txtDoor3Enter.Text.Trim(), reg))
             {
                 MsgErr("请输入正确3号门人数！");
                 return;
             }
+            if (!UInt32.TryParse(txtDoor3Enter.Text.Trim(), out ui32))
+            {
+                MsgErr("3号门人数 太大或太小！");
+                return;
+            }
+
             if (!Regex.IsMatch(txtDoor4Enter.Text.Trim(), reg))
             {
                 MsgErr("请输入正确4号门人数！");
                 return;
             }
-
+            if (!UInt32.TryParse(txtDoor4Enter.Text.Trim(), out ui32))
+            {
+                MsgErr("4号门人数 太大或太小！");
+                return;
+            }
+            
+            
             DoorLimit dl = new DoorLimit();
             dl.GlobalLimit = Convert.ToUInt32(txtGlobalLimit.Text.Trim());
             dl.DoorLimitArray[0] = Convert.ToUInt32(txtDoor1Limit.Text.Trim());
@@ -1552,8 +1606,14 @@ namespace FCARDIO.Protocol.Door.Test
                 MsgErr("请输入正确进入延迟秒数！");
                 return;
             }
+            UInt16 ui32 = 0;
             if (Regex.IsMatch(cbxInTime.Text.Trim(), reg))
             {
+                if (!UInt16.TryParse(cbxInTime.Text,out ui32))
+                {
+                    MsgErr("请输入正确进入延迟秒数！");
+                    return;
+                }
                 if (Convert.ToUInt32(cbxInTime.Text) < 0 || Convert.ToUInt32(cbxInTime.Text) > 255)
                 {
                     MsgErr("请输入正确进入延迟秒数！");
@@ -1567,6 +1627,11 @@ namespace FCARDIO.Protocol.Door.Test
             }
             if (Regex.IsMatch(cbxOutTime.Text.Trim(), reg))
             {
+                if (!UInt16.TryParse(cbxOutTime.Text, out ui32))
+                {
+                    MsgErr("请输入正确进入延迟秒数！");
+                    return;
+                }
                 if (Convert.ToUInt32(cbxOutTime.Text) < 0 || Convert.ToUInt32(cbxOutTime.Text) > 255)
                 {
                     MsgErr("请输入正确退出延迟秒数！");
@@ -1580,6 +1645,11 @@ namespace FCARDIO.Protocol.Door.Test
             }
             if (Regex.IsMatch(cbxAlarmTime.Text.Trim(), reg))
             {
+                if (!UInt16.TryParse(cbxAlarmTime.Text, out ui32))
+                {
+                    MsgErr("请输入正确进入延迟秒数！");
+                    return;
+                }
                 if (Convert.ToUInt32(cbxAlarmTime.Text) < 0 || Convert.ToUInt32(cbxAlarmTime.Text) > 65535)
                 {
                     MsgErr("请输入正确报警时长秒数！");
