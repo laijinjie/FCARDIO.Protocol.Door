@@ -12,6 +12,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
     /// </summary>
     public class WriteCardListBySort_Parameter : AbstractParameter
     {
+        protected int mIndex = 0;//指示当前命令进行的步骤
         /// <summary>
         /// 需要上传的卡片列表
         /// </summary>
@@ -26,6 +27,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         public WriteCardListBySort_Parameter(List<FC8800.Data.CardDetail> cardList)
         {
             CardList = cardList;
+            CardList.Sort();
         }
 
         /// <summary>
@@ -52,11 +54,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            uint iLen = (10 * 0x21) + 8;
+            int iLen = (CardList.Count * 0x21) + 8;
             if (databuf.WritableBytes != iLen)
             {
                 throw new ArgumentException("Crad Error");
             }
+            databuf.WriteInt(mIndex + 1);
+            databuf.WriteInt(CardList.Count);
+            foreach (var card in CardList)
+            {
+                //card.GetBytes(databuf);
+                card.WriteCardData(databuf);
+            }
+            //databuf.WriteByte(byte.Parse(ListHoliday.ToString()));
             return databuf;
         }
 
@@ -66,7 +76,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <returns></returns>
         public override int GetDataLen()
         {
-            int iLen = (10 * 0x21) + 8;
+            int iLen = (CardList.Count * 0x21) + 8;
             return iLen;
         }
 

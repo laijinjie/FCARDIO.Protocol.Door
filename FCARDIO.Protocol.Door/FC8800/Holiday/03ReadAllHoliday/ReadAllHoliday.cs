@@ -44,6 +44,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
+            //应答：密码
             if (CheckResponse(oPck))
             {
                 var buf = oPck.CmdData;
@@ -51,7 +52,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
                 mReadBuffers.Add(buf);
                 CommandWaitResponse();
             }
-
+            //应答：传输结束
             if (CheckResponse(oPck, 4, 3, 0xff, 4))
             {
                 var buf = oPck.CmdData;

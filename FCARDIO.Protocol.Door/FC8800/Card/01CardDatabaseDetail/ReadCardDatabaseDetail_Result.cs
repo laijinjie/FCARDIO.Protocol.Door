@@ -54,9 +54,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDatabaseDetail
         }
 
 
-        internal void SetBytes(IByteBuffer buf)
+        internal void SetBytes(ReadCardDatabaseDetail_Result rst,IByteBuffer buf)
         {
-            return;
+            rst.SortDataBaseSize = buf.ReadUnsignedInt();
+            rst.SortCardSize = buf.ReadUnsignedInt();
+            rst.SequenceDataBaseSize = buf.ReadUnsignedInt();
+            rst.SequenceCardSize = buf.ReadUnsignedInt();
+
         }
 
         /// <summary>

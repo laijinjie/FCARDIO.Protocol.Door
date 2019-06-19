@@ -12,11 +12,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
 {
     public class WriteCardListBySort :FC8800Command
     {
-        private int mIndex;//指示当前命令进行的步骤
-        private List<FC8800.Data.CardDetail> _List;
-        private int mStep;
-        private int mUploadMax; ///本次上传卡数量
-
         /// <summary>
         /// 初始化命令结构
         /// </summary>
@@ -41,21 +36,24 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// </summary>
         protected override void CreatePacket0()
         {
-            uint iLen = (10 * 0x21) + 8;
-            Packet(0x07, 0x07, 0x01, iLen, getCmdData());
+            WriteCardListBySort_Parameter model = _Parameter as WriteCardListBySort_Parameter;
+            var acl = _Connector.GetByteBufAllocator();
+            var buf = acl.Buffer(model.GetDataLen());
+            model.GetBytes(buf);
+            Packet(0x07, 0x07, 0x01, Convert.ToUInt32(model.GetDataLen()), buf);
         }
         /// <summary>
         /// 获取参数结构的字节编码
         /// </summary>
         /// <returns></returns>
-        private IByteBuffer getCmdData()
-        {
-            WriteCardListBySort_Parameter model = _Parameter as WriteCardListBySort_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
-        }
+        //private IByteBuffer getCmdData()
+        //{
+        //    WriteCardListBySort_Parameter model = _Parameter as WriteCardListBySort_Parameter;
+        //    var acl = _Connector.GetByteBufAllocator();
+        //    var buf = acl.Buffer(model.GetDataLen());
+        //    model.GetBytes(buf);
+        //    return buf;
+        //}
 
         
 

@@ -44,8 +44,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// </summary>
         protected override void CreatePacket0()
         {
-            uint iLen = (5 * 0x21) + 4;
-            Packet(0x07, 0x04, 0x00, iLen, getCmdData());
+            WriteCardListBySequence_Parameter model = _Parameter as WriteCardListBySequence_Parameter;
+            var acl = _Connector.GetByteBufAllocator();
+            var buf = acl.Buffer(model.GetDataLen());
+            model.GetBytes(buf);
+            Packet(0x07, 0x04, 0x00, Convert.ToUInt32(model.GetDataLen()), buf);
         }
 
         /// <summary>

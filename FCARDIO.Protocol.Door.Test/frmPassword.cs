@@ -38,14 +38,64 @@ namespace FCARDIO.Protocol.Door.Test
             mMainForm = main;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmPassword_Load(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmPassword_FormClosed(object sender, FormClosedEventArgs e)
         {
             onlyObj = null;
+        }
+
+        /// <summary>
+        /// 读取密码库存储详情 事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButReadPasswordDetail_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// 从控制板读取所有密码表 事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButReadAllPassword_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// 添加列表密码 事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButAddPassword_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// 删除所有密码表 事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButClearPassword_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

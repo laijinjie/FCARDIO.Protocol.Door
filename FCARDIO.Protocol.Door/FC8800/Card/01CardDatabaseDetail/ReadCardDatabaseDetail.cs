@@ -7,8 +7,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDatabaseDetail
     /// <summary>
     /// 读取卡片存储详情
     /// </summary>
-    public class ReadCardDatabaseDetail
-        : FC8800Command
+    public class ReadCardDatabaseDetail : FC8800Command
     {
         public ReadCardDatabaseDetail(INCommandDetail detail) : base(detail, null) { }
 
@@ -40,8 +39,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDatabaseDetail
             {
                 var buf = oPck.CmdData;
                 ReadCardDatabaseDetail_Result rst = new ReadCardDatabaseDetail_Result();
+                rst.SetBytes(rst,buf);
                 _Result = rst;
-                rst.SetBytes(buf);
+               
                 CommandCompleted();
             }
         }

@@ -1,5 +1,6 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
+using FCARDIO.Protocol.Door.FC8800.Data;
 using System.Collections.Generic;
 
 namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
@@ -13,7 +14,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <summary>
         /// 读取到的卡片列表
         /// </summary>
-        public List<FC8800.Data.CardDetail> CardList;
+        public List<CardDetailBase> CardList { get; set; }
 
         /// <summary>
         /// 读取到的卡片数量
@@ -39,7 +40,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <param name="sortCardSize">排序数据区已使用数量</param>
         /// <param name="sequenceDataBaseSize">顺序存储区容量上限</param>
         /// <param name="sequenceCardSize">顺序存储区已使用数量</param>
-        public ReadCardDataBase_Result(List<FC8800.Data.CardDetail> cardList, int dataBaseSize,int cardType)
+        public ReadCardDataBase_Result(List<CardDetailBase> cardList, int dataBaseSize,int cardType)
         {
             CardList = cardList;
             DataBaseSize = dataBaseSize;
@@ -54,9 +55,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
             CardList = null;
         }
 
-        internal void SetBytes(IByteBuffer buf)
+        internal void SetBytes(List<IByteBuffer> buf)
         {
-            return;
+            
+
         }
     }
 }

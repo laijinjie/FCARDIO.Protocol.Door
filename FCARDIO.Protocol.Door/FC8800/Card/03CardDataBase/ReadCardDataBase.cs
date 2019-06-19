@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
+using FCARDIO.Protocol.Door.FC8800.Data;
 using FCARDIO.Protocol.OnlineAccess;
 
 namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
@@ -14,27 +14,34 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
     /// 从控制器中读取卡片数据<br/>
     /// 成功返回结果参考 @link ReadCardDataBase_Result 
     /// </summary>
-    public class ReadCardDataBase
-        :FC8800Command
+    public class ReadCardDataBase : FC8800Command_ReadParameter
     {
         private int mStep;//指示当前命令进行的步骤
-        private Queue<IByteBuffer> mBufs;
+        //private Queue<IByteBuffer> mBufs;
+        /// <summary>
+        /// 读取到的节假日缓冲
+        /// </summary>
+        private List<IByteBuffer> mReadBuffers;
+
         private int mRecordCardSize;//记录的卡数量
 
+        public ReadCardDataBase(INCommandDetail cd) : base(cd, null)
+        {
+        }
         /// <summary>
         /// 初始化命令结构 
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter"></param>
         public ReadCardDataBase(INCommandDetail cd, ReadCardDataBase_Parameter parameter) : base(cd, parameter) { }
-        
+
         /// <summary>
         /// 创建参数
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
-         {
+        {
             ReadCardDataBase_Parameter model = value as ReadCardDataBase_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
@@ -45,7 +52,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x07, 0x02, 0x00, 0x01, GetCmdDate());
+            //Packet(0x07, 0x02, 0x00, 0x01, GetCmdDate());
+            Packet(0x07, 0x03, 0x00, 0x01, GetCmdDate());
+            mReadBuffers = new List<IByteBuffer>();
         }
 
         /// <summary>
@@ -68,12 +77,50 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x04))
+            //if (CheckResponse(oPck, 0x04))
+            //{
+            //    var buf = oPck.CmdData;
+            //    ReadCardDataBase_Result rst = new ReadCardDataBase_Result();
+            //    _Result = rst;
+            //    rst.SetBytes(buf);
+            //    CommandCompleted();
+            //}
+
+
+            //应答：密码
+            if (CheckResponse(oPck))
             {
                 var buf = oPck.CmdData;
+                buf.Retain();
+                mReadBuffers.Add(buf);
+                CommandWaitResponse();
+            }
+            //应答：传输结束
+            if (CheckResponse(oPck, 7, 3, 0xFF, 4))
+            {
+
+                //var buf = oPck.CmdData;
+                int iTotal = oPck.CmdData.ReadInt();
+
                 ReadCardDataBase_Result rst = new ReadCardDataBase_Result();
+                rst.DataBaseSize = iTotal;
+                List<Data.CardDetailBase> _list = new List<Data.CardDetailBase>(iTotal + 10);
+                foreach (IByteBuffer buf in mReadBuffers)
+                {
+                    int iCardSize = buf.ReadInt();
+                    for (int i = 0; i < iCardSize; i++)
+                    {
+                        Data.CardDetail card = new Data.CardDetail();
+                        card.SetBytes(buf);
+                        _list.Add(card);
+                    }
+                }
+                rst.CardList = _list;
                 _Result = rst;
-                rst.SetBytes(buf);
+
+
+                //rst.SetBytes(mReadBuffers);
+                ClearBuf();
                 CommandCompleted();
             }
         }
@@ -92,6 +139,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         protected override void Release1()
         {
             return;
+        }
+
+        /// <summary>
+        /// 清空缓冲区
+        /// </summary>
+        protected void ClearBuf()
+        {
+            foreach (IByteBuffer buf in mReadBuffers)
+            {
+                buf.Release();
+            }
+            mReadBuffers.Clear();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
         /// 创建结构
         /// </summary>
         /// <param name="cardType">带读取的卡片数据类型</param>
-        public ReadCardDetail_Parameter(int carddata)
+        public ReadCardDetail_Parameter(uint carddata)
         {
             CardData = carddata;
         }

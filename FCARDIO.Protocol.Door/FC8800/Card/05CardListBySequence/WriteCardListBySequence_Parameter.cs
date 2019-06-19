@@ -12,6 +12,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
     /// </summary>
     public class WriteCardListBySequence_Parameter : AbstractParameter
     {
+        protected int mIndex = 0;//指示当前命令进行的步骤
         /// <summary>
         /// 失败卡数量
         /// </summary>
@@ -60,13 +61,17 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            uint iLen = (5 * 0x21) + 4;
+            uint iLen = ((uint)CardList.Count * 0x21) + 4;
             if (databuf.WritableBytes != iLen)
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.WriteByte(FailTotal);
-            databuf.WriteByte(byte.Parse(CardList.ToString()));
+            databuf.WriteInt(mIndex + 1);
+            databuf.WriteInt(CardList.Count);
+            foreach (var card in CardList)
+            {
+                card.WriteCardData(databuf);
+            }
             return databuf;
         }
 
