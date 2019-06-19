@@ -116,24 +116,21 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             }
         }
 
-        public int GetDataLen()
-        {
-            return 0x21;//33字节
-        }
+        public abstract int GetDataLen();
+
+        public abstract void WriteCardData(IByteBuffer data);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="data"></param>
-        public virtual void WriteCardData(IByteBuffer data)
+        public virtual void GetBytes(IByteBuffer data)
         {
-            GetBytes(data);
+            WriteCardData(data);
             //Password = btData.ToHex();
             Password = StringUtil.FillHexString(Password, 8, "F", true);
-            //long pwd = Convert.ToString(Convert.ToInt32(Password, 16), 10);
-            long pwd = Convert.ToInt64("0x" + Password, 16);
+            StringUtil.HextoByteBuf(Password, data);
 
-            data.WriteInt((int)pwd);
 
             byte[] btTime = new byte[6];
             TimeUtil.DateToBCD_yyMMddhhmm(btTime, Expiry);
@@ -154,18 +151,22 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             data.WriteBytes(Holiday, 0, 4);
 
             data.WriteByte(EnterStatus);
-
-            TimeUtil.DateToBCD_yyMMddhhmmss(btTime, RecordTime);
-            data.WriteBytes(btTime, 0, 6);
+            
+            for (int i = 0; i < 6; i++)
+            {
+                data.WriteByte(0);
+            }
         }
+
+        public abstract void ReadCardData(IByteBuffer data);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="data"></param>
-        public virtual void ReadCardData(IByteBuffer data)
+        public virtual void SetBytes(IByteBuffer data)
         {
-            SetBytes(data);
+            ReadCardData(data);
             byte[] btData = new byte[4];
             data.ReadBytes(btData, 0, 4);
             Password = btData.ToHex();
@@ -199,10 +200,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             data.ReadBytes(btTime, 0, 6);
             RecordTime = TimeUtil.BCDTimeToDate_yyMMddhhmmss(btTime);
         }
-
-        public abstract void SetBytes(IByteBuffer data);
-
-        public abstract void GetBytes(IByteBuffer data);
 
 
         public CardDetailBase()
@@ -460,110 +457,5 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             Holiday[iByteIndex] = (byte)iByteValue;
 
         }
-
-        /**
-         * 使用折半查询方式搜索卡片集合
-         *
-         * @param list 已经过排序的卡片集合
-         * @param SearchCard 需要搜索的卡片卡号
-         * @return 在集合中的索引号
-         */
-
-        public static int SearchCardDetail(List<CardDetail> list, UInt64 SearchCard)
-        {
-            int max, min, mid;
-            CardDetail search = new CardDetail();
-            search.CardData = SearchCard;
-
-            return SearchCardDetail(list, search);
-
-        }
-
-        /**
-         * 使用折半查询方式搜索卡片集合
-         *
-         * @param list 已经过排序的卡片集合
-         * @param SearchCard 需要搜索的卡片卡号
-         * @return 在集合中的索引号
-         */
-
-        public static int SearchCardDetail(List<CardDetail> list, CardDetail search)
-        {
-            int max, min, mid;
-            max = list.Count() - 1;
-            min = 0;
-            while (min <= max)
-            {
-                mid = (max + min) >> 1;
-                CardDetail cd = list[mid];
-                int num = cd.CompareTo(search);
-                if (num > 0)
-                {
-                    max = mid - 1;
-                }
-                else if (num < 0)
-                {
-                    min = mid + 1;
-                }
-                else
-                {
-                    return mid;
-                }
-            }
-            return -1;
-
-        }
-
-        /// <summary>
-        /// 返回16进制卡号
-        /// </summary>
-        public string GetCardDataHex()
-        {
-            ulong tenValue = Convert.ToUInt64(CardData);
-            ulong divValue, resValue;
-            string hex = "";
-            do
-            {
-                divValue = (ulong)Math.Floor((decimal)(tenValue / 16));
-
-                resValue = tenValue % 16;
-                hex = StringUtility.TenValue2Char(resValue) + hex;
-                tenValue = divValue;
-            }
-            while (tenValue >= 16);
-            if (tenValue != 0)
-                hex = StringUtility.TenValue2Char(tenValue) + hex;
-            return hex;
-        }
-
-        /// <summary>
-        /// 返回门权限数组
-        /// </summary>
-        public short[] GetDoorList()
-        {
-            var value = StringUtility.TenToBinary(Door);
-            return StringUtility.BinaryToByte(value);
-        }
-
-
-        /// <summary>
-        /// 返回出入标记数组
-        /// 144 -> 10010000
-        /// </summary>
-        /// <returns></returns>
-        public short[] GetEnterStatusList()
-        {
-            short[] list = new short[4];
-            var binary = StringUtility.TenToBinary(EnterStatus).ToString();
-            int index = 0;
-            for (int i = 0; i < 8; i = i + 2)
-            {
-                string value = binary.Substring(i, 2);
-                list[index] = Convert.ToInt16(value, 2);
-                index++;
-            }
-            return list;
-        }
-
     }
 }

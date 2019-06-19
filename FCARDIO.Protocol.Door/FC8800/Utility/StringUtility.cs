@@ -296,46 +296,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
             var rnd = mRandom.NextDouble();
             return iMin + (int)(rnd * (iMax - iMin + 1));
         }
-
-        /// <summary>
-        /// 获得数值代表的星期
-        /// </summary>
-        /// <param name="index">数值（0-6，0代表星期一...6代表星期日）</param>
-        /// <returns></returns>
-        public static string GetWeekStr(int index)
-        {
-            string weekStr = string.Empty;
-            if (index == 0)
-            {
-                return "星期一";
-            }
-            else if (index == 1)
-            {
-                return "星期二";
-            }
-            else if (index == 2)
-            {
-                return "星期三";
-            }
-            else if (index == 3)
-            {
-                return "星期四";
-            }
-            else if (index == 4)
-            {
-                return "星期五";
-            }
-            else if (index == 5)
-            {
-                return "星期六";
-            }
-            else if (index == 6)
-            {
-                return "星期日";
-            }
-            return weekStr;
-        }
-
+        
         /// <summary>
         /// 时间时和分组合
         /// </summary>
@@ -351,88 +312,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
             return buf.ToString();
         }
 
-        /// <summary>
-        /// 10 转 2
-        /// </summary>
-        /// <param name="decimalNumber"></param>
-        /// <returns></returns>
-        public static double TenToBinary(int decimalNumber)
-        {
-            double standard = 0;
-            if (decimalNumber == 0)
-            {
-                return 00;
-            }
-            if (decimalNumber == 1)
-            {
-                return 01;
-            }
-            var doubleValue = (double)decimalNumber;
-            var logarithm = Math.Log(doubleValue, 2);
-            var logFormat = Math.Truncate(logarithm);
-            var baseNum = Math.Pow(10, logFormat);
-            if (logarithm.Equals(logFormat))
-            {
-                return baseNum;
-            }
 
-            var leftNumber = doubleValue - Math.Pow(2, logFormat);
-            return baseNum + TenToBinary((int)leftNumber);
-        }
 
-        /// <summary>
-        /// 10进制转2进制数组
-        /// </summary>
-        /// <param name="number"></param>
-        /// <returns></returns>
-        public static short[] BinaryToByte(double number)
-        {
-            string str = number.ToString().PadLeft(4,'0');
-            var list = str.ToCharArray();
-            short[] b = new short[4];
-            for (int i = 0; i < list.Length; i++)
-            {
-                b[i] = Convert.ToInt16(list[i].ToString());
-            }
-            return b;
-        }
-
-        /// <summary>
-        /// 10 转 16
-        /// </summary>
-        /// <param name="ten"></param>
-        /// <returns></returns>
-        public static string TenValue2Char(ulong ten)
-        {
-            switch (ten)
-            {
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                    return ten.ToString();
-                case 10:
-                    return "A";
-                case 11:
-                    return "B";
-                case 12:
-                    return "C";
-                case 13:
-                    return "D";
-                case 14:
-                    return "E";
-                case 15:
-                    return "F";
-                default:
-                    return "";
-            }
-        }
 
 
     }
