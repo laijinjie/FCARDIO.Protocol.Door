@@ -10,14 +10,19 @@ using FCARDIO.Protocol.OnlineAccess;
 
 namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
 {
-    public class WriteCardListBySort :FC8800Command
+    /// <summary>
+    /// 
+    /// </summary>
+    public class WriteCardListBySort : FC8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令结构
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="perameter"></param>
-        public WriteCardListBySort(INCommandDetail cd, WriteCardListBySort_Parameter perameter) : base(cd, perameter) { }
+        public WriteCardListBySort(INCommandDetail cd, WriteCardListBySort_Parameter par) : base(cd, par)
+        {
+        }
 
         /// <summary>
         /// 检查参数
@@ -26,7 +31,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            WriteCardListBySort_Parameter model = new WriteCardListBySort_Parameter();
+            WriteCardListBySort_Parameter model = value as WriteCardListBySort_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
@@ -63,7 +68,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            return;
+            if (CheckResponse(oPck, 0x05))
+            {
+                var buf = oPck.CmdData;
+                WriteCardListBySort_Result rst = new WriteCardListBySort_Result();
+                _Result = rst;
+                rst.SetBytes(buf);
+                CommandCompleted();
+            }
         }
 
         /// <summary>

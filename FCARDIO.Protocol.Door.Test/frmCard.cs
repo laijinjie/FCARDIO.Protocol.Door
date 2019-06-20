@@ -17,8 +17,8 @@ namespace FCARDIO.Protocol.Door.Test
     {
         private static object lockobj = new object();
         private static frmCard onlyObj;
-        List<string> CardStatusList = new List<string>(){ "正常", "挂失卡", "黑名单" };
-        List<string> EnterStatusList = new List<string>(){ "出入有效", "入有效", "出有效" };
+        List<string> CardStatusList = new List<string>() { "正常", "挂失卡", "黑名单" };
+        List<string> EnterStatusList = new List<string>() { "出入有效", "入有效", "出有效" };
         List<FC8800.Data.CardDetailDto> CardList = new List<CardDetailDto>();
         public static frmCard GetForm(INMain main)
         {
@@ -67,7 +67,7 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Card.CardDatabaseDetail.ReadCardDatabaseDetail_Result;
-                mMainForm.AddLog($"命令成功：排序数据区容量上限:{result.SortDataBaseSize},排序数据区已使用数量:{result.SortCardSize}，顺序存储区容量上限:{result.SequenceDataBaseSize},顺序存储区已使用数量:{result.SequenceCardSize}");
+                mMainForm.AddCmdLog(cmde,$"命令成功：排序数据区容量上限:{result.SortDataBaseSize},排序数据区已使用数量:{result.SortCardSize}，顺序存储区容量上限:{result.SequenceDataBaseSize},顺序存储区已使用数量:{result.SequenceCardSize}");
             };
         }
         #endregion
@@ -86,25 +86,26 @@ namespace FCARDIO.Protocol.Door.Test
                 //var list = result.CardList;
                 //List<FC8800.Data.CardDetail> CardList = result.CardList.Select(d => (FC8800.Data.CardDetail)d).ToList();
 
-                mMainForm.AddLog($"命令成功：读取到的卡片列表:{result.CardList.ToString()},读取到的卡片数量:{result.DataBaseSize}，带读取的卡片数据类型:{result.CardType}");
+                mMainForm.AddCmdLog(cmde,$"命令成功：读取到的卡片列表:{result.CardList.ToString()},读取到的卡片数量:{result.DataBaseSize}，带读取的卡片数据类型:{result.CardType}");
                 if (result.DataBaseSize > 0)
                 {
                     List<FC8800.Data.CardDetail> mCardList = result.CardList.Select(d => (FC8800.Data.CardDetail)d).ToList(); ;
-                    
+
                     int id = 1;
                     foreach (var item in mCardList)
                     {
-                        CardList.Add(ConvertDto(id,item));
+                        CardList.Add(ConvertDto(id, item));
                         id++;
                     }
 
-                    Invoke(() => {
+                    Invoke(() =>
+                    {
                         dataGridView1.DataSource = new BindingList<FC8800.Data.CardDetailDto>(CardList);
 
                     });
                 }
 
-               
+
             };
         }
         #endregion
@@ -115,16 +116,17 @@ namespace FCARDIO.Protocol.Door.Test
         /// <param name="id"></param>
         /// <param name="card"></param>
         /// <returns></returns>
-        private FC8800.Data.CardDetailDto ConvertDto(int id,FC8800.Data.CardDetail card)
+        private FC8800.Data.CardDetailDto ConvertDto(int id, FC8800.Data.CardDetail card)
         {
             CardDetailDto dto = new CardDetailDto();
             dto.ID = id;
-            dto.CardData16 = card.GetCardDataHex(); ;
+            dto.CardData16 = GetCardDataHex(card.CardData);
             dto.CardData10 = card.CardData;
-            dto.SetDoors(card.GetDoorList());
+
+            dto.SetDoors(card);
             dto.SetTimeGroup(card.TimeGroup);
             dto.SetPrivilege(card.Privilege);
-            dto.SetEnterStatus(card.GetEnterStatusList());
+            dto.SetEnterStatus(GetEnterStatusList((byte)card.EnterStatus));
             dto.OpenTimes = card.OpenTimes;
             dto.CardStatus = CardStatusList[(int)card.CardStatus] + "卡";
             dto.Expiry = card.Expiry;
@@ -139,32 +141,54 @@ namespace FCARDIO.Protocol.Door.Test
         {
             FC8800.Data.CardDetail detail = new FC8800.Data.CardDetail();
             detail.CardData = Convert.ToUInt64(card.CardData10);
-            var queryCardStatus = CardStatusList.Select((item,index) =>  new { index,item}).FirstOrDefault(t => card.CardStatus.Contains(t.item));
-            
-            var iEnterStatus1 = EnterStatusList.Select((item,index) =>  new { index,item}).FirstOrDefault(t => card.EnterStatus1.Contains(t.item)).index;
-            var iEnterStatus2 = EnterStatusList.Select((item,index) =>  new { index,item}).FirstOrDefault(t => card.EnterStatus2.Contains(t.item)).index;
-            var iEnterStatus3 = EnterStatusList.Select((item,index) =>  new { index,item}).FirstOrDefault(t => card.EnterStatus3.Contains(t.item)).index;
-            var iEnterStatus4 = EnterStatusList.Select((item,index) =>  new { index,item}).FirstOrDefault(t => card.EnterStatus4.Contains(t.item)).index;
+            var queryCardStatus = CardStatusList.Select((item, index) => new { index, item }).FirstOrDefault(t => card.CardStatus.Contains(t.item));
+
+            var iEnterStatus1 = EnterStatusList.Select((item, index) => new { index, item }).FirstOrDefault(t => card.EnterStatus1.Contains(t.item)).index;
+            var iEnterStatus2 = EnterStatusList.Select((item, index) => new { index, item }).FirstOrDefault(t => card.EnterStatus2.Contains(t.item)).index;
+            var iEnterStatus3 = EnterStatusList.Select((item, index) => new { index, item }).FirstOrDefault(t => card.EnterStatus3.Contains(t.item)).index;
+            var iEnterStatus4 = EnterStatusList.Select((item, index) => new { index, item }).FirstOrDefault(t => card.EnterStatus4.Contains(t.item)).index;
             string es1 = Convert.ToString(iEnterStatus1, 2);
             string es2 = Convert.ToString(iEnterStatus2, 2);
             string es3 = Convert.ToString(iEnterStatus3, 2);
             string es4 = Convert.ToString(iEnterStatus4, 2);
             string strEnterStatus = es1.PadLeft(2, '0') + es2.PadLeft(2, '0') + es3.PadLeft(2, '0') + es4.PadLeft(2, '0');
             detail.EnterStatus = Convert.ToInt32(strEnterStatus, 2);
-            detail.TimeGroup = new byte[4] { card.TimeGroup1,card.TimeGroup2,card.TimeGroup3,card.TimeGroup4 };
+            detail.TimeGroup = new byte[4] { card.TimeGroup1, card.TimeGroup2, card.TimeGroup3, card.TimeGroup4 };
             detail.CardStatus = Convert.ToByte(queryCardStatus.index);
-           
+            if (rbutPrivilege0.Checked)
+            {
+                detail.Privilege = 0;
+            }
+            if (rbutPrivilege1.Checked)
+            {
+                detail.Privilege = 1;
+            }
+            if (rbutPrivilege2.Checked)
+            {
+                detail.Privilege = 2;
+            }
+            if (rbutPrivilege3.Checked)
+            {
+                detail.Privilege = 3;
+            }
+            if (rbutPrivilege4.Checked)
+            {
+                detail.Privilege = 4;
+            }
+
             detail.Expiry = card.Expiry;
             detail.HolidayUse = card.HolidayUse == "有效";
             detail.OpenTimes = card.OpenTimes;
             detail.Password = card.Password;
             detail.RecordTime = card.RecordTime;
+            string strDoor1 = (card.door1 == "有权限" ? "1" : "0") + (card.door2 == "有权限" ? "1" : "0") + (card.door3 == "有权限" ? "1" : "0") + (card.door4 == "有权限" ? "1" : "0");
+            detail.Door = Convert.ToInt32(strDoor1, 2);
             byte[] bHoliday = new byte[4];
             for (int i = 0; i < 4; i++)
             {
-                detail.Holiday[0] = 0;// card.Holiday;
+                detail.Holiday[0] = 255;// card.Holiday;
             }
-            
+
             return detail;
         }
 
@@ -186,7 +210,6 @@ namespace FCARDIO.Protocol.Door.Test
         private void butCardListBySequence_Click(object sender, EventArgs e)
         {
             txtCardList.Text = "";
-            string CardList1 = txtCardList.Text.ToString();
             List<FC8800.Data.CardDetail> _cardList = new List<FC8800.Data.CardDetail>();
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
@@ -195,19 +218,21 @@ namespace FCARDIO.Protocol.Door.Test
                 var dto = CardList.FirstOrDefault(t => t.CardData10 == ulong.Parse(text.Value.ToString()));
                 _cardList.Add(ConvertModel(dto));
             }
-            int FailTotal = _cardList.Count;
+            int Total = _cardList.Count;
 
             //par 需要传输 失败卡数量 FailTotal 和失败的卡列表 List<FC8800.Data.CardDetail> CardList;
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(FailTotal, _cardList);
+            var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(Total, _cardList);
             var cmd = new FC8800.Card.CardListBySequence.WriteCardListBySequence(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Card.CardListBySequence.WriteCardListBySequence_Result;
-                txtCardList.Text = result.CardList.ToString();
-                mMainForm.AddLog($"命令成功：失败卡数量:{result.FailTotal},失败的卡列表:{result.CardList.ToString()}");
+                if (result != null)
+                {
+                    mMainForm.AddCmdLog(cmde, $"命令成功：失败卡数量:{result.FailTotal},失败的卡列表:{result.CardList.ToString()}");
+                }
             };
         }
         #endregion
@@ -250,7 +275,7 @@ namespace FCARDIO.Protocol.Door.Test
             detail.OpenTimes = int.Parse(OpenTime);
             detail.Password = Password;
             return detail;
-        } 
+        }
         #endregion
 
         #region 上传至排列区
@@ -305,6 +330,22 @@ namespace FCARDIO.Protocol.Door.Test
         /// <param name="e"></param>
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex == 0)
+            {
+                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if ((bool)cell.FormattedValue)
+                {
+                    cell.Value = false;
+                    cell.EditingCellFormattedValue = false;
+                }
+                else
+                {
+                    cell.Value = true;
+                    cell.EditingCellFormattedValue = true;
+                }
+                return;
+            }
+
             DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[e.RowIndex].Cells[2];
             CardDetailDto dto = CardList.FirstOrDefault(t => t.CardData10 == Convert.ToUInt64(text.Value));
             //DataGridViewTextBoxCell textCardData16 = (DataGridViewTextBoxCell)dataGridView1.Rows[e.RowIndex].Cells[3];
@@ -318,7 +359,15 @@ namespace FCARDIO.Protocol.Door.Test
             txtPassword.Text = dto.Password;
             dtpDate.Value = dto.Expiry;
             dtpTime.Value = dto.Expiry;
-            cmbOpenTimes.SelectedIndex = dto.OpenTimes;
+            if (dto.OpenTimes == 65535)
+            {
+                cmbOpenTimes.SelectedIndex = cmbOpenTimes.Items.Count -1;
+            }
+            else
+            {
+                cmbOpenTimes.SelectedIndex = dto.OpenTimes;
+            }
+            
             for (int i = 0; i < CardStatusList.Count; i++)
             {
                 if (dto.CardStatus.Contains(CardStatusList[i]))
@@ -336,13 +385,17 @@ namespace FCARDIO.Protocol.Door.Test
             cmbTimeGroup3.SelectedIndex = dto.TimeGroup3;
             cmbTimeGroup4.SelectedIndex = dto.TimeGroup4;
 
-            for (int i = 0; i < CardStatusList.Count; i++)
-            {
-                if (dto.EnterStatus1.Contains(EnterStatusList[i]))
-                {
-                    cmbEnterStatus1.SelectedIndex = i;
-                }
-            }
+            //for (int i = 0; i < EnterStatusList.Count; i++)
+            //{
+            //    if (dto.EnterStatus1.Contains(EnterStatusList[i]))
+            //    {
+            //        cmbEnterStatus1.SelectedIndex = i;
+            //    }
+            //}
+            cmbEnterStatus1.SelectedIndex = EnterStatusList.Select((item, index) => new { index, item }).FirstOrDefault(t => dto.EnterStatus1.Contains(t.item)).index;
+            cmbEnterStatus2.SelectedIndex = EnterStatusList.Select((item, index) => new { index, item }).FirstOrDefault(t => dto.EnterStatus2.Contains(t.item)).index;
+            cmbEnterStatus3.SelectedIndex = EnterStatusList.Select((item, index) => new { index, item }).FirstOrDefault(t => dto.EnterStatus3.Contains(t.item)).index;
+            cmbEnterStatus4.SelectedIndex = EnterStatusList.Select((item, index) => new { index, item }).FirstOrDefault(t => dto.EnterStatus4.Contains(t.item)).index;
             //rbutPrivilege1.Checked = dto.Privilege1;
             GetCardDetail(Convert.ToUInt32(text.Value));
         }
@@ -360,7 +413,7 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Card.CardDetail.ReadCardDetail_Result;
-                mMainForm.AddLog($"命令成功：卡片是否存在:{result.IsReady},卡片的详情:{result.Card}");
+                mMainForm.AddCmdLog(cmde,$"命令成功：卡片是否存在:{result.IsReady},卡片的详情:{result.Card}");
             };
         }
         #endregion
@@ -396,12 +449,10 @@ namespace FCARDIO.Protocol.Door.Test
                 time[i] = i + "";
                 if (time[0] == "0")
                     time[0] = "无效";
-                if (i == 100)
-                    time[i] = "无限制";
             }
             cmbOpenTimes.Items.AddRange(time);
             cmbOpenTimes.Items.Add("无限制(65535)");
-            cmbOpenTimes.SelectedIndex = 0;
+            cmbOpenTimes.SelectedIndex = cmbOpenTimes.Items.Count - 1;
         }
         #endregion
 
@@ -420,7 +471,7 @@ namespace FCARDIO.Protocol.Door.Test
             string[] time = new string[64];
             for (int i = 0; i < 64; i++)
             {
-                time[i] = "卡门时段" + i;
+                time[i] = "卡门时段" + i + 1;
             }
 
             cmbTimeGroup1.Items.Clear();
@@ -487,14 +538,14 @@ namespace FCARDIO.Protocol.Door.Test
             */
         }
 
-        private void BindDto(CardDetailDto dto,ulong carddate = 0)
+        private void BindDto(CardDetailDto dto, ulong carddate = 0)
         {
             ulong ul = 0;
             dto.ID = CardList.Count + 1; //编号
             if (carddate == 0)
             {
                 dto.CardData10 = ulong.Parse(txtCardData.Text);               //十进制卡号
-                     //十六进制卡号
+                                                                              //十六进制卡号
             }
             else
             {
@@ -502,45 +553,29 @@ namespace FCARDIO.Protocol.Door.Test
             }
             dto.CardData16 = txtCardData16.Text;
             dto.Password = txtPassword.Text;                 //密码
-            dto.Expiry = dtpDate.Value;                     //有效期
+            dto.Expiry = new DateTime(dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day,dtpTime.Value.Hour, dtpTime.Value.Minute,0) ;                     //有效期
             dto.CardStatus = CardStatusList[cmbCardStatus.SelectedIndex] + "卡";      //卡片状态
             dto.OpenTimes = cmbOpenTimes.SelectedIndex;                //有效次数
-            bool door1 = cbbit0.Checked ? true : false;         //门1权限
-            int TimeGroup1 = 0;
-            int EnterStatus1 = 0;
-            //if (door1)
+            if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
             {
-                dto.door1 = cbbit0.Checked ? "有权限" : "无权限";
-                dto.TimeGroup1 = Convert.ToByte(cmbTimeGroup1.SelectedIndex + 1);       //卡门时段
-                dto.EnterStatus1 = EnterStatusList[cmbEnterStatus1.SelectedIndex];   //出入标志
+                dto.OpenTimes = 65535;
             }
-            bool door2 = cbbit1.Checked ? true : false;         //门2权限
-            int TimeGroup2 = 0;
-            int EnterStatus2 = 0;
-            //if (door1)
-            {
-                dto.door2 = cbbit1.Checked ? "有权限" : "无权限";
-                dto.TimeGroup2 = Convert.ToByte(cmbTimeGroup2.SelectedIndex + 1);       //卡门时段
-                dto.EnterStatus2 = EnterStatusList[cmbEnterStatus2.SelectedIndex];   //出入标志
-            }
-            bool door3 = cbbit2.Checked ? true : false;         //门3权限
-            int TimeGroup3 = 0;
-            int EnterStatus3 = 0;
-            //if (door1)
-            {
-                dto.door3 = cbbit2.Checked ? "有权限" : "无权限";
-                dto.TimeGroup3 = Convert.ToByte(cmbTimeGroup3.SelectedIndex + 1);       //卡门时段
-                dto.EnterStatus3 = EnterStatusList[cmbEnterStatus3.SelectedIndex];   //出入标志
-            }
-            bool door4 = cbbit3.Checked ? true : false;
-            int TimeGroup4 = 0;
-            int EnterStatus4 = 0;
-            //if (door1)
-            {
-                dto.door4 = cbbit3.Checked ? "有权限" : "无权限";
-                dto.TimeGroup4 = Convert.ToByte(cmbTimeGroup4.SelectedIndex + 1);       //卡门时段
-                dto.EnterStatus4 = EnterStatusList[cmbEnterStatus4.SelectedIndex];   //出入标志
-            }
+            dto.door1 = cbbit0.Checked ? "有权限" : "无权限";
+            dto.TimeGroup1 = Convert.ToByte(cmbTimeGroup1.SelectedIndex + 1);       //卡门时段
+            dto.EnterStatus1 = EnterStatusList[cmbEnterStatus1.SelectedIndex];   //出入标志
+
+            dto.door2 = cbbit1.Checked ? "有权限" : "无权限";
+            dto.TimeGroup2 = Convert.ToByte(cmbTimeGroup2.SelectedIndex + 1);       //卡门时段
+            dto.EnterStatus2 = EnterStatusList[cmbEnterStatus2.SelectedIndex];   //出入标志
+
+            dto.door3 = cbbit2.Checked ? "有权限" : "无权限";
+            dto.TimeGroup3 = Convert.ToByte(cmbTimeGroup3.SelectedIndex + 1);       //卡门时段
+            dto.EnterStatus3 = EnterStatusList[cmbEnterStatus3.SelectedIndex];   //出入标志
+
+            dto.door4 = cbbit3.Checked ? "有权限" : "无权限";
+            dto.TimeGroup4 = Convert.ToByte(cmbTimeGroup4.SelectedIndex + 1);       //卡门时段
+            dto.EnterStatus4 = EnterStatusList[cmbEnterStatus4.SelectedIndex];   //出入标志
+
             dto.Privilege1 = rbutPrivilege1.Checked ? "有效" : "无效";  //首卡
             dto.Privilege2 = rbutPrivilege2.Checked ? "有效" : "无效";    //常开
             dto.Privilege3 = rbutPrivilege3.Checked ? "有效" : "无效";    //巡更
@@ -609,10 +644,10 @@ namespace FCARDIO.Protocol.Door.Test
             for (int i = 0; i < count; i++)
             {
                 CardDetailDto dto = new CardDetailDto();
-                
+
                 long card = rnd.Next(max) % (max - min + 1) + min;
                 dto.CardData10 = Convert.ToUInt64(card);
-                dto.CardData16 = FCARDIO.Protocol.Util.StringUtil.GetCardDataHex(card);
+                dto.CardData16 = GetCardDataHex(dto.CardData10);
 
                 BindDto(dto, dto.CardData10);
                 CardList.Add(dto);
@@ -620,14 +655,39 @@ namespace FCARDIO.Protocol.Door.Test
             dataGridView1.DataSource = new BindingList<FC8800.Data.CardDetailDto>(CardList);
         }
 
+        /// <summary>
+        /// 从列表删除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButDelList_Click(object sender, EventArgs e)
         {
-
+            int count = dataGridView1.Rows.Count;
+            for (int i = count - 1; i >= 0; i--)
+            {
+                DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[0];
+                bool bSelected = Convert.ToBoolean(checkCell.Value);
+                if (bSelected)
+                {
+                    DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[2];
+                    CardList.RemoveAt(CardList.FindIndex(t => t.CardData10 == Convert.ToUInt32(text.Value)));
+                }
+            }
+            dataGridView1.DataSource = new BindingList<FC8800.Data.CardDetailDto>(CardList);
         }
 
         private void BtnDelDevice_Click(object sender, EventArgs e)
         {
+            long[] _cardList = new long[1] { long.Parse(txtCardData.Text)};
+            var cmdDtl = mMainForm.GetCommandDetail();
+            var par = new FC8800.Card.DeleteCard.DeleteCard_Parameter(_cardList);
+            var cmd = new FC8800.Card.DeleteCard.DeleteCard(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
 
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddCmdLog(cmde, $"命令成功");
+            };
         }
 
         private void BtnDelSelect_Click(object sender, EventArgs e)
@@ -635,9 +695,38 @@ namespace FCARDIO.Protocol.Door.Test
 
         }
 
+        /// <summary>
+        /// 增加至设备 写入非排序区
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnAddDevice_Click(object sender, EventArgs e)
         {
+            List<FC8800.Data.CardDetail> _cardList = new List<FC8800.Data.CardDetail>();
 
+            CardDetailDto dto = new CardDetailDto();
+
+            dto.CardData10 = Convert.ToUInt64(txtCardData.Text);
+            dto.CardData16 = GetCardDataHex(dto.CardData10);
+
+            BindDto(dto);
+            _cardList.Add(ConvertModel(dto));
+            int Total = _cardList.Count;
+
+            //par 需要传输 失败卡数量 FailTotal 和失败的卡列表 List<FC8800.Data.CardDetail> CardList;
+            var cmdDtl = mMainForm.GetCommandDetail();
+            var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(Total, _cardList);
+            var cmd = new FC8800.Card.CardListBySequence.WriteCardListBySequence(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmd.getResult() as FC8800.Card.CardListBySequence.WriteCardListBySequence_Result;
+                if (result != null)
+                {
+                    mMainForm.AddCmdLog(cmde, $"命令成功：失败卡数量:{result.FailTotal},失败的卡列表:{result.CardList.ToString()}");
+                }
+            };
         }
 
         private void TxtCardData_TextChanged(object sender, EventArgs e)
@@ -648,6 +737,54 @@ namespace FCARDIO.Protocol.Door.Test
         private void TxtHoliday_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// 返回16进制卡号
+        /// </summary>
+        public string GetCardDataHex(ulong CardData)
+        {
+            byte[] tmpBuf = StringUtility.DecimalToBytes(CardData);
+            return StringUtility.ByteToHex(tmpBuf);
+
+        }
+
+        /// <summary>
+        /// 返回门权限数组
+        /// </summary>
+        public short[] GetDoorList(int Door)
+        {
+
+            return null;
+            //var value = StringUtility.TenToBinary(Door);
+            //return StringUtility.BinaryToByte(value);
+        }
+
+        /// <summary>
+        /// 返回出入标记数组
+        /// 144 -> 10010000
+        /// </summary>
+        /// <returns></returns>
+        public short[] GetEnterStatusList(byte EnterStatus)
+        {
+            short[] list = new short[4];
+            byte[] bitList = StringUtility.ByteToBit(EnterStatus);
+            int index = 0;
+            for (int i = bitList.Length - 1; i > 0; i = i - 2)
+            {
+                var value = bitList[i].ToString() + bitList[i - 1].ToString();
+                list[index] = Convert.ToInt16(value, 2);
+                index++;
+            }
+            //var binary = StringUtility.ByteToBit(EnterStatus).ToString();
+            //int index = 0;
+            //for (int i = 0; i < 8; i = i + 2)
+            //{
+            //    string value = binary.Substring(i, 2);
+            //    list[index] = Convert.ToInt16(value, 2);
+            //    index++;
+            //}
+            return list;
         }
     }
 }

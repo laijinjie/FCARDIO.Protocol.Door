@@ -30,6 +30,32 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardData10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardData16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardStatus1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OpenTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.door1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.door2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.door3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.door4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeGroup1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeGroup2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeGroup3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeGroup4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilege1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilege2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilege3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilege4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HolidayUse = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnterStatus1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnterStatus2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnterStatus3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnterStatus4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Holiday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button6 = new System.Windows.Forms.Button();
             this.butCardListBySort = new System.Windows.Forms.Button();
             this.butCardListBySequence = new System.Windows.Forms.Button();
@@ -108,32 +134,6 @@
             this.txtCardList = new System.Windows.Forms.TextBox();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.dtpTime = new System.Windows.Forms.DateTimePicker();
-            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardData10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardData16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardStatus1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OpenTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.door1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.door2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.door3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.door4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeGroup1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeGroup2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeGroup3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeGroup4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilege1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilege2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilege3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilege4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HolidayUse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EnterStatus1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EnterStatus2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EnterStatus3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EnterStatus4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Holiday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -199,6 +199,190 @@
             this.dataGridView1.Size = new System.Drawing.Size(686, 150);
             this.dataGridView1.TabIndex = 9;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Selected
+            // 
+            this.Selected.DataPropertyName = "Selected";
+            this.Selected.HeaderText = "选择";
+            this.Selected.Name = "Selected";
+            this.Selected.ReadOnly = true;
+            this.Selected.Width = 50;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "序号";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 60;
+            // 
+            // CardData10
+            // 
+            this.CardData10.DataPropertyName = "CardData10";
+            this.CardData10.HeaderText = "10进制卡号";
+            this.CardData10.Name = "CardData10";
+            this.CardData10.ReadOnly = true;
+            // 
+            // CardData16
+            // 
+            this.CardData16.DataPropertyName = "CardData16";
+            this.CardData16.HeaderText = "十六进制卡号";
+            this.CardData16.Name = "CardData16";
+            this.CardData16.ReadOnly = true;
+            // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "密码";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            // 
+            // Expiry
+            // 
+            this.Expiry.DataPropertyName = "Expiry";
+            this.Expiry.HeaderText = "有效期";
+            this.Expiry.Name = "Expiry";
+            this.Expiry.ReadOnly = true;
+            // 
+            // CardStatus1
+            // 
+            this.CardStatus1.DataPropertyName = "CardStatus";
+            this.CardStatus1.HeaderText = "卡片状态";
+            this.CardStatus1.Name = "CardStatus1";
+            this.CardStatus1.ReadOnly = true;
+            // 
+            // OpenTime
+            // 
+            this.OpenTime.DataPropertyName = "OpenTimes";
+            this.OpenTime.HeaderText = "有效次数";
+            this.OpenTime.Name = "OpenTime";
+            this.OpenTime.ReadOnly = true;
+            // 
+            // door1
+            // 
+            this.door1.DataPropertyName = "door1";
+            this.door1.HeaderText = "门1权限";
+            this.door1.Name = "door1";
+            this.door1.ReadOnly = true;
+            // 
+            // door2
+            // 
+            this.door2.DataPropertyName = "door2";
+            this.door2.HeaderText = "门2权限";
+            this.door2.Name = "door2";
+            this.door2.ReadOnly = true;
+            // 
+            // door3
+            // 
+            this.door3.DataPropertyName = "door3";
+            this.door3.HeaderText = "门3权限";
+            this.door3.Name = "door3";
+            this.door3.ReadOnly = true;
+            // 
+            // door4
+            // 
+            this.door4.DataPropertyName = "door4";
+            this.door4.HeaderText = "门4权限";
+            this.door4.Name = "door4";
+            this.door4.ReadOnly = true;
+            // 
+            // TimeGroup1
+            // 
+            this.TimeGroup1.DataPropertyName = "TimeGroup1";
+            this.TimeGroup1.HeaderText = "1门常开时段";
+            this.TimeGroup1.Name = "TimeGroup1";
+            this.TimeGroup1.ReadOnly = true;
+            // 
+            // TimeGroup2
+            // 
+            this.TimeGroup2.DataPropertyName = "TimeGroup2";
+            this.TimeGroup2.HeaderText = "2门常开时段";
+            this.TimeGroup2.Name = "TimeGroup2";
+            this.TimeGroup2.ReadOnly = true;
+            // 
+            // TimeGroup3
+            // 
+            this.TimeGroup3.DataPropertyName = "TimeGroup3";
+            this.TimeGroup3.HeaderText = "3门常开时段";
+            this.TimeGroup3.Name = "TimeGroup3";
+            this.TimeGroup3.ReadOnly = true;
+            // 
+            // TimeGroup4
+            // 
+            this.TimeGroup4.DataPropertyName = "TimeGroup4";
+            this.TimeGroup4.HeaderText = "4门常开时段";
+            this.TimeGroup4.Name = "TimeGroup4";
+            this.TimeGroup4.ReadOnly = true;
+            // 
+            // Privilege1
+            // 
+            this.Privilege1.DataPropertyName = "Privilege1";
+            this.Privilege1.HeaderText = "首卡";
+            this.Privilege1.Name = "Privilege1";
+            this.Privilege1.ReadOnly = true;
+            // 
+            // Privilege2
+            // 
+            this.Privilege2.DataPropertyName = "Privilege2";
+            this.Privilege2.HeaderText = "常开";
+            this.Privilege2.Name = "Privilege2";
+            this.Privilege2.ReadOnly = true;
+            // 
+            // Privilege3
+            // 
+            this.Privilege3.DataPropertyName = "Privilege3";
+            this.Privilege3.HeaderText = "巡更";
+            this.Privilege3.Name = "Privilege3";
+            this.Privilege3.ReadOnly = true;
+            // 
+            // Privilege4
+            // 
+            this.Privilege4.DataPropertyName = "Privilege4";
+            this.Privilege4.HeaderText = "防盗设置卡";
+            this.Privilege4.Name = "Privilege4";
+            this.Privilege4.ReadOnly = true;
+            // 
+            // HolidayUse
+            // 
+            this.HolidayUse.DataPropertyName = "HolidayUse";
+            this.HolidayUse.HeaderText = "节假日限制";
+            this.HolidayUse.Name = "HolidayUse";
+            this.HolidayUse.ReadOnly = true;
+            // 
+            // EnterStatus1
+            // 
+            this.EnterStatus1.DataPropertyName = "EnterStatus1";
+            this.EnterStatus1.HeaderText = "门1出入状态";
+            this.EnterStatus1.Name = "EnterStatus1";
+            this.EnterStatus1.ReadOnly = true;
+            // 
+            // EnterStatus2
+            // 
+            this.EnterStatus2.DataPropertyName = "EnterStatus2";
+            this.EnterStatus2.HeaderText = "门2出入状态";
+            this.EnterStatus2.Name = "EnterStatus2";
+            this.EnterStatus2.ReadOnly = true;
+            // 
+            // EnterStatus3
+            // 
+            this.EnterStatus3.DataPropertyName = "EnterStatus3";
+            this.EnterStatus3.HeaderText = "门3出入状态";
+            this.EnterStatus3.Name = "EnterStatus3";
+            this.EnterStatus3.ReadOnly = true;
+            // 
+            // EnterStatus4
+            // 
+            this.EnterStatus4.DataPropertyName = "EnterStatus4";
+            this.EnterStatus4.HeaderText = "门4出入状态";
+            this.EnterStatus4.Name = "EnterStatus4";
+            this.EnterStatus4.ReadOnly = true;
+            // 
+            // Holiday
+            // 
+            this.Holiday.DataPropertyName = "Holiday";
+            this.Holiday.HeaderText = "节假日开关";
+            this.Holiday.Name = "Holiday";
+            this.Holiday.ReadOnly = true;
             // 
             // button6
             // 
@@ -391,6 +575,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(192, 21);
             this.txtPassword.TabIndex = 12;
+            this.txtPassword.Text = "8888";
             // 
             // txtCardDataID
             // 
@@ -402,6 +587,8 @@
             // cbbit0
             // 
             this.cbbit0.AutoSize = true;
+            this.cbbit0.Checked = true;
+            this.cbbit0.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbbit0.Location = new System.Drawing.Point(156, 371);
             this.cbbit0.Name = "cbbit0";
             this.cbbit0.Size = new System.Drawing.Size(42, 16);
@@ -412,6 +599,8 @@
             // cbbit1
             // 
             this.cbbit1.AutoSize = true;
+            this.cbbit1.Checked = true;
+            this.cbbit1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbbit1.Location = new System.Drawing.Point(267, 371);
             this.cbbit1.Name = "cbbit1";
             this.cbbit1.Size = new System.Drawing.Size(42, 16);
@@ -422,6 +611,8 @@
             // cbbit2
             // 
             this.cbbit2.AutoSize = true;
+            this.cbbit2.Checked = true;
+            this.cbbit2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbbit2.Location = new System.Drawing.Point(383, 371);
             this.cbbit2.Name = "cbbit2";
             this.cbbit2.Size = new System.Drawing.Size(42, 16);
@@ -432,6 +623,8 @@
             // cbbit3
             // 
             this.cbbit3.AutoSize = true;
+            this.cbbit3.Checked = true;
+            this.cbbit3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbbit3.Location = new System.Drawing.Point(497, 371);
             this.cbbit3.Name = "cbbit3";
             this.cbbit3.Size = new System.Drawing.Size(42, 16);
@@ -545,7 +738,6 @@
             this.rbutPrivilege1.Name = "rbutPrivilege1";
             this.rbutPrivilege1.Size = new System.Drawing.Size(47, 16);
             this.rbutPrivilege1.TabIndex = 32;
-            this.rbutPrivilege1.TabStop = true;
             this.rbutPrivilege1.Text = "首卡";
             this.rbutPrivilege1.UseVisualStyleBackColor = true;
             // 
@@ -556,7 +748,6 @@
             this.rbutPrivilege2.Name = "rbutPrivilege2";
             this.rbutPrivilege2.Size = new System.Drawing.Size(47, 16);
             this.rbutPrivilege2.TabIndex = 33;
-            this.rbutPrivilege2.TabStop = true;
             this.rbutPrivilege2.Text = "常开";
             this.rbutPrivilege2.UseVisualStyleBackColor = true;
             // 
@@ -567,7 +758,6 @@
             this.rbutPrivilege3.Name = "rbutPrivilege3";
             this.rbutPrivilege3.Size = new System.Drawing.Size(47, 16);
             this.rbutPrivilege3.TabIndex = 34;
-            this.rbutPrivilege3.TabStop = true;
             this.rbutPrivilege3.Text = "巡更";
             this.rbutPrivilege3.UseVisualStyleBackColor = true;
             // 
@@ -578,13 +768,13 @@
             this.rbutPrivilege4.Name = "rbutPrivilege4";
             this.rbutPrivilege4.Size = new System.Drawing.Size(83, 16);
             this.rbutPrivilege4.TabIndex = 35;
-            this.rbutPrivilege4.TabStop = true;
             this.rbutPrivilege4.Text = "防盗设置卡";
             this.rbutPrivilege4.UseVisualStyleBackColor = true;
             // 
             // rbutPrivilege0
             // 
             this.rbutPrivilege0.AutoSize = true;
+            this.rbutPrivilege0.Checked = true;
             this.rbutPrivilege0.Location = new System.Drawing.Point(387, 449);
             this.rbutPrivilege0.Name = "rbutPrivilege0";
             this.rbutPrivilege0.Size = new System.Drawing.Size(47, 16);
@@ -596,6 +786,8 @@
             // cbHolidayUse
             // 
             this.cbHolidayUse.AutoSize = true;
+            this.cbHolidayUse.Checked = true;
+            this.cbHolidayUse.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbHolidayUse.Location = new System.Drawing.Point(461, 450);
             this.cbHolidayUse.Name = "cbHolidayUse";
             this.cbHolidayUse.Size = new System.Drawing.Size(84, 16);
@@ -935,190 +1127,6 @@
             this.dtpTime.ShowUpDown = true;
             this.dtpTime.Size = new System.Drawing.Size(63, 21);
             this.dtpTime.TabIndex = 55;
-            // 
-            // Selected
-            // 
-            this.Selected.DataPropertyName = "Selected";
-            this.Selected.HeaderText = "选择";
-            this.Selected.Name = "Selected";
-            this.Selected.ReadOnly = true;
-            this.Selected.Width = 50;
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "序号";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 60;
-            // 
-            // CardData10
-            // 
-            this.CardData10.DataPropertyName = "CardData10";
-            this.CardData10.HeaderText = "10进制卡号";
-            this.CardData10.Name = "CardData10";
-            this.CardData10.ReadOnly = true;
-            // 
-            // CardData16
-            // 
-            this.CardData16.DataPropertyName = "CardData16";
-            this.CardData16.HeaderText = "十六进制卡号";
-            this.CardData16.Name = "CardData16";
-            this.CardData16.ReadOnly = true;
-            // 
-            // Password
-            // 
-            this.Password.DataPropertyName = "Password";
-            this.Password.HeaderText = "密码";
-            this.Password.Name = "Password";
-            this.Password.ReadOnly = true;
-            // 
-            // Expiry
-            // 
-            this.Expiry.DataPropertyName = "Expiry";
-            this.Expiry.HeaderText = "有效期";
-            this.Expiry.Name = "Expiry";
-            this.Expiry.ReadOnly = true;
-            // 
-            // CardStatus1
-            // 
-            this.CardStatus1.DataPropertyName = "CardStatus";
-            this.CardStatus1.HeaderText = "卡片状态";
-            this.CardStatus1.Name = "CardStatus1";
-            this.CardStatus1.ReadOnly = true;
-            // 
-            // OpenTime
-            // 
-            this.OpenTime.DataPropertyName = "OpenTimes";
-            this.OpenTime.HeaderText = "有效次数";
-            this.OpenTime.Name = "OpenTime";
-            this.OpenTime.ReadOnly = true;
-            // 
-            // door1
-            // 
-            this.door1.DataPropertyName = "door1";
-            this.door1.HeaderText = "门1权限";
-            this.door1.Name = "door1";
-            this.door1.ReadOnly = true;
-            // 
-            // door2
-            // 
-            this.door2.DataPropertyName = "door2";
-            this.door2.HeaderText = "门2权限";
-            this.door2.Name = "door2";
-            this.door2.ReadOnly = true;
-            // 
-            // door3
-            // 
-            this.door3.DataPropertyName = "door3";
-            this.door3.HeaderText = "门3权限";
-            this.door3.Name = "door3";
-            this.door3.ReadOnly = true;
-            // 
-            // door4
-            // 
-            this.door4.DataPropertyName = "door4";
-            this.door4.HeaderText = "门4权限";
-            this.door4.Name = "door4";
-            this.door4.ReadOnly = true;
-            // 
-            // TimeGroup1
-            // 
-            this.TimeGroup1.DataPropertyName = "TimeGroup1";
-            this.TimeGroup1.HeaderText = "1门常开时段";
-            this.TimeGroup1.Name = "TimeGroup1";
-            this.TimeGroup1.ReadOnly = true;
-            // 
-            // TimeGroup2
-            // 
-            this.TimeGroup2.DataPropertyName = "TimeGroup2";
-            this.TimeGroup2.HeaderText = "2门常开时段";
-            this.TimeGroup2.Name = "TimeGroup2";
-            this.TimeGroup2.ReadOnly = true;
-            // 
-            // TimeGroup3
-            // 
-            this.TimeGroup3.DataPropertyName = "TimeGroup3";
-            this.TimeGroup3.HeaderText = "3门常开时段";
-            this.TimeGroup3.Name = "TimeGroup3";
-            this.TimeGroup3.ReadOnly = true;
-            // 
-            // TimeGroup4
-            // 
-            this.TimeGroup4.DataPropertyName = "TimeGroup4";
-            this.TimeGroup4.HeaderText = "4门常开时段";
-            this.TimeGroup4.Name = "TimeGroup4";
-            this.TimeGroup4.ReadOnly = true;
-            // 
-            // Privilege1
-            // 
-            this.Privilege1.DataPropertyName = "Privilege1";
-            this.Privilege1.HeaderText = "首卡";
-            this.Privilege1.Name = "Privilege1";
-            this.Privilege1.ReadOnly = true;
-            // 
-            // Privilege2
-            // 
-            this.Privilege2.DataPropertyName = "Privilege2";
-            this.Privilege2.HeaderText = "常开";
-            this.Privilege2.Name = "Privilege2";
-            this.Privilege2.ReadOnly = true;
-            // 
-            // Privilege3
-            // 
-            this.Privilege3.DataPropertyName = "Privilege3";
-            this.Privilege3.HeaderText = "巡更";
-            this.Privilege3.Name = "Privilege3";
-            this.Privilege3.ReadOnly = true;
-            // 
-            // Privilege4
-            // 
-            this.Privilege4.DataPropertyName = "Privilege4";
-            this.Privilege4.HeaderText = "防盗设置卡";
-            this.Privilege4.Name = "Privilege4";
-            this.Privilege4.ReadOnly = true;
-            // 
-            // HolidayUse
-            // 
-            this.HolidayUse.DataPropertyName = "HolidayUse";
-            this.HolidayUse.HeaderText = "节假日限制";
-            this.HolidayUse.Name = "HolidayUse";
-            this.HolidayUse.ReadOnly = true;
-            // 
-            // EnterStatus1
-            // 
-            this.EnterStatus1.DataPropertyName = "EnterStatus1";
-            this.EnterStatus1.HeaderText = "门1出入状态";
-            this.EnterStatus1.Name = "EnterStatus1";
-            this.EnterStatus1.ReadOnly = true;
-            // 
-            // EnterStatus2
-            // 
-            this.EnterStatus2.DataPropertyName = "EnterStatus2";
-            this.EnterStatus2.HeaderText = "门2出入状态";
-            this.EnterStatus2.Name = "EnterStatus2";
-            this.EnterStatus2.ReadOnly = true;
-            // 
-            // EnterStatus3
-            // 
-            this.EnterStatus3.DataPropertyName = "EnterStatus3";
-            this.EnterStatus3.HeaderText = "门3出入状态";
-            this.EnterStatus3.Name = "EnterStatus3";
-            this.EnterStatus3.ReadOnly = true;
-            // 
-            // EnterStatus4
-            // 
-            this.EnterStatus4.DataPropertyName = "EnterStatus4";
-            this.EnterStatus4.HeaderText = "门4出入状态";
-            this.EnterStatus4.Name = "EnterStatus4";
-            this.EnterStatus4.ReadOnly = true;
-            // 
-            // Holiday
-            // 
-            this.Holiday.DataPropertyName = "Holiday";
-            this.Holiday.HeaderText = "节假日开关";
-            this.Holiday.Name = "Holiday";
-            this.Holiday.ReadOnly = true;
             // 
             // frmCard
             // 

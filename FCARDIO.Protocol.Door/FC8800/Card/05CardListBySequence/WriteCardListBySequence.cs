@@ -14,18 +14,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
     /// 将卡片列表写入到控制器非排序区
     /// </summary>
     public class WriteCardListBySequence
-        : FC8800Command
+        : FC8800Command_WriteParameter
     {
-        private int mIndex;//指示当前命令进行的步骤
-        private List<FC8800.Data.CardDetail> _List;
-        private Queue<IByteBuffer> mBufs;
+
 
         /// <summary>
         /// 初始化命令结构 
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter"></param>
-        public WriteCardListBySequence(INCommandDetail cd, WriteCardListBySequence_Parameter perameter) : base(cd, perameter) { }
+        public WriteCardListBySequence(INCommandDetail cd, WriteCardListBySequence_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查参数
@@ -34,7 +32,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            WriteCardListBySequence_Parameter model = new WriteCardListBySequence_Parameter();
+            WriteCardListBySequence_Parameter model = value as WriteCardListBySequence_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
@@ -49,19 +47,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
             var buf = acl.Buffer(model.GetDataLen());
             model.GetBytes(buf);
             Packet(0x07, 0x04, 0x00, Convert.ToUInt32(model.GetDataLen()), buf);
-        }
-
-        /// <summary>
-        /// 获取参数结构的字节编码
-        /// </summary>
-        /// <returns></returns>
-        private IByteBuffer getCmdData()
-        {
-            WriteCardListBySequence_Parameter model = _Parameter as WriteCardListBySequence_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
         }
 
         /// <summary>

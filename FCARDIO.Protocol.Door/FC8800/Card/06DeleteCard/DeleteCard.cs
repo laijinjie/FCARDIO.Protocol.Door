@@ -29,7 +29,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            DeleteCard_Parameter model = new DeleteCard_Parameter();
+            DeleteCard_Parameter model = value as DeleteCard_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
@@ -49,7 +49,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
         /// <returns></returns>
         private IByteBuffer getCmdData()
         {
-            DeleteCard_Parameter model = new DeleteCard_Parameter();
+            DeleteCard_Parameter model = _Parameter as DeleteCard_Parameter;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
             model.GetBytes(buf);

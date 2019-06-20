@@ -17,12 +17,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
     public class WriteCardListBySequence_Result: INCommandResult
     {
         /// <summary>
-        /// 失败卡数量
+        /// 数量
         /// </summary>
         public int FailTotal;
 
         /// <summary>
-        /// 失败的卡列表
+        /// 卡列表
         /// </summary>
         public List<FC8800.Data.CardDetail> CardList;
 
@@ -31,8 +31,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// <summary>
         /// 创建结构 
         /// </summary>
-        /// <param name="failtotal">失败卡数量</param>
-        /// <param name="cardList">失败的卡列表</param>
+        /// <param name="failtotal">卡数量</param>
+        /// <param name="cardList">卡列表</param>
         public WriteCardListBySequence_Result(int failtotal, List<FC8800.Data.CardDetail> cardList)
         {
             FailTotal = failtotal;

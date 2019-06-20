@@ -14,12 +14,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
     {
         protected int mIndex = 0;//指示当前命令进行的步骤
         /// <summary>
-        /// 失败卡数量
+        /// 数量
         /// </summary>
-        public int FailTotal;
+        public int Total;
 
         /// <summary>
-        /// 失败的卡列表
+        /// 卡列表
         /// </summary>
         public List<FC8800.Data.CardDetail> CardList;
 
@@ -28,12 +28,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// <summary>
         /// 创建结构
         /// </summary>
-        /// <param name="isReady">卡片是否存在</param>
-        /// <param name="Card">CardDetail类</param>
+        /// <param name="total"></param>
+        /// <param name="cardList"></param>
         /// <param name=""></param>
-        public WriteCardListBySequence_Parameter(int failTotal, List<FC8800.Data.CardDetail> cardList)
+        public WriteCardListBySequence_Parameter(int total, List<FC8800.Data.CardDetail> cardList)
         {
-            FailTotal = failTotal;
+            Total = total;
             CardList = cardList;
         }
         
@@ -43,6 +43,17 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (CardList == null || CardList.Count == 0)
+            {
+                return false;
+            }
+            foreach (Data.CardDetail card in CardList)
+            {
+                if (card == null)
+                {
+                    return false;
+                }
+            }
             return true;
         }
 
@@ -61,17 +72,34 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            uint iLen = ((uint)CardList.Count * 0x21) + 4;
+            int iMaxSize = 5; //每个数据包最大5个卡
+            int iSize = 0;
+            int iIndex = 0;
+
+            databuf.Clear();
+            int iLen = GetDataLen();
             if (databuf.WritableBytes != iLen)
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.WriteInt(mIndex + 1);
-            databuf.WriteInt(CardList.Count);
-            foreach (var card in CardList)
+            databuf.WriteInt(iMaxSize);
+            for (int i = mIndex; i < CardList.Count; i++)
             {
-                card.WriteCardData(databuf);
+                iIndex = i;
+                iSize += 1;
+
+                CardList[iIndex].GetBytes(databuf);
+                if (iSize == iMaxSize)
+                {
+                    break;
+                }
+                //card.WriteCardData(databuf);
             }
+            if (iSize != iMaxSize)
+            {
+                databuf.SetInt(0, iSize);
+            }
+            mIndex = iIndex + 1;
             return databuf;
         }
 
@@ -81,7 +109,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// <returns></returns>
         public override int GetDataLen()
         {
-            int iLen = (5 * 0x21) + 4;
+            int iLen = (1 * 0x21) + 4;
             return iLen;
         }
 
@@ -91,7 +119,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            FailTotal = databuf.ReadByte();
+            Total = databuf.ReadByte();
         }
     }
 }

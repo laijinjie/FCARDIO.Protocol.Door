@@ -27,8 +27,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <summary>
         /// 创建结构 
         /// </summary>
-        /// <param name="failtotal">失败卡数量</param>
-        /// <param name="cardList">失败的卡列表</param>
+        /// <param name="failtotal">卡数量</param>
+        /// <param name="cardList">卡列表</param>
         public WriteCardListBySort_Result(int failtotal, List<FC8800.Data.CardDetail> cardList)
         {
             FailTotal = failtotal;
@@ -43,5 +43,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
             CardList = null;
         }
 
+         internal void SetBytes(IByteBuffer buf)
+        {
+            return;
+        }
     }
 }

@@ -16,8 +16,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <summary>
         /// 需要上传的卡片列表
         /// </summary>
-        public List<FC8800.Data.CardDetail> CardList;
+        public List<FC8800.Data.CardDetail> CardList { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public WriteCardListBySort_Parameter() { }
 
         /// <summary>
@@ -36,6 +39,17 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (CardList == null || CardList.Count == 0)
+            {
+                return false;
+            }
+            foreach (Data.CardDetail card in CardList)
+            {
+                if (card == null)
+                {
+                    return false;
+                }
+            }
             return true;
         }
 
@@ -54,19 +68,34 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            int iLen = (CardList.Count * 0x21) + 8;
+            int iMaxSize = 5; //每个数据包最大5个卡
+            int iSize = 0;
+            int iIndex = 0;
+            int ListLen = CardList.Count;
+            databuf.Clear();
+            int iLen = GetDataLen();
             if (databuf.WritableBytes != iLen)
             {
                 throw new ArgumentException("Crad Error");
             }
             databuf.WriteInt(mIndex + 1);
-            databuf.WriteInt(CardList.Count);
-            foreach (var card in CardList)
+            databuf.WriteInt(iMaxSize);
+            for (int i = mIndex; i < CardList.Count; i++)
             {
-                //card.GetBytes(databuf);
-                card.WriteCardData(databuf);
+                iIndex = i;
+                iSize += 1;
+
+                CardList[iIndex].GetBytes(databuf);
+                if (iSize == iMaxSize)
+                {
+                    break;
+                }
             }
-            //databuf.WriteByte(byte.Parse(ListHoliday.ToString()));
+            if (iSize != iMaxSize)
+            {
+                databuf.SetInt(0, iSize);
+            }
+            mIndex = iIndex + 1;
             return databuf;
         }
 
@@ -76,7 +105,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <returns></returns>
         public override int GetDataLen()
         {
-            int iLen = (CardList.Count * 0x21) + 8;
+            int iLen = (1 * 0x21) + 8;
             return iLen;
         }
 

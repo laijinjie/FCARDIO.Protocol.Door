@@ -34,24 +34,30 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="data"></param>
-        public override void SetBytes(IByteBuffer data)
+        /// <returns></returns>
+        public override int GetDataLen()
         {
-            data.ReadByte();
-
-            CardData = data.ReadUnsignedInt();
-
-            
+            throw new NotImplementedException();
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="data"></param>
-        public override void GetBytes(IByteBuffer data)
+        public override void WriteCardData(IByteBuffer data)
         {
             data.WriteByte(0);
             data.WriteInt((int)CardData);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
+        public override void ReadCardData(IByteBuffer data)
+        {
+            data.ReadByte();
+            CardData = data.ReadUnsignedInt();
         }
     }
 }

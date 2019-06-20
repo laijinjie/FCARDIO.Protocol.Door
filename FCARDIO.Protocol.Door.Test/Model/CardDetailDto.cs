@@ -9,12 +9,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
 {
     public class CardDetailDto
     {
-        public void SetDoors(short[] list)
+        public void SetDoors(CardDetail card)
         {
-            door1 = list[0] == 1 ? "有权限" : "无权限";
-            door2 = list[1] == 1 ? "有权限" : "无权限";
-            door3 = list[2] == 1 ? "有权限" : "无权限";
-            door4 = list[3] == 1 ? "有权限" : "无权限";
+            door1 = card.GetDoor(1) ? "有权限" : "无权限";
+            door2 = card.GetDoor(2) ? "有权限" : "无权限";
+            door3 = card.GetDoor(3) ? "有权限" : "无权限";
+            door4 = card.GetDoor(4) ? "有权限" : "无权限";
         }
 
         public void SetTimeGroup(byte[] list)
@@ -54,7 +54,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         {
             for (int i = 0; i < holiday.Length; i++)
             {
-                Holiday += StringUtility.TenToBinary(holiday[i]).ToString();
+                //Holiday += StringUtility.TenToBinary(holiday[i]).ToString();
             }
         }
 

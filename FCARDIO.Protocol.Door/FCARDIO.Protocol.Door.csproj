@@ -115,7 +115,6 @@
     <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort_Parameter.cs" />
     <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort_Result.cs" />
     <Compile Include="FC8800\Data\CardDetailBase.cs" />
-    <Compile Include="FC8800\Data\CardDetailDto.cs" />
     <Compile Include="FC8800\Data\IMyList.cs" />
     <Compile Include="FC8800\Data\MyList.cs" />
     <Compile Include="FC8800\Data\TimeGroup\ReaderWork\DayTimeGroup_ReaderWork.cs" />

@@ -58,7 +58,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.WriteLong(CardData);
+            databuf.WriteByte(0);
+            databuf.WriteInt((int)CardData);
             return databuf;
         }
 

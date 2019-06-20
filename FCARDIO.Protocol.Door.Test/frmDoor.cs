@@ -777,7 +777,7 @@ namespace FCARDIO.Protocol.Door.Test
                 for (int i = 0; i < 7; i++)
                 {
 
-                    sb.AppendLine(StringUtility.GetWeekStr(i));
+                    //sb.AppendLine(StringUtility.GetWeekStr(i));
                     for (int j = 0; j < 8; j++)
                     {
                         sb.Append("  时段" + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j).GetEndTime()));
@@ -966,7 +966,7 @@ namespace FCARDIO.Protocol.Door.Test
                         for (int i = 0; i < 7; i++)
                         {
                             sb.Clear();
-                            sb.AppendLine(StringUtility.GetWeekStr(i));
+                            //sb.AppendLine(StringUtility.GetWeekStr(i));
                             for (int j = 0; j < 8; j++)
                             {
                                 sb.Append("  时段" + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));
@@ -1303,7 +1303,7 @@ namespace FCARDIO.Protocol.Door.Test
                 sb.AppendLine(tip);
                 for (int i = 0; i < 7; i++)
                 {
-                    sb.AppendLine(StringUtility.GetWeekStr(i));
+                    //sb.AppendLine(StringUtility.GetWeekStr(i));
                     for (int j = 0; j < 8; j++)
                     {
                         sb.AppendLine("  时段" + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));

@@ -227,6 +227,27 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
         }
 
         /// <summary>
+        /// 1字节转8Bit
+        /// </summary>
+        /// <param name="iNum"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
+        public static byte[] ByteToBit(byte iNum)
+        {
+            byte[] iBit = new byte[8];
+            int iValue = 0, iMask = 1;
+
+            for (int i = 0; i < 8; i++)
+            {
+                iValue = iNum & iMask;
+                if (iValue > 0) iBit[i] = 1;
+                iMask *= 2;
+            }
+            return iBit;
+        }
+
+
+        /// <summary>
         /// IP地址及与之相同格式的结构转换成数组字节
         /// </summary>
         /// <param name="IP"></param>
@@ -313,8 +334,97 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
         }
 
 
+        /// <summary>
+        ///十进制数 转 字节数组
+        /// </summary>
+        /// <param name="lValue"></param>
+        /// <returns></returns>
+        public static byte[] DecimalToBytes(decimal lValue)
+        {
+            byte[] b = new byte[16];
+            decimal t = UInt64.MaxValue;
+            t += 1;
+            decimal tmp;
+            UInt64[] valuelist = new UInt64[2];
+            if (lValue > UInt64.MaxValue)
+            {
+                tmp = lValue / t;
+                tmp = (UInt64)tmp;
+                valuelist[1] = (UInt64)(lValue - tmp * t);//低8字节
+                valuelist[0] = (UInt64)tmp;//高8字节
+            }
+            else
+            {
+                valuelist[1] = (UInt64)lValue;//低8字节
+                valuelist[0] = 0;//高8字节
+            }
+            byte[] tmpBuf = new byte[8];
+            int iIndex = 0;
+            for (int i = 0; i <= 1; i++)
+            {
+                UInt64ToByte(valuelist[i], tmpBuf, 0, 8);
+                Array.Copy(tmpBuf, 0, b, iIndex, 8);
+                iIndex += 8;
+            }
+
+            return b;
+        }
 
 
+        /// <summary>
+        /// 将一个UInt64数值转换为字节数组
+        /// </summary>
+        /// <param name="lValue"></param>
+        /// <param name="bBuf"></param>
+        /// <param name="iBeginIndex"></param>
+        /// <param name="iLen"></param>
+        private static byte[] UInt64ToByte(UInt64 lValue, byte[] bBuf, int iBeginIndex, int iLen)
+        {
+            int i;
+            iLen -= 1;
+            UInt64 lMask = 255;
+
+            for (i = 0; i <= iLen; i++)
+            {
+                bBuf[(iBeginIndex + iLen - i)] = (byte)(lValue & lMask);
+
+                lValue = lValue >> 8;
+                if (lValue == 0)
+                    break;
+            }
+            return bBuf;
+        }
+
+
+        /// <summary>
+        /// 字节转十六进制
+        /// </summary>
+        /// <param name="bData"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
+        public static string ByteToHex(byte[] bData)
+        {
+            byte[] mHexDigits = mHexDigits = Encoding.ASCII.GetBytes("0123456789ABCDEF");
+            byte[] bHex;
+            int i;
+            int lIndex;
+
+            if (bData.Length == 0)
+                return "00";
+            int ilen = bData.Length;
+            // 初始化操作
+            bHex = new byte[ilen * 2];
+
+            // 开始转换
+            lIndex = 0;
+            for (i = 0; i < ilen; i++)
+            {
+                bHex[lIndex] = mHexDigits[bData[i] / 16]; lIndex = lIndex + 1;
+                bHex[lIndex] = mHexDigits[bData[i] % 16]; lIndex = lIndex + 1;
+            }
+
+            return Encoding.ASCII.GetString(bHex).TrimEnd('\0');
+        }
 
     }
 }

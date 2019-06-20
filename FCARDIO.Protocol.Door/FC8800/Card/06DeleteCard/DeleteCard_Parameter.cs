@@ -12,6 +12,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
     /// </summary>
     public class DeleteCard_Parameter:AbstractParameter
     {
+        protected int mIndex = 0;//指示当前命令进行的步骤
         /// <summary>
         /// 需要删除的卡片列表
         /// </summary>
@@ -33,6 +34,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (CardList == null || CardList.Length == 0)
+            {
+                return false;
+            }
             return true;
         }
 
@@ -52,11 +57,31 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             uint iLen = (40 * 5) + 4;
+            int iMaxSize = 40; //每个数据包最大40个卡
+            int iSize = 0;
+            int iIndex = 0;
+            int ListLen = CardList.Length;
             if (databuf.WritableBytes != iLen)
             {
-                throw new ArgumentException("Crad Error");
+                throw new ArgumentException("Card Error");
             }
-            
+            databuf.WriteInt(CardList.Length);
+            for (int i = 0; i < ListLen; i++)
+            {
+                iIndex = i;
+                iSize += 1;
+                databuf.WriteByte(0);
+                databuf.WriteInt((int)CardList[i]);
+                if (iSize == iMaxSize)
+                {
+                    break;
+                }
+            }
+            if (iSize != iMaxSize)
+            {
+                databuf.SetInt(0, iSize);
+            }
+            mIndex = iIndex + 1;
             return databuf;
         }
 

@@ -348,60 +348,6 @@ namespace FCARDIO.Protocol.Util
 
         }
 
-        /// <summary>
-        /// 10 转 16
-        /// </summary>
-        /// <param name="ten"></param>
-        /// <returns></returns>
-        public static string TenValue2Char(long ten)
-        {
-            switch (ten)
-            {
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                    return ten.ToString();
-                case 10:
-                    return "A";
-                case 11:
-                    return "B";
-                case 12:
-                    return "C";
-                case 13:
-                    return "D";
-                case 14:
-                    return "E";
-                case 15:
-                    return "F";
-                default:
-                    return "";
-            }
-        }
 
-
-        public static string GetCardDataHex(long tenValue)
-        {
-            long divValue, resValue;
-            string hex = "";
-            do
-            {
-                divValue = (long)Math.Floor((decimal)(tenValue / 16));
-
-                resValue = tenValue % 16;
-                hex = TenValue2Char(resValue) + hex;
-                tenValue = divValue;
-            }
-            while (tenValue >= 16);
-            if (tenValue != 0)
-                hex = TenValue2Char(tenValue) + hex;
-            return hex;
-        }
     }
 }
