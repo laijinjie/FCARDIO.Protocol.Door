@@ -1,11 +1,12 @@
-﻿using System;
+﻿using DotNetty.Buffers;
+using System;
 
 
 namespace FCARDIO.Protocol.Util
 {
-   public class TimeUtil
+    public class TimeUtil
     {
-        public static DateTime BCDTimeToDate_ssmmhhddMMyy(byte[]  btTime)
+        public static DateTime BCDTimeToDate_ssmmhhddMMyy(byte[] btTime)
         {
             btTime = ByteUtil.BCDToByte(btTime);
             int year = btTime[5];
@@ -47,7 +48,7 @@ namespace FCARDIO.Protocol.Util
             return dTime;
         }
 
-        public static DateTime BCDTimeToDate_yyMMddhh(byte [] btTime)
+        public static DateTime BCDTimeToDate_yyMMddhh(byte[] btTime)
         {
             btTime = ByteUtil.BCDToByte(btTime);
             int year = btTime[0];
@@ -157,14 +158,20 @@ namespace FCARDIO.Protocol.Util
             return weekNum;
         }
 
-        public static DateTime BCDTimeToDate_yyMMddhhmm(byte [] btTime)
+        /// <summary>
+        /// 从一个ByteBuf中读取5个BCD字节，并转换为日期格式；  yyMMddhhmm
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <returns></returns>
+        public static DateTime BCDTimeToDate_yyMMddhhmm(IByteBuffer buf)
         {
-            btTime = ByteUtil.BCDToByte(btTime);
-            int year = btTime[0];
-            int month = btTime[1];
-            int dayOfMonth = btTime[2];
-            int hourOfDay = btTime[3];
-            int minute = btTime[4];
+
+            buf = ByteUtil.BCDToByte(buf, buf.ReaderIndex, 5);
+            int year = buf.ReadByte();
+            int month = buf.ReadByte();
+            int day = buf.ReadByte();
+            int hour = buf.ReadByte();
+            int minute = buf.ReadByte();
 
             if (year > 99)
             {
@@ -174,11 +181,11 @@ namespace FCARDIO.Protocol.Util
             {
                 return DateTime.Now;
             }
-            if (dayOfMonth == 0 || dayOfMonth > 31)
+            if (day == 0 || day > 31)
             {
                 return DateTime.Now;
             }
-            if (hourOfDay > 23)
+            if (hour > 23)
             {
                 return DateTime.Now;
             }
@@ -188,69 +195,85 @@ namespace FCARDIO.Protocol.Util
                 return DateTime.Now;
             }
 
-            DateTime dTime = new DateTime(2000 + year, month - 1, dayOfMonth, hourOfDay, minute, 0);
+            DateTime dTime = new DateTime(2000 + year, month, day, hour, minute, 59);
             return dTime;
         }
 
-        public static void DateToBCD_yyMMddhhmm(byte[] btData, DateTime date)
+        /// <summary>
+        /// 从一个ByteBuf中读取6个BCD字节，并转换为日期格式；  yyMMddhhmmss
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <returns></returns>
+        public static DateTime BCDTimeToDate_yyMMddhhmmss(IByteBuffer buf)
+        {
+            buf = ByteUtil.BCDToByte(buf, buf.ReaderIndex, 6);
+            int year = buf.ReadByte();
+            int month = buf.ReadByte();
+            int day = buf.ReadByte();
+            int hour = buf.ReadByte();
+            int minute = buf.ReadByte();
+            int sec = buf.ReadByte();
+
+            if (year > 99)
+            {
+                return DateTime.Now;
+            }
+            if (month == 0 || month > 12)
+            {
+                return DateTime.Now;
+            }
+            if (day == 0 || day > 31)
+            {
+                return DateTime.Now;
+            }
+            if (hour > 23)
+            {
+                return DateTime.Now;
+            }
+
+            if (minute > 59)
+            {
+                return DateTime.Now;
+            }
+            if (sec > 59)
+            {
+                return DateTime.Now;
+            }
+
+            DateTime dTime = new DateTime(2000 + year, month, day, hour, minute, sec);
+            return dTime;
+        }
+
+
+
+        /// <summary>
+        /// 将日期转换为5个字节BCD格式的数据，并写入到Buf中；yyMMddhhmm
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <param name="date"></param>
+        public static void DateToBCD_yyMMddhhmm(IByteBuffer buf, DateTime date)
         {
             if (date == null)
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    btData[i] = 0;
+                    buf.WriteByte(0);
                 }
             }
             else
             {
-                btData[0] = (byte)(date.Year - 2000);
-                btData[1] = (byte)(date.Month + 1);
-                btData[2] = (byte)date.Day;
-                btData[3] = (byte)date.Hour;
-                btData[4] = (byte)date.Minute;
-                btData = ByteUtil.ByteToBCD(btData);
+                int iReadIndex = buf.ReaderIndex;
+                buf.WriteByte(date.Year - 2000);
+                buf.WriteByte(date.Month);
+                buf.WriteByte(date.Day);
+                buf.WriteByte(date.Hour);
+                buf.WriteByte(date.Minute);
+
+                ByteUtil.ByteToBCD(buf, iReadIndex, 5);
             }
         }
 
-        public static DateTime BCDTimeToDate_yyMMddhhmmss(byte [] btTime)
-        {
-            btTime = ByteUtil.BCDToByte(btTime);
-            int year = btTime[0];
-            int month = btTime[1];
-            int dayOfMonth = btTime[2];
-            int hourOfDay = btTime[3];
-            int minute = btTime[4];
-            int second = btTime[5];
 
-            if (year > 99)
-            {
-                return DateTime.Now;
-            }
-            if (month == 0 || month > 12)
-            {
-                return DateTime.Now;
-            }
-            if (dayOfMonth == 0 || dayOfMonth > 31)
-            {
-                return DateTime.Now;
-            }
-            if (hourOfDay > 23)
-            {
-                return DateTime.Now;
-            }
-
-            if (minute > 59)
-            {
-                return DateTime.Now;
-            }
-            if (second > 59)
-            {
-                return DateTime.Now;
-            }
-
-            DateTime dTime = new DateTime(2000 + year, month - 1, dayOfMonth, hourOfDay, minute, second);
-            return dTime;
-        }
 
         public static void DateToBCD_yyMMddhhmmss(byte[] btData, DateTime date)
         {

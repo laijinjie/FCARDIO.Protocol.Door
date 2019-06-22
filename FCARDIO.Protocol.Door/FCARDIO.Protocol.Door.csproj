@@ -113,7 +113,6 @@
     <Compile Include="FC8800\Card\06DeleteCard\DeleteCard_Parameter.cs" />
     <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort.cs" />
     <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort_Parameter.cs" />
-    <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort_Result.cs" />
     <Compile Include="FC8800\Data\CardDetailBase.cs" />
     <Compile Include="FC8800\Data\IMyList.cs" />
     <Compile Include="FC8800\Data\MyList.cs" />

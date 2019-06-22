@@ -8,52 +8,47 @@ using DotNetty.Buffers;
 namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
 {
     /// <summary>
-    /// 将卡片列表写入到控制器非排序区
+    ///FC88\MC58 将卡片列表写入到控制器非排序区
     /// </summary>
     public class WriteCardListBySequence_Parameter : AbstractParameter
     {
-        protected int mIndex = 0;//指示当前命令进行的步骤
         /// <summary>
-        /// 数量
-        /// </summary>
-        public int Total;
-
-        /// <summary>
-        /// 卡列表
+        /// 需要写入的卡列表
         /// </summary>
         public List<FC8800.Data.CardDetail> CardList;
 
-        public WriteCardListBySequence_Parameter() { }
 
         /// <summary>
-        /// 创建结构
+        /// 创建 将卡片列表写入到控制器非排序区 指令的参数
         /// </summary>
-        /// <param name="total"></param>
-        /// <param name="cardList"></param>
+        /// <param name="cardList">需要写入的卡列表</param>
         /// <param name=""></param>
-        public WriteCardListBySequence_Parameter(int total, List<FC8800.Data.CardDetail> cardList)
+        public WriteCardListBySequence_Parameter( List<FC8800.Data.CardDetail> cardList)
         {
-            Total = total;
             CardList = cardList;
+            if (!checkedParameter())
+            {
+                throw new ArgumentException("cardList Error");
+            }
         }
         
         /// <summary>
-        /// 检查参数
+        /// 检查卡片列表参数，任何情况下都不能为空，元素数不能为0,列表元素不能为空
         /// </summary>
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (CardList == null || CardList.Count == 0)
+            if(CardList==null) return false;
+            
+
+            if (CardList.Count == 0)  return false;
+            
+
+            foreach (var c in CardList)
             {
-                return false;
+                if (c == null) return false;
             }
-            foreach (Data.CardDetail card in CardList)
-            {
-                if (card == null)
-                {
-                    return false;
-                }
-            }
+
             return true;
         }
 
@@ -66,60 +61,31 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         }
         
         /// <summary>
-        /// 将结构编码为字节缓冲
+        /// 不实现此功能
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            int iMaxSize = 5; //每个数据包最大5个卡
-            int iSize = 0;
-            int iIndex = 0;
-
-            databuf.Clear();
-            int iLen = GetDataLen();
-            if (databuf.WritableBytes != iLen)
-            {
-                throw new ArgumentException("Crad Error");
-            }
-            databuf.WriteInt(iMaxSize);
-            for (int i = mIndex; i < CardList.Count; i++)
-            {
-                iIndex = i;
-                iSize += 1;
-
-                CardList[iIndex].GetBytes(databuf);
-                if (iSize == iMaxSize)
-                {
-                    break;
-                }
-                //card.WriteCardData(databuf);
-            }
-            if (iSize != iMaxSize)
-            {
-                databuf.SetInt(0, iSize);
-            }
-            mIndex = iIndex + 1;
             return databuf;
         }
 
         /// <summary>
-        /// 指定此类结构编码为字节缓冲后的长度
+        /// 不实现此功能
         /// </summary>
         /// <returns></returns>
         public override int GetDataLen()
         {
-            int iLen = (1 * 0x21) + 4;
-            return iLen;
+            return 0;
         }
 
         /// <summary>
-        /// 将字节缓冲解码为类结构
+        /// 不实现此功能
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            Total = databuf.ReadByte();
+            return;
         }
     }
 }

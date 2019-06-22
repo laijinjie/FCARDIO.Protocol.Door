@@ -152,7 +152,6 @@
       <DependentUpon>frmUploadSoftware.cs</DependentUpon>
     </Compile>
     <Compile Include="INMain.cs" />
-    <Compile Include="Model\CardDetailDto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmCard.resx">

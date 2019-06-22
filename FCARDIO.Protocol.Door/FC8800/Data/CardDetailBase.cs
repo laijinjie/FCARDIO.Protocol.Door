@@ -116,12 +116,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             }
         }
 
+        /// <summary>
+        /// 获取一个卡详情实例，序列化到buf中的字节占比
+        /// </summary>
+        /// <returns></returns>
         public abstract int GetDataLen();
 
+        /// <summary>
+        /// 将卡号序列化并写入buf中
+        /// </summary>
+        /// <param name="data"></param>
         public abstract void WriteCardData(IByteBuffer data);
 
         /// <summary>
-        /// 
+        /// 将卡详情实例写入到buf中
         /// </summary>
         /// <param name="data"></param>
         public virtual void GetBytes(IByteBuffer data)
@@ -132,15 +140,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             StringUtil.HextoByteBuf(Password, data);
 
 
-            byte[] btTime = new byte[6];
-            TimeUtil.DateToBCD_yyMMddhhmm(btTime, Expiry);
-            data.WriteBytes(btTime, 0, 5);
+
+            TimeUtil.DateToBCD_yyMMddhhmm(data, Expiry);
+
 
             data.WriteBytes(TimeGroup, 0, 4);
 
             data.WriteShort(OpenTimes);
 
-            int bData = (Door << 4) + Privilege;//特权
+            int bData = (Door << 4) + (Privilege & 0x7);//特权
             if (HolidayUse)
             {
                 bData = bData | 8;
@@ -151,75 +159,64 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             data.WriteBytes(Holiday, 0, 4);
 
             data.WriteByte(EnterStatus);
-            
+            //不写入最近读卡时间
             for (int i = 0; i < 6; i++)
             {
                 data.WriteByte(0);
             }
         }
 
+        /// <summary>
+        /// 从buf中读取卡号
+        /// </summary>
+        /// <param name="data"></param>
         public abstract void ReadCardData(IByteBuffer data);
 
         /// <summary>
-        /// 
+        /// 从buf中读取卡详情数据
         /// </summary>
         /// <param name="data"></param>
         public virtual void SetBytes(IByteBuffer data)
         {
             ReadCardData(data);
-            byte[] btData = new byte[4];
-            data.ReadBytes(btData, 0, 4);
-            Password = btData.ToHex();
 
-            byte[] btTime = new byte[6];
-            data.ReadBytes(btTime, 0, 5);
-            Expiry = TimeUtil.BCDTimeToDate_yyMMddhhmm(btTime);
+            Password = StringUtil.ByteBufToHex(data, 4);
 
-            data.ReadBytes(btData, 0, 4);
-            for (int i = 0; i < 4; i++)
-            {
-                TimeGroup[i] = btData[i];
-            }
+            Expiry = TimeUtil.BCDTimeToDate_yyMMddhhmm(data);
+
+            data.ReadBytes(TimeGroup, 0, 4);
 
             OpenTimes = data.ReadUnsignedShort();
 
             int bData = data.ReadByte();//特权
             Door = bData >> 4;
-            bData = bData & 15;
+            bData = bData & 0xF;
             Privilege = bData & 7;
             HolidayUse = (bData & 8) == 8;
             CardStatus = data.ReadByte();
 
-            data.ReadBytes(btData, 0, 4);
-            for (int i = 0; i < 4; i++)
-            {
-                Holiday[i] = btData[i];
-            }
-
+            data.ReadBytes(Holiday, 0, 4);
             EnterStatus = data.ReadByte();
-            data.ReadBytes(btTime, 0, 6);
-            RecordTime = TimeUtil.BCDTimeToDate_yyMMddhhmmss(btTime);
+
+            RecordTime = TimeUtil.BCDTimeToDate_yyMMddhhmmss(data);
         }
 
-
+        /// <summary>
+        /// 初始化卡详情实例中的数值
+        /// </summary>
         public CardDetailBase()
         {
             CardData = 0;
             Password = null;
-            Expiry = DateTime.Now;
-            TimeGroup = new byte[4];
-            Door = 0;
+            Expiry = DateTime.Now.AddYears(5);
+            TimeGroup = new byte[] { 1, 1, 1, 1 };
+            Door = 1;
             Privilege = 0;
             CardStatus = 0;
             Holiday = new byte[] { (byte)255, (byte)255, (byte)255, (byte)255 };
             RecordTime = DateTime.Now;
             EnterStatus = 0;
             HolidayUse = false;
-        }
-
-        public CardDetailBase(UInt64 data)
-        {
-            CardData = data;
         }
 
         /**

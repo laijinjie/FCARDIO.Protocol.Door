@@ -8,40 +8,22 @@ using System.Linq;
 namespace FCARDIO.Protocol.Door.FC8800.Data
 {
     /// <summary>
-    /// 卡片权限详情
+    /// FC88A、MC58 卡片权限详情
     /// </summary>
-    //public abstract class CardDetailBase
     public class CardDetail : CardDetailBase
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public CardDetail()
-        {
-            CardData = 0;
-            Password = null;
-            Expiry = DateTime.Now;
-            TimeGroup = new byte[4];
-            Door = 0;
-            Privilege = 0;
-            CardStatus = 0;
-            Holiday = new byte[] { (byte)255, (byte)255, (byte)255, (byte)255 };
-            RecordTime = DateTime.Now;
-            EnterStatus = 0;
-            HolidayUse = false;
-        }
 
         /// <summary>
-        /// 
+        /// 获取一个卡详情实例，序列化到buf中的字节占比
         /// </summary>
         /// <returns></returns>
         public override int GetDataLen()
         {
-            throw new NotImplementedException();
+            return 0x21;//33字节
         }
 
         /// <summary>
-        /// 
+        /// 将卡号序列化并写入buf中
         /// </summary>
         /// <param name="data"></param>
         public override void WriteCardData(IByteBuffer data)
@@ -51,12 +33,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         }
 
         /// <summary>
-        /// 
+        /// 从buf中读取卡号
         /// </summary>
         /// <param name="data"></param>
         public override void ReadCardData(IByteBuffer data)
         {
             data.ReadByte();
+
             CardData = data.ReadUnsignedInt();
         }
     }

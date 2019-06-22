@@ -22,10 +22,19 @@ namespace FCARDIO.Protocol.Util
         private static byte[] NumDigit;
 
         /// <summary>
+        /// 字节转十六进制时十六进制字符串代码表
+        /// </summary>
+        private static byte[] mHexDigits;
+
+
+        /// <summary>
         /// 初始化 HexToByte 的转换表
         /// </summary>
         static StringUtil()
         {
+            mHexDigits = Encoding.ASCII.GetBytes("0123456789ABCDEF");
+
+
             int i;
             byte[] digits = new byte[256];
             byte[] tmp;
@@ -49,6 +58,37 @@ namespace FCARDIO.Protocol.Util
             }
 
             NumDigit = digits;
+        }
+
+        /// <summary>
+        /// 从ByteBuf中读取指定长度字节转十六进制
+        /// </summary>
+        /// <param name="bData"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
+        public static string ByteBufToHex(IByteBuffer bData,int iLen)
+        {
+            byte[] bHex;
+            int i;
+            int lIndex;
+
+            if (bData.ReadableBytes < iLen)
+                return string.Empty;
+
+            // 初始化操作
+            bHex = new byte[iLen * 2];
+
+            // 开始转换
+            lIndex = 0;
+            int bValue = 0;
+            for (i = 0; i < iLen; i++)
+            {
+                bValue = bData.ReadByte();
+                bHex[lIndex] = mHexDigits[bValue / 16]; lIndex = lIndex + 1;
+                bHex[lIndex] = mHexDigits[bValue % 16]; lIndex = lIndex + 1;
+            }
+
+            return Encoding.ASCII.GetString(bHex).TrimEnd('\0');
         }
 
 
@@ -347,7 +387,6 @@ namespace FCARDIO.Protocol.Util
             return FillString(str, iLen, fillstr, fill_right);
 
         }
-
 
     }
 }
