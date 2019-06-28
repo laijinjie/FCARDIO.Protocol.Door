@@ -67,6 +67,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbWeekday = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.btnFillNowTime = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,6 +104,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnFillNowTime);
+            this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.cbTimeGroup);
             this.groupBox1.Controls.Add(this.endTimePicker8);
             this.groupBox1.Controls.Add(this.beginTimePicker8);
@@ -172,6 +176,7 @@
             this.endTimePicker8.ShowUpDown = true;
             this.endTimePicker8.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker8.TabIndex = 34;
+            this.endTimePicker8.ValueChanged += new System.EventHandler(this.EndTimePicker8_ValueChanged);
             // 
             // beginTimePicker8
             // 
@@ -182,6 +187,7 @@
             this.beginTimePicker8.ShowUpDown = true;
             this.beginTimePicker8.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker8.TabIndex = 33;
+            this.beginTimePicker8.ValueChanged += new System.EventHandler(this.BeginTimePicker8_ValueChanged);
             // 
             // endTimePicker7
             // 
@@ -192,6 +198,7 @@
             this.endTimePicker7.ShowUpDown = true;
             this.endTimePicker7.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker7.TabIndex = 32;
+            this.endTimePicker7.ValueChanged += new System.EventHandler(this.EndTimePicker7_ValueChanged);
             // 
             // beginTimePicker7
             // 
@@ -202,6 +209,7 @@
             this.beginTimePicker7.ShowUpDown = true;
             this.beginTimePicker7.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker7.TabIndex = 31;
+            this.beginTimePicker7.ValueChanged += new System.EventHandler(this.BeginTimePicker7_ValueChanged);
             // 
             // endTimePicker6
             // 
@@ -212,6 +220,7 @@
             this.endTimePicker6.ShowUpDown = true;
             this.endTimePicker6.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker6.TabIndex = 30;
+            this.endTimePicker6.ValueChanged += new System.EventHandler(this.EndTimePicker6_ValueChanged);
             // 
             // beginTimePicker6
             // 
@@ -222,6 +231,7 @@
             this.beginTimePicker6.ShowUpDown = true;
             this.beginTimePicker6.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker6.TabIndex = 29;
+            this.beginTimePicker6.ValueChanged += new System.EventHandler(this.BeginTimePicker6_ValueChanged);
             // 
             // endTimePicker5
             // 
@@ -232,6 +242,7 @@
             this.endTimePicker5.ShowUpDown = true;
             this.endTimePicker5.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker5.TabIndex = 28;
+            this.endTimePicker5.ValueChanged += new System.EventHandler(this.EndTimePicker5_ValueChanged);
             // 
             // beginTimePicker5
             // 
@@ -242,6 +253,7 @@
             this.beginTimePicker5.ShowUpDown = true;
             this.beginTimePicker5.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker5.TabIndex = 27;
+            this.beginTimePicker5.ValueChanged += new System.EventHandler(this.BeginTimePicker5_ValueChanged);
             // 
             // endTimePicker4
             // 
@@ -252,6 +264,7 @@
             this.endTimePicker4.ShowUpDown = true;
             this.endTimePicker4.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker4.TabIndex = 26;
+            this.endTimePicker4.ValueChanged += new System.EventHandler(this.EndTimePicker4_ValueChanged);
             // 
             // beginTimePicker4
             // 
@@ -262,6 +275,7 @@
             this.beginTimePicker4.ShowUpDown = true;
             this.beginTimePicker4.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker4.TabIndex = 25;
+            this.beginTimePicker4.ValueChanged += new System.EventHandler(this.BeginTimePicker4_ValueChanged);
             // 
             // endTimePicker3
             // 
@@ -272,6 +286,7 @@
             this.endTimePicker3.ShowUpDown = true;
             this.endTimePicker3.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker3.TabIndex = 24;
+            this.endTimePicker3.ValueChanged += new System.EventHandler(this.EndTimePicker3_ValueChanged);
             // 
             // beginTimePicker3
             // 
@@ -282,6 +297,7 @@
             this.beginTimePicker3.ShowUpDown = true;
             this.beginTimePicker3.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker3.TabIndex = 23;
+            this.beginTimePicker3.ValueChanged += new System.EventHandler(this.BeginTimePicker3_ValueChanged);
             // 
             // endTimePicker2
             // 
@@ -292,6 +308,7 @@
             this.endTimePicker2.ShowUpDown = true;
             this.endTimePicker2.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker2.TabIndex = 22;
+            this.endTimePicker2.ValueChanged += new System.EventHandler(this.EndTimePicker2_ValueChanged);
             // 
             // beginTimePicker2
             // 
@@ -302,6 +319,7 @@
             this.beginTimePicker2.ShowUpDown = true;
             this.beginTimePicker2.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker2.TabIndex = 21;
+            this.beginTimePicker2.ValueChanged += new System.EventHandler(this.BeginTimePicker2_ValueChanged);
             // 
             // endTimePicker1
             // 
@@ -312,6 +330,7 @@
             this.endTimePicker1.ShowUpDown = true;
             this.endTimePicker1.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker1.TabIndex = 20;
+            this.endTimePicker1.ValueChanged += new System.EventHandler(this.EndTimePicker1_ValueChanged);
             // 
             // beginTimePicker1
             // 
@@ -322,6 +341,7 @@
             this.beginTimePicker1.ShowUpDown = true;
             this.beginTimePicker1.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker1.TabIndex = 19;
+            this.beginTimePicker1.ValueChanged += new System.EventHandler(this.BeginTimePicker1_ValueChanged);
             // 
             // label16
             // 
@@ -483,6 +503,7 @@
             this.cbWeekday.Name = "cbWeekday";
             this.cbWeekday.Size = new System.Drawing.Size(121, 20);
             this.cbWeekday.TabIndex = 2;
+            this.cbWeekday.SelectedIndexChanged += new System.EventHandler(this.CbWeekday_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -492,6 +513,25 @@
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "星期：";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(32, 193);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(65, 12);
+            this.label18.TabIndex = 35;
+            this.label18.Text = "方便测试：";
+            // 
+            // btnFillNowTime
+            // 
+            this.btnFillNowTime.Location = new System.Drawing.Point(100, 188);
+            this.btnFillNowTime.Name = "btnFillNowTime";
+            this.btnFillNowTime.Size = new System.Drawing.Size(95, 23);
+            this.btnFillNowTime.TabIndex = 36;
+            this.btnFillNowTime.Text = "填充 现在时间";
+            this.btnFillNowTime.UseVisualStyleBackColor = true;
+            this.btnFillNowTime.Click += new System.EventHandler(this.BtnFillNowTime_Click);
             // 
             // frmTimeGroup
             // 
@@ -553,5 +593,7 @@
         private System.Windows.Forms.ComboBox cbWeekday;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbTimeGroup;
+        private System.Windows.Forms.Button btnFillNowTime;
+        private System.Windows.Forms.Label label18;
     }
 }

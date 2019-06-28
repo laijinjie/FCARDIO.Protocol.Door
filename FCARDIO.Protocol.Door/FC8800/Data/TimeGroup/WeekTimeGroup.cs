@@ -86,6 +86,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
 
         public void SetBytes(IByteBuffer data)
         {
+            data.ReadByte();
+            data.ReadByte();
             SetBytes(E_WeekDay.Monday, data);
         }
 
@@ -105,6 +107,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FistWeek"></param>
+        /// <param name="WeekList"></param>
         protected void GetWeekList(E_WeekDay FistWeek, int[] WeekList)
         {
             int lBeginIndex = (int)FistWeek;
@@ -125,16 +132,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             }
         }
 
-        /**
-         * 没有实现此函数，请不要调用
-         *
-         * @return null
-         */
 
-        public IByteBuffer GetBytes()
-        {
-            return null;
-        }
 
         /**
          * 使用从周一为一周的第一天进行排序的缓冲区获取时段信息

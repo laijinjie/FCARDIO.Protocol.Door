@@ -1,10 +1,11 @@
 ﻿using DotNetty.Buffers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Configuration;
 namespace FCARDIO.Protocol.Door.FC8800.Utility
 {
     public class StringUtility
@@ -426,5 +427,27 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
             return Encoding.ASCII.GetString(bHex).TrimEnd('\0');
         }
 
+        public static void WriteByteBuffer(IByteBuffer buf)
+        {
+#if DEBUG
+            string dire = ConfigurationManager.AppSettings["LogPath"];
+            string nowTime = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+            if (Directory.Exists(dire))
+                Directory.CreateDirectory(dire);
+            string path = Path.Combine(dire, nowTime + ".txt") ;
+            StringBuilder sb = new StringBuilder();
+            byte[] b = new byte[buf.ReadableBytes];
+            buf.ReadBytes(b);
+            int index = 0;
+            foreach (var item in b)
+            {
+                sb.Append("{" + index.ToString() + "(" + item.ToString() + ":" + item.ToString("X") + ")},");
+                index++;
+            }
+            System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+            buf.SetReaderIndex(0);
+
+#endif
+        }
     }
 }

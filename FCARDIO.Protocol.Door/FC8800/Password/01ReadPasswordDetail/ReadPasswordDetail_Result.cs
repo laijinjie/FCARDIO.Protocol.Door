@@ -14,25 +14,33 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     public class ReadPasswordDetail_Result : INCommandResult
     {
         /// <summary>
-        /// 控制器中存储的密码详情
+        /// 排序数据区容量上限
         /// </summary>
-        public PasswordDetail Detail;
+        public long DataSize;
+
+        /// <summary>
+        /// 排序数据区已使用数量
+        /// </summary>
+        public long PasswordSize;
 
         /// <summary>
         /// 初始化，构造一个空的 HolidayDBDetail 详情实例
         /// </summary>
         public ReadPasswordDetail_Result()
         {
-            Detail = new PasswordDetail();
+
         }
 
         /// <summary>
         /// 将字节缓冲区反序列化到实例
         /// </summary>
-        /// <param name="databuf"></param>
-        public void SetBytes(IByteBuffer databuf)
+        /// <param name="buf"></param>
+        public void SetBytes(IByteBuffer buf)
         {
-            Detail.SetBytes(databuf);
+            buf.ReadByte();
+            DataSize = buf.ReadByte();
+            buf.ReadByte();
+            PasswordSize = buf.ReadByte();
         }
 
         /// <summary>
@@ -40,7 +48,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         public void Dispose()
         {
-            Detail = null;
+            return;
         }
     }
 }

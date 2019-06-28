@@ -541,7 +541,7 @@
             this.txtUDPAddr.Name = "txtUDPAddr";
             this.txtUDPAddr.Size = new System.Drawing.Size(138, 21);
             this.txtUDPAddr.TabIndex = 3;
-            this.txtUDPAddr.Text = "255.255.255.255";
+            this.txtUDPAddr.Text = "192.168.1.235";
             // 
             // label11
             // 

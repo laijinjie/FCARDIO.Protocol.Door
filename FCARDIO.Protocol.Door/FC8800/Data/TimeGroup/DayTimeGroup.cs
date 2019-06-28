@@ -86,10 +86,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         public void SetBytes(IByteBuffer bBuf)
         {
             int iCount = GetSegmentCount();
+
+            int index = 2;
             for (int i = 0; i < iCount; i++)
             {
                 mSegment[i].SetBytes(bBuf);
-                if (bBuf.ReadableBytes == 0)
+                index += 4;
+                if (bBuf.ReadableBytes == 0 || index >= 224)
                 {
                     return;
                 }

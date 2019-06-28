@@ -36,39 +36,37 @@
             this.butReadAllPassword = new DevComponents.DotNetBar.ButtonX();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Holiday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HolidayTypeRender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RepeatYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Doors = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbReverse = new System.Windows.Forms.CheckBox();
+            this.btnClearList = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.cmbOpenTimes = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.cbbit0 = new System.Windows.Forms.CheckBox();
+            this.cbbit1 = new System.Windows.Forms.CheckBox();
+            this.cbbit2 = new System.Windows.Forms.CheckBox();
+            this.cbbit3 = new System.Windows.Forms.CheckBox();
+            this.butInsertList = new System.Windows.Forms.Button();
+            this.butDelList = new System.Windows.Forms.Button();
+            this.btnAddDevice = new System.Windows.Forms.Button();
+            this.btnDelDevice = new System.Windows.Forms.Button();
+            this.btnDelSelect = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRandom = new System.Windows.Forms.Button();
+            this.txtCount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button7 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpTime = new System.Windows.Forms.DateTimePicker();
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -183,16 +181,15 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Selected,
-            this.Index,
-            this.Holiday,
-            this.HolidayTypeRender,
-            this.RepeatYear});
+            this.Password,
+            this.Doors});
             this.dataGridView1.Location = new System.Drawing.Point(12, 102);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(590, 412);
             this.dataGridView1.TabIndex = 26;
+            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_CellMouseClick);
             // 
             // Selected
             // 
@@ -202,55 +199,41 @@
             this.Selected.ReadOnly = true;
             this.Selected.Width = 50;
             // 
-            // Index
+            // Password
             // 
-            this.Index.DataPropertyName = "Index";
-            this.Index.HeaderText = "密码";
-            this.Index.Name = "Index";
-            this.Index.ReadOnly = true;
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "密码";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
             // 
-            // Holiday
+            // Doors
             // 
-            this.Holiday.DataPropertyName = "Holiday";
-            this.Holiday.HeaderText = "有效门";
-            this.Holiday.Name = "Holiday";
-            this.Holiday.ReadOnly = true;
-            this.Holiday.Width = 130;
+            this.Doors.DataPropertyName = "Doors";
+            this.Doors.HeaderText = "有效门";
+            this.Doors.Name = "Doors";
+            this.Doors.ReadOnly = true;
+            this.Doors.Width = 130;
             // 
-            // HolidayTypeRender
+            // cbReverse
             // 
-            this.HolidayTypeRender.DataPropertyName = "HolidayTypeRender";
-            this.HolidayTypeRender.HeaderText = "有效期";
-            this.HolidayTypeRender.Name = "HolidayTypeRender";
-            this.HolidayTypeRender.ReadOnly = true;
-            this.HolidayTypeRender.Width = 180;
+            this.cbReverse.AutoSize = true;
+            this.cbReverse.Location = new System.Drawing.Point(13, 521);
+            this.cbReverse.Name = "cbReverse";
+            this.cbReverse.Size = new System.Drawing.Size(48, 16);
+            this.cbReverse.TabIndex = 27;
+            this.cbReverse.Text = "反选";
+            this.cbReverse.UseVisualStyleBackColor = true;
+            this.cbReverse.CheckedChanged += new System.EventHandler(this.CbReverse_CheckedChanged);
             // 
-            // RepeatYear
+            // btnClearList
             // 
-            this.RepeatYear.DataPropertyName = "RepeatYear";
-            this.RepeatYear.HeaderText = "有效次数";
-            this.RepeatYear.Name = "RepeatYear";
-            this.RepeatYear.ReadOnly = true;
-            this.RepeatYear.Width = 80;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(13, 521);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(48, 16);
-            this.checkBox1.TabIndex = 27;
-            this.checkBox1.Text = "反选";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(526, 521);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "清空表格";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnClearList.Location = new System.Drawing.Point(526, 521);
+            this.btnClearList.Name = "btnClearList";
+            this.btnClearList.Size = new System.Drawing.Size(75, 23);
+            this.btnClearList.TabIndex = 28;
+            this.btnClearList.Text = "清空表格";
+            this.btnClearList.UseVisualStyleBackColor = true;
+            this.btnClearList.Click += new System.EventHandler(this.BtnClearList_Click);
             // 
             // label1
             // 
@@ -270,21 +253,22 @@
             this.label2.TabIndex = 30;
             this.label2.Text = "有效测试：";
             // 
-            // textBox1
+            // txtPassword
             // 
-            this.textBox1.Location = new System.Drawing.Point(76, 539);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 31;
+            this.txtPassword.Location = new System.Drawing.Point(76, 539);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(100, 21);
+            this.txtPassword.TabIndex = 31;
+            this.txtPassword.TextChanged += new System.EventHandler(this.TxtPassword_TextChanged);
             // 
-            // comboBox1
+            // cmbOpenTimes
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(76, 568);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 20);
-            this.comboBox1.TabIndex = 32;
+            this.cmbOpenTimes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOpenTimes.FormattingEnabled = true;
+            this.cmbOpenTimes.Location = new System.Drawing.Point(76, 568);
+            this.cmbOpenTimes.Name = "cmbOpenTimes";
+            this.cmbOpenTimes.Size = new System.Drawing.Size(100, 20);
+            this.cmbOpenTimes.TabIndex = 32;
             // 
             // label3
             // 
@@ -313,95 +297,100 @@
             this.dtpDate.Size = new System.Drawing.Size(99, 21);
             this.dtpDate.TabIndex = 35;
             // 
-            // checkBox2
+            // cbbit0
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(320, 543);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(42, 16);
-            this.checkBox2.TabIndex = 36;
-            this.checkBox2.Text = "门1";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.cbbit0.AutoSize = true;
+            this.cbbit0.Location = new System.Drawing.Point(320, 543);
+            this.cbbit0.Name = "cbbit0";
+            this.cbbit0.Size = new System.Drawing.Size(42, 16);
+            this.cbbit0.TabIndex = 36;
+            this.cbbit0.Text = "门1";
+            this.cbbit0.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // cbbit1
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(366, 543);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(42, 16);
-            this.checkBox3.TabIndex = 37;
-            this.checkBox3.Text = "门2";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.cbbit1.AutoSize = true;
+            this.cbbit1.Location = new System.Drawing.Point(366, 543);
+            this.cbbit1.Name = "cbbit1";
+            this.cbbit1.Size = new System.Drawing.Size(42, 16);
+            this.cbbit1.TabIndex = 37;
+            this.cbbit1.Text = "门2";
+            this.cbbit1.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // cbbit2
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(411, 543);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(42, 16);
-            this.checkBox4.TabIndex = 38;
-            this.checkBox4.Text = "门3";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.cbbit2.AutoSize = true;
+            this.cbbit2.Location = new System.Drawing.Point(411, 543);
+            this.cbbit2.Name = "cbbit2";
+            this.cbbit2.Size = new System.Drawing.Size(42, 16);
+            this.cbbit2.TabIndex = 38;
+            this.cbbit2.Text = "门3";
+            this.cbbit2.UseVisualStyleBackColor = true;
             // 
-            // checkBox5
+            // cbbit3
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(457, 543);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(42, 16);
-            this.checkBox5.TabIndex = 39;
-            this.checkBox5.Text = "门4";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.cbbit3.AutoSize = true;
+            this.cbbit3.Location = new System.Drawing.Point(457, 543);
+            this.cbbit3.Name = "cbbit3";
+            this.cbbit3.Size = new System.Drawing.Size(42, 16);
+            this.cbbit3.TabIndex = 39;
+            this.cbbit3.Text = "门4";
+            this.cbbit3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // butInsertList
             // 
-            this.button2.Location = new System.Drawing.Point(12, 599);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 40;
-            this.button2.Text = "新增至列表";
-            this.button2.UseVisualStyleBackColor = true;
+            this.butInsertList.Location = new System.Drawing.Point(12, 599);
+            this.butInsertList.Name = "butInsertList";
+            this.butInsertList.Size = new System.Drawing.Size(75, 23);
+            this.butInsertList.TabIndex = 40;
+            this.butInsertList.Text = "新增至列表";
+            this.butInsertList.UseVisualStyleBackColor = true;
+            this.butInsertList.Click += new System.EventHandler(this.ButInsertList_Click);
             // 
-            // button3
+            // butDelList
             // 
-            this.button3.Location = new System.Drawing.Point(101, 599);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 41;
-            this.button3.Text = "从列表删除";
-            this.button3.UseVisualStyleBackColor = true;
+            this.butDelList.Location = new System.Drawing.Point(101, 599);
+            this.butDelList.Name = "butDelList";
+            this.butDelList.Size = new System.Drawing.Size(75, 23);
+            this.butDelList.TabIndex = 41;
+            this.butDelList.Text = "从列表删除";
+            this.butDelList.UseVisualStyleBackColor = true;
+            this.butDelList.Click += new System.EventHandler(this.ButDelList_Click);
             // 
-            // button4
+            // btnAddDevice
             // 
-            this.button4.Location = new System.Drawing.Point(254, 599);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 42;
-            this.button4.Text = "新增至设备";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnAddDevice.Location = new System.Drawing.Point(254, 599);
+            this.btnAddDevice.Name = "btnAddDevice";
+            this.btnAddDevice.Size = new System.Drawing.Size(75, 23);
+            this.btnAddDevice.TabIndex = 42;
+            this.btnAddDevice.Text = "新增至设备";
+            this.btnAddDevice.UseVisualStyleBackColor = true;
+            this.btnAddDevice.Click += new System.EventHandler(this.BtnAddDevice_Click);
             // 
-            // button5
+            // btnDelDevice
             // 
-            this.button5.Location = new System.Drawing.Point(335, 599);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(130, 23);
-            this.button5.TabIndex = 43;
-            this.button5.Text = "从设备删除单个密码";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnDelDevice.Location = new System.Drawing.Point(335, 599);
+            this.btnDelDevice.Name = "btnDelDevice";
+            this.btnDelDevice.Size = new System.Drawing.Size(130, 23);
+            this.btnDelDevice.TabIndex = 43;
+            this.btnDelDevice.Text = "从设备删除单个密码";
+            this.btnDelDevice.UseVisualStyleBackColor = true;
+            this.btnDelDevice.Click += new System.EventHandler(this.BtnDelDevice_Click);
             // 
-            // button6
+            // btnDelSelect
             // 
-            this.button6.Location = new System.Drawing.Point(471, 599);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(130, 23);
-            this.button6.TabIndex = 44;
-            this.button6.Text = "从设备删除多个密码";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnDelSelect.Location = new System.Drawing.Point(471, 599);
+            this.btnDelSelect.Name = "btnDelSelect";
+            this.btnDelSelect.Size = new System.Drawing.Size(130, 23);
+            this.btnDelSelect.TabIndex = 44;
+            this.btnDelSelect.Text = "从设备删除多个密码";
+            this.btnDelSelect.UseVisualStyleBackColor = true;
+            this.btnDelSelect.Click += new System.EventHandler(this.BtnDelSelect_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.btnRandom);
+            this.groupBox1.Controls.Add(this.txtCount);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(12, 628);
             this.groupBox1.Name = "groupBox1";
@@ -409,6 +398,23 @@
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "自动生成";
+            // 
+            // btnRandom
+            // 
+            this.btnRandom.Location = new System.Drawing.Point(266, 16);
+            this.btnRandom.Name = "btnRandom";
+            this.btnRandom.Size = new System.Drawing.Size(75, 23);
+            this.btnRandom.TabIndex = 46;
+            this.btnRandom.Text = "生成";
+            this.btnRandom.UseVisualStyleBackColor = true;
+            this.btnRandom.Click += new System.EventHandler(this.BtnRandom_Click);
+            // 
+            // txtCount
+            // 
+            this.txtCount.Location = new System.Drawing.Point(151, 18);
+            this.txtCount.Name = "txtCount";
+            this.txtCount.Size = new System.Drawing.Size(100, 21);
+            this.txtCount.TabIndex = 46;
             // 
             // label5
             // 
@@ -418,22 +424,6 @@
             this.label5.Size = new System.Drawing.Size(89, 12);
             this.label5.TabIndex = 46;
             this.label5.Text = "自动生成密码：";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(151, 18);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 21);
-            this.textBox2.TabIndex = 46;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(266, 16);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 46;
-            this.button7.Text = "生成";
-            this.button7.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -448,6 +438,29 @@
             this.groupBox2.TabIndex = 47;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "测试密码";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "门1",
+            "门2",
+            "门3",
+            "门4"});
+            this.comboBox2.Location = new System.Drawing.Point(368, 18);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(100, 20);
+            this.comboBox2.TabIndex = 48;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(306, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 12);
+            this.label7.TabIndex = 47;
+            this.label7.Text = "端口号：";
             // 
             // button8
             // 
@@ -474,65 +487,42 @@
             this.label6.TabIndex = 46;
             this.label6.Text = "密码：";
             // 
-            // label7
+            // dtpTime
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(306, 21);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 12);
-            this.label7.TabIndex = 47;
-            this.label7.Text = "端口号：";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "门1",
-            "门2",
-            "门3",
-            "门4"});
-            this.comboBox2.Location = new System.Drawing.Point(368, 18);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(100, 20);
-            this.comboBox2.TabIndex = 48;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "HH:mm";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(420, 567);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.ShowUpDown = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(55, 21);
-            this.dateTimePicker1.TabIndex = 48;
+            this.dtpTime.CustomFormat = "HH:mm";
+            this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTime.Location = new System.Drawing.Point(420, 567);
+            this.dtpTime.Name = "dtpTime";
+            this.dtpTime.ShowUpDown = true;
+            this.dtpTime.Size = new System.Drawing.Size(55, 21);
+            this.dtpTime.TabIndex = 48;
             // 
             // frmPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 737);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtpTime);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.checkBox5);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.btnDelSelect);
+            this.Controls.Add(this.btnDelDevice);
+            this.Controls.Add(this.btnAddDevice);
+            this.Controls.Add(this.butDelList);
+            this.Controls.Add(this.butInsertList);
+            this.Controls.Add(this.cbbit3);
+            this.Controls.Add(this.cbbit2);
+            this.Controls.Add(this.cbbit1);
+            this.Controls.Add(this.cbbit0);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cmbOpenTimes);
+            this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.btnClearList);
+            this.Controls.Add(this.cbReverse);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.butAddPassword);
             this.Controls.Add(this.labelX1);
@@ -560,32 +550,27 @@
         private DevComponents.DotNetBar.ButtonX butClearPassword;
         private DevComponents.DotNetBar.ButtonX butReadAllPassword;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Index;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Holiday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HolidayTypeRender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RepeatYear;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox cbReverse;
+        private System.Windows.Forms.Button btnClearList;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.ComboBox cmbOpenTimes;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.CheckBox cbbit0;
+        private System.Windows.Forms.CheckBox cbbit1;
+        private System.Windows.Forms.CheckBox cbbit2;
+        private System.Windows.Forms.CheckBox cbbit3;
+        private System.Windows.Forms.Button butInsertList;
+        private System.Windows.Forms.Button butDelList;
+        private System.Windows.Forms.Button btnAddDevice;
+        private System.Windows.Forms.Button btnDelDevice;
+        private System.Windows.Forms.Button btnDelSelect;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button btnRandom;
+        private System.Windows.Forms.TextBox txtCount;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox comboBox2;
@@ -593,6 +578,9 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpTime;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Doors;
     }
 }

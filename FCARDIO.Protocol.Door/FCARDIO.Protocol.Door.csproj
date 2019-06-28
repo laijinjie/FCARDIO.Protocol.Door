@@ -85,6 +85,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\System.Collections.Immutable.dll</HintPath>
     </Reference>
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -142,7 +143,9 @@
     <Compile Include="FC8800\Password\03ReadAllPassword\ReadAllPassword.cs" />
     <Compile Include="FC8800\Password\03ReadAllPassword\ReadAllPassword_Result.cs" />
     <Compile Include="FC8800\Password\04AddPassword\AddPassword.cs" />
+    <Compile Include="FC8800\Password\04AddPassword\AddPassword_Parameter.cs" />
     <Compile Include="FC8800\Password\05DeletePassword\DeletePassword.cs" />
+    <Compile Include="FC8800\Password\05DeletePassword\DeletePassword_Parameter.cs" />
     <Compile Include="FC8800\Password\PasswordDetail.cs" />
     <Compile Include="FC8800\SystemParameter\14SearchControltor\SearchControltor_Result.cs" />
     <Compile Include="FC8800\SystemParameter\15CacheContent\CacheContent_Parameter.cs" />

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FCARDIO.Protocol.Door.FC8800.Data;
 using FCARDIO.Protocol.Door.FC8800.Utility;
-using FCARDIO.Protocol.FC8800;
+using FCARDIO.Protocol.Door.Test.Model;
 
 namespace FCARDIO.Protocol.Door.Test
 {
@@ -19,7 +19,7 @@ namespace FCARDIO.Protocol.Door.Test
         private static frmCard onlyObj;
         List<string> CardStatusList = new List<string>() { "正常", "挂失卡", "黑名单" };
         List<string> EnterStatusList = new List<string>() { "出入有效", "入有效", "出有效" };
-        List<FC8800.Data.CardDetailDto> CardList = new List<CardDetailDto>();
+        List<CardDetailDto> CardList = new List<CardDetailDto>();
         public static frmCard GetForm(INMain main)
         {
             if (onlyObj == null)
@@ -100,7 +100,7 @@ namespace FCARDIO.Protocol.Door.Test
 
                     Invoke(() =>
                     {
-                        dataGridView1.DataSource = new BindingList<FC8800.Data.CardDetailDto>(CardList);
+                        dataGridView1.DataSource = new BindingList<CardDetailDto>(CardList);
 
                     });
                 }
@@ -116,7 +116,7 @@ namespace FCARDIO.Protocol.Door.Test
         /// <param name="id"></param>
         /// <param name="card"></param>
         /// <returns></returns>
-        private FC8800.Data.CardDetailDto ConvertDto(int id, FC8800.Data.CardDetail card)
+        private CardDetailDto ConvertDto(int id, FC8800.Data.CardDetail card)
         {
             CardDetailDto dto = new CardDetailDto();
             dto.ID = id;
@@ -137,7 +137,7 @@ namespace FCARDIO.Protocol.Door.Test
             return dto;
         }
 
-        private FC8800.Data.CardDetail ConvertModel(FC8800.Data.CardDetailDto card)
+        private FC8800.Data.CardDetail ConvertModel(CardDetailDto card)
         {
             FC8800.Data.CardDetail detail = new FC8800.Data.CardDetail();
             detail.CardData = Convert.ToUInt64(card.CardData10);
@@ -504,7 +504,7 @@ namespace FCARDIO.Protocol.Door.Test
             CardDetailDto dto = new CardDetailDto();
             BindDto(dto);
             CardList.Add(dto);
-            dataGridView1.DataSource = new BindingList<FC8800.Data.CardDetailDto>(CardList);
+            dataGridView1.DataSource = new BindingList<CardDetailDto>(CardList);
             /*
             for (int i = 0; i < 1; i++)
             {
@@ -621,7 +621,7 @@ namespace FCARDIO.Protocol.Door.Test
                 DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[2];
                 CardList.RemoveAt(CardList.FindIndex(t => t.CardData10 == Convert.ToUInt32(text.Value)));
             }
-            dataGridView1.DataSource = new BindingList<FC8800.Data.CardDetailDto>(CardList);
+            dataGridView1.DataSource = new BindingList<CardDetailDto>(CardList);
         }
 
         /// <summary>
@@ -652,7 +652,7 @@ namespace FCARDIO.Protocol.Door.Test
                 BindDto(dto, dto.CardData10);
                 CardList.Add(dto);
             }
-            dataGridView1.DataSource = new BindingList<FC8800.Data.CardDetailDto>(CardList);
+            dataGridView1.DataSource = new BindingList<CardDetailDto>(CardList);
         }
 
         /// <summary>
@@ -673,7 +673,7 @@ namespace FCARDIO.Protocol.Door.Test
                     CardList.RemoveAt(CardList.FindIndex(t => t.CardData10 == Convert.ToUInt32(text.Value)));
                 }
             }
-            dataGridView1.DataSource = new BindingList<FC8800.Data.CardDetailDto>(CardList);
+            dataGridView1.DataSource = new BindingList<CardDetailDto>(CardList);
         }
 
         private void BtnDelDevice_Click(object sender, EventArgs e)

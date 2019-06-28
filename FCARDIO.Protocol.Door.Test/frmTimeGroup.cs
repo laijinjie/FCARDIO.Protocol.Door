@@ -12,8 +12,9 @@ using System.Windows.Forms;
 
 namespace FCARDIO.Protocol.Door.Test
 {
-    public partial class frmTimeGroup : Form
+    public partial class frmTimeGroup : frmNodeForm
     {
+        string[] WeekdayList = new string[] { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日" };
         private static object lockobj = new object();
         private static frmTimeGroup onlyObj;
 
@@ -47,8 +48,31 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void frmTimeGroup_Load(object sender, EventArgs e)
         {
+            InitTimeGroup();
+            InitWeekday();
+        }
+
+        private void InitWeekday()
+        {
+            cbWeekday.Items.Clear();
+            cbWeekday.Items.AddRange(WeekdayList);
+            cbWeekday.SelectedIndex = 0;
+        }
+
+        #region 开门时段
+        public void InitTimeGroup()
+        {
+            string[] time = new string[64];
+            for (int i = 0; i < 64; i++)
+            {
+                time[i] = "开门时段" + (i + 1).ToString();
+            }
+            cbTimeGroup.Items.Clear();
+            cbTimeGroup.Items.AddRange(time);
+            cbTimeGroup.SelectedIndex = 0;
 
         }
+        #endregion
 
         private void FrmTimeGroup_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -81,11 +105,70 @@ namespace FCARDIO.Protocol.Door.Test
             };
         }
 
+        private void SetAllTimePicker(DayTimeGroup group)
+        {
+            for (int i = 0; i <= 7; i++)
+            {
+                DateTimePicker beginTimePicker = FindControl(groupBox1,"beginTimePicker" + (i+1).ToString()) as DateTimePicker;
+                DateTimePicker endTimePicker = FindControl(groupBox1, "endTimePicker" + (i + 1).ToString()) as DateTimePicker;
+                TimeSegment segment = group.GetItem(i);
+                Invoke(() => {
+                    beginTimePicker.Value = segment.GetBeginTime();
+                    endTimePicker.Value = segment.GetEndTime();
+                });
+                
+            }
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="timeSegmentIndex"></param>
+        /// <param name="type"></param>
+        /// <param name="dateTime"></param>
+        private void SetWeekTimeGroupValue(int timeSegmentIndex,int type, DateTime dateTime)
+        {
+            if (ListWeekTimeGroup.Count > cbTimeGroup.SelectedIndex)
+            {
+                TimeSegment ts = ListWeekTimeGroup[cbTimeGroup.SelectedIndex].GetItem(cbWeekday.SelectedIndex).GetItem(timeSegmentIndex);
+                if (type == 1)
+                {
+                    ts.SetBeginTime(dateTime.Hour, dateTime.Minute);
+                }
+                else
+                {
+                    ts.SetEndTime(dateTime.Hour, dateTime.Minute);
+                }
+            }
+            
+        }
+
+        public Control FindControl(Control parentControl, string findCtrlName)
+        {
+            Control _findedControl = null;
+            if (!string.IsNullOrEmpty(findCtrlName) && parentControl != null)
+            {
+                foreach (Control ctrl in parentControl.Controls)
+                {
+                    if (ctrl.Name.Equals(findCtrlName))
+                    {
+                        _findedControl = ctrl;
+                        break;
+                    }
+                }
+            }
+            return _findedControl;
+        }
+
         private void BindTimeSegment()
         {
             DateTime nw = DateTime.Now;
             WeekTimeGroup tg = ListWeekTimeGroup[0];
             var day = tg.GetItem(0);
+            //var tz = day.GetItem(0) as TimeSegment;
+            SetAllTimePicker(day);
+            /*
             for (int j = 0; j < 8; j++)
             {
                 var tz = day.GetItem(j) as TimeSegment;
@@ -130,6 +213,7 @@ namespace FCARDIO.Protocol.Door.Test
                     tz.SetEndTime(endTimePicker8.Text == "" ? 0 : DateTime.Parse(endTimePicker8.Text).Hour, endTimePicker1.Text == "" ? 0 : DateTime.Parse(endTimePicker8.Text).Minute);
                 }
             }
+            */
         }
 
         /// <summary>
@@ -139,7 +223,18 @@ namespace FCARDIO.Protocol.Door.Test
         /// <param name="e"></param>
         private void BtnAddTimeGroup_Click(object sender, EventArgs e)
         {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
 
+            AddTimeGroup_Parameter par = new AddTimeGroup_Parameter(ListWeekTimeGroup);
+            AddTimeGroup cmd = new AddTimeGroup(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddLog($"命令成功：");
+
+            };
         }
 
         /// <summary>
@@ -161,14 +256,146 @@ namespace FCARDIO.Protocol.Door.Test
             };
         }
 
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// 选择开门时段
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CbTimeGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ListWeekTimeGroup.Count > 0)
+            {
+                WeekTimeGroup tg = ListWeekTimeGroup[cbTimeGroup.SelectedIndex];
+                var day = tg.GetItem(0);
+                SetAllTimePicker(day);
+            }
+            
+        }
 
+        private void CbWeekday_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ListWeekTimeGroup.Count > 0)
+            {
+                WeekTimeGroup tg = ListWeekTimeGroup[cbTimeGroup.SelectedIndex];
+                var day = tg.GetItem(cbWeekday.SelectedIndex);
+                SetAllTimePicker(day);
+            }
+            
+        }
+
+        private void BeginTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(0, 1, beginTimePicker1.Value);
+        }
+
+        private void EndTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(0, 2, endTimePicker1.Value);
+        }
+
+        private void BeginTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(1, 1, beginTimePicker2.Value);
+        }
+
+        private void EndTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(1, 2, endTimePicker2.Value);
+        }
+
+        private void BeginTimePicker3_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(2, 1, beginTimePicker3.Value);
+        }
+
+        private void EndTimePicker3_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(2, 2, endTimePicker3.Value);
+        }
+
+        private void BeginTimePicker4_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(3, 1, beginTimePicker4.Value);
+        }
+
+        private void EndTimePicker4_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(3, 2, endTimePicker4.Value);
+        }
+
+        private void BeginTimePicker5_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(4, 1, beginTimePicker5.Value);
+        }
+
+        private void EndTimePicker5_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(4, 2, endTimePicker5.Value);
+        }
+
+        private void BeginTimePicker6_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(5, 1, beginTimePicker6.Value);
+        }
+
+        private void EndTimePicker6_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(5, 2, endTimePicker6.Value);
+        }
+
+        private void BeginTimePicker7_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(6, 1, beginTimePicker7.Value);
+        }
+
+        private void EndTimePicker7_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(6, 2, endTimePicker7.Value);
+        }
+
+        private void BeginTimePicker8_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(7, 1, beginTimePicker8.Value);
+        }
+
+        private void EndTimePicker8_ValueChanged(object sender, EventArgs e)
+        {
+            SetWeekTimeGroupValue(7, 2, endTimePicker8.Value);
+        }
+
+        private void BtnFillNowTime_Click(object sender, EventArgs e)
+        {
+            ListWeekTimeGroup.Clear();
+            
+            //开门时段
+            for (int x = 0; x < 64; x++)
+            {
+                WeekTimeGroup weekTimeGroup = new WeekTimeGroup(8);
+                //weekTimeGroup.mDay
+                //星期一 至 星期日
+                for (int y = 0; y < 7; y++)
+                {
+                    DayTimeGroup dayTimeGroup = weekTimeGroup.GetItem(y);
+                    //每天时段
+                    for (int i = 0; i < 8; i++)
+                    {
+                        DateTime dt = DateTime.Now;
+                        //dt = dt.AddMinutes(-1);
+                        TimeSegment  segment = dayTimeGroup.GetItem(i);
+                        dt = dt.AddMinutes(i + 1);
+                        segment.SetBeginTime(dt.Hour, dt.Minute);
+                        dt = dt.AddMinutes(i + 1);
+                        segment.SetEndTime(dt.Hour, dt.Minute);
+                        DateTimePicker beginTimePicker = FindControl(groupBox1, "beginTimePicker" + (i + 1).ToString()) as DateTimePicker;
+                        DateTimePicker endTimePicker = FindControl(groupBox1, "endTimePicker" + (i + 1).ToString()) as DateTimePicker;
+                        beginTimePicker.Value = segment.GetBeginTime();
+                        endTimePicker.Value = segment.GetEndTime();
+                    }
+                }
+                
+                ListWeekTimeGroup.Add(weekTimeGroup);
+            }
+            
         }
     }
 }

@@ -1,11 +1,12 @@
-﻿using FCARDIO.Protocol.Door.FC8800.Utility;
+﻿using FCARDIO.Protocol.Door.FC8800.Data;
+using FCARDIO.Protocol.Door.FC8800.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Data
+namespace FCARDIO.Protocol.Door.Test.Model
 {
     public class CardDetailDto
     {

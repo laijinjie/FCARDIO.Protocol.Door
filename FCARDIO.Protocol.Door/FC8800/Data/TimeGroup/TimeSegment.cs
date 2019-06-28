@@ -110,9 +110,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
          */
         public virtual void SetBytes(IByteBuffer bBuf)
         {
+
             DateTime n = DateTime.Now;
             mBeginTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(bBuf.ReadByte()), ByteUtil.BCDToByte(bBuf.ReadByte()), 0);
             mEndTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(bBuf.ReadByte()), ByteUtil.BCDToByte(bBuf.ReadByte()), 0);
+            //byte b1 = bBuf.ReadByte();
+            //byte b2 = bBuf.ReadByte();
+            //byte b3 = bBuf.ReadByte();
+            //byte b4 = bBuf.ReadByte();
+            //if (b1 != 255)
+            //{
+            //    mBeginTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(b1), ByteUtil.BCDToByte(b2), 0);
+            //    mEndTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(b3), ByteUtil.BCDToByte(b4), 0);
+            //}
+
         }
 
         
