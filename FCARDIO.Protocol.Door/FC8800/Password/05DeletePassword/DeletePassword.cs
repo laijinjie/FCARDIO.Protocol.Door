@@ -29,11 +29,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
 
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-
-        }
-
-        protected override void CommandReSend()
-        {
             DeletePassword_Parameter model = _Parameter as DeletePassword_Parameter;
             if (model.mIndex < maxCount)
             {
@@ -46,6 +41,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             {
                 CommandCompleted();
             }
+        }
+
+        protected override void CommandReSend()
+        {
+            
         }
 
         protected override void CreatePacket0()
@@ -62,10 +62,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oPck"></param>
         protected override void CommandNext0(OnlineAccessPacket oPck)
         {
-            
-        }
+            if (CheckResponse_OK(oPck))
+            {
 
+                //继续发下一包
+                CommandNext1(oPck);
+            }
+
+        }
     }
 }

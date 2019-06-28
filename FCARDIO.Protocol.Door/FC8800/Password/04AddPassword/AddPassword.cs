@@ -68,27 +68,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="oPck"></param>
-        protected override void CommandNext0(OnlineAccessPacket oPck)
-        {
-            if (CheckResponse(oPck))
-            {
-                CommandCompleted();
-            }
-            
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override void CommandReSend()
-        {
             AddPassword_Parameter model = _Parameter as AddPassword_Parameter;
             if (model.mIndex < maxCount)
             {
@@ -101,6 +80,30 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             {
                 CommandCompleted();
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oPck"></param>
+        protected override void CommandNext0(OnlineAccessPacket oPck)
+        {
+            if (CheckResponse_OK(oPck))
+            {
+
+                //继续发下一包
+                CommandNext1(oPck);
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected override void CommandReSend()
+        {
+            return;
+            
         }
 
     }

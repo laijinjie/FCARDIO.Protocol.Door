@@ -218,11 +218,10 @@ namespace FCARDIO.Protocol.Door.Test
                 var dto = CardList.FirstOrDefault(t => t.CardData10 == ulong.Parse(text.Value.ToString()));
                 _cardList.Add(ConvertModel(dto));
             }
-            int Total = _cardList.Count;
 
             //par 需要传输 失败卡数量 FailTotal 和失败的卡列表 List<FC8800.Data.CardDetail> CardList;
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(Total, _cardList);
+            var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(_cardList);
             var cmd = new FC8800.Card.CardListBySequence.WriteCardListBySequence(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
@@ -298,7 +297,6 @@ namespace FCARDIO.Protocol.Door.Test
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as FC8800.Card.CardListBySort.WriteCardListBySort_Result;
                 //mMainForm.AddLog($"命令成功：失败卡数量:{result.FailTotal},失败的卡列表:{result.CardList.ToString()}");
             };
         }
@@ -711,11 +709,10 @@ namespace FCARDIO.Protocol.Door.Test
 
             BindDto(dto);
             _cardList.Add(ConvertModel(dto));
-            int Total = _cardList.Count;
 
             //par 需要传输 失败卡数量 FailTotal 和失败的卡列表 List<FC8800.Data.CardDetail> CardList;
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(Total, _cardList);
+            var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(_cardList);
             var cmd = new FC8800.Card.CardListBySequence.WriteCardListBySequence(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
