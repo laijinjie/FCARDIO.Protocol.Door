@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace FCARDIO.Protocol.Door.Test
 {
-    public partial class frmRecord : Form
+    public partial class frmRecord : frmNodeForm
     {
         private static object lockobj = new object();
         private static frmRecord onlyObj;
@@ -61,7 +61,7 @@ namespace FCARDIO.Protocol.Door.Test
         #endregion
 
         #region 清空所有记录
-        private void butClearTransactionDatabase_Click(object sender, EventArgs e)
+        private void butClearAllTransactionDatabase_Click(object sender, EventArgs e)
         {
             int type = cboe_TransactionDatabaseType1.SelectedIndex;
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -163,6 +163,56 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail_Result;
+                for (int i = 0; i < 6; i++)
+                {
+                    TextBox txtQuantity = FindControl(groupBox1, "txtQuantity" + (i + 1).ToString()) as TextBox;
+                    TextBox txtNewRecord = FindControl(groupBox1, "txtNewRecord" + (i + 1).ToString()) as TextBox;
+                    TextBox txtWriteIndex = FindControl(groupBox1, "txtWriteIndex" + (i + 1).ToString()) as TextBox;
+                    TextBox txtReadIndex = FindControl(groupBox1, "txtReadIndex" + (i + 1).ToString()) as TextBox;
+                    TextBox txtIsCircle = FindControl(groupBox1, "txtIsCircle" + (i + 1).ToString()) as TextBox;
+                    Invoke(() =>
+                    {
+                        txtQuantity.Text = result.DatabaseDetail.ListTransaction[i].DataBaseMaxSize.ToString();
+                        txtWriteIndex.Text = result.DatabaseDetail.ListTransaction[i].WriteIndex.ToString();
+                        txtNewRecord.Text = result.DatabaseDetail.ListTransaction[i].readable().ToString();
+                        txtReadIndex.Text = result.DatabaseDetail.ListTransaction[i].ReadIndex.ToString();
+                        txtIsCircle.Text = result.DatabaseDetail.ListTransaction[i].IsCircle ? "【1、循环】" : "【0、未循环】";
+                    });
+                }
+            };
+        }
+
+        public Control FindControl(Control parentControl, string findCtrlName)
+        {
+            Control _findedControl = null;
+            if (!string.IsNullOrEmpty(findCtrlName) && parentControl != null)
+            {
+                foreach (Control ctrl in parentControl.Controls)
+                {
+                    if (ctrl.Name.Equals(findCtrlName))
+                    {
+                        _findedControl = ctrl;
+                        break;
+                    }
+                }
+            }
+            return _findedControl;
+        }
+
+        private void BtnReadTransactionDatabase_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButClearTransactionDatabase_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            var par = new FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase_Parameter();
+            var cmd = new FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddLog($"命令成功");
             };
         }
     }

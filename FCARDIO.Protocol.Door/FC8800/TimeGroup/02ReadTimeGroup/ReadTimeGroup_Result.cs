@@ -50,7 +50,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
             foreach (IByteBuffer buf in databufs)
             {
                 //StringUtility.WriteByteBuffer(buf);
-                //continue ;
+                //continue;
                 WeekTimeGroup wtg = new WeekTimeGroup(8);
                 wtg.SetBytes(buf);
                 ListWeekTimeGroup.Add(wtg);

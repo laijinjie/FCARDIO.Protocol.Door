@@ -13,6 +13,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     /// </summary>
     public class TransactionDatabaseDetail
     {
+        public TransactionDetail[] ListTransaction { get; set; }
         /// <summary>
         /// 读卡相关记录
         /// </summary>
@@ -57,11 +58,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
 
         public void SetBytes(IByteBuffer data)
         {
-            TransactionDetail[] dlst = new TransactionDetail[]{CardTransactionDetail, ButtonTransactionDetail, DoorSensorTransactionDetail,
+            ListTransaction = new TransactionDetail[]{CardTransactionDetail, ButtonTransactionDetail, DoorSensorTransactionDetail,
             SoftwareTransactionDetail, AlarmTransactionDetail, SystemTransactionDetail};
-            for (int i = 0; i < dlst.Length; i++)
+            for (int i = 0; i < ListTransaction.Length; i++)
             {
-                dlst[i].SetBytes(data);
+                ListTransaction[i].SetBytes(data);
             }
             return;
         }

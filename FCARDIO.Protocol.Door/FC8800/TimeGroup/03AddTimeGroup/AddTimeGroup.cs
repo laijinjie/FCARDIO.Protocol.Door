@@ -53,16 +53,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
             maxCount = model.ListWeekTimeGroup.Count;
             Packet(0x6, 0x3, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
             writeIndex++;
-            //foreach (var item in model.ListWeekTimeGroup)
-            //{
-
-            //    //var buf = acl.Buffer(model.GetDataLen());
-            //    buf.WriteByte(writeIndex);
-            //    item.GetBytes(buf);
-            //    Packet(0x6, 0x3, 0x00, Convert.ToUInt32(model.GetDataLen()), buf);
-            //    writeIndex++;
-            //    buf.ResetWriterIndex();
-            //}
+           
 
         }
 
@@ -72,17 +63,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            //应答：OK
-            if (CheckResponse(oPck))
-            {
-                CreatePacket0();
-
-            }
-            if (CheckResponse(oPck, 6, 3, 0xff, 4))
-            {
-
-            }
-                
+            
 
         }
 
@@ -92,11 +73,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// <param name="readPacket">收到的数据包</param>
         protected override void CommandNext(INPacket readPacket)
         {
-            
-        }
-
-        protected override void CommandReSend()
-        {
+            //应答：OK
             AddTimeGroup_Parameter model = _Parameter as AddTimeGroup_Parameter;
             if (writeIndex < maxCount)
             {
@@ -112,23 +89,26 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
                 CommandCompleted();
             }
         }
-        /*
-        /// <summary>
-        /// 生成命令的第一个数据包，后续的数据包应该在
-        /// </summary>
-        protected override void CreatePacket()
+
+        protected override void CommandReSend()
         {
-            AddTimeGroup_Parameter model = _Parameter as AddTimeGroup_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            maxCount = model.ListWeekTimeGroup.Count;
-            Packet(0x6, 0x3, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
-            writeIndex++;
+            
         }
-        */
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oPck"></param>
         protected override void CommandNext0(OnlineAccessPacket oPck)
         {
+            if (CheckResponse_OK(oPck))
+            {
+
+                //继续发下一包
+                CommandNext1(oPck);
+            }
 
         }
+
     }
 }

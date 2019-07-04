@@ -105,6 +105,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
             databuf.WriteByte(DoorTriggerMode);
             databuf.WriteByte(RetainValue);
             weekTimeGroup.GetBytes(databuf);
+
             return databuf;
         }
 
@@ -137,7 +138,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
             OpenDoorWay = databuf.ReadByte();
             DoorTriggerMode = databuf.ReadByte();
             RetainValue = databuf.ReadByte();
-            weekTimeGroup.SetBytes(databuf);
+            weekTimeGroup.ReadDoorWorkSetBytes(databuf);
         }
     }
 }

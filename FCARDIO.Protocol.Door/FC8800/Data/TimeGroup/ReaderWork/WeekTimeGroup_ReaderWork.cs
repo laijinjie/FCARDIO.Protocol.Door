@@ -47,5 +47,25 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
                 mDay[WeekList[i]].SetBytes(data);
             }
         }
+
+        public override void SetBytes(IByteBuffer data)
+        {
+            SetBytes(E_WeekDay.Monday, data);
+        }
+
+        public override void GetBytes(IByteBuffer data)
+        {
+            GetBytes(E_WeekDay.Monday, data);
+        }
+
+        public override void GetBytes(E_WeekDay FistWeek, IByteBuffer data)
+        {
+            int[] WeekList = new int[7];
+            GetWeekList(FistWeek, WeekList);
+            for (int i = 0; i < 7; i++)
+            {
+                mDay[WeekList[i]].GetBytes(data);
+            }
+        }
     }
 }

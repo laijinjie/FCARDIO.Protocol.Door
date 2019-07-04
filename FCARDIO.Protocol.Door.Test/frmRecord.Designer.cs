@@ -35,10 +35,16 @@
             this.txtIsCircle4 = new System.Windows.Forms.TextBox();
             this.txtIsCircle3 = new System.Windows.Forms.TextBox();
             this.txtIsCircle2 = new System.Windows.Forms.TextBox();
+            this.txtQuantity5 = new System.Windows.Forms.TextBox();
             this.txtIsCircle1 = new System.Windows.Forms.TextBox();
+            this.txtQuantity1 = new System.Windows.Forms.TextBox();
             this.txtReadIndex6 = new System.Windows.Forms.TextBox();
+            this.txtQuantity2 = new System.Windows.Forms.TextBox();
             this.txtReadIndex5 = new System.Windows.Forms.TextBox();
+            this.txtQuantity3 = new System.Windows.Forms.TextBox();
+            this.txtQuantity4 = new System.Windows.Forms.TextBox();
             this.txtReadIndex4 = new System.Windows.Forms.TextBox();
+            this.txtQuantity6 = new System.Windows.Forms.TextBox();
             this.txtReadIndex3 = new System.Windows.Forms.TextBox();
             this.txtReadIndex2 = new System.Windows.Forms.TextBox();
             this.txtReadIndex1 = new System.Windows.Forms.TextBox();
@@ -48,18 +54,12 @@
             this.txtWriteIndex3 = new System.Windows.Forms.TextBox();
             this.txtWriteIndex2 = new System.Windows.Forms.TextBox();
             this.txtWriteIndex1 = new System.Windows.Forms.TextBox();
-            this.txttxtQuantity6 = new System.Windows.Forms.TextBox();
-            this.txttxtQuantity5 = new System.Windows.Forms.TextBox();
-            this.txttxtQuantity4 = new System.Windows.Forms.TextBox();
-            this.txttxtQuantity3 = new System.Windows.Forms.TextBox();
-            this.txttxtQuantity2 = new System.Windows.Forms.TextBox();
-            this.txttxtQuantity1 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNewRecord6 = new System.Windows.Forms.TextBox();
+            this.txtNewRecord5 = new System.Windows.Forms.TextBox();
+            this.txtNewRecord4 = new System.Windows.Forms.TextBox();
+            this.txtNewRecord3 = new System.Windows.Forms.TextBox();
+            this.txtNewRecord2 = new System.Windows.Forms.TextBox();
+            this.txtNewRecord1 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -83,8 +83,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnReadTransactionDatabase = new System.Windows.Forms.Button();
+            this.butClearTransactionDatabase = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.cboe_TransactionDatabaseType2 = new System.Windows.Forms.ComboBox();
             this.txttxtQuantity0 = new System.Windows.Forms.TextBox();
@@ -98,7 +98,7 @@
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.butClearTransactionDatabase = new System.Windows.Forms.Button();
+            this.butClearAllTransactionDatabase = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button9 = new System.Windows.Forms.Button();
             this.textBox36 = new System.Windows.Forms.TextBox();
@@ -118,10 +118,16 @@
             this.groupBox1.Controls.Add(this.txtIsCircle4);
             this.groupBox1.Controls.Add(this.txtIsCircle3);
             this.groupBox1.Controls.Add(this.txtIsCircle2);
+            this.groupBox1.Controls.Add(this.txtQuantity5);
             this.groupBox1.Controls.Add(this.txtIsCircle1);
+            this.groupBox1.Controls.Add(this.txtQuantity1);
             this.groupBox1.Controls.Add(this.txtReadIndex6);
+            this.groupBox1.Controls.Add(this.txtQuantity2);
             this.groupBox1.Controls.Add(this.txtReadIndex5);
+            this.groupBox1.Controls.Add(this.txtQuantity3);
+            this.groupBox1.Controls.Add(this.txtQuantity4);
             this.groupBox1.Controls.Add(this.txtReadIndex4);
+            this.groupBox1.Controls.Add(this.txtQuantity6);
             this.groupBox1.Controls.Add(this.txtReadIndex3);
             this.groupBox1.Controls.Add(this.txtReadIndex2);
             this.groupBox1.Controls.Add(this.txtReadIndex1);
@@ -131,18 +137,12 @@
             this.groupBox1.Controls.Add(this.txtWriteIndex3);
             this.groupBox1.Controls.Add(this.txtWriteIndex2);
             this.groupBox1.Controls.Add(this.txtWriteIndex1);
-            this.groupBox1.Controls.Add(this.txttxtQuantity6);
-            this.groupBox1.Controls.Add(this.txttxtQuantity5);
-            this.groupBox1.Controls.Add(this.txttxtQuantity4);
-            this.groupBox1.Controls.Add(this.txttxtQuantity3);
-            this.groupBox1.Controls.Add(this.txttxtQuantity2);
-            this.groupBox1.Controls.Add(this.txttxtQuantity1);
-            this.groupBox1.Controls.Add(this.textBox6);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtNewRecord6);
+            this.groupBox1.Controls.Add(this.txtNewRecord5);
+            this.groupBox1.Controls.Add(this.txtNewRecord4);
+            this.groupBox1.Controls.Add(this.txtNewRecord3);
+            this.groupBox1.Controls.Add(this.txtNewRecord2);
+            this.groupBox1.Controls.Add(this.txtNewRecord1);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
@@ -206,12 +206,26 @@
             this.txtIsCircle2.Size = new System.Drawing.Size(100, 21);
             this.txtIsCircle2.TabIndex = 36;
             // 
+            // txtQuantity5
+            // 
+            this.txtQuantity5.Location = new System.Drawing.Point(80, 145);
+            this.txtQuantity5.Name = "txtQuantity5";
+            this.txtQuantity5.Size = new System.Drawing.Size(100, 21);
+            this.txtQuantity5.TabIndex = 21;
+            // 
             // txtIsCircle1
             // 
             this.txtIsCircle1.Location = new System.Drawing.Point(510, 37);
             this.txtIsCircle1.Name = "txtIsCircle1";
             this.txtIsCircle1.Size = new System.Drawing.Size(100, 21);
             this.txtIsCircle1.TabIndex = 35;
+            // 
+            // txtQuantity1
+            // 
+            this.txtQuantity1.Location = new System.Drawing.Point(80, 37);
+            this.txtQuantity1.Name = "txtQuantity1";
+            this.txtQuantity1.Size = new System.Drawing.Size(100, 21);
+            this.txtQuantity1.TabIndex = 17;
             // 
             // txtReadIndex6
             // 
@@ -220,6 +234,13 @@
             this.txtReadIndex6.Size = new System.Drawing.Size(100, 21);
             this.txtReadIndex6.TabIndex = 34;
             // 
+            // txtQuantity2
+            // 
+            this.txtQuantity2.Location = new System.Drawing.Point(80, 64);
+            this.txtQuantity2.Name = "txtQuantity2";
+            this.txtQuantity2.Size = new System.Drawing.Size(100, 21);
+            this.txtQuantity2.TabIndex = 18;
+            // 
             // txtReadIndex5
             // 
             this.txtReadIndex5.Location = new System.Drawing.Point(404, 145);
@@ -227,12 +248,33 @@
             this.txtReadIndex5.Size = new System.Drawing.Size(100, 21);
             this.txtReadIndex5.TabIndex = 33;
             // 
+            // txtQuantity3
+            // 
+            this.txtQuantity3.Location = new System.Drawing.Point(80, 91);
+            this.txtQuantity3.Name = "txtQuantity3";
+            this.txtQuantity3.Size = new System.Drawing.Size(100, 21);
+            this.txtQuantity3.TabIndex = 19;
+            // 
+            // txtQuantity4
+            // 
+            this.txtQuantity4.Location = new System.Drawing.Point(80, 118);
+            this.txtQuantity4.Name = "txtQuantity4";
+            this.txtQuantity4.Size = new System.Drawing.Size(100, 21);
+            this.txtQuantity4.TabIndex = 20;
+            // 
             // txtReadIndex4
             // 
             this.txtReadIndex4.Location = new System.Drawing.Point(404, 118);
             this.txtReadIndex4.Name = "txtReadIndex4";
             this.txtReadIndex4.Size = new System.Drawing.Size(100, 21);
             this.txtReadIndex4.TabIndex = 32;
+            // 
+            // txtQuantity6
+            // 
+            this.txtQuantity6.Location = new System.Drawing.Point(80, 172);
+            this.txtQuantity6.Name = "txtQuantity6";
+            this.txtQuantity6.Size = new System.Drawing.Size(100, 21);
+            this.txtQuantity6.TabIndex = 22;
             // 
             // txtReadIndex3
             // 
@@ -297,89 +339,47 @@
             this.txtWriteIndex1.Size = new System.Drawing.Size(100, 21);
             this.txtWriteIndex1.TabIndex = 23;
             // 
-            // txttxtQuantity6
+            // txtNewRecord6
             // 
-            this.txttxtQuantity6.Location = new System.Drawing.Point(191, 173);
-            this.txttxtQuantity6.Name = "txttxtQuantity6";
-            this.txttxtQuantity6.Size = new System.Drawing.Size(100, 21);
-            this.txttxtQuantity6.TabIndex = 22;
+            this.txtNewRecord6.Location = new System.Drawing.Point(190, 172);
+            this.txtNewRecord6.Name = "txtNewRecord6";
+            this.txtNewRecord6.Size = new System.Drawing.Size(100, 21);
+            this.txtNewRecord6.TabIndex = 16;
             // 
-            // txttxtQuantity5
+            // txtNewRecord5
             // 
-            this.txttxtQuantity5.Location = new System.Drawing.Point(191, 146);
-            this.txttxtQuantity5.Name = "txttxtQuantity5";
-            this.txttxtQuantity5.Size = new System.Drawing.Size(100, 21);
-            this.txttxtQuantity5.TabIndex = 21;
+            this.txtNewRecord5.Location = new System.Drawing.Point(190, 145);
+            this.txtNewRecord5.Name = "txtNewRecord5";
+            this.txtNewRecord5.Size = new System.Drawing.Size(100, 21);
+            this.txtNewRecord5.TabIndex = 15;
             // 
-            // txttxtQuantity4
+            // txtNewRecord4
             // 
-            this.txttxtQuantity4.Location = new System.Drawing.Point(191, 119);
-            this.txttxtQuantity4.Name = "txttxtQuantity4";
-            this.txttxtQuantity4.Size = new System.Drawing.Size(100, 21);
-            this.txttxtQuantity4.TabIndex = 20;
+            this.txtNewRecord4.Location = new System.Drawing.Point(190, 118);
+            this.txtNewRecord4.Name = "txtNewRecord4";
+            this.txtNewRecord4.Size = new System.Drawing.Size(100, 21);
+            this.txtNewRecord4.TabIndex = 14;
             // 
-            // txttxtQuantity3
+            // txtNewRecord3
             // 
-            this.txttxtQuantity3.Location = new System.Drawing.Point(191, 92);
-            this.txttxtQuantity3.Name = "txttxtQuantity3";
-            this.txttxtQuantity3.Size = new System.Drawing.Size(100, 21);
-            this.txttxtQuantity3.TabIndex = 19;
+            this.txtNewRecord3.Location = new System.Drawing.Point(190, 91);
+            this.txtNewRecord3.Name = "txtNewRecord3";
+            this.txtNewRecord3.Size = new System.Drawing.Size(100, 21);
+            this.txtNewRecord3.TabIndex = 13;
             // 
-            // txttxtQuantity2
+            // txtNewRecord2
             // 
-            this.txttxtQuantity2.Location = new System.Drawing.Point(191, 65);
-            this.txttxtQuantity2.Name = "txttxtQuantity2";
-            this.txttxtQuantity2.Size = new System.Drawing.Size(100, 21);
-            this.txttxtQuantity2.TabIndex = 18;
+            this.txtNewRecord2.Location = new System.Drawing.Point(190, 64);
+            this.txtNewRecord2.Name = "txtNewRecord2";
+            this.txtNewRecord2.Size = new System.Drawing.Size(100, 21);
+            this.txtNewRecord2.TabIndex = 12;
             // 
-            // txttxtQuantity1
+            // txtNewRecord1
             // 
-            this.txttxtQuantity1.Location = new System.Drawing.Point(191, 38);
-            this.txttxtQuantity1.Name = "txttxtQuantity1";
-            this.txttxtQuantity1.Size = new System.Drawing.Size(100, 21);
-            this.txttxtQuantity1.TabIndex = 17;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(85, 172);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 21);
-            this.textBox6.TabIndex = 16;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(85, 145);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 21);
-            this.textBox5.TabIndex = 15;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(85, 118);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 21);
-            this.textBox4.TabIndex = 14;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(85, 91);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 21);
-            this.textBox3.TabIndex = 13;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(85, 64);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 21);
-            this.textBox2.TabIndex = 12;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(85, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 11;
+            this.txtNewRecord1.Location = new System.Drawing.Point(190, 37);
+            this.txtNewRecord1.Name = "txtNewRecord1";
+            this.txtNewRecord1.Size = new System.Drawing.Size(100, 21);
+            this.txtNewRecord1.TabIndex = 11;
             // 
             // label11
             // 
@@ -591,8 +591,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button6);
-            this.groupBox3.Controls.Add(this.button7);
+            this.groupBox3.Controls.Add(this.btnReadTransactionDatabase);
+            this.groupBox3.Controls.Add(this.butClearTransactionDatabase);
             this.groupBox3.Controls.Add(this.button4);
             this.groupBox3.Controls.Add(this.cboe_TransactionDatabaseType2);
             this.groupBox3.Controls.Add(this.txttxtQuantity0);
@@ -605,23 +605,25 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "记录操作";
             // 
-            // button6
+            // btnReadTransactionDatabase
             // 
-            this.button6.Location = new System.Drawing.Point(66, 64);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(86, 23);
-            this.button6.TabIndex = 29;
-            this.button6.Text = "采集记录";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnReadTransactionDatabase.Location = new System.Drawing.Point(66, 64);
+            this.btnReadTransactionDatabase.Name = "btnReadTransactionDatabase";
+            this.btnReadTransactionDatabase.Size = new System.Drawing.Size(86, 23);
+            this.btnReadTransactionDatabase.TabIndex = 29;
+            this.btnReadTransactionDatabase.Text = "采集记录";
+            this.btnReadTransactionDatabase.UseVisualStyleBackColor = true;
+            this.btnReadTransactionDatabase.Click += new System.EventHandler(this.BtnReadTransactionDatabase_Click);
             // 
-            // button7
+            // butClearTransactionDatabase
             // 
-            this.button7.Location = new System.Drawing.Point(624, 64);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 27;
-            this.button7.Text = "清空记录";
-            this.button7.UseVisualStyleBackColor = true;
+            this.butClearTransactionDatabase.Location = new System.Drawing.Point(624, 64);
+            this.butClearTransactionDatabase.Name = "butClearTransactionDatabase";
+            this.butClearTransactionDatabase.Size = new System.Drawing.Size(75, 23);
+            this.butClearTransactionDatabase.TabIndex = 27;
+            this.butClearTransactionDatabase.Text = "清空记录";
+            this.butClearTransactionDatabase.UseVisualStyleBackColor = true;
+            this.butClearTransactionDatabase.Click += new System.EventHandler(this.ButClearTransactionDatabase_Click);
             // 
             // button4
             // 
@@ -743,15 +745,15 @@
             this.label20.TabIndex = 23;
             this.label20.Text = "记录类型";
             // 
-            // butClearTransactionDatabase
+            // butClearAllTransactionDatabase
             // 
-            this.butClearTransactionDatabase.Location = new System.Drawing.Point(603, 479);
-            this.butClearTransactionDatabase.Name = "butClearTransactionDatabase";
-            this.butClearTransactionDatabase.Size = new System.Drawing.Size(109, 29);
-            this.butClearTransactionDatabase.TabIndex = 28;
-            this.butClearTransactionDatabase.Text = "清空所有记录";
-            this.butClearTransactionDatabase.UseVisualStyleBackColor = true;
-            this.butClearTransactionDatabase.Click += new System.EventHandler(this.butClearTransactionDatabase_Click);
+            this.butClearAllTransactionDatabase.Location = new System.Drawing.Point(603, 479);
+            this.butClearAllTransactionDatabase.Name = "butClearAllTransactionDatabase";
+            this.butClearAllTransactionDatabase.Size = new System.Drawing.Size(109, 29);
+            this.butClearAllTransactionDatabase.TabIndex = 28;
+            this.butClearAllTransactionDatabase.Text = "清空所有记录";
+            this.butClearAllTransactionDatabase.UseVisualStyleBackColor = true;
+            this.butClearAllTransactionDatabase.Click += new System.EventHandler(this.butClearAllTransactionDatabase_Click);
             // 
             // groupBox5
             // 
@@ -795,9 +797,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 528);
+            this.ClientSize = new System.Drawing.Size(731, 528);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.butClearTransactionDatabase);
+            this.Controls.Add(this.butClearAllTransactionDatabase);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -841,18 +843,18 @@
         private System.Windows.Forms.TextBox txtWriteIndex3;
         private System.Windows.Forms.TextBox txtWriteIndex2;
         private System.Windows.Forms.TextBox txtWriteIndex1;
-        private System.Windows.Forms.TextBox txttxtQuantity6;
-        private System.Windows.Forms.TextBox txttxtQuantity5;
-        private System.Windows.Forms.TextBox txttxtQuantity4;
-        private System.Windows.Forms.TextBox txttxtQuantity3;
-        private System.Windows.Forms.TextBox txttxtQuantity2;
-        private System.Windows.Forms.TextBox txttxtQuantity1;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtQuantity6;
+        private System.Windows.Forms.TextBox txtQuantity5;
+        private System.Windows.Forms.TextBox txtQuantity4;
+        private System.Windows.Forms.TextBox txtQuantity3;
+        private System.Windows.Forms.TextBox txtQuantity2;
+        private System.Windows.Forms.TextBox txtQuantity1;
+        private System.Windows.Forms.TextBox txtNewRecord6;
+        private System.Windows.Forms.TextBox txtNewRecord5;
+        private System.Windows.Forms.TextBox txtNewRecord4;
+        private System.Windows.Forms.TextBox txtNewRecord3;
+        private System.Windows.Forms.TextBox txtNewRecord2;
+        private System.Windows.Forms.TextBox txtNewRecord1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
@@ -876,7 +878,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button butClearTransactionDatabase;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button butTransactionDatabaseByIndex;
         private System.Windows.Forms.ComboBox cboe_TransactionDatabaseType2;
@@ -884,14 +886,14 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnReadTransactionDatabase;
         private System.Windows.Forms.ComboBox cboe_TransactionDatabaseType3;
         private System.Windows.Forms.TextBox txtReadIndex0;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button butClearTransactionDatabase;
+        private System.Windows.Forms.Button butClearAllTransactionDatabase;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox textBox36;

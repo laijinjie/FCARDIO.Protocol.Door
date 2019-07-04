@@ -181,7 +181,7 @@ namespace FCARDIO.Protocol.Door.Test
             detail.OpenTimes = card.OpenTimes;
             detail.Password = card.Password;
             detail.RecordTime = card.RecordTime;
-            string strDoor1 = (card.door1 == "有权限" ? "1" : "0") + (card.door2 == "有权限" ? "1" : "0") + (card.door3 == "有权限" ? "1" : "0") + (card.door4 == "有权限" ? "1" : "0");
+            string strDoor1 = (card.door4 == "有权限" ? "1" : "0") + (card.door3 == "有权限" ? "1" : "0") + (card.door2 == "有权限" ? "1" : "0") + (card.door1 == "有权限" ? "1" : "0");
             detail.Door = Convert.ToInt32(strDoor1, 2);
             byte[] bHoliday = new byte[4];
             for (int i = 0; i < 4; i++)

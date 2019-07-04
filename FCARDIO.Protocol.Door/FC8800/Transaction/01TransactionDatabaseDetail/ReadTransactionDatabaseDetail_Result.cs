@@ -16,19 +16,21 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseDetail
         /**
          * 记录数据库的详情
          */
-        public FC8800.Data.TransactionDatabaseDetail DatabaseDetail;
+        public FC8800.Data.TransactionDatabaseDetail DatabaseDetail { get; set; }
 
 
-        public ReadTransactionDatabaseDetail_Result() { }
+        public ReadTransactionDatabaseDetail_Result() {
+            DatabaseDetail = new Data.TransactionDatabaseDetail();
+        }
 
         /// <summary>
         /// 创建结构
         /// </summary>
         /// <param name="databaseDetail">数据库详情</param>
-        public ReadTransactionDatabaseDetail_Result(FC8800.Data.TransactionDatabaseDetail databaseDetail)
-        {
-            DatabaseDetail = databaseDetail;
-        }
+        //public ReadTransactionDatabaseDetail_Result(FC8800.Data.TransactionDatabaseDetail databaseDetail)
+        //{
+        //    DatabaseDetail = databaseDetail;
+        //}
 
         /// <summary>
         /// 释放资源
@@ -40,7 +42,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseDetail
 
         internal void SetBytes(IByteBuffer buf)
         {
-            return;
+            DatabaseDetail.SetBytes(buf);
         }
     }
 }

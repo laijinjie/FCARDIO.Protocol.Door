@@ -21,7 +21,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ClearTransactionDatabase
         /// 5 &emsp; 报警记录 
         /// 6 &emsp; 系统记录  
         /// </summary>
-        public e_TransactionDatabaseType DatabaseType;
+        public e_TransactionDatabaseType? DatabaseType;
         
         /// <summary>
         /// 清空指定类型的记录数据库
@@ -30,6 +30,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ClearTransactionDatabase
         public ClearTransactionDatabase_Parameter(e_TransactionDatabaseType type)
         {
             DatabaseType = type;
+        }
+
+        public ClearTransactionDatabase_Parameter()
+        {
+
         }
 
         /// <summary>
@@ -56,8 +61,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ClearTransactionDatabase
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if(databuf.WritableBytes != 1)
-                throw new NotImplementedException();
+            //if(databuf.WritableBytes != 1)
+            //    throw new NotImplementedException();
+            if (DatabaseType.HasValue)
+            {
+                databuf.WriteByte((int)DatabaseType.Value);
+            }
+            
             return databuf;
         }
 

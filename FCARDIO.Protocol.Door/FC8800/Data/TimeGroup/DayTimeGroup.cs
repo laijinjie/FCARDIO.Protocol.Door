@@ -92,7 +92,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             {
                 mSegment[i].SetBytes(bBuf);
                 index += 4;
-                if (bBuf.ReadableBytes == 0 || index >= 224)
+                if (bBuf.ReadableBytes == 0 )
                 {
                     return;
                 }

@@ -21,6 +21,10 @@ using FCARDIO.Protocol.Door.FC8800.Door.AutoLockedSetting;
 using FCARDIO.Protocol.Door.FC8800.Door.RelayReleaseTime;
 using System.Text.RegularExpressions;
 using FCARDIO.Protocol.Door.FC8800.Door.ReaderInterval;
+using FCARDIO.Protocol.Door.Test.Model;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter;
+using FCARDIO.Protocol.Door.FC8800.Door.AntiPassback;
+using FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting;
 
 namespace FCARDIO.Protocol.Door.Test
 {
@@ -51,12 +55,16 @@ namespace FCARDIO.Protocol.Door.Test
         }
         #endregion
 
+        List<WeekTimeGroupDto> ListWeekTimeGroupDto = new List<WeekTimeGroupDto>();
+        List<WeekTimeGroupDto> ListAutoLockedDto = new List<WeekTimeGroupDto>();
+        WeekTimeGroup WeekTimeGroupPushButtonDto = new WeekTimeGroup(8);
+
+
         private void frmDoor_Load(object sender, EventArgs e)
         {
             cmdDoorNum.Items.Clear();
             cmdDoorNum.Items.AddRange(new string[] { "1", "2", "3", "4" });
             cmdDoorNum.SelectedIndex = 0;
-
             //非法读卡报警
             IniInvalidCardAlarmOptionUse();
 
@@ -72,6 +80,8 @@ namespace FCARDIO.Protocol.Door.Test
             //门磁报警参数
             SensorAlarmSetting();
             Week();
+
+            InitGridReaderWork();
 
             #region 读卡器字节数默认选项
             cbxDoor1ReaderOption.SelectedIndex = 2;
@@ -93,7 +103,76 @@ namespace FCARDIO.Protocol.Door.Test
 
             #region 重复读卡间隔_检测模式
             cbxDetectionMode.SelectedIndex = 0;
+            cmbInterval.Items.Clear();
+            string[] time = new string[256];
+            for (int i = 0; i < 256; i++)
+            {
+                time[i] = i + "秒";
+                if (time[0] == "0秒")
+                    time[0] = "禁用";
+            }
+            cmbInterval.Items.AddRange(time);
+            cmbInterval.Items.Add("65535秒");
+            cmbInterval.SelectedIndex = cmbInterval.Items.Count - 1;
             #endregion
+
+            WeekTimeGroupPushButtonDto.InitTimeGroup();
+            cmbPushButtonWeekday.SelectedIndex = 0;
+       
+        }
+
+        private void InitGridReaderWork()
+        {
+            Random r = new Random();
+            for (int i = 0; i < 7; i++)
+            {
+                WeekTimeGroupDto dto = new WeekTimeGroupDto();
+                dto.WeekDay = GetWeekStr(i);
+                dto.Ex = "-";
+                dto.IsEx = "true";
+                ListWeekTimeGroupDto.Add(dto);
+                ListAutoLockedDto.Add(dto);
+                //sb.AppendLine(GetWeekStr(i));
+                for (int j = 0; j < 8; j++)
+                {
+                    dto = new WeekTimeGroupDto();
+                    dto.WeekDay = (j + 1).ToString();
+
+                    int checkway = r.Next(4);
+                    dto.id0 = checkway == 0; dto.id1 = checkway == 1; dto.id2 = checkway == 2; dto.id3 = checkway == 3;
+                    dto.WeekDayIndex = i;
+                    if (j == 0)
+                    {
+                        dto.StartTime = "00:00";
+                        dto.EndTime = "23:59";
+                    }
+                    else
+                    {
+                        dto.StartTime = "00:00";
+                        dto.EndTime = "00:00";
+                    }
+                    ListWeekTimeGroupDto.Add(dto);
+                    ListAutoLockedDto.Add(dto);
+                }
+            }
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.DataSource = new BindingList<WeekTimeGroupDto>(ListWeekTimeGroupDto);
+
+            dataGridView2.AutoGenerateColumns = false;
+            dataGridView2.DataSource = new BindingList<WeekTimeGroupDto>(ListAutoLockedDto);
+            //for (int i = 0; i < 7; i++)
+            //{
+            //    for (int j = 2; j < dataGridView1.Columns.Count; j++)
+            //    {
+
+            //    }
+
+            //}
+            Invoke(() =>
+            {
+
+
+            });
         }
 
         #region "胁迫报警密码"
@@ -739,35 +818,51 @@ namespace FCARDIO.Protocol.Door.Test
             byte door = 1;
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            if (cBoxDoor1.Checked)
-            {
-                door = 1;
-                ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl, new DoorPort_Parameter(door));
-                mMainForm.AddCommand(cmd);
-            }
-            if (cBoxDoor2.Checked)
-            {
-                door = 2;
-                ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl, new DoorPort_Parameter(door));
-                mMainForm.AddCommand(cmd);
-            }
-            if (cBoxDoor3.Checked)
-            {
-                door = 3;
-                ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl, new DoorPort_Parameter(door));
-                mMainForm.AddCommand(cmd);
-            }
-            if (cBoxDoor4.Checked)
-            {
-                door = 4;
-                ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl, new DoorPort_Parameter(door));
-                mMainForm.AddCommand(cmd);
-            }
+            ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
+                byte[] ByteDoorAlarmStateSet = null;
+                BitArray bitSet = null;
                 ReaderWorkSetting_Result result = cmde.Command.getResult() as ReaderWorkSetting_Result;
+                ListWeekTimeGroupDto.Clear();
+                for (int i = 0; i < 7; i++)
+                {
+                    WeekTimeGroupDto dto = new WeekTimeGroupDto();
+                    dto.WeekDay = GetWeekStr(i);
+                    dto.Ex = "-";
+                    dto.IsEx = "true";
+                    ListWeekTimeGroupDto.Add(dto);
+
+                    for (int j = 0; j < 8; j++)
+                    {
+                        var tz = result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j) as TimeSegment_ReaderWork;
+                        ByteDoorAlarmStateSet = new byte[] { tz.GetCheckWay() };
+                        bitSet = new BitArray(ByteDoorAlarmStateSet);
+
+                        string strCheckWay = Convert.ToString(tz.GetCheckWay(), 2).PadLeft(4, '0');
+
+                        dto = new WeekTimeGroupDto();
+                        dto.WeekDay = (j + 1).ToString();
+                        dto.WeekDayIndex = i;
+                        dto.StartTime = result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j).GetBeginTime().ToString("HH:mm");
+                        dto.EndTime = result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j).GetEndTime().ToString("HH:mm");
+                        dto.id0 = strCheckWay[3] == '1';// bitSet[0];
+                        dto.id1 = strCheckWay[2] == '1';// bitSet[1];
+                        dto.id2 = strCheckWay[1] == '1';// bitSet[2];
+                        dto.id3 = strCheckWay[0] == '1';// bitSet[3];
+                        ListWeekTimeGroupDto.Add(dto);
+                    }
+                }
+                Invoke(() =>
+                {
+                    dataGridView1.DataSource = new BindingList<WeekTimeGroupDto>(ListWeekTimeGroupDto);
+                });
+
+
+                /*
                 string tip = "门认证方式_门" + result.Door.ToString() + "，时段详情：";
                 StringBuilder sbCheckWay = new StringBuilder(8);
                 StringBuilder sbCheckWayStr = new StringBuilder();
@@ -776,8 +871,7 @@ namespace FCARDIO.Protocol.Door.Test
                 sb.AppendLine(tip);
                 for (int i = 0; i < 7; i++)
                 {
-
-                    //sb.AppendLine(StringUtility.GetWeekStr(i));
+                    sb.AppendLine(GetWeekStr(i));
                     for (int j = 0; j < 8; j++)
                     {
                         sb.Append("  时段" + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j).GetEndTime()));
@@ -814,101 +908,144 @@ namespace FCARDIO.Protocol.Door.Test
                 {
                     txtDoorWorkSetting.Text = sb.ToString();
                 });
-
+                */
             };
         }
+
+        /// <summary>
+        /// 获得数值代表的星期
+        /// </summary>
+        /// <param name="index">数值（0-6，0代表星期一...6代表星期日）</param>
+        /// <returns></returns>
+        private string GetWeekStr(int index)
+        {
+            string weekStr = string.Empty;
+            if (index == 0)
+            {
+                return "星期一";
+            }
+            else if (index == 1)
+            {
+                return "星期二";
+            }
+            else if (index == 2)
+            {
+                return "星期三";
+            }
+            else if (index == 3)
+            {
+                return "星期四";
+            }
+            else if (index == 4)
+            {
+                return "星期五";
+            }
+            else if (index == 5)
+            {
+                return "星期六";
+            }
+            else if (index == 6)
+            {
+                return "星期日";
+            }
+            return weekStr;
+        }
+
+        /// <summary>
+        /// 设置读卡认证方式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnWriteDoorWorkSetting_Click(object sender, EventArgs e)
         {
-            if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
-            {
-                MsgErr("请勾选需要操作的门！");
-                return;
-            }
+            //if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
+            //{
+            //    MsgErr("请勾选需要操作的门！");
+            //    return;
+            //}
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-
             WeekTimeGroup_ReaderWork tg = new WeekTimeGroup_ReaderWork(8);
+            ConvertDtoToModel(tg);
 
+            WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter((byte)(cmdDoorNum.SelectedIndex + 1), tg);
+            WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
+            mMainForm.AddCommand(write);
+            //byte door = 1;
+            //if (cBoxDoor1.Checked)
+            //{
+            //    door = 1;
+            //    WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(door, tg);
+            //    WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
+            //    mMainForm.AddCommand(write);
+            //}
+            //if (cBoxDoor2.Checked)
+            //{
+            //    door = 2;
+            //    WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(door, tg);
+            //    WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
+            //    mMainForm.AddCommand(write);
+            //}
+            //if (cBoxDoor3.Checked)
+            //{
+            //    door = 3;
+            //    WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(door, tg);
+            //    WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
+            //    mMainForm.AddCommand(write);
+            //}
+            //if (cBoxDoor4.Checked)
+            //{
+            //    door = 4;
+            //    WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(door, tg);
+            //    WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
+            //    mMainForm.AddCommand(write);
+            //}
+        }
+
+        /// <summary>
+        /// GridView数据 转换成 WeekTimeGroup_ReaderWork
+        /// </summary>
+        /// <param name="tg"></param>
+        private void ConvertDtoToModel(WeekTimeGroup_ReaderWork tg)
+        {
             for (int i = 0; i < 7; i++)
             {
                 var day = tg.GetItem(i);
-                //for (int j = 0; j < 8; j++)
-                //{
-                DateTime nw = DateTime.Now;
-                var tz = day.GetItem(0) as TimeSegment_ReaderWork;
-                tz.SetBeginTime(0, 0);
-                tz.SetEndTime(23, 59);
-                tz.SetCheckWay(7);
-                //}
+                for (int j = 0; j < 8; j++)
+                {
+                    var dto = ListWeekTimeGroupDto.FirstOrDefault(t => t.WeekDay == (j + 1).ToString() && t.WeekDayIndex == i);
+                    //DateTime nw = DateTime.Now;
+                    var tz = day.GetItem(j) as TimeSegment_ReaderWork;
+                    string[] tsStart = dto.StartTime.Split(':');
+                    string[] tsEnd = dto.EndTime.Split(':');
+                    tz.SetBeginTime(int.Parse(tsStart[0]), int.Parse(tsStart[1]));
+                    tz.SetEndTime(int.Parse(tsEnd[0]), int.Parse(tsEnd[1]));
+                    string strDoor1 = (dto.id3 ? "1" : "0") + (dto.id2 ? "1" : "0") + (dto.id1 ? "1" : "0") + (dto.id0 ? "1" : "0");
+                    byte checkWay = Convert.ToByte(strDoor1, 2);
+
+                    tz.SetCheckWay(checkWay);
+                }
             }
 
-            byte door = 1;
-            if (cBoxDoor1.Checked)
-            {
-                door = 1;
-                WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(door, tg);
-                WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
-                mMainForm.AddCommand(write);
-            }
-            if (cBoxDoor2.Checked)
-            {
-                door = 2;
-                WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(door, tg);
-                WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
-                mMainForm.AddCommand(write);
-            }
-            if (cBoxDoor3.Checked)
-            {
-                door = 3;
-                WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(door, tg);
-                WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
-                mMainForm.AddCommand(write);
-            }
-            if (cBoxDoor4.Checked)
-            {
-                door = 4;
-                WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(door, tg);
-                WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
-                mMainForm.AddCommand(write);
-            }
         }
+
         #endregion
 
         #region 门工作方式
         private void BtnReadWorkSetting_Click(object sender, EventArgs e)
         {
+            /*
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
                 MsgErr("请勾选需要操作的门！");
                 return;
             }
+            */
             byte door = 1;
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            if (cBoxDoor1.Checked)
-            {
-                door = 1;
-                ReadDoorWorkSetting cmd = new ReadDoorWorkSetting(cmdDtl, new DoorPort_Parameter(door));
-                mMainForm.AddCommand(cmd);
-            }
-            if (cBoxDoor2.Checked)
-            {
-                door = 2;
-                ReadDoorWorkSetting cmd = new ReadDoorWorkSetting(cmdDtl, new DoorPort_Parameter(door));
-                mMainForm.AddCommand(cmd);
-            }
-            if (cBoxDoor3.Checked)
-            {
-                door = 3;
-                ReadDoorWorkSetting cmd = new ReadDoorWorkSetting(cmdDtl, new DoorPort_Parameter(door));
-                mMainForm.AddCommand(cmd);
-            }
-            if (cBoxDoor4.Checked)
-            {
-                door = 4;
-                ReadDoorWorkSetting cmd = new ReadDoorWorkSetting(cmdDtl, new DoorPort_Parameter(door));
-                mMainForm.AddCommand(cmd);
-            }
+            ReadDoorWorkSetting cmd = new ReadDoorWorkSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -1080,7 +1217,7 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            byte door = 1; //门
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1); //门
             byte use = 0; //功能是否启用
             byte openDoorWay = 1; //开门方式
             byte doorTriggerMode = 3; //门常开触发模式
@@ -1163,35 +1300,9 @@ namespace FCARDIO.Protocol.Door.Test
                     }
                 }
             }
-
-            if (cBoxDoor1.Checked)
-            {
-                door = 1;
-                ReadDoorWorkSetting_Parameter par = new ReadDoorWorkSetting_Parameter(door, use, openDoorWay, doorTriggerMode, retainValue, tg);
-                WriteDoorWorkSetting write = new WriteDoorWorkSetting(cmdDtl, par);
-                mMainForm.AddCommand(write);
-            }
-            if (cBoxDoor2.Checked)
-            {
-                door = 2;
-                ReadDoorWorkSetting_Parameter par = new ReadDoorWorkSetting_Parameter(door, use, openDoorWay, doorTriggerMode, retainValue, tg);
-                WriteDoorWorkSetting write = new WriteDoorWorkSetting(cmdDtl, par);
-                mMainForm.AddCommand(write);
-            }
-            if (cBoxDoor3.Checked)
-            {
-                door = 3;
-                ReadDoorWorkSetting_Parameter par = new ReadDoorWorkSetting_Parameter(door, use, openDoorWay, doorTriggerMode, retainValue, tg);
-                WriteDoorWorkSetting write = new WriteDoorWorkSetting(cmdDtl, par);
-                mMainForm.AddCommand(write);
-            }
-            if (cBoxDoor4.Checked)
-            {
-                door = 4;
-                ReadDoorWorkSetting_Parameter par = new ReadDoorWorkSetting_Parameter(door, use, openDoorWay, doorTriggerMode, retainValue, tg);
-                WriteDoorWorkSetting write = new WriteDoorWorkSetting(cmdDtl, par);
-                mMainForm.AddCommand(write);
-            }
+            ReadDoorWorkSetting_Parameter par = new ReadDoorWorkSetting_Parameter(door, use, openDoorWay, doorTriggerMode, retainValue, tg);
+            WriteDoorWorkSetting write = new WriteDoorWorkSetting(cmdDtl, par);
+            mMainForm.AddCommand(write);
         }
         /// <summary>
         /// 选择不启用高级功能按钮时触发的事件
@@ -1255,9 +1366,32 @@ namespace FCARDIO.Protocol.Door.Test
             DoorTriggerModePanel.Visible = true;
             DoorOpenTimePanel.Visible = true;
         }
+
+        private void CbxWeek_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
         #endregion
 
         #region 定时锁定门参数读写
+        private void ConvertDtoToModel(WeekTimeGroup tg)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                var day = tg.GetItem(i);
+                for (int j = 0; j < 8; j++)
+                {
+                    var dto = ListAutoLockedDto.FirstOrDefault(t => t.WeekDay == (j + 1).ToString() && t.WeekDayIndex == i);
+                    //DateTime nw = DateTime.Now;
+                    var tz = day.GetItem(j) as TimeSegment;
+                    string[] tsStart = dto.StartTime.Split(':');
+                    string[] tsEnd = dto.EndTime.Split(':');
+                    tz.SetBeginTime(int.Parse(tsStart[0]), int.Parse(tsStart[1]));
+                    tz.SetEndTime(int.Parse(tsEnd[0]), int.Parse(tsEnd[1]));
+                }
+            }
+
+        }
         private void BtnReadAutoLockedSetting_Click(object sender, EventArgs e)
         {
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
@@ -1266,38 +1400,41 @@ namespace FCARDIO.Protocol.Door.Test
                 return;
             }
             StringBuilder sb = new StringBuilder();
-            byte door = 1;
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            if (cBoxDoor1.Checked)
-            {
-                door = 1;
-                ReadAutoLockedSetting cmd = new ReadAutoLockedSetting(cmdDtl, new DoorPort_Parameter(door));
-                mMainForm.AddCommand(cmd);
-            }
-            if (cBoxDoor2.Checked)
-            {
-                door = 2;
-                ReadAutoLockedSetting cmd = new ReadAutoLockedSetting(cmdDtl, new DoorPort_Parameter(door));
-                mMainForm.AddCommand(cmd);
-            }
-            if (cBoxDoor3.Checked)
-            {
-                door = 3;
-                ReadAutoLockedSetting cmd = new ReadAutoLockedSetting(cmdDtl, new DoorPort_Parameter(door));
-                mMainForm.AddCommand(cmd);
-            }
-            if (cBoxDoor4.Checked)
-            {
-                door = 4;
-                ReadAutoLockedSetting cmd = new ReadAutoLockedSetting(cmdDtl, new DoorPort_Parameter(door));
-                mMainForm.AddCommand(cmd);
-            }
+            ReadAutoLockedSetting cmd = new ReadAutoLockedSetting(cmdDtl, new DoorPort_Parameter(door));
+            mMainForm.AddCommand(cmd);
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 AutoLockedSetting_Result result = cmde.Command.getResult() as AutoLockedSetting_Result;
+                ListAutoLockedDto.Clear();
+                for (int i = 0; i < 7; i++)
+                {
+                    WeekTimeGroupDto dto = new WeekTimeGroupDto();
+                    dto.WeekDay = GetWeekStr(i);
+                    dto.Ex = "-";
+                    dto.IsEx = "true";
+                    ListAutoLockedDto.Add(dto);
+
+                    for (int j = 0; j < 8; j++)
+                    {
+                        var tz = result.weekTimeGroup.GetItem(i).GetItem(j) as TimeSegment;
+                        dto = new WeekTimeGroupDto();
+                        dto.WeekDay = (j + 1).ToString();
+                        dto.WeekDayIndex = i;
+                        dto.StartTime = tz.GetBeginTime().ToString("HH:mm");
+                        dto.EndTime = tz.GetEndTime().ToString("HH:mm");
+                        ListAutoLockedDto.Add(dto);
+                    }
+                }
+                Invoke(() =>
+                {
+                    dataGridView2.DataSource = new BindingList<WeekTimeGroupDto>(ListAutoLockedDto);
+                });
+
                 string useStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】";
                 string tip = "定时锁定门_门" + result.Door.ToString() + "：是否启用：" + useStr + "，时段详情：";
                 sb.AppendLine(tip);
@@ -1332,22 +1469,26 @@ namespace FCARDIO.Protocol.Door.Test
             if (cmdDtl == null) return;
 
             WeekTimeGroup tg = new WeekTimeGroup(8);
+            ConvertDtoToModel(tg);
+            //for (int i = 0; i < 7; i++)
+            //{
+            //    var day = tg.GetItem(i);
+            //    DateTime nw = DateTime.Now;
+            //    var tz = day.GetItem(0) as TimeSegment;
+            //    tz.SetBeginTime(0, 0);
+            //    tz.SetEndTime(0, 0);
+            //}
 
-            for (int i = 0; i < 7; i++)
-            {
-                var day = tg.GetItem(i);
-                DateTime nw = DateTime.Now;
-                var tz = day.GetItem(0) as TimeSegment;
-                tz.SetBeginTime(0, 0);
-                tz.SetEndTime(0, 0);
-            }
-
-            byte door = 1;
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             byte use = 0;
             if (rBtnAutoLockedSetting.Checked)
             {
                 use = 1;
             }
+            AutoLockedSetting_Parameter par = new AutoLockedSetting_Parameter(door, use, tg);
+            WriteAutoLockedSetting write = new WriteAutoLockedSetting(cmdDtl, par);
+            mMainForm.AddCommand(write);
+            /*
             if (cBoxDoor1.Checked)
             {
                 door = 1;
@@ -1376,23 +1517,29 @@ namespace FCARDIO.Protocol.Door.Test
                 WriteAutoLockedSetting write = new WriteAutoLockedSetting(cmdDtl, par);
                 mMainForm.AddCommand(write);
             }
+            */
         }
         #endregion
 
         #region 开锁时输出时长
         private void BtnReadRelayReleaseTime_Click(object sender, EventArgs e)
         {
+            /*
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
                 MsgErr("请勾选需要操作的门！");
                 return;
             }
+            */
             StringBuilder sb = new StringBuilder();
             ushort ReleaseTime = 0; //开锁时输出时长
             string tip = string.Empty;
-            byte door = 1;
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
+            ReadRelayReleaseTime cmd = new ReadRelayReleaseTime(cmdDtl, new DoorPort_Parameter(door));
+            mMainForm.AddCommand(cmd);
+            /*
             if (cBoxDoor1.Checked)
             {
                 door = 1;
@@ -1417,7 +1564,7 @@ namespace FCARDIO.Protocol.Door.Test
                 ReadRelayReleaseTime cmd = new ReadRelayReleaseTime(cmdDtl, new DoorPort_Parameter(door));
                 mMainForm.AddCommand(cmd);
             }
-
+            */
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
@@ -1446,12 +1593,13 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void BtnWriteRelayReleaseTime_Click(object sender, EventArgs e)
         {
+            /*
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
                 MsgErr("请勾选需要操作的门！");
                 return;
             }
-
+            */
             string reg = @"^\+?[0-9]*$";
             if (!Regex.IsMatch(cbxReleaseTime.Text.Trim(), reg))
             {
@@ -1470,7 +1618,7 @@ namespace FCARDIO.Protocol.Door.Test
                 }
             }
 
-            byte door = 1;
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             ushort releaseTime = 0;
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
@@ -1478,6 +1626,10 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 releaseTime = Convert.ToUInt16(cbxReleaseTime.Text);
             }
+            WriteRelayReleaseTime_Parameter par = new WriteRelayReleaseTime_Parameter(door, releaseTime);
+            WriteRelayReleaseTime write = new WriteRelayReleaseTime(cmdDtl, par);
+            mMainForm.AddCommand(write);
+            /*
             if (cBoxDoor1.Checked)
             {
                 door = 1;
@@ -1506,23 +1658,35 @@ namespace FCARDIO.Protocol.Door.Test
                 WriteRelayReleaseTime write = new WriteRelayReleaseTime(cmdDtl, par);
                 mMainForm.AddCommand(write);
             }
+            */
         }
         #endregion
 
         #region 重复读卡间隔参数
         private void BtnReadReaderInterval_Click(object sender, EventArgs e)
         {
+            /*
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
                 MsgErr("请勾选需要操作的门！");
                 return;
             }
+            */
             StringBuilder sb = new StringBuilder();
             string UseStr = string.Empty;
             string DetectionModeStr = string.Empty;
-            byte door = 1;
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
+
+            ReadReaderIntervalTime cmd0 = new ReadReaderIntervalTime(cmdDtl);
+            mMainForm.AddCommand(cmd0);
+
+            ReadReaderInterval cmd = new ReadReaderInterval(cmdDtl, new DoorPort_Parameter(door));
+            mMainForm.AddCommand(cmd);
+
+
+            /*
             if (cBoxDoor1.Checked)
             {
                 door = 1;
@@ -1547,53 +1711,73 @@ namespace FCARDIO.Protocol.Door.Test
                 ReadReaderInterval cmd = new ReadReaderInterval(cmdDtl, new DoorPort_Parameter(door));
                 mMainForm.AddCommand(cmd);
             }
-
+            */
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReaderInterval_Result result = cmde.Command.getResult() as ReaderInterval_Result;
-                UseStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】";
-                if (result.DetectionMode == 1)
+                if (result != null)
                 {
-                    DetectionModeStr = "【1、读卡有记录】";
-                }
-                else if (result.DetectionMode == 2)
-                {
-                    DetectionModeStr = "【2、读卡无记录】";
-                }
-                else if (result.DetectionMode == 3)
-                {
-                    DetectionModeStr = "【3、读卡不做响应】";
-                }
-
-                sb.Clear();
-                sb.AppendLine("门" + result.Door + "：功能状态：" + UseStr);
-                if (result.Use == 1)
-                {
-                    sb.AppendLine("；检测模式：" + DetectionModeStr);
-                }
-
-                Invoke(() =>
-                {
-                    if (result.Use == 0)
+                    UseStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】";
+                    if (result.DetectionMode == 1)
                     {
-                        rBtnNoReaderInterval.Checked = true;
+                        DetectionModeStr = "【1、读卡有记录】";
                     }
-                    cbxDetectionMode.SelectedIndex = result.DetectionMode - 1;
-                });
-                mMainForm.AddCmdLog(cmde, sb.ToString());
+                    else if (result.DetectionMode == 2)
+                    {
+                        DetectionModeStr = "【2、读卡无记录】";
+                    }
+                    else if (result.DetectionMode == 3)
+                    {
+                        DetectionModeStr = "【3、读卡不做响应】";
+                    }
+
+                    sb.Clear();
+                    sb.AppendLine("门" + result.Door + "：功能状态：" + UseStr);
+                    if (result.Use == 1)
+                    {
+                        sb.AppendLine("；检测模式：" + DetectionModeStr);
+                    }
+
+                    Invoke(() =>
+                    {
+                        if (result.Use == 0)
+                        {
+                            rBtnNoReaderInterval.Checked = true;
+                        }
+                        cbxDetectionMode.SelectedIndex = result.DetectionMode - 1;
+                    });
+                    mMainForm.AddCmdLog(cmde, sb.ToString());
+                }
+                ReadReaderIntervalTime_Result IntervalTimeResult = cmde.Command.getResult() as ReadReaderIntervalTime_Result;
+                if (IntervalTimeResult != null)
+                {
+                    Invoke(() =>
+                    {
+                        if (IntervalTimeResult.IntervalTime == 65535)
+                        {
+                            cmbInterval.SelectedIndex = cmbInterval.Items.Count - 1;
+                        }
+                        else
+                        {
+                            cmbInterval.SelectedIndex = IntervalTimeResult.IntervalTime;
+                        }
+
+                    });
+                }
             };
         }
 
         private void BtnWriteReaderInterval_Click(object sender, EventArgs e)
         {
+            /*
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
                 MsgErr("请勾选需要操作的门！");
                 return;
             }
-
-            byte door = 1; //门
+            */
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1); //门
             byte use = 0; //功能是否启用
             byte detectionMode = 1; //检测模式
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -1603,6 +1787,23 @@ namespace FCARDIO.Protocol.Door.Test
                 use = 1;
             }
             detectionMode = Convert.ToByte(cbxDetectionMode.SelectedIndex + 1);
+            WriteReaderInterval_Parameter par = new WriteReaderInterval_Parameter(door, use, detectionMode);
+            WriteReaderInterval write = new WriteReaderInterval(cmdDtl, par);
+            mMainForm.AddCommand(write);
+
+            WriteReaderIntervalTime_Parameter intervalPar = new WriteReaderIntervalTime_Parameter();
+            if (cmbInterval.SelectedIndex == cmbInterval.Items.Count - 1)
+            {
+                intervalPar.IntervalTime = 65535;
+            }
+            else
+            {
+                intervalPar.IntervalTime = (ushort)cmbInterval.SelectedIndex;
+            }
+
+            WriteReaderIntervalTime writeInterval = new WriteReaderIntervalTime(cmdDtl, intervalPar);
+            mMainForm.AddCommand(writeInterval);
+            /*
             if (cBoxDoor1.Checked)
             {
                 door = 1;
@@ -1631,6 +1832,7 @@ namespace FCARDIO.Protocol.Door.Test
                 WriteReaderInterval write = new WriteReaderInterval(cmdDtl, par);
                 mMainForm.AddCommand(write);
             }
+            */
         }
         #endregion
 
@@ -1678,5 +1880,258 @@ namespace FCARDIO.Protocol.Door.Test
             };
         }
         #endregion
+
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+            object ex = this.dataGridView1.Rows[e.RowIndex].Cells["IsEx"].Value;
+            if (e.ColumnIndex == 0 && e.RowIndex % 8 != 0 && ex == null)
+            {
+                return;
+            }
+            if (e.ColumnIndex == 0)
+            {
+                string isEx = ex.ToString();
+                //收缩
+                if (this.dataGridView1.Columns[e.ColumnIndex].Name == "EX" && isEx == "true")
+                {
+                    for (int i = 1; i <= 8; i++)
+                    {
+                        //隐藏行
+                        this.dataGridView1.Rows[e.RowIndex + i].Visible = false;
+                    }
+                    //将IsEx设置为false，标明该节点已经收缩
+                    this.dataGridView1.Rows[e.RowIndex].Cells["IsEx"].Value = "false";
+                    this.dataGridView1.Rows[e.RowIndex].Cells["EX"].Value = "+";
+                }
+                else if (this.dataGridView1.Columns[e.ColumnIndex].Name == "EX" && isEx == "false")
+                {
+                    for (int i = 1; i <= 8; i++)
+                    {
+                        this.dataGridView1.Rows[e.RowIndex + i].Visible = true;
+                    }
+                    this.dataGridView1.Rows[e.RowIndex].Cells["IsEx"].Value = "true";
+                    this.dataGridView1.Rows[e.RowIndex].Cells["EX"].Value = "-";
+                }
+            }
+            if (e.ColumnIndex >= 5 && e.ColumnIndex <= 8 && ex == null)
+            {
+
+                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if ((bool)cell.FormattedValue)
+                {
+                    cell.Value = false;
+                    cell.EditingCellFormattedValue = false;
+                }
+                else
+                {
+                    //for (int i = 5; i <= 8; i++)
+                    //{
+                    //    DataGridViewCheckBoxCell allcell = (DataGridViewCheckBoxCell)dataGridView1.Rows[e.RowIndex].Cells[i];
+                    //    allcell.Value = false;
+                    //    allcell.EditingCellFormattedValue = false;
+                    //}
+                    cell.Value = true;
+                    cell.EditingCellFormattedValue = true;
+                }
+            }
+            if (e.ColumnIndex >= 3 && e.ColumnIndex <= 4)
+            {
+                DataGridViewTextBoxColumn textbox = dataGridView1.Columns[e.ColumnIndex] as DataGridViewTextBoxColumn;
+                if (textbox != null) //如果该列是TextBox列
+                {
+                    dataGridView1.BeginEdit(true); //开始编辑状态
+                    dataGridView1.ReadOnly = false;
+                }
+
+            }
+            else
+            {
+                dataGridView1.BeginEdit(false); //开始编辑状态
+                dataGridView1.ReadOnly = true;
+            }
+        }
+
+        private void DataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+            object ex = this.dataGridView2.Rows[e.RowIndex].Cells["IsEx2"].Value;
+            if (e.ColumnIndex == 0 && e.RowIndex % 8 != 0 && ex == null)
+            {
+                return;
+            }
+            if (e.ColumnIndex == 0)
+            {
+                string isEx = ex.ToString();
+                //收缩
+                if (this.dataGridView2.Columns[e.ColumnIndex].Name == "EX2" && isEx == "true")
+                {
+                    for (int i = 1; i <= 8; i++)
+                    {
+                        //隐藏行
+                        this.dataGridView2.Rows[e.RowIndex + i].Visible = false;
+                    }
+                    //将IsEx设置为false，标明该节点已经收缩
+                    this.dataGridView2.Rows[e.RowIndex].Cells["IsEx2"].Value = "false";
+                    this.dataGridView2.Rows[e.RowIndex].Cells["EX2"].Value = "+";
+                }
+                else if (this.dataGridView2.Columns[e.ColumnIndex].Name == "EX2" && isEx == "false")
+                {
+                    for (int i = 1; i <= 8; i++)
+                    {
+                        this.dataGridView2.Rows[e.RowIndex + i].Visible = true;
+                    }
+                    this.dataGridView2.Rows[e.RowIndex].Cells["IsEx2"].Value = "true";
+                    this.dataGridView2.Rows[e.RowIndex].Cells["EX2"].Value = "-";
+                }
+            }
+
+            if (e.ColumnIndex >= 3 && e.ColumnIndex <= 4)
+            {
+                DataGridViewTextBoxColumn textbox = dataGridView2.Columns[e.ColumnIndex] as DataGridViewTextBoxColumn;
+                if (textbox != null) //如果该列是TextBox列
+                {
+                    dataGridView2.BeginEdit(true); //开始编辑状态
+                    dataGridView2.ReadOnly = false;
+                }
+
+            }
+            else
+            {
+                dataGridView2.BeginEdit(false); //开始编辑状态
+                dataGridView2.ReadOnly = true;
+            }
+        }
+
+        /// <summary>
+        /// 读取防潜回
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnReadAntiPassback_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            ReadCheckInOut cmd0 = new ReadCheckInOut(cmdDtl);
+            mMainForm.AddCommand(cmd0);
+
+            ReadAntiPassback cmd = new ReadAntiPassback(cmdDtl, new DoorPort_Parameter(door));
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                AntiPassback_Result antiPassback_Result = cmde.Command.getResult() as AntiPassback_Result;
+                if (antiPassback_Result != null)
+                {
+                    Invoke(() =>
+                    {
+                        rBtnAnti.Checked = antiPassback_Result.Use;
+                        rBtnNotAnti.Checked = !antiPassback_Result.Use;
+                    });
+                }
+
+                ReadCheckInOut_Result readCheckInOut_Result = cmde.Command.getResult() as ReadCheckInOut_Result;
+                if (readCheckInOut_Result != null)
+                {
+                    Invoke(() =>
+                    {
+                        rBtnCheckInOut1.Checked = readCheckInOut_Result.Mode == 1;
+                        rBtnCheckInOut2.Checked = readCheckInOut_Result.Mode == 2;
+                    });
+                }
+            };
+        }
+
+        /// <summary>
+        /// 写入防潜回
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnWriteAntiPassback_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            WriteCheckInOut_Parameter writeCheckInOut_Parameter = new WriteCheckInOut_Parameter();
+            writeCheckInOut_Parameter.Mode = (byte)(rBtnCheckInOut1.Checked ? 1 : 2);
+            WriteCheckInOut cmd0 = new WriteCheckInOut(cmdDtl, writeCheckInOut_Parameter);
+            mMainForm.AddCommand(cmd0);
+
+            WriteAntiPassback_Parameter writeAntiPassback_Parameter = new WriteAntiPassback_Parameter(door, rBtnAnti.Checked);
+            WriteAntiPassback cmd = new WriteAntiPassback(cmdDtl, writeAntiPassback_Parameter);
+            mMainForm.AddCommand(cmd);
+        }
+
+        #region 出门开关
+        private void BtnReadPushButton_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadPushButtonSetting cmd = new ReadPushButtonSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                PushButtonSetting_Result result = cmde.Command.getResult() as PushButtonSetting_Result;
+                Invoke(() =>
+                {
+                    cbNormallyOpen.Checked = result.NormallyOpen;
+                    cbReadPushButton.Checked = result.Use;
+
+                    WeekTimeGroupPushButtonDto = result.weekTimeGroup;
+                    SetAllTimePicker(plPushButton, "beginTP", "EndTP", WeekTimeGroupPushButtonDto.GetItem(0));
+                });
+            };
+        }
+
+        private void BtnWritePushButton_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+
+            WritePushButtonSetting_Parameter par = new WritePushButtonSetting_Parameter(door,cbReadPushButton.Checked,cbNormallyOpen.Checked, WeekTimeGroupPushButtonDto);
+            WritePushButtonSetting cmd = new WritePushButtonSetting(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void CmbPushButtonWeekday_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (WeekTimeGroupPushButtonDto != null)
+            {
+                var day = WeekTimeGroupPushButtonDto.GetItem(cmbPushButtonWeekday.SelectedIndex);
+                SetAllTimePicker(plPushButton, "beginTP", "EndTP", day);
+            }
+        }
+        private void CbReadPushButton_CheckedChanged(object sender, EventArgs e)
+        {
+            plPushButton.Visible = cbReadPushButton.Checked;
+            lbNormallyOpen.Visible = cbReadPushButton.Checked;
+            cbNormallyOpen.Visible = cbReadPushButton.Checked;
+        }
+        #endregion
+
+        private void BeginTP_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            SetWeekTimeGroupValue(WeekTimeGroupPushButtonDto, cmbPushButtonWeekday.SelectedIndex, int.Parse(dtp.Name.Substring(7)) - 1, 1, dtp.Value);
+        }
+
+
+        private void EndTP_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            SetWeekTimeGroupValue(WeekTimeGroupPushButtonDto, cmbPushButtonWeekday.SelectedIndex, int.Parse(dtp.Name.Substring(5)) - 1, 2, dtp.Value);
+        }
+
+       
     }
 }

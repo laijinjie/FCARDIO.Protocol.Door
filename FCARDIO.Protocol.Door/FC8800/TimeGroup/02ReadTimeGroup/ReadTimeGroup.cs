@@ -27,6 +27,8 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
             {
                 var buf = oPck.CmdData;
                 buf.Retain();
+                Console.WriteLine(oPck.DataLen);
+                Console.WriteLine(ByteBufferUtil.HexDump(buf));
                 mReadBuffers.Add(buf);
                 CommandWaitResponse();
             }

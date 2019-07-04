@@ -105,21 +105,7 @@ namespace FCARDIO.Protocol.Door.Test
             };
         }
 
-        private void SetAllTimePicker(DayTimeGroup group)
-        {
-            for (int i = 0; i <= 7; i++)
-            {
-                DateTimePicker beginTimePicker = FindControl(groupBox1,"beginTimePicker" + (i+1).ToString()) as DateTimePicker;
-                DateTimePicker endTimePicker = FindControl(groupBox1, "endTimePicker" + (i + 1).ToString()) as DateTimePicker;
-                TimeSegment segment = group.GetItem(i);
-                Invoke(() => {
-                    beginTimePicker.Value = segment.GetBeginTime();
-                    endTimePicker.Value = segment.GetEndTime();
-                });
-                
-            }
-            
-        }
+        
 
         /// <summary>
         /// 
@@ -144,22 +130,6 @@ namespace FCARDIO.Protocol.Door.Test
             
         }
 
-        public Control FindControl(Control parentControl, string findCtrlName)
-        {
-            Control _findedControl = null;
-            if (!string.IsNullOrEmpty(findCtrlName) && parentControl != null)
-            {
-                foreach (Control ctrl in parentControl.Controls)
-                {
-                    if (ctrl.Name.Equals(findCtrlName))
-                    {
-                        _findedControl = ctrl;
-                        break;
-                    }
-                }
-            }
-            return _findedControl;
-        }
 
         private void BindTimeSegment()
         {
@@ -167,7 +137,7 @@ namespace FCARDIO.Protocol.Door.Test
             WeekTimeGroup tg = ListWeekTimeGroup[0];
             var day = tg.GetItem(0);
             //var tz = day.GetItem(0) as TimeSegment;
-            SetAllTimePicker(day);
+            SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
             /*
             for (int j = 0; j < 8; j++)
             {
@@ -267,7 +237,7 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 WeekTimeGroup tg = ListWeekTimeGroup[cbTimeGroup.SelectedIndex];
                 var day = tg.GetItem(0);
-                SetAllTimePicker(day);
+                SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
             }
             
         }
@@ -278,7 +248,7 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 WeekTimeGroup tg = ListWeekTimeGroup[cbTimeGroup.SelectedIndex];
                 var day = tg.GetItem(cbWeekday.SelectedIndex);
-                SetAllTimePicker(day);
+                SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
             }
             
         }

@@ -154,6 +154,7 @@
     <Compile Include="INMain.cs" />
     <Compile Include="Model\CardDetailDto.cs" />
     <Compile Include="Model\PasswordDto.cs" />
+    <Compile Include="Model\WeekTimeGroupDto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmCard.resx">

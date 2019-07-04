@@ -56,6 +56,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AntiPassback
             DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
+            model.GetBytes(buf);
             return buf;
         }
 

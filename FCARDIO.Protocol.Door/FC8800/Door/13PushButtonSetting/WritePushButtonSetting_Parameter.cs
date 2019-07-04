@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 using FCARDIO.Core.Extension;
+using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
 {
@@ -30,12 +31,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
         public bool NormallyOpen;
 
         /// <summary>
-        /// 出门按钮的使用时段
+        /// 门工作方式时段
         /// </summary>
-        public DateTime TimeGroup;
+        public WeekTimeGroup weekTimeGroup;
 
         public WritePushButtonSetting_Parameter()
         {
+            weekTimeGroup = new WeekTimeGroup(8);
         }
 
         /// <summary>
@@ -44,13 +46,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
         /// <param name="door">门号</param>
         /// <param name="use">是否开启此功能</param>
         /// <param name="normallOpen">是否启用出门按钮常开功能</param>
-        public WritePushButtonSetting_Parameter(byte door, bool use, bool normallyOpen)
+        public WritePushButtonSetting_Parameter(byte door, bool use, bool normallyOpen, WeekTimeGroup tg)
         {
             DoorNum = door;
             Use = use;
             NormallyOpen = normallyOpen;
             //时间
-            TimeGroup = new DateTime(8);
+            weekTimeGroup = tg;
         }
 
         /// <summary>
@@ -87,8 +89,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
             databuf.WriteBoolean(Use);
             databuf.WriteBoolean(NormallyOpen);
             //时间？？？
-            string time = TimeGroup.ToString();
-            databuf.WriteBytes(time.HexToByte());
+            weekTimeGroup.GetBytes(databuf);
 
             return databuf;
         }
@@ -108,12 +109,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
+            if (weekTimeGroup == null)
+            {
+                weekTimeGroup = new WeekTimeGroup(8);
+            }
+            if (databuf.ReadableBytes != 227)
+            {
+                throw new ArgumentException("databuf Error");
+            }
             DoorNum = databuf.ReadByte();
             Use = databuf.ReadBoolean();
             NormallyOpen = databuf.ReadBoolean();
-
-            //时间
-            TimeGroup = DateTime.Parse(databuf.ReadByte().ToString());
+            weekTimeGroup.ReadDoorWorkSetBytes(databuf);
+           
         }
     }
 }

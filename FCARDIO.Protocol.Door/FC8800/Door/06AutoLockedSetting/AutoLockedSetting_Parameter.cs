@@ -111,7 +111,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AutoLockedSetting
             }
             Door = databuf.ReadByte();
             Use = databuf.ReadByte();
-            weekTimeGroup.SetBytes(databuf);
+            weekTimeGroup.ReadDoorWorkSetBytes(databuf);
         }
     }
 }
