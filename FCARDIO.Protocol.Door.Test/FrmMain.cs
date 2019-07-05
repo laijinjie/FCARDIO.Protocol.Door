@@ -743,14 +743,14 @@ namespace FCARDIO.Protocol.Door.Test
         private void butHoliday_Click(object sender, EventArgs e)
         {
 
-            frmHoliday frm = frmHoliday.GetForm(this);
-            frm.Show();
+            //frmHoliday frm = frmHoliday.GetForm(this);
+            //frm.Show();
         }
 
         private void ButPassword_Click(object sender, EventArgs e)
         {
-            frmPassword frm = frmPassword.GetForm(this);
-            frm.Show();
+            //frmPassword frm = frmPassword.GetForm(this);
+            //frm.Show();
         }
 
         private void ButTimeGroup_Click(object sender, EventArgs e)

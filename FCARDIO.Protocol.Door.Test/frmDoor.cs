@@ -66,7 +66,8 @@ namespace FCARDIO.Protocol.Door.Test
         List<WeekTimeGroupDto> ListWeekTimeGroupDto = new List<WeekTimeGroupDto>();
         List<WeekTimeGroupDto> ListAutoLockedDto = new List<WeekTimeGroupDto>();
         WeekTimeGroup WeekTimeGroupPushButtonDto = new WeekTimeGroup(8);
-        List<CardData> list = new List<CardData>();
+        List<CardData> listGroupA = new List<CardData>();
+        List<CardData> listGroupB = new List<CardData>();
 
         private void frmDoor_Load(object sender, EventArgs e)
         {
@@ -149,7 +150,17 @@ namespace FCARDIO.Protocol.Door.Test
             #endregion
 
             cmbVerifyType.SelectedIndex = 0;
+            cmbGroupNum.Items.Clear();
+            cmbGroupNum.Items.AddRange(new string[] { "1", "2", "3", "4", "5" });
             cmbGroupType.SelectedIndex = 0;
+            //int[] ilist = new int[5];
+            //for (int i = 1; i < 6; i++)
+            //{
+            //    cmbGroupNum.Items.Add(i);
+            //}
+            
+            cmbGroupNum.SelectedIndex = 0;
+            InitCardDataList();
         }
 
         private void InitGridReaderWork()
@@ -2609,89 +2620,189 @@ namespace FCARDIO.Protocol.Door.Test
         
         private void CmbGroupType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            list.Clear();
-            if (cmbGroupType.SelectedIndex == 0)
-            {
-                for (int i = 1; i <= 5; i++)
-                {
-                    cmbGroupNum.Items.Add(i);
-                }
-                cmbGroupNum.SelectedIndex = 0;
-                InitCardDataList(50);
-            }
-            else if (cmbGroupType.SelectedIndex == 1)
-            {
-                for (int i = 1; i <= 20; i++)
-                {
-                    cmbGroupNum.Items.Add(i);
-                }
-                cmbGroupNum.SelectedIndex = 0;
-                InitCardDataList(100);//cmbGroupNum.SelectedIndex + 1,
-            }
-            
-        }
-
-        private void InitCardDataList(int count)
-        {
-            list.Clear();
-            int startIndex = 100;
+            cmbGroupNum.Items.Clear();
+            int count = 5;
             if (cmbGroupType.SelectedIndex == 1)
             {
-                startIndex = 1000;
+                count = 20;
             }
-            startIndex *= cmbGroupNum.SelectedIndex + 1;
-            int index = 1;
-            for (int i = startIndex; i < count + startIndex; i++)
+            string[] array = new string[count];
+            for (int i = 1; i <= count; i++)
             {
-                //list.Add(new CardData() { Card = startIndex.ToString(), Index = index.ToString().PadLeft(2,'0') } );
-                list.Add(new CardData() { Card = "", Index = index.ToString().PadLeft(2, '0') });
-                index++;
+                array[i - 1] = i.ToString();
             }
+            cmbGroupNum.Items.AddRange(array);
+            cmbGroupNum.SelectedIndex = 0;
+            //CmbGroupNum_SelectedIndexChanged(null, null);
+
+
+        }
+
+        private void InitCardDataList()
+        {
             dataGridView3.AutoGenerateColumns = false;
-            dataGridView3.DataSource = new BindingList<CardData>(list);
+            dataGridView4.AutoGenerateColumns = false;
+            dataGridView4.Visible = false;
+            int index = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 1; j <= 50; j++)
+                {
+                    listGroupA.Add(new CardData() { Index = index, Num = j.ToString().PadLeft(2,'0') });
+                    index++;
+                }
+            }
+            dataGridView3.DataSource = new BindingList<CardData>(listGroupA.Where(t => t.Index <50).ToList());
+            index = 0;
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 1; j <= 100; j++)
+                {
+                    listGroupB.Add(new CardData() { Index = index, Num = j.ToString().PadLeft(2, '0') });
+                    index++;
+                }
+            }
+            //dataGridView4.DataSource = new BindingList<CardData>(listGroupB);
+            //dataGridView3.DataSource = new BindingList<CardData>(listGroupA);
+            
+
         }
 
         private void CbConvertHex_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (cbConvertHex.Checked)
+            {
+                for (int i = 0; i < listGroupA.Count; i++)
+                {
+                    listGroupA[i].Card = int.Parse(listGroupA[i].Card).ToString("X");
+                }
+                for (int i = 0; i < listGroupB.Count; i++)
+                {
+                    listGroupB[i].Card = int.Parse(listGroupB[i].Card).ToString("X");
+                }
+            }
+            else
+            {
+                for (int i = 0; i < listGroupA.Count; i++)
+                {
+                    listGroupA[i].Card = Convert.ToInt32(listGroupA[i].Card, 16).ToString();
+                }
+                for (int i = 0; i < listGroupB.Count; i++)
+                {
+                    listGroupB[i].Card = Convert.ToInt32(listGroupB[i].Card,16).ToString();
+                }
+            }
+            CmbGroupNum_SelectedIndexChanged(null, null);
         }
 
         private void BtnAutoFill_Click(object sender, EventArgs e)
         {
-            int count = 50;
-            int startIndex = 100;
-            if (cmbGroupType.SelectedIndex == 1)
-            {
-                startIndex = 1000;
-                count = 100;
-            }
-            startIndex *= cmbGroupNum.SelectedIndex + 1;
             int index = 0;
-            for (int i = startIndex; i < count + startIndex; i++)
+            for (int i = 1; i <= 5; i++)
             {
-                list[index].Card = startIndex.ToString();
-                index++;
+                for (int j = 1; j <= 50; j++)
+                {
+                    listGroupA[index].Card = (100 * i + j).ToString().PadLeft(16,'0');
+                    index++;
+                }
             }
-            dataGridView3.DataSource = new BindingList<CardData>(list);
+            index = 0;
+            for (int i = 1; i <= 20; i++)
+            {
+                for (int j = 1; j <= 100; j++)
+                {
+                    listGroupB[index].Card = (1000 * i + j).ToString().PadLeft(16, '0');
+                    index++;
+                }
+            }
+            CmbGroupNum_SelectedIndexChanged(null, null);
         }
 
         private void CmbGroupNum_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbGroupType.SelectedIndex == 0)
             {
-                InitCardDataList(50);
+                dataGridView3.DataSource = new BindingList<CardData>(listGroupA.Skip(cmbGroupNum.SelectedIndex * 50).Take(50).ToArray());
+                dataGridView3.Visible = true;
+                dataGridView4.Visible = false;
             }
             else if (cmbGroupType.SelectedIndex == 1)
             {
-                InitCardDataList(100);//cmbGroupNum.SelectedIndex + 1,
+                dataGridView4.DataSource = new BindingList<CardData>(listGroupB.Skip(cmbGroupNum.SelectedIndex * 100).Take(100).ToArray());
+                dataGridView4.Visible = true;
+                dataGridView3.Visible = false;
             }
         }
         private void DataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            if (e.ColumnIndex == 2)
+            {
+                DataGridViewTextBoxColumn textbox = dataGridView3.Columns[e.ColumnIndex] as DataGridViewTextBoxColumn;
+                if (textbox != null) //如果该列是TextBox列
+                {
+                    dataGridView3.BeginEdit(true); //开始编辑状态
+                    dataGridView3.ReadOnly = false;
+                }
+            }
+            else
+            {
+                dataGridView3.BeginEdit(false); //开始编辑状态
+                dataGridView3.ReadOnly = true;
+            }
+        }
+
+        private void DataGridView4_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                DataGridViewTextBoxColumn textbox = dataGridView4.Columns[e.ColumnIndex] as DataGridViewTextBoxColumn;
+                if (textbox != null) //如果该列是TextBox列
+                {
+                    dataGridView4.BeginEdit(true); //开始编辑状态
+                    dataGridView4.ReadOnly = false;
+                }
+
+            }
+            else
+            {
+                dataGridView4.BeginEdit(false); //开始编辑状态
+                dataGridView4.ReadOnly = true;
+            }
+        }
+
+        private void DataGridView3_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dataGridView3.CurrentCell.ColumnIndex == 2)
+            {
+                //e.CellStyle.BackColor = Color.FromName("window"); 
+                //DataGridViewComboBoxEditingControl editingControl = e.Control as DataGridViewComboBoxEditingControl; 
+                DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
+                editingControl.TextChanged += new EventHandler(dataGridView3EditingControl_TextChanged);
+            }
+
+        }
+
+        void dataGridView3EditingControl_TextChanged(object sender, EventArgs e)
+        {
+            listGroupA[dataGridView3.CurrentCell.RowIndex].Card = dataGridView3.CurrentCell.EditedFormattedValue.ToString();
+        }
+
+        private void DataGridView4_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dataGridView4.CurrentCell.ColumnIndex == 2)
+            {
+                //e.CellStyle.BackColor = Color.FromName("window"); 
+                //DataGridViewComboBoxEditingControl editingControl = e.Control as DataGridViewComboBoxEditingControl; 
+                DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
+                editingControl.TextChanged += new EventHandler(dataGridView4EditingControl_TextChanged);
+            }
+        }
+
+        void dataGridView4EditingControl_TextChanged(object sender, EventArgs e)
+        {
+            listGroupB[dataGridView4.CurrentCell.RowIndex].Card = dataGridView4.CurrentCell.EditedFormattedValue.ToString();
         }
         #endregion
-
 
     }
 }

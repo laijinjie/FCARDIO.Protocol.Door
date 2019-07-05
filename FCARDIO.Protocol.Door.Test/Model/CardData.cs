@@ -8,7 +8,10 @@ namespace FCARDIO.Protocol.Door.Test.Model
 {
     public class CardData
     {
-        public string Index { get; set; }
+        public int Index { get; set; }
+
+        public string Num { get; set; }
+
 
         public string Card { get; set; }
     }
