@@ -25,6 +25,14 @@ using FCARDIO.Protocol.Door.Test.Model;
 using FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter;
 using FCARDIO.Protocol.Door.FC8800.Door.AntiPassback;
 using FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting;
+using FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting;
+using FCARDIO.Protocol.Door.FC8800.Door.VoiceBroadcastSetting;
+using FCARDIO.Protocol.Door.FC8800.Door.InOutSideReadOpenSetting;
+using FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting;
+using FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback;
+using FCARDIO.Protocol.Door.FC8800.Door.InterLockSetting;
+using FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenMode;
+using FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenVerify;
 
 namespace FCARDIO.Protocol.Door.Test
 {
@@ -58,7 +66,7 @@ namespace FCARDIO.Protocol.Door.Test
         List<WeekTimeGroupDto> ListWeekTimeGroupDto = new List<WeekTimeGroupDto>();
         List<WeekTimeGroupDto> ListAutoLockedDto = new List<WeekTimeGroupDto>();
         WeekTimeGroup WeekTimeGroupPushButtonDto = new WeekTimeGroup(8);
-
+        List<CardData> list = new List<CardData>();
 
         private void frmDoor_Load(object sender, EventArgs e)
         {
@@ -107,7 +115,7 @@ namespace FCARDIO.Protocol.Door.Test
             string[] time = new string[256];
             for (int i = 0; i < 256; i++)
             {
-                time[i] = i + "秒";
+                time[i] = i.ToString() + "秒";
                 if (time[0] == "0秒")
                     time[0] = "禁用";
             }
@@ -118,7 +126,30 @@ namespace FCARDIO.Protocol.Door.Test
 
             WeekTimeGroupPushButtonDto.InitTimeGroup();
             cmbPushButtonWeekday.SelectedIndex = 0;
-       
+
+
+            #region
+            string[] tgAnyCard = new string[64];
+            for (int i = 1; i <= 64; i++)
+            {
+                tgAnyCard[i - 1] = i.ToString();
+            }
+            cmbAnyCardTimeGroup.Items.AddRange(tgAnyCard);
+            cmbAnyCardTimeGroup.SelectedIndex = 0;
+            #endregion
+
+            #region 区域互锁
+            string[] InterLockNum = new string[63];
+            for (int i = 1; i < 64; i++)
+            {
+                InterLockNum[i - 1] = i.ToString();
+            }
+            cmbNum.Items.AddRange(InterLockNum);
+            cmbNum.SelectedIndex = 0;
+            #endregion
+
+            cmbVerifyType.SelectedIndex = 0;
+            cmbGroupType.SelectedIndex = 0;
         }
 
         private void InitGridReaderWork()
@@ -2132,6 +2163,535 @@ namespace FCARDIO.Protocol.Door.Test
             SetWeekTimeGroupValue(WeekTimeGroupPushButtonDto, cmbPushButtonWeekday.SelectedIndex, int.Parse(dtp.Name.Substring(5)) - 1, 2, dtp.Value);
         }
 
-       
+        #region 全卡开门
+        private void BtnReadAnyCard_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadAnyCardSetting cmd = new ReadAnyCardSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                AnyCardSetting_Result result = cmde.Command.getResult() as AnyCardSetting_Result;
+                Invoke(() =>
+                {
+                    cbAnyCardAuto.Checked = result.AutoSave;
+                    cbAnyCardUse.Checked = result.Use;
+                    cmbAnyCardTimeGroup.SelectedIndex = (result.TimeGroup - 1);
+                });
+            };
+        }
+
+        private void BtnWriteAnyCard_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteAnyCardSetting_Parameter par = new WriteAnyCardSetting_Parameter(door,cbAnyCardUse.Checked,cbNormallyOpen.Checked, cmbAnyCardTimeGroup.SelectedIndex + 1);
+            WriteAnyCardSetting cmd = new WriteAnyCardSetting(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
+        }
+
+
+        #endregion
+
+        #region 设置语音播报功能
+        private void BtnReadVoiceBroadcastSetting_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadVoiceBroadcastSetting cmd = new ReadVoiceBroadcastSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                VoiceBroadcastSetting_Result result = cmde.Command.getResult() as VoiceBroadcastSetting_Result;
+                Invoke(() =>
+                {
+                    cbVoiceBroadcastSettingUse.Checked = result.Use;
+                });
+            };
+        }
+
+        private void BtnWriteWriteVoiceBroadcastSetting_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteVoiceBroadcastSetting_Parameter par = new WriteVoiceBroadcastSetting_Parameter(door, cbVoiceBroadcastSettingUse.Checked);
+            WriteVoiceBroadcastSetting cmd = new WriteVoiceBroadcastSetting(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
+        }
+        #endregion
+
+        #region 门内外同时读卡开门
+        private void BtnReadInOutSideReadOpenSetting_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadInOutSideReadOpenSetting cmd = new ReadInOutSideReadOpenSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                InOutSideReadOpenSetting_Result result = cmde.Command.getResult() as InOutSideReadOpenSetting_Result;
+                Invoke(() =>
+                {
+                    cbInOutSideReadOpenSettingUse.Checked = result.Use;
+                });
+            };
+        }
+
+        private void BtnWriteInOutSideReadOpenSetting_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            InOutSideReadOpenSetting_Parameter par = new InOutSideReadOpenSetting_Parameter(door, cbInOutSideReadOpenSettingUse.Checked);
+            WriteInOutSideReadOpenSetting cmd = new WriteInOutSideReadOpenSetting(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
+        }
+
+        #endregion
+
+        #region 键盘管理功能
+        
+
+        private void BtnReadManageKeyboardSetting_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadManageKeyboardSetting cmd = new ReadManageKeyboardSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+
+            ReadPassword readPassword = new ReadPassword(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(readPassword);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ManageKeyboardSetting_Result result = cmde.Command.getResult() as ManageKeyboardSetting_Result;
+                if (result != null)
+                {
+                    Invoke(() =>
+                    {
+                        cbManageKeyboardSettingUse.Checked = result.Use;
+                    });
+                }
+
+                Password_Result password_Result = cmde.Command.getResult() as Password_Result;
+                if (password_Result != null)
+                {
+                    Invoke(() =>
+                    {
+                        txtPassword.Text = password_Result.Password;
+                    });
+                }
+            };
+        }
+
+        private void BtnWriteManageKeyboardSetting_Click(object sender, EventArgs e)
+        {
+            if (txtPassword.Text.Trim().Length < 4)
+            {
+                MessageBox.Show("密码不能少于4位");
+                return;
+            }
+            string pattern = @"\b(0[xX])?[A-Fa-f0-9]+\b";
+            bool isHexNum = Regex.IsMatch(txtPassword.Text.Trim(), pattern);
+            if (!isHexNum)
+            {
+                MessageBox.Show("密码格式不正确");
+                return;
+            }
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteManageKeyboardSetting_Parameter par = new WriteManageKeyboardSetting_Parameter(door, cbManageKeyboardSettingUse.Checked);
+            WriteManageKeyboardSetting cmd = new WriteManageKeyboardSetting(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            WritePassword_Parameter password_Parameter = new WritePassword_Parameter(door, txtPassword.Text.Trim());
+            WritePassword writePassword = new WritePassword(cmdDtl, password_Parameter);
+            mMainForm.AddCommand(writePassword);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
+        }
+        #endregion
+
+        #region 区域防潜回
+        private void CbAreaAntiPassbackUse_CheckedChanged(object sender, EventArgs e)
+        {
+            plAreaAntiPassback.Visible = cbAreaAntiPassbackUse.Checked;
+            lbPort.Visible = lbSN.Visible = lbIP.Visible = txtIP.Visible = txtPort.Visible = txtSN.Visible = (cmbAreaType.SelectedIndex == 1 && cbAreaAntiPassbackUse.Checked);
+        }
+
+        private void BtnReadAreaAntiPassback_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadAreaAntiPassback cmd = new ReadAreaAntiPassback(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                AreaAntiPassback_Result result = cmde.Command.getResult() as AreaAntiPassback_Result;
+                Invoke(() =>
+                {
+                    cbAreaAntiPassbackUse.Checked = result.Use;
+                    txtSN.Text = result.SN;
+                    txtPort.Text = result.Port.ToString();
+                    byte[] listb = result.IP;
+                   
+                    txtIP.Text = listb[0] + "."+ listb[1] + "."+ listb[2] + "."+ listb[3];
+                    cmbAreaType.SelectedIndex = result.Type ? 0 : 1;
+                });
+            };
+        }
+
+        private void BtnWriteAreaAntiPassback_Click(object sender, EventArgs e)
+        {
+            string pattern = @"^((25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))$";
+            bool isHexNum = Regex.IsMatch(txtIP.Text.Trim(), pattern);
+            if (!isHexNum)
+            {
+                MessageBox.Show("IP地址不正确");
+                return;
+            }
+            short s = 0;
+            if (!short.TryParse(txtPort.Text.Trim(),out s))
+            {
+                MessageBox.Show("端口不正确");
+                return;
+            }
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            byte[] bIP = new byte[4];
+            string[] listip = txtIP.Text.Trim().Split('.');
+            for (int i = 0; i < listip.Length; i++)
+            {
+                bIP[i] = byte.Parse(listip[i]);
+            }
+            WriteAreaAntiPassback_Parameter par = new WriteAreaAntiPassback_Parameter(door, cbAreaAntiPassbackUse.Checked,cmbAreaType.SelectedIndex == 0,txtSN.Text.Trim(), bIP, short.Parse(txtPort.Text.Trim()));
+            WriteAreaAntiPassback cmd = new WriteAreaAntiPassback(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
+        }
+
+        private void CmbAreaType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lbPort.Visible = lbSN.Visible = lbIP.Visible = txtIP.Visible = txtPort.Visible = txtSN.Visible = (cmbAreaType.SelectedIndex == 1 && cbAreaAntiPassbackUse.Checked);
+        }
+        #endregion
+
+        #region 区域互锁
+        private void CbInterLockSettingUse_CheckedChanged(object sender, EventArgs e)
+        {
+            //lbAreaType2.Visible = cmbInterLockSettingAreaType.Visible = cbInterLockSettingUse.Checked;
+            lbPort2.Visible = lbIP2.Visible = lbAreaType2.Visible = lbNum2.Visible = lbAreaCode.Visible =
+            cmbNum.Visible = txtInterLockSettingIP.Visible = txtInterLockSettingPort.Visible = cmbInterLockSettingAreaType.Visible = txtAreaCode.Visible =
+               cbInterLockSettingUse.Checked;
+        }
+
+        private void BtnReadInterLockSetting_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadInterLockSetting cmd = new ReadInterLockSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                InterLockSetting_Result result = cmde.Command.getResult() as InterLockSetting_Result;
+                Invoke(() =>
+                {
+                    cbInterLockSettingUse.Checked = result.Use;
+                    cmbNum.SelectedIndex = result.Num - 1;
+                    txtInterLockSettingPort.Text = result.Port.ToString();
+                    byte[] listb = result.IP;
+                    txtAreaCode.Text = result.AreaCode.ToString();
+                    txtInterLockSettingIP.Text = listb[0] + "." + listb[1] + "." + listb[2] + "." + listb[3];
+                    cmbInterLockSettingAreaType.SelectedIndex = result.Type ? 0 : 1;
+                });
+            };
+        }
+
+        private void BtnWriteInterLockSetting_Click(object sender, EventArgs e)
+        {
+            string pattern = @"^((25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))$";
+            bool isHexNum = Regex.IsMatch(txtInterLockSettingIP.Text.Trim(), pattern);
+            if (!isHexNum)
+            {
+                MessageBox.Show("IP地址不正确");
+                return;
+            }
+            ushort s = 0;
+            if (!ushort.TryParse(txtInterLockSettingPort.Text.Trim(), out s))
+            {
+                MessageBox.Show("端口不正确");
+                return;
+            }
+            int iOut = 0;
+            if (!int.TryParse(txtAreaCode.Text.Trim(),out iOut))
+            {
+                MessageBox.Show("区域代码不正确");
+                return;
+            }
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            byte[] bIP = new byte[4];
+            string[] listip = txtInterLockSettingIP.Text.Trim().Split('.');
+            for (int i = 0; i < listip.Length; i++)
+            {
+                bIP[i] = byte.Parse(listip[i]);
+            }
+            WriteInterLockSetting_Parameter par = new WriteInterLockSetting_Parameter(door, cbInterLockSettingUse.Checked, cmbInterLockSettingAreaType.SelectedIndex == 0
+                ,int.Parse(txtAreaCode.Text.Trim()),Convert.ToByte(cmbNum.SelectedIndex + 1), bIP, ushort.Parse(txtInterLockSettingPort.Text.Trim()));
+            WriteInterLockSetting cmd = new WriteInterLockSetting(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
+        }
+
+        private void CmbInterLockSettingAreaType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lbPort2.Visible = lbIP2.Visible = lbNum2.Visible = lbAreaCode.Visible =
+           cmbNum.Visible = txtInterLockSettingIP.Visible = txtInterLockSettingPort.Visible = txtAreaCode.Visible =
+              (cmbInterLockSettingAreaType.SelectedIndex == 1 && cbInterLockSettingUse.Checked);
+        }
+
+        #endregion
+
+        #region 多卡开门检测模式参数
+        private void BtnReadManyCardOpenMode_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadManyCardOpenMode cmd = new ReadManyCardOpenMode(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ManyCardOpenMode_Result result = cmde.Command.getResult() as ManyCardOpenMode_Result;
+                Invoke(() =>
+                {
+                    cmbManyCardOpenMode.SelectedIndex = result.Mode;
+                    cmbAntiPassback.SelectedIndex = result.AntiPassback;
+                });
+            };
+        }
+
+        private void BtnWriteManyCardOpenMode_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteManyCardOpenMode_Parameter par = new WriteManyCardOpenMode_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex);
+            WriteManyCardOpenMode cmd = new WriteManyCardOpenMode(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
+        }
+        #endregion
+
+        #region 多卡开门验证方式
+        private void CmbVerifyType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            plManyCardOpenVerify.Visible = cmbVerifyType.SelectedIndex == 1;
+            if (true)
+            {
+
+            }
+        }
+
+        private void BtnReadManyCardOpenVerify_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadManyCardOpenVerify cmd = new ReadManyCardOpenVerify(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ManyCardOpenVerify_Result result = cmde.Command.getResult() as ManyCardOpenVerify_Result;
+                Invoke(() =>
+                {
+                    cmbVerifyType.SelectedIndex = result.VerifyType;
+                    txtAGroupCount.Text = result.AGroupCount.ToString();
+                    txtBGroupCount.Text = result.BGroupCount.ToString();
+                });
+            };
+        }
+
+        private void BtnWriteManyCardOpenVerify_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            byte bAcount = 0;
+            byte bBcount = 0;
+            if (!byte.TryParse(txtAGroupCount.Text,out bAcount))
+            {
+                MessageBox.Show("A组数量不正确");
+                return;
+            }
+            if (!byte.TryParse(txtBGroupCount.Text, out bBcount))
+            {
+                MessageBox.Show("B组数量不正确");
+                return;
+            }
+            WriteManyCardOpenVerify_Parameter par = new WriteManyCardOpenVerify_Parameter(door, (byte)cmbVerifyType.SelectedIndex, bAcount, bBcount);
+            WriteManyCardOpenVerify cmd = new WriteManyCardOpenVerify(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
+        }
+
+        #endregion
+
+        #region 多卡开门AB组设置
+        
+        private void CmbGroupType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            list.Clear();
+            if (cmbGroupType.SelectedIndex == 0)
+            {
+                for (int i = 1; i <= 5; i++)
+                {
+                    cmbGroupNum.Items.Add(i);
+                }
+                cmbGroupNum.SelectedIndex = 0;
+                InitCardDataList(50);
+            }
+            else if (cmbGroupType.SelectedIndex == 1)
+            {
+                for (int i = 1; i <= 20; i++)
+                {
+                    cmbGroupNum.Items.Add(i);
+                }
+                cmbGroupNum.SelectedIndex = 0;
+                InitCardDataList(100);//cmbGroupNum.SelectedIndex + 1,
+            }
+            
+        }
+
+        private void InitCardDataList(int count)
+        {
+            list.Clear();
+            int startIndex = 100;
+            if (cmbGroupType.SelectedIndex == 1)
+            {
+                startIndex = 1000;
+            }
+            startIndex *= cmbGroupNum.SelectedIndex + 1;
+            int index = 1;
+            for (int i = startIndex; i < count + startIndex; i++)
+            {
+                //list.Add(new CardData() { Card = startIndex.ToString(), Index = index.ToString().PadLeft(2,'0') } );
+                list.Add(new CardData() { Card = "", Index = index.ToString().PadLeft(2, '0') });
+                index++;
+            }
+            dataGridView3.AutoGenerateColumns = false;
+            dataGridView3.DataSource = new BindingList<CardData>(list);
+        }
+
+        private void CbConvertHex_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnAutoFill_Click(object sender, EventArgs e)
+        {
+            int count = 50;
+            int startIndex = 100;
+            if (cmbGroupType.SelectedIndex == 1)
+            {
+                startIndex = 1000;
+                count = 100;
+            }
+            startIndex *= cmbGroupNum.SelectedIndex + 1;
+            int index = 0;
+            for (int i = startIndex; i < count + startIndex; i++)
+            {
+                list[index].Card = startIndex.ToString();
+                index++;
+            }
+            dataGridView3.DataSource = new BindingList<CardData>(list);
+        }
+
+        private void CmbGroupNum_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbGroupType.SelectedIndex == 0)
+            {
+                InitCardDataList(50);
+            }
+            else if (cmbGroupType.SelectedIndex == 1)
+            {
+                InitCardDataList(100);//cmbGroupNum.SelectedIndex + 1,
+            }
+        }
+        private void DataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+        #endregion
+
+
     }
 }

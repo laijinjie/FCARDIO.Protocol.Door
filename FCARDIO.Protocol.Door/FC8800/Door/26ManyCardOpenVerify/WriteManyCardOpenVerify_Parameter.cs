@@ -1,52 +1,46 @@
-﻿using System;
+﻿using DotNetty.Buffers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
+namespace FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenVerify
 {
-    /// <summary>
-    /// 全卡开门功能
-    /// 所有的卡都能开门，不需要权限首选注册，只要读卡器能识别就能开门。
-    /// </summary>
-    public class WriteAnyCardSetting_Parameter
-        :AbstractParameter
+    public class WriteManyCardOpenVerify_Parameter : AbstractParameter
     {
         /// <summary>
         /// 门号
         /// 门端口在控制板中的索引号，取值：1-4
         /// </summary>
-        public int DoorNum;
+        public int DoorNum { get; set; }
 
         /// <summary>
-        /// 是否启用全卡开门功能
+        /// 开门验证方式 (1)
         /// </summary>
-        public bool Use;
+        public byte VerifyType { get; set; }
 
         /// <summary>
-        /// 是否启用在刷卡开门后保存卡片权限
-        /// 保存后，以后关闭全卡功能，此卡也能开门。
+        /// A组刷卡数量 (1)
         /// </summary>
-        public bool AutoSave;
-
-        public int TimeGroup { get; set; }
-
-        public WriteAnyCardSetting_Parameter() { }
+        public byte AGroupCount { get; set; }
 
         /// <summary>
-        /// 创建结构,并传入门号和是否开启此功能
+        /// B组刷卡数量 (1)
         /// </summary>
-        /// <param name="door">门号</param>
-        /// <param name="use">是否启用全卡开门功能</param>
-        /// <param name="auto">是否启用在刷卡开门后保存卡片权限</param>
-        public WriteAnyCardSetting_Parameter(byte door,bool use,bool auto, int timeGroup)
+        public byte BGroupCount { get; set; }
+
+        public WriteManyCardOpenVerify_Parameter()
+        {
+
+        }
+
+        public WriteManyCardOpenVerify_Parameter(byte door, byte verifytype, byte agroupcount, byte bgroupcount)
         {
             DoorNum = door;
-            Use = use;
-            AutoSave = auto;
-            TimeGroup = timeGroup;
+            VerifyType = verifytype;
+            AGroupCount = agroupcount;
+            BGroupCount = bgroupcount;
         }
 
         /// <summary>
@@ -55,11 +49,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DoorNum > 4)
-                throw new ArgumentException("door Is Max!");
             return true;
         }
-
 
         /// <summary>
         /// 释放资源
@@ -68,6 +59,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
         {
             return;
         }
+
 
         /// <summary>
         /// 将结构编码为字节缓冲
@@ -81,9 +73,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
                 throw new ArgumentException("door Error!");
             }
             databuf.WriteByte(DoorNum);
-            databuf.WriteBoolean(Use);
-            databuf.WriteBoolean(AutoSave);
-            databuf.WriteByte(TimeGroup);
+            databuf.WriteByte(VerifyType);
+            databuf.WriteByte(AGroupCount);
+            databuf.WriteByte(BGroupCount);
             return databuf;
         }
 
@@ -103,9 +95,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
         public override void SetBytes(IByteBuffer databuf)
         {
             DoorNum = databuf.ReadByte();
-            Use = databuf.ReadBoolean();
-            AutoSave = databuf.ReadBoolean();
-            TimeGroup = databuf.ReadByte();
+            VerifyType = databuf.ReadByte();
+            AGroupCount = databuf.ReadByte();
+            BGroupCount = databuf.ReadByte();
         }
     }
 }

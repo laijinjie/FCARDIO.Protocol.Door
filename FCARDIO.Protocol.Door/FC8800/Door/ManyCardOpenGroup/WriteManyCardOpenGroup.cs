@@ -4,14 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Data
+namespace FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenGroup
 {
-    public class MyList<T> : IMyList<T>
+    public class WriteManyCardOpenGroup
     {
-        public void ChangeT(T t)
-        {
-
-        }
-
     }
 }
