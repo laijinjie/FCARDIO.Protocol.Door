@@ -33,6 +33,7 @@ using FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback;
 using FCARDIO.Protocol.Door.FC8800.Door.InterLockSetting;
 using FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenMode;
 using FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenVerify;
+using FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenGroup;
 
 namespace FCARDIO.Protocol.Door.Test
 {
@@ -2573,16 +2574,54 @@ namespace FCARDIO.Protocol.Door.Test
             ReadManyCardOpenVerify cmd = new ReadManyCardOpenVerify(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
             mMainForm.AddCommand(cmd);
 
+            
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ManyCardOpenVerify_Result result = cmde.Command.getResult() as ManyCardOpenVerify_Result;
-                Invoke(() =>
+                if (result != null)
                 {
-                    cmbVerifyType.SelectedIndex = result.VerifyType;
-                    txtAGroupCount.Text = result.AGroupCount.ToString();
-                    txtBGroupCount.Text = result.BGroupCount.ToString();
-                });
+                    Invoke(() =>
+                    {
+                        cmbVerifyType.SelectedIndex = result.VerifyType;
+                        txtAGroupCount.Text = result.AGroupCount.ToString();
+                        txtBGroupCount.Text = result.BGroupCount.ToString();
+                    });
+
+                    if (result.VerifyType != 0)
+                    {
+                        //WriteManyCardOpenGroup_Parameter par = new WriteManyCardOpenGroup_Parameter((byte)(cmbGroupType.SelectedIndex), (byte)(cmbGroupNum.SelectedIndex + 1));
+                        WriteManyCardOpenGroup_Parameter par = new WriteManyCardOpenGroup_Parameter(0, 1);
+                        ReadManyCardOpenGroup readManyCard = new ReadManyCardOpenGroup(cmdDtl, par);
+                        mMainForm.AddCommand(readManyCard);
+
+                        par = new WriteManyCardOpenGroup_Parameter(1, 1);
+                        readManyCard = new ReadManyCardOpenGroup(cmdDtl, par);
+                        mMainForm.AddCommand(readManyCard);
+
+                        cmdDtl.CommandCompleteEvent += (sdr2, cmde2) =>
+                        {
+                        };
+                    }
+                }
+
+                ManyCardOpenGroup_Result manyCardOpenGroup = cmde.Command.getResult() as ManyCardOpenGroup_Result;
+                if (manyCardOpenGroup != null)
+                {
+                    Invoke(() =>
+                    {
+                        if (manyCardOpenGroup.GroupType == 0)
+                        {
+                            txtAGroupCount.Text = manyCardOpenGroup.AGroupCount.ToString();
+                            //txtBGroupCount.Text = manyCardOpenGroup.BGroupCount.ToString();
+                        }
+                        else
+                        {
+                            txtBGroupCount.Text = manyCardOpenGroup.BGroupCount.ToString();
+                        }
+                    });
+                }
+
             };
         }
 
@@ -2777,14 +2816,12 @@ namespace FCARDIO.Protocol.Door.Test
                 //e.CellStyle.BackColor = Color.FromName("window"); 
                 //DataGridViewComboBoxEditingControl editingControl = e.Control as DataGridViewComboBoxEditingControl; 
                 DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
-                editingControl.TextChanged += new EventHandler(dataGridView3EditingControl_TextChanged);
+                editingControl.TextChanged += (se,ea) =>
+                {
+                    listGroupA[dataGridView3.CurrentCell.RowIndex].Card = dataGridView3.CurrentCell.EditedFormattedValue.ToString();
+                };
             }
 
-        }
-
-        void dataGridView3EditingControl_TextChanged(object sender, EventArgs e)
-        {
-            listGroupA[dataGridView3.CurrentCell.RowIndex].Card = dataGridView3.CurrentCell.EditedFormattedValue.ToString();
         }
 
         private void DataGridView4_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -2794,15 +2831,41 @@ namespace FCARDIO.Protocol.Door.Test
                 //e.CellStyle.BackColor = Color.FromName("window"); 
                 //DataGridViewComboBoxEditingControl editingControl = e.Control as DataGridViewComboBoxEditingControl; 
                 DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
-                editingControl.TextChanged += new EventHandler(dataGridView4EditingControl_TextChanged);
+                editingControl.TextChanged += (se, ea) => {
+                    listGroupB[dataGridView4.CurrentCell.RowIndex].Card = dataGridView4.CurrentCell.EditedFormattedValue.ToString();
+                };
             }
         }
 
-        void dataGridView4EditingControl_TextChanged(object sender, EventArgs e)
+        private void BtnDeleteGroup_Click(object sender, EventArgs e)
         {
-            listGroupB[dataGridView4.CurrentCell.RowIndex].Card = dataGridView4.CurrentCell.EditedFormattedValue.ToString();
+            int index = 0;
+            if (cmbGroupType.SelectedIndex == 0)
+            {
+                for (int i = 1; i <= 5; i++)
+                {
+                    for (int j = 1; j <= 50; j++)
+                    {
+                        listGroupA[index].Card = "";
+                        index++;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= 20; i++)
+                {
+                    for (int j = 1; j <= 100; j++)
+                    {
+                        listGroupB[index].Card = "";
+                        index++;
+                    }
+                }
+            }
+            CmbGroupNum_SelectedIndexChanged(null, null);
         }
         #endregion
+
 
     }
 }

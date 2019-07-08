@@ -9,10 +9,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenGroup
 {
     public class WriteManyCardOpenGroup_Parameter : AbstractParameter
     {
-        /// <summary>
-        /// 卡集合 (9*N)
-        /// </summary>
-        public List<string> ListCardData { get; set; }
+        
 
         /// <summary>
         /// 组类别 (1)
@@ -23,19 +20,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenGroup
         /// 组号(1)
         /// </summary>
         public byte GroupNum { get; set; }
-
+        public byte AGroupCount { get; set; }
+        public byte BGroupCount { get; set; }
 
         public WriteManyCardOpenGroup_Parameter()
         {
 
         }
-
-        public WriteManyCardOpenGroup_Parameter(List<string> list, byte grouptype, byte groupnum)
+        public WriteManyCardOpenGroup_Parameter(byte grouptype, byte groupnum)
         {
-            ListCardData = list;
             GroupType = grouptype;
             GroupNum = groupnum;
         }
+
 
         /// <summary>
         /// 检查参数
@@ -62,15 +59,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenGroup
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 3)
+            if (databuf.WritableBytes != 2)
             {
                 throw new ArgumentException("door Error!");
             }
             databuf.WriteByte(GroupType);
             databuf.WriteByte(GroupNum);
-            databuf.WriteByte(ListCardData.Count);
+            //databuf.WriteByte(ListCardData.Count);
             return databuf;
         }
+
 
         /// <summary>
         /// 指定此类结构编码为字节缓冲后的长度
@@ -78,7 +76,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenGroup
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 3;
+            return 2;
         }
 
         /// <summary>
@@ -89,6 +87,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenGroup
         {
             GroupType = databuf.ReadByte();
             GroupNum = databuf.ReadByte();
+            if (GroupType == 0)
+            {
+                AGroupCount = databuf.ReadByte();
+            }
+            else
+            {
+                BGroupCount = databuf.ReadByte();
+            }
         }
+
+        
     }
 }

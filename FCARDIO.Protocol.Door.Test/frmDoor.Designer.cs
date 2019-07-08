@@ -330,6 +330,7 @@
             this.cBoxDoor2 = new System.Windows.Forms.CheckBox();
             this.cBoxDoor1 = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
+            this.btnDeleteGroup = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -380,11 +381,10 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(16, 49);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabControl1.Location = new System.Drawing.Point(12, 39);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1012, 1051);
+            this.tabControl1.Size = new System.Drawing.Size(759, 841);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -397,11 +397,10 @@
             this.tabPage1.Controls.Add(this.groupBox7);
             this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox5);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1004, 1022);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(751, 815);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "参数1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -413,11 +412,9 @@
             this.groupBox11.Controls.Add(this.btnWriteRelayReleaseTime);
             this.groupBox11.Controls.Add(this.btnReadRelayReleaseTime);
             this.groupBox11.Controls.Add(this.label38);
-            this.groupBox11.Location = new System.Drawing.Point(643, 152);
-            this.groupBox11.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox11.Location = new System.Drawing.Point(482, 122);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox11.Size = new System.Drawing.Size(332, 65);
+            this.groupBox11.Size = new System.Drawing.Size(249, 52);
             this.groupBox11.TabIndex = 7;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "开锁保持时间(秒)";
@@ -425,10 +422,9 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(152, 31);
-            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label39.Location = new System.Drawing.Point(114, 25);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(30, 15);
+            this.label39.Size = new System.Drawing.Size(23, 12);
             this.label39.TabIndex = 51;
             this.label39.Text = "/秒";
             // 
@@ -436,7 +432,7 @@
             // 
             this.cbxReleaseTime.FormattingEnabled = true;
             this.cbxReleaseTime.IntegralHeight = false;
-            this.cbxReleaseTime.ItemHeight = 15;
+            this.cbxReleaseTime.ItemHeight = 12;
             this.cbxReleaseTime.Items.AddRange(new object[] {
             "0.5",
             "1",
@@ -460,19 +456,17 @@
             "19",
             "20",
             "65535"});
-            this.cbxReleaseTime.Location = new System.Drawing.Point(52, 28);
-            this.cbxReleaseTime.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxReleaseTime.Location = new System.Drawing.Point(39, 22);
             this.cbxReleaseTime.MaxLength = 5;
             this.cbxReleaseTime.Name = "cbxReleaseTime";
-            this.cbxReleaseTime.Size = new System.Drawing.Size(91, 23);
+            this.cbxReleaseTime.Size = new System.Drawing.Size(69, 20);
             this.cbxReleaseTime.TabIndex = 50;
             // 
             // btnWriteRelayReleaseTime
             // 
-            this.btnWriteRelayReleaseTime.Location = new System.Drawing.Point(260, 25);
-            this.btnWriteRelayReleaseTime.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteRelayReleaseTime.Location = new System.Drawing.Point(195, 20);
             this.btnWriteRelayReleaseTime.Name = "btnWriteRelayReleaseTime";
-            this.btnWriteRelayReleaseTime.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteRelayReleaseTime.Size = new System.Drawing.Size(48, 23);
             this.btnWriteRelayReleaseTime.TabIndex = 49;
             this.btnWriteRelayReleaseTime.Text = "写入";
             this.btnWriteRelayReleaseTime.UseVisualStyleBackColor = true;
@@ -480,10 +474,9 @@
             // 
             // btnReadRelayReleaseTime
             // 
-            this.btnReadRelayReleaseTime.Location = new System.Drawing.Point(188, 25);
-            this.btnReadRelayReleaseTime.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadRelayReleaseTime.Location = new System.Drawing.Point(141, 20);
             this.btnReadRelayReleaseTime.Name = "btnReadRelayReleaseTime";
-            this.btnReadRelayReleaseTime.Size = new System.Drawing.Size(64, 29);
+            this.btnReadRelayReleaseTime.Size = new System.Drawing.Size(48, 23);
             this.btnReadRelayReleaseTime.TabIndex = 48;
             this.btnReadRelayReleaseTime.Text = "读取";
             this.btnReadRelayReleaseTime.UseVisualStyleBackColor = true;
@@ -492,10 +485,9 @@
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(5, 31);
-            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label38.Location = new System.Drawing.Point(4, 25);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(52, 15);
+            this.label38.Size = new System.Drawing.Size(41, 12);
             this.label38.TabIndex = 46;
             this.label38.Text = "时间：";
             // 
@@ -506,11 +498,9 @@
             this.groupBox10.Controls.Add(this.txtAutoLockedSetting);
             this.groupBox10.Controls.Add(this.btnWriteAutoLockedSetting);
             this.groupBox10.Controls.Add(this.btnReadAutoLockedSetting);
-            this.groupBox10.Location = new System.Drawing.Point(8, 776);
-            this.groupBox10.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox10.Location = new System.Drawing.Point(6, 621);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox10.Size = new System.Drawing.Size(967, 230);
+            this.groupBox10.Size = new System.Drawing.Size(725, 184);
             this.groupBox10.TabIndex = 6;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "定时锁定门";
@@ -527,13 +517,12 @@
             this.StartTime2,
             this.EndTime2});
             this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridView2.Location = new System.Drawing.Point(8, 28);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView2.Location = new System.Drawing.Point(6, 22);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(852, 198);
+            this.dataGridView2.Size = new System.Drawing.Size(639, 158);
             this.dataGridView2.TabIndex = 40;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView2_CellClick);
             // 
@@ -590,19 +579,17 @@
             // 
             this.panel1.Controls.Add(this.rBtnNoAutoLockedSetting);
             this.panel1.Controls.Add(this.rBtnAutoLockedSetting);
-            this.panel1.Location = new System.Drawing.Point(873, 28);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(655, 22);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(93, 54);
+            this.panel1.Size = new System.Drawing.Size(70, 43);
             this.panel1.TabIndex = 81;
             // 
             // rBtnNoAutoLockedSetting
             // 
             this.rBtnNoAutoLockedSetting.AutoSize = true;
-            this.rBtnNoAutoLockedSetting.Location = new System.Drawing.Point(5, 4);
-            this.rBtnNoAutoLockedSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnNoAutoLockedSetting.Location = new System.Drawing.Point(4, 3);
             this.rBtnNoAutoLockedSetting.Name = "rBtnNoAutoLockedSetting";
-            this.rBtnNoAutoLockedSetting.Size = new System.Drawing.Size(73, 19);
+            this.rBtnNoAutoLockedSetting.Size = new System.Drawing.Size(59, 16);
             this.rBtnNoAutoLockedSetting.TabIndex = 51;
             this.rBtnNoAutoLockedSetting.Text = "不启用";
             this.rBtnNoAutoLockedSetting.UseVisualStyleBackColor = true;
@@ -611,10 +598,9 @@
             // 
             this.rBtnAutoLockedSetting.AutoSize = true;
             this.rBtnAutoLockedSetting.Checked = true;
-            this.rBtnAutoLockedSetting.Location = new System.Drawing.Point(5, 31);
-            this.rBtnAutoLockedSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnAutoLockedSetting.Location = new System.Drawing.Point(4, 25);
             this.rBtnAutoLockedSetting.Name = "rBtnAutoLockedSetting";
-            this.rBtnAutoLockedSetting.Size = new System.Drawing.Size(58, 19);
+            this.rBtnAutoLockedSetting.Size = new System.Drawing.Size(47, 16);
             this.rBtnAutoLockedSetting.TabIndex = 52;
             this.rBtnAutoLockedSetting.TabStop = true;
             this.rBtnAutoLockedSetting.Text = "启用";
@@ -622,22 +608,20 @@
             // 
             // txtAutoLockedSetting
             // 
-            this.txtAutoLockedSetting.Location = new System.Drawing.Point(8, 28);
-            this.txtAutoLockedSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAutoLockedSetting.Location = new System.Drawing.Point(6, 22);
             this.txtAutoLockedSetting.Multiline = true;
             this.txtAutoLockedSetting.Name = "txtAutoLockedSetting";
             this.txtAutoLockedSetting.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtAutoLockedSetting.Size = new System.Drawing.Size(851, 23);
+            this.txtAutoLockedSetting.Size = new System.Drawing.Size(639, 19);
             this.txtAutoLockedSetting.TabIndex = 38;
             this.txtAutoLockedSetting.Visible = false;
             this.txtAutoLockedSetting.WordWrap = false;
             // 
             // btnWriteAutoLockedSetting
             // 
-            this.btnWriteAutoLockedSetting.Location = new System.Drawing.Point(873, 189);
-            this.btnWriteAutoLockedSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteAutoLockedSetting.Location = new System.Drawing.Point(655, 151);
             this.btnWriteAutoLockedSetting.Name = "btnWriteAutoLockedSetting";
-            this.btnWriteAutoLockedSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteAutoLockedSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteAutoLockedSetting.TabIndex = 37;
             this.btnWriteAutoLockedSetting.Text = "写入";
             this.btnWriteAutoLockedSetting.UseVisualStyleBackColor = true;
@@ -645,10 +629,9 @@
             // 
             // btnReadAutoLockedSetting
             // 
-            this.btnReadAutoLockedSetting.Location = new System.Drawing.Point(873, 135);
-            this.btnReadAutoLockedSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadAutoLockedSetting.Location = new System.Drawing.Point(655, 108);
             this.btnReadAutoLockedSetting.Name = "btnReadAutoLockedSetting";
-            this.btnReadAutoLockedSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnReadAutoLockedSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadAutoLockedSetting.TabIndex = 36;
             this.btnReadAutoLockedSetting.Text = "读取";
             this.btnReadAutoLockedSetting.UseVisualStyleBackColor = true;
@@ -663,11 +646,9 @@
             this.groupBox9.Controls.Add(this.btnWriteWorkSetting);
             this.groupBox9.Controls.Add(this.btnReadWorkSetting);
             this.groupBox9.Controls.Add(this.label57);
-            this.groupBox9.Location = new System.Drawing.Point(8, 495);
-            this.groupBox9.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox9.Location = new System.Drawing.Point(6, 396);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox9.Size = new System.Drawing.Size(967, 274);
+            this.groupBox9.Size = new System.Drawing.Size(725, 219);
             this.groupBox9.TabIndex = 5;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "门工作方式";
@@ -708,20 +689,18 @@
             this.DoorOpenTimePanel.Controls.Add(this.label19);
             this.DoorOpenTimePanel.Controls.Add(this.beginTimePicker1);
             this.DoorOpenTimePanel.Controls.Add(this.cbxWeek);
-            this.DoorOpenTimePanel.Location = new System.Drawing.Point(8, 91);
-            this.DoorOpenTimePanel.Margin = new System.Windows.Forms.Padding(4);
+            this.DoorOpenTimePanel.Location = new System.Drawing.Point(6, 73);
             this.DoorOpenTimePanel.Name = "DoorOpenTimePanel";
-            this.DoorOpenTimePanel.Size = new System.Drawing.Size(951, 139);
+            this.DoorOpenTimePanel.Size = new System.Drawing.Size(713, 111);
             this.DoorOpenTimePanel.TabIndex = 87;
             this.DoorOpenTimePanel.Visible = false;
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(676, 90);
-            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label34.Location = new System.Drawing.Point(507, 72);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(75, 15);
+            this.label34.Size = new System.Drawing.Size(59, 12);
             this.label34.TabIndex = 117;
             this.label34.Text = "结束时间8";
             // 
@@ -729,21 +708,19 @@
             // 
             this.endTimePicker8.CustomFormat = "HH:mm";
             this.endTimePicker8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker8.Location = new System.Drawing.Point(679, 109);
-            this.endTimePicker8.Margin = new System.Windows.Forms.Padding(4);
+            this.endTimePicker8.Location = new System.Drawing.Point(509, 87);
             this.endTimePicker8.Name = "endTimePicker8";
             this.endTimePicker8.ShowUpDown = true;
-            this.endTimePicker8.Size = new System.Drawing.Size(75, 25);
+            this.endTimePicker8.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker8.TabIndex = 116;
             this.endTimePicker8.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(589, 90);
-            this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label35.Location = new System.Drawing.Point(442, 72);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(75, 15);
+            this.label35.Size = new System.Drawing.Size(59, 12);
             this.label35.TabIndex = 115;
             this.label35.Text = "开始时间8";
             // 
@@ -751,21 +728,19 @@
             // 
             this.beginTimePicker8.CustomFormat = "HH:mm";
             this.beginTimePicker8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker8.Location = new System.Drawing.Point(592, 109);
-            this.beginTimePicker8.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTimePicker8.Location = new System.Drawing.Point(444, 87);
             this.beginTimePicker8.Name = "beginTimePicker8";
             this.beginTimePicker8.ShowUpDown = true;
-            this.beginTimePicker8.Size = new System.Drawing.Size(75, 25);
+            this.beginTimePicker8.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker8.TabIndex = 114;
             this.beginTimePicker8.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(676, 35);
-            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label36.Location = new System.Drawing.Point(507, 28);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(75, 15);
+            this.label36.Size = new System.Drawing.Size(59, 12);
             this.label36.TabIndex = 113;
             this.label36.Text = "结束时间4";
             // 
@@ -773,21 +748,19 @@
             // 
             this.endTimePicker4.CustomFormat = "HH:mm";
             this.endTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker4.Location = new System.Drawing.Point(679, 54);
-            this.endTimePicker4.Margin = new System.Windows.Forms.Padding(4);
+            this.endTimePicker4.Location = new System.Drawing.Point(509, 43);
             this.endTimePicker4.Name = "endTimePicker4";
             this.endTimePicker4.ShowUpDown = true;
-            this.endTimePicker4.Size = new System.Drawing.Size(75, 25);
+            this.endTimePicker4.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker4.TabIndex = 112;
             this.endTimePicker4.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(589, 35);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Location = new System.Drawing.Point(442, 28);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(75, 15);
+            this.label37.Size = new System.Drawing.Size(59, 12);
             this.label37.TabIndex = 111;
             this.label37.Text = "开始时间4";
             // 
@@ -795,21 +768,19 @@
             // 
             this.beginTimePicker4.CustomFormat = "HH:mm";
             this.beginTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker4.Location = new System.Drawing.Point(592, 54);
-            this.beginTimePicker4.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTimePicker4.Location = new System.Drawing.Point(444, 43);
             this.beginTimePicker4.Name = "beginTimePicker4";
             this.beginTimePicker4.ShowUpDown = true;
-            this.beginTimePicker4.Size = new System.Drawing.Size(75, 25);
+            this.beginTimePicker4.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker4.TabIndex = 110;
             this.beginTimePicker4.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(481, 90);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Location = new System.Drawing.Point(361, 72);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(75, 15);
+            this.label30.Size = new System.Drawing.Size(59, 12);
             this.label30.TabIndex = 109;
             this.label30.Text = "结束时间7";
             // 
@@ -817,21 +788,19 @@
             // 
             this.endTimePicker7.CustomFormat = "HH:mm";
             this.endTimePicker7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker7.Location = new System.Drawing.Point(484, 109);
-            this.endTimePicker7.Margin = new System.Windows.Forms.Padding(4);
+            this.endTimePicker7.Location = new System.Drawing.Point(363, 87);
             this.endTimePicker7.Name = "endTimePicker7";
             this.endTimePicker7.ShowUpDown = true;
-            this.endTimePicker7.Size = new System.Drawing.Size(75, 25);
+            this.endTimePicker7.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker7.TabIndex = 108;
             this.endTimePicker7.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(395, 90);
-            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label31.Location = new System.Drawing.Point(296, 72);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(75, 15);
+            this.label31.Size = new System.Drawing.Size(59, 12);
             this.label31.TabIndex = 107;
             this.label31.Text = "开始时间7";
             // 
@@ -839,21 +808,19 @@
             // 
             this.beginTimePicker7.CustomFormat = "HH:mm";
             this.beginTimePicker7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker7.Location = new System.Drawing.Point(397, 109);
-            this.beginTimePicker7.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTimePicker7.Location = new System.Drawing.Point(298, 87);
             this.beginTimePicker7.Name = "beginTimePicker7";
             this.beginTimePicker7.ShowUpDown = true;
-            this.beginTimePicker7.Size = new System.Drawing.Size(75, 25);
+            this.beginTimePicker7.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker7.TabIndex = 106;
             this.beginTimePicker7.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(481, 35);
-            this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label32.Location = new System.Drawing.Point(361, 28);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(75, 15);
+            this.label32.Size = new System.Drawing.Size(59, 12);
             this.label32.TabIndex = 105;
             this.label32.Text = "结束时间3";
             // 
@@ -861,21 +828,19 @@
             // 
             this.endTimePicker3.CustomFormat = "HH:mm";
             this.endTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker3.Location = new System.Drawing.Point(484, 54);
-            this.endTimePicker3.Margin = new System.Windows.Forms.Padding(4);
+            this.endTimePicker3.Location = new System.Drawing.Point(363, 43);
             this.endTimePicker3.Name = "endTimePicker3";
             this.endTimePicker3.ShowUpDown = true;
-            this.endTimePicker3.Size = new System.Drawing.Size(75, 25);
+            this.endTimePicker3.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker3.TabIndex = 104;
             this.endTimePicker3.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(395, 35);
-            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label33.Location = new System.Drawing.Point(296, 28);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(75, 15);
+            this.label33.Size = new System.Drawing.Size(59, 12);
             this.label33.TabIndex = 103;
             this.label33.Text = "开始时间3";
             // 
@@ -883,21 +848,19 @@
             // 
             this.beginTimePicker3.CustomFormat = "HH:mm";
             this.beginTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker3.Location = new System.Drawing.Point(397, 54);
-            this.beginTimePicker3.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTimePicker3.Location = new System.Drawing.Point(298, 43);
             this.beginTimePicker3.Name = "beginTimePicker3";
             this.beginTimePicker3.ShowUpDown = true;
-            this.beginTimePicker3.Size = new System.Drawing.Size(75, 25);
+            this.beginTimePicker3.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker3.TabIndex = 102;
             this.beginTimePicker3.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(283, 90);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Location = new System.Drawing.Point(212, 72);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(75, 15);
+            this.label26.Size = new System.Drawing.Size(59, 12);
             this.label26.TabIndex = 101;
             this.label26.Text = "结束时间6";
             // 
@@ -905,21 +868,19 @@
             // 
             this.endTimePicker6.CustomFormat = "HH:mm";
             this.endTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker6.Location = new System.Drawing.Point(285, 109);
-            this.endTimePicker6.Margin = new System.Windows.Forms.Padding(4);
+            this.endTimePicker6.Location = new System.Drawing.Point(214, 87);
             this.endTimePicker6.Name = "endTimePicker6";
             this.endTimePicker6.ShowUpDown = true;
-            this.endTimePicker6.Size = new System.Drawing.Size(75, 25);
+            this.endTimePicker6.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker6.TabIndex = 100;
             this.endTimePicker6.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(196, 90);
-            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label27.Location = new System.Drawing.Point(147, 72);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(75, 15);
+            this.label27.Size = new System.Drawing.Size(59, 12);
             this.label27.TabIndex = 99;
             this.label27.Text = "开始时间6";
             // 
@@ -927,21 +888,19 @@
             // 
             this.beginTimePicker6.CustomFormat = "HH:mm";
             this.beginTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker6.Location = new System.Drawing.Point(199, 109);
-            this.beginTimePicker6.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTimePicker6.Location = new System.Drawing.Point(149, 87);
             this.beginTimePicker6.Name = "beginTimePicker6";
             this.beginTimePicker6.ShowUpDown = true;
-            this.beginTimePicker6.Size = new System.Drawing.Size(75, 25);
+            this.beginTimePicker6.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker6.TabIndex = 98;
             this.beginTimePicker6.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(283, 35);
-            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label28.Location = new System.Drawing.Point(212, 28);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(75, 15);
+            this.label28.Size = new System.Drawing.Size(59, 12);
             this.label28.TabIndex = 97;
             this.label28.Text = "结束时间2";
             // 
@@ -949,21 +908,19 @@
             // 
             this.endTimePicker2.CustomFormat = "HH:mm";
             this.endTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker2.Location = new System.Drawing.Point(285, 54);
-            this.endTimePicker2.Margin = new System.Windows.Forms.Padding(4);
+            this.endTimePicker2.Location = new System.Drawing.Point(214, 43);
             this.endTimePicker2.Name = "endTimePicker2";
             this.endTimePicker2.ShowUpDown = true;
-            this.endTimePicker2.Size = new System.Drawing.Size(75, 25);
+            this.endTimePicker2.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker2.TabIndex = 96;
             this.endTimePicker2.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(196, 35);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Location = new System.Drawing.Point(147, 28);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(75, 15);
+            this.label29.Size = new System.Drawing.Size(59, 12);
             this.label29.TabIndex = 95;
             this.label29.Text = "开始时间2";
             // 
@@ -971,21 +928,19 @@
             // 
             this.beginTimePicker2.CustomFormat = "HH:mm";
             this.beginTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker2.Location = new System.Drawing.Point(199, 54);
-            this.beginTimePicker2.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTimePicker2.Location = new System.Drawing.Point(149, 43);
             this.beginTimePicker2.Name = "beginTimePicker2";
             this.beginTimePicker2.ShowUpDown = true;
-            this.beginTimePicker2.Size = new System.Drawing.Size(75, 25);
+            this.beginTimePicker2.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker2.TabIndex = 94;
             this.beginTimePicker2.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(91, 90);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Location = new System.Drawing.Point(68, 72);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(75, 15);
+            this.label23.Size = new System.Drawing.Size(59, 12);
             this.label23.TabIndex = 93;
             this.label23.Text = "结束时间5";
             // 
@@ -993,21 +948,19 @@
             // 
             this.endTimePicker5.CustomFormat = "HH:mm";
             this.endTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker5.Location = new System.Drawing.Point(93, 109);
-            this.endTimePicker5.Margin = new System.Windows.Forms.Padding(4);
+            this.endTimePicker5.Location = new System.Drawing.Point(70, 87);
             this.endTimePicker5.Name = "endTimePicker5";
             this.endTimePicker5.ShowUpDown = true;
-            this.endTimePicker5.Size = new System.Drawing.Size(75, 25);
+            this.endTimePicker5.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker5.TabIndex = 92;
             this.endTimePicker5.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(4, 90);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label25.Location = new System.Drawing.Point(3, 72);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(75, 15);
+            this.label25.Size = new System.Drawing.Size(59, 12);
             this.label25.TabIndex = 91;
             this.label25.Text = "开始时间5";
             // 
@@ -1015,21 +968,19 @@
             // 
             this.beginTimePicker5.CustomFormat = "HH:mm";
             this.beginTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker5.Location = new System.Drawing.Point(7, 109);
-            this.beginTimePicker5.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTimePicker5.Location = new System.Drawing.Point(5, 87);
             this.beginTimePicker5.Name = "beginTimePicker5";
             this.beginTimePicker5.ShowUpDown = true;
-            this.beginTimePicker5.Size = new System.Drawing.Size(75, 25);
+            this.beginTimePicker5.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker5.TabIndex = 90;
             this.beginTimePicker5.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(91, 35);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Location = new System.Drawing.Point(68, 28);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(75, 15);
+            this.label21.Size = new System.Drawing.Size(59, 12);
             this.label21.TabIndex = 89;
             this.label21.Text = "结束时间1";
             // 
@@ -1037,31 +988,28 @@
             // 
             this.endTimePicker1.CustomFormat = "HH:mm";
             this.endTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker1.Location = new System.Drawing.Point(93, 54);
-            this.endTimePicker1.Margin = new System.Windows.Forms.Padding(4);
+            this.endTimePicker1.Location = new System.Drawing.Point(70, 43);
             this.endTimePicker1.Name = "endTimePicker1";
             this.endTimePicker1.ShowUpDown = true;
-            this.endTimePicker1.Size = new System.Drawing.Size(75, 25);
+            this.endTimePicker1.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker1.TabIndex = 88;
             this.endTimePicker1.Value = new System.DateTime(2019, 5, 13, 23, 59, 0, 0);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(4, 35);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Location = new System.Drawing.Point(3, 28);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(75, 15);
+            this.label20.Size = new System.Drawing.Size(59, 12);
             this.label20.TabIndex = 87;
             this.label20.Text = "开始时间1";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(4, 9);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Location = new System.Drawing.Point(3, 7);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(165, 15);
+            this.label19.Size = new System.Drawing.Size(131, 12);
             this.label19.TabIndex = 85;
             this.label19.Text = "常开、首卡 生效时段：";
             // 
@@ -1069,11 +1017,10 @@
             // 
             this.beginTimePicker1.CustomFormat = "HH:mm";
             this.beginTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker1.Location = new System.Drawing.Point(7, 54);
-            this.beginTimePicker1.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTimePicker1.Location = new System.Drawing.Point(5, 43);
             this.beginTimePicker1.Name = "beginTimePicker1";
             this.beginTimePicker1.ShowUpDown = true;
-            this.beginTimePicker1.Size = new System.Drawing.Size(75, 25);
+            this.beginTimePicker1.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker1.TabIndex = 84;
             this.beginTimePicker1.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             // 
@@ -1089,10 +1036,9 @@
             "星期五",
             "星期六",
             "星期日"});
-            this.cbxWeek.Location = new System.Drawing.Point(187, 5);
-            this.cbxWeek.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxWeek.Location = new System.Drawing.Point(140, 4);
             this.cbxWeek.Name = "cbxWeek";
-            this.cbxWeek.Size = new System.Drawing.Size(137, 23);
+            this.cbxWeek.Size = new System.Drawing.Size(104, 20);
             this.cbxWeek.TabIndex = 86;
             this.cbxWeek.SelectedIndexChanged += new System.EventHandler(this.CbxWeek_SelectedIndexChanged);
             // 
@@ -1102,20 +1048,18 @@
             this.DoorTriggerModePanel.Controls.Add(this.rBtnDoorTriggerMode3);
             this.DoorTriggerModePanel.Controls.Add(this.rBtnDoorTriggerMode1);
             this.DoorTriggerModePanel.Controls.Add(this.rBtnDoorTriggerMode2);
-            this.DoorTriggerModePanel.Location = new System.Drawing.Point(8, 55);
-            this.DoorTriggerModePanel.Margin = new System.Windows.Forms.Padding(4);
+            this.DoorTriggerModePanel.Location = new System.Drawing.Point(6, 44);
             this.DoorTriggerModePanel.Name = "DoorTriggerModePanel";
-            this.DoorTriggerModePanel.Size = new System.Drawing.Size(388, 31);
+            this.DoorTriggerModePanel.Size = new System.Drawing.Size(291, 25);
             this.DoorTriggerModePanel.TabIndex = 83;
             this.DoorTriggerModePanel.Visible = false;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(-3, 9);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Location = new System.Drawing.Point(-2, 7);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(112, 15);
+            this.label18.Size = new System.Drawing.Size(89, 12);
             this.label18.TabIndex = 81;
             this.label18.Text = "常开触发模式：";
             // 
@@ -1123,10 +1067,9 @@
             // 
             this.rBtnDoorTriggerMode3.AutoSize = true;
             this.rBtnDoorTriggerMode3.Checked = true;
-            this.rBtnDoorTriggerMode3.Location = new System.Drawing.Point(289, 6);
-            this.rBtnDoorTriggerMode3.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnDoorTriggerMode3.Location = new System.Drawing.Point(217, 5);
             this.rBtnDoorTriggerMode3.Name = "rBtnDoorTriggerMode3";
-            this.rBtnDoorTriggerMode3.Size = new System.Drawing.Size(88, 19);
+            this.rBtnDoorTriggerMode3.Size = new System.Drawing.Size(71, 16);
             this.rBtnDoorTriggerMode3.TabIndex = 53;
             this.rBtnDoorTriggerMode3.TabStop = true;
             this.rBtnDoorTriggerMode3.Text = "自动开关";
@@ -1135,10 +1078,9 @@
             // rBtnDoorTriggerMode1
             // 
             this.rBtnDoorTriggerMode1.AutoSize = true;
-            this.rBtnDoorTriggerMode1.Location = new System.Drawing.Point(116, 6);
-            this.rBtnDoorTriggerMode1.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnDoorTriggerMode1.Location = new System.Drawing.Point(87, 5);
             this.rBtnDoorTriggerMode1.Name = "rBtnDoorTriggerMode1";
-            this.rBtnDoorTriggerMode1.Size = new System.Drawing.Size(73, 19);
+            this.rBtnDoorTriggerMode1.Size = new System.Drawing.Size(59, 16);
             this.rBtnDoorTriggerMode1.TabIndex = 51;
             this.rBtnDoorTriggerMode1.Text = "合法卡";
             this.rBtnDoorTriggerMode1.UseVisualStyleBackColor = true;
@@ -1146,10 +1088,9 @@
             // rBtnDoorTriggerMode2
             // 
             this.rBtnDoorTriggerMode2.AutoSize = true;
-            this.rBtnDoorTriggerMode2.Location = new System.Drawing.Point(205, 6);
-            this.rBtnDoorTriggerMode2.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnDoorTriggerMode2.Location = new System.Drawing.Point(154, 5);
             this.rBtnDoorTriggerMode2.Name = "rBtnDoorTriggerMode2";
-            this.rBtnDoorTriggerMode2.Size = new System.Drawing.Size(73, 19);
+            this.rBtnDoorTriggerMode2.Size = new System.Drawing.Size(59, 16);
             this.rBtnDoorTriggerMode2.TabIndex = 52;
             this.rBtnDoorTriggerMode2.Text = "常开卡";
             this.rBtnDoorTriggerMode2.UseVisualStyleBackColor = true;
@@ -1161,19 +1102,17 @@
             this.OpenDoorWayPanel.Controls.Add(this.rBtnOpenDoorWay3);
             this.OpenDoorWayPanel.Controls.Add(this.rBtnOpenDoorWay1);
             this.OpenDoorWayPanel.Controls.Add(this.rBtnOpenDoorWay2);
-            this.OpenDoorWayPanel.Location = new System.Drawing.Point(393, 25);
-            this.OpenDoorWayPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.OpenDoorWayPanel.Location = new System.Drawing.Point(295, 20);
             this.OpenDoorWayPanel.Name = "OpenDoorWayPanel";
-            this.OpenDoorWayPanel.Size = new System.Drawing.Size(565, 26);
+            this.OpenDoorWayPanel.Size = new System.Drawing.Size(424, 21);
             this.OpenDoorWayPanel.TabIndex = 82;
             // 
             // rBtnOpenDoorWay4
             // 
             this.rBtnOpenDoorWay4.AutoSize = true;
-            this.rBtnOpenDoorWay4.Location = new System.Drawing.Point(445, 4);
-            this.rBtnOpenDoorWay4.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnOpenDoorWay4.Location = new System.Drawing.Point(334, 3);
             this.rBtnOpenDoorWay4.Name = "rBtnOpenDoorWay4";
-            this.rBtnOpenDoorWay4.Size = new System.Drawing.Size(58, 19);
+            this.rBtnOpenDoorWay4.Size = new System.Drawing.Size(47, 16);
             this.rBtnOpenDoorWay4.TabIndex = 54;
             this.rBtnOpenDoorWay4.Text = "常开";
             this.rBtnOpenDoorWay4.UseVisualStyleBackColor = true;
@@ -1182,20 +1121,18 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(68, 6);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Location = new System.Drawing.Point(51, 5);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(82, 15);
+            this.label17.Size = new System.Drawing.Size(65, 12);
             this.label17.TabIndex = 81;
             this.label17.Text = "开门方式：";
             // 
             // rBtnOpenDoorWay3
             // 
             this.rBtnOpenDoorWay3.AutoSize = true;
-            this.rBtnOpenDoorWay3.Location = new System.Drawing.Point(351, 4);
-            this.rBtnOpenDoorWay3.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnOpenDoorWay3.Location = new System.Drawing.Point(263, 3);
             this.rBtnOpenDoorWay3.Name = "rBtnOpenDoorWay3";
-            this.rBtnOpenDoorWay3.Size = new System.Drawing.Size(58, 19);
+            this.rBtnOpenDoorWay3.Size = new System.Drawing.Size(47, 16);
             this.rBtnOpenDoorWay3.TabIndex = 53;
             this.rBtnOpenDoorWay3.Text = "首卡";
             this.rBtnOpenDoorWay3.UseVisualStyleBackColor = true;
@@ -1205,10 +1142,9 @@
             // 
             this.rBtnOpenDoorWay1.AutoSize = true;
             this.rBtnOpenDoorWay1.Checked = true;
-            this.rBtnOpenDoorWay1.Location = new System.Drawing.Point(163, 4);
-            this.rBtnOpenDoorWay1.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnOpenDoorWay1.Location = new System.Drawing.Point(122, 3);
             this.rBtnOpenDoorWay1.Name = "rBtnOpenDoorWay1";
-            this.rBtnOpenDoorWay1.Size = new System.Drawing.Size(58, 19);
+            this.rBtnOpenDoorWay1.Size = new System.Drawing.Size(47, 16);
             this.rBtnOpenDoorWay1.TabIndex = 51;
             this.rBtnOpenDoorWay1.TabStop = true;
             this.rBtnOpenDoorWay1.Text = "普通";
@@ -1218,10 +1154,9 @@
             // rBtnOpenDoorWay2
             // 
             this.rBtnOpenDoorWay2.AutoSize = true;
-            this.rBtnOpenDoorWay2.Location = new System.Drawing.Point(259, 4);
-            this.rBtnOpenDoorWay2.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnOpenDoorWay2.Location = new System.Drawing.Point(194, 3);
             this.rBtnOpenDoorWay2.Name = "rBtnOpenDoorWay2";
-            this.rBtnOpenDoorWay2.Size = new System.Drawing.Size(58, 19);
+            this.rBtnOpenDoorWay2.Size = new System.Drawing.Size(47, 16);
             this.rBtnOpenDoorWay2.TabIndex = 52;
             this.rBtnOpenDoorWay2.Text = "多卡";
             this.rBtnOpenDoorWay2.UseVisualStyleBackColor = true;
@@ -1231,19 +1166,17 @@
             // 
             this.panel6.Controls.Add(this.rBtnNoDoorWorkSetting);
             this.panel6.Controls.Add(this.rBtnDoorWorkSetting);
-            this.panel6.Location = new System.Drawing.Point(117, 25);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4);
+            this.panel6.Location = new System.Drawing.Point(88, 20);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(167, 26);
+            this.panel6.Size = new System.Drawing.Size(125, 21);
             this.panel6.TabIndex = 80;
             // 
             // rBtnNoDoorWorkSetting
             // 
             this.rBtnNoDoorWorkSetting.AutoSize = true;
-            this.rBtnNoDoorWorkSetting.Location = new System.Drawing.Point(0, 4);
-            this.rBtnNoDoorWorkSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnNoDoorWorkSetting.Location = new System.Drawing.Point(0, 3);
             this.rBtnNoDoorWorkSetting.Name = "rBtnNoDoorWorkSetting";
-            this.rBtnNoDoorWorkSetting.Size = new System.Drawing.Size(73, 19);
+            this.rBtnNoDoorWorkSetting.Size = new System.Drawing.Size(59, 16);
             this.rBtnNoDoorWorkSetting.TabIndex = 51;
             this.rBtnNoDoorWorkSetting.Text = "不启用";
             this.rBtnNoDoorWorkSetting.UseVisualStyleBackColor = true;
@@ -1253,10 +1186,9 @@
             // 
             this.rBtnDoorWorkSetting.AutoSize = true;
             this.rBtnDoorWorkSetting.Checked = true;
-            this.rBtnDoorWorkSetting.Location = new System.Drawing.Point(96, 4);
-            this.rBtnDoorWorkSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnDoorWorkSetting.Location = new System.Drawing.Point(72, 3);
             this.rBtnDoorWorkSetting.Name = "rBtnDoorWorkSetting";
-            this.rBtnDoorWorkSetting.Size = new System.Drawing.Size(58, 19);
+            this.rBtnDoorWorkSetting.Size = new System.Drawing.Size(47, 16);
             this.rBtnDoorWorkSetting.TabIndex = 52;
             this.rBtnDoorWorkSetting.TabStop = true;
             this.rBtnDoorWorkSetting.Text = "启用";
@@ -1265,10 +1197,9 @@
             // 
             // btnWriteWorkSetting
             // 
-            this.btnWriteWorkSetting.Location = new System.Drawing.Point(87, 238);
-            this.btnWriteWorkSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteWorkSetting.Location = new System.Drawing.Point(65, 190);
             this.btnWriteWorkSetting.Name = "btnWriteWorkSetting";
-            this.btnWriteWorkSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteWorkSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteWorkSetting.TabIndex = 79;
             this.btnWriteWorkSetting.Text = "写入";
             this.btnWriteWorkSetting.UseVisualStyleBackColor = true;
@@ -1276,10 +1207,9 @@
             // 
             // btnReadWorkSetting
             // 
-            this.btnReadWorkSetting.Location = new System.Drawing.Point(15, 238);
-            this.btnReadWorkSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadWorkSetting.Location = new System.Drawing.Point(11, 190);
             this.btnReadWorkSetting.Name = "btnReadWorkSetting";
-            this.btnReadWorkSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnReadWorkSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadWorkSetting.TabIndex = 78;
             this.btnReadWorkSetting.Text = "读取";
             this.btnReadWorkSetting.UseVisualStyleBackColor = true;
@@ -1288,10 +1218,9 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(5, 32);
-            this.label57.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label57.Location = new System.Drawing.Point(4, 26);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(112, 15);
+            this.label57.Size = new System.Drawing.Size(89, 12);
             this.label57.TabIndex = 77;
             this.label57.Text = "启用高级功能：";
             // 
@@ -1301,11 +1230,9 @@
             this.groupBox16.Controls.Add(this.txtDoorWorkSetting);
             this.groupBox16.Controls.Add(this.btnWriteDoorWorkSetting);
             this.groupBox16.Controls.Add(this.btnReadDoorWorkSetting);
-            this.groupBox16.Location = new System.Drawing.Point(8, 260);
-            this.groupBox16.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox16.Location = new System.Drawing.Point(6, 208);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox16.Size = new System.Drawing.Size(967, 230);
+            this.groupBox16.Size = new System.Drawing.Size(725, 184);
             this.groupBox16.TabIndex = 4;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "门认证方式";
@@ -1326,13 +1253,12 @@
             this.id2,
             this.id3});
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 25);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 20);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(879, 198);
+            this.dataGridView1.Size = new System.Drawing.Size(659, 158);
             this.dataGridView1.TabIndex = 39;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellClick);
             // 
@@ -1425,22 +1351,20 @@
             // 
             // txtDoorWorkSetting
             // 
-            this.txtDoorWorkSetting.Location = new System.Drawing.Point(8, 28);
-            this.txtDoorWorkSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDoorWorkSetting.Location = new System.Drawing.Point(6, 22);
             this.txtDoorWorkSetting.Multiline = true;
             this.txtDoorWorkSetting.Name = "txtDoorWorkSetting";
             this.txtDoorWorkSetting.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDoorWorkSetting.Size = new System.Drawing.Size(877, 44);
+            this.txtDoorWorkSetting.Size = new System.Drawing.Size(659, 36);
             this.txtDoorWorkSetting.TabIndex = 38;
             this.txtDoorWorkSetting.Visible = false;
             this.txtDoorWorkSetting.WordWrap = false;
             // 
             // btnWriteDoorWorkSetting
             // 
-            this.btnWriteDoorWorkSetting.Location = new System.Drawing.Point(893, 64);
-            this.btnWriteDoorWorkSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteDoorWorkSetting.Location = new System.Drawing.Point(670, 51);
             this.btnWriteDoorWorkSetting.Name = "btnWriteDoorWorkSetting";
-            this.btnWriteDoorWorkSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteDoorWorkSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteDoorWorkSetting.TabIndex = 37;
             this.btnWriteDoorWorkSetting.Text = "写入";
             this.btnWriteDoorWorkSetting.UseVisualStyleBackColor = true;
@@ -1448,10 +1372,9 @@
             // 
             // btnReadDoorWorkSetting
             // 
-            this.btnReadDoorWorkSetting.Location = new System.Drawing.Point(893, 28);
-            this.btnReadDoorWorkSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadDoorWorkSetting.Location = new System.Drawing.Point(670, 22);
             this.btnReadDoorWorkSetting.Name = "btnReadDoorWorkSetting";
-            this.btnReadDoorWorkSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnReadDoorWorkSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadDoorWorkSetting.TabIndex = 36;
             this.btnReadDoorWorkSetting.Text = "读取";
             this.btnReadDoorWorkSetting.UseVisualStyleBackColor = true;
@@ -1461,21 +1384,18 @@
             // 
             this.groupBox8.Controls.Add(this.btnUnLockDoor);
             this.groupBox8.Controls.Add(this.btnLockDoor);
-            this.groupBox8.Location = new System.Drawing.Point(375, 152);
-            this.groupBox8.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox8.Location = new System.Drawing.Point(281, 122);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox8.Size = new System.Drawing.Size(233, 65);
+            this.groupBox8.Size = new System.Drawing.Size(175, 52);
             this.groupBox8.TabIndex = 3;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "门禁锁定";
             // 
             // btnUnLockDoor
             // 
-            this.btnUnLockDoor.Location = new System.Drawing.Point(109, 25);
-            this.btnUnLockDoor.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUnLockDoor.Location = new System.Drawing.Point(82, 20);
             this.btnUnLockDoor.Name = "btnUnLockDoor";
-            this.btnUnLockDoor.Size = new System.Drawing.Size(91, 29);
+            this.btnUnLockDoor.Size = new System.Drawing.Size(68, 23);
             this.btnUnLockDoor.TabIndex = 37;
             this.btnUnLockDoor.Text = "解除锁定";
             this.btnUnLockDoor.UseVisualStyleBackColor = true;
@@ -1483,10 +1403,9 @@
             // 
             // btnLockDoor
             // 
-            this.btnLockDoor.Location = new System.Drawing.Point(11, 25);
-            this.btnLockDoor.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLockDoor.Location = new System.Drawing.Point(8, 20);
             this.btnLockDoor.Name = "btnLockDoor";
-            this.btnLockDoor.Size = new System.Drawing.Size(91, 29);
+            this.btnLockDoor.Size = new System.Drawing.Size(68, 23);
             this.btnLockDoor.TabIndex = 35;
             this.btnLockDoor.Text = "锁定";
             this.btnLockDoor.UseVisualStyleBackColor = true;
@@ -1498,21 +1417,18 @@
             this.groupBox7.Controls.Add(this.btnCloseDoor);
             this.groupBox7.Controls.Add(this.btnHoldOpenDoor);
             this.groupBox7.Controls.Add(this.btnOpenDoor);
-            this.groupBox7.Location = new System.Drawing.Point(8, 152);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox7.Location = new System.Drawing.Point(6, 122);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox7.Size = new System.Drawing.Size(333, 99);
+            this.groupBox7.Size = new System.Drawing.Size(250, 79);
             this.groupBox7.TabIndex = 2;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "远程开门";
             // 
             // btnOpenDoor_CheckNum
             // 
-            this.btnOpenDoor_CheckNum.Location = new System.Drawing.Point(12, 61);
-            this.btnOpenDoor_CheckNum.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOpenDoor_CheckNum.Location = new System.Drawing.Point(9, 49);
             this.btnOpenDoor_CheckNum.Name = "btnOpenDoor_CheckNum";
-            this.btnOpenDoor_CheckNum.Size = new System.Drawing.Size(133, 29);
+            this.btnOpenDoor_CheckNum.Size = new System.Drawing.Size(100, 23);
             this.btnOpenDoor_CheckNum.TabIndex = 38;
             this.btnOpenDoor_CheckNum.Text = "远程开门_验证";
             this.btnOpenDoor_CheckNum.UseVisualStyleBackColor = true;
@@ -1520,10 +1436,9 @@
             // 
             // btnCloseDoor
             // 
-            this.btnCloseDoor.Location = new System.Drawing.Point(109, 25);
-            this.btnCloseDoor.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCloseDoor.Location = new System.Drawing.Point(82, 20);
             this.btnCloseDoor.Name = "btnCloseDoor";
-            this.btnCloseDoor.Size = new System.Drawing.Size(91, 29);
+            this.btnCloseDoor.Size = new System.Drawing.Size(68, 23);
             this.btnCloseDoor.TabIndex = 37;
             this.btnCloseDoor.Text = "远程关门";
             this.btnCloseDoor.UseVisualStyleBackColor = true;
@@ -1531,10 +1446,9 @@
             // 
             // btnHoldOpenDoor
             // 
-            this.btnHoldOpenDoor.Location = new System.Drawing.Point(208, 25);
-            this.btnHoldOpenDoor.Margin = new System.Windows.Forms.Padding(4);
+            this.btnHoldOpenDoor.Location = new System.Drawing.Point(156, 20);
             this.btnHoldOpenDoor.Name = "btnHoldOpenDoor";
-            this.btnHoldOpenDoor.Size = new System.Drawing.Size(91, 29);
+            this.btnHoldOpenDoor.Size = new System.Drawing.Size(68, 23);
             this.btnHoldOpenDoor.TabIndex = 36;
             this.btnHoldOpenDoor.Text = "门常开";
             this.btnHoldOpenDoor.UseVisualStyleBackColor = true;
@@ -1542,10 +1456,9 @@
             // 
             // btnOpenDoor
             // 
-            this.btnOpenDoor.Location = new System.Drawing.Point(11, 25);
-            this.btnOpenDoor.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOpenDoor.Location = new System.Drawing.Point(8, 20);
             this.btnOpenDoor.Name = "btnOpenDoor";
-            this.btnOpenDoor.Size = new System.Drawing.Size(91, 29);
+            this.btnOpenDoor.Size = new System.Drawing.Size(68, 23);
             this.btnOpenDoor.TabIndex = 35;
             this.btnOpenDoor.Text = "远程开门";
             this.btnOpenDoor.UseVisualStyleBackColor = true;
@@ -1563,11 +1476,9 @@
             this.groupBox6.Controls.Add(this.btnWriteRelayOption);
             this.groupBox6.Controls.Add(this.btnReadRelayOption);
             this.groupBox6.Controls.Add(this.label16);
-            this.groupBox6.Location = new System.Drawing.Point(8, 80);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox6.Location = new System.Drawing.Point(6, 64);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Size = new System.Drawing.Size(967, 65);
+            this.groupBox6.Size = new System.Drawing.Size(725, 52);
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "继电器参数";
@@ -1580,10 +1491,9 @@
             "COM & NC",
             "COM & NO",
             "双稳态"});
-            this.cbxDoor4RelayOption.Location = new System.Drawing.Point(527, 28);
-            this.cbxDoor4RelayOption.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxDoor4RelayOption.Location = new System.Drawing.Point(395, 22);
             this.cbxDoor4RelayOption.Name = "cbxDoor4RelayOption";
-            this.cbxDoor4RelayOption.Size = new System.Drawing.Size(97, 23);
+            this.cbxDoor4RelayOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor4RelayOption.TabIndex = 45;
             // 
             // cbxDoor3RelayOption
@@ -1594,10 +1504,9 @@
             "COM & NC",
             "COM & NO",
             "双稳态"});
-            this.cbxDoor3RelayOption.Location = new System.Drawing.Point(367, 28);
-            this.cbxDoor3RelayOption.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxDoor3RelayOption.Location = new System.Drawing.Point(275, 22);
             this.cbxDoor3RelayOption.Name = "cbxDoor3RelayOption";
-            this.cbxDoor3RelayOption.Size = new System.Drawing.Size(97, 23);
+            this.cbxDoor3RelayOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor3RelayOption.TabIndex = 44;
             // 
             // cbxDoor2RelayOption
@@ -1608,39 +1517,35 @@
             "COM & NC",
             "COM & NO",
             "双稳态"});
-            this.cbxDoor2RelayOption.Location = new System.Drawing.Point(207, 28);
-            this.cbxDoor2RelayOption.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxDoor2RelayOption.Location = new System.Drawing.Point(155, 22);
             this.cbxDoor2RelayOption.Name = "cbxDoor2RelayOption";
-            this.cbxDoor2RelayOption.Size = new System.Drawing.Size(97, 23);
+            this.cbxDoor2RelayOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor2RelayOption.TabIndex = 43;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(488, 31);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(366, 25);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(45, 15);
+            this.label13.Size = new System.Drawing.Size(35, 12);
             this.label13.TabIndex = 42;
             this.label13.Text = "门4：";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(328, 31);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(246, 25);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(45, 15);
+            this.label14.Size = new System.Drawing.Size(35, 12);
             this.label14.TabIndex = 40;
             this.label14.Text = "门3：";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(168, 31);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Location = new System.Drawing.Point(126, 25);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(45, 15);
+            this.label15.Size = new System.Drawing.Size(35, 12);
             this.label15.TabIndex = 38;
             this.label15.Text = "门2：";
             // 
@@ -1652,18 +1557,16 @@
             "COM & NC",
             "COM & NO",
             "双稳态"});
-            this.cbxDoor1RelayOption.Location = new System.Drawing.Point(47, 28);
-            this.cbxDoor1RelayOption.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxDoor1RelayOption.Location = new System.Drawing.Point(35, 22);
             this.cbxDoor1RelayOption.Name = "cbxDoor1RelayOption";
-            this.cbxDoor1RelayOption.Size = new System.Drawing.Size(97, 23);
+            this.cbxDoor1RelayOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor1RelayOption.TabIndex = 37;
             // 
             // btnWriteRelayOption
             // 
-            this.btnWriteRelayOption.Location = new System.Drawing.Point(771, 25);
-            this.btnWriteRelayOption.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteRelayOption.Location = new System.Drawing.Point(578, 20);
             this.btnWriteRelayOption.Name = "btnWriteRelayOption";
-            this.btnWriteRelayOption.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteRelayOption.Size = new System.Drawing.Size(48, 23);
             this.btnWriteRelayOption.TabIndex = 36;
             this.btnWriteRelayOption.Text = "写入";
             this.btnWriteRelayOption.UseVisualStyleBackColor = true;
@@ -1671,10 +1574,9 @@
             // 
             // btnReadRelayOption
             // 
-            this.btnReadRelayOption.Location = new System.Drawing.Point(699, 25);
-            this.btnReadRelayOption.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadRelayOption.Location = new System.Drawing.Point(524, 20);
             this.btnReadRelayOption.Name = "btnReadRelayOption";
-            this.btnReadRelayOption.Size = new System.Drawing.Size(64, 29);
+            this.btnReadRelayOption.Size = new System.Drawing.Size(48, 23);
             this.btnReadRelayOption.TabIndex = 35;
             this.btnReadRelayOption.Text = "读取";
             this.btnReadRelayOption.UseVisualStyleBackColor = true;
@@ -1683,10 +1585,9 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(8, 31);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(6, 25);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(45, 15);
+            this.label16.Size = new System.Drawing.Size(35, 12);
             this.label16.TabIndex = 34;
             this.label16.Text = "门1：";
             // 
@@ -1702,11 +1603,9 @@
             this.groupBox5.Controls.Add(this.btnWriteReaderOption);
             this.groupBox5.Controls.Add(this.btnReadReaderOption);
             this.groupBox5.Controls.Add(this.label24);
-            this.groupBox5.Location = new System.Drawing.Point(8, 8);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox5.Location = new System.Drawing.Point(6, 6);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox5.Size = new System.Drawing.Size(967, 65);
+            this.groupBox5.Size = new System.Drawing.Size(725, 52);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "读卡器字节数";
@@ -1720,19 +1619,17 @@
             "二字节",
             "三字节",
             "四字节"});
-            this.cbxDoor4ReaderOption.Location = new System.Drawing.Point(527, 28);
-            this.cbxDoor4ReaderOption.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxDoor4ReaderOption.Location = new System.Drawing.Point(395, 22);
             this.cbxDoor4ReaderOption.Name = "cbxDoor4ReaderOption";
-            this.cbxDoor4ReaderOption.Size = new System.Drawing.Size(97, 23);
+            this.cbxDoor4ReaderOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor4ReaderOption.TabIndex = 43;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(488, 31);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(366, 25);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(45, 15);
+            this.label11.Size = new System.Drawing.Size(35, 12);
             this.label11.TabIndex = 42;
             this.label11.Text = "门4：";
             // 
@@ -1745,19 +1642,17 @@
             "二字节",
             "三字节",
             "四字节"});
-            this.cbxDoor3ReaderOption.Location = new System.Drawing.Point(367, 28);
-            this.cbxDoor3ReaderOption.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxDoor3ReaderOption.Location = new System.Drawing.Point(275, 22);
             this.cbxDoor3ReaderOption.Name = "cbxDoor3ReaderOption";
-            this.cbxDoor3ReaderOption.Size = new System.Drawing.Size(97, 23);
+            this.cbxDoor3ReaderOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor3ReaderOption.TabIndex = 41;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(328, 31);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(246, 25);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(45, 15);
+            this.label12.Size = new System.Drawing.Size(35, 12);
             this.label12.TabIndex = 40;
             this.label12.Text = "门3：";
             // 
@@ -1770,19 +1665,17 @@
             "二字节",
             "三字节",
             "四字节"});
-            this.cbxDoor2ReaderOption.Location = new System.Drawing.Point(207, 28);
-            this.cbxDoor2ReaderOption.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxDoor2ReaderOption.Location = new System.Drawing.Point(155, 22);
             this.cbxDoor2ReaderOption.Name = "cbxDoor2ReaderOption";
-            this.cbxDoor2ReaderOption.Size = new System.Drawing.Size(97, 23);
+            this.cbxDoor2ReaderOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor2ReaderOption.TabIndex = 39;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(168, 31);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(126, 25);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 15);
+            this.label5.Size = new System.Drawing.Size(35, 12);
             this.label5.TabIndex = 38;
             this.label5.Text = "门2：";
             // 
@@ -1795,18 +1688,16 @@
             "二字节",
             "三字节",
             "四字节"});
-            this.cbxDoor1ReaderOption.Location = new System.Drawing.Point(47, 28);
-            this.cbxDoor1ReaderOption.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxDoor1ReaderOption.Location = new System.Drawing.Point(35, 22);
             this.cbxDoor1ReaderOption.Name = "cbxDoor1ReaderOption";
-            this.cbxDoor1ReaderOption.Size = new System.Drawing.Size(97, 23);
+            this.cbxDoor1ReaderOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor1ReaderOption.TabIndex = 37;
             // 
             // btnWriteReaderOption
             // 
-            this.btnWriteReaderOption.Location = new System.Drawing.Point(771, 25);
-            this.btnWriteReaderOption.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteReaderOption.Location = new System.Drawing.Point(578, 20);
             this.btnWriteReaderOption.Name = "btnWriteReaderOption";
-            this.btnWriteReaderOption.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteReaderOption.Size = new System.Drawing.Size(48, 23);
             this.btnWriteReaderOption.TabIndex = 36;
             this.btnWriteReaderOption.Text = "写入";
             this.btnWriteReaderOption.UseVisualStyleBackColor = true;
@@ -1814,10 +1705,9 @@
             // 
             // btnReadReaderOption
             // 
-            this.btnReadReaderOption.Location = new System.Drawing.Point(699, 25);
-            this.btnReadReaderOption.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadReaderOption.Location = new System.Drawing.Point(524, 20);
             this.btnReadReaderOption.Name = "btnReadReaderOption";
-            this.btnReadReaderOption.Size = new System.Drawing.Size(64, 29);
+            this.btnReadReaderOption.Size = new System.Drawing.Size(48, 23);
             this.btnReadReaderOption.TabIndex = 35;
             this.btnReadReaderOption.Text = "读取";
             this.btnReadReaderOption.UseVisualStyleBackColor = true;
@@ -1826,10 +1716,9 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(8, 31);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Location = new System.Drawing.Point(6, 25);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(45, 15);
+            this.label24.Size = new System.Drawing.Size(35, 12);
             this.label24.TabIndex = 34;
             this.label24.Text = "门1：";
             // 
@@ -1844,10 +1733,9 @@
             this.tabPage3.Controls.Add(this.groupBox14);
             this.tabPage3.Controls.Add(this.groupBox13);
             this.tabPage3.Controls.Add(this.groupBox12);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1004, 1022);
+            this.tabPage3.Size = new System.Drawing.Size(751, 815);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "参数2";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1868,21 +1756,18 @@
             this.groupBox21.Controls.Add(this.cmbInterLockSettingAreaType);
             this.groupBox21.Controls.Add(this.lbAreaType2);
             this.groupBox21.Controls.Add(this.label70);
-            this.groupBox21.Location = new System.Drawing.Point(9, 721);
-            this.groupBox21.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox21.Location = new System.Drawing.Point(7, 577);
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox21.Size = new System.Drawing.Size(979, 112);
+            this.groupBox21.Size = new System.Drawing.Size(734, 90);
             this.groupBox21.TabIndex = 97;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "区域互锁";
             // 
             // btnWriteInterLockSetting
             // 
-            this.btnWriteInterLockSetting.Location = new System.Drawing.Point(844, 49);
-            this.btnWriteInterLockSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteInterLockSetting.Location = new System.Drawing.Point(633, 39);
             this.btnWriteInterLockSetting.Name = "btnWriteInterLockSetting";
-            this.btnWriteInterLockSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteInterLockSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteInterLockSetting.TabIndex = 97;
             this.btnWriteInterLockSetting.Text = "写入";
             this.btnWriteInterLockSetting.UseVisualStyleBackColor = true;
@@ -1890,10 +1775,9 @@
             // 
             // btnReadInterLockSetting
             // 
-            this.btnReadInterLockSetting.Location = new System.Drawing.Point(772, 49);
-            this.btnReadInterLockSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadInterLockSetting.Location = new System.Drawing.Point(579, 39);
             this.btnReadInterLockSetting.Name = "btnReadInterLockSetting";
-            this.btnReadInterLockSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnReadInterLockSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadInterLockSetting.TabIndex = 97;
             this.btnReadInterLockSetting.Text = "读取";
             this.btnReadInterLockSetting.UseVisualStyleBackColor = true;
@@ -1901,42 +1785,38 @@
             // 
             // txtInterLockSettingPort
             // 
-            this.txtInterLockSettingPort.Location = new System.Drawing.Point(611, 74);
-            this.txtInterLockSettingPort.Margin = new System.Windows.Forms.Padding(4);
+            this.txtInterLockSettingPort.Location = new System.Drawing.Point(458, 59);
             this.txtInterLockSettingPort.MaxLength = 5;
             this.txtInterLockSettingPort.Name = "txtInterLockSettingPort";
-            this.txtInterLockSettingPort.Size = new System.Drawing.Size(129, 25);
+            this.txtInterLockSettingPort.Size = new System.Drawing.Size(98, 21);
             this.txtInterLockSettingPort.TabIndex = 101;
             this.txtInterLockSettingPort.Visible = false;
             // 
             // lbPort2
             // 
             this.lbPort2.AutoSize = true;
-            this.lbPort2.Location = new System.Drawing.Point(528, 78);
-            this.lbPort2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbPort2.Location = new System.Drawing.Point(396, 62);
             this.lbPort2.Name = "lbPort2";
-            this.lbPort2.Size = new System.Drawing.Size(82, 15);
+            this.lbPort2.Size = new System.Drawing.Size(65, 12);
             this.lbPort2.TabIndex = 101;
             this.lbPort2.Text = "主机端口：";
             this.lbPort2.Visible = false;
             // 
             // txtInterLockSettingIP
             // 
-            this.txtInterLockSettingIP.Location = new System.Drawing.Point(356, 74);
-            this.txtInterLockSettingIP.Margin = new System.Windows.Forms.Padding(4);
+            this.txtInterLockSettingIP.Location = new System.Drawing.Point(267, 59);
             this.txtInterLockSettingIP.MaxLength = 15;
             this.txtInterLockSettingIP.Name = "txtInterLockSettingIP";
-            this.txtInterLockSettingIP.Size = new System.Drawing.Size(129, 25);
+            this.txtInterLockSettingIP.Size = new System.Drawing.Size(98, 21);
             this.txtInterLockSettingIP.TabIndex = 101;
             this.txtInterLockSettingIP.Visible = false;
             // 
             // lbIP2
             // 
             this.lbIP2.AutoSize = true;
-            this.lbIP2.Location = new System.Drawing.Point(293, 78);
-            this.lbIP2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbIP2.Location = new System.Drawing.Point(220, 62);
             this.lbIP2.Name = "lbIP2";
-            this.lbIP2.Size = new System.Drawing.Size(68, 15);
+            this.lbIP2.Size = new System.Drawing.Size(53, 12);
             this.lbIP2.TabIndex = 101;
             this.lbIP2.Text = "主机IP：";
             this.lbIP2.Visible = false;
@@ -1945,20 +1825,18 @@
             // 
             this.cmbNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNum.FormattingEnabled = true;
-            this.cmbNum.Location = new System.Drawing.Point(97, 74);
-            this.cmbNum.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbNum.Location = new System.Drawing.Point(73, 59);
             this.cmbNum.Name = "cmbNum";
-            this.cmbNum.Size = new System.Drawing.Size(104, 23);
+            this.cmbNum.Size = new System.Drawing.Size(79, 20);
             this.cmbNum.TabIndex = 103;
             this.cmbNum.Visible = false;
             // 
             // lbNum2
             // 
             this.lbNum2.AutoSize = true;
-            this.lbNum2.Location = new System.Drawing.Point(8, 78);
-            this.lbNum2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbNum2.Location = new System.Drawing.Point(6, 62);
             this.lbNum2.Name = "lbNum2";
-            this.lbNum2.Size = new System.Drawing.Size(82, 15);
+            this.lbNum2.Size = new System.Drawing.Size(65, 12);
             this.lbNum2.TabIndex = 102;
             this.lbNum2.Text = "从机代码：";
             this.lbNum2.Visible = false;
@@ -1966,31 +1844,28 @@
             // cbInterLockSettingUse
             // 
             this.cbInterLockSettingUse.AutoSize = true;
-            this.cbInterLockSettingUse.Location = new System.Drawing.Point(97, 29);
-            this.cbInterLockSettingUse.Margin = new System.Windows.Forms.Padding(4);
+            this.cbInterLockSettingUse.Location = new System.Drawing.Point(73, 23);
             this.cbInterLockSettingUse.Name = "cbInterLockSettingUse";
-            this.cbInterLockSettingUse.Size = new System.Drawing.Size(18, 17);
+            this.cbInterLockSettingUse.Size = new System.Drawing.Size(15, 14);
             this.cbInterLockSettingUse.TabIndex = 97;
             this.cbInterLockSettingUse.UseVisualStyleBackColor = true;
             this.cbInterLockSettingUse.CheckedChanged += new System.EventHandler(this.CbInterLockSettingUse_CheckedChanged);
             // 
             // txtAreaCode
             // 
-            this.txtAreaCode.Location = new System.Drawing.Point(611, 25);
-            this.txtAreaCode.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAreaCode.Location = new System.Drawing.Point(458, 20);
             this.txtAreaCode.MaxLength = 5;
             this.txtAreaCode.Name = "txtAreaCode";
-            this.txtAreaCode.Size = new System.Drawing.Size(129, 25);
+            this.txtAreaCode.Size = new System.Drawing.Size(98, 21);
             this.txtAreaCode.TabIndex = 101;
             this.txtAreaCode.Visible = false;
             // 
             // lbAreaCode
             // 
             this.lbAreaCode.AutoSize = true;
-            this.lbAreaCode.Location = new System.Drawing.Point(528, 29);
-            this.lbAreaCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbAreaCode.Location = new System.Drawing.Point(396, 23);
             this.lbAreaCode.Name = "lbAreaCode";
-            this.lbAreaCode.Size = new System.Drawing.Size(82, 15);
+            this.lbAreaCode.Size = new System.Drawing.Size(65, 12);
             this.lbAreaCode.TabIndex = 101;
             this.lbAreaCode.Text = "区域代码：";
             this.lbAreaCode.Visible = false;
@@ -2002,10 +1877,9 @@
             this.cmbInterLockSettingAreaType.Items.AddRange(new object[] {
             "主机",
             "从机"});
-            this.cmbInterLockSettingAreaType.Location = new System.Drawing.Point(356, 25);
-            this.cmbInterLockSettingAreaType.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbInterLockSettingAreaType.Location = new System.Drawing.Point(267, 20);
             this.cmbInterLockSettingAreaType.Name = "cmbInterLockSettingAreaType";
-            this.cmbInterLockSettingAreaType.Size = new System.Drawing.Size(129, 23);
+            this.cmbInterLockSettingAreaType.Size = new System.Drawing.Size(98, 20);
             this.cmbInterLockSettingAreaType.TabIndex = 101;
             this.cmbInterLockSettingAreaType.Visible = false;
             this.cmbInterLockSettingAreaType.SelectedIndexChanged += new System.EventHandler(this.CmbInterLockSettingAreaType_SelectedIndexChanged);
@@ -2013,10 +1887,9 @@
             // lbAreaType2
             // 
             this.lbAreaType2.AutoSize = true;
-            this.lbAreaType2.Location = new System.Drawing.Point(245, 29);
-            this.lbAreaType2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbAreaType2.Location = new System.Drawing.Point(184, 23);
             this.lbAreaType2.Name = "lbAreaType2";
-            this.lbAreaType2.Size = new System.Drawing.Size(112, 15);
+            this.lbAreaType2.Size = new System.Drawing.Size(89, 12);
             this.lbAreaType2.TabIndex = 101;
             this.lbAreaType2.Text = "区域从属类别：";
             this.lbAreaType2.Visible = false;
@@ -2024,10 +1897,9 @@
             // label70
             // 
             this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(8, 29);
-            this.label70.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label70.Location = new System.Drawing.Point(6, 23);
             this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(82, 15);
+            this.label70.Size = new System.Drawing.Size(65, 12);
             this.label70.TabIndex = 97;
             this.label70.Text = "功能启用：";
             // 
@@ -2038,21 +1910,18 @@
             this.groupBox20.Controls.Add(this.plAreaAntiPassback);
             this.groupBox20.Controls.Add(this.cbAreaAntiPassbackUse);
             this.groupBox20.Controls.Add(this.label65);
-            this.groupBox20.Location = new System.Drawing.Point(9, 589);
-            this.groupBox20.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox20.Location = new System.Drawing.Point(7, 471);
             this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox20.Size = new System.Drawing.Size(979, 112);
+            this.groupBox20.Size = new System.Drawing.Size(734, 90);
             this.groupBox20.TabIndex = 15;
             this.groupBox20.TabStop = false;
             this.groupBox20.Text = "区域防潜回";
             // 
             // btnWriteAreaAntiPassback
             // 
-            this.btnWriteAreaAntiPassback.Location = new System.Drawing.Point(844, 44);
-            this.btnWriteAreaAntiPassback.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteAreaAntiPassback.Location = new System.Drawing.Point(633, 35);
             this.btnWriteAreaAntiPassback.Name = "btnWriteAreaAntiPassback";
-            this.btnWriteAreaAntiPassback.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteAreaAntiPassback.Size = new System.Drawing.Size(48, 23);
             this.btnWriteAreaAntiPassback.TabIndex = 96;
             this.btnWriteAreaAntiPassback.Text = "写入";
             this.btnWriteAreaAntiPassback.UseVisualStyleBackColor = true;
@@ -2060,10 +1929,9 @@
             // 
             // btnReadAreaAntiPassback
             // 
-            this.btnReadAreaAntiPassback.Location = new System.Drawing.Point(772, 44);
-            this.btnReadAreaAntiPassback.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadAreaAntiPassback.Location = new System.Drawing.Point(579, 35);
             this.btnReadAreaAntiPassback.Name = "btnReadAreaAntiPassback";
-            this.btnReadAreaAntiPassback.Size = new System.Drawing.Size(64, 29);
+            this.btnReadAreaAntiPassback.Size = new System.Drawing.Size(48, 23);
             this.btnReadAreaAntiPassback.TabIndex = 96;
             this.btnReadAreaAntiPassback.Text = "读取";
             this.btnReadAreaAntiPassback.UseVisualStyleBackColor = true;
@@ -2079,67 +1947,60 @@
             this.plAreaAntiPassback.Controls.Add(this.lbSN);
             this.plAreaAntiPassback.Controls.Add(this.cmbAreaType);
             this.plAreaAntiPassback.Controls.Add(this.label66);
-            this.plAreaAntiPassback.Location = new System.Drawing.Point(147, 25);
-            this.plAreaAntiPassback.Margin = new System.Windows.Forms.Padding(4);
+            this.plAreaAntiPassback.Location = new System.Drawing.Point(110, 20);
             this.plAreaAntiPassback.Name = "plAreaAntiPassback";
-            this.plAreaAntiPassback.Size = new System.Drawing.Size(623, 80);
+            this.plAreaAntiPassback.Size = new System.Drawing.Size(467, 64);
             this.plAreaAntiPassback.TabIndex = 2;
             this.plAreaAntiPassback.Visible = false;
             // 
             // txtPort
             // 
-            this.txtPort.Location = new System.Drawing.Point(367, 46);
-            this.txtPort.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPort.Location = new System.Drawing.Point(275, 37);
             this.txtPort.MaxLength = 5;
             this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(129, 25);
+            this.txtPort.Size = new System.Drawing.Size(98, 21);
             this.txtPort.TabIndex = 100;
             // 
             // lbPort
             // 
             this.lbPort.AutoSize = true;
-            this.lbPort.Location = new System.Drawing.Point(288, 50);
-            this.lbPort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbPort.Location = new System.Drawing.Point(216, 40);
             this.lbPort.Name = "lbPort";
-            this.lbPort.Size = new System.Drawing.Size(82, 15);
+            this.lbPort.Size = new System.Drawing.Size(65, 12);
             this.lbPort.TabIndex = 99;
             this.lbPort.Text = "主机端口：";
             // 
             // txtIP
             // 
-            this.txtIP.Location = new System.Drawing.Point(129, 46);
-            this.txtIP.Margin = new System.Windows.Forms.Padding(4);
+            this.txtIP.Location = new System.Drawing.Point(97, 37);
             this.txtIP.MaxLength = 15;
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(129, 25);
+            this.txtIP.Size = new System.Drawing.Size(98, 21);
             this.txtIP.TabIndex = 98;
             // 
             // lbIP
             // 
             this.lbIP.AutoSize = true;
-            this.lbIP.Location = new System.Drawing.Point(67, 50);
-            this.lbIP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbIP.Location = new System.Drawing.Point(50, 40);
             this.lbIP.Name = "lbIP";
-            this.lbIP.Size = new System.Drawing.Size(68, 15);
+            this.lbIP.Size = new System.Drawing.Size(53, 12);
             this.lbIP.TabIndex = 97;
             this.lbIP.Text = "主机IP：";
             // 
             // txtSN
             // 
-            this.txtSN.Location = new System.Drawing.Point(367, 9);
-            this.txtSN.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSN.Location = new System.Drawing.Point(275, 7);
             this.txtSN.MaxLength = 16;
             this.txtSN.Name = "txtSN";
-            this.txtSN.Size = new System.Drawing.Size(229, 25);
+            this.txtSN.Size = new System.Drawing.Size(173, 21);
             this.txtSN.TabIndex = 96;
             // 
             // lbSN
             // 
             this.lbSN.AutoSize = true;
-            this.lbSN.Location = new System.Drawing.Point(304, 12);
-            this.lbSN.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbSN.Location = new System.Drawing.Point(228, 10);
             this.lbSN.Name = "lbSN";
-            this.lbSN.Size = new System.Drawing.Size(68, 15);
+            this.lbSN.Size = new System.Drawing.Size(53, 12);
             this.lbSN.TabIndex = 2;
             this.lbSN.Text = "主机SN：";
             // 
@@ -2150,30 +2011,27 @@
             this.cmbAreaType.Items.AddRange(new object[] {
             "主机",
             "从机"});
-            this.cmbAreaType.Location = new System.Drawing.Point(129, 9);
-            this.cmbAreaType.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbAreaType.Location = new System.Drawing.Point(97, 7);
             this.cmbAreaType.Name = "cmbAreaType";
-            this.cmbAreaType.Size = new System.Drawing.Size(129, 23);
+            this.cmbAreaType.Size = new System.Drawing.Size(98, 20);
             this.cmbAreaType.TabIndex = 1;
             this.cmbAreaType.SelectedIndexChanged += new System.EventHandler(this.CmbAreaType_SelectedIndexChanged);
             // 
             // label66
             // 
             this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(19, 12);
-            this.label66.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label66.Location = new System.Drawing.Point(14, 10);
             this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(112, 15);
+            this.label66.Size = new System.Drawing.Size(89, 12);
             this.label66.TabIndex = 0;
             this.label66.Text = "区域从属类别：";
             // 
             // cbAreaAntiPassbackUse
             // 
             this.cbAreaAntiPassbackUse.AutoSize = true;
-            this.cbAreaAntiPassbackUse.Location = new System.Drawing.Point(97, 38);
-            this.cbAreaAntiPassbackUse.Margin = new System.Windows.Forms.Padding(4);
+            this.cbAreaAntiPassbackUse.Location = new System.Drawing.Point(73, 30);
             this.cbAreaAntiPassbackUse.Name = "cbAreaAntiPassbackUse";
-            this.cbAreaAntiPassbackUse.Size = new System.Drawing.Size(18, 17);
+            this.cbAreaAntiPassbackUse.Size = new System.Drawing.Size(15, 14);
             this.cbAreaAntiPassbackUse.TabIndex = 1;
             this.cbAreaAntiPassbackUse.UseVisualStyleBackColor = true;
             this.cbAreaAntiPassbackUse.CheckedChanged += new System.EventHandler(this.CbAreaAntiPassbackUse_CheckedChanged);
@@ -2181,10 +2039,9 @@
             // label65
             // 
             this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(8, 38);
-            this.label65.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label65.Location = new System.Drawing.Point(6, 30);
             this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(82, 15);
+            this.label65.Size = new System.Drawing.Size(65, 12);
             this.label65.TabIndex = 0;
             this.label65.Text = "功能启用：";
             // 
@@ -2195,40 +2052,35 @@
             this.groupBox19.Controls.Add(this.btnWriteManageKeyboardSetting);
             this.groupBox19.Controls.Add(this.btnReadManageKeyboardSetting);
             this.groupBox19.Controls.Add(this.cbManageKeyboardSettingUse);
-            this.groupBox19.Location = new System.Drawing.Point(9, 521);
-            this.groupBox19.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox19.Location = new System.Drawing.Point(7, 417);
             this.groupBox19.Name = "groupBox19";
-            this.groupBox19.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox19.Size = new System.Drawing.Size(979, 59);
+            this.groupBox19.Size = new System.Drawing.Size(734, 47);
             this.groupBox19.TabIndex = 14;
             this.groupBox19.TabStop = false;
             this.groupBox19.Text = "键盘发卡功能";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(451, 21);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPassword.Location = new System.Drawing.Point(338, 17);
             this.txtPassword.MaxLength = 8;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(132, 25);
+            this.txtPassword.Size = new System.Drawing.Size(100, 21);
             this.txtPassword.TabIndex = 95;
             // 
             // label64
             // 
             this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(369, 26);
-            this.label64.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label64.Location = new System.Drawing.Point(277, 21);
             this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(82, 15);
+            this.label64.Size = new System.Drawing.Size(65, 12);
             this.label64.TabIndex = 94;
             this.label64.Text = "管理密码：";
             // 
             // btnWriteManageKeyboardSetting
             // 
-            this.btnWriteManageKeyboardSetting.Location = new System.Drawing.Point(844, 19);
-            this.btnWriteManageKeyboardSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteManageKeyboardSetting.Location = new System.Drawing.Point(633, 15);
             this.btnWriteManageKeyboardSetting.Name = "btnWriteManageKeyboardSetting";
-            this.btnWriteManageKeyboardSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteManageKeyboardSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteManageKeyboardSetting.TabIndex = 93;
             this.btnWriteManageKeyboardSetting.Text = "写入";
             this.btnWriteManageKeyboardSetting.UseVisualStyleBackColor = true;
@@ -2236,10 +2088,9 @@
             // 
             // btnReadManageKeyboardSetting
             // 
-            this.btnReadManageKeyboardSetting.Location = new System.Drawing.Point(772, 19);
-            this.btnReadManageKeyboardSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadManageKeyboardSetting.Location = new System.Drawing.Point(579, 15);
             this.btnReadManageKeyboardSetting.Name = "btnReadManageKeyboardSetting";
-            this.btnReadManageKeyboardSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnReadManageKeyboardSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadManageKeyboardSetting.TabIndex = 93;
             this.btnReadManageKeyboardSetting.Text = "读取";
             this.btnReadManageKeyboardSetting.UseVisualStyleBackColor = true;
@@ -2248,10 +2099,9 @@
             // cbManageKeyboardSettingUse
             // 
             this.cbManageKeyboardSettingUse.AutoSize = true;
-            this.cbManageKeyboardSettingUse.Location = new System.Drawing.Point(21, 28);
-            this.cbManageKeyboardSettingUse.Margin = new System.Windows.Forms.Padding(4);
+            this.cbManageKeyboardSettingUse.Location = new System.Drawing.Point(16, 22);
             this.cbManageKeyboardSettingUse.Name = "cbManageKeyboardSettingUse";
-            this.cbManageKeyboardSettingUse.Size = new System.Drawing.Size(89, 19);
+            this.cbManageKeyboardSettingUse.Size = new System.Drawing.Size(72, 16);
             this.cbManageKeyboardSettingUse.TabIndex = 92;
             this.cbManageKeyboardSettingUse.Text = "是否启用";
             this.cbManageKeyboardSettingUse.UseVisualStyleBackColor = true;
@@ -2261,21 +2111,18 @@
             this.groupBox18.Controls.Add(this.btnWriteInOutSideReadOpenSetting);
             this.groupBox18.Controls.Add(this.btnReadInOutSideReadOpenSetting);
             this.groupBox18.Controls.Add(this.cbInOutSideReadOpenSettingUse);
-            this.groupBox18.Location = new System.Drawing.Point(519, 454);
-            this.groupBox18.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox18.Location = new System.Drawing.Point(389, 363);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox18.Size = new System.Drawing.Size(469, 59);
+            this.groupBox18.Size = new System.Drawing.Size(352, 47);
             this.groupBox18.TabIndex = 13;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "门内外同时读卡开门";
             // 
             // btnWriteInOutSideReadOpenSetting
             // 
-            this.btnWriteInOutSideReadOpenSetting.Location = new System.Drawing.Point(335, 18);
-            this.btnWriteInOutSideReadOpenSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteInOutSideReadOpenSetting.Location = new System.Drawing.Point(251, 14);
             this.btnWriteInOutSideReadOpenSetting.Name = "btnWriteInOutSideReadOpenSetting";
-            this.btnWriteInOutSideReadOpenSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteInOutSideReadOpenSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteInOutSideReadOpenSetting.TabIndex = 92;
             this.btnWriteInOutSideReadOpenSetting.Text = "写入";
             this.btnWriteInOutSideReadOpenSetting.UseVisualStyleBackColor = true;
@@ -2283,10 +2130,9 @@
             // 
             // btnReadInOutSideReadOpenSetting
             // 
-            this.btnReadInOutSideReadOpenSetting.Location = new System.Drawing.Point(263, 18);
-            this.btnReadInOutSideReadOpenSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadInOutSideReadOpenSetting.Location = new System.Drawing.Point(197, 14);
             this.btnReadInOutSideReadOpenSetting.Name = "btnReadInOutSideReadOpenSetting";
-            this.btnReadInOutSideReadOpenSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnReadInOutSideReadOpenSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadInOutSideReadOpenSetting.TabIndex = 92;
             this.btnReadInOutSideReadOpenSetting.Text = "读取";
             this.btnReadInOutSideReadOpenSetting.UseVisualStyleBackColor = true;
@@ -2295,10 +2141,9 @@
             // cbInOutSideReadOpenSettingUse
             // 
             this.cbInOutSideReadOpenSettingUse.AutoSize = true;
-            this.cbInOutSideReadOpenSettingUse.Location = new System.Drawing.Point(21, 26);
-            this.cbInOutSideReadOpenSettingUse.Margin = new System.Windows.Forms.Padding(4);
+            this.cbInOutSideReadOpenSettingUse.Location = new System.Drawing.Point(16, 21);
             this.cbInOutSideReadOpenSettingUse.Name = "cbInOutSideReadOpenSettingUse";
-            this.cbInOutSideReadOpenSettingUse.Size = new System.Drawing.Size(89, 19);
+            this.cbInOutSideReadOpenSettingUse.Size = new System.Drawing.Size(72, 16);
             this.cbInOutSideReadOpenSettingUse.TabIndex = 92;
             this.cbInOutSideReadOpenSettingUse.Text = "是否启用";
             this.cbInOutSideReadOpenSettingUse.UseVisualStyleBackColor = true;
@@ -2308,21 +2153,18 @@
             this.groupBox17.Controls.Add(this.btnWriteWriteVoiceBroadcastSetting);
             this.groupBox17.Controls.Add(this.btnReadVoiceBroadcastSetting);
             this.groupBox17.Controls.Add(this.cbVoiceBroadcastSettingUse);
-            this.groupBox17.Location = new System.Drawing.Point(9, 454);
-            this.groupBox17.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox17.Location = new System.Drawing.Point(7, 363);
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox17.Size = new System.Drawing.Size(488, 59);
+            this.groupBox17.Size = new System.Drawing.Size(366, 47);
             this.groupBox17.TabIndex = 12;
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "设置语音播报功能";
             // 
             // btnWriteWriteVoiceBroadcastSetting
             // 
-            this.btnWriteWriteVoiceBroadcastSetting.Location = new System.Drawing.Point(364, 18);
-            this.btnWriteWriteVoiceBroadcastSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteWriteVoiceBroadcastSetting.Location = new System.Drawing.Point(273, 14);
             this.btnWriteWriteVoiceBroadcastSetting.Name = "btnWriteWriteVoiceBroadcastSetting";
-            this.btnWriteWriteVoiceBroadcastSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteWriteVoiceBroadcastSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteWriteVoiceBroadcastSetting.TabIndex = 91;
             this.btnWriteWriteVoiceBroadcastSetting.Text = "写入";
             this.btnWriteWriteVoiceBroadcastSetting.UseVisualStyleBackColor = true;
@@ -2330,10 +2172,9 @@
             // 
             // btnReadVoiceBroadcastSetting
             // 
-            this.btnReadVoiceBroadcastSetting.Location = new System.Drawing.Point(276, 18);
-            this.btnReadVoiceBroadcastSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadVoiceBroadcastSetting.Location = new System.Drawing.Point(207, 14);
             this.btnReadVoiceBroadcastSetting.Name = "btnReadVoiceBroadcastSetting";
-            this.btnReadVoiceBroadcastSetting.Size = new System.Drawing.Size(64, 29);
+            this.btnReadVoiceBroadcastSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadVoiceBroadcastSetting.TabIndex = 91;
             this.btnReadVoiceBroadcastSetting.Text = "读取";
             this.btnReadVoiceBroadcastSetting.UseVisualStyleBackColor = true;
@@ -2342,10 +2183,9 @@
             // cbVoiceBroadcastSettingUse
             // 
             this.cbVoiceBroadcastSettingUse.AutoSize = true;
-            this.cbVoiceBroadcastSettingUse.Location = new System.Drawing.Point(21, 26);
-            this.cbVoiceBroadcastSettingUse.Margin = new System.Windows.Forms.Padding(4);
+            this.cbVoiceBroadcastSettingUse.Location = new System.Drawing.Point(16, 21);
             this.cbVoiceBroadcastSettingUse.Name = "cbVoiceBroadcastSettingUse";
-            this.cbVoiceBroadcastSettingUse.Size = new System.Drawing.Size(89, 19);
+            this.cbVoiceBroadcastSettingUse.Size = new System.Drawing.Size(72, 16);
             this.cbVoiceBroadcastSettingUse.TabIndex = 0;
             this.cbVoiceBroadcastSettingUse.Text = "是否启用";
             this.cbVoiceBroadcastSettingUse.UseVisualStyleBackColor = true;
@@ -2359,21 +2199,18 @@
             this.groupBox15.Controls.Add(this.label44);
             this.groupBox15.Controls.Add(this.cbAnyCardAuto);
             this.groupBox15.Controls.Add(this.cbAnyCardUse);
-            this.groupBox15.Location = new System.Drawing.Point(9, 386);
-            this.groupBox15.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox15.Location = new System.Drawing.Point(7, 309);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox15.Size = new System.Drawing.Size(979, 59);
+            this.groupBox15.Size = new System.Drawing.Size(734, 47);
             this.groupBox15.TabIndex = 11;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "全卡开门";
             // 
             // btnWriteAnyCard
             // 
-            this.btnWriteAnyCard.Location = new System.Drawing.Point(844, 20);
-            this.btnWriteAnyCard.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteAnyCard.Location = new System.Drawing.Point(633, 16);
             this.btnWriteAnyCard.Name = "btnWriteAnyCard";
-            this.btnWriteAnyCard.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteAnyCard.Size = new System.Drawing.Size(48, 23);
             this.btnWriteAnyCard.TabIndex = 90;
             this.btnWriteAnyCard.Text = "写入";
             this.btnWriteAnyCard.UseVisualStyleBackColor = true;
@@ -2381,10 +2218,9 @@
             // 
             // btnReadAnyCard
             // 
-            this.btnReadAnyCard.Location = new System.Drawing.Point(772, 20);
-            this.btnReadAnyCard.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadAnyCard.Location = new System.Drawing.Point(579, 16);
             this.btnReadAnyCard.Name = "btnReadAnyCard";
-            this.btnReadAnyCard.Size = new System.Drawing.Size(64, 29);
+            this.btnReadAnyCard.Size = new System.Drawing.Size(48, 23);
             this.btnReadAnyCard.TabIndex = 90;
             this.btnReadAnyCard.Text = "读取";
             this.btnReadAnyCard.UseVisualStyleBackColor = true;
@@ -2393,10 +2229,9 @@
             // label63
             // 
             this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(448, 29);
-            this.label63.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label63.Location = new System.Drawing.Point(336, 23);
             this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(82, 15);
+            this.label63.Size = new System.Drawing.Size(65, 12);
             this.label63.TabIndex = 4;
             this.label63.Text = "才进行注册";
             // 
@@ -2404,29 +2239,26 @@
             // 
             this.cmbAnyCardTimeGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAnyCardTimeGroup.FormattingEnabled = true;
-            this.cmbAnyCardTimeGroup.Location = new System.Drawing.Point(313, 24);
-            this.cmbAnyCardTimeGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbAnyCardTimeGroup.Location = new System.Drawing.Point(235, 19);
             this.cmbAnyCardTimeGroup.Name = "cmbAnyCardTimeGroup";
-            this.cmbAnyCardTimeGroup.Size = new System.Drawing.Size(125, 23);
+            this.cmbAnyCardTimeGroup.Size = new System.Drawing.Size(95, 20);
             this.cmbAnyCardTimeGroup.TabIndex = 3;
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(240, 29);
-            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label44.Location = new System.Drawing.Point(180, 23);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(67, 15);
+            this.label44.Size = new System.Drawing.Size(53, 12);
             this.label44.TabIndex = 2;
             this.label44.Text = "在时段：";
             // 
             // cbAnyCardAuto
             // 
             this.cbAnyCardAuto.AutoSize = true;
-            this.cbAnyCardAuto.Location = new System.Drawing.Point(108, 28);
-            this.cbAnyCardAuto.Margin = new System.Windows.Forms.Padding(4);
+            this.cbAnyCardAuto.Location = new System.Drawing.Point(81, 22);
             this.cbAnyCardAuto.Name = "cbAnyCardAuto";
-            this.cbAnyCardAuto.Size = new System.Drawing.Size(89, 19);
+            this.cbAnyCardAuto.Size = new System.Drawing.Size(72, 16);
             this.cbAnyCardAuto.TabIndex = 1;
             this.cbAnyCardAuto.Text = "自动注册";
             this.cbAnyCardAuto.UseVisualStyleBackColor = true;
@@ -2434,10 +2266,9 @@
             // cbAnyCardUse
             // 
             this.cbAnyCardUse.AutoSize = true;
-            this.cbAnyCardUse.Location = new System.Drawing.Point(8, 28);
-            this.cbAnyCardUse.Margin = new System.Windows.Forms.Padding(4);
+            this.cbAnyCardUse.Location = new System.Drawing.Point(6, 22);
             this.cbAnyCardUse.Name = "cbAnyCardUse";
-            this.cbAnyCardUse.Size = new System.Drawing.Size(59, 19);
+            this.cbAnyCardUse.Size = new System.Drawing.Size(48, 16);
             this.cbAnyCardUse.TabIndex = 0;
             this.cbAnyCardUse.Text = "启用";
             this.cbAnyCardUse.UseVisualStyleBackColor = true;
@@ -2451,11 +2282,9 @@
             this.groupBox14.Controls.Add(this.lbNormallyOpen);
             this.groupBox14.Controls.Add(this.cbReadPushButton);
             this.groupBox14.Controls.Add(this.label43);
-            this.groupBox14.Location = new System.Drawing.Point(9, 140);
-            this.groupBox14.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox14.Location = new System.Drawing.Point(7, 112);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox14.Size = new System.Drawing.Size(979, 238);
+            this.groupBox14.Size = new System.Drawing.Size(734, 190);
             this.groupBox14.TabIndex = 10;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "出门开关参数";
@@ -2496,20 +2325,18 @@
             this.plPushButton.Controls.Add(this.label62);
             this.plPushButton.Controls.Add(this.beginTP1);
             this.plPushButton.Controls.Add(this.cmbPushButtonWeekday);
-            this.plPushButton.Location = new System.Drawing.Point(15, 50);
-            this.plPushButton.Margin = new System.Windows.Forms.Padding(4);
+            this.plPushButton.Location = new System.Drawing.Point(11, 40);
             this.plPushButton.Name = "plPushButton";
-            this.plPushButton.Size = new System.Drawing.Size(951, 139);
+            this.plPushButton.Size = new System.Drawing.Size(713, 111);
             this.plPushButton.TabIndex = 89;
             this.plPushButton.Visible = false;
             // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(676, 90);
-            this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label45.Location = new System.Drawing.Point(507, 72);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(75, 15);
+            this.label45.Size = new System.Drawing.Size(59, 12);
             this.label45.TabIndex = 117;
             this.label45.Text = "结束时间8";
             // 
@@ -2517,11 +2344,10 @@
             // 
             this.EndTP8.CustomFormat = "HH:mm";
             this.EndTP8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP8.Location = new System.Drawing.Point(679, 109);
-            this.EndTP8.Margin = new System.Windows.Forms.Padding(4);
+            this.EndTP8.Location = new System.Drawing.Point(509, 87);
             this.EndTP8.Name = "EndTP8";
             this.EndTP8.ShowUpDown = true;
-            this.EndTP8.Size = new System.Drawing.Size(75, 25);
+            this.EndTP8.Size = new System.Drawing.Size(57, 21);
             this.EndTP8.TabIndex = 116;
             this.EndTP8.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.EndTP8.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
@@ -2529,10 +2355,9 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(589, 90);
-            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label46.Location = new System.Drawing.Point(442, 72);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(75, 15);
+            this.label46.Size = new System.Drawing.Size(59, 12);
             this.label46.TabIndex = 115;
             this.label46.Text = "开始时间8";
             // 
@@ -2540,11 +2365,10 @@
             // 
             this.beginTP8.CustomFormat = "HH:mm";
             this.beginTP8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP8.Location = new System.Drawing.Point(592, 109);
-            this.beginTP8.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTP8.Location = new System.Drawing.Point(444, 87);
             this.beginTP8.Name = "beginTP8";
             this.beginTP8.ShowUpDown = true;
-            this.beginTP8.Size = new System.Drawing.Size(75, 25);
+            this.beginTP8.Size = new System.Drawing.Size(57, 21);
             this.beginTP8.TabIndex = 114;
             this.beginTP8.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.beginTP8.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
@@ -2552,10 +2376,9 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(676, 35);
-            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label47.Location = new System.Drawing.Point(507, 28);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(75, 15);
+            this.label47.Size = new System.Drawing.Size(59, 12);
             this.label47.TabIndex = 113;
             this.label47.Text = "结束时间4";
             // 
@@ -2563,11 +2386,10 @@
             // 
             this.EndTP4.CustomFormat = "HH:mm";
             this.EndTP4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP4.Location = new System.Drawing.Point(679, 54);
-            this.EndTP4.Margin = new System.Windows.Forms.Padding(4);
+            this.EndTP4.Location = new System.Drawing.Point(509, 43);
             this.EndTP4.Name = "EndTP4";
             this.EndTP4.ShowUpDown = true;
-            this.EndTP4.Size = new System.Drawing.Size(75, 25);
+            this.EndTP4.Size = new System.Drawing.Size(57, 21);
             this.EndTP4.TabIndex = 112;
             this.EndTP4.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.EndTP4.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
@@ -2575,10 +2397,9 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(589, 35);
-            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label48.Location = new System.Drawing.Point(442, 28);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(75, 15);
+            this.label48.Size = new System.Drawing.Size(59, 12);
             this.label48.TabIndex = 111;
             this.label48.Text = "开始时间4";
             // 
@@ -2586,11 +2407,10 @@
             // 
             this.beginTP4.CustomFormat = "HH:mm";
             this.beginTP4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP4.Location = new System.Drawing.Point(592, 54);
-            this.beginTP4.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTP4.Location = new System.Drawing.Point(444, 43);
             this.beginTP4.Name = "beginTP4";
             this.beginTP4.ShowUpDown = true;
-            this.beginTP4.Size = new System.Drawing.Size(75, 25);
+            this.beginTP4.Size = new System.Drawing.Size(57, 21);
             this.beginTP4.TabIndex = 110;
             this.beginTP4.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.beginTP4.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
@@ -2598,10 +2418,9 @@
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(481, 90);
-            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label49.Location = new System.Drawing.Point(361, 72);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(75, 15);
+            this.label49.Size = new System.Drawing.Size(59, 12);
             this.label49.TabIndex = 109;
             this.label49.Text = "结束时间7";
             // 
@@ -2609,11 +2428,10 @@
             // 
             this.EndTP7.CustomFormat = "HH:mm";
             this.EndTP7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP7.Location = new System.Drawing.Point(484, 109);
-            this.EndTP7.Margin = new System.Windows.Forms.Padding(4);
+            this.EndTP7.Location = new System.Drawing.Point(363, 87);
             this.EndTP7.Name = "EndTP7";
             this.EndTP7.ShowUpDown = true;
-            this.EndTP7.Size = new System.Drawing.Size(75, 25);
+            this.EndTP7.Size = new System.Drawing.Size(57, 21);
             this.EndTP7.TabIndex = 108;
             this.EndTP7.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.EndTP7.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
@@ -2621,10 +2439,9 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(395, 90);
-            this.label50.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label50.Location = new System.Drawing.Point(296, 72);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(75, 15);
+            this.label50.Size = new System.Drawing.Size(59, 12);
             this.label50.TabIndex = 107;
             this.label50.Text = "开始时间7";
             // 
@@ -2632,11 +2449,10 @@
             // 
             this.beginTP7.CustomFormat = "HH:mm";
             this.beginTP7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP7.Location = new System.Drawing.Point(397, 109);
-            this.beginTP7.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTP7.Location = new System.Drawing.Point(298, 87);
             this.beginTP7.Name = "beginTP7";
             this.beginTP7.ShowUpDown = true;
-            this.beginTP7.Size = new System.Drawing.Size(75, 25);
+            this.beginTP7.Size = new System.Drawing.Size(57, 21);
             this.beginTP7.TabIndex = 106;
             this.beginTP7.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.beginTP7.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
@@ -2644,10 +2460,9 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(481, 35);
-            this.label51.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label51.Location = new System.Drawing.Point(361, 28);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(75, 15);
+            this.label51.Size = new System.Drawing.Size(59, 12);
             this.label51.TabIndex = 105;
             this.label51.Text = "结束时间3";
             // 
@@ -2655,11 +2470,10 @@
             // 
             this.EndTP3.CustomFormat = "HH:mm";
             this.EndTP3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP3.Location = new System.Drawing.Point(484, 54);
-            this.EndTP3.Margin = new System.Windows.Forms.Padding(4);
+            this.EndTP3.Location = new System.Drawing.Point(363, 43);
             this.EndTP3.Name = "EndTP3";
             this.EndTP3.ShowUpDown = true;
-            this.EndTP3.Size = new System.Drawing.Size(75, 25);
+            this.EndTP3.Size = new System.Drawing.Size(57, 21);
             this.EndTP3.TabIndex = 104;
             this.EndTP3.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.EndTP3.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
@@ -2667,10 +2481,9 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(395, 35);
-            this.label52.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label52.Location = new System.Drawing.Point(296, 28);
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(75, 15);
+            this.label52.Size = new System.Drawing.Size(59, 12);
             this.label52.TabIndex = 103;
             this.label52.Text = "开始时间3";
             // 
@@ -2678,11 +2491,10 @@
             // 
             this.beginTP3.CustomFormat = "HH:mm";
             this.beginTP3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP3.Location = new System.Drawing.Point(397, 54);
-            this.beginTP3.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTP3.Location = new System.Drawing.Point(298, 43);
             this.beginTP3.Name = "beginTP3";
             this.beginTP3.ShowUpDown = true;
-            this.beginTP3.Size = new System.Drawing.Size(75, 25);
+            this.beginTP3.Size = new System.Drawing.Size(57, 21);
             this.beginTP3.TabIndex = 102;
             this.beginTP3.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.beginTP3.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
@@ -2690,10 +2502,9 @@
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(283, 90);
-            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label53.Location = new System.Drawing.Point(212, 72);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(75, 15);
+            this.label53.Size = new System.Drawing.Size(59, 12);
             this.label53.TabIndex = 101;
             this.label53.Text = "结束时间6";
             // 
@@ -2701,11 +2512,10 @@
             // 
             this.EndTP6.CustomFormat = "HH:mm";
             this.EndTP6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP6.Location = new System.Drawing.Point(285, 109);
-            this.EndTP6.Margin = new System.Windows.Forms.Padding(4);
+            this.EndTP6.Location = new System.Drawing.Point(214, 87);
             this.EndTP6.Name = "EndTP6";
             this.EndTP6.ShowUpDown = true;
-            this.EndTP6.Size = new System.Drawing.Size(75, 25);
+            this.EndTP6.Size = new System.Drawing.Size(57, 21);
             this.EndTP6.TabIndex = 100;
             this.EndTP6.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.EndTP6.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
@@ -2713,10 +2523,9 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(196, 90);
-            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label54.Location = new System.Drawing.Point(147, 72);
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(75, 15);
+            this.label54.Size = new System.Drawing.Size(59, 12);
             this.label54.TabIndex = 99;
             this.label54.Text = "开始时间6";
             // 
@@ -2724,11 +2533,10 @@
             // 
             this.beginTP6.CustomFormat = "HH:mm";
             this.beginTP6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP6.Location = new System.Drawing.Point(199, 109);
-            this.beginTP6.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTP6.Location = new System.Drawing.Point(149, 87);
             this.beginTP6.Name = "beginTP6";
             this.beginTP6.ShowUpDown = true;
-            this.beginTP6.Size = new System.Drawing.Size(75, 25);
+            this.beginTP6.Size = new System.Drawing.Size(57, 21);
             this.beginTP6.TabIndex = 98;
             this.beginTP6.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.beginTP6.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
@@ -2736,10 +2544,9 @@
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(283, 35);
-            this.label55.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label55.Location = new System.Drawing.Point(212, 28);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(75, 15);
+            this.label55.Size = new System.Drawing.Size(59, 12);
             this.label55.TabIndex = 97;
             this.label55.Text = "结束时间2";
             // 
@@ -2747,11 +2554,10 @@
             // 
             this.EndTP2.CustomFormat = "HH:mm";
             this.EndTP2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP2.Location = new System.Drawing.Point(285, 54);
-            this.EndTP2.Margin = new System.Windows.Forms.Padding(4);
+            this.EndTP2.Location = new System.Drawing.Point(214, 43);
             this.EndTP2.Name = "EndTP2";
             this.EndTP2.ShowUpDown = true;
-            this.EndTP2.Size = new System.Drawing.Size(75, 25);
+            this.EndTP2.Size = new System.Drawing.Size(57, 21);
             this.EndTP2.TabIndex = 96;
             this.EndTP2.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.EndTP2.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
@@ -2759,10 +2565,9 @@
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(196, 35);
-            this.label56.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label56.Location = new System.Drawing.Point(147, 28);
             this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(75, 15);
+            this.label56.Size = new System.Drawing.Size(59, 12);
             this.label56.TabIndex = 95;
             this.label56.Text = "开始时间2";
             // 
@@ -2770,11 +2575,10 @@
             // 
             this.beginTP2.CustomFormat = "HH:mm";
             this.beginTP2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP2.Location = new System.Drawing.Point(199, 54);
-            this.beginTP2.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTP2.Location = new System.Drawing.Point(149, 43);
             this.beginTP2.Name = "beginTP2";
             this.beginTP2.ShowUpDown = true;
-            this.beginTP2.Size = new System.Drawing.Size(75, 25);
+            this.beginTP2.Size = new System.Drawing.Size(57, 21);
             this.beginTP2.TabIndex = 94;
             this.beginTP2.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.beginTP2.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
@@ -2782,10 +2586,9 @@
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(91, 90);
-            this.label58.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label58.Location = new System.Drawing.Point(68, 72);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(75, 15);
+            this.label58.Size = new System.Drawing.Size(59, 12);
             this.label58.TabIndex = 93;
             this.label58.Text = "结束时间5";
             // 
@@ -2793,11 +2596,10 @@
             // 
             this.EndTP5.CustomFormat = "HH:mm";
             this.EndTP5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP5.Location = new System.Drawing.Point(93, 109);
-            this.EndTP5.Margin = new System.Windows.Forms.Padding(4);
+            this.EndTP5.Location = new System.Drawing.Point(70, 87);
             this.EndTP5.Name = "EndTP5";
             this.EndTP5.ShowUpDown = true;
-            this.EndTP5.Size = new System.Drawing.Size(75, 25);
+            this.EndTP5.Size = new System.Drawing.Size(57, 21);
             this.EndTP5.TabIndex = 92;
             this.EndTP5.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.EndTP5.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
@@ -2805,10 +2607,9 @@
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(4, 90);
-            this.label59.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label59.Location = new System.Drawing.Point(3, 72);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(75, 15);
+            this.label59.Size = new System.Drawing.Size(59, 12);
             this.label59.TabIndex = 91;
             this.label59.Text = "开始时间5";
             // 
@@ -2816,11 +2617,10 @@
             // 
             this.beginTP5.CustomFormat = "HH:mm";
             this.beginTP5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP5.Location = new System.Drawing.Point(7, 109);
-            this.beginTP5.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTP5.Location = new System.Drawing.Point(5, 87);
             this.beginTP5.Name = "beginTP5";
             this.beginTP5.ShowUpDown = true;
-            this.beginTP5.Size = new System.Drawing.Size(75, 25);
+            this.beginTP5.Size = new System.Drawing.Size(57, 21);
             this.beginTP5.TabIndex = 90;
             this.beginTP5.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.beginTP5.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
@@ -2828,10 +2628,9 @@
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(91, 35);
-            this.label60.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label60.Location = new System.Drawing.Point(68, 28);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(75, 15);
+            this.label60.Size = new System.Drawing.Size(59, 12);
             this.label60.TabIndex = 89;
             this.label60.Text = "结束时间1";
             // 
@@ -2839,11 +2638,10 @@
             // 
             this.EndTP1.CustomFormat = "HH:mm";
             this.EndTP1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP1.Location = new System.Drawing.Point(93, 54);
-            this.EndTP1.Margin = new System.Windows.Forms.Padding(4);
+            this.EndTP1.Location = new System.Drawing.Point(70, 43);
             this.EndTP1.Name = "EndTP1";
             this.EndTP1.ShowUpDown = true;
-            this.EndTP1.Size = new System.Drawing.Size(75, 25);
+            this.EndTP1.Size = new System.Drawing.Size(57, 21);
             this.EndTP1.TabIndex = 88;
             this.EndTP1.Value = new System.DateTime(2019, 5, 13, 23, 59, 0, 0);
             this.EndTP1.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
@@ -2851,20 +2649,18 @@
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(4, 35);
-            this.label61.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label61.Location = new System.Drawing.Point(3, 28);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(75, 15);
+            this.label61.Size = new System.Drawing.Size(59, 12);
             this.label61.TabIndex = 87;
             this.label61.Text = "开始时间1";
             // 
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(4, 9);
-            this.label62.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label62.Location = new System.Drawing.Point(3, 7);
             this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(150, 15);
+            this.label62.Size = new System.Drawing.Size(119, 12);
             this.label62.TabIndex = 85;
             this.label62.Text = "出门开关 生效时段：";
             // 
@@ -2872,11 +2668,10 @@
             // 
             this.beginTP1.CustomFormat = "HH:mm";
             this.beginTP1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP1.Location = new System.Drawing.Point(7, 54);
-            this.beginTP1.Margin = new System.Windows.Forms.Padding(4);
+            this.beginTP1.Location = new System.Drawing.Point(5, 43);
             this.beginTP1.Name = "beginTP1";
             this.beginTP1.ShowUpDown = true;
-            this.beginTP1.Size = new System.Drawing.Size(75, 25);
+            this.beginTP1.Size = new System.Drawing.Size(57, 21);
             this.beginTP1.TabIndex = 84;
             this.beginTP1.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
             this.beginTP1.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
@@ -2893,19 +2688,17 @@
             "星期五",
             "星期六",
             "星期日"});
-            this.cmbPushButtonWeekday.Location = new System.Drawing.Point(187, 5);
-            this.cmbPushButtonWeekday.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbPushButtonWeekday.Location = new System.Drawing.Point(140, 4);
             this.cmbPushButtonWeekday.Name = "cmbPushButtonWeekday";
-            this.cmbPushButtonWeekday.Size = new System.Drawing.Size(137, 23);
+            this.cmbPushButtonWeekday.Size = new System.Drawing.Size(104, 20);
             this.cmbPushButtonWeekday.TabIndex = 86;
             this.cmbPushButtonWeekday.SelectedIndexChanged += new System.EventHandler(this.CmbPushButtonWeekday_SelectedIndexChanged);
             // 
             // btnWritePushButton
             // 
-            this.btnWritePushButton.Location = new System.Drawing.Point(844, 201);
-            this.btnWritePushButton.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWritePushButton.Location = new System.Drawing.Point(633, 161);
             this.btnWritePushButton.Name = "btnWritePushButton";
-            this.btnWritePushButton.Size = new System.Drawing.Size(64, 29);
+            this.btnWritePushButton.Size = new System.Drawing.Size(48, 23);
             this.btnWritePushButton.TabIndex = 88;
             this.btnWritePushButton.Text = "写入";
             this.btnWritePushButton.UseVisualStyleBackColor = true;
@@ -2913,10 +2706,9 @@
             // 
             // btnReadPushButton
             // 
-            this.btnReadPushButton.Location = new System.Drawing.Point(772, 201);
-            this.btnReadPushButton.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadPushButton.Location = new System.Drawing.Point(579, 161);
             this.btnReadPushButton.Name = "btnReadPushButton";
-            this.btnReadPushButton.Size = new System.Drawing.Size(64, 29);
+            this.btnReadPushButton.Size = new System.Drawing.Size(48, 23);
             this.btnReadPushButton.TabIndex = 88;
             this.btnReadPushButton.Text = "读取";
             this.btnReadPushButton.UseVisualStyleBackColor = true;
@@ -2925,10 +2717,9 @@
             // cbNormallyOpen
             // 
             this.cbNormallyOpen.AutoSize = true;
-            this.cbNormallyOpen.Location = new System.Drawing.Point(588, 25);
-            this.cbNormallyOpen.Margin = new System.Windows.Forms.Padding(4);
+            this.cbNormallyOpen.Location = new System.Drawing.Point(441, 20);
             this.cbNormallyOpen.Name = "cbNormallyOpen";
-            this.cbNormallyOpen.Size = new System.Drawing.Size(18, 17);
+            this.cbNormallyOpen.Size = new System.Drawing.Size(15, 14);
             this.cbNormallyOpen.TabIndex = 3;
             this.cbNormallyOpen.UseVisualStyleBackColor = true;
             this.cbNormallyOpen.Visible = false;
@@ -2936,10 +2727,9 @@
             // lbNormallyOpen
             // 
             this.lbNormallyOpen.AutoSize = true;
-            this.lbNormallyOpen.Location = new System.Drawing.Point(507, 25);
-            this.lbNormallyOpen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbNormallyOpen.Location = new System.Drawing.Point(380, 20);
             this.lbNormallyOpen.Name = "lbNormallyOpen";
-            this.lbNormallyOpen.Size = new System.Drawing.Size(82, 15);
+            this.lbNormallyOpen.Size = new System.Drawing.Size(65, 12);
             this.lbNormallyOpen.TabIndex = 2;
             this.lbNormallyOpen.Text = "允许常开：";
             this.lbNormallyOpen.Visible = false;
@@ -2947,10 +2737,9 @@
             // cbReadPushButton
             // 
             this.cbReadPushButton.AutoSize = true;
-            this.cbReadPushButton.Location = new System.Drawing.Point(168, 25);
-            this.cbReadPushButton.Margin = new System.Windows.Forms.Padding(4);
+            this.cbReadPushButton.Location = new System.Drawing.Point(126, 20);
             this.cbReadPushButton.Name = "cbReadPushButton";
-            this.cbReadPushButton.Size = new System.Drawing.Size(18, 17);
+            this.cbReadPushButton.Size = new System.Drawing.Size(15, 14);
             this.cbReadPushButton.TabIndex = 1;
             this.cbReadPushButton.UseVisualStyleBackColor = true;
             this.cbReadPushButton.CheckedChanged += new System.EventHandler(this.CbReadPushButton_CheckedChanged);
@@ -2958,10 +2747,9 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(85, 25);
-            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label43.Location = new System.Drawing.Point(64, 20);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(82, 15);
+            this.label43.Size = new System.Drawing.Size(65, 12);
             this.label43.TabIndex = 0;
             this.label43.Text = "是否启用：";
             // 
@@ -2972,21 +2760,18 @@
             this.groupBox13.Controls.Add(this.panel4);
             this.groupBox13.Controls.Add(this.label42);
             this.groupBox13.Controls.Add(this.panel3);
-            this.groupBox13.Location = new System.Drawing.Point(9, 72);
-            this.groupBox13.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox13.Location = new System.Drawing.Point(7, 58);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox13.Size = new System.Drawing.Size(979, 59);
+            this.groupBox13.Size = new System.Drawing.Size(734, 47);
             this.groupBox13.TabIndex = 9;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "防潜返参数";
             // 
             // btnWriteAntiPassback
             // 
-            this.btnWriteAntiPassback.Location = new System.Drawing.Point(905, 24);
-            this.btnWriteAntiPassback.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteAntiPassback.Location = new System.Drawing.Point(679, 19);
             this.btnWriteAntiPassback.Name = "btnWriteAntiPassback";
-            this.btnWriteAntiPassback.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteAntiPassback.Size = new System.Drawing.Size(48, 23);
             this.btnWriteAntiPassback.TabIndex = 87;
             this.btnWriteAntiPassback.Text = "写入";
             this.btnWriteAntiPassback.UseVisualStyleBackColor = true;
@@ -2994,10 +2779,9 @@
             // 
             // btnReadAntiPassback
             // 
-            this.btnReadAntiPassback.Location = new System.Drawing.Point(833, 24);
-            this.btnReadAntiPassback.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadAntiPassback.Location = new System.Drawing.Point(625, 19);
             this.btnReadAntiPassback.Name = "btnReadAntiPassback";
-            this.btnReadAntiPassback.Size = new System.Drawing.Size(64, 29);
+            this.btnReadAntiPassback.Size = new System.Drawing.Size(48, 23);
             this.btnReadAntiPassback.TabIndex = 87;
             this.btnReadAntiPassback.Text = "读取";
             this.btnReadAntiPassback.UseVisualStyleBackColor = true;
@@ -3007,19 +2791,17 @@
             // 
             this.panel4.Controls.Add(this.rBtnCheckInOut2);
             this.panel4.Controls.Add(this.rBtnCheckInOut1);
-            this.panel4.Location = new System.Drawing.Point(364, 26);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4);
+            this.panel4.Location = new System.Drawing.Point(273, 21);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(448, 26);
+            this.panel4.Size = new System.Drawing.Size(336, 21);
             this.panel4.TabIndex = 2;
             // 
             // rBtnCheckInOut2
             // 
             this.rBtnCheckInOut2.AutoSize = true;
-            this.rBtnCheckInOut2.Location = new System.Drawing.Point(253, 2);
-            this.rBtnCheckInOut2.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnCheckInOut2.Location = new System.Drawing.Point(190, 2);
             this.rBtnCheckInOut2.Name = "rBtnCheckInOut2";
-            this.rBtnCheckInOut2.Size = new System.Drawing.Size(178, 19);
+            this.rBtnCheckInOut2.Size = new System.Drawing.Size(143, 16);
             this.rBtnCheckInOut2.TabIndex = 1;
             this.rBtnCheckInOut2.TabStop = true;
             this.rBtnCheckInOut2.Text = "整个控制器检测防潜返";
@@ -3028,10 +2810,9 @@
             // rBtnCheckInOut1
             // 
             this.rBtnCheckInOut1.AutoSize = true;
-            this.rBtnCheckInOut1.Location = new System.Drawing.Point(5, 2);
-            this.rBtnCheckInOut1.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnCheckInOut1.Location = new System.Drawing.Point(4, 2);
             this.rBtnCheckInOut1.Name = "rBtnCheckInOut1";
-            this.rBtnCheckInOut1.Size = new System.Drawing.Size(178, 19);
+            this.rBtnCheckInOut1.Size = new System.Drawing.Size(143, 16);
             this.rBtnCheckInOut1.TabIndex = 0;
             this.rBtnCheckInOut1.TabStop = true;
             this.rBtnCheckInOut1.Text = "单独每个门检测防潜返";
@@ -3040,10 +2821,9 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(281, 31);
-            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label42.Location = new System.Drawing.Point(211, 25);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(82, 15);
+            this.label42.Size = new System.Drawing.Size(65, 12);
             this.label42.TabIndex = 1;
             this.label42.Text = "检测模式：";
             // 
@@ -3051,19 +2831,17 @@
             // 
             this.panel3.Controls.Add(this.rBtnAnti);
             this.panel3.Controls.Add(this.rBtnNotAnti);
-            this.panel3.Location = new System.Drawing.Point(8, 26);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
+            this.panel3.Location = new System.Drawing.Point(6, 21);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(167, 26);
+            this.panel3.Size = new System.Drawing.Size(125, 21);
             this.panel3.TabIndex = 0;
             // 
             // rBtnAnti
             // 
             this.rBtnAnti.AutoSize = true;
-            this.rBtnAnti.Location = new System.Drawing.Point(96, 2);
-            this.rBtnAnti.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnAnti.Location = new System.Drawing.Point(72, 2);
             this.rBtnAnti.Name = "rBtnAnti";
-            this.rBtnAnti.Size = new System.Drawing.Size(58, 19);
+            this.rBtnAnti.Size = new System.Drawing.Size(47, 16);
             this.rBtnAnti.TabIndex = 1;
             this.rBtnAnti.TabStop = true;
             this.rBtnAnti.Text = "启用";
@@ -3072,10 +2850,9 @@
             // rBtnNotAnti
             // 
             this.rBtnNotAnti.AutoSize = true;
-            this.rBtnNotAnti.Location = new System.Drawing.Point(5, 2);
-            this.rBtnNotAnti.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnNotAnti.Location = new System.Drawing.Point(4, 2);
             this.rBtnNotAnti.Name = "rBtnNotAnti";
-            this.rBtnNotAnti.Size = new System.Drawing.Size(73, 19);
+            this.rBtnNotAnti.Size = new System.Drawing.Size(59, 16);
             this.rBtnNotAnti.TabIndex = 0;
             this.rBtnNotAnti.TabStop = true;
             this.rBtnNotAnti.Text = "不启用";
@@ -3090,11 +2867,9 @@
             this.groupBox12.Controls.Add(this.panel2);
             this.groupBox12.Controls.Add(this.btnWriteReaderInterval);
             this.groupBox12.Controls.Add(this.btnReadReaderInterval);
-            this.groupBox12.Location = new System.Drawing.Point(9, 5);
-            this.groupBox12.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox12.Location = new System.Drawing.Point(7, 4);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox12.Size = new System.Drawing.Size(979, 59);
+            this.groupBox12.Size = new System.Drawing.Size(734, 47);
             this.groupBox12.TabIndex = 8;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "重复读卡间隔";
@@ -3103,19 +2878,17 @@
             // 
             this.cmbInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbInterval.FormattingEnabled = true;
-            this.cmbInterval.Location = new System.Drawing.Point(259, 25);
-            this.cmbInterval.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbInterval.Location = new System.Drawing.Point(194, 20);
             this.cmbInterval.Name = "cmbInterval";
-            this.cmbInterval.Size = new System.Drawing.Size(125, 23);
+            this.cmbInterval.Size = new System.Drawing.Size(95, 20);
             this.cmbInterval.TabIndex = 86;
             // 
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(183, 31);
-            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label41.Location = new System.Drawing.Point(137, 25);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(82, 15);
+            this.label41.Size = new System.Drawing.Size(65, 12);
             this.label41.TabIndex = 85;
             this.label41.Text = "间隔时间：";
             // 
@@ -3127,19 +2900,17 @@
             "读卡有记录",
             "读卡无记录",
             "读卡不做响应"});
-            this.cbxDetectionMode.Location = new System.Drawing.Point(603, 25);
-            this.cbxDetectionMode.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxDetectionMode.Location = new System.Drawing.Point(452, 20);
             this.cbxDetectionMode.Name = "cbxDetectionMode";
-            this.cbxDetectionMode.Size = new System.Drawing.Size(200, 23);
+            this.cbxDetectionMode.Size = new System.Drawing.Size(151, 20);
             this.cbxDetectionMode.TabIndex = 84;
             // 
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(393, 31);
-            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label40.Location = new System.Drawing.Point(295, 25);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(202, 15);
+            this.label40.Size = new System.Drawing.Size(161, 12);
             this.label40.TabIndex = 83;
             this.label40.Text = "间隔时间无效时，检测模式：";
             // 
@@ -3147,19 +2918,17 @@
             // 
             this.panel2.Controls.Add(this.rBtnNoReaderInterval);
             this.panel2.Controls.Add(this.rBtnReaderInterval);
-            this.panel2.Location = new System.Drawing.Point(8, 24);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Location = new System.Drawing.Point(6, 19);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(167, 26);
+            this.panel2.Size = new System.Drawing.Size(125, 21);
             this.panel2.TabIndex = 82;
             // 
             // rBtnNoReaderInterval
             // 
             this.rBtnNoReaderInterval.AutoSize = true;
-            this.rBtnNoReaderInterval.Location = new System.Drawing.Point(0, 4);
-            this.rBtnNoReaderInterval.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnNoReaderInterval.Location = new System.Drawing.Point(0, 3);
             this.rBtnNoReaderInterval.Name = "rBtnNoReaderInterval";
-            this.rBtnNoReaderInterval.Size = new System.Drawing.Size(73, 19);
+            this.rBtnNoReaderInterval.Size = new System.Drawing.Size(59, 16);
             this.rBtnNoReaderInterval.TabIndex = 51;
             this.rBtnNoReaderInterval.Text = "不启用";
             this.rBtnNoReaderInterval.UseVisualStyleBackColor = true;
@@ -3168,10 +2937,9 @@
             // 
             this.rBtnReaderInterval.AutoSize = true;
             this.rBtnReaderInterval.Checked = true;
-            this.rBtnReaderInterval.Location = new System.Drawing.Point(96, 4);
-            this.rBtnReaderInterval.Margin = new System.Windows.Forms.Padding(4);
+            this.rBtnReaderInterval.Location = new System.Drawing.Point(72, 3);
             this.rBtnReaderInterval.Name = "rBtnReaderInterval";
-            this.rBtnReaderInterval.Size = new System.Drawing.Size(58, 19);
+            this.rBtnReaderInterval.Size = new System.Drawing.Size(47, 16);
             this.rBtnReaderInterval.TabIndex = 52;
             this.rBtnReaderInterval.TabStop = true;
             this.rBtnReaderInterval.Text = "启用";
@@ -3179,10 +2947,9 @@
             // 
             // btnWriteReaderInterval
             // 
-            this.btnWriteReaderInterval.Location = new System.Drawing.Point(905, 22);
-            this.btnWriteReaderInterval.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteReaderInterval.Location = new System.Drawing.Point(679, 18);
             this.btnWriteReaderInterval.Name = "btnWriteReaderInterval";
-            this.btnWriteReaderInterval.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteReaderInterval.Size = new System.Drawing.Size(48, 23);
             this.btnWriteReaderInterval.TabIndex = 49;
             this.btnWriteReaderInterval.Text = "写入";
             this.btnWriteReaderInterval.UseVisualStyleBackColor = true;
@@ -3190,10 +2957,9 @@
             // 
             // btnReadReaderInterval
             // 
-            this.btnReadReaderInterval.Location = new System.Drawing.Point(833, 22);
-            this.btnReadReaderInterval.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadReaderInterval.Location = new System.Drawing.Point(625, 18);
             this.btnReadReaderInterval.Name = "btnReadReaderInterval";
-            this.btnReadReaderInterval.Size = new System.Drawing.Size(64, 29);
+            this.btnReadReaderInterval.Size = new System.Drawing.Size(48, 23);
             this.btnReadReaderInterval.TabIndex = 48;
             this.btnReadReaderInterval.Text = "读取";
             this.btnReadReaderInterval.UseVisualStyleBackColor = true;
@@ -3202,16 +2968,16 @@
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.groupBox22);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1004, 1022);
+            this.tabPage4.Size = new System.Drawing.Size(751, 815);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "参数3";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // groupBox22
             // 
+            this.groupBox22.Controls.Add(this.btnDeleteGroup);
             this.groupBox22.Controls.Add(this.dataGridView4);
             this.groupBox22.Controls.Add(this.btnAutoFill);
             this.groupBox22.Controls.Add(this.dataGridView3);
@@ -3231,11 +2997,9 @@
             this.groupBox22.Controls.Add(this.label68);
             this.groupBox22.Controls.Add(this.cmbManyCardOpenMode);
             this.groupBox22.Controls.Add(this.label67);
-            this.groupBox22.Location = new System.Drawing.Point(19, 5);
-            this.groupBox22.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox22.Location = new System.Drawing.Point(14, 4);
             this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox22.Size = new System.Drawing.Size(963, 645);
+            this.groupBox22.Size = new System.Drawing.Size(722, 516);
             this.groupBox22.TabIndex = 0;
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "多卡开门";
@@ -3248,13 +3012,12 @@
             this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.dataGridView4.Location = new System.Drawing.Point(42, 175);
-            this.dataGridView4.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView4.Location = new System.Drawing.Point(0, 140);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.ReadOnly = true;
             this.dataGridView4.RowHeadersWidth = 51;
             this.dataGridView4.RowTemplate.Height = 23;
-            this.dataGridView4.Size = new System.Drawing.Size(603, 470);
+            this.dataGridView4.Size = new System.Drawing.Size(452, 376);
             this.dataGridView4.TabIndex = 105;
             this.dataGridView4.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView4_CellClick);
             this.dataGridView4.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView4_EditingControlShowing);
@@ -3280,10 +3043,9 @@
             // 
             // btnAutoFill
             // 
-            this.btnAutoFill.Location = new System.Drawing.Point(785, 175);
-            this.btnAutoFill.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAutoFill.Location = new System.Drawing.Point(589, 140);
             this.btnAutoFill.Name = "btnAutoFill";
-            this.btnAutoFill.Size = new System.Drawing.Size(100, 29);
+            this.btnAutoFill.Size = new System.Drawing.Size(75, 23);
             this.btnAutoFill.TabIndex = 104;
             this.btnAutoFill.Text = "自动填充";
             this.btnAutoFill.UseVisualStyleBackColor = true;
@@ -3297,13 +3059,12 @@
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Num,
             this.Card});
-            this.dataGridView3.Location = new System.Drawing.Point(11, 175);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView3.Location = new System.Drawing.Point(8, 140);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 23;
-            this.dataGridView3.Size = new System.Drawing.Size(603, 470);
+            this.dataGridView3.Size = new System.Drawing.Size(452, 376);
             this.dataGridView3.TabIndex = 103;
             this.dataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView3_CellClick);
             this.dataGridView3.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView3_EditingControlShowing);
@@ -3330,10 +3091,9 @@
             // cbConvertHex
             // 
             this.cbConvertHex.AutoSize = true;
-            this.cbConvertHex.Location = new System.Drawing.Point(407, 140);
-            this.cbConvertHex.Margin = new System.Windows.Forms.Padding(4);
+            this.cbConvertHex.Location = new System.Drawing.Point(305, 112);
             this.cbConvertHex.Name = "cbConvertHex";
-            this.cbConvertHex.Size = new System.Drawing.Size(119, 19);
+            this.cbConvertHex.Size = new System.Drawing.Size(96, 16);
             this.cbConvertHex.TabIndex = 102;
             this.cbConvertHex.Text = "十六进制卡号";
             this.cbConvertHex.UseVisualStyleBackColor = true;
@@ -3346,20 +3106,18 @@
             this.cmbGroupType.Items.AddRange(new object[] {
             "A组",
             "B组"});
-            this.cmbGroupType.Location = new System.Drawing.Point(103, 138);
-            this.cmbGroupType.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbGroupType.Location = new System.Drawing.Point(77, 110);
             this.cmbGroupType.Name = "cmbGroupType";
-            this.cmbGroupType.Size = new System.Drawing.Size(84, 23);
+            this.cmbGroupType.Size = new System.Drawing.Size(64, 20);
             this.cmbGroupType.TabIndex = 101;
             this.cmbGroupType.SelectedIndexChanged += new System.EventHandler(this.CmbGroupType_SelectedIndexChanged);
             // 
             // label74
             // 
             this.label74.AutoSize = true;
-            this.label74.Location = new System.Drawing.Point(8, 141);
-            this.label74.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label74.Location = new System.Drawing.Point(6, 113);
             this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(82, 15);
+            this.label74.Size = new System.Drawing.Size(65, 12);
             this.label74.TabIndex = 100;
             this.label74.Text = "分组类型：";
             // 
@@ -3367,20 +3125,18 @@
             // 
             this.cmbGroupNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGroupNum.FormattingEnabled = true;
-            this.cmbGroupNum.Location = new System.Drawing.Point(287, 138);
-            this.cmbGroupNum.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbGroupNum.Location = new System.Drawing.Point(215, 110);
             this.cmbGroupNum.Name = "cmbGroupNum";
-            this.cmbGroupNum.Size = new System.Drawing.Size(84, 23);
+            this.cmbGroupNum.Size = new System.Drawing.Size(64, 20);
             this.cmbGroupNum.TabIndex = 99;
             this.cmbGroupNum.SelectedIndexChanged += new System.EventHandler(this.CmbGroupNum_SelectedIndexChanged);
             // 
             // label73
             // 
             this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(224, 141);
-            this.label73.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label73.Location = new System.Drawing.Point(168, 113);
             this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(52, 15);
+            this.label73.Size = new System.Drawing.Size(41, 12);
             this.label73.TabIndex = 98;
             this.label73.Text = "组号：";
             // 
@@ -3390,57 +3146,51 @@
             this.plManyCardOpenVerify.Controls.Add(this.label71);
             this.plManyCardOpenVerify.Controls.Add(this.label72);
             this.plManyCardOpenVerify.Controls.Add(this.txtAGroupCount);
-            this.plManyCardOpenVerify.Location = new System.Drawing.Point(369, 75);
-            this.plManyCardOpenVerify.Margin = new System.Windows.Forms.Padding(4);
+            this.plManyCardOpenVerify.Location = new System.Drawing.Point(277, 60);
             this.plManyCardOpenVerify.Name = "plManyCardOpenVerify";
-            this.plManyCardOpenVerify.Size = new System.Drawing.Size(380, 42);
+            this.plManyCardOpenVerify.Size = new System.Drawing.Size(285, 34);
             this.plManyCardOpenVerify.TabIndex = 97;
             this.plManyCardOpenVerify.Visible = false;
             // 
             // txtBGroupCount
             // 
-            this.txtBGroupCount.Location = new System.Drawing.Point(316, 6);
-            this.txtBGroupCount.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBGroupCount.Location = new System.Drawing.Point(237, 5);
             this.txtBGroupCount.MaxLength = 3;
             this.txtBGroupCount.Name = "txtBGroupCount";
-            this.txtBGroupCount.Size = new System.Drawing.Size(59, 25);
+            this.txtBGroupCount.Size = new System.Drawing.Size(45, 21);
             this.txtBGroupCount.TabIndex = 94;
             // 
             // label71
             // 
             this.label71.AutoSize = true;
-            this.label71.Location = new System.Drawing.Point(12, 10);
-            this.label71.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label71.Location = new System.Drawing.Point(9, 8);
             this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(105, 15);
+            this.label71.Size = new System.Drawing.Size(83, 12);
             this.label71.TabIndex = 91;
             this.label71.Text = "A组刷卡数量：";
             // 
             // label72
             // 
             this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(203, 10);
-            this.label72.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label72.Location = new System.Drawing.Point(152, 8);
             this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(105, 15);
+            this.label72.Size = new System.Drawing.Size(83, 12);
             this.label72.TabIndex = 92;
             this.label72.Text = "B组刷卡数量：";
             // 
             // txtAGroupCount
             // 
-            this.txtAGroupCount.Location = new System.Drawing.Point(131, 6);
-            this.txtAGroupCount.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAGroupCount.Location = new System.Drawing.Point(98, 5);
             this.txtAGroupCount.MaxLength = 2;
             this.txtAGroupCount.Name = "txtAGroupCount";
-            this.txtAGroupCount.Size = new System.Drawing.Size(59, 25);
+            this.txtAGroupCount.Size = new System.Drawing.Size(45, 21);
             this.txtAGroupCount.TabIndex = 93;
             // 
             // btnWriteManyCardOpenVerify
             // 
-            this.btnWriteManyCardOpenVerify.Location = new System.Drawing.Point(873, 79);
-            this.btnWriteManyCardOpenVerify.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteManyCardOpenVerify.Location = new System.Drawing.Point(655, 63);
             this.btnWriteManyCardOpenVerify.Name = "btnWriteManyCardOpenVerify";
-            this.btnWriteManyCardOpenVerify.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteManyCardOpenVerify.Size = new System.Drawing.Size(48, 23);
             this.btnWriteManyCardOpenVerify.TabIndex = 96;
             this.btnWriteManyCardOpenVerify.Text = "写入";
             this.btnWriteManyCardOpenVerify.UseVisualStyleBackColor = true;
@@ -3448,10 +3198,9 @@
             // 
             // btnReadManyCardOpenVerify
             // 
-            this.btnReadManyCardOpenVerify.Location = new System.Drawing.Point(785, 80);
-            this.btnReadManyCardOpenVerify.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadManyCardOpenVerify.Location = new System.Drawing.Point(589, 64);
             this.btnReadManyCardOpenVerify.Name = "btnReadManyCardOpenVerify";
-            this.btnReadManyCardOpenVerify.Size = new System.Drawing.Size(64, 29);
+            this.btnReadManyCardOpenVerify.Size = new System.Drawing.Size(48, 23);
             this.btnReadManyCardOpenVerify.TabIndex = 95;
             this.btnReadManyCardOpenVerify.Text = "读取";
             this.btnReadManyCardOpenVerify.UseVisualStyleBackColor = true;
@@ -3466,20 +3215,18 @@
             "AB组合",
             "固定组合",
             "自由组合"});
-            this.cmbVerifyType.Location = new System.Drawing.Point(167, 82);
-            this.cmbVerifyType.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbVerifyType.Location = new System.Drawing.Point(125, 66);
             this.cmbVerifyType.Name = "cmbVerifyType";
-            this.cmbVerifyType.Size = new System.Drawing.Size(156, 23);
+            this.cmbVerifyType.Size = new System.Drawing.Size(118, 20);
             this.cmbVerifyType.TabIndex = 90;
             this.cmbVerifyType.SelectedIndexChanged += new System.EventHandler(this.CmbVerifyType_SelectedIndexChanged);
             // 
             // label69
             // 
             this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(8, 86);
-            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label69.Location = new System.Drawing.Point(6, 69);
             this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(142, 15);
+            this.label69.Size = new System.Drawing.Size(113, 12);
             this.label69.TabIndex = 89;
             this.label69.Text = "多卡开门检测方式：";
             // 
@@ -3490,18 +3237,16 @@
             this.cmbAntiPassback.Items.AddRange(new object[] {
             "要进行",
             "不进行"});
-            this.cmbAntiPassback.Location = new System.Drawing.Point(628, 34);
-            this.cmbAntiPassback.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbAntiPassback.Location = new System.Drawing.Point(471, 27);
             this.cmbAntiPassback.Name = "cmbAntiPassback";
-            this.cmbAntiPassback.Size = new System.Drawing.Size(105, 23);
+            this.cmbAntiPassback.Size = new System.Drawing.Size(80, 20);
             this.cmbAntiPassback.TabIndex = 88;
             // 
             // btnWriteManyCardOpenMode
             // 
-            this.btnWriteManyCardOpenMode.Location = new System.Drawing.Point(873, 34);
-            this.btnWriteManyCardOpenMode.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteManyCardOpenMode.Location = new System.Drawing.Point(655, 27);
             this.btnWriteManyCardOpenMode.Name = "btnWriteManyCardOpenMode";
-            this.btnWriteManyCardOpenMode.Size = new System.Drawing.Size(64, 29);
+            this.btnWriteManyCardOpenMode.Size = new System.Drawing.Size(48, 23);
             this.btnWriteManyCardOpenMode.TabIndex = 87;
             this.btnWriteManyCardOpenMode.Text = "写入";
             this.btnWriteManyCardOpenMode.UseVisualStyleBackColor = true;
@@ -3509,10 +3254,9 @@
             // 
             // btnReadManyCardOpenMode
             // 
-            this.btnReadManyCardOpenMode.Location = new System.Drawing.Point(785, 34);
-            this.btnReadManyCardOpenMode.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadManyCardOpenMode.Location = new System.Drawing.Point(589, 27);
             this.btnReadManyCardOpenMode.Name = "btnReadManyCardOpenMode";
-            this.btnReadManyCardOpenMode.Size = new System.Drawing.Size(64, 29);
+            this.btnReadManyCardOpenMode.Size = new System.Drawing.Size(48, 23);
             this.btnReadManyCardOpenMode.TabIndex = 87;
             this.btnReadManyCardOpenMode.Text = "读取";
             this.btnReadManyCardOpenMode.UseVisualStyleBackColor = true;
@@ -3521,10 +3265,9 @@
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(529, 38);
-            this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label68.Location = new System.Drawing.Point(397, 30);
             this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(97, 15);
+            this.label68.Size = new System.Drawing.Size(77, 12);
             this.label68.TabIndex = 2;
             this.label68.Text = "防潜回检测：";
             // 
@@ -3535,19 +3278,17 @@
             this.cmbManyCardOpenMode.Items.AddRange(new object[] {
             "继续等待",
             "立即退出"});
-            this.cmbManyCardOpenMode.Location = new System.Drawing.Point(215, 34);
-            this.cmbManyCardOpenMode.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbManyCardOpenMode.Location = new System.Drawing.Point(161, 27);
             this.cmbManyCardOpenMode.Name = "cmbManyCardOpenMode";
-            this.cmbManyCardOpenMode.Size = new System.Drawing.Size(156, 23);
+            this.cmbManyCardOpenMode.Size = new System.Drawing.Size(118, 20);
             this.cmbManyCardOpenMode.TabIndex = 1;
             // 
             // label67
             // 
             this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(8, 38);
-            this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label67.Location = new System.Drawing.Point(6, 30);
             this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(187, 15);
+            this.label67.Size = new System.Drawing.Size(149, 12);
             this.label67.TabIndex = 0;
             this.label67.Text = "多卡验证模式：读到错误卡";
             // 
@@ -3557,11 +3298,10 @@
             this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1004, 1022);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Size = new System.Drawing.Size(751, 815);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "门端口报警";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -3574,21 +3314,18 @@
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.cmbSensorAlarmSetting);
             this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Location = new System.Drawing.Point(12, 315);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox4.Location = new System.Drawing.Point(9, 252);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(885, 324);
+            this.groupBox4.Size = new System.Drawing.Size(664, 259);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "门磁报警参数";
             // 
             // butWriteSensorAlarmSetting
             // 
-            this.butWriteSensorAlarmSetting.Location = new System.Drawing.Point(779, 270);
-            this.butWriteSensorAlarmSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.butWriteSensorAlarmSetting.Location = new System.Drawing.Point(584, 216);
             this.butWriteSensorAlarmSetting.Name = "butWriteSensorAlarmSetting";
-            this.butWriteSensorAlarmSetting.Size = new System.Drawing.Size(83, 29);
+            this.butWriteSensorAlarmSetting.Size = new System.Drawing.Size(62, 23);
             this.butWriteSensorAlarmSetting.TabIndex = 15;
             this.butWriteSensorAlarmSetting.Text = "写入";
             this.butWriteSensorAlarmSetting.UseVisualStyleBackColor = true;
@@ -3596,10 +3333,9 @@
             // 
             // butReadSensorAlarmSetting
             // 
-            this.butReadSensorAlarmSetting.Location = new System.Drawing.Point(693, 270);
-            this.butReadSensorAlarmSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.butReadSensorAlarmSetting.Location = new System.Drawing.Point(520, 216);
             this.butReadSensorAlarmSetting.Name = "butReadSensorAlarmSetting";
-            this.butReadSensorAlarmSetting.Size = new System.Drawing.Size(83, 29);
+            this.butReadSensorAlarmSetting.Size = new System.Drawing.Size(62, 23);
             this.butReadSensorAlarmSetting.TabIndex = 16;
             this.butReadSensorAlarmSetting.Text = "读取";
             this.butReadSensorAlarmSetting.UseVisualStyleBackColor = true;
@@ -3609,19 +3345,17 @@
             // 
             this.cmbWeek.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWeek.FormattingEnabled = true;
-            this.cmbWeek.Location = new System.Drawing.Point(460, 25);
-            this.cmbWeek.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbWeek.Location = new System.Drawing.Point(345, 20);
             this.cmbWeek.Name = "cmbWeek";
-            this.cmbWeek.Size = new System.Drawing.Size(128, 23);
+            this.cmbWeek.Size = new System.Drawing.Size(97, 20);
             this.cmbWeek.TabIndex = 11;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(293, 30);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(220, 24);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(150, 15);
+            this.label10.Size = new System.Drawing.Size(119, 12);
             this.label10.TabIndex = 10;
             this.label10.Text = "门磁报警不生效时段:";
             // 
@@ -3629,20 +3363,18 @@
             // 
             this.cmbSensorAlarmSetting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSensorAlarmSetting.FormattingEnabled = true;
-            this.cmbSensorAlarmSetting.Location = new System.Drawing.Point(127, 25);
-            this.cmbSensorAlarmSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbSensorAlarmSetting.Location = new System.Drawing.Point(95, 20);
             this.cmbSensorAlarmSetting.Name = "cmbSensorAlarmSetting";
-            this.cmbSensorAlarmSetting.Size = new System.Drawing.Size(128, 23);
+            this.cmbSensorAlarmSetting.Size = new System.Drawing.Size(97, 20);
             this.cmbSensorAlarmSetting.TabIndex = 9;
             this.cmbSensorAlarmSetting.SelectedIndexChanged += new System.EventHandler(this.cmbSensorAlarmSetting_SelectedIndexChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(40, 30);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(30, 24);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(75, 15);
+            this.label9.Size = new System.Drawing.Size(59, 12);
             this.label9.TabIndex = 0;
             this.label9.Text = "是否启用:";
             // 
@@ -3656,11 +3388,9 @@
             this.groupBox3.Controls.Add(this.cmbOverTime);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.cmbOvertimeAlarmSetting);
-            this.groupBox3.Location = new System.Drawing.Point(12, 211);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Location = new System.Drawing.Point(9, 169);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(885, 81);
+            this.groupBox3.Size = new System.Drawing.Size(664, 65);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "开门超时提示参数";
@@ -3668,19 +3398,17 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(21, 32);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(16, 26);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 15);
+            this.label8.Size = new System.Drawing.Size(59, 12);
             this.label8.TabIndex = 15;
             this.label8.Text = "是否启用:";
             // 
             // butWriteOvertimeAlarmSetting
             // 
-            this.butWriteOvertimeAlarmSetting.Location = new System.Drawing.Point(779, 26);
-            this.butWriteOvertimeAlarmSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.butWriteOvertimeAlarmSetting.Location = new System.Drawing.Point(584, 21);
             this.butWriteOvertimeAlarmSetting.Name = "butWriteOvertimeAlarmSetting";
-            this.butWriteOvertimeAlarmSetting.Size = new System.Drawing.Size(83, 29);
+            this.butWriteOvertimeAlarmSetting.Size = new System.Drawing.Size(62, 23);
             this.butWriteOvertimeAlarmSetting.TabIndex = 13;
             this.butWriteOvertimeAlarmSetting.Text = "写入";
             this.butWriteOvertimeAlarmSetting.UseVisualStyleBackColor = true;
@@ -3688,10 +3416,9 @@
             // 
             // butReadOvertimeAlarmSetting
             // 
-            this.butReadOvertimeAlarmSetting.Location = new System.Drawing.Point(693, 26);
-            this.butReadOvertimeAlarmSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.butReadOvertimeAlarmSetting.Location = new System.Drawing.Point(520, 21);
             this.butReadOvertimeAlarmSetting.Name = "butReadOvertimeAlarmSetting";
-            this.butReadOvertimeAlarmSetting.Size = new System.Drawing.Size(83, 29);
+            this.butReadOvertimeAlarmSetting.Size = new System.Drawing.Size(62, 23);
             this.butReadOvertimeAlarmSetting.TabIndex = 14;
             this.butReadOvertimeAlarmSetting.Text = "读取";
             this.butReadOvertimeAlarmSetting.UseVisualStyleBackColor = true;
@@ -3701,19 +3428,17 @@
             // 
             this.cmbAlarm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAlarm.FormattingEnabled = true;
-            this.cmbAlarm.Location = new System.Drawing.Point(561, 28);
-            this.cmbAlarm.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbAlarm.Location = new System.Drawing.Point(421, 22);
             this.cmbAlarm.Name = "cmbAlarm";
-            this.cmbAlarm.Size = new System.Drawing.Size(128, 23);
+            this.cmbAlarm.Size = new System.Drawing.Size(97, 20);
             this.cmbAlarm.TabIndex = 12;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(480, 32);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(360, 26);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 15);
+            this.label7.Size = new System.Drawing.Size(59, 12);
             this.label7.TabIndex = 11;
             this.label7.Text = "报警输出:";
             // 
@@ -3721,19 +3446,17 @@
             // 
             this.cmbOverTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOverTime.FormattingEnabled = true;
-            this.cmbOverTime.Location = new System.Drawing.Point(348, 28);
-            this.cmbOverTime.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbOverTime.Location = new System.Drawing.Point(261, 22);
             this.cmbOverTime.Name = "cmbOverTime";
-            this.cmbOverTime.Size = new System.Drawing.Size(128, 23);
+            this.cmbOverTime.Size = new System.Drawing.Size(97, 20);
             this.cmbOverTime.TabIndex = 10;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(235, 32);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(176, 26);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(105, 15);
+            this.label6.Size = new System.Drawing.Size(83, 12);
             this.label6.TabIndex = 9;
             this.label6.Text = "开门时间上限:";
             // 
@@ -3741,10 +3464,9 @@
             // 
             this.cmbOvertimeAlarmSetting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOvertimeAlarmSetting.FormattingEnabled = true;
-            this.cmbOvertimeAlarmSetting.Location = new System.Drawing.Point(103, 28);
-            this.cmbOvertimeAlarmSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbOvertimeAlarmSetting.Location = new System.Drawing.Point(77, 22);
             this.cmbOvertimeAlarmSetting.Name = "cmbOvertimeAlarmSetting";
-            this.cmbOvertimeAlarmSetting.Size = new System.Drawing.Size(128, 23);
+            this.cmbOvertimeAlarmSetting.Size = new System.Drawing.Size(97, 20);
             this.cmbOvertimeAlarmSetting.TabIndex = 8;
             // 
             // groupBox2
@@ -3757,11 +3479,9 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(12, 86);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(9, 69);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(885, 118);
+            this.groupBox2.Size = new System.Drawing.Size(664, 94);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "胁迫报警密码";
@@ -3770,37 +3490,33 @@
             // 
             this.cmdAlarmPassword.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdAlarmPassword.FormattingEnabled = true;
-            this.cmdAlarmPassword.Location = new System.Drawing.Point(95, 35);
-            this.cmdAlarmPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.cmdAlarmPassword.Location = new System.Drawing.Point(71, 28);
             this.cmdAlarmPassword.Name = "cmdAlarmPassword";
-            this.cmdAlarmPassword.Size = new System.Drawing.Size(160, 23);
+            this.cmdAlarmPassword.Size = new System.Drawing.Size(121, 20);
             this.cmdAlarmPassword.TabIndex = 7;
             // 
             // cmbAlarmOption
             // 
             this.cmbAlarmOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAlarmOption.FormattingEnabled = true;
-            this.cmbAlarmOption.Location = new System.Drawing.Point(360, 35);
-            this.cmbAlarmOption.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbAlarmOption.Location = new System.Drawing.Point(270, 28);
             this.cmbAlarmOption.Name = "cmbAlarmOption";
-            this.cmbAlarmOption.Size = new System.Drawing.Size(197, 23);
+            this.cmbAlarmOption.Size = new System.Drawing.Size(149, 20);
             this.cmbAlarmOption.TabIndex = 6;
             // 
             // Password
             // 
-            this.Password.Location = new System.Drawing.Point(140, 74);
-            this.Password.Margin = new System.Windows.Forms.Padding(4);
+            this.Password.Location = new System.Drawing.Point(105, 59);
             this.Password.Name = "Password";
-            this.Password.Size = new System.Drawing.Size(115, 25);
+            this.Password.Size = new System.Drawing.Size(87, 21);
             this.Password.TabIndex = 5;
             this.Password.Text = "110110";
             // 
             // butWriteAlarmPassword
             // 
-            this.butWriteAlarmPassword.Location = new System.Drawing.Point(368, 72);
-            this.butWriteAlarmPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.butWriteAlarmPassword.Location = new System.Drawing.Point(276, 58);
             this.butWriteAlarmPassword.Name = "butWriteAlarmPassword";
-            this.butWriteAlarmPassword.Size = new System.Drawing.Size(83, 29);
+            this.butWriteAlarmPassword.Size = new System.Drawing.Size(62, 23);
             this.butWriteAlarmPassword.TabIndex = 3;
             this.butWriteAlarmPassword.Text = "写入";
             this.butWriteAlarmPassword.UseVisualStyleBackColor = true;
@@ -3808,10 +3524,9 @@
             // 
             // butReadAlarmPassword
             // 
-            this.butReadAlarmPassword.Location = new System.Drawing.Point(277, 72);
-            this.butReadAlarmPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.butReadAlarmPassword.Location = new System.Drawing.Point(208, 58);
             this.butReadAlarmPassword.Name = "butReadAlarmPassword";
-            this.butReadAlarmPassword.Size = new System.Drawing.Size(83, 29);
+            this.butReadAlarmPassword.Size = new System.Drawing.Size(62, 23);
             this.butReadAlarmPassword.TabIndex = 4;
             this.butReadAlarmPassword.Text = "读取";
             this.butReadAlarmPassword.UseVisualStyleBackColor = true;
@@ -3820,30 +3535,27 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 79);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(16, 63);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 15);
+            this.label4.Size = new System.Drawing.Size(83, 12);
             this.label4.TabIndex = 2;
             this.label4.Text = "胁迫报警密码:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(281, 40);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(211, 32);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 15);
+            this.label3.Size = new System.Drawing.Size(59, 12);
             this.label3.TabIndex = 1;
             this.label3.Text = "报警模式:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 40);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(15, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 15);
+            this.label2.Size = new System.Drawing.Size(59, 12);
             this.label2.TabIndex = 0;
             this.label2.Text = "是否启用:";
             // 
@@ -3853,21 +3565,18 @@
             this.groupBox1.Controls.Add(this.butReadInvalidCardAlarmOption);
             this.groupBox1.Controls.Add(this.cmdInvalidCardAlarmOptionUse);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 6);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(9, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(460, 72);
+            this.groupBox1.Size = new System.Drawing.Size(345, 58);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "未注册卡报警功能";
             // 
             // ButWriteInvalidCardAlarmOption
             // 
-            this.ButWriteInvalidCardAlarmOption.Location = new System.Drawing.Point(343, 28);
-            this.ButWriteInvalidCardAlarmOption.Margin = new System.Windows.Forms.Padding(4);
+            this.ButWriteInvalidCardAlarmOption.Location = new System.Drawing.Point(257, 22);
             this.ButWriteInvalidCardAlarmOption.Name = "ButWriteInvalidCardAlarmOption";
-            this.ButWriteInvalidCardAlarmOption.Size = new System.Drawing.Size(83, 29);
+            this.ButWriteInvalidCardAlarmOption.Size = new System.Drawing.Size(62, 23);
             this.ButWriteInvalidCardAlarmOption.TabIndex = 2;
             this.ButWriteInvalidCardAlarmOption.Text = "写入";
             this.ButWriteInvalidCardAlarmOption.UseVisualStyleBackColor = true;
@@ -3875,10 +3584,9 @@
             // 
             // butReadInvalidCardAlarmOption
             // 
-            this.butReadInvalidCardAlarmOption.Location = new System.Drawing.Point(252, 28);
-            this.butReadInvalidCardAlarmOption.Margin = new System.Windows.Forms.Padding(4);
+            this.butReadInvalidCardAlarmOption.Location = new System.Drawing.Point(189, 22);
             this.butReadInvalidCardAlarmOption.Name = "butReadInvalidCardAlarmOption";
-            this.butReadInvalidCardAlarmOption.Size = new System.Drawing.Size(83, 29);
+            this.butReadInvalidCardAlarmOption.Size = new System.Drawing.Size(62, 23);
             this.butReadInvalidCardAlarmOption.TabIndex = 2;
             this.butReadInvalidCardAlarmOption.Text = "读取";
             this.butReadInvalidCardAlarmOption.UseVisualStyleBackColor = true;
@@ -3888,19 +3596,17 @@
             // 
             this.cmdInvalidCardAlarmOptionUse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdInvalidCardAlarmOptionUse.FormattingEnabled = true;
-            this.cmdInvalidCardAlarmOptionUse.Location = new System.Drawing.Point(83, 29);
-            this.cmdInvalidCardAlarmOptionUse.Margin = new System.Windows.Forms.Padding(4);
+            this.cmdInvalidCardAlarmOptionUse.Location = new System.Drawing.Point(62, 23);
             this.cmdInvalidCardAlarmOptionUse.Name = "cmdInvalidCardAlarmOptionUse";
-            this.cmdInvalidCardAlarmOptionUse.Size = new System.Drawing.Size(160, 23);
+            this.cmdInvalidCardAlarmOptionUse.Size = new System.Drawing.Size(121, 20);
             this.cmdInvalidCardAlarmOptionUse.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 34);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(21, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 15);
+            this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "开关:";
             // 
@@ -3908,10 +3614,9 @@
             // 
             this.cmdDoorNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdDoorNum.FormattingEnabled = true;
-            this.cmdDoorNum.Location = new System.Drawing.Point(728, 16);
-            this.cmdDoorNum.Margin = new System.Windows.Forms.Padding(4);
+            this.cmdDoorNum.Location = new System.Drawing.Point(546, 13);
             this.cmdDoorNum.Name = "cmdDoorNum";
-            this.cmdDoorNum.Size = new System.Drawing.Size(160, 23);
+            this.cmdDoorNum.Size = new System.Drawing.Size(121, 20);
             this.cmdDoorNum.TabIndex = 1;
             // 
             // cBoxDoor4
@@ -3919,10 +3624,9 @@
             this.cBoxDoor4.AutoSize = true;
             this.cBoxDoor4.Checked = true;
             this.cBoxDoor4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor4.Location = new System.Drawing.Point(369, 15);
-            this.cBoxDoor4.Margin = new System.Windows.Forms.Padding(4);
+            this.cBoxDoor4.Location = new System.Drawing.Point(277, 12);
             this.cBoxDoor4.Name = "cBoxDoor4";
-            this.cBoxDoor4.Size = new System.Drawing.Size(52, 19);
+            this.cBoxDoor4.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor4.TabIndex = 30;
             this.cBoxDoor4.Text = "门4";
             this.cBoxDoor4.UseVisualStyleBackColor = true;
@@ -3932,10 +3636,9 @@
             this.cBoxDoor3.AutoSize = true;
             this.cBoxDoor3.Checked = true;
             this.cBoxDoor3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor3.Location = new System.Drawing.Point(273, 14);
-            this.cBoxDoor3.Margin = new System.Windows.Forms.Padding(4);
+            this.cBoxDoor3.Location = new System.Drawing.Point(205, 11);
             this.cBoxDoor3.Name = "cBoxDoor3";
-            this.cBoxDoor3.Size = new System.Drawing.Size(52, 19);
+            this.cBoxDoor3.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor3.TabIndex = 29;
             this.cBoxDoor3.Text = "门3";
             this.cBoxDoor3.UseVisualStyleBackColor = true;
@@ -3945,10 +3648,9 @@
             this.cBoxDoor2.AutoSize = true;
             this.cBoxDoor2.Checked = true;
             this.cBoxDoor2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor2.Location = new System.Drawing.Point(177, 14);
-            this.cBoxDoor2.Margin = new System.Windows.Forms.Padding(4);
+            this.cBoxDoor2.Location = new System.Drawing.Point(133, 11);
             this.cBoxDoor2.Name = "cBoxDoor2";
-            this.cBoxDoor2.Size = new System.Drawing.Size(52, 19);
+            this.cBoxDoor2.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor2.TabIndex = 28;
             this.cBoxDoor2.Text = "门2";
             this.cBoxDoor2.UseVisualStyleBackColor = true;
@@ -3958,10 +3660,9 @@
             this.cBoxDoor1.AutoSize = true;
             this.cBoxDoor1.Checked = true;
             this.cBoxDoor1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor1.Location = new System.Drawing.Point(81, 15);
-            this.cBoxDoor1.Margin = new System.Windows.Forms.Padding(4);
+            this.cBoxDoor1.Location = new System.Drawing.Point(61, 12);
             this.cBoxDoor1.Name = "cBoxDoor1";
-            this.cBoxDoor1.Size = new System.Drawing.Size(52, 19);
+            this.cBoxDoor1.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor1.TabIndex = 27;
             this.cBoxDoor1.Text = "门1";
             this.cBoxDoor1.UseVisualStyleBackColor = true;
@@ -3969,18 +3670,27 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(19, 16);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Location = new System.Drawing.Point(14, 13);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(52, 15);
+            this.label22.Size = new System.Drawing.Size(41, 12);
             this.label22.TabIndex = 26;
             this.label22.Text = "门号：";
             // 
+            // btnDeleteGroup
+            // 
+            this.btnDeleteGroup.Location = new System.Drawing.Point(437, 108);
+            this.btnDeleteGroup.Name = "btnDeleteGroup";
+            this.btnDeleteGroup.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteGroup.TabIndex = 106;
+            this.btnDeleteGroup.Text = "删除本组";
+            this.btnDeleteGroup.UseVisualStyleBackColor = true;
+            this.btnDeleteGroup.Click += new System.EventHandler(this.BtnDeleteGroup_Click);
+            // 
             // frmDoor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1048, 1057);
+            this.ClientSize = new System.Drawing.Size(786, 846);
             this.Controls.Add(this.cBoxDoor4);
             this.Controls.Add(this.cBoxDoor3);
             this.Controls.Add(this.cBoxDoor2);
@@ -3988,7 +3698,7 @@
             this.Controls.Add(this.label22);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cmdDoorNum);
-            this.Margin = new System.Windows.Forms.Padding(5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmDoor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDoor";
@@ -4372,5 +4082,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Num;
         private System.Windows.Forms.DataGridViewTextBoxColumn Card;
+        private System.Windows.Forms.Button btnDeleteGroup;
     }
 }
