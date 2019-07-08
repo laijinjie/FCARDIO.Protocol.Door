@@ -14,6 +14,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
     /// </summary>
     public class ReadMultiCard : FC8800Command_ReadParameter
     {
+        MultiCard_Result result;
+
+        Queue<IByteBuffer> mBufs;
         /// <summary>
         /// 此命令对应的门端口号
         /// </summary>
@@ -37,6 +40,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         public ReadMultiCard(INCommandDetail cd, DoorPort_Parameter value) : base(cd, value) { }
 
         /// <summary>
+        /// 组类别
+        /// </summary>
+        protected byte iGroupType = 0;
+
+        /// <summary>
+        /// 组号
+        /// </summary>
+        protected byte iGroupNum = 0;
+        /// <summary>
         /// 创建命令
         /// </summary>
         protected override void CreatePacket0()
@@ -48,6 +60,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             _ProcessMax = 27;
             _ProcessStep = 1;
             mStep = 1;
+            result = new MultiCard_Result();
         }
 
 
@@ -64,13 +77,54 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             return model.checkedParameter();
         }
 
+        private void ReadOpenMode(IByteBuffer tmpBuf)
+        {
+            int iDoor = tmpBuf.ReadByte();
+            if (iDoor != mPort)
+            {
+                return;
+            }
+            result.GetOpenModeBytes(tmpBuf);
+            //_Result = result;
+
+
+            _ProcessStep++;
+            FCPacket.CmdIndex = 0x18;//修改命令为读取 多卡开门验证方式
+            CommandReady();//设定命令当前状态为准备就绪，等待发送
+            mStep = 2;//使命令进入下一个阶段
+        }
+
+        private void ReadVerifyType(IByteBuffer tmpBuf)
+        {
+            int iDoor = tmpBuf.ReadByte();
+            if (iDoor != mPort)
+            {
+                return;
+            }
+            _ProcessStep++;
+            result.GetOpenVerifyBytes(tmpBuf);
+            if (result.VerifyType != 0)
+            {
+                //开启读取多卡开门AB组内容
+                tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
+                tmpBuf.WriteByte(0).WriteByte(1);
+                mGroupNum = 1;
+                Packet(0x03, 0x18, 0x03, 2, tmpBuf);
+                CommandReady();//设定命令当前状态为准备就绪，等待发送
+                mStep = 3;//使命令进入下一个阶段
+            }
+        }
+
+
         /// <summary>
         /// 命令回应处理
         /// </summary>
         /// <param name="oPck"></param>
         protected override void CommandNext0(OnlineAccessPacket oPck)
         {
+
             IByteBuffer tmpBuf;
+         
             int iDoor;
             switch (mStep)
             {
@@ -78,23 +132,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                     if (CheckResponse(oPck, 3))
                     {
                         tmpBuf = oPck.CmdData;
-                        iDoor = tmpBuf.ReadByte();
-                        if (iDoor != mPort)
-                        {
-                            return;
-                        }
-
-
-                        _ProcessStep++;
-
-
-
-
-                        FCPacket.CmdIndex = 0x18;//修改命令为读取 多卡开门验证方式
-
-
-                        CommandReady();//设定命令当前状态为准备就绪，等待发送
-                        mStep = 2;//使命令进入下一个阶段
+                        ReadOpenMode(tmpBuf);
                     }
 
                     break;
@@ -102,26 +140,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                     if (CheckResponse(oPck, 4))
                     {
                         tmpBuf = oPck.CmdData;
-                        iDoor = tmpBuf.ReadByte();
-                        if (iDoor != mPort)
-                        {
-                            return;
-                        }
-
-
-                        _ProcessStep++;
-
-
-
-                        //开启读取多卡开门AB组内容
-                        tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
-                        tmpBuf.WriteByte(0).WriteByte(1);
-                        mGroupNum = 1;
-                        Packet(0x03, 0x18, 0x03, 2, tmpBuf);
-
-
-                        CommandReady();//设定命令当前状态为准备就绪，等待发送
-                        mStep = 3;//使命令进入下一个阶段
+                        ReadVerifyType(tmpBuf);
                     }
 
                     break;
@@ -129,8 +148,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                     if (CheckResponse(oPck))
                     {
                         tmpBuf = oPck.CmdData;
-                        var iGroupType = tmpBuf.ReadByte();//组类别：0--A组；
-                        var iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
+                        iGroupType = tmpBuf.ReadByte();//组类别：0--A组；
+                        iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
                         var iCount = tmpBuf.ReadByte();
                         if (iGroupType != 0)
                         {
@@ -146,6 +165,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                             //将卡号取出，并序列号到实体
                         }
 
+                        /*8800H
                         //读取下一个组
                         _ProcessStep++;
 
@@ -166,14 +186,52 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                         }
 
                         CommandReady();//设定命令当前状态为准备就绪，等待发送
-
-
-
-
+                        */
                     }
+                    //读取A组卡
                     if (CheckResponse(oPck, 0x03, 0x18, 0x53))
                     {
+                        if (iGroupNum != mGroupNum)
+                        {
+                            return;
+                        }
+                        tmpBuf = oPck.CmdData;
+                        //if (tmpBuf.Capacity == 91)
+                        //{
+                        //    Utility.StringUtility.WriteByteBuffer(tmpBuf);
+                        //}
+                        //
+                        result.GetListCardDataBytes(iGroupType,iGroupNum, tmpBuf);
+                        //读完1组
+                        if (result.AListCardData.Count % 50 == 0)
+                        {
+                            iGroupNum++;
+                            mGroupNum++;
+                            _ProcessStep++;
+                            if (iGroupNum == 6)
+                            {
+                                iGroupNum = 1;
+                                mGroupNum = 1;
+                                mStep = 4;//使命令进入下一个阶段
 
+                                tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
+                                tmpBuf.WriteByte(1).WriteByte(iGroupNum);
+                                Packet(0x03, 0x18, 0x03, 2, tmpBuf);
+                            }
+                            else
+                            {
+                                tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
+                                tmpBuf.WriteByte(0).WriteByte(iGroupNum);
+                                Packet(0x03, 0x18, 0x03, 2, tmpBuf);
+                            }
+                            
+                            CommandReady();
+                        }
+                        else
+                        {
+                            CommandWaitResponse();
+                        }
+                        
                     }
 
                     break;
@@ -181,8 +239,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                     if (CheckResponse(oPck))
                     {
                         tmpBuf = oPck.CmdData;
-                        var iGroupType = tmpBuf.ReadByte();//组类别：0--A组；
-                        var iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
+                        iGroupType = tmpBuf.ReadByte();//组类别：0--A组；
+                        iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
                         var iCount = tmpBuf.ReadByte();
                         if (iGroupType != 0)
                         {
@@ -197,7 +255,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                         {
                             //将卡号取出，并序列号到实体
                         }
-
+                        /*
                         //读取下一个组
                         _ProcessStep++;
 
@@ -215,16 +273,46 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                         }
 
                         CommandReady();//设定命令当前状态为准备就绪，等待发送
+                        */
+                    }
+                    if (CheckResponse(oPck, 0x03, 0x18, 0x53))
+                    {
+                        if (iGroupNum != mGroupNum)
+                        {
+                            return;
+                        }
+                        tmpBuf = oPck.CmdData;
+                        //Utility.StringUtility.WriteByteBuffer(tmpBuf);
+                        result.GetListCardDataBytes(iGroupType, iGroupNum, tmpBuf);
+                        if (result.BListCardData.Count % 100 == 0)
+                        {
+                            iGroupNum++;
+                            mGroupNum++;
+                            _ProcessStep++;
+                            if (iGroupNum == 21)
+                            {
+                                mStep = 5;
+                            }
+                            else
+                            {
+                                tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
+                                tmpBuf.WriteByte(1).WriteByte(iGroupNum);
+                                Packet(0x03, 0x18, 0x03, 2, tmpBuf);
+                            }
 
-
-
+                            CommandReady();
+                        }
+                        else
+                        {
+                            CommandWaitResponse();
+                        }
 
                     }
-
                     break;
                 case 5://读取固定组合
                        //固定组合读完了
                        //命令全部发送完毕
+                    _Result = result;
                     CommandCompleted();
 
                     break;
@@ -259,7 +347,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            throw new NotImplementedException();
+            
         }
 
 

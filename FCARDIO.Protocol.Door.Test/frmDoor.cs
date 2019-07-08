@@ -34,6 +34,7 @@ using FCARDIO.Protocol.Door.FC8800.Door.InterLockSetting;
 using FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenMode;
 using FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenVerify;
 using FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenGroup;
+using FCARDIO.Protocol.Door.FC8800.Door.MultiCard;
 
 namespace FCARDIO.Protocol.Door.Test
 {
@@ -2525,17 +2526,35 @@ namespace FCARDIO.Protocol.Door.Test
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            ReadManyCardOpenMode cmd = new ReadManyCardOpenMode(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+
+            ReadMultiCard cmd = new ReadMultiCard(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+
+            //ReadManyCardOpenMode cmd = new ReadManyCardOpenMode(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
             mMainForm.AddCommand(cmd);
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                ManyCardOpenMode_Result result = cmde.Command.getResult() as ManyCardOpenMode_Result;
+                MultiCard_Result result = cmde.Command.getResult() as MultiCard_Result;
                 Invoke(() =>
                 {
                     cmbManyCardOpenMode.SelectedIndex = result.Mode;
                     cmbAntiPassback.SelectedIndex = result.AntiPassback;
+                    cmbVerifyType.SelectedIndex = result.VerifyType;
+                    txtAGroupCount.Text = result.AGroupCount.ToString();
+                    txtBGroupCount.Text = result.BGroupCount.ToString();
+
+                    for (int i = 0; i < result.AListCardData.Count; i++)
+                    {
+                        listGroupA[i].Card = result.AListCardData[i];
+                    }
+
+                    for (int i = 0; i < result.BListCardData.Count; i++)
+                    {
+                        listGroupB[i].Card = result.BListCardData[i];
+                    }
+
+                    CmbGroupNum_SelectedIndexChanged(null, null);
                 });
             };
         }
@@ -2709,6 +2728,7 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void CbConvertHex_CheckedChanged(object sender, EventArgs e)
         {
+            //10 转 16
             if (cbConvertHex.Checked)
             {
                 for (int i = 0; i < listGroupA.Count; i++)
@@ -2719,7 +2739,7 @@ namespace FCARDIO.Protocol.Door.Test
                 {
                     listGroupB[i].Card = int.Parse(listGroupB[i].Card).ToString("X");
                 }
-            }
+            }//16 转 10
             else
             {
                 for (int i = 0; i < listGroupA.Count; i++)
