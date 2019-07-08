@@ -120,6 +120,8 @@
     <Compile Include="FC8800\Data\TimeGroup\ReaderWork\WeekTimeGroup_ReaderWork.cs" />
     <Compile Include="FC8800\Data\TransactionDatabaseDetail.cs" />
     <Compile Include="FC8800\Data\TransactionDetail.cs" />
+    <Compile Include="FC8800\Door\25MultiCard\ReadMultiCard.cs" />
+    <Compile Include="FC8800\Door\25MultiCard\WriteMultiCard.cs" />
     <Compile Include="FC8800\Door\28AreaAntiPassback\ReadAreaAntiPassback.cs" />
     <Compile Include="FC8800\Door\28AreaAntiPassback\WriteAreaAntiPassback.cs" />
     <Compile Include="FC8800\Door\28AreaAntiPassback\WriteAreaAntiPassback_Parameter.cs" />

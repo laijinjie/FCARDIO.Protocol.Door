@@ -1,5 +1,6 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.FC8800;
+using FCARDIO.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,22 @@ namespace FCARDIO.Protocol.Door.FC8800
         protected override void Release1()
         {
             return;
+        }
+
+        /// <summary>
+        /// 检查指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <param name="CmdType"></param>
+        /// <param name="CmdIndex"></param>
+        /// <param name="CmdPar"></param>
+        /// <returns></returns>
+        protected virtual bool CheckResponse(OnlineAccessPacket oPck, byte CmdType, byte CmdIndex, byte CmdPar)
+        {
+            return (oPck.CmdType == CmdType + 0x30 &&
+                oPck.CmdIndex == CmdIndex &&
+                oPck.CmdPar == CmdPar);
+                
         }
     }
 }

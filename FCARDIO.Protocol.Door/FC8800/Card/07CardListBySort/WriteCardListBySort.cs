@@ -45,6 +45,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         {
             mStep = 1;
             Packet(0x07, 0x07, 0x00);
+
+            WriteCardListBySort_Parameter model = _Parameter as WriteCardListBySort_Parameter;
+            _ProcessMax = model.CardList.Count  + 2;
+            _ProcessStep = 1;
         }
 
         /// <summary>
@@ -58,6 +62,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
                 case 1://处理开始写入指令返回
                     if (CheckResponse_OK(oPck))
                     {
+                        _ProcessStep++;
                         //硬件已准备就绪，开始写入卡
 
                         //创建一个通讯缓冲区
@@ -116,6 +121,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
                 Packet(0x07, 0x07, 0x2);
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
                 mStep = 3;//使命令进入下一个阶段
+                _ProcessStep++;
             }
             else
             {
@@ -155,6 +161,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
             }
 
             mWriteCardIndex += iLen;
+            _ProcessStep +=iLen;
         }
 
 

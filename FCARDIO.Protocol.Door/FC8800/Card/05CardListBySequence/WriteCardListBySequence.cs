@@ -49,9 +49,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
             var buf = acl.Buffer((10 * 0x21) + 4);
 
 
+            WriteCardListBySequence_Parameter model = _Parameter as WriteCardListBySequence_Parameter;
+
+
             mIndex = 0;
             WriteCardDetailToBuf(buf);
-
+            _ProcessMax = model.CardList.Count;
+            if (model.CardList.Count % 10 > 0) _ProcessMax++;
 
             Packet(0x07, 0x04, 0x00, (uint)buf.ReadableBytes, buf);
         }
@@ -71,6 +75,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
             {
                 iLen = 10;
             }
+            
 
             buf.WriteInt(iLen);//指示此包包含的卡数量
             for (int i = 0; i < iLen; i++)
@@ -79,6 +84,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
                 card.GetBytes(buf);
             }
 
+            _ProcessStep+= iLen ;
             mIndex += iLen;
         }
 

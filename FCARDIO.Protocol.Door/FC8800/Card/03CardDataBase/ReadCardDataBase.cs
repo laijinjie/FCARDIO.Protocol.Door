@@ -53,7 +53,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         protected override void CreatePacket0()
         {
             //Packet(0x07, 0x02, 0x00, 0x01, GetCmdDate());
-            Packet(0x07, 0x03, 0x00, 0x01, GetCmdDate());
+            Packet(0x07, 0x01, 0x00);
             mReadBuffers = new List<IByteBuffer>();
         }
 
