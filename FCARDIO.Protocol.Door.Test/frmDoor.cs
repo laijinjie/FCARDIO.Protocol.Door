@@ -2544,15 +2544,38 @@ namespace FCARDIO.Protocol.Door.Test
                     txtAGroupCount.Text = result.AGroupCount.ToString();
                     txtBGroupCount.Text = result.BGroupCount.ToString();
 
-                    for (int i = 0; i < result.AListCardData.Count; i++)
+                    foreach (KeyValuePair<int,List<string>> item in result.AListCardData)
                     {
-                        listGroupA[i].Card = result.AListCardData[i];
+                        for (int i = 0; i < item.Value.Count; i++)
+                        {
+                            listGroupA[50 * (item.Key -1) + i].Card = item.Value[i];
+                        }
+                        for (int i = item.Value.Count; i < 50 - item.Value.Count; i++)
+                        {
+                            listGroupA[50 * (item.Key - 1) + i].Card = "";
+                        }
                     }
 
-                    for (int i = 0; i < result.BListCardData.Count; i++)
+                    foreach (KeyValuePair<int, List<string>> item in result.BListCardData)
                     {
-                        listGroupB[i].Card = result.BListCardData[i];
+                        for (int i = 0; i < item.Value.Count; i++)
+                        {
+                            listGroupB[100 * (item.Key - 1) + i].Card = item.Value[i];
+                        }
+                        for (int i = item.Value.Count; i < 100 - item.Value.Count; i++)
+                        {
+                            listGroupB[100 * (item.Key - 1) + i].Card = "";
+                        }
                     }
+                    //for (int i = 0; i < result.AListCardData.Count; i++)
+                    //{
+                    //    listGroupA[i].Card = result.AListCardData[i];
+                    //}
+
+                    //for (int i = 0; i < result.BListCardData.Count; i++)
+                    //{
+                    //    listGroupB[i].Card = result.BListCardData[i];
+                    //}
 
                     CmbGroupNum_SelectedIndexChanged(null, null);
                 });
@@ -2561,11 +2584,27 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void BtnWriteManyCardOpenMode_Click(object sender, EventArgs e)
         {
+            byte bAcount = 0;
+            byte bBcount = 0;
+            if (!byte.TryParse(txtAGroupCount.Text, out bAcount))
+            {
+                MessageBox.Show("A组数量不正确");
+                return;
+            }
+            if (!byte.TryParse(txtBGroupCount.Text, out bBcount))
+            {
+                MessageBox.Show("B组数量不正确");
+                return;
+            }
+
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            WriteManyCardOpenMode_Parameter par = new WriteManyCardOpenMode_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex);
-            WriteManyCardOpenMode cmd = new WriteManyCardOpenMode(cmdDtl, par);
+            //WriteManyCardOpenMode_Parameter par = new WriteManyCardOpenMode_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex);
+            //WriteManyCardOpenMode cmd = new WriteManyCardOpenMode(cmdDtl, par);
+
+            WriteMultiCard_Parameter par = new WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex, (byte)cmbVerifyType.SelectedIndex, bAcount,bBcount, listGroupA.Select(t => t.Card).ToList(),listGroupB.Select(t => t.Card).ToList());
+            WriteMultiCard cmd = new WriteMultiCard(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             //处理返回值

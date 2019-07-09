@@ -48,6 +48,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// 组号
         /// </summary>
         protected byte iGroupNum = 0;
+
+        protected byte GroupCount = 0;
         /// <summary>
         /// 创建命令
         /// </summary>
@@ -150,7 +152,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                         tmpBuf = oPck.CmdData;
                         iGroupType = tmpBuf.ReadByte();//组类别：0--A组；
                         iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
-                        var iCount = tmpBuf.ReadByte();
+                        GroupCount = tmpBuf.ReadByte();
                         if (iGroupType != 0)
                         {
                             return;
@@ -160,10 +162,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                             return;
                         }
 
-                        if (iCount > 0)
-                        {
-                            //将卡号取出，并序列号到实体
-                        }
 
                         /*8800H
                         //读取下一个组
@@ -203,28 +201,27 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                         //
                         result.GetListCardDataBytes(iGroupType,iGroupNum, tmpBuf);
                         //读完1组
-                        if (result.AListCardData.Count % 50 == 0)
+                        if (result.AListCardData[iGroupNum].Count == GroupCount)
                         {
                             iGroupNum++;
                             mGroupNum++;
                             _ProcessStep++;
+                            tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
                             if (iGroupNum == 6)
                             {
                                 iGroupNum = 1;
                                 mGroupNum = 1;
                                 mStep = 4;//使命令进入下一个阶段
 
-                                tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
+                                
                                 tmpBuf.WriteByte(1).WriteByte(iGroupNum);
-                                Packet(0x03, 0x18, 0x03, 2, tmpBuf);
                             }
                             else
                             {
-                                tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
                                 tmpBuf.WriteByte(0).WriteByte(iGroupNum);
-                                Packet(0x03, 0x18, 0x03, 2, tmpBuf);
+                               
                             }
-                            
+                            Packet(0x03, 0x18, 0x03, 2, tmpBuf);
                             CommandReady();
                         }
                         else
@@ -241,7 +238,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                         tmpBuf = oPck.CmdData;
                         iGroupType = tmpBuf.ReadByte();//组类别：0--A组；
                         iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
-                        var iCount = tmpBuf.ReadByte();
+                        GroupCount = tmpBuf.ReadByte();
                         if (iGroupType != 0)
                         {
                             return;
@@ -251,10 +248,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                             return;
                         }
 
-                        if (iCount > 0)
-                        {
-                            //将卡号取出，并序列号到实体
-                        }
                         /*
                         //读取下一个组
                         _ProcessStep++;
@@ -284,7 +277,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                         tmpBuf = oPck.CmdData;
                         //Utility.StringUtility.WriteByteBuffer(tmpBuf);
                         result.GetListCardDataBytes(iGroupType, iGroupNum, tmpBuf);
-                        if (result.BListCardData.Count % 100 == 0)
+                        if (result.BListCardData[iGroupNum].Count == GroupCount)
                         {
                             iGroupNum++;
                             mGroupNum++;

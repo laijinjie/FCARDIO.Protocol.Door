@@ -21,8 +21,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <summary>
         /// 卡集合 (9*N)
         /// </summary>
-        public List<string> AListCardData { get; set; }
-        public List<string> BListCardData { get; set; }
+        public Dictionary<int, List<string>> AListCardData { get; set; }
+        public Dictionary<int, List<string>> BListCardData { get; set; }
 
         /// <summary>
         /// 刷卡模式 (1)
@@ -51,8 +51,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
 
         public MultiCard_Result()
         {
-            AListCardData = new List<string>(250);
-            BListCardData = new List<string>(2000);
+            AListCardData = new Dictionary<int, List<string>>();
+            BListCardData = new Dictionary<int, List<string>>();
         }
         public void Dispose()
         {
@@ -83,7 +83,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                     byte[] array = new byte[9];
                     string carddata = FCARDIO.Protocol.Util.StringUtil.ByteBufToHex(databuf, 9);
                     carddata = Convert.ToInt32(carddata, 16).ToString();
-                    AListCardData.Add(carddata);
+                    if (AListCardData.ContainsKey(groupnum))
+                    {
+                        AListCardData[groupnum].Add(carddata);
+                    }
+                    else
+                    {
+                        List<string> list = new List<string>() { carddata };
+                        AListCardData.Add(groupnum, list);
+                    }
+                    //AListCardData.Add(carddata);
                 }
             }
             else
@@ -94,7 +103,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                     byte[] array = new byte[9];
                     string carddata = FCARDIO.Protocol.Util.StringUtil.ByteBufToHex(databuf, 9);
                     carddata = Convert.ToInt32(carddata, 16).ToString();
-                    BListCardData.Add(carddata);
+                    if (BListCardData.ContainsKey(groupnum))
+                    {
+                        BListCardData[groupnum].Add(carddata);
+                    }
+                    else
+                    {
+                        List<string> list = new List<string>() { carddata };
+                        BListCardData.Add(groupnum, list);
+                    }
+                    //BListCardData.Add(carddata);
                 }
             }
         }
