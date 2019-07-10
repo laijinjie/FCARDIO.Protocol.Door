@@ -14,24 +14,31 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
     /// </summary>
     public class ReadMultiCard : FC8800Command_ReadParameter
     {
-        MultiCard_Result result;
+        /// <summary>
+        /// 返回值
+        /// </summary>
+        private MultiCard_Result mResult;
 
-        Queue<IByteBuffer> mBufs;
         /// <summary>
         /// 此命令对应的门端口号
         /// </summary>
         protected int mPort;
 
         /// <summary>
-        /// 命令进度
+        /// 当前命令步骤
         /// </summary>
-        protected int mStep;
+        private int Step { get; set; }
+
+        /// <summary>
+        /// 当前正在读取的组合类型
+        /// </summary>
+        private int mGroupType;
 
         /// <summary>
         /// 当前正在读取的组号
         /// </summary>
-        protected int mGroupNum;
-        protected int mGroupType;
+        private int mGroupNum;
+
 
         /// <summary>
         /// 读单个门的多卡参数
@@ -41,34 +48,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         public ReadMultiCard(INCommandDetail cd, DoorPort_Parameter value) : base(cd, value) { }
 
         /// <summary>
-        /// 组类别
-        /// </summary>
-        protected byte iGroupType = 0;
-
-        /// <summary>
-        /// 组号
-        /// </summary>
-        protected byte iGroupNum = 0;
-
-        protected byte GroupCount = 0;
-        /// <summary>
-        /// 创建命令
-        /// </summary>
-        protected override void CreatePacket0()
-        {
-            DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
-            mPort = model.Door;
-            //1、第一步，读取多卡开门检测模式参数
-            Packet(0x03, 0x17, 0x01, 0x01, model.GetBytes(_Connector.GetByteBufAllocator().Buffer(1)));
-            _ProcessMax = 27;
-            _ProcessStep = 1;
-            mStep = 1;
-            result = new MultiCard_Result();
-        }
-
-
-        /// <summary>
-        /// 检查参数
+        /// 检查端口是否正确
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -76,46 +56,27 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         {
             DoorPort_Parameter model = value as DoorPort_Parameter;
             if (model == null) return false;
-
             return model.checkedParameter();
         }
 
-        private void ReadOpenMode(IByteBuffer tmpBuf)
+        /// <summary>
+        /// 创建命令
+        /// </summary>
+        protected override void CreatePacket0()
         {
-            int iDoor = tmpBuf.ReadByte();
-            if (iDoor != mPort)
-            {
-                return;
-            }
-            result.GetOpenModeBytes(tmpBuf);
-            //_Result = result;
 
+            mResult = new MultiCard_Result();
+            _Result = mResult;
 
-            _ProcessStep++;
-            FCPacket.CmdIndex = 0x18;//修改命令为读取 多卡开门验证方式
-            CommandReady();//设定命令当前状态为准备就绪，等待发送
-            mStep = 2;//使命令进入下一个阶段
-        }
+            DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
+            mPort = model.Door;
+            mResult.DoorNum = mPort;
 
-        private void ReadVerifyType(IByteBuffer tmpBuf)
-        {
-            int iDoor = tmpBuf.ReadByte();
-            if (iDoor != mPort)
-            {
-                return;
-            }
-            _ProcessStep++;
-            result.GetOpenVerifyBytes(tmpBuf);
-            if (result.VerifyType != 0)
-            {
-                //开启读取多卡开门AB组内容
-                tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
-                tmpBuf.WriteByte(0).WriteByte(1);
-                mGroupNum = 1;
-                Packet(0x03, 0x18, 0x03, 2, tmpBuf);
-                CommandReady();//设定命令当前状态为准备就绪，等待发送
-                mStep = 3;//使命令进入下一个阶段
-            }
+            //1、第一步，读取多卡开门检测模式参数
+            Packet(0x03, 0x17, 0x01, 0x01, model.GetBytes(_Connector.GetByteBufAllocator().Buffer(1)));
+            _ProcessMax = 27;
+            _ProcessStep = 1;
+            Step = 1;
         }
 
 
@@ -125,174 +86,191 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <param name="oPck"></param>
         protected override void CommandNext0(OnlineAccessPacket oPck)
         {
-
             IByteBuffer tmpBuf;
-         
-            int iDoor;
-            switch (mStep)
+
+            switch (Step)
             {
                 case 1://读取 多卡开门检测模式参数
                     if (CheckResponse(oPck, 3))
                     {
-                        tmpBuf = oPck.CmdData;
-                        ReadOpenMode(tmpBuf);
+                        ReadCheckModeCallblack(oPck.CmdData);
                     }
 
                     break;
                 case 2: //读取 多卡开门验证方式 的返回
                     if (CheckResponse(oPck, 4))
                     {
-                        tmpBuf = oPck.CmdData;
-                        ReadVerifyType(tmpBuf);
+                        ReadVerifyType(oPck.CmdData);
                     }
 
                     break;
-                case 3://读取A组的数据
+                case 3://读取AB组的数据
                     if (CheckResponse(oPck))
                     {
-                        tmpBuf = oPck.CmdData;
-                        iGroupType = tmpBuf.ReadByte();//组类别：0--A组；
-                        iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
-                        GroupCount = tmpBuf.ReadByte();
-                        if (iGroupType != 0)
-                        {
-                            return;
-                        }
-                        if (iGroupNum != mGroupNum)
-                        {
-                            return;
-                        }
-                        if (GroupCount == 0)
-                        {
-                            tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
-                            MoveNextGroup(tmpBuf);
-                        }
-                    }
-                    //读取A组卡
-                    if (CheckResponse(oPck, 0x03, 0x18, 0x53))
-                    {
-                        if (iGroupNum != mGroupNum)
-                        {
-                            return;
-                        }
-                        tmpBuf = oPck.CmdData;
-                        //if (tmpBuf.Capacity == 91)
-                        //{
-                        //    Utility.StringUtility.WriteByteBuffer(tmpBuf);
-                        //}
-                        //
-                        result.GetListCardDataBytes(iGroupType,iGroupNum, tmpBuf);
-                        //读完1组
-                        
-                        //if (result.AListCardData[iGroupNum].Count == 50 || GroupCount < 20)
-                        if (result.AListCardData[iGroupNum].Count == GroupCount)
-                        {
-                            tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
-                            MoveNextGroup(tmpBuf);
-                        }
-                        else
-                        {
-                            CommandWaitResponse();
-                        }
-                        
+                        ReadGroupAB(oPck.CmdData);
                     }
 
+
                     break;
-                case 4://B组
+                case 4://固定组数据
                     if (CheckResponse(oPck))
                     {
-                        tmpBuf = oPck.CmdData;
-                        iGroupType = tmpBuf.ReadByte();//组类别：0--A组；
-                        iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
-                        GroupCount = tmpBuf.ReadByte();
-                        if (iGroupType != 1)
-                        {
-                            return;
-                        }
-                        if (iGroupNum != mGroupNum)
-                        {
-                            return;
-                        }
-                        if (GroupCount == 0)
-                        {
-                            tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
-                            MoveNextGroup(tmpBuf);
-                        }
-                       
+                        ReadGroupFix(oPck.CmdData);
                     }
-                    if (CheckResponse(oPck, 0x03, 0x18, 0x53))
-                    {
-                        if (iGroupNum != mGroupNum)
-                        {
-                            return;
-                        }
-                        tmpBuf = oPck.CmdData;
-                        //Utility.StringUtility.WriteByteBuffer(tmpBuf);
-                        result.GetListCardDataBytes(iGroupType, iGroupNum, tmpBuf);
-                        
-                        if (result.BListCardData[iGroupNum].Count == GroupCount)
-                        {
-                            tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
-                            MoveNextGroup(tmpBuf);
-                        }
-                        else
-                        {
-                            CommandWaitResponse();
-                        }
-
-                    }
-                    break;
-                case 5://读取固定组合
-                       //固定组合读完了
-                       //命令全部发送完毕
-                    _Result = result;
-                    CommandCompleted();
-
                     break;
                 default:
                     break;
             }
-            if (CheckResponse_OK(oPck))
+
+        }
+        /// <summary>
+        /// 多卡开门检测模式参数
+        /// </summary>
+        /// <param name="tmpBuf"></param>
+        private void ReadCheckModeCallblack(IByteBuffer tmpBuf)
+        {
+            int iDoor = tmpBuf.ReadByte();
+            if (iDoor != mPort)
             {
-
-                //继续发下一包
-                CommandNext1(oPck);
+                return;
             }
-            else if (CheckResponse(oPck, 0x07, 0x04, 0xFF, oPck.DataLen))
-            {//检查是否不是错误返回值
 
-                //缓存错误返回值
-                if (mBufs == null)
-                {
-                    mBufs = new Queue<IByteBuffer>();
-                }
+            mResult.CheckMode_SetBytes(tmpBuf);
 
-                //mBufs.Enqueue(oPck.CmdData);
 
-                //继续发下一包
-                CommandNext1(oPck);
+            //读 多卡开门验证方式
+            _ProcessStep++;
+            FCPacket.CmdIndex = 0x18;//修改命令为读取 多卡开门验证方式
+            CommandReady();//设定命令当前状态为准备就绪，等待发送
+            Step = 2;//使命令进入下一个阶段
+        }
+
+        private void ReadVerifyType(IByteBuffer tmpBuf)
+        {
+            int iDoor = tmpBuf.ReadByte();
+            if (iDoor != mPort)
+            {
+                return;
+            }
+
+            mResult.VerifyType_SetBytes(tmpBuf);
+
+            _ProcessStep++;
+
+            switch (mResult.VerifyType)
+            {
+                case 1://读取多卡AB组
+                    //开启读取多卡开门AB组内容
+                    tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
+                    tmpBuf.WriteByte(0).WriteByte(1);
+                    mGroupType = WriteMultiCard.GroupTypeA;
+                    mGroupNum = 1;
+                    Packet(0x03, 0x18, 0x03, 2, tmpBuf);
+                    CommandReady();//设定命令当前状态为准备就绪，等待发送
+                    Step = 3;//使命令进入下一个阶段
+                    break;
+                case 2://读取多卡固定组
+                    FCPacket.CmdIndex = 0x12;
+                    FCPacket.CmdPar = 0x3;
+                    CommandReady();//设定命令当前状态为准备就绪，等待发送
+                    Step = 4;//使命令进入下一个阶段
+                    break;
+                default:
+                    _ProcessStep = _ProcessMax;
+                    //命令完成，什么都不读了
+                    CommandCompleted();
+                    break;
+
             }
         }
 
-        private void MoveNextGroup(IByteBuffer tmpBuf)
+        private void ReadGroupAB(IByteBuffer tmpBuf)
         {
-            mGroupNum++;
-            _ProcessStep++;
-            if (mGroupNum == 21)
+            var iGroupType = tmpBuf.ReadByte();//组类别：0--A组；
+            var iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
+            var iCardCount = tmpBuf.ReadByte();
+            if (iGroupType != mGroupType)
             {
-                mStep = 5;
                 return;
             }
-            if (mGroupType == 0 && mGroupNum == 6)
+            if (iGroupNum != mGroupNum)
             {
-                mGroupNum = 1;
-                mGroupType = 1;
-                mStep = 4;//使命令进入下一个阶段
+                return;
             }
-            
-            tmpBuf.WriteByte(mGroupType).WriteByte(mGroupNum);
-            Packet(0x03, 0x18, 0x03, 2, tmpBuf);
-            CommandReady();
+
+            List<UInt64> group = new List<UInt64>();
+
+            if (mGroupType == WriteMultiCard.GroupTypeA) mResult.GroupA[mGroupNum - 1] = group;
+            if (mGroupType == WriteMultiCard.GroupTypeB) mResult.GroupB[mGroupNum - 1] = group;
+
+
+            if (iCardCount > 0)
+            {
+                while (tmpBuf.ReadableBytes >= 4)
+                {
+                    UInt64 card = tmpBuf.ReadUnsignedInt();
+                    group.Add(card);
+                }
+            }
+
+            //读下一个组
+            var cmdBuf = FCPacket.CmdData;
+            mGroupNum++;
+            if (mGroupType == WriteMultiCard.GroupTypeA && mGroupNum > 5)
+            {
+                mGroupType = WriteMultiCard.GroupTypeB;
+                cmdBuf.SetByte(0, 1);
+                mGroupNum = 1;
+            }
+
+            if (mGroupType == WriteMultiCard.GroupTypeB && mGroupNum > 20)
+            {
+                cmdBuf = null;
+                CommandCompleted();
+                return;
+            }
+
+            cmdBuf.SetByte(1, mGroupNum);//改变下一包要读的组号
+        }
+        
+        private void ReadGroupFix(IByteBuffer tmpBuf)
+        {
+            var iDoorPort = tmpBuf.ReadByte();//端口号
+            if (mPort != iDoorPort)
+            {
+                return;
+            }
+            List<MultiCard_GroupFix> FixGroups = new List<MultiCard_GroupFix>();
+            int iCount;
+            int iIndex = 1;
+            for (int i = 1; i <= 10; i++)
+            {
+                MultiCard_GroupFix group = new MultiCard_GroupFix();
+                iCount = tmpBuf.ReadByte();
+                group.GroupType = tmpBuf.ReadByte();
+                var cardList = new List<UInt64>();
+                group.CardList = cardList;
+                if (iCount > 0)
+                {
+
+                    for (int j = 0; j < iCount; j++)
+                    {
+                        cardList.Add(tmpBuf.ReadUnsignedInt());
+                    }
+                }
+
+
+                FixGroups.Add(group);
+
+                iIndex += 34;
+                if (tmpBuf.Capacity < iIndex)
+                {
+                    tmpBuf.SetReaderIndex(iIndex);
+                }
+
+            }
+
+            CommandCompleted();
         }
 
         /// <summary>
@@ -301,7 +279,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            
+
         }
 
 

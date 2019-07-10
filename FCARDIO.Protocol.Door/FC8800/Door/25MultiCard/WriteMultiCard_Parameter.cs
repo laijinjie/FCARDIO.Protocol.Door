@@ -7,6 +7,23 @@ using DotNetty.Buffers;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
 {
+    /// <summary>
+    /// 固定多卡组，单组结构
+    /// </summary>
+    public class MultiCard_GroupFix
+    {
+        /// <summary>
+        /// 1--入门多卡组，2--出门多卡组，3--出入门通用组。
+        /// </summary>
+        public byte GroupType;
+
+        /// <summary>
+        /// 固定多卡组中的卡列表。
+        /// </summary>
+        public List<UInt64> CardList;
+    }
+
+
     public class WriteMultiCard_Parameter : AbstractParameter
     {
 
@@ -16,74 +33,85 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// </summary>
         public int DoorNum { get; set; }
 
-        public int Step { get; set; }
-
         /// <summary>
-        /// 刷卡模式 (1)
+        /// 刷卡模式 0--表示多卡时当遇到非组合内的刷卡时继续等待下一张正确的卡(默认参数)。          1--表示当遇到非组合内刷卡时直接退出。
         /// </summary>
         public byte Mode { get; set; }
 
         /// <summary>
-        /// 防潜回检测 (1)
+        /// 防潜回检测 0--多卡时当开启防潜回功能时要进行防潜回检测。            1--多卡时当开启防潜回功能时不进行防潜回检测。
         /// </summary>
         public byte AntiPassback { get; set; }
 
         /// <summary>
-        /// 开门验证方式 (1)
+        /// 开门验证方式0--禁用多卡验证。1--A组和B组组合验证（A组任意数量，B组任意数量）。          2--固定组合验证（原FC8800验证方式）          3--数量验证（此方式不需要特定组，只要是合法卡刷卡一次数量即可）
+        /// 当验证模式为3时，【A组刷卡数量】字段规定的就是合法卡刷卡数量
         /// </summary>
         public byte VerifyType { get; set; }
 
         /// <summary>
-        /// A组刷卡数量 (1)
+        /// A组刷卡数量 取值范围：0-20
         /// </summary>
         public byte AGroupCount { get; set; }
 
         /// <summary>
-        /// B组刷卡数量 (1)
+        /// B组刷卡数量 取值范围：0-100
         /// </summary>
         public byte BGroupCount { get; set; }
 
-        public byte GroupType { get;private set; }
-        public byte GroupNum { get; private set; }
+
+        /// <summary>
+        /// 多卡组A组
+        /// </summary>
+        public List<List<UInt64>> GroupA { get; set; }
+
+        /// <summary>
+        /// 多卡组B组
+        /// </summary>
+        public List<List<UInt64>> GroupB { get; set; }
 
 
-        public List<string> AListCardData { get; set; }
-        public List<string> BListCardData { get; set; }
+        /// <summary>
+        /// 多卡固定组
+        /// </summary>
+        public List<MultiCard_GroupFix> GroupFix { get; set; }
 
-        public Dictionary<int, Dictionary<int, int>> Dict { get; set; }
 
-        public int mIndex = 0;
+        public WriteMultiCard_Parameter() { }
 
-        public bool IsComplete { get; private set; }
-
-        public WriteMultiCard_Parameter(byte door, byte mode, byte antiPassback, byte verifytype, byte agroupcount, byte bgroupcount, List<string> aList, List<string> bList)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="door"></param>
+        /// <param name="mode"></param>
+        /// <param name="antiPassback"></param>
+        /// <param name="verifytype"></param>
+        /// <param name="agroupcount"></param>
+        /// <param name="bgroupcount"></param>
+        /// <param name="group_a"></param>
+        /// <param name="group_b"></param>
+        /// <param name="group_fix"></param>
+        public WriteMultiCard_Parameter(byte door,
+            byte mode, byte antiPassback,
+            byte verifytype, byte agroupcount, byte bgroupcount,
+            List<List<UInt64>> group_a, List<List<UInt64>> group_b,
+            List<MultiCard_GroupFix> group_fix)
         {
             DoorNum = door;
             Mode = mode;
             AntiPassback = antiPassback;
+
             VerifyType = verifytype;
             AGroupCount = agroupcount;
             BGroupCount = bgroupcount;
-            Step = 0;
-            AListCardData = aList;
-            BListCardData = bList;
-            Dict = new Dictionary<int, Dictionary<int, int>>();
 
-            Dict.Add(0, new Dictionary<int, int>() { });
-            Dict.Add(1, new Dictionary<int, int>() { });
-            for (int i = 0; i < 5; i++)
-            {
-                var tempList = aList.Skip(50 * i).Take(50).ToArray();
-                Dict[0].Add((i + 1), tempList.Count(t => !string.IsNullOrEmpty(t)));
-            }
-            for (int i = 0; i < 20; i++)
-            {
-                var tempList = bList.Skip(100 * i).Take(100).ToArray();
-                Dict[1].Add((i + 1), tempList.Count(t => !string.IsNullOrEmpty(t)));
-            }
-            GroupType = 0;
-            GroupNum = 1;
-            //CheckListCardCount();
+            GroupA = group_a;
+            GroupB = group_b;
+
+            GroupFix = group_fix;
+
+            checkedParameter();
+
         }
 
         public override bool checkedParameter()
@@ -104,178 +132,123 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
 
             if (BGroupCount < 0 || BGroupCount > 100)
                 throw new ArgumentException("BGroupCount Error!");
+
+
+            switch (VerifyType)
+            {
+                case 1:
+                    if (GroupA == null || GroupB == null)
+                        throw new ArgumentException("GroupA or GroupB Error!");
+
+                    if (GroupA.Count < 5 || GroupB.Count < 20)
+                        throw new ArgumentException("GroupA or GroupB Error!");
+
+                    CheckGroup(GroupA);
+                    CheckGroup(GroupB);
+
+                    break;
+                case 2:
+                    if (GroupFix == null)
+
+                    if (GroupFix.Count < 10)
+                        throw new ArgumentException("GroupA or GroupB Error!");
+
+                    foreach (var fix in GroupFix)
+                    {
+                        CheckGroup(fix.CardList);
+                    }
+                    
+                    break;
+            }
             return true;
         }
 
-        public override void Dispose()
+        private void CheckGroup(List<List<UInt64>>  checkGroup)
         {
-            
-
-        }
-        public void MoveNextGroup()
-        {
-            mIndex = 0;
-            GroupNum++;
-            Step = 2;
-            if (GroupType == 0 && GroupNum == 6)
+            foreach (var group in checkGroup)
             {
-                GroupType = 1;
-                GroupNum = 1;
+                CheckGroup(group);
             }
         }
-        protected void CheckListCardCount()
+
+        private void CheckGroup(List<UInt64> group)
         {
-            while (Dict[GroupType][GroupNum] == 0)
+            if(group == null)
             {
-                GroupNum++;
-                if (GroupType == 0 && GroupNum == 6)
+                throw new ArgumentException("Card Group Error!");
+            }
+
+            foreach (var c in group)
+            {
+                if (c > UInt32.MaxValue)
                 {
-                    GroupType = 1;
-                    GroupNum = 1;
+                    throw new ArgumentException("Card Error!");
+                }
+
+                if (c == 0)
+                {
+                    throw new ArgumentException("Card Error!");
                 }
             }
         }
 
-        public override IByteBuffer GetBytes(IByteBuffer databuf)
+        public override void Dispose()
         {
-            int count = 0;
-            switch (Step)
+            return;
+
+        }
+        
+        /// <summary>
+        /// 将 多卡开门检测模式参数 编码到字节流
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
+        internal IByteBuffer CheckMode_GetBytes(IByteBuffer databuf)
+        {
+            if (databuf.WritableBytes != 3)
             {
-                case 0:
-                    if (databuf.WritableBytes != 3)
-                    {
-                        throw new ArgumentException("door Error!");
-                    }
-                    databuf.WriteByte(DoorNum);
-                    databuf.WriteByte(Mode);
-                    databuf.WriteByte(AntiPassback);
-                    Step++;
-                    break;
-                case 1:
-                    if (databuf.WritableBytes != 4)
-                    {
-                        throw new ArgumentException("door Error!");
-                    }
-                    databuf.WriteByte(DoorNum);
-                    databuf.WriteByte(VerifyType);
-                    databuf.WriteByte(AGroupCount);
-                    databuf.WriteByte(BGroupCount);
-                    Step++;
-                   
-                    break;
-                case 2://多卡开门A组设置 
-                    if (databuf.WritableBytes != 3)
-                    {
-                        throw new ArgumentException("door Error!");
-                    }
-                    databuf.WriteByte(GroupType);
-                    databuf.WriteByte(GroupNum);
-                    //count = Dict[GroupType][GroupNum] > 20 ? 20 : Dict[GroupType][GroupNum];
-                    //count = AListCardData.Skip(mIndex).Take(count).Count(t => t != null);
-                    databuf.WriteByte(Dict[GroupType][GroupNum]);
-                    Step = 3;
-                    break;
-                case 3://设置A组中的卡号
-                    
-                    count = Dict[GroupType][GroupNum] > 20 ? 20 : Dict[GroupType][GroupNum];
-                    databuf.WriteByte(mIndex + 1);
-                    if (GroupType == 0)
-                    {
-                        var templist = AListCardData.Skip(50 * (GroupNum - 1)+mIndex).Take(count).Where(t => t != null).ToList();
-                        for (int i = 0; i < templist.Count; i++)
-                        {
-                            UInt64 iCard = UInt64.Parse(templist[i]);
-                            string card = FCARDIO.Protocol.Util.StringUtil.FillString(iCard.ToString("X"), 17, "0", false);
-
-                            //string card = Convert.ToInt32(AListCardData[mIndex], 16).ToString().PadLeft(16,'0');
-                            byte[] b = FCARDIO.Protocol.Util.StringUtil.HexToByte(card);
-                            databuf.WriteBytes(b);
-                            Dict[GroupType][GroupNum]--;
-                            mIndex++;
-                        }
-                    }
-                    else
-                    {
-                        var templistB = BListCardData.Skip(100 * (GroupNum - 1) + mIndex).Take(count).Where(t => t != null).ToList();
-                        for (int i = 0; i < templistB.Count; i++)
-                        {
-                            UInt64 iCard = UInt64.Parse(templistB[i]);
-                            string card = FCARDIO.Protocol.Util.StringUtil.FillString(iCard.ToString("X"), 17, "0", false);
-
-                            //string card = Convert.ToInt32(AListCardData[mIndex], 16).ToString().PadLeft(16,'0');
-                            byte[] b = FCARDIO.Protocol.Util.StringUtil.HexToByte(card);
-                            databuf.WriteBytes(b);
-                            Dict[GroupType][GroupNum]--;
-                            mIndex++;
-                        }
-                    }
-                    //本组上传完，换下一组
-                    if (Dict[GroupType][GroupNum] == 0)
-                    {
-                        MoveNextGroup();
-                        
-                    }
-                    if (GroupType == 0 && GroupNum == 6)
-                    {
-                        GroupType = 1;
-                        GroupNum = 1;
-                    }
-                        
-                    if (GroupType == 1 && GroupNum == 21)
-                    {
-                        IsComplete = true;
-                        Step = 0;
-                    }
-                    else
-                    {
-                        //CheckListCardCount();
-                    }
-                    //
-                    break;
-              
-                default:
-                    break;
+                throw new ArgumentException("buf Error!");
             }
-            
+            databuf.WriteByte(DoorNum);
+            databuf.WriteByte(Mode);
+            databuf.WriteByte(AntiPassback);
             return databuf;
         }
 
-        public void SetWriteIndex(int writeIndex)
+        /// <summary>
+        /// 将 多卡开门验证方式 编码到字节流
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
+        internal IByteBuffer VerifyType_GetBytes(IByteBuffer databuf)
         {
-            mIndex = writeIndex;
+            if (databuf.WritableBytes != 4)
+            {
+                throw new ArgumentException("buf Error!");
+            }
+            databuf.WriteByte(DoorNum);
+            databuf.WriteByte(VerifyType);
+            databuf.WriteByte(AGroupCount);
+            databuf.WriteByte(BGroupCount);
+            return databuf;
         }
+        
 
         public override int GetDataLen()
         {
-            switch (Step)
-            {
-                case 0:
-                case 1:
-                    int[] array = new int[2] { 3, 4 };
-                    int len = array[Step];
-                    return len;
-                case 2:
-                case 4:
-                    return 3;
-                case 3:
-                case 5:
-                    int count = Dict[GroupType][GroupNum] > 20 ? 20 : Dict[GroupType][GroupNum];
-                    if (count == 0)
-                    {
-                        MoveNextGroup();
-                        return 0;
-                    }
-                    return 1 + 9 * count;
-                default:
-                    break;
-            }
-            return 3;
+           
+            return 0;
 
         }
 
         public override void SetBytes(IByteBuffer databuf)
         {
+            return;
+        }
 
+        public override IByteBuffer GetBytes(IByteBuffer databuf)
+        {
+            return databuf;
         }
     }
 }

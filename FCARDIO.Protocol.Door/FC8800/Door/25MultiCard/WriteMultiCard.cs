@@ -15,18 +15,47 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
     /// </summary>
     public class WriteMultiCard : FC8800Command_WriteParameter
     {
-        private int writeIndex = 0;
+        /// <summary>
+        /// 多卡参数
+        /// </summary>
+        private WriteMultiCard_Parameter mMultiCardPar ;
 
-        private int maxCount = 0;
+        /// <summary>
+        /// 当前命令步骤
+        /// </summary>
+        private int Step { get; set; }
 
-        public int Step { get; set; }
+
+        /// <summary>
+        /// 多卡A组类型
+        /// </summary>
+        public const int GroupTypeA = 1;
+        /// <summary>
+        /// 多卡B组类型
+        /// </summary>
+        public const int GroupTypeB = 2;
+
+        /// <summary>
+        /// 当前正在写入的组合类型
+        /// </summary>
+        private int mGroupType;
+
+        /// <summary>
+        /// 当前正在写入的组号
+        /// </summary>
+        private int mGroupNum;
+
 
         /// <summary>
         /// 初始化命令结构
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="value"></param>
-        public WriteMultiCard(INCommandDetail cd, WriteMultiCard_Parameter value) : base(cd, value) { }
+        public WriteMultiCard(INCommandDetail cd, WriteMultiCard_Parameter value) : base(cd, value) {
+            
+            mMultiCardPar = value;
+        }
+
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
             WriteMultiCard_Parameter model = value as WriteMultiCard_Parameter;
@@ -34,100 +63,183 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             return model.checkedParameter();
         }
 
+        /// <summary>
+        /// 创建第一个数据包
+        /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x17, 0x00, 3, GetCmdData());
-            Step = 2;
+            //发送 设置多卡开门检测模式参数
+            Packet(0x03, 0x17, 0x00, 3, mMultiCardPar.CheckMode_GetBytes( GetCmdDataBuf(3)));
+            Step = 1;
+            switch(mMultiCardPar.VerifyType)
+            {
+                case 1:
+                    _ProcessMax = 27;
+                    break;
+                case 2:
+                    _ProcessMax = 12;
+                    break;
+                default:
+                    _ProcessMax = 2;
+                    break;
+            }
+            
+
 
         }
 
         /// <summary>
-        /// 二十七 多卡开门A组设置
+        /// 接收到响应，开始处理下一步命令
         /// </summary>
-        protected virtual void WriteMultiCardData(WriteMultiCard_Parameter model)
+        /// <param name="oPck"></param>
+        protected override void CommandNext0(OnlineAccessPacket oPck)
         {
-            //int count = model.Dict[model.GroupType][model.GroupNum];
-            if (model.IsComplete)
-            {
-                CommandCompleted();
-            }
-            else
-            {
-                Packet(0x03, 0x18, 0x02, 3, GetCmdData());
-                CommandReady();
-            }
-        }
 
-        /// <summary>
-        /// 设置组中的卡号
-        /// </summary>
-        /// <param name="model"></param>
-        protected virtual void WriteMultiCardDataNext(WriteMultiCard_Parameter model)
-        {
-            int count = model.Dict[model.GroupType][model.GroupNum];
-            
-            if (!model.IsComplete)
-            {
-                var step = model.Step;
-                var acl = _Connector.GetByteBufAllocator();
-                var len = model.GetDataLen();
-                if (len > 0)
-                {
-                    var buf = acl.Buffer(len);
-                    Packet(0x03, 0x18, 0x52, (uint)len, model.GetBytes(buf));
-                    CommandReady();
-                    if (model.IsComplete)
-                    {
-                        CommandCompleted();
-                    }
-                
-                }
-               
-                
-            }
-           
-        }
-
-        protected override void CommandNext(INPacket readPacket)
-        {
-            
             switch (Step)
             {
-                case 2://二十六、多卡开门验证方式
-                    Packet(0x03, 0x18, 0x00, 4, GetCmdData());
+                case 1://二十六、设置 多卡开门验证方式
+                    Packet(0x03, 0x18, 0x00, 4, mMultiCardPar.CheckMode_GetBytes(GetCmdDataBuf(4)));
+                    _ProcessStep = 2;
                     CommandReady();//设定命令当前状态为准备就绪，等待发送
-                    Step = 3;
+                    Step = 2;
                     break;
-                case 3://二十七 多卡开门A组设置
-
-                    WriteMultiCard_Parameter model = _Parameter as WriteMultiCard_Parameter;
-                    maxCount = model.AListCardData.Count;
-                    WriteMultiCardData(model);
-                    Step = 4;
-                    break;
-                case 4:
-                    WriteMultiCard_Parameter model4 = _Parameter as WriteMultiCard_Parameter;
-                    //var count1  = model4.Dict[model4.GroupType][model4.GroupNum];
-                    WriteMultiCardDataNext(model4);
-                    //var count2 = model4.Dict[model4.GroupType][model4.GroupNum];
-                    //var groupnum2 = model4.GroupNum;
-                    if (model4.Step == 2)
+                case 2:
+                    //检查需要发送的内容
+                    switch (mMultiCardPar.VerifyType)
                     {
-                        Step = 3;
+                        case 1://多卡AB组
+                            //开始写A组
+                            mGroupType = GroupTypeA;
+                            mGroupNum = 1;
+                            WriteMultiCard_GroupAB();
+
+                            Step = 3;
+                            break;
+                        case 2://固定组合
+                            //开始写第一个固定组合
+                            mGroupNum = 1;
+                            WriteMultiCard_GroupFix();
+                            Step = 4;
+                            break;
+                        default://其他方式
+                            CommandCompleted();
+                            break;
                     }
                     
+                    break;
+                case 3://继续写AB组
+                    mGroupNum++;
+                    if( mGroupType == GroupTypeA &&  mGroupNum>5)
+                    {
+                        mGroupType = GroupTypeB;
+                        mGroupNum = 1;
+                    }
+
+                    if(mGroupType == GroupTypeB && mGroupNum > 20)
+                    {
+                        CommandCompleted();
+                        return;
+                    }
+
+                    WriteMultiCard_GroupAB();
+
+
+
+                    break;
+                case 4://继续写固定组
+                    mGroupNum++;
+                    if ( mGroupNum > 10)
+                    {
+                        CommandCompleted();
+                        return;
+                    }
+                    WriteMultiCard_GroupFix();
                     break;
                 default:
                     break;
             }
-            
-           
+
+
         }
 
-        protected override void CommandNext0(OnlineAccessPacket oPck)
+
+
+        /// <summary>
+        /// 二十七 多卡开门A组设置
+        /// </summary>
+        protected virtual void WriteMultiCard_GroupAB()
         {
-            CommandNext(oPck);
+            //先找到对应的组
+            List<UInt64> group=null;
+            int iMax = 50;
+            int iCount = 0;
+
+            if (mGroupType == GroupTypeA) group = mMultiCardPar.GroupA[mGroupNum-1];
+            if (mGroupType == GroupTypeB)
+            {
+                iMax = 100;
+                group = mMultiCardPar.GroupB[mGroupNum - 1];
+            }
+                    
+            var buf = GetCmdDataBuf(403);
+            iCount = group.Count;
+            if (iCount > iMax) iCount = iMax;
+
+            buf.WriteByte(mGroupType);
+            buf.WriteByte(mGroupNum);
+            buf.WriteByte(iCount);
+
+            for (int i = 0; i < iCount; i++)
+            {
+                buf.WriteInt((int)group[i]);
+            }
+            
+
+            Packet(0x03, 0x18, 0x02, (uint)buf.ReadableBytes, buf);
+            _ProcessStep++;
+            CommandReady();
+
         }
+
+
+        /// <summary>
+        /// 写入固定多卡组
+        /// </summary>
+        protected virtual void WriteMultiCard_GroupFix()
+        {
+            //先找到对应的组
+            MultiCard_GroupFix Fix;
+            List<UInt64> group = null;
+            int iMax = 8;
+            int iCount = 0;
+
+            Fix = mMultiCardPar.GroupFix[mGroupNum - 1];
+            group = Fix.CardList;
+
+            var buf = GetCmdDataBuf(36);
+            iCount = group.Count;
+            if (iCount > iMax) iCount = iMax;
+
+            buf.WriteByte(mMultiCardPar.DoorNum);
+            buf.WriteByte(mGroupNum);
+            buf.WriteByte(iCount);
+            buf.WriteByte(Fix.GroupType);
+
+            for (int i = 0; i < iCount; i++)
+            {
+                buf.WriteInt((int)group[i]);
+            }
+
+
+            Packet(0x03, 0x12, 0x02, (uint)buf.ReadableBytes, buf);
+            _ProcessStep++;
+            CommandReady();
+
+        }
+
+
+
+
 
         /// <summary>
         /// 处理返回值
@@ -137,12 +249,30 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         {
             
         }
-        private IByteBuffer GetCmdData()
+
+        /// <summary>
+        /// 获取一个指定大小的Buf
+        /// </summary>
+        /// <param name="iSize"></param>
+        /// <returns></returns>
+        private IByteBuffer GetCmdDataBuf(int iSize)
         {
-            WriteMultiCard_Parameter model = _Parameter as WriteMultiCard_Parameter;
+            var buf = FCPacket?.CmdData;
             var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
+            
+            if(buf==null)
+            {
+                
+                buf = acl.Buffer(iSize);
+
+            }
+            buf.Clear();
+            if (buf.WritableBytes < iSize )
+            {
+                buf = acl.Buffer(iSize);
+            }
+
+           
             return buf;
         }
     }
