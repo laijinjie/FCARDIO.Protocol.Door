@@ -31,6 +31,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// 当前正在读取的组号
         /// </summary>
         protected int mGroupNum;
+        protected int mGroupType;
 
         /// <summary>
         /// 读单个门的多卡参数
@@ -161,30 +162,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                         {
                             return;
                         }
-
-
-                        /*8800H
-                        //读取下一个组
-                        _ProcessStep++;
-
-                        if (iGroupNum == 5)
+                        if (GroupCount == 0)
                         {
-                            //读取B组
-                            tmpBuf.SetByte(0, 1);//组类别：1--B组
-                            tmpBuf.SetByte(1, 1); //组号
-                            iGroupNum = 1;
-                            mStep = 4;//使命令进入下一个阶段
+                            tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
+                            MoveNextGroup(tmpBuf);
                         }
-                        else
-                        {
-                            tmpBuf = FCPacket.CmdData;
-
-                            iGroupNum++;
-                            tmpBuf.SetByte(1, iGroupNum);
-                        }
-
-                        CommandReady();//设定命令当前状态为准备就绪，等待发送
-                        */
                     }
                     //读取A组卡
                     if (CheckResponse(oPck, 0x03, 0x18, 0x53))
@@ -201,28 +183,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                         //
                         result.GetListCardDataBytes(iGroupType,iGroupNum, tmpBuf);
                         //读完1组
+                        
+                        //if (result.AListCardData[iGroupNum].Count == 50 || GroupCount < 20)
                         if (result.AListCardData[iGroupNum].Count == GroupCount)
                         {
-                            iGroupNum++;
-                            mGroupNum++;
-                            _ProcessStep++;
                             tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
-                            if (iGroupNum == 6)
-                            {
-                                iGroupNum = 1;
-                                mGroupNum = 1;
-                                mStep = 4;//使命令进入下一个阶段
-
-                                
-                                tmpBuf.WriteByte(1).WriteByte(iGroupNum);
-                            }
-                            else
-                            {
-                                tmpBuf.WriteByte(0).WriteByte(iGroupNum);
-                               
-                            }
-                            Packet(0x03, 0x18, 0x03, 2, tmpBuf);
-                            CommandReady();
+                            MoveNextGroup(tmpBuf);
                         }
                         else
                         {
@@ -239,7 +205,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                         iGroupType = tmpBuf.ReadByte();//组类别：0--A组；
                         iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
                         GroupCount = tmpBuf.ReadByte();
-                        if (iGroupType != 0)
+                        if (iGroupType != 1)
                         {
                             return;
                         }
@@ -247,26 +213,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                         {
                             return;
                         }
-
-                        /*
-                        //读取下一个组
-                        _ProcessStep++;
-
-                        if (iGroupNum == 20)
+                        if (GroupCount == 0)
                         {
-                            //读固定组合
-                            mStep = 5;
+                            tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
+                            MoveNextGroup(tmpBuf);
                         }
-                        else
-                        {
-                            tmpBuf = FCPacket.CmdData;
-
-                            iGroupNum++;
-                            tmpBuf.SetByte(1, iGroupNum);
-                        }
-
-                        CommandReady();//设定命令当前状态为准备就绪，等待发送
-                        */
+                       
                     }
                     if (CheckResponse(oPck, 0x03, 0x18, 0x53))
                     {
@@ -277,23 +229,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                         tmpBuf = oPck.CmdData;
                         //Utility.StringUtility.WriteByteBuffer(tmpBuf);
                         result.GetListCardDataBytes(iGroupType, iGroupNum, tmpBuf);
+                        
                         if (result.BListCardData[iGroupNum].Count == GroupCount)
                         {
-                            iGroupNum++;
-                            mGroupNum++;
-                            _ProcessStep++;
-                            if (iGroupNum == 21)
-                            {
-                                mStep = 5;
-                            }
-                            else
-                            {
-                                tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
-                                tmpBuf.WriteByte(1).WriteByte(iGroupNum);
-                                Packet(0x03, 0x18, 0x03, 2, tmpBuf);
-                            }
-
-                            CommandReady();
+                            tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
+                            MoveNextGroup(tmpBuf);
                         }
                         else
                         {
@@ -332,6 +272,27 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                 //继续发下一包
                 CommandNext1(oPck);
             }
+        }
+
+        private void MoveNextGroup(IByteBuffer tmpBuf)
+        {
+            mGroupNum++;
+            _ProcessStep++;
+            if (mGroupNum == 21)
+            {
+                mStep = 5;
+                return;
+            }
+            if (mGroupType == 0 && mGroupNum == 6)
+            {
+                mGroupNum = 1;
+                mGroupType = 1;
+                mStep = 4;//使命令进入下一个阶段
+            }
+            
+            tmpBuf.WriteByte(mGroupType).WriteByte(mGroupNum);
+            Packet(0x03, 0x18, 0x03, 2, tmpBuf);
+            CommandReady();
         }
 
         /// <summary>

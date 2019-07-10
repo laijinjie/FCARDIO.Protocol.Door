@@ -31,9 +31,6 @@ using FCARDIO.Protocol.Door.FC8800.Door.InOutSideReadOpenSetting;
 using FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting;
 using FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback;
 using FCARDIO.Protocol.Door.FC8800.Door.InterLockSetting;
-using FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenMode;
-using FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenVerify;
-using FCARDIO.Protocol.Door.FC8800.Door.ManyCardOpenGroup;
 using FCARDIO.Protocol.Door.FC8800.Door.MultiCard;
 
 namespace FCARDIO.Protocol.Door.Test
@@ -70,6 +67,7 @@ namespace FCARDIO.Protocol.Door.Test
         WeekTimeGroup WeekTimeGroupPushButtonDto = new WeekTimeGroup(8);
         List<CardData> listGroupA = new List<CardData>();
         List<CardData> listGroupB = new List<CardData>();
+        List<CardData> listFix = new List<CardData>();
 
         private void frmDoor_Load(object sender, EventArgs e)
         {
@@ -151,6 +149,8 @@ namespace FCARDIO.Protocol.Door.Test
             cmbNum.SelectedIndex = 0;
             #endregion
 
+            cmbManyCardOpenMode.SelectedIndex = 0;
+            cmbAntiPassback.SelectedIndex = 0;
             cmbVerifyType.SelectedIndex = 0;
             cmbGroupNum.Items.Clear();
             cmbGroupNum.Items.AddRange(new string[] { "1", "2", "3", "4", "5" });
@@ -2576,7 +2576,7 @@ namespace FCARDIO.Protocol.Door.Test
                     //{
                     //    listGroupB[i].Card = result.BListCardData[i];
                     //}
-
+                    CmbVerifyType_SelectedIndexChanged(null, null);
                     CmbGroupNum_SelectedIndexChanged(null, null);
                 });
             };
@@ -2618,98 +2618,14 @@ namespace FCARDIO.Protocol.Door.Test
         private void CmbVerifyType_SelectedIndexChanged(object sender, EventArgs e)
         {
             plManyCardOpenVerify.Visible = cmbVerifyType.SelectedIndex == 1;
+            plMutiCard.Visible = cmbVerifyType.SelectedIndex == 1;
             if (true)
             {
 
             }
         }
 
-        private void BtnReadManyCardOpenVerify_Click(object sender, EventArgs e)
-        {
-            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
-            var cmdDtl = mMainForm.GetCommandDetail();
-            if (cmdDtl == null) return;
-            ReadManyCardOpenVerify cmd = new ReadManyCardOpenVerify(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
-            mMainForm.AddCommand(cmd);
 
-            
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                ManyCardOpenVerify_Result result = cmde.Command.getResult() as ManyCardOpenVerify_Result;
-                if (result != null)
-                {
-                    Invoke(() =>
-                    {
-                        cmbVerifyType.SelectedIndex = result.VerifyType;
-                        txtAGroupCount.Text = result.AGroupCount.ToString();
-                        txtBGroupCount.Text = result.BGroupCount.ToString();
-                    });
-
-                    if (result.VerifyType != 0)
-                    {
-                        //WriteManyCardOpenGroup_Parameter par = new WriteManyCardOpenGroup_Parameter((byte)(cmbGroupType.SelectedIndex), (byte)(cmbGroupNum.SelectedIndex + 1));
-                        WriteManyCardOpenGroup_Parameter par = new WriteManyCardOpenGroup_Parameter(0, 1);
-                        ReadManyCardOpenGroup readManyCard = new ReadManyCardOpenGroup(cmdDtl, par);
-                        mMainForm.AddCommand(readManyCard);
-
-                        par = new WriteManyCardOpenGroup_Parameter(1, 1);
-                        readManyCard = new ReadManyCardOpenGroup(cmdDtl, par);
-                        mMainForm.AddCommand(readManyCard);
-
-                        cmdDtl.CommandCompleteEvent += (sdr2, cmde2) =>
-                        {
-                        };
-                    }
-                }
-
-                ManyCardOpenGroup_Result manyCardOpenGroup = cmde.Command.getResult() as ManyCardOpenGroup_Result;
-                if (manyCardOpenGroup != null)
-                {
-                    Invoke(() =>
-                    {
-                        if (manyCardOpenGroup.GroupType == 0)
-                        {
-                            txtAGroupCount.Text = manyCardOpenGroup.AGroupCount.ToString();
-                            //txtBGroupCount.Text = manyCardOpenGroup.BGroupCount.ToString();
-                        }
-                        else
-                        {
-                            txtBGroupCount.Text = manyCardOpenGroup.BGroupCount.ToString();
-                        }
-                    });
-                }
-
-            };
-        }
-
-        private void BtnWriteManyCardOpenVerify_Click(object sender, EventArgs e)
-        {
-            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
-            var cmdDtl = mMainForm.GetCommandDetail();
-            if (cmdDtl == null) return;
-
-            byte bAcount = 0;
-            byte bBcount = 0;
-            if (!byte.TryParse(txtAGroupCount.Text,out bAcount))
-            {
-                MessageBox.Show("A组数量不正确");
-                return;
-            }
-            if (!byte.TryParse(txtBGroupCount.Text, out bBcount))
-            {
-                MessageBox.Show("B组数量不正确");
-                return;
-            }
-            WriteManyCardOpenVerify_Parameter par = new WriteManyCardOpenVerify_Parameter(door, (byte)cmbVerifyType.SelectedIndex, bAcount, bBcount);
-            WriteManyCardOpenVerify cmd = new WriteManyCardOpenVerify(cmdDtl, par);
-            mMainForm.AddCommand(cmd);
-
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-            };
-        }
 
         #endregion
 
@@ -2750,6 +2666,7 @@ namespace FCARDIO.Protocol.Door.Test
                 }
             }
             dataGridView3.DataSource = new BindingList<CardData>(listGroupA.Where(t => t.Index <50).ToList());
+            dataGridView3.Columns.RemoveAt(0);
             index = 0;
             for (int i = 0; i < 20; i++)
             {
@@ -2772,22 +2689,44 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 for (int i = 0; i < listGroupA.Count; i++)
                 {
-                    listGroupA[i].Card = int.Parse(listGroupA[i].Card).ToString("X");
+                    if (!string.IsNullOrEmpty(listGroupA[i].Card))
+                    {
+                        listGroupA[i].Card = int.Parse(listGroupA[i].Card).ToString("X");
+                    }
+                    
                 }
                 for (int i = 0; i < listGroupB.Count; i++)
                 {
-                    listGroupB[i].Card = int.Parse(listGroupB[i].Card).ToString("X");
+                    if (!string.IsNullOrEmpty(listGroupB[i].Card))
+                    {
+                        listGroupB[i].Card = int.Parse(listGroupB[i].Card).ToString("X");
+                    }
+                    
+                }
+                for (int j = 1; j <= 8; j++)
+                {
+                    if (!string.IsNullOrEmpty(listFix[j].Card))
+                    {
+                        listFix[j].Card = int.Parse(listFix[j].Card).ToString("X");
+                    }
                 }
             }//16 转 10
             else
             {
                 for (int i = 0; i < listGroupA.Count; i++)
                 {
-                    listGroupA[i].Card = Convert.ToInt32(listGroupA[i].Card, 16).ToString();
+                    if (!string.IsNullOrEmpty(listGroupA[i].Card))
+                        listGroupA[i].Card = Convert.ToInt32(listGroupA[i].Card, 16).ToString();
                 }
                 for (int i = 0; i < listGroupB.Count; i++)
                 {
-                    listGroupB[i].Card = Convert.ToInt32(listGroupB[i].Card,16).ToString();
+                    if (!string.IsNullOrEmpty(listGroupB[i].Card))
+                        listGroupB[i].Card = Convert.ToInt32(listGroupB[i].Card,16).ToString();
+                }
+                for (int i = 0; i < listFix.Count; i++)
+                {
+                    if (!string.IsNullOrEmpty(listFix[i].Card))
+                        listFix[i].Card = Convert.ToInt32(listFix[i].Card, 16).ToString();
                 }
             }
             CmbGroupNum_SelectedIndexChanged(null, null);
@@ -2796,20 +2735,31 @@ namespace FCARDIO.Protocol.Door.Test
         private void BtnAutoFill_Click(object sender, EventArgs e)
         {
             int index = 0;
-            for (int i = 1; i <= 5; i++)
+            //if (cmbVerifyType.SelectedIndex == 1)
             {
-                for (int j = 1; j <= 50; j++)
+                for (int i = 1; i <= 5; i++)
                 {
-                    listGroupA[index].Card = (100 * i + j).ToString().PadLeft(16,'0');
-                    index++;
+                    for (int j = 1; j <= 50; j++)
+                    {
+                        listGroupA[index].Card = (100 * i + j).ToString();
+                        index++;
+                    }
+                }
+                index = 0;
+                for (int i = 1; i <= 20; i++)
+                {
+                    for (int j = 1; j <= 100; j++)
+                    {
+                        listGroupB[index].Card = (1000 * i + j).ToString();
+                        index++;
+                    }
                 }
             }
-            index = 0;
-            for (int i = 1; i <= 20; i++)
+            //else if (cmbVerifyType.SelectedIndex == 2)
             {
-                for (int j = 1; j <= 100; j++)
+                for (int j = 1; j <= 8; j++)
                 {
-                    listGroupB[index].Card = (1000 * i + j).ToString().PadLeft(16, '0');
+                    listFix[index].Card = (100000 + j).ToString();
                     index++;
                 }
             }
@@ -2833,7 +2783,7 @@ namespace FCARDIO.Protocol.Door.Test
         }
         private void DataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 2)
+            if (e.ColumnIndex == 1)
             {
                 DataGridViewTextBoxColumn textbox = dataGridView3.Columns[e.ColumnIndex] as DataGridViewTextBoxColumn;
                 if (textbox != null) //如果该列是TextBox列
@@ -2851,7 +2801,7 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void DataGridView4_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 2)
+            if (e.ColumnIndex == 1)
             {
                 DataGridViewTextBoxColumn textbox = dataGridView4.Columns[e.ColumnIndex] as DataGridViewTextBoxColumn;
                 if (textbox != null) //如果该列是TextBox列
@@ -2859,7 +2809,6 @@ namespace FCARDIO.Protocol.Door.Test
                     dataGridView4.BeginEdit(true); //开始编辑状态
                     dataGridView4.ReadOnly = false;
                 }
-
             }
             else
             {
@@ -2899,32 +2848,74 @@ namespace FCARDIO.Protocol.Door.Test
         private void BtnDeleteGroup_Click(object sender, EventArgs e)
         {
             int index = 0;
-            if (cmbGroupType.SelectedIndex == 0)
+            if (cmbVerifyType.SelectedIndex == 1)
             {
-                for (int i = 1; i <= 5; i++)
+                if (cmbGroupType.SelectedIndex == 0)
                 {
-                    for (int j = 1; j <= 50; j++)
+                    for (int i = 1; i <= 5; i++)
                     {
-                        listGroupA[index].Card = "";
-                        index++;
+                        for (int j = 1; j <= 50; j++)
+                        {
+                            listGroupA[index].Card = "";
+                            index++;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 1; i <= 20; i++)
+                    {
+                        for (int j = 1; j <= 100; j++)
+                        {
+                            listGroupB[index].Card = "";
+                            index++;
+                        }
                     }
                 }
             }
-            else
+            else if (cmbVerifyType.SelectedIndex == 2)
             {
-                for (int i = 1; i <= 20; i++)
+                for (int j = 1; j <= 8; j++)
                 {
-                    for (int j = 1; j <= 100; j++)
-                    {
-                        listGroupB[index].Card = "";
-                        index++;
-                    }
+                    listFix[index].Card = "";
+                    index++;
                 }
             }
             CmbGroupNum_SelectedIndexChanged(null, null);
         }
+
         #endregion
 
+        private void DataGridView5_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                DataGridViewTextBoxColumn textbox = dataGridView5.Columns[e.ColumnIndex] as DataGridViewTextBoxColumn;
+                if (textbox != null) //如果该列是TextBox列
+                {
+                    dataGridView5.BeginEdit(true); //开始编辑状态
+                    dataGridView5.ReadOnly = false;
+                }
 
+            }
+            else
+            {
+                dataGridView5.BeginEdit(false); //开始编辑状态
+                dataGridView5.ReadOnly = true;
+            }
+        }
+
+        private void DataGridView5_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dataGridView5.CurrentCell.ColumnIndex == 2)
+            {
+                //e.CellStyle.BackColor = Color.FromName("window"); 
+                //DataGridViewComboBoxEditingControl editingControl = e.Control as DataGridViewComboBoxEditingControl; 
+                DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
+                editingControl.TextChanged += (se, ea) => {
+                    listFix[dataGridView5.CurrentCell.RowIndex].Card = dataGridView5.CurrentCell.EditedFormattedValue.ToString();
+                };
+            }
+        }
     }
 }

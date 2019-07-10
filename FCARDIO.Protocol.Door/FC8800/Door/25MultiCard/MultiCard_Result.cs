@@ -82,7 +82,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                 {
                     byte[] array = new byte[9];
                     string carddata = FCARDIO.Protocol.Util.StringUtil.ByteBufToHex(databuf, 9);
-                    carddata = Convert.ToInt32(carddata, 16).ToString();
+                    carddata = Convert.ToUInt64(carddata, 16).ToString();
                     if (AListCardData.ContainsKey(groupnum))
                     {
                         AListCardData[groupnum].Add(carddata);

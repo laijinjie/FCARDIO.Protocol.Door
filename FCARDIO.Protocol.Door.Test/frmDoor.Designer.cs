@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -265,16 +265,18 @@
             this.btnReadReaderInterval = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.plMutiCard = new System.Windows.Forms.Panel();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAutoFill = new System.Windows.Forms.Button();
+            this.btnDeleteGroup = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Card = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label74 = new System.Windows.Forms.Label();
             this.cbConvertHex = new System.Windows.Forms.CheckBox();
             this.cmbGroupType = new System.Windows.Forms.ComboBox();
-            this.label74 = new System.Windows.Forms.Label();
             this.cmbGroupNum = new System.Windows.Forms.ComboBox();
             this.label73 = new System.Windows.Forms.Label();
             this.plManyCardOpenVerify = new System.Windows.Forms.Panel();
@@ -282,8 +284,6 @@
             this.label71 = new System.Windows.Forms.Label();
             this.label72 = new System.Windows.Forms.Label();
             this.txtAGroupCount = new System.Windows.Forms.TextBox();
-            this.btnWriteManyCardOpenVerify = new System.Windows.Forms.Button();
-            this.btnReadManyCardOpenVerify = new System.Windows.Forms.Button();
             this.cmbVerifyType = new System.Windows.Forms.ComboBox();
             this.label69 = new System.Windows.Forms.Label();
             this.cmbAntiPassback = new System.Windows.Forms.ComboBox();
@@ -330,7 +330,9 @@
             this.cBoxDoor2 = new System.Windows.Forms.CheckBox();
             this.cBoxDoor1 = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.btnDeleteGroup = new System.Windows.Forms.Button();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -365,6 +367,7 @@
             this.panel2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox22.SuspendLayout();
+            this.plMutiCard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.plManyCardOpenVerify.SuspendLayout();
@@ -373,6 +376,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -399,7 +403,7 @@
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(751, 815);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "参数1";
@@ -529,8 +533,8 @@
             // EX2
             // 
             this.EX2.DataPropertyName = "EX";
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.EX2.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.EX2.DefaultCellStyle = dataGridViewCellStyle3;
             this.EX2.HeaderText = "";
             this.EX2.MinimumWidth = 6;
             this.EX2.Name = "EX2";
@@ -1265,8 +1269,8 @@
             // EX
             // 
             this.EX.DataPropertyName = "EX";
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.EX.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.EX.DefaultCellStyle = dataGridViewCellStyle4;
             this.EX.HeaderText = "";
             this.EX.MinimumWidth = 6;
             this.EX.Name = "EX";
@@ -2977,18 +2981,8 @@
             // 
             // groupBox22
             // 
-            this.groupBox22.Controls.Add(this.btnDeleteGroup);
-            this.groupBox22.Controls.Add(this.dataGridView4);
-            this.groupBox22.Controls.Add(this.btnAutoFill);
-            this.groupBox22.Controls.Add(this.dataGridView3);
-            this.groupBox22.Controls.Add(this.cbConvertHex);
-            this.groupBox22.Controls.Add(this.cmbGroupType);
-            this.groupBox22.Controls.Add(this.label74);
-            this.groupBox22.Controls.Add(this.cmbGroupNum);
-            this.groupBox22.Controls.Add(this.label73);
+            this.groupBox22.Controls.Add(this.plMutiCard);
             this.groupBox22.Controls.Add(this.plManyCardOpenVerify);
-            this.groupBox22.Controls.Add(this.btnWriteManyCardOpenVerify);
-            this.groupBox22.Controls.Add(this.btnReadManyCardOpenVerify);
             this.groupBox22.Controls.Add(this.cmbVerifyType);
             this.groupBox22.Controls.Add(this.label69);
             this.groupBox22.Controls.Add(this.cmbAntiPassback);
@@ -3004,6 +2998,24 @@
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "多卡开门";
             // 
+            // plMutiCard
+            // 
+            this.plMutiCard.Controls.Add(this.dataGridView5);
+            this.plMutiCard.Controls.Add(this.dataGridView4);
+            this.plMutiCard.Controls.Add(this.btnAutoFill);
+            this.plMutiCard.Controls.Add(this.btnDeleteGroup);
+            this.plMutiCard.Controls.Add(this.dataGridView3);
+            this.plMutiCard.Controls.Add(this.label74);
+            this.plMutiCard.Controls.Add(this.cbConvertHex);
+            this.plMutiCard.Controls.Add(this.cmbGroupType);
+            this.plMutiCard.Controls.Add(this.cmbGroupNum);
+            this.plMutiCard.Controls.Add(this.label73);
+            this.plMutiCard.Location = new System.Drawing.Point(0, 100);
+            this.plMutiCard.Name = "plMutiCard";
+            this.plMutiCard.Size = new System.Drawing.Size(722, 416);
+            this.plMutiCard.TabIndex = 107;
+            this.plMutiCard.Visible = false;
+            // 
             // dataGridView4
             // 
             this.dataGridView4.AllowUserToAddRows = false;
@@ -3012,7 +3024,7 @@
             this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.dataGridView4.Location = new System.Drawing.Point(0, 140);
+            this.dataGridView4.Location = new System.Drawing.Point(8, 32);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.ReadOnly = true;
             this.dataGridView4.RowHeadersWidth = 51;
@@ -3043,13 +3055,23 @@
             // 
             // btnAutoFill
             // 
-            this.btnAutoFill.Location = new System.Drawing.Point(589, 140);
+            this.btnAutoFill.Location = new System.Drawing.Point(562, 4);
             this.btnAutoFill.Name = "btnAutoFill";
             this.btnAutoFill.Size = new System.Drawing.Size(75, 23);
             this.btnAutoFill.TabIndex = 104;
             this.btnAutoFill.Text = "自动填充";
             this.btnAutoFill.UseVisualStyleBackColor = true;
             this.btnAutoFill.Click += new System.EventHandler(this.BtnAutoFill_Click);
+            // 
+            // btnDeleteGroup
+            // 
+            this.btnDeleteGroup.Location = new System.Drawing.Point(406, 4);
+            this.btnDeleteGroup.Name = "btnDeleteGroup";
+            this.btnDeleteGroup.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteGroup.TabIndex = 106;
+            this.btnDeleteGroup.Text = "删除本组";
+            this.btnDeleteGroup.UseVisualStyleBackColor = true;
+            this.btnDeleteGroup.Click += new System.EventHandler(this.BtnDeleteGroup_Click);
             // 
             // dataGridView3
             // 
@@ -3059,7 +3081,7 @@
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Num,
             this.Card});
-            this.dataGridView3.Location = new System.Drawing.Point(8, 140);
+            this.dataGridView3.Location = new System.Drawing.Point(8, 32);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowHeadersWidth = 51;
@@ -3088,10 +3110,19 @@
             this.Card.ReadOnly = true;
             this.Card.Width = 200;
             // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(3, 9);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(65, 12);
+            this.label74.TabIndex = 100;
+            this.label74.Text = "分组类型：";
+            // 
             // cbConvertHex
             // 
             this.cbConvertHex.AutoSize = true;
-            this.cbConvertHex.Location = new System.Drawing.Point(305, 112);
+            this.cbConvertHex.Location = new System.Drawing.Point(304, 8);
             this.cbConvertHex.Name = "cbConvertHex";
             this.cbConvertHex.Size = new System.Drawing.Size(96, 16);
             this.cbConvertHex.TabIndex = 102;
@@ -3106,26 +3137,17 @@
             this.cmbGroupType.Items.AddRange(new object[] {
             "A组",
             "B组"});
-            this.cmbGroupType.Location = new System.Drawing.Point(77, 110);
+            this.cmbGroupType.Location = new System.Drawing.Point(74, 6);
             this.cmbGroupType.Name = "cmbGroupType";
             this.cmbGroupType.Size = new System.Drawing.Size(64, 20);
             this.cmbGroupType.TabIndex = 101;
             this.cmbGroupType.SelectedIndexChanged += new System.EventHandler(this.CmbGroupType_SelectedIndexChanged);
             // 
-            // label74
-            // 
-            this.label74.AutoSize = true;
-            this.label74.Location = new System.Drawing.Point(6, 113);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(65, 12);
-            this.label74.TabIndex = 100;
-            this.label74.Text = "分组类型：";
-            // 
             // cmbGroupNum
             // 
             this.cmbGroupNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGroupNum.FormattingEnabled = true;
-            this.cmbGroupNum.Location = new System.Drawing.Point(215, 110);
+            this.cmbGroupNum.Location = new System.Drawing.Point(215, 6);
             this.cmbGroupNum.Name = "cmbGroupNum";
             this.cmbGroupNum.Size = new System.Drawing.Size(64, 20);
             this.cmbGroupNum.TabIndex = 99;
@@ -3134,7 +3156,7 @@
             // label73
             // 
             this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(168, 113);
+            this.label73.Location = new System.Drawing.Point(173, 9);
             this.label73.Name = "label73";
             this.label73.Size = new System.Drawing.Size(41, 12);
             this.label73.TabIndex = 98;
@@ -3185,26 +3207,6 @@
             this.txtAGroupCount.Name = "txtAGroupCount";
             this.txtAGroupCount.Size = new System.Drawing.Size(45, 21);
             this.txtAGroupCount.TabIndex = 93;
-            // 
-            // btnWriteManyCardOpenVerify
-            // 
-            this.btnWriteManyCardOpenVerify.Location = new System.Drawing.Point(655, 63);
-            this.btnWriteManyCardOpenVerify.Name = "btnWriteManyCardOpenVerify";
-            this.btnWriteManyCardOpenVerify.Size = new System.Drawing.Size(48, 23);
-            this.btnWriteManyCardOpenVerify.TabIndex = 96;
-            this.btnWriteManyCardOpenVerify.Text = "写入";
-            this.btnWriteManyCardOpenVerify.UseVisualStyleBackColor = true;
-            this.btnWriteManyCardOpenVerify.Click += new System.EventHandler(this.BtnWriteManyCardOpenVerify_Click);
-            // 
-            // btnReadManyCardOpenVerify
-            // 
-            this.btnReadManyCardOpenVerify.Location = new System.Drawing.Point(589, 64);
-            this.btnReadManyCardOpenVerify.Name = "btnReadManyCardOpenVerify";
-            this.btnReadManyCardOpenVerify.Size = new System.Drawing.Size(48, 23);
-            this.btnReadManyCardOpenVerify.TabIndex = 95;
-            this.btnReadManyCardOpenVerify.Text = "读取";
-            this.btnReadManyCardOpenVerify.UseVisualStyleBackColor = true;
-            this.btnReadManyCardOpenVerify.Click += new System.EventHandler(this.BtnReadManyCardOpenVerify_Click);
             // 
             // cmbVerifyType
             // 
@@ -3300,7 +3302,7 @@
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(751, 815);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "门端口报警";
@@ -3676,15 +3678,43 @@
             this.label22.TabIndex = 26;
             this.label22.Text = "门号：";
             // 
-            // btnDeleteGroup
+            // dataGridView5
             // 
-            this.btnDeleteGroup.Location = new System.Drawing.Point(437, 108);
-            this.btnDeleteGroup.Name = "btnDeleteGroup";
-            this.btnDeleteGroup.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteGroup.TabIndex = 106;
-            this.btnDeleteGroup.Text = "删除本组";
-            this.btnDeleteGroup.UseVisualStyleBackColor = true;
-            this.btnDeleteGroup.Click += new System.EventHandler(this.BtnDeleteGroup_Click);
+            this.dataGridView5.AllowUserToAddRows = false;
+            this.dataGridView5.AllowUserToDeleteRows = false;
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.dataGridView5.Location = new System.Drawing.Point(99, 32);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.ReadOnly = true;
+            this.dataGridView5.RowHeadersWidth = 51;
+            this.dataGridView5.RowTemplate.Height = 23;
+            this.dataGridView5.Size = new System.Drawing.Size(452, 376);
+            this.dataGridView5.TabIndex = 107;
+            this.dataGridView5.Visible = false;
+            this.dataGridView5.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView5_CellClick);
+            this.dataGridView5.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView5_EditingControlShowing);
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Num";
+            this.dataGridViewTextBoxColumn3.HeaderText = "序号";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Card";
+            this.dataGridViewTextBoxColumn4.HeaderText = "卡号";
+            this.dataGridViewTextBoxColumn4.MaxInputLength = 16;
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
             // 
             // frmDoor
             // 
@@ -3698,7 +3728,7 @@
             this.Controls.Add(this.label22);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cmdDoorNum);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDoor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDoor";
@@ -3763,6 +3793,8 @@
             this.tabPage4.ResumeLayout(false);
             this.groupBox22.ResumeLayout(false);
             this.groupBox22.PerformLayout();
+            this.plMutiCard.ResumeLayout(false);
+            this.plMutiCard.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.plManyCardOpenVerify.ResumeLayout(false);
@@ -3776,6 +3808,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4061,8 +4094,6 @@
         private System.Windows.Forms.Button btnWriteManyCardOpenMode;
         private System.Windows.Forms.Button btnReadManyCardOpenMode;
         private System.Windows.Forms.ComboBox cmbAntiPassback;
-        private System.Windows.Forms.Button btnWriteManyCardOpenVerify;
-        private System.Windows.Forms.Button btnReadManyCardOpenVerify;
         private System.Windows.Forms.TextBox txtBGroupCount;
         private System.Windows.Forms.TextBox txtAGroupCount;
         private System.Windows.Forms.Label label72;
@@ -4083,5 +4114,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Num;
         private System.Windows.Forms.DataGridViewTextBoxColumn Card;
         private System.Windows.Forms.Button btnDeleteGroup;
+        private System.Windows.Forms.Panel plMutiCard;
+        private System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }

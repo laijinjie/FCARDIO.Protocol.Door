@@ -43,17 +43,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// </summary>
         public byte BGroupCount { get; set; }
 
-        public byte GroupType { get; set; }
-        public byte GroupNum { get; set; }
+        public byte GroupType { get;private set; }
+        public byte GroupNum { get; private set; }
 
 
         public List<string> AListCardData { get; set; }
         public List<string> BListCardData { get; set; }
 
-        public Dictionary<int, int> ADict { get; set; }
-        public Dictionary<int, int> BDict { get; set; }
+        public Dictionary<int, Dictionary<int, int>> Dict { get; set; }
 
         public int mIndex = 0;
+
+        public bool IsComplete { get; private set; }
 
         public WriteMultiCard_Parameter(byte door, byte mode, byte antiPassback, byte verifytype, byte agroupcount, byte bgroupcount, List<string> aList, List<string> bList)
         {
@@ -66,17 +67,23 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             Step = 0;
             AListCardData = aList;
             BListCardData = bList;
+            Dict = new Dictionary<int, Dictionary<int, int>>();
 
+            Dict.Add(0, new Dictionary<int, int>() { });
+            Dict.Add(1, new Dictionary<int, int>() { });
             for (int i = 0; i < 5; i++)
             {
-                var tempList = aList.Skip(0 * i).Take(50 * i + 50).ToArray();
-                ADict.Add((i + 1), tempList.Count(t => t != null));
+                var tempList = aList.Skip(50 * i).Take(50).ToArray();
+                Dict[0].Add((i + 1), tempList.Count(t => !string.IsNullOrEmpty(t)));
             }
             for (int i = 0; i < 20; i++)
             {
-                var tempList = bList.Skip(0 * i).Take(50 * i + 50).ToArray();
-                BDict.Add((i + 1), tempList.Count(t => t != null));
+                var tempList = bList.Skip(100 * i).Take(100).ToArray();
+                Dict[1].Add((i + 1), tempList.Count(t => !string.IsNullOrEmpty(t)));
             }
+            GroupType = 0;
+            GroupNum = 1;
+            //CheckListCardCount();
         }
 
         public override bool checkedParameter()
@@ -105,6 +112,29 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             
 
         }
+        public void MoveNextGroup()
+        {
+            mIndex = 0;
+            GroupNum++;
+            Step = 2;
+            if (GroupType == 0 && GroupNum == 6)
+            {
+                GroupType = 1;
+                GroupNum = 1;
+            }
+        }
+        protected void CheckListCardCount()
+        {
+            while (Dict[GroupType][GroupNum] == 0)
+            {
+                GroupNum++;
+                if (GroupType == 0 && GroupNum == 6)
+                {
+                    GroupType = 1;
+                    GroupNum = 1;
+                }
+            }
+        }
 
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
@@ -131,6 +161,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                     databuf.WriteByte(AGroupCount);
                     databuf.WriteByte(BGroupCount);
                     Step++;
+                   
                     break;
                 case 2://多卡开门A组设置 
                     if (databuf.WritableBytes != 3)
@@ -139,48 +170,69 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                     }
                     databuf.WriteByte(GroupType);
                     databuf.WriteByte(GroupNum);
-                    count = ADict[GroupNum] - mIndex > 20 ? 20 : ADict[GroupNum] - mIndex;
+                    //count = Dict[GroupType][GroupNum] > 20 ? 20 : Dict[GroupType][GroupNum];
                     //count = AListCardData.Skip(mIndex).Take(count).Count(t => t != null);
-                    databuf.WriteByte(count);
+                    databuf.WriteByte(Dict[GroupType][GroupNum]);
                     Step = 3;
                     break;
                 case 3://设置A组中的卡号
-                    count = ADict[GroupNum] - mIndex > 20 ? 20 : ADict[GroupNum] - mIndex;
+                    
+                    count = Dict[GroupType][GroupNum] > 20 ? 20 : Dict[GroupType][GroupNum];
                     databuf.WriteByte(mIndex + 1);
-                    var templist = AListCardData.Skip(mIndex).Take(count).Where(t => t != null).ToList();
-                    for (int i = 0; i < templist.Count; i++)
+                    if (GroupType == 0)
                     {
-                        int iCard = int.Parse(templist[i]);
-                        string card = FCARDIO.Protocol.Util.StringUtil.FillString(i.ToString("X"), 16, "0", false);
+                        var templist = AListCardData.Skip(50 * (GroupNum - 1)+mIndex).Take(count).Where(t => t != null).ToList();
+                        for (int i = 0; i < templist.Count; i++)
+                        {
+                            UInt64 iCard = UInt64.Parse(templist[i]);
+                            string card = FCARDIO.Protocol.Util.StringUtil.FillString(iCard.ToString("X"), 17, "0", false);
 
-                        //string card = Convert.ToInt32(AListCardData[mIndex], 16).ToString().PadLeft(16,'0');
-                        byte[] b = FCARDIO.Protocol.Util.StringUtil.HexToByte(card);
-                        databuf.WriteBytes(b);
-                        ADict[GroupNum]--;
-                        mIndex++;
+                            //string card = Convert.ToInt32(AListCardData[mIndex], 16).ToString().PadLeft(16,'0');
+                            byte[] b = FCARDIO.Protocol.Util.StringUtil.HexToByte(card);
+                            databuf.WriteBytes(b);
+                            Dict[GroupType][GroupNum]--;
+                            mIndex++;
+                        }
                     }
-                    if (ADict[GroupNum] == 0)
+                    else
                     {
-                        GroupNum++;
-                        Step = 2;
+                        var templistB = BListCardData.Skip(100 * (GroupNum - 1) + mIndex).Take(count).Where(t => t != null).ToList();
+                        for (int i = 0; i < templistB.Count; i++)
+                        {
+                            UInt64 iCard = UInt64.Parse(templistB[i]);
+                            string card = FCARDIO.Protocol.Util.StringUtil.FillString(iCard.ToString("X"), 17, "0", false);
+
+                            //string card = Convert.ToInt32(AListCardData[mIndex], 16).ToString().PadLeft(16,'0');
+                            byte[] b = FCARDIO.Protocol.Util.StringUtil.HexToByte(card);
+                            databuf.WriteBytes(b);
+                            Dict[GroupType][GroupNum]--;
+                            mIndex++;
+                        }
                     }
-                    if (GroupNum == 5)
+                    //本组上传完，换下一组
+                    if (Dict[GroupType][GroupNum] == 0)
                     {
-                        Step = 4;
+                        MoveNextGroup();
+                        
+                    }
+                    if (GroupType == 0 && GroupNum == 6)
+                    {
+                        GroupType = 1;
+                        GroupNum = 1;
+                    }
+                        
+                    if (GroupType == 1 && GroupNum == 21)
+                    {
+                        IsComplete = true;
+                        Step = 0;
+                    }
+                    else
+                    {
+                        //CheckListCardCount();
                     }
                     //
                     break;
-                case 4://多卡开门B组设置 
-                    if (databuf.WritableBytes != 3)
-                    {
-                        throw new ArgumentException("door Error!");
-                    }
-                    databuf.WriteByte(GroupType);
-                    databuf.WriteByte(GroupNum);
-                    count = 100 * GroupNum - mIndex > 20 ? 20 : 100 * GroupNum - mIndex;
-                    databuf.WriteByte(count);
-                    Step = 3;
-                    break;
+              
                 default:
                     break;
             }
@@ -207,7 +259,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                     return 3;
                 case 3:
                 case 5:
-                    int count = AListCardData.Count - mIndex > 20 ? 20 : AListCardData.Count - mIndex;
+                    int count = Dict[GroupType][GroupNum] > 20 ? 20 : Dict[GroupType][GroupNum];
+                    if (count == 0)
+                    {
+                        MoveNextGroup();
+                        return 0;
+                    }
                     return 1 + 9 * count;
                 default:
                     break;

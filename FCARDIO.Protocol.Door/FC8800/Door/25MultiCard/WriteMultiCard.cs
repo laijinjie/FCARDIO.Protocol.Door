@@ -44,12 +44,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <summary>
         /// 二十七 多卡开门A组设置
         /// </summary>
-        protected virtual void WriteMultiCardData()
+        protected virtual void WriteMultiCardData(WriteMultiCard_Parameter model)
         {
-            WriteMultiCard_Parameter model = _Parameter as WriteMultiCard_Parameter;
-            model.GroupNum++;
-            Packet(0x03, 0x18, 0x02, 3, GetCmdData());
-            CommandReady();
+            //int count = model.Dict[model.GroupType][model.GroupNum];
+            if (model.IsComplete)
+            {
+                CommandCompleted();
+            }
+            else
+            {
+                Packet(0x03, 0x18, 0x02, 3, GetCmdData());
+                CommandReady();
+            }
         }
 
         /// <summary>
@@ -58,27 +64,28 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <param name="model"></param>
         protected virtual void WriteMultiCardDataNext(WriteMultiCard_Parameter model)
         {
-            if (writeIndex < maxCount)
+            int count = model.Dict[model.GroupType][model.GroupNum];
+            
+            if (!model.IsComplete)
             {
-                model.SetWriteIndex(writeIndex);
+                var step = model.Step;
                 var acl = _Connector.GetByteBufAllocator();
                 var len = model.GetDataLen();
-                var buf = acl.Buffer(len);
-                Packet(0x03, 0x18, 0x52, (uint)len, model.GetBytes(buf));
-                writeIndex += 20;
-                if (writeIndex > 50)
+                if (len > 0)
                 {
-                    writeIndex = 0;
-                    model.GroupNum++;
-                    model.Step = 2;
+                    var buf = acl.Buffer(len);
+                    Packet(0x03, 0x18, 0x52, (uint)len, model.GetBytes(buf));
+                    CommandReady();
+                    if (model.IsComplete)
+                    {
+                        CommandCompleted();
+                    }
+                
                 }
-
-                CommandReady();
+               
+                
             }
-            else
-            {
-                CommandCompleted();
-            }
+           
         }
 
         protected override void CommandNext(INPacket readPacket)
@@ -95,19 +102,31 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
 
                     WriteMultiCard_Parameter model = _Parameter as WriteMultiCard_Parameter;
                     maxCount = model.AListCardData.Count;
+                    WriteMultiCardData(model);
                     Step = 4;
-                    WriteMultiCardData();
-                    //WriteMultiCardDataNext(model);
                     break;
                 case 4:
                     WriteMultiCard_Parameter model4 = _Parameter as WriteMultiCard_Parameter;
+                    //var count1  = model4.Dict[model4.GroupType][model4.GroupNum];
                     WriteMultiCardDataNext(model4);
+                    //var count2 = model4.Dict[model4.GroupType][model4.GroupNum];
+                    //var groupnum2 = model4.GroupNum;
+                    if (model4.Step == 2)
+                    {
+                        Step = 3;
+                    }
+                    
                     break;
                 default:
                     break;
             }
             
            
+        }
+
+        protected override void CommandNext0(OnlineAccessPacket oPck)
+        {
+            CommandNext(oPck);
         }
 
         /// <summary>
