@@ -10,7 +10,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     /// <summary>
     /// 添加密码 参数
     /// </summary>
-    public class AddPassword_Parameter : AbstractParameter
+    public class AddPassword_Parameter<T> : AbstractParameter where T : PasswordDetail,new ()
     {
         private int writeIndex = 0;
 
@@ -33,9 +33,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 
         /// </summary>
-        public List<PasswordDetail> ListPassword { get; private set; }
+        public List<T> ListPassword { get; set; }
 
-        public AddPassword_Parameter(List<PasswordDetail> list)
+        public AddPassword_Parameter(List<T> list)
         {
             ListPassword = list;
         }

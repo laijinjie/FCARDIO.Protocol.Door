@@ -95,13 +95,29 @@ namespace FCARDIO.Protocol.Door.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            ReadAllPassword cmd = new ReadAllPassword(cmdDtl);
-            mMainForm.AddCommand(cmd);
+            
+            if (mMainForm.GetProtocolType().Contains("FC89H"))
+            {
+                ReadAllPassword<FC89H.Password.ReadAllPassword.ReadAllPassword_Result>  cmd 
+                    = new ReadAllPassword<FC89H.Password.ReadAllPassword.ReadAllPassword_Result>(cmdDtl);
+                mMainForm.AddCommand(cmd);
+            }
+            else
+            {
+                ReadAllPassword<ReadAllPassword_Result> cmd = new ReadAllPassword<ReadAllPassword_Result>(cmdDtl);
+                mMainForm.AddCommand(cmd);
+            }
+           
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadAllPassword_Result result = cmde.Command.getResult() as ReadAllPassword_Result;
+                if (mMainForm.GetProtocolType().Contains("FC89H"))
+                {
+                    result = cmde.Command.getResult() as FC89H.Password.ReadAllPassword.ReadAllPassword_Result;
+                }
+                   
                 ListPassword.Clear();
                 foreach (PasswordDetail detail in result.Passowrds)
                 {
@@ -136,13 +152,17 @@ namespace FCARDIO.Protocol.Door.Test
             for (int i = 0; i < ListPassword.Count; i++)
             {
                 PasswordDetail password = new PasswordDetail();
+                if (mMainForm.GetProtocolType().Contains("FC89H"))
+                {
+                    password = new FC89H.Password.PasswordDetail();
+                }
                 password.Password = ListPassword[i].Password;
                 string strDoor1 = (ListPassword[i].Door1 ? "1" : "0") + (ListPassword[i].Door2 ? "1" : "0") + (ListPassword[i].Door3 ? "1" : "0") + (ListPassword[i].Door4 ? "1" : "0");
                 password.Door = Convert.ToInt32(strDoor1, 2);
                 _list.Add(password);
             }
-            AddPassword_Parameter par = new AddPassword_Parameter(_list);
-            AddPassword cmd = new AddPassword(cmdDtl, par);
+            AddPassword_Parameter<PasswordDetail> par = new AddPassword_Parameter<PasswordDetail>(_list);
+            AddPassword<PasswordDetail> cmd = new AddPassword<PasswordDetail>(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -248,15 +268,20 @@ namespace FCARDIO.Protocol.Door.Test
                 MessageBox.Show("请输入密码");
                 return;
             }
-            List<PasswordDetail> _list = new List<PasswordDetail>();
+            //FC89H.Password.
+            List< PasswordDetail> _list = new List<PasswordDetail>();
             PasswordDetail password = new PasswordDetail();
+            if (mMainForm.GetProtocolType().Contains("FC89H"))
+            {
+                password = new FC89H.Password.PasswordDetail();
+            }
             password.Password = txtPassword.Text;
             string strDoor1 = (cbbit0.Checked ? "1" : "0") + (cbbit1.Checked ? "1" : "0") + (cbbit2.Checked ? "1" : "0") + (cbbit3.Checked ? "1" : "0");
             password.Door = Convert.ToInt32(strDoor1, 2);
             _list.Add(password);
 
-            AddPassword_Parameter par = new AddPassword_Parameter(_list);
-            AddPassword cmd = new AddPassword(cmdDtl, par);
+            AddPassword_Parameter<PasswordDetail> par = new AddPassword_Parameter<PasswordDetail>(_list);
+            AddPassword<PasswordDetail> cmd = new AddPassword<PasswordDetail>(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>

@@ -10,12 +10,12 @@ namespace FCARDIO.Protocol.Door.FC89H.Password.AddPassword
     /// <summary>
     /// 添加密码参数
     /// </summary>
-    public class AddPassword_Parameter : FC8800.Password.AddPassword_Parameter
+    public class AddPassword_Parameter : FC8800.Password.AddPassword_Parameter<PasswordDetail>
     {
         /// <summary>
         /// 密码集合
         /// </summary>
-        public List<PasswordDetail> ListPassword { get; private set; }
+        //public List<PasswordDetail> ListPassword { get; private set; }
         public AddPassword_Parameter(List<PasswordDetail> list) : base(null)
         {
 

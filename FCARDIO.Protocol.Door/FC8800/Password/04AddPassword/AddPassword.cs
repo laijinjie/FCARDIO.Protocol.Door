@@ -12,10 +12,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     /// <summary>
     /// 添加密码
     /// </summary>
-    public class AddPassword : FC8800Command_WriteParameter
+    public class AddPassword<T> : FC8800Command_WriteParameter where T : PasswordDetail,new ()
     {
         protected int maxCount = 0;
-        public AddPassword(INCommandDetail cd, AddPassword_Parameter par) : base(cd, par)
+        public AddPassword(INCommandDetail cd, AddPassword_Parameter<T> par) : base(cd, par)
         {
 
         }
@@ -29,7 +29,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            AddPassword_Parameter model = value as AddPassword_Parameter;
+            AddPassword_Parameter<T> model = value as AddPassword_Parameter<T>;
             if (model == null)
             {
                 return false;
@@ -43,7 +43,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         protected override void CreatePacket0()
         {
-            AddPassword_Parameter model = _Parameter as AddPassword_Parameter;
+            AddPassword_Parameter<T> model = _Parameter as AddPassword_Parameter<T>;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
             maxCount = model.ListPassword.Count;
@@ -73,7 +73,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            AddPassword_Parameter model = _Parameter as AddPassword_Parameter;
+            AddPassword_Parameter<T> model = _Parameter as AddPassword_Parameter<T>;
             if (model.mIndex < maxCount)
             {
                 var acl = _Connector.GetByteBufAllocator();
