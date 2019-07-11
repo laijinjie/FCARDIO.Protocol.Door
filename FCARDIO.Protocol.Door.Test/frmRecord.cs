@@ -145,7 +145,7 @@ namespace FCARDIO.Protocol.Door.Test
             int Quantity = int.Parse(txtQuantity.Text.ToString());
             int ReadIndex = int.Parse(txtReadIndex0.Text.ToString());
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Parameter(Gete_TransactionDatabaseType(type), Quantity, ReadIndex);
+            var par = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Parameter((cboe_TransactionDatabaseType2.SelectedIndex + 1), Quantity, ReadIndex);
             var cmd = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>

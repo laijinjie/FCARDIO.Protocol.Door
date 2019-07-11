@@ -58,6 +58,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             data.WriteByte(Door);
             Password = StringUtil.FillHexString(Password, 8, "F", true);
             StringUtil.HextoByteBuf(Password, data);
+            WritePassword(data);
             return data;
         }
 
@@ -73,6 +74,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             byte[] btData = new byte[4];
             data.ReadBytes(btData, 0, 4);
             Password = btData.ToHex().TrimEnd('F');
+            ReadPassword(data);
+            
+        }
+
+        protected virtual void ReadPassword(IByteBuffer data)
+        {
+
+        }
+
+        protected virtual void WritePassword(IByteBuffer data)
+        {
+
         }
     }
 }

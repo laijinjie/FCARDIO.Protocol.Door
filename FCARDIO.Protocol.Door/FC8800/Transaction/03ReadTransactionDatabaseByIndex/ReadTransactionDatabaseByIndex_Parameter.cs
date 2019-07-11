@@ -22,7 +22,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         ///  5 &emsp; 报警记录
         ///  6 &emsp; 系统记录
         /// </summary>
-        public e_TransactionDatabaseType DatabaseType;
+        public int DatabaseType;
 
         /// <summary>
         /// 读索引号
@@ -43,7 +43,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// <param name="_ReadIndex">读索引号</param>
         /// <param name="_Quantity">读取数量</param>
         /// <param name="_TransactionList">记录列表</param>
-        public ReadTransactionDatabaseByIndex_Parameter(e_TransactionDatabaseType _DatabaseType, int _ReadIndex, int _Quantity)
+        public ReadTransactionDatabaseByIndex_Parameter(int _DatabaseType, int _ReadIndex, int _Quantity)
         {
             DatabaseType = _DatabaseType;
             ReadIndex = _ReadIndex;
@@ -56,6 +56,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (DatabaseType < 1 || DatabaseType > 6)
+                throw new ArgumentException("DatabaseType Error!");
             return true;
         }
 
@@ -78,8 +80,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.WriteByte(ReadIndex);
-            databuf.WriteByte(Quantity);
+            databuf.WriteByte(DatabaseType);
+            databuf.WriteInt(ReadIndex);
+            databuf.WriteInt(Quantity);
             return databuf;
         }
 

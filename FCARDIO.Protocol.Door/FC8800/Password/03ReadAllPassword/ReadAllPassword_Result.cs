@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.Door.FC8800.Password
 {
     /// <summary>
-    /// 读取所有密码
+    /// 读取所有密码 结果
     /// </summary>
     public class ReadAllPassword_Result : INCommandResult
     {

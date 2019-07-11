@@ -531,6 +531,7 @@
             // 
             // cboe_TransactionDatabaseType1
             // 
+            this.cboe_TransactionDatabaseType1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboe_TransactionDatabaseType1.FormattingEnabled = true;
             this.cboe_TransactionDatabaseType1.Location = new System.Drawing.Point(14, 39);
             this.cboe_TransactionDatabaseType1.Name = "cboe_TransactionDatabaseType1";
@@ -636,6 +637,7 @@
             // 
             // cboe_TransactionDatabaseType2
             // 
+            this.cboe_TransactionDatabaseType2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboe_TransactionDatabaseType2.FormattingEnabled = true;
             this.cboe_TransactionDatabaseType2.Location = new System.Drawing.Point(48, 38);
             this.cboe_TransactionDatabaseType2.Name = "cboe_TransactionDatabaseType2";
@@ -696,6 +698,7 @@
             // 
             // cboe_TransactionDatabaseType3
             // 
+            this.cboe_TransactionDatabaseType3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboe_TransactionDatabaseType3.FormattingEnabled = true;
             this.cboe_TransactionDatabaseType3.Location = new System.Drawing.Point(56, 36);
             this.cboe_TransactionDatabaseType3.Name = "cboe_TransactionDatabaseType3";
