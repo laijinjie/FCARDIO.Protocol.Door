@@ -17,7 +17,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <summary>
         /// 返回值
         /// </summary>
-        private MultiCard_Result mResult;
+        protected MultiCard_Result mResult;
 
         /// <summary>
         /// 此命令对应的门端口号
@@ -27,25 +27,25 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <summary>
         /// 当前命令步骤
         /// </summary>
-        private int Step { get; set; }
+        protected int Step { get; set; }
 
         /// <summary>
         /// 当前正在读取的组合类型
         /// </summary>
-        private int mGroupType;
+        protected int mGroupType;
 
         /// <summary>
         /// 当前正在读取的组号
         /// </summary>
-        private int mGroupNum;
+        protected int mGroupNum;
 
-
+        private string mProtocolType;
         /// <summary>
         /// 读单个门的多卡参数
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="value"></param>
-        public ReadMultiCard(INCommandDetail cd, DoorPort_Parameter value) : base(cd, value) { }
+        public ReadMultiCard(INCommandDetail cd, DoorPort_Parameter value) : base(cd, value) {}
 
         /// <summary>
         /// 检查端口是否正确
@@ -56,6 +56,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         {
             DoorPort_Parameter model = value as DoorPort_Parameter;
             if (model == null) return false;
+          
             return model.checkedParameter();
         }
 
@@ -71,10 +72,17 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
             mPort = model.Door;
             mResult.DoorNum = mPort;
-
+            mProtocolType = model.ProtocolType;
             //1、第一步，读取多卡开门检测模式参数
             Packet(0x03, 0x17, 0x01, 0x01, model.GetBytes(_Connector.GetByteBufAllocator().Buffer(1)));
-            _ProcessMax = 27;
+            if (!mProtocolType.Contains("MC58"))
+            {
+                _ProcessMax = 27;
+            }
+            else
+            {
+                _ProcessMax = 2;
+            }
             _ProcessStep = 1;
             Step = 1;
         }
@@ -127,7 +135,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// 多卡开门检测模式参数
         /// </summary>
         /// <param name="tmpBuf"></param>
-        private void ReadCheckModeCallblack(IByteBuffer tmpBuf)
+        protected void ReadCheckModeCallblack(IByteBuffer tmpBuf)
         {
             int iDoor = tmpBuf.ReadByte();
             if (iDoor != mPort)
@@ -145,7 +153,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             Step = 2;//使命令进入下一个阶段
         }
 
-        private void ReadVerifyType(IByteBuffer tmpBuf)
+        protected void ReadVerifyType(IByteBuffer tmpBuf)
         {
             int iDoor = tmpBuf.ReadByte();
             if (iDoor != mPort)
@@ -156,7 +164,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             mResult.VerifyType_SetBytes(tmpBuf);
 
             _ProcessStep++;
-
+            if (mProtocolType.Contains("MC58"))
+            {
+                mResult.VerifyType = 0;
+                CommandCompleted();
+                Step = 0;
+                return;
+            }
             switch (mResult.VerifyType)
             {
                 case 1://读取多卡AB组
@@ -184,8 +198,33 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             }
         }
 
+        /// <summary>
+        /// 读取AB组的数据
+        /// </summary>
+        /// <param name="tmpBuf"></param>
         private void ReadGroupAB(IByteBuffer tmpBuf)
         {
+            if (mResult.GroupA == null)
+            {
+                mResult.GroupA = new List<List<ulong>>();
+                for (int i = 0; i < 5; i++)
+                {
+                    mResult.GroupA.Add(new List<ulong>());
+                }
+            }
+            if (mResult.GroupB == null)
+            {
+                mResult.GroupB = new List<List<ulong>>();
+                for (int i = 0; i < 20; i++)
+                {
+                    mResult.GroupB.Add(new List<ulong>());
+                }
+            }
+
+           
+
+
+
             var iGroupType = tmpBuf.ReadByte();//组类别：0--A组；
             var iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
             var iCardCount = tmpBuf.ReadByte();
@@ -198,19 +237,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                 return;
             }
 
-            List<UInt64> group = new List<UInt64>();
+            List<UInt64> group = null;
+            if (mGroupType == WriteMultiCard.GroupTypeA)
+            {
 
-            if (mGroupType == WriteMultiCard.GroupTypeA) mResult.GroupA[mGroupNum - 1] = group;
-            if (mGroupType == WriteMultiCard.GroupTypeB) mResult.GroupB[mGroupNum - 1] = group;
-
+                group = mResult.GroupA[mGroupNum - 1];
+            }
+            if (mGroupType == WriteMultiCard.GroupTypeB)
+            {
+                group = mResult.GroupB[mGroupNum - 1];
+            }
 
             if (iCardCount > 0)
             {
-                while (tmpBuf.ReadableBytes >= 4)
-                {
-                    UInt64 card = tmpBuf.ReadUnsignedInt();
-                    group.Add(card);
-                }
+                ReadGroupABCard(group, tmpBuf);
             }
 
             //读下一个组
@@ -232,8 +272,22 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
 
             cmdBuf.SetByte(1, mGroupNum);//改变下一包要读的组号
         }
-        
-        private void ReadGroupFix(IByteBuffer tmpBuf)
+
+        /// <summary>
+        /// 读取AB组的卡数据
+        /// </summary>
+        /// <param name="group"></param>
+        /// <param name="tmpBuf"></param>
+        protected virtual void ReadGroupABCard(List<UInt64> group, IByteBuffer tmpBuf)
+        {
+            while (tmpBuf.ReadableBytes >= 4)
+            {
+                UInt64 card = tmpBuf.ReadUnsignedInt();
+                group.Add(card);
+            }
+        }
+
+        protected virtual void ReadGroupFix(IByteBuffer tmpBuf)
         {
             var iDoorPort = tmpBuf.ReadByte();//端口号
             if (mPort != iDoorPort)

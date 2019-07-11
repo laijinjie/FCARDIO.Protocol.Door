@@ -569,7 +569,15 @@ namespace FCARDIO.Protocol.Door.Test
             switch (cmdProtocolType.SelectedIndex)
             {
                 case 0://FC8800系列协议 FC8800，MC5800
+                    protocolType = CommandDetailFactory.ControllerType.MC58;
+
+                    break;
+                case 1://FC8800系列协议 FC8800，MC5800
                     protocolType = CommandDetailFactory.ControllerType.FC88;
+
+                    break;
+                case 2://FC8800系列协议 FC8800，MC5800
+                    protocolType = CommandDetailFactory.ControllerType.FC89H;
 
                     break;
                 default:
@@ -614,6 +622,13 @@ namespace FCARDIO.Protocol.Door.Test
 
         }
         #endregion
+
+
+
+        public string GetProtocolType()
+        {
+            return  cmdProtocolType.SelectedItem.ToString();
+        }
 
         #region 通讯日志
 
@@ -743,14 +758,14 @@ namespace FCARDIO.Protocol.Door.Test
         private void butHoliday_Click(object sender, EventArgs e)
         {
 
-            //frmHoliday frm = frmHoliday.GetForm(this);
-            //frm.Show();
+            frmHoliday frm = frmHoliday.GetForm(this);
+            frm.Show();
         }
 
         private void ButPassword_Click(object sender, EventArgs e)
         {
-            //frmPassword frm = frmPassword.GetForm(this);
-            //frm.Show();
+            frmPassword frm = frmPassword.GetForm(this);
+            frm.Show();
         }
 
         private void ButTimeGroup_Click(object sender, EventArgs e)
@@ -1058,8 +1073,9 @@ namespace FCARDIO.Protocol.Door.Test
             cmdConnType.Items.AddRange("串口,TCP客户端,UDP,TCP服务器".SplitTrim(","));
             cmdConnType.SelectedIndex = 1;
             ShowConnTypePanel();
-
+            cmdProtocolType.Items.Add("MC58T系列");
             cmdProtocolType.Items.Add("FC8800系列");
+            cmdProtocolType.Items.Add("FC89H系列");
             cmdProtocolType.SelectedIndex = 0;
             _IsClosed = false;
 

@@ -40,6 +40,8 @@ namespace FCARDIO.Protocol.Door.Test
         #region 单例模式
         private static object lockobj = new object();
         private static frmDoor onlyObj;
+
+
         public static frmDoor GetForm(INMain main)
         {
             if (onlyObj == null)
@@ -65,9 +67,9 @@ namespace FCARDIO.Protocol.Door.Test
         List<WeekTimeGroupDto> ListWeekTimeGroupDto = new List<WeekTimeGroupDto>();
         List<WeekTimeGroupDto> ListAutoLockedDto = new List<WeekTimeGroupDto>();
         WeekTimeGroup WeekTimeGroupPushButtonDto = new WeekTimeGroup(8);
-        List<CardData> listGroupA = new List<CardData>();
-        List<CardData> listGroupB = new List<CardData>();
-        List<CardData> listFix = new List<CardData>();
+        List<List<ulong>> listGroupA = new List<List<ulong>>();
+        List<List<ulong>> listGroupB = new List<List<ulong>>();
+        List<MultiCard_GroupFix> listFix = new List<MultiCard_GroupFix>();
 
         private void frmDoor_Load(object sender, EventArgs e)
         {
@@ -151,6 +153,14 @@ namespace FCARDIO.Protocol.Door.Test
 
             cmbManyCardOpenMode.SelectedIndex = 0;
             cmbAntiPassback.SelectedIndex = 0;
+            if (mMainForm.GetProtocolType().Contains("MC58"))
+            {
+                cmbVerifyType.Items.AddRange(new string[] { "禁用" });
+            }
+            else
+            {
+                cmbVerifyType.Items.AddRange(new string[] { "禁用","AB组合","固定组合","自由" });
+            }
             cmbVerifyType.SelectedIndex = 0;
             cmbGroupNum.Items.Clear();
             cmbGroupNum.Items.AddRange(new string[] { "1", "2", "3", "4", "5" });
@@ -2526,10 +2536,18 @@ namespace FCARDIO.Protocol.Door.Test
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
+            string protocolType = mMainForm.GetProtocolType();
+            ReadMultiCard cmd = null;
+            if (protocolType.Contains("FC8800"))
+            {
+                cmd = new ReadMultiCard(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1, protocolType));
+            }
+            else if (protocolType.Contains("FC89H"))
+            {
+                cmd = new FC89H.Door.MultiCard.ReadMultiCard(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1, protocolType));
+            }
 
-            ReadMultiCard cmd = new ReadMultiCard(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
-
-            //ReadManyCardOpenMode cmd = new ReadManyCardOpenMode(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            //ReadMultiCard cmd = new FC89H.Door.MultiCard.ReadMultiCard(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1, mMain.GetProtocolType()));
             mMainForm.AddCommand(cmd);
 
             //处理返回值
@@ -2544,38 +2562,42 @@ namespace FCARDIO.Protocol.Door.Test
                     txtAGroupCount.Text = result.AGroupCount.ToString();
                     txtBGroupCount.Text = result.BGroupCount.ToString();
 
-                    foreach (KeyValuePair<int,List<string>> item in result.AListCardData)
+                    if (cmbVerifyType.SelectedIndex == 1)
                     {
-                        for (int i = 0; i < item.Value.Count; i++)
-                        {
-                            listGroupA[50 * (item.Key -1) + i].Card = item.Value[i];
-                        }
-                        for (int i = item.Value.Count; i < 50 - item.Value.Count; i++)
-                        {
-                            listGroupA[50 * (item.Key - 1) + i].Card = "";
-                        }
+                        listGroupA = result.GroupA;
+                        listGroupB = result.GroupB;
+                    } 
+                    else if (cmbVerifyType.SelectedIndex == 2)
+                    {
+                        listFix = result.GroupFix;
                     }
+                    
 
-                    foreach (KeyValuePair<int, List<string>> item in result.BListCardData)
-                    {
-                        for (int i = 0; i < item.Value.Count; i++)
-                        {
-                            listGroupB[100 * (item.Key - 1) + i].Card = item.Value[i];
-                        }
-                        for (int i = item.Value.Count; i < 100 - item.Value.Count; i++)
-                        {
-                            listGroupB[100 * (item.Key - 1) + i].Card = "";
-                        }
-                    }
-                    //for (int i = 0; i < result.AListCardData.Count; i++)
+                    //foreach (KeyValuePair<int,List<string>> item in result.GroupA)
                     //{
-                    //    listGroupA[i].Card = result.AListCardData[i];
+                    //    for (int i = 0; i < item.Value.Count; i++)
+                    //    {
+                    //        listGroupA[50 * (item.Key -1) + i].Card = item.Value[i];
+                    //    }
+                    //    for (int i = item.Value.Count; i < 50 - item.Value.Count; i++)
+                    //    {
+                    //        listGroupA[50 * (item.Key - 1) + i].Card = "";
+                    //    }
                     //}
 
-                    //for (int i = 0; i < result.BListCardData.Count; i++)
+                    //foreach (KeyValuePair<int, List<string>> item in result.BListCardData)
                     //{
-                    //    listGroupB[i].Card = result.BListCardData[i];
+                    //    for (int i = 0; i < item.Value.Count; i++)
+                    //    {
+                    //        listGroupB[100 * (item.Key - 1) + i].Card = item.Value[i];
+                    //    }
+                    //    for (int i = item.Value.Count; i < 100 - item.Value.Count; i++)
+                    //    {
+                    //        listGroupB[100 * (item.Key - 1) + i].Card = "";
+                    //    }
                     //}
+
+
                     CmbVerifyType_SelectedIndexChanged(null, null);
                     CmbGroupNum_SelectedIndexChanged(null, null);
                 });
@@ -2586,25 +2608,39 @@ namespace FCARDIO.Protocol.Door.Test
         {
             byte bAcount = 0;
             byte bBcount = 0;
-            if (!byte.TryParse(txtAGroupCount.Text, out bAcount))
+            if (cmbVerifyType.SelectedIndex == 1)
             {
-                MessageBox.Show("A组数量不正确");
-                return;
+                if (!byte.TryParse(txtAGroupCount.Text, out bAcount))
+                {
+                    MessageBox.Show("A组数量不正确");
+                    return;
+                }
+                if (!byte.TryParse(txtBGroupCount.Text, out bBcount))
+                {
+                    MessageBox.Show("B组数量不正确");
+                    return;
+                }
             }
-            if (!byte.TryParse(txtBGroupCount.Text, out bBcount))
-            {
-                MessageBox.Show("B组数量不正确");
-                return;
-            }
+            
 
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            //WriteManyCardOpenMode_Parameter par = new WriteManyCardOpenMode_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex);
-            //WriteManyCardOpenMode cmd = new WriteManyCardOpenMode(cmdDtl, par);
 
-            WriteMultiCard_Parameter par = new WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex, (byte)cmbVerifyType.SelectedIndex, bAcount,bBcount, listGroupA.Select(t => t.Card).ToList(),listGroupB.Select(t => t.Card).ToList());
-            WriteMultiCard cmd = new WriteMultiCard(cmdDtl, par);
+            string protocolType = mMainForm.GetProtocolType();
+
+            WriteMultiCard_Parameter par = new WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex, (byte)cmbVerifyType.SelectedIndex, bAcount, bBcount
+              , protocolType, listGroupA, listGroupB, listFix) ;
+            WriteMultiCard cmd;
+            if (protocolType.Contains("FC8800"))
+            {
+                cmd = new WriteMultiCard(cmdDtl, par);
+            }
+            else
+            {
+                cmd = new FC89H.Door.MultiCard.WriteMultiCard(cmdDtl, par);
+            }
+              
             mMainForm.AddCommand(cmd);
 
             //处理返回值
@@ -2619,9 +2655,43 @@ namespace FCARDIO.Protocol.Door.Test
         {
             plManyCardOpenVerify.Visible = cmbVerifyType.SelectedIndex == 1;
             plMutiCard.Visible = cmbVerifyType.SelectedIndex == 1;
-            if (true)
+            if (cmbVerifyType.SelectedIndex == 2)
             {
+                dataGridView5.Visible = true ;
+                plMutiCard.Visible = true;
 
+                cmbGroupNum.Items.Clear();
+                int count = 8;
+                
+                string[] array = new string[count];
+                for (int i = 1; i <= count; i++)
+                {
+                    array[i - 1] = i.ToString();
+                }
+                cmbGroupNum.Items.AddRange(array);
+                cmbGroupNum.SelectedIndex = 0;
+
+                lbgrouptype.Visible = false;
+                cmbGroupType.Visible = false;
+                dataGridView3.Visible = false;
+                dataGridView4.Visible = false;
+                dataGridView5.Visible = true;
+            }
+            
+            if (cmbVerifyType.SelectedIndex == 1)
+            {
+                dataGridView3.Visible = true;
+                dataGridView5.Visible = false;
+                cmbGroupNum.Items.Clear();
+                int count = 5;
+
+                string[] array = new string[count];
+                for (int i = 1; i <= count; i++)
+                {
+                    array[i - 1] = i.ToString();
+                }
+                cmbGroupNum.Items.AddRange(array);
+                cmbGroupNum.SelectedIndex = 0;
             }
         }
 
@@ -2633,6 +2703,10 @@ namespace FCARDIO.Protocol.Door.Test
         
         private void CmbGroupType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (mMainForm.GetProtocolType().Contains("MC58"))
+            {
+                return;
+            }
             cmbGroupNum.Items.Clear();
             int count = 5;
             if (cmbGroupType.SelectedIndex == 1)
@@ -2653,37 +2727,49 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void InitCardDataList()
         {
+           
             dataGridView3.AutoGenerateColumns = false;
             dataGridView4.AutoGenerateColumns = false;
+            dataGridView5.AutoGenerateColumns = false;
             dataGridView4.Visible = false;
-            int index = 0;
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 1; j <= 50; j++)
-                {
-                    listGroupA.Add(new CardData() { Index = index, Num = j.ToString().PadLeft(2,'0') });
-                    index++;
-                }
-            }
-            dataGridView3.DataSource = new BindingList<CardData>(listGroupA.Where(t => t.Index <50).ToList());
-            dataGridView3.Columns.RemoveAt(0);
-            index = 0;
-            for (int i = 0; i < 20; i++)
-            {
-                for (int j = 1; j <= 100; j++)
-                {
-                    listGroupB.Add(new CardData() { Index = index, Num = j.ToString().PadLeft(2, '0') });
-                    index++;
-                }
-            }
-            //dataGridView4.DataSource = new BindingList<CardData>(listGroupB);
-            //dataGridView3.DataSource = new BindingList<CardData>(listGroupA);
-            
+            dataGridView5.Visible = false;
 
+            listGroupA = new List<List<ulong>>();
+            listGroupB = new List<List<ulong>>();
+            listFix = new List<MultiCard_GroupFix>();
+            /**/
+            int index = 0;
+           for (int i = 0; i < 5; i++)
+           {
+               for (int j = 1; j <= 50; j++)
+               {
+                   //listGroupA.Add(new CardData() { Index = index, Num = j.ToString().PadLeft(2,'0') });
+               }
+           }
+           for (int i = 0; i < 20; i++)
+           {
+               for (int j = 1; j <= 100; j++)
+               {
+                   //listGroupB.Add(new CardData() { Index = index, Num = j.ToString().PadLeft(2, '0') });
+               }
+           }
+
+            for (int i = 1; i <= 10; i++)
+            {
+                MultiCard_GroupFix groupFix = new MultiCard_GroupFix();
+                groupFix.GroupType = 1;
+                groupFix.CardList = new List<ulong>();
+                for (int j = 1; j <= 8; j++)
+                {
+                    groupFix.CardList.Add((ulong)(100000 + j));
+                }
+                listFix.Add(groupFix);
+            }
         }
 
         private void CbConvertHex_CheckedChanged(object sender, EventArgs e)
         {
+            /*
             //10 转 16
             if (cbConvertHex.Checked)
             {
@@ -2703,11 +2789,11 @@ namespace FCARDIO.Protocol.Door.Test
                     }
                     
                 }
-                for (int j = 1; j <= 8; j++)
+                for (int i = 0; i < listFix.Count; i++)
                 {
-                    if (!string.IsNullOrEmpty(listFix[j].Card))
+                    if (!string.IsNullOrEmpty(listFix[i].Card))
                     {
-                        listFix[j].Card = int.Parse(listFix[j].Card).ToString("X");
+                        listFix[i].Card = int.Parse(listFix[i].Card).ToString("X");
                     }
                 }
             }//16 转 10
@@ -2730,6 +2816,7 @@ namespace FCARDIO.Protocol.Door.Test
                 }
             }
             CmbGroupNum_SelectedIndexChanged(null, null);
+            */
         }
 
         private void BtnAutoFill_Click(object sender, EventArgs e)
@@ -2737,30 +2824,40 @@ namespace FCARDIO.Protocol.Door.Test
             int index = 0;
             //if (cmbVerifyType.SelectedIndex == 1)
             {
+                listGroupA.Clear();
                 for (int i = 1; i <= 5; i++)
                 {
+                    List<ulong> list = new List<ulong>();
                     for (int j = 1; j <= 50; j++)
                     {
-                        listGroupA[index].Card = (100 * i + j).ToString();
-                        index++;
+                        list.Add((ulong)(100 * i + j));
                     }
+                    listGroupA.Add(list);
                 }
-                index = 0;
+                listGroupB.Clear();
                 for (int i = 1; i <= 20; i++)
                 {
+                    List<ulong> list = new List<ulong>();
                     for (int j = 1; j <= 100; j++)
                     {
-                        listGroupB[index].Card = (1000 * i + j).ToString();
-                        index++;
+                        list.Add((ulong)(1000 * i + j));
                     }
+                    listGroupB.Add(list);
                 }
             }
             //else if (cmbVerifyType.SelectedIndex == 2)
             {
-                for (int j = 1; j <= 8; j++)
+                listFix.Clear();
+                for (int i = 1; i <= 10; i++)
                 {
-                    listFix[index].Card = (100000 + j).ToString();
-                    index++;
+                    MultiCard_GroupFix groupFix = new MultiCard_GroupFix();
+                    groupFix.GroupType = 1;
+                    groupFix.CardList = new List<ulong>();
+                    for (int j = 1; j <= 8; j++)
+                    {
+                        groupFix.CardList.Add((ulong)(i* 100000 + j));
+                    }
+                    listFix.Add(groupFix);
                 }
             }
             CmbGroupNum_SelectedIndexChanged(null, null);
@@ -2768,17 +2865,79 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void CmbGroupNum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbGroupType.SelectedIndex == 0)
+            if (mMainForm.GetProtocolType().Contains("MC58"))
             {
-                dataGridView3.DataSource = new BindingList<CardData>(listGroupA.Skip(cmbGroupNum.SelectedIndex * 50).Take(50).ToArray());
-                dataGridView3.Visible = true;
-                dataGridView4.Visible = false;
+                return;
             }
-            else if (cmbGroupType.SelectedIndex == 1)
+            if (cmbVerifyType.SelectedIndex == 1)
             {
-                dataGridView4.DataSource = new BindingList<CardData>(listGroupB.Skip(cmbGroupNum.SelectedIndex * 100).Take(100).ToArray());
-                dataGridView4.Visible = true;
+                if (cmbGroupType.SelectedIndex == 0)
+                {
+                    dataGridView3.Rows.Clear();
+                    //dataGridView3.DataSource = new BindingList<CardData>(listGroupA.Skip(cmbGroupNum.SelectedIndex * 50).Take(50).ToArray());
+                    var list = listGroupA[cmbGroupNum.SelectedIndex ];
+                    for (int i = 1; i <= 50; i++)
+                    {
+                        int index = this.dataGridView3.Rows.Add();
+                        this.dataGridView3.Rows[index].Cells[0].Value = i.ToString().PadLeft(2,'0');
+                        if (i > list.Count)
+                        {
+                            this.dataGridView3.Rows[index].Cells[1].Value = "";
+                        }
+                        else
+                        {
+                            this.dataGridView3.Rows[index].Cells[1].Value = list[i -1].ToString();
+                        }
+                    }
+                    dataGridView3.Visible = true;
+                    dataGridView4.Visible = false;
+                    dataGridView5.Visible = false;
+                }
+                else if (cmbGroupType.SelectedIndex == 1)
+                {
+                    dataGridView4.Rows.Clear();
+                    //dataGridView3.DataSource = new BindingList<CardData>(listGroupA.Skip(cmbGroupNum.SelectedIndex * 50).Take(50).ToArray());
+                    var list = listGroupB[cmbGroupNum.SelectedIndex];
+                    for (int i = 1; i <= 100; i++)
+                    {
+                        int index = this.dataGridView4.Rows.Add();
+                        this.dataGridView1.Rows[index].Cells[0].Value = i.ToString().PadLeft(2, '0');
+                        if (i > list.Count)
+                        {
+                            this.dataGridView4.Rows[index].Cells[1].Value = "";
+                        }
+                        else
+                        {
+                            this.dataGridView4.Rows[index].Cells[1].Value = list[i - 1].ToString();
+                        }
+                    }
+                    dataGridView4.Visible = true;
+                    dataGridView3.Visible = false;
+                    dataGridView5.Visible = false;
+                }
+            }
+            
+            if (cmbVerifyType.SelectedIndex == 2)
+            {
+                dataGridView5.Rows.Clear();
+                //dataGridView3.DataSource = new BindingList<CardData>(listGroupA.Skip(cmbGroupNum.SelectedIndex * 50).Take(50).ToArray());
+                var list = listFix[cmbGroupNum.SelectedIndex].CardList;
+                for (int i = 1; i <= 8; i++)
+                {
+                    int index = this.dataGridView5.Rows.Add();
+                    this.dataGridView5.Rows[index].Cells[0].Value = i.ToString().PadLeft(2, '0');
+                    if (i > list.Count)
+                    {
+                        this.dataGridView5.Rows[index].Cells[1].Value = "";
+                    }
+                    else
+                    {
+                        this.dataGridView5.Rows[index].Cells[1].Value = list[i - 1].ToString();
+                    }
+                }
+                dataGridView5.Visible = true;
                 dataGridView3.Visible = false;
+                dataGridView4.Visible = false;
             }
         }
         private void DataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -2819,14 +2978,18 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void DataGridView3_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dataGridView3.CurrentCell.ColumnIndex == 2)
+            if (dataGridView3.CurrentCell.ColumnIndex == 1)
             {
                 //e.CellStyle.BackColor = Color.FromName("window"); 
                 //DataGridViewComboBoxEditingControl editingControl = e.Control as DataGridViewComboBoxEditingControl; 
                 DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
                 editingControl.TextChanged += (se,ea) =>
-                {
-                    listGroupA[dataGridView3.CurrentCell.RowIndex].Card = dataGridView3.CurrentCell.EditedFormattedValue.ToString();
+                {   //要判断类型
+                    if (true)
+                    {
+                        listGroupA[cmbGroupNum.SelectedIndex][dataGridView3.CurrentCell.RowIndex] = Convert.ToUInt64(dataGridView3.CurrentCell.EditedFormattedValue.ToString());
+                    }
+                   
                 };
             }
 
@@ -2834,51 +2997,54 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void DataGridView4_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dataGridView4.CurrentCell.ColumnIndex == 2)
+            if (dataGridView4.CurrentCell.ColumnIndex == 1)
             {
                 //e.CellStyle.BackColor = Color.FromName("window"); 
                 //DataGridViewComboBoxEditingControl editingControl = e.Control as DataGridViewComboBoxEditingControl; 
                 DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
                 editingControl.TextChanged += (se, ea) => {
-                    listGroupB[dataGridView4.CurrentCell.RowIndex].Card = dataGridView4.CurrentCell.EditedFormattedValue.ToString();
+                    //listGroupB[dataGridView4.CurrentCell.RowIndex].Card = dataGridView4.CurrentCell.EditedFormattedValue.ToString();
+                    if (true)
+                    {
+                        listGroupB[cmbGroupNum.SelectedIndex][dataGridView4.CurrentCell.RowIndex] = Convert.ToUInt64(dataGridView4.CurrentCell.EditedFormattedValue.ToString());
+                    }
                 };
             }
         }
 
         private void BtnDeleteGroup_Click(object sender, EventArgs e)
         {
-            int index = 0;
             if (cmbVerifyType.SelectedIndex == 1)
             {
                 if (cmbGroupType.SelectedIndex == 0)
                 {
-                    for (int i = 1; i <= 5; i++)
+                    for (int i = 0; i < listGroupA.Count; i++)
                     {
-                        for (int j = 1; j <= 50; j++)
+                        for (int j = listGroupA[i].Count; j > 0; j--)
                         {
-                            listGroupA[index].Card = "";
-                            index++;
+                            listGroupA[i].RemoveAt(j - 1);
                         }
                     }
                 }
                 else
                 {
-                    for (int i = 1; i <= 20; i++)
+                    for (int i = 0; i < listGroupB.Count; i++)
                     {
-                        for (int j = 1; j <= 100; j++)
+                        for (int j = listGroupB[i].Count; j > 0; j--)
                         {
-                            listGroupB[index].Card = "";
-                            index++;
+                            listGroupB[i].RemoveAt(j - 1);
                         }
                     }
                 }
             }
             else if (cmbVerifyType.SelectedIndex == 2)
             {
-                for (int j = 1; j <= 8; j++)
+                for (int i = 0; i < listFix.Count; i++)
                 {
-                    listFix[index].Card = "";
-                    index++;
+                    for (int j = listFix[i].CardList.Count; j > 0; j--)
+                    {
+                        listFix[i].CardList.RemoveAt(j - 1);
+                    }
                 }
             }
             CmbGroupNum_SelectedIndexChanged(null, null);
@@ -2907,13 +3073,15 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void DataGridView5_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dataGridView5.CurrentCell.ColumnIndex == 2)
+            if (dataGridView5.CurrentCell.ColumnIndex == 1)
             {
-                //e.CellStyle.BackColor = Color.FromName("window"); 
-                //DataGridViewComboBoxEditingControl editingControl = e.Control as DataGridViewComboBoxEditingControl; 
                 DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
                 editingControl.TextChanged += (se, ea) => {
-                    listFix[dataGridView5.CurrentCell.RowIndex].Card = dataGridView5.CurrentCell.EditedFormattedValue.ToString();
+                    //listFix[dataGridView5.CurrentCell.RowIndex].Card = dataGridView5.CurrentCell.EditedFormattedValue.ToString();
+                    if (true)
+                    {
+                        listFix[cmbGroupNum.SelectedIndex].CardList[dataGridView5.CurrentCell.RowIndex] = Convert.ToUInt64(dataGridView5.CurrentCell.EditedFormattedValue.ToString());
+                    }
                 };
             }
         }

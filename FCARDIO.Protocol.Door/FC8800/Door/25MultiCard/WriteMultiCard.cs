@@ -23,27 +23,27 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <summary>
         /// 当前命令步骤
         /// </summary>
-        private int Step { get; set; }
+        protected int Step { get; set; }
 
 
         /// <summary>
         /// 多卡A组类型
         /// </summary>
-        public const int GroupTypeA = 1;
+        public const int GroupTypeA = 0;
         /// <summary>
         /// 多卡B组类型
         /// </summary>
-        public const int GroupTypeB = 2;
+        public const int GroupTypeB = 1;
 
         /// <summary>
         /// 当前正在写入的组合类型
         /// </summary>
-        private int mGroupType;
+        protected int mGroupType;
 
         /// <summary>
         /// 当前正在写入的组号
         /// </summary>
-        private int mGroupNum;
+        protected int mGroupNum;
 
 
         /// <summary>
@@ -71,21 +71,26 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             //发送 设置多卡开门检测模式参数
             Packet(0x03, 0x17, 0x00, 3, mMultiCardPar.CheckMode_GetBytes( GetCmdDataBuf(3)));
             Step = 1;
-            switch(mMultiCardPar.VerifyType)
+            if (mMultiCardPar.mProtocolType.Contains("MC58"))
             {
-                case 1:
-                    _ProcessMax = 27;
-                    break;
-                case 2:
-                    _ProcessMax = 12;
-                    break;
-                default:
-                    _ProcessMax = 2;
-                    break;
+                _ProcessMax = 2;
             }
-            
+            else
+            {
+                switch (mMultiCardPar.VerifyType)
+                {
+                    case 1:
+                        _ProcessMax = 27;
+                        break;
+                    case 2:
+                        _ProcessMax = 12;
+                        break;
+                    default:
+                        _ProcessMax = 2;
+                        break;
+                }
 
-
+            }
         }
 
         /// <summary>
@@ -98,10 +103,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             switch (Step)
             {
                 case 1://二十六、设置 多卡开门验证方式
-                    Packet(0x03, 0x18, 0x00, 4, mMultiCardPar.CheckMode_GetBytes(GetCmdDataBuf(4)));
+                    Packet(0x03, 0x18, 0x00, 4, mMultiCardPar.VerifyType_GetBytes(GetCmdDataBuf(4)));
                     _ProcessStep = 2;
-                    CommandReady();//设定命令当前状态为准备就绪，等待发送
-                    Step = 2;
+                    if (mMultiCardPar.mProtocolType.Contains("MC58"))
+                    {
+                        CommandCompleted();
+                    }
+                    else
+                    {
+                        CommandReady();//设定命令当前状态为准备就绪，等待发送
+                        Step = 2;
+                    }
+                   
                     break;
                 case 2:
                     //检查需要发送的内容
@@ -193,7 +206,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             {
                 buf.WriteInt((int)group[i]);
             }
-            
 
             Packet(0x03, 0x18, 0x02, (uint)buf.ReadableBytes, buf);
             _ProcessStep++;
@@ -255,7 +267,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// </summary>
         /// <param name="iSize"></param>
         /// <returns></returns>
-        private IByteBuffer GetCmdDataBuf(int iSize)
+        protected IByteBuffer GetCmdDataBuf(int iSize)
         {
             var buf = FCPacket?.CmdData;
             var acl = _Connector.GetByteBufAllocator();
@@ -271,7 +283,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             {
                 buf = acl.Buffer(iSize);
             }
-
+            else
+            {
+                buf = acl.Buffer(iSize);
+            }
            
             return buf;
         }

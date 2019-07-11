@@ -21,6 +21,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// 固定多卡组中的卡列表。
         /// </summary>
         public List<UInt64> CardList;
+
+
     }
 
 
@@ -59,6 +61,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// </summary>
         public byte BGroupCount { get; set; }
 
+        //public bool IsUseFixMode { get; set; }
 
         /// <summary>
         /// 多卡组A组
@@ -76,8 +79,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// </summary>
         public List<MultiCard_GroupFix> GroupFix { get; set; }
 
+        public string mProtocolType { get;private set; }
 
-        public WriteMultiCard_Parameter() { }
+
+    public WriteMultiCard_Parameter() { }
 
         /// <summary>
         /// 
@@ -94,7 +99,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         public WriteMultiCard_Parameter(byte door,
             byte mode, byte antiPassback,
             byte verifytype, byte agroupcount, byte bgroupcount,
+            string protocolType,
             List<List<UInt64>> group_a, List<List<UInt64>> group_b,
+            
             List<MultiCard_GroupFix> group_fix)
         {
             DoorNum = door;
@@ -107,7 +114,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
 
             GroupA = group_a;
             GroupB = group_b;
-
+            mProtocolType = protocolType;
             GroupFix = group_fix;
 
             checkedParameter();
@@ -133,33 +140,36 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             if (BGroupCount < 0 || BGroupCount > 100)
                 throw new ArgumentException("BGroupCount Error!");
 
-
-            switch (VerifyType)
+            if (!mProtocolType.Contains("MC58"))
             {
-                case 1:
-                    if (GroupA == null || GroupB == null)
-                        throw new ArgumentException("GroupA or GroupB Error!");
+                switch (VerifyType)
+                {
+                    case 1:
+                        if (GroupA == null || GroupB == null)
+                            throw new ArgumentException("GroupA or GroupB Error!");
 
-                    if (GroupA.Count < 5 || GroupB.Count < 20)
-                        throw new ArgumentException("GroupA or GroupB Error!");
+                        if (GroupA.Count < 5 || GroupB.Count < 20)
+                            throw new ArgumentException("GroupA or GroupB Error!");
 
-                    CheckGroup(GroupA);
-                    CheckGroup(GroupB);
+                        CheckGroup(GroupA);
+                        CheckGroup(GroupB);
 
-                    break;
-                case 2:
-                    if (GroupFix == null)
+                        break;
+                    case 2:
+                        if (GroupFix == null)
 
-                    if (GroupFix.Count < 10)
-                        throw new ArgumentException("GroupA or GroupB Error!");
+                            if (GroupFix.Count < 10)
+                                throw new ArgumentException("GroupA or GroupB Error!");
 
-                    foreach (var fix in GroupFix)
-                    {
-                        CheckGroup(fix.CardList);
-                    }
-                    
-                    break;
+                        foreach (var fix in GroupFix)
+                        {
+                            CheckGroup(fix.CardList);
+                        }
+
+                        break;
+                }
             }
+           
             return true;
         }
 

@@ -18,6 +18,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door
         /// </summary>
         public int Door;
 
+        public string ProtocolType { get;private set; }
+
         /// <summary>
         /// 门号参数初始化实例
         /// </summary>
@@ -25,6 +27,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Door
         public DoorPort_Parameter(int iDoor)
         {
             Door = iDoor;
+            checkedParameter();
+        }
+
+        public DoorPort_Parameter(int iDoor,string protocolType)
+        {
+            Door = iDoor;
+            ProtocolType = protocolType;
             checkedParameter();
         }
         /// <summary>

@@ -29,6 +29,11 @@ namespace FCARDIO.Protocol.Door.Test
         /// <returns>命令详情</returns>
         INCommandDetail GetCommandDetail();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        string GetProtocolType();
 
         /// <summary>
         /// 将命令加入到分配器开始执行
