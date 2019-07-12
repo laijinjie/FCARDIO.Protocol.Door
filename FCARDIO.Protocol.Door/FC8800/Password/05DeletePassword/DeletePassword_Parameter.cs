@@ -16,7 +16,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         {
             get; private set;
         }
-        private int BatchCount
+        protected int BatchCount
         {
             get
             {
@@ -86,7 +86,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 iIndex = i;
                 iSize += 1;
 
-                ListPassword[iIndex].GetBytes(databuf);
+                ListPassword[iIndex].GetDeleteBytes(databuf);
                 if (iSize == iMaxSize)
                 {
                     break;

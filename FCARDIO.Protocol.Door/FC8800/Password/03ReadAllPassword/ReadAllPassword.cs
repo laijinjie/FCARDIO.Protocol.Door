@@ -12,7 +12,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     /// <summary>
     /// 读取所有密码
     /// </summary>
-    public class ReadAllPassword<T> : FC8800Command_ReadParameter where T : PasswordDetail, new()
+    public class ReadAllPassword : FC8800Command_ReadParameter
     {
         /// <summary>
         /// 读取到的节假日缓冲
@@ -37,7 +37,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 var buf = oPck.CmdData;
                 int iTotal = buf.ReadInt();
 
-                ReadAllPassword_Result<T> rst = new ReadAllPassword_Result<T>();
+                ReadAllPassword_Result rst = new ReadAllPassword_Result();
                 _Result = rst;
 
 

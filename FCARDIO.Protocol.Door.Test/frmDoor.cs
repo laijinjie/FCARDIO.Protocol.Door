@@ -155,7 +155,7 @@ namespace FCARDIO.Protocol.Door.Test
             cmbAntiPassback.SelectedIndex = 0;
             if (mMainForm.GetProtocolType().Contains("MC58"))
             {
-                cmbVerifyType.Items.AddRange(new string[] { "禁用" });
+                cmbVerifyType.Items.AddRange(new string[] { "禁用", "固定组合" });
             }
             else
             {
@@ -2540,11 +2540,15 @@ namespace FCARDIO.Protocol.Door.Test
             ReadMultiCard cmd = null;
             if (protocolType.Contains("FC8800"))
             {
-                cmd = new ReadMultiCard(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1, protocolType));
+                cmd = new ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, false));
             }
             else if (protocolType.Contains("FC89H"))
             {
-                cmd = new FC89H.Door.MultiCard.ReadMultiCard(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1, protocolType));
+                cmd = new FC89H.Door.MultiCard.ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, false));
+            }
+            else if ((protocolType.Contains("MC58")))
+            {
+                cmd = new FC89H.Door.MultiCard.ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, true));
             }
 
             //ReadMultiCard cmd = new FC89H.Door.MultiCard.ReadMultiCard(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1, mMain.GetProtocolType()));
@@ -2562,12 +2566,12 @@ namespace FCARDIO.Protocol.Door.Test
                     txtAGroupCount.Text = result.AGroupCount.ToString();
                     txtBGroupCount.Text = result.BGroupCount.ToString();
 
-                    if (cmbVerifyType.SelectedIndex == 1)
+                    if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
                     {
                         listGroupA = result.GroupA;
                         listGroupB = result.GroupB;
                     } 
-                    else if (cmbVerifyType.SelectedIndex == 2)
+                    else if (cmbVerifyType.SelectedItem.ToString() == "固定组合")
                     {
                         listFix = result.GroupFix;
                     }
@@ -2604,11 +2608,16 @@ namespace FCARDIO.Protocol.Door.Test
             };
         }
 
+        /// <summary>
+        /// 写入多门
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnWriteManyCardOpenMode_Click(object sender, EventArgs e)
         {
             byte bAcount = 0;
             byte bBcount = 0;
-            if (cmbVerifyType.SelectedIndex == 1)
+            if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
             {
                 if (!byte.TryParse(txtAGroupCount.Text, out bAcount))
                 {
@@ -2629,20 +2638,29 @@ namespace FCARDIO.Protocol.Door.Test
 
             string protocolType = mMainForm.GetProtocolType();
 
-            WriteMultiCard_Parameter par = new WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex, (byte)cmbVerifyType.SelectedIndex, bAcount, bBcount
-              , protocolType, listGroupA, listGroupB, listFix) ;
-            WriteMultiCard cmd;
+           
             if (protocolType.Contains("FC8800"))
             {
-                cmd = new WriteMultiCard(cmdDtl, par);
+                WriteMultiCard_Parameter par = new WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex
+                    , (byte)cmbVerifyType.SelectedIndex, bAcount, bBcount
+                    , listGroupA, listGroupB, listFix);
+                WriteMultiCard cmd = new WriteMultiCard(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
             }
-            else
+            else if (protocolType.Contains("FC89H"))
             {
-                cmd = new FC89H.Door.MultiCard.WriteMultiCard(cmdDtl, par);
+                FC89H.Door.MultiCard.WriteMultiCard_Parameter par = new FC89H.Door.MultiCard.WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex, (byte)cmbVerifyType.SelectedIndex
+                        , bAcount, bBcount
+                        , listGroupA, listGroupB, listFix);
+                FC89H.Door.MultiCard.WriteMultiCard cmd = new FC89H.Door.MultiCard.WriteMultiCard(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
             }
-              
-            mMainForm.AddCommand(cmd);
-
+            else if (protocolType.Contains("MC58"))
+            {
+                WriteMultiCard_Parameter par = new WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex, listFix);
+                WriteMultiCard cmd = new WriteMultiCard(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+            }
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
@@ -2653,9 +2671,9 @@ namespace FCARDIO.Protocol.Door.Test
         #region 多卡开门验证方式
         private void CmbVerifyType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            plManyCardOpenVerify.Visible = cmbVerifyType.SelectedIndex == 1;
-            plMutiCard.Visible = cmbVerifyType.SelectedIndex == 1;
-            if (cmbVerifyType.SelectedIndex == 2)
+            plManyCardOpenVerify.Visible = cmbVerifyType.SelectedItem.ToString() == "AB组合";
+            plMutiCard.Visible = cmbVerifyType.SelectedItem.ToString() == "AB组合";
+            if (cmbVerifyType.SelectedItem.ToString() == "固定组合")
             {
                 dataGridView5.Visible = true ;
                 plMutiCard.Visible = true;
@@ -2678,7 +2696,7 @@ namespace FCARDIO.Protocol.Door.Test
                 dataGridView5.Visible = true;
             }
             
-            if (cmbVerifyType.SelectedIndex == 1)
+            if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
             {
                 dataGridView3.Visible = true;
                 dataGridView5.Visible = false;
@@ -2734,25 +2752,30 @@ namespace FCARDIO.Protocol.Door.Test
             dataGridView4.Visible = false;
             dataGridView5.Visible = false;
 
-            listGroupA = new List<List<ulong>>();
-            listGroupB = new List<List<ulong>>();
-            listFix = new List<MultiCard_GroupFix>();
+            listGroupA = new List<List<ulong>>(5);
+            listGroupB = new List<List<ulong>>(20);
+            listFix = new List<MultiCard_GroupFix>(10);
             /**/
             int index = 0;
            for (int i = 0; i < 5; i++)
            {
+                listGroupA.Add(new List<ulong>());
+
                for (int j = 1; j <= 50; j++)
                {
-                   //listGroupA.Add(new CardData() { Index = index, Num = j.ToString().PadLeft(2,'0') });
+                    listGroupA[i].Add(0);
                }
+
            }
            for (int i = 0; i < 20; i++)
            {
-               for (int j = 1; j <= 100; j++)
-               {
-                   //listGroupB.Add(new CardData() { Index = index, Num = j.ToString().PadLeft(2, '0') });
-               }
-           }
+                listGroupB.Add(new List<ulong>());
+
+                for (int j = 1; j <= 100; j++)
+                {
+                    listGroupB[i].Add(0);
+                }
+            }
 
             for (int i = 1; i <= 10; i++)
             {
@@ -2822,7 +2845,7 @@ namespace FCARDIO.Protocol.Door.Test
         private void BtnAutoFill_Click(object sender, EventArgs e)
         {
             int index = 0;
-            //if (cmbVerifyType.SelectedIndex == 1)
+            //if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
             {
                 listGroupA.Clear();
                 for (int i = 1; i <= 5; i++)
@@ -2845,7 +2868,7 @@ namespace FCARDIO.Protocol.Door.Test
                     listGroupB.Add(list);
                 }
             }
-            //else if (cmbVerifyType.SelectedIndex == 2)
+            //else if (cmbVerifyType.SelectedItem.ToString() == "固定组合")
             {
                 listFix.Clear();
                 for (int i = 1; i <= 10; i++)
@@ -2865,11 +2888,11 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void CmbGroupNum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mMainForm.GetProtocolType().Contains("MC58"))
-            {
-                return;
-            }
-            if (cmbVerifyType.SelectedIndex == 1)
+            //if (mMainForm.GetProtocolType().Contains("MC58"))
+            //{
+            //    return;
+            //}
+            if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
             {
                 if (cmbGroupType.SelectedIndex == 0)
                 {
@@ -2901,7 +2924,7 @@ namespace FCARDIO.Protocol.Door.Test
                     for (int i = 1; i <= 100; i++)
                     {
                         int index = this.dataGridView4.Rows.Add();
-                        this.dataGridView1.Rows[index].Cells[0].Value = i.ToString().PadLeft(2, '0');
+                        this.dataGridView4.Rows[index].Cells[0].Value = i.ToString().PadLeft(2, '0');
                         if (i > list.Count)
                         {
                             this.dataGridView4.Rows[index].Cells[1].Value = "";
@@ -2917,7 +2940,7 @@ namespace FCARDIO.Protocol.Door.Test
                 }
             }
             
-            if (cmbVerifyType.SelectedIndex == 2)
+            if (cmbVerifyType.SelectedItem.ToString() == "固定组合")
             {
                 dataGridView5.Rows.Clear();
                 //dataGridView3.DataSource = new BindingList<CardData>(listGroupA.Skip(cmbGroupNum.SelectedIndex * 50).Take(50).ToArray());
@@ -3014,7 +3037,7 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void BtnDeleteGroup_Click(object sender, EventArgs e)
         {
-            if (cmbVerifyType.SelectedIndex == 1)
+            if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
             {
                 if (cmbGroupType.SelectedIndex == 0)
                 {
@@ -3037,7 +3060,7 @@ namespace FCARDIO.Protocol.Door.Test
                     }
                 }
             }
-            else if (cmbVerifyType.SelectedIndex == 2)
+            else if (cmbVerifyType.SelectedItem.ToString() == "固定组合")
             {
                 for (int i = 0; i < listFix.Count; i++)
                 {

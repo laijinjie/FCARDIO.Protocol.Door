@@ -11,19 +11,25 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     /// </summary>
     public class PasswordDetail : AbstractData,IComparable<PasswordDetail>
     {
-        public string Password { get; set; }
+        /// <summary>
+        /// 密码信息
+        /// </summary>
+        public string Password;
 
-        public int Door { get; set; }
+        /// <summary>
+        /// 端口
+        /// </summary>
+        public int Door;
 
         /// <summary>
         /// 开门次数
         /// </summary>
-        public int OpenTimes { get; set; }
+        public int OpenTimes;
 
         /// <summary>
         /// 有效期
         /// </summary>
-        public DateTime Expiry { get; set; }
+        public DateTime Expiry;
 
 
         /**
@@ -64,12 +70,43 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             }
         }
 
+        /// <summary>
+        /// 写入 要上传的密码信息
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer data)
         {
             data.WriteByte(Door);
             Password = StringUtil.FillHexString(Password, 8, "F", true);
             StringUtil.HextoByteBuf(Password, data);
-            WritePassword(data);
+            //89H 长度是12
+            if ((data.Capacity - 4) % 12 == 0)
+            {
+                data.WriteShort(OpenTimes);
+                TimeUtil.DateToBCD_yyMMddhhmm(data, Expiry);
+            }
+            
+            return data;
+        }
+
+        /// <summary>
+        /// 写入 要删除的密码信息
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public IByteBuffer GetDeleteBytes(IByteBuffer data)
+        {
+            //FC88 长度是5
+            if (data.Capacity % 5 == 0)
+            {
+                data.WriteByte(Door);
+                
+            }
+            Password = StringUtil.FillHexString(Password, 8, "F", true);
+            StringUtil.HextoByteBuf(Password, data);
+
+
             return data;
         }
 
@@ -78,6 +115,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 读取密码信息
+        /// </summary>
+        /// <param name="data"></param>
         public override void SetBytes(IByteBuffer data)
         {
             Door = data.ReadByte();
@@ -85,18 +126,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             byte[] btData = new byte[4];
             data.ReadBytes(btData, 0, 4);
             Password = btData.ToHex().TrimEnd('F');
-            ReadPassword(data);
+            if ((data.Capacity - 4) % 12 == 0)
+            {
+                OpenTimes = data.ReadUnsignedShort();
+                Expiry = TimeUtil.BCDTimeToDate_yyMMddhhmm(data);
+            }
             
         }
 
-        protected virtual void ReadPassword(IByteBuffer data)
-        {
-
-        }
-
-        protected virtual void WritePassword(IByteBuffer data)
-        {
-
-        }
     }
 }

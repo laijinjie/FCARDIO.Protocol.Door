@@ -120,25 +120,25 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             switch (Step)
             {
                 case 1://二十六、设置 多卡开门验证方式
-                    if (CheckResponse(oPck))
+                    if (CheckResponse_OK(oPck))
                     {
                         WriteCheckModeCallBlack();
                     }
                     break;
                 case 2:
-                    if (CheckResponse(oPck))
+                    if (CheckResponse_OK(oPck))
                     {
                         WriteVerifyTypeCallBlack();
                     }
                     break;
                 case 3://继续写AB组
-                    if (CheckResponse(oPck))
+                    if (CheckResponse_OK(oPck))
                     {
                         WriteMultiCard_GroupABCallBlack();
                     }
                     break;
                 case 4://继续写固定组
-                    if (CheckResponse(oPck))
+                    if (CheckResponse_OK(oPck))
                     {
                         WriteMultiCard_GroupFixCallBlack();
                     }

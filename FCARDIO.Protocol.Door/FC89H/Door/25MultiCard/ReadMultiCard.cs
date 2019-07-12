@@ -123,9 +123,11 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.MultiCard
             {
                 ReadGroupABNext();
             }
-
+            else
+            {
+                CommandWaitResponse();
+            }
         }
-
 
         /// <summary>
         /// 创建读取多卡固定组的命令

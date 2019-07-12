@@ -105,50 +105,26 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            if (mMainForm.GetProtocolType().Contains("FC89H"))
-            {
-                ReadAllPassword<FC89H.Password.PasswordDetail> cmd
-                    = new ReadAllPassword<FC89H.Password.PasswordDetail>(cmdDtl);
-                mMainForm.AddCommand(cmd);
-            }
-            else
-            {
-                ReadAllPassword<PasswordDetail> cmd = new ReadAllPassword<PasswordDetail>(cmdDtl);
-                mMainForm.AddCommand(cmd);
-            }
-
+            ReadAllPassword cmd = new ReadAllPassword(cmdDtl);
+            mMainForm.AddCommand(cmd);
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ListPassword.Clear();
-                var comdResult = cmde.Command.getResult();
-                int count = 0;
-                if (comdResult is ReadAllPassword_Result<PasswordDetail>)
+                ReadAllPassword_Result result = cmde.Command.getResult() as ReadAllPassword_Result;
+                foreach (PasswordDetail detail in result.Passowrds)
                 {
-                    ReadAllPassword_Result<PasswordDetail> result = comdResult as ReadAllPassword_Result<PasswordDetail>;
-                    foreach (PasswordDetail detail in result.Passowrds)
+                    PasswordDto dto = new PasswordDto();
+                    dto.SetDoors(detail);
+                    dto.Password = detail.Password;
+                    if (detail.Expiry != DateTime.MinValue)
                     {
-                        PasswordDto dto = new PasswordDto();
-                        dto.SetDoors(detail);
-                        dto.Password = detail.Password;
-                        ListPassword.Add(dto);
-                    }
-                    count = result.Passowrds.Count;
-                }
-                else if (comdResult is ReadAllPassword_Result<FC89H.Password.PasswordDetail>)
-                {
-                    ReadAllPassword_Result<FC89H.Password.PasswordDetail > result  = comdResult as ReadAllPassword_Result<FC89H.Password.PasswordDetail>;
-                    foreach (PasswordDetail detail in result.Passowrds)
-                    {
-                        PasswordDto dto = new PasswordDto();
-                        dto.SetDoors(detail);
-                        dto.Password = detail.Password;
                         dto.OpenTimes = detail.OpenTimes;
                         dto.Expiry = detail.Expiry;
-                        ListPassword.Add(dto);
                     }
-                    count = result.Passowrds.Count;
+                    
+                    ListPassword.Add(dto);
                 }
 
                 Invoke(() =>
@@ -157,7 +133,7 @@ namespace FCARDIO.Protocol.Door.Test
 
                 });
                 //dataGridView1
-                string log = $"已读取到数量：{count.ToString()} ";
+                string log = $"已读取到数量：{result.Passowrds.Count} ";
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
@@ -178,25 +154,24 @@ namespace FCARDIO.Protocol.Door.Test
                 PasswordDetail password = new PasswordDetail();
                 if (mMainForm.GetProtocolType().Contains("FC89H"))
                 {
-                    password = new FC89H.Password.PasswordDetail();
-                    password.OpenTimes = ListPassword[i].OpenTimes; //cmbOpenTimes.SelectedIndex;
+                    password.OpenTimes = ListPassword[i].OpenTimes; 
                     if (password.OpenTimes == cmbOpenTimes.Items.Count - 1)
                     {
                         password.OpenTimes = 65535;
                     }
-                    password.Expiry = ListPassword[i].Expiry; //new DateTime(dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day, dtpTime.Value.Hour, dtpTime.Value.Minute, 0);
+                    password.Expiry = ListPassword[i].Expiry;
                 }
                 password.Password = ListPassword[i].Password;
                 string strDoor1 = (ListPassword[i].Door1 ? "1" : "0") + (ListPassword[i].Door2 ? "1" : "0") + (ListPassword[i].Door3 ? "1" : "0") + (ListPassword[i].Door4 ? "1" : "0");
                 password.Door = Convert.ToInt32(strDoor1, 2);
                 _list.Add(password);
             }
-            AddPassword_Parameter<PasswordDetail> par = new AddPassword_Parameter<PasswordDetail>(_list);
+            AddPassword_Parameter par = new AddPassword_Parameter(_list);
             if (mMainForm.GetProtocolType().Contains("FC89H"))
             {
                 par = new FC89H.Password.AddPassword.AddPassword_Parameter(_list);
             }
-            AddPassword<PasswordDetail> cmd = new AddPassword<PasswordDetail>(cmdDtl, par);
+            AddPassword cmd = new AddPassword(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -307,7 +282,6 @@ namespace FCARDIO.Protocol.Door.Test
             PasswordDetail password = new PasswordDetail();
             if (mMainForm.GetProtocolType().Contains("FC89H"))
             {
-                password = new FC89H.Password.PasswordDetail();
                 password.OpenTimes = cmbOpenTimes.SelectedIndex;
                 if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
                 {
@@ -320,8 +294,8 @@ namespace FCARDIO.Protocol.Door.Test
             password.Door = Convert.ToInt32(strDoor1, 2);
             _list.Add(password);
 
-            AddPassword_Parameter<PasswordDetail> par = new AddPassword_Parameter<PasswordDetail>(_list);
-            AddPassword<PasswordDetail> cmd = new AddPassword<PasswordDetail>(cmdDtl, par);
+            AddPassword_Parameter par = new AddPassword_Parameter(_list);
+            AddPassword cmd = new AddPassword(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
