@@ -1,4 +1,6 @@
 ﻿using DotNetty.Buffers;
+using FCARDIO.Core.Command;
+using FCARDIO.Protocol.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,28 +12,43 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
     /// <summary>
     /// 键盘管理功能
     /// </summary>
-    public class WriteManageKeyboardSetting_Parameter : AbstractParameter
+    public class WriteManageKeyboardSetting_Parameter : DoorPort_Parameter, INCommandResult
     {
         /// <summary>
         /// 门号
         /// 门端口在控制板中的索引号，取值：1-4
         /// </summary>
-        public int DoorNum { get; set; }
+        public int DoorNum;
 
         /// <summary>
-        /// 是否启用语音播报功能
+        /// 是否启用
         /// </summary>
-        public bool Use { get; set; }
+        public bool Use;
 
-        public WriteManageKeyboardSetting_Parameter()
+        /// <summary>
+        /// 密码
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// 读取功能 初始化
+        /// </summary>
+        /// <param name="door"></param>
+        public WriteManageKeyboardSetting_Parameter(byte door):base(door)
         {
-
+            DoorNum = door;
         }
-
-        public WriteManageKeyboardSetting_Parameter(byte door, bool use)
+        /// <summary>
+        /// 设置功能 初始化参数
+        /// </summary>
+        /// <param name="door">门号</param>
+        /// <param name="use">是否启用</param>
+        /// <param name="password">密码</param>
+        public WriteManageKeyboardSetting_Parameter(byte door, bool use,string password):base(door)
         {
             DoorNum = door;
             Use = use;
+            Password = password;
         }
 
         /// <summary>
@@ -40,6 +57,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            
             return true;
         }
 
@@ -57,14 +75,42 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
-        public override IByteBuffer GetBytes(IByteBuffer databuf)
+        public IByteBuffer Setting_GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 2)
+            if (databuf.WritableBytes < 2)
             {
-                throw new ArgumentException("door Error!");
+                throw new ArgumentException("databuf Error!");
             }
             databuf.WriteByte(DoorNum);
             databuf.WriteBoolean(Use);
+            return databuf;
+        }
+
+        public IByteBuffer Password_GetBytes(IByteBuffer databuf)
+        {
+            if (databuf.WritableBytes < 5)
+            {
+                throw new ArgumentException("databuf Error!");
+            }
+            databuf.WriteByte(DoorNum);
+
+            Password = StringUtil.FillHexString(Password, 8, "F", true);
+            StringUtil.HextoByteBuf(Password, databuf);
+            return databuf;
+        }
+
+        /// <summary>
+        /// 将结构编码为字节缓冲
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
+        public override IByteBuffer GetBytes(IByteBuffer databuf)
+        {
+            if (databuf.WritableBytes != 1)
+            {
+                return null;
+            }
+            databuf.WriteByte(Door);
             return databuf;
         }
 
@@ -83,8 +129,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            DoorNum = databuf.ReadByte();
-            Use = databuf.ReadBoolean();
         }
+
+        
     }
 }

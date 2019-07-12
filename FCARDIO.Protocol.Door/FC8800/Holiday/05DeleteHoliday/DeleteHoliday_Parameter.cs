@@ -7,14 +7,21 @@ using DotNetty.Buffers;
 
 namespace FCARDIO.Protocol.Door.FC8800.Holiday
 {
+    /// <summary>
+    /// 删除节假日参数
+    /// </summary>
     public class DeleteHoliday_Parameter : AbstractParameter
     {
-        public List<HolidayDetail> ListHoliday { get; private set; }
+        /// <summary>
+        /// 删除节假日集合
+        /// </summary>
+        public List<HolidayDetail> ListHoliday;
+
 
         /// <summary>
-        /// 
+        /// 初始化参数
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="list">删除节假日集合</param>
         public DeleteHoliday_Parameter(List<HolidayDetail> list)
         {
             ListHoliday = list;
@@ -45,7 +52,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         }
 
         /// <summary>
-        /// 
+        /// 将 节假日参数 编码到字节流
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
@@ -60,7 +67,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         }
 
         /// <summary>
-        /// 
+        /// 获取写入参数的长度
         /// </summary>
         /// <returns></returns>
         public override int GetDataLen()

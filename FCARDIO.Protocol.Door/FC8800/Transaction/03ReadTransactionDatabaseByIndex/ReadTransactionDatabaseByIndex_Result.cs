@@ -2,9 +2,7 @@
 using FCARDIO.Core.Command;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using FCARDIO.Core.Extension;
 
 namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex
 {
@@ -66,7 +64,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
 
         internal void SetBytes(IByteBuffer buf)
         {
-            throw new NotImplementedException();
+            Quantity = buf.ReadInt();
+            byte[] array = new byte[Quantity];
+
+            buf.ReadBytes(array);
+
+            string content = array.ToHex();
+
         }
     }
 }

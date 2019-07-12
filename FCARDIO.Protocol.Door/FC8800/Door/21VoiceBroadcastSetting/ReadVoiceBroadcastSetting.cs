@@ -34,14 +34,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.VoiceBroadcastSetting
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x13, 0x01, 0x01, GetCmdDate());
+            Packet(0x03, 0x13, 0x01, 0x01, GetCmdData());
         }
 
         /// <summary>
         /// 获取参数结构的字节编码
         /// </summary>
         /// <returns></returns>
-        private IByteBuffer GetCmdDate()
+        private IByteBuffer GetCmdData()
         {
             DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
             var acl = _Connector.GetByteBufAllocator();

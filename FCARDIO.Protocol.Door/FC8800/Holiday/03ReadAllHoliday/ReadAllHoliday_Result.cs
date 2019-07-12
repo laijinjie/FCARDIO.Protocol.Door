@@ -22,7 +22,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <summary>
         /// 已读取到的节假日列表
         /// </summary>
-        public List<HolidayDetail> Holidays;
+        public readonly List<HolidayDetail> Holidays;
 
         /// <summary>
         /// 初始化，构造一个空的 HolidayDBDetail 详情实例
@@ -60,7 +60,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         public void Dispose()
         {
             Holidays.Clear();
-            Holidays = null;
         }
     }
 }

@@ -9,7 +9,7 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
 {
     /// <summary>
-    /// 
+    /// 清空所有开门时段
     /// </summary>
     public class ClearTimeGroup : FC8800Command_ReadParameter
     {
@@ -22,6 +22,9 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
             return;
         }
 
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
         protected override void CreatePacket0()
         {
             Packet(0x06, 0x01);

@@ -9,7 +9,9 @@ using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
 {
-    ///
+    /// <summary>
+    /// 出门开关 参数
+    /// </summary>
     public class WritePushButtonSetting_Parameter
         : AbstractParameter
     {

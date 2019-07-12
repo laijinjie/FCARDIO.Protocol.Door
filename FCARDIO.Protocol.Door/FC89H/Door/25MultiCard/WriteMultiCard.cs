@@ -131,6 +131,7 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.MultiCard
             int iAddCount = 0;
             for (int i = mCardListIndex; i < iCount; i++)
             {
+                buf.WriteByte(0);
                 buf.WriteLong((long)group[i]);
                 iAddCount++;
                 if (iAddCount == 20) break;

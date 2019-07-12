@@ -143,14 +143,9 @@
     <Compile Include="FC8800\Door\22InOutSideReadOpenSetting\InOutSideReadOpenSetting_Result.cs" />
     <Compile Include="FC8800\Door\22InOutSideReadOpenSetting\ReadInOutSideReadOpenSetting.cs" />
     <Compile Include="FC8800\Door\22InOutSideReadOpenSetting\WriteInOutSideReadOpenSetting.cs" />
-    <Compile Include="FC8800\Door\23ManageKeyboardSetting\ManageKeyboardSetting_Result.cs" />
-    <Compile Include="FC8800\Door\23ManageKeyboardSetting\Password_Result.cs" />
     <Compile Include="FC8800\Door\23ManageKeyboardSetting\ReadManageKeyboardSetting.cs" />
-    <Compile Include="FC8800\Door\23ManageKeyboardSetting\ReadPassword.cs" />
     <Compile Include="FC8800\Door\23ManageKeyboardSetting\WriteManageKeyboardSetting.cs" />
     <Compile Include="FC8800\Door\23ManageKeyboardSetting\WriteManageKeyboardSetting_Parameter.cs" />
-    <Compile Include="FC8800\Door\23ManageKeyboardSetting\WritePassword.cs" />
-    <Compile Include="FC8800\Door\23ManageKeyboardSetting\WritePassword_Parameter.cs" />
     <Compile Include="FC8800\Door\29InterLockSetting\InterLockSetting_Result.cs" />
     <Compile Include="FC8800\Door\29InterLockSetting\ReadInterLockSetting.cs" />
     <Compile Include="FC8800\Door\29InterLockSetting\WriteInterLockSetting.cs" />
@@ -168,7 +163,6 @@
     <Compile Include="FC8800\Holiday\03ReadAllHoliday\ReadAllHoliday_Result.cs" />
     <Compile Include="FC8800\Holiday\01ReadHolidayDetail\ReadHolidayDetail.cs" />
     <Compile Include="FC8800\Holiday\01ReadHolidayDetail\ReadHolidayDetail_Result.cs" />
-    <Compile Include="FC8800\Holiday\HolidayDetailDto.cs" />
     <Compile Include="FC8800\Password\01ReadPasswordDetail\ReadPasswordDetail.cs" />
     <Compile Include="FC8800\Password\01ReadPasswordDetail\ReadPasswordDetail_Result.cs" />
     <Compile Include="FC8800\Password\02ClearPassword\ClearPassword.cs" />
@@ -178,6 +172,8 @@
     <Compile Include="FC8800\Password\04AddPassword\AddPassword_Parameter.cs" />
     <Compile Include="FC8800\Password\05DeletePassword\DeletePassword.cs" />
     <Compile Include="FC8800\Password\05DeletePassword\DeletePassword_Parameter.cs" />
+    <Compile Include="FC8800\Password\06TestPassword\TestPassword.cs" />
+    <Compile Include="FC8800\Password\06TestPassword\TestPassword_Parameter.cs" />
     <Compile Include="FC8800\Password\PasswordDetail.cs" />
     <Compile Include="FC8800\SystemParameter\14SearchControltor\SearchControltor_Result.cs" />
     <Compile Include="FC8800\SystemParameter\15CacheContent\CacheContent_Parameter.cs" />
@@ -207,7 +203,6 @@
     <Compile Include="FC8800\TimeGroup\02ReadTimeGroup\ReadTimeGroup_Result.cs" />
     <Compile Include="FC8800\TimeGroup\03AddTimeGroup\AddTimeGroup.cs" />
     <Compile Include="FC8800\TimeGroup\03AddTimeGroup\AddTimeGroup_Parameter.cs" />
-    <Compile Include="FC8800\TimeGroup\TimeGroupDetail.cs" />
     <Compile Include="FC8800\Time\TimeErrorCorrection\ReadTimeError.cs" />
     <Compile Include="FC8800\Time\TimeErrorCorrection\ReadTimeError_Result.cs" />
     <Compile Include="FC8800\Time\TimeErrorCorrection\WriteTimeError.cs" />

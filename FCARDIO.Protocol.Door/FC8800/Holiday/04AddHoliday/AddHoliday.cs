@@ -14,13 +14,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
     public class AddHoliday : FC8800Command_WriteParameter
     {
         /// <summary>
-        /// 
+        /// 初始化参数
         /// </summary>
         /// <param name="cd"></param>
-        public AddHoliday(INCommandDetail cd, AddHoliday_Parameter par) : base(cd, par)
-        {
-
-        }
+        public AddHoliday(INCommandDetail cd, AddHoliday_Parameter par) : base(cd, par){ }
 
         /// <summary>
         /// 检查命令参数
@@ -46,7 +43,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
             Packet(0x4, 0x4, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
-            // Packet(0x02, 0x02, 0x00, 0x07, buf);
         }
 
         protected override void CommandNext1(OnlineAccessPacket oPck)

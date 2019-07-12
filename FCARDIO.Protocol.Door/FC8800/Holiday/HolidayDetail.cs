@@ -17,12 +17,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <summary>
         /// 节假日的索引号
         /// </summary>
-        public byte Index { get; set; }
+        public byte Index;
 
         /// <summary>
         /// 节假日日期
         /// </summary>
-        public DateTime Holiday { get; set; }
+        public DateTime Holiday;
 
         /// <summary>
         /// 节假日类型：<br/>

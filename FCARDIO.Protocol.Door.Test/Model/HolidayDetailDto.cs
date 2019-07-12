@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Holiday
+namespace FCARDIO.Protocol.Door.Test.Model
 {
     /// <summary>
     /// 节假日 ViewModel
@@ -14,12 +14,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <summary>
         /// 节假日的索引号
         /// </summary>
-        public byte Index { get; set; }
+        public byte Index;
 
         /// <summary>
         /// 节假日日期
         /// </summary>
-        public DateTime Holiday { get; set; }
+        public DateTime Holiday;
 
         /// <summary>
         /// 节假日类型：<br/>
@@ -32,16 +32,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <summary>
         /// 
         /// </summary>
-        public string HolidayTypeRender { get; set; }
+        public string HolidayTypeRender;
 
         /// <summary>
         /// 年：最大0-99，0表示每年重复
         /// </summary>
-        public string RepeatYear { get; set; }
+        public string RepeatYear;
 
         /// <summary>
         /// 
         /// </summary>
-        public bool Selected { get; set; }
+        public bool Selected;
     }
 }

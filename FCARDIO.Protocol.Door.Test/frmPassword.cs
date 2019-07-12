@@ -365,6 +365,10 @@ namespace FCARDIO.Protocol.Door.Test
                 if (cmdDtl == null) return;
 
                 DeletePassword_Parameter par = new DeletePassword_Parameter(_list);
+                if (mMainForm.GetProtocolType().Contains("FC89H"))
+                {
+                    par = new FC89H.Password.DeletePassword.DeletePassword_Parameter(_list);
+                }
                 DeletePassword cmd = new DeletePassword(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
 

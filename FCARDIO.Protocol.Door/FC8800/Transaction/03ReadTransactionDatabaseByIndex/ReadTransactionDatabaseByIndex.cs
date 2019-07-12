@@ -15,7 +15,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
     /// 按指定索引号开始读指定类型的记录数据库，并读取指定数量。
     /// 成功返回结果参考 ReadTransactionDatabaseByIndex_Result 
     /// </summary>
-    public class ReadTransactionDatabaseByIndex : FC8800Command
+    public class ReadTransactionDatabaseByIndex : FC8800Command_ReadParameter
     {
         private Queue<IByteBuffer> mBufs;
         private int mQuantity;
@@ -66,7 +66,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x04))
+            if (CheckResponse(oPck))
             {
                 var buf = oPck.CmdData;
                 ReadTransactionDatabaseByIndex_Result rst = new ReadTransactionDatabaseByIndex_Result();
@@ -74,7 +74,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
                 rst.SetBytes(buf);
                 CommandCompleted();
             }
-            
+            if (CheckResponse(oPck, 0x04, 0xff, 4))
+            {
+                var buf = oPck.CmdData;
+
+            }
         }
 
         /// <summary>

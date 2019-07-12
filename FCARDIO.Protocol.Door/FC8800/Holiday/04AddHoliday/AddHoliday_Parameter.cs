@@ -7,14 +7,20 @@ using DotNetty.Buffers;
 
 namespace FCARDIO.Protocol.Door.FC8800.Holiday
 {
+    /// <summary>
+    /// 添加节假日参数
+    /// </summary>
     public class AddHoliday_Parameter : AbstractParameter
     {
-        public AddHoliday_Parameter() { }
-
         /// <summary>
         /// 节假日集合
         /// </summary>
-        public List<HolidayDetail> ListHoliday { get; private set; }
+        protected List<HolidayDetail> ListHoliday;
+
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="list"></param>
         public AddHoliday_Parameter(List<HolidayDetail> list) {
             ListHoliday = list;
             if (!checkedParameter())
@@ -23,7 +29,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             }
         }
         /// <summary>
-        /// 
+        /// 检查参数
         /// </summary>
         /// <returns></returns>
         public override bool checkedParameter()
@@ -60,12 +66,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             {
                 databuf = holiday.GetBytes(databuf);
             }
-            //databuf.WriteByte(byte.Parse(ListHoliday.ToString()));
+
             return databuf;
         }
 
         /// <summary>
-        /// 
+        /// 获取写入参数长度
         /// </summary>
         /// <returns></returns>
         public override int GetDataLen()

@@ -2307,32 +2307,34 @@ namespace FCARDIO.Protocol.Door.Test
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            ReadManageKeyboardSetting cmd = new ReadManageKeyboardSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            ReadManageKeyboardSetting cmd = new ReadManageKeyboardSetting(cmdDtl, new WriteManageKeyboardSetting_Parameter((byte)(cmdDoorNum.SelectedIndex + 1)));
             mMainForm.AddCommand(cmd);
 
-            ReadPassword readPassword = new ReadPassword(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
-            mMainForm.AddCommand(readPassword);
+            //ReadPassword readPassword = new ReadPassword(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            //mMainForm.AddCommand(readPassword);
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                ManageKeyboardSetting_Result result = cmde.Command.getResult() as ManageKeyboardSetting_Result;
-                if (result != null)
-                {
+                WriteManageKeyboardSetting_Parameter result = cmde.Command.getResult() as WriteManageKeyboardSetting_Parameter;
+                
                     Invoke(() =>
                     {
                         cbManageKeyboardSettingUse.Checked = result.Use;
+                        if (result.Use)
+                        {
+                            txtPassword.Text = result.Password;
+                        }
                     });
-                }
 
-                Password_Result password_Result = cmde.Command.getResult() as Password_Result;
-                if (password_Result != null)
-                {
-                    Invoke(() =>
-                    {
-                        txtPassword.Text = password_Result.Password;
-                    });
-                }
+                //Password_Result password_Result = cmde.Command.getResult() as Password_Result;
+                //if (password_Result != null)
+                //{
+                //    Invoke(() =>
+                //    {
+                //        txtPassword.Text = password_Result.Password;
+                //    });
+                //}
             };
         }
 
@@ -2353,13 +2355,9 @@ namespace FCARDIO.Protocol.Door.Test
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            WriteManageKeyboardSetting_Parameter par = new WriteManageKeyboardSetting_Parameter(door, cbManageKeyboardSettingUse.Checked);
+            WriteManageKeyboardSetting_Parameter par = new WriteManageKeyboardSetting_Parameter(door, cbManageKeyboardSettingUse.Checked, txtPassword.Text.Trim());
             WriteManageKeyboardSetting cmd = new WriteManageKeyboardSetting(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-
-            WritePassword_Parameter password_Parameter = new WritePassword_Parameter(door, txtPassword.Text.Trim());
-            WritePassword writePassword = new WritePassword(cmdDtl, password_Parameter);
-            mMainForm.AddCommand(writePassword);
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>

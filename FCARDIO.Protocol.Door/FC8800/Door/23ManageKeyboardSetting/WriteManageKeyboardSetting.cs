@@ -13,14 +13,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
     /// <summary>
     /// 键盘管理功能
     /// </summary>
-    public class WriteManageKeyboardSetting : FC8800Command
+    public class WriteManageKeyboardSetting : FC8800Command_WriteParameter
     {
+        protected WriteManageKeyboardSetting_Parameter mManageKeyboardPar;
+        /// <summary>
+        /// 当前命令步骤
+        /// </summary>
+        protected int Step;
+
         /// <summary>
         /// 初始化命令结构
         /// </summary>
         /// <param name="cd"></param>
-        /// <param name="value">包括门号和出门按钮功能</param>
-        public WriteManageKeyboardSetting(INCommandDetail cd, WriteManageKeyboardSetting_Parameter value) : base(cd, value) { }
+        /// <param name="value"></param>
+        public WriteManageKeyboardSetting(INCommandDetail cd, WriteManageKeyboardSetting_Parameter value) : base(cd, value) { mManageKeyboardPar = value; }
 
         /// <summary>
         /// 检查参数
@@ -39,7 +45,26 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x15, 0x00, 2, GetCmdData());
+            var buf = GetNewCmdDataBuf(5);
+            Packet(0x03, 0x15, 0x00, 2, mManageKeyboardPar.Setting_GetBytes(buf)) ;
+            Step = 1;
+            IniPacketProcess();
+        }
+
+        /// <summary>
+        /// 初始化指令的步骤数
+        /// </summary>
+        private void IniPacketProcess()
+        {
+            if (mManageKeyboardPar.Use)
+            {
+                _ProcessMax = 2;
+                Step = 2;
+            }
+            else
+            {
+                _ProcessMax = 1;
+            }
         }
 
         /// <summary>
@@ -56,12 +81,36 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         }
 
         /// <summary>
-        /// 处理返回值
+        /// 接收到响应，开始处理下一步命令
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
+        protected override void CommandNext0(OnlineAccessPacket oPck)
         {
+
+            switch (Step)
+            {
+                case 2:
+                    if (CheckResponse_OK(oPck))
+                    {
+                        WritePassword();
+                    }
+                    break;
+                default:
+                    break;
+            }
             return;
+        }
+
+        /// <summary>
+        /// 写密码
+        /// </summary>
+        private void WritePassword()
+        {
+            _ProcessStep = 2;
+            var buf = GetCmdBuf();
+            mManageKeyboardPar.Password_GetBytes(buf);
+            Packet(0x15, 0x02, 5);
+            Step = 0;
         }
 
         /// <summary>
@@ -78,6 +127,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         protected override void Release1()
         {
             return;
+        }
+
+        /// <summary>
+        /// 处理返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        protected override void CommandNext1(OnlineAccessPacket oPck)
+        {
         }
     }
 }

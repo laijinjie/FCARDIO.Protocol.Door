@@ -141,11 +141,11 @@ namespace FCARDIO.Protocol.Door.Test
         #region 按序号采集信息
         private void butTransactionDatabaseByIndex_Click(object sender, EventArgs e)
         {
-            int type = cboe_TransactionDatabaseType2.SelectedIndex;
+            int type = cboe_TransactionDatabaseType3.SelectedIndex;
             int Quantity = int.Parse(txtQuantity.Text.ToString());
             int ReadIndex = int.Parse(txtReadIndex0.Text.ToString());
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Parameter((cboe_TransactionDatabaseType2.SelectedIndex + 1), Quantity, ReadIndex);
+            var par = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Parameter((cboe_TransactionDatabaseType3.SelectedIndex + 1), ReadIndex, Quantity);
             var cmd = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>

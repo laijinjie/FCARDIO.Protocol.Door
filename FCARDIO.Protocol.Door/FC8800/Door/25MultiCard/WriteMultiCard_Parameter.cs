@@ -234,6 +234,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             return true;
         }
 
+        /// <summary>
+        /// 检查卡组
+        /// </summary>
+        /// <param name="checkGroup"></param>
+
         private void CheckGroup(List<List<UInt64>> checkGroup)
         {
             foreach (var group in checkGroup)
@@ -242,6 +247,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             }
         }
 
+        /// <summary>
+        /// 检查卡组数据
+        /// </summary>
+        /// <param name="group"></param>
         private void CheckGroup(List<UInt64> group)
         {
             if (group == null)

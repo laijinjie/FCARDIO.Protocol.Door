@@ -9,7 +9,7 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Door.FC8800.Holiday
 {
     /// <summary>
-    /// 添加节假日
+    /// 删除节假日
     /// </summary>
     public class DeleteHoliday : FC8800Command_WriteParameter
     {
@@ -22,6 +22,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
 
         }
 
+        /// <summary>
+        /// 检查参数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
             DeleteHoliday_Parameter model = value as DeleteHoliday_Parameter;
@@ -33,6 +38,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             return model.checkedParameter();
         }
 
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
         protected override void CreatePacket0()
         {
             DeleteHoliday_Parameter model = _Parameter as DeleteHoliday_Parameter;

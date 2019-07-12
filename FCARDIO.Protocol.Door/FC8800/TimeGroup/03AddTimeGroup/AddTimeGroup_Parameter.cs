@@ -8,20 +8,36 @@ using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
 
 namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
 {
+    /// <summary>
+    /// 添加开门时段 参数
+    /// </summary>
     public class AddTimeGroup_Parameter : AbstractParameter
     {
+        /// <summary>
+        /// 写入索引
+        /// </summary>
         private int writeIndex = 0;
         /// <summary>
         /// 
         /// </summary>
-        public List<WeekTimeGroup> ListWeekTimeGroup { get; private set; }
+        public readonly List<WeekTimeGroup> ListWeekTimeGroup;
+
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="list"></param>
         public AddTimeGroup_Parameter(List<WeekTimeGroup> list)
         {
             ListWeekTimeGroup = list;
         }
+
+        /// <summary>
+        /// 检查参数
+        /// </summary>
+        /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (ListWeekTimeGroup == null || ListWeekTimeGroup.Count == 0)
+            if (ListWeekTimeGroup == null || ListWeekTimeGroup.Count != 64)
             {
                 return false;
             }
@@ -30,9 +46,13 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
 
         public override void Dispose()
         {
-            ListWeekTimeGroup = null;
+            ListWeekTimeGroup.Clear();
         }
 
+        /// <summary>
+        /// 设置写入索引
+        /// </summary>
+        /// <param name="index"></param>
         public void SetWriteIndex(int index)
         {
             if (index < ListWeekTimeGroup.Count)
@@ -41,13 +61,15 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
             }
         }
 
+        /// <summary>
+        /// 将 参数 编码到字节流
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             databuf.WriteByte(writeIndex + 1);
-            //foreach (WeekTimeGroup tg in ListWeekTimeGroup)
-            //{
-            //    tg.GetBytes(databuf);
-            //}
+           
             ListWeekTimeGroup[writeIndex].GetBytes(databuf);
             return databuf;
         }

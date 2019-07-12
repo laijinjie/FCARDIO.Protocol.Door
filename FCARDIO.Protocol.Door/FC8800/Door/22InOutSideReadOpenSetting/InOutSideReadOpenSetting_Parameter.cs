@@ -16,18 +16,25 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InOutSideReadOpenSetting
         /// 门号
         /// 门端口在控制板中的索引号，取值：1-4
         /// </summary>
-        public int DoorNum { get; set; }
+        public int DoorNum;
 
         /// <summary>
-        /// 是否启用语音播报功能
+        /// 是否启用
         /// </summary>
-        public bool Use { get; set; }
+        public bool Use;
 
+        /// <summary>
+        /// 默认构造函数 给继承类使用
+        /// </summary>
         public InOutSideReadOpenSetting_Parameter()
         {
 
         }
-
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="door">门号</param>
+        /// <param name="use">是否启用</param>
         public InOutSideReadOpenSetting_Parameter(byte door, bool use)
         {
             DoorNum = door;
@@ -40,6 +47,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InOutSideReadOpenSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
+           
             return true;
         }
 

@@ -14,6 +14,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
     /// </summary>
     public class ReadMultiCard : FC8800Command_ReadParameter
     {
+        /// <summary>
+        /// 参数
+        /// </summary>
         private ReadMultiCard_Parameter _Par;
 
         /// <summary>

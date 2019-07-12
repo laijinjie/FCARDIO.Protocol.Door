@@ -10,22 +10,25 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
 {
     /// <summary>
-    /// 添加节假日
+    /// 添加开门时段
     /// </summary>
     public class AddTimeGroup : FC8800Command_WriteParameter
     {
+        /// <summary>
+        /// 写入索引
+        /// </summary>
         private int writeIndex = 0;
 
+        /// <summary>
+        /// 总开门时段数
+        /// </summary>
         private int maxCount = 0;
         
         /// <summary>
-        /// 
+        /// 初始化参数
         /// </summary>
         /// <param name="cd"></param>
-        public AddTimeGroup(INCommandDetail cd, AddTimeGroup_Parameter par) : base(cd, par)
-        {
-
-        }
+        public AddTimeGroup(INCommandDetail cd, AddTimeGroup_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数
@@ -73,7 +76,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// <param name="readPacket">收到的数据包</param>
         protected override void CommandNext(INPacket readPacket)
         {
-            //应答：OK
+            //应答
             AddTimeGroup_Parameter model = _Parameter as AddTimeGroup_Parameter;
             if (writeIndex < maxCount)
             {
