@@ -9,10 +9,18 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
 {
     /// <summary>
-    /// 
+    /// 读取多卡组合参数的返回值
     /// </summary>
     public class MultiCard_Result : WriteMultiCard_Parameter, INCommandResult
     {
+        /// <summary>
+        /// 初始化多卡组
+        /// </summary>
+        /// <param name="bOnlyGroupFix"></param>
+        public MultiCard_Result(bool bOnlyGroupFix):base(bOnlyGroupFix)
+        {
+            
+        }
         /// <summary>
         /// 将 字节流  转换为 多卡开门检测模式参数
         /// </summary>
@@ -25,7 +33,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                 throw new ArgumentException("buf Error!");
             }
             //DoorNum = databuf.ReadByte();
-            Mode = databuf.ReadByte();
+            ReaderWaitMode = databuf.ReadByte();
             AntiPassback = databuf.ReadByte();
             return databuf;
         }

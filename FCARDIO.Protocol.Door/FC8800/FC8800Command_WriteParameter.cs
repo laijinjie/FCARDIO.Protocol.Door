@@ -1,4 +1,5 @@
-﻿using FCARDIO.Core.Command;
+﻿using DotNetty.Buffers;
+using FCARDIO.Core.Command;
 using FCARDIO.Protocol.FC8800;
 using System;
 using System.Collections.Generic;
@@ -50,5 +51,61 @@ namespace FCARDIO.Protocol.Door.FC8800
         {
             return;
         }
+
+        /// <summary>
+        /// 获取一个指定大小的Buf
+        /// </summary>
+        /// <param name="iSize"></param>
+        /// <returns></returns>
+        protected IByteBuffer GetNewCmdDataBuf(int iSize)
+        {
+            var buf = FCPacket?.CmdData;
+            var acl = _Connector.GetByteBufAllocator();
+            buf = acl.Buffer(iSize);
+            return buf;
+        }
+
+        /// <summary>
+        /// 重置命令内容
+        /// </summary>
+        /// <param name="ct">命令类型</param>
+        /// <param name="ci">命令索引</param>
+        /// <param name="cp">命令参数</param>
+        /// <param name="dl">数据长度</param>
+        protected void Packet(byte ct, byte ci, byte cp, uint dl)
+        {
+            FCPacket.CmdType = ct;
+            FCPacket.CmdIndex = ci;
+            FCPacket.CmdPar = cp;
+            FCPacket.DataLen = dl;
+
+        }
+
+
+        /// <summary>
+        /// 重置命令内容
+        /// </summary>
+        /// <param name="ci">命令索引</param>
+        /// <param name="cp">命令参数</param>
+        /// <param name="dl">数据长度</param>
+        protected void Packet(byte ci, byte cp, uint dl)
+        {
+            FCPacket.CmdIndex = ci;
+            FCPacket.CmdPar = cp;
+            FCPacket.DataLen = dl;
+
+        }
+
+        /// <summary>
+        /// 获取当前命令所使用的缓冲区
+        /// </summary>
+        /// <returns></returns>
+        protected IByteBuffer GetCmdBuf()
+        {
+            var buf = FCPacket.CmdData;
+            buf?.Clear();
+            return buf;
+        }
+
     }
 }

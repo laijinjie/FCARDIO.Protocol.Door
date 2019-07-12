@@ -11,38 +11,19 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC89H.Door.MultiCard
 {
+    /// <summary>
+    /// 读多卡参数
+    /// </summary>
     public class ReadMultiCard : FCARDIO.Protocol.Door.FC8800.Door.MultiCard.ReadMultiCard
     {
-        private int mCardCount { get; set; }
-        private int mGroupType { get; set; }
-        private int mGroupNum = 1;
 
-        /// <summary>
-        /// 组号
-        /// </summary>
-        private byte iGroupNum = 1;
         /// <summary>
         /// 读单个门的多卡参数
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="value"></param>
-        public ReadMultiCard(INCommandDetail cd, DoorPort_Parameter value) : base(cd, value) { }
+        public ReadMultiCard(INCommandDetail cd, DoorPort_Parameter value) : base(cd, new ReadMultiCard_Parameter(value.Door, false)) { }
 
-        /// <summary>
-        /// 读取AB组的卡数据
-        /// </summary>
-        /// <param name="group"></param>
-        /// <param name="tmpBuf"></param>
-        protected override void ReadGroupABCard(List<UInt64> group,IByteBuffer tmpBuf)
-        {
-            var index = tmpBuf.ReadByte();
-            while (tmpBuf.ReadableBytes >= 8)
-            {
-                tmpBuf.ReadByte();
-                UInt64 card = (ulong)tmpBuf.ReadLong();
-                group.Add(card);
-            }
-        }
 
         /// <summary>
         /// 命令回应处理
@@ -50,48 +31,23 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.MultiCard
         /// <param name="oPck"></param>
         protected override void CommandNext0(OnlineAccessPacket oPck)
         {
-            IByteBuffer tmpBuf;
 
             switch (Step)
             {
                 case 1://读取 多卡开门检测模式参数
-                    if (CheckResponse(oPck, 3))
-                    {
-                        ReadCheckModeCallblack(oPck.CmdData);
-                    }
-
-                    break;
+                    base.CommandNext0(oPck);
+                    return;
                 case 2: //读取 多卡开门验证方式 的返回
-                    if (CheckResponse(oPck, 4))
-                    {
-                        ReadVerifyType(oPck.CmdData);
-                    }
-
+                    base.CommandNext0(oPck);
                     break;
                 case 3://读取AB组的数据
                     if (CheckResponse(oPck))
                     {
-                        tmpBuf = oPck.CmdData;
-                        mGroupType = tmpBuf.ReadByte();//组类别：0--A组；
-                        iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
-                        mCardCount = tmpBuf.ReadByte();
-                        if (mCardCount == 0)
-                        {
-                            tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
-                            MoveNextGroup(tmpBuf);
-                        }
+                        ReadGroupAB_Step1(oPck.CmdData);
                     }
                     if (CheckResponse(oPck, 0x03, 0x18, 0x53))
                     {
-                        //if (iGroupType != mGroupType)
-                        //{
-                        //    return;
-                        //}
-                        if (iGroupNum != mGroupNum)
-                        {
-                            return;
-                        }
-                        ReadGroupAB(oPck.CmdData);
+                        ReadGroupAB_Step2(oPck.CmdData);
                     }
                     break;
                 case 4://固定组数据
@@ -106,8 +62,87 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.MultiCard
 
         }
 
-        protected override void ReadGroupFix(IByteBuffer tmpBuf)
+        /// <summary>
+        /// 读取AB组的数据
+        /// </summary>
+        /// <param name="tmpBuf"></param>
+        private void ReadGroupAB_Step1(IByteBuffer tmpBuf)
         {
+            var iGroupType = tmpBuf.ReadByte();//组类别：0--A组；
+            var iGroupNum = tmpBuf.ReadByte(); //组号：取值范围 1 - 5；
+            var iCardCount = tmpBuf.ReadByte();
+            if (iGroupType != mGroupType)
+            {
+                return;
+            }
+            if (iGroupNum != mGroupNum)
+            {
+                return;
+            }
+            //查询此分组的容器
+            List<UInt64> group = FindGroupAB();
+
+            if (iCardCount > 0)
+            {   //初始化容器
+                group.Clear();
+                for (int i = 0; i < iCardCount; i++)
+                {
+                    group.Add(0);
+                }
+            }
+
+
+            if (iCardCount == 0)
+            {
+                ReadGroupABNext();
+            }
+
+        }
+
+        /// <summary>
+        /// 接受AB组中组合的卡列表
+        /// </summary>
+        /// <param name="tmpBuf"></param>
+        private void ReadGroupAB_Step2(IByteBuffer tmpBuf)
+        {
+            int iBeginNum = tmpBuf.ReadByte();
+            if (iBeginNum > 0) iBeginNum--;
+            //查询此分组的容器
+            List<UInt64> group = FindGroupAB();
+            int iCount = tmpBuf.ReadableBytes / 9; //计算缓冲中的卡数
+
+
+            for (int i = 0; i < iCount; i++)
+            {
+                tmpBuf.ReadByte();
+                UInt64 card = (UInt64)tmpBuf.ReadLong();
+                group[i + iBeginNum] = card;
+            }
+
+            if(group.Count == (iBeginNum+iCount))
+            {
+                ReadGroupABNext();
+            }
+
+        }
+
+
+        /// <summary>
+        /// 创建读取多卡固定组的命令
+        /// </summary>
+        protected override  void CreateReadGroupFixPacket()
+        {
+            base.CreateReadGroupFixPacket();
+            _ProcessMax = 13;
+
+        }
+        /// <summary>
+        /// 解析读取到的固定组内容
+        /// </summary>
+        /// <param name="tmpBuf"></param>
+        private void ReadGroupFix(IByteBuffer tmpBuf)
+        {
+
             var iDoorPort = tmpBuf.ReadByte();//端口号
             if (mPort != iDoorPort)
             {
@@ -115,40 +150,41 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.MultiCard
             }
             if (mResult.GroupFix == null)
             {
-                mResult.GroupFix = new List<MultiCard_GroupFix>();
-            }
-            int iCount;
-            int iIndex = 1;
+                List<MultiCard_GroupFix> FixGroups = new List<MultiCard_GroupFix>();
+                mResult.GroupFix = FixGroups;
 
-            MultiCard_GroupFix group = new MultiCard_GroupFix();
-            var groupnum = tmpBuf.ReadByte();
-            iCount = tmpBuf.ReadByte();
-            group.GroupType = tmpBuf.ReadByte();
-            var cardList = new List<UInt64>();
-            group.CardList = cardList;
-            if (iCount > 0)
-            {
-                for (int j = 0; j < iCount; j++)
+                for (int i = 1; i <= 10; i++)
                 {
-                    tmpBuf.ReadByte();
-                    cardList.Add((ulong)tmpBuf.ReadLong());
+                    FixGroups.Add(new MultiCard_GroupFix());
                 }
+
+            }
+            
+            int groupNum = tmpBuf.ReadByte();
+            if (groupNum > 10) return;
+
+            _ProcessStep = 3 + groupNum;
+
+            fireCommandProcessEvent();
+
+            MultiCard_GroupFix group = mResult.GroupFix[groupNum-1];
+
+            int iCount = tmpBuf.ReadByte();//卡数
+            group.GroupType = tmpBuf.ReadByte();//模式
+
+            if (group.CardList == null)
+                group.CardList = new List<ulong>();
+            else
+                group.CardList.Clear();
+
+            for (int i = 0; i < iCount; i++)
+            {
+                tmpBuf.ReadByte();
+                UInt64 card = (UInt64)tmpBuf.ReadLong();
+                group.CardList.Add(card);
             }
 
-
-            mResult.GroupFix.Add(group);
-
-            //iIndex += 34;
-            //if (tmpBuf.Capacity < iIndex)
-            //{
-            //    tmpBuf.SetReaderIndex(iIndex);
-            //}
-
-            //for (int i = 1; i <= 10; i++)
-            //{
-
-            //}
-            if (mResult.GroupFix.Count == 10)
+            if (groupNum == 10)
             {
                 CommandCompleted();
             }
@@ -156,101 +192,6 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.MultiCard
             {
                 CommandWaitResponse();
             }
-        }
-
-        private void MoveNextGroup(IByteBuffer tmpBuf)
-        {
-            mGroupNum++;
-            _ProcessStep++;
-            if (mGroupNum == 21)
-            {
-                tmpBuf = null;
-                CommandCompleted();
-                return;
-            }
-            if (mGroupType == WriteMultiCard.GroupTypeA && mGroupNum == 6)
-            {
-                mGroupNum = 1;
-                mGroupType = 1;
-                //mStep = 4;//使命令进入下一个阶段
-            }
-
-            tmpBuf.WriteByte(mGroupType).WriteByte(mGroupNum);
-            Packet(0x03, 0x18, 0x03, 2, tmpBuf);
-            CommandReady();
-        }
-
-        /// <summary>
-        /// 读取AB组的数据
-        /// </summary>
-        /// <param name="tmpBuf"></param>
-        private void ReadGroupAB(IByteBuffer tmpBuf)
-        {
-            if (mResult.GroupA == null)
-            {
-                mResult.GroupA = new List<List<ulong>>();
-                for (int i = 0; i < 5; i++)
-                {
-                    mResult.GroupA.Add(new List<ulong>());
-                }
-            }
-            if (mResult.GroupB == null)
-            {
-                mResult.GroupB = new List<List<ulong>>();
-                for (int i = 0; i < 20; i++)
-                {
-                    mResult.GroupB.Add(new List<ulong>());
-                }
-            }
-
-            List<UInt64> group = null;
-            if (mGroupType == WriteMultiCard.GroupTypeA)
-            {
-                
-                group = mResult.GroupA[mGroupNum - 1];
-            }
-            if (mGroupType == WriteMultiCard.GroupTypeB)
-            {
-                group = mResult.GroupB[mGroupNum - 1];
-            }
-
-
-            if (mCardCount > 0)
-            {
-                ReadGroupABCard(group, tmpBuf);
-            }
-
-            if (mGroupType == WriteMultiCard.GroupTypeA && mResult.GroupA[mGroupNum - 1].Count < mCardCount)
-            {
-                CommandWaitResponse();
-            }
-            else if (mGroupType == WriteMultiCard.GroupTypeB && mResult.GroupB[mGroupNum - 1].Count < mCardCount)
-            {
-                CommandWaitResponse();
-            }
-            else
-            { //读下一个组
-                //var cmdBuf = FCPacket.CmdData;
-                tmpBuf = _Connector.GetByteBufAllocator().Buffer(2);
-                mGroupNum++;
-                if (mGroupType == WriteMultiCard.GroupTypeA && mGroupNum > 5)
-                {
-                    mGroupType = WriteMultiCard.GroupTypeB;
-                    mGroupNum = 1;
-                }
-
-                if (mGroupType == WriteMultiCard.GroupTypeB && mGroupNum > 20)
-                {
-                    tmpBuf = null;
-                    CommandCompleted();
-                    return;
-                }
-
-                tmpBuf.SetByte(mGroupType, mGroupNum);//改变下一包要读的组号
-                CommandReady();
-                //
-            }
-           
         }
 
     }

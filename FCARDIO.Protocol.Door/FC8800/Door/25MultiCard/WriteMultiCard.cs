@@ -11,19 +11,19 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
 {
     /// <summary>
-    /// 写多卡参数
+    /// 写多卡组合参数
     /// </summary>
     public class WriteMultiCard : FC8800Command_WriteParameter
     {
         /// <summary>
         /// 多卡参数
         /// </summary>
-        private WriteMultiCard_Parameter mMultiCardPar ;
+        protected WriteMultiCard_Parameter mMultiCardPar;
 
         /// <summary>
         /// 当前命令步骤
         /// </summary>
-        protected int Step { get; set; }
+        protected int Step;
 
 
         /// <summary>
@@ -51,11 +51,17 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="value"></param>
-        public WriteMultiCard(INCommandDetail cd, WriteMultiCard_Parameter value) : base(cd, value) {
-            
+        public WriteMultiCard(INCommandDetail cd, WriteMultiCard_Parameter value) : base(cd, value)
+        {
+
             mMultiCardPar = value;
         }
 
+        /// <summary>
+        /// 检查多卡组合参数合法性
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
             WriteMultiCard_Parameter model = value as WriteMultiCard_Parameter;
@@ -69,11 +75,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         protected override void CreatePacket0()
         {
             //发送 设置多卡开门检测模式参数
-            Packet(0x03, 0x17, 0x00, 3, mMultiCardPar.CheckMode_GetBytes( GetCmdDataBuf(3)));
+            var buf = GetNewCmdDataBuf(404);
+            Packet(0x03, 0x17, 0x00, 3, mMultiCardPar.CheckMode_GetBytes(buf));
             Step = 1;
-            if (mMultiCardPar.mProtocolType.Contains("MC58"))
+            IniPacketProcess();
+        }
+
+        /// <summary>
+        /// 初始化指令的步骤数
+        /// </summary>
+        protected virtual void IniPacketProcess()
+        {
+            if (mMultiCardPar.IsOnlyGroupFix)
             {
-                _ProcessMax = 2;
+                _ProcessMax = 11;
             }
             else
             {
@@ -93,6 +108,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             }
         }
 
+
+
         /// <summary>
         /// 接收到响应，开始处理下一步命令
         /// </summary>
@@ -103,79 +120,109 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             switch (Step)
             {
                 case 1://二十六、设置 多卡开门验证方式
-                    Packet(0x03, 0x18, 0x00, 4, mMultiCardPar.VerifyType_GetBytes(GetCmdDataBuf(4)));
-                    _ProcessStep = 2;
-                    if (mMultiCardPar.mProtocolType.Contains("MC58"))
+                    if (CheckResponse(oPck))
                     {
-                        CommandCompleted();
+                        WriteCheckModeCallBlack();
                     }
-                    else
-                    {
-                        CommandReady();//设定命令当前状态为准备就绪，等待发送
-                        Step = 2;
-                    }
-                   
                     break;
                 case 2:
-                    //检查需要发送的内容
-                    switch (mMultiCardPar.VerifyType)
+                    if (CheckResponse(oPck))
                     {
-                        case 1://多卡AB组
-                            //开始写A组
-                            mGroupType = GroupTypeA;
-                            mGroupNum = 1;
-                            WriteMultiCard_GroupAB();
-
-                            Step = 3;
-                            break;
-                        case 2://固定组合
-                            //开始写第一个固定组合
-                            mGroupNum = 1;
-                            WriteMultiCard_GroupFix();
-                            Step = 4;
-                            break;
-                        default://其他方式
-                            CommandCompleted();
-                            break;
+                        WriteVerifyTypeCallBlack();
                     }
-                    
                     break;
                 case 3://继续写AB组
-                    mGroupNum++;
-                    if( mGroupType == GroupTypeA &&  mGroupNum>5)
+                    if (CheckResponse(oPck))
                     {
-                        mGroupType = GroupTypeB;
-                        mGroupNum = 1;
+                        WriteMultiCard_GroupABCallBlack();
                     }
-
-                    if(mGroupType == GroupTypeB && mGroupNum > 20)
-                    {
-                        CommandCompleted();
-                        return;
-                    }
-
-                    WriteMultiCard_GroupAB();
-
-
-
                     break;
                 case 4://继续写固定组
-                    mGroupNum++;
-                    if ( mGroupNum > 10)
+                    if (CheckResponse(oPck))
                     {
-                        CommandCompleted();
-                        return;
+                        WriteMultiCard_GroupFixCallBlack();
                     }
-                    WriteMultiCard_GroupFix();
                     break;
                 default:
                     break;
             }
+        }
 
+        /// <summary>
+        /// 写多卡开门检测模式的回调
+        /// </summary>
+        protected virtual void WriteCheckModeCallBlack()
+        {
+            _ProcessStep = 2;
+
+            if (mMultiCardPar.IsOnlyGroupFix)
+            {
+                //写固定多卡组合
+                mGroupNum = 1;
+                WriteMultiCard_GroupFix();
+                Step = 4;
+            }
+            else
+            {
+                var buf = GetCmdBuf();
+                mMultiCardPar.VerifyType_GetBytes(buf);
+                //写多卡开门验证方式
+                Packet(0x18, 0x00, 4);
+                Step = 2;
+            }
+            CommandReady();//设定命令当前状态为准备就绪，等待发送
 
         }
 
+        /// <summary>
+        /// 写多卡开门验证方式的回调
+        /// </summary>
+        protected virtual void WriteVerifyTypeCallBlack()
+        {
+            _ProcessStep = 3;
+            //检查需要发送的内容
+            switch (mMultiCardPar.VerifyType)
+            {
+                case 1://多卡AB组
+                       //开始写A组
+                    mGroupType = GroupTypeA;
+                    mGroupNum = 1;
+                    WriteMultiCard_GroupAB();
 
+                    Step = 3;
+                    break;
+                case 2://固定组合
+                       //开始写第一个固定组合
+                    mGroupNum = 1;
+                    WriteMultiCard_GroupFix();
+                    Step = 4;
+                    break;
+                default://其他方式
+                    CommandCompleted();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 写多卡AB组合成功的回调函数
+        /// </summary>
+        protected virtual void WriteMultiCard_GroupABCallBlack()
+        {
+            mGroupNum++;
+            if (mGroupType == GroupTypeA && mGroupNum > 5)
+            {
+                mGroupType = GroupTypeB;
+                mGroupNum = 1;
+            }
+
+            if (mGroupType == GroupTypeB && mGroupNum > 20)
+            {
+                CommandCompleted();
+                return;
+            }
+
+            WriteMultiCard_GroupAB();
+        }
 
         /// <summary>
         /// 二十七 多卡开门A组设置
@@ -183,18 +230,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         protected virtual void WriteMultiCard_GroupAB()
         {
             //先找到对应的组
-            List<UInt64> group=null;
+            List<UInt64> group = null;
             int iMax = 50;
             int iCount = 0;
 
-            if (mGroupType == GroupTypeA) group = mMultiCardPar.GroupA[mGroupNum-1];
+            if (mGroupType == GroupTypeA) group = mMultiCardPar.GroupA[mGroupNum - 1];
             if (mGroupType == GroupTypeB)
             {
                 iMax = 100;
                 group = mMultiCardPar.GroupB[mGroupNum - 1];
             }
-                    
-            var buf = GetCmdDataBuf(403);
+
+            var buf = GetCmdBuf();
             iCount = group.Count;
             if (iCount > iMax) iCount = iMax;
 
@@ -207,12 +254,29 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
                 buf.WriteInt((int)group[i]);
             }
 
-            Packet(0x03, 0x18, 0x02, (uint)buf.ReadableBytes, buf);
+
+            Packet(0x18, 0x02, (uint)buf.ReadableBytes);
+
+
             _ProcessStep++;
             CommandReady();
 
         }
 
+
+        /// <summary>
+        /// 固定组多卡写成功后的回调
+        /// </summary>
+        protected virtual void WriteMultiCard_GroupFixCallBlack()
+        {
+            mGroupNum++;
+            if (mGroupNum > 10)
+            {
+                CommandCompleted();
+                return;
+            }
+            WriteMultiCard_GroupFix();
+        }
 
         /// <summary>
         /// 写入固定多卡组
@@ -228,22 +292,35 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             Fix = mMultiCardPar.GroupFix[mGroupNum - 1];
             group = Fix.CardList;
 
-            var buf = GetCmdDataBuf(36);
+            var buf = GetCmdBuf();
             iCount = group.Count;
             if (iCount > iMax) iCount = iMax;
 
-            buf.WriteByte(mMultiCardPar.DoorNum);
-            buf.WriteByte(mGroupNum);
-            buf.WriteByte(iCount);
-            buf.WriteByte(Fix.GroupType);
+            buf.WriteByte(mMultiCardPar.DoorNum);//端口号
+            buf.WriteByte(mGroupNum);//组号
+            buf.WriteByte(iCount);//卡数
+            buf.WriteByte(Fix.GroupType);//模式
 
             for (int i = 0; i < iCount; i++)
             {
                 buf.WriteInt((int)group[i]);
             }
 
+            //不足8个，补0
+            if (iCount != 8)
+            {
+                iCount = 8 - iCount;
+                for (int i = 0; i < iCount; i++)
+                {
+                    buf.WriteInt(0);
+                }
+            }
 
-            Packet(0x03, 0x12, 0x02, (uint)buf.ReadableBytes, buf);
+
+
+
+            Packet(0x12, 0x02, (uint)buf.ReadableBytes);
+
             _ProcessStep++;
             CommandReady();
 
@@ -259,36 +336,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            
+
         }
 
-        /// <summary>
-        /// 获取一个指定大小的Buf
-        /// </summary>
-        /// <param name="iSize"></param>
-        /// <returns></returns>
-        protected IByteBuffer GetCmdDataBuf(int iSize)
-        {
-            var buf = FCPacket?.CmdData;
-            var acl = _Connector.GetByteBufAllocator();
-            
-            if(buf==null)
-            {
-                
-                buf = acl.Buffer(iSize);
 
-            }
-            buf.Clear();
-            if (buf.WritableBytes < iSize )
-            {
-                buf = acl.Buffer(iSize);
-            }
-            else
-            {
-                buf = acl.Buffer(iSize);
-            }
-           
-            return buf;
-        }
+
     }
 }

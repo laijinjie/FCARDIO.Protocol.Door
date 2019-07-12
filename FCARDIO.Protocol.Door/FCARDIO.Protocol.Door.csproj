@@ -122,6 +122,7 @@
     <Compile Include="FC8800\Data\TransactionDetail.cs" />
     <Compile Include="FC8800\Door\25MultiCard\MultiCard_Result.cs" />
     <Compile Include="FC8800\Door\25MultiCard\ReadMultiCard.cs" />
+    <Compile Include="FC8800\Door\25MultiCard\ReadMultiCard_Parameter.cs" />
     <Compile Include="FC8800\Door\25MultiCard\WriteMultiCard.cs" />
     <Compile Include="FC8800\Door\25MultiCard\WriteMultiCard_Parameter.cs" />
     <Compile Include="FC8800\Door\28AreaAntiPassback\ReadAreaAntiPassback.cs" />
@@ -432,9 +433,9 @@
     <Compile Include="FC8800\SystemParameter\DoorLimit.cs" />
     <Compile Include="FC8800\SystemParameter\DoorPortDetail.cs" />
     <Compile Include="FC8800\Utility\StringUtility.cs" />
-    <Compile Include="FC89H\Door\25MultiCard\MultiCard_Result.cs" />
     <Compile Include="FC89H\Door\25MultiCard\ReadMultiCard.cs" />
     <Compile Include="FC89H\Door\25MultiCard\WriteMultiCard.cs" />
+    <Compile Include="FC89H\Door\25MultiCard\WriteMultiCard_Parameter.cs" />
     <Compile Include="FC89H\Password\04AddPassword\AddPassword_Parameter.cs" />
     <Compile Include="FC89H\Password\PasswordDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2556,7 +2556,7 @@ namespace FCARDIO.Protocol.Door.Test
                 MultiCard_Result result = cmde.Command.getResult() as MultiCard_Result;
                 Invoke(() =>
                 {
-                    cmbManyCardOpenMode.SelectedIndex = result.Mode;
+                    cmbManyCardOpenMode.SelectedIndex = result.ReaderWaitMode;
                     cmbAntiPassback.SelectedIndex = result.AntiPassback;
                     cmbVerifyType.SelectedIndex = result.VerifyType;
                     txtAGroupCount.Text = result.AGroupCount.ToString();
