@@ -1,42 +1,28 @@
-﻿using System;
+﻿using DotNetty.Buffers;
+using FCARDIO.Core.Command;
+using FCARDIO.Protocol.OnlineAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
 
 namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
 {
     /// <summary>
-    /// FC88\MC58 将卡片列表写入到控制器排序区 
+    /// 将卡片列表写入到控制器排序区 
     /// </summary>
-    public class WriteCardListBySort : FC8800Command
+    /// <typeparam name="T"></typeparam>
+    public abstract class WriteCardListBySortBase<T> : WriteCardListBase<T>
+        where T : Data.CardDetailBase
     {
-        private int mStep;//当前命令进度
-        private int mWriteCardIndex;//指示当前命令进行的步骤
-        private Queue<IByteBuffer> mBufs;
-
         /// <summary>
         /// 初始化命令结构
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="perameter"></param>
-        public WriteCardListBySort(INCommandDetail cd, WriteCardListBySort_Parameter perameter) : base(cd, perameter) { }
+        public WriteCardListBySortBase(INCommandDetail cd, WriteCardList_Parameter_Base<T> perameter) : base(cd, perameter) { }
 
-        /// <summary>
-        /// 检查参数
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        protected override bool CheckCommandParameter(INCommandParameter value)
-        {
-            WriteCardListBySort_Parameter model = value as WriteCardListBySort_Parameter;
-            if (model == null) return false;
-            return model.checkedParameter();
-        }
 
         /// <summary>
         /// 创建一个通讯指令,准备开始写排序区
@@ -46,8 +32,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
             mStep = 1;
             Packet(0x07, 0x07, 0x00);
 
-            WriteCardListBySort_Parameter model = _Parameter as WriteCardListBySort_Parameter;
-            _ProcessMax = model.CardList.Count  + 2;
+            _ProcessMax = _CardPar.CardList.Count + 2;
             _ProcessStep = 1;
         }
 
@@ -66,9 +51,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
                         //硬件已准备就绪，开始写入卡
 
                         //创建一个通讯缓冲区
-                        var acl = _Connector.GetByteBufAllocator();
-                        var buf = acl.Buffer((10 * 0x21) + 8);
-
+                        var buf = GetNewCmdDataBuf(MaxBufSize);
+                        WriteCardDetailToBuf(buf);
                         Packet(0x07, 0x07, 0x01, (uint)buf.ReadableBytes, buf);
                         CommandReady();//设定命令当前状态为准备就绪，等待发送
                         mStep = 2;//使命令进入下一个阶段
@@ -89,8 +73,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
                         {
                             mBufs = new Queue<IByteBuffer>();
                         }
-
-                        //mBufs.Enqueue(oPck.CmdData);
+                        oPck.CmdData.Retain();
+                        mBufs.Enqueue(oPck.CmdData);
 
                         //继续发下一包
                         CommandNext1(oPck);
@@ -99,6 +83,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
                 case 3:
                     if (CheckResponse_OK(oPck))
                     {
+                        Create_Result();
+
                         //命令全部发送完毕
                         CommandCompleted();
                     }
@@ -108,13 +94,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
             }
 
         }
+
+
         /// <summary>
         /// 处理返回值
         /// </summary>
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-
             if (IsWriteOver())
             {
                 //使命令进入下一个阶段
@@ -126,73 +113,22 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
             else
             {
                 //未发送完毕，继续发送
-                var buf = FCPacket.CmdData;
-                buf.Clear();
+                var buf = GetCmdBuf();
                 WriteCardDetailToBuf(buf);
                 FCPacket.DataLen = (UInt32)buf.ReadableBytes;
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
             }
         }
 
-
-
         /// <summary>
-        /// 将卡详情写入到ByteBuf中
+        /// 写入数据头
         /// </summary>
-        private void WriteCardDetailToBuf(IByteBuffer buf)
+        /// <param name="buf">数据缓冲区</param>
+        /// <param name="iPacketCardCount">本次需要写入的卡号数量</param>
+        protected override void WritePacketHeadToBuf(IByteBuffer buf, int iPacketCardCount)
         {
-            WriteCardListBySort_Parameter model = _Parameter as WriteCardListBySort_Parameter;
-            var lst = model.CardList;
-            int iCount = lst.Count;//获取列表总长度
-            iCount = iCount - mWriteCardIndex;//计算未上传总数
-
-            int iLen = iCount;
-            if (iLen > 10)
-            {
-                iLen = 10;
-            }
-
             buf.WriteInt(mWriteCardIndex + 1);//指示此次写入的卡起始序号
-            buf.WriteInt(iLen);//指示此包包含的卡数量
-            for (int i = 0; i < iLen; i++)
-            {
-                var card = lst[mWriteCardIndex + i];
-                card.GetBytes(buf);
-            }
-
-            mWriteCardIndex += iLen;
-            _ProcessStep +=iLen;
-        }
-
-
-
-        /// <summary>
-        /// 检查是否已写完所有卡
-        /// </summary>
-        /// <returns></returns>
-        private bool IsWriteOver()
-        {
-            WriteCardListBySort_Parameter model = _Parameter as WriteCardListBySort_Parameter;
-            int iCount = model.CardList.Count;//获取列表总长度
-
-            return (iCount - mWriteCardIndex) == 0;
-        }
-
-
-
-        /// <summary>
-        /// 命令重发时需要处理的函数
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
-        /// <summary>
-        /// 命令释放时需要处理的函数
-        /// </summary>
-        protected override void Release1()
-        {
-            return;
+            buf.WriteInt(iPacketCardCount);//指示此包包含的卡数量
         }
     }
 }

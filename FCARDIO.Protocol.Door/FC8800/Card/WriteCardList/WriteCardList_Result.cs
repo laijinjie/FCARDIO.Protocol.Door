@@ -1,39 +1,35 @@
-﻿using System;
+﻿using FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 using FCARDIO.Core.Command;
-using System.Collections;
-using FCARDIO.Protocol.Door.FC8800.Data;
 
-
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
-    /// 将卡片列表写入到控制器非排序区
+    /// 将卡片列表写入到控制器非排序区的返回值
     /// </summary>
-    public class WriteCardListBySequence_Result: INCommandResult
+    public class WriteCardList_Result : INCommandResult
     {
         /// <summary>
-        /// 数量
+        /// 无法写入的卡数量
         /// </summary>
-        public int FailTotal;
+        public readonly int FailTotal;
 
         /// <summary>
-        /// 卡列表
+        /// 无法写入的卡列表
         /// </summary>
-        public List<FC8800.Data.CardDetail> CardList;
-
-        public WriteCardListBySequence_Result() { }
+        public  List<UInt64> CardList;
 
         /// <summary>
         /// 创建结构 
         /// </summary>
         /// <param name="failtotal">卡数量</param>
         /// <param name="cardList">卡列表</param>
-        public WriteCardListBySequence_Result(int failtotal, List<FC8800.Data.CardDetail> cardList)
+        public WriteCardList_Result(int failtotal, List<UInt64> cardList)
         {
             FailTotal = failtotal;
             CardList = cardList;
@@ -44,6 +40,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// </summary>
         public void Dispose()
         {
+            CardList?.Clear();
             CardList = null;
         }
 

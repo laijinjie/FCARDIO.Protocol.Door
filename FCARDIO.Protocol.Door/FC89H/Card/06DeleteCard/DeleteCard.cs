@@ -1,19 +1,17 @@
-﻿using System;
+﻿using DotNetty.Buffers;
+using FCARDIO.Core.Command;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
+namespace FCARDIO.Protocol.Door.FC89H.Card.DeleteCard
 {
     /// <summary>
-    /// FC88\MC58 将卡片列表从到控制器中删除
+    ///  FC89H 将卡片列表从到控制器中删除
     /// </summary>
-    public class DeleteCard : DeleteCardBase<Data.CardDetail>
+    public class DeleteCard : FC8800.Card.DeleteCard.DeleteCardBase<Data.CardDetail>
     {
 
 
@@ -25,7 +23,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
         public DeleteCard(INCommandDetail cd, DeleteCard_Parameter parameter) : base(cd, parameter)
         {
             mPacketCardMax = 20;
-            MaxBufSize = (mPacketCardMax * 4) + 4;
+            MaxBufSize = (mPacketCardMax * 9) + 4;
         }
 
 
@@ -38,7 +36,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
         protected override void WriteCardBodyToBuf0(Data.CardDetail card, IByteBuffer buf)
         {
             buf.WriteByte(0);
-            buf.WriteInt((int)card.CardData);
+            buf.WriteLong((long)card.CardData);
         }
 
 

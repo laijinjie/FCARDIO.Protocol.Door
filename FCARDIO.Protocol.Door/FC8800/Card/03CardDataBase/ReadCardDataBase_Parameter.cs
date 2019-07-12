@@ -7,17 +7,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
     /// 读取卡片数据库中的所有卡数据
     /// </summary>
     public class ReadCardDataBase_Parameter
-        :AbstractParameter
+        : AbstractParameter
     {
         /// <summary>
         /// 带读取的卡片数据类型
-        /// 1 &emsp; 排序卡区域
-        /// 2 &emsp; 非排序卡区域 
-        /// 3 &emsp; 所有区域 
+        /// 1--排序卡区域   ；
+        /// 2--非排序卡区域 ；
+        /// 3--所有区域     ；
         /// </summary>
-        public int CardType;
-
-        public ReadCardDataBase_Parameter() { }
+        public int CardType = 3;
 
         /// <summary>
         /// 创建结构
@@ -34,6 +32,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if(CardType<1 || CardType > 3)
+            {
+                throw new ArgumentException("CardType Error!");
+            }
             return true;
         }
 

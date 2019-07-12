@@ -107,13 +107,18 @@
     <Compile Include="FC8800\Card\04CardDetail\ReadCardDetail.cs" />
     <Compile Include="FC8800\Card\04CardDetail\ReadCardDetail_Parameter.cs" />
     <Compile Include="FC8800\Card\04CardDetail\ReadCardDetail_Result.cs" />
-    <Compile Include="FC8800\Card\05CardListBySequence\WriteCardListBySequence.cs" />
-    <Compile Include="FC8800\Card\05CardListBySequence\WriteCardListBySequence_Parameter.cs" />
-    <Compile Include="FC8800\Card\05CardListBySequence\WriteCardListBySequence_Result.cs" />
+    <Compile Include="FC8800\Card\06DeleteCard\DeleteCardBase.cs" />
+    <Compile Include="FC8800\Card\WriteCardList\05CardListBySequence\WriteCardListBySequence.cs" />
+    <Compile Include="FC8800\Card\WriteCardList\05CardListBySequence\WriteCardListBySequenceBase.cs" />
+    <Compile Include="FC8800\Card\WriteCardList\05CardListBySequence\WriteCardListBySequence_Parameter.cs" />
     <Compile Include="FC8800\Card\06DeleteCard\DeleteCard.cs" />
     <Compile Include="FC8800\Card\06DeleteCard\DeleteCard_Parameter.cs" />
-    <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort.cs" />
-    <Compile Include="FC8800\Card\07CardListBySort\WriteCardListBySort_Parameter.cs" />
+    <Compile Include="FC8800\Card\WriteCardList\07CardListBySort\WriteCardListBySort.cs" />
+    <Compile Include="FC8800\Card\WriteCardList\07CardListBySort\WriteCardListBySortBase.cs" />
+    <Compile Include="FC8800\Card\WriteCardList\07CardListBySort\WriteCardListBySort_Parameter.cs" />
+    <Compile Include="FC8800\Card\WriteCardList\WriteCardListBase.cs" />
+    <Compile Include="FC8800\Card\WriteCardList\WriteCardList_Parameter_Base.cs" />
+    <Compile Include="FC8800\Card\WriteCardList\WriteCardList_Result.cs" />
     <Compile Include="FC8800\Data\CardDetailBase.cs" />
     <Compile Include="FC8800\Data\TimeGroup\ReaderWork\DayTimeGroup_ReaderWork.cs" />
     <Compile Include="FC8800\Data\TimeGroup\ReaderWork\TimeSegment_ReaderWork.cs" />
@@ -433,6 +438,15 @@
     <Compile Include="FC8800\SystemParameter\DoorLimit.cs" />
     <Compile Include="FC8800\SystemParameter\DoorPortDetail.cs" />
     <Compile Include="FC8800\Utility\StringUtility.cs" />
+    <Compile Include="FC89H\Card\03CardDataBase\ReadCardDataBase.cs" />
+    <Compile Include="FC89H\Card\04CardDetail\ReadCardDetail.cs" />
+    <Compile Include="FC89H\Card\05CardListBySequence\WriteCardListBySequence.cs" />
+    <Compile Include="FC89H\Card\05CardListBySequence\WriteCardListBySequence_Parameter.cs" />
+    <Compile Include="FC89H\Card\06DeleteCard\DeleteCard.cs" />
+    <Compile Include="FC89H\Card\06DeleteCard\DeleteCard_Parameter.cs" />
+    <Compile Include="FC89H\Card\07CardListBySort\WriteCardListBySort.cs" />
+    <Compile Include="FC89H\Card\07CardListBySort\WriteCardListBySort_Parameter.cs" />
+    <Compile Include="FC89H\Data\CardDetail.cs" />
     <Compile Include="FC89H\Door\25MultiCard\ReadMultiCard.cs" />
     <Compile Include="FC89H\Door\25MultiCard\WriteMultiCard.cs" />
     <Compile Include="FC89H\Door\25MultiCard\WriteMultiCard_Parameter.cs" />
@@ -450,5 +464,6 @@
   <ItemGroup>
     <Folder Include="FC89H\Card\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

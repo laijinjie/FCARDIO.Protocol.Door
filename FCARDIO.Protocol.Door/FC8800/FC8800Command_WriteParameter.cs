@@ -59,9 +59,8 @@ namespace FCARDIO.Protocol.Door.FC8800
         /// <returns></returns>
         protected IByteBuffer GetNewCmdDataBuf(int iSize)
         {
-            var buf = FCPacket?.CmdData;
             var acl = _Connector.GetByteBufAllocator();
-            buf = acl.Buffer(iSize);
+            IByteBuffer buf = acl.Buffer(iSize);
             return buf;
         }
 

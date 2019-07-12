@@ -17,7 +17,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
     public class ReadCardDataBase : FC8800Command_ReadParameter
     {
         private int mStep;//指示当前命令进行的步骤
-        //private Queue<IByteBuffer> mBufs;
         /// <summary>
         /// 读取到的节假日缓冲
         /// </summary>
