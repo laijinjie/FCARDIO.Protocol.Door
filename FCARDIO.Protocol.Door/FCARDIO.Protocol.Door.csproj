@@ -172,9 +172,7 @@
     <Compile Include="FC8800\Password\04AddPassword\AddPassword_Parameter.cs" />
     <Compile Include="FC8800\Password\05DeletePassword\DeletePassword.cs" />
     <Compile Include="FC8800\Password\05DeletePassword\DeletePassword_Parameter.cs" />
-    <Compile Include="FC8800\Password\IPasswordDetailList.cs" />
     <Compile Include="FC8800\Password\PasswordDetail.cs" />
-    <Compile Include="FC8800\Password\PasswordDetailList.cs" />
     <Compile Include="FC8800\SystemParameter\14SearchControltor\SearchControltor_Result.cs" />
     <Compile Include="FC8800\SystemParameter\15CacheContent\CacheContent_Parameter.cs" />
     <Compile Include="FC8800\SystemParameter\15CacheContent\CacheContent_Result.cs" />
@@ -437,9 +435,6 @@
     <Compile Include="FC89H\Door\25MultiCard\MultiCard_Result.cs" />
     <Compile Include="FC89H\Door\25MultiCard\ReadMultiCard.cs" />
     <Compile Include="FC89H\Door\25MultiCard\WriteMultiCard.cs" />
-    <Compile Include="FC89H\Password\03ReadAllPassword\ReadAllPassword.cs" />
-    <Compile Include="FC89H\Password\03ReadAllPassword\ReadAllPassword_Result.cs" />
-    <Compile Include="FC89H\Password\04AddPassword\AddPassword.cs" />
     <Compile Include="FC89H\Password\04AddPassword\AddPassword_Parameter.cs" />
     <Compile Include="FC89H\Password\PasswordDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

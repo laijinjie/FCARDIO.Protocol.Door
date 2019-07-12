@@ -10,16 +10,16 @@ namespace FCARDIO.Protocol.Door.FC89H.Password.AddPassword
     /// <summary>
     /// 添加密码参数
     /// </summary>
-    public class AddPassword_Parameter : FC8800.Password.AddPassword_Parameter<PasswordDetail>
+    public class AddPassword_Parameter : FC8800.Password.AddPassword_Parameter<FC8800.Password.PasswordDetail>
     {
         /// <summary>
         /// 密码集合
         /// </summary>
         //public List<PasswordDetail> ListPassword { get; private set; }
-        public AddPassword_Parameter(List<PasswordDetail> list) : base(null)
+        public AddPassword_Parameter(List<FC8800.Password.PasswordDetail> list) : base(list)
         {
 
-            ListPassword = list;
+            //ListPassword = list;
         }
 
         public override bool checkedParameter()
@@ -43,7 +43,7 @@ namespace FCARDIO.Protocol.Door.FC89H.Password.AddPassword
                 {
                     return false;
                 }
-                if (item.Expiry <= DateTime.MinValue || item.Expiry >= DateTime.MinValue)
+                if (item.Expiry == DateTime.MinValue || item.Expiry >= DateTime.MaxValue)
                 {
                     return false;
                 }

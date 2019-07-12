@@ -55,6 +55,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 {
                     return false;
                 }
+                if (iOut < 0)
+                {
+                    return false;
+                }
             }
             return true;
         }

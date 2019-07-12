@@ -35,9 +35,6 @@
             this.butClearPassword = new DevComponents.DotNetBar.ButtonX();
             this.butReadAllPassword = new DevComponents.DotNetBar.ButtonX();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Doors = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbReverse = new System.Windows.Forms.CheckBox();
             this.btnClearList = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -67,6 +64,11 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dtpTime = new System.Windows.Forms.DateTimePicker();
+            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Doors = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OpenTimes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -182,7 +184,9 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Selected,
             this.Password,
-            this.Doors});
+            this.Doors,
+            this.OpenTimes,
+            this.Expiry});
             this.dataGridView1.Location = new System.Drawing.Point(12, 102);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -190,29 +194,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(590, 412);
             this.dataGridView1.TabIndex = 26;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_CellMouseClick);
-            // 
-            // Selected
-            // 
-            this.Selected.DataPropertyName = "Selected";
-            this.Selected.HeaderText = "选择";
-            this.Selected.Name = "Selected";
-            this.Selected.ReadOnly = true;
-            this.Selected.Width = 50;
-            // 
-            // Password
-            // 
-            this.Password.DataPropertyName = "Password";
-            this.Password.HeaderText = "密码";
-            this.Password.Name = "Password";
-            this.Password.ReadOnly = true;
-            // 
-            // Doors
-            // 
-            this.Doors.DataPropertyName = "Doors";
-            this.Doors.HeaderText = "有效门";
-            this.Doors.Name = "Doors";
-            this.Doors.ReadOnly = true;
-            this.Doors.Width = 130;
             // 
             // cbReverse
             // 
@@ -497,6 +478,43 @@
             this.dtpTime.Size = new System.Drawing.Size(55, 21);
             this.dtpTime.TabIndex = 48;
             // 
+            // Selected
+            // 
+            this.Selected.DataPropertyName = "Selected";
+            this.Selected.HeaderText = "选择";
+            this.Selected.Name = "Selected";
+            this.Selected.ReadOnly = true;
+            this.Selected.Width = 50;
+            // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "密码";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            // 
+            // Doors
+            // 
+            this.Doors.DataPropertyName = "Doors";
+            this.Doors.HeaderText = "有效门";
+            this.Doors.Name = "Doors";
+            this.Doors.ReadOnly = true;
+            this.Doors.Width = 130;
+            // 
+            // OpenTimes
+            // 
+            this.OpenTimes.DataPropertyName = "OpenTimes";
+            this.OpenTimes.HeaderText = "有效期";
+            this.OpenTimes.Name = "OpenTimes";
+            this.OpenTimes.ReadOnly = true;
+            // 
+            // Expiry
+            // 
+            this.Expiry.DataPropertyName = "Expiry";
+            this.Expiry.HeaderText = "有效期";
+            this.Expiry.Name = "Expiry";
+            this.Expiry.ReadOnly = true;
+            // 
             // frmPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -582,5 +600,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
         private System.Windows.Forms.DataGridViewTextBoxColumn Password;
         private System.Windows.Forms.DataGridViewTextBoxColumn Doors;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OpenTimes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Expiry;
     }
 }

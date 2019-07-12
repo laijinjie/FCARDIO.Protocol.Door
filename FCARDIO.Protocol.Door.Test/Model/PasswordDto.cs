@@ -10,6 +10,16 @@ namespace FCARDIO.Protocol.Door.Test.Model
     public class PasswordDto
     {
 
+        /// <summary>
+        /// 开门次数
+        /// </summary>
+        public int OpenTimes { get; set; }
+
+        /// <summary>
+        /// 有效期
+        /// </summary>
+        public DateTime Expiry { get; set; }
+
         public bool Selected { get; set; }
 
 

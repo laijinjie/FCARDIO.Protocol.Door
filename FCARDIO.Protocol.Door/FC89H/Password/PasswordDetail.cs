@@ -10,16 +10,7 @@ namespace FCARDIO.Protocol.Door.FC89H.Password
 {
     public class PasswordDetail : FC8800.Password.PasswordDetail
     {
-        /// <summary>
-        /// 开门次数
-        /// </summary>
-        public int OpenTimes { get; set; }
-
-        /// <summary>
-        /// 有效期
-        /// </summary>
-        public DateTime Expiry { get; set; }
-
+       
         /// <summary>
         /// 将密码序列化并写入buf中
         /// </summary>

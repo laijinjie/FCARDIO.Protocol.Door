@@ -16,12 +16,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 排序数据区容量上限
         /// </summary>
-        public long DataSize;
+        public short DataSize;
 
         /// <summary>
         /// 排序数据区已使用数量
         /// </summary>
-        public long PasswordSize;
+        public short PasswordSize;
 
         /// <summary>
         /// 初始化，构造一个空的 HolidayDBDetail 详情实例
@@ -37,10 +37,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="buf"></param>
         public void SetBytes(IByteBuffer buf)
         {
-            buf.ReadByte();
-            DataSize = buf.ReadByte();
-            buf.ReadByte();
-            PasswordSize = buf.ReadByte();
+            DataSize = buf.ReadShort();
+            PasswordSize = buf.ReadShort();
         }
 
         /// <summary>

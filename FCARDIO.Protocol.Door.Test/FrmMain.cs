@@ -1076,7 +1076,7 @@ namespace FCARDIO.Protocol.Door.Test
             cmdProtocolType.Items.Add("MC58T系列");
             cmdProtocolType.Items.Add("FC8800系列");
             cmdProtocolType.Items.Add("FC89H系列");
-            cmdProtocolType.SelectedIndex = 0;
+            cmdProtocolType.SelectedIndex = 1;
             _IsClosed = false;
 
             int iTop = gbTCPClient.Top, iLeft = gbTCPClient.Left;

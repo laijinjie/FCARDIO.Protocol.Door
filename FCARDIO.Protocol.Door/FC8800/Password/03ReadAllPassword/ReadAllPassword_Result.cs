@@ -11,19 +11,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     /// <summary>
     /// 读取所有密码 结果
     /// </summary>
-    public class ReadAllPassword_Result : INCommandResult
+    public class ReadAllPassword_Result<T> : INCommandResult where T : PasswordDetail,new ()
     {
         /// <summary>
         /// 已读取到的节假日列表
         /// </summary>
-        public List<PasswordDetail> Passowrds;
+        public List<T> Passowrds;
 
         /// <summary>
         /// 
         /// </summary>
         public ReadAllPassword_Result()
         {
-            Passowrds = new List<PasswordDetail>();
+            Passowrds = new List<T>();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 int iCount = buf.ReadInt();
                 for (int i = 0; i < iCount; i++)
                 {
-                    PasswordDetail dtl = new PasswordDetail();
+                    T dtl = new T();
                     dtl.SetBytes(buf);
                     Passowrds.Add(dtl);
                 }

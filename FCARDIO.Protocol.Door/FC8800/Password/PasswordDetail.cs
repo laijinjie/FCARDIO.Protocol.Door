@@ -15,6 +15,17 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
 
         public int Door { get; set; }
 
+        /// <summary>
+        /// 开门次数
+        /// </summary>
+        public int OpenTimes { get; set; }
+
+        /// <summary>
+        /// 有效期
+        /// </summary>
+        public DateTime Expiry { get; set; }
+
+
         /**
          * 获取指定门是否有权限
          *
