@@ -14,12 +14,12 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter
         /// <summary>
         /// 最大门数
         /// </summary>
-        public ushort DoorMax { get; set; }
+        public ushort DoorMax;
 
         /// <summary>
         /// 门的端口
         /// </summary>
-        public byte[] DoorPort { get; set; }
+        public byte[] DoorPort;
 
         /// <summary>
         /// 设置几个门的端口

@@ -9,21 +9,40 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
 {
+    /// <summary>
+    /// 表示一个完整时段，一个时段里包含7天
+    /// </summary>
     public class WeekTimeGroup
     {
-
+        /// <summary>
+        /// 一周中的天段
+        /// </summary>
         protected DayTimeGroup[] mDay;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private int iDaySegmentCount;
+
+        /// <summary>
+        /// 获取在周时段列表中的索引号
+        /// </summary>
         protected int mIndex;
+
+        /// <summary>
+        /// 一天中的时段数量
+        /// </summary>
         protected int DaySegmentCount;
 
+        /// <summary>
+        /// 是否有值
+        /// </summary>
         public bool HasValue { get; private set; }
 
-        /**
-         * 初始化一个周时段
-         *
-         * @param iDaySegmentCount 一天中的时段数量
-         */
+        /// <summary>
+        /// 初始化一个周时段
+        /// </summary>
+        /// <param name="iDaySegmentCount">一天中的时段数量</param>
         public WeekTimeGroup(int iDaySegmentCount)
         {
 
@@ -43,6 +62,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             }
         }
 
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="iDaySegmentCount">一天中的时段数量</param>
+        /// <param name="index">在周时段列表中的索引号</param>
         public WeekTimeGroup(int iDaySegmentCount, int index)
         {
             this.iDaySegmentCount = iDaySegmentCount;
@@ -59,33 +83,48 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             return mIndex;
         }
 
-        /**
-         * 设定在周时段列表中的索引号
-         *
-         * @param index 索引号 1-64
-         */
+        /// <summary>
+        /// 设定在周时段列表中的索引号
+        /// </summary>
+        /// <param name="index"></param>
         public void SetIndex(int index)
         {
             mIndex = index;
         }
 
+        /// <summary>
+        /// 获取一天的时段
+        /// </summary>
+        /// <param name="week">星期的枚举</param>
+        /// <returns></returns>
         public DayTimeGroup GetItem(E_WeekDay week)
         {
             return mDay[(int)week];
         }
 
+        /// <summary>
+        /// 获取一天的时段
+        /// </summary>
+        /// <param name="index">索引号</param>
+        /// <returns></returns>
         public DayTimeGroup GetItem(int index)
         {
             return mDay[index];
         }
 
-
+        /// <summary>
+        /// 获取完整的长度
+        /// </summary>
+        /// <returns></returns>
         public virtual int GetDataLen()
         {
             return 7 * DaySegmentCount * 4;
         }
 
-
+        /// <summary>
+        /// 从字节缓冲区中生成一个对象
+        /// </summary>
+        /// <param name="data"></param>
         public virtual void SetBytes(IByteBuffer data)
         {
             data.ReadByte();
@@ -93,17 +132,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             SetBytes(E_WeekDay.Monday, data);
         }
 
+        /// <summary>
+        /// 提供给 门工作方式 使用
+        /// </summary>
+        /// <param name="data"></param>
         public virtual void ReadDoorWorkSetBytes(IByteBuffer data)
         {
             SetBytes(E_WeekDay.Monday, data);
         }
 
-        /**
-         * 从缓冲区中获取值并初始化周时段
-         *
-         * @param FistWeek 一周的第一天
-         * @param data
-         */
+        /// <summary>
+        /// 从缓冲区中获取值并初始化周时段
+        /// </summary>
+        /// <param name="FistWeek">一周的第一天</param>
+        /// <param name="data"></param>
         public virtual void SetBytes(E_WeekDay FistWeek, IByteBuffer data)
         {
             HasValue = true;
@@ -118,8 +160,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="FistWeek"></param>
-        /// <param name="WeekList"></param>
+        /// <param name="FistWeek">一周的第一天</param>
+        /// <param name="WeekList">一周的天数集合</param>
         protected void GetWeekList(E_WeekDay FistWeek, int[] WeekList)
         {
             int lBeginIndex = (int)FistWeek;
@@ -140,17 +182,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             }
         }
 
-
-
-        /**
-         * 使用从周一为一周的第一天进行排序的缓冲区获取时段信息
-         * @param data 
-         */
+        /// <summary>
+        /// 使用从周一为一周的第一天进行排序的缓冲区获取时段信息
+        /// </summary>
+        /// <param name="data"></param>
         public virtual void GetBytes(IByteBuffer data)
         {
             GetBytes(E_WeekDay.Monday, data);
         }
 
+        /// <summary>
+        /// 使用从周一为一周的第一天进行排序的缓冲区获取时段信息
+        /// </summary>
+        /// <param name="FistWeek">一周的第一天</param>
+        /// <param name="data"></param>
         public virtual void GetBytes(E_WeekDay FistWeek, IByteBuffer data)
         {
             int [] WeekList = new int[7];
@@ -161,11 +206,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             }
         }
 
-        /**
-         * 克隆一个周时段
-         *
-         * @return
-         */
+        /// <summary>
+        /// 克隆一个周时段
+        /// </summary>
+        /// <returns></returns>
         public virtual WeekTimeGroup Clone()
         {
             WeekTimeGroup w = new WeekTimeGroup(DaySegmentCount);
@@ -179,6 +223,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             return w;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void SetNowTime()
         {
             for (int y = 0; y < 7; y++)
@@ -199,6 +246,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             HasValue = true;
         }
 
+        /// <summary>
+        /// 初始化 一个完整时段
+        /// </summary>
         public void InitTimeGroup()
         {
             for (int y = 0; y < 7; y++)

@@ -18,10 +18,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// 读取到的节假日缓冲
         /// </summary>
         protected List<IByteBuffer> mReadBuffers;
+
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="cd"></param>
         public ReadAllPassword(INCommandDetail cd) : base(cd)
         {
 
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
             if (CheckResponse(oPck))
@@ -40,7 +50,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 ReadAllPassword_Result<T> rst = new ReadAllPassword_Result<T>();
                 _Result = rst;
 
-
                 rst.SetBytes(iTotal, mReadBuffers);
                 ClearBuf();
                 CommandCompleted();
@@ -53,17 +62,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             mReadBuffers = new List<IByteBuffer>();
         }
 
-        /// <summary>
-        /// 命令重发时，对命令中一些缓冲做清空或参数重置<br/>
-        /// 此命令一般情况下不需要实现！
-        /// </summary>
-        protected override void CommandReSend()
-        {
-
-            ClearBuf();
-
-
-        }
         /// <summary>
         /// 清空缓冲区
         /// </summary>

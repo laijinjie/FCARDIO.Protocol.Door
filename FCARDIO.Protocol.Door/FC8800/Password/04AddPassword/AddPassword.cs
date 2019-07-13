@@ -14,7 +14,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     /// </summary>
     public class AddPassword<T> : FC8800Command_WriteParameter where T : PasswordDetail,new ()
     {
+        /// <summary>
+        /// 需要写入密码数
+        /// </summary>
         protected int maxCount = 0;
+
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="cd"></param>
+        /// <param name="par"></param>
         public AddPassword(INCommandDetail cd, AddPassword_Parameter<T> par) : base(cd, par)
         {
 
@@ -44,11 +53,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         protected override void CreatePacket0()
         {
             AddPassword_Parameter<T> model = _Parameter as AddPassword_Parameter<T>;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
             maxCount = model.ListPassword.Count;
-            Packet(0x5, 0x4, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
-           
+            Packet(0x5, 0x4, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
+
         }
 
 

@@ -257,6 +257,18 @@ namespace FCARDIO.Protocol.Door.Test
             dto.Door3 = cbbit2.Checked;
             dto.Door4 = cbbit3.Checked;
             dto.Password = txtPassword.Text;
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            {
+                if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
+                {
+                    dto.OpenTimes = cmbOpenTimes.SelectedIndex;
+                }
+                else
+                {
+                    dto.OpenTimes = cmbOpenTimes.SelectedIndex;
+                }
+                dto.Expiry = new DateTime(dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day, dtpTime.Value.Hour, dtpTime.Value.Minute, 0);
+            }
             ListPassword.Add(dto);
 
             Invoke(() =>
@@ -301,33 +313,61 @@ namespace FCARDIO.Protocol.Door.Test
                 return;
             }
             //FC89H.Password.
-            List<PasswordDetail> _list = new List<PasswordDetail>();
-            PasswordDetail password = new PasswordDetail();
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
             {
-                password.OpenTimes = cmbOpenTimes.SelectedIndex;
-                if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
+                List<FC89H.Password. PasswordDetail> _list = new List<FC89H.Password.PasswordDetail>();
+                FC89H.Password.PasswordDetail password = new FC89H.Password.PasswordDetail();
+                if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
                 {
-                    password.OpenTimes = 65535;
+                    password.OpenTimes = cmbOpenTimes.SelectedIndex;
+                    if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
+                    {
+                        password.OpenTimes = 65535;
+                    }
+                    password.Expiry = new DateTime(dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day, dtpTime.Value.Hour, dtpTime.Value.Minute, 0);
                 }
-                password.Expiry = new DateTime(dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day, dtpTime.Value.Hour, dtpTime.Value.Minute, 0);
-            }
-            password.Password = txtPassword.Text;
-            string strDoor1 = (cbbit0.Checked ? "1" : "0") + (cbbit1.Checked ? "1" : "0") + (cbbit2.Checked ? "1" : "0") + (cbbit3.Checked ? "1" : "0");
-            password.Door = Convert.ToInt32(strDoor1, 2);
-            _list.Add(password);
-            AddPassword_Parameter<PasswordDetail> par = new AddPassword_Parameter<PasswordDetail>(_list);
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
-            {
-                par = new FC89H.Password.AddPassword.AddPassword_Parameter(_list);
-            }
-            AddPassword<PasswordDetail> cmd = new AddPassword<PasswordDetail>(cmdDtl, par);
-            mMainForm.AddCommand(cmd);
+                password.Password = txtPassword.Text;
+                string strDoor1 = (cbbit0.Checked ? "1" : "0") + (cbbit1.Checked ? "1" : "0") + (cbbit2.Checked ? "1" : "0") + (cbbit3.Checked ? "1" : "0");
+                password.Door = Convert.ToInt32(strDoor1, 2);
+                _list.Add(password);
+                AddPassword_Parameter<FC89H.Password.PasswordDetail> par = new AddPassword_Parameter<FC89H.Password.PasswordDetail>(_list);
 
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+                AddPassword<FC89H.Password.PasswordDetail> cmd = new AddPassword<FC89H.Password.PasswordDetail>(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+
+                cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+                {
+                    mMainForm.AddLog($"命令成功：");
+                };
+            }
+            else
             {
-                mMainForm.AddLog($"命令成功：");
-            };
+                List<PasswordDetail> _list = new List<PasswordDetail>();
+                PasswordDetail password = new PasswordDetail();
+                if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+                {
+                    password.OpenTimes = cmbOpenTimes.SelectedIndex;
+                    if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
+                    {
+                        password.OpenTimes = 65535;
+                    }
+                    password.Expiry = new DateTime(dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day, dtpTime.Value.Hour, dtpTime.Value.Minute, 0);
+                }
+                password.Password = txtPassword.Text;
+                string strDoor1 = (cbbit0.Checked ? "1" : "0") + (cbbit1.Checked ? "1" : "0") + (cbbit2.Checked ? "1" : "0") + (cbbit3.Checked ? "1" : "0");
+                password.Door = Convert.ToInt32(strDoor1, 2);
+                _list.Add(password);
+                AddPassword_Parameter<PasswordDetail> par = new AddPassword_Parameter<PasswordDetail>(_list);
+
+                AddPassword<PasswordDetail> cmd = new AddPassword<PasswordDetail>(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+
+                cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+                {
+                    mMainForm.AddLog($"命令成功：");
+                };
+            }
+            
         }
 
         /// <summary>

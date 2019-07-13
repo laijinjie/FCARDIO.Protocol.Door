@@ -28,7 +28,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// <summary>
         /// 密码
         /// </summary>
-        public string Password { get; set; }
+        public string Password;
 
         /// <summary>
         /// 读取功能 初始化
@@ -57,7 +57,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            
+            if (DoorNum < 1 || DoorNum > 4)
+                throw new ArgumentException("Door Error!");
+            if (Password == null || Password.Length < 4 || Password.Length > 8)
+            {
+                throw new ArgumentException("Password Error!");
+            }
             return true;
         }
 
@@ -86,6 +91,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
             return databuf;
         }
 
+        /// <summary>
+        /// 将密码编码为字节缓冲写入
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
         public IByteBuffer Password_GetBytes(IByteBuffer databuf)
         {
             if (databuf.WritableBytes < 5)

@@ -39,11 +39,15 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         {
             if (ListWeekTimeGroup == null || ListWeekTimeGroup.Count != 64)
             {
-                return false;
+                throw new ArgumentException("ListWeekTimeGroup.Count Error!");
             }
+           
             return true;
         }
 
+        /// <summary>
+        /// 关闭
+        /// </summary>
         public override void Dispose()
         {
             ListWeekTimeGroup.Clear();
@@ -75,7 +79,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         }
 
         /// <summary>
-        /// 
+        /// 获取长度
         /// </summary>
         /// <returns></returns>
         public override int GetDataLen()

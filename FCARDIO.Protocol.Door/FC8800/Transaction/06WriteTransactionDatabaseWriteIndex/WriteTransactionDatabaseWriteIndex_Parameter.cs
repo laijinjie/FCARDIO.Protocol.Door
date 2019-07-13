@@ -48,6 +48,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.WriteTransactionDatabaseWrite
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (DatabaseType == null)
+            {
+                throw new ArgumentException("DatabaseType Error!");
+            }
+            if (WriteIndex < 0)
+            {
+                throw new ArgumentException("WriteIndex Error!");
+            }
             return true;
         }
 

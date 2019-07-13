@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Data
 {
+    /// <summary>
+    /// 星期的枚举
+    /// </summary>
     public enum E_WeekDay
     {
         /// <summary>

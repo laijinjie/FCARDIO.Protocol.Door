@@ -47,18 +47,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             int iOut = 0;
             foreach (var item in ListPassword)
             {
-                if (item.Password.Length > 8)
+                if (item.Password.Length > 8 || item.Password.Length < 4)
                 {
-                    return false;
+                    throw new ArgumentException("Password.Length Error!");
                 }
-                if (!int.TryParse(item.Password, out iOut))
+                if (!int.TryParse(item.Password, out iOut) || iOut < 0)
                 {
-                    return false;
+                    throw new ArgumentException("Password Error!");
                 }
-                if (iOut < 0)
-                {
-                    return false;
-                }
+
             }
             return true;
         }

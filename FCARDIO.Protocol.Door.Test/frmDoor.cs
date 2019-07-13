@@ -2408,8 +2408,8 @@ namespace FCARDIO.Protocol.Door.Test
                 MessageBox.Show("IP地址不正确");
                 return;
             }
-            short s = 0;
-            if (!short.TryParse(txtPort.Text.Trim(),out s))
+            ushort s = 0;
+            if (!ushort.TryParse(txtPort.Text.Trim(),out s))
             {
                 MessageBox.Show("端口不正确");
                 return;
@@ -2424,7 +2424,7 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 bIP[i] = byte.Parse(listip[i]);
             }
-            WriteAreaAntiPassback_Parameter par = new WriteAreaAntiPassback_Parameter(door, cbAreaAntiPassbackUse.Checked,cmbAreaType.SelectedIndex == 0,txtSN.Text.Trim(), bIP, short.Parse(txtPort.Text.Trim()));
+            WriteAreaAntiPassback_Parameter par = new WriteAreaAntiPassback_Parameter(door, cbAreaAntiPassbackUse.Checked,cmbAreaType.SelectedIndex == 0,txtSN.Text.Trim(), bIP, ushort.Parse(txtPort.Text.Trim()));
             WriteAreaAntiPassback cmd = new WriteAreaAntiPassback(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 

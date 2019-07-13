@@ -52,6 +52,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseReadIndex
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (DatabaseType == null)
+            {
+                throw new ArgumentException("DatabaseType Error!");
+            }
+            if (ReadIndex < 0)
+            {
+                throw new ArgumentException("ReadIndex Error!");
+            }
             return true;
         }
 

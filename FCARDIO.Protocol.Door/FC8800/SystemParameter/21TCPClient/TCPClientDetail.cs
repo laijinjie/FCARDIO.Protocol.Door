@@ -14,21 +14,21 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPClient
         /// <summary>
         /// 客户端数量
         /// </summary>
-        public byte TCPClientNum { get; set; }
+        public byte TCPClientNum;
 
         /// <summary>
         /// IP
         /// </summary>
-        public string[] IP { get; set; }
+        public string[] IP;
 
         /// <summary>
         /// 端口
         /// </summary>
-        public ushort[] TCPPort { get; set; }
+        public ushort[] TCPPort;
 
         /// <summary>
         /// 接入时间
         /// </summary>
-        public DateTime[] ConnectTime { get; set; }
+        public DateTime[] ConnectTime;
     }
 }

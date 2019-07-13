@@ -13,7 +13,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderInterval
     /// <summary>
     /// 读取重复读卡间隔参数
     /// </summary>
-    public class ReadReaderInterval : FC8800Command_ReadParameter
+    public class ReadReaderInterval : FC8800Command_Read_DoorParameter
     {
         /// <summary>
         /// 读取重复读卡间隔参数
@@ -22,17 +22,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderInterval
         /// <param name="par">包含门端口</param>
         public ReadReaderInterval(INCommandDetail cd, DoorPort_Parameter par) : base(cd, par) { }
 
-        /// <summary>
-        /// 检查命令参数
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        protected override bool CheckCommandParameter(INCommandParameter value)
-        {
-            DoorPort_Parameter model = value as DoorPort_Parameter;
-            if (model == null) return false;
-            return model.checkedParameter();
-        }
+        
 
         /// <summary>
         /// 命令返回值的判断
@@ -55,21 +45,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderInterval
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x09, 0x00, 0x01, GetCmdData());
+            DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
+            Packet(0x03, 0x09, 0x00, 0x01, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
-        /// <summary>
-        /// 创建命令所需的命令数据<br/>
-        /// 将命令打包到ByteBuffer中
-        /// </summary>
-        /// <returns>包含命令数据的ByteBuffer</returns>
-        private IByteBuffer GetCmdData()
-        {
-            DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
-        }
     }
 }

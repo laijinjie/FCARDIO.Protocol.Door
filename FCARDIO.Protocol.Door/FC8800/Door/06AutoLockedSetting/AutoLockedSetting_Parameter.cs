@@ -55,6 +55,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AutoLockedSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (Door < 1 || Door > 4)
+                throw new ArgumentException("DoorNum Error");
+
+
             if (weekTimeGroup == null)
                 throw new ArgumentException("autoLockedSetting Is Null!");
             return true;

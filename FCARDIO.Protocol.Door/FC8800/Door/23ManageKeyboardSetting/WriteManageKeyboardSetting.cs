@@ -56,29 +56,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// </summary>
         private void IniPacketProcess()
         {
-            if (mManageKeyboardPar.Use)
-            {
                 _ProcessMax = 2;
                 Step = 2;
-            }
-            else
-            {
-                _ProcessMax = 1;
-            }
+           
         }
 
-        /// <summary>
-        /// 获取参数结构的字节编码
-        /// </summary>
-        /// <returns></returns>
-        private IByteBuffer GetCmdData()
-        {
-            WriteManageKeyboardSetting_Parameter model = _Parameter as WriteManageKeyboardSetting_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
-        }
 
         /// <summary>
         /// 接收到响应，开始处理下一步命令
@@ -113,28 +95,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
             Step = 0;
         }
 
-        /// <summary>
-        /// 命令重发时需要处理的函数
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
 
-        /// <summary>
-        /// 命令释放时需要处理的函数
-        /// </summary>
-        protected override void Release1()
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 处理返回值
-        /// </summary>
-        /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-        }
     }
 }

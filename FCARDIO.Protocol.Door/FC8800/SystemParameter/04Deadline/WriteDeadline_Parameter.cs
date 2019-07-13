@@ -43,7 +43,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Deadline
         {
             if (Deadline < 0 || Deadline > 65535)
             {
-                Deadline = 0;
+                throw new ArgumentException("Deadline Error");
             }
 
             return true;

@@ -34,11 +34,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// </summary>
         public int PacketSize;
 
-       /// <summary>
-       ///  创建结构
-       /// </summary>
-       /// <param name="detail"> 包含命令的执行时的一些必要信息，命令执行的连接器通道，命令身份验证信息，用户附加数据，超时重试参数</param>
-       /// <param name="type"> 取值范围 1-6</param>
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="type">取值范围 1-6</param>
+        /// <param name="_PacketSize">每次读取数量</param>
+        /// <param name="_Quantity">读取数量</param>
         public ReadTransactionDatabase_Parameter(e_TransactionDatabaseType type,int _PacketSize, int _Quantity)
         {
             DatabaseType = type;
@@ -52,6 +53,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (PacketSize < 1 || PacketSize > 300)
+            {
+                throw new ArgumentException("PacketSize Error!");
+            }
+            if (Quantity < 0 || Quantity > 160000)
+            {
+                throw new ArgumentException("Quantity Error!");
+            }
             return true;
         }
 

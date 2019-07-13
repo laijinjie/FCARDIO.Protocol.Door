@@ -24,7 +24,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         public bool Use;
 
         /// <summary>
-        /// 构建一个空的实例
+        /// 提供给 InvalidCardAlarmOption_Result 使用
         /// </summary>
         public WriteInvalidCardAlarmOption_Parameter() { }
 

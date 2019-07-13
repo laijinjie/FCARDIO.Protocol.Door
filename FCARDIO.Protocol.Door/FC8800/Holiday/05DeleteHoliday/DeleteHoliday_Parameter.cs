@@ -36,9 +36,21 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (ListHoliday == null)
+            if (ListHoliday == null || ListHoliday.Count == 0)
             {
                 return false;
+            }
+            foreach (HolidayDetail item in ListHoliday)
+            {
+                if (item.HolidayType < 1 || item.HolidayType > 3)
+                {
+                    return false;
+                }
+                if (item.Holiday == DateTime.MinValue || item.Holiday.Year < 2000)
+                {
+                    return false;
+                }
+
             }
             return true;
         }

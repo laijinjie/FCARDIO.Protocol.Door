@@ -31,7 +31,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
         /// 在开门超时后，是否报警输出
         /// </summary>
         public bool Alarm;
-        
+
+        /// <summary>
+        /// 提供给 OvertimeAlarmSetting_Result 使用
+        /// </summary>
         public WriteOvertimeAlarmSetting_Parameter()
         {
         }
@@ -41,8 +44,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
         /// </summary>
         /// <param name="door">门号</param>
         /// <param name="use">是否启动此功能</param>
-        /// <param name="Overtime">超出时间</param>
-        /// <param name="Alarm">超出后,是否开启此功能</param>
+        /// <param name="overtime">超出时间</param>
+        /// <param name="alarm">超出后,是否开启此功能</param>
         public WriteOvertimeAlarmSetting_Parameter(byte door, bool use, byte overtime, bool alarm)
         {
             DoorNum = door;
@@ -57,8 +60,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DoorNum > 4)
-                throw new ArithmeticException("OvertimeAlarmSetting Is Max");
+            if (DoorNum < 1 || DoorNum > 4)
+                throw new ArithmeticException("DoorNum Is Error");
+            if (Overtime < 0 || Overtime > 63345)
+            {
+                throw new ArithmeticException("Overtime Is Error");
+            }
             return true;
         }
 

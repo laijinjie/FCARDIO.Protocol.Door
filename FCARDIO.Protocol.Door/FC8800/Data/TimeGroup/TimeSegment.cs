@@ -9,23 +9,27 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
 {
+    /// <summary>
+    /// 表示一个时段，开始时间和结束时间
+    /// </summary>
     public class TimeSegment
     {
+        /// <summary>
+        /// 开始时间
+        /// </summary>
         protected DateTime mBeginTime;
+
+        /// <summary>
+        /// 结束时间
+        /// </summary>
         protected DateTime mEndTime;
-        
 
-        public TimeSegment()
-        {
 
-        }
-
-        /**
-         * 设置开始时间
-         *
-         * @param iHour 开始时间的小时部分 取值范围 0-23
-         * @param Minute 开始时间的分钟部分 取值范围 0-59
-         */
+        /// <summary>
+        /// 设置开始时间
+        /// </summary>
+        /// <param name="Hour">开始时间的小时部分 取值范围 0-23</param>
+        /// <param name="Minute">开始时间的分钟部分 取值范围 0-59</param>
         public void SetBeginTime(int Hour, int Minute)
         {
             CheckTime(Hour, Minute);
@@ -33,22 +37,21 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             mBeginTime = new DateTime(n.Year, n.Month, n.Day, Hour, Minute, 0);
         }
 
-        /**
-         * 获取开始时间
-         *
-         * @param time 开始时间返回的数组，传入时需要数组保持有2个元素 即 new short[2]
-         */
+        /// <summary>
+        /// 获取开始时间
+        /// </summary>
+        /// <returns></returns>
         public DateTime GetBeginTime()
         {
             return mBeginTime;
         }
 
-        /**
-         * 设置结束时间
-         *
-         * @param iHour 开始时间的小时部分 取值范围 0-23
-         * @param Minute 开始时间的分钟部分 取值范围 0-59
-         */
+
+        /// <summary>
+        /// 设置结束时间
+        /// </summary>
+        /// <param name="Hour">开始时间的小时部分 取值范围 0-23</param>
+        /// <param name="Minute">开始时间的分钟部分 取值范围 0-59</param>
         public void SetEndTime(int Hour, int Minute)
         {
             CheckTime(Hour, Minute);
@@ -56,17 +59,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             mEndTime = new DateTime(n.Year, n.Month, n.Day, Hour, Minute, 0);
         }
 
-        /**
-         * 获取开始时间
-         *
-         * @param time 开始时间返回的数组，传入时需要数组保持有2个元素 即 new short[2]
-         */
+        /// <summary>
+        /// 获取结束时间
+        /// </summary>
+        /// <returns></returns>
         public DateTime GetEndTime()
         {
             return mEndTime;
         }
 
-
+        /// <summary>
+        /// 返回时间段 字符串格式 HH:mm - HH:mm
+        /// </summary>
+        /// <returns></returns>
         public String toString()
         {
             StringBuilder buf = new StringBuilder(15);
@@ -76,6 +81,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             return buf.ToString();
         }
 
+        /// <summary>
+        /// 检查时分参数
+        /// </summary>
+        /// <param name="Hour">小时</param>
+        /// <param name="Minute">分钟</param>
         private void CheckTime(int Hour, int Minute)
         {
             if (Hour < 0 || Hour > 23)
@@ -89,11 +99,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             }
         }
 
-        /**
-         * 将对象写入到字节缓冲区
-         *
-         * @param bBuf
-         */
+        /// <summary>
+        /// 将对象写入到字节缓冲区
+        /// </summary>
+        /// <param name="bBuf"></param>
         public virtual void GetBytes(IByteBuffer bBuf)
         {
 
@@ -103,11 +112,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             bBuf.WriteByte(ByteUtil.ByteToBCD((byte)mEndTime.Minute));
         }
 
-        /**
-         * 从字节缓冲区中生成一个对象
-         *
-         * @param bBuf
-         */
+        /// <summary>
+        /// 从字节缓冲区中生成一个对象
+        /// </summary>
+        /// <param name="bBuf"></param>
         public virtual void SetBytes(IByteBuffer bBuf)
         {
 

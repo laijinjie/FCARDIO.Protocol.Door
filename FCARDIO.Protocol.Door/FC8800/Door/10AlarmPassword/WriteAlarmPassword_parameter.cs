@@ -39,6 +39,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
         /// </summary>
         public int AlarmOption;
 
+        /// <summary>
+        /// 提供给 AlarmPassword_Result 使用
+        /// </summary>
         public WriteAlarmPassword_parameter()
         {
         }
@@ -86,8 +89,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DoorNum > 4)
-                throw new ArgumentException("door Is Max!");
+            if (DoorNum < 1 || DoorNum > 4)
+                throw new ArgumentException("door Is error!");
+
+            if (!Password.IsNum() || Password.Length > 8 || Password.Length < 4)
+                throw new ArgumentException("pwd is error!");
+            if (AlarmOption < 1 || AlarmOption > 3)
+                throw new ArgumentException("AlarmOption is error!");
             return true;
         }
 

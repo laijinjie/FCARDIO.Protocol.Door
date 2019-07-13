@@ -23,7 +23,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayReleaseTime
         public ushort ReleaseTime;
 
         /// <summary>
-        /// 构建一个空的实例
+        /// 提供给 RelayReleaseTime_Result 使用
         /// </summary>
         public WriteRelayReleaseTime_Parameter() { }
 
@@ -45,6 +45,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayReleaseTime
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (Door < 1 || Door > 4)
+                throw new ArgumentException("Door Error!");
+
             if (ReleaseTime < 0 || ReleaseTime > 65535)
                 throw new ArgumentException("releaseTime Error!");
             return true;

@@ -33,26 +33,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
             return model.checkedParameter();
         }
 
-        /// <summary>
-        /// 创建命令所需的命令数据<br/>
-        /// 将命令打包到ByteBuffer中
-        /// </summary>
-        /// <returns>包含命令数据的ByteBuffer</returns>
-        protected IByteBuffer GetCmdData()
-        {
-            WriteReaderWorkSetting_Parameter model = _Parameter as WriteReaderWorkSetting_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
-        }
 
         /// <summary>
         /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x05, 0x01, 0x119, GetCmdData());
+            WriteReaderWorkSetting_Parameter model = _Parameter as WriteReaderWorkSetting_Parameter;
+            Packet(0x03, 0x05, 0x01, 0x119, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
     }
 }

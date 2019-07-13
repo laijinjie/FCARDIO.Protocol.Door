@@ -81,52 +81,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
                 buf.Retain();
                 mBufs.Enqueue(buf);
 
-                /*
-                if (_Result == null)
-                {
-                    _Result = new ReadTransactionDatabaseByIndex_Result();
-                    ((ReadTransactionDatabaseByIndex_Result)_Result).TransactionList = new List<AbstractTransaction>(iCount);
-                }
-                
-                for (int i = 0; i < iCount; i++)
-                {
-                    switch (mPar.DatabaseType)
-                    {
-                        case 1:
-                            CardTransaction cardTransaction = new CardTransaction();
-                            cardTransaction.SetBytes(buf);
-                            ((ReadTransactionDatabaseByIndex_Result)_Result).TransactionList.Add(cardTransaction);
-                            break;
-                        case 2:
-                            ButtonTransaction buttonTransaction = new ButtonTransaction();
-                            buttonTransaction.SetBytes(buf);
-                            ((ReadTransactionDatabaseByIndex_Result)_Result).TransactionList.Add(buttonTransaction);
-                            break;
-                        case 3:
-                            DoorSensorTransaction doorSensorTransaction = new DoorSensorTransaction();
-                            doorSensorTransaction.SetBytes(buf);
-                            ((ReadTransactionDatabaseByIndex_Result)_Result).TransactionList.Add(doorSensorTransaction);
-                            break;
-                        case 4:
-                            SoftwareTransaction softwareTransaction = new SoftwareTransaction();
-                            softwareTransaction.SetBytes(buf);
-                            ((ReadTransactionDatabaseByIndex_Result)_Result).TransactionList.Add(softwareTransaction);
-                            break;
-                        case 5:
-                            AlarmTransaction alarmTransaction = new AlarmTransaction();
-                            alarmTransaction.SetBytes(buf);
-                            ((ReadTransactionDatabaseByIndex_Result)_Result).TransactionList.Add(alarmTransaction);
-                            break;
-                        case 6:
-                            SystemTransaction systemTransaction = new SystemTransaction();
-                            systemTransaction.SetBytes(buf);
-                            ((ReadTransactionDatabaseByIndex_Result)_Result).TransactionList.Add(systemTransaction);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                */
                 CommandWaitResponse();
             }
             if (CheckResponse(oPck,0x08, 0x04, 0xff, 4))
@@ -143,24 +97,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
                     Analysis(iSize);
                 }
 
-                //ReadTransactionDatabaseByIndex_Result rst = new ReadTransactionDatabaseByIndex_Result();
-                //_Result = rst;
-                //rst.SetBytes(buf);
-
                 CommandCompleted();
 
             }
-            /*
-            if (CheckResponse(oPck))
-            {
-                var buf = oPck.CmdData;
-                mBufs.Enqueue(buf);
-                
-
-                CommandWaitResponse();
-            }
-            
-            */
+           
         }
         /// <summary>
         /// 命令重发时需要的函数

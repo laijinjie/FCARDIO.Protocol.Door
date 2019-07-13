@@ -16,7 +16,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
     /// 成功返回结果参考 {@link ReadAnyCardSetting_Result}
     /// </summary>
     public class WriteAnyCardSetting
-         : FC8800Command
+         : FC8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令结构
@@ -42,45 +42,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x11, 0x00, 4, GetCmdData());
-        }
-
-        /// <summary>
-        /// 获取参数结构的字节编码
-        /// </summary>
-        /// <returns></returns>
-        private IByteBuffer GetCmdData()
-        {
             WriteAnyCardSetting_Parameter model = _Parameter as WriteAnyCardSetting_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
+            Packet(0x03, 0x11, 0x00, 4, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
-        /// <summary>
-        /// 处理返回值
-        /// </summary>
-        /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 命令重发时需要处理的函数
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 命令释放时需要处理的函数
-        /// </summary>
-        protected override void Release1()
-        {
-            return;
-        }
     }
 }

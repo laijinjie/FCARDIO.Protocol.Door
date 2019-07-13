@@ -35,10 +35,11 @@ namespace FCARDIO.Protocol.Door.FC89H.Password.AddPassword
                 {
                     return false;
                 }
-                if (!int.TryParse(item.Password, out iOut))
+                if (!int.TryParse(item.Password, out iOut) || iOut < 0)
                 {
                     return false;
                 }
+                
                 if (item.OpenTimes < 0 || item.OpenTimes > 65535)
                 {
                     return false;

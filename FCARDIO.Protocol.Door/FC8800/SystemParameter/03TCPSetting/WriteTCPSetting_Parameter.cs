@@ -18,10 +18,12 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
         public TCPDetail TCP;
 
         /// <summary>
-        /// 构建一个空的实例
+        /// 提供给 ReadTCPSetting_Result 使用
         /// </summary>
-        public WriteTCPSetting_Parameter() { }
+        public WriteTCPSetting_Parameter()
+        {
 
+        }
         /// <summary>
         /// 使用TCP参数信息初始化实例
         /// </summary>

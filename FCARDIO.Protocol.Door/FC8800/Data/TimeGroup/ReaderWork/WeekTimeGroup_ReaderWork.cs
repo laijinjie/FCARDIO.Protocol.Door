@@ -32,12 +32,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             return 7 * DaySegmentCount * 5;
         }
 
-        /**
-         * 从缓冲区中获取值并初始化周时段
-         *
-         * @param FistWeek 一周的第一天
-         * @param data
-         */
+        /// <summary>
+        /// 从缓冲区中获取值并初始化周时段
+        /// </summary>
+        /// <param name="FistWeek">一周的第一天</param>
+        /// <param name="data"></param>
         public override void SetBytes(E_WeekDay FistWeek, IByteBuffer data)
         {
             int[] WeekList = new int[7];

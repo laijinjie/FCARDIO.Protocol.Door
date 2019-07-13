@@ -8,7 +8,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
     /// <summary>
     /// 设置区域防潜回功能
     /// </summary>
-    public class WriteAreaAntiPassback : FC8800Command
+    public class WriteAreaAntiPassback : FC8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令结构
@@ -26,13 +26,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
         {
             WriteAreaAntiPassback_Parameter model = value as WriteAreaAntiPassback_Parameter;
             if (model == null) return false;
-            for (int i = 0; i < model.IP.Length; i++)
-            {
-                if (model.IP[i] > 255 || model.IP[i] < 0)
-                {
-                    return false;
-                }
-            }
+            
             return model.checkedParameter();
         }
 
@@ -41,45 +35,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x19, 0x00, 25, GetCmdData());
-        }
-
-        /// <summary>
-        /// 获取参数结构的字节编码
-        /// </summary>
-        /// <returns></returns>
-        private IByteBuffer GetCmdData()
-        {
             WriteAreaAntiPassback_Parameter model = _Parameter as WriteAreaAntiPassback_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
+            Packet(0x03, 0x19, 0x00, 25, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
-        /// <summary>
-        /// 处理返回值
-        /// </summary>
-        /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-            return;
-        }
 
-        /// <summary>
-        /// 命令重发时需要处理的函数
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 命令释放时需要处理的函数
-        /// </summary>
-        protected override void Release1()
-        {
-            return;
-        }
     }
 }

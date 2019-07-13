@@ -25,11 +25,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
 
         /// <summary>
         /// 开门方式
+        /// 1 - 普通
+        /// 2 - 多卡
+        /// 3 - 首卡（时段）
+        /// 4 - 常开（时段）
         /// </summary>
         public byte OpenDoorWay;
 
         /// <summary>
         /// 门常开触发模式
+        /// 1 - 合法卡在时段内即可常开
+        /// 2 - 授权中标记为常开卡的在指定时段内刷卡即可常开
+        /// 3 - 自动开关，到时间自动开关门
         /// </summary>
         public byte DoorTriggerMode;
 
@@ -44,7 +51,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
         public WeekTimeGroup weekTimeGroup;
 
         /// <summary>
-        /// 构建一个空的实例
+        /// 提供给 DoorWorkSetting_Result 使用
         /// </summary>
         public ReadDoorWorkSetting_Parameter() {
             weekTimeGroup = new WeekTimeGroup(8);
@@ -75,8 +82,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (Door < 1 || Door > 4)
+                throw new ArgumentException("DoorNum Error");
+
+            if (DoorTriggerMode < 1 || DoorTriggerMode > 3)
+                throw new ArgumentException("DoorTriggerMode Error");
+
+            if (OpenDoorWay < 1 || OpenDoorWay > 3)
+                throw new ArgumentException("OpenDoorWay Error");
+
+
             if (weekTimeGroup == null)
-                throw new ArgumentException("doorWorkSetting Is Null!");
+                throw new ArgumentException("weekTimeGroup Is Null!");
             return true;
         }
 

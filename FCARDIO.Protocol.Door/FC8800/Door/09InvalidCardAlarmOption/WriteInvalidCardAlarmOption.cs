@@ -39,21 +39,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x0A, 0x00, 0x02, getCmdData());
+            WriteInvalidCardAlarmOption_Parameter model = _Parameter as WriteInvalidCardAlarmOption_Parameter;
+            Packet(0x03, 0x0A, 0x00, 0x02, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
-        /// <summary>
-        /// 创建命令所需的命令数据<br/>
-        /// 将命令打包到ByteBuffer中
-        /// </summary>
-        /// <returns>包含命令数据的ByteBuffer</returns>
-        private IByteBuffer getCmdData()
-        {
-            WriteInvalidCardAlarmOption_Parameter model = _Parameter as WriteInvalidCardAlarmOption_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
-        }
     }
 }

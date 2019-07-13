@@ -15,7 +15,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
     /// 功能开启后，在密码键盘读卡器上输入特定密码后就会报警；
     /// </summary>
     public class WriteAlarmPassword
-        : FC8800Command
+        : FC8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令结构
@@ -41,45 +41,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x0B, 0x00, 0x07, getCmdData());
-        }
-
-        /// <summary>
-        /// 获取参数结构的字节编码
-        /// </summary>
-        /// <returns></returns>
-        private IByteBuffer getCmdData()
-        {
             WriteAlarmPassword_parameter model = _Parameter as WriteAlarmPassword_parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
+            Packet(0x03, 0x0B, 0x00, 0x07, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
-        /// <summary>
-        /// 处理返回值
-        /// </summary>
-        /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 命令重发时需要处理的函数
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
-        
-        /// <summary>
-        /// 命令释放时需要处理的函数
-        /// </summary>
-        protected override void Release1()
-        {
-            return;
-        }
     }
 }

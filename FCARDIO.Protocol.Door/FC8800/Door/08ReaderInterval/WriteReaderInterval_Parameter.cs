@@ -23,12 +23,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderInterval
         public byte Use;
 
         /// <summary>
-        /// 检测模式
+        /// 检测模式 
+        /// 1 - 记录读卡，不开门，有提示
+        /// 2 - 不记录读卡，不开门，有提示
+        /// 3 - 不做响应，无提示
         /// </summary>
         public byte DetectionMode;
 
         /// <summary>
-        /// 构建一个空的实例
+        /// 提供给 ReaderInterval_Result 使用
         /// </summary>
         public WriteReaderInterval_Parameter() { }
 
@@ -52,6 +55,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderInterval
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (Door < 1 || Door > 4)
+                throw new ArgumentException("Door Error!");
+
             if (Use < 0 || Use > 1 || DetectionMode < 1 || DetectionMode > 3)
                 throw new ArgumentException("Use or DetectionMode Error!");
             return true;

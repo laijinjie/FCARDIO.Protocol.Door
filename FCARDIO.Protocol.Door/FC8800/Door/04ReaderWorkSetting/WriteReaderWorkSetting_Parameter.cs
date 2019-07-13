@@ -24,7 +24,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         public WeekTimeGroup_ReaderWork weekTimeGroup_ReaderWork;
 
         /// <summary>
-        /// 构建一个空的实例
+        /// 提供给 ReaderWorkSetting_Result 使用
         /// </summary>
         public WriteReaderWorkSetting_Parameter() {
             weekTimeGroup_ReaderWork = new WeekTimeGroup_ReaderWork(8);
@@ -47,6 +47,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (Door < 1 || Door > 4)
+                throw new ArgumentException("DoorNum Error");
+
             if (weekTimeGroup_ReaderWork == null)
                 throw new ArgumentException("readerWorkSetting Is Null!");
             

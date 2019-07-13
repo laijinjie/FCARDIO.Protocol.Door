@@ -14,22 +14,22 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter
         /// <summary>
         /// 全局上限
         /// </summary>
-        public uint GlobalLimit { get; set; }
+        public uint GlobalLimit;
 
         /// <summary>
         /// 1-4号门上限数组
         /// </summary>
-        public uint[] DoorLimitArray { get; set; }
+        public uint[] DoorLimitArray;
 
         /// <summary>
         /// 全局人数
         /// </summary>
-        public uint GlobalEnter { get; set; }
+        public uint GlobalEnter;
 
         /// <summary>
         /// 1-4号门人数数组
         /// </summary>
-        public uint[] DoorEnterArray { get; set; }
+        public uint[] DoorEnterArray;
 
         /// <summary>
         /// 实例化门上限数组和门人数数组的长度

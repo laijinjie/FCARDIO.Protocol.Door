@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
@@ -17,38 +18,50 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
         /// 门号
         /// 门端口在控制板中的索引号，取值：1-4
         /// </summary>
-        public int DoorNum { get; set; }
+        public int DoorNum;
 
         /// <summary>
         /// 功能开启 (1)
         /// </summary>
-        public bool Use { get; set; }
+        public bool Use;
 
         /// <summary>
         /// 从属类别 (1)
         /// </summary>
-        public bool Type { get; set; }
+        public bool Type;
         /// <summary>
         /// 主机SN  (16)
         /// </summary>
-        public string SN { get; set; }
+        public string SN;
 
         /// <summary>
-        /// 主机IP端口 (4)
+        /// 主机IP地址 (4)
         /// </summary>
-        public byte[] IP { get; set; }
+        public byte[] IP;
 
         /// <summary>
-        /// 主机IP端口 (2)
+        /// 主机端口 (2)
         /// </summary>
-        public short Port { get; set; }
+        public ushort Port;
 
+        /// <summary>
+        /// 提供给 AreaAntiPassback_Result 使用
+        /// </summary>
         public WriteAreaAntiPassback_Parameter()
         {
             IP = new byte[] { (byte)255, (byte)255, (byte)255, (byte)255 };
         }
 
-        public WriteAreaAntiPassback_Parameter(byte door, bool use,bool type, string sn, byte[] ip, short port)
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="door">门号</param>
+        /// <param name="use">功能开启</param>
+        /// <param name="type">从属类别</param>
+        /// <param name="sn">主机SN</param>
+        /// <param name="ip">主机IP地址</param>
+        /// <param name="port">主机端口</param>
+        public WriteAreaAntiPassback_Parameter(byte door, bool use,bool type, string sn, byte[] ip, ushort port)
         {
             DoorNum = door;
             Use = use;
@@ -64,6 +77,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (DoorNum < 1 || DoorNum > 4)
+                throw new ArgumentException("Door Error!");
+            string ip = string.Join(".", IP.Select(t => t.ToString()));
+            string pattern = @"^((25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))$";
+            bool isHexNum = Regex.IsMatch(ip, pattern);
+            if (!isHexNum)
+            {
+                throw new ArgumentException("IP Error!");
+            }
             return true;
         }
 
@@ -90,12 +112,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
             databuf.WriteByte(DoorNum);
             databuf.WriteBoolean(Use);
             databuf.WriteBoolean(Type);
+            SN = SN ?? "";
             SN = SN.PadLeft(16, '0');
             byte[] array = new byte[16];
             array = System.Text.Encoding.ASCII.GetBytes(SN);
             databuf.WriteBytes(array);
-            //SN = StringUtil.FillHexString(SN, 32, "0", false);
-            //StringUtil.HextoByteBuf(SN, databuf);
+
             databuf.WriteBytes(IP);
             databuf.WriteShort(Port);
             return databuf;
@@ -124,7 +146,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
             SN = Convert.ToString(System.Text.Encoding.ASCII.GetString(b));
             //SN = StringUtil.ByteBufToHex(databuf, 16);
             databuf.ReadBytes(IP, 0, 4);
-            Port = databuf.ReadShort();
+            Port = databuf.ReadUnsignedShort();
         }
     }
 }

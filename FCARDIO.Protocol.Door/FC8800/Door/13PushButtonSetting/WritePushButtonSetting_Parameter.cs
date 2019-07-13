@@ -37,6 +37,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
         /// </summary>
         public WeekTimeGroup weekTimeGroup;
 
+        /// <summary>
+        /// 提供给PushButtonSetting_Result使用
+        /// </summary>
         public WritePushButtonSetting_Parameter()
         {
             weekTimeGroup = new WeekTimeGroup(8);
@@ -47,7 +50,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
         /// </summary>
         /// <param name="door">门号</param>
         /// <param name="use">是否开启此功能</param>
-        /// <param name="normallOpen">是否启用出门按钮常开功能</param>
+        /// <param name="normallyOpen">是否启用出门按钮常开功能</param>
+        /// <param name="tg">开门时段</param>
         public WritePushButtonSetting_Parameter(byte door, bool use, bool normallyOpen, WeekTimeGroup tg)
         {
             DoorNum = door;
@@ -63,8 +67,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DoorNum > 4)
-                throw new ArgumentException("door Is Max!");
+            if (DoorNum < 1 || DoorNum > 4)
+                throw new ArgumentException("Door Error!");
+            if (weekTimeGroup == null)
+            {
+                throw new ArgumentException("weekTimeGroup Error!");
+            }
+
             return true;
         }
 

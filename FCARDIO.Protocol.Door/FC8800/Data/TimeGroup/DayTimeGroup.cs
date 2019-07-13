@@ -7,24 +7,30 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
 {
+    /// <summary>
+    /// 表示一天的时段 ,一天可以包含多个时段
+    /// </summary>
     public class DayTimeGroup
     {
+        /// <summary>
+        /// 表示一个时段，开始时间和结束时间 集合
+        /// </summary>
         protected TimeSegment[] mSegment;
 
-        /**
-         * 初始化天时段
-         * @param SegmentCount  一天中的时段数量
-         */
+
+        /// <summary>
+        /// 初始化天时段
+        /// </summary>
+        /// <param name="SegmentCount">一天中的时段数量</param>
         public DayTimeGroup(int SegmentCount)
         {
             SetSegmentCount(SegmentCount);
         }
 
-        /**
-         * 设置一天中包含的时段数量
-         *
-         * @param SegmentCount 时段数量
-         */
+        /// <summary>
+        /// 设置一天中包含的时段数量
+        /// </summary>
+        /// <param name="SegmentCount">时段数量</param>
         public virtual void SetSegmentCount(int SegmentCount)
         {
             mSegment = new TimeSegment[SegmentCount];
@@ -34,26 +40,24 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             }
         }
 
-        /**
-         * 获取一天中包含的时段数量
-         *
-         * @return 时段数量
-         */
+        /// <summary>
+        /// 获取一天中包含的时段数量
+        /// </summary>
+        /// <returns>时段数量</returns>
         public int GetSegmentCount()
         {
             if (mSegment == null)
             {
                 return 0;
-
             }
             return mSegment.Length;
         }
 
-        /**
-         * 获取一个时段，进行操作
-         * @param iIndex 此时段在这一天当中的索引号，索引从0开始
-         * @return 时间段
-         */
+        /// <summary>
+        /// 获取一个时段，进行操作
+        /// </summary>
+        /// <param name="iIndex">此时段在这一天当中的索引号，索引从0开始</param>
+        /// <returns></returns>
         public TimeSegment GetItem(int iIndex)
         {
             if (iIndex < 0 || iIndex > GetSegmentCount())
@@ -63,11 +67,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             return mSegment[iIndex];
         }
 
-        /**
-         * 将对象写入到字节缓冲区
-         *
-         * @param bBuf
-         */
+        /// <summary>
+        /// 将对象写入到字节缓冲区
+        /// </summary>
+        /// <param name="bBuf"></param>
         public void GetBytes(IByteBuffer bBuf)
         {
             int iCount = GetSegmentCount();
@@ -78,11 +81,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
 
         }
 
-        /**
-         * 从字节缓冲区中生成一个对象
-         *
-         * @param bBuf
-         */
+        /// <summary>
+        /// 从字节缓冲区中生成一个对象
+        /// </summary>
+        /// <param name="bBuf"></param>
         public void SetBytes(IByteBuffer bBuf)
         {
             int iCount = GetSegmentCount();

@@ -38,6 +38,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             {
                 return false;
             }
+            foreach (HolidayDetail item in ListHoliday)
+            {
+                if (item.HolidayType < 1 || item.HolidayType > 3)
+                {
+                    throw new ArgumentException("HolidayType Error!");
+                }
+                if (item.Holiday == DateTime.MinValue || item.Holiday.Year < 2000)
+                {
+                    throw new ArgumentException("Year Error!");
+                }
+
+            }
             return true;
         }
 

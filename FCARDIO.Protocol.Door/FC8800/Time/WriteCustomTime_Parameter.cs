@@ -19,10 +19,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Time
         public DateTime ControllerDate;
 
         /// <summary>
-        /// 构建一个空的实例
+        /// 提供给 ReadTime_Result 使用
         /// </summary>
-        public WriteCustomTime_Parameter() { }
+        public WriteCustomTime_Parameter()
+        {
 
+        }
         /// <summary>
         /// 控制器的日期时间参数初始化实例
         /// </summary>
@@ -42,7 +44,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Time
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (ControllerDate == null)
+            if (ControllerDate == DateTime.MinValue)
             {
                 return false;
             }

@@ -7,6 +7,9 @@ using DotNetty.Buffers;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
 {
+    /// <summary>
+    /// 写入门磁报警功能 参数
+    /// </summary>
     public class WriteSensorAlarmSetting_Parameter
         :AbstractParameter
     {
@@ -21,6 +24,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
         /// </summary>
         public bool Use;
 
+        /// <summary>
+        /// 提供给SensorAlarmSetting_Result使用
+        /// </summary>
         public WriteSensorAlarmSetting_Parameter() { }
 
         /// <summary>
@@ -40,8 +46,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DoorNum > 4)
-                throw new ArgumentException("door Is Max!");
+            if (DoorNum < 1 || DoorNum > 4)
+                throw new ArgumentException("Door Error!");
             return true;
         }
 

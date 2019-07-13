@@ -32,6 +32,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ClearTransactionDatabase
             DatabaseType = type;
         }
 
+        /// <summary>
+        /// 清空所有记录
+        /// </summary>
         public ClearTransactionDatabase_Parameter()
         {
 
@@ -43,6 +46,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ClearTransactionDatabase
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (DatabaseType == null)
+            {
+                throw new ArgumentException("DatabaseType Error!");
+            }
             return true;
         }
 

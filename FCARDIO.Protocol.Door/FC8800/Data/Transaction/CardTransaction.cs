@@ -81,14 +81,17 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// </summary>
         public short Reader;
 
-
-        public int GetDataLen()
+        /// <summary>
+        /// 获取读卡记录格式长度
+        /// </summary>
+        /// <returns></returns>
+        public virtual int GetDataLen()
         {
             return 13;
         }
 
         /// <summary>
-        /// 
+        /// 从buf中读取记录数据
         /// </summary>
         /// <param name="data"></param>
         public override void SetBytes(IByteBuffer data)
@@ -112,6 +115,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
 
                     CardData = data.ReadLong();
                 }
+
                 byte[] btTime = new byte[6];
                 data.ReadBytes(btTime, 0, 6);
                 TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhh(btTime);
@@ -127,6 +131,17 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             }
 
             return;
+        }
+
+        /// <summary>
+        /// 从buf中读取卡号
+        /// </summary>
+        /// <param name="data"></param>
+        public virtual void ReadCardData(IByteBuffer data)
+        {
+            data.ReadByte();
+
+            CardData = data.ReadInt();
         }
 
         /// <summary>

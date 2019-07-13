@@ -25,11 +25,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AntiPassback
         /// </summary>
         public bool Use;
 
+        /// <summary>
+        /// 提供给AntiPassback_Result使用
+        /// </summary>
         public WriteAntiPassback_Parameter()
         {
         }
 
-        //创建结构,并传入门号和是否开启此功能
+        /// <summary>
+        /// 创建结构,并传入门号和是否开启此功能
+        /// </summary>
+        /// <param name="door">门号</param>
+        /// <param name="use">是否启用防潜返功能</param>
         public WriteAntiPassback_Parameter(byte door, bool use)
         {
             DoorNum = door;
@@ -42,8 +49,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AntiPassback
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DoorNum > 4)
-                throw new ArgumentException("AntiPassback Is Max");
+            if (DoorNum < 1 || DoorNum > 4)
+                throw new ArgumentException("DoorNum Error");
             return true;
         }
 

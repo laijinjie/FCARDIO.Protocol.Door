@@ -31,8 +31,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
         /// </summary>
         public bool AutoSave;
 
-        public int TimeGroup { get; set; }
+        /// <summary>
+        /// 开门时段索引号
+        /// </summary>
+        public int TimeGroup;
 
+        /// <summary>
+        /// 提供给AnyCardSetting_Result使用
+        /// </summary>
         public WriteAnyCardSetting_Parameter() { }
 
         /// <summary>
@@ -41,6 +47,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
         /// <param name="door">门号</param>
         /// <param name="use">是否启用全卡开门功能</param>
         /// <param name="auto">是否启用在刷卡开门后保存卡片权限</param>
+        /// <param name="timeGroup">开门时段索引号</param>
         public WriteAnyCardSetting_Parameter(byte door,bool use,bool auto, int timeGroup)
         {
             DoorNum = door;
@@ -55,8 +62,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DoorNum > 4)
-                throw new ArgumentException("door Is Max!");
+            if (DoorNum < 1 || DoorNum > 4)
+                throw new ArgumentException("Door Error!");
+            if (TimeGroup < 1 || TimeGroup > 64)
+                throw new ArgumentException("TimeGroup Error!");
             return true;
         }
 

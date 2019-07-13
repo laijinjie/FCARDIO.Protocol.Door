@@ -8,7 +8,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InOutSideReadOpenSetting
     /// <summary>
     /// 门内外同时读卡开门
     /// </summary>
-    public class WriteInOutSideReadOpenSetting : FC8800Command
+    public class WriteInOutSideReadOpenSetting : FC8800CommandEx
     {
         /// <summary>
         /// 初始化命令结构
@@ -34,21 +34,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InOutSideReadOpenSetting
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x14, 0x00, 2, GetCmdData());
+            InOutSideReadOpenSetting_Parameter model = _Parameter as InOutSideReadOpenSetting_Parameter;
+            Packet(0x03, 0x14, 0x00, 2, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
-        /// <summary>
-        /// 获取参数结构的字节编码
-        /// </summary>
-        /// <returns></returns>
-        private IByteBuffer GetCmdData()
-        {
-            InOutSideReadOpenSetting_Parameter model = _Parameter as InOutSideReadOpenSetting_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
-        }
 
         /// <summary>
         /// 处理返回值
@@ -59,20 +48,5 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InOutSideReadOpenSetting
             return;
         }
 
-        /// <summary>
-        /// 命令重发时需要处理的函数
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 命令释放时需要处理的函数
-        /// </summary>
-        protected override void Release1()
-        {
-            return;
-        }
     }
 }

@@ -157,6 +157,8 @@
     <Compile Include="FC8800\Door\29InterLockSetting\ReadInterLockSetting.cs" />
     <Compile Include="FC8800\Door\29InterLockSetting\WriteInterLockSetting.cs" />
     <Compile Include="FC8800\Door\29InterLockSetting\WriteInterLockSetting_Parameter.cs" />
+    <Compile Include="FC8800\FC8800CommandEx.cs" />
+    <Compile Include="FC8800\FC8800Command_Read_DoorParameter.cs" />
     <Compile Include="FC8800\FC8800Command_ReadParameter.cs" />
     <Compile Include="FC8800\FC8800Command_WriteParameter.cs" />
     <Compile Include="FC8800\Holiday\02ClearHoliday\ClearHoliday.cs" />

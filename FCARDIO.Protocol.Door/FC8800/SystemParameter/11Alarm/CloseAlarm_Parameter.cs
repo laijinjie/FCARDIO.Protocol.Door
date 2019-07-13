@@ -50,9 +50,12 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Alarm
         {
             if (Door != 1 && Door != 2 && Door != 3 && Door != 4 && Door != 255)
             {
-                return false;
+                throw new ArgumentException("Door Error");
             }
-
+            if (Alarm < 0 || Alarm > 12)
+            {
+                throw new ArgumentException("Alarm Error");
+            }
             return true;
         }
 
