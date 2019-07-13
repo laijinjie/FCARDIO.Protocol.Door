@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotNetty.Buffers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     /// <summary>
     /// 所有事务、记录的抽象类
     /// </summary>
-    public class AbstractTransaction
+    public abstract class AbstractTransaction
     {
         /// <summary>
         /// 事务序列号
@@ -35,5 +36,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// 记录是否为空记录
         /// </summary>
         protected bool IsNull;
+
+        public abstract void SetBytes(IByteBuffer data);
     }
 }

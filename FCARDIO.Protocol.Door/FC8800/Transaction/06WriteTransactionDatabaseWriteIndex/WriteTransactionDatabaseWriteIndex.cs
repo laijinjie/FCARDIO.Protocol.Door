@@ -41,7 +41,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.WriteTransactionDatabaseWrite
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x08, 0x04, 0x00, 0x05, getCmdData());
+            Packet(0x08, 0x03, 0x01, 0x05, getCmdData());
         }
 
         /// <summary>

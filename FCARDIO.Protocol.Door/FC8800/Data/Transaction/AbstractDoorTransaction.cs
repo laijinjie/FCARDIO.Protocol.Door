@@ -30,7 +30,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// 
         /// </summary>
         /// <param name="data"></param>
-        public void SetBytes(IByteBuffer data)
+        public override void SetBytes(IByteBuffer data)
         {
             try
             {

@@ -95,7 +95,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractTransaction.cs" />
     <Compile Include="FC8800\AbstractParameter.cs" />
     <Compile Include="FC8800\Card\01CardDatabaseDetail\ReadCardDatabaseDetail.cs" />
     <Compile Include="FC8800\Card\01CardDatabaseDetail\ReadCardDatabaseDetail_Result.cs" />
@@ -180,8 +179,6 @@
     <Compile Include="FC8800\Password\04AddPassword\AddPassword_Parameter.cs" />
     <Compile Include="FC8800\Password\05DeletePassword\DeletePassword.cs" />
     <Compile Include="FC8800\Password\05DeletePassword\DeletePassword_Parameter.cs" />
-    <Compile Include="FC8800\Password\06TestPassword\TestPassword.cs" />
-    <Compile Include="FC8800\Password\06TestPassword\TestPassword_Parameter.cs" />
     <Compile Include="FC8800\Password\PasswordDetail.cs" />
     <Compile Include="FC8800\SystemParameter\14SearchControltor\SearchControltor_Result.cs" />
     <Compile Include="FC8800\SystemParameter\15CacheContent\CacheContent_Parameter.cs" />
@@ -455,6 +452,7 @@
     <Compile Include="FC89H\Door\25MultiCard\WriteMultiCard_Parameter.cs" />
     <Compile Include="FC89H\Password\04AddPassword\AddPassword_Parameter.cs" />
     <Compile Include="FC89H\Password\05DeletePassword\DeletePassword_Parameter.cs" />
+    <Compile Include="FC89H\Password\PasswordDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FC8800\SystemParameter\01SN\ReadSN.cs" />
   </ItemGroup>
@@ -464,7 +462,9 @@
       <Name>FCARDIO.Protocol.Util</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="FC89H\Transaction\" />
+  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

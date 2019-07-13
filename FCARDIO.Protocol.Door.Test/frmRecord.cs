@@ -63,9 +63,9 @@ namespace FCARDIO.Protocol.Door.Test
         #region 清空所有记录
         private void butClearAllTransactionDatabase_Click(object sender, EventArgs e)
         {
-            int type = cboe_TransactionDatabaseType1.SelectedIndex;
+            
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type));
+            var par = new FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase_Parameter();
             var cmd = new FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -151,6 +151,15 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 mMainForm.AddLog($"命令成功");
+                var result = cmd.getResult() as FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Result;
+                if (result.TransactionList.Count > 0)
+                {
+                    foreach (var item in result.TransactionList)
+                    {
+                        mMainForm.AddCmdLog(cmde, $"序号：{item.SerialNumber}，事务类型：{item.TransactionType}，事务代码：{item.TransactionCode}，事务日期：{item.TransactionDate}");
+                    }
+                       
+                }
             };
         }
         #endregion
@@ -206,8 +215,9 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void ButClearTransactionDatabase_Click(object sender, EventArgs e)
         {
+            int type = cboe_TransactionDatabaseType2.SelectedIndex;
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase_Parameter();
+            var par = new FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type));
             var cmd = new FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>

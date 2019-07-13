@@ -3,6 +3,7 @@ using FCARDIO.Core.Command;
 using System;
 using System.Collections.Generic;
 using FCARDIO.Core.Extension;
+using FCARDIO.Protocol.Door.FC8800.Data;
 
 namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex
 {

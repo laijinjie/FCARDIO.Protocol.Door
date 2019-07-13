@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Data
 {
-    class ButtonTransaction
+    /// <summary>
+    /// 出门按钮记录
+    /// TransactionCode 事件代码含义表
+    /// 1 合法开门          
+    /// 2 开门时段过期      
+    /// 3 锁定时按钮        
+    /// 4 控制器已过期      
+    /// 5 互锁时按钮(不开门)
+    /// </summary>
+    public class ButtonTransaction : AbstractDoorTransaction
     {
+        public ButtonTransaction():base(2)
+        {
+
+        }
     }
 }

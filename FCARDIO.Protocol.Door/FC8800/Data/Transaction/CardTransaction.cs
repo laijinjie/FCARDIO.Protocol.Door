@@ -91,7 +91,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// 
         /// </summary>
         /// <param name="data"></param>
-        public void SetBytes(IByteBuffer data)
+        public override void SetBytes(IByteBuffer data)
         {
             try
             {
@@ -100,7 +100,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
                     IsNull = true;
                     //return;
                 }
-                CardData = data.ReadLong();
+                if (data.Capacity % 13 == 0)
+                {
+                    data.ReadByte();
+
+                    CardData = data.ReadInt();
+                }
+                else
+                {
+                    data.ReadByte();
+
+                    CardData = data.ReadLong();
+                }
                 byte[] btTime = new byte[6];
                 data.ReadBytes(btTime, 0, 6);
                 TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhh(btTime);

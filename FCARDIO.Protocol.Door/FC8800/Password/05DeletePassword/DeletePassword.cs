@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Password
 {
-    public class DeletePassword : FC8800Command
+    public class DeletePassword<T> : FC8800Command where T : PasswordDetail, new()
     {
         int maxCount = 0;
-        public DeletePassword(INCommandDetail cd, DeletePassword_Parameter par) : base(cd, par)
+        public DeletePassword(INCommandDetail cd, DeletePassword_Parameter<T> par) : base(cd, par)
         {
 
         }
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            DeletePassword_Parameter model = value as DeletePassword_Parameter;
+            DeletePassword_Parameter<T> model = value as DeletePassword_Parameter<T>;
             if (model == null)
             {
                 return false;
@@ -29,7 +29,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
 
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            DeletePassword_Parameter model = _Parameter as DeletePassword_Parameter;
+            DeletePassword_Parameter<T> model = _Parameter as DeletePassword_Parameter<T>;
             if (model.mIndex < maxCount)
             {
                 var acl = _Connector.GetByteBufAllocator();
@@ -50,7 +50,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
 
         protected override void CreatePacket0()
         {
-            DeletePassword_Parameter model = _Parameter as DeletePassword_Parameter;
+            DeletePassword_Parameter<T> model = _Parameter as DeletePassword_Parameter<T>;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
             maxCount = model.ListPassword.Count;

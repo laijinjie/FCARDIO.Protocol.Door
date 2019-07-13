@@ -611,7 +611,7 @@ namespace FCARDIO.Protocol.Door.Test
 
         public CommandDetailFactory.ControllerType GetProtocolType()
         {
-            return (CommandDetailFactory.ControllerType)cmdProtocolType.SelectedIndex;
+            return (CommandDetailFactory.ControllerType)cmdProtocolType.SelectedItem;
         }
 
         #region 通讯日志

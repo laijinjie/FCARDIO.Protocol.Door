@@ -74,7 +74,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseReadIndex
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.WriteByte(ReadIndex);
+            databuf.WriteByte((byte)DatabaseType);
+            databuf.WriteInt(ReadIndex);
             databuf.WriteBoolean(IsCircle);
             return databuf;
         }

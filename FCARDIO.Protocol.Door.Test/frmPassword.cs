@@ -105,26 +105,49 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            ReadAllPassword cmd = new ReadAllPassword(cmdDtl);
-            mMainForm.AddCommand(cmd);
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            {
+                ReadAllPassword<FC89H.Password.PasswordDetail> cmd
+                    = new ReadAllPassword<FC89H.Password.PasswordDetail>(cmdDtl);
+                mMainForm.AddCommand(cmd);
+            }
+            else
+            {
+                ReadAllPassword<PasswordDetail> cmd = new ReadAllPassword<PasswordDetail>(cmdDtl);
+                mMainForm.AddCommand(cmd);
+            }
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ListPassword.Clear();
-                ReadAllPassword_Result result = cmde.Command.getResult() as ReadAllPassword_Result;
-                foreach (PasswordDetail detail in result.Passowrds)
+                var comdResult = cmde.Command.getResult();
+                int count = 0;
+                if (comdResult is ReadAllPassword_Result<PasswordDetail>)
                 {
-                    PasswordDto dto = new PasswordDto();
-                    dto.SetDoors(detail);
-                    dto.Password = detail.Password;
-                    if (detail.Expiry != DateTime.MinValue)
+                    ReadAllPassword_Result<PasswordDetail> result = comdResult as ReadAllPassword_Result<PasswordDetail>;
+                    foreach (PasswordDetail detail in result.Passowrds)
                     {
+                        PasswordDto dto = new PasswordDto();
+                        dto.SetDoors(detail);
+                        dto.Password = detail.Password;
+                        ListPassword.Add(dto);
+                    }
+                    count = result.Passowrds.Count;
+                }
+                else if (comdResult is ReadAllPassword_Result<FC89H.Password.PasswordDetail>)
+                {
+                    ReadAllPassword_Result<FC89H.Password.PasswordDetail> result = comdResult as ReadAllPassword_Result<FC89H.Password.PasswordDetail>;
+                    foreach (PasswordDetail detail in result.Passowrds)
+                    {
+                        PasswordDto dto = new PasswordDto();
+                        dto.SetDoors(detail);
+                        dto.Password = detail.Password;
                         dto.OpenTimes = detail.OpenTimes;
                         dto.Expiry = detail.Expiry;
+                        ListPassword.Add(dto);
                     }
-                    
-                    ListPassword.Add(dto);
+                    count = result.Passowrds.Count;
                 }
 
                 Invoke(() =>
@@ -133,7 +156,7 @@ namespace FCARDIO.Protocol.Door.Test
 
                 });
                 //dataGridView1
-                string log = $"已读取到数量：{result.Passowrds.Count} ";
+                string log = $"已读取到数量：{count} ";
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
@@ -154,7 +177,7 @@ namespace FCARDIO.Protocol.Door.Test
                 PasswordDetail password = new PasswordDetail();
                 if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
                 {
-                    password.OpenTimes = ListPassword[i].OpenTimes; 
+                    password.OpenTimes = ListPassword[i].OpenTimes;
                     if (password.OpenTimes == cmbOpenTimes.Items.Count - 1)
                     {
                         password.OpenTimes = 65535;
@@ -166,12 +189,12 @@ namespace FCARDIO.Protocol.Door.Test
                 password.Door = Convert.ToInt32(strDoor1, 2);
                 _list.Add(password);
             }
-            AddPassword_Parameter par = new AddPassword_Parameter(_list);
+            AddPassword_Parameter<PasswordDetail> par = new AddPassword_Parameter<PasswordDetail>(_list);
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
             {
                 par = new FC89H.Password.AddPassword.AddPassword_Parameter(_list);
             }
-            AddPassword cmd = new AddPassword(cmdDtl, par);
+            AddPassword<PasswordDetail> cmd = new AddPassword<PasswordDetail>(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -280,7 +303,7 @@ namespace FCARDIO.Protocol.Door.Test
             //FC89H.Password.
             List<PasswordDetail> _list = new List<PasswordDetail>();
             PasswordDetail password = new PasswordDetail();
-            if (mMainForm.GetProtocolType()  == CommandDetailFactory.ControllerType.FC89H)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
             {
                 password.OpenTimes = cmbOpenTimes.SelectedIndex;
                 if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
@@ -293,9 +316,12 @@ namespace FCARDIO.Protocol.Door.Test
             string strDoor1 = (cbbit0.Checked ? "1" : "0") + (cbbit1.Checked ? "1" : "0") + (cbbit2.Checked ? "1" : "0") + (cbbit3.Checked ? "1" : "0");
             password.Door = Convert.ToInt32(strDoor1, 2);
             _list.Add(password);
-
-            AddPassword_Parameter par = new AddPassword_Parameter(_list);
-            AddPassword cmd = new AddPassword(cmdDtl, par);
+            AddPassword_Parameter<PasswordDetail> par = new AddPassword_Parameter<PasswordDetail>(_list);
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            {
+                par = new FC89H.Password.AddPassword.AddPassword_Parameter(_list);
+            }
+            AddPassword<PasswordDetail> cmd = new AddPassword<PasswordDetail>(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -319,13 +345,29 @@ namespace FCARDIO.Protocol.Door.Test
 
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            List<PasswordDetail> _list = new List<PasswordDetail>();
-            PasswordDetail detail = new PasswordDetail();
-            detail.Password = txtPassword.Text;
-            _list.Add(detail);
-            DeletePassword_Parameter par = new DeletePassword_Parameter(_list);
-            DeletePassword cmd = new DeletePassword(cmdDtl, par);
-            mMainForm.AddCommand(cmd);
+
+
+
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            {
+                List<FC89H.Password.PasswordDetail> _list = new List<FC89H.Password.PasswordDetail>();
+                FC89H.Password.PasswordDetail detail = new FC89H.Password.PasswordDetail();
+                detail.Password = txtPassword.Text;
+                _list.Add(detail);
+                FC89H.Password.DeletePassword.DeletePassword_Parameter<FC89H.Password.PasswordDetail> par = new FC89H.Password.DeletePassword.DeletePassword_Parameter<FC89H.Password.PasswordDetail>(_list);
+                DeletePassword<FC89H.Password.PasswordDetail> cmd = new DeletePassword<FC89H.Password.PasswordDetail>(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+            }
+            else
+            {
+                List<PasswordDetail> _list = new List<PasswordDetail>();
+                PasswordDetail detail = new PasswordDetail();
+                detail.Password = txtPassword.Text;
+                _list.Add(detail);
+                DeletePassword_Parameter<PasswordDetail> par = new DeletePassword_Parameter<PasswordDetail>(_list);
+                DeletePassword<PasswordDetail> cmd = new DeletePassword<PasswordDetail>(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+            }
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
@@ -341,42 +383,78 @@ namespace FCARDIO.Protocol.Door.Test
         /// <param name="e"></param>
         private void BtnDelSelect_Click(object sender, EventArgs e)
         {
-            List<PasswordDetail> _list = new List<PasswordDetail>();
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
             {
-                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[0];
-                if ((bool)cell.FormattedValue)
+                List<PasswordDetail> _list = new List<PasswordDetail>();
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
-                    DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[1];
-                    var item = ListPassword.FirstOrDefault(t => t.Password == text.Value.ToString());
-                    PasswordDetail detail = new PasswordDetail();
-                    detail.Password = item.Password;
-                    string strDoor1 = (item.Door1 ? "1" : "0") + (item.Door2 ? "1" : "0") + (item.Door3 ? "1" : "0") + (item.Door4 ? "1" : "0");
-                    detail.Door = Convert.ToInt32(strDoor1, 2);
-                    _list.Add(detail);
-                    ListPassword.Remove(item);
+                    DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[0];
+                    if ((bool)cell.FormattedValue)
+                    {
+                        DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[1];
+                        var item = ListPassword.FirstOrDefault(t => t.Password == text.Value.ToString());
+                        PasswordDetail detail = new PasswordDetail();
+                        detail.Password = item.Password;
+                        string strDoor1 = (item.Door1 ? "1" : "0") + (item.Door2 ? "1" : "0") + (item.Door3 ? "1" : "0") + (item.Door4 ? "1" : "0");
+                        detail.Door = Convert.ToInt32(strDoor1, 2);
+                        _list.Add(detail);
+                        ListPassword.Remove(item);
+                    }
                 }
+
+                dataGridView1.DataSource = new BindingList<PasswordDto>(ListPassword);
+                if (_list.Count > 0)
+                {
+                    var cmdDtl = mMainForm.GetCommandDetail();
+                    if (cmdDtl == null) return;
+
+                    DeletePassword_Parameter<PasswordDetail> par = new DeletePassword_Parameter<PasswordDetail>(_list);
+
+                    DeletePassword<PasswordDetail> cmd = new DeletePassword<PasswordDetail>(cmdDtl, par);
+                    mMainForm.AddCommand(cmd);
+                    cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+                    {
+                        mMainForm.AddLog($"命令成功：");
+
+                    };
+                }
+
             }
-
-            dataGridView1.DataSource = new BindingList<PasswordDto>(ListPassword);
-            if (_list.Count > 0)
+            else
             {
-                var cmdDtl = mMainForm.GetCommandDetail();
-                if (cmdDtl == null) return;
-
-                DeletePassword_Parameter par = new DeletePassword_Parameter(_list);
-                if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+                List<FC89H.Password.PasswordDetail> _list = new List<FC89H.Password.PasswordDetail>();
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
-                    par = new FC89H.Password.DeletePassword.DeletePassword_Parameter(_list);
+                    DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[0];
+                    if ((bool)cell.FormattedValue)
+                    {
+                        DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[1];
+                        var item = ListPassword.FirstOrDefault(t => t.Password == text.Value.ToString());
+                        FC89H.Password.PasswordDetail detail = new FC89H.Password.PasswordDetail();
+                        detail.Password = item.Password;
+                        string strDoor1 = (item.Door1 ? "1" : "0") + (item.Door2 ? "1" : "0") + (item.Door3 ? "1" : "0") + (item.Door4 ? "1" : "0");
+                        detail.Door = Convert.ToInt32(strDoor1, 2);
+                        _list.Add(detail);
+                        ListPassword.Remove(item);
+                    }
                 }
-                DeletePassword cmd = new DeletePassword(cmdDtl, par);
-                mMainForm.AddCommand(cmd);
 
-                cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+                dataGridView1.DataSource = new BindingList<PasswordDto>(ListPassword);
+                if (_list.Count > 0)
                 {
-                    mMainForm.AddLog($"命令成功：");
+                    var cmdDtl = mMainForm.GetCommandDetail();
+                    if (cmdDtl == null) return;
 
-                };
+                    DeletePassword_Parameter<FC89H.Password.PasswordDetail> par = new DeletePassword_Parameter<FC89H.Password.PasswordDetail>(_list);
+
+                    DeletePassword<FC89H.Password.PasswordDetail> cmd = new DeletePassword<FC89H.Password.PasswordDetail>(cmdDtl, par);
+                    mMainForm.AddCommand(cmd);
+                    cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+                    {
+                        mMainForm.AddLog($"命令成功：");
+
+                    };
+                }
             }
 
         }

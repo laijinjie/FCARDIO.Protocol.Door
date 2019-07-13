@@ -70,7 +70,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.WriteTransactionDatabaseWrite
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.WriteByte(WriteIndex);
+            databuf.WriteByte((byte)DatabaseType);
+            databuf.WriteInt(WriteIndex);
             return databuf;
         }
 

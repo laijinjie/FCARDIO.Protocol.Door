@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Password
 {
-    public class DeletePassword_Parameter : AbstractParameter
+    public class DeletePassword_Parameter<T> : AbstractParameter where T : PasswordDetail, new()
     {
         private int writeIndex = 0;
 
@@ -31,9 +31,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 
         /// </summary>
-        public List<PasswordDetail> ListPassword { get; private set; }
+        public List<T> ListPassword;
 
-        public DeletePassword_Parameter(List<PasswordDetail> list)
+        public DeletePassword_Parameter(List<T> list)
         {
             ListPassword = list;
            
@@ -86,7 +86,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 iIndex = i;
                 iSize += 1;
 
-                ListPassword[iIndex].GetDeleteBytes(databuf);
+                ListPassword[iIndex].GetBytes(databuf);
                 if (iSize == iMaxSize)
                 {
                     break;

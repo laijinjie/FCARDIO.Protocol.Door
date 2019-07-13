@@ -9,7 +9,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     /// <summary>
     /// 表示一个密码表
     /// </summary>
-    public class PasswordDetail : AbstractData,IComparable<PasswordDetail>
+    public class PasswordDetail : AbstractData, IComparable<PasswordDetail>
     {
         /// <summary>
         /// 密码信息
@@ -63,7 +63,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             {
                 return 0;
             }
-           
+
             else
             {
                 return -1;
@@ -80,13 +80,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             data.WriteByte(Door);
             Password = StringUtil.FillHexString(Password, 8, "F", true);
             StringUtil.HextoByteBuf(Password, data);
-            //89H 长度是12
-            if ((data.Capacity - 4) % 12 == 0)
-            {
-                data.WriteShort(OpenTimes);
-                TimeUtil.DateToBCD_yyMMddhhmm(data, Expiry);
-            }
-            
+            WritePassword(data);
             return data;
         }
 
@@ -95,24 +89,27 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public IByteBuffer GetDeleteBytes(IByteBuffer data)
+        public virtual IByteBuffer GetDeleteBytes(IByteBuffer data)
         {
-            //FC88 长度是5
-            if (data.Capacity % 5 == 0)
-            {
-                data.WriteByte(Door);
-                
-            }
+            data.WriteByte(Door);
             Password = StringUtil.FillHexString(Password, 8, "F", true);
             StringUtil.HextoByteBuf(Password, data);
-
-
             return data;
         }
 
         public override int GetDataLen()
         {
             throw new NotImplementedException();
+        }
+
+        protected virtual void ReadPassword(IByteBuffer data)
+        {
+
+        }
+
+        protected virtual void WritePassword(IByteBuffer data)
+        {
+
         }
 
         /// <summary>
@@ -126,12 +123,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             byte[] btData = new byte[4];
             data.ReadBytes(btData, 0, 4);
             Password = btData.ToHex().TrimEnd('F');
-            if ((data.Capacity - 4) % 12 == 0)
-            {
-                OpenTimes = data.ReadUnsignedShort();
-                Expiry = TimeUtil.BCDTimeToDate_yyMMddhhmm(data);
-            }
-            
+            ReadPassword(data);
+           
         }
 
     }
