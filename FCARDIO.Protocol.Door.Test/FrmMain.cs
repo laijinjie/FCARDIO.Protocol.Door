@@ -787,7 +787,7 @@ namespace FCARDIO.Protocol.Door.Test
         /// <summary>
         /// 协议类型
         /// </summary>
-        CommandDetailFactory.ControllerType[] mProtocolTypeTable = new CommandDetailFactory.ControllerType[10];
+        CommandDetailFactory.ControllerType[] mProtocolTypeTable = new CommandDetailFactory.ControllerType[3];
         /// <summary>
         /// 初始化命令类型的功能名称
         /// </summary>
@@ -1069,6 +1069,7 @@ namespace FCARDIO.Protocol.Door.Test
             mProtocolTypeTable[1] = CommandDetailFactory.ControllerType.FC88;
             mProtocolTypeTable[2] = CommandDetailFactory.ControllerType.FC89H;
 
+            cmdProtocolType.Items.Clear();
             for (int i = 0; i < mProtocolTypeTable.Length; i++)
             {
                 cmdProtocolType.Items.Add(mProtocolTypeTable[i]);
