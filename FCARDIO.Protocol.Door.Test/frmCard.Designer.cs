@@ -416,6 +416,7 @@
             // 
             // cmbcardType
             // 
+            this.cmbcardType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbcardType.FormattingEnabled = true;
             this.cmbcardType.Location = new System.Drawing.Point(351, 32);
             this.cmbcardType.Name = "cmbcardType";

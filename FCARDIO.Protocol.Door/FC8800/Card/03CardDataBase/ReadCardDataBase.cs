@@ -51,8 +51,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// </summary>
         protected override void CreatePacket0()
         {
-            //Packet(0x07, 0x02, 0x00, 0x01, GetCmdDate());
-            Packet(0x07, 0x01, 0x00);
+            Packet(0x07, 0x03, 0x00, 0x01, GetCmdData());
+            //Packet(0x07, 0x01, 0x00);
             mReadBuffers = new List<IByteBuffer>();
         }
 
@@ -60,7 +60,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// 获取参数结构的字节编码
         /// </summary>
         /// <returns></returns>
-        private IByteBuffer GetCmdDate()
+        private IByteBuffer GetCmdData()
         {
             ReadCardDataBase_Parameter model = _Parameter as ReadCardDataBase_Parameter;
             var acl = _Connector.GetByteBufAllocator();

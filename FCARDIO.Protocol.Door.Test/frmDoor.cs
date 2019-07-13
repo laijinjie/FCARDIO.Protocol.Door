@@ -153,7 +153,7 @@ namespace FCARDIO.Protocol.Door.Test
 
             cmbManyCardOpenMode.SelectedIndex = 0;
             cmbAntiPassback.SelectedIndex = 0;
-            if (mMainForm.GetProtocolType().Contains("MC58"))
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.MC58)
             {
                 cmbVerifyType.Items.AddRange(new string[] { "禁用", "固定组合" });
             }
@@ -2534,17 +2534,17 @@ namespace FCARDIO.Protocol.Door.Test
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            string protocolType = mMainForm.GetProtocolType();
+            var protocolType = mMainForm.GetProtocolType();
             ReadMultiCard cmd = null;
-            if (protocolType.Contains("FC8800"))
+            if (protocolType == CommandDetailFactory.ControllerType.FC88)
             {
                 cmd = new ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, false));
             }
-            else if (protocolType.Contains("FC89H"))
+            else if (protocolType == CommandDetailFactory.ControllerType.FC89H)
             {
                 cmd = new FC89H.Door.MultiCard.ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, false));
             }
-            else if ((protocolType.Contains("MC58")))
+            else if (protocolType == CommandDetailFactory.ControllerType.MC58)
             {
                 cmd = new FC89H.Door.MultiCard.ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, true));
             }
@@ -2634,10 +2634,10 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            string protocolType = mMainForm.GetProtocolType();
+            var protocolType = mMainForm.GetProtocolType();
 
            
-            if (protocolType.Contains("FC8800"))
+            if (protocolType == CommandDetailFactory.ControllerType.FC88)
             {
                 WriteMultiCard_Parameter par = new WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex
                     , (byte)cmbVerifyType.SelectedIndex, bAcount, bBcount
@@ -2645,7 +2645,7 @@ namespace FCARDIO.Protocol.Door.Test
                 WriteMultiCard cmd = new WriteMultiCard(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
-            else if (protocolType.Contains("FC89H"))
+            else if (protocolType == CommandDetailFactory.ControllerType.FC89H)
             {
                 FC89H.Door.MultiCard.WriteMultiCard_Parameter par = new FC89H.Door.MultiCard.WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex, (byte)cmbVerifyType.SelectedIndex
                         , bAcount, bBcount
@@ -2653,7 +2653,7 @@ namespace FCARDIO.Protocol.Door.Test
                 FC89H.Door.MultiCard.WriteMultiCard cmd = new FC89H.Door.MultiCard.WriteMultiCard(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
-            else if (protocolType.Contains("MC58"))
+            else if (protocolType == CommandDetailFactory.ControllerType.MC58)
             {
                 WriteMultiCard_Parameter par = new WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex, listFix);
                 WriteMultiCard cmd = new WriteMultiCard(cmdDtl, par);
@@ -2719,7 +2719,7 @@ namespace FCARDIO.Protocol.Door.Test
         
         private void CmbGroupType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mMainForm.GetProtocolType().Contains("MC58"))
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.MC58)
             {
                 return;
             }

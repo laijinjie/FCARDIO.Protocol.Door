@@ -565,24 +565,8 @@ namespace FCARDIO.Protocol.Door.Test
                 default:
                     break;
             }
-
-            switch (cmdProtocolType.SelectedIndex)
-            {
-                case 0://FC8800系列协议 FC8800，MC5800
-                    protocolType = CommandDetailFactory.ControllerType.MC58;
-
-                    break;
-                case 1://FC8800系列协议 FC8800，MC5800
-                    protocolType = CommandDetailFactory.ControllerType.FC88;
-
-                    break;
-                case 2://FC8800系列协议 FC8800，MC5800
-                    protocolType = CommandDetailFactory.ControllerType.FC89H;
-
-                    break;
-                default:
-                    break;
-            }
+            protocolType = mProtocolTypeTable[cmdProtocolType.SelectedIndex];
+            
 
             if (port > 65535) port = 8000;
 
@@ -625,9 +609,9 @@ namespace FCARDIO.Protocol.Door.Test
 
 
 
-        public string GetProtocolType()
+        public CommandDetailFactory.ControllerType GetProtocolType()
         {
-            return  cmdProtocolType.SelectedItem.ToString();
+            return (CommandDetailFactory.ControllerType)cmdProtocolType.SelectedIndex;
         }
 
         #region 通讯日志
@@ -799,6 +783,11 @@ namespace FCARDIO.Protocol.Door.Test
         /// 保存命令类型的功能名称
         /// </summary>
         private Dictionary<string, string> mCommandClasss;
+
+        /// <summary>
+        /// 协议类型
+        /// </summary>
+        CommandDetailFactory.ControllerType[] mProtocolTypeTable = new CommandDetailFactory.ControllerType[10];
         /// <summary>
         /// 初始化命令类型的功能名称
         /// </summary>
@@ -1073,9 +1062,17 @@ namespace FCARDIO.Protocol.Door.Test
             cmdConnType.Items.AddRange("串口,TCP客户端,UDP,TCP服务器".SplitTrim(","));
             cmdConnType.SelectedIndex = 1;
             ShowConnTypePanel();
-            cmdProtocolType.Items.Add("MC58T系列");
-            cmdProtocolType.Items.Add("FC8800系列");
-            cmdProtocolType.Items.Add("FC89H系列");
+
+           
+
+            mProtocolTypeTable[0] = CommandDetailFactory.ControllerType.MC58;
+            mProtocolTypeTable[1] = CommandDetailFactory.ControllerType.FC88;
+            mProtocolTypeTable[2] = CommandDetailFactory.ControllerType.FC89H;
+
+            for (int i = 0; i < mProtocolTypeTable.Length; i++)
+            {
+                cmdProtocolType.Items.Add(mProtocolTypeTable[i]);
+            }
             cmdProtocolType.SelectedIndex = 1;
             _IsClosed = false;
 
@@ -1441,5 +1438,10 @@ namespace FCARDIO.Protocol.Door.Test
             lstCommand.Items.Clear();
         }
         #endregion
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

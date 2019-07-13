@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 using FCARDIO.Core.Command;
+using FCARDIO.Core.Packet;
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 
@@ -46,6 +47,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
             WriteCardDetailToBuf(buf);
 
             Packet(0x07, 0x04, 0x00, (uint)buf.ReadableBytes, buf);
+        }
+
+        protected override void CommandNext(INPacket readPacket)
+        {
+
+        }
+
+        protected override void CommandReSend()
+        {
+
         }
 
 

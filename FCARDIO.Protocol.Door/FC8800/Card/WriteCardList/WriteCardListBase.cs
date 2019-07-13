@@ -60,6 +60,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
+            _CardPar = value as WriteCardList_Parameter_Base<T>;
             if (_CardPar == null) return false;
             return _CardPar.checkedParameter();
         }

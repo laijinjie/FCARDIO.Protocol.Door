@@ -48,7 +48,7 @@ namespace FCARDIO.Protocol.Door.Test
         {
             //操作类型
             cmbcardType.Items.Clear();
-            cmbcardType.Items.AddRange(new string[] { "所有卡", "排序卡", "非排序卡" });
+            cmbcardType.Items.AddRange(new string[] {  "排序卡", "非排序卡", "所有卡" });
             cmbcardType.SelectedIndex = 0;
             dataGridView1.AutoGenerateColumns = false;
             TimeGroup();
@@ -67,7 +67,8 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Card.CardDatabaseDetail.ReadCardDatabaseDetail_Result;
-                mMainForm.AddCmdLog(cmde,$"命令成功：排序数据区容量上限:{result.SortDataBaseSize},排序数据区已使用数量:{result.SortCardSize}，顺序存储区容量上限:{result.SequenceDataBaseSize},顺序存储区已使用数量:{result.SequenceCardSize}");
+                mMainForm.AddCmdLog(cmde,$"命令成功：排序数据区容量上限:{result.SortDataBaseSize.ToString()},排序数据区已使用数量:{result.SortCardSize.ToString()}");
+                mMainForm.AddCmdLog(cmde,$"非排序存储区容量上限:{result.SequenceDataBaseSize.ToString()},非排序存储区已使用数量:{result.SequenceCardSize.ToString()}");
             };
         }
         #endregion
@@ -76,7 +77,7 @@ namespace FCARDIO.Protocol.Door.Test
         private void button2_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Card.CardDataBase.ReadCardDataBase_Parameter(cmbcardType.SelectedIndex);
+            var par = new FC8800.Card.CardDataBase.ReadCardDataBase_Parameter(cmbcardType.SelectedIndex + 1);
             var cmd = new FC8800.Card.CardDataBase.ReadCardDataBase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
@@ -196,7 +197,7 @@ namespace FCARDIO.Protocol.Door.Test
         private void butClearCardDataBase_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Card.ClearCardDataBase.ClearCardDataBase_Parameter(cmbcardType.SelectedIndex);
+            var par = new FC8800.Card.ClearCardDataBase.ClearCardDataBase_Parameter(cmbcardType.SelectedIndex + 1);
             var cmd = new FC8800.Card.ClearCardDataBase.ClearCardDataBase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -227,11 +228,11 @@ namespace FCARDIO.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as FC8800.Card.CardListBySequence.WriteCardListBySequence_Result;
-                if (result != null)
-                {
-                    mMainForm.AddCmdLog(cmde, $"命令成功：失败卡数量:{result.FailTotal},失败的卡列表:{result.CardList.ToString()}");
-                }
+                //var result = cmd.getResult() as FC8800.Card.CardListBySequence.WriteCardListBySequence_Result;
+                //if (result != null)
+                //{
+                //    mMainForm.AddCmdLog(cmde, $"命令成功：失败卡数量:{result.FailTotal},失败的卡列表:{result.CardList.ToString()}");
+                //}
             };
         }
         #endregion
@@ -307,8 +308,8 @@ namespace FCARDIO.Protocol.Door.Test
         {
             //par 需要传输 需要删除的卡片列表 long[] CardList;、
             string CardData = dataGridView1.Rows[0].Cells["CardData10"].Value.ToString();
-            long[] CardList = new long[] { };
-            CardList[0] = long.Parse(CardData);
+            List<CardDetail> CardList = new List<CardDetail>();
+            CardList.Add(new CardDetail() { CardData = ulong.Parse(CardData) });
 
             var cmdDtl = mMainForm.GetCommandDetail();
             var par = new FC8800.Card.DeleteCard.DeleteCard_Parameter(CardList);
@@ -411,6 +412,29 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Card.CardDetail.ReadCardDetail_Result;
+                Invoke(() =>
+                {
+                    if (result.Card != null)
+                    {
+                        txtCardData.Text = result.Card.CardData.ToString();
+                        txtPassword.Text = result.Card.Password;
+                        dtpDate.Value = result.Card.Expiry;
+                        dtpTime.Value = result.Card.Expiry;
+                        if (result.Card.OpenTimes == 65535)
+                        {
+                            cmbOpenTimes.SelectedIndex = cmbOpenTimes.Items.Count - 1;
+                        }
+                        else
+                        {
+                            cmbOpenTimes.SelectedIndex = result.Card.OpenTimes;
+                        }
+                        cbbit0.Checked = result.Card.GetDoor(1);
+                        cbbit1.Checked = result.Card.GetDoor(2);
+                        cbbit2.Checked = result.Card.GetDoor(3);
+                        cbbit3.Checked = result.Card.GetDoor(4);
+                    }
+                });
+                
                 mMainForm.AddCmdLog(cmde,$"命令成功：卡片是否存在:{result.IsReady},卡片的详情:{result.Card}");
             };
         }
@@ -676,7 +700,8 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void BtnDelDevice_Click(object sender, EventArgs e)
         {
-            long[] _cardList = new long[1] { long.Parse(txtCardData.Text)};
+            List<CardDetail> _cardList = new List<CardDetail>();
+            _cardList.Add(new CardDetail() { CardData = ulong.Parse(txtCardData.Text) });
             var cmdDtl = mMainForm.GetCommandDetail();
             var par = new FC8800.Card.DeleteCard.DeleteCard_Parameter(_cardList);
             var cmd = new FC8800.Card.DeleteCard.DeleteCard(cmdDtl, par);
@@ -718,11 +743,11 @@ namespace FCARDIO.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as FC8800.Card.CardListBySequence.WriteCardListBySequence_Result;
-                if (result != null)
-                {
-                    mMainForm.AddCmdLog(cmde, $"命令成功：失败卡数量:{result.FailTotal},失败的卡列表:{result.CardList.ToString()}");
-                }
+                //var result = cmd.getResult() as FC8800.Card.CardListBySequence.WriteCardListBySequence_Result;
+                //if (result != null)
+                //{
+                //    mMainForm.AddCmdLog(cmde, $"命令成功：失败卡数量:{result.FailTotal},失败的卡列表:{result.CardList.ToString()}");
+                //}
             };
         }
 

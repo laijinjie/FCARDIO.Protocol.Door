@@ -125,6 +125,14 @@
     <Compile Include="FC8800\Data\TimeGroup\ReaderWork\WeekTimeGroup_ReaderWork.cs" />
     <Compile Include="FC8800\Data\TransactionDatabaseDetail.cs" />
     <Compile Include="FC8800\Data\TransactionDetail.cs" />
+    <Compile Include="FC8800\Data\Transaction\AbstractDoorTransaction.cs" />
+    <Compile Include="FC8800\Data\Transaction\AbstractTransaction.cs" />
+    <Compile Include="FC8800\Data\Transaction\AlarmTransaction.cs" />
+    <Compile Include="FC8800\Data\Transaction\ButtonTransaction.cs" />
+    <Compile Include="FC8800\Data\Transaction\CardTransaction.cs" />
+    <Compile Include="FC8800\Data\Transaction\DoorSensorTransaction.cs" />
+    <Compile Include="FC8800\Data\Transaction\SoftwareTransaction.cs" />
+    <Compile Include="FC8800\Data\Transaction\SystemTransaction.cs" />
     <Compile Include="FC8800\Door\25MultiCard\MultiCard_Result.cs" />
     <Compile Include="FC8800\Door\25MultiCard\ReadMultiCard.cs" />
     <Compile Include="FC8800\Door\25MultiCard\ReadMultiCard_Parameter.cs" />
@@ -456,9 +464,7 @@
       <Name>FCARDIO.Protocol.Util</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FC89H\Card\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -17,16 +17,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /**
         * 卡号，取值范围 0x1-0xFFFFFFFF
         */
-        public UInt64 CardData { get; set; }
+        public UInt64 CardData;
         /**
          * 卡密码,无密码不填。密码是4-8位的数字。
          */
-        public String Password { get; set; }
+        public String Password;
 
         /**
          * 截止日期，最大2089年12月31日
          */
-        public DateTime Expiry { get; set; }
+        public DateTime Expiry;
         /**
           * 开门时段<br/>
           * 1-4门的开门时段；时段取值范围：1-64<br/>
@@ -35,7 +35,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
           * TimeGroup[2] -- 3门的时段<br/>
           * TimeGroup[3] -- 4门的时段<br/>
           */
-        public byte[] TimeGroup { get; set; }
+        public byte[] TimeGroup;
 
 
         /**
@@ -46,13 +46,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
          * bit2 -- 3门的权限<br/>
          * bit3 -- 4门的权限<br/>
          */
-        public int Door { get; set; }
+        public int Door;
 
         /**
          * 有效次数,取值范围：0-65535;<br.>
          * 0表示次数用光了。65535表示不受限制
          */
-        public int OpenTimes { get; set; }
+        public int OpenTimes;
 
         /**
          * 特权<br/>
@@ -64,33 +64,33 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
          * <li>4 &emsp; 防盗设置卡  </li>
          * </ul>
          */
-        public int Privilege { get; set; }
+        public int Privilege;
 
         /**
          * 卡片状态<br/>
          * 0：正常状态；1：挂失；2：黑名单
          */
-        public byte CardStatus { get; set; }
+        public byte CardStatus;
 
         /**
          * 节假日权限
          */
-        public byte[] Holiday { get; set; }
+        public byte[] Holiday;
 
         /**
          * 使用节假日限制功能,节假日禁止开门
          */
-        public bool HolidayUse { get; set; }
+        public bool HolidayUse;
 
         /**
          * 出入标记；
          */
-        public int EnterStatus { get; set; }
+        public int EnterStatus;
 
         /**
          * 最近一次读卡的记录时间
          */
-        public DateTime RecordTime { get; set; }
+        public DateTime RecordTime;
         /// <summary>
         /// 
         /// </summary>

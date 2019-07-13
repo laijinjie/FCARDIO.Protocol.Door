@@ -152,7 +152,7 @@ namespace FCARDIO.Protocol.Door.Test
             for (int i = 0; i < ListPassword.Count; i++)
             {
                 PasswordDetail password = new PasswordDetail();
-                if (mMainForm.GetProtocolType().Contains("FC89H"))
+                if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
                 {
                     password.OpenTimes = ListPassword[i].OpenTimes; 
                     if (password.OpenTimes == cmbOpenTimes.Items.Count - 1)
@@ -167,7 +167,7 @@ namespace FCARDIO.Protocol.Door.Test
                 _list.Add(password);
             }
             AddPassword_Parameter par = new AddPassword_Parameter(_list);
-            if (mMainForm.GetProtocolType().Contains("FC89H"))
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
             {
                 par = new FC89H.Password.AddPassword.AddPassword_Parameter(_list);
             }
@@ -280,7 +280,7 @@ namespace FCARDIO.Protocol.Door.Test
             //FC89H.Password.
             List<PasswordDetail> _list = new List<PasswordDetail>();
             PasswordDetail password = new PasswordDetail();
-            if (mMainForm.GetProtocolType().Contains("FC89H"))
+            if (mMainForm.GetProtocolType()  == CommandDetailFactory.ControllerType.FC89H)
             {
                 password.OpenTimes = cmbOpenTimes.SelectedIndex;
                 if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
@@ -365,7 +365,7 @@ namespace FCARDIO.Protocol.Door.Test
                 if (cmdDtl == null) return;
 
                 DeletePassword_Parameter par = new DeletePassword_Parameter(_list);
-                if (mMainForm.GetProtocolType().Contains("FC89H"))
+                if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
                 {
                     par = new FC89H.Password.DeletePassword.DeletePassword_Parameter(_list);
                 }

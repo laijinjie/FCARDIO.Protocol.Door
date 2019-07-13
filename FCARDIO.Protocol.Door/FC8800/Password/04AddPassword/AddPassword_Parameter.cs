@@ -66,6 +66,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             ListPassword = null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             int iMaxSize = BatchCount; //每个数据包最大50个卡

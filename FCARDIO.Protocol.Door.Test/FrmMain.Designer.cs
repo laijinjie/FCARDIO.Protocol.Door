@@ -702,6 +702,7 @@
             this.Text = "门禁协议调试";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.gbTCPClient.ResumeLayout(false);
             this.gbTCPClient.PerformLayout();
             this.groupBox1.ResumeLayout(false);

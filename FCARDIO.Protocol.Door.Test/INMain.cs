@@ -33,7 +33,7 @@ namespace FCARDIO.Protocol.Door.Test
         /// 
         /// </summary>
         /// <returns></returns>
-        string GetProtocolType();
+        CommandDetailFactory.ControllerType GetProtocolType();
 
         /// <summary>
         /// 将命令加入到分配器开始执行
