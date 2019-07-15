@@ -83,7 +83,7 @@ namespace FCARDIO.Protocol.Door.FC8800
         /// <param name="ci">命令索引</param>
         /// <param name="cp">命令参数</param>
         /// <param name="dl">数据长度</param>
-        protected void Packet(byte ct, byte ci, byte cp, uint dl)
+        protected void RewritePacket(byte ct, byte ci, byte cp, uint dl)
         {
             FCPacket.CmdType = ct;
             FCPacket.CmdIndex = ci;
@@ -99,7 +99,7 @@ namespace FCARDIO.Protocol.Door.FC8800
         /// <param name="ci">命令索引</param>
         /// <param name="cp">命令参数</param>
         /// <param name="dl">数据长度</param>
-        protected void Packet(byte ci, byte cp, uint dl)
+        protected void RewritePacket(byte ci, byte cp, uint dl)
         {
             FCPacket.CmdIndex = ci;
             FCPacket.CmdPar = cp;

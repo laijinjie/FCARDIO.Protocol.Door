@@ -34,32 +34,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDatabaseDetail
         /// </summary>
         public long SequenceCardSize;
 
+        /// <summary>
+        /// 创建结构
+        /// </summary>
         public ReadCardDatabaseDetail_Result()
         {
         }
 
-        /// <summary>
-        /// 创建结构
-        /// </summary>
-        /// <param name="sortDataBaseSize">排序数据区容量上限</param>
-        /// <param name="sortCardSize">排序数据区已使用数量</param>
-        /// <param name="sequenceDataBaseSize">顺序存储区容量上限</param>
-        /// <param name="sequenceCardSize">顺序存储区已使用数量</param>
-        public ReadCardDatabaseDetail_Result(long sortDataBaseSize, long sortCardSize, long sequenceDataBaseSize,long sequenceCardSize)
+        internal void SetBytes(IByteBuffer buf)
         {
-            SortDataBaseSize = sortDataBaseSize;
-            SortCardSize = sortCardSize;
-            SequenceDataBaseSize = sequenceDataBaseSize;
-            SequenceCardSize = sequenceCardSize;
-        }
-
-
-        internal void SetBytes(ReadCardDatabaseDetail_Result rst,IByteBuffer buf)
-        {
-            rst.SortDataBaseSize = buf.ReadUnsignedInt();
-            rst.SortCardSize = buf.ReadUnsignedInt();
-            rst.SequenceDataBaseSize = buf.ReadUnsignedInt();
-            rst.SequenceCardSize = buf.ReadUnsignedInt();
+            SortDataBaseSize = buf.ReadUnsignedInt();
+            SortCardSize = buf.ReadUnsignedInt();
+            SequenceDataBaseSize = buf.ReadUnsignedInt();
+            SequenceCardSize = buf.ReadUnsignedInt();
 
         }
 

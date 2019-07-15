@@ -334,42 +334,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
             return buf.ToString();
         }
 
-
-        /// <summary>
-        ///十进制数 转 字节数组
-        /// </summary>
-        /// <param name="lValue"></param>
-        /// <returns></returns>
-        public static byte[] DecimalToBytes(decimal lValue)
-        {
-            byte[] b = new byte[16];
-            decimal t = UInt64.MaxValue;
-            t += 1;
-            decimal tmp;
-            UInt64[] valuelist = new UInt64[2];
-            if (lValue > UInt64.MaxValue)
-            {
-                tmp = lValue / t;
-                tmp = (UInt64)tmp;
-                valuelist[1] = (UInt64)(lValue - tmp * t);//低8字节
-                valuelist[0] = (UInt64)tmp;//高8字节
-            }
-            else
-            {
-                valuelist[1] = (UInt64)lValue;//低8字节
-                valuelist[0] = 0;//高8字节
-            }
-            byte[] tmpBuf = new byte[8];
-            int iIndex = 0;
-            for (int i = 0; i <= 1; i++)
-            {
-                UInt64ToByte(valuelist[i], tmpBuf, 0, 8);
-                Array.Copy(tmpBuf, 0, b, iIndex, 8);
-                iIndex += 8;
-            }
-
-            return b;
-        }
+        
 
 
         /// <summary>

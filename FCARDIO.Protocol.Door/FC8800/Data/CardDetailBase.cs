@@ -91,6 +91,28 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
          * 最近一次读卡的记录时间
          */
         public DateTime RecordTime;
+
+
+        /// <summary>
+        /// 初始化卡详情实例中的数值
+        /// </summary>
+        public CardDetailBase()
+        {
+            CardData = 0;
+            OpenTimes = 65535;
+            Password = string.Empty;
+            Expiry = DateTime.Now.AddYears(5);
+            TimeGroup = new byte[] { 1, 1, 1, 1 };
+            Door = 15;
+            Privilege = 0;
+            CardStatus = 0;
+            Holiday = new byte[] { (byte)255, (byte)255, (byte)255, (byte)255 };
+            RecordTime = DateTime.Now;
+            EnterStatus = 0;
+            HolidayUse = true;
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -201,23 +223,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             RecordTime = TimeUtil.BCDTimeToDate_yyMMddhhmmss(data);
         }
 
-        /// <summary>
-        /// 初始化卡详情实例中的数值
-        /// </summary>
-        public CardDetailBase()
-        {
-            CardData = 0;
-            Password = null;
-            Expiry = DateTime.Now.AddYears(5);
-            TimeGroup = new byte[] { 1, 1, 1, 1 };
-            Door = 1;
-            Privilege = 0;
-            CardStatus = 0;
-            Holiday = new byte[] { (byte)255, (byte)255, (byte)255, (byte)255 };
-            RecordTime = DateTime.Now;
-            EnterStatus = 0;
-            HolidayUse = false;
-        }
 
         /**
          * 获取指定门的开门时段号

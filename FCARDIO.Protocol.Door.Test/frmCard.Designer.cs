@@ -29,34 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardData10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardData16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardStatus1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OpenTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.door1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.door2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.door3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.door4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeGroup1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeGroup2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeGroup3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeGroup4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilege1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilege2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilege3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilege4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HolidayUse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EnterStatus1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EnterStatus2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EnterStatus3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EnterStatus4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Holiday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button6 = new System.Windows.Forms.Button();
+            this.butClearGrid = new System.Windows.Forms.Button();
             this.butCardListBySort = new System.Windows.Forms.Button();
             this.butCardListBySequence = new System.Windows.Forms.Button();
             this.cmbcardType = new System.Windows.Forms.ComboBox();
@@ -65,7 +38,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.butCardDatabaseDetail = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.dgCardList = new System.Windows.Forms.DataGridView();
+            this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtCardData16 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -78,10 +52,10 @@
             this.txtCardData = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtCardDataID = new System.Windows.Forms.TextBox();
-            this.cbbit0 = new System.Windows.Forms.CheckBox();
-            this.cbbit1 = new System.Windows.Forms.CheckBox();
-            this.cbbit2 = new System.Windows.Forms.CheckBox();
-            this.cbbit3 = new System.Windows.Forms.CheckBox();
+            this.chkDoor1 = new System.Windows.Forms.CheckBox();
+            this.chkDoor2 = new System.Windows.Forms.CheckBox();
+            this.chkDoor3 = new System.Windows.Forms.CheckBox();
+            this.chkDoor4 = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbTimeGroup1 = new System.Windows.Forms.ComboBox();
@@ -93,11 +67,6 @@
             this.cmbEnterStatus3 = new System.Windows.Forms.ComboBox();
             this.cmbEnterStatus4 = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.rbutPrivilege1 = new System.Windows.Forms.RadioButton();
-            this.rbutPrivilege2 = new System.Windows.Forms.RadioButton();
-            this.rbutPrivilege3 = new System.Windows.Forms.RadioButton();
-            this.rbutPrivilege4 = new System.Windows.Forms.RadioButton();
-            this.rbutPrivilege0 = new System.Windows.Forms.RadioButton();
             this.cbHolidayUse = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtHoliday = new System.Windows.Forms.TextBox();
@@ -107,7 +76,6 @@
             this.btnAddDevice = new System.Windows.Forms.Button();
             this.btnDelDevice = new System.Windows.Forms.Button();
             this.btnDelSelect = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.butDeletecard = new System.Windows.Forms.Button();
             this.comboBox10 = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -119,31 +87,50 @@
             this.label17 = new System.Windows.Forms.Label();
             this.button16 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
-            this.btnRandom = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.butCreateCardNumByRandom = new System.Windows.Forms.Button();
+            this.butCreateCardNumByOrder = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.txtCount = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.cmbCardStatus = new System.Windows.Forms.ComboBox();
             this.cmbOpenTimes = new System.Windows.Forms.ComboBox();
-            this.txtCardList = new System.Windows.Forms.TextBox();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.dtpTime = new System.Windows.Forms.DateTimePicker();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cmbPrivilege = new System.Windows.Forms.ComboBox();
+            this.butReadCardDetail = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.txtDebug = new System.Windows.Forms.TextBox();
+            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CardIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardData10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardStatus1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OpenTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.door1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeGroupGrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilege1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnterStatus1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Holiday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReadCardDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCardList)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.butClearGrid);
             this.groupBox1.Controls.Add(this.butCardListBySort);
             this.groupBox1.Controls.Add(this.butCardListBySequence);
             this.groupBox1.Controls.Add(this.cmbcardType);
@@ -154,245 +141,20 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(707, 223);
+            this.groupBox1.Size = new System.Drawing.Size(707, 59);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "卡列表";
             // 
-            // dataGridView1
+            // butClearGrid
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Selected,
-            this.ID,
-            this.CardData10,
-            this.CardData16,
-            this.Password,
-            this.Expiry,
-            this.CardStatus1,
-            this.OpenTime,
-            this.door1,
-            this.door2,
-            this.door3,
-            this.door4,
-            this.TimeGroup1,
-            this.TimeGroup2,
-            this.TimeGroup3,
-            this.TimeGroup4,
-            this.Privilege1,
-            this.Privilege2,
-            this.Privilege3,
-            this.Privilege4,
-            this.HolidayUse,
-            this.EnterStatus1,
-            this.EnterStatus2,
-            this.EnterStatus3,
-            this.EnterStatus4,
-            this.Holiday});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 58);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(686, 150);
-            this.dataGridView1.TabIndex = 9;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // Selected
-            // 
-            this.Selected.DataPropertyName = "Selected";
-            this.Selected.HeaderText = "选择";
-            this.Selected.Name = "Selected";
-            this.Selected.ReadOnly = true;
-            this.Selected.Width = 50;
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "序号";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 60;
-            // 
-            // CardData10
-            // 
-            this.CardData10.DataPropertyName = "CardData10";
-            this.CardData10.HeaderText = "10进制卡号";
-            this.CardData10.Name = "CardData10";
-            this.CardData10.ReadOnly = true;
-            // 
-            // CardData16
-            // 
-            this.CardData16.DataPropertyName = "CardData16";
-            this.CardData16.HeaderText = "十六进制卡号";
-            this.CardData16.Name = "CardData16";
-            this.CardData16.ReadOnly = true;
-            // 
-            // Password
-            // 
-            this.Password.DataPropertyName = "Password";
-            this.Password.HeaderText = "密码";
-            this.Password.Name = "Password";
-            this.Password.ReadOnly = true;
-            // 
-            // Expiry
-            // 
-            this.Expiry.DataPropertyName = "Expiry";
-            this.Expiry.HeaderText = "有效期";
-            this.Expiry.Name = "Expiry";
-            this.Expiry.ReadOnly = true;
-            // 
-            // CardStatus1
-            // 
-            this.CardStatus1.DataPropertyName = "CardStatus";
-            this.CardStatus1.HeaderText = "卡片状态";
-            this.CardStatus1.Name = "CardStatus1";
-            this.CardStatus1.ReadOnly = true;
-            // 
-            // OpenTime
-            // 
-            this.OpenTime.DataPropertyName = "OpenTimes";
-            this.OpenTime.HeaderText = "有效次数";
-            this.OpenTime.Name = "OpenTime";
-            this.OpenTime.ReadOnly = true;
-            // 
-            // door1
-            // 
-            this.door1.DataPropertyName = "door1";
-            this.door1.HeaderText = "门1权限";
-            this.door1.Name = "door1";
-            this.door1.ReadOnly = true;
-            // 
-            // door2
-            // 
-            this.door2.DataPropertyName = "door2";
-            this.door2.HeaderText = "门2权限";
-            this.door2.Name = "door2";
-            this.door2.ReadOnly = true;
-            // 
-            // door3
-            // 
-            this.door3.DataPropertyName = "door3";
-            this.door3.HeaderText = "门3权限";
-            this.door3.Name = "door3";
-            this.door3.ReadOnly = true;
-            // 
-            // door4
-            // 
-            this.door4.DataPropertyName = "door4";
-            this.door4.HeaderText = "门4权限";
-            this.door4.Name = "door4";
-            this.door4.ReadOnly = true;
-            // 
-            // TimeGroup1
-            // 
-            this.TimeGroup1.DataPropertyName = "TimeGroup1";
-            this.TimeGroup1.HeaderText = "1门常开时段";
-            this.TimeGroup1.Name = "TimeGroup1";
-            this.TimeGroup1.ReadOnly = true;
-            // 
-            // TimeGroup2
-            // 
-            this.TimeGroup2.DataPropertyName = "TimeGroup2";
-            this.TimeGroup2.HeaderText = "2门常开时段";
-            this.TimeGroup2.Name = "TimeGroup2";
-            this.TimeGroup2.ReadOnly = true;
-            // 
-            // TimeGroup3
-            // 
-            this.TimeGroup3.DataPropertyName = "TimeGroup3";
-            this.TimeGroup3.HeaderText = "3门常开时段";
-            this.TimeGroup3.Name = "TimeGroup3";
-            this.TimeGroup3.ReadOnly = true;
-            // 
-            // TimeGroup4
-            // 
-            this.TimeGroup4.DataPropertyName = "TimeGroup4";
-            this.TimeGroup4.HeaderText = "4门常开时段";
-            this.TimeGroup4.Name = "TimeGroup4";
-            this.TimeGroup4.ReadOnly = true;
-            // 
-            // Privilege1
-            // 
-            this.Privilege1.DataPropertyName = "Privilege1";
-            this.Privilege1.HeaderText = "首卡";
-            this.Privilege1.Name = "Privilege1";
-            this.Privilege1.ReadOnly = true;
-            // 
-            // Privilege2
-            // 
-            this.Privilege2.DataPropertyName = "Privilege2";
-            this.Privilege2.HeaderText = "常开";
-            this.Privilege2.Name = "Privilege2";
-            this.Privilege2.ReadOnly = true;
-            // 
-            // Privilege3
-            // 
-            this.Privilege3.DataPropertyName = "Privilege3";
-            this.Privilege3.HeaderText = "巡更";
-            this.Privilege3.Name = "Privilege3";
-            this.Privilege3.ReadOnly = true;
-            // 
-            // Privilege4
-            // 
-            this.Privilege4.DataPropertyName = "Privilege4";
-            this.Privilege4.HeaderText = "防盗设置卡";
-            this.Privilege4.Name = "Privilege4";
-            this.Privilege4.ReadOnly = true;
-            // 
-            // HolidayUse
-            // 
-            this.HolidayUse.DataPropertyName = "HolidayUse";
-            this.HolidayUse.HeaderText = "节假日限制";
-            this.HolidayUse.Name = "HolidayUse";
-            this.HolidayUse.ReadOnly = true;
-            // 
-            // EnterStatus1
-            // 
-            this.EnterStatus1.DataPropertyName = "EnterStatus1";
-            this.EnterStatus1.HeaderText = "门1出入状态";
-            this.EnterStatus1.Name = "EnterStatus1";
-            this.EnterStatus1.ReadOnly = true;
-            // 
-            // EnterStatus2
-            // 
-            this.EnterStatus2.DataPropertyName = "EnterStatus2";
-            this.EnterStatus2.HeaderText = "门2出入状态";
-            this.EnterStatus2.Name = "EnterStatus2";
-            this.EnterStatus2.ReadOnly = true;
-            // 
-            // EnterStatus3
-            // 
-            this.EnterStatus3.DataPropertyName = "EnterStatus3";
-            this.EnterStatus3.HeaderText = "门3出入状态";
-            this.EnterStatus3.Name = "EnterStatus3";
-            this.EnterStatus3.ReadOnly = true;
-            // 
-            // EnterStatus4
-            // 
-            this.EnterStatus4.DataPropertyName = "EnterStatus4";
-            this.EnterStatus4.HeaderText = "门4出入状态";
-            this.EnterStatus4.Name = "EnterStatus4";
-            this.EnterStatus4.ReadOnly = true;
-            // 
-            // Holiday
-            // 
-            this.Holiday.DataPropertyName = "Holiday";
-            this.Holiday.HeaderText = "节假日开关";
-            this.Holiday.Name = "Holiday";
-            this.Holiday.ReadOnly = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(618, 20);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(74, 32);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "清空列表";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            this.butClearGrid.Location = new System.Drawing.Point(618, 20);
+            this.butClearGrid.Name = "butClearGrid";
+            this.butClearGrid.Size = new System.Drawing.Size(74, 32);
+            this.butClearGrid.TabIndex = 8;
+            this.butClearGrid.Text = "清空列表";
+            this.butClearGrid.UseVisualStyleBackColor = true;
+            this.butClearGrid.Click += new System.EventHandler(this.butClearGrid_Click);
             // 
             // butCardListBySort
             // 
@@ -471,21 +233,55 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "授权卡列表";
             // 
-            // checkBox1
+            // dgCardList
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(13, 243);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(48, 16);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "反选";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            this.dgCardList.AllowUserToAddRows = false;
+            this.dgCardList.AllowUserToDeleteRows = false;
+            this.dgCardList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgCardList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgCardList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Selected,
+            this.CardIndex,
+            this.CardData10,
+            this.Password,
+            this.Expiry,
+            this.CardStatus1,
+            this.OpenTime,
+            this.door1,
+            this.TimeGroupGrid,
+            this.Privilege1,
+            this.EnterStatus1,
+            this.Holiday,
+            this.ReadCardDate});
+            this.dgCardList.Location = new System.Drawing.Point(11, 78);
+            this.dgCardList.MultiSelect = false;
+            this.dgCardList.Name = "dgCardList";
+            this.dgCardList.RowHeadersVisible = false;
+            this.dgCardList.RowTemplate.Height = 23;
+            this.dgCardList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgCardList.ShowEditingIcon = false;
+            this.dgCardList.Size = new System.Drawing.Size(707, 392);
+            this.dgCardList.TabIndex = 9;
+            this.dgCardList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCardList_CellClick);
+            // 
+            // chkSelectAll
+            // 
+            this.chkSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkSelectAll.AutoSize = true;
+            this.chkSelectAll.Location = new System.Drawing.Point(11, 476);
+            this.chkSelectAll.Name = "chkSelectAll";
+            this.chkSelectAll.Size = new System.Drawing.Size(48, 16);
+            this.chkSelectAll.TabIndex = 1;
+            this.chkSelectAll.Text = "反选";
+            this.chkSelectAll.UseVisualStyleBackColor = true;
+            this.chkSelectAll.CheckedChanged += new System.EventHandler(this.chkSelectAll_CheckedChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 266);
+            this.label3.Location = new System.Drawing.Point(16, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 12);
             this.label3.TabIndex = 2;
@@ -493,15 +289,16 @@
             // 
             // txtCardData16
             // 
-            this.txtCardData16.Location = new System.Drawing.Point(141, 263);
+            this.txtCardData16.Location = new System.Drawing.Point(135, 10);
+            this.txtCardData16.MaxLength = 16;
             this.txtCardData16.Name = "txtCardData16";
-            this.txtCardData16.Size = new System.Drawing.Size(424, 21);
+            this.txtCardData16.Size = new System.Drawing.Size(400, 21);
             this.txtCardData16.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(36, 295);
+            this.label4.Location = new System.Drawing.Point(21, 42);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 4;
@@ -510,7 +307,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(36, 321);
+            this.label5.Location = new System.Drawing.Point(33, 68);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 5;
@@ -519,7 +316,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(36, 348);
+            this.label6.Location = new System.Drawing.Point(21, 96);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 12);
             this.label6.TabIndex = 6;
@@ -528,16 +325,17 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(309, 295);
+            this.label7.Location = new System.Drawing.Point(301, 42);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 7;
             this.label7.Text = "卡编号：";
+            this.label7.Visible = false;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(309, 321);
+            this.label8.Location = new System.Drawing.Point(301, 68);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 12);
             this.label8.TabIndex = 8;
@@ -546,7 +344,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(309, 348);
+            this.label9.Location = new System.Drawing.Point(289, 96);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(65, 12);
             this.label9.TabIndex = 9;
@@ -555,7 +353,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(40, 375);
+            this.label10.Location = new System.Drawing.Point(21, 120);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(65, 12);
             this.label10.TabIndex = 10;
@@ -563,7 +361,8 @@
             // 
             // txtCardData
             // 
-            this.txtCardData.Location = new System.Drawing.Point(103, 291);
+            this.txtCardData.Location = new System.Drawing.Point(88, 38);
+            this.txtCardData.MaxLength = 20;
             this.txtCardData.Name = "txtCardData";
             this.txtCardData.Size = new System.Drawing.Size(192, 21);
             this.txtCardData.TabIndex = 11;
@@ -572,7 +371,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(103, 317);
+            this.txtPassword.Location = new System.Drawing.Point(88, 64);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(192, 21);
             this.txtPassword.TabIndex = 12;
@@ -580,63 +379,64 @@
             // 
             // txtCardDataID
             // 
-            this.txtCardDataID.Location = new System.Drawing.Point(373, 291);
+            this.txtCardDataID.Location = new System.Drawing.Point(358, 38);
             this.txtCardDataID.Name = "txtCardDataID";
-            this.txtCardDataID.Size = new System.Drawing.Size(192, 21);
+            this.txtCardDataID.Size = new System.Drawing.Size(177, 21);
             this.txtCardDataID.TabIndex = 14;
+            this.txtCardDataID.Visible = false;
             // 
-            // cbbit0
+            // chkDoor1
             // 
-            this.cbbit0.AutoSize = true;
-            this.cbbit0.Checked = true;
-            this.cbbit0.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbbit0.Location = new System.Drawing.Point(156, 371);
-            this.cbbit0.Name = "cbbit0";
-            this.cbbit0.Size = new System.Drawing.Size(42, 16);
-            this.cbbit0.TabIndex = 17;
-            this.cbbit0.Text = "门1";
-            this.cbbit0.UseVisualStyleBackColor = true;
+            this.chkDoor1.AutoSize = true;
+            this.chkDoor1.Checked = true;
+            this.chkDoor1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDoor1.Location = new System.Drawing.Point(116, 118);
+            this.chkDoor1.Name = "chkDoor1";
+            this.chkDoor1.Size = new System.Drawing.Size(42, 16);
+            this.chkDoor1.TabIndex = 17;
+            this.chkDoor1.Text = "门1";
+            this.chkDoor1.UseVisualStyleBackColor = true;
             // 
-            // cbbit1
+            // chkDoor2
             // 
-            this.cbbit1.AutoSize = true;
-            this.cbbit1.Checked = true;
-            this.cbbit1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbbit1.Location = new System.Drawing.Point(267, 371);
-            this.cbbit1.Name = "cbbit1";
-            this.cbbit1.Size = new System.Drawing.Size(42, 16);
-            this.cbbit1.TabIndex = 18;
-            this.cbbit1.Text = "门2";
-            this.cbbit1.UseVisualStyleBackColor = true;
+            this.chkDoor2.AutoSize = true;
+            this.chkDoor2.Checked = true;
+            this.chkDoor2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDoor2.Location = new System.Drawing.Point(237, 118);
+            this.chkDoor2.Name = "chkDoor2";
+            this.chkDoor2.Size = new System.Drawing.Size(42, 16);
+            this.chkDoor2.TabIndex = 18;
+            this.chkDoor2.Text = "门2";
+            this.chkDoor2.UseVisualStyleBackColor = true;
             // 
-            // cbbit2
+            // chkDoor3
             // 
-            this.cbbit2.AutoSize = true;
-            this.cbbit2.Checked = true;
-            this.cbbit2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbbit2.Location = new System.Drawing.Point(383, 371);
-            this.cbbit2.Name = "cbbit2";
-            this.cbbit2.Size = new System.Drawing.Size(42, 16);
-            this.cbbit2.TabIndex = 19;
-            this.cbbit2.Text = "门3";
-            this.cbbit2.UseVisualStyleBackColor = true;
+            this.chkDoor3.AutoSize = true;
+            this.chkDoor3.Checked = true;
+            this.chkDoor3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDoor3.Location = new System.Drawing.Point(353, 118);
+            this.chkDoor3.Name = "chkDoor3";
+            this.chkDoor3.Size = new System.Drawing.Size(42, 16);
+            this.chkDoor3.TabIndex = 19;
+            this.chkDoor3.Text = "门3";
+            this.chkDoor3.UseVisualStyleBackColor = true;
             // 
-            // cbbit3
+            // chkDoor4
             // 
-            this.cbbit3.AutoSize = true;
-            this.cbbit3.Checked = true;
-            this.cbbit3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbbit3.Location = new System.Drawing.Point(497, 371);
-            this.cbbit3.Name = "cbbit3";
-            this.cbbit3.Size = new System.Drawing.Size(42, 16);
-            this.cbbit3.TabIndex = 20;
-            this.cbbit3.Text = "门4";
-            this.cbbit3.UseVisualStyleBackColor = true;
+            this.chkDoor4.AutoSize = true;
+            this.chkDoor4.Checked = true;
+            this.chkDoor4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDoor4.Location = new System.Drawing.Point(467, 118);
+            this.chkDoor4.Name = "chkDoor4";
+            this.chkDoor4.Size = new System.Drawing.Size(42, 16);
+            this.chkDoor4.TabIndex = 20;
+            this.chkDoor4.Text = "门4";
+            this.chkDoor4.UseVisualStyleBackColor = true;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(40, 397);
+            this.label11.Location = new System.Drawing.Point(21, 144);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(65, 12);
             this.label11.TabIndex = 21;
@@ -645,7 +445,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(40, 423);
+            this.label12.Location = new System.Drawing.Point(21, 170);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 12);
             this.label12.TabIndex = 22;
@@ -655,7 +455,7 @@
             // 
             this.cmbTimeGroup1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTimeGroup1.FormattingEnabled = true;
-            this.cmbTimeGroup1.Location = new System.Drawing.Point(121, 393);
+            this.cmbTimeGroup1.Location = new System.Drawing.Point(88, 140);
             this.cmbTimeGroup1.Name = "cmbTimeGroup1";
             this.cmbTimeGroup1.Size = new System.Drawing.Size(99, 20);
             this.cmbTimeGroup1.TabIndex = 23;
@@ -664,7 +464,7 @@
             // 
             this.cmbTimeGroup2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTimeGroup2.FormattingEnabled = true;
-            this.cmbTimeGroup2.Location = new System.Drawing.Point(236, 393);
+            this.cmbTimeGroup2.Location = new System.Drawing.Point(206, 140);
             this.cmbTimeGroup2.Name = "cmbTimeGroup2";
             this.cmbTimeGroup2.Size = new System.Drawing.Size(99, 20);
             this.cmbTimeGroup2.TabIndex = 24;
@@ -673,7 +473,7 @@
             // 
             this.cmbTimeGroup3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTimeGroup3.FormattingEnabled = true;
-            this.cmbTimeGroup3.Location = new System.Drawing.Point(351, 393);
+            this.cmbTimeGroup3.Location = new System.Drawing.Point(321, 140);
             this.cmbTimeGroup3.Name = "cmbTimeGroup3";
             this.cmbTimeGroup3.Size = new System.Drawing.Size(99, 20);
             this.cmbTimeGroup3.TabIndex = 25;
@@ -682,7 +482,7 @@
             // 
             this.cmbTimeGroup4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTimeGroup4.FormattingEnabled = true;
-            this.cmbTimeGroup4.Location = new System.Drawing.Point(466, 393);
+            this.cmbTimeGroup4.Location = new System.Drawing.Point(436, 140);
             this.cmbTimeGroup4.Name = "cmbTimeGroup4";
             this.cmbTimeGroup4.Size = new System.Drawing.Size(99, 20);
             this.cmbTimeGroup4.TabIndex = 26;
@@ -691,7 +491,7 @@
             // 
             this.cmbEnterStatus1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEnterStatus1.FormattingEnabled = true;
-            this.cmbEnterStatus1.Location = new System.Drawing.Point(121, 419);
+            this.cmbEnterStatus1.Location = new System.Drawing.Point(88, 166);
             this.cmbEnterStatus1.Name = "cmbEnterStatus1";
             this.cmbEnterStatus1.Size = new System.Drawing.Size(99, 20);
             this.cmbEnterStatus1.TabIndex = 27;
@@ -700,7 +500,7 @@
             // 
             this.cmbEnterStatus2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEnterStatus2.FormattingEnabled = true;
-            this.cmbEnterStatus2.Location = new System.Drawing.Point(236, 419);
+            this.cmbEnterStatus2.Location = new System.Drawing.Point(206, 166);
             this.cmbEnterStatus2.Name = "cmbEnterStatus2";
             this.cmbEnterStatus2.Size = new System.Drawing.Size(99, 20);
             this.cmbEnterStatus2.TabIndex = 28;
@@ -709,7 +509,7 @@
             // 
             this.cmbEnterStatus3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEnterStatus3.FormattingEnabled = true;
-            this.cmbEnterStatus3.Location = new System.Drawing.Point(351, 419);
+            this.cmbEnterStatus3.Location = new System.Drawing.Point(321, 166);
             this.cmbEnterStatus3.Name = "cmbEnterStatus3";
             this.cmbEnterStatus3.Size = new System.Drawing.Size(99, 20);
             this.cmbEnterStatus3.TabIndex = 29;
@@ -718,7 +518,7 @@
             // 
             this.cmbEnterStatus4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEnterStatus4.FormattingEnabled = true;
-            this.cmbEnterStatus4.Location = new System.Drawing.Point(466, 419);
+            this.cmbEnterStatus4.Location = new System.Drawing.Point(436, 166);
             this.cmbEnterStatus4.Name = "cmbEnterStatus4";
             this.cmbEnterStatus4.Size = new System.Drawing.Size(99, 20);
             this.cmbEnterStatus4.TabIndex = 30;
@@ -726,70 +526,18 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(42, 451);
+            this.label13.Location = new System.Drawing.Point(21, 201);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(65, 12);
             this.label13.TabIndex = 31;
             this.label13.Text = "特殊权限：";
-            // 
-            // rbutPrivilege1
-            // 
-            this.rbutPrivilege1.AutoSize = true;
-            this.rbutPrivilege1.Location = new System.Drawing.Point(111, 449);
-            this.rbutPrivilege1.Name = "rbutPrivilege1";
-            this.rbutPrivilege1.Size = new System.Drawing.Size(47, 16);
-            this.rbutPrivilege1.TabIndex = 32;
-            this.rbutPrivilege1.Text = "首卡";
-            this.rbutPrivilege1.UseVisualStyleBackColor = true;
-            // 
-            // rbutPrivilege2
-            // 
-            this.rbutPrivilege2.AutoSize = true;
-            this.rbutPrivilege2.Location = new System.Drawing.Point(171, 449);
-            this.rbutPrivilege2.Name = "rbutPrivilege2";
-            this.rbutPrivilege2.Size = new System.Drawing.Size(47, 16);
-            this.rbutPrivilege2.TabIndex = 33;
-            this.rbutPrivilege2.Text = "常开";
-            this.rbutPrivilege2.UseVisualStyleBackColor = true;
-            // 
-            // rbutPrivilege3
-            // 
-            this.rbutPrivilege3.AutoSize = true;
-            this.rbutPrivilege3.Location = new System.Drawing.Point(231, 449);
-            this.rbutPrivilege3.Name = "rbutPrivilege3";
-            this.rbutPrivilege3.Size = new System.Drawing.Size(47, 16);
-            this.rbutPrivilege3.TabIndex = 34;
-            this.rbutPrivilege3.Text = "巡更";
-            this.rbutPrivilege3.UseVisualStyleBackColor = true;
-            // 
-            // rbutPrivilege4
-            // 
-            this.rbutPrivilege4.AutoSize = true;
-            this.rbutPrivilege4.Location = new System.Drawing.Point(291, 449);
-            this.rbutPrivilege4.Name = "rbutPrivilege4";
-            this.rbutPrivilege4.Size = new System.Drawing.Size(83, 16);
-            this.rbutPrivilege4.TabIndex = 35;
-            this.rbutPrivilege4.Text = "防盗设置卡";
-            this.rbutPrivilege4.UseVisualStyleBackColor = true;
-            // 
-            // rbutPrivilege0
-            // 
-            this.rbutPrivilege0.AutoSize = true;
-            this.rbutPrivilege0.Checked = true;
-            this.rbutPrivilege0.Location = new System.Drawing.Point(387, 449);
-            this.rbutPrivilege0.Name = "rbutPrivilege0";
-            this.rbutPrivilege0.Size = new System.Drawing.Size(47, 16);
-            this.rbutPrivilege0.TabIndex = 36;
-            this.rbutPrivilege0.TabStop = true;
-            this.rbutPrivilege0.Text = "普通";
-            this.rbutPrivilege0.UseVisualStyleBackColor = true;
             // 
             // cbHolidayUse
             // 
             this.cbHolidayUse.AutoSize = true;
             this.cbHolidayUse.Checked = true;
             this.cbHolidayUse.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbHolidayUse.Location = new System.Drawing.Point(461, 450);
+            this.cbHolidayUse.Location = new System.Drawing.Point(451, 199);
             this.cbHolidayUse.Name = "cbHolidayUse";
             this.cbHolidayUse.Size = new System.Drawing.Size(84, 16);
             this.cbHolidayUse.TabIndex = 37;
@@ -799,7 +547,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(40, 482);
+            this.label14.Location = new System.Drawing.Point(3, 229);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(77, 12);
             this.label14.TabIndex = 38;
@@ -808,17 +556,16 @@
             // txtHoliday
             // 
             this.txtHoliday.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtHoliday.Location = new System.Drawing.Point(115, 479);
+            this.txtHoliday.Location = new System.Drawing.Point(88, 225);
             this.txtHoliday.MaxLength = 30;
             this.txtHoliday.Name = "txtHoliday";
-            this.txtHoliday.Size = new System.Drawing.Size(319, 21);
+            this.txtHoliday.Size = new System.Drawing.Size(354, 21);
             this.txtHoliday.TabIndex = 39;
             this.txtHoliday.Text = "11111111111111111111111111111111";
-            this.txtHoliday.TextChanged += new System.EventHandler(this.TxtHoliday_TextChanged);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(452, 477);
+            this.button7.Location = new System.Drawing.Point(460, 224);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 40;
@@ -827,7 +574,7 @@
             // 
             // butInsertList
             // 
-            this.butInsertList.Location = new System.Drawing.Point(37, 506);
+            this.butInsertList.Location = new System.Drawing.Point(601, 13);
             this.butInsertList.Name = "butInsertList";
             this.butInsertList.Size = new System.Drawing.Size(75, 23);
             this.butInsertList.TabIndex = 41;
@@ -837,7 +584,7 @@
             // 
             // butDelList
             // 
-            this.butDelList.Location = new System.Drawing.Point(132, 506);
+            this.butDelList.Location = new System.Drawing.Point(601, 42);
             this.butDelList.Name = "butDelList";
             this.butDelList.Size = new System.Drawing.Size(75, 23);
             this.butDelList.TabIndex = 42;
@@ -847,7 +594,7 @@
             // 
             // btnAddDevice
             // 
-            this.btnAddDevice.Location = new System.Drawing.Point(227, 506);
+            this.btnAddDevice.Location = new System.Drawing.Point(601, 71);
             this.btnAddDevice.Name = "btnAddDevice";
             this.btnAddDevice.Size = new System.Drawing.Size(75, 23);
             this.btnAddDevice.TabIndex = 43;
@@ -857,7 +604,7 @@
             // 
             // btnDelDevice
             // 
-            this.btnDelDevice.Location = new System.Drawing.Point(322, 506);
+            this.btnDelDevice.Location = new System.Drawing.Point(579, 130);
             this.btnDelDevice.Name = "btnDelDevice";
             this.btnDelDevice.Size = new System.Drawing.Size(112, 23);
             this.btnDelDevice.TabIndex = 44;
@@ -867,37 +614,17 @@
             // 
             // btnDelSelect
             // 
-            this.btnDelSelect.Location = new System.Drawing.Point(454, 506);
+            this.btnDelSelect.Location = new System.Drawing.Point(579, 159);
             this.btnDelSelect.Name = "btnDelSelect";
-            this.btnDelSelect.Size = new System.Drawing.Size(116, 23);
+            this.btnDelSelect.Size = new System.Drawing.Size(112, 23);
             this.btnDelSelect.TabIndex = 45;
             this.btnDelSelect.Text = "从设备删除选中卡";
             this.btnDelSelect.UseVisualStyleBackColor = true;
             this.btnDelSelect.Click += new System.EventHandler(this.BtnDelSelect_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.butDeletecard);
-            this.groupBox2.Controls.Add(this.comboBox10);
-            this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.label18);
-            this.groupBox2.Controls.Add(this.comboBox9);
-            this.groupBox2.Controls.Add(this.textBox12);
-            this.groupBox2.Controls.Add(this.txtCardData1);
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.button16);
-            this.groupBox2.Controls.Add(this.button15);
-            this.groupBox2.Location = new System.Drawing.Point(45, 536);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(656, 100);
-            this.groupBox2.TabIndex = 46;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "测试读卡";
-            // 
             // butDeletecard
             // 
-            this.butDeletecard.Location = new System.Drawing.Point(463, 56);
+            this.butDeletecard.Location = new System.Drawing.Point(368, 86);
             this.butDeletecard.Name = "butDeletecard";
             this.butDeletecard.Size = new System.Drawing.Size(89, 23);
             this.butDeletecard.TabIndex = 59;
@@ -908,7 +635,7 @@
             // comboBox10
             // 
             this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Location = new System.Drawing.Point(281, 61);
+            this.comboBox10.Location = new System.Drawing.Point(358, 42);
             this.comboBox10.Name = "comboBox10";
             this.comboBox10.Size = new System.Drawing.Size(99, 20);
             this.comboBox10.TabIndex = 56;
@@ -916,7 +643,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(203, 65);
+            this.label20.Location = new System.Drawing.Point(288, 46);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(65, 12);
             this.label20.TabIndex = 58;
@@ -925,7 +652,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(471, 34);
+            this.label19.Location = new System.Drawing.Point(300, 19);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(53, 12);
             this.label19.TabIndex = 57;
@@ -934,7 +661,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(301, 34);
+            this.label18.Location = new System.Drawing.Point(26, 46);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(65, 12);
             this.label18.TabIndex = 56;
@@ -943,29 +670,29 @@
             // comboBox9
             // 
             this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(533, 30);
+            this.comboBox9.Location = new System.Drawing.Point(358, 15);
             this.comboBox9.Name = "comboBox9";
             this.comboBox9.Size = new System.Drawing.Size(99, 20);
             this.comboBox9.TabIndex = 55;
             // 
             // textBox12
             // 
-            this.textBox12.Location = new System.Drawing.Point(375, 30);
+            this.textBox12.Location = new System.Drawing.Point(97, 42);
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(87, 21);
+            this.textBox12.Size = new System.Drawing.Size(162, 21);
             this.textBox12.TabIndex = 54;
             // 
             // txtCardData1
             // 
-            this.txtCardData1.Location = new System.Drawing.Point(205, 30);
+            this.txtCardData1.Location = new System.Drawing.Point(97, 15);
             this.txtCardData1.Name = "txtCardData1";
-            this.txtCardData1.Size = new System.Drawing.Size(87, 21);
+            this.txtCardData1.Size = new System.Drawing.Size(162, 21);
             this.txtCardData1.TabIndex = 53;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(131, 34);
+            this.label17.Location = new System.Drawing.Point(26, 19);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(65, 12);
             this.label17.TabIndex = 52;
@@ -973,7 +700,7 @@
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(24, 61);
+            this.button16.Location = new System.Drawing.Point(133, 86);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(89, 23);
             this.button16.TabIndex = 51;
@@ -982,36 +709,37 @@
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(24, 29);
+            this.button15.Location = new System.Drawing.Point(25, 86);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(89, 23);
             this.button15.TabIndex = 50;
             this.button15.Text = "测试读卡";
             this.button15.UseVisualStyleBackColor = true;
             // 
-            // btnRandom
+            // butCreateCardNumByRandom
             // 
-            this.btnRandom.Location = new System.Drawing.Point(22, 29);
-            this.btnRandom.Name = "btnRandom";
-            this.btnRandom.Size = new System.Drawing.Size(75, 23);
-            this.btnRandom.TabIndex = 44;
-            this.btnRandom.Text = "生成随机卡";
-            this.btnRandom.UseVisualStyleBackColor = true;
-            this.btnRandom.Click += new System.EventHandler(this.BtnRandom_Click);
+            this.butCreateCardNumByRandom.Location = new System.Drawing.Point(29, 79);
+            this.butCreateCardNumByRandom.Name = "butCreateCardNumByRandom";
+            this.butCreateCardNumByRandom.Size = new System.Drawing.Size(75, 23);
+            this.butCreateCardNumByRandom.TabIndex = 44;
+            this.butCreateCardNumByRandom.Text = "生成随机卡";
+            this.butCreateCardNumByRandom.UseVisualStyleBackColor = true;
+            this.butCreateCardNumByRandom.Click += new System.EventHandler(this.butCreateCardNumByRandom_Click);
             // 
-            // button12
+            // butCreateCardNumByOrder
             // 
-            this.button12.Location = new System.Drawing.Point(22, 61);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 45;
-            this.button12.Text = "生成顺序卡";
-            this.button12.UseVisualStyleBackColor = true;
+            this.butCreateCardNumByOrder.Location = new System.Drawing.Point(121, 79);
+            this.butCreateCardNumByOrder.Name = "butCreateCardNumByOrder";
+            this.butCreateCardNumByOrder.Size = new System.Drawing.Size(75, 23);
+            this.butCreateCardNumByOrder.TabIndex = 45;
+            this.butCreateCardNumByOrder.Text = "生成顺序卡";
+            this.butCreateCardNumByOrder.UseVisualStyleBackColor = true;
+            this.butCreateCardNumByOrder.Click += new System.EventHandler(this.butCreateCardNumByOrder_Click);
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(20, 93);
+            this.label15.Location = new System.Drawing.Point(27, 20);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(65, 12);
             this.label15.TabIndex = 47;
@@ -1019,46 +747,15 @@
             // 
             // txtCount
             // 
-            this.txtCount.Location = new System.Drawing.Point(22, 115);
+            this.txtCount.Location = new System.Drawing.Point(29, 42);
             this.txtCount.Name = "txtCount";
             this.txtCount.Size = new System.Drawing.Size(100, 21);
             this.txtCount.TabIndex = 48;
             this.txtCount.Text = "10";
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(20, 141);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(101, 12);
-            this.label16.TabIndex = 49;
-            this.label16.Text = "包含尾字节(0x)：";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(22, 163);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(87, 21);
-            this.textBox7.TabIndex = 49;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.textBox7);
-            this.groupBox3.Controls.Add(this.btnRandom);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.button12);
-            this.groupBox3.Controls.Add(this.txtCount);
-            this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Location = new System.Drawing.Point(592, 260);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(128, 189);
-            this.groupBox3.TabIndex = 47;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "自动生成卡号";
-            // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(614, 455);
+            this.button13.Location = new System.Drawing.Point(29, 178);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(75, 23);
             this.button13.TabIndex = 48;
@@ -1067,7 +764,7 @@
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(614, 484);
+            this.button14.Location = new System.Drawing.Point(121, 178);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(75, 23);
             this.button14.TabIndex = 49;
@@ -1076,8 +773,9 @@
             // 
             // checkBox7
             // 
+            this.checkBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(45, 642);
+            this.checkBox7.Location = new System.Drawing.Point(75, 476);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(120, 16);
             this.checkBox7.TabIndex = 50;
@@ -1088,115 +786,308 @@
             // 
             this.cmbCardStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCardStatus.FormattingEnabled = true;
-            this.cmbCardStatus.Location = new System.Drawing.Point(373, 344);
+            this.cmbCardStatus.Location = new System.Drawing.Point(358, 92);
             this.cmbCardStatus.Name = "cmbCardStatus";
-            this.cmbCardStatus.Size = new System.Drawing.Size(192, 20);
+            this.cmbCardStatus.Size = new System.Drawing.Size(177, 20);
             this.cmbCardStatus.TabIndex = 51;
             // 
             // cmbOpenTimes
             // 
-            this.cmbOpenTimes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOpenTimes.FormattingEnabled = true;
-            this.cmbOpenTimes.Location = new System.Drawing.Point(103, 345);
+            this.cmbOpenTimes.Location = new System.Drawing.Point(88, 92);
             this.cmbOpenTimes.Name = "cmbOpenTimes";
             this.cmbOpenTimes.Size = new System.Drawing.Size(192, 20);
             this.cmbOpenTimes.TabIndex = 52;
-            // 
-            // txtCardList
-            // 
-            this.txtCardList.Location = new System.Drawing.Point(763, 33);
-            this.txtCardList.Multiline = true;
-            this.txtCardList.Name = "txtCardList";
-            this.txtCardList.Size = new System.Drawing.Size(346, 603);
-            this.txtCardList.TabIndex = 53;
             // 
             // dtpDate
             // 
             this.dtpDate.CustomFormat = "yyyy/MM/dd";
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(373, 317);
+            this.dtpDate.Location = new System.Drawing.Point(358, 64);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(123, 21);
+            this.dtpDate.Size = new System.Drawing.Size(100, 21);
             this.dtpDate.TabIndex = 54;
             // 
             // dtpTime
             // 
             this.dtpTime.CustomFormat = "HH:mm";
             this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTime.Location = new System.Drawing.Point(502, 317);
+            this.dtpTime.Location = new System.Drawing.Point(467, 64);
             this.dtpTime.Name = "dtpTime";
             this.dtpTime.ShowUpDown = true;
-            this.dtpTime.Size = new System.Drawing.Size(63, 21);
+            this.dtpTime.Size = new System.Drawing.Size(68, 21);
             this.dtpTime.TabIndex = 55;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Location = new System.Drawing.Point(10, 498);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(708, 275);
+            this.tabControl1.TabIndex = 56;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.cmbPrivilege);
+            this.tabPage1.Controls.Add(this.butReadCardDetail);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.dtpTime);
+            this.tabPage1.Controls.Add(this.txtCardData16);
+            this.tabPage1.Controls.Add(this.dtpDate);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.cmbOpenTimes);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.cmbCardStatus);
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.label8);
+            this.tabPage1.Controls.Add(this.label9);
+            this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.txtCardData);
+            this.tabPage1.Controls.Add(this.btnDelSelect);
+            this.tabPage1.Controls.Add(this.txtPassword);
+            this.tabPage1.Controls.Add(this.btnDelDevice);
+            this.tabPage1.Controls.Add(this.txtCardDataID);
+            this.tabPage1.Controls.Add(this.btnAddDevice);
+            this.tabPage1.Controls.Add(this.chkDoor1);
+            this.tabPage1.Controls.Add(this.butDelList);
+            this.tabPage1.Controls.Add(this.chkDoor2);
+            this.tabPage1.Controls.Add(this.butInsertList);
+            this.tabPage1.Controls.Add(this.chkDoor3);
+            this.tabPage1.Controls.Add(this.button7);
+            this.tabPage1.Controls.Add(this.chkDoor4);
+            this.tabPage1.Controls.Add(this.txtHoliday);
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.cbHolidayUse);
+            this.tabPage1.Controls.Add(this.cmbTimeGroup1);
+            this.tabPage1.Controls.Add(this.cmbTimeGroup2);
+            this.tabPage1.Controls.Add(this.cmbTimeGroup3);
+            this.tabPage1.Controls.Add(this.cmbTimeGroup4);
+            this.tabPage1.Controls.Add(this.cmbEnterStatus1);
+            this.tabPage1.Controls.Add(this.cmbEnterStatus2);
+            this.tabPage1.Controls.Add(this.label13);
+            this.tabPage1.Controls.Add(this.cmbEnterStatus3);
+            this.tabPage1.Controls.Add(this.cmbEnterStatus4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(700, 249);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "卡详情";
+            // 
+            // cmbPrivilege
+            // 
+            this.cmbPrivilege.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPrivilege.FormattingEnabled = true;
+            this.cmbPrivilege.Location = new System.Drawing.Point(88, 197);
+            this.cmbPrivilege.Name = "cmbPrivilege";
+            this.cmbPrivilege.Size = new System.Drawing.Size(214, 20);
+            this.cmbPrivilege.TabIndex = 57;
+            // 
+            // butReadCardDetail
+            // 
+            this.butReadCardDetail.Location = new System.Drawing.Point(579, 100);
+            this.butReadCardDetail.Name = "butReadCardDetail";
+            this.butReadCardDetail.Size = new System.Drawing.Size(112, 23);
+            this.butReadCardDetail.TabIndex = 56;
+            this.butReadCardDetail.Text = "从设备读取单张卡";
+            this.butReadCardDetail.UseVisualStyleBackColor = true;
+            this.butReadCardDetail.Click += new System.EventHandler(this.butReadCardDetail_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.butDeletecard);
+            this.tabPage2.Controls.Add(this.button15);
+            this.tabPage2.Controls.Add(this.comboBox10);
+            this.tabPage2.Controls.Add(this.button16);
+            this.tabPage2.Controls.Add(this.label20);
+            this.tabPage2.Controls.Add(this.label17);
+            this.tabPage2.Controls.Add(this.label19);
+            this.tabPage2.Controls.Add(this.txtCardData1);
+            this.tabPage2.Controls.Add(this.label18);
+            this.tabPage2.Controls.Add(this.textBox12);
+            this.tabPage2.Controls.Add(this.comboBox9);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(700, 249);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "测试读卡";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.butCreateCardNumByRandom);
+            this.tabPage3.Controls.Add(this.butCreateCardNumByOrder);
+            this.tabPage3.Controls.Add(this.button14);
+            this.tabPage3.Controls.Add(this.label15);
+            this.tabPage3.Controls.Add(this.button13);
+            this.tabPage3.Controls.Add(this.txtCount);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(700, 249);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "创建测试卡";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.txtDebug);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(700, 249);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "卡详情描述";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // txtDebug
+            // 
+            this.txtDebug.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDebug.Location = new System.Drawing.Point(3, 3);
+            this.txtDebug.Multiline = true;
+            this.txtDebug.Name = "txtDebug";
+            this.txtDebug.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDebug.Size = new System.Drawing.Size(694, 243);
+            this.txtDebug.TabIndex = 0;
+            // 
+            // Selected
+            // 
+            this.Selected.DataPropertyName = "Selected";
+            this.Selected.HeaderText = "选择";
+            this.Selected.Name = "Selected";
+            this.Selected.Width = 32;
+            // 
+            // CardIndex
+            // 
+            this.CardIndex.DataPropertyName = "CardIndex";
+            this.CardIndex.HeaderText = "序号";
+            this.CardIndex.Name = "CardIndex";
+            this.CardIndex.ReadOnly = true;
+            this.CardIndex.Width = 51;
+            // 
+            // CardData10
+            // 
+            this.CardData10.DataPropertyName = "CardData";
+            this.CardData10.HeaderText = "卡号";
+            this.CardData10.Name = "CardData10";
+            this.CardData10.ReadOnly = true;
+            this.CardData10.Width = 240;
+            // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "密码";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            this.Password.Width = 76;
+            // 
+            // Expiry
+            // 
+            this.Expiry.DataPropertyName = "Expiry";
+            this.Expiry.HeaderText = "有效期";
+            this.Expiry.Name = "Expiry";
+            this.Expiry.ReadOnly = true;
+            this.Expiry.Width = 120;
+            // 
+            // CardStatus1
+            // 
+            this.CardStatus1.DataPropertyName = "CardStatus";
+            this.CardStatus1.HeaderText = "卡片状态";
+            this.CardStatus1.Name = "CardStatus1";
+            this.CardStatus1.ReadOnly = true;
+            this.CardStatus1.Width = 61;
+            // 
+            // OpenTime
+            // 
+            this.OpenTime.DataPropertyName = "OpenTimes";
+            this.OpenTime.HeaderText = "有效次数";
+            this.OpenTime.Name = "OpenTime";
+            this.OpenTime.ReadOnly = true;
+            this.OpenTime.Width = 61;
+            // 
+            // door1
+            // 
+            this.door1.DataPropertyName = "doorAccess";
+            this.door1.HeaderText = "权限";
+            this.door1.Name = "door1";
+            this.door1.ReadOnly = true;
+            this.door1.Width = 174;
+            // 
+            // TimeGroupGrid
+            // 
+            this.TimeGroupGrid.DataPropertyName = "TimeGroup";
+            this.TimeGroupGrid.HeaderText = "开门时段";
+            this.TimeGroupGrid.Name = "TimeGroupGrid";
+            this.TimeGroupGrid.ReadOnly = true;
+            this.TimeGroupGrid.Width = 174;
+            // 
+            // Privilege1
+            // 
+            this.Privilege1.DataPropertyName = "Privilege";
+            this.Privilege1.HeaderText = "特权";
+            this.Privilege1.Name = "Privilege1";
+            this.Privilege1.ReadOnly = true;
+            this.Privilege1.Width = 62;
+            // 
+            // EnterStatus1
+            // 
+            this.EnterStatus1.DataPropertyName = "EnterStatus";
+            this.EnterStatus1.HeaderText = "出入状态";
+            this.EnterStatus1.Name = "EnterStatus1";
+            this.EnterStatus1.ReadOnly = true;
+            this.EnterStatus1.Width = 294;
+            // 
+            // Holiday
+            // 
+            this.Holiday.DataPropertyName = "Holiday";
+            this.Holiday.HeaderText = "节假日";
+            this.Holiday.Name = "Holiday";
+            this.Holiday.ReadOnly = true;
+            this.Holiday.Width = 186;
+            // 
+            // ReadCardDate
+            // 
+            this.ReadCardDate.DataPropertyName = "ReadCardDate";
+            this.ReadCardDate.HeaderText = "最近读卡时间";
+            this.ReadCardDate.Name = "ReadCardDate";
+            this.ReadCardDate.ReadOnly = true;
+            this.ReadCardDate.Width = 120;
             // 
             // frmCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1158, 667);
-            this.Controls.Add(this.dtpTime);
-            this.Controls.Add(this.dtpDate);
-            this.Controls.Add(this.txtCardList);
-            this.Controls.Add(this.cmbOpenTimes);
-            this.Controls.Add(this.cmbCardStatus);
+            this.ClientSize = new System.Drawing.Size(727, 778);
+            this.Controls.Add(this.dgCardList);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.checkBox7);
-            this.Controls.Add(this.button14);
-            this.Controls.Add(this.button13);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.btnDelSelect);
-            this.Controls.Add(this.btnDelDevice);
-            this.Controls.Add(this.btnAddDevice);
-            this.Controls.Add(this.butDelList);
-            this.Controls.Add(this.butInsertList);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.txtHoliday);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.cbHolidayUse);
-            this.Controls.Add(this.rbutPrivilege0);
-            this.Controls.Add(this.rbutPrivilege4);
-            this.Controls.Add(this.rbutPrivilege3);
-            this.Controls.Add(this.rbutPrivilege2);
-            this.Controls.Add(this.rbutPrivilege1);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.cmbEnterStatus4);
-            this.Controls.Add(this.cmbEnterStatus3);
-            this.Controls.Add(this.cmbEnterStatus2);
-            this.Controls.Add(this.cmbEnterStatus1);
-            this.Controls.Add(this.cmbTimeGroup4);
-            this.Controls.Add(this.cmbTimeGroup3);
-            this.Controls.Add(this.cmbTimeGroup2);
-            this.Controls.Add(this.cmbTimeGroup1);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.cbbit3);
-            this.Controls.Add(this.cbbit2);
-            this.Controls.Add(this.cbbit1);
-            this.Controls.Add(this.cbbit0);
-            this.Controls.Add(this.txtCardDataID);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtCardData);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtCardData16);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.chkSelectAll);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmCard";
             this.Text = "frmCard";
             this.Load += new System.EventHandler(this.frmCard_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCardList)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1210,12 +1101,12 @@
         private System.Windows.Forms.Button butCardDatabaseDetail;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.DataGridView dgCardList;
+        private System.Windows.Forms.Button butClearGrid;
         private System.Windows.Forms.Button butCardListBySort;
         private System.Windows.Forms.Button butCardListBySequence;
         private System.Windows.Forms.ComboBox cmbcardType;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkSelectAll;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCardData16;
         private System.Windows.Forms.Label label4;
@@ -1228,10 +1119,10 @@
         private System.Windows.Forms.TextBox txtCardData;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtCardDataID;
-        private System.Windows.Forms.CheckBox cbbit0;
-        private System.Windows.Forms.CheckBox cbbit1;
-        private System.Windows.Forms.CheckBox cbbit2;
-        private System.Windows.Forms.CheckBox cbbit3;
+        private System.Windows.Forms.CheckBox chkDoor1;
+        private System.Windows.Forms.CheckBox chkDoor2;
+        private System.Windows.Forms.CheckBox chkDoor3;
+        private System.Windows.Forms.CheckBox chkDoor4;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cmbTimeGroup1;
@@ -1243,11 +1134,6 @@
         private System.Windows.Forms.ComboBox cmbEnterStatus3;
         private System.Windows.Forms.ComboBox cmbEnterStatus4;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.RadioButton rbutPrivilege1;
-        private System.Windows.Forms.RadioButton rbutPrivilege2;
-        private System.Windows.Forms.RadioButton rbutPrivilege3;
-        private System.Windows.Forms.RadioButton rbutPrivilege4;
-        private System.Windows.Forms.RadioButton rbutPrivilege0;
         private System.Windows.Forms.CheckBox cbHolidayUse;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtHoliday;
@@ -1257,7 +1143,6 @@
         private System.Windows.Forms.Button btnAddDevice;
         private System.Windows.Forms.Button btnDelDevice;
         private System.Windows.Forms.Button btnDelSelect;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button butDeletecard;
         private System.Windows.Forms.ComboBox comboBox10;
         private System.Windows.Forms.Label label20;
@@ -1269,46 +1154,37 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button btnRandom;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button butCreateCardNumByRandom;
+        private System.Windows.Forms.Button butCreateCardNumByOrder;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtCount;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.ComboBox cmbCardStatus;
         private System.Windows.Forms.ComboBox cmbOpenTimes;
-        private System.Windows.Forms.TextBox txtCardList;
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.DateTimePicker dtpTime;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button butReadCardDetail;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TextBox txtDebug;
+        private System.Windows.Forms.ComboBox cmbPrivilege;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CardIndex;
         private System.Windows.Forms.DataGridViewTextBoxColumn CardData10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CardData16;
         private System.Windows.Forms.DataGridViewTextBoxColumn Password;
         private System.Windows.Forms.DataGridViewTextBoxColumn Expiry;
         private System.Windows.Forms.DataGridViewTextBoxColumn CardStatus1;
         private System.Windows.Forms.DataGridViewTextBoxColumn OpenTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn door1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn door2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn door3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn door4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeGroup1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeGroup2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeGroup3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeGroup4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeGroupGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Privilege1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Privilege2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Privilege3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Privilege4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HolidayUse;
         private System.Windows.Forms.DataGridViewTextBoxColumn EnterStatus1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EnterStatus2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EnterStatus3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EnterStatus4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Holiday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReadCardDate;
     }
 }

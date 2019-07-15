@@ -11,12 +11,18 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
 {
     /// <summary>
-    /// 读取单个卡片在控制器中的信息
+    /// FC88/MC58 读取单个卡片在控制器中的信息
     ///  成功返回结果参考 {@link ReadCardDetail_Result}
     /// </summary>
     public class ReadCardDetail
-        : FC8800Command
+        : FC8800Command_ReadParameter
     {
+
+        /// <summary>
+        /// FC88/MC58 读取单个卡片在控制器中的信息
+        /// </summary>
+        /// <param name="cd"></param>
+        /// <param name="parameter"></param>
         public ReadCardDetail(INCommandDetail cd, ReadCardDetail_Parameter parameter) : base(cd, parameter) { }
 
         /// <summary>
@@ -36,14 +42,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x07, 0x03, 0x01, 0x05, GetCmdDate());
+            Packet(0x07, 0x03, 0x01, 0x05, GetCmdData());
         }
 
         /// <summary>
         /// 获取参数结构的字节编码
         /// </summary>
         /// <returns></returns>
-        private IByteBuffer GetCmdDate()
+        private IByteBuffer GetCmdData()
         {
             ReadCardDetail_Parameter model = _Parameter as ReadCardDetail_Parameter;
             var acl = _Connector.GetByteBufAllocator();
@@ -61,29 +67,22 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
             if (CheckResponse(oPck, 0x21))
             {
                 var buf = oPck.CmdData;
-                ReadCardDetail_Result rst = new ReadCardDetail_Result();
-                FC8800.Data.CardDetail cardDetail = new FC8800.Data.CardDetail();
-                cardDetail.SetBytes(buf);
-                rst.Card = cardDetail;
+                bool IsReady = false;
+                IsReady = (buf.GetByte(0) == 0xff);
+
+                FC8800.Data.CardDetail cardDetail = null;
+                if (IsReady)
+                {
+                    cardDetail = new FC8800.Data.CardDetail();
+                    cardDetail.SetBytes(buf);
+
+                }
+
+
+                ReadCardDetail_Result rst = new ReadCardDetail_Result(IsReady, cardDetail);
                 _Result = rst;
-                rst.SetBytes(buf);
                 CommandCompleted();
             }
-        }
-
-        /// <summary>
-        /// 命令重发时需要的函数
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
-        /// <summary>
-        /// 命令释放时需要的函数
-        /// </summary>
-        protected override void Release1()
-        {
-            return;
         }
     }
 }

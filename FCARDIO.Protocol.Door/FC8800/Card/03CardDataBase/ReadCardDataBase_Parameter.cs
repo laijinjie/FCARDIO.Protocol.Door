@@ -1,13 +1,16 @@
 ﻿using DotNetty.Buffers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
 {
     /// <summary>
-    /// 读取卡片数据库中的所有卡数据
+    /// 读取控制器中的卡片数据的命令的参数
     /// </summary>
-    public class ReadCardDataBase_Parameter
-        : AbstractParameter
+    public class ReadCardDataBase_Parameter : AbstractParameter
     {
         /// <summary>
         /// 带读取的卡片数据类型
@@ -24,6 +27,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         public ReadCardDataBase_Parameter(int cardType)
         {
             CardType = cardType;
+            checkedParameter();
         }
 
         /// <summary>
@@ -32,7 +36,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if(CardType<1 || CardType > 3)
+            if (CardType < 1 || CardType > 3)
             {
                 throw new ArgumentException("CardType Error!");
             }
@@ -54,7 +58,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 1)
+            if (databuf.WritableBytes < 1)
             {
                 throw new ArgumentException("Crad Error");
             }

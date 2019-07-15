@@ -39,7 +39,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDatabaseDetail
             {
                 var buf = oPck.CmdData;
                 ReadCardDatabaseDetail_Result rst = new ReadCardDatabaseDetail_Result();
-                rst.SetBytes(rst,buf);
+                rst.SetBytes(buf);
                 _Result = rst;
                
                 CommandCompleted();

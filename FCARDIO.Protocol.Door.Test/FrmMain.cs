@@ -566,7 +566,7 @@ namespace FCARDIO.Protocol.Door.Test
                     break;
             }
             protocolType = mProtocolTypeTable[cmdProtocolType.SelectedIndex];
-            
+
 
             if (port > 65535) port = 8000;
 
@@ -724,18 +724,21 @@ namespace FCARDIO.Protocol.Door.Test
         {
             frmSystem frm = frmSystem.GetForm(this);
             frm.Show();
+            ShowFrm(frm);
         }
 
         private void butTime_Click(object sender, EventArgs e)
         {
             frmTime frm = frmTime.GetForm(this);
             frm.Show();
+            ShowFrm(frm);
         }
 
         private void butDoor_Click(object sender, EventArgs e)
         {
             frmDoor frm = frmDoor.GetForm(this);
             frm.Show();
+            ShowFrm(frm);
 
         }
 
@@ -744,38 +747,80 @@ namespace FCARDIO.Protocol.Door.Test
 
             frmHoliday frm = frmHoliday.GetForm(this);
             frm.Show();
+            ShowFrm(frm);
         }
 
         private void ButPassword_Click(object sender, EventArgs e)
         {
             frmPassword frm = frmPassword.GetForm(this);
             frm.Show();
+            ShowFrm(frm);
         }
 
         private void ButTimeGroup_Click(object sender, EventArgs e)
         {
             frmTimeGroup frm = frmTimeGroup.GetForm(this);
-            if (!frm.IsDisposed)
-                //frm = new frmTimeGroup();
+
             frm.Show();
+            ShowFrm(frm);
         }
 
         private void butCard_Click(object sender, EventArgs e)
         {
             frmCard frm = frmCard.GetForm(this);
             frm.Show();
+
+            ShowFrm(frm);
+
+
+        }
+        /// <summary>
+        /// 显示窗口在侧边栏
+        /// </summary>
+        /// <param name="chi"></param>
+        private void ShowFrm(Form chi)
+        {
+            Screen scr = Screen.PrimaryScreen;
+
+            foreach (Screen ss in Screen.AllScreens)
+            {
+                var rc = ss.Bounds;
+                if (rc.Left < this.Left && (rc.Left + rc.Width) > this.Left)
+                {
+                    if (rc.Top < this.Top && (rc.Top + rc.Bottom) > this.Top)
+                    {
+                        scr = ss;
+                        break;
+                    }
+                }
+
+            }
+
+            var scrRc = scr.Bounds;
+            int iLeft = (scrRc.Width - (Width + chi.Width)) / 2;
+            int iTop = (scrRc.Height - (Height > chi.Height ? Height : chi.Height)) / 2;
+
+            this.Left = scrRc.Left + iLeft;
+            this.Top = scrRc.Top + iTop;
+
+            chi.Left = scrRc.Left + iLeft + this.Width;
+            chi.Top = scrRc.Top + iTop;
+
+
         }
 
         private void butRecord_Click(object sender, EventArgs e)
         {
             frmRecord frm = frmRecord.GetForm(this);
             frm.Show();
+            ShowFrm(frm);
         }
 
         private void butUploadSoftware_Click(object sender, EventArgs e)
         {
             frmUploadSoftware frm = frmUploadSoftware.GetForm(this);
             frm.Show();
+            ShowFrm(frm);
         }
         #endregion
 
@@ -954,6 +999,17 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.Holiday.ClearHoliday).FullName, "清空节假日");
             mCommandClasss.Add(typeof(FC8800.Holiday.ReadAllHoliday).FullName, "读取所有节假日");
 
+
+
+            mCommandClasss.Add(typeof(FC8800.Card.CardDatabaseDetail.ReadCardDatabaseDetail).FullName, "读取卡片存储详情");
+            mCommandClasss.Add(typeof(FC89H.Card.CardDataBase.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
+            mCommandClasss.Add(typeof(FC8800.Card.CardDataBase.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
+            mCommandClasss.Add(typeof(FC8800.Card.ClearCardDataBase.ClearCardDataBase).FullName, "从控制器中清空所有卡片");
+            mCommandClasss.Add(typeof(FC89H.Card.CardDetail.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
+            mCommandClasss.Add(typeof(FC8800.Card.CardDetail.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
+            
+                
+
         }
 
 
@@ -1063,7 +1119,7 @@ namespace FCARDIO.Protocol.Door.Test
             cmdConnType.SelectedIndex = 1;
             ShowConnTypePanel();
 
-           
+
 
             mProtocolTypeTable[0] = CommandDetailFactory.ControllerType.MC58;
             mProtocolTypeTable[1] = CommandDetailFactory.ControllerType.FC88;
@@ -1074,7 +1130,7 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 cmdProtocolType.Items.Add(mProtocolTypeTable[i]);
             }
-            cmdProtocolType.SelectedIndex = 1;
+            cmdProtocolType.SelectedIndex = 2;
             _IsClosed = false;
 
             int iTop = gbTCPClient.Top, iLeft = gbTCPClient.Left;
@@ -1418,7 +1474,6 @@ namespace FCARDIO.Protocol.Door.Test
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
                 oItem.ToolTipText = txt;
             }
-
             AddCmdItem(oItem);
         }
 

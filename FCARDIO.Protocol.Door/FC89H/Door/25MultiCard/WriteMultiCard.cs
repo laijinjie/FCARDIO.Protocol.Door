@@ -138,7 +138,7 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.MultiCard
             }
             mCardListIndex += iAddCount;
 
-            Packet(0x18, 0x52, (uint)buf.ReadableBytes);
+            RewritePacket(0x18, 0x52, (uint)buf.ReadableBytes);
 
             CommandReady();
 
@@ -185,7 +185,7 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.MultiCard
             }
 
 
-            Packet(0x12, 0x02, (uint)buf.ReadableBytes);
+            RewritePacket(0x12, 0x02, (uint)buf.ReadableBytes);
 
             _ProcessStep++;
             CommandReady();

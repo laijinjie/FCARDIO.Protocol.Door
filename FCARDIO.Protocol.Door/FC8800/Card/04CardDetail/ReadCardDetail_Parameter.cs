@@ -8,7 +8,7 @@ using DotNetty.Buffers;
 namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
 {
     /// <summary>
-    /// 读取单个卡片在控制器中的信息
+    /// FC88/MC58  读取单个卡片在控制器中的信息
     /// </summary>
     public class ReadCardDetail_Parameter
          : AbstractParameter
@@ -17,15 +17,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
         /// 要读取详情的授权卡卡号
         /// 取值：1-0xFFFFFFFF
         /// </summary>
-        public long CardData;
-
-        public ReadCardDetail_Parameter() { }
+        public UInt64 CardData;
 
         /// <summary>
         /// 创建结构
         /// </summary>
-        /// <param name="cardType">带读取的卡片数据类型</param>
-        public ReadCardDetail_Parameter(uint carddata)
+        /// <param name="carddata">需要读取卡片详情的卡号</param>
+        public ReadCardDetail_Parameter(UInt64 carddata)
         {
             CardData = carddata;
         }
@@ -36,6 +34,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if(CardData==0)
+            {
+                throw new ArgumentException("CardData Error!");
+            }
+            if (CardData > (UInt64)UInt32.MaxValue)
+            {
+                throw new ArgumentException("CardData Error!");
+            }
+
             return true;
         }
 
@@ -54,7 +61,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 5)
+            if (databuf.WritableBytes < 5)
             {
                 throw new ArgumentException("Crad Error");
             }
@@ -73,13 +80,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
         }
 
         /// <summary>
-        /// 将字节缓冲解码为类结构
+        /// 未实现
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            CardData = databuf.ReadLong();
+            return;
         }
-
     }
 }

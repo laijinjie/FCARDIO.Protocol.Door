@@ -98,8 +98,10 @@
     <Compile Include="FC8800\AbstractParameter.cs" />
     <Compile Include="FC8800\Card\01CardDatabaseDetail\ReadCardDatabaseDetail.cs" />
     <Compile Include="FC8800\Card\01CardDatabaseDetail\ReadCardDatabaseDetail_Result.cs" />
-    <Compile Include="FC8800\Card\03CardDataBase\ReadCardDataBase.cs" />
     <Compile Include="FC8800\Card\03CardDataBase\ReadCardDataBase_Parameter.cs" />
+    <Compile Include="FC8800\Card\03CardDataBase\Base\ReadCardDataBase_Base_Result.cs" />
+    <Compile Include="FC8800\Card\03CardDataBase\ReadCardDataBase.cs" />
+    <Compile Include="FC8800\Card\03CardDataBase\Base\ReadCardDataBase_Base.cs" />
     <Compile Include="FC8800\Card\03CardDataBase\ReadCardDataBase_Result.cs" />
     <Compile Include="FC8800\Card\02ClearCardDataBase\ClearCardDataBase.cs" />
     <Compile Include="FC8800\Card\02ClearCardDataBase\ClearCardDataBase_Parameter.cs" />
@@ -441,7 +443,10 @@
     <Compile Include="FC8800\SystemParameter\DoorPortDetail.cs" />
     <Compile Include="FC8800\Utility\StringUtility.cs" />
     <Compile Include="FC89H\Card\03CardDataBase\ReadCardDataBase.cs" />
+    <Compile Include="FC89H\Card\03CardDataBase\ReadCardDataBase_Result.cs" />
     <Compile Include="FC89H\Card\04CardDetail\ReadCardDetail.cs" />
+    <Compile Include="FC89H\Card\04CardDetail\ReadCardDetail_Parameter.cs" />
+    <Compile Include="FC89H\Card\04CardDetail\ReadCardDetail_Result.cs" />
     <Compile Include="FC89H\Card\05CardListBySequence\WriteCardListBySequence.cs" />
     <Compile Include="FC89H\Card\05CardListBySequence\WriteCardListBySequence_Parameter.cs" />
     <Compile Include="FC89H\Card\06DeleteCard\DeleteCard.cs" />
