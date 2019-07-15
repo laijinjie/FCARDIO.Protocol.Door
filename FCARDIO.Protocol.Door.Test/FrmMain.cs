@@ -17,6 +17,7 @@ using FCARDIO.Core.Connector.TCPServer;
 using FCARDIO.Core.Connector.TCPServer.Client;
 using FCARDIO.Core.Connector.UDP;
 using FCARDIO.Core.Extension;
+using FCARDIO.Protocol.Door.FC8800.Door.ReaderOption;
 using FCARDIO.Protocol.FC8800;
 
 namespace FCARDIO.Protocol.Door.Test
@@ -968,7 +969,7 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.Time.TimeErrorCorrection.WriteTimeError).FullName, "写入误差自修正参数");
 
             mCommandClasss.Add(typeof(FC8800.Door.ReaderOption.ReadReaderOption).FullName, "读取读卡器字节数");
-            mCommandClasss.Add(typeof(FC8800.Door.ReaderOption.WriteReaderOption).FullName, "写入读卡器字节数");
+            mCommandClasss.Add(typeof(FC8800.Door.ReaderOption.WriteReaderOption<ReaderOption_Parameter>).FullName, "写入读卡器字节数");
 
             mCommandClasss.Add(typeof(FC8800.Door.RelayOption.ReadRelayOption).FullName, "读取继电器参数");
             mCommandClasss.Add(typeof(FC8800.Door.RelayOption.WriteRelayOption).FullName, "写入继电器参数");

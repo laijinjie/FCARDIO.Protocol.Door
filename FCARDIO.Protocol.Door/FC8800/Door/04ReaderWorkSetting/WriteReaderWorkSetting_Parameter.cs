@@ -51,7 +51,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
                 throw new ArgumentException("DoorNum Error");
 
             if (weekTimeGroup_ReaderWork == null)
-                throw new ArgumentException("readerWorkSetting Is Null!");
+                throw new ArgumentException("WeekTimeGroup_ReaderWork Is Null!");
             
             return true;
         }

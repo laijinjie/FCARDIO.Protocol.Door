@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -264,6 +264,11 @@
             this.btnWriteReaderInterval = new System.Windows.Forms.Button();
             this.btnReadReaderInterval = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox24 = new System.Windows.Forms.GroupBox();
+            this.groupBox23 = new System.Windows.Forms.GroupBox();
+            this.cbReaderAlarmUse = new System.Windows.Forms.CheckBox();
+            this.btnReadReaderAlarm = new System.Windows.Forms.Button();
+            this.btnWriteReaderAlarm = new System.Windows.Forms.Button();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
             this.plMutiCard = new System.Windows.Forms.Panel();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
@@ -333,6 +338,24 @@
             this.cBoxDoor2 = new System.Windows.Forms.CheckBox();
             this.cBoxDoor1 = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
+            this.label73 = new System.Windows.Forms.Label();
+            this.label74 = new System.Windows.Forms.Label();
+            this.cbInDoorUse = new System.Windows.Forms.CheckBox();
+            this.cbOutDoorUse = new System.Windows.Forms.CheckBox();
+            this.label75 = new System.Windows.Forms.Label();
+            this.label76 = new System.Windows.Forms.Label();
+            this.label77 = new System.Windows.Forms.Label();
+            this.label78 = new System.Windows.Forms.Label();
+            this.txtInDoorIP = new System.Windows.Forms.TextBox();
+            this.txtOutDoorIP = new System.Windows.Forms.TextBox();
+            this.txtInDoorPort = new System.Windows.Forms.TextBox();
+            this.txtOutDoorPort = new System.Windows.Forms.TextBox();
+            this.label79 = new System.Windows.Forms.Label();
+            this.label80 = new System.Windows.Forms.Label();
+            this.txtInDoorProtocol = new System.Windows.Forms.TextBox();
+            this.txtOutDoorProtocol = new System.Windows.Forms.TextBox();
+            this.btnReadReadCardAndTakePictures = new System.Windows.Forms.Button();
+            this.btnWriteReadCardAndTakePictures = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -366,6 +389,8 @@
             this.groupBox12.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.groupBox24.SuspendLayout();
+            this.groupBox23.SuspendLayout();
             this.groupBox22.SuspendLayout();
             this.plMutiCard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
@@ -533,8 +558,8 @@
             // EX2
             // 
             this.EX2.DataPropertyName = "EX";
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.EX2.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.EX2.DefaultCellStyle = dataGridViewCellStyle1;
             this.EX2.HeaderText = "";
             this.EX2.MinimumWidth = 6;
             this.EX2.Name = "EX2";
@@ -1269,8 +1294,8 @@
             // EX
             // 
             this.EX.DataPropertyName = "EX";
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.EX.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.EX.DefaultCellStyle = dataGridViewCellStyle2;
             this.EX.HeaderText = "";
             this.EX.MinimumWidth = 6;
             this.EX.Name = "EX";
@@ -1618,11 +1643,6 @@
             // 
             this.cbxDoor4ReaderOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDoor4ReaderOption.FormattingEnabled = true;
-            this.cbxDoor4ReaderOption.Items.AddRange(new object[] {
-            "禁用",
-            "二字节",
-            "三字节",
-            "四字节"});
             this.cbxDoor4ReaderOption.Location = new System.Drawing.Point(395, 22);
             this.cbxDoor4ReaderOption.Name = "cbxDoor4ReaderOption";
             this.cbxDoor4ReaderOption.Size = new System.Drawing.Size(74, 20);
@@ -1641,11 +1661,6 @@
             // 
             this.cbxDoor3ReaderOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDoor3ReaderOption.FormattingEnabled = true;
-            this.cbxDoor3ReaderOption.Items.AddRange(new object[] {
-            "禁用",
-            "二字节",
-            "三字节",
-            "四字节"});
             this.cbxDoor3ReaderOption.Location = new System.Drawing.Point(275, 22);
             this.cbxDoor3ReaderOption.Name = "cbxDoor3ReaderOption";
             this.cbxDoor3ReaderOption.Size = new System.Drawing.Size(74, 20);
@@ -1664,11 +1679,6 @@
             // 
             this.cbxDoor2ReaderOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDoor2ReaderOption.FormattingEnabled = true;
-            this.cbxDoor2ReaderOption.Items.AddRange(new object[] {
-            "禁用",
-            "二字节",
-            "三字节",
-            "四字节"});
             this.cbxDoor2ReaderOption.Location = new System.Drawing.Point(155, 22);
             this.cbxDoor2ReaderOption.Name = "cbxDoor2ReaderOption";
             this.cbxDoor2ReaderOption.Size = new System.Drawing.Size(74, 20);
@@ -1687,11 +1697,6 @@
             // 
             this.cbxDoor1ReaderOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDoor1ReaderOption.FormattingEnabled = true;
-            this.cbxDoor1ReaderOption.Items.AddRange(new object[] {
-            "禁用",
-            "二字节",
-            "三字节",
-            "四字节"});
             this.cbxDoor1ReaderOption.Location = new System.Drawing.Point(35, 22);
             this.cbxDoor1ReaderOption.Name = "cbxDoor1ReaderOption";
             this.cbxDoor1ReaderOption.Size = new System.Drawing.Size(74, 20);
@@ -2971,6 +2976,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.groupBox24);
+            this.tabPage4.Controls.Add(this.groupBox23);
             this.tabPage4.Controls.Add(this.groupBox22);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -2978,6 +2985,75 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "多门参数";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // groupBox24
+            // 
+            this.groupBox24.Controls.Add(this.btnWriteReadCardAndTakePictures);
+            this.groupBox24.Controls.Add(this.btnReadReadCardAndTakePictures);
+            this.groupBox24.Controls.Add(this.txtOutDoorProtocol);
+            this.groupBox24.Controls.Add(this.txtInDoorProtocol);
+            this.groupBox24.Controls.Add(this.label80);
+            this.groupBox24.Controls.Add(this.label79);
+            this.groupBox24.Controls.Add(this.txtOutDoorPort);
+            this.groupBox24.Controls.Add(this.txtInDoorPort);
+            this.groupBox24.Controls.Add(this.txtOutDoorIP);
+            this.groupBox24.Controls.Add(this.txtInDoorIP);
+            this.groupBox24.Controls.Add(this.label78);
+            this.groupBox24.Controls.Add(this.label77);
+            this.groupBox24.Controls.Add(this.label76);
+            this.groupBox24.Controls.Add(this.label75);
+            this.groupBox24.Controls.Add(this.cbOutDoorUse);
+            this.groupBox24.Controls.Add(this.cbInDoorUse);
+            this.groupBox24.Controls.Add(this.label74);
+            this.groupBox24.Controls.Add(this.label73);
+            this.groupBox24.Location = new System.Drawing.Point(14, 598);
+            this.groupBox24.Name = "groupBox24";
+            this.groupBox24.Size = new System.Drawing.Size(722, 214);
+            this.groupBox24.TabIndex = 2;
+            this.groupBox24.TabStop = false;
+            this.groupBox24.Text = "读卡拍照联动消息";
+            // 
+            // groupBox23
+            // 
+            this.groupBox23.Controls.Add(this.cbReaderAlarmUse);
+            this.groupBox23.Controls.Add(this.btnReadReaderAlarm);
+            this.groupBox23.Controls.Add(this.btnWriteReaderAlarm);
+            this.groupBox23.Location = new System.Drawing.Point(14, 527);
+            this.groupBox23.Name = "groupBox23";
+            this.groupBox23.Size = new System.Drawing.Size(722, 54);
+            this.groupBox23.TabIndex = 1;
+            this.groupBox23.TabStop = false;
+            this.groupBox23.Text = "读卡器防拆报警功能";
+            // 
+            // cbReaderAlarmUse
+            // 
+            this.cbReaderAlarmUse.AutoSize = true;
+            this.cbReaderAlarmUse.Location = new System.Drawing.Point(76, 26);
+            this.cbReaderAlarmUse.Name = "cbReaderAlarmUse";
+            this.cbReaderAlarmUse.Size = new System.Drawing.Size(72, 16);
+            this.cbReaderAlarmUse.TabIndex = 110;
+            this.cbReaderAlarmUse.Text = "是否启用";
+            this.cbReaderAlarmUse.UseVisualStyleBackColor = true;
+            // 
+            // btnReadReaderAlarm
+            // 
+            this.btnReadReaderAlarm.Location = new System.Drawing.Point(589, 20);
+            this.btnReadReaderAlarm.Name = "btnReadReaderAlarm";
+            this.btnReadReaderAlarm.Size = new System.Drawing.Size(48, 23);
+            this.btnReadReaderAlarm.TabIndex = 108;
+            this.btnReadReaderAlarm.Text = "读取";
+            this.btnReadReaderAlarm.UseVisualStyleBackColor = true;
+            this.btnReadReaderAlarm.Click += new System.EventHandler(this.BtnReadReaderAlarm_Click);
+            // 
+            // btnWriteReaderAlarm
+            // 
+            this.btnWriteReaderAlarm.Location = new System.Drawing.Point(655, 20);
+            this.btnWriteReaderAlarm.Name = "btnWriteReaderAlarm";
+            this.btnWriteReaderAlarm.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteReaderAlarm.TabIndex = 109;
+            this.btnWriteReaderAlarm.Text = "写入";
+            this.btnWriteReaderAlarm.UseVisualStyleBackColor = true;
+            this.btnWriteReaderAlarm.Click += new System.EventHandler(this.BtnWriteReaderAlarm_Click);
             // 
             // groupBox22
             // 
@@ -3711,6 +3787,162 @@
             this.label22.TabIndex = 26;
             this.label22.Text = "门号：";
             // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(21, 28);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(113, 12);
+            this.label73.TabIndex = 0;
+            this.label73.Text = "进门读卡联动开关：";
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(21, 125);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(113, 12);
+            this.label74.TabIndex = 1;
+            this.label74.Text = "出门读卡联动开关：";
+            // 
+            // cbInDoorUse
+            // 
+            this.cbInDoorUse.AutoSize = true;
+            this.cbInDoorUse.Location = new System.Drawing.Point(140, 27);
+            this.cbInDoorUse.Name = "cbInDoorUse";
+            this.cbInDoorUse.Size = new System.Drawing.Size(72, 16);
+            this.cbInDoorUse.TabIndex = 2;
+            this.cbInDoorUse.Text = "是否启用";
+            this.cbInDoorUse.UseVisualStyleBackColor = true;
+            // 
+            // cbOutDoorUse
+            // 
+            this.cbOutDoorUse.AutoSize = true;
+            this.cbOutDoorUse.Location = new System.Drawing.Point(140, 124);
+            this.cbOutDoorUse.Name = "cbOutDoorUse";
+            this.cbOutDoorUse.Size = new System.Drawing.Size(72, 16);
+            this.cbOutDoorUse.TabIndex = 3;
+            this.cbOutDoorUse.Text = "是否启用";
+            this.cbOutDoorUse.UseVisualStyleBackColor = true;
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(256, 28);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(89, 12);
+            this.label75.TabIndex = 4;
+            this.label75.Text = "进门摄像机IP：";
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Location = new System.Drawing.Point(256, 125);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(89, 12);
+            this.label76.TabIndex = 5;
+            this.label76.Text = "出门摄像机IP：";
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Location = new System.Drawing.Point(462, 28);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(59, 12);
+            this.label77.TabIndex = 6;
+            this.label77.Text = "UDP端口：";
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.Location = new System.Drawing.Point(462, 125);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(59, 12);
+            this.label78.TabIndex = 7;
+            this.label78.Text = "UDP端口：";
+            // 
+            // txtInDoorIP
+            // 
+            this.txtInDoorIP.Location = new System.Drawing.Point(341, 25);
+            this.txtInDoorIP.Name = "txtInDoorIP";
+            this.txtInDoorIP.Size = new System.Drawing.Size(100, 21);
+            this.txtInDoorIP.TabIndex = 8;
+            // 
+            // txtOutDoorIP
+            // 
+            this.txtOutDoorIP.Location = new System.Drawing.Point(341, 122);
+            this.txtOutDoorIP.Name = "txtOutDoorIP";
+            this.txtOutDoorIP.Size = new System.Drawing.Size(100, 21);
+            this.txtOutDoorIP.TabIndex = 9;
+            // 
+            // txtInDoorPort
+            // 
+            this.txtInDoorPort.Location = new System.Drawing.Point(527, 25);
+            this.txtInDoorPort.Name = "txtInDoorPort";
+            this.txtInDoorPort.Size = new System.Drawing.Size(100, 21);
+            this.txtInDoorPort.TabIndex = 10;
+            // 
+            // txtOutDoorPort
+            // 
+            this.txtOutDoorPort.Location = new System.Drawing.Point(527, 122);
+            this.txtOutDoorPort.Name = "txtOutDoorPort";
+            this.txtOutDoorPort.Size = new System.Drawing.Size(100, 21);
+            this.txtOutDoorPort.TabIndex = 11;
+            // 
+            // label79
+            // 
+            this.label79.AutoSize = true;
+            this.label79.Location = new System.Drawing.Point(45, 53);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(89, 12);
+            this.label79.TabIndex = 12;
+            this.label79.Text = "进门联动协议：";
+            // 
+            // label80
+            // 
+            this.label80.AutoSize = true;
+            this.label80.Location = new System.Drawing.Point(45, 145);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(89, 12);
+            this.label80.TabIndex = 13;
+            this.label80.Text = "出门联动协议：";
+            // 
+            // txtInDoorProtocol
+            // 
+            this.txtInDoorProtocol.Location = new System.Drawing.Point(140, 50);
+            this.txtInDoorProtocol.Multiline = true;
+            this.txtInDoorProtocol.Name = "txtInDoorProtocol";
+            this.txtInDoorProtocol.Size = new System.Drawing.Size(487, 60);
+            this.txtInDoorProtocol.TabIndex = 14;
+            // 
+            // txtOutDoorProtocol
+            // 
+            this.txtOutDoorProtocol.Location = new System.Drawing.Point(140, 148);
+            this.txtOutDoorProtocol.Multiline = true;
+            this.txtOutDoorProtocol.Name = "txtOutDoorProtocol";
+            this.txtOutDoorProtocol.Size = new System.Drawing.Size(487, 60);
+            this.txtOutDoorProtocol.TabIndex = 15;
+            // 
+            // btnReadReadCardAndTakePictures
+            // 
+            this.btnReadReadCardAndTakePictures.Location = new System.Drawing.Point(655, 23);
+            this.btnReadReadCardAndTakePictures.Name = "btnReadReadCardAndTakePictures";
+            this.btnReadReadCardAndTakePictures.Size = new System.Drawing.Size(48, 23);
+            this.btnReadReadCardAndTakePictures.TabIndex = 111;
+            this.btnReadReadCardAndTakePictures.Text = "读取";
+            this.btnReadReadCardAndTakePictures.UseVisualStyleBackColor = true;
+            this.btnReadReadCardAndTakePictures.Click += new System.EventHandler(this.BtnReadReadCardAndTakePictures_Click);
+            // 
+            // btnWriteReadCardAndTakePictures
+            // 
+            this.btnWriteReadCardAndTakePictures.Location = new System.Drawing.Point(655, 53);
+            this.btnWriteReadCardAndTakePictures.Name = "btnWriteReadCardAndTakePictures";
+            this.btnWriteReadCardAndTakePictures.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteReadCardAndTakePictures.TabIndex = 111;
+            this.btnWriteReadCardAndTakePictures.Text = "写入";
+            this.btnWriteReadCardAndTakePictures.UseVisualStyleBackColor = true;
+            this.btnWriteReadCardAndTakePictures.Click += new System.EventHandler(this.BtnWriteReadCardAndTakePictures_Click);
+            // 
             // frmDoor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3786,6 +4018,10 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.groupBox24.ResumeLayout(false);
+            this.groupBox24.PerformLayout();
+            this.groupBox23.ResumeLayout(false);
+            this.groupBox23.PerformLayout();
             this.groupBox22.ResumeLayout(false);
             this.groupBox22.PerformLayout();
             this.plMutiCard.ResumeLayout(false);
@@ -4113,5 +4349,28 @@
         private System.Windows.Forms.DataGridView dataGridView5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.GroupBox groupBox23;
+        private System.Windows.Forms.CheckBox cbReaderAlarmUse;
+        private System.Windows.Forms.Button btnReadReaderAlarm;
+        private System.Windows.Forms.Button btnWriteReaderAlarm;
+        private System.Windows.Forms.GroupBox groupBox24;
+        private System.Windows.Forms.Button btnWriteReadCardAndTakePictures;
+        private System.Windows.Forms.Button btnReadReadCardAndTakePictures;
+        private System.Windows.Forms.TextBox txtOutDoorProtocol;
+        private System.Windows.Forms.TextBox txtInDoorProtocol;
+        private System.Windows.Forms.Label label80;
+        private System.Windows.Forms.Label label79;
+        private System.Windows.Forms.TextBox txtOutDoorPort;
+        private System.Windows.Forms.TextBox txtInDoorPort;
+        private System.Windows.Forms.TextBox txtOutDoorIP;
+        private System.Windows.Forms.TextBox txtInDoorIP;
+        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.CheckBox cbOutDoorUse;
+        private System.Windows.Forms.CheckBox cbInDoorUse;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.Label label73;
     }
 }

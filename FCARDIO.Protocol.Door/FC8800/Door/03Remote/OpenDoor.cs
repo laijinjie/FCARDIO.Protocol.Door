@@ -42,6 +42,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.Remote
         /// </summary>
         protected override void CreatePacket0()
         {
+
             Packet(0x03, 0x03, 0x00, 0x04, GetCmdData());
         }
 

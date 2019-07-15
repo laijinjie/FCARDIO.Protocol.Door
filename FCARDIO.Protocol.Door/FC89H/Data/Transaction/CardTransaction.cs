@@ -1,12 +1,11 @@
-﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Data
+namespace FCARDIO.Protocol.Door.FC89H.Data
 {
     /// <summary>
     /// 刷卡记录<br/>
@@ -61,134 +60,24 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     /// 48  区域防潜回--拒绝开门    
     /// 49  区域互锁--有门未关好，拒绝开门
     /// </summary>
-    public class CardTransaction : AbstractTransaction
+
+    public class CardTransaction : FC8800.Data.CardTransaction
     {
-        /// <summary>
-        /// 初始化参数
-        /// </summary>
         public CardTransaction()
         {
-            TransactionType = 1;
+
         }
-
         /// <summary>
-        /// 卡号
-        /// </summary>
-        public long CardData;
-
-        /// <summary>
-        /// 读卡器号
-        /// </summary>
-        public short Reader;
-
-        /// <summary>
-        /// 获取读卡记录格式长度
-        /// </summary>
-        /// <returns></returns>
-        public virtual int GetDataLen()
-        {
-            return 13;
-        }
-
-
-        /// <summary>
-        /// 从buf中读取记录数据
+        /// 从buf中读取卡号数据
         /// </summary>
         /// <param name="data"></param>
-        public override void SetBytes(IByteBuffer data)
-        {
-            try
-            {
-                if (data.ReadByte() == 255)
-                {
-                    IsNull = true;
-                    //return;
-                }
-                this.ReadCardData(data);
-                byte[] btTime = new byte[6];
-                data.ReadBytes(btTime, 0, 6);
-                TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhh(btTime);
-                Reader = data.ReadByte();
-                TransactionCode = data.ReadByte();
-                if (TransactionCode == 0 || Reader == 0 || Reader > 8 || TransactionDate == null)
-                {
-                    IsNull = true;
-                }
-            }
-            catch (Exception e)
-            {
-            }
-
-            return;
-        }
-
-        /// <summary>
-        /// 从buf中读取卡号
-        /// </summary>
-        /// <param name="data"></param>
-        protected virtual void ReadCardData(IByteBuffer data)
+        protected override void ReadCardData(IByteBuffer data)
         {
             //data.ReadByte();
 
-            CardData = data.ReadInt();
+            CardData = data.ReadLong();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IByteBuffer GetBytes()
-        {
-            return null;
-        }
 
-        /// <summary>
-        /// 获取门号
-        /// </summary>
-        /// <returns>1-4 代表4个门</returns>
-        public short DoorNum()
-        {
-            switch (Reader)
-            {
-                case 1:
-                case 2:
-                    return 1;
-                case 3:
-                case 4:
-                    return 2;
-                case 5:
-                case 6:
-                    return 3;
-                case 7:
-                case 8:
-                    return 4;
-                default:
-                    return 0;
-
-            }
-
-        }
-
-        /// <summary>
-        /// 是否为进门读卡
-        /// </summary>
-        /// <returns>true 进门读卡，false 出门读卡</returns>
-        public bool IsEnter()
-        {
-            if (Reader == 0 || Reader > 8)
-            {
-                return false;
-            }
-            return Reader % 2 == 1;
-        }
-
-        /// <summary>
-        /// 是否为出门读卡
-        /// </summary>
-        /// <returns>true 出门读卡，false 进门读卡</returns>
-        public bool IsExit()
-        {
-            return !IsEnter();
-        }
     }
 }

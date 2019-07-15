@@ -31,8 +31,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InterLockSetting
         {
             WriteInterLockSetting_Parameter model = value as WriteInterLockSetting_Parameter;
             if (model == null) return false;
-            
-            
             return model.checkedParameter();
         }
 

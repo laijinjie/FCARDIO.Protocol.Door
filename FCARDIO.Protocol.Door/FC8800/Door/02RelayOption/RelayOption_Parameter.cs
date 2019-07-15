@@ -19,6 +19,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayOption
 
         /// <summary>
         /// 门的继电器字节数组
+        /// 1 - 不输出（默认）  COM & NC
+        /// 2 - 输出            COM & NO
+        /// 3 - 读卡切换输出状态（当读到合法卡后自动自动切换到当前相反的状态。）例如卷闸门
         /// </summary>
         public byte[] Relay = null;
 
@@ -47,6 +50,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.RelayOption
                 throw new ArgumentException("relay Is Null!");
             if (Relay.Length != DataLength)
                 throw new ArgumentException("relay Length Error!");
+            foreach (var item in Relay)
+            {
+                if (item < 1 || item > 3)
+                {
+                    throw new ArgumentException("relay Error!");
+                }
+            }
             return true;
         }
 

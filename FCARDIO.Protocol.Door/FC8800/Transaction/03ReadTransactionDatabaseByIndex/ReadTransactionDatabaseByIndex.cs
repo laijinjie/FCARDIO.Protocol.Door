@@ -16,7 +16,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
     /// 按指定索引号开始读指定类型的记录数据库，并读取指定数量。
     /// 成功返回结果参考 ReadTransactionDatabaseByIndex_Result 
     /// </summary>
-    public class ReadTransactionDatabaseByIndex : FC8800Command_ReadParameter
+    public class ReadTransactionDatabaseByIndex<T> : FC8800Command_ReadParameter where T : CardTransaction,new ()
     {
         private Queue<IByteBuffer> mBufs;
         private int mQuantity;
@@ -129,7 +129,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
             switch (result.DatabaseType)
             {
                 case e_TransactionDatabaseType.OnCardTransaction:
-                    TransactionType = typeof(CardTransaction);
+                    TransactionType = typeof(T);
                     break;
                 case e_TransactionDatabaseType.OnButtonTransaction:
                     TransactionType = typeof(ButtonTransaction);

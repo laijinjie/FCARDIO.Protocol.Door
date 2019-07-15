@@ -79,6 +79,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
         {
             if (DoorNum < 1 || DoorNum > 4)
                 throw new ArgumentException("Door Error!");
+            if (IP == null)
+            {
+                throw new ArgumentException("IP Is Null!");
+            }
+            if (SN != null && SN.Length > 16)
+            {
+                throw new ArgumentException("SN Length more then 16!");
+            }
             string ip = string.Join(".", IP.Select(t => t.ToString()));
             string pattern = @"^((25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))$";
             bool isHexNum = Regex.IsMatch(ip, pattern);

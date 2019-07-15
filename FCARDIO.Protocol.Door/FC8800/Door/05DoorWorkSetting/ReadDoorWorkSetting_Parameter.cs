@@ -88,12 +88,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
             if (DoorTriggerMode < 1 || DoorTriggerMode > 3)
                 throw new ArgumentException("DoorTriggerMode Error");
 
-            if (OpenDoorWay < 1 || OpenDoorWay > 3)
+            if (OpenDoorWay < 1 || OpenDoorWay > 4)
                 throw new ArgumentException("OpenDoorWay Error");
 
 
             if (weekTimeGroup == null)
-                throw new ArgumentException("weekTimeGroup Is Null!");
+                throw new ArgumentException("WeekTimeGroup Is Null!");
             return true;
         }
 

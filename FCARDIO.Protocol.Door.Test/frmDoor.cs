@@ -32,6 +32,8 @@ using FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting;
 using FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback;
 using FCARDIO.Protocol.Door.FC8800.Door.InterLockSetting;
 using FCARDIO.Protocol.Door.FC8800.Door.MultiCard;
+using FCARDIO.Protocol.Door.FC8800.Door.ReaderAlarm;
+using FCARDIO.Protocol.Door.FC89H.Door.ReadCardAndTakePictures;
 
 namespace FCARDIO.Protocol.Door.Test
 {
@@ -73,6 +75,23 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void frmDoor_Load(object sender, EventArgs e)
         {
+            string[] str = new string[5] { "三字节", "四字节", "二字节", "禁用", "八字节" };
+            cbxDoor1ReaderOption.Items.Clear();
+            cbxDoor1ReaderOption.Items.AddRange(str);
+            cbxDoor1ReaderOption.SelectedIndex = 0;
+
+            cbxDoor2ReaderOption.Items.Clear();
+            cbxDoor2ReaderOption.Items.AddRange(str);
+            cbxDoor2ReaderOption.SelectedIndex = 0;
+
+            cbxDoor3ReaderOption.Items.Clear();
+            cbxDoor3ReaderOption.Items.AddRange(str);
+            cbxDoor3ReaderOption.SelectedIndex = 0;
+
+            cbxDoor4ReaderOption.Items.Clear();
+            cbxDoor4ReaderOption.Items.AddRange(str);
+            cbxDoor4ReaderOption.SelectedIndex = 0;
+
             cmdDoorNum.Items.Clear();
             cmdDoorNum.Items.AddRange(new string[] { "1", "2", "3", "4" });
             cmdDoorNum.SelectedIndex = 0;
@@ -419,112 +438,46 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 ReaderOption_Result result = cmde.Command.getResult() as ReaderOption_Result;
                 StringBuilder sb = new StringBuilder();
-                string[] str = new string[4];
-                str[0] = "字节数：【1、韦根26(三字节)】";
-                str[1] = "字节数：【2、韦根34(四字节)】";
-                str[2] = "字节数：【3、韦根26(二字节)】";
-                str[3] = "字节数：【4、禁用】";
+                string[] str = new string[5] { "三字节", "四字节", "二字节", "禁用",  "八字节" };
+                //str[0] = "字节数：【1、韦根26(三字节)】";
+                //str[1] = "字节数：【2、韦根34(四字节)】";
+                //str[2] = "字节数：【3、韦根26(二字节)】";
+                //str[3] = "字节数：【4、禁用】";
 
                 Invoke(() =>
                 {
+                    int count = 2;
+                    if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+                    {
+                        count = 4;
+                    }
                     for (int i = 0; i < 4; i++)
                     {
+                        if (i + 1 > count)
+                        {
+                            break;
+                        }
                         //门1读卡器字节数
                         if (i == 0)
                         {
-                            if (result.Door[i] == 1)
-                            {
-                                cbxDoor1ReaderOption.SelectedIndex = 2;
-                                sb.Append("门" + (i + 1) + str[0]);
-                            }
-                            else if (result.Door[i] == 2)
-                            {
-                                cbxDoor1ReaderOption.SelectedIndex = 3;
-                                sb.Append("门" + (i + 1) + str[1]);
-                            }
-                            else if (result.Door[i] == 3)
-                            {
-                                cbxDoor1ReaderOption.SelectedIndex = 1;
-                                sb.Append("门" + (i + 1) + str[2]);
-                            }
-                            else if (result.Door[i] == 4)
-                            {
-                                cbxDoor1ReaderOption.SelectedIndex = 0;
-                                sb.Append("门" + (i + 1) + str[3]);
-                            }
+                            cbxDoor1ReaderOption.SelectedIndex = result.Door[i] - 1;
                         }
                         //门2读卡器字节数
                         if (i == 1)
                         {
-                            if (result.Door[i] == 1)
-                            {
-                                cbxDoor2ReaderOption.SelectedIndex = 2;
-                                sb.Append("  门" + (i + 1) + str[0]);
-                            }
-                            else if (result.Door[i] == 2)
-                            {
-                                cbxDoor2ReaderOption.SelectedIndex = 3;
-                                sb.Append("  门" + (i + 1) + str[1]);
-                            }
-                            else if (result.Door[i] == 3)
-                            {
-                                cbxDoor2ReaderOption.SelectedIndex = 1;
-                                sb.Append("  门" + (i + 1) + str[2]);
-                            }
-                            else if (result.Door[i] == 4)
-                            {
-                                cbxDoor2ReaderOption.SelectedIndex = 0;
-                                sb.Append("  门" + (i + 1) + str[3]);
-                            }
+                            cbxDoor2ReaderOption.SelectedIndex = result.Door[i] - 1;
                         }
                         //门3读卡器字节数
                         if (i == 2)
                         {
-                            if (result.Door[i] == 1)
-                            {
-                                cbxDoor3ReaderOption.SelectedIndex = 2;
-                                sb.Append("  门" + (i + 1) + str[0]);
-                            }
-                            else if (result.Door[i] == 2)
-                            {
-                                cbxDoor3ReaderOption.SelectedIndex = 3;
-                                sb.Append("  门" + (i + 1) + str[1]);
-                            }
-                            else if (result.Door[i] == 3)
-                            {
-                                cbxDoor3ReaderOption.SelectedIndex = 1;
-                                sb.Append("  门" + (i + 1) + str[2]);
-                            }
-                            else if (result.Door[i] == 4)
-                            {
-                                cbxDoor3ReaderOption.SelectedIndex = 0;
-                                sb.Append("  门" + (i + 1) + str[3]);
-                            }
+                            cbxDoor3ReaderOption.SelectedIndex = result.Door[i] - 1;
                         }
                         //门4读卡器字节数
                         if (i == 3)
                         {
-                            if (result.Door[i] == 1)
-                            {
-                                cbxDoor4ReaderOption.SelectedIndex = 2;
-                                sb.Append("  门" + (i + 1) + str[0]);
-                            }
-                            else if (result.Door[i] == 2)
-                            {
-                                cbxDoor4ReaderOption.SelectedIndex = 3;
-                                sb.Append("  门" + (i + 1) + str[1]);
-                            }
-                            else if (result.Door[i] == 3)
-                            {
-                                cbxDoor4ReaderOption.SelectedIndex = 1;
-                                sb.Append("  门" + (i + 1) + str[2]);
-                            }
-                            else if (result.Door[i] == 4)
-                            {
-                                cbxDoor4ReaderOption.SelectedIndex = 0;
-                                sb.Append("  门" + (i + 1) + str[3]);
-                            }
+                            cbxDoor4ReaderOption.SelectedIndex = result.Door[i] - 1;
                         }
+                        sb.Append("门" + (i + 1) + str[result.Door[i] - 1]);
                     }
                 });
                 mMainForm.AddCmdLog(cmde, sb.ToString());
@@ -533,84 +486,37 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void BtnWriteReaderOption_Click(object sender, EventArgs e)
         {
+            
+            
             byte[] Door = new byte[4];
             //门1读卡器字节数
-            int Door1ReaderOption = cbxDoor1ReaderOption.SelectedIndex;
-            if (Door1ReaderOption == 0) //禁用
+            Door[0] = (byte)(cbxDoor1ReaderOption.SelectedIndex + 1);
+            Door[1] = (byte)(cbxDoor2ReaderOption.SelectedIndex + 1);
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
             {
-                Door[0] = 4;
+                Door[2] = (byte)(cbxDoor3ReaderOption.SelectedIndex + 1);
+                Door[3] = (byte)(cbxDoor4ReaderOption.SelectedIndex + 1);
             }
-            else if (Door1ReaderOption == 1) //二字节
+            else
             {
-                Door[0] = 3;
+                Door[2] = 0;
+                Door[3] = 0;
             }
-            else if (Door1ReaderOption == 2) //三字节
-            {
-                Door[0] = 1;
-            }
-            else if (Door1ReaderOption == 3) //四字节
-            {
-                Door[0] = 2;
-            }
-            //门2读卡器字节数
-            int Door2ReaderOption = cbxDoor2ReaderOption.SelectedIndex;
-            if (Door2ReaderOption == 0) //禁用
-            {
-                Door[1] = 4;
-            }
-            else if (Door2ReaderOption == 1) //二字节
-            {
-                Door[1] = 3;
-            }
-            else if (Door2ReaderOption == 2) //三字节
-            {
-                Door[1] = 1;
-            }
-            else if (Door2ReaderOption == 3) //四字节
-            {
-                Door[1] = 2;
-            }
-            //门3读卡器字节数
-            int Door3ReaderOption = cbxDoor3ReaderOption.SelectedIndex;
-            if (Door3ReaderOption == 0) //禁用
-            {
-                Door[2] = 4;
-            }
-            else if (Door3ReaderOption == 1) //二字节
-            {
-                Door[2] = 3;
-            }
-            else if (Door3ReaderOption == 2) //三字节
-            {
-                Door[2] = 1;
-            }
-            else if (Door3ReaderOption == 3) //四字节
-            {
-                Door[2] = 2;
-            }
-            //门4读卡器字节数
-            int Door4ReaderOption = cbxDoor4ReaderOption.SelectedIndex;
-            if (Door4ReaderOption == 0) //禁用
-            {
-                Door[3] = 4;
-            }
-            else if (Door4ReaderOption == 1) //二字节
-            {
-                Door[3] = 3;
-            }
-            else if (Door4ReaderOption == 2) //三字节
-            {
-                Door[3] = 1;
-            }
-            else if (Door4ReaderOption == 3) //四字节
-            {
-                Door[3] = 2;
-            }
-
+           
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            WriteReaderOption cmd = new WriteReaderOption(cmdDtl, new ReaderOption_Parameter(Door));
-            mMainForm.AddCommand(cmd);
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
+            {
+                ReaderOption_Parameter par = new ReaderOption_Parameter(Door);
+                WriteReaderOption<ReaderOption_Parameter> cmd = new WriteReaderOption<ReaderOption_Parameter>(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+            }
+            else if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            {
+                FC89H.Door.ReaderOption.ReaderOption_Parameter par = new FC89H.Door.ReaderOption.ReaderOption_Parameter(Door);
+                WriteReaderOption<FC89H.Door.ReaderOption.ReaderOption_Parameter> cmd = new WriteReaderOption<FC89H.Door.ReaderOption.ReaderOption_Parameter>(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+            }
         }
         #endregion
 
@@ -3105,6 +3011,112 @@ namespace FCARDIO.Protocol.Door.Test
                     }
                 };
             }
+        }
+        #region 读卡器防拆报警功能
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnReadReaderAlarm_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadReaderAlarm cmd = new ReadReaderAlarm(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReaderAlarm_Result result = cmde.Command.getResult() as ReaderAlarm_Result;
+                Invoke(() =>
+                {
+                    cbReaderAlarmUse.Checked = result.Use;
+                });
+            };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnWriteReaderAlarm_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteReaderAlarm_Parameter par = new WriteReaderAlarm_Parameter(door, cbReaderAlarmUse.Checked);
+            WriteReaderAlarm cmd = new WriteReaderAlarm(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
+        }
+
+        #endregion
+
+        private void BtnReadReadCardAndTakePictures_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadReadCardAndTakePictures cmd = new ReadReadCardAndTakePictures(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadCardAndTakePictures_Result result = cmde.Command.getResult() as ReadCardAndTakePictures_Result;
+                Invoke(() =>
+                {
+                    cbInDoorUse.Checked = result.InDoorUse;
+                    cbOutDoorUse.Checked = result.OutDoorUse;
+
+                    txtInDoorIP.Text = string.Join(".", result.InDoorIP.Select(t => t.ToString()));
+                    txtOutDoorIP.Text = string.Join(".", result.OutDoorIP.Select(t => t.ToString()));
+
+                    txtInDoorPort.Text = result.InDoorPort.ToString();
+                    txtOutDoorPort.Text = result.OutDoorPort.ToString();
+
+                    txtInDoorProtocol.Text = string.Join("", result.InDoorProtocol.Select(t => t.ToString()));
+                    txtOutDoorProtocol.Text = string.Join("", result.OutDoorProtocol.Select(t => t.ToString()));
+                });
+            };
+        }
+
+        private void BtnWriteReadCardAndTakePictures_Click(object sender, EventArgs e)
+        {
+            byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            byte[] bIndoorIP = new byte[4];
+            string[] listip = txtInDoorIP.Text.Trim().Split('.');
+            for (int i = 0; i < listip.Length; i++)
+            {
+                bIndoorIP[i] = byte.Parse(listip[i]);
+            }
+
+            byte[] bOutdoorIP = new byte[4];
+            listip = txtOutDoorIP.Text.Trim().Split('.');
+            for (int i = 0; i < listip.Length; i++)
+            {
+                bOutdoorIP[i] = byte.Parse(listip[i]);
+            }
+
+            WriteReadCardAndTakePictures_Parameter par = new WriteReadCardAndTakePictures_Parameter(door, cbInDoorUse.Checked, bIndoorIP,ushort.Parse(txtInDoorPort.Text), txtInDoorProtocol.Text,
+                cbOutDoorUse.Checked, bOutdoorIP,ushort.Parse(txtOutDoorPort.Text),txtOutDoorProtocol.Text);
+            WriteReadCardAndTakePictures cmd = new WriteReadCardAndTakePictures(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
         }
     }
 }

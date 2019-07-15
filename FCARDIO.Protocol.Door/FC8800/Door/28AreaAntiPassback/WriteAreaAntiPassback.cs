@@ -31,7 +31,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
         }
 
         /// <summary>
-        /// 创建一个通讯指令
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {

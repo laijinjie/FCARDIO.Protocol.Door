@@ -50,7 +50,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.Remote
         {
             if (Door == null)
                 throw new ArgumentException("door Is Null!");
-
+            if (CheckNum < 1 || CheckNum > 254)
+            {
+                throw new ArgumentException("CheckNum must between 1 and 254!");
+            }
             return true;
         }
 

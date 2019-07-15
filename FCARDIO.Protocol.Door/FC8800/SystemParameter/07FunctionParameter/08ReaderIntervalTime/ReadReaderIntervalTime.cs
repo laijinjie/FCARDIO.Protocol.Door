@@ -25,7 +25,12 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x01, 0x0A, 0x87);
+            Packet(0x01, 0x0A, 0x87,00);
+        }
+
+        protected override void CommandReSend()
+        {
+
         }
 
         /// <summary>

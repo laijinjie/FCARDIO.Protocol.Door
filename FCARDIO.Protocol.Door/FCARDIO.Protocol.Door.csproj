@@ -159,6 +159,10 @@
     <Compile Include="FC8800\Door\29InterLockSetting\ReadInterLockSetting.cs" />
     <Compile Include="FC8800\Door\29InterLockSetting\WriteInterLockSetting.cs" />
     <Compile Include="FC8800\Door\29InterLockSetting\WriteInterLockSetting_Parameter.cs" />
+    <Compile Include="FC8800\Door\30ReaderAlarm\ReaderAlarm_Result.cs" />
+    <Compile Include="FC8800\Door\30ReaderAlarm\ReadReaderAlarm.cs" />
+    <Compile Include="FC8800\Door\30ReaderAlarm\WriteReaderAlarm.cs" />
+    <Compile Include="FC8800\Door\30ReaderAlarm\WriteReaderAlarm_Parameter.cs" />
     <Compile Include="FC8800\FC8800CommandEx.cs" />
     <Compile Include="FC8800\FC8800Command_Read_DoorParameter.cs" />
     <Compile Include="FC8800\FC8800Command_ReadParameter.cs" />
@@ -454,9 +458,15 @@
     <Compile Include="FC89H\Card\07CardListBySort\WriteCardListBySort.cs" />
     <Compile Include="FC89H\Card\07CardListBySort\WriteCardListBySort_Parameter.cs" />
     <Compile Include="FC89H\Data\CardDetail.cs" />
+    <Compile Include="FC89H\Data\Transaction\CardTransaction.cs" />
+    <Compile Include="FC89H\Door\01ReaderOption\ReaderOption_Parameter.cs" />
     <Compile Include="FC89H\Door\25MultiCard\ReadMultiCard.cs" />
     <Compile Include="FC89H\Door\25MultiCard\WriteMultiCard.cs" />
     <Compile Include="FC89H\Door\25MultiCard\WriteMultiCard_Parameter.cs" />
+    <Compile Include="FC89H\Door\31ReadCardAndTakePictures\ReadCardAndTakePictures_Result.cs" />
+    <Compile Include="FC89H\Door\31ReadCardAndTakePictures\ReadReadCardAndTakePictures.cs" />
+    <Compile Include="FC89H\Door\31ReadCardAndTakePictures\WriteReadCardAndTakePictures.cs" />
+    <Compile Include="FC89H\Door\31ReadCardAndTakePictures\WriteReadCardAndTakePictures_Parameter.cs" />
     <Compile Include="FC89H\Password\04AddPassword\AddPassword_Parameter.cs" />
     <Compile Include="FC89H\Password\05DeletePassword\DeletePassword_Parameter.cs" />
     <Compile Include="FC89H\Password\PasswordDetail.cs" />

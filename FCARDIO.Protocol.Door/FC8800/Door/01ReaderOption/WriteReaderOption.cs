@@ -13,14 +13,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
     /// <summary>
     /// 设置控制器4个门的读卡器字节数
     /// </summary>
-    public class WriteReaderOption : FC8800Command_WriteParameter
+    public class WriteReaderOption<T> : FC8800Command_WriteParameter where T : ReaderOption_Parameter,new ()
     {
         /// <summary>
         /// 设置控制器4个门的读卡器字节数
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含控制器4个门的读卡器字节数</param>
-        public WriteReaderOption(INCommandDetail cd, ReaderOption_Parameter par) : base(cd, par) { }
+        public WriteReaderOption(INCommandDetail cd, T par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数
@@ -29,7 +29,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            ReaderOption_Parameter model = value as ReaderOption_Parameter;
+            T model = value as T;
             if (model == null)
             {
                 return false;
@@ -42,21 +42,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x01, 0x01, 0x04, GetCmdData());
+            T model = _Parameter as T;
+
+            Packet(0x03, 0x01, 0x01, 0x04, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
-        /// <summary>
-        /// 创建命令所需的命令数据<br/>
-        /// 将命令打包到ByteBuffer中
-        /// </summary>
-        /// <returns>包含命令数据的ByteBuffer</returns>
-        protected IByteBuffer GetCmdData()
-        {
-            ReaderOption_Parameter model = _Parameter as ReaderOption_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
-        }
     }
 }

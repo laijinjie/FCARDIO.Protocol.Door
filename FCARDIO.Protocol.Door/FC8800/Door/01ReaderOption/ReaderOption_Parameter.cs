@@ -15,9 +15,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
         /// <summary>
         /// 数据长度
         /// </summary>
-        private readonly int DataLength = 0x04;
+        protected readonly int DataLength = 0x04;
         /// <summary>
         /// 门字节数组
+        /// 1 - 韦根26(三字节)
+        /// 2 - 韦根26(三字节)
+        /// 3 - 韦根26(二字节)
+        /// 4 - 禁用
+        /// (89H)5 - 8字节身份证读卡器
+        /// (89H)6 - 二维码读卡器（兼容8字节身份证）
         /// </summary>
         public byte[] Door = null;
 
@@ -46,6 +52,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
                 throw new ArgumentException("door Is Null!");
             if (Door.Length != DataLength)
                 throw new ArgumentException("door Length Error!");
+            foreach (var item in Door)
+            {
+                if (item < 0 || item > 4)
+                {
+                    throw new ArgumentException("door must between 1 and 6 Error!");
+                }
+            }
             return true;
         }
 
