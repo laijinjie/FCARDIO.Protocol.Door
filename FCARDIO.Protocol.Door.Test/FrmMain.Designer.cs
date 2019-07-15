@@ -86,6 +86,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.txtProcess = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.chkShowIO = new System.Windows.Forms.CheckBox();
             this.gbTCPClient.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -599,6 +600,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.chkShowIO);
             this.panel1.Controls.Add(this.butClear);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 3);
@@ -675,6 +677,19 @@
             this.label13.TabIndex = 18;
             this.label13.Text = "进度：";
             // 
+            // chkShowIO
+            // 
+            this.chkShowIO.AutoSize = true;
+            this.chkShowIO.Checked = true;
+            this.chkShowIO.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowIO.Location = new System.Drawing.Point(87, 7);
+            this.chkShowIO.Name = "chkShowIO";
+            this.chkShowIO.Size = new System.Drawing.Size(84, 16);
+            this.chkShowIO.TabIndex = 8;
+            this.chkShowIO.Text = "显示IO日志";
+            this.chkShowIO.UseVisualStyleBackColor = true;
+            this.chkShowIO.CheckedChanged += new System.EventHandler(this.chkShowIO_CheckedChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -718,6 +733,7 @@
             this.tbEvent.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -784,6 +800,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox txtProcess;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckBox chkShowIO;
     }
 }
 

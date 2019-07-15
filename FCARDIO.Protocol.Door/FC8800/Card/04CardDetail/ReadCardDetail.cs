@@ -68,7 +68,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
             {
                 var buf = oPck.CmdData;
                 bool IsReady = false;
-                IsReady = (buf.GetByte(0) == 0xff);
+                IsReady = (buf.GetByte(0) != 0xff);
 
                 FC8800.Data.CardDetail cardDetail = null;
                 if (IsReady)

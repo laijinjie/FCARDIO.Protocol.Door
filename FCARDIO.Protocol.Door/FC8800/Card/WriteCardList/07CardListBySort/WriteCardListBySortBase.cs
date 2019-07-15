@@ -36,6 +36,28 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
             _ProcessStep = 1;
         }
 
+
+        protected override void CommandNext(Core.Packet.INPacket readPacket)
+        {
+            OnlineAccessPacket oPck = readPacket as OnlineAccessPacket;
+            if (oPck == null) return;
+            if (oPck.Code != FCPacket.Code) return;//信息代码不一致，不是此命令的后续
+            if(CheckResponse_PasswordErr(oPck))
+            {
+                base.CommandNext(readPacket);
+                return;
+            }
+            if (CheckResponse_CheckSumErr(oPck))
+            {
+                base.CommandNext(readPacket);
+                return;
+            }
+
+            //继续检查响应是否为命令的下一步骤
+            CommandNext0(oPck);
+
+        }
+
         /// <summary>
         /// 重写父类对处理返回值的定义
         /// </summary>

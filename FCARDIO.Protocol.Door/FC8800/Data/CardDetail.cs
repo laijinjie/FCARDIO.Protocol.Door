@@ -13,6 +13,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     public class CardDetail : CardDetailBase
     {
 
+        public CardDetail() { }
+        public CardDetail(CardDetailBase sur) : base(sur) { }
+
         /// <summary>
         /// 获取一个卡详情实例，序列化到buf中的字节占比
         /// </summary>

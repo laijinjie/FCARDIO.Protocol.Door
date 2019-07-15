@@ -42,7 +42,7 @@ namespace FCARDIO.Protocol.Door.FC89H.Card.CardDetail
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x07, 0x03, 0x01, 0x05, GetCmdData());
+            Packet(0x07, 0x03, 0x01, 0x09, GetCmdData());
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace FCARDIO.Protocol.Door.FC89H.Card.CardDetail
         {
             ReadCardDetail_Parameter model = _Parameter as ReadCardDetail_Parameter;
             var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
+            var buf = acl.Buffer(9);
             model.GetBytes(buf);
             return buf;
         }
@@ -68,7 +68,7 @@ namespace FCARDIO.Protocol.Door.FC89H.Card.CardDetail
             {
                 var buf = oPck.CmdData;
                 bool IsReady = false;
-                IsReady = (buf.GetByte(0) == 0xff);
+                IsReady = (buf.GetByte(0) != 0xff);
 
                 FC89H.Data.CardDetail cardDetail = null;
                 if (IsReady)

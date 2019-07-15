@@ -262,14 +262,14 @@ namespace FCARDIO.Protocol.Util
             }
             else
             {
-                int iReadIndex = buf.ReaderIndex;
+                int iWriteIndex = buf.WriterIndex;
                 buf.WriteByte(date.Year - 2000);
                 buf.WriteByte(date.Month);
                 buf.WriteByte(date.Day);
                 buf.WriteByte(date.Hour);
                 buf.WriteByte(date.Minute);
 
-                ByteUtil.ByteToBCD(buf, iReadIndex, 5);
+                ByteUtil.ByteToBCD(buf, iWriteIndex, 5);
             }
         }
 

@@ -10,7 +10,7 @@ using FCARDIO.Core.Command;
 namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
-    /// 将卡片列表写入到控制器非排序区的返回值
+    /// 将卡片列表写入到控制器的返回值
     /// </summary>
     public class WriteCardList_Result : INCommandResult
     {

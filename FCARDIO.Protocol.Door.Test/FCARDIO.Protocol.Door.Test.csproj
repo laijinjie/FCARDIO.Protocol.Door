@@ -224,6 +224,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\FCARDIO.Protocol.Door\FCARDIO.Protocol.Door.csproj">
       <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
       <Name>FCARDIO.Protocol.Door</Name>
@@ -232,9 +235,6 @@
       <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
       <Name>FCARDIO.Protocol.Util</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

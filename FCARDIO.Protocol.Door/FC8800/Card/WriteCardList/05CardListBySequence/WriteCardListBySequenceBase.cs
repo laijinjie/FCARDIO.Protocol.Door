@@ -49,18 +49,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
             Packet(0x07, 0x04, 0x00, (uint)buf.ReadableBytes, buf);
         }
 
-        protected override void CommandNext(INPacket readPacket)
-        {
-
-        }
-
-        protected override void CommandReSend()
-        {
-
-        }
-
-
-
         /// <summary>
         /// 重写父类对处理返回值的定义
         /// </summary>

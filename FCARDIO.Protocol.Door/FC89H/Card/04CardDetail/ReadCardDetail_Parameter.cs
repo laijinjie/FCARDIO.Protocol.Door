@@ -34,6 +34,14 @@ namespace FCARDIO.Protocol.Door.FC89H.Card.CardDetail
             return true;
         }
 
+        /// <summary>
+        /// 指定此类结构编码为字节缓冲后的长度
+        /// </summary>
+        /// <returns></returns>
+        public override int GetDataLen()
+        {
+            return 9;
+        }
 
         /// <summary>
         /// 将结构编码为 字节缓冲

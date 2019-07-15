@@ -207,7 +207,16 @@ namespace FCARDIO.Protocol.Door.Test.Model
         /// <summary>
         /// 特权
         /// </summary>
-        public string Privilege { get { return CardPrivilegeList[CardDetail.Privilege]; } }
+        public string Privilege
+        {
+            get
+            {
+                if (CardDetail.Privilege < 5)
+                    return CardPrivilegeList[CardDetail.Privilege];
+                else
+                    return CardDetail.Privilege.ToString();
+            }
+        }
 
         /// <summary>
         /// 节假日

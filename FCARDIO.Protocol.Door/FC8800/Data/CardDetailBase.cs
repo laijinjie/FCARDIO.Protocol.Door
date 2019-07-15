@@ -14,84 +14,111 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     /// </summary>
     public abstract class CardDetailBase : IComparable<CardDetailBase>
     {
-        /**
-        * 卡号，取值范围 0x1-0xFFFFFFFF
-        */
+        /// <summary>
+        /// 卡号，取值范围 0x1-0xFFFFFFFF
+        /// </summary>
         public UInt64 CardData;
-        /**
-         * 卡密码,无密码不填。密码是4-8位的数字。
-         */
+        /// <summary>
+        /// 卡密码,无密码不填。密码是4-8位的数字。
+        /// </summary>
         public String Password;
 
-        /**
-         * 截止日期，最大2089年12月31日
-         */
+        /// <summary>
+        /// 截止日期，最大2089年12月31日
+        /// </summary>
         public DateTime Expiry;
-        /**
-          * 开门时段<br/>
-          * 1-4门的开门时段；时段取值范围：1-64<br/>
-          * TimeGroup[0] -- 1门的时段<br/>
-          * TimeGroup[1] -- 2门的时段<br/>
-          * TimeGroup[2] -- 3门的时段<br/>
-          * TimeGroup[3] -- 4门的时段<br/>
-          */
+
+        /// <summary>
+        /// 开门时段；1-4门的开门时段；时段取值范围：1-64；
+        /// <para>TimeGroup[0] -- 1门的时段；</para>
+        /// <para>TimeGroup[1] -- 2门的时段；</para>
+        /// <para>TimeGroup[2] -- 3门的时段；</para>
+        /// <para>TimeGroup[3] -- 4门的时段；</para>
+        /// </summary>
         public byte[] TimeGroup;
 
 
-        /**
-         * 开门权限<br/>
-         * 1-4门的开门权限；false--无权，true--有权开门<br/>
-         * bit0 -- 1门的权限<br/>
-         * bit1 -- 2门的权限<br/>
-         * bit2 -- 3门的权限<br/>
-         * bit3 -- 4门的权限<br/>
-         */
+        /// <summary>
+        /// 开门权限
+        /// <para>1-4门的开门权限；false--无权，true--有权开门</para>
+        /// <para>bit0 -- 1门的权限</para>
+        /// <para>bit1 -- 2门的权限</para>
+        /// <para>bit2 -- 3门的权限</para>
+        /// <para>bit3 -- 4门的权限</para>
+        /// </summary>
         public int Door;
 
-        /**
-         * 有效次数,取值范围：0-65535;<br.>
-         * 0表示次数用光了。65535表示不受限制
-         */
+        /// <summary>
+        /// 有效次数,取值范围：0-65535;<para/>
+        /// 0表示次数用光了。65535表示不受限制
+        /// </summary>
         public int OpenTimes;
 
-        /**
-         * 特权<br/>
-         * <ul>
-         * <li>0 &emsp; 普通卡      </li>
-         * <li>1 &emsp; 首卡        </li>
-         * <li>2 &emsp; 常开        </li>
-         * <li>3 &emsp; 巡更        </li>
-         * <li>4 &emsp; 防盗设置卡  </li>
-         * </ul>
-         */
+        /// <summary>
+        /// 特权<para/>
+        /// 0 -- 普通卡      <para/>
+        /// 1 -- 首卡        <para/>
+        /// 2 -- 常开        <para/>
+        /// 3 -- 巡更        <para/>
+        /// 4 -- 防盗设置卡  <para/>
+        /// </summary>
         public int Privilege;
 
-        /**
-         * 卡片状态<br/>
-         * 0：正常状态；1：挂失；2：黑名单
-         */
+        /// <summary>
+        ///卡片状态<para/>
+        ///0：正常状态；1：挂失；2：黑名单
+        /// </summary>
         public byte CardStatus;
 
-        /**
-         * 节假日权限
-         */
+        /// <summary>
+        ///节假日权限
+        /// </summary>
         public byte[] Holiday;
 
-        /**
-         * 使用节假日限制功能,节假日禁止开门
-         */
+        /// <summary>
+        ///使用节假日限制功能,节假日禁止开门
+        /// </summary>
         public bool HolidayUse;
 
-        /**
-         * 出入标记；
-         */
+        /// <summary>
+        ///出入标记；
+        /// </summary>
         public int EnterStatus;
 
-        /**
-         * 最近一次读卡的记录时间
-         */
+        /// <summary>
+        ///最近一次读卡的记录时间
+        /// </summary>
         public DateTime RecordTime;
 
+
+        /// <summary>
+        /// 从一个卡详情实例，复制一个副本
+        /// </summary>
+        /// <param name="sur"></param>
+        public CardDetailBase(CardDetailBase sur)
+        {
+            CopyFrom(sur);
+        }
+
+        /// <summary>
+        /// 从一个卡详情实例，复制一个副本
+        /// </summary>
+        /// <param name="sur"></param>
+        public void CopyFrom(CardDetailBase sur)
+        {
+            CardData = sur.CardData;
+            Password = sur.Password;
+            Expiry = sur.Expiry;
+            TimeGroup = (byte[])sur.TimeGroup.Clone();
+            Door = sur.Door;
+            OpenTimes = sur.OpenTimes;
+            Privilege = sur.Privilege;
+            CardStatus = sur.CardStatus;
+            Holiday = (byte[])sur.Holiday.Clone();
+            HolidayUse = sur.HolidayUse;
+            EnterStatus = sur.EnterStatus;
+            RecordTime = sur.RecordTime;
+        }
 
         /// <summary>
         /// 初始化卡详情实例中的数值
@@ -114,7 +141,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
 
 
         /// <summary>
-        /// 
+        /// 对卡号进行比较，以便进行排序
         /// </summary>
         /// <param name="o"></param>
         /// <returns></returns>
@@ -224,12 +251,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         }
 
 
-        /**
-         * 获取指定门的开门时段号
-         *
-         * @param iDoor 取值范围1-4
-         * @return 开门时段号
-         */
+        /// <summary>
+        ///获取指定门的开门时段号
+        /// </summary>
+        /// <param name="iDoor">取值范围1-4</param>
+        /// <returns>开门时段号</returns>
         public int GetTimeGroup(int iDoor)
         {
             if (iDoor < 0 || iDoor > 4)
@@ -239,13 +265,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             }
             return TimeGroup[iDoor - 1];
         }
-
-        /**
-         * 设置指定门的开门时段号
-         *
-         * @param iDoor 门号，取值范围：1-4
-         * @param iNum 开门时段号，取值范围：1-64
-         */
+        /// <summary>
+        /// 设置指定门的开门时段号
+        /// </summary>
+        /// <param name="iDoor">门号，取值范围：1-4</param>
+        /// <param name="iNum">开门时段号，取值范围：1-64</param>
         public void SetTimeGroup(int iDoor, int iNum)
         {
             if (iDoor < 0 || iDoor > 4)
@@ -262,12 +286,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             TimeGroup[iDoor - 1] = (byte)iNum;
         }
 
-        /**
-         * 获取指定门是否有权限
-         *
-         * @param iDoor 门号，取值范围：1-4
-         * @return true 有权限，false 无权限。
-         */
+        /// <summary>
+        /// 获取指定门是否有权限
+        /// </summary>
+        /// <param name="iDoor">门号，取值范围：1-4</param>
+        /// <returns>true 有权限，false 无权限。</returns>
         public bool GetDoor(int iDoor)
         {
             if (iDoor < 0 || iDoor > 4)
@@ -287,12 +310,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             return iByteValue == 1;
         }
 
-        /**
-         * 设置指定门是否有权限
-         *
-         * @param iIndex 门号，取值范围：1-4
-         * @param bUse true 有权限，false 无权限。
-         */
+        /// <summary>
+        /// 设置指定门是否有权限
+        /// </summary>
+        /// <param name="iDoor">门号，取值范围：1-4</param>
+        /// <param name="bUse">true 有权限，false 无权限。</param>
         public void SetDoor(int iDoor, bool bUse)
         {
             if (iDoor < 0 || iDoor > 4)
@@ -319,92 +341,91 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             }
         }
 
-        /**
-         * 普通开门卡
-         */
+        /// <summary>
+        ///普通开门卡
+        /// </summary>
         public bool IsNormal()
         {
             return Privilege == 0;
         }
 
-        /**
-         * 普通开门卡--五特权开门卡
-         */
+        /// <summary>
+        ///普通开门卡--五特权开门卡
+        /// </summary>
         public void SetNormal()
         {
             Privilege = 0;
         }
 
-        /**
-         * 首卡特权卡
-         */
+        /// <summary>
+        ///首卡特权卡
+        /// </summary>
         public bool IsPrivilege()
         {
             return Privilege == 1;
         }
 
-        /**
-         * 首卡特权卡
-         */
+        /// <summary>
+        ///首卡特权卡
+        /// </summary>
         public void SetPrivilege()
         {
             Privilege = 1;
         }
 
-        /**
-         * 常开特权卡
-         */
+        /// <summary>
+        ///常开特权卡
+        /// </summary>
         public bool IsTiming()
         {
             return Privilege == 2;
         }
 
-        /**
-         * 常开特权卡
-         */
+        /// <summary>
+        ///常开特权卡
+        /// </summary>
         public void SetTiming()
         {
             Privilege = 2;
         }
 
-        /**
-         * 巡更卡
-         */
+        /// <summary>
+        ///巡更卡
+        /// </summary>
         public bool IsGuardTour()
         {
             return Privilege == 3;
         }
 
-        /**
-         * 巡更卡
-         */
+        /// <summary>
+        ///巡更卡
+        /// </summary>
         public void SetGuardTour()
         {
             Privilege = 3;
         }
 
-        /**
-         * 防盗设置卡
-         */
+        /// <summary>
+        ///防盗设置卡
+        /// </summary>
         public bool IsAlarmSetting()
         {
             return Privilege == 4;
         }
 
-        /**
-         * 防盗设置卡
-         */
+        /// <summary>
+        ///防盗设置卡
+        /// </summary>
         public void SetAlarmSetting()
         {
             Privilege = 4;
         }
 
-        /**
-         * 获取指定序号的节假日开关状态
-         *
-         * @param iIndex 取值范围 1-30
-         * @return 开关状态 开关true 表示启用，false 表示禁用
-         */
+        /// <summary>
+        /// 获取指定序号的节假日开关状态
+        /// </summary>
+        /// <param name="iIndex">取值范围 1-30</param>
+        /// <returns>开关状态 开关true 表示启用，false 表示禁用</returns>
         public bool GetHolidayValue(int iIndex)
         {
             if (iIndex <= 0 || iIndex > 30)
@@ -426,12 +447,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
 
         }
 
-        /**
-         * 设置指定序号的节假日开关状态
-         *
-         * @param iIndex 取值范围 1-30
-         * @param bUse 开关状态 开关true 表示启用，false 表示禁用
-         */
+
+
+        /// <summary>
+        /// 设置指定序号的节假日开关状态
+        /// </summary>
+        /// <param name="iIndex">取值范围 1-30</param>
+        /// <param name="bUse">开关状态 开关true 表示启用，false 表示禁用</param>
         public void SetHolidayValue(int iIndex, bool bUse)
         {
             if (iIndex <= 0 || iIndex > 30)

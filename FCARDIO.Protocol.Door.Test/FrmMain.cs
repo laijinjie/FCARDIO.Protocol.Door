@@ -151,12 +151,14 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void MObserver_DisposeResponseEvent(INConnector connector, string msg)
         {
+            if (!mShowIOEvent) return;
             AddIOLog(connector.GetConnectorDetail(), "发送数据", msg);
         }
 
 
         private void MObserver_DisposeRequestEvent(INConnector connector, string msg)
         {
+            if (!mShowIOEvent) return;
             AddIOLog(connector.GetConnectorDetail(), "接收数据", msg);
         }
 
@@ -602,7 +604,8 @@ namespace FCARDIO.Protocol.Door.Test
                 dtl.LocalAddr = cmbLocalIP.Text;
                 dtl.LocalPort = txtUDPLocalPort.Text.ToInt32();
             }
-
+            cmdDtl.Timeout = 600;
+            cmdDtl.RestartCount = 3;
             return cmdDtl;
 
         }
@@ -616,6 +619,12 @@ namespace FCARDIO.Protocol.Door.Test
         }
 
         #region 通讯日志
+        private bool mShowIOEvent=true;
+        private void chkShowIO_CheckedChanged(object sender, EventArgs e)
+        {
+            mShowIOEvent = chkShowIO.Checked;
+        }
+
 
         /// <summary>
         /// 初始化通讯日志列表
@@ -669,7 +678,7 @@ namespace FCARDIO.Protocol.Door.Test
                         });
 
                     }
-                    Sleep(500);
+                    Sleep(1000);
                     if (_IsClosed) break;
                 } while (!_IsClosed);
 
@@ -692,6 +701,8 @@ namespace FCARDIO.Protocol.Door.Test
         /// <param name="txt">内容</param>
         public void AddIOLog(INConnectorDetail connDetail, string sTag, string txt)
         {
+            if (!mShowIOEvent) return;
+
             string Local, Remote, cType;
             GetConnectorDetail(connDetail, out cType, out Local, out Remote);
 
@@ -999,6 +1010,21 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.Holiday.ReadHolidayDetail).FullName, "读取节假日存储详情");
             mCommandClasss.Add(typeof(FC8800.Holiday.ClearHoliday).FullName, "清空节假日");
             mCommandClasss.Add(typeof(FC8800.Holiday.ReadAllHoliday).FullName, "读取所有节假日");
+
+
+
+            mCommandClasss.Add(typeof(FC8800.Card.CardDatabaseDetail.ReadCardDatabaseDetail).FullName, "读取卡片存储详情");
+            mCommandClasss.Add(typeof(FC89H.Card.CardDataBase.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
+            mCommandClasss.Add(typeof(FC8800.Card.CardDataBase.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
+            mCommandClasss.Add(typeof(FC8800.Card.ClearCardDataBase.ClearCardDataBase).FullName, "从控制器中清空所有卡片");
+            mCommandClasss.Add(typeof(FC89H.Card.CardDetail.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
+            mCommandClasss.Add(typeof(FC8800.Card.CardDetail.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
+            mCommandClasss.Add(typeof(FC8800.Card.CardListBySort.WriteCardListBySort).FullName, "上传卡片到排序区");
+            mCommandClasss.Add(typeof(FC89H.Card.CardListBySort.WriteCardListBySort).FullName, "上传卡片到排序区");
+            mCommandClasss.Add(typeof(FC8800.Card.CardListBySequence.WriteCardListBySequence).FullName, "上传卡片到顺序区");
+            mCommandClasss.Add(typeof(FC89H.Card.CardListBySequence.WriteCardListBySequence).FullName, "上传卡片到顺序区");
+
+
 
 
 
@@ -1500,5 +1526,7 @@ namespace FCARDIO.Protocol.Door.Test
         {
 
         }
+
+
     }
 }

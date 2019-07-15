@@ -801,6 +801,13 @@ FCARDIO.Protocol
  <param name="Allocator">用于分配ByteBuf的分配器</param>
  <returns></returns>
 </member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.WriteByteToBuf(System.Byte,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将一个字节写入到缓冲区，并进行转义码转换
+ </summary>
+ <param name="bValue"></param>
+ <param name="buf"></param>
+</member>
 <member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.ReleaseDataBuf">
  <summary>
  释放数据包中的缓冲区
