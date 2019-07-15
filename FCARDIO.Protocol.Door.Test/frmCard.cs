@@ -214,17 +214,19 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             INCommand cmd;
             
-
+            
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
             {
-                
-                cmd = new FC89H.Card.CardDataBase.ReadCardDataBase(cmdDtl, par);
+                //暂时注释
+                //cmd = new FC89H.Card.CardDataBase.ReadCardDataBase(cmdDtl, par);
             }
             else
             {
-                var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(cmbcardType.SelectedIndex + 1);
-                cmd = new FC8800.Card.CardDataBase.ReadCardDataBase(cmdDtl, par);
+                //暂时注释
+                //var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(cmbcardType.SelectedIndex + 1);
+                //cmd = new FC8800.Card.CardDataBase.ReadCardDataBase(cmdDtl, par);
             }
+
             /*
             for (int i = 0; i < dgCardList.Rows.Count; i++)
             {
