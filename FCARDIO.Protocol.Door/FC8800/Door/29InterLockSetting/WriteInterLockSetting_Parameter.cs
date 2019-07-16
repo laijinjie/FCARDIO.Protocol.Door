@@ -86,6 +86,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InterLockSetting
             {
                 throw new ArgumentException("Num Error!");
             }
+            if (AreaCode < 0)
+            {
+                throw new ArgumentException("AreaCode Error!");
+            }
             if (DoorNum < 1 || DoorNum > 4)
                 throw new ArgumentException("Door Error!");
             string ip = string.Join(".", IP.Select(t => t.ToString()));

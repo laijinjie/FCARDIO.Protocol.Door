@@ -1,32 +1,37 @@
-﻿using DotNetty.Buffers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DotNetty.Buffers;
 
 namespace FCARDIO.Protocol.Door.FC8800.Password
 {
     /// <summary>
-    /// 删除密码参数
+    /// 写密码列表的泛型抽象
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DeletePassword_Parameter<T> : AbstractParameter where T : PasswordDetail, new()
+    public abstract class Password_Parameter_Base<T> : AbstractParameter where T : PasswordDetail,new ()
     {
+        /// <summary>
+        /// 要添加的密码集合
+        /// </summary>
+        public List<T> PasswordList { get; set; }
 
         /// <summary>
-        /// 要删除的密码集合
+        /// 创建 将密码列表写入到控制器或从控制器删除 指令的参数
         /// </summary>
-        public List<T> ListPassword;
-
-        /// <summary>
-        /// 初始化参数
-        /// </summary>
-        /// <param name="list">要删除的密码集合</param>
-        public DeletePassword_Parameter(List<T> list)
+        public Password_Parameter_Base(List<T> passwordList)
         {
-            ListPassword = list;
-           
+            PasswordList = passwordList;
+        }
+
+        /// <summary>
+        /// 提供给继承类使用
+        /// </summary>
+        public Password_Parameter_Base()
+        {
+
         }
 
         /// <summary>
@@ -35,12 +40,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (ListPassword == null || ListPassword.Count == 0)
+            if (PasswordList == null || PasswordList.Count == 0)
             {
                 return false;
             }
             int iOut = 0;
-            foreach (var item in ListPassword)
+            foreach (var item in PasswordList)
             {
                 if (item.Password.Length > 8 || item.Password.Length < 4)
                 {
@@ -50,8 +55,22 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 {
                     throw new ArgumentException("Password Error!");
                 }
-
+                if (!checkedParameterItem(item))
+                {
+                    return false;
+                }
             }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 检查每个密码
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        protected virtual bool checkedParameterItem(T password)
+        {
             return true;
         }
 
@@ -60,36 +79,35 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         public override void Dispose()
         {
-            ListPassword = null;
+            PasswordList = null;
         }
 
         /// <summary>
-        /// 
+        /// 不实现此功能
+        /// </summary>
+        /// <param name="databuf"></param>
+        public override void SetBytes(IByteBuffer databuf)
+        {
+            return;
+        }
+
+        /// <summary>
+        /// 不实现此功能
+        /// </summary>
+        /// <returns></returns>
+        public override int GetDataLen()
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 不实现此功能
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            
             return databuf;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public override int GetDataLen()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="databuf"></param>
-        public override void SetBytes(IByteBuffer databuf)
-        {
-            throw new NotImplementedException();
         }
     }
 }

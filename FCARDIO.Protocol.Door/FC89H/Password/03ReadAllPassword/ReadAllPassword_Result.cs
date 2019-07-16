@@ -1,12 +1,7 @@
-﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using System;
+﻿using FCARDIO.Protocol.Door.FC8800.Password;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Password
+namespace FCARDIO.Protocol.Door.FC89H.Password
 {
     /// <summary>
     /// 读取所有密码 结果
@@ -17,7 +12,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// 初始化参数
         /// </summary>
         /// <param name="passwordList"></param>
-        public ReadAllPassword_Result(List<PasswordDetail> passwordList) :base(passwordList)
+        public ReadAllPassword_Result(List<PasswordDetail> passwordList) : base(passwordList)
         {
 
         }

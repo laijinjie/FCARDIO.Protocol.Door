@@ -27,9 +27,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
 
         /// <summary>
         /// 带读取的卡片数据类型
-        /// 1 &emsp; 排序卡区域 
-        /// 2 &emsp; 非排序卡区域 
-        /// 3 &emsp; 所有区域 
+        /// 1 排序卡区域 
+        /// 2 非排序卡区域 
+        /// 3 所有区域 
         /// </summary>
         public readonly int CardType;
 

@@ -73,6 +73,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
                 wtg.SetBytes(buf);
                 result.ListWeekTimeGroup.Add(wtg);
                 _ProcessStep++;
+                fireCommandProcessEvent();
             }
             result.Count = result.ListWeekTimeGroup.Count;
         }

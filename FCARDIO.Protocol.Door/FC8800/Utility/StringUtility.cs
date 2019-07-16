@@ -396,7 +396,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
         /// 
         /// </summary>
         /// <param name="buf"></param>
-        public static void WriteByteBuffer(IByteBuffer buf)
+        public static void WriteByteBufferLog(IByteBuffer buf)
         {
 #if DEBUG
             string dire = ConfigurationManager.AppSettings["LogPath"];
@@ -406,12 +406,45 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
             string path = Path.Combine(dire, nowTime + ".txt") ;
             StringBuilder sb = new StringBuilder();
             byte[] b = new byte[buf.ReadableBytes];
-            buf.ReadBytes(b);
+            buf.GetBytes(0,b);
             int index = 0;
             foreach (var item in b)
             {
                 sb.Append("{" + index.ToString() + "(" + item.ToString() + ":" + item.ToString("X") + ")},");
                 index++;
+            }
+            System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+            buf.SetReaderIndex(0);
+
+#endif
+        }
+
+        public static void WriteByteBufferLog(IByteBuffer buf,Dictionary<string,int> dict)
+        {
+#if DEBUG
+            string dire = ConfigurationManager.AppSettings["LogPath"];
+            string nowTime = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+            if (Directory.Exists(dire))
+                Directory.CreateDirectory(dire);
+            string path = Path.Combine(dire, nowTime + ".txt");
+            StringBuilder sb = new StringBuilder();
+            byte[] b = new byte[buf.ReadableBytes];
+            buf.GetBytes(0, b);
+            int index = 0;
+            foreach (KeyValuePair<string,int> item in dict)
+            {
+                switch (item.Value)
+                {
+                    case 1:
+                        sb.Append(item.Key + ":" + buf.GetByte(index).ToString() + ",");
+                        break;
+                    case 2:
+                        sb.Append(item.Key + ":" + buf.GetShort(index).ToString() + ",");
+                        break;
+                    default:
+                        break;
+                }
+                index += item.Value;
             }
             System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
             buf.SetReaderIndex(0);

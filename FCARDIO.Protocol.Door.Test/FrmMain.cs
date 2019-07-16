@@ -1025,7 +1025,15 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC89H.Card.CardListBySequence.WriteCardListBySequence).FullName, "上传卡片到顺序区");
             mCommandClasss.Add(typeof(FC8800.Card.DeleteCard.DeleteCard).FullName, "从控制器删除卡片");
             mCommandClasss.Add(typeof(FC89H.Card.DeleteCard.DeleteCard).FullName, "从控制器删除卡片");
-            
+
+            mCommandClasss.Add(typeof(FC8800.Password.ReadPasswordDetail).FullName, "读取密码容量信息");
+            mCommandClasss.Add(typeof(FC8800.Password.ClearPassword).FullName, "清空所有密码");
+            mCommandClasss.Add(typeof(FC8800.Password.ReadAllPassword).FullName, "从控制器读取所有密码");
+            mCommandClasss.Add(typeof(FC8800.Password.AddPassword).FullName, "将密码列表写入到控制器");
+            mCommandClasss.Add(typeof(FC8800.Password.DeletePassword).FullName, "将密码列表从控制器删除");
+            mCommandClasss.Add(typeof(FC89H.Password.ReadAllPassword).FullName, "从控制器读取所有密码");
+            mCommandClasss.Add(typeof(FC89H.Password.AddPassword).FullName, "将密码列表写入到控制器");
+            mCommandClasss.Add(typeof(FC89H.Password.DeletePassword).FullName, "将密码列表从控制器删除");
 
 
 

@@ -107,13 +107,13 @@ namespace FCARDIO.Protocol.Door.Test
 
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
             {
-                ReadAllPassword<FC89H.Password.PasswordDetail> cmd
-                    = new ReadAllPassword<FC89H.Password.PasswordDetail>(cmdDtl);
+                FC89H.Password.ReadAllPassword cmd
+                    = new FC89H.Password.ReadAllPassword(cmdDtl);
                 mMainForm.AddCommand(cmd);
             }
             else
             {
-                ReadAllPassword<PasswordDetail> cmd = new ReadAllPassword<PasswordDetail>(cmdDtl);
+                ReadAllPassword cmd = new ReadAllPassword(cmdDtl);
                 mMainForm.AddCommand(cmd);
             }
 
@@ -123,22 +123,22 @@ namespace FCARDIO.Protocol.Door.Test
                 ListPassword.Clear();
                 var comdResult = cmde.Command.getResult();
                 int count = 0;
-                if (comdResult is ReadAllPassword_Result<PasswordDetail>)
+                if (comdResult is ReadAllPassword_Result)
                 {
-                    ReadAllPassword_Result<PasswordDetail> result = comdResult as ReadAllPassword_Result<PasswordDetail>;
-                    foreach (PasswordDetail detail in result.Passowrds)
+                    ReadAllPassword_Result result = comdResult as ReadAllPassword_Result;
+                    foreach (PasswordDetail detail in result.PasswordList)
                     {
                         PasswordDto dto = new PasswordDto();
                         dto.SetDoors(detail);
                         dto.Password = detail.Password;
                         ListPassword.Add(dto);
                     }
-                    count = result.Passowrds.Count;
+                    count = result.PasswordList.Count;
                 }
-                else if (comdResult is ReadAllPassword_Result<FC89H.Password.PasswordDetail>)
+                else if (comdResult is FC89H.Password.ReadAllPassword_Result)
                 {
-                    ReadAllPassword_Result<FC89H.Password.PasswordDetail> result = comdResult as ReadAllPassword_Result<FC89H.Password.PasswordDetail>;
-                    foreach (PasswordDetail detail in result.Passowrds)
+                    FC89H.Password.ReadAllPassword_Result result = comdResult as FC89H.Password.ReadAllPassword_Result;
+                    foreach (FC89H.Password.PasswordDetail detail in result.PasswordList)
                     {
                         PasswordDto dto = new PasswordDto();
                         dto.SetDoors(detail);
@@ -147,7 +147,7 @@ namespace FCARDIO.Protocol.Door.Test
                         dto.Expiry = detail.Expiry;
                         ListPassword.Add(dto);
                     }
-                    count = result.Passowrds.Count;
+                    count = result.PasswordList.Count;
                 }
 
                 Invoke(() =>
@@ -189,8 +189,8 @@ namespace FCARDIO.Protocol.Door.Test
                     password.Door = Convert.ToInt32(strDoor1, 2);
                     _list.Add(password);
                 }
-                AddPassword_Parameter<PasswordDetail> par = new AddPassword_Parameter<PasswordDetail>(_list);
-                AddPassword<PasswordDetail> cmd = new AddPassword<PasswordDetail>(cmdDtl, par);
+                Password_Parameter par = new Password_Parameter(_list);
+                AddPassword cmd = new AddPassword(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
             else
@@ -210,8 +210,8 @@ namespace FCARDIO.Protocol.Door.Test
                     password.Door = Convert.ToInt32(strDoor1, 2);
                     _list.Add(password);
                 }
-                FC89H.Password.AddPassword.AddPassword_Parameter<FC89H.Password.PasswordDetail> par = new FC89H.Password.AddPassword.AddPassword_Parameter<FC89H.Password.PasswordDetail>(_list);
-                AddPassword<FC89H.Password.PasswordDetail> cmd = new AddPassword<FC89H.Password.PasswordDetail>(cmdDtl, par);
+                FC89H.Password.AddPassword_Parameter par = new FC89H.Password.AddPassword_Parameter(_list);
+                FC89H.Password.AddPassword cmd = new FC89H.Password.AddPassword(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
 
@@ -333,7 +333,7 @@ namespace FCARDIO.Protocol.Door.Test
             //FC89H.Password.
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
             {
-                List<FC89H.Password. PasswordDetail> _list = new List<FC89H.Password.PasswordDetail>();
+                List<FC89H.Password.PasswordDetail> _list = new List<FC89H.Password.PasswordDetail>();
                 FC89H.Password.PasswordDetail password = new FC89H.Password.PasswordDetail();
                 if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
                 {
@@ -348,9 +348,9 @@ namespace FCARDIO.Protocol.Door.Test
                 string strDoor1 = (cbbit0.Checked ? "1" : "0") + (cbbit1.Checked ? "1" : "0") + (cbbit2.Checked ? "1" : "0") + (cbbit3.Checked ? "1" : "0");
                 password.Door = Convert.ToInt32(strDoor1, 2);
                 _list.Add(password);
-                AddPassword_Parameter<FC89H.Password.PasswordDetail> par = new AddPassword_Parameter<FC89H.Password.PasswordDetail>(_list);
+                FC89H.Password.AddPassword_Parameter par = new FC89H.Password.AddPassword_Parameter(_list);
 
-                AddPassword<FC89H.Password.PasswordDetail> cmd = new AddPassword<FC89H.Password.PasswordDetail>(cmdDtl, par);
+                FC89H.Password.AddPassword cmd = new FC89H.Password.AddPassword(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
 
                 cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -375,9 +375,9 @@ namespace FCARDIO.Protocol.Door.Test
                 string strDoor1 = (cbbit0.Checked ? "1" : "0") + (cbbit1.Checked ? "1" : "0") + (cbbit2.Checked ? "1" : "0") + (cbbit3.Checked ? "1" : "0");
                 password.Door = Convert.ToInt32(strDoor1, 2);
                 _list.Add(password);
-                AddPassword_Parameter<PasswordDetail> par = new AddPassword_Parameter<PasswordDetail>(_list);
+                Password_Parameter par = new Password_Parameter(_list);
 
-                AddPassword<PasswordDetail> cmd = new AddPassword<PasswordDetail>(cmdDtl, par);
+                AddPassword cmd = new AddPassword(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
 
                 cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -412,8 +412,8 @@ namespace FCARDIO.Protocol.Door.Test
                 FC89H.Password.PasswordDetail detail = new FC89H.Password.PasswordDetail();
                 detail.Password = txtPassword.Text;
                 _list.Add(detail);
-                DeletePassword_Parameter<FC89H.Password.PasswordDetail> par = new DeletePassword_Parameter<FC89H.Password.PasswordDetail>(_list);
-                DeletePassword<FC89H.Password.PasswordDetail> cmd = new DeletePassword<FC89H.Password.PasswordDetail>(cmdDtl, par);
+                FC89H.Password.DeletePassword_Parameter par = new FC89H.Password.DeletePassword_Parameter(_list);
+                FC89H.Password.DeletePassword cmd = new FC89H.Password.DeletePassword(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
             else
@@ -422,8 +422,8 @@ namespace FCARDIO.Protocol.Door.Test
                 PasswordDetail detail = new PasswordDetail();
                 detail.Password = txtPassword.Text;
                 _list.Add(detail);
-                DeletePassword_Parameter<PasswordDetail> par = new DeletePassword_Parameter<PasswordDetail>(_list);
-                DeletePassword<PasswordDetail> cmd = new DeletePassword<PasswordDetail>(cmdDtl, par);
+                Password_Parameter par = new Password_Parameter(_list);
+                DeletePassword cmd = new DeletePassword(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
 
@@ -456,7 +456,7 @@ namespace FCARDIO.Protocol.Door.Test
                         string strDoor1 = (item.Door1 ? "1" : "0") + (item.Door2 ? "1" : "0") + (item.Door3 ? "1" : "0") + (item.Door4 ? "1" : "0");
                         detail.Door = Convert.ToInt32(strDoor1, 2);
                         _list.Add(detail);
-                        ListPassword.Remove(item);
+                        //ListPassword.Remove(item);
                     }
                 }
 
@@ -466,9 +466,9 @@ namespace FCARDIO.Protocol.Door.Test
                     var cmdDtl = mMainForm.GetCommandDetail();
                     if (cmdDtl == null) return;
 
-                    DeletePassword_Parameter<PasswordDetail> par = new DeletePassword_Parameter<PasswordDetail>(_list);
+                    Password_Parameter par = new Password_Parameter(_list);
 
-                    DeletePassword<PasswordDetail> cmd = new DeletePassword<PasswordDetail>(cmdDtl, par);
+                    DeletePassword cmd = new DeletePassword(cmdDtl, par);
                     mMainForm.AddCommand(cmd);
                     cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
                     {
@@ -493,7 +493,11 @@ namespace FCARDIO.Protocol.Door.Test
                         string strDoor1 = (item.Door1 ? "1" : "0") + (item.Door2 ? "1" : "0") + (item.Door3 ? "1" : "0") + (item.Door4 ? "1" : "0");
                         detail.Door = Convert.ToInt32(strDoor1, 2);
                         _list.Add(detail);
-                        ListPassword.Remove(item);
+                        //ListPassword.Remove(item);
+                    }
+                    else
+                    {
+
                     }
                 }
 
@@ -503,9 +507,9 @@ namespace FCARDIO.Protocol.Door.Test
                     var cmdDtl = mMainForm.GetCommandDetail();
                     if (cmdDtl == null) return;
 
-                    DeletePassword_Parameter<FC89H.Password.PasswordDetail> par = new DeletePassword_Parameter<FC89H.Password.PasswordDetail>(_list);
+                    FC89H.Password.DeletePassword_Parameter par = new FC89H.Password.DeletePassword_Parameter(_list);
 
-                    DeletePassword<FC89H.Password.PasswordDetail> cmd = new DeletePassword<FC89H.Password.PasswordDetail>(cmdDtl, par);
+                    FC89H.Password.DeletePassword cmd = new FC89H.Password.DeletePassword(cmdDtl, par);
                     mMainForm.AddCommand(cmd);
                     cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
                     {
