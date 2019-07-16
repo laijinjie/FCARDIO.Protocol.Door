@@ -6,7 +6,7 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Door.FC8800.Door.InOutSideReadOpenSetting
 {
     /// <summary>
-    /// 门内外同时读卡开门
+    /// 设置门内外同时读卡开门
     /// </summary>
     public class WriteInOutSideReadOpenSetting : FC8800CommandEx
     {

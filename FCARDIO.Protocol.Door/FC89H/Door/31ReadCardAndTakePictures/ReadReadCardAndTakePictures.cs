@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC89H.Door.ReadCardAndTakePictures
 {
+    /// <summary>
+    /// 设置读卡拍照联动
+    /// </summary>
     public class ReadReadCardAndTakePictures : FC8800Command_Read_DoorParameter
     {
         /// <summary>

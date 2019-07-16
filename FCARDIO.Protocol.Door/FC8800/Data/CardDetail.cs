@@ -12,8 +12,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     /// </summary>
     public class CardDetail : CardDetailBase
     {
-
+        /// <summary>
+        /// 初始化
+        /// </summary>
         public CardDetail() { }
+
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="sur"></param>
         public CardDetail(CardDetailBase sur) : base(sur) { }
 
         /// <summary>

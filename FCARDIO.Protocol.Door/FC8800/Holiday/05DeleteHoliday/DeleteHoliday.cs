@@ -9,7 +9,7 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Door.FC8800.Holiday
 {
     /// <summary>
-    /// 删除节假日
+    /// 从控制器删除节假日
     /// </summary>
     public class DeleteHoliday : FC8800Command_WriteParameter
     {

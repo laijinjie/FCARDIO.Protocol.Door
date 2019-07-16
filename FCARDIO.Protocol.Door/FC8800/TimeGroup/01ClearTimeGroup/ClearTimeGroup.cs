@@ -13,6 +13,10 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
     /// </summary>
     public class ClearTimeGroup : FC8800Command_ReadParameter
     {
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="cd"></param>
         public ClearTimeGroup(INCommandDetail cd) : base(cd, null)
         {
 

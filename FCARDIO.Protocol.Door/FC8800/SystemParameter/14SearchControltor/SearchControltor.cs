@@ -19,6 +19,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         /// 搜索控制器
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        /// <param name="par"></param>
         public SearchControltor(INCommandDetail cd, SearchControltor_Parameter par) : base(cd, par) { }
 
         /// <summary>

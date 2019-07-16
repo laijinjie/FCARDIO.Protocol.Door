@@ -38,7 +38,6 @@ namespace FCARDIO.Protocol.Door.Test
             return onlyObj;
         }
 
-        INMain mMainForm;
 
         private frmTimeGroup(INMain main)
         {

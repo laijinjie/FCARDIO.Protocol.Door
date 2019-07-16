@@ -290,12 +290,12 @@ namespace FCARDIO.Protocol.Door.Test
 
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
             {
-                var cmd = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex<CardTransaction>(cmdDtl, par);
+                var cmd = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
             else
             {
-                var cmd = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex<FC89H.Data.CardTransaction>(cmdDtl, par);
+                var cmd = new FC89H.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
 

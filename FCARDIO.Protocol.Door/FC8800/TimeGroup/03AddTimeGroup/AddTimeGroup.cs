@@ -89,6 +89,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
                 FCPacket.DataLen = (uint)buf.ReadableBytes;
                 writeIndex++;
                 _ProcessStep++;
+                fireCommandProcessEvent();
                 CommandReady();
             }
             else

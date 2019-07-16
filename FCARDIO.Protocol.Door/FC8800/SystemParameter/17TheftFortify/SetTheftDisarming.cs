@@ -28,6 +28,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TheftFortify
             Packet(0x01, 0x11, 0x02);
         }
 
+        /// <summary>
+        /// 命令回应处理
+        /// </summary>
+        /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
             return;

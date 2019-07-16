@@ -18,23 +18,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
     /// </summary>
     public class ReadTransactionDatabase : FC8800Command
     {
-        private Queue<IByteBuffer> mBufs;
-        /// <summary>
-        /// 本次读取的数量
-        /// </summary>
-        private int mReadQuantity;
-        private int mStep;
-        private ReadTransactionDatabase_Parameter thisParameter;
-        private TransactionDetail transactionDetail;
-        /// <summary>
-        /// 可读取的新记录数量
-        /// </summary>
-        private int mReadable;
-        /// <summary>
-        /// 读取计数
-        /// </summary>
-        private int mReadTotal;
-
         /// <summary>
         /// 初始化命令结构
         /// </summary>

@@ -36,7 +36,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
             _ProcessStep = 1;
         }
 
-
+        /// <summary>
+        /// 命令回应处理
+        /// </summary>
+        /// <param name="readPacket"></param>
         protected override void CommandNext(Core.Packet.INPacket readPacket)
         {
             OnlineAccessPacket oPck = readPacket as OnlineAccessPacket;

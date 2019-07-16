@@ -191,9 +191,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// <summary>
         /// 创建返回值
         /// </summary>
-        /// <param name="cardList"></param>
-        /// <param name="dataBaseSize"></param>
-        /// <param name="cardType"></param>
+        /// <param name="cardList">授权卡集合</param>
+        /// <param name="dataBaseSize">授权卡数量</param>
+        /// <param name="cardType">授权卡类型</param>
         protected abstract ReadCardDataBase_Base_Result<T> CreateResult(List<T> cardList, int dataBaseSize, int cardType);
 
         /// <summary>

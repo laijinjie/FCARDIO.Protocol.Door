@@ -11,7 +11,7 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting
 {
     /// <summary>
-    /// 读取全卡开门功能
+    /// 设置全卡开门功能
     /// 所有的卡都能开门，不需要权限首选注册，只要读卡器能识别就能开门。
     /// 成功返回结果参考 {@link ReadAnyCardSetting_Result}
     /// </summary>

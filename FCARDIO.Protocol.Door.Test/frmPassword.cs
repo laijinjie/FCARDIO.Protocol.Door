@@ -34,7 +34,6 @@ namespace FCARDIO.Protocol.Door.Test
             return onlyObj;
         }
 
-        INMain mMainForm;
 
         private frmPassword(INMain main)
         {

@@ -10,7 +10,7 @@ using System.Linq;
 namespace FCARDIO.Protocol.Door.FC8800.Data
 {
     /// <summary>
-    /// 
+    /// 授权卡信息 抽象类
     /// </summary>
     public abstract class CardDetailBase : IComparable<CardDetailBase>
     {
@@ -21,7 +21,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// <summary>
         /// 卡密码,无密码不填。密码是4-8位的数字。
         /// </summary>
-        public String Password;
+        public string Password;
 
         /// <summary>
         /// 截止日期，最大2089年12月31日

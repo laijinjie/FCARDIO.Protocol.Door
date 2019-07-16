@@ -75,7 +75,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// 创建返回值
         /// </summary>
         /// <param name="passwordList"></param>
-        /// <param name="count"></param>
         protected abstract ReadAllPassword_Result_Base<T> CreateResult(List<T> passwordList);
 
         /// <summary>

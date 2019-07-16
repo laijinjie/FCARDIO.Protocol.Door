@@ -9,7 +9,7 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Door.FC8800.Holiday
 {
     /// <summary>
-    /// 添加节假日
+    /// 添加节假日到控制版
     /// </summary>
     public class AddHoliday : FC8800Command_WriteParameter
     {
@@ -17,6 +17,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// 初始化参数
         /// </summary>
         /// <param name="cd"></param>
+        /// <param name="par"></param>
         public AddHoliday(INCommandDetail cd, AddHoliday_Parameter par) : base(cd, par){ }
 
         /// <summary>

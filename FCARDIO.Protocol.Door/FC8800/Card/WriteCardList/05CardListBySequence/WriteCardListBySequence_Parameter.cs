@@ -16,7 +16,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
         /// 创建 将卡片列表写入到控制器非排序区 指令的参数
         /// </summary>
         /// <param name="cardList">需要写入的卡列表</param>
-        /// <param name=""></param>
         public WriteCardListBySequence_Parameter( List<Data.CardDetail> cardList):base(cardList)
         {
         }

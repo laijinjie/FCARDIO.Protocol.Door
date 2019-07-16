@@ -1007,6 +1007,43 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.Door.ReaderInterval.ReadReaderInterval).FullName, "读取重复读卡间隔参数");
             mCommandClasss.Add(typeof(FC8800.Door.ReaderInterval.WriteReaderInterval).FullName, "设置重复读卡间隔参数");
 
+            mCommandClasss.Add(typeof(FC8800.Door.ReaderAlarm.WriteReaderAlarm).FullName, "设置读卡器防拆报警");
+            mCommandClasss.Add(typeof(FC8800.Door.ReaderAlarm.ReadReaderAlarm).FullName, "读取读卡器防拆报警");
+
+            mCommandClasss.Add(typeof(FC8800.Door.InterLockSetting.WriteInterLockSetting).FullName, "设置区域互锁");
+            mCommandClasss.Add(typeof(FC8800.Door.InterLockSetting.ReadInterLockSetting).FullName, "读取区域互锁");
+
+            mCommandClasss.Add(typeof(FC8800.Door.AreaAntiPassback.WriteAreaAntiPassback).FullName, "设置区域防潜回功能");
+            mCommandClasss.Add(typeof(FC8800.Door.AreaAntiPassback.ReadAreaAntiPassback).FullName, "读取区域防潜回");
+
+            mCommandClasss.Add(typeof(FC8800.Door.MultiCard.WriteMultiCard).FullName, "设置多卡组合参数");
+            mCommandClasss.Add(typeof(FC8800.Door.MultiCard.ReadMultiCard).FullName, "读取多卡组合参数");
+
+            mCommandClasss.Add(typeof(FC8800.Door.ManageKeyboardSetting.WriteManageKeyboardSetting).FullName, "设置键盘管理功能");
+            mCommandClasss.Add(typeof(FC8800.Door.ManageKeyboardSetting.ReadManageKeyboardSetting).FullName, "读取键盘管理功能");
+
+            mCommandClasss.Add(typeof(FC8800.Door.InOutSideReadOpenSetting.WriteInOutSideReadOpenSetting).FullName, "设置门内外同时读卡开门");
+            mCommandClasss.Add(typeof(FC8800.Door.InOutSideReadOpenSetting.ReadInOutSideReadOpenSetting).FullName, "读取门内外同时读卡开门");
+
+            mCommandClasss.Add(typeof(FC8800.Door.VoiceBroadcastSetting.WriteVoiceBroadcastSetting).FullName, "设置语音播报功能");
+            mCommandClasss.Add(typeof(FC8800.Door.VoiceBroadcastSetting.ReadVoiceBroadcastSetting).FullName, "读取语音播报功能");
+
+            mCommandClasss.Add(typeof(FC8800.Door.AnyCardSetting.WriteAnyCardSetting).FullName, "设置全卡开门功能");
+            mCommandClasss.Add(typeof(FC8800.Door.AnyCardSetting.ReadAnyCardSetting).FullName, "读取全卡开门功能");
+
+            mCommandClasss.Add(typeof(FC8800.Door.SensorAlarmSetting.WriteSensorAlarmSetting).FullName, "写入门磁报警功能");
+            mCommandClasss.Add(typeof(FC8800.Door.SensorAlarmSetting.ReadSensorAlarmSetting).FullName, "读取门磁报警功能");
+
+            mCommandClasss.Add(typeof(FC8800.Door.PushButtonSetting.WritePushButtonSetting).FullName, "写入出门按钮功能");
+            mCommandClasss.Add(typeof(FC8800.Door.PushButtonSetting.ReadPushButtonSetting).FullName, "读取出门按钮功能");
+
+            mCommandClasss.Add(typeof(FC8800.Door.OvertimeAlarmSetting.WriteOvertimeAlarmSetting).FullName, "写入开门超时报警功能");
+            mCommandClasss.Add(typeof(FC8800.Door.OvertimeAlarmSetting.ReadOvertimeAlarmSetting).FullName, "读取开门超时报警功能");
+
+            mCommandClasss.Add(typeof(FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption).FullName, "设置非法读卡报警参数");
+            mCommandClasss.Add(typeof(FC8800.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption).FullName, "读取非法读卡报警参数");
+
+
             mCommandClasss.Add(typeof(FC8800.Holiday.ReadHolidayDetail).FullName, "读取节假日存储详情");
             mCommandClasss.Add(typeof(FC8800.Holiday.ClearHoliday).FullName, "清空节假日");
             mCommandClasss.Add(typeof(FC8800.Holiday.ReadAllHoliday).FullName, "读取所有节假日");
@@ -1036,6 +1073,22 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC89H.Password.DeletePassword).FullName, "将密码列表从控制器删除");
 
 
+            mCommandClasss.Add(typeof(FC8800.Holiday.ReadHolidayDetail).FullName, "从控制板中读取节假日存储详情");
+            mCommandClasss.Add(typeof(FC8800.Holiday.ClearHoliday).FullName, "清空控制器中的所有节假日");
+            mCommandClasss.Add(typeof(FC8800.Holiday.ReadAllHoliday).FullName, "读取控制板中已存储的所有节假日");
+            mCommandClasss.Add(typeof(FC8800.Holiday.AddHoliday).FullName, "添加节假日到控制版");
+            mCommandClasss.Add(typeof(FC8800.Holiday.DeleteHoliday).FullName, "从控制器删除节假日");
+
+
+            mCommandClasss.Add(typeof(FC8800.TimeGroup.ClearTimeGroup).FullName, "清空所有开门时段");
+            mCommandClasss.Add(typeof(FC8800.TimeGroup.ReadTimeGroup).FullName, "读取所有开门时段");
+            mCommandClasss.Add(typeof(FC8800.TimeGroup.AddTimeGroup).FullName, "添加开门时段");
+
+            mCommandClasss.Add(typeof(FC8800.Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
+            mCommandClasss.Add(typeof(FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
+            mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex).FullName, "读记录数据库");
+            mCommandClasss.Add(typeof(FC8800.Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
+            mCommandClasss.Add(typeof(FC8800.Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
 
 
         }
@@ -1273,6 +1326,7 @@ namespace FCARDIO.Protocol.Door.Test
 
             public TCPServerClientDetail_Item(TCPServerClientDetail_ReadOnly detail)
             {
+                SN = "";
                 Key = detail.Key;
                 Remote = new IPDetail(detail.Remote.Addr, detail.Remote.Port);
                 Local = new IPDetail(detail.Local.Addr, detail.Local.Port);

@@ -39,6 +39,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         /// </summary>
         /// <param name="door">门号</param>
         /// <param name="use">是否开启此功能</param>
+        /// <param name="time">次数</param>
         public WriteInvalidCardAlarmOption_Parameter(byte door, bool use,byte time)
         {
             DoorNum = door;
@@ -101,10 +102,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
             Use = databuf.ReadBoolean();
         }
 
-        // <summary>
+        /// <summary>
         /// 对非法读卡报警参数进行解码
-        /// </summary>
         /// <param name="databuf"></param>
+        /// </summary>
         public void ReadInvalidCardTime_SetBytes(IByteBuffer databuf)
         {
             if (databuf.ReadableBytes != GetDataLen())

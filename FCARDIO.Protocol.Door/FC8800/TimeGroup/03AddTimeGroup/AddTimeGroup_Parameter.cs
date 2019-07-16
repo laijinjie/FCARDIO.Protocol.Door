@@ -84,6 +84,10 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
             return 225;
         }
 
+        /// <summary>
+        /// 没有实现
+        /// </summary>
+        /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
            

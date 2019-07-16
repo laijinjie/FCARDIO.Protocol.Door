@@ -1,15 +1,13 @@
-﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800.Data;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using FCARDIO.Core.Command;
+using FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex;
+using FCARDIO.Protocol.Door.FC89H.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex
+namespace FCARDIO.Protocol.Door.FC89H.Transaction.ReadTransactionDatabaseByIndex
 {
     /// <summary>
     /// 读记录数据库
@@ -23,7 +21,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter"></param>
-        public ReadTransactionDatabaseByIndex(INCommandDetail cd, ReadTransactionDatabaseByIndex_Parameter parameter):base(cd,parameter)
+        public ReadTransactionDatabaseByIndex(INCommandDetail cd, ReadTransactionDatabaseByIndex_Parameter parameter) : base(cd, parameter)
         {
 
         }

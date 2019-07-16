@@ -13,10 +13,6 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.ReaderOption
     public class ReaderOption_Parameter : FC8800.Door.ReaderOption.ReaderOption_Parameter
     {
         /// <summary>
-        /// 数据长度
-        /// </summary>
-        protected readonly int DataLength = 0x04;
-        /// <summary>
         /// 默认构造函数
         /// </summary>
         public ReaderOption_Parameter()

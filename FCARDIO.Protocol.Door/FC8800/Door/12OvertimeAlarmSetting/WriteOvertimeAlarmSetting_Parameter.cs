@@ -7,6 +7,9 @@ using DotNetty.Buffers;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
 {
+    /// <summary>
+    /// 设置开门超时提示参数
+    /// </summary>
     public class WriteOvertimeAlarmSetting_Parameter
         : AbstractParameter
     {

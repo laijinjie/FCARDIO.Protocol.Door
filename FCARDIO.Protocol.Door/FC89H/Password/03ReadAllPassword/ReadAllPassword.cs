@@ -22,6 +22,11 @@ namespace FCARDIO.Protocol.Door.FC89H.Password
 
         }
 
+        /// <summary>
+        /// 创建返回值
+        /// </summary>
+        /// <param name="passwordList"></param>
+        /// <returns></returns>
         protected override ReadAllPassword_Result_Base<PasswordDetail> CreateResult(List<PasswordDetail> passwordList)
         {
             ReadAllPassword_Result result = new ReadAllPassword_Result(passwordList);

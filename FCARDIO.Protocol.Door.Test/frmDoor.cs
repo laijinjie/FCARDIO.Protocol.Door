@@ -1000,7 +1000,6 @@ namespace FCARDIO.Protocol.Door.Test
                 return;
             }
             */
-            byte door = 1;
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             ReadDoorWorkSetting cmd = new ReadDoorWorkSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
@@ -2687,7 +2686,6 @@ namespace FCARDIO.Protocol.Door.Test
             listGroupB = new List<List<ulong>>(20);
             listFix = new List<MultiCard_GroupFix>(10);
             /**/
-            int index = 0;
            for (int i = 0; i < 5; i++)
            {
                 listGroupA.Add(new List<ulong>());
@@ -2775,7 +2773,6 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void BtnAutoFill_Click(object sender, EventArgs e)
         {
-            int index = 0;
             //if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
             {
                 listGroupA.Clear();

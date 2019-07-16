@@ -9,6 +9,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDatabaseDetail
     /// </summary>
     public class ReadCardDatabaseDetail : FC8800Command
     {
+        /// <summary>
+        /// 初始化命令结构
+        /// </summary>
+        /// <param name="detail"></param>
         public ReadCardDatabaseDetail(INCommandDetail detail) : base(detail, null) { }
 
         /// <summary>

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using System.Configuration;
 namespace FCARDIO.Protocol.Door.FC8800.Utility
 {
+    /// <summary>
+    /// String 工具类
+    /// </summary>
     public class StringUtility
     {
         /// <summary>
@@ -419,6 +422,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
 #endif
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <param name="dict"></param>
         public static void WriteByteBufferLog(IByteBuffer buf,Dictionary<string,int> dict)
         {
 #if DEBUG

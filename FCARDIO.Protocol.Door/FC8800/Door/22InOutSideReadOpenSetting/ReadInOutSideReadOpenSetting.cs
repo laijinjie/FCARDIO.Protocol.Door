@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.Door.FC8800.Door.InOutSideReadOpenSetting
 {
     /// <summary>
-    /// 门内外同时读卡开门
+    /// 读取门内外同时读卡开门
     /// </summary>
     public class ReadInOutSideReadOpenSetting : FC8800Command_Read_DoorParameter
     {
