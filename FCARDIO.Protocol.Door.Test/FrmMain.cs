@@ -1044,12 +1044,6 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption).FullName, "读取非法读卡报警参数");
 
 
-            mCommandClasss.Add(typeof(FC8800.Holiday.ReadHolidayDetail).FullName, "读取节假日存储详情");
-            mCommandClasss.Add(typeof(FC8800.Holiday.ClearHoliday).FullName, "清空节假日");
-            mCommandClasss.Add(typeof(FC8800.Holiday.ReadAllHoliday).FullName, "读取所有节假日");
-
-
-
             mCommandClasss.Add(typeof(FC8800.Card.CardDatabaseDetail.ReadCardDatabaseDetail).FullName, "读取卡片存储详情");
             mCommandClasss.Add(typeof(FC89H.Card.CardDataBase.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
             mCommandClasss.Add(typeof(FC8800.Card.CardDataBase.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
