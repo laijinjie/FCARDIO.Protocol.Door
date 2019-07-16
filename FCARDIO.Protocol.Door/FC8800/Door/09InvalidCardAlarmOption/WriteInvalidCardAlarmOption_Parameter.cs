@@ -24,6 +24,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         public bool Use;
 
         /// <summary>
+        /// 当读未注册卡到达一定次数后报警
+        /// 0-255,  0--读一次卡就报警
+        /// </summary>
+        public byte ReadInvalidCardTime;
+
+        /// <summary>
         /// 提供给 InvalidCardAlarmOption_Result 使用
         /// </summary>
         public WriteInvalidCardAlarmOption_Parameter() { }
@@ -33,10 +39,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         /// </summary>
         /// <param name="door">门号</param>
         /// <param name="use">是否开启此功能</param>
-        public WriteInvalidCardAlarmOption_Parameter(byte door, bool use)
+        public WriteInvalidCardAlarmOption_Parameter(byte door, bool use,byte time)
         {
             DoorNum = door;
             Use = use;
+            ReadInvalidCardTime = time;
         }
 
         /// <summary>
@@ -92,6 +99,36 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
             }
             DoorNum = databuf.ReadByte();
             Use = databuf.ReadBoolean();
+        }
+
+        // <summary>
+        /// 对非法读卡报警参数进行解码
+        /// </summary>
+        /// <param name="databuf"></param>
+        public void ReadInvalidCardTime_SetBytes(IByteBuffer databuf)
+        {
+            if (databuf.ReadableBytes != GetDataLen())
+            {
+                throw new ArgumentException("databuf Error");
+            }
+            DoorNum = databuf.ReadByte();
+            ReadInvalidCardTime = databuf.ReadByte();
+        }
+
+        /// <summary>
+        /// 对非法读卡报警参数进行编码
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
+        public IByteBuffer ReadInvalidCardTime_GetBytes(IByteBuffer databuf)
+        {
+            if (databuf.WritableBytes != GetDataLen())
+            {
+                throw new ArgumentException("databuf Error!");
+            }
+            databuf.WriteByte(DoorNum);
+            databuf.WriteByte(ReadInvalidCardTime);
+            return databuf;
         }
     }
 }

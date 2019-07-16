@@ -10,85 +10,33 @@ namespace FCARDIO.Protocol.Door.FC89H.Password.AddPassword
     /// <summary>
     /// 添加密码参数
     /// </summary>
-    public class AddPassword_Parameter : FC8800.Password.AddPassword_Parameter<FC8800.Password.PasswordDetail>
+    public class AddPassword_Parameter<T> : FC8800.Password.AddPassword_Parameter<T> where T : PasswordDetail, new()
     {
         /// <summary>
-        /// 密码集合
+        /// 初始化参数
         /// </summary>
-        //public List<PasswordDetail> ListPassword { get; private set; }
-        public AddPassword_Parameter(List<FC8800.Password.PasswordDetail> list) : base(list)
+        /// <param name="list"></param>
+        public AddPassword_Parameter(List<T> list) : base(list)
         {
 
-            //ListPassword = list;
         }
-
-        public override bool checkedParameter()
+        /// <summary>
+        /// 检查每个密码
+        /// </summary>
+        /// <returns></returns>
+        public bool checkedParameterItem(PasswordDetail password)
         {
-            if (ListPassword == null || ListPassword.Count == 0)
+            if (password.OpenTimes < 0 || password.OpenTimes > 65535)
             {
-                return false;
+                throw new ArgumentException("Password.OpenTimes Error!");
             }
-            int iOut = 0;
-            foreach (var item in ListPassword)
+            if (password.Expiry == DateTime.MinValue || password.Expiry >= DateTime.MaxValue)
             {
-                if (item.Password.Length > 8)
-                {
-                    return false;
-                }
-                if (!int.TryParse(item.Password, out iOut) || iOut < 0)
-                {
-                    return false;
-                }
-                
-                if (item.OpenTimes < 0 || item.OpenTimes > 65535)
-                {
-                    return false;
-                }
-                if (item.Expiry == DateTime.MinValue || item.Expiry >= DateTime.MaxValue)
-                {
-                    return false;
-                }
+                throw new ArgumentException("Password.Expiry Error!");
             }
 
             return true;
         }
 
-        public override IByteBuffer GetBytes(IByteBuffer databuf)
-        {
-            int iMaxSize = BatchCount; //每个数据包最大50个卡
-            int iSize = 0;
-            int iIndex = 0;
-
-            databuf.Clear();
-            int iLen = GetDataLen();
-            if (databuf.WritableBytes != iLen)
-            {
-                throw new ArgumentException("Crad Error");
-            }
-            databuf.WriteInt(iMaxSize);
-            for (int i = mIndex; i < ListPassword.Count; i++)
-            {
-                iIndex = i;
-                iSize += 1;
-
-                ListPassword[iIndex].GetBytes(databuf);
-                if (iSize == iMaxSize)
-                {
-                    break;
-                }
-                //card.WriteCardData(databuf);
-            }
-            if (iSize != iMaxSize)
-            {
-                databuf.SetInt(0, iSize);
-            }
-            mIndex = iIndex + 1;
-            return databuf;
-        }
-
-        public override int GetDataLen()
-        {
-            return 4 + (BatchCount * 12);
-        }
     }
 }

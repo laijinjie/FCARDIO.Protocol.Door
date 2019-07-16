@@ -29,7 +29,6 @@ namespace FCARDIO.Protocol.Door.FC89H.Card.CardDetail
         /// </summary>
         /// <param name="isReady">卡片是否存在</param>
         /// <param name="card">CardDetail 保存卡详情的实体</param>
-        /// <param name=""></param>
         public ReadCardDetail_Result(bool isReady, FC89H.Data.CardDetail card)
         {
             IsReady = isReady;

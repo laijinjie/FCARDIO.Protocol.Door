@@ -48,8 +48,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderAlarm
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DoorNum < 1 || DoorNum > 4)
-                throw new ArgumentException("Door Error!");
             return true;
         }
 
@@ -78,7 +76,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderAlarm
         }
 
         /// <summary>
-        /// 
+        /// 获取长度
         /// </summary>
         /// <returns></returns>
         public override int GetDataLen()
@@ -86,6 +84,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderAlarm
             return 2;
         }
 
+        /// <summary>
+        /// 将字节缓冲解码为类结构
+        /// </summary>
+        /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
             DoorNum = databuf.ReadByte();

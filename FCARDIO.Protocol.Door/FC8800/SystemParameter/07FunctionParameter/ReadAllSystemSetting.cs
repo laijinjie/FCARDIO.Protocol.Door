@@ -12,8 +12,12 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
     /// <summary>
     /// 获取所有系统参数
     /// </summary>
-    public class ReadAllSystemSetting : FC8800Command
+    public class ReadAllSystemSetting : FC8800Command_ReadParameter
     {
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="cd"></param>
         public ReadAllSystemSetting(INCommandDetail cd) : base(cd, null) { }
 
         /// <summary>
@@ -34,19 +38,14 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
             Packet(0x01, 0x0A, 0xFF);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
             return;
         }
 
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        protected override void Release1()
-        {
-            return;
-        }
     }
 }

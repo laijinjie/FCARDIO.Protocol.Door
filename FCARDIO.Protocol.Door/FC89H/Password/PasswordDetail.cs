@@ -45,5 +45,23 @@ namespace FCARDIO.Protocol.Door.FC89H.Password
             StringUtil.HextoByteBuf(Password, data);
             return data;
         }
+
+        /// <summary>
+        /// 获取每个添加密码长度
+        /// </summary>
+        /// <returns></returns>
+        public override int GetDataLen()
+        {
+            return 12;
+        }
+
+        /// <summary>
+        /// 获取每个删除密码长度
+        /// </summary>
+        /// <returns></returns>
+        public override int GetDeleteDataLen()
+        {
+            return 4;
+        }
     }
 }

@@ -17,6 +17,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     /// </summary>
     public class ButtonTransaction : AbstractDoorTransaction
     {
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
         public ButtonTransaction():base(2)
         {
 

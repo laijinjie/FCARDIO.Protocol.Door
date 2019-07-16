@@ -63,6 +63,9 @@ namespace FCARDIO.Protocol.Door.FC89H.Data
 
     public class CardTransaction : FC8800.Data.CardTransaction
     {
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
         public CardTransaction()
         {
 

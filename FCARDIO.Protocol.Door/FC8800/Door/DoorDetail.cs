@@ -34,6 +34,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Door
             return Doors[Index-1];
         }
 
+        /// <summary>
+        /// 设置1-4门 权限
+        /// </summary>
+        /// <param name="Index"></param>
+        /// <param name="Value"></param>
         public void SetDoor(int Index,T Value)
         {
             if (Index < 1 || Index > 4)

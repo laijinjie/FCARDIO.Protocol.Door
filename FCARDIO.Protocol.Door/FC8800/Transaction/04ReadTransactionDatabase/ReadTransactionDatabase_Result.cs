@@ -9,16 +9,19 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ReadTransactionDatabase_Result : INCommandResult
     {
         /// <summary>
         /// 记录数据库类型
-        /// 1 &emsp; 读卡记录
-        /// 2 &emsp; 出门开关记录
-        /// 3 &emsp; 门磁记录
-        /// 4 &emsp; 软件操作记录
-        /// 5 &emsp; 报警记录
-        /// 6 &emsp; 系统记录
+        /// 读卡记录
+        /// 出门开关记录
+        /// 门磁记录
+        /// 软件操作记录
+        /// 报警记录
+        /// 系统记录
         /// </summary>
         public e_TransactionDatabaseType DatabaseType;
 
@@ -37,23 +40,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// </summary>
         public List<AbstractTransaction> TransactionList;
 
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
         public ReadTransactionDatabase_Result() { }
 
-        /// <summary>
-        ///创建结构
-        /// </summary>
-        /// <param name="_DatabaseType">记录数据库类型 取值1-6</param>
-        /// <param name="_ReadIndex">读索引号</param>
-        /// <param name="_Quantity">读取数量</param>
-        /// <param name="_TransactionList">记录列表</param>
-        public ReadTransactionDatabase_Result(e_TransactionDatabaseType _DatabaseType, int _readable, int _Quantity, List<AbstractTransaction> _TransactionList)
-        {
-            DatabaseType = _DatabaseType;
-            readable = _readable;
-            Quantity = _Quantity;
-            TransactionList = _TransactionList;
-        }
-
+      
         /// <summary>
         /// 释放资源
         /// </summary>
@@ -62,9 +54,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buf"></param>
         internal void SetBytes(IByteBuffer buf)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

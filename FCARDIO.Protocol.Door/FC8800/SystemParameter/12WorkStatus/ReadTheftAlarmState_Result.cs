@@ -16,12 +16,12 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.WorkStatus
         /// <summary>
         /// 布防状态<br/>
         /// <ul>
-        /// <li>1 &emsp; 延时布防</li>
-        /// <li>2 &emsp; 已布防</li>
-        /// <li>3 &emsp; 延时撤防</li>
-        /// <li>4 &emsp; 未布防</li>
-        /// <li>5 &emsp; 报警延时，准备启用报警</li>
-        /// <li>6 &emsp; 防盗报警已启动</li>
+        /// <li>1  延时布防</li>
+        /// <li>2  已布防</li>
+        /// <li>3  延时撤防</li>
+        /// <li>4  未布防</li>
+        /// <li>5  报警延时，准备启用报警</li>
+        /// <li>6  防盗报警已启动</li>
         /// </ul>
         /// </summary>
         public byte TheftState;

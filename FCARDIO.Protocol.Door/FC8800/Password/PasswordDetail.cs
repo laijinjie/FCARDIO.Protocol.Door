@@ -31,13 +31,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         public DateTime Expiry;
 
-
-        /**
-         * 获取指定门是否有权限
-         *
-         * @param iDoor 门号，取值范围：1-4
-         * @return true 有权限，false 无权限。
-         */
+        
+        /// <summary>
+        /// 获取指定门是否有权限
+        /// </summary>
+        /// <param name="iDoor">门号，取值范围：1-4</param>
+        /// <returns>true 有权限，false 无权限</returns>
         public bool GetDoor(int iDoor)
         {
             if (iDoor < 0 || iDoor > 4)
@@ -57,6 +56,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             return iByteValue == 1;
         }
 
+        /// <summary>
+        /// 判断是否相同
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public int CompareTo(PasswordDetail other)
         {
             if (other.Password == Password)
@@ -97,16 +101,37 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             return data;
         }
 
+        /// <summary>
+        /// 获取每个添加密码长度
+        /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
-            throw new NotImplementedException();
+            return 5;
         }
 
+        /// <summary>
+        /// 获取每个删除密码长度
+        /// </summary>
+        /// <returns></returns>
+        public virtual int GetDeleteDataLen()
+        {
+            return 5;
+        }
+
+        /// <summary>
+        /// 读取密码
+        /// </summary>
+        /// <param name="data"></param>
         protected virtual void ReadPassword(IByteBuffer data)
         {
 
         }
 
+        /// <summary>
+        /// 写入密码
+        /// </summary>
+        /// <param name="data"></param>
         protected virtual void WritePassword(IByteBuffer data)
         {
 

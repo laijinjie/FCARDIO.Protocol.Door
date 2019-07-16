@@ -1,57 +1,51 @@
-﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
+﻿using FCARDIO.Core.Command;
+using FCARDIO.Protocol.Door.FC8800;
+using FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption;
 using FCARDIO.Protocol.OnlineAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
+namespace FCARDIO.Protocol.Door.FC89H.Door.InvalidCardAlarmOption
 {
     /// <summary>
-    /// 键盘管理功能
+    /// 设置非法读卡报警参数
     /// </summary>
-    public class WriteManageKeyboardSetting : FC8800Command_WriteParameter
+    public class WriteInvalidCardAlarmOption : FC8800Command_WriteParameter
     {
-        /// <summary>
-        /// 参数对象
-        /// </summary>
-        protected WriteManageKeyboardSetting_Parameter mManageKeyboardPar;
         /// <summary>
         /// 当前命令步骤
         /// </summary>
         protected int Step;
 
         /// <summary>
-        /// 初始化命令结构
+        /// 参数对象
         /// </summary>
-        /// <param name="cd"></param>
-        /// <param name="value"></param>
-        public WriteManageKeyboardSetting(INCommandDetail cd, WriteManageKeyboardSetting_Parameter value) : base(cd, value) { mManageKeyboardPar = value; }
+        protected WriteInvalidCardAlarmOption_Parameter mPar;
 
         /// <summary>
-        /// 检查参数
+        /// 设置非法读卡报警参数
+        /// </summary>
+        /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        /// <param name="par">包含非法读卡报警参数</param>
+        public WriteInvalidCardAlarmOption(INCommandDetail cd, WriteInvalidCardAlarmOption_Parameter par) : base(cd, par) { mPar = par; }
+
+
+        /// <summary>
+        /// 检查命令参数
         /// </summary>
         /// <param name="value"></param>
-        /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            WriteManageKeyboardSetting_Parameter model = value as WriteManageKeyboardSetting_Parameter;
+            WriteInvalidCardAlarmOption_Parameter model = value as WriteInvalidCardAlarmOption_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
 
         /// <summary>
-        /// 创建一个通讯指令
+        /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
-            //var buf = GetNewCmdDataBuf(5);
-            var buf = GetNewCmdDataBuf(2);
-            Packet(0x03, 0x15, 0x00, 2, mManageKeyboardPar.Setting_GetBytes(buf));
-            Step = 1;
+            WriteInvalidCardAlarmOption_Parameter model = _Parameter as WriteInvalidCardAlarmOption_Parameter;
+            Packet(0x03, 0x0A, 0x00, 0x02, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
             IniPacketProcess();
         }
 
@@ -65,7 +59,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
 
         }
 
-
         /// <summary>
         /// 接收到响应，开始处理下一步命令
         /// </summary>
@@ -78,7 +71,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
                 case 2:
                     if (CheckResponse_OK(oPck))
                     {
-                        WritePassword();
+                        WriteReadInvalidCardTime();
                     }
                     break;
                 default:
@@ -88,20 +81,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         }
 
         /// <summary>
-        /// 写密码
+        /// 写入 读未注册卡到达一定次数后报警
         /// </summary>
-        private void WritePassword()
+        private void WriteReadInvalidCardTime()
         {
             _ProcessStep = 2;
-            //var buf = GetCmdBuf();
-            //Packet(0x15, 0x02, 5);
-
-            var buf = GetNewCmdDataBuf(5);
-            Packet(0x03, 0x15, 0x02, 5, mManageKeyboardPar.Password_GetBytes(buf));
+            var buf = GetCmdBuf();
+            Packet(0x03, 0x0A, 0x02, 0x02, mPar.ReadInvalidCardTime_GetBytes(buf));
             Step = 0;
-            CommandReady();
         }
-
-
     }
 }

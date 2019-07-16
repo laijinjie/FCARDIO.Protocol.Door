@@ -1,5 +1,6 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
+using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
 using FCARDIO.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         }
 
         /// <summary>
-        /// 
+        /// 处理返回值
         /// </summary>
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
@@ -37,6 +38,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
                 var buf = oPck.CmdData;
                 buf.Retain();
                 mReadBuffers.Add(buf);
+                
                 CommandWaitResponse();
             }
 
@@ -48,10 +50,31 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
                 ReadTimeGroup_Result rtgr = new ReadTimeGroup_Result();
                 _Result = rtgr;
 
-                rtgr.SetBytes(iTotal, mReadBuffers);
+                SetBytes(rtgr, mReadBuffers);
                 ClearBuf();
                 CommandCompleted();
             }
+        }
+
+        /// <summary>
+        ///  将 字节流  转换为 开门时段
+        /// </summary>
+        /// <param name="result">读取所有开门时段结果</param>
+        /// <param name="databufs"></param>
+        public void SetBytes(ReadTimeGroup_Result result, List<IByteBuffer> databufs)
+        {
+            result.ListWeekTimeGroup.Clear();
+            //64个IByteBuffer，每个包含组 号2byte+224byte(7*8*4(时分-时分))
+            foreach (IByteBuffer buf in databufs)
+            {
+                //StringUtility.WriteByteBuffer(buf);
+                //continue;
+                WeekTimeGroup wtg = new WeekTimeGroup(8);
+                wtg.SetBytes(buf);
+                result.ListWeekTimeGroup.Add(wtg);
+                _ProcessStep++;
+            }
+            result.Count = result.ListWeekTimeGroup.Count;
         }
 
         /// <summary>
@@ -60,6 +83,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         protected override void CreatePacket0()
         {
             Packet(6, 2);
+            _ProcessMax = 64;
             mReadBuffers = new List<IByteBuffer>();
         }
 

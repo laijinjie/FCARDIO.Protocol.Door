@@ -72,9 +72,6 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            databuf.WriteByte(writeIndex + 1);
-           
-            ListWeekTimeGroup[writeIndex].GetBytes(databuf);
             return databuf;
         }
 

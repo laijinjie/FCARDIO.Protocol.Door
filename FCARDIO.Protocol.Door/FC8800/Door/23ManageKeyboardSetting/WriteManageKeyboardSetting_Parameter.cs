@@ -12,7 +12,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
     /// <summary>
     /// 键盘管理功能
     /// </summary>
-    public class WriteManageKeyboardSetting_Parameter : DoorPort_Parameter, INCommandResult
+    public class WriteManageKeyboardSetting_Parameter : AbstractParameter, INCommandResult
     {
         /// <summary>
         /// 门号
@@ -34,7 +34,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// 读取功能 初始化
         /// </summary>
         /// <param name="door"></param>
-        public WriteManageKeyboardSetting_Parameter(byte door):base(door)
+        public WriteManageKeyboardSetting_Parameter(byte door)
         {
             DoorNum = door;
         }
@@ -44,7 +44,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// <param name="door">门号</param>
         /// <param name="use">是否启用</param>
         /// <param name="password">密码</param>
-        public WriteManageKeyboardSetting_Parameter(byte door, bool use,string password):base(door)
+        public WriteManageKeyboardSetting_Parameter(byte door, bool use,string password)
         {
             DoorNum = door;
             Use = use;
@@ -120,7 +120,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
             {
                 return null;
             }
-            databuf.WriteByte(Door);
+            databuf.WriteByte(DoorNum);
             return databuf;
         }
 

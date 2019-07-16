@@ -14,12 +14,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ClearTransactionDatabase
     {
         /// <summary>
         /// 记录数据库类型
-        /// 1 &emsp; 读卡记录 
-        /// 2 &emsp; 出门开关记录
-        /// 3 &emsp; 门磁记录  
-        /// 4 &emsp; 软件操作记录
-        /// 5 &emsp; 报警记录 
-        /// 6 &emsp; 系统记录  
+        /// 1  读卡记录 
+        /// 2  出门开关记录
+        /// 3  门磁记录  
+        /// 4  软件操作记录
+        /// 5  报警记录 
+        /// 6  系统记录  
         /// </summary>
         public e_TransactionDatabaseType? DatabaseType;
         
@@ -68,8 +68,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ClearTransactionDatabase
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            //if(databuf.WritableBytes != 1)
-            //    throw new NotImplementedException();
             if (DatabaseType.HasValue)
             {
                 databuf.WriteByte((int)DatabaseType.Value);

@@ -1,7 +1,10 @@
 ﻿using FCARDIO.Core.Command;
+using FCARDIO.Protocol.Door.FC8800;
+using FCARDIO.Protocol.Door.FC8800.Door;
+using FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
+namespace FCARDIO.Protocol.Door.FC89H.Door.InvalidCardAlarmOption
 {
     /// <summary>
     /// 读取非法读卡报警参数
@@ -23,6 +26,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         {
             DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
             Packet(0x03, 0x0A, 0x01, 0x01, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
+            InvalidCardAlarmOption_Result rst = new InvalidCardAlarmOption_Result();
+            _Result = rst;
+            _ProcessMax = 2;
         }
 
 
@@ -32,12 +38,23 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption
         /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x02))
+            if (CheckResponse(oPck, 0x03, 0x0A, 0x01, 0x02))
             {
                 var buf = oPck.CmdData;
-                InvalidCardAlarmOption_Result rst = new InvalidCardAlarmOption_Result();
-                _Result = rst;
-                rst.SetBytes(buf);
+
+                ((InvalidCardAlarmOption_Result)_Result).SetBytes(buf);
+                
+
+                FCPacket.CmdPar = 0x03;
+                
+                CommandReady();
+                _ProcessStep = 1;
+            }
+            if (CheckResponse(oPck, 0x03, 0x0A, 0x03, 0x02))
+            {
+                var buf = oPck.CmdData;
+                ((InvalidCardAlarmOption_Result)_Result).ReadInvalidCardTime_SetBytes(buf);
+                _ProcessStep = 2;
                 CommandCompleted();
             }
         }

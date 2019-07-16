@@ -13,10 +13,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     /// </summary>
     public class ReadPasswordDetail : FC8800Command_ReadParameter
     {
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="cd"></param>
         public ReadPasswordDetail(INCommandDetail cd) : base(cd, null)
         {
 
         }
+
+        /// <summary>
+        /// 处理返回通知
+        /// </summary>
+        /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
             if (CheckResponse(oPck, 0x04))
@@ -29,6 +38,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             }
         }
 
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
         protected override void CreatePacket0()
         {
             Packet(5, 1);

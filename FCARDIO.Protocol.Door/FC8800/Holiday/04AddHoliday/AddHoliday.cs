@@ -45,10 +45,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             Packet(0x4, 0x4, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
 
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-            throw new NotImplementedException();
-        }
+       
 
     }
 }

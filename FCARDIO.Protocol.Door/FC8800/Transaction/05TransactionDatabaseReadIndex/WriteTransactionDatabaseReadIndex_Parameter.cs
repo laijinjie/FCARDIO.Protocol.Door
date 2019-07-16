@@ -15,12 +15,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseReadIndex
 
        /// <summary>
        ///  记录数据库类型
-       ///  1 &emsp; 读卡记录
-       ///  2 &emsp; 出门开关记录
-       ///  3 &emsp; 门磁记录
-       ///  4 &emsp; 软件操作记录
-       ///  5 &emsp; 报警记录
-       ///  6 &emsp; 系统记录
+       ///  1  读卡记录
+       ///  2  出门开关记录
+       ///  3  门磁记录
+       ///  4  软件操作记录
+       ///  5  报警记录
+       ///  6  系统记录
        /// </summary>
         public e_TransactionDatabaseType DatabaseType;
         /// <summary>
@@ -32,7 +32,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseReadIndex
         /// </summary>
         public bool IsCircle;
 
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
         public WriteTransactionDatabaseReadIndex_Parameter(){}
+
         /// <summary>
         /// 创建结构
         /// </summary>
@@ -52,10 +56,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseReadIndex
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DatabaseType == null)
-            {
-                throw new ArgumentException("DatabaseType Error!");
-            }
+            
             if (ReadIndex < 0)
             {
                 throw new ArgumentException("ReadIndex Error!");

@@ -14,9 +14,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
     public class DeleteHoliday : FC8800Command_WriteParameter
     {
         /// <summary>
-        /// 
+        /// 初始化参数
         /// </summary>
         /// <param name="cd"></param>
+        /// <param name="par"></param>
         public DeleteHoliday(INCommandDetail cd, DeleteHoliday_Parameter par) : base(cd, par)
         {
 

@@ -52,11 +52,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.WorkStatus
         /// 状态0表示：COM和NC导通<br>
         /// 状态1表示：COM和NO导通<br>
         /// <ul>
-        /// <li>1-4 &emsp; 4个门的继电器</li>
-        /// <li>5 &emsp; 消防继电器</li>
-        /// <li>6 &emsp; 匪警继电器</li>
-        /// <li>7 &emsp; 烟雾报警继电器</li>
-        /// <li>8 &emsp; 防盗主机报警继电器</li>
+        /// <li>1-4  4个门的继电器</li>
+        /// <li>5   消防继电器</li>
+        /// <li>6   匪警继电器</li>
+        /// <li>7   烟雾报警继电器</li>
+        /// <li>8   防盗主机报警继电器</li>
         /// </ul>
         /// </summary>
         public DoorPortDetail LockState;

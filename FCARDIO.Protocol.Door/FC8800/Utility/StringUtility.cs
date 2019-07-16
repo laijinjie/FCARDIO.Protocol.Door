@@ -392,6 +392,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
             return Encoding.ASCII.GetString(bHex).TrimEnd('\0');
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buf"></param>
         public static void WriteByteBuffer(IByteBuffer buf)
         {
 #if DEBUG

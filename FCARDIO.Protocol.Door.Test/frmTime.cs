@@ -133,6 +133,7 @@ namespace FCARDIO.Protocol.Door.Test
 
                 Invoke(() =>
                 {
+                    rBtnSlowDown.Checked = result.TimeErrorCorrection[0] == 0;
                     cbxCorrectionSeconds.Text = CorrectionSeconds == 0 ? "禁用" : CorrectionSeconds.ToString();
                 });
                 mMainForm.AddCmdLog(cmde, tip);

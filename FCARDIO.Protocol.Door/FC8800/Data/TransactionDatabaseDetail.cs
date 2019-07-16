@@ -13,6 +13,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     /// </summary>
     public class TransactionDatabaseDetail
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public TransactionDetail[] ListTransaction { get; set; }
         /// <summary>
         /// 读卡相关记录
@@ -39,6 +42,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// </summary>
         public TransactionDetail SystemTransactionDetail;
 
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
         public TransactionDatabaseDetail()
         {
             CardTransactionDetail = new TransactionDetail();
@@ -49,13 +55,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             SystemTransactionDetail = new TransactionDetail();
         }
 
-
+        /// <summary>
+        /// 获取长度
+        /// </summary>
+        /// <returns></returns>
         public int GetDataLen()
         {
             return 0x0D * 6;
         }
 
-
+        /// <summary>
+        /// 进行解码
+        /// </summary>
+        /// <param name="data"></param>
         public void SetBytes(IByteBuffer data)
         {
             ListTransaction = new TransactionDetail[]{CardTransactionDetail, ButtonTransactionDetail, DoorSensorTransactionDetail,
@@ -67,7 +79,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             return;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IByteBuffer GetBytes()
         {
             return null;

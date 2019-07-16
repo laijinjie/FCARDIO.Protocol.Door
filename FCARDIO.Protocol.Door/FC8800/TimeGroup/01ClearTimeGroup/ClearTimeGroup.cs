@@ -17,6 +17,11 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         {
 
         }
+
+        /// <summary>
+        /// 处理返回通知
+        /// </summary>
+        /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
             return;

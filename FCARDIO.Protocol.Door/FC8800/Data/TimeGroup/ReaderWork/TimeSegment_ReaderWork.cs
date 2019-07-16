@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
 {
+    /// <summary>
+    /// 表示一个时段，开始时间和结束时间
+    /// </summary>
     public class TimeSegment_ReaderWork : TimeSegment
     {
+        /// <summary>
+        /// 认证方式
+        /// </summary>
         protected byte CheckWay;
 
         /// <summary>
@@ -29,11 +35,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             CheckWay=v;
         }
 
-        /**
-         * 将对象写入到字节缓冲区
-         *
-         * @param bBuf
-         */
+        /// <summary>
+        /// 将对象写入到字节缓冲区
+        /// </summary>
+        /// <param name="bBuf"></param>
         public override void GetBytes(IByteBuffer bBuf)
         {
             bBuf.WriteByte(ByteUtil.ByteToBCD((byte)mBeginTime.Hour));
@@ -43,11 +48,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             bBuf.WriteByte(CheckWay);
         }
 
-        /**
-         * 从字节缓冲区中生成一个对象
-         *
-         * @param bBuf
-         */
+        /// <summary>
+        /// 从字节缓冲区中生成一个对象
+        /// </summary>
+        /// <param name="bBuf"></param>
         public override void SetBytes(IByteBuffer bBuf)
         {
             DateTime n = DateTime.Now;

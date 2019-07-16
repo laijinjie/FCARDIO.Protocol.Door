@@ -775,7 +775,6 @@ namespace FCARDIO.Protocol.Door.Test
                 return;
             }
             StringBuilder sb = new StringBuilder();
-            byte door = 1;
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
@@ -1803,21 +1802,40 @@ namespace FCARDIO.Protocol.Door.Test
             cmdInvalidCardAlarmOptionUse.Items.Clear();
             cmdInvalidCardAlarmOptionUse.Items.AddRange(new string[] { "启用", "禁用" });
             cmdInvalidCardAlarmOptionUse.SelectedIndex = 0;
+
+            cmbReadInvalidCardTime.Items.Clear();
+            string[] array = new string[256];
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = i.ToString();
+            }
+            cmbReadInvalidCardTime.Items.AddRange(array);
+            cmbReadInvalidCardTime.SelectedIndex = 0;
         }
 
         private void butReadInvalidCardAlarmOption_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             var par = new FC8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
-            var cmd = new FC8800.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption(cmdDtl, par);
-            mMainForm.AddCommand(cmd);
+
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
+            {
+                var cmd = new FC8800.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+            }
+            else
+            {
+                var cmd = new FC89H.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+            }
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as FC8800.Door.InvalidCardAlarmOption.InvalidCardAlarmOption_Result;
+                var result = cmde.Command.getResult() as FC8800.Door.InvalidCardAlarmOption.InvalidCardAlarmOption_Result;
                 Invoke(() =>
                 {
                     cmdInvalidCardAlarmOptionUse.SelectedIndex = result.Use ? 0 : 1;
+                    cmbReadInvalidCardTime.SelectedIndex = result.ReadInvalidCardTime;
                 });
 
                 mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use}");
@@ -1830,9 +1848,18 @@ namespace FCARDIO.Protocol.Door.Test
             bool use = (cmdInvalidCardAlarmOptionUse.SelectedIndex == 0);
             byte door = byte.Parse(cmdDoorNum.Text);
 
-            var par = new FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption_Parameter(door, use);
-            var cmd = new FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption(cmdDtl, par);
-            mMainForm.AddCommand(cmd);
+            var par = new FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption_Parameter(door, use,(byte)(cmbReadInvalidCardTime.SelectedIndex));
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
+            {
+                var cmd = new FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+            }
+            else
+            {
+                var cmd = new FC89H.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+            }
+                
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
@@ -2213,7 +2240,7 @@ namespace FCARDIO.Protocol.Door.Test
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            ReadManageKeyboardSetting cmd = new ReadManageKeyboardSetting(cmdDtl, new WriteManageKeyboardSetting_Parameter((byte)(cmdDoorNum.SelectedIndex + 1)));
+            ReadManageKeyboardSetting cmd = new ReadManageKeyboardSetting(cmdDtl, new DoorPort_Parameter((byte)(cmdDoorNum.SelectedIndex + 1)));
             mMainForm.AddCommand(cmd);
 
             //ReadPassword readPassword = new ReadPassword(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));

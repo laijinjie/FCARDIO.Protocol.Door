@@ -18,8 +18,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
     /// </summary>
     public class ReadTransactionDatabaseByIndex<T> : FC8800Command_ReadParameter where T : CardTransaction,new ()
     {
+        /// <summary>
+        /// ByteBuffer 队列
+        /// </summary>
         private Queue<IByteBuffer> mBufs;
-        private int mQuantity;
 
         /// <summary>
         /// 输入参数
@@ -50,7 +52,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         protected override void CreatePacket0()
         {
             Packet(0x08, 0x04, 0x00, 0x01 + 0x04 + 4,GetCmdData());
-           
+            _ProcessMax = 0;
 
         }
 
@@ -77,7 +79,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
             {
                 var buf = oPck.CmdData;
                 int iSize = buf.GetInt(0);
-                _ProcessStep += iSize;
+                _ProcessMax += iSize;
                 buf.Retain();
                 mBufs.Enqueue(buf);
 
@@ -164,6 +166,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
                         cd.SerialNumber = buf.ReadInt();
                         cd.SetBytes(buf);
                         result.TransactionList.Add(cd);
+                        _ProcessStep++;
                     }
                     catch (Exception e)
                     {

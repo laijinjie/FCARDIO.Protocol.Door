@@ -37,6 +37,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// </summary>
         protected bool IsNull;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
         public abstract void SetBytes(IByteBuffer data);
     }
 }

@@ -29,13 +29,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// </summary>
         public bool IsCircle;
 
-
+        /// <summary>
+        /// 获取长度
+        /// </summary>
+        /// <returns></returns>
         public int GetDataLen()
         {
             return 0x0D;
         }
 
-
+        /// <summary>
+        /// 从字节缓冲区中生成一个对象
+        /// </summary>
+        /// <param name="data"></param>
         public void SetBytes(IByteBuffer data)
         {
             DataBaseMaxSize = data.ReadUnsignedInt();
@@ -45,17 +51,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             return;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IByteBuffer GetBytes()
         {
             return null;
         }
 
-        /**
-         * 可用的新记录数。
-         *
-         * @return 新记录数
-         */
+        /// <summary>
+        /// 可用的新记录数
+        /// </summary>
+        /// <returns>新记录数</returns>
         public long readable()
         {
             if (IsCircle)
@@ -87,11 +95,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             return 0;
         }
 
-        /**
-         * 可用的新记录数。
-         *
-         * @return 新记录数
-         */
+        /// <summary>
+        /// 可用的新记录数
+        /// </summary>
+        /// <returns>新记录数</returns>
         public long NewSzie()
         {
             return readable();

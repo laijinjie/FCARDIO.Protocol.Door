@@ -7,17 +7,22 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
 {
+    /// <summary>
+    /// 读卡认证方式 的开门时段
+    /// </summary>
     public class WeekTimeGroup_ReaderWork : WeekTimeGroup
     {
-
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="iDaySegmentCount"></param>
         public WeekTimeGroup_ReaderWork(int iDaySegmentCount) : base(iDaySegmentCount)
         {
         }
 
-        public WeekTimeGroup_ReaderWork(int iDaySegmentCount, int index) : base(iDaySegmentCount, index)
-        {
-        }
-
+        /// <summary>
+        /// 初始化一个周时段
+        /// </summary>
         protected override void CreateDayTimeGroup()
         {
             mDay = new DayTimeGroup_ReaderWork[7];
@@ -27,6 +32,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             }
         }
 
+        /// <summary>
+        /// 获取一个周时段长度
+        /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
             return 7 * DaySegmentCount * 5;
@@ -47,16 +56,29 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
             }
         }
 
+        /// <summary>
+        /// 将字节缓冲解码为类结构
+        /// </summary>
+        /// <param name="data"></param>
         public override void SetBytes(IByteBuffer data)
         {
             SetBytes(E_WeekDay.Monday, data);
         }
 
+        /// <summary>
+        /// 将结构编码为字节缓冲
+        /// </summary>
+        /// <param name="data"></param>
         public override void GetBytes(IByteBuffer data)
         {
             GetBytes(E_WeekDay.Monday, data);
         }
 
+        /// <summary>
+        /// 将结构编码为字节缓冲
+        /// </summary>
+        /// <param name="FistWeek">一周的第一天</param>
+        /// <param name="data"></param>
         public override void GetBytes(E_WeekDay FistWeek, IByteBuffer data)
         {
             int[] WeekList = new int[7];

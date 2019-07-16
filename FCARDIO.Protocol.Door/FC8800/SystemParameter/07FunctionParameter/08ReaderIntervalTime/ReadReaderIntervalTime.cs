@@ -27,12 +27,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         {
             Packet(0x01, 0x0A, 0x87);
         }
-
-        protected override void CommandReSend()
-        {
-
-        }
-
+        
         /// <summary>
         /// 命令返回值的判断
         /// </summary>

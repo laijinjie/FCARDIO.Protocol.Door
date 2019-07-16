@@ -31,24 +31,24 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             }
         }
         /// <summary>
-        /// 
+        /// 检查参数
         /// </summary>
         /// <returns></returns>
         public override bool checkedParameter()
         {
             if (ListHoliday == null || ListHoliday.Count == 0)
             {
-                return false;
+                throw new ArgumentException("ListHoliday is Null");
             }
             foreach (HolidayDetail item in ListHoliday)
             {
                 if (item.HolidayType < 1 || item.HolidayType > 3)
                 {
-                    return false;
+                    throw new ArgumentException("HolidayType must between 1 and 3");
                 }
                 if (item.Holiday == DateTime.MinValue || item.Holiday.Year < 2000)
                 {
-                    return false;
+                    throw new ArgumentException("Holiday Error"); ;
                 }
 
             }
@@ -56,7 +56,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         }
 
         /// <summary>
-        /// 
+        /// 释放资源
         /// </summary>
         public override void Dispose()
         {
@@ -88,6 +88,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             return iLen;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
 

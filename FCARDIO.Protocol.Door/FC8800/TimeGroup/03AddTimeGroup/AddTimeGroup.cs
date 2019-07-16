@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DotNetty.Buffers;
 using FCARDIO.Core.Command;
 using FCARDIO.Core.Packet;
 using FCARDIO.Protocol.OnlineAccess;
@@ -15,6 +16,10 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
     public class AddTimeGroup : FC8800Command_WriteParameter
     {
         /// <summary>
+        /// 参数
+        /// </summary>
+        AddTimeGroup_Parameter mPar;
+        /// <summary>
         /// 写入索引
         /// </summary>
         private int writeIndex = 0;
@@ -23,12 +28,13 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// 总开门时段数
         /// </summary>
         private int maxCount = 0;
-        
+
         /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="cd"></param>
-        public AddTimeGroup(INCommandDetail cd, AddTimeGroup_Parameter par) : base(cd, par) { }
+        /// <param name="par"></param>
+        public AddTimeGroup(INCommandDetail cd, AddTimeGroup_Parameter par) : base(cd, par) { mPar = par; }
 
         /// <summary>
         /// 检查命令参数
@@ -50,14 +56,24 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// </summary>
         protected override void CreatePacket0()
         {
-            AddTimeGroup_Parameter model = _Parameter as AddTimeGroup_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            maxCount = model.ListWeekTimeGroup.Count;
-            Packet(0x6, 0x3, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            maxCount = mPar.ListWeekTimeGroup.Count;
+            Packet(0x6, 0x3, 0x00, 225, GetBytes(GetNewCmdDataBuf(225)));
             writeIndex++;
-           
+            _ProcessMax = maxCount;
 
+        }
+
+        /// <summary>
+        /// 将 参数 编码到字节流
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
+        private IByteBuffer GetBytes(IByteBuffer databuf)
+        {
+            databuf.WriteByte(writeIndex + 1);
+
+            mPar.ListWeekTimeGroup[writeIndex].GetBytes(databuf);
+            return databuf;
         }
 
         /// <summary>
@@ -66,47 +82,31 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            
-
-        }
-
-        /// <summary>
-        /// 检查并进行命令的下一部分，分次上传数据
-        /// </summary>
-        /// <param name="readPacket">收到的数据包</param>
-        protected override void CommandNext(INPacket readPacket)
-        {
             //应答
-            AddTimeGroup_Parameter model = _Parameter as AddTimeGroup_Parameter;
             if (writeIndex < maxCount)
             {
-                model.SetWriteIndex(writeIndex);
-                var acl = _Connector.GetByteBufAllocator();
-                var buf = acl.Buffer(model.GetDataLen());
-                Packet(0x6, 0x3, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+                var buf = GetBytes(GetCmdBuf());
+                FCPacket.DataLen = (uint)buf.ReadableBytes;
                 writeIndex++;
+                _ProcessStep++;
                 CommandReady();
             }
             else
             {
                 CommandCompleted();
             }
+
         }
 
-        protected override void CommandReSend()
-        {
-            
-        }
         
         /// <summary>
-        /// 
+        /// 处理返回值
         /// </summary>
         /// <param name="oPck"></param>
         protected override void CommandNext0(OnlineAccessPacket oPck)
         {
             if (CheckResponse_OK(oPck))
             {
-
                 //继续发下一包
                 CommandNext1(oPck);
             }

@@ -272,6 +272,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Dispose()
         {
             return;
@@ -313,7 +316,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             return databuf;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
 
@@ -321,11 +327,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
             return;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             return databuf;

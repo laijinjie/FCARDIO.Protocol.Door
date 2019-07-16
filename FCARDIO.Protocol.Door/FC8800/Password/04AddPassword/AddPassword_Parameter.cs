@@ -12,33 +12,25 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     /// </summary>
     public class AddPassword_Parameter<T> : AbstractParameter where T : PasswordDetail,new ()
     {
-        private int writeIndex = 0;
-
-        protected const int batchCount = 50;
-        public int mIndex {
-            get; protected set;
-        }
-        protected int BatchCount
-        {
-            get
-            {
-                if (ListPassword.Count > batchCount)
-                {
-                    return batchCount;
-                }
-                return ListPassword.Count - mIndex;
-            }
-          
-        }
+        
         /// <summary>
-        /// 
+        /// 要添加的密码集合
         /// </summary>
         public List<T> ListPassword { get; set; }
 
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="list">要添加的密码集合</param>
         public AddPassword_Parameter(List<T> list)
         {
             ListPassword = list;
         }
+
+        /// <summary>
+        /// 检查参数
+        /// </summary>
+        /// <returns></returns>
         public override bool checkedParameter()
         {
             if (ListPassword == null || ListPassword.Count == 0)
@@ -56,17 +48,33 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 {
                     throw new ArgumentException("Password Error!");
                 }
-               
+                if (!checkedParameterItem(item))
+                {
+                    return false;
+                }
             }
 
             return true;
         }
 
+        /// <summary>
+        /// 检查每个密码
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        protected virtual bool checkedParameterItem(PasswordDetail password)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public override void Dispose()
         {
             ListPassword = null;
         }
-
+        /*
         /// <summary>
         /// 
         /// </summary>
@@ -109,8 +117,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         {
             return 4 + (BatchCount * 5);
         }
-
+        */
         public override void SetBytes(IByteBuffer databuf)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int GetDataLen()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             throw new NotImplementedException();
         }

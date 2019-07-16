@@ -13,8 +13,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseDetail
     /// 读取控制器中的卡片数据库信息
     /// </summary>
     public class ReadTransactionDatabaseDetail
-        : FC8800Command
+        : FC8800CommandEx
     {
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        /// <param name="detail"></param>
         public ReadTransactionDatabaseDetail(INCommandDetail detail) : base(detail, null) { }
 
         /// <summary>
@@ -27,6 +31,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseDetail
             return true;
         }
 
+        /// <summary>
+        /// 创建一个通讯指令
+        /// </summary>
         protected override void CreatePacket0()
         {
             Packet(0x08, 0x01, 0x00, 0x00, null);
@@ -48,20 +55,5 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseDetail
             }
         }
 
-        /// <summary>
-        /// 命令重发时需要处理的函数
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-       /// <summary>
-       /// 命令释放时需要处理的函数
-       /// </summary>
-        protected override void Release1()
-        {
-            return;
-        }
     }
 }
