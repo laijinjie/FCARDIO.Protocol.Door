@@ -286,6 +286,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             TimeGroup[iDoor - 1] = (byte)iNum;
         }
 
+
         /// <summary>
         /// 获取指定门是否有权限
         /// </summary>
@@ -299,15 +300,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
                 throw new ArgumentException("Door 1-4");
             }
             iDoor -= 1;
-
-            int iBitIndex = iDoor % 8;
-            int iMaskValue = (int)Math.Pow(2, iBitIndex);
-            int iByteValue = Door & iMaskValue;
-            if (iBitIndex > 0)
-            {
-                iByteValue = iByteValue >> (iBitIndex);
-            }
-            return iByteValue == 1;
+            int iMaskValue = (int)Math.Pow(2, iDoor);
+            return ((Door & iMaskValue) > 0);
         }
 
         /// <summary>
@@ -322,15 +316,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
 
                 throw new ArgumentException("Door 1-4");
             }
-
-            if (bUse == GetDoor(iDoor))
+            iDoor -= 1;
+            int iMaskValue = (int)Math.Pow(2, iDoor);
+            bool bOldValue = (Door & iMaskValue) > 0;
+            if (bUse == bOldValue)
             {
                 return;
             }
-
-            iDoor -= 1;
-            int iBitIndex = iDoor % 8;
-            int iMaskValue = (int)Math.Pow(2, iBitIndex);
             if (bUse)
             {
                 Door = Door | iMaskValue;
@@ -421,6 +413,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             Privilege = 4;
         }
 
+
         /// <summary>
         /// 获取指定序号的节假日开关状态
         /// </summary>
@@ -428,7 +421,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// <returns>开关状态 开关true 表示启用，false 表示禁用</returns>
         public bool GetHolidayValue(int iIndex)
         {
-            if (iIndex <= 0 || iIndex > 30)
+            if (iIndex <= 0 || iIndex > 32)
             {
                 throw new ArgumentException("iIndex= 1 -- 32");
             }
@@ -439,11 +432,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             int iByteValue = Holiday[iByteIndex] & 0x000000ff;
             int iMaskValue = (int)Math.Pow(2, iBitIndex);
             iByteValue = iByteValue & iMaskValue;
-            if (iBitIndex > 0)
-            {
-                iByteValue = iByteValue >> (iBitIndex);
-            }
-            return iByteValue == 1;
+            return ((iByteValue & iMaskValue) > 0);
 
         }
 
@@ -456,19 +445,22 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// <param name="bUse">开关状态 开关true 表示启用，false 表示禁用</param>
         public void SetHolidayValue(int iIndex, bool bUse)
         {
-            if (iIndex <= 0 || iIndex > 30)
+            if (iIndex <= 0 || iIndex > 32)
             {
                 throw new ArgumentException("iIndex= 1 -- 32");
             }
-            if (bUse == GetHolidayValue(iIndex))
-            {
-                return;
-            }
+
             iIndex -= 1;
+            //计算索引所在的字节位置
             int iByteIndex = iIndex / 8;
             int iBitIndex = iIndex % 8;
             int iByteValue = Holiday[iByteIndex] & 0x000000ff;
             int iMaskValue = (int)Math.Pow(2, iBitIndex);
+            bool bOldValue = ((iByteValue & iMaskValue) > 0);
+            if (bUse == bOldValue)
+            {
+                return;
+            }
             if (bUse)
             {
                 iByteValue = iByteValue | iMaskValue;
@@ -481,5 +473,42 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
             Holiday[iByteIndex] = (byte)iByteValue;
 
         }
+
+
+
+        /// <summary>
+        /// 获取出入标志
+        /// </summary>
+        /// <param name="iDoor">门号，取值范围：1-4</param>
+        /// <returns>出入标志：0--出入有效；1--入有效；2--出有效</returns>
+        public int GetEnterStatusValue(int iDoor)
+        {
+            int iCount = (iDoor - 1) * 2;//移位数量
+            int iStatusMap = 3 << iCount;
+            int iStatus = (EnterStatus & iStatusMap) >> iCount;
+            return iStatus;
+        }
+
+
+        /// <summary>
+        /// 设置出入标志
+        /// </summary>
+        /// <param name="iDoor">门号，取值范围：1-4</param>
+        /// <param name="iStatus">出入标志：0--出入有效；1--入有效；2--出有效</param>
+        public void SetEnterStatusValue(int iDoor, int iStatus)
+        {
+            int iCount = (iDoor - 1) * 2;//移位数量
+            int iStatusMap = 3 << iCount;
+            iStatus = iStatus << iCount;
+
+            int iTmpStatus = EnterStatus | iStatusMap;
+            iTmpStatus = ~iTmpStatus;
+            iTmpStatus = iTmpStatus | iStatusMap;
+            iTmpStatus = ~iTmpStatus;
+
+            EnterStatus = iTmpStatus | iStatus;
+        }
+
+
     }
 }

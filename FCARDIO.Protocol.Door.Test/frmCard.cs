@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FCARDIO.Core.Extension;
 
 namespace FCARDIO.Protocol.Door.Test
 {
@@ -21,7 +22,7 @@ namespace FCARDIO.Protocol.Door.Test
         /// <summary>
         /// 卡号字典
         /// </summary>
-        Dictionary<UInt64, CardDetailBase> CardDic = null;
+        HashSet<UInt64> CardHashTable = null;
 
         public static frmCard GetForm(INMain main)
         {
@@ -55,7 +56,7 @@ namespace FCARDIO.Protocol.Door.Test
             cmbcardType.SelectedIndex = 0;
             dgCardList.AutoGenerateColumns = false;
             CardList = new BindingList<CardDetail_UI>();
-            CardDic = new Dictionary<ulong, CardDetailBase>();
+            CardHashTable = new HashSet<ulong>();
             dgCardList.DataSource = CardList;
 
             IniControl();
@@ -97,7 +98,7 @@ namespace FCARDIO.Protocol.Door.Test
                 cmd = new FC8800.Card.CardDataBase.ReadCardDataBase(cmdDtl, par);
             }
             CardList.Clear();
-            CardDic.Clear();
+            CardHashTable.Clear();
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -117,7 +118,7 @@ namespace FCARDIO.Protocol.Door.Test
             int iType = 0;
             CardList.RaiseListChangedEvents = false;
             CardList.Clear();
-            CardDic.Clear();
+            CardHashTable.Clear();
             var result = cmde.Result as FC8800.Card.CardDataBase.ReadCardDataBase_Result;
             if (result != null)
             {
@@ -163,12 +164,12 @@ namespace FCARDIO.Protocol.Door.Test
         private bool AddCardDataBaseToList(CardDetailBase card)
         {
 
-            if (!CardDic.ContainsKey(card.CardData))
+            if (!CardHashTable.Contains(card.CardData))
             {
                 var ui = new CardDetail_UI(card);
                 ui.CardIndex = (CardList.Count + 1).ToString();
                 CardList.Add(ui);
-                CardDic.Add(card.CardData, card);
+                CardHashTable.Add(card.CardData);
                 return true;
             }
             return false;
@@ -214,7 +215,7 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             cmdDtl.Timeout = 15000;
             cmdDtl.RestartCount = 0;
-            INCommand cmd;
+            INCommand cmd = null;
 
 
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
@@ -225,9 +226,11 @@ namespace FCARDIO.Protocol.Door.Test
                 {
                     cards.Add(new FC89H.Data.CardDetail(item.CardDetail));
                 }
-
-                var par = new FC89H.Card.CardListBySequence.WriteCardListBySequence_Parameter(cards);
-                cmd = new FC89H.Card.CardListBySequence.WriteCardListBySequence(cmdDtl, par);
+                if (cards.Count > 0)
+                {
+                    var par = new FC89H.Card.CardListBySequence.WriteCardListBySequence_Parameter(cards);
+                    cmd = new FC89H.Card.CardListBySequence.WriteCardListBySequence(cmdDtl, par);
+                }
             }
             else
             {
@@ -239,31 +242,20 @@ namespace FCARDIO.Protocol.Door.Test
                         cards.Add(new FC8800.Data.CardDetail(item.CardDetail));
                     }
                 }
-
-                var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(cards);
-                cmd = new FC8800.Card.CardListBySequence.WriteCardListBySequence(cmdDtl, par);
+                if (cards.Count > 0)
+                {
+                    var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(cards);
+                    cmd = new FC8800.Card.CardListBySequence.WriteCardListBySequence(cmdDtl, par);
+                }
             }
-
+            if (cmd == null) return;
 
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Card.WriteCardList_Result;
-                if (result != null)
-                {
-                    mMainForm.AddCmdLog(cmde, $"命令成功：写入失败的卡数量:{result.FailTotal}");
-                    if (result.FailTotal > 0)
-                    {
-                        StringBuilder strBuf = new StringBuilder();
-                        foreach (var item in result.CardList)
-                        {
-                            strBuf.Append(item.ToString("00000000000000000000")).Append("(0x").Append(item.ToString("X18")).Append(")");
-                        }
-                        txtDebug.Text = strBuf.ToString();
-                        System.IO.File.WriteAllText(System.IO.Path.Combine(Application.StartupPath, "上传失败的卡号.txt"), strBuf.ToString(), Encoding.UTF8);
-                    }
-                }
+                WriteCardCallBlack(cmde, result);
             };
         }
         #endregion
@@ -273,7 +265,7 @@ namespace FCARDIO.Protocol.Door.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             cmdDtl.Timeout = 5000;
-            INCommand cmd;
+            INCommand cmd = null;
 
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
             {
@@ -283,9 +275,12 @@ namespace FCARDIO.Protocol.Door.Test
                 {
                     cards.Add(new FC89H.Data.CardDetail(item.CardDetail));
                 }
+                if (cards.Count > 0)
+                {
 
-                var par = new FC89H.Card.CardListBySort.WriteCardListBySort_Parameter(cards);
-                cmd = new FC89H.Card.CardListBySort.WriteCardListBySort(cmdDtl, par);
+                    var par = new FC89H.Card.CardListBySort.WriteCardListBySort_Parameter(cards);
+                    cmd = new FC89H.Card.CardListBySort.WriteCardListBySort(cmdDtl, par);
+                }
             }
             else
             {
@@ -297,59 +292,52 @@ namespace FCARDIO.Protocol.Door.Test
                         cards.Add(new FC8800.Data.CardDetail(item.CardDetail));
                     }
                 }
+                if (cards.Count > 0)
+                {
+                    var par = new FC8800.Card.CardListBySort.WriteCardListBySort_Parameter(cards);
+                    cmd = new FC8800.Card.CardListBySort.WriteCardListBySort(cmdDtl, par);
+                }
 
-                var par = new FC8800.Card.CardListBySort.WriteCardListBySort_Parameter(cards);
-                cmd = new FC8800.Card.CardListBySort.WriteCardListBySort(cmdDtl, par);
             }
-
+            if (cmd == null) return;
 
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Card.WriteCardList_Result;
-                if (result != null)
-                {
-                    mMainForm.AddCmdLog(cmde, $"命令成功：写入失败的卡数量:{result.FailTotal}");
-                    if (result.FailTotal > 0)
-                    {
-                        StringBuilder strBuf = new StringBuilder();
-                        foreach (var item in result.CardList)
-                        {
-                            strBuf.Append(item.ToString("00000000000000000000")).Append("(0x").Append(item.ToString("X18")).Append(")");
-                        }
-                        txtDebug.Text = strBuf.ToString();
-                        System.IO.File.WriteAllText(System.IO.Path.Combine(Application.StartupPath, "上传失败的卡号.txt"), strBuf.ToString(), Encoding.UTF8);
-                    }
-                }
+                WriteCardCallBlack(cmde, result);
             };
         }
-        #endregion
 
-        #region 删除授权卡
-        private void butDeletecard_Click(object sender, EventArgs e)
+
+        private void WriteCardCallBlack(CommandEventArgs cmde, FC8800.Card.WriteCardList_Result result)
         {
-            //par 需要传输 需要删除的卡片列表 long[] CardList;、
-            string CardData = dgCardList.Rows[0].Cells["CardData10"].Value.ToString();
-            List<CardDetail> CardList = new List<CardDetail>();
-            CardList.Add(new CardDetail() { CardData = ulong.Parse(CardData) });
-
-            var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Card.DeleteCard.DeleteCard_Parameter(CardList);
-            var cmd = new FC8800.Card.DeleteCard.DeleteCard(cmdDtl, par);
-            mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            if (result != null)
             {
-                mMainForm.AddLog($"命令成功");
-            };
+                mMainForm.AddCmdLog(cmde, $"命令成功：写入失败的卡数量:{result.FailTotal}");
+                if (result.FailTotal > 0)
+                {
+                    StringBuilder strBuf = new StringBuilder();
+                    foreach (var item in result.CardList)
+                    {
+                        strBuf.Append(item.ToString("00000000000000000000")).Append("(0x").Append(item.ToString("X18")).Append(")");
+                    }
+                    txtDebug.Text = strBuf.ToString();
+                    System.IO.File.WriteAllText(System.IO.Path.Combine(Application.StartupPath, "上传失败的卡号.txt"), strBuf.ToString(), Encoding.UTF8);
+                }
+            }
         }
         #endregion
-
-
 
 
         #region 读取单个卡片在控制器中的信息
 
+        /// <summary>
+        /// 从设备读取单张卡
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void butReadCardDetail_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -440,7 +428,8 @@ namespace FCARDIO.Protocol.Door.Test
             strBuf.Append("有效期：").Append(ui.Expiry).Append("；有效次数：").Append(ui.OpenTimes).AppendLine("；");
             strBuf.Append("权限：").AppendLine(ui.doorAccess);
             strBuf.Append("开门时段：").AppendLine(ui.TimeGroup);
-            strBuf.Append("状态：").Append(ui.CardStatus).Append("；特权：").Append(ui.Privilege).Append("；节假日：").AppendLine(ui.Holiday);
+            strBuf.Append("状态：").Append(ui.CardStatus).Append("；特权：").Append(ui.Privilege);
+            strBuf.AppendLine("；节假日：").Append(ui.Holiday).Append("(1->32)");
             strBuf.Append("出入标志：").AppendLine(ui.EnterStatus);
             strBuf.Append("最近读卡时间：").AppendLine(ui.ReadCardDate);
             return strBuf;
@@ -463,7 +452,7 @@ namespace FCARDIO.Protocol.Door.Test
                 cmbCardStatus.SelectedIndex = card.CardStatus;
             CheckBox[] DoorList = { chkDoor1, chkDoor2, chkDoor3, chkDoor4 };
             ComboBox[] TGList = { cmbTimeGroup1, cmbTimeGroup2, cmbTimeGroup3, cmbTimeGroup4 };
-            ComboBox[] EnterStatusList = { cmbEnterStatus1, cmbEnterStatus1, cmbEnterStatus1, cmbEnterStatus1 };
+            ComboBox[] EnterStatusList = { cmbEnterStatus1, cmbEnterStatus2, cmbEnterStatus3, cmbEnterStatus4 };
             int i;
             for (i = 1; i <= 4; i++)
             {
@@ -471,15 +460,15 @@ namespace FCARDIO.Protocol.Door.Test
                 DoorList[i - 1].Checked = card.GetDoor(i);
                 //开门时段
                 if (card.GetTimeGroup(i) < 65)
-                    TGList[i - 1].SelectedIndex = card.GetTimeGroup(i)-1;
+                    TGList[i - 1].SelectedIndex = card.GetTimeGroup(i) - 1;
                 //出入状态
-                int value = ui.GetEnterStatusValue(i);
+                int value = card.GetEnterStatusValue(i);
                 if (value == 0 || value == 3)
                     EnterStatusList[i - 1].SelectedIndex = 0;
                 if (value == 1 || value == 2)
                     EnterStatusList[i - 1].SelectedIndex = value;
             }
-            if(card.Privilege<5)
+            if (card.Privilege < 5)
                 cmbPrivilege.SelectedIndex = card.Privilege;
             cbHolidayUse.Checked = card.HolidayUse;
             if (card.HolidayUse)
@@ -489,6 +478,8 @@ namespace FCARDIO.Protocol.Door.Test
 
         }
         #endregion
+
+        #region 控件初始化
 
         #region 初始化控件列表
         private void IniControl()
@@ -504,7 +495,7 @@ namespace FCARDIO.Protocol.Door.Test
         #region 出入标记
         public void EnterStatus()
         {
-            ComboBox[] EnterStatusList = { cmbEnterStatus1, cmbEnterStatus1, cmbEnterStatus1, cmbEnterStatus1 };
+            ComboBox[] EnterStatusList = { cmbEnterStatus1, cmbEnterStatus2, cmbEnterStatus3, cmbEnterStatus4 };
             string[] arr = new string[] { "出入有效", "出有效", "入有效" };
             foreach (var cmb in EnterStatusList)
             {
@@ -516,10 +507,11 @@ namespace FCARDIO.Protocol.Door.Test
         #endregion
 
         #region 有效次数
+
         public void OpenTimes()
         {
             cmbOpenTimes.Items.Clear();
-            cmbOpenTimes.Items.Add("(0)已失效");
+            cmbOpenTimes.Items.Add(CardDetail_UI.OpenTimes_Invalid);
 
             string[] time = new string[100];
             for (int i = 1; i <= 100; i++)
@@ -527,7 +519,7 @@ namespace FCARDIO.Protocol.Door.Test
                 time[i - 1] = i + "次";
             }
             cmbOpenTimes.Items.AddRange(time);
-            cmbOpenTimes.Items.Add("无限制(65535)");
+            cmbOpenTimes.Items.Add(CardDetail_UI.OpenTimes_Off);
             cmbOpenTimes.SelectedIndex = cmbOpenTimes.Items.Count - 1;
         }
         #endregion
@@ -564,106 +556,177 @@ namespace FCARDIO.Protocol.Door.Test
             }
         }
         #endregion
+        #endregion
 
         #region 添加卡信息
-
-
-
-        private void butInsertList_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 将控件中的值转换为卡详情
+        /// </summary>
+        /// <returns></returns>
+        private CardDetailBase ContorlToCardDetail()
         {
-
-            /*
-            ulong ulOut = 0;
-            if (!ulong.TryParse(txtCardData.Text, out ulOut))
+            FC89H.Data.CardDetail card = new FC89H.Data.CardDetail();
+            string CardStr = txtCardData.Text;
+            card.CardData = CardStr.ToUInt64();
+            if (card.CardData == 0)
             {
-                MessageBox.Show("error");
-                return;
+                MsgErr("卡号输入不正确！");
+                return null;
             }
-            CardDetail_UI dto = new CardDetail_UI();
-            BindDto(dto);
-            CardList.Add(dto);
-            dgCardList.DataSource = new BindingList<CardDetail_UI>(CardList);*/
-
-            /*
-            for (int i = 0; i < 1; i++)
+            string sPwd = txtPassword.Text;
+            if (!string.IsNullOrEmpty(sPwd))
             {
-                dataGridView1.Rows.Add();
-                dataGridView1.Rows[i].Cells["ID"].Value = ID;
-                dataGridView1.Rows[i].Cells["CardData10"].Value = CardData10;
-                dataGridView1.Rows[i].Cells["CardData16"].Value = CardData16;
-                dataGridView1.Rows[i].Cells["Password"].Value = Password;
-                dataGridView1.Rows[i].Cells["Expiry"].Value = Expiry;
-                dataGridView1.Rows[i].Cells["CardStatus1"].Value = CardStatus1;
-                dataGridView1.Rows[i].Cells["OpenTime"].Value = OpenTime;
-                dataGridView1.Rows[i].Cells["door1"].Value = door1;
-                dataGridView1.Rows[i].Cells["door2"].Value = door2;
-                dataGridView1.Rows[i].Cells["door3"].Value = door3;
-                dataGridView1.Rows[i].Cells["door4"].Value = door4;
-                dataGridView1.Rows[i].Cells["TimeGroup1"].Value = TimeGroup1;
-                dataGridView1.Rows[i].Cells["TimeGroup2"].Value = TimeGroup2;
-                dataGridView1.Rows[i].Cells["TimeGroup3"].Value = TimeGroup3;
-                dataGridView1.Rows[i].Cells["TimeGroup4"].Value = TimeGroup4;
-                dataGridView1.Rows[i].Cells["Privilege1"].Value = Privilege1;
-                dataGridView1.Rows[i].Cells["Privilege2"].Value = Privilege2;
-                dataGridView1.Rows[i].Cells["Privilege3"].Value = Privilege3;
-                dataGridView1.Rows[i].Cells["Privilege4"].Value = Privilege4;
-                dataGridView1.Rows[i].Cells["Holiday"].Value = Holiday;
-                dataGridView1.Rows[i].Cells["EnterStatus1"].Value = EnterStatus1;
-                dataGridView1.Rows[i].Cells["EnterStatus2"].Value = EnterStatus2;
-                dataGridView1.Rows[i].Cells["EnterStatus3"].Value = EnterStatus3;
-                dataGridView1.Rows[i].Cells["EnterStatus4"].Value = EnterStatus4;
-                dataGridView1.Rows[i].Cells["HolidayUse"].Value = HolidayUse;
+                if (!sPwd.IsNum())
+                {
+                    MsgErr("个人密码必须输入数字！");
+                    return null;
+                }
+                if (sPwd.Length < 4)
+                {
+                    MsgErr("个人密码请输入 4-8个数字！");
+                    return null;
+                }
+                card.Password = sPwd.FillString(8, "F");
             }
-            */
-        }
-
-        private void BindDto(CardDetail_UI dto, ulong carddate = 0)
-        {
-            /*
-            ulong ul = 0;
-            dto.ID = CardList.Count + 1; //编号
-            if (carddate == 0)
+            //有效期
+            var dtpD = dtpDate.Value; var dtpT = dtpTime.Value;
+            card.Expiry = new DateTime(dtpD.Year, dtpD.Month, dtpD.Day, dtpT.Hour, dtpT.Minute, 59);
+            //有效次数
+            if (cmbOpenTimes.Text == CardDetail_UI.OpenTimes_Invalid)
+                card.OpenTimes = 0;
+            else
             {
-                dto.CardData = ulong.Parse(txtCardData.Text);               //十进制卡号
-                                                                            //十六进制卡号
+                if (cmbOpenTimes.Text == CardDetail_UI.OpenTimes_Off)
+                    card.OpenTimes = 65535;
+                else
+                {
+                    string sTimes = cmbOpenTimes.Text.Replace("次", string.Empty).Trim();
+                    if (sTimes.IsNum())
+                    {
+                        card.OpenTimes = sTimes.ToInt32();
+                    }
+                }
+            }
+
+            //卡状态
+            card.CardStatus = (byte)cmbCardStatus.SelectedIndex;
+
+            CheckBox[] DoorList = { chkDoor1, chkDoor2, chkDoor3, chkDoor4 };
+            ComboBox[] TGList = { cmbTimeGroup1, cmbTimeGroup2, cmbTimeGroup3, cmbTimeGroup4 };
+            ComboBox[] EnterStatusList = { cmbEnterStatus1, cmbEnterStatus2, cmbEnterStatus3, cmbEnterStatus4 };
+            int i;
+            for (i = 1; i <= 4; i++)
+            {
+                //门权限
+                card.SetDoor(i, DoorList[i - 1].Checked);
+                //开门时段
+                card.SetTimeGroup(i, TGList[i - 1].SelectedIndex + 1);
+                //出入状态
+                int value = EnterStatusList[i - 1].SelectedIndex;
+                card.SetEnterStatusValue(i, value);
+            }
+            card.Privilege = cmbPrivilege.SelectedIndex;
+
+            card.HolidayUse = cbHolidayUse.Checked;
+            //节假日
+            if (card.HolidayUse)
+            {
+                string sHol = txtHoliday.Text.Trim();
+                sHol.FillString(32, "0");
+                var chars = sHol.ToCharArray();
+                for (i = 0; i < 32; i++)
+                {
+                    card.SetHolidayValue(i + 1, chars[i] == '1');
+                }
             }
             else
             {
-                dto.CardData = carddate;
+                for (i = 0; i < 4; i++)
+                {
+                    card.Holiday[i] = 0;
+                }
             }
-            dto.CardData16 = txtCardData16.Text;
-            dto.Password = txtPassword.Text;                 //密码
-            dto.Expiry = new DateTime(dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day, dtpTime.Value.Hour, dtpTime.Value.Minute, 0);                     //有效期
-            dto.CardStatus = CardStatusList[cmbCardStatus.SelectedIndex] + "卡";      //卡片状态
-            dto.OpenTimes = cmbOpenTimes.SelectedIndex;                //有效次数
-            if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
-            {
-                dto.OpenTimes = 65535;
-            }
-            dto.door1 = cbbit0.Checked ? "有权限" : "无权限";
-            dto.TimeGroup1 = Convert.ToByte(cmbTimeGroup1.SelectedIndex + 1);       //卡门时段
-            dto.EnterStatus1 = EnterStatusList[cmbEnterStatus1.SelectedIndex];   //出入标志
-
-            dto.door2 = cbbit1.Checked ? "有权限" : "无权限";
-            dto.TimeGroup2 = Convert.ToByte(cmbTimeGroup2.SelectedIndex + 1);       //卡门时段
-            dto.EnterStatus2 = EnterStatusList[cmbEnterStatus2.SelectedIndex];   //出入标志
-
-            dto.door3 = cbbit2.Checked ? "有权限" : "无权限";
-            dto.TimeGroup3 = Convert.ToByte(cmbTimeGroup3.SelectedIndex + 1);       //卡门时段
-            dto.EnterStatus3 = EnterStatusList[cmbEnterStatus3.SelectedIndex];   //出入标志
-
-            dto.door4 = cbbit3.Checked ? "有权限" : "无权限";
-            dto.TimeGroup4 = Convert.ToByte(cmbTimeGroup4.SelectedIndex + 1);       //卡门时段
-            dto.EnterStatus4 = EnterStatusList[cmbEnterStatus4.SelectedIndex];   //出入标志
-
-            dto.Privilege1 = rbutPrivilege1.Checked ? "有效" : "无效";  //首卡
-            dto.Privilege2 = rbutPrivilege2.Checked ? "有效" : "无效";    //常开
-            dto.Privilege3 = rbutPrivilege3.Checked ? "有效" : "无效";    //巡更
-            dto.Privilege4 = rbutPrivilege4.Checked ? "有效" : "无效";    //防盗设置卡
-            dto.Holiday = txtHoliday.Text;  //节假日
-            dto.HolidayUse = cbHolidayUse.Checked ? "有效" : "无效";  //使用节假日
-            */
+            return card;
         }
+        private CardDetailBase AddCardDetailToList()
+        {
+            CardDetailBase card = ContorlToCardDetail();
+            if (card == null) return null;
+            //检查卡片是否已存在
+            if (CardHashTable.Contains(card.CardData))
+            {
+                int iCount = CardList.Count;
+                for (int i = 0; i < iCount; i++)
+                {
+                    if (CardList[i].CardDetail.CardData == card.CardData)
+                    {
+                        CardList[i].CardDetail = card;
+                        CardList.ResetItem(i);
+                        break;
+                    }
+                }
+
+            }
+            else
+            {
+                CardHashTable.Add(card.CardData);
+                CardList.Add(new CardDetail_UI(card));
+
+            }
+            return card;
+        }
+
+        /// <summary>
+        /// 新增至列表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butInsertList_Click(object sender, EventArgs e)
+        {
+            CardDetailBase card = AddCardDetailToList();
+
+        }
+
+        /// <summary>
+        /// 增加至设备 写入非排序区
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnAddDevice_Click(object sender, EventArgs e)
+        {
+            CardDetailBase card = AddCardDetailToList();
+            if (card == null) return;
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            cmdDtl.Timeout = 10000;
+            INCommand cmd;
+
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            {
+
+                List<FC89H.Data.CardDetail> cards = new List<FC89H.Data.CardDetail>();
+                cards.Add((FC89H.Data.CardDetail)card);
+                var par = new FC89H.Card.CardListBySequence.WriteCardListBySequence_Parameter(cards);
+                cmd = new FC89H.Card.CardListBySequence.WriteCardListBySequence(cmdDtl, par);
+            }
+            else
+            {
+                List<FC8800.Data.CardDetail> cards = new List<CardDetail>();
+                cards.Add(new FC8800.Data.CardDetail(card));
+                var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(cards);
+                cmd = new FC8800.Card.CardListBySequence.WriteCardListBySequence(cmdDtl, par);
+            }
+
+
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmd.getResult() as FC8800.Card.WriteCardList_Result;
+                WriteCardCallBlack(cmde, result);
+            };
+        }
+
         #endregion
 
         /// <summary>
@@ -688,7 +751,7 @@ namespace FCARDIO.Protocol.Door.Test
         private void butClearGrid_Click(object sender, EventArgs e)
         {
             CardList.Clear();
-            CardDic.Clear();
+            CardHashTable.Clear();
         }
 
         /// <summary>
@@ -812,7 +875,7 @@ namespace FCARDIO.Protocol.Door.Test
 
 
             //检查卡片是否重复
-            if (CardDic.ContainsKey(cardNum))
+            if (CardHashTable.Contains(cardNum))
             {
                 if (iCardNum == 0)
                 {
@@ -846,80 +909,155 @@ namespace FCARDIO.Protocol.Door.Test
         /// <param name="e"></param>
         private void ButDelList_Click(object sender, EventArgs e)
         {
-            var lst = CardList.Where(t => t.Selected = true).ToArray();
+            var lst = CardList.Where(t => t.Selected == false).ToArray();
 
+            if (lst.Length == 0)
+                return;
 
             CardList.RaiseListChangedEvents = false;
             CardList.Clear();
-            CardDic.Clear();
+            CardHashTable.Clear();
             foreach (var c in lst)
             {
                 CardList.Add(c);
-                CardDic.Add(c.CardDetail.CardData, c.CardDetail);
+                CardHashTable.Add(c.CardDetail.CardData);
             }
             CardList.RaiseListChangedEvents = true;
             CardList.ResetBindings();
         }
 
-        private void BtnDelDevice_Click(object sender, EventArgs e)
-        {
-            List<CardDetail> _cardList = new List<CardDetail>();
-            _cardList.Add(new CardDetail() { CardData = ulong.Parse(txtCardData.Text) });
-            var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Card.DeleteCard.DeleteCard_Parameter(_cardList);
-            var cmd = new FC8800.Card.DeleteCard.DeleteCard(cmdDtl, par);
-            mMainForm.AddCommand(cmd);
-
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
-        }
-
-        private void BtnDelSelect_Click(object sender, EventArgs e)
-        {
-
-        }
-
         /// <summary>
-        /// 增加至设备 写入非排序区
+        /// 从设备删除单张卡
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnAddDevice_Click(object sender, EventArgs e)
+        private void BtnDelDevice_Click(object sender, EventArgs e)
         {
-            /*
-            List<FC8800.Data.CardDetail> _cardList = new List<FC8800.Data.CardDetail>();
-
-            CardDetail_UI dto = new CardDetail_UI();
-
-            dto.CardData = Convert.ToUInt64(txtCardData.Text);
-            dto.CardData16 = GetCardDataHex(dto.CardData);
-
-            BindDto(dto);
-            _cardList.Add(ConvertModel(dto));
-
-            //par 需要传输 失败卡数量 FailTotal 和失败的卡列表 List<FC8800.Data.CardDetail> CardList;
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Card.CardListBySequence.WriteCardListBySequence_Parameter(_cardList);
-            var cmd = new FC8800.Card.CardListBySequence.WriteCardListBySequence(cmdDtl, par);
-            mMainForm.AddCommand(cmd);
-
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            cmdDtl.Timeout = 15000;
+            cmdDtl.RestartCount = 0;
+            INCommand cmd = null;
+            CardDetailBase card = ContorlToCardDetail();
+            if (card == null) return;
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
             {
-                //var result = cmd.getResult() as FC8800.Card.CardListBySequence.WriteCardListBySequence_Result;
-                //if (result != null)
-                //{
-                //    mMainForm.AddCmdLog(cmde, $"命令成功：失败卡数量:{result.FailTotal},失败的卡列表:{result.CardList.ToString()}");
-                //}
-            };
-            */
+
+                List<FC89H.Data.CardDetail> cards = new List<FC89H.Data.CardDetail>();
+                cards.Add((FC89H.Data.CardDetail)card);
+                var par = new FC89H.Card.DeleteCard.DeleteCard_Parameter(cards);
+                cmd = new FC89H.Card.DeleteCard.DeleteCard(cmdDtl, par);
+
+            }
+            else
+            {
+                List<FC8800.Data.CardDetail> cards = new List<CardDetail>();
+                cards.Add(new FC8800.Data.CardDetail(card));
+                var par = new FC8800.Card.DeleteCard.DeleteCard_Parameter(cards);
+                cmd = new FC8800.Card.DeleteCard.DeleteCard(cmdDtl, par);
+            }
+
+            mMainForm.AddCommand(cmd);
+        }
+        /// <summary>
+        /// 从设备删除选中卡
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnDelSelect_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            cmdDtl.Timeout = 15000;
+            cmdDtl.RestartCount = 0;
+            INCommand cmd = null;
+
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            {
+
+                List<FC89H.Data.CardDetail> cards = new List<FC89H.Data.CardDetail>();
+                foreach (var item in CardList)
+                {
+                    if (item.Selected)
+                        cards.Add(new FC89H.Data.CardDetail(item.CardDetail));
+                }
+                if (cards.Count > 0)
+                {
+                    var par = new FC89H.Card.DeleteCard.DeleteCard_Parameter(cards);
+                    cmd = new FC89H.Card.DeleteCard.DeleteCard(cmdDtl, par);
+                }
+
+            }
+            else
+            {
+                List<FC8800.Data.CardDetail> cards = new List<CardDetail>();
+                foreach (var item in CardList)
+                {
+                    if (item.Selected)
+                    {
+                        if (item.CardDetail.CardData < UInt32.MaxValue)
+                        {
+                            cards.Add(new FC8800.Data.CardDetail(item.CardDetail));
+                        }
+                    }
+                }
+                if (cards.Count > 0)
+                {
+                    var par = new FC8800.Card.DeleteCard.DeleteCard_Parameter(cards);
+                    cmd = new FC8800.Card.DeleteCard.DeleteCard(cmdDtl, par);
+                }
+            }
+            if (cmd == null)
+            {
+                MsgErr("没有需要删除的卡片！");
+                return;
+            }
+
+
+            mMainForm.AddCommand(cmd);
         }
 
+
+
+        #region 卡片转换
+        private bool mCardChanging;
         private void TxtCardData_TextChanged(object sender, EventArgs e)
         {
+            if (mCardChanging) return;
+            mCardChanging = true;
+            string sCard = txtCardData.Text.Trim();
+            if (!sCard.IsNum())
+            {
+                txtCardData.Text = "0";
+                txtCardData16.Text = "00";
+                mCardChanging = false;
+                return;
+            }
+            UInt64 card = sCard.ToUInt64();
 
+            txtCardData16.Text = card.ToString("X16");
+            mCardChanging = false;
         }
+
+        private void TxtCardData16_TextChanged(object sender, EventArgs e)
+        {
+            if (mCardChanging) return;
+            mCardChanging = true;
+            string sCardHex = txtCardData16.Text.Trim();
+            if (!sCardHex.IsHex())
+            {
+                txtCardData.Text = "0";
+                txtCardData16.Text = "00";
+                mCardChanging = false;
+                return;
+            }
+            UInt64 card = sCardHex.HexToUInt64();
+
+
+            txtCardData.Text = card.ToString("d20");
+            mCardChanging = false;
+        }
+
+        #endregion
+
 
     }
 }

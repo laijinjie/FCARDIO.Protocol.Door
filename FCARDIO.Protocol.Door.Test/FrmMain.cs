@@ -1023,19 +1023,12 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC89H.Card.CardListBySort.WriteCardListBySort).FullName, "上传卡片到排序区");
             mCommandClasss.Add(typeof(FC8800.Card.CardListBySequence.WriteCardListBySequence).FullName, "上传卡片到顺序区");
             mCommandClasss.Add(typeof(FC89H.Card.CardListBySequence.WriteCardListBySequence).FullName, "上传卡片到顺序区");
-
-
-
-
-
-            mCommandClasss.Add(typeof(FC8800.Card.CardDatabaseDetail.ReadCardDatabaseDetail).FullName, "读取卡片存储详情");
-            mCommandClasss.Add(typeof(FC89H.Card.CardDataBase.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
-            mCommandClasss.Add(typeof(FC8800.Card.CardDataBase.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
-            mCommandClasss.Add(typeof(FC8800.Card.ClearCardDataBase.ClearCardDataBase).FullName, "从控制器中清空所有卡片");
-            mCommandClasss.Add(typeof(FC89H.Card.CardDetail.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
-            mCommandClasss.Add(typeof(FC8800.Card.CardDetail.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
+            mCommandClasss.Add(typeof(FC8800.Card.DeleteCard.DeleteCard).FullName, "从控制器删除卡片");
+            mCommandClasss.Add(typeof(FC89H.Card.DeleteCard.DeleteCard).FullName, "从控制器删除卡片");
             
-                
+
+
+
 
         }
 
