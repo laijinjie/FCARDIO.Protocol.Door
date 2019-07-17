@@ -27,7 +27,7 @@ namespace FCARDIO.Protocol.Door.FC89H.Transaction.ReadTransactionDatabaseByIndex
         /// </summary>
         static ReadTransactionDatabaseByIndex()
         {
-            NewTransactionTable = new Func<AbstractTransaction>[6];
+            NewTransactionTable = new Func<AbstractTransaction>[7];
             NewTransactionTable[1] = () => new FC89H.Data.CardTransaction();//读卡记录
             NewTransactionTable[2] = () => new ButtonTransaction();//出门开关记录
             NewTransactionTable[3] = () => new DoorSensorTransaction();//门磁记录

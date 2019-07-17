@@ -29,6 +29,7 @@ namespace FCARDIO.Protocol.Door.Test
         ConnectorObserverHandler mObserver;
         private static HashSet<Form> NodeForms;
         private static HashSet<string> FC89HSNTable;
+        private static string[] TransactionTypeName;
 
 
         private void Invoke(Action p)
@@ -48,6 +49,7 @@ namespace FCARDIO.Protocol.Door.Test
         static frmMain()
         {
             NodeForms = new HashSet<Form>();
+            IniCommandClassNameList();
 
             FC89HSNTable = new HashSet<string>();
             FC89HSNTable.Add("FC-8910H");
@@ -58,6 +60,15 @@ namespace FCARDIO.Protocol.Door.Test
             FC89HSNTable.Add("MC-5924T");
             FC89HSNTable.Add("MC-5948T");
             FC89HSNTable.Add("MC-5926T");
+
+            TransactionTypeName = new string[7];
+            TransactionTypeName[1] = "读卡记录";
+            TransactionTypeName[2] = "出门开关记录";
+            TransactionTypeName[3] = "门磁记录";
+            TransactionTypeName[4] = "软件操作记录";
+            TransactionTypeName[5] = "报警记录";
+            TransactionTypeName[6] = "系统记录";
+
         }
 
         public static void AddNodeForms(Form frm)
@@ -114,7 +125,7 @@ namespace FCARDIO.Protocol.Door.Test
             IniConnTypeList();
             IniLstIO();
             InilstCommand();
-            IniCommandClassNameList();
+            
             Task.Run((Action)ShowCommandProcesslog);
         }
 
@@ -879,7 +890,7 @@ namespace FCARDIO.Protocol.Door.Test
         /// <summary>
         /// 保存命令类型的功能名称
         /// </summary>
-        private Dictionary<string, string> mCommandClasss;
+        private static Dictionary<string, string> mCommandClasss;
 
         /// <summary>
         /// 协议类型
@@ -888,7 +899,7 @@ namespace FCARDIO.Protocol.Door.Test
         /// <summary>
         /// 初始化命令类型的功能名称
         /// </summary>
-        private void IniCommandClassNameList()
+        private static void IniCommandClassNameList()
         {
             mCommandClasss = new Dictionary<string, string>();
 
@@ -1706,8 +1717,22 @@ namespace FCARDIO.Protocol.Door.Test
         private void MAllocator_TransactionMessage(INConnectorDetail connector, Core.Data.INData EventData)
         {
             FC8800Transaction fcTrn = EventData as FC8800Transaction;
-
-            AddCmdLog(null, "发送消息的SN：" + fcTrn.SN);
+            StringBuilder strbuf = new StringBuilder();
+        
+            strbuf.Append("SN:").Append(fcTrn.SN).Append("；消息类型：").Append(TransactionTypeName[fcTrn.CmdIndex]).Append("；时间：").Append(fcTrn.EventData.TransactionDate.ToDateTimeStr());
+            strbuf.Append("；事件代码：").Append(fcTrn.EventData.TransactionCode);
+            if(fcTrn.CmdIndex == 1)
+            {
+                FC8800.Data.CardTransaction cardtrn = fcTrn.EventData as FC8800.Data.CardTransaction;
+                strbuf.Append("；卡号：").Append(cardtrn.CardData).Append("；门号：").Append(cardtrn.DoorNum().ToString());
+                strbuf.Append(cardtrn.IsEnter()?"(进门)":"(出门)");
+            }
+            if(fcTrn.CmdIndex>1 && fcTrn.CmdIndex<6)
+            {
+                FC8800.Data.AbstractDoorTransaction cardtrn = fcTrn.EventData as FC8800.Data.AbstractDoorTransaction;
+                strbuf.Append("；门号：").Append(cardtrn.Door);
+            }
+            AddCmdLog(null, strbuf.ToString());
         }
 
 
