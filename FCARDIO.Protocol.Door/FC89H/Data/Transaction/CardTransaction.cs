@@ -64,21 +64,14 @@ namespace FCARDIO.Protocol.Door.FC89H.Data
     public class CardTransaction : FC8800.Data.CardTransaction
     {
         /// <summary>
-        /// 初始化参数
-        /// </summary>
-        public CardTransaction()
-        {
-
-        }
-        /// <summary>
         /// 从buf中读取卡号数据
         /// </summary>
         /// <param name="data"></param>
         protected override void ReadCardData(IByteBuffer data)
         {
-            //data.ReadByte();
+            data.ReadByte();
 
-            CardData = data.ReadLong();
+            CardData = (UInt64)data.ReadLong();
         }
 
 

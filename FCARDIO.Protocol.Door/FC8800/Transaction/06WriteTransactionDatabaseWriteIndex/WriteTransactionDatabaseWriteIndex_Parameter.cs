@@ -22,7 +22,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.WriteTransactionDatabaseWrite
         ///  5  报警记录
         ///  6  系统记录
         /// </summary>
-        public e_TransactionDatabaseType DatabaseType;
+        public e_TransactionDatabaseType TransactionType;
 
        /// <summary>
        /// 数据库中的写索引号
@@ -30,10 +30,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.WriteTransactionDatabaseWrite
         /// </summary>
         public int WriteIndex;
 
-        /// <summary>
-        /// 初始化参数
-        /// </summary>
-        public WriteTransactionDatabaseWriteIndex_Parameter(){}
+
 
         /// <summary>
         /// 创建结构
@@ -43,7 +40,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.WriteTransactionDatabaseWrite
         public WriteTransactionDatabaseWriteIndex_Parameter
 (e_TransactionDatabaseType _DatabaseType, int _WriteIndex)
         {
-            DatabaseType = _DatabaseType;
+            TransactionType = _DatabaseType;
             WriteIndex = _WriteIndex;
         }
         /// <summary>
@@ -84,7 +81,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.WriteTransactionDatabaseWrite
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.WriteByte((byte)DatabaseType);
+            databuf.WriteByte((byte)TransactionType);
             databuf.WriteInt(WriteIndex);
             return databuf;
         }

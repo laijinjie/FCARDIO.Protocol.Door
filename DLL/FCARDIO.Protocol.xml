@@ -187,7 +187,7 @@ FCARDIO.Protocol
  事务工厂，用于处理获取各种类型的事物的类型
  </summary>
 </member>
-<member name="M:FCARDIO.Protocol.FC8800.FC8800RequestHandle.#ctor(DotNetty.Buffers.IByteBufferAllocator,System.Func{System.String,System.Byte,System.Byte,System.Type})">
+<member name="M:FCARDIO.Protocol.FC8800.FC8800RequestHandle.#ctor(DotNetty.Buffers.IByteBufferAllocator,System.Func{System.String,System.Byte,System.Byte,FCARDIO.Protocol.Transaction.AbstractTransaction})">
  <summary>
  
  </summary>
@@ -370,6 +370,11 @@ FCARDIO.Protocol
  表示一个事务
  </summary>
 </member>
+<member name="F:FCARDIO.Protocol.Transaction.AbstractTransaction._SerialNumber">
+ <summary>
+ 事务序列号
+ </summary>
+</member>
 <member name="F:FCARDIO.Protocol.Transaction.AbstractTransaction._TransactionDate">
  <summary>
  事务时间
@@ -388,6 +393,73 @@ FCARDIO.Protocol
 <member name="F:FCARDIO.Protocol.Transaction.AbstractTransaction._IsNull">
  <summary>
  记录是否为空记录
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.Transaction.AbstractTransaction.SerialNumber">
+ <summary>
+ 事务序列号
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.Transaction.AbstractTransaction.SetSerialNumber(System.Int32)">
+ <summary>
+ 设置记录的事务序号--一般是逻辑存储序号
+ </summary>
+ <param name="num">事务序号</param>
+</member>
+<member name="P:FCARDIO.Protocol.Transaction.AbstractTransaction.TransactionDate">
+ <summary>
+ 事务时间
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.Transaction.AbstractTransaction.TransactionType">
+ <summary>
+ 事务类型
+ </summary>
+</member>
+<member name="P:FCARDIO.Protocol.Transaction.AbstractTransaction.TransactionCode">
+ <summary>
+ 事务代码
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.Transaction.AbstractTransaction.IsNull">
+ <summary>
+ 记录是否为空记录
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.Transaction.AbstractTransaction.SetBytes(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将一个缓冲区 ByteBuf 设置到数据结构中
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.Transaction.AbstractTransaction.GetDataLen">
+ <summary>
+ 获取数据的字节长度
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.Transaction.AbstractTransaction.GetBytes">
+ <summary>
+ 获取一个 ByteBuf 此 缓冲中包含了此数据结构的所有数据  --- 此功能未实现
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.Transaction.AbstractTransaction.GetBytes(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将数据序列化到指定的 ByteBuf 中  --- 此功能未实现
+ </summary>
+ <param name="databuf">具有足够缓冲空间的bytebuf</param>
+ <returns>返回传入的bytebuf</returns>
+</member>
+<member name="M:FCARDIO.Protocol.Transaction.AbstractTransaction.CheckNull(DotNetty.Buffers.IByteBuffer,System.Int32)">
+ <summary>
+ 检查记录是否为空
+ </summary>
+ <param name="databuf">记录缓冲区</param>
+ <param name="iCheckLen">需要检查的数据长度</param>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.Transaction.AbstractTransaction.ReadNullRecord(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将记录所有字节从缓冲区中读出，但不处理
  </summary>
 </member>
 <member name="T:FCARDIO.Protocol.Transaction.INTransaction">

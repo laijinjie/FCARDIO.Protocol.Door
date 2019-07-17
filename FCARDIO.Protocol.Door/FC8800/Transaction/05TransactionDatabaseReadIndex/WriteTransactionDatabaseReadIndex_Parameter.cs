@@ -33,11 +33,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseReadIndex
         public bool IsCircle;
 
         /// <summary>
-        /// 初始化参数
-        /// </summary>
-        public WriteTransactionDatabaseReadIndex_Parameter(){}
-
-        /// <summary>
         /// 创建结构
         /// </summary>
         /// <param name="_DatabaseType">记录数据库类型</param>

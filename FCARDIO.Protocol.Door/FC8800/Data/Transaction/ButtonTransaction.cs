@@ -20,7 +20,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// <summary>
         /// 初始化参数
         /// </summary>
-        public ButtonTransaction():base(2)
+        public ButtonTransaction():base(2)//2	出门开关记录
         {
 
         }

@@ -1,4 +1,5 @@
 ﻿using FCARDIO.Protocol.Door.FC8800.Data;
+using FCARDIO.Protocol.Transaction;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

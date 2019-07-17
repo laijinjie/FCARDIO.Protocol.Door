@@ -2,6 +2,7 @@
 using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800.Data;
 using FCARDIO.Protocol.OnlineAccess;
+using FCARDIO.Protocol.Transaction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,24 +16,24 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
     /// 按指定索引号开始读指定类型的记录数据库，并读取指定数量。
     /// 成功返回结果参考 ReadTransactionDatabaseByIndex_Result 
     /// </summary>
-    /// <typeparam name="T">CardTransaction</typeparam>
-    public abstract class ReadTransactionDatabaseByIndex_Base<T> : FC8800Command_ReadParameter where T : CardTransaction, new()
+    public abstract class ReadTransactionDatabaseByIndex_Base : FC8800Command_ReadParameter
     {
+
         /// <summary>
         /// ByteBuffer 队列
         /// </summary>
-        private Queue<IByteBuffer> mBufs;
+        protected Queue<IByteBuffer> mBufs;
 
         /// <summary>
-        /// 输入参数
+        /// 事务类型
         /// </summary>
-        ReadTransactionDatabaseByIndex_Parameter mPar;
+        protected int mTransactionType;
         /// <summary>
         /// 初始化命令结构
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter"></param>
-        public ReadTransactionDatabaseByIndex_Base(INCommandDetail cd, ReadTransactionDatabaseByIndex_Parameter parameter) : base(cd, parameter) { mPar = parameter; mBufs = new Queue<IByteBuffer>(); }
+        public ReadTransactionDatabaseByIndex_Base(INCommandDetail cd, ReadTransactionDatabaseByIndex_Parameter parameter) : base(cd, parameter) {  }
 
         /// <summary>
         /// 检查参数
@@ -43,6 +44,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         {
             ReadTransactionDatabaseByIndex_Parameter model = value as ReadTransactionDatabaseByIndex_Parameter;
             if (model == null) return false;
+            mTransactionType = model.TransactionType;
+
             return model.checkedParameter();
         }
 
@@ -51,8 +54,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x08, 0x04, 0x00, 0x01 + 0x04 + 4, GetCmdData());
-            _ProcessMax = 0;
+            Packet(0x08, 0x04, 0x00, 0x09, GetCmdData());
+            mBufs = new Queue<IByteBuffer>();
 
         }
 
@@ -60,12 +63,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// 获取参数结构的字节编码
         /// </summary>
         /// <returns></returns>
-        private IByteBuffer GetCmdData()
+        protected virtual IByteBuffer GetCmdData()
         {
             ReadTransactionDatabaseByIndex_Parameter model = _Parameter as ReadTransactionDatabaseByIndex_Parameter;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
             model.GetBytes(buf);
+            _ProcessMax = model.Quantity;
             return buf;
         }
 
@@ -79,7 +83,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
             {
                 var buf = oPck.CmdData;
                 int iSize = buf.GetInt(0);
-                _ProcessMax += iSize;
+                _ProcessStep += iSize;
                 buf.Retain();
                 mBufs.Enqueue(buf);
 
@@ -90,25 +94,43 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
                 var buf = oPck.CmdData;
                 int iSize = buf.ReadInt();
                 ReadTransactionDatabaseByIndex_Result result = new ReadTransactionDatabaseByIndex_Result();
-                result.DatabaseType = (e_TransactionDatabaseType)mPar.DatabaseType;
-                result.ReadIndex = mPar.ReadIndex;
+                ReadTransactionDatabaseByIndex_Parameter par = _Parameter as ReadTransactionDatabaseByIndex_Parameter;
+                result.TransactionType = (e_TransactionDatabaseType)mTransactionType;
+                result.ReadIndex = par.ReadIndex;
                 result.Quantity = iSize;
                 _Result = result;
                 if (iSize > 0)
                 {
                     Analysis();
                 }
+                _ProcessStep = _ProcessMax;
+                fireCommandProcessEvent();
 
                 CommandCompleted();
 
             }
 
         }
+
+        /// <summary>
+        /// 清空缓冲区
+        /// </summary>
+        protected virtual  void ClearBuf()
+        {
+            while(mBufs.Count>0)
+            {
+                var buf = mBufs.Dequeue();
+                buf.Release();
+                buf = null;
+            }
+        }
+
         /// <summary>
         /// 命令重发时需要的函数
         /// </summary>
         protected override void CommandReSend()
         {
+            ClearBuf();
             return;
         }
         /// <summary>
@@ -116,43 +138,26 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// </summary>
         protected override void Release1()
         {
+            ClearBuf();
+            mBufs = null;
             return;
         }
 
         /// <summary>
+        /// 获取一个事务实体
+        /// </summary>
+        /// <returns></returns>
+        protected abstract AbstractTransaction GetNewTransaction();
+
+        /// <summary>
         /// 分析缓冲中的数据包
         /// </summary>
-        protected void Analysis()
+        protected virtual void Analysis()
         {
             ReadTransactionDatabaseByIndex_Result result = (ReadTransactionDatabaseByIndex_Result)_Result;
             result.TransactionList = new List<AbstractTransaction>();
-            Type TransactionType;
-            switch (result.DatabaseType)
-            {
-                case e_TransactionDatabaseType.OnCardTransaction:
-                    TransactionType = typeof(T);
-                    break;
-                case e_TransactionDatabaseType.OnButtonTransaction:
-                    TransactionType = typeof(ButtonTransaction);
-                    break;
-                case e_TransactionDatabaseType.OnDoorSensorTransaction:
-                    TransactionType = typeof(DoorSensorTransaction);
-                    break;
-                case e_TransactionDatabaseType.OnSoftwareTransaction:
-                    TransactionType = typeof(SoftwareTransaction);
-                    break;
-                case e_TransactionDatabaseType.OnAlarmTransaction:
-                    TransactionType = typeof(AlarmTransaction);
-                    break;
-                case e_TransactionDatabaseType.OnSystemTransaction:
-                    TransactionType = typeof(SystemTransaction);
-                    break;
-                default:
-                    result.Quantity = 0;
-                    return;
 
-            }
-            while (mBufs.Count > 0 && mBufs.Peek() != null)
+            while (mBufs.Count > 0)
             {
                 IByteBuffer buf = mBufs.Dequeue();
                 int iSize = buf.ReadInt();
@@ -161,20 +166,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
                 {
                     try
                     {
-                        AbstractTransaction cd = Activator.CreateInstance(TransactionType) as AbstractTransaction;
-                        cd.SerialNumber = buf.ReadInt();
+                        AbstractTransaction cd = GetNewTransaction();
+                        cd.SetSerialNumber(buf.ReadInt());
                         cd.SetBytes(buf);
                         result.TransactionList.Add(cd);
-                        _ProcessStep++;
                     }
                     catch (Exception e)
                     {
-                        result.Quantity = 0;
-                        return;
+
                     }
 
                 }
-                //buf = null;
+                buf.Release();//要释放
+                buf = null;
             }
         }
     }

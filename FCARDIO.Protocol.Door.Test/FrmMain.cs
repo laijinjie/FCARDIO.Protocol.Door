@@ -18,6 +18,7 @@ using FCARDIO.Core.Connector.TCPServer.Client;
 using FCARDIO.Core.Connector.UDP;
 using FCARDIO.Core.Extension;
 using FCARDIO.Protocol.Door.FC8800.Door.ReaderOption;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.Watch;
 using FCARDIO.Protocol.FC8800;
 
 namespace FCARDIO.Protocol.Door.Test
@@ -27,6 +28,9 @@ namespace FCARDIO.Protocol.Door.Test
         ConnectorAllocator mAllocator;
         ConnectorObserverHandler mObserver;
         private static HashSet<Form> NodeForms;
+        private static HashSet<string> FC89HSNTable;
+
+
         private void Invoke(Action p)
         {
             try
@@ -44,6 +48,16 @@ namespace FCARDIO.Protocol.Door.Test
         static frmMain()
         {
             NodeForms = new HashSet<Form>();
+
+            FC89HSNTable = new HashSet<string>();
+            FC89HSNTable.Add("FC-8910H");
+            FC89HSNTable.Add("FC-8920H");
+            FC89HSNTable.Add("FC-8940H");
+            FC89HSNTable.Add("MC-5912T");
+            FC89HSNTable.Add("MC-5912T");
+            FC89HSNTable.Add("MC-5924T");
+            FC89HSNTable.Add("MC-5948T");
+            FC89HSNTable.Add("MC-5926T");
         }
 
         public static void AddNodeForms(Form frm)
@@ -85,6 +99,8 @@ namespace FCARDIO.Protocol.Door.Test
             mAllocator.CommandTimeout += mAllocator_CommandTimeout;
             mAllocator.AuthenticationErrorEvent += MAllocator_AuthenticationErrorEvent;
 
+            mAllocator.TransactionMessage += MAllocator_TransactionMessage;
+
             mAllocator.ConnectorConnectedEvent += mAllocator_ConnectorConnectedEvent;
             mAllocator.ConnectorClosedEvent += mAllocator_ConnectorClosedEvent;
             mAllocator.ConnectorErrorEvent += mAllocator_ConnectorErrorEvent;
@@ -101,6 +117,7 @@ namespace FCARDIO.Protocol.Door.Test
             IniCommandClassNameList();
             Task.Run((Action)ShowCommandProcesslog);
         }
+
 
 
 
@@ -622,7 +639,7 @@ namespace FCARDIO.Protocol.Door.Test
         }
 
         #region 通讯日志
-        private bool mShowIOEvent=true;
+        private bool mShowIOEvent = true;
         private void chkShowIO_CheckedChanged(object sender, EventArgs e)
         {
             mShowIOEvent = chkShowIO.Checked;
@@ -1604,6 +1621,96 @@ namespace FCARDIO.Protocol.Door.Test
 
         }
 
+        #region 数据监控
 
+
+        private void buWatch_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            INConnector cnt = mAllocator.GetConnector(cmdDtl.Connector);
+            if (cnt == null)
+            {
+                //未开启监控
+                mAllocator.OpenConnector(cmdDtl.Connector);
+                cnt = mAllocator.GetConnector(cmdDtl.Connector);
+
+            }
+
+            BeginWatch cmd = new BeginWatch(cmdDtl);
+            AddCommand(cmd);
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                AddCmdLog(cmde, "已开启监控");
+            };
+
+            //使通道保持连接不关闭
+            cnt.OpenForciblyConnect();
+            FC8800RequestHandle fC8800Request =
+                new FC8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
+            cnt.RemoveRequestHandle(typeof(FC8800RequestHandle));//先删除，防止已存在就无法添加。
+            cnt.AddRequestHandle(fC8800Request);
+
+
+
+        }
+
+        /// <summary>
+        /// 用于根据SN，命令参数、命令索引生产用于处理对应消息的处理类工厂函数
+        /// </summary>
+        /// <param name="sn"></param>
+        /// <param name="cmdIndex"></param>
+        /// <param name="cmdPar"></param>
+        /// <returns></returns>
+        private Transaction.AbstractTransaction RequestHandleFactory(string sn, byte cmdIndex, byte cmdPar)
+        {
+            bool bIsFC89H = true;
+
+            bIsFC89H = FC89HSNTable.Contains(sn.Substring(0, 8));
+
+            //在这里需要根据SN进行类型判定，也可以根据SN来进行查表
+            if (cmdIndex >= 1 && cmdIndex <= 6)
+            {
+                if (bIsFC89H)
+                {
+                    return FC89H.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
+                }
+                else
+                {
+                    return FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
+                }
+            }
+            switch (cmdIndex)
+            {
+                case 0x23://连接确认信息
+                    break;
+                case 0x22://连接测试--心跳保活包
+                    break;
+                default:
+                    break;
+            }
+            return null;
+        }
+
+
+
+
+
+        /// <summary>
+        /// 监控消息
+        /// </summary>
+        /// <param name="connector"></param>
+        /// <param name="EventData"></param>
+        private void MAllocator_TransactionMessage(INConnectorDetail connector, Core.Data.INData EventData)
+        {
+            FC8800Transaction fcTrn = EventData as FC8800Transaction;
+
+            AddCmdLog(null, "发送消息的SN：" + fcTrn.SN);
+        }
+
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DotNetty.Buffers;
+using FCARDIO.Protocol.Transaction;
 using FCARDIO.Protocol.Util;
 using System;
 using System.Collections.Generic;
@@ -29,51 +30,41 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     public class SystemTransaction : AbstractTransaction
     {
         /// <summary>
-        /// 
+        /// 创建一个系统记录
         /// </summary>
         public SystemTransaction()
         {
-            TransactionType = 6;
+            _TransactionType = 6;//6	系统记录
         }
 
         /// <summary>
-        /// 
+        /// 指示一个事务记录所占用的缓冲区长度
         /// </summary>
         /// <returns></returns>
-        public int GetDataLen()
+        public override int GetDataLen()
         {
             return 8;
         }
 
         /// <summary>
-        /// 
+        /// 使用缓冲区构造一个事务实例
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="data">缓冲区</param>
         public override void SetBytes(IByteBuffer data)
         {
             try
             {
-                short code = data.ReadByte();
-                if (code == 255)
-                {
-                    IsNull = true;
-                    //return;
-                }
-                TransactionCode = code;
-                byte[] btTime = new byte[6];
-                data.ReadBytes(btTime, 0, 6);
-                if (btTime[0] == 255)
-                {
-                    IsNull = true;
-                    //return;
-                }
-                TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhh(btTime);
-                data.ReadByte();//占位
+                _IsNull = CheckNull(data, 2);
 
-                if (TransactionCode == 0)
+                if (_IsNull)
                 {
-                    IsNull = true;
+                    ReadNullRecord(data);
+                    return;
                 }
+
+                _TransactionCode = data.ReadByte();
+                _TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhhmmss(data);
+                data.ReadByte();
             }
             catch (Exception e)
             {

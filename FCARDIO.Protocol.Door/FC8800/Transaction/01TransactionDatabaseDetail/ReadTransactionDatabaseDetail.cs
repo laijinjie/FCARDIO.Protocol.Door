@@ -13,23 +13,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseDetail
     /// 读取控制器中的卡片数据库信息
     /// </summary>
     public class ReadTransactionDatabaseDetail
-        : FC8800CommandEx
+        : FC8800Command_ReadParameter
     {
         /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="detail"></param>
         public ReadTransactionDatabaseDetail(INCommandDetail detail) : base(detail, null) { }
-
-        /// <summary>
-        /// 检查参数
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        protected override bool CheckCommandParameter(INCommandParameter value)
-        {
-            return true;
-        }
 
         /// <summary>
         /// 创建一个通讯指令

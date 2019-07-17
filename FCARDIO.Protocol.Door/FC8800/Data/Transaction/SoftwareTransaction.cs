@@ -27,9 +27,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     public class SoftwareTransaction : AbstractDoorTransaction
     {
         /// <summary>
-        /// 
+        /// 创建一个软件操作记录
         /// </summary>
-        public SoftwareTransaction():base(4)
+        public SoftwareTransaction():base(4)//4	软件操作记录
         {
 
         }

@@ -1,4 +1,5 @@
 ﻿using DotNetty.Buffers;
+using FCARDIO.Protocol.Transaction;
 using FCARDIO.Protocol.Util;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     /// <summary>
     /// 关于门的事件抽象类
     /// </summary>
-    public class AbstractDoorTransaction : AbstractTransaction
+    public abstract class AbstractDoorTransaction : SystemTransaction
     {
         /// <summary>
         /// 门号
@@ -23,33 +24,28 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// <param name="type"></param>
         public AbstractDoorTransaction(int type)
         {
-            TransactionType = (short)type;
+            _TransactionType = (short)type;
         }
 
         /// <summary>
-        /// 
+        /// 使用缓冲区构造一个事务实例
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="data">缓冲区</param>
         public override void SetBytes(IByteBuffer data)
         {
             try
             {
+                _IsNull = CheckNull(data, 2);
+
+                if(_IsNull)
+                {
+                    ReadNullRecord(data);
+                    return;
+                }
+
                 Door = data.ReadByte();
-                byte[] btTime = new byte[6];
-                data.ReadBytes(btTime, 0, 6);
-
-                if ((btTime[0]) == 255)
-                {
-                    IsNull = true;
-                    //return;
-                }
-
-                TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhh(btTime);
-                TransactionCode = data.ReadByte();
-                if (TransactionCode == 0)
-                {
-                    IsNull = true;
-                }
+                _TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhhmmss(data);
+                _TransactionCode = data.ReadByte();
             }
             catch (Exception e)
             {

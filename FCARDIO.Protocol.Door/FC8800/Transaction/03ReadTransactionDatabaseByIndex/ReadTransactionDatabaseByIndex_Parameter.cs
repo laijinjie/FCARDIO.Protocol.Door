@@ -22,7 +22,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         ///  5 报警记录
         ///  6 系统记录
         /// </summary>
-        public int DatabaseType;
+        public int TransactionType;
 
         /// <summary>
         /// 读索引号
@@ -42,7 +42,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// <param name="_Quantity">读取数量</param>
         public ReadTransactionDatabaseByIndex_Parameter(int _DatabaseType, int _ReadIndex, int _Quantity)
         {
-            DatabaseType = _DatabaseType;
+            TransactionType = _DatabaseType;
             ReadIndex = _ReadIndex;
             Quantity = _Quantity;
         }
@@ -53,13 +53,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DatabaseType < 1 || DatabaseType > 6)
+            if (TransactionType < 1 || TransactionType > 6)
                 throw new ArgumentException("DatabaseType Error!");
-            if (Quantity <= 0)
+            if (Quantity <= 0 && Quantity > 500)
             {
                 throw new ArgumentException("Quantity Error!");
             }
-            if (ReadIndex <= 0)
+            if (ReadIndex <= 0 && ReadIndex > 300000)
             {
                 throw new ArgumentException("ReadIndex Error!");
             }
@@ -81,11 +81,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 9)
+            if (databuf.WritableBytes < 9)
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.WriteByte(DatabaseType);
+            databuf.WriteByte(TransactionType);
             databuf.WriteInt(ReadIndex);
             databuf.WriteInt(Quantity);
             return databuf;

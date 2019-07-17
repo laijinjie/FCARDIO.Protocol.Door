@@ -3885,6 +3885,14 @@ FCARDIO.Core
  <param name="v"></param>
  <returns></returns>
 </member>
+<member name="M:FCARDIO.Core.Extension.ByteBufferExtension.WriteUInt64(DotNetty.Buffers.IByteBuffer,System.UInt64)">
+ <summary>
+ 将UINT64类型写入到缓冲区
+ </summary>
+ <param name="buf"></param>
+ <param name="v"></param>
+ <returns></returns>
+</member>
 <member name="M:FCARDIO.Core.Extension.BytesExtensions.GetString(System.Byte[])">
  <summary>
  转换字节编码为字符串

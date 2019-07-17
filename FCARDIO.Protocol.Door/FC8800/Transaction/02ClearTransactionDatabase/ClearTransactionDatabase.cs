@@ -14,7 +14,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ClearTransactionDatabase
     /// 清空指定类型的记录数据库
     /// </summary>
     public class ClearTransactionDatabase 
-        : FC8800Command
+        : FC8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令结构
@@ -56,29 +56,5 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ClearTransactionDatabase
             return buf;
         }
 
-        /// <summary>
-        /// 处理返回值
-        /// </summary>
-        /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 命令重发时需要的函数
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 命令释放时需要的参数
-        /// </summary>
-        protected override void Release1()
-        {
-            return;
-        }
     }
 }

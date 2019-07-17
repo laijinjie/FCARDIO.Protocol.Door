@@ -44,7 +44,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// <summary>
         /// 初始化参数
         /// </summary>
-        public AlarmTransaction(): base(5)
+        public AlarmTransaction(): base(5)//5	报警记录
         {
 
         }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FCARDIO.Protocol.Transaction;
 
 namespace FCARDIO.Protocol.Door.FC8800.Data
 {
@@ -68,13 +69,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// </summary>
         public CardTransaction()
         {
-            TransactionType = 1;
+            _TransactionType = 1;
         }
 
         /// <summary>
         /// 卡号
         /// </summary>
-        public long CardData;
+        public UInt64 CardData;
 
         /// <summary>
         /// 读卡器号
@@ -85,7 +86,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// 获取读卡记录格式长度
         /// </summary>
         /// <returns></returns>
-        public virtual int GetDataLen()
+        public override int GetDataLen()
         {
             return 13;
         }
@@ -94,26 +95,22 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// <summary>
         /// 从buf中读取记录数据
         /// </summary>
-        /// <param name="data"></param>
-        public override void SetBytes(IByteBuffer data)
+        /// <param name="dtBuf"></param>
+        public override void SetBytes(IByteBuffer dtBuf)
         {
             try
             {
-                if (data.ReadByte() == 255)
+                _IsNull = CheckNull(dtBuf, 5);
+                if (_IsNull)
                 {
-                    IsNull = true;
-                    //return;
+                    ReadNullRecord(dtBuf);
+                    return;
                 }
-                this.ReadCardData(data);
-                byte[] btTime = new byte[6];
-                data.ReadBytes(btTime, 0, 6);
-                TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhh(btTime);
-                Reader = data.ReadByte();
-                TransactionCode = data.ReadByte();
-                if (TransactionCode == 0 || Reader == 0 || Reader > 8 || TransactionDate == null)
-                {
-                    IsNull = true;
-                }
+
+                this.ReadCardData(dtBuf);
+                _TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhhmmss(dtBuf);
+                Reader = dtBuf.ReadByte();
+                _TransactionCode = dtBuf.ReadByte();
             }
             catch (Exception e)
             {
@@ -128,18 +125,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// <param name="data"></param>
         protected virtual void ReadCardData(IByteBuffer data)
         {
-            //data.ReadByte();
-
-            CardData = data.ReadInt();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IByteBuffer GetBytes()
-        {
-            return null;
+            data.ReadByte();
+            CardData = (UInt64)data.ReadInt();
         }
 
         /// <summary>

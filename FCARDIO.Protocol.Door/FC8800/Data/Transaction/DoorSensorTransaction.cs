@@ -18,9 +18,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
     public class DoorSensorTransaction : AbstractDoorTransaction
     {
         /// <summary>
-        /// 
+        /// 创建一个门磁记录
         /// </summary>
-        public DoorSensorTransaction():base(3)
+        public DoorSensorTransaction():base(3)//3	门磁记录
         {
 
         }

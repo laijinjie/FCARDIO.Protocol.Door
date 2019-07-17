@@ -79,6 +79,7 @@
             this.tbEvent = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkShowIO = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lstCommand = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -86,7 +87,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.txtProcess = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.chkShowIO = new System.Windows.Forms.CheckBox();
+            this.butWatch = new System.Windows.Forms.Button();
             this.gbTCPClient.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -608,6 +609,19 @@
             this.panel1.Size = new System.Drawing.Size(606, 29);
             this.panel1.TabIndex = 15;
             // 
+            // chkShowIO
+            // 
+            this.chkShowIO.AutoSize = true;
+            this.chkShowIO.Checked = true;
+            this.chkShowIO.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowIO.Location = new System.Drawing.Point(87, 7);
+            this.chkShowIO.Name = "chkShowIO";
+            this.chkShowIO.Size = new System.Drawing.Size(84, 16);
+            this.chkShowIO.TabIndex = 8;
+            this.chkShowIO.Text = "显示IO日志";
+            this.chkShowIO.UseVisualStyleBackColor = true;
+            this.chkShowIO.CheckedChanged += new System.EventHandler(this.chkShowIO_CheckedChanged);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.lstCommand);
@@ -677,24 +691,22 @@
             this.label13.TabIndex = 18;
             this.label13.Text = "进度：";
             // 
-            // chkShowIO
+            // butWatch
             // 
-            this.chkShowIO.AutoSize = true;
-            this.chkShowIO.Checked = true;
-            this.chkShowIO.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowIO.Location = new System.Drawing.Point(87, 7);
-            this.chkShowIO.Name = "chkShowIO";
-            this.chkShowIO.Size = new System.Drawing.Size(84, 16);
-            this.chkShowIO.TabIndex = 8;
-            this.chkShowIO.Text = "显示IO日志";
-            this.chkShowIO.UseVisualStyleBackColor = true;
-            this.chkShowIO.CheckedChanged += new System.EventHandler(this.chkShowIO_CheckedChanged);
+            this.butWatch.Location = new System.Drawing.Point(523, 144);
+            this.butWatch.Name = "butWatch";
+            this.butWatch.Size = new System.Drawing.Size(99, 23);
+            this.butWatch.TabIndex = 19;
+            this.butWatch.Text = "开启监控";
+            this.butWatch.UseVisualStyleBackColor = true;
+            this.butWatch.Click += new System.EventHandler(this.buWatch_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 726);
+            this.Controls.Add(this.butWatch);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtProcess);
             this.Controls.Add(this.button2);
@@ -801,6 +813,7 @@
         private System.Windows.Forms.TextBox txtProcess;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.CheckBox chkShowIO;
+        private System.Windows.Forms.Button butWatch;
     }
 }
 

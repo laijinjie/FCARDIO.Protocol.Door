@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using FCARDIO.Core.Extension;
 using FCARDIO.Protocol.Door.FC8800.Data;
+using FCARDIO.Protocol.Transaction;
 
 namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex
 {
@@ -21,7 +22,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         ///  5 报警记录
         ///  6 系统记录
         /// </summary>
-        public e_TransactionDatabaseType DatabaseType;
+        public e_TransactionDatabaseType TransactionType;
 
         /// <summary>
         /// 读索引号
@@ -52,7 +53,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// <param name="_TransactionList">记录列表</param>
         public ReadTransactionDatabaseByIndex_Result(e_TransactionDatabaseType _DatabaseType, int _ReadIndex, int _Quantity,List<AbstractTransaction> _TransactionList)
         {
-            DatabaseType = _DatabaseType;
+            TransactionType = _DatabaseType;
             ReadIndex = _ReadIndex;
             Quantity = _Quantity;
             TransactionList = _TransactionList;
