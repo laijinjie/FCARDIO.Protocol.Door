@@ -2498,8 +2498,8 @@ namespace FCARDIO.Protocol.Door.Test
         /// <summary>
         /// 获取一个随机数
         /// </summary>
-        /// <param name="iMin"></param>
-        /// <param name="iMax"></param>
+        /// <param name="iMin">下限</param>
+        /// <param name="iMax">上限</param>
         /// <returns></returns>
         private int GetRandomNum(int iMin, int iMax)
         {

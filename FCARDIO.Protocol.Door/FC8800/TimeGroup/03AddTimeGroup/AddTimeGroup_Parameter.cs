@@ -25,7 +25,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// <summary>
         /// 初始化参数
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="list">开门时段集合</param>
         public AddTimeGroup_Parameter(List<WeekTimeGroup> list)
         {
             ListWeekTimeGroup = list;
@@ -56,7 +56,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// <summary>
         /// 设置写入索引
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">写入索引号</param>
         public void SetWriteIndex(int index)
         {
             if (index < ListWeekTimeGroup.Count)

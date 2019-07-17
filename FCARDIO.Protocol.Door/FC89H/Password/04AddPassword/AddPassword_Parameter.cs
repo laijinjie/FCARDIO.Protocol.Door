@@ -27,11 +27,11 @@ namespace FCARDIO.Protocol.Door.FC89H.Password
         {
             if (password.OpenTimes < 0 || password.OpenTimes > 65535)
             {
-                throw new ArgumentException("Password.OpenTimes Error!");
+                throw new ArgumentException("Password.OpenTimes must between 0 and 65535!");
             }
-            if (password.Expiry == DateTime.MinValue)
+            if (password.Expiry < new DateTime(2000,1,1) || password.Expiry > new DateTime(2099,12,31))
             {
-                throw new ArgumentException("Password.Expiry Error!");
+                throw new ArgumentException("Password.Expiry must between 2000-1-1 and 2099-12-31!");
             }
 
             return true;

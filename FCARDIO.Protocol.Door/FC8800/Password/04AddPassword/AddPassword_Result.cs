@@ -25,8 +25,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 创建结构
         /// </summary>
-        /// <param name="failtotal">密码数量</param>
-        /// <param name="passwordList">密码列表</param>
+        /// <param name="failtotal">无法写入的密码数量</param>
+        /// <param name="passwordList">无法写入的密码列表</param>
         public AddPassword_Result(int failtotal, List<string> passwordList)
         {
             FailTotal = failtotal;

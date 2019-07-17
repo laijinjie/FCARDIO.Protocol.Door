@@ -90,21 +90,21 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// <summary>
         /// 初始化参数
         /// </summary>
-        /// <param name="_RecordMode"></param>
-        /// <param name="_Keyboard"></param>
-        /// <param name="_LockInteraction"></param>
-        /// <param name="_FireAlarmOption"></param>
-        /// <param name="_OpenAlarmOption"></param>
-        /// <param name="_ReaderIntervalTime"></param>
-        /// <param name="_SpeakOpen"></param>
-        /// <param name="_ReaderCheckMode"></param>
-        /// <param name="_BuzzerMode"></param>
-        /// <param name="_SmogAlarmOption"></param>
-        /// <param name="_EnterDoorLimit"></param>
-        /// <param name="_TheftAlarmPar"></param>
-        /// <param name="_CheckInOut"></param>
-        /// <param name="_CardPeriodSpeak"></param>
-        /// <param name="_ReadCardSpeak"></param>
+        /// <param name="_RecordMode">记录存储方式</param>
+        /// <param name="_Keyboard">读卡器密码键盘启用功能开关</param>
+        /// <param name="_LockInteraction">互锁功能开关</param>
+        /// <param name="_FireAlarmOption">消防报警功能参数</param>
+        /// <param name="_OpenAlarmOption">匪警报警功能参数</param>
+        /// <param name="_ReaderIntervalTime">读卡间隔时间</param>
+        /// <param name="_SpeakOpen">语音播报开关</param>
+        /// <param name="_ReaderCheckMode">读卡器校验</param>
+        /// <param name="_BuzzerMode">主板蜂鸣器</param>
+        /// <param name="_SmogAlarmOption">烟雾报警功能参数</param>
+        /// <param name="_EnterDoorLimit">门内人数限制</param>
+        /// <param name="_TheftAlarmPar">防盗主机</param>
+        /// <param name="_CheckInOut">防潜回功能参数</param>
+        /// <param name="_CardPeriodSpeak">卡片到期提示</param>
+        /// <param name="_ReadCardSpeak">定时播报</param>
         public ReadAllSystemSetting_Result(short _RecordMode, short _Keyboard, DoorPortDetail _LockInteraction, short _FireAlarmOption, short _OpenAlarmOption, int _ReaderIntervalTime, BroadcastDetail _SpeakOpen, short _ReaderCheckMode, short _BuzzerMode, short _SmogAlarmOption, DoorLimit _EnterDoorLimit, TheftAlarmSetting _TheftAlarmPar, short _CheckInOut, short _CardPeriodSpeak, ReadCardSpeak _ReadCardSpeak)
         {
             RecordMode = _RecordMode;

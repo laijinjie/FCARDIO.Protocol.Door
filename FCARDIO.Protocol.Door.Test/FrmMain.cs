@@ -612,7 +612,10 @@ namespace FCARDIO.Protocol.Door.Test
         #endregion
 
 
-
+        /// <summary>
+        /// 获取协议类型
+        /// </summary>
+        /// <returns>控制器型号</returns>
         public CommandDetailFactory.ControllerType GetProtocolType()
         {
             return (CommandDetailFactory.ControllerType)cmdProtocolType.SelectedItem;
@@ -736,6 +739,9 @@ namespace FCARDIO.Protocol.Door.Test
         {
             frmSystem frm = frmSystem.GetForm(this);
             frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
             ShowFrm(frm);
         }
 
@@ -743,6 +749,9 @@ namespace FCARDIO.Protocol.Door.Test
         {
             frmTime frm = frmTime.GetForm(this);
             frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
             ShowFrm(frm);
         }
 
@@ -750,6 +759,9 @@ namespace FCARDIO.Protocol.Door.Test
         {
             frmDoor frm = frmDoor.GetForm(this);
             frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
             ShowFrm(frm);
 
         }
@@ -759,6 +771,9 @@ namespace FCARDIO.Protocol.Door.Test
 
             frmHoliday frm = frmHoliday.GetForm(this);
             frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
             ShowFrm(frm);
         }
 
@@ -766,6 +781,9 @@ namespace FCARDIO.Protocol.Door.Test
         {
             frmPassword frm = frmPassword.GetForm(this);
             frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
             ShowFrm(frm);
         }
 
@@ -774,6 +792,9 @@ namespace FCARDIO.Protocol.Door.Test
             frmTimeGroup frm = frmTimeGroup.GetForm(this);
 
             frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
             ShowFrm(frm);
         }
 
@@ -781,7 +802,9 @@ namespace FCARDIO.Protocol.Door.Test
         {
             frmCard frm = frmCard.GetForm(this);
             frm.Show();
-
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
             ShowFrm(frm);
 
 
@@ -1571,6 +1594,11 @@ namespace FCARDIO.Protocol.Door.Test
         }
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmMain_Load(object sender, EventArgs e)
         {
 

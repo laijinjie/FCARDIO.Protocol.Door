@@ -64,6 +64,7 @@ namespace FCARDIO.Protocol.Util
         /// 从ByteBuf中读取指定长度字节转十六进制
         /// </summary>
         /// <param name="bData"></param>
+        /// <param name="iLen"></param>
         /// <returns></returns>
         /// <remarks></remarks>
         public static string ByteBufToHex(IByteBuffer bData,int iLen)
@@ -91,13 +92,11 @@ namespace FCARDIO.Protocol.Util
             return Encoding.ASCII.GetString(bHex).TrimEnd('\0');
         }
 
-
-        /**
-         * 十六进制字符串转字节数组
-         *
-         * @param hexString 需要转换的十六进制字符串
-         * @return 转换后的字节数组 如果字符串为null则返回null
-         */
+        /// <summary>
+        /// 十六进制字符串转字节数组
+        /// </summary>
+        /// <param name="hexString">需要转换的十六进制字符串</param>
+        /// <returns>转换后的字节数组 如果字符串为null则返回null</returns>
         public static byte[] HexToByte(String hexString)
         {
             int i, iIndex = 0, iData;
@@ -182,7 +181,7 @@ namespace FCARDIO.Protocol.Util
         /// </summary>
         /// <param name="hexString">需要检查的字符串</param>
         /// <returns>表示是十六进制，false 表示包含非十六进制字符</returns>
-        public static bool IsHex(String hexString)
+        public static bool IsHex(string hexString)
         {
             if (string.IsNullOrEmpty(hexString))
             {
@@ -202,13 +201,12 @@ namespace FCARDIO.Protocol.Util
             return true;
         }
 
-        /**
-         * 检查是否有纯数字组成
-         *
-         * @param numString 需要检查的字符串
-         * @return true 表示是纯数字字符串；false 包含非法字符
-         */
-        public static bool IsNum(String numString)
+        /// <summary>
+        /// 检查是否有纯数字组成
+        /// </summary>
+        /// <param name="numString">需要检查的字符串</param>
+        /// <returns>true 表示是纯数字字符串；false 包含非法字符</returns>
+        public static bool IsNum(string numString)
         {
             if (IsNullOrEmpty(numString))
             {
@@ -229,13 +227,12 @@ namespace FCARDIO.Protocol.Util
             return true;
         }
 
-        /**
-         * 检查字符串是否为空字符串或者为null
-         *
-         * @param str 需要检查的字符串
-         * @return true表示为空或null
-         */
-        public static bool IsNullOrEmpty(String str)
+        /// <summary>
+        /// 检查字符串是否为空字符串或者为null
+        /// </summary>
+        /// <param name="str">需要检查的字符串</param>
+        /// <returns>true表示为空或null</returns>
+        public static bool IsNullOrEmpty(string str)
         {
             if (str == null)
             {
@@ -248,13 +245,12 @@ namespace FCARDIO.Protocol.Util
             return false;
         }
 
-        /**
-         * 检查字符串是否为Ascii字符
-         *
-         * @param asciiString 待检查的字符串
-         * @return true 表示都是ascii组成，false 表示有包含不是ascii的字符串
-         */
-        public static bool IsAscii(String asciiString)
+        /// <summary>
+        /// 检查字符串是否为Ascii字符
+        /// </summary>
+        /// <param name="asciiString">待检查的字符串</param>
+        /// <returns>true 表示都是ascii组成，false 表示有包含不是ascii的字符串</returns>
+        public static bool IsAscii(string asciiString)
         {
             if (IsNullOrEmpty(asciiString))
             {
@@ -272,30 +268,28 @@ namespace FCARDIO.Protocol.Util
             return true;
         }
 
-        /**
-         * 填充字符串，并返回一个指定长度的字符串，原始字符串长度大于指定长度时将被阶段，小于指定长度时，使用 fillstr 参数填充内容
-         * 填充的字符串在右边
-         *
-         * @param str
-         * @param iLen
-         * @param fillstr
-         * @return
-         */
-        public static String FillString(String str, int iLen, String fillstr)
+        /// <summary>
+        /// 填充字符串，并返回一个指定长度的字符串，原始字符串长度大于指定长度时将被阶段，小于指定长度时，使用 fillstr 参数填充内容
+        /// 填充的字符串在右边
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="iLen"></param>
+        /// <param name="fillstr"></param>
+        /// <returns></returns>
+        public static string FillString(string str, int iLen, string fillstr)
         {
             return FillString(str, iLen, fillstr, true);
         }
 
-        /**
-         * 填充字符串，并返回一个指定长度的字符串，原始字符串长度大于指定长度时将被阶段，小于指定长度时，使用 fillstr 参数填充内容
-         *
-         * @param str
-         * @param iLen
-         * @param fillstr
-         * @param fill_right 填充值在右边
-         * @return
-         */
-        public static String FillString(String str, int iLen, String fillstr, bool fill_right)
+        /// <summary>
+        /// 填充字符串，并返回一个指定长度的字符串，原始字符串长度大于指定长度时将被阶段，小于指定长度时，使用 fillstr 参数填充内容
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="iLen"></param>
+        /// <param name="fillstr"></param>
+        /// <param name="fill_right"></param>
+        /// <returns></returns>
+        public static string FillString(string str, int iLen, string fillstr, bool fill_right)
         {
             int iStrLen = 0;
 
@@ -352,16 +346,15 @@ namespace FCARDIO.Protocol.Util
             return sbuf.ToString();
         }
 
-        /**
-         * 检查并填充十六进制字符串
-         *
-         * @param str 需要检查的字符串
-         * @param iLen 需要返回的字符串长度
-         * @param fillstr 占位字符
-         * @param fill_right 填充在结尾还是开头？ True 表示填充在结尾。
-         * @return
-         */
-        public static String FillHexString(String str, int iLen, String fillstr, bool fill_right)
+        /// <summary>
+        /// 检查并填充十六进制字符串
+        /// </summary>
+        /// <param name="str">需要检查的字符串</param>
+        /// <param name="iLen">需要返回的字符串长度</param>
+        /// <param name="fillstr">占位字符</param>
+        /// <param name="fill_right">填充在结尾还是开头？ True 表示填充在结尾。</param>
+        /// <returns></returns>
+        public static string FillHexString(string str, int iLen, string fillstr, bool fill_right)
         {
             StringBuilder sbuf = new StringBuilder(iLen);
 

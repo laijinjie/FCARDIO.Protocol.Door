@@ -38,12 +38,11 @@ namespace FCARDIO.Protocol.Door.FC89H.Password
         /// <summary>
         /// 将数据部分写入到缓冲区
         /// </summary>
-        /// <param name="i"></param>
         /// <param name="databuf"></param>
-        /// <param name="lst"></param>
-        protected override void WritePasswordBodyToBuf(int i, IByteBuffer databuf, List<PasswordDetail> lst)
+        /// <param name="password">要写入到缓冲区密码</param>
+        protected override void WritePasswordBodyToBuf(IByteBuffer databuf, PasswordDetail password)
         {
-            lst[mIndex + i].GetDeleteBytes(databuf);
+            password.GetDeleteBytes(databuf);
         }
     }
 }

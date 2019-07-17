@@ -117,7 +117,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             databuf.WriteInt(iLen);
             for (int i = 0; i < iLen; i++)
             {
-                WritePasswordBodyToBuf(i,databuf, lst);
+                WritePasswordBodyToBuf(databuf, lst[mIndex + i]);
             }
 
             mIndex += iLen;
@@ -128,10 +128,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 将数据部分写入到缓冲区
         /// </summary>
-        /// <param name="index"></param>
         /// <param name="databuf"></param>
-        /// <param name="lst"></param>
-        protected abstract void WritePasswordBodyToBuf(int index,IByteBuffer databuf, List<T> lst);
+        /// <param name="password">要写入到缓冲区的密码</param>
+        protected abstract void WritePasswordBodyToBuf(IByteBuffer databuf, T password);
         
 
         /// <summary>

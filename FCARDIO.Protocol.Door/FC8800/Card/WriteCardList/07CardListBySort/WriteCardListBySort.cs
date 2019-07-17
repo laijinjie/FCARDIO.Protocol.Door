@@ -30,7 +30,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// <summary>
         /// 从错误卡列表中读取一个错误卡号，加入到cardlist中
         /// </summary>
-        /// <param name="CardList"></param>
+        /// <param name="CardList">错误卡列表</param>
         /// <param name="buf"></param>
         protected override void ReadCardByFailBuf(List<ulong> CardList, IByteBuffer buf)
         {
