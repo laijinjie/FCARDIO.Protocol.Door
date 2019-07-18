@@ -282,6 +282,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
                     mStep = 2;
                     mBufs = new Queue<IByteBuffer>();
                     mDictSerialNumber = new Dictionary<int, bool>();
+
+                    isFirstRead = false;
+                    var dataBuf = GetNewCmdDataBuf(9);
+                    dataBuf.WriteByte((int)mParameter.DatabaseType);
+                    dataBuf.WriteInt(0);
+                    dataBuf.WriteInt(0);
+                    Packet(0x08, 0x04, 0x00, 0x09, dataBuf);
+
+
                     mReadable = (int)transactionDetail.readable();
                     if (mParameter.Quantity > 0)
                     {
@@ -345,51 +354,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
             }
             transactionDetail.ReadIndex = iEndIndex;//更新记录尾号
 
-            if (isFirstRead)
-            {
-                isFirstRead = false;
-                var dataBuf = GetNewCmdDataBuf(9);
-                dataBuf.WriteByte((int)mParameter.DatabaseType);
-                dataBuf.WriteInt(iBeginIndex);
-                dataBuf.WriteInt(mReadQuantity);
-                Packet(0x08, 0x04, 0x00, 0x09, dataBuf);
-            }
-            else
-            {
-                var cmdBuf = FCPacket.CmdData;
-                cmdBuf.SetInt(1, iBeginIndex);
-                cmdBuf.SetInt(5, mReadQuantity);
-            }
-            //CreatePacket(8, 4, 0, 9, dataBuf);
+
+            var cmdBuf = FCPacket.CmdData;
+            cmdBuf.SetInt(1, iBeginIndex);
+            cmdBuf.SetInt(5, mReadQuantity);
+
             CommandReady();
         }
 
-        /// <summary>
-        /// 记录读取完毕，需要更新读索引（更新记录尾号）
-        /// </summary>
-        private void WriteTransactionReadIndex()
-        {
-            if (isFirstRead)
-            {
-                isFirstRead = false;
-                var dataBuf = GetNewCmdDataBuf(9);
-                dataBuf.WriteByte((int)mParameter.DatabaseType);
-                dataBuf.WriteInt((int)transactionDetail.ReadIndex);
-                dataBuf.WriteBoolean(false);
-                Packet(0x08, 0x03, 0x00, 0x06, dataBuf);
-            }
-            else
-            {
-                var buf = GetCmdBuf();
-                buf.WriteByte((int)mParameter.DatabaseType);
-                buf.WriteInt((int)transactionDetail.ReadIndex);
-                buf.WriteBoolean(false);
-                FCPacket.CmdIndex = 0x03;
-                FCPacket.DataLen = (UInt32)buf.ReadableBytes;
-            }
-            mStep = 3;
-            CommandReady();
-        }
 
         /// <summary>
         /// 读记录数据库的返回值 mStep=2
@@ -420,6 +392,34 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
 
 
 
+        }
+
+
+        /// <summary>
+        /// 记录读取完毕，需要更新读索引（更新记录尾号）
+        /// </summary>
+        private void WriteTransactionReadIndex()
+        {
+            if (isFirstRead)
+            {
+                isFirstRead = false;
+                var dataBuf = GetNewCmdDataBuf(9);
+                dataBuf.WriteByte((int)mParameter.DatabaseType);
+                dataBuf.WriteInt((int)transactionDetail.ReadIndex);
+                dataBuf.WriteBoolean(false);
+                Packet(0x08, 0x03, 0x00, 0x06, dataBuf);
+            }
+            else
+            {
+                var buf = GetCmdBuf();
+                buf.WriteByte((int)mParameter.DatabaseType);
+                buf.WriteInt((int)transactionDetail.ReadIndex);
+                buf.WriteBoolean(false);
+                FCPacket.CmdIndex = 0x03;
+                FCPacket.DataLen = (UInt32)buf.ReadableBytes;
+            }
+            mStep = 3;
+            CommandReady();
         }
 
 

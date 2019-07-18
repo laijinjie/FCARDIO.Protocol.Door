@@ -32,18 +32,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// <summary>
         ///  每次读取数量 1-300
         /// </summary>
-        public int PacketSize;
+        public int PacketSize=200;
 
         /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="type">取值范围 1-6</param>
-        /// <param name="_PacketSize">每次读取数量</param>
         /// <param name="_Quantity">读取数量</param>
-        public ReadTransactionDatabase_Parameter(e_TransactionDatabaseType type,int _PacketSize, int _Quantity)
+        public ReadTransactionDatabase_Parameter(e_TransactionDatabaseType type, int _Quantity)
         {
             DatabaseType = type;
-            PacketSize = _PacketSize;
             Quantity = _Quantity;
         }
 
