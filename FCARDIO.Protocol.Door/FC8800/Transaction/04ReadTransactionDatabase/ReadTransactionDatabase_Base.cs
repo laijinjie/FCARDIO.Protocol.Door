@@ -25,11 +25,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
 
 
         /// <summary>
-        /// 
+        /// 记录序号是否已读取的集合，
         /// </summary>
         Dictionary<int, bool> mDictSerialNumber;
 
-        bool isFirstRead = true;
 
         /// <summary>
         /// 指示当前命令进行的步骤
@@ -55,10 +54,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// </summary>
         protected int mReadTotal;
 
-        /// <summary>
-        /// 重读序号
-        /// </summary>
-        protected int mReReadIndex = 0;
 
         /// <summary>
         /// 选择的记录模块
@@ -71,7 +66,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         protected int mTransactionType;
 
         /// <summary>
-        /// 起始序号
+        /// 起始序号 用于测试遗漏
         /// </summary>
         protected long FirstReadIndex;
 
@@ -93,8 +88,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
             if (model == null) return false;
             return model.checkedParameter();
         }
-
-      
 
         /// <summary>
         /// 创建一个指令
@@ -134,10 +127,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
                 case 2://读记录数据库的返回值
                     ReadTransactionDatabaseByIndexCallBack(oPck);
                     break;
-                case 3://检查修改记录读索引号的返回值
-                    WriteReadIndexCallBack(oPck);
-                    break;
-                case 4://重复读取遗漏的记录的返回值
+
+                case 3://重复读取遗漏的记录的返回值
                     ReReadDatabaseCallBack(oPck);
                     break;
                 default:
@@ -147,50 +138,109 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         }
 
         /// <summary>
-        /// 检查修改记录读索引号的返回值  mStep=3
+        /// 读取记录数据库空间信息的返回值 mStep=1
         /// </summary>
         /// <param name="oPck"></param>
-        private void WriteReadIndexCallBack(OnlineAccessPacket oPck)
+        private void ReadDataBaseDetailCallBack(OnlineAccessPacket oPck)
         {
-            //if (CheckResponse(oPck))
+            if (CheckResponse(oPck, 0x0D * 6))
             {
-                ReadTransactionDatabase_Result result = (ReadTransactionDatabase_Result)_Result;
-                result.Quantity = mReadTotal;
-                result.readable = (int)transactionDetail.readable();
+                var buf = oPck.CmdData;
+                ReadTransactionDatabaseDetail_Result rst = new ReadTransactionDatabaseDetail_Result();
+                rst.SetBytes(buf);
 
-                //命令完结
-                //CommandOver();
-                //开始拆分接收到的数据包
-                try
+                transactionDetail = rst.DatabaseDetail.ListTransaction[(int)mParameter.DatabaseType - 1];
+                if (transactionDetail.readable() == 0)
                 {
-                    Analysis(mReadTotal);
-                    //测试遗漏
-                    /*
-                    
-                    */
-                    TestReRead((int)FirstReadIndex);
-                    TestReRead((int)FirstReadIndex + 100);
-                    CheckResultList();
-
+                    CommandCompleted();
                 }
-                catch (Exception e)
+                else
                 {
+                    mStep = 2;
+                    mBufs = new Queue<IByteBuffer>();
+                    mDictSerialNumber = new Dictionary<int, bool>();
 
+
+                    var dataBuf = GetNewCmdDataBuf(9);
+                    dataBuf.WriteByte((int)mParameter.DatabaseType);
+                    dataBuf.WriteInt(0);
+                    dataBuf.WriteInt(0);
+                    Packet(0x08, 0x04, 0x00, 0x09, dataBuf);
+
+                    FirstReadIndex = transactionDetail.ReadIndex;
+
+                    mReadable = (int)transactionDetail.readable();
+                    if (mParameter.Quantity > 0)
+                    {
+                        if (mParameter.Quantity < mReadable)
+                        {
+                            mReadable = mParameter.Quantity;
+
+                        }
+                    }
+
+                    mReadQuantity = 0;
+                    mReadTotal = 0;
+                    _ProcessMax = mReadable;
+                    _ProcessStep = 0;
+
+                    if (transactionDetail.IsCircle)
+                    {
+                        transactionDetail.ReadIndex = transactionDetail.WriteIndex;
+                    }
+                    ReadTransactionNext();
                 }
-                fireCommandProcessEvent();
             }
         }
 
-        private void TestReRead(int startIndex)
+        /// <summary>
+        /// 读记录数据库的返回值 mStep=2
+        /// </summary>
+        /// <param name="oPck"></param>
+        private void ReadTransactionDatabaseByIndexCallBack(OnlineAccessPacket oPck)
         {
-            var list = ((ReadTransactionDatabase_Result)_Result).TransactionList;
-            for (int i = 1; i <= 20; i++)
+            if (CheckResponse(oPck))
             {
-                mDictSerialNumber[startIndex + i] = false;
-                list.Remove(list.First(t => t.SerialNumber == startIndex + i));
+                var buf = oPck.CmdData;
+                int iSize = buf.GetInt(0);
+                mReadTotal += iSize;
+                _ProcessStep = mReadTotal;
 
+                buf.Retain();
+                mBufs.Enqueue(buf);
+                //AddDictSerialNumberRange(iSize);
+
+                //让命令持续等待下去
+                CommandWaitResponse();
 
             }
+            else if (CheckResponse(oPck, 0x08, 0x04, 0xff, 4))
+            {
+                ReadTransactionNext();
+            }
+        }
+
+        /// <summary>
+        /// 检查修改记录读索引号的返回值  mStep=3
+        /// </summary>
+        private void ReadIndexComplete()
+        {
+            ReadTransactionDatabase_Result result = (ReadTransactionDatabase_Result)_Result;
+            result.Quantity = mReadTotal;
+            result.readable = (int)transactionDetail.readable();
+
+            Analysis(mReadTotal);
+            //测试遗漏
+            /*
+            TestReRead((int)FirstReadIndex);
+            TestReRead((int)FirstReadIndex + 100);
+            */
+
+            CheckResultList();
+
+
+            fireCommandProcessEvent();
+
         }
 
         /// <summary>
@@ -200,34 +250,27 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         {
             //int[] listSerialNumber = mDictSerialNumber.Where(t => t.Value == false).Select(t => t.Key).ToArray();
             var listSerialNumber = mDictSerialNumber.FirstOrDefault(t => t.Value == false);
-            if (listSerialNumber.Key != 0 )
+            if (listSerialNumber.Key != 0)
             {
-                mReReadIndex = listSerialNumber.Key;
-                /*
-                var dataBuf = GetNewCmdDataBuf(9);
-                dataBuf.WriteByte((int)mParameter.DatabaseType);
-                dataBuf.WriteInt(mReReadIndex);
-                dataBuf.WriteInt(mReadQuantity);
-                Packet(0x08, 0x04, 0x00, 0x09, dataBuf);
-                */
                 var buf = GetCmdBuf();
                 buf.WriteByte((int)mParameter.DatabaseType);
-                buf.WriteInt(mReReadIndex);
+                buf.WriteInt(listSerialNumber.Key);
                 buf.WriteInt(mReadQuantity);
                 FCPacket.CmdIndex = 0x04;
                 FCPacket.DataLen = (UInt32)buf.ReadableBytes;
 
-                mStep = 4;
+                mStep = 3;
                 CommandReady();
             }
             else
             {
+                WriteTransactionReadIndex();
                 CommandCompleted();
             }
         }
 
         /// <summary>
-        /// 重复读取遗漏的记录
+        /// 重复读取遗漏的记录 mStep=3
         /// </summary>
         /// <param name="oPck"></param>
         private void ReReadDatabaseCallBack(OnlineAccessPacket oPck)
@@ -260,61 +303,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
             }
         }
 
-        /// <summary>
-        /// 读取记录数据库空间信息的返回值
-        /// </summary>
-        /// <param name="oPck"></param>
-        private void ReadDataBaseDetailCallBack(OnlineAccessPacket oPck)
-        {
-            if (CheckResponse(oPck, 0x0D * 6))
-            {
-                var buf = oPck.CmdData;
-                ReadTransactionDatabaseDetail_Result rst = new ReadTransactionDatabaseDetail_Result();
-                rst.SetBytes(buf);
-
-                transactionDetail = rst.DatabaseDetail.ListTransaction[(int)mParameter.DatabaseType - 1];
-                if (transactionDetail.readable() == 0)
-                {
-                    CommandCompleted();
-                }
-                else
-                {
-                    mStep = 2;
-                    mBufs = new Queue<IByteBuffer>();
-                    mDictSerialNumber = new Dictionary<int, bool>();
-
-                    isFirstRead = false;
-                    var dataBuf = GetNewCmdDataBuf(9);
-                    dataBuf.WriteByte((int)mParameter.DatabaseType);
-                    dataBuf.WriteInt(0);
-                    dataBuf.WriteInt(0);
-                    Packet(0x08, 0x04, 0x00, 0x09, dataBuf);
-
-
-                    mReadable = (int)transactionDetail.readable();
-                    if (mParameter.Quantity > 0)
-                    {
-                        if (mParameter.Quantity < mReadable)
-                        {
-                            mReadable = mParameter.Quantity;
-
-                        }
-                    }
-
-                    mReadQuantity = 0;
-                    mReadTotal = 0;
-                    _ProcessMax = mReadable;
-                    _ProcessStep = 0;
-
-                    if (transactionDetail.IsCircle)
-                    {
-                        transactionDetail.ReadIndex = transactionDetail.WriteIndex;
-                    }
-                    FirstReadIndex = transactionDetail.ReadIndex - mReadQuantity;
-                    ReadTransactionNext();
-                }
-            }
-        }
 
         /// <summary>
         /// 读取下一包记录
@@ -325,9 +313,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
             mReadable -= mReadQuantity;
             if (mReadable <= 0)
             {
-                //记录读取完毕，需要更新读索引（更新记录尾号）
-                //写读索引
-                WriteTransactionReadIndex();
+                //记录读取完毕，
+                ReadIndexComplete();
                 return;
             }
 
@@ -352,6 +339,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
                 mReadQuantity = (int)(transactionDetail.DataBaseMaxSize - transactionDetail.ReadIndex);
                 iEndIndex = iBeginIndex + mReadQuantity - 1;
             }
+            AddDictSerialNumberRange((int)transactionDetail.ReadIndex, mReadQuantity);
+
+            //mDictSerialNumber
             transactionDetail.ReadIndex = iEndIndex;//更新记录尾号
 
 
@@ -361,67 +351,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
 
             CommandReady();
         }
-
-
-        /// <summary>
-        /// 读记录数据库的返回值 mStep=2
-        /// </summary>
-        /// <param name="oPck"></param>
-        private void ReadTransactionDatabaseByIndexCallBack(OnlineAccessPacket oPck)
-        {
-
-            if (CheckResponse(oPck))
-            {
-                var buf = oPck.CmdData;
-                int iSize = buf.GetInt(0);
-                mReadTotal += iSize;
-                _ProcessStep = mReadTotal;
-
-                buf.Retain();
-                mBufs.Enqueue(buf);
-                AddDictSerialNumberRange(iSize);
-
-                //让命令持续等待下去
-                CommandWaitResponse();
-
-            }
-            else if (CheckResponse(oPck, 0x08, 0x04, 0xff, 4))
-            {
-                ReadTransactionNext();
-            }
-
-
-
-        }
-
-
-        /// <summary>
-        /// 记录读取完毕，需要更新读索引（更新记录尾号）
-        /// </summary>
-        private void WriteTransactionReadIndex()
-        {
-            if (isFirstRead)
-            {
-                isFirstRead = false;
-                var dataBuf = GetNewCmdDataBuf(9);
-                dataBuf.WriteByte((int)mParameter.DatabaseType);
-                dataBuf.WriteInt((int)transactionDetail.ReadIndex);
-                dataBuf.WriteBoolean(false);
-                Packet(0x08, 0x03, 0x00, 0x06, dataBuf);
-            }
-            else
-            {
-                var buf = GetCmdBuf();
-                buf.WriteByte((int)mParameter.DatabaseType);
-                buf.WriteInt((int)transactionDetail.ReadIndex);
-                buf.WriteBoolean(false);
-                FCPacket.CmdIndex = 0x03;
-                FCPacket.DataLen = (UInt32)buf.ReadableBytes;
-            }
-            mStep = 3;
-            CommandReady();
-        }
-
 
         /// <summary>
         /// 分析缓冲中的数据包
@@ -444,23 +373,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
 
                 for (int i = 0; i < iSize; i++)
                 {
-                    try
+                    int serialNumber = buf.ReadInt();
+                    AbstractTransaction cd = GetNewTransaction();
+                    cd.SetSerialNumber(serialNumber);
+                    cd.SetBytes(buf);
+                    if (mDictSerialNumber.ContainsKey(serialNumber) && mDictSerialNumber[serialNumber] == false)
                     {
-                        int serialNumber = buf.ReadInt();
-                        AbstractTransaction cd = GetNewTransaction();
-                        cd.SetSerialNumber(serialNumber);
-                        cd.SetBytes(buf);
-                        if (mDictSerialNumber.ContainsKey(serialNumber) && mDictSerialNumber[serialNumber] == false)
-                        {
-                            result.TransactionList.Add(cd);
-                            mDictSerialNumber[serialNumber] = true;
-                        }
-                        else
-                        {
-
-                        }
+                        result.TransactionList.Add(cd);
+                        mDictSerialNumber[serialNumber] = true;
                     }
-                    catch (Exception e)
+                    else
                     {
 
                     }
@@ -468,6 +390,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
                 }
                 buf.Release();//要释放
             }
+        }
+
+        /// <summary>
+        /// 记录读取完毕，需要更新读索引（更新记录尾号）
+        /// </summary>
+        private void WriteTransactionReadIndex()
+        {
+            var buf = GetCmdBuf();
+            buf.WriteByte((int)mParameter.DatabaseType);
+            buf.WriteInt((int)transactionDetail.ReadIndex);
+            buf.WriteBoolean(false);
+            FCPacket.CmdIndex = 0x03;
+            FCPacket.DataLen = (UInt32)buf.ReadableBytes;
+            CommandReady();
         }
 
         /// <summary>
@@ -488,13 +424,31 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// <summary>
         /// 提交序号到未读集合
         /// </summary>
+        /// <param name="startIndex"></param>
         /// <param name="len"></param>
-        private void AddDictSerialNumberRange(int len)
+        private void AddDictSerialNumberRange(int startIndex, int len)
         {
-            int count = mDictSerialNumber.Count;
             for (int i = 1; i <= len; i++)
             {
-                mDictSerialNumber.Add(count + i + (int)FirstReadIndex, false);
+                mDictSerialNumber.Add(i + startIndex, false);
+            }
+        }
+
+        /// <summary>
+        /// 测试遗漏
+        /// </summary>
+        /// <param name="startIndex"></param>
+        private void TestReRead(int startIndex)
+        {
+            if (startIndex == transactionDetail.DataBaseMaxSize)
+            {
+                startIndex = 0;
+            }
+            var list = ((ReadTransactionDatabase_Result)_Result).TransactionList;
+            for (int i = 1; i <= 20; i++)
+            {
+                mDictSerialNumber[startIndex + i] = false;
+                list.Remove(list.First(t => t.SerialNumber == startIndex + i));
             }
         }
 

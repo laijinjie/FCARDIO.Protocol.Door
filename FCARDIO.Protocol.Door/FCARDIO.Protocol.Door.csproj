@@ -450,8 +450,6 @@
     <Compile Include="FC8800\SystemParameter\DoorLimit.cs" />
     <Compile Include="FC8800\SystemParameter\DoorPortDetail.cs" />
     <Compile Include="FC8800\Utility\StringUtility.cs" />
-    <Compile Include="FC8800\Watch\CardWatch.cs" />
-    <Compile Include="FC8800\Watch\Watch_Base.cs" />
     <Compile Include="FC89H\Card\03CardDataBase\ReadCardDataBase.cs" />
     <Compile Include="FC89H\Card\03CardDataBase\ReadCardDataBase_Result.cs" />
     <Compile Include="FC89H\Card\04CardDetail\ReadCardDetail.cs" />

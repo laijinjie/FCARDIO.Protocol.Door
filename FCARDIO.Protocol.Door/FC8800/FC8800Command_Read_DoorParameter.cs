@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.Door.FC8800
 {
     /// <summary>
-    /// 针对命令中的读参数命令进行抽象封装
+    /// 针对命令中的只有门的读参数命令进行抽象封装
     /// </summary>
     public abstract class FC8800Command_Read_DoorParameter : FC8800Command_ReadParameter
     {

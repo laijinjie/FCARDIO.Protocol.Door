@@ -283,10 +283,18 @@ namespace FCARDIO.Protocol.Door.Test
         {
             int type = cboe_TransactionDatabaseType3.SelectedIndex;
             int Quantity = int.Parse(txtReadTransactionDatabaseQuantity.Text.ToString());
-            int PacketSize = int.Parse(txtReadTransactionDatabasePacketSize.Text.ToString());
+            int PacketSize = 0;
+            if (txtReadTransactionDatabasePacketSize.Text != "")
+            {
+                PacketSize = int.Parse(txtReadTransactionDatabasePacketSize.Text.ToString());
+            }
+             
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type), PacketSize, Quantity);
-
+            var par = new FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type), Quantity);
+            if (PacketSize != 0)
+            {
+                par.PacketSize = PacketSize;
+            }
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
             {
                 //var cmd = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex(cmdDtl, par);

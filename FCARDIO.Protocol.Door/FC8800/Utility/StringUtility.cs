@@ -444,12 +444,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
                 switch (item.Value)
                 {
                     case 1:
-                        sb.Append(item.Key + ":" + buf.GetByte(index).ToString() + ",");
+                        sb.Append(item.Key + ":" + buf.ReadByte().ToString() + ",");
                         break;
                     case 2:
-                        sb.Append(item.Key + ":" + buf.GetShort(index).ToString() + ",");
+                        sb.Append(item.Key + ":" + buf.ReadUnsignedShort().ToString() + ",");
+                        break;
+                    case 4:
+                        sb.Append(item.Key + ":" + buf.ReadUnsignedInt().ToString() + ",");
+                        break;
+                    case 8:
+                        sb.Append(item.Key + ":" + buf.ReadLong().ToString() + ",");
                         break;
                     default:
+                        string str = FCARDIO.Protocol.Util.StringUtil.ByteBufToHex(buf, item.Value);
+                        sb.Append(item.Key + ":" + str + ",");
                         break;
                 }
                 index += item.Value;

@@ -29,7 +29,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseReadIndex
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            WriteTransactionDatabaseReadIndex_Parameter model = _Packet as WriteTransactionDatabaseReadIndex_Parameter;
+            WriteTransactionDatabaseReadIndex_Parameter model = value as WriteTransactionDatabaseReadIndex_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
