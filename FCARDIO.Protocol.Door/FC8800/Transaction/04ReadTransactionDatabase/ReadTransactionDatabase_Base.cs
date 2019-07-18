@@ -202,20 +202,23 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
             var listSerialNumber = mDictSerialNumber.FirstOrDefault(t => t.Value == false);
             if (listSerialNumber.Key != 0 )
             {
-                //var cmdBuf = FCPacket.CmdData;
                 mReReadIndex = listSerialNumber.Key;
-                //cmdBuf.SetInt(1, mReReadIndex);
-                //cmdBuf.SetInt(5, mReadQuantity);
+                /*
                 var dataBuf = GetNewCmdDataBuf(9);
                 dataBuf.WriteByte((int)mParameter.DatabaseType);
                 dataBuf.WriteInt(mReReadIndex);
                 dataBuf.WriteInt(mReadQuantity);
                 Packet(0x08, 0x04, 0x00, 0x09, dataBuf);
-
+                */
+                var buf = GetCmdBuf();
+                buf.WriteByte((int)mParameter.DatabaseType);
+                buf.WriteInt(mReReadIndex);
+                buf.WriteInt(mReadQuantity);
+                FCPacket.CmdIndex = 0x04;
+                FCPacket.DataLen = (UInt32)buf.ReadableBytes;
 
                 mStep = 4;
-                //CommandReady();
-                //ReReadDatabase(listSerialNumber);
+                CommandReady();
             }
             else
             {
@@ -366,12 +369,24 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// </summary>
         private void WriteTransactionReadIndex()
         {
-            isFirstRead = false;
-            var dataBuf = GetNewCmdDataBuf(9);
-            dataBuf.WriteByte((int)mParameter.DatabaseType);
-            dataBuf.WriteInt((int)transactionDetail.ReadIndex);
-            dataBuf.WriteBoolean(false);
-            Packet(0x08, 0x03, 0x00, 0x06, dataBuf);
+            if (isFirstRead)
+            {
+                isFirstRead = false;
+                var dataBuf = GetNewCmdDataBuf(9);
+                dataBuf.WriteByte((int)mParameter.DatabaseType);
+                dataBuf.WriteInt((int)transactionDetail.ReadIndex);
+                dataBuf.WriteBoolean(false);
+                Packet(0x08, 0x03, 0x00, 0x06, dataBuf);
+            }
+            else
+            {
+                var buf = GetCmdBuf();
+                buf.WriteByte((int)mParameter.DatabaseType);
+                buf.WriteInt((int)transactionDetail.ReadIndex);
+                buf.WriteBoolean(false);
+                FCPacket.CmdIndex = 0x03;
+                FCPacket.DataLen = (UInt32)buf.ReadableBytes;
+            }
             mStep = 3;
             CommandReady();
         }
