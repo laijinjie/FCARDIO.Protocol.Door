@@ -24,7 +24,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter
         /// <summary>
         /// 设置几个门的端口
         /// </summary>
-        /// <param name="_DoorMax"></param>
+        /// <param name="_DoorMax">最大门数</param>
         public DoorPortDetail(ushort _DoorMax)
         {
             DoorMax = _DoorMax;

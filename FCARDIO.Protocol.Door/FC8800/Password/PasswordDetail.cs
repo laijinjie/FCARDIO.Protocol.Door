@@ -59,7 +59,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 判断是否相同
         /// </summary>
-        /// <param name="other"></param>
+        /// <param name="other">要比较的密码</param>
         /// <returns></returns>
         public int CompareTo(PasswordDetail other)
         {

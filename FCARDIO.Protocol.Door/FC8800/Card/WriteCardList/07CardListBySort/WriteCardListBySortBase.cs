@@ -20,7 +20,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         /// 初始化命令结构
         /// </summary>
         /// <param name="cd"></param>
-        /// <param name="perameter"></param>
+        /// <param name="perameter">参数</param>
         public WriteCardListBySortBase(INCommandDetail cd, WriteCardList_Parameter_Base<T> perameter) : base(cd, perameter) { }
 
 

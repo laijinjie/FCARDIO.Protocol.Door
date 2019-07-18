@@ -53,7 +53,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (PacketSize < 1 || PacketSize > 300)
+            if (PacketSize < 1 || PacketSize > 200)
             {
                 throw new ArgumentException("PacketSize Error!");
             }

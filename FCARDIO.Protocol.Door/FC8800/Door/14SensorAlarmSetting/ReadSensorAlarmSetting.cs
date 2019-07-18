@@ -16,7 +16,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
     /// 成功返回结果参考  ReadSensorAlarmSetting_Result 
     /// </summary>
     public class ReadSensorAlarmSetting
-        : FC8800Command
+        : FC8800Command_Read_DoorParameter
     {
         /// <summary>
         /// 初始化命令结构
@@ -25,36 +25,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
         /// <param name="value">需要读取的门号结构</param>
         public ReadSensorAlarmSetting(INCommandDetail cd, DoorPort_Parameter value) : base(cd, value) { }
 
-        /// <summary>
-        /// 检查参数
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        protected override bool CheckCommandParameter(INCommandParameter value)
-        {
-            DoorPort_Parameter model = value as DoorPort_Parameter;
-            if (model == null) return false;
-            return model.checkedParameter();
-        }
-
+        
         /// <summary>
         /// 创建一个通讯指令
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x03, 0x10, 0x00, 0x01, GetCmdDate());
-        }
-
-        /// <summary>
-        /// 获取参数结构的字节编码
-        /// </summary>
-        /// <returns></returns>
-        private IByteBuffer GetCmdDate()
-        {
             DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            return buf;
+            Packet(0x03, 0x10, 0x00, 0x01, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
         /// <summary>
@@ -73,20 +51,5 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
             }
         }
 
-        /// <summary>
-        /// 命令重发时需要处理的函数
-        /// </summary>
-        protected override void CommandReSend()
-        {
-            return;
-        }
-        
-        /// <summary>
-        /// 命令释放时需要处理的函数
-        /// </summary>
-        protected override void Release1()
-        {
-            return;
-        }
     }
 }

@@ -52,6 +52,7 @@ namespace FCARDIO.Protocol.Door.Test
             }
             cbIndex.SelectedIndex = 0;
             cbType.SelectedIndex = 0;
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = new BindingList<HolidayDetailDto>(listHoliday);
 
 
@@ -243,11 +244,11 @@ namespace FCARDIO.Protocol.Door.Test
             int count = dataGridView1.Rows.Count;
             for (int i = count - 1; i >= 0; i--)
             {
-                DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[4];
+                DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[0];
                 bool bSelected = Convert.ToBoolean(checkCell.Value);
                 if (bSelected)
                 {
-                    DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[0];
+                    DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[1];
                     listHoliday.RemoveAt(listHoliday.FindIndex(t => t.Index == Convert.ToByte(text.Value)));
                 }
             }
@@ -327,11 +328,11 @@ namespace FCARDIO.Protocol.Door.Test
             List<HolidayDetail> _list = new List<HolidayDetail>();
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[4];
+                DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[0];
                 bool bSelected = Convert.ToBoolean(checkCell.Value);
                 if (bSelected)
                 {
-                    DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[0];
+                    DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[1];
                     byte bIndex = Convert.ToByte(text.Value);
                     _list.Add(new HolidayDetail() { Index = bIndex });
                     listHoliday.RemoveAt(listHoliday.FindIndex(t => t.Index == bIndex));
@@ -382,7 +383,7 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void DataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 0)
             {
                 DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 if ((bool)cell.FormattedValue)
@@ -403,7 +404,7 @@ namespace FCARDIO.Protocol.Door.Test
             //checkBoxX1.Checked;
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[4];
+                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[0];
                 if ((bool)cell.FormattedValue)
                 {
                     cell.Value = false;

@@ -43,12 +43,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ControlPanelTamperAlarm
         protected override void CreatePacket0()
         {
             WriteControlPanelTamperAlarm_Parameter model = _Parameter as WriteControlPanelTamperAlarm_Parameter;
-
-            var acl = _Connector.GetByteBufAllocator();
-
-            var buf = acl.Buffer(model.GetDataLen());
-
-            Packet(0x01, 0x18, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            Packet(0x01, 0x18, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
     }
 }

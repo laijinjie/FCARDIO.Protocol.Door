@@ -38,7 +38,8 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
                 var buf = oPck.CmdData;
                 buf.Retain();
                 mReadBuffers.Add(buf);
-                
+                _ProcessStep++;
+                fireCommandProcessEvent();
                 CommandWaitResponse();
             }
 
@@ -72,8 +73,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
                 WeekTimeGroup wtg = new WeekTimeGroup(8);
                 wtg.SetBytes(buf);
                 result.ListWeekTimeGroup.Add(wtg);
-                _ProcessStep++;
-                fireCommandProcessEvent();
+               
             }
             result.Count = result.ListWeekTimeGroup.Count;
         }
@@ -98,6 +98,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
                 buf.Release();
             }
             mReadBuffers.Clear();
+            mReadBuffers = null;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         /// <summary>
         /// 初始化参数
         /// </summary>
-        /// <param name="iDaySegmentCount"></param>
+        /// <param name="iDaySegmentCount">一周的时段数量</param>
         public WeekTimeGroup_ReaderWork(int iDaySegmentCount) : base(iDaySegmentCount)
         {
         }

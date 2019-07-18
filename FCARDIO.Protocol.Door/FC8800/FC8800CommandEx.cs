@@ -51,9 +51,9 @@ namespace FCARDIO.Protocol.Door.FC8800
         /// 检查指令返回值
         /// </summary>
         /// <param name="oPck"></param>
-        /// <param name="CmdType"></param>
-        /// <param name="CmdIndex"></param>
-        /// <param name="CmdPar"></param>
+        /// <param name="CmdType">命令类型</param>
+        /// <param name="CmdIndex">命令索引</param>
+        /// <param name="CmdPar">命令参数</param>
         /// <returns></returns>
         protected virtual bool CheckResponse(OnlineAccessPacket oPck, byte CmdType, byte CmdIndex, byte CmdPar)
         {
@@ -67,7 +67,7 @@ namespace FCARDIO.Protocol.Door.FC8800
         /// <summary>
         /// 获取一个指定大小的Buf
         /// </summary>
-        /// <param name="iSize"></param>
+        /// <param name="iSize">大小</param>
         /// <returns></returns>
         protected IByteBuffer GetNewCmdDataBuf(int iSize)
         {

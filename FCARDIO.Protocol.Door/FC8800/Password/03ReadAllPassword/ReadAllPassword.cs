@@ -26,7 +26,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 创建返回值
         /// </summary>
-        /// <param name="passwordList"></param>
+        /// <param name="passwordList">控制器返回的密码集合</param>
         protected override ReadAllPassword_Result_Base<PasswordDetail> CreateResult(List<PasswordDetail> passwordList)
         {
             ReadAllPassword_Result result = new ReadAllPassword_Result(passwordList);

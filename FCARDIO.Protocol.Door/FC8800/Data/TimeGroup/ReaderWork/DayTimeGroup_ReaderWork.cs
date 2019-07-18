@@ -14,7 +14,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         /// <summary>
         /// 初始化参数
         /// </summary>
-        /// <param name="SegmentCount"></param>
+        /// <param name="SegmentCount">一天的时段数量</param>
         public DayTimeGroup_ReaderWork(int SegmentCount) : base(SegmentCount)
         {
         }
@@ -22,7 +22,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         /// <summary>
         /// 设置一天可以包含多个时段
         /// </summary>
-        /// <param name="SegmentCount"></param>
+        /// <param name="SegmentCount">一天的时段数量</param>
         public override void SetSegmentCount(int SegmentCount)
         {
             mSegment = new TimeSegment_ReaderWork[SegmentCount];

@@ -97,6 +97,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 buf.Release();
             }
             mReadBuffers.Clear();
+            mReadBuffers = null;
         }
     }
 }

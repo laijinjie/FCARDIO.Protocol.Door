@@ -48,7 +48,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
 
             var buf = acl.Buffer(model.GetDataLen());
 
-            Packet(0x01, 0x0A, 0x05, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            Packet(0x01, 0x0A, 0x05, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
     }
 }

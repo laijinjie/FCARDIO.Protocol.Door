@@ -44,11 +44,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         {
             WriteBroadcast_Parameter model = _Parameter as WriteBroadcast_Parameter;
 
-            var acl = _Connector.GetByteBufAllocator();
-
-            var buf = acl.Buffer(model.GetDataLen());
-
-            Packet(0x01, 0x0A, 0x08, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            Packet(0x01, 0x0A, 0x08, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
     }
 }

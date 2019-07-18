@@ -44,5 +44,15 @@ namespace FCARDIO.Protocol.Door.FC89H.Password
         {
             password.GetDeleteBytes(databuf);
         }
+
+        /// <summary>
+        /// 没有实现
+        /// </summary>
+        /// <param name="passwordList"></param>
+        /// <returns></returns>
+        protected override ReadAllPassword_Result_Base<PasswordDetail> CreateResult(List<PasswordDetail> passwordList)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -216,6 +216,41 @@ namespace FCARDIO.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
+                ListPassword.Clear();
+                var comdResult = cmde.Command.getResult();
+                int count = 0;
+                if (comdResult is ReadAllPassword_Result)
+                {
+                    ReadAllPassword_Result result = comdResult as ReadAllPassword_Result;
+                    foreach (PasswordDetail detail in result.PasswordList)
+                    {
+                        PasswordDto dto = new PasswordDto();
+                        dto.SetDoors(detail);
+                        dto.Password = detail.Password;
+                        ListPassword.Add(dto);
+                    }
+                    count = result.PasswordList.Count;
+                }
+                else if (comdResult is FC89H.Password.ReadAllPassword_Result)
+                {
+                    FC89H.Password.ReadAllPassword_Result result = comdResult as FC89H.Password.ReadAllPassword_Result;
+                    foreach (FC89H.Password.PasswordDetail detail in result.PasswordList)
+                    {
+                        PasswordDto dto = new PasswordDto();
+                        dto.SetDoors(detail);
+                        dto.Password = detail.Password;
+                        dto.OpenTimes = detail.OpenTimes;
+                        dto.Expiry = detail.Expiry;
+                        ListPassword.Add(dto);
+                    }
+                    count = result.PasswordList.Count;
+                }
+
+                Invoke(() =>
+                {
+                    dataGridView1.DataSource = new BindingList<PasswordDto>(ListPassword);
+
+                });
                 mMainForm.AddLog($"命令成功：");
             };
 

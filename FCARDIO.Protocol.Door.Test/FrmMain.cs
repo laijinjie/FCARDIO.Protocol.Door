@@ -876,6 +876,9 @@ namespace FCARDIO.Protocol.Door.Test
         {
             frmRecord frm = frmRecord.GetForm(this);
             frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
             ShowFrm(frm);
         }
 
@@ -883,6 +886,9 @@ namespace FCARDIO.Protocol.Door.Test
         {
             frmUploadSoftware frm = frmUploadSoftware.GetForm(this);
             frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
             ShowFrm(frm);
         }
         #endregion
@@ -1132,6 +1138,7 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
             mCommandClasss.Add(typeof(FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
             mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex).FullName, "读记录数据库");
+            mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase).FullName, "读取新记录");
             mCommandClasss.Add(typeof(FC8800.Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
             mCommandClasss.Add(typeof(FC8800.Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
 

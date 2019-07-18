@@ -45,5 +45,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             WritePasswordToBuf(buf);
             Packet(0x5, 0x4, 0x00, (uint)buf.ReadableBytes, buf);
         }
+
+        /// <summary>
+        /// 创建返回值
+        /// </summary>
+        /// <param name="passwordList">无法写入的密码列表</param>
+        /// <returns></returns>
+        protected override ReadAllPassword_Result_Base<PasswordDetail> CreateResult(List<PasswordDetail> passwordList)
+        {
+            ReadAllPassword_Result result = new ReadAllPassword_Result(passwordList);
+            return result;
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <summary>
         /// 门号参数初始化实例
         /// </summary>
-        /// <param name="iDoor"></param>
+        /// <param name="iDoor">门号</param>
         /// <param name="bOnlyeGroupFix">是否仅支持固定组多卡</param>
         public ReadMultiCard_Parameter(int iDoor,bool bOnlyeGroupFix):base(iDoor)
         {

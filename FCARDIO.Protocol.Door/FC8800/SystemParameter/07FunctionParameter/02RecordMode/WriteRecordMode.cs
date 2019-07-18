@@ -43,12 +43,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         protected override void CreatePacket0()
         {
             WriteRecordMode_Parameter model = _Parameter as WriteRecordMode_Parameter;
-
-            var acl = _Connector.GetByteBufAllocator();
-
-            var buf = acl.Buffer(model.GetDataLen());
-
-            Packet(0x01, 0x0A, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            Packet(0x01, 0x0A, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
     }
 }

@@ -86,7 +86,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         /// <summary>
         /// 设定在周时段列表中的索引号
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">索引号</param>
         public void SetIndex(int index)
         {
             mIndex = index;

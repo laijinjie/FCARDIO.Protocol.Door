@@ -250,7 +250,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <summary>
         /// 检查卡组数据
         /// </summary>
-        /// <param name="group"></param>
+        /// <param name="group">卡组集合</param>
         private void CheckGroup(List<UInt64> group)
         {
             if (group == null)
@@ -273,7 +273,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         }
 
         /// <summary>
-        /// 
+        /// 释放资源
         /// </summary>
         public override void Dispose()
         {

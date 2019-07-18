@@ -29,7 +29,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 每次上传数量
         /// </summary>
-        protected const int mBatchCount = 20;
+        protected const int mBatchCount = 5;
 
         /// <summary>
         /// 已上传数量
@@ -71,6 +71,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         {
             maxCount = mPar.PasswordList.Count;
             CreateCommandPacket0();
+            CommandWaitResponse();
             _ProcessMax = maxCount;
         }
 
@@ -131,7 +132,20 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="databuf"></param>
         /// <param name="password">要写入到缓冲区的密码</param>
         protected abstract void WritePasswordBodyToBuf(IByteBuffer databuf, T password);
-        
+
+        /*
+        /// <summary>
+        /// 命令超时
+        /// </summary>
+        protected override void CommandReSend()
+        {
+            mIndex -= mBatchCount;
+            var buf = GetCmdBuf();
+            WritePasswordToBuf(buf);
+            FCPacket.DataLen = (UInt32)buf.ReadableBytes;
+            CommandReady();//设定命令当前状态为准备就绪，等待发送
+        }
+        */
 
         /// <summary>
         /// 处理返回值
@@ -139,6 +153,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
+            CommandWaitResponse();
             if (IsWriteOver())
             {
                 Create_Result();
@@ -187,11 +202,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         protected virtual void Create_Result()
         {
-            //无法写入的卡数量
+            //无法写入的密码数量
             int FailTotal = 0;
 
-            //无法写入的卡列表
-            List<string> PasswordList = new List<string>();
+            //无法写入的密码列表
+            List<T> PasswordList = new List<T>();
 
 
             if (mBufs != null)
@@ -211,9 +226,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             }
 
 
-            AddPassword_Result result = new AddPassword_Result(FailTotal, PasswordList);
+            ReadAllPassword_Result_Base<T> result = CreateResult(PasswordList);
             _Result = result;
         }
+
+        /// <summary>
+        /// 创建返回值
+        /// </summary>
+        /// <param name="passwordList">控制器返回的密码集合</param>
+        protected abstract ReadAllPassword_Result_Base<T> CreateResult(List<T> passwordList);
 
         /// <summary>
         /// 用来解析返回的错误密码数据
@@ -225,11 +246,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         /// <param name="passwordList">错误密码列表</param>
         /// <param name="buf"></param>
-        private void ReadPasswordByFailBuf(List<string> passwordList, IByteBuffer buf)
+        private void ReadPasswordByFailBuf(List<T> passwordList, IByteBuffer buf)
         {
             if (_Password == null) _Password = new T();
             _Password.SetBytes(buf);
-            passwordList.Add(_Password.Password);
+            passwordList.Add(_Password);
         }
 
         /// <summary>

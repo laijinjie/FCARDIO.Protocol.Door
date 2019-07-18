@@ -64,6 +64,15 @@ namespace FCARDIO.Protocol.Door.FC89H.Data
     public class CardTransaction : FC8800.Data.CardTransaction
     {
         /// <summary>
+        /// 获取读卡记录格式长度
+        /// </summary>
+        /// <returns></returns>
+        public override int GetDataLen()
+        {
+            return 17;
+        }
+
+        /// <summary>
         /// 从buf中读取卡号数据
         /// </summary>
         /// <param name="data"></param>

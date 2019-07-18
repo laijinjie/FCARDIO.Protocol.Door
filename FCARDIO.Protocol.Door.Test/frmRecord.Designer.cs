@@ -83,7 +83,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnReadTransactionDatabase = new System.Windows.Forms.Button();
             this.butClearTransactionDatabase = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.cboe_TransactionDatabaseType2 = new System.Windows.Forms.ComboBox();
@@ -103,6 +102,11 @@
             this.button9 = new System.Windows.Forms.Button();
             this.textBox36 = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
+            this.txtReadTransactionDatabasePacketSize = new System.Windows.Forms.TextBox();
+            this.txtReadTransactionDatabaseQuantity = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.btnReadTransactionDatabase = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -592,7 +596,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.btnReadTransactionDatabase);
             this.groupBox3.Controls.Add(this.butClearTransactionDatabase);
             this.groupBox3.Controls.Add(this.button4);
             this.groupBox3.Controls.Add(this.cboe_TransactionDatabaseType2);
@@ -605,16 +608,6 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "记录操作";
-            // 
-            // btnReadTransactionDatabase
-            // 
-            this.btnReadTransactionDatabase.Location = new System.Drawing.Point(66, 64);
-            this.btnReadTransactionDatabase.Name = "btnReadTransactionDatabase";
-            this.btnReadTransactionDatabase.Size = new System.Drawing.Size(86, 23);
-            this.btnReadTransactionDatabase.TabIndex = 29;
-            this.btnReadTransactionDatabase.Text = "采集记录";
-            this.btnReadTransactionDatabase.UseVisualStyleBackColor = true;
-            this.btnReadTransactionDatabase.Click += new System.EventHandler(this.BtnReadTransactionDatabase_Click);
             // 
             // butClearTransactionDatabase
             // 
@@ -682,6 +675,11 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.btnReadTransactionDatabase);
+            this.groupBox4.Controls.Add(this.label23);
+            this.groupBox4.Controls.Add(this.label22);
+            this.groupBox4.Controls.Add(this.txtReadTransactionDatabaseQuantity);
+            this.groupBox4.Controls.Add(this.txtReadTransactionDatabasePacketSize);
             this.groupBox4.Controls.Add(this.cboe_TransactionDatabaseType3);
             this.groupBox4.Controls.Add(this.butTransactionDatabaseByIndex);
             this.groupBox4.Controls.Add(this.txtReadIndex0);
@@ -691,7 +689,7 @@
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Location = new System.Drawing.Point(13, 400);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(705, 67);
+            this.groupBox4.Size = new System.Drawing.Size(705, 133);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "记录操作";
@@ -750,7 +748,7 @@
             // 
             // butClearAllTransactionDatabase
             // 
-            this.butClearAllTransactionDatabase.Location = new System.Drawing.Point(603, 479);
+            this.butClearAllTransactionDatabase.Location = new System.Drawing.Point(603, 561);
             this.butClearAllTransactionDatabase.Name = "butClearAllTransactionDatabase";
             this.butClearAllTransactionDatabase.Size = new System.Drawing.Size(109, 29);
             this.butClearAllTransactionDatabase.TabIndex = 28;
@@ -763,7 +761,7 @@
             this.groupBox5.Controls.Add(this.button9);
             this.groupBox5.Controls.Add(this.textBox36);
             this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Location = new System.Drawing.Point(13, 473);
+            this.groupBox5.Location = new System.Drawing.Point(13, 555);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(515, 42);
             this.groupBox5.TabIndex = 29;
@@ -796,11 +794,55 @@
             this.label21.TabIndex = 24;
             this.label21.Text = "监控到记录总数";
             // 
+            // txtReadTransactionDatabasePacketSize
+            // 
+            this.txtReadTransactionDatabasePacketSize.Location = new System.Drawing.Point(190, 97);
+            this.txtReadTransactionDatabasePacketSize.Name = "txtReadTransactionDatabasePacketSize";
+            this.txtReadTransactionDatabasePacketSize.Size = new System.Drawing.Size(100, 21);
+            this.txtReadTransactionDatabasePacketSize.TabIndex = 29;
+            this.txtReadTransactionDatabasePacketSize.Text = "1";
+            // 
+            // txtReadTransactionDatabaseQuantity
+            // 
+            this.txtReadTransactionDatabaseQuantity.Location = new System.Drawing.Point(305, 97);
+            this.txtReadTransactionDatabaseQuantity.Name = "txtReadTransactionDatabaseQuantity";
+            this.txtReadTransactionDatabaseQuantity.Size = new System.Drawing.Size(100, 21);
+            this.txtReadTransactionDatabaseQuantity.TabIndex = 30;
+            this.txtReadTransactionDatabaseQuantity.Text = "0";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(207, 72);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(77, 12);
+            this.label22.TabIndex = 31;
+            this.label22.Text = "单次读取数量";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(325, 72);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(53, 12);
+            this.label23.TabIndex = 32;
+            this.label23.Text = "读取数量";
+            // 
+            // btnReadTransactionDatabase
+            // 
+            this.btnReadTransactionDatabase.Location = new System.Drawing.Point(510, 95);
+            this.btnReadTransactionDatabase.Name = "btnReadTransactionDatabase";
+            this.btnReadTransactionDatabase.Size = new System.Drawing.Size(170, 23);
+            this.btnReadTransactionDatabase.TabIndex = 33;
+            this.btnReadTransactionDatabase.Text = "读新记录";
+            this.btnReadTransactionDatabase.UseVisualStyleBackColor = true;
+            this.btnReadTransactionDatabase.Click += new System.EventHandler(this.BtnReadTransactionDatabase_Click);
+            // 
             // frmRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 528);
+            this.ClientSize = new System.Drawing.Size(731, 607);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.butClearAllTransactionDatabase);
             this.Controls.Add(this.groupBox4);
@@ -889,7 +931,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button btnReadTransactionDatabase;
         private System.Windows.Forms.ComboBox cboe_TransactionDatabaseType3;
         private System.Windows.Forms.TextBox txtReadIndex0;
         private System.Windows.Forms.Label label18;
@@ -901,5 +942,10 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox textBox36;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button btnReadTransactionDatabase;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtReadTransactionDatabaseQuantity;
+        private System.Windows.Forms.TextBox txtReadTransactionDatabasePacketSize;
     }
 }

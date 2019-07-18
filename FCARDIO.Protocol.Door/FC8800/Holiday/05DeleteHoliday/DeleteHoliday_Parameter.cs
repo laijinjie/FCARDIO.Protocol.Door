@@ -42,15 +42,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             }
             foreach (HolidayDetail item in ListHoliday)
             {
-                if (item.HolidayType < 1 || item.HolidayType > 3)
+                if (item.Index  == 0)
                 {
-                    throw new ArgumentException("HolidayType must between 1 and 3");
+                    throw new ArgumentException("Holiday.Index Error");
                 }
-                if (item.Holiday == DateTime.MinValue || item.Holiday.Year < 2000)
-                {
-                    throw new ArgumentException("Holiday Error"); ;
-                }
-
             }
             return true;
         }

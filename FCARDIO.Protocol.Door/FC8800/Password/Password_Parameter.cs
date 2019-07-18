@@ -16,14 +16,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 初始化参数
         /// </summary>
-        /// <param name="list">要添加的密码集合</param>
+        /// <param name="list">要写入的密码集合</param>
         public Password_Parameter(List<PasswordDetail> list):base (list){ }
 
         
         /// <summary>
         /// 检查每个密码
         /// </summary>
-        /// <param name="password"></param>
+        /// <param name="password">密码信息</param>
         /// <returns></returns>
         protected override bool checkedParameterItem(PasswordDetail password)
         {

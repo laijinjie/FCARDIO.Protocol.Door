@@ -33,7 +33,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// <summary>
         /// 读取功能 初始化
         /// </summary>
-        /// <param name="door"></param>
+        /// <param name="door">门号</param>
         public WriteManageKeyboardSetting_Parameter(byte door)
         {
             DoorNum = door;

@@ -20,7 +20,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <summary>
         /// 初始化参数
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="list">节假日集合</param>
         public AddHoliday_Parameter(List<HolidayDetail> list) {
             ListHoliday = list;
             if (!checkedParameter())
@@ -44,7 +44,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
                 {
                     throw new ArgumentException("HolidayType Error!");
                 }
-                if (item.Holiday == DateTime.MinValue || item.Holiday.Year < 2000)
+                if (item.Holiday.Year > 2099 || item.Holiday.Year < 2000)
                 {
                     throw new ArgumentException("Year Error!");
                 }
@@ -93,12 +93,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         }
 
         /// <summary>
-        /// 
+        /// 没有实现
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            int count = databuf.ReadByte();
+
         }
     }
 }

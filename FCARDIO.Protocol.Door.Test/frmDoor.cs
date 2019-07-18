@@ -69,6 +69,7 @@ namespace FCARDIO.Protocol.Door.Test
         List<WeekTimeGroupDto> ListWeekTimeGroupDto = new List<WeekTimeGroupDto>();
         List<WeekTimeGroupDto> ListAutoLockedDto = new List<WeekTimeGroupDto>();
         WeekTimeGroup WeekTimeGroupPushButtonDto = new WeekTimeGroup(8);
+        WeekTimeGroup WeekTimeGroupSensorAlarmDto = new WeekTimeGroup(8);
         List<List<ulong>> listGroupA = new List<List<ulong>>();
         List<List<ulong>> listGroupB = new List<List<ulong>>();
         List<MultiCard_GroupFix> listFix = new List<MultiCard_GroupFix>();
@@ -149,6 +150,7 @@ namespace FCARDIO.Protocol.Door.Test
             WeekTimeGroupPushButtonDto.InitTimeGroup();
             cmbPushButtonWeekday.SelectedIndex = 0;
 
+            WeekTimeGroupSensorAlarmDto.InitTimeGroup();
 
             #region
             string[] tgAnyCard = new string[64];
@@ -274,7 +276,7 @@ namespace FCARDIO.Protocol.Door.Test
                 Invoke(() =>
                 {
                     cmdAlarmPassword.SelectedIndex = result.Use ? 0 : 1;
-                    cmbAlarmOption.SelectedIndex = result.AlarmOption;
+                    cmbAlarmOption.SelectedIndex = (result.AlarmOption - 1);
                     Password.Text = result.Password;
 
                 });
@@ -288,7 +290,7 @@ namespace FCARDIO.Protocol.Door.Test
             bool use = (cmdAlarmPassword.SelectedIndex == 0);
             byte door = byte.Parse(cmdDoorNum.Text);
             String pwd = Password.Text.ToString();
-            int alarmOption = cmbAlarmOption.SelectedIndex;
+            int alarmOption = cmbAlarmOption.SelectedIndex + 1;
 
             var par = new FC8800.Door.AlarmPassword.WriteAlarmPassword_parameter(door, use, pwd, alarmOption);
             var cmd = new FC8800.Door.AlarmPassword.WriteAlarmPassword(cmdDtl, par);
@@ -382,13 +384,14 @@ namespace FCARDIO.Protocol.Door.Test
         {
             if (cmbSensorAlarmSetting.Text == "启用")
             {
-                cmbWeek.Hide();
-                label10.Hide();
+                cmbWeek.Show();
+                label10.Show();
+               
             }
             else
             {
-                cmbWeek.Show();
-                label10.Show();
+                cmbWeek.Hide();
+                label10.Hide();
             }
 
 
@@ -398,6 +401,8 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             var par = new FC8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
             var cmd = new FC8800.Door.SensorAlarmSetting.ReadSensorAlarmSetting(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Door.SensorAlarmSetting.SensorAlarmSetting_Result;
@@ -405,6 +410,9 @@ namespace FCARDIO.Protocol.Door.Test
                 Invoke(() =>
                 {
                     cmdDoorNum.Text = result.DoorNum.ToString();
+
+                    WeekTimeGroupSensorAlarmDto = result.WeekTimeGroup;
+                    SetAllTimePicker(plSensorAlarm, "beginSATP", "endSATP", WeekTimeGroupSensorAlarmDto.GetItem(0));
                 });
                 mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use}");
             };
@@ -414,7 +422,7 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             bool use = (cmbSensorAlarmSetting.SelectedIndex == 0);
             byte door = byte.Parse(cmdDoorNum.Text);
-            var par = new FC8800.Door.SensorAlarmSetting.WriteSensorAlarmSetting_Parameter(door, use);
+            var par = new FC8800.Door.SensorAlarmSetting.WriteSensorAlarmSetting_Parameter(door, use, WeekTimeGroupSensorAlarmDto);
             var cmd = new FC8800.Door.SensorAlarmSetting.WriteSensorAlarmSetting(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 

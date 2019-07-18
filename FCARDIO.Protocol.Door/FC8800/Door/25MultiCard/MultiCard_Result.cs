@@ -16,7 +16,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
         /// <summary>
         /// 初始化多卡组
         /// </summary>
-        /// <param name="bOnlyGroupFix"></param>
+        /// <param name="bOnlyGroupFix">只包含固定组</param>
         public MultiCard_Result(bool bOnlyGroupFix):base(bOnlyGroupFix)
         {
             
@@ -49,7 +49,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.MultiCard
             {
                 throw new ArgumentException("buf Error!");
             }
-            //DoorNum = databuf.ReadByte();
             VerifyType = databuf.ReadByte();
             AGroupCount = databuf.ReadByte();
             BGroupCount = databuf.ReadByte();

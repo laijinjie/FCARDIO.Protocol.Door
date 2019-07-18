@@ -278,6 +278,45 @@ namespace FCARDIO.Protocol.Door.Test
                 mMainForm.AddLog($"命令成功");
             };
         }
+
+        private void BtnReadTransactionDatabase_Click(object sender, EventArgs e)
+        {
+            int type = cboe_TransactionDatabaseType3.SelectedIndex;
+            int Quantity = int.Parse(txtReadTransactionDatabaseQuantity.Text.ToString());
+            int PacketSize = int.Parse(txtReadTransactionDatabasePacketSize.Text.ToString());
+            var cmdDtl = mMainForm.GetCommandDetail();
+            var par = new FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type), PacketSize, Quantity);
+
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
+            {
+                //var cmd = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex(cmdDtl, par);
+                var cmd = new FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase(cmdDtl, par);
+
+                mMainForm.AddCommand(cmd);
+            }
+            else
+            {
+                var cmd = new FC89H.Transaction.ReadTransactionDatabase.ReadTransactionDatabase(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+            }
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddLog($"命令成功");
+                var result = cmde.Command.getResult() as FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Result;
+                if (result.TransactionList.Count > 0)
+                {
+                    foreach (var transaction in result.TransactionList)
+                    {
+
+                        mMainForm.AddCmdLog(cmde, $"事件类型：{mWatchTypeNameList[transaction.TransactionType]}");
+                        //mMainForm.AddCmdLog(cmde, $"序号：{item.SerialNumber}，事务类型：{item.TransactionType}，事务代码：{item.TransactionCode}，事务日期：{item.TransactionDate}");
+                        mMainForm.AddCmdLog(cmde, PrintTransactionList(transaction));
+                    }
+
+                }
+            };
+        }
         #endregion
 
         #region 按序号采集信息
@@ -292,6 +331,7 @@ namespace FCARDIO.Protocol.Door.Test
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
             {
                 var cmd = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex(cmdDtl, par);
+
                 mMainForm.AddCommand(cmd);
             }
             else
@@ -381,11 +421,6 @@ namespace FCARDIO.Protocol.Door.Test
                 }
             }
             return _findedControl;
-        }
-
-        private void BtnReadTransactionDatabase_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void ButClearTransactionDatabase_Click(object sender, EventArgs e)

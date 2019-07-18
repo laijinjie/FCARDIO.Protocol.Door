@@ -67,7 +67,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 检查每个密码
         /// </summary>
-        /// <param name="password"></param>
+        /// <param name="password">密码信息</param>
         /// <returns></returns>
         protected virtual bool checkedParameterItem(T password)
         {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
+using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
 {
@@ -25,6 +26,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
         public bool Use;
 
         /// <summary>
+        /// 不启用时间控制的 时段
+        /// </summary>
+        public WeekTimeGroup WeekTimeGroup;
+
+        /// <summary>
         /// 提供给SensorAlarmSetting_Result使用
         /// </summary>
         public WriteSensorAlarmSetting_Parameter() { }
@@ -34,10 +40,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
         /// </summary>
         /// <param name="door">门号</param>
         /// <param name="use">是否开启此功能</param>
-        public WriteSensorAlarmSetting_Parameter(byte door, bool use)
+        /// <param name="weekTimeGroup">启用时间控制的 时段</param>
+        public WriteSensorAlarmSetting_Parameter(byte door, bool use, WeekTimeGroup weekTimeGroup)
         {
             DoorNum = door;
             Use = use;
+            WeekTimeGroup = weekTimeGroup;
         }
 
         /// <summary>
@@ -46,6 +54,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (WeekTimeGroup == null)
+            {
+                return false;
+            }
             if (DoorNum < 1 || DoorNum > 4)
                 throw new ArgumentException("Door Error!");
             return true;
@@ -66,12 +78,17 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 2)
+            if (WeekTimeGroup == null)
+            {
+                WeekTimeGroup = new WeekTimeGroup(8);
+            }
+            if (databuf.WritableBytes != 226)
             {
                 throw new ArgumentException("door Error!");
             }
             databuf.WriteByte(DoorNum);
             databuf.WriteBoolean(Use);
+            WeekTimeGroup.GetBytes(databuf);
             return databuf;
         }
 
@@ -81,7 +98,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 2;
+            return 226;
         }
 
         /// <summary>
@@ -92,6 +109,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.SensorAlarmSetting
         {
             DoorNum = databuf.ReadByte();
             Use = databuf.ReadBoolean();
+            WeekTimeGroup = new WeekTimeGroup(8);
+            WeekTimeGroup.ReadDoorWorkSetBytes(databuf);
         }
     }
 }

@@ -57,12 +57,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             {
                 var buf = oPck.CmdData;
                 int iTotal = buf.ReadInt();
-
+                _ProcessMax = iTotal;
                 ReadAllHoliday_Result rst = new ReadAllHoliday_Result();
                 _Result = rst;
-
-
                 rst.SetBytes(iTotal,mReadBuffers);
+                _ProcessStep = iTotal;
                 ClearBuf();
                 CommandCompleted();
             }
@@ -90,6 +89,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
                 buf.Release();
             }
             mReadBuffers.Clear();
+            mReadBuffers = null;
         }
     }
 }

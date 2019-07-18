@@ -21,7 +21,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// <summary>
         /// 初始化参数
         /// </summary>
-        /// <param name="type"></param>
+        /// <param name="type">记录模块代码</param>
         public AbstractDoorTransaction(int type)
         {
             _TransactionType = (short)type;

@@ -119,7 +119,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
         /// <summary>
         /// MAC地址从结构转换成数组字节
         /// </summary>
-        /// <param name="mac"></param>
+        /// <param name="mac">MAC地址</param>
         /// <param name="buf"></param>
         private void SaveMACToByteBuf(string mac, IByteBuffer buf)
         {
@@ -142,7 +142,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
         /// <summary>
         /// 检查MAC地址
         /// </summary>
-        /// <param name="mac"></param>
+        /// <param name="mac">检查MAC地址</param>
         /// <returns></returns>
         public static bool CheckMAC(string mac)
         {
@@ -178,7 +178,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
         /// <summary>
         /// IP地址及与之相同格式的结构转换成数组字节
         /// </summary>
-        /// <param name="IP"></param>
+        /// <param name="IP">IP地址</param>
         /// <param name="buf"></param>
         private void SaveIPToByteBuf(string IP, IByteBuffer buf)
         {

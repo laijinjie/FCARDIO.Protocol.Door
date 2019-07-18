@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 using FCARDIO.Core.Extension;
+using FCARDIO.Protocol.Util;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
 {
@@ -146,8 +147,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AlarmPassword
         {
             DoorNum = databuf.ReadByte();
             Use = databuf.ReadBoolean();
-
-            Password = databuf.ReadByte().ToString();
+            Password = StringUtil.ByteBufToHex(databuf, 4).TrimEnd('F');
+            //Password = databuf.ReadByte().ToString();
             AlarmOption = databuf.ReadByte();
         }
 

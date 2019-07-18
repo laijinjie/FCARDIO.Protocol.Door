@@ -76,7 +76,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
         /// <summary>
         /// 从错误卡列表中读取一个错误卡号，加入到cardlist中---本命令不实现此功能
         /// </summary>
-        /// <param name="CardList"></param>
+        /// <param name="CardList">错误卡列表</param>
         /// <param name="buf"></param>
         protected override void ReadCardByFailBuf(List<UInt64> CardList, IByteBuffer buf)
         {

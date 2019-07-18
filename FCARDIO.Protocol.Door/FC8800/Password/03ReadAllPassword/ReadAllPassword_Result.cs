@@ -16,7 +16,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 初始化参数
         /// </summary>
-        /// <param name="passwordList"></param>
+        /// <param name="passwordList">控制器返回的密码集合</param>
         public ReadAllPassword_Result(List<PasswordDetail> passwordList) :base(passwordList)
         {
 

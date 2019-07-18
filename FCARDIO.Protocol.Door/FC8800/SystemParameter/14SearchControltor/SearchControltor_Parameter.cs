@@ -37,6 +37,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (NetNum == 0)
+            {
+                return false;
+            }
             return true;
         }
 

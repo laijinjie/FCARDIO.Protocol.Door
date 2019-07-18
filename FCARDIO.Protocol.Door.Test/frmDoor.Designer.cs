@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -320,11 +320,44 @@
             this.label67 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.butWriteSensorAlarmSetting = new System.Windows.Forms.Button();
-            this.butReadSensorAlarmSetting = new System.Windows.Forms.Button();
+            this.plSensorAlarm = new System.Windows.Forms.Panel();
+            this.beginSATP7 = new System.Windows.Forms.DateTimePicker();
+            this.label82 = new System.Windows.Forms.Label();
+            this.beginSATP1 = new System.Windows.Forms.DateTimePicker();
+            this.endSATP8 = new System.Windows.Forms.DateTimePicker();
+            this.label97 = new System.Windows.Forms.Label();
+            this.label83 = new System.Windows.Forms.Label();
+            this.endSATP1 = new System.Windows.Forms.DateTimePicker();
+            this.beginSATP8 = new System.Windows.Forms.DateTimePicker();
+            this.label96 = new System.Windows.Forms.Label();
+            this.label84 = new System.Windows.Forms.Label();
+            this.beginSATP5 = new System.Windows.Forms.DateTimePicker();
+            this.endSATP4 = new System.Windows.Forms.DateTimePicker();
+            this.label95 = new System.Windows.Forms.Label();
+            this.label85 = new System.Windows.Forms.Label();
+            this.endSATP5 = new System.Windows.Forms.DateTimePicker();
+            this.beginSATP4 = new System.Windows.Forms.DateTimePicker();
+            this.label94 = new System.Windows.Forms.Label();
+            this.label86 = new System.Windows.Forms.Label();
+            this.beginSATP2 = new System.Windows.Forms.DateTimePicker();
+            this.endSATP7 = new System.Windows.Forms.DateTimePicker();
+            this.label93 = new System.Windows.Forms.Label();
+            this.label87 = new System.Windows.Forms.Label();
+            this.endSATP2 = new System.Windows.Forms.DateTimePicker();
+            this.label92 = new System.Windows.Forms.Label();
+            this.label88 = new System.Windows.Forms.Label();
+            this.beginSATP6 = new System.Windows.Forms.DateTimePicker();
+            this.endSATP3 = new System.Windows.Forms.DateTimePicker();
+            this.label91 = new System.Windows.Forms.Label();
+            this.label89 = new System.Windows.Forms.Label();
+            this.endSATP6 = new System.Windows.Forms.DateTimePicker();
+            this.beginSATP3 = new System.Windows.Forms.DateTimePicker();
+            this.label90 = new System.Windows.Forms.Label();
             this.cmbWeek = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbSensorAlarmSetting = new System.Windows.Forms.ComboBox();
+            this.butWriteSensorAlarmSetting = new System.Windows.Forms.Button();
+            this.butReadSensorAlarmSetting = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -345,6 +378,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label81 = new System.Windows.Forms.Label();
+            this.cmbReadInvalidCardTime = new System.Windows.Forms.ComboBox();
             this.ButWriteInvalidCardAlarmOption = new System.Windows.Forms.Button();
             this.butReadInvalidCardAlarmOption = new System.Windows.Forms.Button();
             this.cmdInvalidCardAlarmOptionUse = new System.Windows.Forms.ComboBox();
@@ -356,8 +391,6 @@
             this.cBoxDoor2 = new System.Windows.Forms.CheckBox();
             this.cBoxDoor1 = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.cmbReadInvalidCardTime = new System.Windows.Forms.ComboBox();
-            this.label81 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -401,6 +434,7 @@
             this.plManyCardOpenVerify.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.plSensorAlarm.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -560,8 +594,8 @@
             // EX2
             // 
             this.EX2.DataPropertyName = "EX";
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.EX2.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.EX2.DefaultCellStyle = dataGridViewCellStyle1;
             this.EX2.HeaderText = "";
             this.EX2.MinimumWidth = 6;
             this.EX2.Name = "EX2";
@@ -1296,8 +1330,8 @@
             // EX
             // 
             this.EX.DataPropertyName = "EX";
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.EX.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.EX.DefaultCellStyle = dataGridViewCellStyle2;
             this.EX.HeaderText = "";
             this.EX.MinimumWidth = 6;
             this.EX.Name = "EX";
@@ -3577,11 +3611,12 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.butWriteSensorAlarmSetting);
-            this.groupBox4.Controls.Add(this.butReadSensorAlarmSetting);
+            this.groupBox4.Controls.Add(this.plSensorAlarm);
             this.groupBox4.Controls.Add(this.cmbWeek);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.cmbSensorAlarmSetting);
+            this.groupBox4.Controls.Add(this.butWriteSensorAlarmSetting);
+            this.groupBox4.Controls.Add(this.butReadSensorAlarmSetting);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Location = new System.Drawing.Point(9, 252);
             this.groupBox4.Name = "groupBox4";
@@ -3590,25 +3625,364 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "门磁报警参数";
             // 
-            // butWriteSensorAlarmSetting
+            // plSensorAlarm
             // 
-            this.butWriteSensorAlarmSetting.Location = new System.Drawing.Point(584, 216);
-            this.butWriteSensorAlarmSetting.Name = "butWriteSensorAlarmSetting";
-            this.butWriteSensorAlarmSetting.Size = new System.Drawing.Size(62, 23);
-            this.butWriteSensorAlarmSetting.TabIndex = 15;
-            this.butWriteSensorAlarmSetting.Text = "写入";
-            this.butWriteSensorAlarmSetting.UseVisualStyleBackColor = true;
-            this.butWriteSensorAlarmSetting.Click += new System.EventHandler(this.butWriteSensorAlarmSetting_Click);
+            this.plSensorAlarm.Controls.Add(this.beginSATP7);
+            this.plSensorAlarm.Controls.Add(this.label82);
+            this.plSensorAlarm.Controls.Add(this.beginSATP1);
+            this.plSensorAlarm.Controls.Add(this.endSATP8);
+            this.plSensorAlarm.Controls.Add(this.label97);
+            this.plSensorAlarm.Controls.Add(this.label83);
+            this.plSensorAlarm.Controls.Add(this.endSATP1);
+            this.plSensorAlarm.Controls.Add(this.beginSATP8);
+            this.plSensorAlarm.Controls.Add(this.label96);
+            this.plSensorAlarm.Controls.Add(this.label84);
+            this.plSensorAlarm.Controls.Add(this.beginSATP5);
+            this.plSensorAlarm.Controls.Add(this.endSATP4);
+            this.plSensorAlarm.Controls.Add(this.label95);
+            this.plSensorAlarm.Controls.Add(this.label85);
+            this.plSensorAlarm.Controls.Add(this.endSATP5);
+            this.plSensorAlarm.Controls.Add(this.beginSATP4);
+            this.plSensorAlarm.Controls.Add(this.label94);
+            this.plSensorAlarm.Controls.Add(this.label86);
+            this.plSensorAlarm.Controls.Add(this.beginSATP2);
+            this.plSensorAlarm.Controls.Add(this.endSATP7);
+            this.plSensorAlarm.Controls.Add(this.label93);
+            this.plSensorAlarm.Controls.Add(this.label87);
+            this.plSensorAlarm.Controls.Add(this.endSATP2);
+            this.plSensorAlarm.Controls.Add(this.label92);
+            this.plSensorAlarm.Controls.Add(this.label88);
+            this.plSensorAlarm.Controls.Add(this.beginSATP6);
+            this.plSensorAlarm.Controls.Add(this.endSATP3);
+            this.plSensorAlarm.Controls.Add(this.label91);
+            this.plSensorAlarm.Controls.Add(this.label89);
+            this.plSensorAlarm.Controls.Add(this.endSATP6);
+            this.plSensorAlarm.Controls.Add(this.beginSATP3);
+            this.plSensorAlarm.Controls.Add(this.label90);
+            this.plSensorAlarm.Location = new System.Drawing.Point(23, 60);
+            this.plSensorAlarm.Name = "plSensorAlarm";
+            this.plSensorAlarm.Size = new System.Drawing.Size(588, 100);
+            this.plSensorAlarm.TabIndex = 150;
             // 
-            // butReadSensorAlarmSetting
+            // beginSATP7
             // 
-            this.butReadSensorAlarmSetting.Location = new System.Drawing.Point(520, 216);
-            this.butReadSensorAlarmSetting.Name = "butReadSensorAlarmSetting";
-            this.butReadSensorAlarmSetting.Size = new System.Drawing.Size(62, 23);
-            this.butReadSensorAlarmSetting.TabIndex = 16;
-            this.butReadSensorAlarmSetting.Text = "读取";
-            this.butReadSensorAlarmSetting.UseVisualStyleBackColor = true;
-            this.butReadSensorAlarmSetting.Click += new System.EventHandler(this.butReadSensorAlarmSetting_Click);
+            this.beginSATP7.CustomFormat = "HH:mm";
+            this.beginSATP7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginSATP7.Location = new System.Drawing.Point(307, 66);
+            this.beginSATP7.Name = "beginSATP7";
+            this.beginSATP7.ShowUpDown = true;
+            this.beginSATP7.Size = new System.Drawing.Size(57, 21);
+            this.beginSATP7.TabIndex = 138;
+            this.beginSATP7.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // label82
+            // 
+            this.label82.AutoSize = true;
+            this.label82.Location = new System.Drawing.Point(516, 51);
+            this.label82.Name = "label82";
+            this.label82.Size = new System.Drawing.Size(59, 12);
+            this.label82.TabIndex = 149;
+            this.label82.Text = "结束时间8";
+            // 
+            // beginSATP1
+            // 
+            this.beginSATP1.CustomFormat = "HH:mm";
+            this.beginSATP1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginSATP1.Location = new System.Drawing.Point(14, 22);
+            this.beginSATP1.Name = "beginSATP1";
+            this.beginSATP1.ShowUpDown = true;
+            this.beginSATP1.Size = new System.Drawing.Size(57, 21);
+            this.beginSATP1.TabIndex = 118;
+            this.beginSATP1.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // endSATP8
+            // 
+            this.endSATP8.CustomFormat = "HH:mm";
+            this.endSATP8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endSATP8.Location = new System.Drawing.Point(518, 66);
+            this.endSATP8.Name = "endSATP8";
+            this.endSATP8.ShowUpDown = true;
+            this.endSATP8.Size = new System.Drawing.Size(57, 21);
+            this.endSATP8.TabIndex = 148;
+            this.endSATP8.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // label97
+            // 
+            this.label97.AutoSize = true;
+            this.label97.Location = new System.Drawing.Point(12, 7);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(59, 12);
+            this.label97.TabIndex = 119;
+            this.label97.Text = "开始时间1";
+            // 
+            // label83
+            // 
+            this.label83.AutoSize = true;
+            this.label83.Location = new System.Drawing.Point(451, 51);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(59, 12);
+            this.label83.TabIndex = 147;
+            this.label83.Text = "开始时间8";
+            // 
+            // endSATP1
+            // 
+            this.endSATP1.CustomFormat = "HH:mm";
+            this.endSATP1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endSATP1.Location = new System.Drawing.Point(79, 22);
+            this.endSATP1.Name = "endSATP1";
+            this.endSATP1.ShowUpDown = true;
+            this.endSATP1.Size = new System.Drawing.Size(57, 21);
+            this.endSATP1.TabIndex = 120;
+            this.endSATP1.Value = new System.DateTime(2019, 5, 13, 23, 59, 0, 0);
+            // 
+            // beginSATP8
+            // 
+            this.beginSATP8.CustomFormat = "HH:mm";
+            this.beginSATP8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginSATP8.Location = new System.Drawing.Point(453, 66);
+            this.beginSATP8.Name = "beginSATP8";
+            this.beginSATP8.ShowUpDown = true;
+            this.beginSATP8.Size = new System.Drawing.Size(57, 21);
+            this.beginSATP8.TabIndex = 146;
+            this.beginSATP8.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // label96
+            // 
+            this.label96.AutoSize = true;
+            this.label96.Location = new System.Drawing.Point(77, 7);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(59, 12);
+            this.label96.TabIndex = 121;
+            this.label96.Text = "结束时间1";
+            // 
+            // label84
+            // 
+            this.label84.AutoSize = true;
+            this.label84.Location = new System.Drawing.Point(516, 7);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(59, 12);
+            this.label84.TabIndex = 145;
+            this.label84.Text = "结束时间4";
+            // 
+            // beginSATP5
+            // 
+            this.beginSATP5.CustomFormat = "HH:mm";
+            this.beginSATP5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginSATP5.Location = new System.Drawing.Point(14, 66);
+            this.beginSATP5.Name = "beginSATP5";
+            this.beginSATP5.ShowUpDown = true;
+            this.beginSATP5.Size = new System.Drawing.Size(57, 21);
+            this.beginSATP5.TabIndex = 122;
+            this.beginSATP5.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // endSATP4
+            // 
+            this.endSATP4.CustomFormat = "HH:mm";
+            this.endSATP4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endSATP4.Location = new System.Drawing.Point(518, 22);
+            this.endSATP4.Name = "endSATP4";
+            this.endSATP4.ShowUpDown = true;
+            this.endSATP4.Size = new System.Drawing.Size(57, 21);
+            this.endSATP4.TabIndex = 144;
+            this.endSATP4.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.Location = new System.Drawing.Point(12, 51);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(59, 12);
+            this.label95.TabIndex = 123;
+            this.label95.Text = "开始时间5";
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Location = new System.Drawing.Point(451, 7);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(59, 12);
+            this.label85.TabIndex = 143;
+            this.label85.Text = "开始时间4";
+            // 
+            // endSATP5
+            // 
+            this.endSATP5.CustomFormat = "HH:mm";
+            this.endSATP5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endSATP5.Location = new System.Drawing.Point(79, 66);
+            this.endSATP5.Name = "endSATP5";
+            this.endSATP5.ShowUpDown = true;
+            this.endSATP5.Size = new System.Drawing.Size(57, 21);
+            this.endSATP5.TabIndex = 124;
+            this.endSATP5.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // beginSATP4
+            // 
+            this.beginSATP4.CustomFormat = "HH:mm";
+            this.beginSATP4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginSATP4.Location = new System.Drawing.Point(453, 22);
+            this.beginSATP4.Name = "beginSATP4";
+            this.beginSATP4.ShowUpDown = true;
+            this.beginSATP4.Size = new System.Drawing.Size(57, 21);
+            this.beginSATP4.TabIndex = 142;
+            this.beginSATP4.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.Location = new System.Drawing.Point(77, 51);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(59, 12);
+            this.label94.TabIndex = 125;
+            this.label94.Text = "结束时间5";
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.Location = new System.Drawing.Point(370, 51);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(59, 12);
+            this.label86.TabIndex = 141;
+            this.label86.Text = "结束时间7";
+            // 
+            // beginSATP2
+            // 
+            this.beginSATP2.CustomFormat = "HH:mm";
+            this.beginSATP2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginSATP2.Location = new System.Drawing.Point(158, 22);
+            this.beginSATP2.Name = "beginSATP2";
+            this.beginSATP2.ShowUpDown = true;
+            this.beginSATP2.Size = new System.Drawing.Size(57, 21);
+            this.beginSATP2.TabIndex = 126;
+            this.beginSATP2.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // endSATP7
+            // 
+            this.endSATP7.CustomFormat = "HH:mm";
+            this.endSATP7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endSATP7.Location = new System.Drawing.Point(372, 66);
+            this.endSATP7.Name = "endSATP7";
+            this.endSATP7.ShowUpDown = true;
+            this.endSATP7.Size = new System.Drawing.Size(57, 21);
+            this.endSATP7.TabIndex = 140;
+            this.endSATP7.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // label93
+            // 
+            this.label93.AutoSize = true;
+            this.label93.Location = new System.Drawing.Point(156, 7);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(59, 12);
+            this.label93.TabIndex = 127;
+            this.label93.Text = "开始时间2";
+            // 
+            // label87
+            // 
+            this.label87.AutoSize = true;
+            this.label87.Location = new System.Drawing.Point(305, 51);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(59, 12);
+            this.label87.TabIndex = 139;
+            this.label87.Text = "开始时间7";
+            // 
+            // endSATP2
+            // 
+            this.endSATP2.CustomFormat = "HH:mm";
+            this.endSATP2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endSATP2.Location = new System.Drawing.Point(223, 22);
+            this.endSATP2.Name = "endSATP2";
+            this.endSATP2.ShowUpDown = true;
+            this.endSATP2.Size = new System.Drawing.Size(57, 21);
+            this.endSATP2.TabIndex = 128;
+            this.endSATP2.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // label92
+            // 
+            this.label92.AutoSize = true;
+            this.label92.Location = new System.Drawing.Point(221, 7);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(59, 12);
+            this.label92.TabIndex = 129;
+            this.label92.Text = "结束时间2";
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.Location = new System.Drawing.Point(370, 7);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(59, 12);
+            this.label88.TabIndex = 137;
+            this.label88.Text = "结束时间3";
+            // 
+            // beginSATP6
+            // 
+            this.beginSATP6.CustomFormat = "HH:mm";
+            this.beginSATP6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginSATP6.Location = new System.Drawing.Point(158, 66);
+            this.beginSATP6.Name = "beginSATP6";
+            this.beginSATP6.ShowUpDown = true;
+            this.beginSATP6.Size = new System.Drawing.Size(57, 21);
+            this.beginSATP6.TabIndex = 130;
+            this.beginSATP6.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // endSATP3
+            // 
+            this.endSATP3.CustomFormat = "HH:mm";
+            this.endSATP3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endSATP3.Location = new System.Drawing.Point(372, 22);
+            this.endSATP3.Name = "endSATP3";
+            this.endSATP3.ShowUpDown = true;
+            this.endSATP3.Size = new System.Drawing.Size(57, 21);
+            this.endSATP3.TabIndex = 136;
+            this.endSATP3.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // label91
+            // 
+            this.label91.AutoSize = true;
+            this.label91.Location = new System.Drawing.Point(156, 51);
+            this.label91.Name = "label91";
+            this.label91.Size = new System.Drawing.Size(59, 12);
+            this.label91.TabIndex = 131;
+            this.label91.Text = "开始时间6";
+            // 
+            // label89
+            // 
+            this.label89.AutoSize = true;
+            this.label89.Location = new System.Drawing.Point(305, 7);
+            this.label89.Name = "label89";
+            this.label89.Size = new System.Drawing.Size(59, 12);
+            this.label89.TabIndex = 135;
+            this.label89.Text = "开始时间3";
+            // 
+            // endSATP6
+            // 
+            this.endSATP6.CustomFormat = "HH:mm";
+            this.endSATP6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endSATP6.Location = new System.Drawing.Point(223, 66);
+            this.endSATP6.Name = "endSATP6";
+            this.endSATP6.ShowUpDown = true;
+            this.endSATP6.Size = new System.Drawing.Size(57, 21);
+            this.endSATP6.TabIndex = 132;
+            this.endSATP6.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // beginSATP3
+            // 
+            this.beginSATP3.CustomFormat = "HH:mm";
+            this.beginSATP3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginSATP3.Location = new System.Drawing.Point(307, 22);
+            this.beginSATP3.Name = "beginSATP3";
+            this.beginSATP3.ShowUpDown = true;
+            this.beginSATP3.Size = new System.Drawing.Size(57, 21);
+            this.beginSATP3.TabIndex = 134;
+            this.beginSATP3.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            // 
+            // label90
+            // 
+            this.label90.AutoSize = true;
+            this.label90.Location = new System.Drawing.Point(221, 51);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(59, 12);
+            this.label90.TabIndex = 133;
+            this.label90.Text = "结束时间6";
             // 
             // cmbWeek
             // 
@@ -3637,6 +4011,26 @@
             this.cmbSensorAlarmSetting.Size = new System.Drawing.Size(97, 20);
             this.cmbSensorAlarmSetting.TabIndex = 9;
             this.cmbSensorAlarmSetting.SelectedIndexChanged += new System.EventHandler(this.cmbSensorAlarmSetting_SelectedIndexChanged);
+            // 
+            // butWriteSensorAlarmSetting
+            // 
+            this.butWriteSensorAlarmSetting.Location = new System.Drawing.Point(549, 207);
+            this.butWriteSensorAlarmSetting.Name = "butWriteSensorAlarmSetting";
+            this.butWriteSensorAlarmSetting.Size = new System.Drawing.Size(62, 23);
+            this.butWriteSensorAlarmSetting.TabIndex = 15;
+            this.butWriteSensorAlarmSetting.Text = "写入";
+            this.butWriteSensorAlarmSetting.UseVisualStyleBackColor = true;
+            this.butWriteSensorAlarmSetting.Click += new System.EventHandler(this.butWriteSensorAlarmSetting_Click);
+            // 
+            // butReadSensorAlarmSetting
+            // 
+            this.butReadSensorAlarmSetting.Location = new System.Drawing.Point(485, 207);
+            this.butReadSensorAlarmSetting.Name = "butReadSensorAlarmSetting";
+            this.butReadSensorAlarmSetting.Size = new System.Drawing.Size(62, 23);
+            this.butReadSensorAlarmSetting.TabIndex = 16;
+            this.butReadSensorAlarmSetting.Text = "读取";
+            this.butReadSensorAlarmSetting.UseVisualStyleBackColor = true;
+            this.butReadSensorAlarmSetting.Click += new System.EventHandler(this.butReadSensorAlarmSetting_Click);
             // 
             // label9
             // 
@@ -3770,7 +4164,7 @@
             this.cmbAlarmOption.FormattingEnabled = true;
             this.cmbAlarmOption.Location = new System.Drawing.Point(270, 28);
             this.cmbAlarmOption.Name = "cmbAlarmOption";
-            this.cmbAlarmOption.Size = new System.Drawing.Size(149, 20);
+            this.cmbAlarmOption.Size = new System.Drawing.Size(312, 20);
             this.cmbAlarmOption.TabIndex = 6;
             // 
             // Password
@@ -3842,6 +4236,24 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "未注册卡报警功能";
+            // 
+            // label81
+            // 
+            this.label81.AutoSize = true;
+            this.label81.Location = new System.Drawing.Point(250, 27);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(35, 12);
+            this.label81.TabIndex = 4;
+            this.label81.Text = "次数:";
+            // 
+            // cmbReadInvalidCardTime
+            // 
+            this.cmbReadInvalidCardTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReadInvalidCardTime.FormattingEnabled = true;
+            this.cmbReadInvalidCardTime.Location = new System.Drawing.Point(298, 23);
+            this.cmbReadInvalidCardTime.Name = "cmbReadInvalidCardTime";
+            this.cmbReadInvalidCardTime.Size = new System.Drawing.Size(121, 20);
+            this.cmbReadInvalidCardTime.TabIndex = 3;
             // 
             // ButWriteInvalidCardAlarmOption
             // 
@@ -3947,24 +4359,6 @@
             this.label22.TabIndex = 26;
             this.label22.Text = "门号：";
             // 
-            // cmbReadInvalidCardTime
-            // 
-            this.cmbReadInvalidCardTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbReadInvalidCardTime.FormattingEnabled = true;
-            this.cmbReadInvalidCardTime.Location = new System.Drawing.Point(298, 23);
-            this.cmbReadInvalidCardTime.Name = "cmbReadInvalidCardTime";
-            this.cmbReadInvalidCardTime.Size = new System.Drawing.Size(121, 20);
-            this.cmbReadInvalidCardTime.TabIndex = 3;
-            // 
-            // label81
-            // 
-            this.label81.AutoSize = true;
-            this.label81.Location = new System.Drawing.Point(250, 27);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(35, 12);
-            this.label81.TabIndex = 4;
-            this.label81.Text = "次数:";
-            // 
             // frmDoor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4056,6 +4450,8 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.plSensorAlarm.ResumeLayout(false);
+            this.plSensorAlarm.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -4396,5 +4792,38 @@
         private System.Windows.Forms.Label label73;
         private System.Windows.Forms.Label label81;
         private System.Windows.Forms.ComboBox cmbReadInvalidCardTime;
+        private System.Windows.Forms.Label label82;
+        private System.Windows.Forms.DateTimePicker endSATP8;
+        private System.Windows.Forms.Label label83;
+        private System.Windows.Forms.DateTimePicker beginSATP8;
+        private System.Windows.Forms.Label label84;
+        private System.Windows.Forms.DateTimePicker endSATP4;
+        private System.Windows.Forms.Label label85;
+        private System.Windows.Forms.DateTimePicker beginSATP4;
+        private System.Windows.Forms.Label label86;
+        private System.Windows.Forms.DateTimePicker endSATP7;
+        private System.Windows.Forms.Label label87;
+        private System.Windows.Forms.DateTimePicker beginSATP7;
+        private System.Windows.Forms.Label label88;
+        private System.Windows.Forms.DateTimePicker endSATP3;
+        private System.Windows.Forms.Label label89;
+        private System.Windows.Forms.DateTimePicker beginSATP3;
+        private System.Windows.Forms.Label label90;
+        private System.Windows.Forms.DateTimePicker endSATP6;
+        private System.Windows.Forms.Label label91;
+        private System.Windows.Forms.DateTimePicker beginSATP6;
+        private System.Windows.Forms.Label label92;
+        private System.Windows.Forms.DateTimePicker endSATP2;
+        private System.Windows.Forms.Label label93;
+        private System.Windows.Forms.DateTimePicker beginSATP2;
+        private System.Windows.Forms.Label label94;
+        private System.Windows.Forms.DateTimePicker endSATP5;
+        private System.Windows.Forms.Label label95;
+        private System.Windows.Forms.DateTimePicker beginSATP5;
+        private System.Windows.Forms.Label label96;
+        private System.Windows.Forms.DateTimePicker endSATP1;
+        private System.Windows.Forms.Label label97;
+        private System.Windows.Forms.DateTimePicker beginSATP1;
+        private System.Windows.Forms.Panel plSensorAlarm;
     }
 }

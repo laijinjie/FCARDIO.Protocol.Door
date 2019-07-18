@@ -32,8 +32,8 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// <summary>
         /// 初始化参数
         /// </summary>
-        /// <param name="cd"></param>
-        /// <param name="par"></param>
+        /// <param name="cd">命令详情</param>
+        /// <param name="par">命令逻辑所需要的命令参数 </param>
         public AddTimeGroup(INCommandDetail cd, AddTimeGroup_Parameter par) : base(cd, par) { mPar = par; }
 
         /// <summary>
@@ -99,11 +99,11 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
 
         }
 
-        
+
         /// <summary>
         /// 处理返回值
         /// </summary>
-        /// <param name="oPck"></param>
+        /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext0(OnlineAccessPacket oPck)
         {
             if (CheckResponse_OK(oPck))
