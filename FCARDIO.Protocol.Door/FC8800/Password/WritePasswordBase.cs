@@ -164,7 +164,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 //未发送完毕，继续发送
                 var buf = GetCmdBuf();
                 WritePasswordToBuf(buf);
-                FCPacket.DataLen = (UInt32)buf.ReadableBytes;
+                FCPacket.DataLen = buf.ReadableBytes;
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
             }
         }

@@ -86,7 +86,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
             if (writeIndex < maxCount)
             {
                 var buf = GetBytes(GetCmdBuf());
-                FCPacket.DataLen = (uint)buf.ReadableBytes;
+                FCPacket.DataLen = buf.ReadableBytes;
                 writeIndex++;
                 _ProcessStep++;
                 fireCommandProcessEvent();

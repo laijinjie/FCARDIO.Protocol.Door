@@ -257,7 +257,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
                 buf.WriteInt(listSerialNumber.Key);
                 buf.WriteInt(mReadQuantity);
                 FCPacket.CmdIndex = 0x04;
-                FCPacket.DataLen = (UInt32)buf.ReadableBytes;
+                FCPacket.DataLen = buf.ReadableBytes;
 
                 mStep = 3;
                 CommandReady();
@@ -402,7 +402,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
             buf.WriteInt((int)transactionDetail.ReadIndex);
             buf.WriteBoolean(false);
             FCPacket.CmdIndex = 0x03;
-            FCPacket.DataLen = (UInt32)buf.ReadableBytes;
+            FCPacket.DataLen = buf.ReadableBytes;
             CommandReady();
         }
 

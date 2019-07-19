@@ -140,7 +140,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
                 //未发送完毕，继续发送
                 var buf = GetCmdBuf();
                 WriteCardDetailToBuf(buf);
-                FCPacket.DataLen = (UInt32)buf.ReadableBytes;
+                FCPacket.DataLen = buf.ReadableBytes;
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
             }
         }
