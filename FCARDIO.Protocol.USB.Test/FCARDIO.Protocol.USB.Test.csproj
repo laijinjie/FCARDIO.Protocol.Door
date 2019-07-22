@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{575D1001-CD37-4997-95C0-7CD7F357DF2C}</ProjectGuid>
+    <ProjectGuid>{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FCARDIO.Protocol.Door.CardReader</RootNamespace>
-    <AssemblyName>FCARDIO.Protocol.Door.CardReader</AssemblyName>
+    <RootNamespace>FCARDIO.Protocol.USB.Test</RootNamespace>
+    <AssemblyName>FCARDIO.Protocol.USB.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,32 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetty.Buffers">
-      <HintPath>..\..\DLL\DotNetty.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetty.Codecs">
-      <HintPath>..\..\DLL\DotNetty.Codecs.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetty.Common">
-      <HintPath>..\..\DLL\DotNetty.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetty.Handlers">
-      <HintPath>..\..\DLL\DotNetty.Handlers.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetty.Transport">
-      <HintPath>..\..\DLL\DotNetty.Transport.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetty.Transport.Libuv">
-      <HintPath>..\..\DLL\DotNetty.Transport.Libuv.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Core">
-      <HintPath>..\..\DLL\FCARDIO.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol">
-      <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,13 +44,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FCARDIO.Protocol.Util\FCARDIO.Protocol.Util.csproj">
-      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
-      <Name>FCARDIO.Protocol.Util</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

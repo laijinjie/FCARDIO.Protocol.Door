@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.OfflinePatrol
+namespace FCARDIO.Protocol.USB.Test
 {
     public class Class1
     {

@@ -48,6 +48,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderAlarm
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (DoorNum < 1 || DoorNum > 4)
+                throw new ArgumentException("Door Error!");
             return true;
         }
 

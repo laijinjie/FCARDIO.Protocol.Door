@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCARDIO.Protocol.Door.CardR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCARDIO.Protocol.Door.OfflinePatrol", "FCARDIO.Protocol.USB\FCARDIO.Protocol.Door.OfflinePatrol\FCARDIO.Protocol.Door.OfflinePatrol.csproj", "{01C58759-9699-48AD-BD12-ABA18AA8C33D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCARDIO.Protocol.USB.Test", "FCARDIO.Protocol.USB\FCARDIO.Protocol.USB.Test\FCARDIO.Protocol.USB.Test.csproj", "{4CA6413E-D29E-455F-819A-6A5D1D1FCDB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCARDIO.Protocol.USB.Test", "FCARDIO.Protocol.USB.Test\FCARDIO.Protocol.USB.Test.csproj", "{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,14 +63,14 @@ Global
 		{01C58759-9699-48AD-BD12-ABA18AA8C33D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{01C58759-9699-48AD-BD12-ABA18AA8C33D}.Release|x86.ActiveCfg = Release|Any CPU
 		{01C58759-9699-48AD-BD12-ABA18AA8C33D}.Release|x86.Build.0 = Release|Any CPU
-		{4CA6413E-D29E-455F-819A-6A5D1D1FCDB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4CA6413E-D29E-455F-819A-6A5D1D1FCDB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4CA6413E-D29E-455F-819A-6A5D1D1FCDB5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4CA6413E-D29E-455F-819A-6A5D1D1FCDB5}.Debug|x86.Build.0 = Debug|Any CPU
-		{4CA6413E-D29E-455F-819A-6A5D1D1FCDB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4CA6413E-D29E-455F-819A-6A5D1D1FCDB5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4CA6413E-D29E-455F-819A-6A5D1D1FCDB5}.Release|x86.ActiveCfg = Release|Any CPU
-		{4CA6413E-D29E-455F-819A-6A5D1D1FCDB5}.Release|x86.Build.0 = Release|Any CPU
+		{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}.Debug|x86.Build.0 = Debug|Any CPU
+		{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}.Release|x86.ActiveCfg = Release|Any CPU
+		{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
