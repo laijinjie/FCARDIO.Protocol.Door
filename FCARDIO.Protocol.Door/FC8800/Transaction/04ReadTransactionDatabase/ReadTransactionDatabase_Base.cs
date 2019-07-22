@@ -209,12 +209,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         }
 
 
-        /// <summary>
-        /// 读记录数据库的返回值 mStep=2
-        /// 读取下一包记录
-        /// </summary>
-        /// <param name="oPck"></param>
-        private void ReadTransactionDatabaseByIndexCallBack(OnlineAccessPacket oPck)
         private void ReadTransactionNext()
         {
             if (CheckResponse(oPck))
@@ -291,12 +285,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
 
             CommandReady();
         }
-
-        /// <summary>
-        /// 检查是否有遗漏
-        /// 读记录数据库的返回值 mStep=2
-        /// </summary>
-        private void CheckResultList()
         /// <param name="oPck"></param>
         private void ReadTransactionDatabaseByIndexCallBack(OnlineAccessPacket oPck)
         {
@@ -331,7 +319,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// 将返回的事务暂时保存在缓冲中
         /// </summary>
         /// <param name="oPck"></param>
-        private void ReReadDatabaseCallBack(OnlineAccessPacket oPck)
         /// <param name="bTransactionBuf"></param>
         private void SaveTransactionToBuf(IByteBuffer bTransactionBuf)
         {
@@ -634,16 +621,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         protected abstract AbstractTransaction GetNewTransaction();
     }
 }
-using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800.Data;
-using FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex;
-using FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseDetail;
-using FCARDIO.Protocol.OnlineAccess;
-using FCARDIO.Protocol.Transaction;
-using System;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
 {

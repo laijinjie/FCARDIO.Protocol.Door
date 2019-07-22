@@ -233,8 +233,6 @@
     <Compile Include="FC8800\Transaction\03ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Base.cs" />
     <Compile Include="FC8800\Transaction\03ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Parameter.cs" />
     <Compile Include="FC8800\Transaction\03ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Result.cs" />
-    <Compile Include="FC8800\Transaction\04ReadTransactionDatabase\ReadTransactionDatabase.cs" />
-    <Compile Include="FC8800\Transaction\04ReadTransactionDatabase\ReadTransactionDatabase_Base.cs" />
     <Compile Include="FC8800\Transaction\04ReadTransactionDatabase\ReadTransactionDatabase_Parameter.cs" />
     <Compile Include="FC8800\Transaction\04ReadTransactionDatabase\ReadTransactionDatabase_Result.cs" />
     <Compile Include="FC8800\Transaction\05TransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex.cs" />
