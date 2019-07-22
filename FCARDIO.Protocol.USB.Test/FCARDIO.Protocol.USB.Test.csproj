@@ -36,16 +36,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotNetty.Buffers">
-      <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
+      <HintPath>D:\Documents\Visual Studio 2017\Projects\FCARDIO.Protocol.Door\DLL\DotNetty.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Common">
-      <HintPath>..\DLL\DotNetty.Common.dll</HintPath>
+      <HintPath>D:\Documents\Visual Studio 2017\Projects\FCARDIO.Protocol.Door\DLL\DotNetty.Common.dll</HintPath>
     </Reference>
     <Reference Include="FCARDIO.Core">
-      <HintPath>..\DLL\FCARDIO.Core.dll</HintPath>
+      <HintPath>D:\Documents\Visual Studio 2017\Projects\FCARDIO.Protocol.Door\DLL\FCARDIO.Core.dll</HintPath>
     </Reference>
     <Reference Include="FCARDIO.Protocol">
-      <HintPath>..\DLL\FCARDIO.Protocol.dll</HintPath>
+      <HintPath>D:\Documents\Visual Studio 2017\Projects\FCARDIO.Protocol.Door\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -117,8 +117,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FCARDIO.Protocol.USB\FCARDIO.Protocol.Door.OfflinePatrol\FCARDIO.Protocol.Door.OfflinePatrol.csproj">
-      <Project>{01c58759-9699-48ad-bd12-aba18aa8c33d}</Project>
+    <ProjectReference Include="..\FCARDIO.Protocol.Door.OfflinePatrol\FCARDIO.Protocol.Door.OfflinePatrol.csproj">
+      <Project>{e29fb1f3-5d1d-49e4-9636-0cacb4d7cb5c}</Project>
       <Name>FCARDIO.Protocol.Door.OfflinePatrol</Name>
     </ProjectReference>
   </ItemGroup>
