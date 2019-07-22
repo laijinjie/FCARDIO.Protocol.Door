@@ -155,6 +155,16 @@ namespace FCARDIO.Protocol.Door.Test
             }
         }
 
+        private void TxtTCPClientAddr_Leave(object sender, System.EventArgs e)
+        {
+            frmSystem frmSystem = frmSystem.GetForm(this);
+            frmSystem.ReadSN();
+            //if (txtSN.Text != "")
+            //{
+            //    frmSystem.ReadPassword();
+            //}
+        }
+
         /// <summary>
         /// 客户端上线
         /// </summary>
@@ -1139,6 +1149,7 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
             mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex).FullName, "读记录数据库");
             mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase).FullName, "读取新记录");
+            mCommandClasss.Add(typeof(FC89H.Transaction.ReadTransactionDatabase.ReadTransactionDatabase).FullName, "读取新记录");
             mCommandClasss.Add(typeof(FC8800.Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
             mCommandClasss.Add(typeof(FC8800.Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
 

@@ -140,6 +140,7 @@
             this.txtTCPClientAddr.Size = new System.Drawing.Size(164, 21);
             this.txtTCPClientAddr.TabIndex = 3;
             this.txtTCPClientAddr.Text = "192.168.1.66";
+            this.txtTCPClientAddr.Leave += TxtTCPClientAddr_Leave;
             // 
             // label2
             // 
@@ -752,6 +753,8 @@
             this.PerformLayout();
 
         }
+
+        
 
         #endregion
 

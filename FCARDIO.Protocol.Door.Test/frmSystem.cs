@@ -136,6 +136,22 @@ namespace FCARDIO.Protocol.Door.Test
             };
         }
 
+        public void ReadSN()
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadSN cmd = new ReadSN(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                SN_Result result = cmde.Command.getResult() as SN_Result;
+                string sn = result.SNBuf.GetString();
+               
+                mMainForm.AddCmdLog(cmde, sn);
+            };
+        }
+
         private bool CheckSN()
         {
             string sn = txtSN.Text;
@@ -194,6 +210,23 @@ namespace FCARDIO.Protocol.Door.Test
                 {
                     txtConnectPassword.Text = pwd;
                 });
+                mMainForm.AddCmdLog(cmde, pwd);
+            };
+        }
+
+        public void ReadPassword()
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadConnectPassword cmd = new ReadConnectPassword(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                Password_Result result = cmde.Command.getResult() as Password_Result;
+                string pwd = result.Password;
+                
                 mMainForm.AddCmdLog(cmde, pwd);
             };
         }

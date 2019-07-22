@@ -71,7 +71,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         {
             maxCount = mPar.PasswordList.Count;
             CreateCommandPacket0();
-            CommandWaitResponse();
             _ProcessMax = maxCount;
         }
 
@@ -133,19 +132,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="password">要写入到缓冲区的密码</param>
         protected abstract void WritePasswordBodyToBuf(IByteBuffer databuf, T password);
 
-        /*
+        /**/
         /// <summary>
         /// 命令超时
         /// </summary>
         protected override void CommandReSend()
         {
-            mIndex -= mBatchCount;
-            var buf = GetCmdBuf();
-            WritePasswordToBuf(buf);
-            FCPacket.DataLen = (UInt32)buf.ReadableBytes;
-            CommandReady();//设定命令当前状态为准备就绪，等待发送
+            //mIndex -= mBatchCount;
+            //var buf = GetCmdBuf();
+            //WritePasswordToBuf(buf);
+            //FCPacket.DataLen = (UInt32)buf.ReadableBytes;
+            //CommandReady();//设定命令当前状态为准备就绪，等待发送
         }
-        */
+        
 
         /// <summary>
         /// 处理返回值
@@ -153,7 +152,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            CommandWaitResponse();
             if (IsWriteOver())
             {
                 Create_Result();

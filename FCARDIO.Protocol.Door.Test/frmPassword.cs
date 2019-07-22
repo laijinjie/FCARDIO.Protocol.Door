@@ -575,6 +575,10 @@ namespace FCARDIO.Protocol.Door.Test
                     string password = rnd.Next(10000000, 99999999).ToString();
                     PasswordDto dto = new PasswordDto();
                     dto.Password = password;
+                    if (ListPassword.FirstOrDefault(t => t.Password == password) != null)
+                    {
+                        password = rnd.Next(10000000, 99999999).ToString();
+                    }
                     int door = rndDoor.Next(16);
                     string binary = Convert.ToString(door, 2).PadLeft(4, '0');
                     dto.SetDoors(binary);
@@ -586,6 +590,7 @@ namespace FCARDIO.Protocol.Door.Test
 
                     ListPassword.Add(dto);
                 }
+                ListPassword = ListPassword.OrderBy(t => t.Password).ToList() ;
                 dataGridView1.DataSource = new BindingList<PasswordDto>(ListPassword);
             }
             else

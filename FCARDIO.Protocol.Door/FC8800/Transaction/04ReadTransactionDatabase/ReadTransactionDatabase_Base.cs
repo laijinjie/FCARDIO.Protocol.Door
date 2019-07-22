@@ -221,7 +221,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         }
 
         /// <summary>
-        /// 检查修改记录读索引号的返回值  mStep=3
+        /// 检查修改记录读索引号的返回值  mStep=2
         /// </summary>
         private void ReadIndexComplete()
         {
@@ -344,7 +344,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
             //mDictSerialNumber
             transactionDetail.ReadIndex = iEndIndex;//更新记录尾号
 
-
+            //读取下个循环记录
             var cmdBuf = FCPacket.CmdData;
             cmdBuf.SetInt(1, iBeginIndex);
             cmdBuf.SetInt(5, mReadQuantity);
@@ -424,8 +424,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// <summary>
         /// 提交序号到未读集合
         /// </summary>
-        /// <param name="startIndex"></param>
-        /// <param name="len"></param>
+        /// <param name="startIndex">开始序号</param>
+        /// <param name="len">数量</param>
         private void AddDictSerialNumberRange(int startIndex, int len)
         {
             for (int i = 1; i <= len; i++)
