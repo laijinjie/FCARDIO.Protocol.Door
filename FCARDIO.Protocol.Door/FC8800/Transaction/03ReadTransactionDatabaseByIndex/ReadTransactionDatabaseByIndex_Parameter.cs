@@ -55,11 +55,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         {
             if (TransactionType < 1 || TransactionType > 6)
                 throw new ArgumentException("DatabaseType Error!");
-            if (Quantity <= 0 && Quantity > 500)
+            if (Quantity <= 0 || Quantity > 500)
             {
                 throw new ArgumentException("Quantity Error!");
             }
-            if (ReadIndex <= 0 && ReadIndex > 300000)
+            if (ReadIndex <= 0 || ReadIndex > 300000)
             {
                 throw new ArgumentException("ReadIndex Error!");
             }

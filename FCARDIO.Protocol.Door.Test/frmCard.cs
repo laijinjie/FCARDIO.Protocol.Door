@@ -116,9 +116,13 @@ namespace FCARDIO.Protocol.Door.Test
         {
             int iReadCount = 0;
             int iType = 0;
+            string[] DBTypes = new string[] { "", "排序区", "非排序区", "所有区域" };
+
+
             CardList.RaiseListChangedEvents = false;
             CardList.Clear();
             CardHashTable.Clear();
+            StringBuilder sLogs = new StringBuilder();
             var result = cmde.Result as FC8800.Card.CardDataBase.ReadCardDataBase_Result;
             if (result != null)
             {
@@ -126,10 +130,13 @@ namespace FCARDIO.Protocol.Door.Test
                 iReadCount = result.DataBaseSize;
                 if (iReadCount > 0)
                 {
+                    sLogs.AppendLine($"读取到的卡片数:{iReadCount},带读取的卡片数据类型:{DBTypes[iType]}");
+                    sLogs.Capacity = result.CardList.Count * 100;
                     //FC8800的卡号
                     foreach (var c in result.CardList)
                     {
                         AddCardDataBaseToList(c);
+                        DebugCardDetail(sLogs, c);
 
                     }
                 }
@@ -141,10 +148,13 @@ namespace FCARDIO.Protocol.Door.Test
                 iReadCount = fc89Result.DataBaseSize;
                 if (iReadCount > 0)
                 {
+                    sLogs.AppendLine($"读取到的卡片数:{iReadCount},带读取的卡片数据类型:{DBTypes[iType]}");
+                    sLogs.Capacity = fc89Result.CardList.Count * 100;
                     //FC89H的卡号
                     foreach (var c in fc89Result.CardList)
                     {
                         AddCardDataBaseToList(c);
+                        DebugCardDetail(sLogs, c);
                     }
                 }
             }
@@ -152,8 +162,14 @@ namespace FCARDIO.Protocol.Door.Test
             CardList.RaiseListChangedEvents = true;
             CardList.ResetBindings();
 
-            string[] DBTypes = new string[] { "", "排序区", "非排序区", "所有区域" };
+            
             mMainForm.AddCmdLog(cmde, $"读取到的卡片数:{iReadCount},带读取的卡片数据类型:{DBTypes[iType]}");
+            if(sLogs.Length >0)
+            {
+                string sFile = frmRecord.SaveFile(sLogs, $"读取所有卡片_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                mMainForm.AddCmdLog(cmde, $"卡片日志保存路径:{sFile}");
+            }
+            
         }
 
         /// <summary>
@@ -173,6 +189,13 @@ namespace FCARDIO.Protocol.Door.Test
                 return true;
             }
             return false;
+        }
+
+        private void DebugCardDetail(StringBuilder sLogs, CardDetailBase card)
+        {
+            var ui = new CardDetail_UI(card);
+            DebugCardDetail(card, sLogs);
+            sLogs.AppendLine();
         }
         #endregion
 
@@ -424,14 +447,13 @@ namespace FCARDIO.Protocol.Door.Test
         private StringBuilder DebugCardDetail(CardDetailBase card, StringBuilder strBuf)
         {
             CardDetail_UI ui = new CardDetail_UI(card);
-            strBuf.Append("卡号：").Append(ui.CardData).Append("；密码：").AppendLine(ui.Password);
-            strBuf.Append("有效期：").Append(ui.Expiry).Append("；有效次数：").Append(ui.OpenTimes).AppendLine("；");
-            strBuf.Append("权限：").AppendLine(ui.doorAccess);
-            strBuf.Append("开门时段：").AppendLine(ui.TimeGroup);
-            strBuf.Append("状态：").Append(ui.CardStatus).Append("；特权：").Append(ui.Privilege);
-            strBuf.AppendLine("；节假日：").Append(ui.Holiday).Append("(1->32)");
-            strBuf.Append("出入标志：").AppendLine(ui.EnterStatus);
-            strBuf.Append("最近读卡时间：").AppendLine(ui.ReadCardDate);
+            strBuf.Append("卡号：").Append(ui.CardData).Append("；密码：").Append(ui.Password);
+            strBuf.Append("；有效期：").Append(ui.Expiry).Append("；有效次数：").Append(ui.OpenTimes).AppendLine("；");
+            strBuf.Append("权限：").Append(ui.doorAccess).Append("；开门时段：").Append(ui.TimeGroup);
+            strBuf.Append("；状态：").Append(ui.CardStatus).Append("；特权：").AppendLine(ui.Privilege);
+            strBuf.Append("节假日：").Append(ui.Holiday).Append("(1->32)");
+            strBuf.Append("；出入标志：").Append(ui.EnterStatus);
+            strBuf.Append("；最近读卡时间：").AppendLine(ui.ReadCardDate);
             return strBuf;
         }
 

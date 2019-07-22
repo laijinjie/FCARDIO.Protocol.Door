@@ -64,17 +64,7 @@ namespace FCARDIO.Protocol.Door.FC8800
         }
 
 
-        /// <summary>
-        /// 获取一个指定大小的Buf
-        /// </summary>
-        /// <param name="iSize">大小</param>
-        /// <returns></returns>
-        protected IByteBuffer GetNewCmdDataBuf(int iSize)
-        {
-            var acl = _Connector.GetByteBufAllocator();
-            IByteBuffer buf = acl.Buffer(iSize);
-            return buf;
-        }
+
 
         /// <summary>
         /// 重置命令内容
@@ -107,16 +97,6 @@ namespace FCARDIO.Protocol.Door.FC8800
 
         }
 
-        /// <summary>
-        /// 获取当前命令所使用的缓冲区
-        /// </summary>
-        /// <returns></returns>
-        protected IByteBuffer GetCmdBuf()
-        {
-            var buf = FCPacket.CmdData;
-            buf?.Clear();
-            return buf;
-        }
 
     }
 }

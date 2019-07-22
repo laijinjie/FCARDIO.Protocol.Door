@@ -91,6 +91,11 @@
             this.label17 = new System.Windows.Forms.Label();
             this.butTransactionDatabaseByIndex = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnReadTransactionDatabase = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtReadTransactionDatabaseQuantity = new System.Windows.Forms.TextBox();
+            this.txtReadTransactionDatabasePacketSize = new System.Windows.Forms.TextBox();
             this.cboe_TransactionDatabaseType3 = new System.Windows.Forms.ComboBox();
             this.txtReadIndex0 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -102,11 +107,6 @@
             this.button9 = new System.Windows.Forms.Button();
             this.textBox36 = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.txtReadTransactionDatabasePacketSize = new System.Windows.Forms.TextBox();
-            this.txtReadTransactionDatabaseQuantity = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.btnReadTransactionDatabase = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -640,6 +640,7 @@
             // txttxtQuantity0
             // 
             this.txttxtQuantity0.Location = new System.Drawing.Point(191, 38);
+            this.txttxtQuantity0.MaxLength = 6;
             this.txttxtQuantity0.Name = "txttxtQuantity0";
             this.txttxtQuantity0.Size = new System.Drawing.Size(100, 21);
             this.txttxtQuantity0.TabIndex = 23;
@@ -694,6 +695,52 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "记录操作";
             // 
+            // btnReadTransactionDatabase
+            // 
+            this.btnReadTransactionDatabase.Location = new System.Drawing.Point(510, 95);
+            this.btnReadTransactionDatabase.Name = "btnReadTransactionDatabase";
+            this.btnReadTransactionDatabase.Size = new System.Drawing.Size(170, 23);
+            this.btnReadTransactionDatabase.TabIndex = 33;
+            this.btnReadTransactionDatabase.Text = "读新记录";
+            this.btnReadTransactionDatabase.UseVisualStyleBackColor = true;
+            this.btnReadTransactionDatabase.Click += new System.EventHandler(this.BtnReadTransactionDatabase_Click);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(325, 72);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(53, 12);
+            this.label23.TabIndex = 32;
+            this.label23.Text = "读取数量";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(207, 72);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(77, 12);
+            this.label22.TabIndex = 31;
+            this.label22.Text = "单次读取数量";
+            // 
+            // txtReadTransactionDatabaseQuantity
+            // 
+            this.txtReadTransactionDatabaseQuantity.Location = new System.Drawing.Point(305, 97);
+            this.txtReadTransactionDatabaseQuantity.MaxLength = 6;
+            this.txtReadTransactionDatabaseQuantity.Name = "txtReadTransactionDatabaseQuantity";
+            this.txtReadTransactionDatabaseQuantity.Size = new System.Drawing.Size(100, 21);
+            this.txtReadTransactionDatabaseQuantity.TabIndex = 30;
+            this.txtReadTransactionDatabaseQuantity.Text = "0";
+            // 
+            // txtReadTransactionDatabasePacketSize
+            // 
+            this.txtReadTransactionDatabasePacketSize.Location = new System.Drawing.Point(190, 97);
+            this.txtReadTransactionDatabasePacketSize.MaxLength = 3;
+            this.txtReadTransactionDatabasePacketSize.Name = "txtReadTransactionDatabasePacketSize";
+            this.txtReadTransactionDatabasePacketSize.Size = new System.Drawing.Size(100, 21);
+            this.txtReadTransactionDatabasePacketSize.TabIndex = 29;
+            this.txtReadTransactionDatabasePacketSize.Text = "200";
+            // 
             // cboe_TransactionDatabaseType3
             // 
             this.cboe_TransactionDatabaseType3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -706,10 +753,11 @@
             // txtReadIndex0
             // 
             this.txtReadIndex0.Location = new System.Drawing.Point(305, 36);
+            this.txtReadIndex0.MaxLength = 6;
             this.txtReadIndex0.Name = "txtReadIndex0";
             this.txtReadIndex0.Size = new System.Drawing.Size(100, 21);
             this.txtReadIndex0.TabIndex = 27;
-            this.txtReadIndex0.Text = "0";
+            this.txtReadIndex0.Text = "1";
             // 
             // label18
             // 
@@ -718,11 +766,12 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(53, 12);
             this.label18.TabIndex = 26;
-            this.label18.Text = "其实序号";
+            this.label18.Text = "起始序号";
             // 
             // txtQuantity
             // 
             this.txtQuantity.Location = new System.Drawing.Point(191, 36);
+            this.txtQuantity.MaxLength = 3;
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(100, 21);
             this.txtQuantity.TabIndex = 25;
@@ -793,50 +842,6 @@
             this.label21.Size = new System.Drawing.Size(89, 12);
             this.label21.TabIndex = 24;
             this.label21.Text = "监控到记录总数";
-            // 
-            // txtReadTransactionDatabasePacketSize
-            // 
-            this.txtReadTransactionDatabasePacketSize.Location = new System.Drawing.Point(190, 97);
-            this.txtReadTransactionDatabasePacketSize.Name = "txtReadTransactionDatabasePacketSize";
-            this.txtReadTransactionDatabasePacketSize.Size = new System.Drawing.Size(100, 21);
-            this.txtReadTransactionDatabasePacketSize.TabIndex = 29;
-            this.txtReadTransactionDatabasePacketSize.Text = "1";
-            // 
-            // txtReadTransactionDatabaseQuantity
-            // 
-            this.txtReadTransactionDatabaseQuantity.Location = new System.Drawing.Point(305, 97);
-            this.txtReadTransactionDatabaseQuantity.Name = "txtReadTransactionDatabaseQuantity";
-            this.txtReadTransactionDatabaseQuantity.Size = new System.Drawing.Size(100, 21);
-            this.txtReadTransactionDatabaseQuantity.TabIndex = 30;
-            this.txtReadTransactionDatabaseQuantity.Text = "0";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(207, 72);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(77, 12);
-            this.label22.TabIndex = 31;
-            this.label22.Text = "单次读取数量";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(325, 72);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(53, 12);
-            this.label23.TabIndex = 32;
-            this.label23.Text = "读取数量";
-            // 
-            // btnReadTransactionDatabase
-            // 
-            this.btnReadTransactionDatabase.Location = new System.Drawing.Point(510, 95);
-            this.btnReadTransactionDatabase.Name = "btnReadTransactionDatabase";
-            this.btnReadTransactionDatabase.Size = new System.Drawing.Size(170, 23);
-            this.btnReadTransactionDatabase.TabIndex = 33;
-            this.btnReadTransactionDatabase.Text = "读新记录";
-            this.btnReadTransactionDatabase.UseVisualStyleBackColor = true;
-            this.btnReadTransactionDatabase.Click += new System.EventHandler(this.BtnReadTransactionDatabase_Click);
             // 
             // frmRecord
             // 

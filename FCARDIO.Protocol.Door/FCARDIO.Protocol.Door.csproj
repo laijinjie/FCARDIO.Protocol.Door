@@ -69,11 +69,11 @@
     <Reference Include="DotNetty.Transport.Libuv">
       <HintPath>..\DLL\DotNetty.Transport.Libuv.dll</HintPath>
     </Reference>
-    <Reference Include="FCARDIO.Core, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FCARDIO.Core, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\FCARDIO.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FCARDIO.Protocol, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FCARDIO.Protocol, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>

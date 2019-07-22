@@ -246,7 +246,7 @@ namespace FCARDIO.Protocol.Door.Test.Model
                 for (int i = 1; i <= 4; i++)
                 {
                     mStrBuf.Append("门").Append(i).Append(":");
-                    mStrBuf.Append(GetEnterStatus(i));
+                    mStrBuf.Append(GetEnterStatus(i)).Append("；");
                 }
 
                 return mStrBuf.ToString();

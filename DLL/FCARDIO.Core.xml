@@ -279,6 +279,13 @@ FCARDIO.Core
  完结此命令，并产生命令错误事件
  </summary>
 </member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.GetNewCmdDataBuf(System.Int32)">
+ <summary>
+ 获取一个指定大小的Buf
+ </summary>
+ <param name="iSize">大小</param>
+ <returns></returns>
+</member>
 <member name="M:FCARDIO.Core.Command.AbstractCommand.Release0">
  <summary>
  释放资源

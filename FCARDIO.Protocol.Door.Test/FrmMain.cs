@@ -85,6 +85,15 @@ namespace FCARDIO.Protocol.Door.Test
         public frmMain()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// 窗口初始化事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
             _IsClosed = false;
             Task.Run(() =>
             {
@@ -93,6 +102,7 @@ namespace FCARDIO.Protocol.Door.Test
 
             });
         }
+
 
         /// <summary>
         /// 窗体初始化
@@ -1147,11 +1157,13 @@ namespace FCARDIO.Protocol.Door.Test
 
             mCommandClasss.Add(typeof(FC8800.Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
             mCommandClasss.Add(typeof(FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
-            mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex).FullName, "读记录数据库");
+            mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
             mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase).FullName, "读取新记录");
             mCommandClasss.Add(typeof(FC89H.Transaction.ReadTransactionDatabase.ReadTransactionDatabase).FullName, "读取新记录");
             mCommandClasss.Add(typeof(FC8800.Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
             mCommandClasss.Add(typeof(FC8800.Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
+
+            mCommandClasss.Add(typeof(FC89H.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
 
 
         }
@@ -1640,15 +1652,7 @@ namespace FCARDIO.Protocol.Door.Test
         }
         #endregion
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
 
-        }
 
         #region 数据监控
 
@@ -1736,18 +1740,24 @@ namespace FCARDIO.Protocol.Door.Test
         {
             FC8800Transaction fcTrn = EventData as FC8800Transaction;
             StringBuilder strbuf = new StringBuilder();
-        
+            var evn = fcTrn.EventData;
             strbuf.Append("SN:").Append(fcTrn.SN).Append("；消息类型：").Append(TransactionTypeName[fcTrn.CmdIndex]).Append("；时间：").Append(fcTrn.EventData.TransactionDate.ToDateTimeStr());
-            strbuf.Append("；事件代码：").Append(fcTrn.EventData.TransactionCode);
-            if(fcTrn.CmdIndex == 1)
+            strbuf.Append("；事件代码：").Append(evn.TransactionCode);
+            if (evn.TransactionType < 7)//1-6
             {
-                FC8800.Data.CardTransaction cardtrn = fcTrn.EventData as FC8800.Data.CardTransaction;
+                string[] codeNameList =frmRecord.mTransactionCodeNameList[evn.TransactionType];
+                strbuf.Append("(").Append(codeNameList[evn.TransactionCode]).Append(")");
+            }
+
+            if (fcTrn.CmdIndex == 1)
+            {
+                FC8800.Data.CardTransaction cardtrn = evn as FC8800.Data.CardTransaction;
                 strbuf.Append("；卡号：").Append(cardtrn.CardData).Append("；门号：").Append(cardtrn.DoorNum().ToString());
                 strbuf.Append(cardtrn.IsEnter()?"(进门)":"(出门)");
             }
             if(fcTrn.CmdIndex>1 && fcTrn.CmdIndex<6)
             {
-                FC8800.Data.AbstractDoorTransaction cardtrn = fcTrn.EventData as FC8800.Data.AbstractDoorTransaction;
+                FC8800.Data.AbstractDoorTransaction cardtrn = evn as FC8800.Data.AbstractDoorTransaction;
                 strbuf.Append("；门号：").Append(cardtrn.Door);
             }
             AddCmdLog(null, strbuf.ToString());

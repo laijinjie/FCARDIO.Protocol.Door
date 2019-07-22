@@ -99,6 +99,16 @@ FCARDIO.Protocol
  FCL-988M\FC-1882M\FC-2882M\FCL-989M
  </summary>
 </member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ControllerType.USBDrive_CardReader">
+ <summary>
+ USB设备中的USB 卡片读写器
+ </summary>
+</member>
+<member name="F:FCARDIO.Protocol.CommandDetailFactory.ControllerType.USBDrive_OfflinePatrol">
+ <summary>
+ USB设备中的USB离线巡更棒
+ </summary>
+</member>
 <member name="M:FCARDIO.Protocol.CommandDetailFactory.CreateDetail(FCARDIO.Protocol.CommandDetailFactory.ConnectType,System.String,System.Int32,FCARDIO.Protocol.CommandDetailFactory.ControllerType,System.String,System.String)">
  <summary>
  创建一个命令详情
@@ -254,6 +264,12 @@ FCARDIO.Protocol
  生成命令的第一个数据包，后续的数据包应该在
  </summary>
 </member>
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.GetCmdBuf">
+ <summary>
+ 获取当前命令所使用的缓冲区
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800Command.Packet(System.Byte,System.Byte,System.Byte,System.UInt32,DotNetty.Buffers.IByteBuffer)">
  <summary>
  修改当前的数据包
@@ -346,7 +362,7 @@ FCARDIO.Protocol
  <param name="oPck">需要检查的指令--一般值接收到的数据包</param>
  <returns></returns>
 </member>
-<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket,System.UInt32)">
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket,System.Int32)">
  <summary>
  检查返回指令是否正确
  </summary>
@@ -354,7 +370,7 @@ FCARDIO.Protocol
  <param name="dl">返回值的长度要求</param>
  <returns></returns>
 </member>
-<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket,System.Byte,System.Byte,System.Byte,System.UInt32)">
+<member name="M:FCARDIO.Protocol.FC8800.FC8800Command.CheckResponse(FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket,System.Byte,System.Byte,System.Byte,System.Int32)">
  <summary>
  检查返回指令是否符合规则
  </summary>
@@ -1190,7 +1206,7 @@ FCARDIO.Protocol
  <param name="oPck">需要检查的指令--一般值接收到的数据包</param>
  <returns></returns>
 </member>
-<member name="M:FCARDIO.Protocol.USBDrive.USBDriveCommand.CheckResponse(FCARDIO.Protocol.USBDrive.USBDrivePacket,System.UInt32)">
+<member name="M:FCARDIO.Protocol.USBDrive.USBDriveCommand.CheckResponse(FCARDIO.Protocol.USBDrive.USBDrivePacket,System.Byte)">
  <summary>
  检查返回指令是否正确
  </summary>
@@ -1198,7 +1214,7 @@ FCARDIO.Protocol
  <param name="dl">返回值的长度要求</param>
  <returns></returns>
 </member>
-<member name="M:FCARDIO.Protocol.USBDrive.USBDriveCommand.CheckResponse(FCARDIO.Protocol.USBDrive.USBDrivePacket,System.Byte,System.Byte,System.UInt32)">
+<member name="M:FCARDIO.Protocol.USBDrive.USBDriveCommand.CheckResponse(FCARDIO.Protocol.USBDrive.USBDrivePacket,System.Byte,System.Byte,System.Byte)">
  <summary>
  检查返回指令是否符合规则
  </summary>

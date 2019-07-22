@@ -15,7 +15,7 @@ namespace FCARDIO.Protocol.Door.Test
     {
 
         /// <summary>
-        /// 定义主窗体结构
+        /// 主窗体访问接口
         /// </summary>
         protected INMain mMainForm;
 

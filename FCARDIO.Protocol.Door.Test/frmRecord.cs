@@ -1,5 +1,6 @@
 ﻿using FCARDIO.Protocol.Door.FC8800.Data;
 using FCARDIO.Protocol.Transaction;
+using FCARDIO.Core.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,14 +15,20 @@ namespace FCARDIO.Protocol.Door.Test
 {
     public partial class frmRecord : frmNodeForm
     {
-        private string[] mWatchTypeNameList;
-        private string[] mCardTransactionList, mButtonTransactionList, mDoorSensorTransactionList, mSoftwareTransactionList, mAlarmTransactionList, mSystemTransactionList;
+        #region 事件类型初始化
+        public static string[] mWatchTypeNameList;
+        public static string[] mCardTransactionList, mButtonTransactionList, mDoorSensorTransactionList, mSoftwareTransactionList, mAlarmTransactionList, mSystemTransactionList;
+        /// <summary>
+        /// 事件代码名称列表
+        /// </summary>
+        public static List<string[]> mTransactionCodeNameList;
 
         /// <summary>
         /// 初始化类型集合
         /// </summary>
-        private void IniWatchEvent()
+        static frmRecord()
         {
+
             mWatchTypeNameList = new string[] { "", "读卡信息", "出门开关信息", "门磁信息", "远程开门信息", "报警信息", "系统信息", "连接保活消息", "连接确认信息" };
             mCardTransactionList = new string[256];
             mButtonTransactionList = new string[256];
@@ -29,6 +36,15 @@ namespace FCARDIO.Protocol.Door.Test
             mSoftwareTransactionList = new string[256];
             mAlarmTransactionList = new string[256];
             mSystemTransactionList = new string[256];
+
+            mTransactionCodeNameList = new List<string[]>(10);
+            mTransactionCodeNameList.Add(null);//0是没有的
+            mTransactionCodeNameList.Add(mCardTransactionList);
+            mTransactionCodeNameList.Add(mButtonTransactionList);
+            mTransactionCodeNameList.Add(mDoorSensorTransactionList);
+            mTransactionCodeNameList.Add(mSoftwareTransactionList);
+            mTransactionCodeNameList.Add(mAlarmTransactionList);
+            mTransactionCodeNameList.Add(mSystemTransactionList);
 
             mCardTransactionList[1] = "合法开门";//
             mCardTransactionList[2] = "密码开门";//------------卡号为密码
@@ -152,6 +168,9 @@ namespace FCARDIO.Protocol.Door.Test
             mSystemTransactionList[14] = "网线已插入";//
         }
 
+        #endregion
+
+        #region 窗口单例模式
         private static object lockobj = new object();
         private static frmRecord onlyObj;
         public static frmRecord GetForm(INMain main)
@@ -169,8 +188,7 @@ namespace FCARDIO.Protocol.Door.Test
             }
             return onlyObj;
         }
-
-        INMain mMainForm;
+        #endregion
 
         private frmRecord(INMain main)
         {
@@ -181,7 +199,6 @@ namespace FCARDIO.Protocol.Door.Test
         private void frmRecord_Load(object sender, EventArgs e)
         {
             e_TransactionDatabaseType();
-            IniWatchEvent();
         }
 
         #region 记录类型
@@ -288,8 +305,11 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 PacketSize = int.Parse(txtReadTransactionDatabasePacketSize.Text.ToString());
             }
-             
+
             var cmdDtl = mMainForm.GetCommandDetail();
+            cmdDtl.Timeout = 1000;
+            cmdDtl.RestartCount = 20;
+
             var par = new FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type), Quantity);
             if (PacketSize != 0)
             {
@@ -310,18 +330,25 @@ namespace FCARDIO.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddLog($"命令成功");
+
                 var result = cmde.Command.getResult() as FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Result;
+                mMainForm.AddCmdLog(cmde, $"读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count},剩余新记录数：{result.readable}");
+
                 if (result.TransactionList.Count > 0)
                 {
-                    foreach (var transaction in result.TransactionList)
+                    StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
+                    sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
+                    sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
+
+                    //按序号排序
+                    result.TransactionList.Sort((x, y) => x.SerialNumber.CompareTo(y.SerialNumber));
+
+                    foreach (var t in result.TransactionList)
                     {
-
-                        mMainForm.AddCmdLog(cmde, $"事件类型：{mWatchTypeNameList[transaction.TransactionType]}");
-                        //mMainForm.AddCmdLog(cmde, $"序号：{item.SerialNumber}，事务类型：{item.TransactionType}，事务代码：{item.TransactionCode}，事务日期：{item.TransactionDate}");
-                        mMainForm.AddCmdLog(cmde, PrintTransactionList(transaction));
+                        PrintTransactionList(t, sLogs);
                     }
-
+                    string sFile = SaveFile(sLogs, $"读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
                 }
             };
         }
@@ -334,6 +361,7 @@ namespace FCARDIO.Protocol.Door.Test
             int Quantity = int.Parse(txtQuantity.Text.ToString());
             int ReadIndex = int.Parse(txtReadIndex0.Text.ToString());
             var cmdDtl = mMainForm.GetCommandDetail();
+            cmdDtl.Timeout = 2000;
             var par = new FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Parameter((cboe_TransactionDatabaseType3.SelectedIndex + 1), ReadIndex, Quantity);
 
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
@@ -350,40 +378,74 @@ namespace FCARDIO.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddLog($"命令成功");
+
                 var result = cmde.Command.getResult() as FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Result;
+                mMainForm.AddCmdLog(cmde, $"按序号读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count}");
+
                 if (result.TransactionList.Count > 0)
                 {
-                    foreach (var transaction in result.TransactionList)
+                    StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
+                    sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
+                    sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).AppendLine();
+
+                    foreach (var t in result.TransactionList)
                     {
 
-                        mMainForm.AddCmdLog(cmde, $"事件类型：{mWatchTypeNameList[transaction.TransactionType]}");
-                        //mMainForm.AddCmdLog(cmde, $"序号：{item.SerialNumber}，事务类型：{item.TransactionType}，事务代码：{item.TransactionCode}，事务日期：{item.TransactionDate}");
-                        mMainForm.AddCmdLog(cmde, PrintTransactionList(transaction));
+                        PrintTransactionList(t, sLogs);
                     }
+                    string sFile = SaveFile(sLogs, $"按序号读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
+
+                    mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
 
                 }
             };
         }
 
-        private string PrintTransactionList(AbstractTransaction transaction)
+        public static string SaveFile(StringBuilder sLogs, string sFileName)
         {
-            string log = "";
-            if (transaction.TransactionType == 1)
+            string sPath = System.IO.Path.Combine(Application.StartupPath, "记录日志");
+            if (!System.IO.Directory.Exists(sPath))
+                System.IO.Directory.CreateDirectory(sPath);
+
+            string sFile = System.IO.Path.Combine(sPath, $"按序号读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
+
+            System.IO.File.WriteAllText(sFile, sLogs.ToString(), Encoding.UTF8);
+            return sFile;
+        }
+
+        private void PrintTransactionList(AbstractTransaction tr, StringBuilder sLogs)
+        {
+
+            sLogs.Append("序号：").Append(tr.SerialNumber.ToString());
+            if(tr.IsNull())
             {
-                CardTransaction cardTrans = transaction as CardTransaction;
-                log = $"序号：{cardTrans.SerialNumber.ToString()}，事务代码：{mCardTransactionList[cardTrans.TransactionCode]}，卡号：{cardTrans.CardData.ToString()}，门号：{cardTrans.DoorNum().ToString()}，时间：{cardTrans.TransactionDate}";
+                sLogs.AppendLine("空记录");
+                return;
             }
-            else if (transaction.TransactionType == 2)
+            sLogs.Append("，时间：").Append(tr.TransactionDate.ToDateTimeStr());
+            sLogs.Append("，事件代码：").Append(tr.TransactionCode);
+            if (tr.TransactionType < 7)//1-6
             {
-                ButtonTransaction buttonTrans = transaction as ButtonTransaction;
-                log = $"序号：{transaction.SerialNumber}，事务代码：{mButtonTransactionList[buttonTrans.TransactionCode]}，事务日期：{transaction.TransactionDate}";
+                string[] codeNameList = mTransactionCodeNameList[tr.TransactionType];
+                sLogs.Append("(").Append(codeNameList[tr.TransactionCode]).Append(")");
+            }
+            if (tr.TransactionType == 1)//读卡记录
+            {
+                CardTransaction cardTrans = tr as CardTransaction;
+                sLogs.Append("卡号：").Append(cardTrans.CardData).Append("，门号：").Append(cardTrans.DoorNum()).Append("，出入：").AppendLine(cardTrans.IsEnter() ? "进门" : "出门");
             }
             else
             {
-                log = $"序号：{transaction.SerialNumber}，事务代码：{transaction.TransactionCode}，事务日期：{transaction.TransactionDate}";
+                if (tr.TransactionType >= 2 && tr.TransactionType <= 2)
+                {
+                    AbstractDoorTransaction doorTr = tr as AbstractDoorTransaction;
+                    sLogs.Append("，门号：").Append(doorTr.Door).AppendLine();
+                }
+                else
+                {
+                    sLogs.AppendLine();
+                }
             }
-            return log;
         }
         #endregion
 

@@ -52,7 +52,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// </summary>
         public void Dispose()
         {
-            throw new NotImplementedException();
+            TransactionList?.Clear();
         }
 
         /// <summary>
