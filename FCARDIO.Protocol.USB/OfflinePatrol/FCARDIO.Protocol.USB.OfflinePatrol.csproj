@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{69B0709D-F370-41D8-BE55-C115FEF3730E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FCARDIO.Protocol.USB.OfflinePatrol</RootNamespace>
+    <AssemblyName>FCARDIO.Protocol.USB.OfflinePatrol</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetty.Buffers">
+      <HintPath>..\..\DLL\DotNetty.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Codecs">
+      <HintPath>..\..\DLL\DotNetty.Codecs.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Common">
+      <HintPath>..\..\DLL\DotNetty.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Handlers">
+      <HintPath>..\..\DLL\DotNetty.Handlers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Transport">
+      <HintPath>..\..\DLL\DotNetty.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Transport.Libuv">
+      <HintPath>..\..\DLL\DotNetty.Transport.Libuv.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Core">
+      <HintPath>..\..\DLL\FCARDIO.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Protocol">
+      <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Protocol.Util">
+      <HintPath>..\..\DLL\FCARDIO.Protocol.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractParameter.cs" />
+    <Compile Include="CommandEx.cs" />
+    <Compile Include="Data\PatrolEmpl.cs" />
+    <Compile Include="Data\TransactionDatabaseDetail.cs" />
+    <Compile Include="Data\Transaction\CardTransaction.cs" />
+    <Compile Include="Data\Transaction\CardTransactionDetail.cs" />
+    <Compile Include="Data\Transaction\SystemTransaction.cs" />
+    <Compile Include="Data\Transaction\SystemTransactionDetail.cs" />
+    <Compile Include="Data\Transaction\TransactionDetailBase.cs" />
+    <Compile Include="OperatedDevice\LCDFlash\LCDFlash.cs" />
+    <Compile Include="OperatedDevice\LCDFlash\LCDFlash_Parameter.cs" />
+    <Compile Include="OperatedDevice\TriggerBuzzer\TriggerBuzzer.cs" />
+    <Compile Include="OperatedDevice\TriggerDoubleLamp\TriggerDoubleLamp.cs" />
+    <Compile Include="OperatedDevice\TriggerDoubleLamp\TriggerDoubleLamp_Parameter.cs" />
+    <Compile Include="OperatedDevice\TriggerLED\TriggerLED.cs" />
+    <Compile Include="OperatedDevice\TriggerLED\TriggerLED_Parameter.cs" />
+    <Compile Include="OperatedDevice\TriggerVibrate\TriggerVibrate.cs" />
+    <Compile Include="OperatedDevice\TriggerVibrate\TriggerVibrate_Parameter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Read_Command.cs" />
+    <Compile Include="SystemParameter\01SN\ReadSN.cs" />
+    <Compile Include="SystemParameter\01SN\SN_Parameter.cs" />
+    <Compile Include="SystemParameter\01SN\SN_Result.cs" />
+    <Compile Include="SystemParameter\01SN\WriteSN.cs" />
+    <Compile Include="SystemParameter\03ExpireTime\ExpireTime_Parameter.cs" />
+    <Compile Include="SystemParameter\03ExpireTime\ExpireTime_Result.cs" />
+    <Compile Include="SystemParameter\03ExpireTime\ReadExpireTime.cs" />
+    <Compile Include="SystemParameter\03ExpireTime\WriteExpireTime.cs" />
+    <Compile Include="SystemParameter\05Version\ReadVersion.cs" />
+    <Compile Include="SystemParameter\05Version\ReadVersion_Result.cs" />
+    <Compile Include="SystemParameter\06SystemStatus\ReadSystemStatus.cs" />
+    <Compile Include="SystemParameter\06SystemStatus\ReadSystemStatus_Result.cs" />
+    <Compile Include="SystemParameter\07RecordStorageMode\ReadRecordStorageMode.cs" />
+    <Compile Include="SystemParameter\07RecordStorageMode\ReadRecordStorageMode_Result.cs" />
+    <Compile Include="SystemParameter\07RecordStorageMode\WriteRecordStorageMode.cs" />
+    <Compile Include="SystemParameter\07RecordStorageMode\WriteRecordStorageMode_Parameter.cs" />
+    <Compile Include="SystemParameter\09CreateTime\ReadCreateTime.cs" />
+    <Compile Include="SystemParameter\09CreateTime\ReadCreateTime_Result.cs" />
+    <Compile Include="SystemParameter\09CreateTime\WriteCreateTime.cs" />
+    <Compile Include="SystemParameter\09CreateTime\WriteCreateTime_Parameter.cs" />
+    <Compile Include="SystemParameter\10StartupHoldTime\ReadStartupHoldTime.cs" />
+    <Compile Include="SystemParameter\10StartupHoldTime\ReadStartupHoldTime_Result.cs" />
+    <Compile Include="SystemParameter\10StartupHoldTime\WriteStartupHoldTime.cs" />
+    <Compile Include="SystemParameter\10StartupHoldTime\WriteStartupHoldTime_Parameter.cs" />
+    <Compile Include="SystemParameter\11LEDOpenHoldTime\ReadLEDOpenHoldTime.cs" />
+    <Compile Include="SystemParameter\11LEDOpenHoldTime\ReadLEDOpenHoldTime_Result.cs" />
+    <Compile Include="SystemParameter\11LEDOpenHoldTime\WriteLEDOpenHoldTime.cs" />
+    <Compile Include="SystemParameter\11LEDOpenHoldTime\WriteLEDOpenHoldTime_Parameter.cs" />
+    <Compile Include="SystemParameter\12Initialize\Initialize.cs" />
+    <Compile Include="Time\ReadTime.cs" />
+    <Compile Include="Time\ReadTime_Result.cs" />
+    <Compile Include="Time\WriteCustomTime.cs" />
+    <Compile Include="Time\WriteCustomTime_Parameter.cs" />
+    <Compile Include="Time\WriteTime.cs" />
+    <Compile Include="Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail.cs" />
+    <Compile Include="Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail_Result.cs" />
+    <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase.cs" />
+    <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase_Parameter.cs" />
+    <Compile Include="Transaction\02ClearTransactionDatabase\TransactionDatabaseEmpty.cs" />
+    <Compile Include="Transaction\04WriteTransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex.cs" />
+    <Compile Include="Transaction\04WriteTransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex_Parameter.cs" />
+    <Compile Include="Transaction\05WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex.cs" />
+    <Compile Include="Transaction\05WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex_Parameter.cs" />
+    <Compile Include="Transaction\e_TransactionDatabaseType.cs" />
+    <Compile Include="Transaction\ReadTransactionDatabase\ReadTransactionDatabase.cs" />
+    <Compile Include="Transaction\ReadTransactionDatabase\ReadTransactionDatabase_Base.cs" />
+    <Compile Include="Transaction\ReadTransactionDatabase\ReadTransactionDatabase_Parameter.cs" />
+    <Compile Include="Transaction\ReadTransactionDatabase\ReadTransactionDatabase_Result.cs" />
+    <Compile Include="Write_Command.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
