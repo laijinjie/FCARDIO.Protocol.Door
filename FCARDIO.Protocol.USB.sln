@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCARDIO.Protocol.USB.Test", "G:\工作svn\FCARDIO.Protocol.Door\FCARDIO.Protocol.USB.Test\FCARDIO.Protocol.USB.Test.csproj", "{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCARDIO.Protocol.Door.OfflinePatrol", "G:\工作svn\FCARDIO.Protocol.Door\FCARDIO.Protocol.USB\FCARDIO.Protocol.Door.OfflinePatrol\FCARDIO.Protocol.Door.OfflinePatrol.csproj", "{B52EAC8A-E9EF-433C-85A2-37C2345BF7C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCARDIO.Protocol.Door.OfflinePatrol", "FCARDIO.Protocol.USB\FCARDIO.Protocol.Door.OfflinePatrol\FCARDIO.Protocol.Door.OfflinePatrol.csproj", "{69B0709D-F370-41D8-BE55-C115FEF3730E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCARDIO.Protocol.USB.Test", "G:\工作svn\FCARDIO.Protocol.Door\FCARDIO.Protocol.USB.Test\FCARDIO.Protocol.USB.Test.csproj", "{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B52EAC8A-E9EF-433C-85A2-37C2345BF7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B52EAC8A-E9EF-433C-85A2-37C2345BF7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B52EAC8A-E9EF-433C-85A2-37C2345BF7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B52EAC8A-E9EF-433C-85A2-37C2345BF7C8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}.Release|Any CPU.Build.0 = Release|Any CPU
-		{69B0709D-F370-41D8-BE55-C115FEF3730E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{69B0709D-F370-41D8-BE55-C115FEF3730E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{69B0709D-F370-41D8-BE55-C115FEF3730E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{69B0709D-F370-41D8-BE55-C115FEF3730E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
