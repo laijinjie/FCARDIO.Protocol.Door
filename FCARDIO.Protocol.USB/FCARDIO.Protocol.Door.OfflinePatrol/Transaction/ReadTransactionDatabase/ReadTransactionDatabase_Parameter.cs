@@ -13,15 +13,15 @@ namespace FCARDIO.Protocol.Door.OfflinePatrol.Transaction.ReadTransactionDatabas
     public class ReadTransactionDatabase_Parameter
         : AbstractParameter
     {
-       /// <summary>
-       ///  记录数据库类型
-       ///  1 读卡记录
-       ///  2 出门开关记录
-       ///  3 门磁记录
-       ///  4 软件操作记录
-       ///  5 报警记录
-       ///  6 系统记录
-       /// </summary>
+        /// <summary>
+        ///  记录数据库类型
+        ///  1 读卡记录
+        ///  2 出门开关记录
+        ///  3 门磁记录
+        ///  4 软件操作记录
+        ///  5 报警记录
+        ///  6 系统记录
+        /// </summary>
         public e_TransactionDatabaseType DatabaseType;
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace FCARDIO.Protocol.Door.OfflinePatrol.Transaction.ReadTransactionDatabas
         /// <summary>
         ///  每次读取数量 1-300
         /// </summary>
-        public int PacketSize=200;
+        public int PacketSize = 200;
 
         /// <summary>
         /// 初始化参数

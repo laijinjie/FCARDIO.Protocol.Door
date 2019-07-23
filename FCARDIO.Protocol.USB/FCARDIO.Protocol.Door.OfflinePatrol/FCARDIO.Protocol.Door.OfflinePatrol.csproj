@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{01C58759-9699-48AD-BD12-ABA18AA8C33D}</ProjectGuid>
+    <ProjectGuid>{B52EAC8A-E9EF-433C-85A2-37C2345BF7C8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FCARDIO.Protocol.Door.OfflinePatrol</RootNamespace>
@@ -12,7 +12,6 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\FCARDIO.Protocol.Door.OfflinePatrol.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -57,6 +55,9 @@
     <Reference Include="FCARDIO.Protocol">
       <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
+    <Reference Include="FCARDIO.Protocol.Util">
+      <HintPath>..\..\FCARDIO.Protocol.Util\bin\Debug\FCARDIO.Protocol.Util.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -71,10 +72,10 @@
     <Compile Include="CommandEx.cs" />
     <Compile Include="Data\PatrolEmpl.cs" />
     <Compile Include="Data\TransactionDatabaseDetail.cs" />
-    <Compile Include="Data\Transaction\SystemTransactionDetail.cs" />
-    <Compile Include="Data\Transaction\CardTransactionDetail.cs" />
     <Compile Include="Data\Transaction\CardTransaction.cs" />
+    <Compile Include="Data\Transaction\CardTransactionDetail.cs" />
     <Compile Include="Data\Transaction\SystemTransaction.cs" />
+    <Compile Include="Data\Transaction\SystemTransactionDetail.cs" />
     <Compile Include="Data\Transaction\TransactionDetailBase.cs" />
     <Compile Include="OperatedDevice\LCDFlash\LCDFlash.cs" />
     <Compile Include="OperatedDevice\LCDFlash\LCDFlash_Parameter.cs" />
@@ -86,35 +87,35 @@
     <Compile Include="OperatedDevice\TriggerVibrate\TriggerVibrate.cs" />
     <Compile Include="OperatedDevice\TriggerVibrate\TriggerVibrate_Parameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemParameter\03ExpireTime\ExpireTime_Parameter.cs" />
-    <Compile Include="SystemParameter\03ExpireTime\ExpireTime_Result.cs" />
-    <Compile Include="SystemParameter\03ExpireTime\ReadExpireTime.cs" />
-    <Compile Include="SystemParameter\03ExpireTime\WriteExpireTime.cs" />
+    <Compile Include="Read_Command.cs" />
     <Compile Include="SystemParameter\01SN\ReadSN.cs" />
     <Compile Include="SystemParameter\01SN\SN_Parameter.cs" />
     <Compile Include="SystemParameter\01SN\SN_Result.cs" />
     <Compile Include="SystemParameter\01SN\WriteSN.cs" />
+    <Compile Include="SystemParameter\03ExpireTime\ExpireTime_Parameter.cs" />
+    <Compile Include="SystemParameter\03ExpireTime\ExpireTime_Result.cs" />
+    <Compile Include="SystemParameter\03ExpireTime\ReadExpireTime.cs" />
+    <Compile Include="SystemParameter\03ExpireTime\WriteExpireTime.cs" />
     <Compile Include="SystemParameter\05Version\ReadVersion.cs" />
-    <Compile Include="Read_Command.cs" />
     <Compile Include="SystemParameter\05Version\ReadVersion_Result.cs" />
+    <Compile Include="SystemParameter\06SystemStatus\ReadSystemStatus.cs" />
+    <Compile Include="SystemParameter\06SystemStatus\ReadSystemStatus_Result.cs" />
     <Compile Include="SystemParameter\07RecordStorageMode\ReadRecordStorageMode.cs" />
     <Compile Include="SystemParameter\07RecordStorageMode\ReadRecordStorageMode_Result.cs" />
     <Compile Include="SystemParameter\07RecordStorageMode\WriteRecordStorageMode.cs" />
     <Compile Include="SystemParameter\07RecordStorageMode\WriteRecordStorageMode_Parameter.cs" />
-    <Compile Include="SystemParameter\06SystemStatus\ReadSystemStatus.cs" />
-    <Compile Include="SystemParameter\06SystemStatus\ReadSystemStatus_Result.cs" />
     <Compile Include="SystemParameter\09CreateTime\ReadCreateTime.cs" />
     <Compile Include="SystemParameter\09CreateTime\ReadCreateTime_Result.cs" />
     <Compile Include="SystemParameter\09CreateTime\WriteCreateTime.cs" />
     <Compile Include="SystemParameter\09CreateTime\WriteCreateTime_Parameter.cs" />
-    <Compile Include="SystemParameter\11LEDOpenHoldTime\ReadLEDOpenHoldTime.cs" />
-    <Compile Include="SystemParameter\11LEDOpenHoldTime\ReadLEDOpenHoldTime_Result.cs" />
-    <Compile Include="SystemParameter\11LEDOpenHoldTime\WriteLEDOpenHoldTime.cs" />
-    <Compile Include="SystemParameter\11LEDOpenHoldTime\WriteLEDOpenHoldTime_Parameter.cs" />
     <Compile Include="SystemParameter\10StartupHoldTime\ReadStartupHoldTime.cs" />
     <Compile Include="SystemParameter\10StartupHoldTime\ReadStartupHoldTime_Result.cs" />
     <Compile Include="SystemParameter\10StartupHoldTime\WriteStartupHoldTime.cs" />
     <Compile Include="SystemParameter\10StartupHoldTime\WriteStartupHoldTime_Parameter.cs" />
+    <Compile Include="SystemParameter\11LEDOpenHoldTime\ReadLEDOpenHoldTime.cs" />
+    <Compile Include="SystemParameter\11LEDOpenHoldTime\ReadLEDOpenHoldTime_Result.cs" />
+    <Compile Include="SystemParameter\11LEDOpenHoldTime\WriteLEDOpenHoldTime.cs" />
+    <Compile Include="SystemParameter\11LEDOpenHoldTime\WriteLEDOpenHoldTime_Parameter.cs" />
     <Compile Include="SystemParameter\12Initialize\Initialize.cs" />
     <Compile Include="Time\ReadTime.cs" />
     <Compile Include="Time\ReadTime_Result.cs" />
@@ -126,24 +127,17 @@
     <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase.cs" />
     <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase_Parameter.cs" />
     <Compile Include="Transaction\02ClearTransactionDatabase\TransactionDatabaseEmpty.cs" />
-    <Compile Include="Transaction\e_TransactionDatabaseType.cs" />
-    <Compile Include="Transaction\05WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex.cs" />
-    <Compile Include="Transaction\05WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex_Parameter.cs" />
     <Compile Include="Transaction\04WriteTransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex.cs" />
     <Compile Include="Transaction\04WriteTransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex_Parameter.cs" />
-    <Compile Include="Transaction\ReadTransactionDatabase\Class1.cs" />
-    <Compile Include="Transaction\ReadTransactionDatabase\ReadTransactionDatabase.cs" />
-    <Compile Include="Transaction\ReadTransactionDatabase\ReadTransactionDatabase_Base.cs" />
+    <Compile Include="Transaction\05WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex.cs" />
+    <Compile Include="Transaction\05WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex_Parameter.cs" />
+    <Compile Include="Transaction\e_TransactionDatabaseType.cs" />
     <Compile Include="Transaction\ReadTransactionDatabase\ReadTransactionDatabase_Parameter.cs" />
     <Compile Include="Transaction\ReadTransactionDatabase\ReadTransactionDatabase_Result.cs" />
     <Compile Include="Write_Command.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FCARDIO.Protocol.Util\FCARDIO.Protocol.Util.csproj">
-      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
-      <Name>FCARDIO.Protocol.Util</Name>
-    </ProjectReference>
+    <Folder Include="SystemParameter\expire\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

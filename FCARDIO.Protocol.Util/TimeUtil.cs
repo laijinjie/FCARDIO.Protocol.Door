@@ -77,6 +77,36 @@ namespace FCARDIO.Protocol.Util
             return dTime;
         }
 
+        /// <summary>
+        /// 从buf读取3个字节转换成日期
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <returns></returns>
+        public static DateTime BCDTimeToDate_yyMMdd(IByteBuffer buf)
+        {
+            buf = ByteUtil.BCDToByte(buf, buf.ReaderIndex, 3);
+            int year = buf.ReadByte();
+            int month = buf.ReadByte();
+            int day = buf.ReadByte();
+
+            if (year > 99)
+            {
+                return DateTime.Now;
+            }
+            if (month == 0 || month > 12)
+            {
+                return DateTime.Now;
+            }
+            if (day == 0 || day > 31)
+            {
+                return DateTime.Now;
+            }
+          
+
+            DateTime dTime = new DateTime(2000 + year, month, day);
+            return dTime;
+        }
+
         public static void DateToBCD_yyMMddhh(byte[] btData, DateTime date)
         {
             if (date == null)
@@ -114,6 +144,32 @@ namespace FCARDIO.Protocol.Util
             {
                 btData[6] = (byte)(date.Year - 2000);
                 btData[5] = (byte)GetWeekNum();
+                btData[4] = (byte)date.Month;
+                btData[3] = (byte)date.Day;
+                btData[2] = (byte)date.Hour;
+                btData[1] = (byte)date.Minute;
+                btData[0] = (byte)date.Second;
+                btData = ByteUtil.ByteToBCD(btData);
+            }
+        }
+
+        /// <summary>
+        /// 日期类型转换为BCD格式日期字节数组
+        /// </summary>
+        /// <param name="btData"></param>
+        /// <param name="date"></param>
+        public static void DateToBCD_ssmmhhddMMyy(byte[] btData, DateTime date)
+        {
+            if (date == null)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    btData[i] = 0;
+                }
+            }
+            else
+            {
+                btData[5] = (byte)(date.Year - 2000);
                 btData[4] = (byte)date.Month;
                 btData[3] = (byte)date.Day;
                 btData[2] = (byte)date.Hour;
@@ -272,7 +328,30 @@ namespace FCARDIO.Protocol.Util
             }
         }
 
+        /// <summary>
+        /// 将日期转换为3个字节BCD格式的数据，并写入到Buf中；yyMMdd
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <param name="date"></param>
+        public static void DateToBCD_yyMMdd(IByteBuffer buf, DateTime date)
+        {
+            if (date == null)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    buf.WriteByte(0);
+                }
+            }
+            else
+            {
+                int iWriteIndex = buf.WriterIndex;
+                buf.WriteByte(date.Year - 2000);
+                buf.WriteByte(date.Month);
+                buf.WriteByte(date.Day);
 
+                ByteUtil.ByteToBCD(buf, iWriteIndex, 3);
+            }
+        }
 
         public static void DateToBCD_yyMMddhhmmss(byte[] btData, DateTime date)
         {

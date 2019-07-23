@@ -38,7 +38,7 @@ namespace FCARDIO.Protocol.Door.OfflinePatrol.Transaction.ReadTransactionDatabas
         /// </summary>
         public ReadTransactionDatabase_Result() { }
 
-      
+
         /// <summary>
         /// 释放资源
         /// </summary>
@@ -53,7 +53,7 @@ namespace FCARDIO.Protocol.Door.OfflinePatrol.Transaction.ReadTransactionDatabas
         /// <param name="buf"></param>
         internal void SetBytes(IByteBuffer buf)
         {
-            
+
         }
     }
 }

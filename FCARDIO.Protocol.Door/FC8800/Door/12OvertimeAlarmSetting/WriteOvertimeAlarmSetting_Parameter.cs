@@ -65,7 +65,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
         {
             if (DoorNum < 1 || DoorNum > 4)
                 throw new ArithmeticException("DoorNum Is Error");
-            if (Overtime < 0 || Overtime > 63345)
+            if (Overtime < 0 || Overtime > 65535)
             {
                 throw new ArithmeticException("Overtime Is Error");
             }
