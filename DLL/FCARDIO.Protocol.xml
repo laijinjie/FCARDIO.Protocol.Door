@@ -1269,7 +1269,13 @@ FCARDIO.Protocol
  解析机器号
  </summary>
 </member>
-<member name="M:FCARDIO.Protocol.USBDrive.DecompileStep_Addr.DecompileStep(FCARDIO.Protocol.Packet.BaseDecompile{FCARDIO.Protocol.USBDrive.USBDrivePacket},System.Byte)">
+<member name="P:FCARDIO.Protocol.USBDrive.DecompileStep_Addr.ReadBufLen">
+ <summary>
+ 信息代码需要存储的长度
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Protocol.USBDrive.DecompileStep_Addr.DecompileNext(FCARDIO.Protocol.Packet.BaseDecompile{FCARDIO.Protocol.USBDrive.USBDrivePacket},DotNetty.Buffers.IByteBuffer,FCARDIO.Protocol.USBDrive.USBDrivePacket)">
  <summary>
  解析机器号，并接入下一个步骤
  </summary>
@@ -1308,9 +1314,9 @@ FCARDIO.Protocol
  解析命令长度
  </summary>
 </member>
-<member name="M:FCARDIO.Protocol.USBDrive.DecompileStep_DataLen.DecompileStep(FCARDIO.Protocol.Packet.BaseDecompile{FCARDIO.Protocol.USBDrive.USBDrivePacket},System.Byte)">
+<member name="M:FCARDIO.Protocol.USBDrive.DecompileStep_DataLen.DecompileNext(FCARDIO.Protocol.Packet.BaseDecompile{FCARDIO.Protocol.USBDrive.USBDrivePacket},DotNetty.Buffers.IByteBuffer,FCARDIO.Protocol.USBDrive.USBDrivePacket)">
  <summary>
- 解析缓冲区，并接入下一个步骤
+ 解析命令长度，并接入下一个步骤
  </summary>
  <param name="decompile"></param>
 </member>
@@ -1321,7 +1327,7 @@ FCARDIO.Protocol
 </member>
 <member name="M:FCARDIO.Protocol.USBDrive.DecompileStep_CmdData.DecompileStep(FCARDIO.Protocol.Packet.BaseDecompile{FCARDIO.Protocol.USBDrive.USBDrivePacket},System.Byte)">
  <summary>
- 解析缓冲区，并接入下一个步骤
+ 解析命令数据，并接入下一个步骤
  </summary>
  <param name="decompile"></param>
 </member>

@@ -36,19 +36,6 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol
 
         }
 
-
-        /// <summary>
-        /// 获取一个指定大小的Buf
-        /// </summary>
-        /// <param name="iSize">大小</param>
-        /// <returns></returns>
-        protected IByteBuffer GetNewCmdDataBuf(int iSize)
-        {
-            var acl = _Connector.GetByteBufAllocator();
-            IByteBuffer buf = acl.Buffer(iSize);
-            return buf;
-        }
-
         /// <summary>
         /// 命令重发时，对命令中一些缓冲做清空或参数重置<br/>
         /// 此命令一般情况下不需要实现！

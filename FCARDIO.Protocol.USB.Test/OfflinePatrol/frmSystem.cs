@@ -50,7 +50,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
                 {
                     txtAddress.Text = sn;
                 });
-                mMainForm.AddCmdLog(cmde, sn);
+                mMainForm.AddCmdLog(cmde, $"地址号：{sn}");
             };
         }
 

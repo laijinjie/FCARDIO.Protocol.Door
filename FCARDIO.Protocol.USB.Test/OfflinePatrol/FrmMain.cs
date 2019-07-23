@@ -93,6 +93,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
 
             InitSerialPort();
             IniLstIO();
+            InilstCommand();
             Task.Run((Action)ShowCommandProcesslog);
         }
 
@@ -175,7 +176,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
 
         private void mAllocator_ConnectorClosedEvent(object sender, INConnectorDetail connector)
         {
-            throw new NotImplementedException();
+            AddIOLog(connector, "关闭", "连接通道已关闭");
         }
 
         private void mAllocator_ConnectorConnectedEvent(object sender, INConnectorDetail connector)
@@ -234,9 +235,28 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
             AddCmdLog(e, "命令错误");
         }
 
+        private const string Command_ReadSN = "FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN.ReadSN";
+        private const string Command_WriteSN = "FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN.WriteSN";
+
         private void mAllocator_CommandCompleteEvent(object sender, CommandEventArgs e)
         {
-            throw new NotImplementedException();
+            mAllocator_CommandProcessEvent(sender, e);
+            AddCmdLog(e, "命令完成");
+            string cName = e.Command.GetType().FullName;
+
+            switch (cName)
+            {
+                case Command_ReadSN://读SN
+                    SystemParameter.SN.SN_Result sn = e.Command.getResult() as SystemParameter.SN.SN_Result;
+                    Invoke(() => txtAddress.Text = sn.SN.ToString());
+                    break;
+                case Command_WriteSN://写SN
+                    SystemParameter.SN.SN_Parameter snPar = e.Command.Parameter as SystemParameter.SN.SN_Parameter;
+                    Invoke(() => txtAddress.Text = snPar.SN.ToString());
+                    break;
+                default:
+                    break;
+            }
         }
 
         #endregion
@@ -311,6 +331,35 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
             mAllocator.AddCommand(cmd);
         }
 
+
+        private void InilstCommand()
+        {
+            lstCommand.BeginUpdate();
+
+            var cols = lstCommand.Columns;
+            cols.Clear();
+            var sCaptions = "类型,内容,身份信息,串口信息,时间,耗时".SplitTrim(",");
+            var iWidths = new int[] { 100, 300, 120, 125, 100, 80 };
+            for (int i = 0; i < sCaptions.Length; i++)
+            {
+                ColumnHeader col = new ColumnHeader();
+                col.Text = sCaptions[i];
+                col.TextAlign = HorizontalAlignment.Center;
+                col.Width = iWidths[i];
+                cols.Add(col);
+            }
+            lstCommand.HideSelection = true;
+            lstCommand.LabelEdit = false;
+            lstCommand.MultiSelect = false;
+            lstCommand.FullRowSelect = true;
+            lstCommand.GridLines = true;
+            lstCommand.ShowItemToolTips = true;
+
+            lstCommand.EndUpdate();
+        }
+
+
+
         public void AddCmdLog(CommandEventArgs e, string txt)
         {
             ListViewItem oItem = new ListViewItem();
@@ -342,11 +391,11 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
                 }
 
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, txt));
-                string Local, Remote, cType;
-                //GetConnectorDetail(cmdDtl.Connector, out cType, out Local, out Remote);
+                string Local,  cType;
+                GetConnectorDetail(cmdDtl.Connector, out cType, out Local);
                 USBDriveCommandDetail fcDtl = cmdDtl as USBDriveCommandDetail;
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, fcDtl.Addr));
-                //oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Remote));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Local));
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, DateTime.Now.ToTimeffff()));
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Timemill.ToString("0")));
                 oItem.ToolTipText = txt;
@@ -372,8 +421,59 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
         }
         private string GetConnectorDetail(INConnectorDetail conn)
         {
-            return "";
+            string Local,  cType;
+            GetConnectorDetail(conn, out cType, out Local);
+            string ret = $"通道类型：{cType} 本地IP：{Local}";
 
+            switch (conn.GetTypeName())
+            {
+                case ConnectorType.UDPServer:
+                    ret = $"通道类型：{cType}  本地绑定IP：{Local}";
+                    break;
+                case ConnectorType.TCPServer:
+                    ret = $"通道类型：{cType} 本地绑定IP：{Local}";
+                    break;
+                case ConnectorType.SerialPort:
+                    ret = $"通道类型：{cType} {Local}";
+                    break;
+                default:
+                    ret = $"通道类型：{cType} {Local}";
+                    break;
+            }
+
+            return $"{ret}:{DateTime.Now.ToTimeffff()}";
+
+        }
+
+        /// <summary>
+        /// 获取连接通道详情
+        /// </summary>
+        /// <param name="conn">连接通道描述符</param>
+        /// <param name="Local">返回描述本地信息</param>
+        /// <returns></returns>
+        private void GetConnectorDetail(INConnectorDetail conn, out string cType, out string Local)
+        {
+            Local = string.Empty;
+            cType = string.Empty;
+
+            var oConn = mAllocator.GetConnector(conn);
+            if (oConn == null) return;
+
+            IPDetail local = oConn.LocalAddress();
+            conn = oConn.GetConnectorDetail();
+
+            switch (conn.GetTypeName())
+            {
+                case ConnectorType.SerialPort:
+                    cType = "串口";
+                    var com = conn as Core.Connector.SerialPort.SerialPortDetail;
+                    Local = $"COM{local.Port}:{com.Baudrate}";
+                    break;
+                default:
+                    cType = conn.GetTypeName();
+                    Local = $"{conn.GetKey()}";
+                    break;
+            }
         }
 
         /// <summary>
@@ -382,7 +482,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
         /// <returns></returns>
         public int GetSerialPort()
         {
-            return (cmbSerialPort.Text.Replace("COM",string.Empty).ToInt32());
+            return (cmbSerialPort.Text.Replace("COM", string.Empty).ToInt32());
         }
 
         /// <summary>
@@ -393,8 +493,9 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
         {
             if (_IsClosed) return null;
             USBDriveCommandDetail cmdDtl = CommandDetailFactory.CreateDetail(CommandDetailFactory.ConnectType.SerialPort, "", GetSerialPort(),
-                CommandDetailFactory.ControllerType.USBDrive_OfflinePatrol, txtReadAddress.Text, string.Empty) as USBDriveCommandDetail;
-
+                CommandDetailFactory.ControllerType.USBDrive_OfflinePatrol, txtAddress.Text, string.Empty) as USBDriveCommandDetail;
+            FCARDIO.Core.Connector.SerialPort.SerialPortDetail spd = cmdDtl.Connector as FCARDIO.Core.Connector.SerialPort.SerialPortDetail;
+            spd.Baudrate = 115200;
             return cmdDtl;
         }
         #endregion
@@ -417,15 +518,13 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
         {
             if (!mShowIOEvent) return;
 
-            string Local, Remote, cType;
-            //GetConnectorDetail(connDetail, out cType, out Local, out Remote);
+            string Local,  cType;
+            GetConnectorDetail(connDetail, out cType, out Local);
 
             ListViewItem oItem = new ListViewItem();
             oItem.Text = sTag;
             oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, txt));
-            //oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, cType));
-            //oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Remote));
-            //oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Local));
+            oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Local));
             oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, DateTime.Now.ToTimeffff()));
             oItem.ToolTipText = txt;
             mIOItems.Enqueue(oItem);
@@ -440,7 +539,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
 
             var cols = lstIO.Columns;
             cols.Clear();
-            var sCaptions = "标签,内容,类型,远程信息,本地信息,时间".SplitTrim(",");
+            var sCaptions = "标签,内容,串口信息,时间".SplitTrim(",");
             var iWidths = new int[] { 60, 260, 90, 125, 125, 100 };
             for (int i = 0; i < sCaptions.Length; i++)
             {

@@ -30,8 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblReLoadCOMList = new System.Windows.Forms.Label();
             this.txtProcess = new System.Windows.Forms.TextBox();
-            this.txtReadAddress = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbSerialPort = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,7 +52,6 @@
             this.butDoor = new System.Windows.Forms.ToolStripButton();
             this.butHoliday = new System.Windows.Forms.ToolStripButton();
             this.butRecord = new System.Windows.Forms.ToolStripButton();
-            this.lblReLoadCOMList = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tbEvent.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -65,7 +65,7 @@
             // 
             this.groupBox1.Controls.Add(this.lblReLoadCOMList);
             this.groupBox1.Controls.Add(this.txtProcess);
-            this.groupBox1.Controls.Add(this.txtReadAddress);
+            this.groupBox1.Controls.Add(this.txtAddress);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cmbSerialPort);
             this.groupBox1.Controls.Add(this.label1);
@@ -76,6 +76,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "通讯参数";
             // 
+            // lblReLoadCOMList
+            // 
+            this.lblReLoadCOMList.AutoSize = true;
+            this.lblReLoadCOMList.ForeColor = System.Drawing.Color.Blue;
+            this.lblReLoadCOMList.Location = new System.Drawing.Point(154, 31);
+            this.lblReLoadCOMList.Name = "lblReLoadCOMList";
+            this.lblReLoadCOMList.Size = new System.Drawing.Size(29, 12);
+            this.lblReLoadCOMList.TabIndex = 19;
+            this.lblReLoadCOMList.Text = "刷新";
+            this.lblReLoadCOMList.Click += new System.EventHandler(this.lblReLoadCOMList_Click);
+            // 
             // txtProcess
             // 
             this.txtProcess.Location = new System.Drawing.Point(330, 27);
@@ -83,14 +94,14 @@
             this.txtProcess.Size = new System.Drawing.Size(235, 21);
             this.txtProcess.TabIndex = 18;
             // 
-            // txtReadAddress
+            // txtAddress
             // 
-            this.txtReadAddress.Location = new System.Drawing.Point(267, 27);
-            this.txtReadAddress.MaxLength = 3;
-            this.txtReadAddress.Name = "txtReadAddress";
-            this.txtReadAddress.Size = new System.Drawing.Size(41, 21);
-            this.txtReadAddress.TabIndex = 3;
-            this.txtReadAddress.Text = "1";
+            this.txtAddress.Location = new System.Drawing.Point(267, 27);
+            this.txtAddress.MaxLength = 3;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(41, 21);
+            this.txtAddress.TabIndex = 3;
+            this.txtAddress.Text = "1";
             // 
             // label2
             // 
@@ -195,7 +206,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(564, 376);
+            this.tabPage6.Size = new System.Drawing.Size(564, 480);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "命令结果";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -208,7 +219,7 @@
             this.lstCommand.HideSelection = false;
             this.lstCommand.Location = new System.Drawing.Point(3, 32);
             this.lstCommand.Name = "lstCommand";
-            this.lstCommand.Size = new System.Drawing.Size(558, 341);
+            this.lstCommand.Size = new System.Drawing.Size(558, 445);
             this.lstCommand.TabIndex = 16;
             this.lstCommand.UseCompatibleStateImageBehavior = false;
             this.lstCommand.View = System.Windows.Forms.View.Details;
@@ -293,17 +304,6 @@
             this.butRecord.Size = new System.Drawing.Size(60, 22);
             this.butRecord.Text = "记录操作";
             // 
-            // lblReLoadCOMList
-            // 
-            this.lblReLoadCOMList.AutoSize = true;
-            this.lblReLoadCOMList.ForeColor = System.Drawing.Color.Blue;
-            this.lblReLoadCOMList.Location = new System.Drawing.Point(154, 31);
-            this.lblReLoadCOMList.Name = "lblReLoadCOMList";
-            this.lblReLoadCOMList.Size = new System.Drawing.Size(29, 12);
-            this.lblReLoadCOMList.TabIndex = 19;
-            this.lblReLoadCOMList.Text = "刷新";
-            this.lblReLoadCOMList.Click += new System.EventHandler(this.lblReLoadCOMList_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -333,7 +333,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtReadAddress;
+        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbSerialPort;
         private System.Windows.Forms.Label label1;
