@@ -117,8 +117,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FCARDIO.Protocol.USB\FCARDIO.Protocol.Door.OfflinePatrol\FCARDIO.Protocol.Door.OfflinePatrol.csproj">
-      <Project>{b52eac8a-e9ef-433c-85a2-37c2345bf7c8}</Project>
+    <ProjectReference Include="..\FCARDIO.Protocol.Door.OfflinePatrol\FCARDIO.Protocol.Door.OfflinePatrol.csproj">
+      <Project>{69b0709d-f370-41d8-be55-c115fef3730e}</Project>
       <Name>FCARDIO.Protocol.Door.OfflinePatrol</Name>
     </ProjectReference>
   </ItemGroup>
