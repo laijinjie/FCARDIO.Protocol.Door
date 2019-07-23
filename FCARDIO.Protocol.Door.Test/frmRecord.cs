@@ -342,7 +342,6 @@ namespace FCARDIO.Protocol.Door.Test
 
                     //按序号排序
                     result.TransactionList.Sort((x, y) => x.SerialNumber.CompareTo(y.SerialNumber));
-
                     foreach (var t in result.TransactionList)
                     {
                         PrintTransactionList(t, sLogs);
@@ -419,7 +418,7 @@ namespace FCARDIO.Protocol.Door.Test
             sLogs.Append("序号：").Append(tr.SerialNumber.ToString());
             if(tr.IsNull())
             {
-                sLogs.AppendLine("空记录");
+                sLogs.AppendLine(" --- 空记录");
                 return;
             }
             sLogs.Append("，时间：").Append(tr.TransactionDate.ToDateTimeStr());

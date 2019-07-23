@@ -165,15 +165,7 @@ namespace FCARDIO.Protocol.Door.Test
             }
         }
 
-        private void TxtTCPClientAddr_Leave(object sender, System.EventArgs e)
-        {
-            frmSystem frmSystem = frmSystem.GetForm(this);
-            frmSystem.ReadSN();
-            //if (txtSN.Text != "")
-            //{
-            //    frmSystem.ReadPassword();
-            //}
-        }
+
 
         /// <summary>
         /// 客户端上线
