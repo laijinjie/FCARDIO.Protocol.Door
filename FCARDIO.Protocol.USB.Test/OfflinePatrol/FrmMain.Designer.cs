@@ -49,8 +49,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.butSystem = new System.Windows.Forms.ToolStripButton();
             this.butTime = new System.Windows.Forms.ToolStripButton();
-            this.butDoor = new System.Windows.Forms.ToolStripButton();
-            this.butHoliday = new System.Windows.Forms.ToolStripButton();
+            this.butPatrol = new System.Windows.Forms.ToolStripButton();
             this.butRecord = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             this.tbEvent.SuspendLayout();
@@ -248,8 +247,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.butSystem,
             this.butTime,
-            this.butDoor,
-            this.butHoliday,
+            this.butPatrol,
             this.butRecord});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -277,23 +275,15 @@
             this.butTime.Text = "日期时间";
             this.butTime.Click += new System.EventHandler(this.ButTime_Click);
             // 
-            // butDoor
+            // butPatrol
             // 
-            this.butDoor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.butDoor.Image = ((System.Drawing.Image)(resources.GetObject("butDoor.Image")));
-            this.butDoor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.butDoor.Name = "butDoor";
-            this.butDoor.Size = new System.Drawing.Size(48, 22);
-            this.butDoor.Text = "门参数";
-            // 
-            // butHoliday
-            // 
-            this.butHoliday.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.butHoliday.Image = ((System.Drawing.Image)(resources.GetObject("butHoliday.Image")));
-            this.butHoliday.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.butHoliday.Name = "butHoliday";
-            this.butHoliday.Size = new System.Drawing.Size(48, 22);
-            this.butHoliday.Text = "节假日";
+            this.butPatrol.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.butPatrol.Image = ((System.Drawing.Image)(resources.GetObject("butPatrol.Image")));
+            this.butPatrol.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.butPatrol.Name = "butPatrol";
+            this.butPatrol.Size = new System.Drawing.Size(60, 22);
+            this.butPatrol.Text = "巡更人员";
+            this.butPatrol.Click += new System.EventHandler(this.ButPatrol_Click);
             // 
             // butRecord
             // 
@@ -351,8 +341,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton butSystem;
         private System.Windows.Forms.ToolStripButton butTime;
-        private System.Windows.Forms.ToolStripButton butDoor;
-        private System.Windows.Forms.ToolStripButton butHoliday;
+        private System.Windows.Forms.ToolStripButton butPatrol;
         private System.Windows.Forms.ToolStripButton butRecord;
         private System.Windows.Forms.Label lblReLoadCOMList;
     }

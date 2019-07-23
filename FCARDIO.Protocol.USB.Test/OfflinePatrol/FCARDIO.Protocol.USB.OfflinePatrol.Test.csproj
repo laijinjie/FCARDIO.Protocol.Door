@@ -41,6 +41,12 @@
     <Reference Include="DotNetty.Common">
       <HintPath>..\..\DLL\DotNetty.Common.dll</HintPath>
     </Reference>
+    <Reference Include="FCARDIO.Core">
+      <HintPath>..\..\DLL\FCARDIO.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Protocol">
+      <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -83,6 +89,7 @@
     <Compile Include="frmTime.Designer.cs">
       <DependentUpon>frmTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\PatrolEmplUI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -111,14 +118,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DoNet版通讯动态库V2\FCARDIO.Core\FCARDIO.Core\FCARDIO.Core.vbproj">
-      <Project>{a149c4d3-2209-408f-a0de-d9eb8e0fa492}</Project>
-      <Name>FCARDIO.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\DoNet版通讯动态库V2\FCARDIO.Protocol\FCARDIO.Protocol\FCARDIO.Protocol.vbproj">
-      <Project>{4c9b06e5-da6b-49af-8e4d-a0d75046c044}</Project>
-      <Name>FCARDIO.Protocol</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\FCARDIO.Protocol.USB\OfflinePatrol\FCARDIO.Protocol.USB.OfflinePatrol.csproj">
       <Project>{69b0709d-f370-41d8-be55-c115fef3730e}</Project>
       <Name>FCARDIO.Protocol.USB.OfflinePatrol</Name>

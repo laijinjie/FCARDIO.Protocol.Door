@@ -1,24 +1,35 @@
 ﻿using DotNetty.Buffers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerLED
+namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.DeletePatrolEmpl
 {
     /// <summary>
-    /// 触发LED手电筒 参数
+    /// 删除巡更人员 参数
     /// </summary>
-    public class TriggerLED_Parameter : AbstractParameter
+    public class DeletePatrolEmpl_Parameter : AbstractParameter
     {
+
         /// <summary>
-        /// 是否开启
-        /// 128 - 开启 ， 8 - 关闭
+        /// 默认的缓冲区大小
         /// </summary>
-        public byte Code;
+        protected int MaxBufSize = 350;
+
+
+        /// <summary>
+        /// 被删除巡更人员列表
+        /// </summary>
+        public List<ushort> PCodeList;
 
         /// <summary>
         /// 初始化参数
         /// </summary>
-        public TriggerLED_Parameter(byte code)
+        public DeletePatrolEmpl_Parameter(List<ushort> list)
         {
-            Code = code;
+            PCodeList = list;
         }
 
         /// <summary>
@@ -27,12 +38,17 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerLED
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Code != 128 && Code != 8)
+            if (PCodeList == null || PCodeList.Count == 0)
+                throw new ArgumentException("PCodeList Error!");
+            foreach (var pcode in PCodeList)
             {
-                return false;
+                if (pcode < 1 || pcode > 999)
+                    throw new ArgumentException("PCode Error!");
             }
             return true;
         }
+
+
 
         /// <summary>
         /// 将结构编码为字节缓冲
@@ -41,7 +57,6 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerLED
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            databuf.WriteByte(Code);
             
             return databuf;
         }
@@ -56,12 +71,12 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerLED
         }
 
         /// <summary>
-        /// 将字节缓冲解码为类结构
+        /// 
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            
+
         }
     }
 }

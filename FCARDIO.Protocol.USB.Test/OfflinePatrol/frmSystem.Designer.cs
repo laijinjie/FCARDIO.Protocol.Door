@@ -79,6 +79,8 @@
             this.ReadCreateTime = new System.Windows.Forms.Button();
             this.dtpCreateTime = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
+            this.btnReadRecordStorageMode = new System.Windows.Forms.Button();
+            this.btnWriteRecordStorageMode = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -219,6 +221,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnWriteRecordStorageMode);
+            this.groupBox1.Controls.Add(this.btnReadRecordStorageMode);
             this.groupBox1.Controls.Add(this.rbStorageMode1);
             this.groupBox1.Controls.Add(this.rbStorageMode0);
             this.groupBox1.Controls.Add(this.label2);
@@ -605,6 +609,26 @@
             this.label14.TabIndex = 26;
             this.label14.Text = "出厂日期：";
             // 
+            // btnReadRecordStorageMode
+            // 
+            this.btnReadRecordStorageMode.Location = new System.Drawing.Point(488, 25);
+            this.btnReadRecordStorageMode.Name = "btnReadRecordStorageMode";
+            this.btnReadRecordStorageMode.Size = new System.Drawing.Size(40, 22);
+            this.btnReadRecordStorageMode.TabIndex = 25;
+            this.btnReadRecordStorageMode.Text = "读取";
+            this.btnReadRecordStorageMode.UseVisualStyleBackColor = true;
+            this.btnReadRecordStorageMode.Click += new System.EventHandler(this.BtnReadRecordStorageMode_Click);
+            // 
+            // btnWriteRecordStorageMode
+            // 
+            this.btnWriteRecordStorageMode.Location = new System.Drawing.Point(547, 25);
+            this.btnWriteRecordStorageMode.Name = "btnWriteRecordStorageMode";
+            this.btnWriteRecordStorageMode.Size = new System.Drawing.Size(40, 22);
+            this.btnWriteRecordStorageMode.TabIndex = 25;
+            this.btnWriteRecordStorageMode.Text = "写入";
+            this.btnWriteRecordStorageMode.UseVisualStyleBackColor = true;
+            this.btnWriteRecordStorageMode.Click += new System.EventHandler(this.BtnWriteRecordStorageMode_Click);
+            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -684,5 +708,7 @@
         private System.Windows.Forms.Button btnReadStartupHoldTime;
         private System.Windows.Forms.ComboBox cmbStartupHoldTime;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btnWriteRecordStorageMode;
+        private System.Windows.Forms.Button btnReadRecordStorageMode;
     }
 }

@@ -27,7 +27,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SystemStatus
         /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(USBDrivePacket oPck)
         {
-            if (CheckResponse(oPck, 4))
+            if (CheckResponse(oPck, 0x16))
             {
                 var buf = oPck.CmdData;
                 ReadSystemStatus_Result rst = new ReadSystemStatus_Result();
@@ -43,7 +43,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SystemStatus
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(1, 4);
+            Packet(1, 5);
         }
     }
 }

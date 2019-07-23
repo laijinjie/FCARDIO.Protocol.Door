@@ -17,9 +17,18 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public WriteCreateTime(INCommandDetail cd, INCommandParameter par) : base(cd, par)
+        public WriteCreateTime(INCommandDetail cd, WriteCreateTime_Parameter par) : base(cd, par)
         {
 
+        }
+
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            WriteCreateTime_Parameter model = _Parameter as WriteCreateTime_Parameter;
+            Packet(0x01, 0x08, 3, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
         /// <summary>
@@ -34,13 +43,6 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime
             return model.checkedParameter();
         }
 
-        /// <summary>
-        /// 将命令打包成一个Packet，准备发送
-        /// </summary>
-        protected override void CreatePacket0()
-        {
-            WriteCreateTime_Parameter model = _Parameter as WriteCreateTime_Parameter;
-            Packet(0x01, 0x08, 3, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
-        }
+        
     }
 }

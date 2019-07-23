@@ -12,9 +12,18 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerVibrate
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public TriggerVibrate(INCommandDetail cd, INCommandParameter par) : base(cd, par)
+        public TriggerVibrate(INCommandDetail cd, TriggerVibrate_Parameter par) : base(cd, par)
         {
 
+        }
+
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            TriggerVibrate_Parameter model = _Parameter as TriggerVibrate_Parameter;
+            Packet(0x05, 0x03, 2, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
         /// <summary>
@@ -29,13 +38,6 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerVibrate
             return model.checkedParameter();
         }
 
-        /// <summary>
-        /// 将命令打包成一个Packet，准备发送
-        /// </summary>
-        protected override void CreatePacket0()
-        {
-            TriggerVibrate_Parameter model = _Parameter as TriggerVibrate_Parameter;
-            Packet(0x05, 0x03, 2, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
-        }
+        
     }
 }

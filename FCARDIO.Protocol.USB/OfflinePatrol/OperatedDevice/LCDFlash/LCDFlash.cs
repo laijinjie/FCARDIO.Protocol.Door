@@ -17,9 +17,18 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.LCDFlash
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public LCDFlash(INCommandDetail cd, INCommandParameter par) : base(cd, par)
+        public LCDFlash(INCommandDetail cd, LCDFlash_Parameter par) : base(cd, par)
         {
 
+        }
+
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            LCDFlash_Parameter model = _Parameter as LCDFlash_Parameter;
+            Packet(0x05, 0x04, 1, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
         /// <summary>
@@ -34,13 +43,6 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.LCDFlash
             return model.checkedParameter();
         }
 
-        /// <summary>
-        /// 将命令打包成一个Packet，准备发送
-        /// </summary>
-        protected override void CreatePacket0()
-        {
-            LCDFlash_Parameter model = _Parameter as LCDFlash_Parameter;
-            Packet(0x05, 0x04, 1, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
-        }
+       
     }
 }

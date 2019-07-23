@@ -17,9 +17,18 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public WriteStartupHoldTime(INCommandDetail cd, INCommandParameter par) : base(cd, par)
+        public WriteStartupHoldTime(INCommandDetail cd, WriteStartupHoldTime_Parameter par) : base(cd, par)
         {
 
+        }
+
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            WriteStartupHoldTime_Parameter model = _Parameter as WriteStartupHoldTime_Parameter;
+            Packet(0x01, 0x0A, 1, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
         /// <summary>
@@ -34,13 +43,6 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime
             return model.checkedParameter();
         }
 
-        /// <summary>
-        /// 将命令打包成一个Packet，准备发送
-        /// </summary>
-        protected override void CreatePacket0()
-        {
-            WriteStartupHoldTime_Parameter model = _Parameter as WriteStartupHoldTime_Parameter;
-            Packet(0x01, 0x0A, 1, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
-        }
+       
     }
 }

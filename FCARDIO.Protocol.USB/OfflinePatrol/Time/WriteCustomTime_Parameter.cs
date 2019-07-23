@@ -44,7 +44,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Time
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (ControllerDate == DateTime.MinValue)
+            if (ControllerDate < new DateTime(2000,1,1) || ControllerDate > new DateTime(2099,12,31))
             {
                 return false;
             }

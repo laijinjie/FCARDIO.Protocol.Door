@@ -18,9 +18,18 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public WriteSN(INCommandDetail cd, INCommandParameter par) : base(cd, par)
+        public WriteSN(INCommandDetail cd, SN_Parameter par) : base(cd, par)
         {
 
+        }
+
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            SN_Parameter model = _Parameter as SN_Parameter;
+            Packet(0x01, 0x01, 1, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
         /// <summary>
@@ -35,13 +44,6 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN
             return model.checkedParameter();
         }
 
-        /// <summary>
-        /// 将命令打包成一个Packet，准备发送
-        /// </summary>
-        protected override void CreatePacket0()
-        {
-            SN_Parameter model = _Parameter as SN_Parameter;
-            Packet(0x01, 0x01, 1, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
-        }
+        
     }
 }

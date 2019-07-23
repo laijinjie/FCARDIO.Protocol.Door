@@ -648,6 +648,14 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
             ShowFrm(frm);
         }
 
-
+        private void ButPatrol_Click(object sender, EventArgs e)
+        {
+            frmPatrolEmpl frm = frmPatrolEmpl.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+        }
     }
 }

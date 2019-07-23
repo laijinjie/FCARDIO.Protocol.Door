@@ -14,6 +14,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.LCDFlash
     {
         /// <summary>
         /// 是否开启
+        /// 128 - 开启 ， 8 - 关闭
         /// </summary>
         public byte Code;
 

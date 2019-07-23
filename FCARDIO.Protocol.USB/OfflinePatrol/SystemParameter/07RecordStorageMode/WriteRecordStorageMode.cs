@@ -17,9 +17,18 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public WriteRecordStorageMode(INCommandDetail cd, INCommandParameter par) : base(cd, par)
+        public WriteRecordStorageMode(INCommandDetail cd, WriteRecordStorageMode_Parameter par) : base(cd, par)
         {
 
+        }
+
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            WriteRecordStorageMode_Parameter model = _Parameter as WriteRecordStorageMode_Parameter;
+            Packet(0x01, 0x06, 1, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
         /// <summary>
@@ -34,13 +43,6 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode
             return model.checkedParameter();
         }
 
-        /// <summary>
-        /// 将命令打包成一个Packet，准备发送
-        /// </summary>
-        protected override void CreatePacket0()
-        {
-            WriteRecordStorageMode_Parameter model = _Parameter as WriteRecordStorageMode_Parameter;
-            Packet(0x01, 0x06, 1, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
-        }
+        
     }
 }

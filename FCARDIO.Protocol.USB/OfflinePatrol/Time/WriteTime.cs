@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.USB.OfflinePatrol.Time
 {
     /// <summary>
-    /// 将电脑的最新时间写入到控制器中
+    /// 将电脑的最新时间写入到设备中
     /// </summary>
     public class WriteTime : Write_Command
     {

@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.butReadDatabaseDetail = new System.Windows.Forms.Button();
+            this.butReadDatabase = new System.Windows.Forms.Button();
+            this.butClearDataBase = new System.Windows.Forms.Button();
+            this.btnWriteEmpl = new System.Windows.Forms.Button();
+            this.butClearGrid = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.txtCardData = new System.Windows.Forms.TextBox();
+            this.btnIncrease = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPCode = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button7 = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.btnAddDevice = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnDeleteDevice = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
+            this.txtCount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.butCreateCardNumByOrder = new System.Windows.Forms.Button();
+            this.butCreateCardNumByRandom = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -69,50 +69,55 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "授权卡列表：";
             // 
-            // button1
+            // butReadDatabaseDetail
             // 
-            this.button1.Location = new System.Drawing.Point(96, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "采集存储信息";
-            this.button1.UseVisualStyleBackColor = true;
+            this.butReadDatabaseDetail.Location = new System.Drawing.Point(96, 8);
+            this.butReadDatabaseDetail.Name = "butReadDatabaseDetail";
+            this.butReadDatabaseDetail.Size = new System.Drawing.Size(75, 23);
+            this.butReadDatabaseDetail.TabIndex = 1;
+            this.butReadDatabaseDetail.Text = "采集存储信息";
+            this.butReadDatabaseDetail.UseVisualStyleBackColor = true;
+            this.butReadDatabaseDetail.Click += new System.EventHandler(this.ButReadDatabaseDetail_Click);
             // 
-            // button2
+            // butReadDatabase
             // 
-            this.button2.Location = new System.Drawing.Point(191, 8);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "采集名单";
-            this.button2.UseVisualStyleBackColor = true;
+            this.butReadDatabase.Location = new System.Drawing.Point(191, 8);
+            this.butReadDatabase.Name = "butReadDatabase";
+            this.butReadDatabase.Size = new System.Drawing.Size(75, 23);
+            this.butReadDatabase.TabIndex = 2;
+            this.butReadDatabase.Text = "采集名单";
+            this.butReadDatabase.UseVisualStyleBackColor = true;
+            this.butReadDatabase.Click += new System.EventHandler(this.ButReadDatabase_Click);
             // 
-            // button3
+            // butClearDataBase
             // 
-            this.button3.Location = new System.Drawing.Point(299, 8);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "清空名单";
-            this.button3.UseVisualStyleBackColor = true;
+            this.butClearDataBase.Location = new System.Drawing.Point(299, 8);
+            this.butClearDataBase.Name = "butClearDataBase";
+            this.butClearDataBase.Size = new System.Drawing.Size(75, 23);
+            this.butClearDataBase.TabIndex = 3;
+            this.butClearDataBase.Text = "清空名单";
+            this.butClearDataBase.UseVisualStyleBackColor = true;
+            this.butClearDataBase.Click += new System.EventHandler(this.ButClearDataBase_Click);
             // 
-            // button4
+            // btnWriteEmpl
             // 
-            this.button4.Location = new System.Drawing.Point(603, 8);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "上传名单";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnWriteEmpl.Location = new System.Drawing.Point(603, 8);
+            this.btnWriteEmpl.Name = "btnWriteEmpl";
+            this.btnWriteEmpl.Size = new System.Drawing.Size(75, 23);
+            this.btnWriteEmpl.TabIndex = 4;
+            this.btnWriteEmpl.Text = "上传名单";
+            this.btnWriteEmpl.UseVisualStyleBackColor = true;
+            this.btnWriteEmpl.Click += new System.EventHandler(this.BtnWriteEmpl_Click);
             // 
-            // button5
+            // butClearGrid
             // 
-            this.button5.Location = new System.Drawing.Point(713, 8);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "清空列表";
-            this.button5.UseVisualStyleBackColor = true;
+            this.butClearGrid.Location = new System.Drawing.Point(713, 8);
+            this.butClearGrid.Name = "butClearGrid";
+            this.butClearGrid.Size = new System.Drawing.Size(75, 23);
+            this.butClearGrid.TabIndex = 5;
+            this.butClearGrid.Text = "清空列表";
+            this.butClearGrid.UseVisualStyleBackColor = true;
+            this.butClearGrid.Click += new System.EventHandler(this.ButClearGrid_Click);
             // 
             // dataGridView1
             // 
@@ -120,60 +125,67 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5});
+            this.Selected,
+            this.Index,
+            this.CardData,
+            this.PCode,
+            this.Name});
             this.dataGridView1.Location = new System.Drawing.Point(15, 41);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(773, 262);
             this.dataGridView1.TabIndex = 6;
+            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_CellMouseClick);
             // 
-            // Column1
+            // Selected
             // 
-            this.Column1.HeaderText = "选择";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 60;
+            this.Selected.DataPropertyName = "Selected";
+            this.Selected.HeaderText = "选择";
+            this.Selected.Name = "Selected";
+            this.Selected.ReadOnly = true;
+            this.Selected.Width = 60;
             // 
-            // Column2
+            // Index
             // 
-            this.Column2.HeaderText = "序号";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 60;
+            this.Index.DataPropertyName = "Index";
+            this.Index.HeaderText = "序号";
+            this.Index.Name = "Index";
+            this.Index.ReadOnly = true;
+            this.Index.Width = 60;
             // 
-            // Column3
+            // CardData
             // 
-            this.Column3.HeaderText = "10进制卡号";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 200;
+            this.CardData.DataPropertyName = "CardData";
+            this.CardData.HeaderText = "10进制卡号(16进制卡号)";
+            this.CardData.Name = "CardData";
+            this.CardData.ReadOnly = true;
+            this.CardData.Width = 200;
             // 
-            // Column4
+            // PCode
             // 
-            this.Column4.HeaderText = "工号";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.PCode.DataPropertyName = "PCode";
+            this.PCode.HeaderText = "工号";
+            this.PCode.Name = "PCode";
+            this.PCode.ReadOnly = true;
             // 
-            // Column5
+            // Name
             // 
-            this.Column5.HeaderText = "姓名";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
+            this.Name.DataPropertyName = "Name";
+            this.Name.HeaderText = "姓名";
+            this.Name.Name = "Name";
+            this.Name.ReadOnly = true;
             // 
-            // checkBox1
+            // chkSelectAll
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(15, 309);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(48, 16);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "反选";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkSelectAll.AutoSize = true;
+            this.chkSelectAll.Location = new System.Drawing.Point(15, 309);
+            this.chkSelectAll.Name = "chkSelectAll";
+            this.chkSelectAll.Size = new System.Drawing.Size(48, 16);
+            this.chkSelectAll.TabIndex = 7;
+            this.chkSelectAll.Text = "反选";
+            this.chkSelectAll.UseVisualStyleBackColor = true;
+            this.chkSelectAll.CheckedChanged += new System.EventHandler(this.ChkSelectAll_CheckedChanged);
             // 
             // label2
             // 
@@ -184,21 +196,23 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "人员卡号：";
             // 
-            // textBox1
+            // txtCardData
             // 
-            this.textBox1.Location = new System.Drawing.Point(84, 335);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 9;
+            this.txtCardData.Location = new System.Drawing.Point(84, 335);
+            this.txtCardData.MaxLength = 10;
+            this.txtCardData.Name = "txtCardData";
+            this.txtCardData.Size = new System.Drawing.Size(100, 21);
+            this.txtCardData.TabIndex = 9;
             // 
-            // button6
+            // btnIncrease
             // 
-            this.button6.Location = new System.Drawing.Point(205, 334);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(34, 23);
-            this.button6.TabIndex = 10;
-            this.button6.Text = "+";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnIncrease.Location = new System.Drawing.Point(191, 334);
+            this.btnIncrease.Name = "btnIncrease";
+            this.btnIncrease.Size = new System.Drawing.Size(34, 23);
+            this.btnIncrease.TabIndex = 10;
+            this.btnIncrease.Text = "+";
+            this.btnIncrease.UseVisualStyleBackColor = true;
+            this.btnIncrease.Click += new System.EventHandler(this.BtnIncrease_Click);
             // 
             // label3
             // 
@@ -209,12 +223,13 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "人员工号：";
             // 
-            // textBox2
+            // txtPCode
             // 
-            this.textBox2.Location = new System.Drawing.Point(368, 335);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(62, 21);
-            this.textBox2.TabIndex = 12;
+            this.txtPCode.Location = new System.Drawing.Point(368, 335);
+            this.txtPCode.MaxLength = 3;
+            this.txtPCode.Name = "txtPCode";
+            this.txtPCode.Size = new System.Drawing.Size(62, 21);
+            this.txtPCode.TabIndex = 12;
             // 
             // label4
             // 
@@ -225,21 +240,23 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "姓名：";
             // 
-            // textBox3
+            // txtName
             // 
-            this.textBox3.Location = new System.Drawing.Point(541, 335);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(110, 21);
-            this.textBox3.TabIndex = 14;
+            this.txtName.Location = new System.Drawing.Point(541, 335);
+            this.txtName.MaxLength = 5;
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(110, 21);
+            this.txtName.TabIndex = 14;
             // 
-            // button7
+            // btnAddDevice
             // 
-            this.button7.Location = new System.Drawing.Point(12, 384);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 15;
-            this.button7.Text = "新增至设备";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnAddDevice.Location = new System.Drawing.Point(12, 384);
+            this.btnAddDevice.Name = "btnAddDevice";
+            this.btnAddDevice.Size = new System.Drawing.Size(75, 23);
+            this.btnAddDevice.TabIndex = 15;
+            this.btnAddDevice.Text = "新增至设备";
+            this.btnAddDevice.UseVisualStyleBackColor = true;
+            this.btnAddDevice.Click += new System.EventHandler(this.BtnAddDevice_Click);
             // 
             // button8
             // 
@@ -250,21 +267,22 @@
             this.button8.Text = "检测名单是否注册";
             this.button8.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // btnDeleteDevice
             // 
-            this.button9.Location = new System.Drawing.Point(556, 384);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(95, 23);
-            this.button9.TabIndex = 17;
-            this.button9.Text = "从设备删除卡";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnDeleteDevice.Location = new System.Drawing.Point(556, 384);
+            this.btnDeleteDevice.Name = "btnDeleteDevice";
+            this.btnDeleteDevice.Size = new System.Drawing.Size(95, 23);
+            this.btnDeleteDevice.TabIndex = 17;
+            this.btnDeleteDevice.Text = "从设备删除卡";
+            this.btnDeleteDevice.UseVisualStyleBackColor = true;
+            this.btnDeleteDevice.Click += new System.EventHandler(this.BtnDeleteDevice_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.txtCount);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.button11);
-            this.groupBox1.Controls.Add(this.button10);
+            this.groupBox1.Controls.Add(this.butCreateCardNumByOrder);
+            this.groupBox1.Controls.Add(this.butCreateCardNumByRandom);
             this.groupBox1.Location = new System.Drawing.Point(12, 416);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(764, 57);
@@ -272,39 +290,41 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "自动生成卡号";
             // 
-            // button10
+            // txtCount
             // 
-            this.button10.Location = new System.Drawing.Point(29, 20);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 19;
-            this.button10.Text = "生成随机卡";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(135, 20);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 20;
-            this.button11.Text = "生成顺序卡";
-            this.button11.UseVisualStyleBackColor = true;
+            this.txtCount.Location = new System.Drawing.Point(97, 22);
+            this.txtCount.Name = "txtCount";
+            this.txtCount.Size = new System.Drawing.Size(62, 21);
+            this.txtCount.TabIndex = 19;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(254, 25);
+            this.label5.Location = new System.Drawing.Point(26, 25);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 19;
             this.label5.Text = "生成数量：";
             // 
-            // textBox4
+            // butCreateCardNumByOrder
             // 
-            this.textBox4.Location = new System.Drawing.Point(325, 22);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(62, 21);
-            this.textBox4.TabIndex = 19;
+            this.butCreateCardNumByOrder.Location = new System.Drawing.Point(287, 21);
+            this.butCreateCardNumByOrder.Name = "butCreateCardNumByOrder";
+            this.butCreateCardNumByOrder.Size = new System.Drawing.Size(75, 23);
+            this.butCreateCardNumByOrder.TabIndex = 20;
+            this.butCreateCardNumByOrder.Text = "生成顺序卡";
+            this.butCreateCardNumByOrder.UseVisualStyleBackColor = true;
+            this.butCreateCardNumByOrder.Click += new System.EventHandler(this.ButCreateCardNumByOrder_Click);
+            // 
+            // butCreateCardNumByRandom
+            // 
+            this.butCreateCardNumByRandom.Location = new System.Drawing.Point(181, 21);
+            this.butCreateCardNumByRandom.Name = "butCreateCardNumByRandom";
+            this.butCreateCardNumByRandom.Size = new System.Drawing.Size(75, 23);
+            this.butCreateCardNumByRandom.TabIndex = 19;
+            this.butCreateCardNumByRandom.Text = "生成随机卡";
+            this.butCreateCardNumByRandom.UseVisualStyleBackColor = true;
+            this.butCreateCardNumByRandom.Click += new System.EventHandler(this.ButCreateCardNumByRandom_Click);
             // 
             // frmPatrolEmpl
             // 
@@ -312,26 +332,28 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 485);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button9);
+            this.Controls.Add(this.btnDeleteDevice);
             this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.btnAddDevice);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtPCode);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnIncrease);
+            this.Controls.Add(this.txtCardData);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.chkSelectAll);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.butClearGrid);
+            this.Controls.Add(this.btnWriteEmpl);
+            this.Controls.Add(this.butClearDataBase);
+            this.Controls.Add(this.butReadDatabase);
+            this.Controls.Add(this.butReadDatabaseDetail);
             this.Controls.Add(this.label1);
-            this.Name = "frmPatrolEmpl";
-            this.Text = "frmPatrolEmpl";
+            //this.Name = "frmPatrolEmpl";
+            this.Text = "巡更人员";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPatrolEmpl_FormClosed);
+            this.Load += new System.EventHandler(this.FrmPatrolEmpl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -343,32 +365,32 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button butReadDatabaseDetail;
+        private System.Windows.Forms.Button butReadDatabase;
+        private System.Windows.Forms.Button butClearDataBase;
+        private System.Windows.Forms.Button btnWriteEmpl;
+        private System.Windows.Forms.Button butClearGrid;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkSelectAll;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox txtCardData;
+        private System.Windows.Forms.Button btnIncrease;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtPCode;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Button btnAddDevice;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnDeleteDevice;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtCount;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button butCreateCardNumByOrder;
+        private System.Windows.Forms.Button butCreateCardNumByRandom;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Index;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CardData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
     }
 }

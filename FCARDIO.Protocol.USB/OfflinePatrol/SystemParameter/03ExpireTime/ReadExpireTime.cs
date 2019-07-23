@@ -22,6 +22,14 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime
         }
 
         /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            Packet(1, 3);
+        }
+
+        /// <summary>
         /// 命令返回值的判断
         /// </summary>
         /// <param name="oPck">包含返回指令的Packet</param>
@@ -37,12 +45,6 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime
             }
         }
 
-        /// <summary>
-        /// 将命令打包成一个Packet，准备发送
-        /// </summary>
-        protected override void CreatePacket0()
-        {
-            Packet(1, 1);
-        }
+       
     }
 }
