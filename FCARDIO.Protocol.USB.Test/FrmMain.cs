@@ -373,6 +373,10 @@ namespace FCARDIO.Protocol.USB.Test
 
         }
 
+        /// <summary>
+        /// 获取选择的串口
+        /// </summary>
+        /// <returns></returns>
         public byte GetSerialPort()
         {
             return (byte)(cmbSerialPort.SelectedIndex + 1);
