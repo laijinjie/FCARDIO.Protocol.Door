@@ -49,6 +49,7 @@ namespace FCARDIO.Protocol.USB.Test
         static FrmMain()
         {
             IniCommandClassNameList();
+            NodeForms = new HashSet<Form>();
         }
 
         public FrmMain()
@@ -116,7 +117,7 @@ namespace FCARDIO.Protocol.USB.Test
                 list[i] = (i + 1).ToString();
             }
             cmbSerialPort.Items.AddRange(list);
-            cmbSerialPort.SelectedIndex = 3;
+            cmbSerialPort.SelectedIndex = 2;
         }
 
         /// <summary>
@@ -167,7 +168,7 @@ namespace FCARDIO.Protocol.USB.Test
 
         private void mAllocator_ConnectorErrorEvent(object sender, INConnectorDetail connector)
         {
-            throw new NotImplementedException();
+            AddIOLog(connector, "错误", "连接失败");
         }
 
         private void mAllocator_ConnectorClosedEvent(object sender, INConnectorDetail connector)
@@ -341,8 +342,8 @@ namespace FCARDIO.Protocol.USB.Test
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, txt));
                 string Local, Remote, cType;
                 //GetConnectorDetail(cmdDtl.Connector, out cType, out Local, out Remote);
-                OnlineAccess.OnlineAccessCommandDetail fcDtl = cmdDtl as OnlineAccess.OnlineAccessCommandDetail;
-                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, fcDtl.SN));
+                USBDriveCommandDetail fcDtl = cmdDtl as USBDriveCommandDetail;
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, fcDtl.Addr));
                 //oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Remote));
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, DateTime.Now.ToTimeffff()));
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Timemill.ToString("0")));

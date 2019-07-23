@@ -133,7 +133,6 @@
     <Compile Include="Transaction\05WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex.cs" />
     <Compile Include="Transaction\05WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex_Parameter.cs" />
     <Compile Include="Transaction\e_TransactionDatabaseType.cs" />
-    <Compile Include="Transaction\ReadTransactionDatabase\Class1.cs" />
     <Compile Include="Transaction\ReadTransactionDatabase\ReadTransactionDatabase.cs" />
     <Compile Include="Transaction\ReadTransactionDatabase\ReadTransactionDatabase_Base.cs" />
     <Compile Include="Transaction\ReadTransactionDatabase\ReadTransactionDatabase_Parameter.cs" />

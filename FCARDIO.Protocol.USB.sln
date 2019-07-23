@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCARDIO.Protocol.USB.Test", "G:\工作svn\FCARDIO.Protocol.Door\FCARDIO.Protocol.USB.Test\FCARDIO.Protocol.USB.Test.csproj", "{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCARDIO.Protocol.Door.OfflinePatrol", "FCARDIO.Protocol.Door.OfflinePatrol\FCARDIO.Protocol.Door.OfflinePatrol.csproj", "{69B0709D-F370-41D8-BE55-C115FEF3730E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCARDIO.Protocol.Door.OfflinePatrol", "FCARDIO.Protocol.USB\FCARDIO.Protocol.Door.OfflinePatrol\FCARDIO.Protocol.Door.OfflinePatrol.csproj", "{69B0709D-F370-41D8-BE55-C115FEF3730E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
