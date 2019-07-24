@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime
 {
     /// <summary>
-    /// 读取 开机保持时间
+    /// 读取 LED开灯保持时间
     /// </summary>
     public class ReadLEDOpenHoldTime : Read_Command
     {

@@ -36,6 +36,11 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data
         public void SetBytes(IByteBuffer buf)
         {
             PCode = buf.ReadUnsignedShort();
+            if (PCode == ushort.MaxValue)
+            {
+                PCode = 0;
+                return;
+            }
             byte[] bCard = new byte[3];
             buf.ReadBytes(bCard);
 
@@ -43,7 +48,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data
 
             byte[] bName = new byte[10];
             buf.ReadBytes(bName);
-            Name = Convert.ToString(System.Text.Encoding.Default.GetString(bName));
+            Name = Encoding.GetEncoding("GBK").GetString(bName);
 
             //Name = StringUtil.ByteBufToHex(buf, 10);
         }
@@ -55,13 +60,14 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data
         /// <returns></returns>
         public IByteBuffer GetBytes(IByteBuffer buf)
         {
+
             buf.WriteUnsignedShort(PCode);
 
             byte[] b = FCARD.Common.NumUtil.Int24ToByte((int)CardData);
             buf.WriteBytes(b);
 
             byte[] bName = new byte[10];
-            bName = System.Text.Encoding.ASCII.GetBytes(Name.PadRight(10, '0'));
+            bName = Encoding.GetEncoding("GBK").GetBytes("".PadRight(10, '0'));
             buf.WriteBytes(bName);
             return buf;
         }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime
 {
     /// <summary>
-    /// 读取生成日期
+    /// 读取生产日期
     /// </summary>
     public class ReadCreateTime : Read_Command
     {

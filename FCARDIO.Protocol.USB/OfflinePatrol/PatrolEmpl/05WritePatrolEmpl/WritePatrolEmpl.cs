@@ -21,7 +21,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.WritePatrolEmpl
         /// <summary>
         /// 每次上传数量
         /// </summary>
-        protected const int mBatchCount = 20;
+        protected const int mBatchCount = 5;
 
         /// <summary>
         /// 添加巡更人员参数
@@ -56,7 +56,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.WritePatrolEmpl
         {
             var buf = GetNewCmdDataBuf(MaxBufSize);
             WritePatrolEmplToBuf(buf);
-            Packet(0x3, 0x6, (uint)buf.ReadableBytes, buf);
+            Packet(0x3, 0x5, (uint)buf.ReadableBytes, buf);
         }
 
         /// <summary>

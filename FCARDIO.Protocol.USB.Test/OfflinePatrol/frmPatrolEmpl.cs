@@ -1,6 +1,8 @@
 ﻿using FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.ClearPatrolEmplDataBase;
+using FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.DeletePatrolEmpl;
 using FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDatabase;
 using FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDatabaseDetail;
+using FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDetail;
 using FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.WritePatrolEmpl;
 using FCARDIO.Protocol.USB.OfflinePatrol.Test.Model;
 using System;
@@ -91,12 +93,16 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
                 ReadPatrolEmplDatabase_Result result = cmde.Command.getResult() as ReadPatrolEmplDatabase_Result;
                 PatrolEmplList.Clear();
                 var list = result.PatrolEmplList;
+                int index = 1;
                 foreach (var item in list)
                 {
+                    
                     PatrolEmplUI model = new PatrolEmplUI(item);
                     model.PCode = item.PCode;
                     model.Name = item.Name;
+                    model.Index = index.ToString();
                     PatrolEmplList.Add(model);
+                    index++;
                 }
                 Invoke(() =>
                 {
@@ -235,7 +241,34 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
 
         private void BtnDeleteDevice_Click(object sender, EventArgs e)
         {
+            List<ushort> _list = new List<ushort>();
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[0];
+                if ((bool)cell.FormattedValue)
+                {
+                    DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[1];
+                    var item = PatrolEmplList.FirstOrDefault(t => t.Index == text.Value.ToString());
+                   
+                    _list.Add(item.PCode);
+                    //ListPassword.Remove(item);
+                }
+            }
+            if (_list.Count > 0)
+            {
+                var cmdDtl = mMainForm.GetCommandDetail();
+                if (cmdDtl == null) return;
 
+                DeletePatrolEmpl_Parameter par = new DeletePatrolEmpl_Parameter(_list);
+
+                DeletePatrolEmpl cmd = new DeletePatrolEmpl(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+                cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+                {
+                    mMainForm.AddLog($"命令成功：");
+
+                };
+            }
         }
 
         private void ButCreateCardNumByRandom_Click(object sender, EventArgs e)
@@ -247,7 +280,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
             {
 
                 Data.PatrolEmpl empl = CreateNewPatrolEmpl(0);
-                
+                empl.PCode = Convert.ToUInt16(i + 1);
                 AddPatrolEmplToList(empl);
 
             }
@@ -316,17 +349,11 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
                 }
 
             }
-            if (CodeHashTable.Contains(code))
-            {
-                return CreateNewPatrolEmpl(0);
-
-            }
-
+        
 
             empl = new Data.PatrolEmpl();
 
             empl.CardData = cardNum;
-            empl.PCode = code;
             return empl;
         }
 
@@ -367,6 +394,11 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
             onlyObj = null;
         }
 
+        /// <summary>
+        /// 点击表格
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex == 0)
@@ -383,8 +415,80 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
                     cell.EditingCellFormattedValue = true;
                 }
             }
+            else
+            {
+                DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[e.RowIndex].Cells[1];
+                var dto = PatrolEmplList.FirstOrDefault(t => t.Index == text.Value.ToString());
+
+                txtCardData.Text = dto.PatrolEmpl.CardData.ToString();
+                txtPCode.Text = dto.PatrolEmpl.PCode.ToString();
+                txtName.Text = dto.PatrolEmpl.Name;
+            }
         }
 
-       
+        private void BtnCheckCardData_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            int carddata = 0;
+            if (!int.TryParse(txtCardData.Text,out carddata))
+            {
+                MessageBox.Show("卡号格式不正确");
+                return;
+            }
+            ReadPatrolEmplDetail_Parameter par = new ReadPatrolEmplDetail_Parameter(2, carddata);
+            ReadPatrolEmplDetail cmd = new ReadPatrolEmplDetail(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadPatrolEmplDetail_Result result = cmde.Command.getResult() as ReadPatrolEmplDetail_Result;
+                string log = $"该卡未授权 ";
+                if (result.PatrolEmpl.PCode != 0)
+                {
+                    log = $"工号：{ result.PatrolEmpl.PCode.ToString() }，卡号：{ result.PatrolEmpl.CardData.ToString() }，姓名：{result.PatrolEmpl.Name}";
+                    Invoke(() =>
+                    {
+                        txtCardData.Text = result.PatrolEmpl.CardData.ToString();
+                        txtName.Text = result.PatrolEmpl.Name;
+                        txtPCode.Text = result.PatrolEmpl.PCode.ToString();
+                    });
+                }
+                
+                mMainForm.AddCmdLog(cmde, log);
+            };
+        }
+
+        private void BtnCheckPCode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            int code = 0;
+            if (!int.TryParse(txtPCode.Text, out code))
+            {
+                MessageBox.Show("工号号格式不正确");
+                return;
+            }
+            ReadPatrolEmplDetail_Parameter par = new ReadPatrolEmplDetail_Parameter(1, code);
+            ReadPatrolEmplDetail cmd = new ReadPatrolEmplDetail(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadPatrolEmplDetail_Result result = cmde.Command.getResult() as ReadPatrolEmplDetail_Result;
+                string log = $"该卡未授权 ";
+                if (result.PatrolEmpl.PCode != 0)
+                {
+                    log = $"工号：{ result.PatrolEmpl.PCode.ToString() }，卡号：{ result.PatrolEmpl.CardData.ToString() }，姓名：{result.PatrolEmpl.Name}";
+                    txtCardData.Text = result.PatrolEmpl.CardData.ToString();
+                    txtName.Text = result.PatrolEmpl.Name;
+                    txtPCode.Text = result.PatrolEmpl.PCode.ToString();
+                }
+
+                mMainForm.AddCmdLog(cmde, log);
+            };
+        }
     }
 }

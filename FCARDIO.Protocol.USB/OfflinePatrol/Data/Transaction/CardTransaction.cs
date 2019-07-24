@@ -1,5 +1,6 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Protocol.Transaction;
+using FCARDIO.Protocol.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,69 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
     /// </summary>
     public class CardTransaction : AbstractTransaction
     {
+        /// <summary>
+        /// 工号
+        /// </summary>
+        public ushort PCode;
+
+        /// <summary>
+        /// 卡号
+        /// </summary>
+        public uint CardData;
+
+        /// <summary>
+        /// 状态
+        /// 0  普通卡
+        /// 1  巡更人员卡
+        /// </summary>
+        public byte State;
+
+        /// <summary>
+        /// 获取读卡记录格式长度
+        /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
-            throw new NotImplementedException();
+            return 12;
         }
 
-        public override void SetBytes(IByteBuffer databuf)
+        public CardTransaction()
         {
-            throw new NotImplementedException();
+            _TransactionType = 1;
+        }
+        /// <summary>
+        /// 从buf中读取记录数据
+        /// </summary>
+        /// <param name="dtBuf"></param>
+        public override void SetBytes(IByteBuffer dtBuf)
+        {
+            try
+            {
+                PCode = dtBuf.ReadUnsignedShort();
+                if (PCode == ushort.MaxValue)
+                {
+                    _IsNull = true;
+                    PCode = 0;
+                    byte[] b = new byte[10];
+                    dtBuf.ReadBytes(b);
+                    return;
+                }
+                _TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhhmmss(dtBuf);
+
+                State = dtBuf.ReadByte();
+
+                byte[] bCard = new byte[3];
+                dtBuf.ReadBytes(bCard);
+
+                CardData = FCARD.Common.NumUtil.ByteToInt32(bCard, 0, 3);
+               
+            }
+            catch (Exception e)
+            {
+            }
+
+            return;
+
         }
     }
 }

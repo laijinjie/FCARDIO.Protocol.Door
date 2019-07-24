@@ -12,7 +12,16 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
     /// </summary>
     public class SystemTransactionDetail : TransactionDetailBase
     {
-        
+
+        /// <summary>
+        /// 获取长度
+        /// </summary>
+        /// <returns></returns>
+        public int GetDataLen()
+        {
+            return 7;
+        }
+
         /// <summary>
         /// 从字节缓冲区中生成一个对象
         /// </summary>

@@ -1,5 +1,6 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Protocol.Transaction;
+using FCARDIO.Protocol.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,44 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
     /// </summary>
     public class SystemTransaction : AbstractTransaction
     {
+        public SystemTransaction()
+        {
+            _TransactionType = 2;
+        }
+        /// <summary>
+        /// 获取读卡记录格式长度
+        /// </summary>
+        /// <returns></returns>
         public override int GetDataLen()
         {
-            throw new NotImplementedException();
+            return 8;
         }
 
-        public override void SetBytes(IByteBuffer databuf)
+        /// <summary>
+        /// 从buf中读取记录数据
+        /// </summary>
+        /// <param name="dtBuf"></param>
+        public override void SetBytes(IByteBuffer data)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _IsNull = CheckNull(data, 2);
+
+                if (_IsNull)
+                {
+                    ReadNullRecord(data);
+                    return;
+                }
+
+                _TransactionCode = data.ReadByte();
+                _TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhhmmss(data);
+                data.ReadByte();
+            }
+            catch (Exception e)
+            {
+            }
+
+            return;
         }
     }
 }

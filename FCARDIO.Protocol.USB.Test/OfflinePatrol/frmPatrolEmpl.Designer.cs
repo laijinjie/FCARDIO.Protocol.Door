@@ -39,7 +39,7 @@
             this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CardData = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCardData = new System.Windows.Forms.TextBox();
@@ -49,13 +49,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnAddDevice = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnCheckCardData = new System.Windows.Forms.Button();
             this.btnDeleteDevice = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtCount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.butCreateCardNumByOrder = new System.Windows.Forms.Button();
             this.butCreateCardNumByRandom = new System.Windows.Forms.Button();
+            this.btnCheckPCode = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -129,7 +130,7 @@
             this.Index,
             this.CardData,
             this.PCode,
-            this.Name});
+            this.Name1});
             this.dataGridView1.Location = new System.Drawing.Point(15, 41);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -169,12 +170,12 @@
             this.PCode.Name = "PCode";
             this.PCode.ReadOnly = true;
             // 
-            // Name
+            // Name1
             // 
-            this.Name.DataPropertyName = "Name";
-            this.Name.HeaderText = "姓名";
-            this.Name.Name = "Name";
-            this.Name.ReadOnly = true;
+            this.Name1.DataPropertyName = "Name";
+            this.Name1.HeaderText = "姓名";
+            this.Name1.Name = "Name1";
+            this.Name1.ReadOnly = true;
             // 
             // chkSelectAll
             // 
@@ -258,22 +259,23 @@
             this.btnAddDevice.UseVisualStyleBackColor = true;
             this.btnAddDevice.Click += new System.EventHandler(this.BtnAddDevice_Click);
             // 
-            // button8
+            // btnCheckCardData
             // 
-            this.button8.Location = new System.Drawing.Point(121, 384);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 16;
-            this.button8.Text = "检测名单是否注册";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnCheckCardData.Location = new System.Drawing.Point(121, 384);
+            this.btnCheckCardData.Name = "btnCheckCardData";
+            this.btnCheckCardData.Size = new System.Drawing.Size(117, 23);
+            this.btnCheckCardData.TabIndex = 16;
+            this.btnCheckCardData.Text = "检测卡号是否注册";
+            this.btnCheckCardData.UseVisualStyleBackColor = true;
+            this.btnCheckCardData.Click += new System.EventHandler(this.BtnCheckCardData_Click);
             // 
             // btnDeleteDevice
             // 
-            this.btnDeleteDevice.Location = new System.Drawing.Point(556, 384);
+            this.btnDeleteDevice.Location = new System.Drawing.Point(541, 384);
             this.btnDeleteDevice.Name = "btnDeleteDevice";
-            this.btnDeleteDevice.Size = new System.Drawing.Size(95, 23);
+            this.btnDeleteDevice.Size = new System.Drawing.Size(110, 23);
             this.btnDeleteDevice.TabIndex = 17;
-            this.btnDeleteDevice.Text = "从设备删除卡";
+            this.btnDeleteDevice.Text = "从设备删除选中卡";
             this.btnDeleteDevice.UseVisualStyleBackColor = true;
             this.btnDeleteDevice.Click += new System.EventHandler(this.BtnDeleteDevice_Click);
             // 
@@ -326,14 +328,25 @@
             this.butCreateCardNumByRandom.UseVisualStyleBackColor = true;
             this.butCreateCardNumByRandom.Click += new System.EventHandler(this.ButCreateCardNumByRandom_Click);
             // 
+            // btnCheckPCode
+            // 
+            this.btnCheckPCode.Location = new System.Drawing.Point(268, 384);
+            this.btnCheckPCode.Name = "btnCheckPCode";
+            this.btnCheckPCode.Size = new System.Drawing.Size(117, 23);
+            this.btnCheckPCode.TabIndex = 19;
+            this.btnCheckPCode.Text = "检测工号是否注册";
+            this.btnCheckPCode.UseVisualStyleBackColor = true;
+            this.btnCheckPCode.Click += new System.EventHandler(this.BtnCheckPCode_Click);
+            // 
             // frmPatrolEmpl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 485);
+            this.Controls.Add(this.btnCheckPCode);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnDeleteDevice);
-            this.Controls.Add(this.button8);
+            this.Controls.Add(this.btnCheckCardData);
             this.Controls.Add(this.btnAddDevice);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label4);
@@ -350,7 +363,7 @@
             this.Controls.Add(this.butReadDatabase);
             this.Controls.Add(this.butReadDatabaseDetail);
             this.Controls.Add(this.label1);
-            //this.Name = "frmPatrolEmpl";
+            this.Name = "frmPatrolEmpl";
             this.Text = "巡更人员";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPatrolEmpl_FormClosed);
             this.Load += new System.EventHandler(this.FrmPatrolEmpl_Load);
@@ -380,17 +393,18 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnAddDevice;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnCheckCardData;
         private System.Windows.Forms.Button btnDeleteDevice;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtCount;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button butCreateCardNumByOrder;
         private System.Windows.Forms.Button butCreateCardNumByRandom;
+        private System.Windows.Forms.Button btnCheckPCode;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
         private System.Windows.Forms.DataGridViewTextBoxColumn Index;
         private System.Windows.Forms.DataGridViewTextBoxColumn CardData;
         private System.Windows.Forms.DataGridViewTextBoxColumn PCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name1;
     }
 }

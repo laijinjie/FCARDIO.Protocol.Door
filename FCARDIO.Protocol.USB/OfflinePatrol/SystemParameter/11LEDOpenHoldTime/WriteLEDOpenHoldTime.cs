@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime
 {
     /// <summary>
-    /// 设置 开机保持时间
+    /// 设置 LED开灯保持时间
     /// </summary>
     public class WriteLEDOpenHoldTime : Write_Command
     {

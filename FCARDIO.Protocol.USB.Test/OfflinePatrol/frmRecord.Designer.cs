@@ -125,6 +125,7 @@
             this.butTransactionDatabaseDetail.TabIndex = 41;
             this.butTransactionDatabaseDetail.Text = "采集记录信息";
             this.butTransactionDatabaseDetail.UseVisualStyleBackColor = true;
+            this.butTransactionDatabaseDetail.Click += new System.EventHandler(this.ButTransactionDatabaseDetail_Click);
             // 
             // txtIsCircle2
             // 
@@ -248,7 +249,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 5;
-            this.label6.Text = "按钮记录";
+            this.label6.Text = "系统记录";
             // 
             // label1
             // 
@@ -305,6 +306,7 @@
             this.butClearAllTransactionDatabase.TabIndex = 33;
             this.butClearAllTransactionDatabase.Text = "清空所有记录";
             this.butClearAllTransactionDatabase.UseVisualStyleBackColor = true;
+            this.butClearAllTransactionDatabase.Click += new System.EventHandler(this.ButClearAllTransactionDatabase_Click);
             // 
             // groupBox4
             // 
@@ -335,6 +337,7 @@
             this.btnReadTransactionDatabase.TabIndex = 33;
             this.btnReadTransactionDatabase.Text = "读新记录";
             this.btnReadTransactionDatabase.UseVisualStyleBackColor = true;
+            this.btnReadTransactionDatabase.Click += new System.EventHandler(this.BtnReadTransactionDatabase_Click);
             // 
             // label23
             // 
@@ -360,7 +363,7 @@
             this.txtReadTransactionDatabaseQuantity.Name = "txtReadTransactionDatabaseQuantity";
             this.txtReadTransactionDatabaseQuantity.Size = new System.Drawing.Size(100, 21);
             this.txtReadTransactionDatabaseQuantity.TabIndex = 30;
-            this.txtReadTransactionDatabaseQuantity.Text = "0";
+            this.txtReadTransactionDatabaseQuantity.Text = "1";
             // 
             // txtReadTransactionDatabasePacketSize
             // 
@@ -387,6 +390,7 @@
             this.butTransactionDatabaseByIndex.TabIndex = 25;
             this.butTransactionDatabaseByIndex.Text = "按序号采集记录";
             this.butTransactionDatabaseByIndex.UseVisualStyleBackColor = true;
+            this.butTransactionDatabaseByIndex.Click += new System.EventHandler(this.ButTransactionDatabaseByIndex_Click);
             // 
             // txtReadIndex0
             // 
@@ -394,7 +398,7 @@
             this.txtReadIndex0.Name = "txtReadIndex0";
             this.txtReadIndex0.Size = new System.Drawing.Size(100, 21);
             this.txtReadIndex0.TabIndex = 27;
-            this.txtReadIndex0.Text = "0";
+            this.txtReadIndex0.Text = "1";
             // 
             // label18
             // 
@@ -454,6 +458,7 @@
             this.butClearTransactionDatabase.TabIndex = 27;
             this.butClearTransactionDatabase.Text = "清空记录";
             this.butClearTransactionDatabase.UseVisualStyleBackColor = true;
+            this.butClearTransactionDatabase.Click += new System.EventHandler(this.ButClearTransactionDatabase_Click);
             // 
             // button4
             // 
@@ -526,6 +531,7 @@
             this.butTransactionDatabaseReadIndex.TabIndex = 23;
             this.butTransactionDatabaseReadIndex.Text = "更新上传断点";
             this.butTransactionDatabaseReadIndex.UseVisualStyleBackColor = true;
+            this.butTransactionDatabaseReadIndex.Click += new System.EventHandler(this.ButTransactionDatabaseReadIndex_Click);
             // 
             // butTransactionDatabaseWriteIndex
             // 
@@ -535,6 +541,7 @@
             this.butTransactionDatabaseWriteIndex.TabIndex = 22;
             this.butTransactionDatabaseWriteIndex.Text = "上传记录尾号";
             this.butTransactionDatabaseWriteIndex.UseVisualStyleBackColor = true;
+            this.butTransactionDatabaseWriteIndex.Click += new System.EventHandler(this.ButTransactionDatabaseWriteIndex_Click);
             // 
             // cbIsCircle
             // 
@@ -620,6 +627,8 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmRecord";
             this.Text = "记录操作";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmRecord_FormClosed);
+            this.Load += new System.EventHandler(this.FrmRecord_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);

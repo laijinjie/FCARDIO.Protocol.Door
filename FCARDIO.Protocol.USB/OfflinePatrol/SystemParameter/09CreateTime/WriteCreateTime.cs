@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime
 {
     /// <summary>
-    /// 设置 生成日期
+    /// 设置 生产日期
     /// </summary>
     public class WriteCreateTime : Write_Command
     {

@@ -42,6 +42,8 @@
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnWriteRecordStorageMode = new System.Windows.Forms.Button();
+            this.btnReadRecordStorageMode = new System.Windows.Forms.Button();
             this.rbStorageMode1 = new System.Windows.Forms.RadioButton();
             this.rbStorageMode0 = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
@@ -79,13 +81,29 @@
             this.ReadCreateTime = new System.Windows.Forms.Button();
             this.dtpCreateTime = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
-            this.btnReadRecordStorageMode = new System.Windows.Forms.Button();
-            this.btnWriteRecordStorageMode = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.btnTestBuzzer = new System.Windows.Forms.Button();
+            this.btnOpenLed = new System.Windows.Forms.Button();
+            this.btnTestVibrate = new System.Windows.Forms.Button();
+            this.btnOpenFlash = new System.Windows.Forms.Button();
+            this.btnCloseLamp = new System.Windows.Forms.Button();
+            this.btnCloseLed = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
+            this.cmbVibrateTime = new System.Windows.Forms.ComboBox();
+            this.btnCloseFlash = new System.Windows.Forms.Button();
+            this.btnOpenGreen = new System.Windows.Forms.Button();
+            this.btnOpenRed = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -234,6 +252,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "功能参数";
             // 
+            // btnWriteRecordStorageMode
+            // 
+            this.btnWriteRecordStorageMode.Location = new System.Drawing.Point(547, 25);
+            this.btnWriteRecordStorageMode.Name = "btnWriteRecordStorageMode";
+            this.btnWriteRecordStorageMode.Size = new System.Drawing.Size(40, 22);
+            this.btnWriteRecordStorageMode.TabIndex = 25;
+            this.btnWriteRecordStorageMode.Text = "写入";
+            this.btnWriteRecordStorageMode.UseVisualStyleBackColor = true;
+            this.btnWriteRecordStorageMode.Click += new System.EventHandler(this.BtnWriteRecordStorageMode_Click);
+            // 
+            // btnReadRecordStorageMode
+            // 
+            this.btnReadRecordStorageMode.Location = new System.Drawing.Point(488, 25);
+            this.btnReadRecordStorageMode.Name = "btnReadRecordStorageMode";
+            this.btnReadRecordStorageMode.Size = new System.Drawing.Size(40, 22);
+            this.btnReadRecordStorageMode.TabIndex = 25;
+            this.btnReadRecordStorageMode.Text = "读取";
+            this.btnReadRecordStorageMode.UseVisualStyleBackColor = true;
+            this.btnReadRecordStorageMode.Click += new System.EventHandler(this.BtnReadRecordStorageMode_Click);
+            // 
             // rbStorageMode1
             // 
             this.rbStorageMode1.AutoSize = true;
@@ -319,7 +357,7 @@
             this.lbStartCount.Name = "lbStartCount";
             this.lbStartCount.Size = new System.Drawing.Size(65, 12);
             this.lbStartCount.TabIndex = 17;
-            this.lbStartCount.Text = "开机次数：";
+            this.lbStartCount.Text = "__________";
             // 
             // label18
             // 
@@ -333,29 +371,29 @@
             // lbSystemRecordCount
             // 
             this.lbSystemRecordCount.AutoSize = true;
-            this.lbSystemRecordCount.Location = new System.Drawing.Point(319, 112);
+            this.lbSystemRecordCount.Location = new System.Drawing.Point(320, 112);
             this.lbSystemRecordCount.Name = "lbSystemRecordCount";
-            this.lbSystemRecordCount.Size = new System.Drawing.Size(89, 12);
+            this.lbSystemRecordCount.Size = new System.Drawing.Size(65, 12);
             this.lbSystemRecordCount.TabIndex = 15;
-            this.lbSystemRecordCount.Text = "系统新记录数：";
+            this.lbSystemRecordCount.Text = "__________";
             // 
             // lbPatrolEmplCount
             // 
             this.lbPatrolEmplCount.AutoSize = true;
-            this.lbPatrolEmplCount.Location = new System.Drawing.Point(322, 79);
+            this.lbPatrolEmplCount.Location = new System.Drawing.Point(320, 79);
             this.lbPatrolEmplCount.Name = "lbPatrolEmplCount";
             this.lbPatrolEmplCount.Size = new System.Drawing.Size(65, 12);
             this.lbPatrolEmplCount.TabIndex = 14;
-            this.lbPatrolEmplCount.Text = "已存人员：";
+            this.lbPatrolEmplCount.Text = "__________";
             // 
             // lbElectricity
             // 
             this.lbElectricity.AutoSize = true;
-            this.lbElectricity.Location = new System.Drawing.Point(322, 50);
+            this.lbElectricity.Location = new System.Drawing.Point(320, 50);
             this.lbElectricity.Name = "lbElectricity";
-            this.lbElectricity.Size = new System.Drawing.Size(41, 12);
+            this.lbElectricity.Size = new System.Drawing.Size(65, 12);
             this.lbElectricity.TabIndex = 13;
-            this.lbElectricity.Text = "电量：";
+            this.lbElectricity.Text = "__________";
             // 
             // lbFormatCount
             // 
@@ -364,7 +402,7 @@
             this.lbFormatCount.Name = "lbFormatCount";
             this.lbFormatCount.Size = new System.Drawing.Size(65, 12);
             this.lbFormatCount.TabIndex = 12;
-            this.lbFormatCount.Text = "初始化次数";
+            this.lbFormatCount.Text = "__________";
             // 
             // label10
             // 
@@ -405,29 +443,29 @@
             // lbCardRecordCount
             // 
             this.lbCardRecordCount.AutoSize = true;
-            this.lbCardRecordCount.Location = new System.Drawing.Point(91, 112);
+            this.lbCardRecordCount.Location = new System.Drawing.Point(92, 112);
             this.lbCardRecordCount.Name = "lbCardRecordCount";
-            this.lbCardRecordCount.Size = new System.Drawing.Size(89, 12);
+            this.lbCardRecordCount.Size = new System.Drawing.Size(65, 12);
             this.lbCardRecordCount.TabIndex = 7;
-            this.lbCardRecordCount.Text = "读卡新记录数：";
+            this.lbCardRecordCount.Text = "__________";
             // 
             // lbPatrolEmpl
             // 
             this.lbPatrolEmpl.AutoSize = true;
-            this.lbPatrolEmpl.Location = new System.Drawing.Point(94, 79);
+            this.lbPatrolEmpl.Location = new System.Drawing.Point(92, 79);
             this.lbPatrolEmpl.Name = "lbPatrolEmpl";
             this.lbPatrolEmpl.Size = new System.Drawing.Size(65, 12);
             this.lbPatrolEmpl.TabIndex = 6;
-            this.lbPatrolEmpl.Text = "已选人员：";
+            this.lbPatrolEmpl.Text = "__________";
             // 
             // lbVoltage
             // 
             this.lbVoltage.AutoSize = true;
-            this.lbVoltage.Location = new System.Drawing.Point(94, 50);
+            this.lbVoltage.Location = new System.Drawing.Point(92, 50);
             this.lbVoltage.Name = "lbVoltage";
-            this.lbVoltage.Size = new System.Drawing.Size(41, 12);
+            this.lbVoltage.Size = new System.Drawing.Size(65, 12);
             this.lbVoltage.TabIndex = 5;
-            this.lbVoltage.Text = "电压：";
+            this.lbVoltage.Text = "__________";
             // 
             // label9
             // 
@@ -463,7 +501,7 @@
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(65, 12);
             this.lbTime.TabIndex = 1;
-            this.lbTime.Text = "出厂日期：";
+            this.lbTime.Text = "__________";
             // 
             // label6
             // 
@@ -609,31 +647,190 @@
             this.label14.TabIndex = 26;
             this.label14.Text = "出厂日期：";
             // 
-            // btnReadRecordStorageMode
+            // groupBox6
             // 
-            this.btnReadRecordStorageMode.Location = new System.Drawing.Point(488, 25);
-            this.btnReadRecordStorageMode.Name = "btnReadRecordStorageMode";
-            this.btnReadRecordStorageMode.Size = new System.Drawing.Size(40, 22);
-            this.btnReadRecordStorageMode.TabIndex = 25;
-            this.btnReadRecordStorageMode.Text = "读取";
-            this.btnReadRecordStorageMode.UseVisualStyleBackColor = true;
-            this.btnReadRecordStorageMode.Click += new System.EventHandler(this.BtnReadRecordStorageMode_Click);
+            this.groupBox6.Controls.Add(this.btnOpenRed);
+            this.groupBox6.Controls.Add(this.btnOpenGreen);
+            this.groupBox6.Controls.Add(this.btnCloseFlash);
+            this.groupBox6.Controls.Add(this.cmbVibrateTime);
+            this.groupBox6.Controls.Add(this.label23);
+            this.groupBox6.Controls.Add(this.btnCloseLed);
+            this.groupBox6.Controls.Add(this.btnCloseLamp);
+            this.groupBox6.Controls.Add(this.btnOpenFlash);
+            this.groupBox6.Controls.Add(this.btnTestVibrate);
+            this.groupBox6.Controls.Add(this.btnOpenLed);
+            this.groupBox6.Controls.Add(this.btnTestBuzzer);
+            this.groupBox6.Controls.Add(this.label22);
+            this.groupBox6.Controls.Add(this.label21);
+            this.groupBox6.Controls.Add(this.label20);
+            this.groupBox6.Controls.Add(this.label19);
+            this.groupBox6.Controls.Add(this.label17);
+            this.groupBox6.Location = new System.Drawing.Point(12, 431);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(663, 164);
+            this.groupBox6.TabIndex = 28;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "器件测试";
             // 
-            // btnWriteRecordStorageMode
+            // label17
             // 
-            this.btnWriteRecordStorageMode.Location = new System.Drawing.Point(547, 25);
-            this.btnWriteRecordStorageMode.Name = "btnWriteRecordStorageMode";
-            this.btnWriteRecordStorageMode.Size = new System.Drawing.Size(40, 22);
-            this.btnWriteRecordStorageMode.TabIndex = 25;
-            this.btnWriteRecordStorageMode.Text = "写入";
-            this.btnWriteRecordStorageMode.UseVisualStyleBackColor = true;
-            this.btnWriteRecordStorageMode.Click += new System.EventHandler(this.BtnWriteRecordStorageMode_Click);
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(30, 29);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(77, 12);
+            this.label17.TabIndex = 35;
+            this.label17.Text = "蜂鸣器测试：";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(12, 75);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(95, 12);
+            this.label19.TabIndex = 36;
+            this.label19.Text = "LED手电筒测试：";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(54, 122);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(53, 12);
+            this.label20.TabIndex = 37;
+            this.label20.Text = "振动器：";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(352, 25);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(83, 12);
+            this.label21.TabIndex = 38;
+            this.label21.Text = "LCD屏幕测试：";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(358, 75);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(77, 12);
+            this.label22.TabIndex = 39;
+            this.label22.Text = "双色指示灯：";
+            // 
+            // btnTestBuzzer
+            // 
+            this.btnTestBuzzer.Location = new System.Drawing.Point(123, 24);
+            this.btnTestBuzzer.Name = "btnTestBuzzer";
+            this.btnTestBuzzer.Size = new System.Drawing.Size(87, 22);
+            this.btnTestBuzzer.TabIndex = 35;
+            this.btnTestBuzzer.Text = "触发蜂鸣器";
+            this.btnTestBuzzer.UseVisualStyleBackColor = true;
+            this.btnTestBuzzer.Click += new System.EventHandler(this.BtnTestBuzzer_Click);
+            // 
+            // btnOpenLed
+            // 
+            this.btnOpenLed.Location = new System.Drawing.Point(123, 70);
+            this.btnOpenLed.Name = "btnOpenLed";
+            this.btnOpenLed.Size = new System.Drawing.Size(99, 22);
+            this.btnOpenLed.TabIndex = 40;
+            this.btnOpenLed.Text = "打卡LED手电筒";
+            this.btnOpenLed.UseVisualStyleBackColor = true;
+            this.btnOpenLed.Click += new System.EventHandler(this.BtnOpenLed_Click);
+            // 
+            // btnTestVibrate
+            // 
+            this.btnTestVibrate.Location = new System.Drawing.Point(323, 118);
+            this.btnTestVibrate.Name = "btnTestVibrate";
+            this.btnTestVibrate.Size = new System.Drawing.Size(81, 22);
+            this.btnTestVibrate.TabIndex = 41;
+            this.btnTestVibrate.Text = "启动振动器";
+            this.btnTestVibrate.UseVisualStyleBackColor = true;
+            this.btnTestVibrate.Click += new System.EventHandler(this.BtnTestVibrate_Click);
+            // 
+            // btnOpenFlash
+            // 
+            this.btnOpenFlash.Location = new System.Drawing.Point(451, 20);
+            this.btnOpenFlash.Name = "btnOpenFlash";
+            this.btnOpenFlash.Size = new System.Drawing.Size(61, 22);
+            this.btnOpenFlash.TabIndex = 42;
+            this.btnOpenFlash.Text = "满屏显示";
+            this.btnOpenFlash.UseVisualStyleBackColor = true;
+            this.btnOpenFlash.Click += new System.EventHandler(this.BtnOpenFlash_Click);
+            // 
+            // btnCloseLamp
+            // 
+            this.btnCloseLamp.Location = new System.Drawing.Point(451, 70);
+            this.btnCloseLamp.Name = "btnCloseLamp";
+            this.btnCloseLamp.Size = new System.Drawing.Size(61, 22);
+            this.btnCloseLamp.TabIndex = 43;
+            this.btnCloseLamp.Text = "关灯";
+            this.btnCloseLamp.UseVisualStyleBackColor = true;
+            this.btnCloseLamp.Click += new System.EventHandler(this.BtnCloseLamp_Click);
+            // 
+            // btnCloseLed
+            // 
+            this.btnCloseLed.Location = new System.Drawing.Point(241, 70);
+            this.btnCloseLed.Name = "btnCloseLed";
+            this.btnCloseLed.Size = new System.Drawing.Size(99, 22);
+            this.btnCloseLed.TabIndex = 44;
+            this.btnCloseLed.Text = "关闭LED手电筒";
+            this.btnCloseLed.UseVisualStyleBackColor = true;
+            this.btnCloseLed.Click += new System.EventHandler(this.BtnCloseLed_Click);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(121, 122);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(113, 12);
+            this.label23.TabIndex = 45;
+            this.label23.Text = "振动时间（毫秒）：";
+            // 
+            // cmbVibrateTime
+            // 
+            this.cmbVibrateTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVibrateTime.FormattingEnabled = true;
+            this.cmbVibrateTime.Location = new System.Drawing.Point(231, 119);
+            this.cmbVibrateTime.Name = "cmbVibrateTime";
+            this.cmbVibrateTime.Size = new System.Drawing.Size(85, 20);
+            this.cmbVibrateTime.TabIndex = 35;
+            // 
+            // btnCloseFlash
+            // 
+            this.btnCloseFlash.Location = new System.Drawing.Point(526, 20);
+            this.btnCloseFlash.Name = "btnCloseFlash";
+            this.btnCloseFlash.Size = new System.Drawing.Size(61, 22);
+            this.btnCloseFlash.TabIndex = 46;
+            this.btnCloseFlash.Text = "清空屏幕";
+            this.btnCloseFlash.UseVisualStyleBackColor = true;
+            this.btnCloseFlash.Click += new System.EventHandler(this.BtnCloseFlash_Click);
+            // 
+            // btnOpenGreen
+            // 
+            this.btnOpenGreen.Location = new System.Drawing.Point(518, 70);
+            this.btnOpenGreen.Name = "btnOpenGreen";
+            this.btnOpenGreen.Size = new System.Drawing.Size(63, 22);
+            this.btnOpenGreen.TabIndex = 47;
+            this.btnOpenGreen.Text = "亮绿灯";
+            this.btnOpenGreen.UseVisualStyleBackColor = true;
+            this.btnOpenGreen.Click += new System.EventHandler(this.BtnOpenGreen_Click);
+            // 
+            // btnOpenRed
+            // 
+            this.btnOpenRed.Location = new System.Drawing.Point(587, 70);
+            this.btnOpenRed.Name = "btnOpenRed";
+            this.btnOpenRed.Size = new System.Drawing.Size(65, 22);
+            this.btnOpenRed.TabIndex = 48;
+            this.btnOpenRed.Text = "亮红灯";
+            this.btnOpenRed.UseVisualStyleBackColor = true;
+            this.btnOpenRed.Click += new System.EventHandler(this.BtnOpenRed_Click);
             // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 555);
+            this.ClientSize = new System.Drawing.Size(681, 607);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
@@ -641,6 +838,7 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "frmSystem";
             this.Text = "frmSystem";
+            this.Load += new System.EventHandler(this.FrmSystem_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -651,6 +849,8 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -710,5 +910,22 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button btnWriteRecordStorageMode;
         private System.Windows.Forms.Button btnReadRecordStorageMode;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button btnOpenRed;
+        private System.Windows.Forms.Button btnOpenGreen;
+        private System.Windows.Forms.Button btnCloseFlash;
+        private System.Windows.Forms.ComboBox cmbVibrateTime;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button btnCloseLed;
+        private System.Windows.Forms.Button btnCloseLamp;
+        private System.Windows.Forms.Button btnOpenFlash;
+        private System.Windows.Forms.Button btnTestVibrate;
+        private System.Windows.Forms.Button btnOpenLed;
+        private System.Windows.Forms.Button btnTestBuzzer;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label17;
     }
 }

@@ -46,8 +46,8 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.WritePatrolEmpl
             {
                 if (patrolEmpl.CardData == 0 || patrolEmpl.CardData > 16777215)
                     throw new ArgumentException("PatrolEmpl.CardData Error!");
-                if (string.IsNullOrEmpty(patrolEmpl.Name) || patrolEmpl.Name.Length > 5)
-                    throw new ArgumentException("PatrolEmpl.Name Error!");
+                //if (string.IsNullOrEmpty(patrolEmpl.Name) || patrolEmpl.Name.Length > 5)
+                //    throw new ArgumentException("PatrolEmpl.Name Error!");
                 if (patrolEmpl.PCode < 1 || patrolEmpl.PCode > 999)
                     throw new ArgumentException("PatrolEmpl.PCode Error!");
             }

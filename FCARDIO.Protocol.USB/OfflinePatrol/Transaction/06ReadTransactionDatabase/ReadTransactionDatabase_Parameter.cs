@@ -30,9 +30,9 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase
         public int Quantity;
 
         /// <summary>
-        ///  每次读取数量 1-300
+        ///  每次读取数量 1-5
         /// </summary>
-        public int PacketSize=200;
+        public int PacketSize= 100;
 
         /// <summary>
         /// 初始化参数
@@ -51,11 +51,11 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (PacketSize < 1 || PacketSize > 200)
+            if (PacketSize < 1 || PacketSize > 100)
             {
                 throw new ArgumentException("PacketSize Error!");
             }
-            if (Quantity < 0 || Quantity > 160000)
+            if (Quantity < 0 || Quantity > 100000)
             {
                 throw new ArgumentException("Quantity Error!");
             }

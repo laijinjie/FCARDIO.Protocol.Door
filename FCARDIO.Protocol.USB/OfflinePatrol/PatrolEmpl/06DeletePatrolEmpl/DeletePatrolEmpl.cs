@@ -22,7 +22,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.DeletePatrolEmpl
         /// <summary>
         /// 每次上传数量
         /// </summary>
-        protected const int mBatchCount = 20;
+        protected const int mBatchCount = 10;
 
         /// <summary>
         /// 删除巡更人员参数

@@ -293,6 +293,7 @@
             this.butRecord.Name = "butRecord";
             this.butRecord.Size = new System.Drawing.Size(60, 22);
             this.butRecord.Text = "记录操作";
+            this.butRecord.Click += new System.EventHandler(this.ButRecord_Click);
             // 
             // FrmMain
             // 
