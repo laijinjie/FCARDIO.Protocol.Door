@@ -71,7 +71,9 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
                 CardData = FCARD.Common.NumUtil.ByteToInt32(bCard, 0, 3);
                
             }
+#pragma warning disable CS0168 // 声明了变量“e”，但从未使用过
             catch (Exception e)
+#pragma warning restore CS0168 // 声明了变量“e”，但从未使用过
             {
             }
 

@@ -16,7 +16,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.WritePatrolEmpl
     {/// <summary>
      /// 默认的缓冲区大小
      /// </summary>
-        protected int MaxBufSize = 350;
+        protected int MaxBufSize = 120;
 
         /// <summary>
         /// 每次上传数量

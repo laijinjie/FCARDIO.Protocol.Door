@@ -16,6 +16,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerLED
         /// <summary>
         /// 初始化参数
         /// </summary>
+        /// <param name="code">是否开启 128 - 开启 ， 8 - 关闭</param>
         public TriggerLED_Parameter(byte code)
         {
             Code = code;

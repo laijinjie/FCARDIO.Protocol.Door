@@ -24,6 +24,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime
         /// <summary>
         /// 初始化参数
         /// </summary>
+        /// <param name="time">设备有效期</param>
         public ExpireTime_Parameter(DateTime time)
         {
             Time = time;

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3502F7F1-0805-457D-B8D7-35C22D722550}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FCARDIO.Protocol.USB.CardReader</RootNamespace>
+    <AssemblyName>FCARDIO.Protocol.USB.CardReader</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetty.Buffers">
+      <HintPath>..\..\DLL\DotNetty.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Codecs">
+      <HintPath>..\..\DLL\DotNetty.Codecs.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Common">
+      <HintPath>..\..\DLL\DotNetty.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Handlers">
+      <HintPath>..\..\DLL\DotNetty.Handlers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Transport">
+      <HintPath>..\..\DLL\DotNetty.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Transport.Libuv">
+      <HintPath>..\..\DLL\DotNetty.Transport.Libuv.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARD.Common">
+      <HintPath>..\..\DLL\FCARD.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Core">
+      <HintPath>..\..\DLL\FCARDIO.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Protocol">
+      <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Protocol.Util">
+      <HintPath>..\..\FCARDIO.Protocol.Util\bin\Debug\FCARDIO.Protocol.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractParameter.cs" />
+    <Compile Include="CommandEx.cs" />
+    <Compile Include="ICCard\01SearchCard\SearchCard.cs" />
+    <Compile Include="ICCard\01SearchCard\SearchCard_Result.cs" />
+    <Compile Include="ICCard\02Sector\ReadSector.cs" />
+    <Compile Include="ICCard\02Sector\ReadSector_Parameter.cs" />
+    <Compile Include="ICCard\02Sector\ReadSector_Result.cs" />
+    <Compile Include="ICCard\02Sector\WriteSector.cs" />
+    <Compile Include="ICCard\02Sector\WriteSector_Parameter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Read_Command.cs" />
+    <Compile Include="SystemParameter\03Version\ReadVersion.cs" />
+    <Compile Include="SystemParameter\03Version\ReadVersion_Result.cs" />
+    <Compile Include="SystemParameter\01SN\ReadSN.cs" />
+    <Compile Include="SystemParameter\01SN\SN_Parameter.cs" />
+    <Compile Include="SystemParameter\01SN\SN_Result.cs" />
+    <Compile Include="SystemParameter\01SN\WriteSN.cs" />
+    <Compile Include="SystemParameter\04CreateTime\ReadCreateTime.cs" />
+    <Compile Include="SystemParameter\04CreateTime\ReadCreateTime_Result.cs" />
+    <Compile Include="SystemParameter\04CreateTime\WriteCreateTime.cs" />
+    <Compile Include="SystemParameter\04CreateTime\WriteCreateTime_Parameter.cs" />
+    <Compile Include="SystemParameter\05ReadCardType\ReadReadCardType.cs" />
+    <Compile Include="SystemParameter\05ReadCardType\ReadReadCardType_Result.cs" />
+    <Compile Include="SystemParameter\05ReadCardType\WriteReadCardType.cs" />
+    <Compile Include="SystemParameter\05ReadCardType\WriteReadCardType_Parameter.cs" />
+    <Compile Include="SystemParameter\06OutputFormat\ReadOutputFormat.cs" />
+    <Compile Include="SystemParameter\06OutputFormat\ReadOutputFormat_Result.cs" />
+    <Compile Include="SystemParameter\06OutputFormat\WriteOutputFormat.cs" />
+    <Compile Include="SystemParameter\06OutputFormat\WriteOutputFormat_Parameter.cs" />
+    <Compile Include="SystemParameter\07ICCardControl\ReadICCardControl.cs" />
+    <Compile Include="SystemParameter\07ICCardControl\ReadICCardControl_Result.cs" />
+    <Compile Include="SystemParameter\07ICCardControl\WriteICCardControl.cs" />
+    <Compile Include="SystemParameter\07ICCardControl\WriteICCardControl_Parameter.cs" />
+    <Compile Include="SystemParameter\08ICCardCustomNum\ReadICCardCustomNum.cs" />
+    <Compile Include="SystemParameter\08ICCardCustomNum\ReadICCardCustomNum_Result.cs" />
+    <Compile Include="SystemParameter\08ICCardCustomNum\WriteICCardCustomNum.cs" />
+    <Compile Include="SystemParameter\08ICCardCustomNum\WriteICCardCustomNum_Parameter.cs" />
+    <Compile Include="SystemParameter\09TTLOutput\ReadTTLOutput.cs" />
+    <Compile Include="SystemParameter\09TTLOutput\ReadTTLOutput_Result.cs" />
+    <Compile Include="SystemParameter\09TTLOutput\WriteTTLOutput.cs" />
+    <Compile Include="SystemParameter\09TTLOutput\WriteTTLOutput_Parameter.cs" />
+    <Compile Include="SystemParameter\10Initialize\Initialize.cs" />
+    <Compile Include="SystemParameter\11Buzzer\WriteBuzzer.cs" />
+    <Compile Include="SystemParameter\11Buzzer\WriteBuzzer_Parameter.cs" />
+    <Compile Include="SystemParameter\12LED\WriteLED.cs" />
+    <Compile Include="SystemParameter\12LED\WriteLED_Parameter.cs" />
+    <Compile Include="SystemParameter\AgencyCode\ReadAgencyCode.cs" />
+    <Compile Include="SystemParameter\AgencyCode\ReadAgencyCode_Result.cs" />
+    <Compile Include="SystemParameter\AgencyCode\WriteAgencyCode.cs" />
+    <Compile Include="SystemParameter\AgencyCode\WriteAgencyCode_Parameter.cs" />
+    <Compile Include="Write_Command.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

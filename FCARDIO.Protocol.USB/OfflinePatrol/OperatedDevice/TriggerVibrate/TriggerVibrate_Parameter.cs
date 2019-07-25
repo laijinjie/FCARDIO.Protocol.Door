@@ -8,13 +8,14 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerVibrate
     public class TriggerVibrate_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 是否开启
+        /// 震动时间
         /// </summary>
         public ushort Time;
 
         /// <summary>
         /// 初始化参数
         /// </summary>
+        /// <param name="time">震动时间</param>
         public TriggerVibrate_Parameter(ushort time)
         {
             Time = time;

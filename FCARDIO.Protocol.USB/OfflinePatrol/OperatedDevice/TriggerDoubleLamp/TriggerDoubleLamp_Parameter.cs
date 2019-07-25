@@ -21,6 +21,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerDoubleLamp
         /// <summary>
         /// 初始化参数
         /// </summary>
+        /// <param name="code">是否开启 128 - 绿灯亮 ，8 - 红灯亮 ， 0 - 关闭</param>
         public TriggerDoubleLamp_Parameter(byte code)
         {
             Code = code;

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime
 {
     /// <summary>
-    /// 设置生成日期
+    /// 设置生产日期
     /// </summary>
     public class WriteCreateTime_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 生成日期
+        /// 生产日期
         /// </summary>
         public DateTime Time;
 
@@ -28,6 +28,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime
         /// <summary>
         /// 初始化参数
         /// </summary>
+        /// <param name="time">生产日期</param>
         public WriteCreateTime_Parameter(DateTime time)
         {
             Time = time;

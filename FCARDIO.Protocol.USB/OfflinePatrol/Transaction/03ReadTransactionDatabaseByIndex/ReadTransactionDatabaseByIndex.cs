@@ -177,7 +177,9 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase
                         cd.SetBytes(buf);
                         result.TransactionList.Add(cd);
                     }
+#pragma warning disable CS0168 // 声明了变量“e”，但从未使用过
                     catch (Exception e)
+#pragma warning restore CS0168 // 声明了变量“e”，但从未使用过
                     {
 
                     }
