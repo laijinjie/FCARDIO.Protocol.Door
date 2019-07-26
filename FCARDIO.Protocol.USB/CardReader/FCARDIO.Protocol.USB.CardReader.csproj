@@ -75,11 +75,13 @@
     <Compile Include="CommandEx.cs" />
     <Compile Include="ICCard\01SearchCard\SearchCard.cs" />
     <Compile Include="ICCard\01SearchCard\SearchCard_Result.cs" />
-    <Compile Include="ICCard\02Sector\ReadSector.cs" />
-    <Compile Include="ICCard\02Sector\ReadSector_Parameter.cs" />
-    <Compile Include="ICCard\02Sector\ReadSector_Result.cs" />
-    <Compile Include="ICCard\02Sector\WriteSector.cs" />
-    <Compile Include="ICCard\02Sector\WriteSector_Parameter.cs" />
+    <Compile Include="ICCard\02ReadSector\ReadAllSector.cs" />
+    <Compile Include="ICCard\02ReadSector\ReadAllSector_Result.cs" />
+    <Compile Include="ICCard\02ReadSector\ReadSector.cs" />
+    <Compile Include="ICCard\02ReadSector\ReadSector_Parameter.cs" />
+    <Compile Include="ICCard\02ReadSector\ReadSector_Result.cs" />
+    <Compile Include="ICCard\03WriteSector\WriteSector.cs" />
+    <Compile Include="ICCard\03WriteSector\WriteSector_Parameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Read_Command.cs" />
     <Compile Include="SystemParameter\03Version\ReadVersion.cs" />
@@ -121,13 +123,14 @@
     <Compile Include="SystemParameter\AgencyCode\ReadAgencyCode_Result.cs" />
     <Compile Include="SystemParameter\AgencyCode\WriteAgencyCode.cs" />
     <Compile Include="SystemParameter\AgencyCode\WriteAgencyCode_Parameter.cs" />
+    <Compile Include="Watch\WatchSearchCard.cs" />
     <Compile Include="Write_Command.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
+    <Folder Include="ICCard\NewFolder2\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

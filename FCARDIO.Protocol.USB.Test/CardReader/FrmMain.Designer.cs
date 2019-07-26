@@ -49,8 +49,8 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.butSystem = new System.Windows.Forms.ToolStripButton();
             this.butSearchCard = new System.Windows.Forms.ToolStripButton();
-            this.butPatrol = new System.Windows.Forms.ToolStripButton();
-            this.butRecord = new System.Windows.Forms.ToolStripButton();
+            this.butEncryptionDecryption = new System.Windows.Forms.ToolStripButton();
+            this.btnWatch = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tbEvent.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -247,8 +247,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.butSystem,
             this.butSearchCard,
-            this.butPatrol,
-            this.butRecord});
+            this.butEncryptionDecryption});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(597, 25);
@@ -271,35 +270,36 @@
             this.butSearchCard.Image = ((System.Drawing.Image)(resources.GetObject("butSearchCard.Image")));
             this.butSearchCard.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.butSearchCard.Name = "butSearchCard";
-            this.butSearchCard.Size = new System.Drawing.Size(36, 22);
-            this.butSearchCard.Text = "寻卡";
+            this.butSearchCard.Size = new System.Drawing.Size(84, 22);
+            this.butSearchCard.Text = "IC卡读写操作";
             this.butSearchCard.Click += new System.EventHandler(this.ButSearchCard_Click);
             // 
-            // butPatrol
+            // butEncryptionDecryption
             // 
-            this.butPatrol.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.butPatrol.Image = ((System.Drawing.Image)(resources.GetObject("butPatrol.Image")));
-            this.butPatrol.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.butPatrol.Name = "butPatrol";
-            this.butPatrol.Size = new System.Drawing.Size(60, 22);
-            this.butPatrol.Text = "巡更人员";
-            this.butPatrol.Click += new System.EventHandler(this.ButPatrol_Click);
+            this.butEncryptionDecryption.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.butEncryptionDecryption.Image = ((System.Drawing.Image)(resources.GetObject("butEncryptionDecryption.Image")));
+            this.butEncryptionDecryption.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.butEncryptionDecryption.Name = "butEncryptionDecryption";
+            this.butEncryptionDecryption.Size = new System.Drawing.Size(84, 22);
+            this.butEncryptionDecryption.Text = "IC卡加密解密";
+            this.butEncryptionDecryption.Click += new System.EventHandler(this.ButEncryptionDecryption_Click);
             // 
-            // butRecord
+            // btnWatch
             // 
-            this.butRecord.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.butRecord.Image = ((System.Drawing.Image)(resources.GetObject("butRecord.Image")));
-            this.butRecord.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.butRecord.Name = "butRecord";
-            this.butRecord.Size = new System.Drawing.Size(60, 22);
-            this.butRecord.Text = "记录操作";
-            this.butRecord.Click += new System.EventHandler(this.ButRecord_Click);
+            this.btnWatch.Location = new System.Drawing.Point(506, 12);
+            this.btnWatch.Name = "btnWatch";
+            this.btnWatch.Size = new System.Drawing.Size(75, 23);
+            this.btnWatch.TabIndex = 18;
+            this.btnWatch.Text = "监控读卡";
+            this.btnWatch.UseVisualStyleBackColor = true;
+            this.btnWatch.Click += new System.EventHandler(this.BtnWatch_Click);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 668);
+            this.Controls.Add(this.btnWatch);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tbEvent);
             this.Controls.Add(this.groupBox1);
@@ -342,8 +342,8 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton butSystem;
         private System.Windows.Forms.ToolStripButton butSearchCard;
-        private System.Windows.Forms.ToolStripButton butPatrol;
-        private System.Windows.Forms.ToolStripButton butRecord;
+        private System.Windows.Forms.ToolStripButton butEncryptionDecryption;
         private System.Windows.Forms.Label lblReLoadCOMList;
+        private System.Windows.Forms.Button btnWatch;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using FCARDIO.Core.Command;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ReadTTLOutputCardNumber
+namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput
 {
     /// <summary>
     /// 设置TTL输出参数

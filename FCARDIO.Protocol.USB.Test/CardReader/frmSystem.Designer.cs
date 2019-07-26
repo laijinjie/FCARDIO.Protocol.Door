@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnInitialize = new System.Windows.Forms.Button();
             this.btnReadVersion = new System.Windows.Forms.Button();
             this.txtVersion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -108,18 +109,18 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.btnReadAgencyCode = new System.Windows.Forms.Button();
+            this.btnWriteAgencyCode = new System.Windows.Forms.Button();
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtBuzzerTime = new System.Windows.Forms.TextBox();
-            this.btnWriteBuzzer = new System.Windows.Forms.Button();
+            this.cmbLED = new System.Windows.Forms.ComboBox();
             this.btnWriteLED = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
-            this.cmbLED = new System.Windows.Forms.ComboBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtCode = new System.Windows.Forms.TextBox();
-            this.btnWriteAgencyCode = new System.Windows.Forms.Button();
-            this.btnReadAgencyCode = new System.Windows.Forms.Button();
+            this.btnWriteBuzzer = new System.Windows.Forms.Button();
+            this.txtBuzzerTime = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -131,21 +132,32 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnInitialize);
             this.groupBox3.Controls.Add(this.btnReadVersion);
             this.groupBox3.Controls.Add(this.txtVersion);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Location = new System.Drawing.Point(197, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(472, 64);
+            this.groupBox3.Size = new System.Drawing.Size(564, 64);
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "版本号";
+            // 
+            // btnInitialize
+            // 
+            this.btnInitialize.Location = new System.Drawing.Point(455, 26);
+            this.btnInitialize.Name = "btnInitialize";
+            this.btnInitialize.Size = new System.Drawing.Size(103, 22);
+            this.btnInitialize.TabIndex = 25;
+            this.btnInitialize.Text = "初始化读卡模块";
+            this.btnInitialize.UseVisualStyleBackColor = true;
+            this.btnInitialize.Click += new System.EventHandler(this.BtnInitialize_Click);
             // 
             // btnReadVersion
             // 
@@ -995,6 +1007,55 @@
             this.tabPage2.Text = "参数二";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.btnReadAgencyCode);
+            this.groupBox10.Controls.Add(this.btnWriteAgencyCode);
+            this.groupBox10.Controls.Add(this.txtCode);
+            this.groupBox10.Controls.Add(this.label24);
+            this.groupBox10.Location = new System.Drawing.Point(7, 88);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(756, 59);
+            this.groupBox10.TabIndex = 1;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "经销商代码";
+            // 
+            // btnReadAgencyCode
+            // 
+            this.btnReadAgencyCode.Location = new System.Drawing.Point(230, 25);
+            this.btnReadAgencyCode.Name = "btnReadAgencyCode";
+            this.btnReadAgencyCode.Size = new System.Drawing.Size(60, 23);
+            this.btnReadAgencyCode.TabIndex = 7;
+            this.btnReadAgencyCode.Text = "读取";
+            this.btnReadAgencyCode.UseVisualStyleBackColor = true;
+            this.btnReadAgencyCode.Click += new System.EventHandler(this.BtnReadAgencyCode_Click);
+            // 
+            // btnWriteAgencyCode
+            // 
+            this.btnWriteAgencyCode.Location = new System.Drawing.Point(296, 25);
+            this.btnWriteAgencyCode.Name = "btnWriteAgencyCode";
+            this.btnWriteAgencyCode.Size = new System.Drawing.Size(57, 23);
+            this.btnWriteAgencyCode.TabIndex = 7;
+            this.btnWriteAgencyCode.Text = "写入";
+            this.btnWriteAgencyCode.UseVisualStyleBackColor = true;
+            this.btnWriteAgencyCode.Click += new System.EventHandler(this.BtnWriteAgencyCode_Click);
+            // 
+            // txtCode
+            // 
+            this.txtCode.Location = new System.Drawing.Point(114, 27);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(100, 21);
+            this.txtCode.TabIndex = 7;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(67, 30);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(41, 12);
+            this.label24.TabIndex = 7;
+            this.label24.Text = "密码：";
+            // 
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.cmbLED);
@@ -1010,31 +1071,17 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "硬件控制";
             // 
-            // label22
+            // cmbLED
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(7, 31);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(101, 12);
-            this.label22.TabIndex = 0;
-            this.label22.Text = "蜂鸣器鸣叫次数：";
-            // 
-            // txtBuzzerTime
-            // 
-            this.txtBuzzerTime.Location = new System.Drawing.Point(114, 28);
-            this.txtBuzzerTime.Name = "txtBuzzerTime";
-            this.txtBuzzerTime.Size = new System.Drawing.Size(100, 21);
-            this.txtBuzzerTime.TabIndex = 1;
-            // 
-            // btnWriteBuzzer
-            // 
-            this.btnWriteBuzzer.Location = new System.Drawing.Point(230, 27);
-            this.btnWriteBuzzer.Name = "btnWriteBuzzer";
-            this.btnWriteBuzzer.Size = new System.Drawing.Size(75, 23);
-            this.btnWriteBuzzer.TabIndex = 2;
-            this.btnWriteBuzzer.Text = "写入";
-            this.btnWriteBuzzer.UseVisualStyleBackColor = true;
-            this.btnWriteBuzzer.Click += new System.EventHandler(this.BtnWriteBuzzer_Click);
+            this.cmbLED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLED.FormattingEnabled = true;
+            this.cmbLED.Items.AddRange(new object[] {
+            "红灯",
+            "绿灯"});
+            this.cmbLED.Location = new System.Drawing.Point(431, 27);
+            this.cmbLED.Name = "cmbLED";
+            this.cmbLED.Size = new System.Drawing.Size(121, 20);
+            this.cmbLED.TabIndex = 6;
             // 
             // btnWriteLED
             // 
@@ -1055,66 +1102,31 @@
             this.label23.TabIndex = 3;
             this.label23.Text = "亮灯：";
             // 
-            // cmbLED
+            // btnWriteBuzzer
             // 
-            this.cmbLED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLED.FormattingEnabled = true;
-            this.cmbLED.Items.AddRange(new object[] {
-            "红灯",
-            "绿灯"});
-            this.cmbLED.Location = new System.Drawing.Point(431, 27);
-            this.cmbLED.Name = "cmbLED";
-            this.cmbLED.Size = new System.Drawing.Size(121, 20);
-            this.cmbLED.TabIndex = 6;
+            this.btnWriteBuzzer.Location = new System.Drawing.Point(230, 27);
+            this.btnWriteBuzzer.Name = "btnWriteBuzzer";
+            this.btnWriteBuzzer.Size = new System.Drawing.Size(75, 23);
+            this.btnWriteBuzzer.TabIndex = 2;
+            this.btnWriteBuzzer.Text = "写入";
+            this.btnWriteBuzzer.UseVisualStyleBackColor = true;
+            this.btnWriteBuzzer.Click += new System.EventHandler(this.BtnWriteBuzzer_Click);
             // 
-            // groupBox10
+            // txtBuzzerTime
             // 
-            this.groupBox10.Controls.Add(this.btnReadAgencyCode);
-            this.groupBox10.Controls.Add(this.btnWriteAgencyCode);
-            this.groupBox10.Controls.Add(this.txtCode);
-            this.groupBox10.Controls.Add(this.label24);
-            this.groupBox10.Location = new System.Drawing.Point(7, 88);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(756, 59);
-            this.groupBox10.TabIndex = 1;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "经销商代码";
+            this.txtBuzzerTime.Location = new System.Drawing.Point(114, 28);
+            this.txtBuzzerTime.Name = "txtBuzzerTime";
+            this.txtBuzzerTime.Size = new System.Drawing.Size(100, 21);
+            this.txtBuzzerTime.TabIndex = 1;
             // 
-            // label24
+            // label22
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(67, 30);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(41, 12);
-            this.label24.TabIndex = 7;
-            this.label24.Text = "密码：";
-            // 
-            // txtCode
-            // 
-            this.txtCode.Location = new System.Drawing.Point(114, 27);
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(100, 21);
-            this.txtCode.TabIndex = 7;
-            // 
-            // btnWriteAgencyCode
-            // 
-            this.btnWriteAgencyCode.Location = new System.Drawing.Point(296, 25);
-            this.btnWriteAgencyCode.Name = "btnWriteAgencyCode";
-            this.btnWriteAgencyCode.Size = new System.Drawing.Size(57, 23);
-            this.btnWriteAgencyCode.TabIndex = 7;
-            this.btnWriteAgencyCode.Text = "写入";
-            this.btnWriteAgencyCode.UseVisualStyleBackColor = true;
-            this.btnWriteAgencyCode.Click += new System.EventHandler(this.BtnWriteAgencyCode_Click);
-            // 
-            // btnReadAgencyCode
-            // 
-            this.btnReadAgencyCode.Location = new System.Drawing.Point(230, 25);
-            this.btnReadAgencyCode.Name = "btnReadAgencyCode";
-            this.btnReadAgencyCode.Size = new System.Drawing.Size(60, 23);
-            this.btnReadAgencyCode.TabIndex = 7;
-            this.btnReadAgencyCode.Text = "读取";
-            this.btnReadAgencyCode.UseVisualStyleBackColor = true;
-            this.btnReadAgencyCode.Click += new System.EventHandler(this.BtnReadAgencyCode_Click);
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(7, 31);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(101, 12);
+            this.label22.TabIndex = 0;
+            this.label22.Text = "蜂鸣器鸣叫次数：";
             // 
             // frmSystem
             // 
@@ -1144,10 +1156,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1246,5 +1258,6 @@
         private System.Windows.Forms.Button btnWriteAgencyCode;
         private System.Windows.Forms.TextBox txtCode;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button btnInitialize;
     }
 }

@@ -4,10 +4,11 @@ using FCARDIO.Protocol.USB.CardReader.SystemParameter.Buzzer;
 using FCARDIO.Protocol.USB.CardReader.SystemParameter.CreateTime;
 using FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl;
 using FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum;
+using FCARDIO.Protocol.USB.CardReader.SystemParameter.Initialize;
 using FCARDIO.Protocol.USB.CardReader.SystemParameter.LED;
 using FCARDIO.Protocol.USB.CardReader.SystemParameter.OutputFormat;
 using FCARDIO.Protocol.USB.CardReader.SystemParameter.ReadCardType;
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.ReadTTLOutputCardNumber;
+using FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput;
 using FCARDIO.Protocol.USB.CardReader.SystemParameter.SN;
 using FCARDIO.Protocol.USB.CardReader.SystemParameter.Version;
 using System;
@@ -574,6 +575,20 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 mMainForm.AddCmdLog(cmde, $"命令成功");
+            };
+        }
+
+        private void BtnInitialize_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            Initialize cmd = new Initialize(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+               
             };
         }
     }

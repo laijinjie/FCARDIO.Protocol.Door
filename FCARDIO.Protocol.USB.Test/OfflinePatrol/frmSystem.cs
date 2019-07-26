@@ -6,6 +6,7 @@ using FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerLED;
 using FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerVibrate;
 using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime;
 using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime;
+using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.Initialize;
 using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime;
 using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode;
 using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN;
@@ -107,7 +108,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
                 
                 Invoke(() =>
                 {
-                    txtVersion.Text = "版本号：" + result.VerNum + "." + result.Revise;
+                    txtVersion.Text = result.VerNum + "." + result.Revise;
                 });
                 mMainForm.AddCmdLog(cmde, $"{txtVersion.Text}");
             };
@@ -535,6 +536,20 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
             {
                 //string text = rbStorageMode0.Checked ? rbStorageMode0.Text : rbStorageMode1.Text;
                 mMainForm.AddCmdLog(cmde, $"命令成功");
+            };
+        }
+
+        private void BtnInitialize_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            Initialize cmd = new Initialize(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+
             };
         }
     }

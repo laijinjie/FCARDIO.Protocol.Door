@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using FCARDIO.Core.Extension;
 using System.Collections.Concurrent;
 using FCARDIO.Protocol.USBDrive;
+using FCARDIO.Protocol.FC8800;
 
 namespace FCARDIO.Protocol.USB.CardReader.Test
 {
@@ -30,6 +31,30 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
             mCommandClasss = new Dictionary<string, string>();
             mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.SN.ReadSN).FullName, "读取SN");
             mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.SN.WriteSN).FullName, "写入SN");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion).FullName, "获取设备版本号");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.CreateTime.ReadCreateTime).FullName, "读取生产日期");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime).FullName, "写入生产日期");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.ReadCardType.ReadReadCardType).FullName, "读取记录存储方式");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType).FullName, "写入记录存储方式");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.OutputFormat.ReadOutputFormat).FullName, "读取输出格式");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat).FullName, "写入输出格式");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl.ReadICCardControl).FullName, "读取扇区验证");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl).FullName, "写入扇区验证");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.ReadICCardCustomNum).FullName, "读取卡号参数");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum).FullName, "写入卡号参数");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput.ReadTTLOutput).FullName, "读取TTL输出参数");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput).FullName, "写入TTL输出参数");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.Initialize.Initialize).FullName, "初始化读卡器");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer).FullName, "控制蜂鸣器");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.LED.WriteLED).FullName, "控制LED灯");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.AgencyCode.ReadAgencyCode).FullName, "读取经销商代码");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode).FullName, "设置经销商代码");
+
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard).FullName, "寻卡");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.ICCard.Sector.ReadSector).FullName, "读扇区内容");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.ICCard.Sector.WriteSector).FullName, "写扇区内容");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.ICCard.Sector.ReadAllSector).FullName, "读取扇区全部内容");
+
         }
         private void Invoke(Action p)
         {
@@ -639,11 +664,6 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
 
         }
 
-        private void ButPatrol_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void ButRecord_Click(object sender, EventArgs e)
         {
            
@@ -659,5 +679,62 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
             ShowFrm(frm);
 
         }
+
+        private void ButEncryptionDecryption_Click(object sender, EventArgs e)
+        {
+            frmEncryptionDecryption frm = frmEncryptionDecryption.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+        }
+
+        private void BtnWatch_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            INConnector cnt = mAllocator.GetConnector(cmdDtl.Connector);
+            if (cnt == null)
+            {
+                //未开启监控
+                mAllocator.OpenConnector(cmdDtl.Connector);
+                cnt = mAllocator.GetConnector(cmdDtl.Connector);
+
+            }
+
+            //使通道保持连接不关闭
+            cnt.OpenForciblyConnect();
+            FC8800RequestHandle fC8800Request =
+                new FC8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
+            cnt.RemoveRequestHandle(typeof(FC8800RequestHandle));//先删除，防止已存在就无法添加。
+            cnt.AddRequestHandle(fC8800Request);
+
+        }
+
+        /// <summary>
+        /// 用于根据SN，命令参数、命令索引生产用于处理对应消息的处理类工厂函数
+        /// </summary>
+        /// <param name="sn"></param>
+        /// <param name="cmdIndex"></param>
+        /// <param name="cmdPar"></param>
+        /// <returns></returns>
+        private Transaction.AbstractTransaction RequestHandleFactory(string sn, byte cmdIndex, byte cmdPar)
+        {
+            bool bIsFC89H = true;
+
+            switch (cmdIndex)
+            {
+                case 0x23://连接确认信息
+                    break;
+                case 0x22://连接测试--心跳保活包
+                    break;
+                default:
+                    break;
+            }
+            return null;
+        }
+
     }
 }

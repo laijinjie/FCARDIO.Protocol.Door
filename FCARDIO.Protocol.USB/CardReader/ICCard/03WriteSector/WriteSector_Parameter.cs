@@ -1,18 +1,18 @@
-﻿using System;
+﻿using DotNetty.Buffers;
+using FCARDIO.Protocol.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using DotNetty.Buffers;
-using FCARDIO.Protocol.Util;
 
 namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
 {
     /// <summary>
-    /// 读扇区内容 参数
+    /// 写扇区内容
     /// </summary>
-    public class ReadSector_Parameter : AbstractParameter
+    public class WriteSector_Parameter : AbstractParameter
     {
         /// <summary>
         /// 卡片类型
@@ -43,10 +43,6 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// </summary>
         public byte StartBlock;
 
-        /// <summary>
-        /// 读取字节数
-        /// </summary>
-        public byte ReadCount;
 
         /// <summary>
         /// 密钥验证类型
@@ -61,23 +57,29 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         public string Password;
 
         /// <summary>
+        /// 待写入数据内容
+        /// </summary>
+        public string Content;
+        /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="type">卡片类型</param>
         /// <param name="number">扇区号</param>
         /// <param name="startBlock">起始数据块</param>
-        /// <param name="readCount">读取字节数</param>
-        /// <param name="authenticationType">密钥验证类型</param>
+        /// <param name="writeCount">写入块数</param>
+        /// <param name="verifyMode">密钥验证类型</param>
         /// <param name="password">扇区密码</param>
-        public ReadSector_Parameter(byte type, byte number, byte startBlock, byte readCount, byte verifyMode, string password)
+        /// <param name="content">待写入数据内容</param>
+        public WriteSector_Parameter(byte type, byte number, byte startBlock, byte verifyMode, string password,string content)
         {
             Type = type;
             Number = number;
             StartBlock = startBlock;
-            ReadCount = readCount;
             VerifyMode = verifyMode;
             Password = password;
+            Content = content;
         }
+
         /// <summary>
         /// 检查参数
         /// </summary>
@@ -114,31 +116,50 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
             {
                 throw new ArgumentException("Type Error!");
             }
-
+            string pattern = @"^([0-9a-fA-F]+)$";
+            bool isHexNum = false;
             if (Password != null && Password.Length > 12)
             {
+                isHexNum = Regex.IsMatch(Password, pattern);
+                if (!isHexNum)
+                {
+                    throw new ArgumentException("Password Error!");
+                }
                 throw new ArgumentException("Password Error!");
             }
 
-            if (ReadCount > 64 || ReadCount == 0)
-            {
-                throw new ArgumentException("ReadCount Error!");
-            }
-
+          
             if (VerifyMode != 1 && VerifyMode != 2)
             {
                 throw new ArgumentException("VerifyMode Error!");
             }
 
-            string pattern = @"^([0-9a-fA-F]+)$";
-            bool isHexNum = Regex.IsMatch(Password, pattern);
-            if (!isHexNum)
+
+            if (string.IsNullOrEmpty(Content) || Content.Length > 128)
             {
-                throw new ArgumentException("Password Error!");
+                throw new ArgumentException("Content Error!");
             }
+            else
+            {
+                Content = Content.Replace("\r\n","");
+                isHexNum = Regex.IsMatch(Content, pattern);
+                if (!isHexNum)
+                {
+                    throw new ArgumentException("Content Error!");
+                }
+            }
+            //int length = Content.Length % 32;
+            //if (length != 0)
+            //{
+            //    throw new ArgumentException("Content Length Error!");
+            //}
+
+           
 
             return true;
         }
+
+
 
         /// <summary>
         /// 将结构编码为字节缓冲
@@ -147,14 +168,29 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
+            if (Content.Length % 32 != 0)
+            {
+                for (int i = 1; i < 5; i++)
+                {
+                    if (Content.Length < i * 32)
+                    {
+                        Content = StringUtil.FillHexString(Content, i * 32, "0", true);
+                        break;
+                    }
+                }
+            }
+            int WriteCount = Content.Length / 32;
             databuf.WriteByte(Number);
             databuf.WriteByte(StartBlock);
-            databuf.WriteByte(ReadCount);
+            databuf.WriteByte(WriteCount);
             databuf.WriteByte(VerifyMode);
 
             Password = Password ?? "";
             Password = StringUtil.FillHexString(Password, 12, "F", true);
             StringUtil.HextoByteBuf(Password, databuf);
+
+            //Content = StringUtil.FillHexString(Content, Content.Length * 2, "0", true);
+            StringUtil.HextoByteBuf(Content, databuf);
             return databuf;
         }
 
@@ -164,7 +200,7 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 0x0A;
+            return 0x0A + Content.Length;
         }
 
         /// <summary>
@@ -173,6 +209,7 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
+
         }
     }
 }

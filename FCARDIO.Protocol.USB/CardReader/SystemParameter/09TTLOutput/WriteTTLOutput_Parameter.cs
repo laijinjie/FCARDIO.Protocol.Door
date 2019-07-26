@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ReadTTLOutputCardNumber
+namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput
 {
     /// <summary>
     /// 设置TTL输出参数 参数
