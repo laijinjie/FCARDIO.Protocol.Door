@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbTCPClient = new System.Windows.Forms.GroupBox();
             this.txtTCPClientPort = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -73,19 +77,31 @@
             this.txtUDPAddr = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.cmbLocalIP = new System.Windows.Forms.ComboBox();
-            this.lstIO = new System.Windows.Forms.ListView();
             this.tbEvent = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dgvIO = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkShowIO = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lstCommand = new System.Windows.Forms.ListView();
+            this.dgvResult = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.butClearCommand = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.txtProcess = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.butWatch = new System.Windows.Forms.Button();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbTCPClient.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -94,8 +110,10 @@
             this.gbUDP.SuspendLayout();
             this.tbEvent.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvIO)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -543,18 +561,6 @@
             this.cmbLocalIP.Size = new System.Drawing.Size(263, 20);
             this.cmbLocalIP.TabIndex = 13;
             // 
-            // lstIO
-            // 
-            this.lstIO.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstIO.GridLines = true;
-            this.lstIO.HideSelection = false;
-            this.lstIO.Location = new System.Drawing.Point(3, 32);
-            this.lstIO.Name = "lstIO";
-            this.lstIO.Size = new System.Drawing.Size(606, 462);
-            this.lstIO.TabIndex = 14;
-            this.lstIO.UseCompatibleStateImageBehavior = false;
-            this.lstIO.View = System.Windows.Forms.View.Details;
-            // 
             // tbEvent
             // 
             this.tbEvent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -569,7 +575,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.lstIO);
+            this.tabPage1.Controls.Add(this.dgvIO);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -578,6 +584,39 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "通讯IO";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dgvIO
+            // 
+            this.dgvIO.AllowUserToAddRows = false;
+            this.dgvIO.AllowUserToDeleteRows = false;
+            this.dgvIO.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.dgvIO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvIO.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn4,
+            this.Column7});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIO.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvIO.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvIO.Location = new System.Drawing.Point(3, 32);
+            this.dgvIO.Name = "dgvIO";
+            this.dgvIO.ReadOnly = true;
+            this.dgvIO.RowHeadersVisible = false;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIO.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvIO.RowTemplate.Height = 23;
+            this.dgvIO.Size = new System.Drawing.Size(606, 462);
+            this.dgvIO.TabIndex = 19;
+            this.dgvIO.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvIO_CellContentClick);
             // 
             // panel1
             // 
@@ -604,7 +643,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.lstCommand);
+            this.tabPage2.Controls.Add(this.dgvResult);
             this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -614,18 +653,76 @@
             this.tabPage2.Text = "命令结果";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // lstCommand
+            // dgvResult
             // 
-            this.lstCommand.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstCommand.FullRowSelect = true;
-            this.lstCommand.GridLines = true;
-            this.lstCommand.HideSelection = false;
-            this.lstCommand.Location = new System.Drawing.Point(3, 32);
-            this.lstCommand.Name = "lstCommand";
-            this.lstCommand.Size = new System.Drawing.Size(606, 462);
-            this.lstCommand.TabIndex = 16;
-            this.lstCommand.UseCompatibleStateImageBehavior = false;
-            this.lstCommand.View = System.Windows.Forms.View.Details;
+            this.dgvResult.AllowUserToAddRows = false;
+            this.dgvResult.AllowUserToDeleteRows = false;
+            this.dgvResult.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvResult.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvResult.Location = new System.Drawing.Point(3, 32);
+            this.dgvResult.Name = "dgvResult";
+            this.dgvResult.ReadOnly = true;
+            this.dgvResult.RowHeadersVisible = false;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvResult.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvResult.RowTemplate.Height = 23;
+            this.dgvResult.Size = new System.Drawing.Size(606, 462);
+            this.dgvResult.TabIndex = 18;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "类型";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 60;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "内容";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 200;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "身份信息";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "远程信息";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "时间";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "耗时";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 60;
             // 
             // panel2
             // 
@@ -681,6 +778,45 @@
             this.butWatch.UseVisualStyleBackColor = true;
             this.butWatch.Click += new System.EventHandler(this.buWatch_Click);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "标签";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "内容";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 350;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "类型";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "时间";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "远程信息";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "本地信息";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -722,9 +858,11 @@
             this.gbUDP.PerformLayout();
             this.tbEvent.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvIO)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -779,12 +917,10 @@
         private System.Windows.Forms.TextBox txtUDPLocalPort;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cmbLocalIP;
-        private System.Windows.Forms.ListView lstIO;
         private System.Windows.Forms.TabControl tbEvent;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ListView lstCommand;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button butClearCommand;
         private System.Windows.Forms.Button button2;
@@ -792,6 +928,20 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.CheckBox chkShowIO;
         private System.Windows.Forms.Button butWatch;
+        private System.Windows.Forms.DataGridView dgvResult;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridView dgvIO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
     }
 }
 

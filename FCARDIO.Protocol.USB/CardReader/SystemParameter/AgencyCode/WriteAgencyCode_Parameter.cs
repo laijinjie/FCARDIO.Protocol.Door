@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Protocol.Util;
 using System;
-using System.Text.RegularExpressions;
+using FCARDIO.Core.Extension;
 
 namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.AgencyCode
 {
@@ -41,9 +41,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.AgencyCode
             if (Code != "" && Code.Length > 8)
                 throw new ArgumentException("Code Error!");
 
-            string pattern = @"^([0-9a-fA-F]+)$";
-            bool isHexNum = Regex.IsMatch(Code, pattern);
-            if (!isHexNum)
+            if (!Code.IsHex())
             {
                 throw new ArgumentException("Code Error!");
             }

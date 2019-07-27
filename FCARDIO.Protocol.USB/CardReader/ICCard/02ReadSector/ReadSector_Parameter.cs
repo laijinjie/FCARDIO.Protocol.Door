@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using DotNetty.Buffers;
+﻿using DotNetty.Buffers;
 using FCARDIO.Protocol.Util;
+using System;
+using FCARDIO.Core.Extension;
 
 namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
 {
@@ -150,10 +146,7 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
             {
                 throw new ArgumentException("VerifyMode Error!");
             }
-
-            string pattern = @"^([0-9a-fA-F]+)$";
-            bool isHexNum = Regex.IsMatch(Password, pattern);
-            if (!isHexNum)
+            if (!Password.IsHex())
             {
                 throw new ArgumentException("Password Error!");
             }

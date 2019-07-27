@@ -8,6 +8,20 @@ using System.Text.RegularExpressions;
 using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.Version;
 using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.SystemStatus;
 using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.TCPSetting;
+using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter;
+using System.Collections;
+using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FireAlarm;
+using System.Text;
+using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ReaderByte;
+using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.InvalidCardAlarmOption;
+using FCARDIO.Protocol.Elevator.FC8864.Door.AlarmPassword;
+using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ExpirationPrompt;
+using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.CloseAlarm;
+using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ManageCard;
+using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.KeyboardCardIssuingManage;
+using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.InputTerminalFunction;
+using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.TCP485LineConnection;
+using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.ItemDetectionFunction;
 
 namespace FCARDIO.Protocol.Elevator.Test
 {
@@ -42,10 +56,22 @@ namespace FCARDIO.Protocol.Elevator.Test
         {
             InitializeComponent();
         }
+        string[] ReaderByteTypeList = new string[] { "三字节","四字节","二字节","禁用"};
+        string[] InputTerminalFunctionList = new string[] { "开锁按钮", "门磁检查" };
+        string[] AlarmOptionList = new string[] { "不开门，报警输出", "开门，报警输出", "锁定门，报警，只能软件解锁" };
 
         private void FrmSystem_Load(object sender, EventArgs e)
         {
+            cmbReaderByteType.Items.AddRange(ReaderByteTypeList);
+            cmbReaderByteType.SelectedIndex = 0;
 
+            cmbAlarmOption.Items.Clear();
+            cmbAlarmOption.Items.AddRange(AlarmOptionList);
+            cmbAlarmOption.SelectedIndex = 0;
+
+            cmbInputTerminalFunction.Items.Clear();
+            cmbInputTerminalFunction.Items.AddRange(InputTerminalFunctionList);
+            cmbInputTerminalFunction.SelectedIndex = 0;
         }
 
         private void FrmSystem_FormClosed(object sender, FormClosedEventArgs e)
@@ -480,6 +506,906 @@ namespace FCARDIO.Protocol.Elevator.Test
                                  "  接入电压：" + Voltage +
                                  "  上电时间：" + StartTime;
                 mMainForm.AddCmdLog(cmde, TCPInfo);
+            };
+        }
+
+        private void BtnReadRecordMode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadRecordMode cmd = new ReadRecordMode(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadRecordMode_Result result = cmde.Command.getResult() as ReadRecordMode_Result;
+                string ModeStr = result.Mode == 0 ? "【0、记录存满后，循环覆盖存储】" : "【1、满后报警，不再保存新纪录】"; //记录存储方式
+                Invoke(() =>
+                {
+                    if (result.Mode == 0)
+                    {
+                        rBtnCover.Checked = true;
+                    }
+                    else
+                    {
+                        rBtnNoCover.Checked = true;
+                    }
+                });
+                ModeStr = "记录存储方式：" + ModeStr;
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriteRecordMode_Click(object sender, EventArgs e)
+        {
+            byte mode = 0;
+            if (rBtnNoCover.Checked == true)
+            {
+                mode = 1;
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteRecordMode cmd = new WriteRecordMode(cmdDtl, new WriteRecordMode_Parameter(mode));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnReadKeyboard_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadKeyboard cmd = new ReadKeyboard(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadKeyboard_Result result = cmde.Command.getResult() as ReadKeyboard_Result;
+                string KeyboardInfo = string.Empty;
+                Invoke(() =>
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        if (result.Keyboard[i] == true)
+                        {
+                            if (i == 0)
+                            {
+                                cBox1.Checked = true;
+                            }
+                            else if (i == 1)
+                            {
+                                cBox2.Checked = true;
+                            }
+                            KeyboardInfo = KeyboardInfo + "  读卡器：" + (i + 1) + "，键盘开关：【1、接收键盘信号】";
+                        }
+                        else
+                        {
+                            KeyboardInfo = KeyboardInfo + "  读卡器：" + (i + 1) + "，键盘开关：【0、不接收键盘信号】";
+                        }
+                    }
+                });
+                mMainForm.AddCmdLog(cmde, KeyboardInfo);
+            };
+        }
+
+        private void BtnWriteKeyboard_Click(object sender, EventArgs e)
+        {
+            BitArray bitSet = new BitArray(2);
+            bitSet[0] = cBox1.Checked;
+            bitSet[1] = cBox2.Checked;
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteKeyboard cmd = new WriteKeyboard(cmdDtl, new WriteKeyboard_Parameter(bitSet));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnReadFireAlarmOption_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadFireAlarmOption cmd = new ReadFireAlarmOption(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadFireAlarmOption_Result result = cmde.Command.getResult() as ReadFireAlarmOption_Result;
+                int OptionType = result.Option; //消防报警参数
+                string OptionTypeStr = string.Empty;
+                if (OptionType == 0)
+                {
+                    OptionTypeStr = "【0、不启用】";
+                }
+                else if (OptionType == 1)
+                {
+                    OptionTypeStr = "【1、报警输出，并开所有门，只能软件解除】";
+                }
+                else if (OptionType == 2)
+                {
+                    OptionTypeStr = "【2、报警输出，不开所有门，只能软件解除】";
+                }
+                Invoke(() =>
+                {
+                    cbxOption.SelectedIndex = OptionType;
+                });
+                string Info = "消防报警参数：" + OptionTypeStr;
+                mMainForm.AddCmdLog(cmde, Info);
+            };
+        }
+
+        private void BtnWriteFireAlarmOption_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt16(cbxOption.SelectedIndex) == -1)
+            {
+                MsgErr("请选择消防报警模式！");
+                return;
+            }
+            byte Option = Convert.ToByte(cbxOption.SelectedIndex);
+          
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteFireAlarmOption cmd = new WriteFireAlarmOption(cmdDtl, new WriteFireAlarmOption_Parameter(Option));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnAlarm_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            SendFireAlarm cmd = new SendFireAlarm(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddCmdLog(cmde, "开启消防报警");
+            };
+        }
+
+        private void BtnCloseAlarm_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            CloseFireAlarm cmd = new CloseFireAlarm(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddCmdLog(cmde, "解除消防报警");
+            };
+        }
+
+        private void BtnAlarmState_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadFireAlarmState cmd = new ReadFireAlarmState(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                string ModeStr = cmd.FireAlarmState == 0 ? "【0、未开启报警】" : "【1、已开启报警】"; //消防报警状态
+                Invoke(() =>
+                {
+                    mMainForm.AddCmdLog(cmde, ModeStr);
+                });
+            };
+        }
+
+        private void BtnReadBroadcast_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadBroadcast cmd = new ReadBroadcast(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadBroadcast_Result result = cmde.Command.getResult() as ReadBroadcast_Result;
+
+                Invoke(() =>
+                {
+                    byte[] broadcast = new byte[4];
+                    Array.Copy(result.Broadcast.Broadcast, 6, broadcast, 0, 4);
+                    StringBuilder BroadcastInfo = new StringBuilder(64); //语音段开关
+
+                    Array.Reverse(broadcast);
+                    BitArray bit = new BitArray(broadcast);
+                    for (int i = 30; i >= 0; i--)
+                    {
+                        BroadcastInfo.Append(bit[i] ? 1 : 0);
+                    }
+
+                    txtBroadcast.Text = BroadcastInfo.ToString();
+                    string IntervalTimeStr = "语音段开关：" + txtBroadcast.Text + "  顺序 31←1";
+                    mMainForm.AddCmdLog(cmde, IntervalTimeStr);
+                });
+
+            };
+        }
+
+        private void BtnWriteBroadcast_Click(object sender, EventArgs e)
+        {
+            string reg = @"^\+?[0-1]*$";
+            if (!Regex.IsMatch(txtBroadcast.Text.Trim(), reg) || txtBroadcast.Text.Trim().Length != 31)
+            {
+                MsgErr("请输入正确格式语音开关段设置！");
+                return;
+            }
+            byte[] bData = new byte[10];
+
+            string strBit = txtBroadcast.Text.Trim();
+            strBit = "0" + strBit;
+
+            byte[] tmpData = new byte[4];
+            BitArray bit = new BitArray(tmpData);
+            int strIndex = 0;
+            for (int i = 30; i >= 0; i--)
+            {
+                bit[i] = (strBit.Substring(++strIndex, 1) == "1");
+            }
+
+            bit.CopyTo(tmpData, 0);
+            Array.Reverse(tmpData);
+            Array.Copy(tmpData, 0, bData, 6, 4);
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteBroadcast cmd = new WriteBroadcast(cmdDtl, new WriteBroadcast_Parameter(bData));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnReadIntervalTime_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadReaderIntervalTime cmd = new ReadReaderIntervalTime(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadReaderIntervalTime_Result result = cmde.Command.getResult() as ReadReaderIntervalTime_Result;
+
+                ushort IntervalTime = result.IntervalTime; //读卡间隔时间
+                string IntervalTimeInfo = string.Empty;
+                if (IntervalTime == 0)
+                {
+                    IntervalTimeInfo = "无限制";
+                }
+                else
+                {
+                    IntervalTimeInfo = IntervalTime.ToString() + "秒";
+                }
+
+                Invoke(() =>
+                {
+                    cbxIntervalTime.Text = IntervalTimeInfo.Replace("秒", "");
+                    cbIsUseInterval.Checked = result.IsUse;
+                    cmbIntervalMode.SelectedIndex = result.Mode - 1;
+                });
+                string IntervalTimeStr = "读卡间隔参数：" + (result.IsUse ? "启用" : "不启用") + "，\r\n读卡间隔时间：" + IntervalTimeInfo;
+                IntervalTimeStr += "，\r\n间隔时检测模式：【" + result.Mode.ToString() + "】";
+                mMainForm.AddCmdLog(cmde, IntervalTimeStr);
+            };
+        }
+
+        private void BtnWriteIntervalTime_Click(object sender, EventArgs e)
+        {
+            string reg = @"^\+?[0-9]*$";
+            if (!Regex.IsMatch(cbxIntervalTime.Text.Trim(), reg))
+            {
+                if (cbxIntervalTime.Text != "无限制")
+                {
+                    MsgErr("请输入正确读卡间隔时间！");
+                    return;
+                }
+            }
+            if (Regex.IsMatch(cbxIntervalTime.Text.Trim(), reg))
+            {
+                if (Convert.ToUInt32(cbxIntervalTime.Text) < 0 || Convert.ToUInt32(cbxIntervalTime.Text) > 65535)
+                {
+                    MsgErr("请输入正确读卡间隔时间！");
+                    return;
+                }
+            }
+
+            ushort IntervalTime = 0;
+            string deadlineInfo = cbxIntervalTime.Text;
+            if (deadlineInfo == "无限制")
+            {
+                IntervalTime = 0;
+            }
+            else
+            {
+                IntervalTime = Convert.ToUInt16(cbxIntervalTime.Text);
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteReaderIntervalTime cmd = new WriteReaderIntervalTime(cmdDtl, new WriteReaderIntervalTime_Parameter(cbIsUseInterval.Checked, IntervalTime,(byte)(cmbIntervalMode.SelectedIndex + 1)));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void CbIsUseInterval_CheckedChanged(object sender, EventArgs e)
+        {
+            plInterval.Visible = cbIsUseInterval.Checked;
+        }
+
+        private void BtnReadReaderCheckMode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadReaderCheckMode cmd = new ReadReaderCheckMode(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadReaderCheckMode_Result result = cmde.Command.getResult() as ReadReaderCheckMode_Result;
+                string ModeStr = string.Empty; //读卡器数据校验
+                Invoke(() =>
+                {
+                    if (result.ReaderCheckMode == 0)
+                    {
+                        rBtnNoEnable.Checked = true;
+                        ModeStr = "0、不启用";
+                    }
+                    else if (result.ReaderCheckMode == 1)
+                    {
+                        rBtnEnable.Checked = true;
+                        ModeStr = "1、启用";
+                    }
+                    else
+                    {
+                        rBtnEnableValidation.Checked = true;
+                        ModeStr = "2、启用校验";
+                    }
+                });
+                ModeStr = "读卡器校验：" + ModeStr;
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriteReaderCheckMode_Click(object sender, EventArgs e)
+        {
+            byte mode = 0;
+            if (rBtnEnable.Checked == true)
+            {
+                mode = 1;
+            }
+            else if (rBtnEnableValidation.Checked == true)
+            {
+                mode = 2;
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteReaderCheckMode cmd = new WriteReaderCheckMode(cmdDtl, new WriteReaderCheckMode_Parameter(mode));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnReadBuzzer_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadBuzzer cmd = new ReadBuzzer(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadBuzzer_Result result = cmde.Command.getResult() as ReadBuzzer_Result;
+                string ModeStr = result.Buzzer == 0 ? "【0、不启用】" : "【1、启用】"; //记录存储方式
+                Invoke(() =>
+                {
+                    if (result.Buzzer == 0)
+                    {
+                        rBtnNoBuzzer.Checked = true;
+                    }
+                    else
+                    {
+                        rBtnBuzzer.Checked = true;
+                    }
+                });
+                ModeStr = "主板蜂鸣器：" + ModeStr;
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriteBuzzer_Click(object sender, EventArgs e)
+        {
+            byte buzzer = 0;
+            if (rBtnBuzzer.Checked == true)
+            {
+                buzzer = 1;
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteBuzzer cmd = new WriteBuzzer(cmdDtl, new WriteBuzzer_Parameter(buzzer));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnReadReaderByte_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadReaderByte cmd = new ReadReaderByte(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadReaderByte_Result result = cmde.Command.getResult() as ReadReaderByte_Result;
+                Invoke(() =>
+                {
+                    cmbReaderByteType.SelectedIndex = result.Type - 1;
+                });
+               string  ModeStr = "读卡器字节数：【"+ result.Type.ToString() + "、" + ReaderByteTypeList[result.Type - 1] + "】";
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriteReaderByte_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteReaderByte cmd = new WriteReaderByte(cmdDtl, new WriteReaderByte_Parameter((byte)(cmbReaderByteType.SelectedIndex + 1)));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnReadInvalidCardAlarmOption_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadInvalidCardAlarmOption cmd = new ReadInvalidCardAlarmOption(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadInvalidCardAlarmOption_Result result = cmde.Command.getResult() as ReadInvalidCardAlarmOption_Result;
+                string ModeStr = result.IsUse ? "【0、不启用】" : "【1、启用】"; //记录存储方式
+                Invoke(() =>
+                {
+                    if (result.IsUse)
+                    {
+                        rbInvalidCardAlarmOption1.Checked = true;
+                    }
+                    else
+                    {
+                        rbInvalidCardAlarmOption0.Checked = true;
+                    }
+                });
+                ModeStr = "非法读卡报警：" + ModeStr;
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriteInvalidCardAlarmOption_Click(object sender, EventArgs e)
+        {
+         
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteInvalidCardAlarmOption cmd = new WriteInvalidCardAlarmOption(cmdDtl, new WriteInvalidCardAlarmOption_Parameter(rbInvalidCardAlarmOption1.Checked));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void ButReadAlarmPassword_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            var cmd = new ReadAlarmPassword(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmd.getResult() as AlarmPassword_Result;
+                Invoke(() =>
+                {
+                    cbAlarmPasswordUse.Checked = result.Use;
+                    cmbAlarmOption.SelectedIndex = (result.AlarmOption - 1);
+                    Password.Text = result.Password;
+
+                });
+
+                mMainForm.AddCmdLog(cmde, $"命令成功：功能开关:{(result.Use ? "启用":"不启用")},报警密码：{result.Password},报警选项：{AlarmOptionList[result.AlarmOption - 1]}");
+            };
+        }
+
+        private void ButWriteAlarmPassword_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            String pwd = Password.Text.ToString();
+            int alarmOption = cmbAlarmOption.SelectedIndex + 1;
+
+            var par = new WriteAlarmPassword_parameter(cbAlarmPasswordUse.Checked, pwd, alarmOption);
+            var cmd = new WriteAlarmPassword(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+        }
+
+        private void CbAlarmPasswordUse_CheckedChanged(object sender, EventArgs e)
+        {
+            plAlarmPassword.Visible = cbAlarmPasswordUse.Checked;
+        }
+
+        private void BtnReadExpirationPrompt_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadExpirationPrompt cmd = new ReadExpirationPrompt(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadExpirationPrompt_Result result = cmde.Command.getResult() as ReadExpirationPrompt_Result;
+                string ModeStr = result.IsUse ? "【0、不启用】" : "【1、启用】"; //记录存储方式
+                Invoke(() =>
+                {
+                    if (result.IsUse)
+                    {
+                        rbExpirationPrompt1.Checked = true;
+                    }
+                    else
+                    {
+                        rbExpirationPrompt0.Checked = true;
+                    }
+                });
+                ModeStr = "卡片到期提示参数：" + ModeStr;
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriteExpirationPrompt_Click(object sender, EventArgs e)
+        {
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteExpirationPrompt cmd = new WriteExpirationPrompt(cmdDtl, new WriteExpirationPrompt_Parameter(rbExpirationPrompt1.Checked));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnReadReadCardSpeak_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadReadCardSpeak cmd = new ReadReadCardSpeak(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadReadCardSpeak_Result result = cmde.Command.getResult() as ReadReadCardSpeak_Result;
+                string UseStr = result.SpeakSetting.Use ? "【1、启用】" : "【0、不启用】"; //定时读卡播报语音消息功能是否启用
+                string MsgIndexStr = result.SpeakSetting.MsgIndex == 1 ? "【1、交房租】" : "【2、交管理费】"; //消息编号类型
+                string STime = result.SpeakSetting.BeginDate.ToString("yyyy-MM-dd HH时");
+                string ETime = result.SpeakSetting.EndDate.ToString("yyyy-MM-dd HH时");
+                Invoke(() =>
+                {
+                    if (result.SpeakSetting.Use)
+                    {
+                        rBtnEnableReadCardSpeak.Checked = true;
+                    }
+                    else
+                    {
+                        rBtnNoEnableReadCardSpeak.Checked = true;
+                    }
+                    if (result.SpeakSetting.MsgIndex == 1)
+                    {
+                        rBtnPayRent.Checked = true;
+                    }
+                    else
+                    {
+                        rBtnPayManagementFee.Checked = true;
+                    }
+                    txtSTime.Text = STime;
+                    txtETime.Text = ETime;
+                });
+                UseStr = "功能开关：" + UseStr +
+                         "  消息编号类型：" + MsgIndexStr +
+                         "  起始时段：" + STime +
+                         "  功能开关：" + ETime;
+                mMainForm.AddCmdLog(cmde, UseStr);
+            };
+        }
+
+        private void BtnWriteReadCardSpeak_Click(object sender, EventArgs e)
+        {
+            string reg = @"^\d{4}-\d{2}-\d{2} \d{2}时";
+            if (!Regex.IsMatch(txtSTime.Text.Trim(), reg) || txtSTime.Text == "")
+            {
+                MsgErr("请输入正确起始时段！");
+                return;
+            }
+            if (Convert.ToInt16(txtSTime.Text.Substring(0, 4)) > 2099
+                || Convert.ToInt16(txtSTime.Text.Substring(5, 2)) > 12
+                || Convert.ToInt16(txtSTime.Text.Substring(8, 2)) > 31
+                || Convert.ToInt16(txtSTime.Text.Substring(11, 2)) > 23)
+            {
+                MsgErr("请输入正确起始时段！");
+                return;
+            }
+            if (!Regex.IsMatch(txtETime.Text.Trim(), reg) || txtETime.Text == "")
+            {
+                MsgErr("请输入正确结束时段！");
+                return;
+            }
+            if (Convert.ToInt16(txtETime.Text.Substring(0, 4)) > 2099
+                || Convert.ToInt16(txtETime.Text.Substring(5, 2)) > 12
+                || Convert.ToInt16(txtETime.Text.Substring(8, 2)) > 31
+                || Convert.ToInt16(txtETime.Text.Substring(11, 2)) > 23)
+            {
+                MsgErr("请输入正确结束时段！");
+                return;
+            }
+            if (Convert.ToInt16(txtSTime.Text.Substring(0, 4)) > Convert.ToInt16(txtETime.Text.Substring(0, 4)))
+            {
+                MsgErr("请输入正确时段范围！");
+                return;
+            }
+            else if (Convert.ToInt16(txtSTime.Text.Substring(0, 4)) == Convert.ToInt16(txtETime.Text.Substring(0, 4)))
+            {
+                if (Convert.ToInt16(txtSTime.Text.Substring(5, 2)) > Convert.ToInt16(txtETime.Text.Substring(5, 2)))
+                {
+                    MsgErr("请输入正确时段范围！");
+                    return;
+                }
+                else if (Convert.ToInt16(txtSTime.Text.Substring(5, 2)) == Convert.ToInt16(txtETime.Text.Substring(5, 2)))
+                {
+                    if (Convert.ToInt16(txtSTime.Text.Substring(8, 2)) > Convert.ToInt16(txtETime.Text.Substring(8, 2)))
+                    {
+                        MsgErr("请输入正确时段范围！");
+                        return;
+                    }
+                    else if (Convert.ToInt16(txtSTime.Text.Substring(8, 2)) == Convert.ToInt16(txtETime.Text.Substring(8, 2)))
+                    {
+                        if (Convert.ToInt16(txtSTime.Text.Substring(11, 2)) > Convert.ToInt16(txtETime.Text.Substring(11, 2)))
+                        {
+                            MsgErr("请输入正确时段范围！");
+                            return;
+                        }
+                    }
+                }
+            }
+
+            int MsgIndex = 1;
+            if (rBtnPayManagementFee.Checked == true)
+            {
+                MsgIndex = 2;
+            }
+
+            ReadCardSpeak rcs = new ReadCardSpeak();
+            rcs.Use = rBtnEnableReadCardSpeak.Checked;
+            rcs.MsgIndex = MsgIndex;
+            rcs.BeginDate = Convert.ToDateTime(txtSTime.Text.Replace("时", "") + ":00:00");
+            rcs.EndDate = Convert.ToDateTime(txtETime.Text.Replace("时", "") + ":00:00");
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteReadCardSpeak cmd = new WriteReadCardSpeak(cmdDtl, new WriteReadCardSpeak_Parameter(rcs));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void CbCheckedAll_CheckedChanged(object sender, EventArgs e)
+        {
+            cbAlarm0.Checked = cbAlarm2.Checked = cbAlarm4.Checked = cbAlarm7.Checked = cbCheckedAll.Checked;
+        }
+
+        private void BtnCloseAllAlarm_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            byte[] list = new byte[4];
+            list[0] = Convert.ToByte(cbAlarm0.Checked);
+            list[1] = Convert.ToByte(cbAlarm2.Checked);
+            list[2] = Convert.ToByte(cbAlarm4.Checked);
+            list[3] = Convert.ToByte(cbAlarm7.Checked);
+            WriteCloseAlarm_Parameter par = new WriteCloseAlarm_Parameter(list);
+            WriteCloseAlarm cmd = new WriteCloseAlarm(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddCmdLog(cmde, $"命令成功");
+            };
+        }
+
+        private void BtnReadManageCard_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadManageCard cmd = new ReadManageCard(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadManageCard_Result result = cmde.Command.getResult() as ReadManageCard_Result;
+                string ModeStr = result.IsUse ? "【0、不启用】" : "【1、启用】"; //记录存储方式
+                Invoke(() =>
+                {
+                    if (result.IsUse)
+                    {
+                        rbManageCardIsUse1.Checked = true;
+                    }
+                    else
+                    {
+                        rbManageCardIsUse0.Checked = true;
+                    }
+                });
+                ModeStr = "管理卡功能：" + ModeStr;
+                mMainForm.AddCmdLog(cmde, ModeStr);
+            };
+        }
+
+        private void BtnWriteManageCard_Click(object sender, EventArgs e)
+        {
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteManageCard cmd = new WriteManageCard(cmdDtl, new WriteManageCard_Parameter(rbManageCardIsUse1.Checked));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void BtnReadManageKeyboardSetting_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadKeyboardCardIssuingManage cmd = new ReadKeyboardCardIssuingManage(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadKeyboardCardIssuingManage_Result result = cmde.Command.getResult() as ReadKeyboardCardIssuingManage_Result;
+
+                Invoke(() =>
+                {
+                    cbManageKeyboardSettingUse.Checked = result.Use;
+                    txtPassword.Text = result.Password;
+                });
+                string use = result.Use ? "启用" : "不启用";
+                string str = $"键盘发卡功能：【{use}】，密码:{ result.Password}";
+                mMainForm.AddCmdLog(cmde, str);
+            };
+        }
+
+        private void BtnWriteManageKeyboardSetting_Click(object sender, EventArgs e)
+        {
+            if (txtPassword.Text.Trim().Length < 4)
+            {
+                MessageBox.Show("密码不能少于4位");
+                return;
+            }
+            string pattern = @"\b(0[xX])?[A-Fa-f0-9]+\b";
+            bool isHexNum = Regex.IsMatch(txtPassword.Text.Trim(), pattern);
+            if (!isHexNum)
+            {
+                MessageBox.Show("密码格式不正确");
+                return;
+            }
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteKeyboardCardIssuingManage_Parameter par = new WriteKeyboardCardIssuingManage_Parameter(cbManageKeyboardSettingUse.Checked, txtPassword.Text.Trim());
+            WriteKeyboardCardIssuingManage cmd = new WriteKeyboardCardIssuingManage(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
+        }
+
+        private void BtnReadInputTerminalFunction_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadInputTerminalFunction cmd = new ReadInputTerminalFunction(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadInputTerminalFunction_Result result = cmde.Command.getResult() as ReadInputTerminalFunction_Result;
+                int Function = result.Function; //消防报警参数
+                
+                Invoke(() =>
+                {
+                    cmbInputTerminalFunction.SelectedIndex = Function - 1;
+                });
+                string Info = $"输入端子功能定义：【{Function}、】" + InputTerminalFunctionList[Function - 1];
+                mMainForm.AddCmdLog(cmde, Info);
+            };
+        }
+
+        private void BtnWriteInputTerminalFunction_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteInputTerminalFunction_Parameter par = new WriteInputTerminalFunction_Parameter(cmbInputTerminalFunction.SelectedIndex + 1);
+            WriteInputTerminalFunction cmd = new WriteInputTerminalFunction(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
+        }
+
+        private void Read485LineConnection_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            Read485LineConnection cmd = new Read485LineConnection(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                Read485LineConnection_Result result = cmde.Command.getResult() as Read485LineConnection_Result;
+
+                Invoke(() =>
+                {
+                    cb485IsUse.Checked = result.IsUse;
+                });
+                string use = result.IsUse ? "开启线路桥接" : "关闭线路桥接";
+                string str = $"TCP、485线路桥接：【{use}】";
+                mMainForm.AddCmdLog(cmde, str);
+            };
+        }
+
+        private void BtnWrite485LineConnection_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            Write485LineConnection_Parameter par = new Write485LineConnection_Parameter(cb485IsUse.Checked);
+            Write485LineConnection cmd = new Write485LineConnection(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+            };
+        }
+
+        private void BtnReadItemDetectionFunction_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadItemDetectionFunction cmd = new ReadItemDetectionFunction(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadItemDetectionFunction_Result result = cmde.Command.getResult() as ReadItemDetectionFunction_Result;
+
+                Invoke(() =>
+                {
+                    cbItemDetectionFunctionIsUse.Checked = result.IsUse;
+                });
+                string use = result.IsUse ? "开启" : "关闭";
+                string str = $"物品检测功能：【{use}】";
+                mMainForm.AddCmdLog(cmde, str);
+            };
+        }
+
+        private void BtnWriteItemDetectionFunction_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteItemDetectionFunction_Parameter par = new WriteItemDetectionFunction_Parameter(cbItemDetectionFunctionIsUse.Checked);
+            WriteItemDetectionFunction cmd = new WriteItemDetectionFunction(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
             };
         }
     }

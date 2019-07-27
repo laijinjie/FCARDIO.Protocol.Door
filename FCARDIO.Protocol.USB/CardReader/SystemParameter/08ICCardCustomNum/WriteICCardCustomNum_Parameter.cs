@@ -1,5 +1,6 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Protocol.Util;
+using FCARDIO.Core.Extension;
 using System;
 using System.Text.RegularExpressions;
 
@@ -104,9 +105,8 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum
             if (CardDataStartIndex > 2)
                 throw new ArgumentException("CardDataStartIndex Error!");
 
-            string pattern = @"^([0-9a-fA-F]+)$";
-            bool isHexNum = Regex.IsMatch(Password, pattern);
-            if (!isHexNum)
+           
+            if (!Password.IsHex())
             {
                 throw new ArgumentException("Password Error!");
             }

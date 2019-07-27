@@ -1,11 +1,8 @@
 ﻿using DotNetty.Buffers;
+using FCARDIO.Core.Extension;
 using FCARDIO.Protocol.Util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
 {
@@ -116,19 +113,16 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
             {
                 throw new ArgumentException("Type Error!");
             }
-            string pattern = @"^([0-9a-fA-F]+)$";
-            bool isHexNum = false;
             if (Password != null && Password.Length > 12)
             {
-                isHexNum = Regex.IsMatch(Password, pattern);
-                if (!isHexNum)
-                {
-                    throw new ArgumentException("Password Error!");
-                }
+                
+                throw new ArgumentException("Password Error!");
+            }
+            if (!Password.IsHex())
+            {
                 throw new ArgumentException("Password Error!");
             }
 
-          
             if (VerifyMode != 1 && VerifyMode != 2)
             {
                 throw new ArgumentException("VerifyMode Error!");
@@ -142,20 +136,12 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
             else
             {
                 Content = Content.Replace("\r\n","");
-                isHexNum = Regex.IsMatch(Content, pattern);
-                if (!isHexNum)
+                if (!Content.IsHex())
                 {
                     throw new ArgumentException("Content Error!");
                 }
             }
-            //int length = Content.Length % 32;
-            //if (length != 0)
-            //{
-            //    throw new ArgumentException("Content Length Error!");
-            //}
-
-           
-
+          
             return true;
         }
 

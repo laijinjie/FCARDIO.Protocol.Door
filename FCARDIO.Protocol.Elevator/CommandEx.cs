@@ -54,11 +54,46 @@ namespace FCARDIO.Protocol.Elevator
         /// <returns></returns>
         protected virtual bool CheckResponse(OnlineAccessPacket oPck, byte CmdType, byte CmdIndex, byte CmdPar)
         {
-            return (oPck.CmdType == CmdType + 0x10 &&
+            return (oPck.CmdType == CmdType &&
                 oPck.CmdIndex == CmdIndex &&
                 oPck.CmdPar == CmdPar);
 
         }
+
+        /// <summary>
+        /// 检查指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <param name="CmdType">命令类型</param>
+        /// <param name="CmdIndex">命令索引</param>
+        /// <param name="CmdPar">命令参数</param>
+        /// <param name="dl">参数长度</param>
+        /// <returns></returns>
+        protected override bool CheckResponse(OnlineAccessPacket oPck, byte CmdType, byte CmdIndex, byte CmdPar,int dl)
+        {
+            return (oPck.CmdType == CmdType &&
+                oPck.CmdIndex == CmdIndex &&
+                oPck.CmdPar == CmdPar &&
+                oPck.DataLen == dl);
+
+        }
+
+        /// <summary>
+        /// 检查指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <param name="CmdType">命令类型</param>
+        /// <param name="CmdIndex">命令索引</param>
+        /// <param name="CmdPar">命令参数</param>
+        /// <param name="dl">参数长度</param>
+        /// <returns></returns>
+        protected override bool CheckResponse(OnlineAccessPacket oPck, int dl)
+        {
+            return (  oPck.DataLen == dl);
+
+        }
+
+
 
         /// <summary>
         /// 重置命令内容

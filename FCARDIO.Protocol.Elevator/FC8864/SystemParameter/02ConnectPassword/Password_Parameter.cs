@@ -27,10 +27,6 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.ConnectPassword
         {
             Password = _PWD;
 
-            if (!checkedParameter())
-            {
-                throw new ArgumentException("PWD Error");
-            }
         }
         /// <summary>
         /// 使用字节数组初始化实例

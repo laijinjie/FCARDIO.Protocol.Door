@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FCARDIO.Protocol.Elevator.FC8864.Data.TimeGroup;
+using System;
 using System.Windows.Forms;
 
 namespace FCARDIO.Protocol.Elevator.Test
@@ -81,7 +82,6 @@ namespace FCARDIO.Protocol.Elevator.Test
             return _findedControl;
         }
 
-        /*
         public void SetAllTimePicker(Control parent,string beginControlName,string endControlName, DayTimeGroup group)
         {
             for (int i = 0; i <= 7; i++)
@@ -114,6 +114,6 @@ namespace FCARDIO.Protocol.Elevator.Test
                 ts.SetEndTime(dateTime.Hour, dateTime.Minute);
             }
         }
-        */
+        
     }
 }

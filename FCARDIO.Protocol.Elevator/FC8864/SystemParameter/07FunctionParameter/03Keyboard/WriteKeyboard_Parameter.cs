@@ -14,7 +14,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter
     public class WriteKeyboard_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 读卡器密码键盘启用功能开关（0 - 关闭、1 - 开启）（Bit0 - 1号读头、Bit1 - 2号读头、Bit2 - 3号读头、Bit3 - 4号读头、Bit4 - 5号读头、Bit5 - 6号读头、Bit6 - 7号读头、Bit7 - 8号读头）
+        /// 读卡器密码键盘启用功能开关（0 - 关闭、1 - 开启）（Bit0 - 1号读头、Bit1 - 2号读头）
         /// </summary>
         public BitArray Keyboard;
 
@@ -38,6 +38,10 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (Keyboard.Count > 2)
+            {
+                return false;
+            }
             return true;
         }
 

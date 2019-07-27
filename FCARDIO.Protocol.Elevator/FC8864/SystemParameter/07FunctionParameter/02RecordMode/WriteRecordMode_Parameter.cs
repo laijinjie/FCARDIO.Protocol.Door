@@ -29,10 +29,6 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter
         public WriteRecordMode_Parameter(byte _Mode)
         {
             Mode = _Mode;
-            if (!checkedParameter())
-            {
-                throw new ArgumentException("Mode Error");
-            }
         }
 
         /// <summary>
@@ -41,7 +37,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Mode != 0 && Mode != 1)
+            if (Mode > 1)
             {
                 return false;
             }

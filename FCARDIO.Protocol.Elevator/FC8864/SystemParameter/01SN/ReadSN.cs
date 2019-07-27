@@ -21,7 +21,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.SN
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(41, 6);
+            Packet(0x41, 2);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.SN
         /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 10))
+            if (CheckResponse(oPck, 0x10))
             {
                 var buf = oPck.CmdData;
                 SN_Result rst = new SN_Result();

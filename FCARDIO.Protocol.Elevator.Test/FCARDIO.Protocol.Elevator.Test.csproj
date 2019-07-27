@@ -59,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmDoor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDoor.Designer.cs">
+      <DependentUpon>frmDoor.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,9 +83,22 @@
     <Compile Include="frmSystem.Designer.cs">
       <DependentUpon>frmSystem.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTime.Designer.cs">
+      <DependentUpon>frmTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="INMain.cs" />
+    <Compile Include="Model\CommandResult.cs" />
+    <Compile Include="Model\IOMessage.cs" />
+    <Compile Include="Model\DoorUI.cs" />
+    <Compile Include="Model\WeekTimeGroupDto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmDoor.resx">
+      <DependentUpon>frmDoor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -88,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSystem.resx">
       <DependentUpon>frmSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTime.resx">
+      <DependentUpon>frmTime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

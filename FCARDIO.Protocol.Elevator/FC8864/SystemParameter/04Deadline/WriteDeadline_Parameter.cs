@@ -25,10 +25,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.Deadline
         public WriteDeadline_Parameter(ushort _Deadline)
         {
             Deadline = _Deadline;
-            if (!checkedParameter())
-            {
-                throw new ArgumentException("Deadline Error");
-            }
+           
         }
 
         /// <summary>
@@ -37,10 +34,10 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.Deadline
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Deadline < 0 || Deadline > 65535)
-            {
-                throw new ArgumentException("Deadline Error");
-            }
+            //if (Deadline < 0 || Deadline > 65535)
+            //{
+            //    throw new ArgumentException("Deadline Error");
+            //}
 
             return true;
         }

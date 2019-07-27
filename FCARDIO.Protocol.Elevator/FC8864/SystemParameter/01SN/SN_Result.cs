@@ -23,10 +23,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.SN
             {
                 SNBuf = new byte[16];
             }
-            if (databuf.ReadableBytes != 10)
-            {
-                throw new ArgumentException("databuf Error");
-            }
+          
             databuf.ReadBytes(SNBuf);
         }
     }

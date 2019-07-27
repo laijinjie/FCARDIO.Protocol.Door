@@ -17,6 +17,7 @@ using FCARDIO.Core.Connector.TCPServer;
 using FCARDIO.Core.Connector.TCPServer.Client;
 using FCARDIO.Core.Connector.UDP;
 using FCARDIO.Core.Extension;
+using FCARDIO.Protocol.Elevator.Test.Model;
 using FCARDIO.Protocol.FC8800;
 
 namespace FCARDIO.Protocol.Elevator.Test
@@ -288,24 +289,20 @@ namespace FCARDIO.Protocol.Elevator.Test
             mAllocator_CommandProcessEvent(sender, e);
             AddCmdLog(e, "命令完成");
             string cName = e.Command.GetType().FullName;
-            /*
+            /*   */
             switch (cName)
             {
                 case Command_ReadSN://读SN
-                    FC8800.SystemParameter.SN.SN_Result sn = e.Command.getResult() as FC8800.SystemParameter.SN.SN_Result;
+                    FC8864.SystemParameter.SN.SN_Result sn = e.Command.getResult() as FC8864.SystemParameter.SN.SN_Result;
                     Invoke(() => txtSN.Text = sn.SNBuf.GetString());
                     break;
-                case Command_WriteSN://写SN
-                case Command_WriteSN_Broadcast:
-                    FC8800.SystemParameter.SN.SN_Parameter snPar = e.Command.Parameter as FC8800.SystemParameter.SN.SN_Parameter;
-                    Invoke(() => txtSN.Text = snPar.SNBuf.GetString());
-                    break;
+              
                 case Command_ReadConnectPassword://读通讯密码
-                    FC8800.SystemParameter.ConnectPassword.Password_Result pwd = e.Command.getResult() as FC8800.SystemParameter.ConnectPassword.Password_Result;
+                    FC8864.SystemParameter.ConnectPassword.Password_Result pwd = e.Command.getResult() as FC8864.SystemParameter.ConnectPassword.Password_Result;
                     Invoke(() => txtPassword.Text = pwd.Password);
                     break;
                 case Command_WriteConnectPassword://写通讯密码
-                    FC8800.SystemParameter.ConnectPassword.Password_Parameter pwdPar = e.Command.Parameter as FC8800.SystemParameter.ConnectPassword.Password_Parameter;
+                    FC8864.SystemParameter.ConnectPassword.Password_Parameter pwdPar = e.Command.Parameter as FC8864.SystemParameter.ConnectPassword.Password_Parameter;
                     Invoke(() => txtPassword.Text = pwdPar.Password);
                     break;
                 case Command_ResetConnectPassword://复位通讯密码
@@ -316,7 +313,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             }
 
 
-             */
+          
 
         }
         #endregion
@@ -496,17 +493,7 @@ namespace FCARDIO.Protocol.Elevator.Test
         public void AddLog(string s)
         {
             if (_IsClosed) return;
-            if (lstCommand.InvokeRequired)
-            {
-                lstCommand.BeginInvoke((Action<string>)AddLog, s);
-                return;
-            }
-            //string log = txtLog.Text;
-            //if (log.Length > 20000)
-            //{
-            //    log = log.Substring(0, 10000);
-            //}
-            //txtLog.Text = s + "\r\n" + log;
+            
         }
 
 
@@ -653,50 +640,35 @@ namespace FCARDIO.Protocol.Elevator.Test
         /// </summary>
         private void IniLstIO()
         {
-            lstIO.BeginUpdate();
-
-            var cols = lstIO.Columns;
-            cols.Clear();
-            var sCaptions = "标签,内容,类型,远程信息,本地信息,时间".SplitTrim(",");
-            var iWidths = new int[] { 60, 260, 90, 125, 125, 100 };
-            for (int i = 0; i < sCaptions.Length; i++)
-            {
-                ColumnHeader col = new ColumnHeader();
-                col.Text = sCaptions[i];
-                col.TextAlign = HorizontalAlignment.Center;
-                col.Width = iWidths[i];
-                cols.Add(col);
-            }
-            lstIO.HideSelection = true;
-            lstIO.LabelEdit = false;
-            lstIO.MultiSelect = false;
-            lstIO.FullRowSelect = true;
-            lstIO.GridLines = true;
-            lstIO.ShowItemToolTips = true;
-            lstIO.EndUpdate();
-
-            mIOItems = new ConcurrentQueue<ListViewItem>();
+            mIOMessageList = new ConcurrentQueue<IOMessage>();
             Task.Run(() =>
             {
                 do
                 {
                     if (_IsClosed) break;
-                    if (!mIOItems.IsEmpty)
+                    if (!mIOMessageList.IsEmpty)
                     {
                         Invoke(() =>
                         {
-                            lstIO.BeginUpdate();
+                            //lstIO.BeginUpdate();
 
                             do
                             {
-                                ListViewItem oItem;
-                                if (mIOItems.TryDequeue(out oItem))
+                                IOMessage oItem;
+                                if (mIOMessageList.TryDequeue(out oItem))
                                 {
-                                    lstIO.Items.Add(oItem);
+                                    dgvIO.Rows.Insert(0, oItem.Title, oItem.Content, oItem.Type, oItem.Time, oItem.Remote, oItem.Local);
+                                    //int index = this.dgvIO.Rows.Add();
+                                    //dgvIO.Rows[index].Cells[0].Value = oItem.Title.Title;
+                                    //dgvIO.Rows[index].Cells[1].Value = oItem.Content;
+                                    //dgvIO.Rows[index].Cells[2].Value = oItem.Type;
+                                    //dgvIO.Rows[index].Cells[3].Value = oItem.Time;
+                                    //dgvIO.Rows[index].Cells[4].Value = oItem.Remote;
+                                    //dgvIO.Rows[index].Cells[5].Value = oItem.Local;
                                 }
-                            } while (!mIOItems.IsEmpty);
+                            } while (!mIOMessageList.IsEmpty);
 
-                            lstIO.EndUpdate();
+                            //lstIO.EndUpdate();
                         });
 
                     }
@@ -713,7 +685,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             System.Threading.Thread.Sleep(time);
         }
 
-        private ConcurrentQueue<ListViewItem> mIOItems;
+        private ConcurrentQueue<IOMessage> mIOMessageList;
 
         /// <summary>
         /// 添加一个通讯日志
@@ -727,16 +699,20 @@ namespace FCARDIO.Protocol.Elevator.Test
 
             string Local, Remote, cType;
             GetConnectorDetail(connDetail, out cType, out Local, out Remote);
+            IOMessage iOMessage = new IOMessage();
+            iOMessage.Title = sTag;
+            if (txt.Length > 50)
+            {
+                txt = txt.Substring(0, 50) + "\r\n" + txt.Substring(50);
+            }
+            
+            iOMessage.Content = txt;
+            iOMessage.Type = cType;
+            iOMessage.Remote = Remote;
+            iOMessage.Local = Local;
+            iOMessage.Time = DateTime.Now.ToTimeffff();
 
-            ListViewItem oItem = new ListViewItem();
-            oItem.Text = sTag;
-            oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, txt));
-            oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, cType));
-            oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Remote));
-            oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Local));
-            oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, DateTime.Now.ToTimeffff()));
-            oItem.ToolTipText = txt;
-            mIOItems.Enqueue(oItem);
+            mIOMessageList.Enqueue(iOMessage);
         }
 
 
@@ -747,8 +723,8 @@ namespace FCARDIO.Protocol.Elevator.Test
         /// <param name="e"></param>
         private void butClear_Click(object sender, EventArgs e)
         {
-
-            lstIO.Items.Clear();
+            dgvIO.Rows.Clear();
+            //lstIO.Items.Clear();
         }
         #endregion
 
@@ -766,13 +742,22 @@ namespace FCARDIO.Protocol.Elevator.Test
 
         private void butTime_Click(object sender, EventArgs e)
         {
-           
+            frmTime frm = frmTime.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
         }
 
         private void butDoor_Click(object sender, EventArgs e)
         {
-            
-
+            frmDoor frm = frmDoor.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
         }
 
         private void butHoliday_Click(object sender, EventArgs e)
@@ -1234,28 +1219,7 @@ namespace FCARDIO.Protocol.Elevator.Test
 
         private void InilstCommand()
         {
-            lstCommand.BeginUpdate();
-
-            var cols = lstCommand.Columns;
-            cols.Clear();
-            var sCaptions = "类型,内容,身份信息,远程信息,时间,耗时".SplitTrim(",");
-            var iWidths = new int[] { 100, 300, 120, 125, 100, 80 };
-            for (int i = 0; i < sCaptions.Length; i++)
-            {
-                ColumnHeader col = new ColumnHeader();
-                col.Text = sCaptions[i];
-                col.TextAlign = HorizontalAlignment.Center;
-                col.Width = iWidths[i];
-                cols.Add(col);
-            }
-            lstCommand.HideSelection = true;
-            lstCommand.LabelEdit = false;
-            lstCommand.MultiSelect = false;
-            lstCommand.FullRowSelect = true;
-            lstCommand.GridLines = true;
-            lstCommand.ShowItemToolTips = true;
-
-            lstCommand.EndUpdate();
+            
         }
 
         /// <summary>
@@ -1265,8 +1229,7 @@ namespace FCARDIO.Protocol.Elevator.Test
         /// <param name="txt">命令需要输出的内容</param>
         public void AddCmdLog(CommandEventArgs e, string txt)
         {
-            ListViewItem oItem = new ListViewItem();
-
+            CommandResult commandResult = new CommandResult();
             INCommandDetail cmdDtl = e?.CommandDetail; string sType = e?.Command.GetType().FullName;
             if (_IsClosed) return;
             if (e != null)
@@ -1281,56 +1244,51 @@ namespace FCARDIO.Protocol.Elevator.Test
                     Timemill = (cmdDtl.EndTime - cmdDtl.BeginTime).TotalMilliseconds;//命令耗时毫秒数
                 }
 
-
-
-
                 if (mCommandClasss.ContainsKey(sType))
                 {
-                    oItem.Text = mCommandClasss[sType];
+                    commandResult.Title = mCommandClasss[sType];
                 }
                 else
                 {
-                    oItem.Text = sType;
+                    commandResult.Title = sType;
                 }
-
-                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, txt));
+                commandResult.Content = txt;
                 string Local, Remote, cType;
                 GetConnectorDetail(cmdDtl.Connector, out cType, out Local, out Remote);
                 OnlineAccess.OnlineAccessCommandDetail fcDtl = cmdDtl as OnlineAccess.OnlineAccessCommandDetail;
-                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, fcDtl.SN));
-                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Remote));
-                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, DateTime.Now.ToTimeffff()));
-                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, Timemill.ToString("0")));
-                oItem.ToolTipText = txt;
+                commandResult.SN = fcDtl.SN;
+                commandResult.Remote = Remote;
+                commandResult.Time = DateTime.Now.ToTimeffff();
+                commandResult.Timemill = Timemill.ToString("0");
             }
             else
             {
-                oItem.Text = "-";
-                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, txt));
-                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
-                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
-                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
-                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
-                oItem.ToolTipText = txt;
+                commandResult.Title = "-";
+                
             }
-            AddCmdItem(oItem);
+            AddCmdItem(commandResult);
         }
 
-        private void AddCmdItem(ListViewItem oItem)
+        private void AddCmdItem(CommandResult commandResult)
         {
-            if (lstCommand.InvokeRequired)
+            if (dgvResult.InvokeRequired)
             {
-                Invoke(() => AddCmdItem(oItem));
+                Invoke(() => AddCmdItem(commandResult));
                 return;
             }
-            lstCommand.BeginUpdate();
-            lstCommand.Items.Insert(0, oItem);
-            lstCommand.EndUpdate();
+            dgvResult.Rows.Insert(0, commandResult.Title, commandResult.Content, commandResult.SN, commandResult.Remote, commandResult.Time, commandResult.Timemill);
+            //int index = this.dgvResult.Rows.Add();
+            //dgvResult.Rows[index].Cells[0].Value = commandResult.Title;
+            //dgvResult.Rows[index].Cells[1].Value = commandResult.Content;
+            //dgvResult.Rows[index].Cells[2].Value = commandResult.SN;
+            //dgvResult.Rows[index].Cells[3].Value = commandResult.Remote;
+            //dgvResult.Rows[index].Cells[4].Value = commandResult.Time;
+            //dgvResult.Rows[index].Cells[5].Value = commandResult.Timemill;
         }
 
         private void butClearCommand_Click(object sender, EventArgs e)
         {
-            lstCommand.Items.Clear();
+            dgvResult.Rows.Clear();
         }
         #endregion
 
@@ -1424,5 +1382,15 @@ namespace FCARDIO.Protocol.Elevator.Test
 
 
         #endregion
+
+        private void DgvIO_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewTextBoxColumn textbox = dgvIO.Columns[e.ColumnIndex] as DataGridViewTextBoxColumn;
+            if (textbox != null) //如果该列是TextBox列
+            {
+                dgvIO.BeginEdit(true); //开始编辑状态
+                dgvIO.ReadOnly = false;
+            }
+        }
     }
 }
