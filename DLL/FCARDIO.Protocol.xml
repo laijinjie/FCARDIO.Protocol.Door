@@ -199,7 +199,7 @@ FCARDIO.Protocol
 </member>
 <member name="M:FCARDIO.Protocol.FC8800.FC8800RequestHandle.#ctor(DotNetty.Buffers.IByteBufferAllocator,System.Func{System.String,System.Byte,System.Byte,FCARDIO.Protocol.Transaction.AbstractTransaction})">
  <summary>
- 
+ 用于处理关于FC8800系列协议中产生的设备主动上报消息的处理类
  </summary>
  <param name="allocator">用于保存临时数据的ByteBuf分配器</param>
  <param name="factory">用于根据SN，命令参数、命令索引生产用于处理对应消息的处理类工厂</param>
@@ -794,6 +794,11 @@ FCARDIO.Protocol
  适用于在线门禁、在线电梯、指纹机、人脸机等设备通讯数据包
  </summary>
 </member>
+<member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.UDPBroadcastCode">
+ <summary>
+ UDP广播时使用的网络标志
+ </summary>
+</member>
 <member name="F:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.BroadcastCode">
  <summary>
  广播代码
@@ -945,6 +950,21 @@ FCARDIO.Protocol
  <param name="ct">命令分类</param>
  <param name="ci">命令索引</param>
  <param name="cp">命令参数</param>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.SetUDPBroadcastPacket">
+ <summary>
+ 设置当前的数据包为UDP广播数据包,UDP广播发送和接收数据时使用
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.SetNormalPacket">
+ <summary>
+ 设置当前的数据包为正常播数据包（默认状态就是正常，除非经过修改，否则不必调用此函数）
+ </summary>
+</member>
+<member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.SetNormalPacket(System.Int32)">
+ <summary>
+ 设置当前的数据包为正常播数据包（默认状态就是正常，除非经过修改，否则不必调用此函数）
+ </summary>
 </member>
 <member name="M:FCARDIO.Protocol.OnlineAccess.OnlineAccessPacket.GetPacketData(DotNetty.Buffers.IByteBufferAllocator)">
  <summary>

@@ -172,6 +172,13 @@
             <param name="buf"></param>
             <returns></returns>
         </member>
+        <member name="M:FCARDIO.Protocol.Util.TimeUtil.BCDTimeToDate_yyyyMMddhhmmss(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            从一个ByteBuf中读取7个BCD字节，并转换为日期格式；  yyyyMMddhhmmss
+            </summary>
+            <param name="buf"></param>
+            <returns></returns>
+        </member>
         <member name="M:FCARDIO.Protocol.Util.TimeUtil.DateToBCD_yyMMddhhmm(DotNetty.Buffers.IByteBuffer,System.DateTime)">
             <summary>
             将日期转换为5个字节BCD格式的数据，并写入到Buf中；yyMMddhhmm
