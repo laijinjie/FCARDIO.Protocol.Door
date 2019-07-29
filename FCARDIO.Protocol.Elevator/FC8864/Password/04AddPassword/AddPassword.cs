@@ -25,6 +25,8 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
         public AddPassword(INCommandDetail cd, Password_Parameter par) : base(cd, par)
         {
             MaxBufSize = (mBatchCount * mParDataLen) + 4;
+            CmdType = 0x45;
+            CheckResponseCmdType = 0x25;
         }
 
         /// <summary>
@@ -47,6 +49,14 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
             Packet(0x45, 0x4, 0x00, (uint)buf.ReadableBytes, buf);
         }
 
+        /// <summary>
+        /// 处理返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        protected override void CommandNext1(OnlineAccessPacket oPck)
+        {
+            base.CommandNext1(oPck);
+        }
         /// <summary>
         /// 创建返回值
         /// </summary>

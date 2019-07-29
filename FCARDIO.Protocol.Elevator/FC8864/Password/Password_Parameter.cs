@@ -12,14 +12,14 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
     /// </summary>
     public class Password_Parameter : FCARDIO.Protocol.Door.FC8800.Password.Password_Parameter_Base<PasswordDetail>
     {
-      
+
         /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="list">要写入的密码集合</param>
-        public Password_Parameter(List<PasswordDetail> list):base (list){ }
+        public Password_Parameter(List<PasswordDetail> list) : base(list) { }
 
-        
+
         /// <summary>
         /// 检查每个密码
         /// </summary>
@@ -27,6 +27,15 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
         /// <returns></returns>
         protected override bool checkedParameterItem(PasswordDetail password)
         {
+            if (password.DoorNumList == null || password.DoorNumList.Length != 65)
+            {
+                return false;
+            }
+            if (string.IsNullOrEmpty(password.Password))
+            {
+                return false;
+
+            }
             return true;
         }
 

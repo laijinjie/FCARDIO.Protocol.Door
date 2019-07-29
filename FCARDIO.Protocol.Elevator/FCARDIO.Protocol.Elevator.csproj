@@ -58,7 +58,8 @@
     <Reference Include="FCARDIO.Protocol">
       <HintPath>..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
-    <Reference Include="FCARDIO.Protocol.Door">
+    <Reference Include="FCARDIO.Protocol.Door, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\FCARDIO.Protocol.Door.dll</HintPath>
     </Reference>
     <Reference Include="FCARDIO.Protocol.Util">
@@ -100,8 +101,8 @@
     <Compile Include="FC8864\Door\08AutoLockedSetting\ReadAutoLockedSetting_Result.cs" />
     <Compile Include="FC8864\Door\08AutoLockedSetting\ReadAutoLockedSetting.cs" />
     <Compile Include="FC8864\Door\08AutoLockedSetting\WriteAutoLockedSetting.cs" />
-    <Compile Include="FC8864\Door\CancelDoorAlarm\WriteCancelDoorAlarm.cs" />
-    <Compile Include="FC8864\Door\CancelDoorAlarm\WriteCancelDoorAlarm_Parameter.cs" />
+    <Compile Include="FC8864\Door\16CancelDoorAlarm\WriteCancelDoorAlarm.cs" />
+    <Compile Include="FC8864\Door\16CancelDoorAlarm\WriteCancelDoorAlarm_Parameter.cs" />
     <Compile Include="FC8864\Door\DoorPort_Parameter.cs" />
     <Compile Include="FC8864\Door\07DoorWorkSetting\ReadDoorWorkSetting_Result.cs" />
     <Compile Include="FC8864\Door\07DoorWorkSetting\ReadDoorWorkSetting.cs" />
@@ -141,7 +142,6 @@
     <Compile Include="FC8864\Password\01ReadPasswordDetail\ReadPasswordDetail.cs" />
     <Compile Include="FC8864\Password\01ReadPasswordDetail\ReadPasswordDetail_Result.cs" />
     <Compile Include="FC8864\Password\02ClearPassword\ClearPassword.cs" />
-    <Compile Include="FC8864\Password\03ReadAllPassword\Base\Class1.cs" />
     <Compile Include="FC8864\Password\03ReadAllPassword\ReadAllPassword.cs" />
     <Compile Include="FC8864\Password\03ReadAllPassword\ReadAllPassword_Result.cs" />
     <Compile Include="FC8864\Password\04AddPassword\AddPassword.cs" />

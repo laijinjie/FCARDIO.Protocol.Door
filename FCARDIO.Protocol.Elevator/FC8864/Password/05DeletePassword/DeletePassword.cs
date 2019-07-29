@@ -23,7 +23,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
         {
             var buf = GetNewCmdDataBuf(MaxBufSize);
             WritePasswordToBuf(buf);
-            Packet(0x5, 0x5, 0x00, (uint)buf.ReadableBytes, buf);
+            Packet(CmdType, 0x5, 0x00, (uint)buf.ReadableBytes, buf);
         }
 
         /// <summary>
@@ -34,6 +34,8 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
         public DeletePassword(INCommandDetail cd, Password_Parameter par) : base(cd, par)
         {
             MaxBufSize = (mBatchCount * mDeleteDataLen) + 4;
+            CmdType = 0x45;
+            CheckResponseCmdType = 0x25;
         }
 
         /// <summary>
@@ -46,6 +48,14 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
             password.GetDeleteBytes(databuf);
         }
 
+        /// <summary>
+        /// 处理返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        protected override void CommandNext1(OnlineAccessPacket oPck)
+        {
+            base.CommandNext1(oPck);
+        }
 
         /// <summary>
         /// 没有实现

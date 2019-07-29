@@ -773,7 +773,12 @@ namespace FCARDIO.Protocol.Elevator.Test
 
         private void ButPassword_Click(object sender, EventArgs e)
         {
-            
+            frmPassword frm = frmPassword.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
         }
 
         private void ButTimeGroup_Click(object sender, EventArgs e)

@@ -12,37 +12,21 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
     public class PasswordDetail : FCARDIO.Protocol.Door.FC8800.Password.PasswordDetail
     {
         /// <summary>
-        /// 密码信息
+        /// 端口集合 1-65
         /// </summary>
-        public string Password;
+        public byte[] DoorNumList;
 
-        /// <summary>
-        /// 端口
-        /// </summary>
-        public int Door;
-
-        /// <summary>
-        /// 开门次数
-        /// </summary>
-        public int OpenTimes;
-
-        /// <summary>
-        /// 有效期
-        /// </summary>
-        public DateTime Expiry;
-
-        
         /// <summary>
         /// 获取指定门是否有权限
         /// </summary>
         /// <param name="iDoor">门号，取值范围：1-4</param>
         /// <returns>true 有权限，false 无权限</returns>
-        public bool GetDoor(int iDoor)
+        public new bool GetDoor(int iDoor)
         {
-            if (iDoor < 0 || iDoor > 4)
+            if (iDoor < 1 || iDoor > 65)
             {
 
-                throw new ArgumentException("Door 1-4");
+                throw new ArgumentException("Door 1-65");
             }
             iDoor -= 1;
 
@@ -81,23 +65,21 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer data)
         {
-            data.WriteByte(Door);
+            for (int i = 0; i < 8; i++)
+            {
+                byte[] list = new byte[8];
+                for (int j = 0; j < 8; j++)
+                {
+                    list[j] = DoorNumList[i * 8 + j];
+                }
+
+                byte type = FCARD.Common.NumUtil.BitToByte(list);
+                data.WriteByte(type);
+            }
+            data.WriteByte(DoorNumList[64]);
             Password = StringUtil.FillHexString(Password, 8, "F", true);
             StringUtil.HextoByteBuf(Password, data);
             WritePassword(data);
-            return data;
-        }
-
-        /// <summary>
-        /// 写入 要删除的密码信息
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public virtual IByteBuffer GetDeleteBytes(IByteBuffer data)
-        {
-            data.WriteByte(Door);
-            Password = StringUtil.FillHexString(Password, 8, "F", true);
-            StringUtil.HextoByteBuf(Password, data);
             return data;
         }
 
@@ -114,16 +96,16 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
         /// 获取每个删除密码长度
         /// </summary>
         /// <returns></returns>
-        public virtual int GetDeleteDataLen()
+        public override int GetDeleteDataLen()
         {
-            return 5;
+            return 4;
         }
 
         /// <summary>
         /// 读取密码
         /// </summary>
         /// <param name="data"></param>
-        protected virtual void ReadPassword(IByteBuffer data)
+        protected override void ReadPassword(IByteBuffer data)
         {
 
         }
@@ -132,7 +114,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
         /// 写入密码
         /// </summary>
         /// <param name="data"></param>
-        protected virtual void WritePassword(IByteBuffer data)
+        protected override void WritePassword(IByteBuffer data)
         {
 
         }
@@ -143,8 +125,17 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
         /// <param name="data"></param>
         public override void SetBytes(IByteBuffer data)
         {
-            Door = data.ReadByte();
-
+            DoorNumList = new byte[65];
+            for (int i = 0; i < 8; i++)
+            {
+                byte type = data.ReadByte();
+                var bytelist = FCARD.Common.NumUtil.ByteToBit(type);
+                for (int j = 0; j < 8; j++)
+                {
+                    DoorNumList[i * 8 + j] = bytelist[j];
+                }
+            }
+            DoorNumList[64] = data.ReadByte();
             byte[] btData = new byte[4];
             data.ReadBytes(btData, 0, 4);
             Password = btData.ToHex().TrimEnd('F');
@@ -152,9 +143,5 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
            
         }
 
-        public int CompareTo(Protocol.Door.FC8800.Password.PasswordDetail other)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

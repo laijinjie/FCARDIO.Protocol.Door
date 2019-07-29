@@ -1,5 +1,7 @@
-﻿using FCARDIO.Core.Command;
+﻿using DotNetty.Buffers;
+using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800.Password;
+using FCARDIO.Protocol.OnlineAccess;
 using System.Collections.Generic;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.Password
@@ -15,7 +17,8 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
         /// <param name="cd"></param>
         public ReadAllPassword(INCommandDetail cd) : base(cd)
         {
-
+            CmdType = 0x45;
+            CheckResponseCmdType = 0x25;
         }
 
         /// <summary>
@@ -27,5 +30,45 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
             ReadAllPassword_Result result = new ReadAllPassword_Result(passwordList);
             return result;
         }
+
+        protected override void CommandNext1(OnlineAccessPacket oPck)
+        {
+            base.CommandNext1(oPck);
+            /*
+            if (CheckResponse(oPck))
+            {
+                var buf = oPck.CmdData;
+                buf.Retain();
+                mReadBuffers.Add(buf);
+                CommandWaitResponse();
+            }
+
+            if (CheckResponse(oPck, CheckResponseCmdType, 3, 0xff, 4))
+            {
+                var buf = oPck.CmdData;
+                int iTotal = buf.ReadInt();
+                _ProcessMax = iTotal;
+                List<PasswordDetail> PasswordList = new List<PasswordDetail>(iTotal);
+                foreach (IByteBuffer tmpbuf in mReadBuffers)
+                {
+                    int iCount = tmpbuf.ReadInt();
+                    for (int i = 0; i < iCount; i++)
+                    {
+                        PasswordDetail dtl = new PasswordDetail();
+                        dtl.SetBytes(tmpbuf);
+                        PasswordList.Add(dtl);
+                    }
+                    _ProcessStep += iCount;
+                    fireCommandProcessEvent();
+                }
+
+                ReadAllPassword_Result_Base<PasswordDetail> rst = CreateResult(PasswordList);
+                _Result = rst;
+
+                ClearBuf();
+                CommandCompleted();
+                */
+        }
+       
     }
 }

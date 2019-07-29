@@ -58,6 +58,10 @@
     <Reference Include="FCARDIO.Protocol">
       <HintPath>..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
+    <Reference Include="FCARDIO.Protocol.Door, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\FCARDIO.Protocol.Door.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -95,6 +99,12 @@
     <Compile Include="frmNodeForm.Designer.cs">
       <DependentUpon>frmNodeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPassword.Designer.cs">
+      <DependentUpon>frmPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSystem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +128,7 @@
     <Compile Include="Model\HolidayDetailDto.cs" />
     <Compile Include="Model\IOMessage.cs" />
     <Compile Include="Model\DoorUI.cs" />
+    <Compile Include="Model\PasswordDto.cs" />
     <Compile Include="Model\WeekTimeGroupDto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNodeForm.resx">
       <DependentUpon>frmNodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPassword.resx">
+      <DependentUpon>frmPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSystem.resx">
       <DependentUpon>frmSystem.cs</DependentUpon>
