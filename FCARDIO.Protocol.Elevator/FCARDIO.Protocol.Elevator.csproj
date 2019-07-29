@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FF0CB605-1697-4CDE-AC68-A982D92ED53A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FCARDIO.Protocol.Elevator</RootNamespace>
+    <AssemblyName>FCARDIO.Protocol.Elevator</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetty.Buffers">
+      <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Codecs">
+      <HintPath>..\DLL\DotNetty.Codecs.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Common">
+      <HintPath>..\DLL\DotNetty.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Handlers">
+      <HintPath>..\DLL\DotNetty.Handlers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Transport">
+      <HintPath>..\DLL\DotNetty.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Transport.Libuv">
+      <HintPath>..\DLL\DotNetty.Transport.Libuv.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARD.Common">
+      <HintPath>..\DLL\FCARD.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Core">
+      <HintPath>..\DLL\FCARDIO.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Protocol">
+      <HintPath>..\DLL\FCARDIO.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Protocol.Door">
+      <HintPath>..\DLL\FCARDIO.Protocol.Door.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Protocol.Util">
+      <HintPath>..\FCARDIO.Protocol.Util\bin\Debug\FCARDIO.Protocol.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractParameter.cs" />
+    <Compile Include="CommandEx.cs" />
+    <Compile Include="FC8864\Data\OpenDoorTimeoutAlarm.cs" />
+    <Compile Include="FC8864\Data\TimeGroup\DayTimeGroup.cs" />
+    <Compile Include="FC8864\Data\TimeGroup\E_WeekDay.cs" />
+    <Compile Include="FC8864\Data\TimeGroup\TimeSegment.cs" />
+    <Compile Include="FC8864\Data\TimeGroup\WeekTimeGroup.cs" />
+    <Compile Include="FC8864\Door\01Relay\ReadRelay.cs" />
+    <Compile Include="FC8864\Door\01Relay\ReadRelay_Result.cs" />
+    <Compile Include="FC8864\Door\01Relay\WriteRelay.cs" />
+    <Compile Include="FC8864\Door\01Relay\WriteRelay_Parameter.cs" />
+    <Compile Include="FC8864\Door\06UnLockDoor\WriteUnLockDoor.cs" />
+    <Compile Include="FC8864\Door\06UnLockDoor\WriteUnLockDoor_Parameter.cs" />
+    <Compile Include="FC8864\Door\05LockDoor\WriteLockDoor.cs" />
+    <Compile Include="FC8864\Door\05LockDoor\WriteLockDoor_Parameter.cs" />
+    <Compile Include="FC8864\Door\04DoorKeepOpen\WriteDoorKeepOpen.cs" />
+    <Compile Include="FC8864\Door\04DoorKeepOpen\WriteDoorKeepOpen_Parameter.cs" />
+    <Compile Include="FC8864\Door\03CloseDoor\WriteCloseDoor.cs" />
+    <Compile Include="FC8864\Door\03CloseDoor\WriteCloseDoor_Parameter.cs" />
+    <Compile Include="FC8864\Door\02OpenDoor\WriteOpenDoorWithCode.cs" />
+    <Compile Include="FC8864\Door\02OpenDoor\WriteOpenDoor.cs" />
+    <Compile Include="FC8864\Door\02OpenDoor\WriteOpenDoor_Parameter.cs" />
+    <Compile Include="FC8864\Door\08AutoLockedSetting\WriteAutoLockedSetting_Parameter.cs" />
+    <Compile Include="FC8864\Door\08AutoLockedSetting\ReadAutoLockedSetting_Result.cs" />
+    <Compile Include="FC8864\Door\08AutoLockedSetting\ReadAutoLockedSetting.cs" />
+    <Compile Include="FC8864\Door\08AutoLockedSetting\WriteAutoLockedSetting.cs" />
+    <Compile Include="FC8864\Door\CancelDoorAlarm\WriteCancelDoorAlarm.cs" />
+    <Compile Include="FC8864\Door\CancelDoorAlarm\WriteCancelDoorAlarm_Parameter.cs" />
+    <Compile Include="FC8864\Door\DoorPort_Parameter.cs" />
+    <Compile Include="FC8864\Door\07DoorWorkSetting\ReadDoorWorkSetting_Result.cs" />
+    <Compile Include="FC8864\Door\07DoorWorkSetting\ReadDoorWorkSetting.cs" />
+    <Compile Include="FC8864\Door\07DoorWorkSetting\WriteDoorWorkSetting_Parameter.cs" />
+    <Compile Include="FC8864\Door\07DoorWorkSetting\WriteDoorWorkSetting.cs" />
+    <Compile Include="FC8864\Door\09UnlockingTime\ReadUnlockingTime.cs" />
+    <Compile Include="FC8864\Door\09UnlockingTime\ReadUnlockingTime_Result.cs" />
+    <Compile Include="FC8864\Door\09UnlockingTime\WriteUnlockingTime.cs" />
+    <Compile Include="FC8864\Door\09UnlockingTime\WriteUnlockingTime_Parameter.cs" />
+    <Compile Include="FC8864\Door\11OutDoorSwitch\ReadOutDoorSwitch.cs" />
+    <Compile Include="FC8864\Door\11OutDoorSwitch\ReadOutDoorSwitch_Result.cs" />
+    <Compile Include="FC8864\Door\11OutDoorSwitch\WriteOutDoorSwitch.cs" />
+    <Compile Include="FC8864\Door\11OutDoorSwitch\WriteOutDoorSwitch_Parameter.cs" />
+    <Compile Include="FC8864\Door\13FirstCardOpen\ReadFirstCardOpen.cs" />
+    <Compile Include="FC8864\Door\13FirstCardOpen\ReadFirstCardOpen_Result.cs" />
+    <Compile Include="FC8864\Door\13FirstCardOpen\WriteFirstCardOpen.cs" />
+    <Compile Include="FC8864\Door\13FirstCardOpen\WriteFirstCardOpen_Parameter.cs" />
+    <Compile Include="FC8864\Door\14GateMagneticAlarm\ReadGateMagneticAlarm.cs" />
+    <Compile Include="FC8864\Door\14GateMagneticAlarm\ReadGateMagneticAlarm_Result.cs" />
+    <Compile Include="FC8864\Door\14GateMagneticAlarm\WriteGateMagneticAlarm.cs" />
+    <Compile Include="FC8864\Door\14GateMagneticAlarm\WriteGateMagneticAlarm_Parameter.cs" />
+    <Compile Include="FC8864\Door\15OpenDoorTimeoutAlarm\ReadOpenDoorTimeoutAlarm.cs" />
+    <Compile Include="FC8864\Door\15OpenDoorTimeoutAlarm\ReadOpenDoorTimeoutAlarm_Result.cs" />
+    <Compile Include="FC8864\Door\15OpenDoorTimeoutAlarm\WriteOpenDoorTimeoutAlarm.cs" />
+    <Compile Include="FC8864\Door\15OpenDoorTimeoutAlarm\WriteOpenDoorTimeoutAlarm_Parameter.cs" />
+    <Compile Include="FC8864\Holiday\01ReadHolidayDetail\ReadHolidayDetail.cs" />
+    <Compile Include="FC8864\Holiday\01ReadHolidayDetail\ReadHolidayDetail_Result.cs" />
+    <Compile Include="FC8864\Holiday\02ClearHoliday\ClearHoliday.cs" />
+    <Compile Include="FC8864\Holiday\03ReadAllHoliday\ReadAllHoliday.cs" />
+    <Compile Include="FC8864\Holiday\03ReadAllHoliday\ReadAllHoliday_Result.cs" />
+    <Compile Include="FC8864\Holiday\04AddHoliday\AddHoliday.cs" />
+    <Compile Include="FC8864\Holiday\04AddHoliday\AddHoliday_Parameter.cs" />
+    <Compile Include="FC8864\Holiday\05DeleteHoliday\DeleteHoliday.cs" />
+    <Compile Include="FC8864\Holiday\05DeleteHoliday\DeleteHoliday_Parameter.cs" />
+    <Compile Include="FC8864\Holiday\HolidayDBDetail.cs" />
+    <Compile Include="FC8864\Holiday\HolidayDetail.cs" />
+    <Compile Include="FC8864\Password\01ReadPasswordDetail\ReadPasswordDetail.cs" />
+    <Compile Include="FC8864\Password\01ReadPasswordDetail\ReadPasswordDetail_Result.cs" />
+    <Compile Include="FC8864\Password\02ClearPassword\ClearPassword.cs" />
+    <Compile Include="FC8864\Password\03ReadAllPassword\Base\Class1.cs" />
+    <Compile Include="FC8864\Password\03ReadAllPassword\ReadAllPassword.cs" />
+    <Compile Include="FC8864\Password\03ReadAllPassword\ReadAllPassword_Result.cs" />
+    <Compile Include="FC8864\Password\04AddPassword\AddPassword.cs" />
+    <Compile Include="FC8864\Password\05DeletePassword\DeletePassword.cs" />
+    <Compile Include="FC8864\Password\PasswordDetail.cs" />
+    <Compile Include="FC8864\Password\Password_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\02ConnectPassword\Password_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\02ConnectPassword\Password_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\02ConnectPassword\ReadConnectPassword.cs" />
+    <Compile Include="FC8864\SystemParameter\02ConnectPassword\ResetConnectPassword.cs" />
+    <Compile Include="FC8864\SystemParameter\02ConnectPassword\WriteConnectPassword.cs" />
+    <Compile Include="FC8864\SystemParameter\01SN\ReadSN.cs" />
+    <Compile Include="FC8864\SystemParameter\01SN\SN_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\03TCPSetting\ReadTCPSetting.cs" />
+    <Compile Include="FC8864\SystemParameter\03TCPSetting\ReadTCPSetting_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\03TCPSetting\TCPDetail.cs" />
+    <Compile Include="FC8864\SystemParameter\03TCPSetting\WriteTCPSetting.cs" />
+    <Compile Include="FC8864\SystemParameter\03TCPSetting\WriteTCPSetting_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\04Deadline\ReadDeadline.cs" />
+    <Compile Include="FC8864\SystemParameter\04Deadline\ReadDeadline_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\04Deadline\WriteDeadline.cs" />
+    <Compile Include="FC8864\SystemParameter\04Deadline\WriteDeadline_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\05Version\ReadVersion.cs" />
+    <Compile Include="FC8864\SystemParameter\05Version\ReadVersion_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\06SystemStatus\ReadSystemStatus.cs" />
+    <Compile Include="FC8864\SystemParameter\06SystemStatus\ReadSystemStatus_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\02RecordMode\ReadRecordMode.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\02RecordMode\ReadRecordMode_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\02RecordMode\WriteRecordMode.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\02RecordMode\WriteRecordMode_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\03Keyboard\ReadKeyboard.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\03Keyboard\ReadKeyboard_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\03Keyboard\WriteKeyboard.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\03Keyboard\WriteKeyboard_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\05FireAlarmOption\ReadFireAlarmOption.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\05FireAlarmOption\ReadFireAlarmOption_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\05FireAlarmOption\WriteFireAlarmOption.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\05FireAlarmOption\WriteFireAlarmOption_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\06Broadcast\ReadBroadcast.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\06Broadcast\ReadBroadcast_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\06Broadcast\WriteBroadcast.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\06Broadcast\WriteBroadcast_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\07ReaderIntervalTime\ReadReaderIntervalTime.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\07ReaderIntervalTime\ReadReaderIntervalTime_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\07ReaderIntervalTime\WriteReaderIntervalTime.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\07ReaderIntervalTime\WriteReaderIntervalTime_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\08ReaderCheckMode\ReadReaderCheckMode.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\08ReaderCheckMode\ReadReaderCheckMode_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\08ReaderCheckMode\WriteReaderCheckMode.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\08ReaderCheckMode\WriteReaderCheckMode_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\09Buzzer\ReadBuzzer.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\09Buzzer\ReadBuzzer_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\09Buzzer\WriteBuzzer.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\09Buzzer\WriteBuzzer_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\13AlarmPassword\AlarmPassword_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\13AlarmPassword\ReadAlarmPassword.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\13AlarmPassword\WriteAlarmPassword.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\13AlarmPassword\WriteAlarmPassword_parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\10ReaderByte\ReadReaderByte.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\10ReaderByte\ReadReaderByte_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\10ReaderByte\WriteReaderByte.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\10ReaderByte\WriteReaderByte_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\12SmogAlarmOption\ReadSmogAlarmOption.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\12SmogAlarmOption\ReadSmogAlarmOption_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\12SmogAlarmOption\WriteSmogAlarmOption.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\12SmogAlarmOption\WriteSmogAlarmOption_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\14ExpirationPrompt\ReadExpirationPrompt.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\14ExpirationPrompt\ReadExpirationPrompt_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\14ExpirationPrompt\WriteExpirationPrompt.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\14ExpirationPrompt\WriteExpirationPrompt_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\14TheftAlarmSetting\ReadTheftAlarmSetting.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\14TheftAlarmSetting\ReadTheftAlarmSetting_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\14TheftAlarmSetting\WriteTheftAlarmSetting.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\14TheftAlarmSetting\WriteTheftAlarmSetting_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\15CheckInOut\ReadCheckInOut.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\15CheckInOut\ReadCheckInOut_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\15CheckInOut\WriteCheckInOut.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\15CheckInOut\WriteCheckInOut_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\15ReadCardSpeak\ReadReadCardSpeak.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\15ReadCardSpeak\ReadReadCardSpeak_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\15ReadCardSpeak\WriteReadCardSpeak.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\15ReadCardSpeak\WriteReadCardSpeak_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\16CardPeriodSpeak\ReadCardPeriodSpeak.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\16CardPeriodSpeak\ReadCardPeriodSpeak_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\16CardPeriodSpeak\WriteCardPeriodSpeak.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\16CardPeriodSpeak\WriteCardPeriodSpeak_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\BroadcastDetail.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\12InvalidCardAlarmOption\ReadInvalidCardAlarmOption.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\12InvalidCardAlarmOption\ReadInvalidCardAlarmOption_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\12InvalidCardAlarmOption\WriteInvalidCardAlarmOption.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\12InvalidCardAlarmOption\WriteInvalidCardAlarmOption_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\ReadAllSystemSetting.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\ReadAllSystemSetting_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\ReadCardSpeak.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\TheftAlarmSetting.cs" />
+    <Compile Include="FC8864\SystemParameter\09FireAlarm\CloseFireAlarm.cs" />
+    <Compile Include="FC8864\SystemParameter\09FireAlarm\ReadFireAlarmState.cs" />
+    <Compile Include="FC8864\SystemParameter\09FireAlarm\SendFireAlarm.cs" />
+    <Compile Include="FC8864\SystemParameter\15CloseAlarm\WriteCloseAlarm.cs" />
+    <Compile Include="FC8864\SystemParameter\15CloseAlarm\WriteCloseAlarm_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\18ManageCard\ReadManageCard.cs" />
+    <Compile Include="FC8864\SystemParameter\18ManageCard\ReadManageCard_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\18ManageCard\WriteManageCard.cs" />
+    <Compile Include="FC8864\SystemParameter\18ManageCard\WriteManageCard_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\19KeyboardCardIssuingManage\ReadKeyboardCardIssuingManage.cs" />
+    <Compile Include="FC8864\SystemParameter\19KeyboardCardIssuingManage\ReadKeyboardCardIssuingManage_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\19KeyboardCardIssuingManage\WriteKeyboardCardIssuingManage.cs" />
+    <Compile Include="FC8864\SystemParameter\19KeyboardCardIssuingManage\WriteKeyboardCardIssuingManage_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\20InputTerminalFunction\ReadInputTerminalFunction.cs" />
+    <Compile Include="FC8864\SystemParameter\20InputTerminalFunction\ReadInputTerminalFunction_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\20InputTerminalFunction\WriteInputTerminalFunction.cs" />
+    <Compile Include="FC8864\SystemParameter\20InputTerminalFunction\WriteInputTerminalFunction_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\21TCP485LineConnection\Read485LineConnection.cs" />
+    <Compile Include="FC8864\SystemParameter\21TCP485LineConnection\Read485LineConnection_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\21TCP485LineConnection\Write485LineConnection.cs" />
+    <Compile Include="FC8864\SystemParameter\21TCP485LineConnection\Write485LineConnection_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\ItemDetectionFunction\ReadItemDetectionFunction.cs" />
+    <Compile Include="FC8864\SystemParameter\ItemDetectionFunction\ReadItemDetectionFunction_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\ItemDetectionFunction\WriteItemDetectionFunction.cs" />
+    <Compile Include="FC8864\SystemParameter\ItemDetectionFunction\WriteItemDetectionFunction_Parameter.cs" />
+    <Compile Include="FC8864\TimeGroup\01ClearTimeGroup\ClearTimeGroup.cs" />
+    <Compile Include="FC8864\TimeGroup\02ReadTimeGroup\ReadTimeGroup.cs" />
+    <Compile Include="FC8864\TimeGroup\02ReadTimeGroup\ReadTimeGroup_Result.cs" />
+    <Compile Include="FC8864\TimeGroup\03AddTimeGroup\AddTimeGroup.cs" />
+    <Compile Include="FC8864\TimeGroup\03AddTimeGroup\AddTimeGroup_Parameter.cs" />
+    <Compile Include="FC8864\Time\ReadTime.cs" />
+    <Compile Include="FC8864\Time\ReadTime_Result.cs" />
+    <Compile Include="FC8864\Time\TimeErrorCorrection\ReadTimeError.cs" />
+    <Compile Include="FC8864\Time\TimeErrorCorrection\ReadTimeError_Result.cs" />
+    <Compile Include="FC8864\Time\TimeErrorCorrection\WriteTimeError.cs" />
+    <Compile Include="FC8864\Time\TimeErrorCorrection\WriteTimeError_Parameter.cs" />
+    <Compile Include="FC8864\Time\WriteCustomTime.cs" />
+    <Compile Include="FC8864\Time\WriteCustomTime_Parameter.cs" />
+    <Compile Include="FC8864\Time\WriteTime.cs" />
+    <Compile Include="FC8864\Time\WriteTimeBroadcast.cs" />
+    <Compile Include="FC8864\Utility\StringUtility.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Read_Command.cs" />
+    <Compile Include="Result_Base.cs" />
+    <Compile Include="Write_Command.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
