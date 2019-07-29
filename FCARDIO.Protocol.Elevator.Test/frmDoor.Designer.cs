@@ -62,7 +62,20 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnWriteUnLockDoor = new System.Windows.Forms.Button();
             this.btnWriteLockDoor = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbDoorNum = new System.Windows.Forms.ComboBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnWriteAutoLockedSetting = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rBtnNoAutoLockedSetting = new System.Windows.Forms.RadioButton();
+            this.rBtnAutoLockedSetting = new System.Windows.Forms.RadioButton();
+            this.btnReadAutoLockedSetting = new System.Windows.Forms.Button();
+            this.dgvLockTime = new System.Windows.Forms.DataGridView();
+            this.EX2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsEx2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WeekDay2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.DoorOpenTimePanel = new System.Windows.Forms.Panel();
             this.btnFillNowTime = new System.Windows.Forms.Button();
@@ -116,20 +129,71 @@
             this.btnWriteWorkSetting = new System.Windows.Forms.Button();
             this.btnReadWorkSetting = new System.Windows.Forms.Button();
             this.label57 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbDoorNum = new System.Windows.Forms.ComboBox();
-            this.dgvLockTime = new System.Windows.Forms.DataGridView();
-            this.EX2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsEx2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WeekDay2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.rBtnNoAutoLockedSetting = new System.Windows.Forms.RadioButton();
-            this.rBtnAutoLockedSetting = new System.Windows.Forms.RadioButton();
-            this.btnWriteAutoLockedSetting = new System.Windows.Forms.Button();
-            this.btnReadAutoLockedSetting = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnWriteUnlockingTime = new System.Windows.Forms.Button();
+            this.btnReadUnlockingTime = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.OutDoorTimePanel = new System.Windows.Forms.Panel();
+            this.btnFillNowTimeOutDoor = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.EndTPOutDoor8 = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.beginTPOutDoor8 = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.EndTPOutDoor4 = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.beginTPOutDoor4 = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
+            this.EndTPOutDoor7 = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
+            this.beginTPOutDoor7 = new System.Windows.Forms.DateTimePicker();
+            this.label10 = new System.Windows.Forms.Label();
+            this.EndTPOutDoor3 = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
+            this.beginTPOutDoor3 = new System.Windows.Forms.DateTimePicker();
+            this.label12 = new System.Windows.Forms.Label();
+            this.EndTPOutDoor6 = new System.Windows.Forms.DateTimePicker();
+            this.label13 = new System.Windows.Forms.Label();
+            this.beginTPOutDoor6 = new System.Windows.Forms.DateTimePicker();
+            this.label14 = new System.Windows.Forms.Label();
+            this.EndTPOutDoor2 = new System.Windows.Forms.DateTimePicker();
+            this.label15 = new System.Windows.Forms.Label();
+            this.beginTPOutDoor2 = new System.Windows.Forms.DateTimePicker();
+            this.label16 = new System.Windows.Forms.Label();
+            this.EndTPOutDoor5 = new System.Windows.Forms.DateTimePicker();
+            this.label22 = new System.Windows.Forms.Label();
+            this.beginTPOutDoor5 = new System.Windows.Forms.DateTimePicker();
+            this.label24 = new System.Windows.Forms.Label();
+            this.EndTPOutDoor1 = new System.Windows.Forms.DateTimePicker();
+            this.label38 = new System.Windows.Forms.Label();
+            this.beginTPOutDoor1 = new System.Windows.Forms.DateTimePicker();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.rBtnNoOutDoor = new System.Windows.Forms.RadioButton();
+            this.rBtnOutDoor = new System.Windows.Forms.RadioButton();
+            this.btnWriteOutDoorSwitch = new System.Windows.Forms.Button();
+            this.btnReadOutDoorSwitch = new System.Windows.Forms.Button();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbxWeekOutDoor = new System.Windows.Forms.ComboBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label39 = new System.Windows.Forms.Label();
+            this.cbIsCardPassword = new System.Windows.Forms.CheckBox();
+            this.cbIsPassword = new System.Windows.Forms.CheckBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.btnWriteFirstCardOpen = new System.Windows.Forms.Button();
+            this.btnReadFirstCardOpen = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnReadGateMagneticAlarm = new System.Windows.Forms.Button();
+            this.btnWriteGateMagneticAlarm = new System.Windows.Forms.Button();
+            this.label42 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnWriteOpenDoorTimeoutAlarm = new System.Windows.Forms.Button();
+            this.btnReadOpenDoorTimeoutAlarm = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label43 = new System.Windows.Forms.Label();
+            this.cmbAlarmCode = new System.Windows.Forms.ComboBox();
+            this.btnWriteCancelDoorAlarm = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDoor4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDoor3)).BeginInit();
@@ -138,15 +202,23 @@
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLockTime)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.DoorOpenTimePanel.SuspendLayout();
             this.DoorTriggerModePanel.SuspendLayout();
             this.OpenDoorWayPanel.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLockTime)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.OutDoorTimePanel.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -471,7 +543,7 @@
             this.groupBox2.Controls.Add(this.btnReadRelay);
             this.groupBox2.Location = new System.Drawing.Point(12, 450);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(105, 49);
+            this.groupBox2.Size = new System.Drawing.Size(124, 49);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "续电器";
@@ -483,7 +555,7 @@
             this.groupBox3.Controls.Add(this.txtOpenDoorCode);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.btnWriteDoorKeepOpen);
-            this.groupBox3.Location = new System.Drawing.Point(123, 450);
+            this.groupBox3.Location = new System.Drawing.Point(146, 450);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(255, 49);
             this.groupBox3.TabIndex = 7;
@@ -494,7 +566,7 @@
             // 
             this.groupBox4.Controls.Add(this.btnWriteUnLockDoor);
             this.groupBox4.Controls.Add(this.btnWriteLockDoor);
-            this.groupBox4.Location = new System.Drawing.Point(395, 450);
+            this.groupBox4.Location = new System.Drawing.Point(418, 450);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(177, 49);
             this.groupBox4.TabIndex = 8;
@@ -521,15 +593,159 @@
             this.btnWriteLockDoor.UseVisualStyleBackColor = true;
             this.btnWriteLockDoor.Click += new System.EventHandler(this.BtnWriteLockDoor_Click);
             // 
-            // tabControl1
+            // label2
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(123, 505);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1129, 241);
-            this.tabControl1.TabIndex = 9;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 515);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "端口号：";
+            // 
+            // cmbDoorNum
+            // 
+            this.cmbDoorNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDoorNum.FormattingEnabled = true;
+            this.cmbDoorNum.Location = new System.Drawing.Point(69, 512);
+            this.cmbDoorNum.Name = "cmbDoorNum";
+            this.cmbDoorNum.Size = new System.Drawing.Size(48, 20);
+            this.cmbDoorNum.TabIndex = 2;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.btnWriteAutoLockedSetting);
+            this.tabPage2.Controls.Add(this.panel1);
+            this.tabPage2.Controls.Add(this.btnReadAutoLockedSetting);
+            this.tabPage2.Controls.Add(this.dgvLockTime);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1121, 215);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "定时锁定窗口";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnWriteAutoLockedSetting
+            // 
+            this.btnWriteAutoLockedSetting.Location = new System.Drawing.Point(309, 93);
+            this.btnWriteAutoLockedSetting.Name = "btnWriteAutoLockedSetting";
+            this.btnWriteAutoLockedSetting.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteAutoLockedSetting.TabIndex = 37;
+            this.btnWriteAutoLockedSetting.Text = "写入";
+            this.btnWriteAutoLockedSetting.UseVisualStyleBackColor = true;
+            this.btnWriteAutoLockedSetting.Click += new System.EventHandler(this.BtnWriteAutoLockedSetting_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.rBtnNoAutoLockedSetting);
+            this.panel1.Controls.Add(this.rBtnAutoLockedSetting);
+            this.panel1.Location = new System.Drawing.Point(309, 15);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(70, 43);
+            this.panel1.TabIndex = 81;
+            // 
+            // rBtnNoAutoLockedSetting
+            // 
+            this.rBtnNoAutoLockedSetting.AutoSize = true;
+            this.rBtnNoAutoLockedSetting.Location = new System.Drawing.Point(4, 3);
+            this.rBtnNoAutoLockedSetting.Name = "rBtnNoAutoLockedSetting";
+            this.rBtnNoAutoLockedSetting.Size = new System.Drawing.Size(59, 16);
+            this.rBtnNoAutoLockedSetting.TabIndex = 51;
+            this.rBtnNoAutoLockedSetting.Text = "不启用";
+            this.rBtnNoAutoLockedSetting.UseVisualStyleBackColor = true;
+            // 
+            // rBtnAutoLockedSetting
+            // 
+            this.rBtnAutoLockedSetting.AutoSize = true;
+            this.rBtnAutoLockedSetting.Checked = true;
+            this.rBtnAutoLockedSetting.Location = new System.Drawing.Point(4, 25);
+            this.rBtnAutoLockedSetting.Name = "rBtnAutoLockedSetting";
+            this.rBtnAutoLockedSetting.Size = new System.Drawing.Size(47, 16);
+            this.rBtnAutoLockedSetting.TabIndex = 52;
+            this.rBtnAutoLockedSetting.TabStop = true;
+            this.rBtnAutoLockedSetting.Text = "启用";
+            this.rBtnAutoLockedSetting.UseVisualStyleBackColor = true;
+            // 
+            // btnReadAutoLockedSetting
+            // 
+            this.btnReadAutoLockedSetting.Location = new System.Drawing.Point(309, 64);
+            this.btnReadAutoLockedSetting.Name = "btnReadAutoLockedSetting";
+            this.btnReadAutoLockedSetting.Size = new System.Drawing.Size(48, 23);
+            this.btnReadAutoLockedSetting.TabIndex = 36;
+            this.btnReadAutoLockedSetting.Text = "读取";
+            this.btnReadAutoLockedSetting.UseVisualStyleBackColor = true;
+            this.btnReadAutoLockedSetting.Click += new System.EventHandler(this.BtnReadAutoLockedSetting_Click);
+            // 
+            // dgvLockTime
+            // 
+            this.dgvLockTime.AllowUserToAddRows = false;
+            this.dgvLockTime.AllowUserToDeleteRows = false;
+            this.dgvLockTime.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLockTime.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.EX2,
+            this.IsEx2,
+            this.WeekDay2,
+            this.StartTime2,
+            this.EndTime2});
+            this.dgvLockTime.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvLockTime.Location = new System.Drawing.Point(6, 15);
+            this.dgvLockTime.Name = "dgvLockTime";
+            this.dgvLockTime.ReadOnly = true;
+            this.dgvLockTime.RowHeadersVisible = false;
+            this.dgvLockTime.RowHeadersWidth = 51;
+            this.dgvLockTime.RowTemplate.Height = 23;
+            this.dgvLockTime.Size = new System.Drawing.Size(297, 158);
+            this.dgvLockTime.TabIndex = 40;
+            this.dgvLockTime.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvLockTime_CellClick);
+            // 
+            // EX2
+            // 
+            this.EX2.DataPropertyName = "EX";
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.EX2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.EX2.HeaderText = "";
+            this.EX2.MinimumWidth = 6;
+            this.EX2.Name = "EX2";
+            this.EX2.ReadOnly = true;
+            this.EX2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.EX2.Width = 20;
+            // 
+            // IsEx2
+            // 
+            this.IsEx2.DataPropertyName = "IsEx";
+            this.IsEx2.HeaderText = "是否显示";
+            this.IsEx2.MinimumWidth = 6;
+            this.IsEx2.Name = "IsEx2";
+            this.IsEx2.ReadOnly = true;
+            this.IsEx2.Visible = false;
+            this.IsEx2.Width = 125;
+            // 
+            // WeekDay2
+            // 
+            this.WeekDay2.DataPropertyName = "WeekDay";
+            this.WeekDay2.HeaderText = "星期";
+            this.WeekDay2.MinimumWidth = 6;
+            this.WeekDay2.Name = "WeekDay2";
+            this.WeekDay2.ReadOnly = true;
+            this.WeekDay2.Width = 60;
+            // 
+            // StartTime2
+            // 
+            this.StartTime2.DataPropertyName = "StartTime";
+            this.StartTime2.HeaderText = "开始时间";
+            this.StartTime2.MinimumWidth = 6;
+            this.StartTime2.Name = "StartTime2";
+            this.StartTime2.ReadOnly = true;
+            this.StartTime2.Width = 80;
+            // 
+            // EndTime2
+            // 
+            this.EndTime2.DataPropertyName = "EndTime";
+            this.EndTime2.HeaderText = "结束时间";
+            this.EndTime2.MinimumWidth = 6;
+            this.EndTime2.Name = "EndTime2";
+            this.EndTime2.ReadOnly = true;
+            this.EndTime2.Width = 80;
             // 
             // tabPage1
             // 
@@ -1135,165 +1351,736 @@
             this.label57.TabIndex = 88;
             this.label57.Text = "启用高级功能：";
             // 
-            // tabPage2
+            // tabControl1
             // 
-            this.tabPage2.Controls.Add(this.btnWriteAutoLockedSetting);
-            this.tabPage2.Controls.Add(this.panel1);
-            this.tabPage2.Controls.Add(this.btnReadAutoLockedSetting);
-            this.tabPage2.Controls.Add(this.dgvLockTime);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1121, 215);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "定时锁定窗口";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Location = new System.Drawing.Point(123, 505);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1129, 241);
+            this.tabControl1.TabIndex = 9;
             // 
-            // label2
+            // groupBox5
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 515);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "端口号：";
+            this.groupBox5.Controls.Add(this.btnWriteUnlockingTime);
+            this.groupBox5.Controls.Add(this.btnReadUnlockingTime);
+            this.groupBox5.Location = new System.Drawing.Point(615, 450);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(136, 49);
+            this.groupBox5.TabIndex = 10;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "开锁时长";
             // 
-            // cmbDoorNum
+            // btnWriteUnlockingTime
             // 
-            this.cmbDoorNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDoorNum.FormattingEnabled = true;
-            this.cmbDoorNum.Location = new System.Drawing.Point(69, 512);
-            this.cmbDoorNum.Name = "cmbDoorNum";
-            this.cmbDoorNum.Size = new System.Drawing.Size(48, 20);
-            this.cmbDoorNum.TabIndex = 2;
+            this.btnWriteUnlockingTime.Location = new System.Drawing.Point(78, 19);
+            this.btnWriteUnlockingTime.Name = "btnWriteUnlockingTime";
+            this.btnWriteUnlockingTime.Size = new System.Drawing.Size(41, 23);
+            this.btnWriteUnlockingTime.TabIndex = 3;
+            this.btnWriteUnlockingTime.Text = "写入";
+            this.btnWriteUnlockingTime.UseVisualStyleBackColor = true;
+            this.btnWriteUnlockingTime.Click += new System.EventHandler(this.BtnWriteUnlockingTime_Click);
             // 
-            // dgvLockTime
+            // btnReadUnlockingTime
             // 
-            this.dgvLockTime.AllowUserToAddRows = false;
-            this.dgvLockTime.AllowUserToDeleteRows = false;
-            this.dgvLockTime.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLockTime.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.EX2,
-            this.IsEx2,
-            this.WeekDay2,
-            this.StartTime2,
-            this.EndTime2});
-            this.dgvLockTime.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvLockTime.Location = new System.Drawing.Point(6, 15);
-            this.dgvLockTime.Name = "dgvLockTime";
-            this.dgvLockTime.ReadOnly = true;
-            this.dgvLockTime.RowHeadersVisible = false;
-            this.dgvLockTime.RowHeadersWidth = 51;
-            this.dgvLockTime.RowTemplate.Height = 23;
-            this.dgvLockTime.Size = new System.Drawing.Size(297, 158);
-            this.dgvLockTime.TabIndex = 40;
-            this.dgvLockTime.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvLockTime_CellClick);
+            this.btnReadUnlockingTime.Location = new System.Drawing.Point(15, 19);
+            this.btnReadUnlockingTime.Name = "btnReadUnlockingTime";
+            this.btnReadUnlockingTime.Size = new System.Drawing.Size(45, 23);
+            this.btnReadUnlockingTime.TabIndex = 3;
+            this.btnReadUnlockingTime.Text = "读取";
+            this.btnReadUnlockingTime.UseVisualStyleBackColor = true;
+            this.btnReadUnlockingTime.Click += new System.EventHandler(this.BtnReadUnlockingTime_Click_1);
             // 
-            // EX2
+            // tabPage3
             // 
-            this.EX2.DataPropertyName = "EX";
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.EX2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.EX2.HeaderText = "";
-            this.EX2.MinimumWidth = 6;
-            this.EX2.Name = "EX2";
-            this.EX2.ReadOnly = true;
-            this.EX2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.EX2.Width = 20;
+            this.tabPage3.Controls.Add(this.OutDoorTimePanel);
+            this.tabPage3.Controls.Add(this.panel5);
+            this.tabPage3.Controls.Add(this.btnWriteOutDoorSwitch);
+            this.tabPage3.Controls.Add(this.btnReadOutDoorSwitch);
+            this.tabPage3.Controls.Add(this.label41);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1121, 215);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "出门开关参数";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // IsEx2
+            // OutDoorTimePanel
             // 
-            this.IsEx2.DataPropertyName = "IsEx";
-            this.IsEx2.HeaderText = "是否显示";
-            this.IsEx2.MinimumWidth = 6;
-            this.IsEx2.Name = "IsEx2";
-            this.IsEx2.ReadOnly = true;
-            this.IsEx2.Visible = false;
-            this.IsEx2.Width = 125;
+            this.OutDoorTimePanel.Controls.Add(this.label4);
+            this.OutDoorTimePanel.Controls.Add(this.btnFillNowTimeOutDoor);
+            this.OutDoorTimePanel.Controls.Add(this.cbxWeekOutDoor);
+            this.OutDoorTimePanel.Controls.Add(this.label3);
+            this.OutDoorTimePanel.Controls.Add(this.EndTPOutDoor8);
+            this.OutDoorTimePanel.Controls.Add(this.label5);
+            this.OutDoorTimePanel.Controls.Add(this.beginTPOutDoor8);
+            this.OutDoorTimePanel.Controls.Add(this.label6);
+            this.OutDoorTimePanel.Controls.Add(this.EndTPOutDoor4);
+            this.OutDoorTimePanel.Controls.Add(this.label7);
+            this.OutDoorTimePanel.Controls.Add(this.beginTPOutDoor4);
+            this.OutDoorTimePanel.Controls.Add(this.label8);
+            this.OutDoorTimePanel.Controls.Add(this.EndTPOutDoor7);
+            this.OutDoorTimePanel.Controls.Add(this.label9);
+            this.OutDoorTimePanel.Controls.Add(this.beginTPOutDoor7);
+            this.OutDoorTimePanel.Controls.Add(this.label10);
+            this.OutDoorTimePanel.Controls.Add(this.EndTPOutDoor3);
+            this.OutDoorTimePanel.Controls.Add(this.label11);
+            this.OutDoorTimePanel.Controls.Add(this.beginTPOutDoor3);
+            this.OutDoorTimePanel.Controls.Add(this.label12);
+            this.OutDoorTimePanel.Controls.Add(this.EndTPOutDoor6);
+            this.OutDoorTimePanel.Controls.Add(this.label13);
+            this.OutDoorTimePanel.Controls.Add(this.beginTPOutDoor6);
+            this.OutDoorTimePanel.Controls.Add(this.label14);
+            this.OutDoorTimePanel.Controls.Add(this.EndTPOutDoor2);
+            this.OutDoorTimePanel.Controls.Add(this.label15);
+            this.OutDoorTimePanel.Controls.Add(this.beginTPOutDoor2);
+            this.OutDoorTimePanel.Controls.Add(this.label16);
+            this.OutDoorTimePanel.Controls.Add(this.EndTPOutDoor5);
+            this.OutDoorTimePanel.Controls.Add(this.label22);
+            this.OutDoorTimePanel.Controls.Add(this.beginTPOutDoor5);
+            this.OutDoorTimePanel.Controls.Add(this.label24);
+            this.OutDoorTimePanel.Controls.Add(this.EndTPOutDoor1);
+            this.OutDoorTimePanel.Controls.Add(this.label38);
+            this.OutDoorTimePanel.Controls.Add(this.beginTPOutDoor1);
+            this.OutDoorTimePanel.Location = new System.Drawing.Point(76, 30);
+            this.OutDoorTimePanel.Name = "OutDoorTimePanel";
+            this.OutDoorTimePanel.Size = new System.Drawing.Size(713, 125);
+            this.OutDoorTimePanel.TabIndex = 100;
+            this.OutDoorTimePanel.Visible = false;
             // 
-            // WeekDay2
+            // btnFillNowTimeOutDoor
             // 
-            this.WeekDay2.DataPropertyName = "WeekDay";
-            this.WeekDay2.HeaderText = "星期";
-            this.WeekDay2.MinimumWidth = 6;
-            this.WeekDay2.Name = "WeekDay2";
-            this.WeekDay2.ReadOnly = true;
-            this.WeekDay2.Width = 60;
+            this.btnFillNowTimeOutDoor.Location = new System.Drawing.Point(604, 14);
+            this.btnFillNowTimeOutDoor.Name = "btnFillNowTimeOutDoor";
+            this.btnFillNowTimeOutDoor.Size = new System.Drawing.Size(95, 23);
+            this.btnFillNowTimeOutDoor.TabIndex = 118;
+            this.btnFillNowTimeOutDoor.Text = "填充 现在时间";
+            this.btnFillNowTimeOutDoor.UseVisualStyleBackColor = true;
+            this.btnFillNowTimeOutDoor.Click += new System.EventHandler(this.BtnFillNowTimeOutDoor_Click);
             // 
-            // StartTime2
+            // label3
             // 
-            this.StartTime2.DataPropertyName = "StartTime";
-            this.StartTime2.HeaderText = "开始时间";
-            this.StartTime2.MinimumWidth = 6;
-            this.StartTime2.Name = "StartTime2";
-            this.StartTime2.ReadOnly = true;
-            this.StartTime2.Width = 80;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(507, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 12);
+            this.label3.TabIndex = 117;
+            this.label3.Text = "结束时间8";
             // 
-            // EndTime2
+            // EndTPOutDoor8
             // 
-            this.EndTime2.DataPropertyName = "EndTime";
-            this.EndTime2.HeaderText = "结束时间";
-            this.EndTime2.MinimumWidth = 6;
-            this.EndTime2.Name = "EndTime2";
-            this.EndTime2.ReadOnly = true;
-            this.EndTime2.Width = 80;
+            this.EndTPOutDoor8.CustomFormat = "HH:mm";
+            this.EndTPOutDoor8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.EndTPOutDoor8.Location = new System.Drawing.Point(509, 90);
+            this.EndTPOutDoor8.Name = "EndTPOutDoor8";
+            this.EndTPOutDoor8.ShowUpDown = true;
+            this.EndTPOutDoor8.Size = new System.Drawing.Size(57, 21);
+            this.EndTPOutDoor8.TabIndex = 116;
+            this.EndTPOutDoor8.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.EndTPOutDoor8.ValueChanged += new System.EventHandler(this.EndTPOutDoor_ValueChanged);
             // 
-            // panel1
+            // label5
             // 
-            this.panel1.Controls.Add(this.rBtnNoAutoLockedSetting);
-            this.panel1.Controls.Add(this.rBtnAutoLockedSetting);
-            this.panel1.Location = new System.Drawing.Point(309, 15);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(70, 43);
-            this.panel1.TabIndex = 81;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(442, 75);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 12);
+            this.label5.TabIndex = 115;
+            this.label5.Text = "开始时间8";
             // 
-            // rBtnNoAutoLockedSetting
+            // beginTPOutDoor8
             // 
-            this.rBtnNoAutoLockedSetting.AutoSize = true;
-            this.rBtnNoAutoLockedSetting.Location = new System.Drawing.Point(4, 3);
-            this.rBtnNoAutoLockedSetting.Name = "rBtnNoAutoLockedSetting";
-            this.rBtnNoAutoLockedSetting.Size = new System.Drawing.Size(59, 16);
-            this.rBtnNoAutoLockedSetting.TabIndex = 51;
-            this.rBtnNoAutoLockedSetting.Text = "不启用";
-            this.rBtnNoAutoLockedSetting.UseVisualStyleBackColor = true;
+            this.beginTPOutDoor8.CustomFormat = "HH:mm";
+            this.beginTPOutDoor8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginTPOutDoor8.Location = new System.Drawing.Point(444, 90);
+            this.beginTPOutDoor8.Name = "beginTPOutDoor8";
+            this.beginTPOutDoor8.ShowUpDown = true;
+            this.beginTPOutDoor8.Size = new System.Drawing.Size(57, 21);
+            this.beginTPOutDoor8.TabIndex = 114;
+            this.beginTPOutDoor8.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTPOutDoor8.ValueChanged += new System.EventHandler(this.BeginTPOutDoor_ValueChanged);
             // 
-            // rBtnAutoLockedSetting
+            // label6
             // 
-            this.rBtnAutoLockedSetting.AutoSize = true;
-            this.rBtnAutoLockedSetting.Checked = true;
-            this.rBtnAutoLockedSetting.Location = new System.Drawing.Point(4, 25);
-            this.rBtnAutoLockedSetting.Name = "rBtnAutoLockedSetting";
-            this.rBtnAutoLockedSetting.Size = new System.Drawing.Size(47, 16);
-            this.rBtnAutoLockedSetting.TabIndex = 52;
-            this.rBtnAutoLockedSetting.TabStop = true;
-            this.rBtnAutoLockedSetting.Text = "启用";
-            this.rBtnAutoLockedSetting.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(507, 31);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 12);
+            this.label6.TabIndex = 113;
+            this.label6.Text = "结束时间4";
             // 
-            // btnWriteAutoLockedSetting
+            // EndTPOutDoor4
             // 
-            this.btnWriteAutoLockedSetting.Location = new System.Drawing.Point(309, 93);
-            this.btnWriteAutoLockedSetting.Name = "btnWriteAutoLockedSetting";
-            this.btnWriteAutoLockedSetting.Size = new System.Drawing.Size(48, 23);
-            this.btnWriteAutoLockedSetting.TabIndex = 37;
-            this.btnWriteAutoLockedSetting.Text = "写入";
-            this.btnWriteAutoLockedSetting.UseVisualStyleBackColor = true;
-            this.btnWriteAutoLockedSetting.Click += new System.EventHandler(this.BtnWriteAutoLockedSetting_Click);
+            this.EndTPOutDoor4.CustomFormat = "HH:mm";
+            this.EndTPOutDoor4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.EndTPOutDoor4.Location = new System.Drawing.Point(509, 46);
+            this.EndTPOutDoor4.Name = "EndTPOutDoor4";
+            this.EndTPOutDoor4.ShowUpDown = true;
+            this.EndTPOutDoor4.Size = new System.Drawing.Size(57, 21);
+            this.EndTPOutDoor4.TabIndex = 112;
+            this.EndTPOutDoor4.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.EndTPOutDoor4.ValueChanged += new System.EventHandler(this.EndTPOutDoor_ValueChanged);
             // 
-            // btnReadAutoLockedSetting
+            // label7
             // 
-            this.btnReadAutoLockedSetting.Location = new System.Drawing.Point(309, 64);
-            this.btnReadAutoLockedSetting.Name = "btnReadAutoLockedSetting";
-            this.btnReadAutoLockedSetting.Size = new System.Drawing.Size(48, 23);
-            this.btnReadAutoLockedSetting.TabIndex = 36;
-            this.btnReadAutoLockedSetting.Text = "读取";
-            this.btnReadAutoLockedSetting.UseVisualStyleBackColor = true;
-            this.btnReadAutoLockedSetting.Click += new System.EventHandler(this.BtnReadAutoLockedSetting_Click);
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(442, 31);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 12);
+            this.label7.TabIndex = 111;
+            this.label7.Text = "开始时间4";
+            // 
+            // beginTPOutDoor4
+            // 
+            this.beginTPOutDoor4.CustomFormat = "HH:mm";
+            this.beginTPOutDoor4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginTPOutDoor4.Location = new System.Drawing.Point(444, 46);
+            this.beginTPOutDoor4.Name = "beginTPOutDoor4";
+            this.beginTPOutDoor4.ShowUpDown = true;
+            this.beginTPOutDoor4.Size = new System.Drawing.Size(57, 21);
+            this.beginTPOutDoor4.TabIndex = 110;
+            this.beginTPOutDoor4.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTPOutDoor4.ValueChanged += new System.EventHandler(this.BeginTPOutDoor_ValueChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(361, 75);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(59, 12);
+            this.label8.TabIndex = 109;
+            this.label8.Text = "结束时间7";
+            // 
+            // EndTPOutDoor7
+            // 
+            this.EndTPOutDoor7.CustomFormat = "HH:mm";
+            this.EndTPOutDoor7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.EndTPOutDoor7.Location = new System.Drawing.Point(363, 90);
+            this.EndTPOutDoor7.Name = "EndTPOutDoor7";
+            this.EndTPOutDoor7.ShowUpDown = true;
+            this.EndTPOutDoor7.Size = new System.Drawing.Size(57, 21);
+            this.EndTPOutDoor7.TabIndex = 108;
+            this.EndTPOutDoor7.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.EndTPOutDoor7.ValueChanged += new System.EventHandler(this.EndTPOutDoor_ValueChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(296, 75);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(59, 12);
+            this.label9.TabIndex = 107;
+            this.label9.Text = "开始时间7";
+            // 
+            // beginTPOutDoor7
+            // 
+            this.beginTPOutDoor7.CustomFormat = "HH:mm";
+            this.beginTPOutDoor7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginTPOutDoor7.Location = new System.Drawing.Point(298, 90);
+            this.beginTPOutDoor7.Name = "beginTPOutDoor7";
+            this.beginTPOutDoor7.ShowUpDown = true;
+            this.beginTPOutDoor7.Size = new System.Drawing.Size(57, 21);
+            this.beginTPOutDoor7.TabIndex = 106;
+            this.beginTPOutDoor7.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTPOutDoor7.ValueChanged += new System.EventHandler(this.BeginTPOutDoor_ValueChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(361, 31);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(59, 12);
+            this.label10.TabIndex = 105;
+            this.label10.Text = "结束时间3";
+            // 
+            // EndTPOutDoor3
+            // 
+            this.EndTPOutDoor3.CustomFormat = "HH:mm";
+            this.EndTPOutDoor3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.EndTPOutDoor3.Location = new System.Drawing.Point(363, 46);
+            this.EndTPOutDoor3.Name = "EndTPOutDoor3";
+            this.EndTPOutDoor3.ShowUpDown = true;
+            this.EndTPOutDoor3.Size = new System.Drawing.Size(57, 21);
+            this.EndTPOutDoor3.TabIndex = 104;
+            this.EndTPOutDoor3.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.EndTPOutDoor3.ValueChanged += new System.EventHandler(this.EndTPOutDoor_ValueChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(296, 31);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 12);
+            this.label11.TabIndex = 103;
+            this.label11.Text = "开始时间3";
+            // 
+            // beginTPOutDoor3
+            // 
+            this.beginTPOutDoor3.CustomFormat = "HH:mm";
+            this.beginTPOutDoor3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginTPOutDoor3.Location = new System.Drawing.Point(298, 46);
+            this.beginTPOutDoor3.Name = "beginTPOutDoor3";
+            this.beginTPOutDoor3.ShowUpDown = true;
+            this.beginTPOutDoor3.Size = new System.Drawing.Size(57, 21);
+            this.beginTPOutDoor3.TabIndex = 102;
+            this.beginTPOutDoor3.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTPOutDoor3.ValueChanged += new System.EventHandler(this.BeginTPOutDoor_ValueChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(212, 75);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(59, 12);
+            this.label12.TabIndex = 101;
+            this.label12.Text = "结束时间6";
+            // 
+            // EndTPOutDoor6
+            // 
+            this.EndTPOutDoor6.CustomFormat = "HH:mm";
+            this.EndTPOutDoor6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.EndTPOutDoor6.Location = new System.Drawing.Point(214, 90);
+            this.EndTPOutDoor6.Name = "EndTPOutDoor6";
+            this.EndTPOutDoor6.ShowUpDown = true;
+            this.EndTPOutDoor6.Size = new System.Drawing.Size(57, 21);
+            this.EndTPOutDoor6.TabIndex = 100;
+            this.EndTPOutDoor6.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.EndTPOutDoor6.ValueChanged += new System.EventHandler(this.EndTPOutDoor_ValueChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(147, 75);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(59, 12);
+            this.label13.TabIndex = 99;
+            this.label13.Text = "开始时间6";
+            // 
+            // beginTPOutDoor6
+            // 
+            this.beginTPOutDoor6.CustomFormat = "HH:mm";
+            this.beginTPOutDoor6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginTPOutDoor6.Location = new System.Drawing.Point(149, 90);
+            this.beginTPOutDoor6.Name = "beginTPOutDoor6";
+            this.beginTPOutDoor6.ShowUpDown = true;
+            this.beginTPOutDoor6.Size = new System.Drawing.Size(57, 21);
+            this.beginTPOutDoor6.TabIndex = 98;
+            this.beginTPOutDoor6.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTPOutDoor6.ValueChanged += new System.EventHandler(this.BeginTPOutDoor_ValueChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(212, 31);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(59, 12);
+            this.label14.TabIndex = 97;
+            this.label14.Text = "结束时间2";
+            // 
+            // EndTPOutDoor2
+            // 
+            this.EndTPOutDoor2.CustomFormat = "HH:mm";
+            this.EndTPOutDoor2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.EndTPOutDoor2.Location = new System.Drawing.Point(214, 46);
+            this.EndTPOutDoor2.Name = "EndTPOutDoor2";
+            this.EndTPOutDoor2.ShowUpDown = true;
+            this.EndTPOutDoor2.Size = new System.Drawing.Size(57, 21);
+            this.EndTPOutDoor2.TabIndex = 96;
+            this.EndTPOutDoor2.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.EndTPOutDoor2.ValueChanged += new System.EventHandler(this.EndTPOutDoor_ValueChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(147, 31);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(59, 12);
+            this.label15.TabIndex = 95;
+            this.label15.Text = "开始时间2";
+            // 
+            // beginTPOutDoor2
+            // 
+            this.beginTPOutDoor2.CustomFormat = "HH:mm";
+            this.beginTPOutDoor2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginTPOutDoor2.Location = new System.Drawing.Point(149, 46);
+            this.beginTPOutDoor2.Name = "beginTPOutDoor2";
+            this.beginTPOutDoor2.ShowUpDown = true;
+            this.beginTPOutDoor2.Size = new System.Drawing.Size(57, 21);
+            this.beginTPOutDoor2.TabIndex = 94;
+            this.beginTPOutDoor2.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTPOutDoor2.ValueChanged += new System.EventHandler(this.BeginTPOutDoor_ValueChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(68, 75);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(59, 12);
+            this.label16.TabIndex = 93;
+            this.label16.Text = "结束时间5";
+            // 
+            // EndTPOutDoor5
+            // 
+            this.EndTPOutDoor5.CustomFormat = "HH:mm";
+            this.EndTPOutDoor5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.EndTPOutDoor5.Location = new System.Drawing.Point(70, 90);
+            this.EndTPOutDoor5.Name = "EndTPOutDoor5";
+            this.EndTPOutDoor5.ShowUpDown = true;
+            this.EndTPOutDoor5.Size = new System.Drawing.Size(57, 21);
+            this.EndTPOutDoor5.TabIndex = 92;
+            this.EndTPOutDoor5.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.EndTPOutDoor5.ValueChanged += new System.EventHandler(this.EndTPOutDoor_ValueChanged);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(3, 75);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(59, 12);
+            this.label22.TabIndex = 91;
+            this.label22.Text = "开始时间5";
+            // 
+            // beginTPOutDoor5
+            // 
+            this.beginTPOutDoor5.CustomFormat = "HH:mm";
+            this.beginTPOutDoor5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginTPOutDoor5.Location = new System.Drawing.Point(5, 90);
+            this.beginTPOutDoor5.Name = "beginTPOutDoor5";
+            this.beginTPOutDoor5.ShowUpDown = true;
+            this.beginTPOutDoor5.Size = new System.Drawing.Size(57, 21);
+            this.beginTPOutDoor5.TabIndex = 90;
+            this.beginTPOutDoor5.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTPOutDoor5.ValueChanged += new System.EventHandler(this.BeginTPOutDoor_ValueChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(68, 31);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(59, 12);
+            this.label24.TabIndex = 89;
+            this.label24.Text = "结束时间1";
+            // 
+            // EndTPOutDoor1
+            // 
+            this.EndTPOutDoor1.CustomFormat = "HH:mm";
+            this.EndTPOutDoor1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.EndTPOutDoor1.Location = new System.Drawing.Point(70, 46);
+            this.EndTPOutDoor1.Name = "EndTPOutDoor1";
+            this.EndTPOutDoor1.ShowUpDown = true;
+            this.EndTPOutDoor1.Size = new System.Drawing.Size(57, 21);
+            this.EndTPOutDoor1.TabIndex = 88;
+            this.EndTPOutDoor1.Value = new System.DateTime(2019, 5, 13, 23, 59, 0, 0);
+            this.EndTPOutDoor1.ValueChanged += new System.EventHandler(this.EndTPOutDoor_ValueChanged);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(3, 31);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(59, 12);
+            this.label38.TabIndex = 87;
+            this.label38.Text = "开始时间1";
+            // 
+            // beginTPOutDoor1
+            // 
+            this.beginTPOutDoor1.CustomFormat = "HH:mm";
+            this.beginTPOutDoor1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.beginTPOutDoor1.Location = new System.Drawing.Point(5, 46);
+            this.beginTPOutDoor1.Name = "beginTPOutDoor1";
+            this.beginTPOutDoor1.ShowUpDown = true;
+            this.beginTPOutDoor1.Size = new System.Drawing.Size(57, 21);
+            this.beginTPOutDoor1.TabIndex = 84;
+            this.beginTPOutDoor1.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTPOutDoor1.ValueChanged += new System.EventHandler(this.BeginTPOutDoor_ValueChanged);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.rBtnNoOutDoor);
+            this.panel5.Controls.Add(this.rBtnOutDoor);
+            this.panel5.Location = new System.Drawing.Point(158, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(125, 21);
+            this.panel5.TabIndex = 98;
+            // 
+            // rBtnNoOutDoor
+            // 
+            this.rBtnNoOutDoor.AutoSize = true;
+            this.rBtnNoOutDoor.Checked = true;
+            this.rBtnNoOutDoor.Location = new System.Drawing.Point(0, 3);
+            this.rBtnNoOutDoor.Name = "rBtnNoOutDoor";
+            this.rBtnNoOutDoor.Size = new System.Drawing.Size(59, 16);
+            this.rBtnNoOutDoor.TabIndex = 51;
+            this.rBtnNoOutDoor.TabStop = true;
+            this.rBtnNoOutDoor.Text = "不启用";
+            this.rBtnNoOutDoor.UseVisualStyleBackColor = true;
+            this.rBtnNoOutDoor.CheckedChanged += new System.EventHandler(this.RBtnNoOutDoor_CheckedChanged);
+            // 
+            // rBtnOutDoor
+            // 
+            this.rBtnOutDoor.AutoSize = true;
+            this.rBtnOutDoor.Location = new System.Drawing.Point(72, 3);
+            this.rBtnOutDoor.Name = "rBtnOutDoor";
+            this.rBtnOutDoor.Size = new System.Drawing.Size(47, 16);
+            this.rBtnOutDoor.TabIndex = 52;
+            this.rBtnOutDoor.Text = "启用";
+            this.rBtnOutDoor.UseVisualStyleBackColor = true;
+            this.rBtnOutDoor.CheckedChanged += new System.EventHandler(this.RBtnOutDoor_CheckedChanged);
+            // 
+            // btnWriteOutDoorSwitch
+            // 
+            this.btnWriteOutDoorSwitch.Location = new System.Drawing.Point(10, 44);
+            this.btnWriteOutDoorSwitch.Name = "btnWriteOutDoorSwitch";
+            this.btnWriteOutDoorSwitch.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteOutDoorSwitch.TabIndex = 97;
+            this.btnWriteOutDoorSwitch.Text = "写入";
+            this.btnWriteOutDoorSwitch.UseVisualStyleBackColor = true;
+            this.btnWriteOutDoorSwitch.Click += new System.EventHandler(this.BtnWriteOutDoorSwitch_Click);
+            // 
+            // btnReadOutDoorSwitch
+            // 
+            this.btnReadOutDoorSwitch.Location = new System.Drawing.Point(10, 6);
+            this.btnReadOutDoorSwitch.Name = "btnReadOutDoorSwitch";
+            this.btnReadOutDoorSwitch.Size = new System.Drawing.Size(48, 23);
+            this.btnReadOutDoorSwitch.TabIndex = 96;
+            this.btnReadOutDoorSwitch.Text = "读取";
+            this.btnReadOutDoorSwitch.UseVisualStyleBackColor = true;
+            this.btnReadOutDoorSwitch.Click += new System.EventHandler(this.BtnReadOutDoorSwitch_Click);
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(74, 9);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(89, 12);
+            this.label41.TabIndex = 95;
+            this.label41.Text = "启用高级功能：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 6);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(119, 12);
+            this.label4.TabIndex = 101;
+            this.label4.Text = "出门开关 生效时段：";
+            // 
+            // cbxWeekOutDoor
+            // 
+            this.cbxWeekOutDoor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxWeekOutDoor.FormattingEnabled = true;
+            this.cbxWeekOutDoor.Items.AddRange(new object[] {
+            "星期一",
+            "星期二",
+            "星期三",
+            "星期四",
+            "星期五",
+            "星期六",
+            "星期日"});
+            this.cbxWeekOutDoor.Location = new System.Drawing.Point(131, 3);
+            this.cbxWeekOutDoor.Name = "cbxWeekOutDoor";
+            this.cbxWeekOutDoor.Size = new System.Drawing.Size(104, 20);
+            this.cbxWeekOutDoor.TabIndex = 102;
+            this.cbxWeekOutDoor.SelectedIndexChanged += new System.EventHandler(this.CbxWeekOutDoor_SelectedIndexChanged);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.btnWriteFirstCardOpen);
+            this.tabPage4.Controls.Add(this.btnReadFirstCardOpen);
+            this.tabPage4.Controls.Add(this.cbIsPassword);
+            this.tabPage4.Controls.Add(this.label40);
+            this.tabPage4.Controls.Add(this.cbIsCardPassword);
+            this.tabPage4.Controls.Add(this.label39);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1121, 215);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "首卡开门参数";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(87, 25);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(101, 12);
+            this.label39.TabIndex = 0;
+            this.label39.Text = "刷卡或卡加密码：";
+            // 
+            // cbIsCardPassword
+            // 
+            this.cbIsCardPassword.AutoSize = true;
+            this.cbIsCardPassword.Location = new System.Drawing.Point(194, 24);
+            this.cbIsCardPassword.Name = "cbIsCardPassword";
+            this.cbIsCardPassword.Size = new System.Drawing.Size(96, 16);
+            this.cbIsCardPassword.TabIndex = 1;
+            this.cbIsCardPassword.Text = "是否允许通行";
+            this.cbIsCardPassword.UseVisualStyleBackColor = true;
+            // 
+            // cbIsPassword
+            // 
+            this.cbIsPassword.AutoSize = true;
+            this.cbIsPassword.Location = new System.Drawing.Point(368, 24);
+            this.cbIsPassword.Name = "cbIsPassword";
+            this.cbIsPassword.Size = new System.Drawing.Size(96, 16);
+            this.cbIsPassword.TabIndex = 3;
+            this.cbIsPassword.Text = "是否允许通行";
+            this.cbIsPassword.UseVisualStyleBackColor = true;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(321, 25);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(41, 12);
+            this.label40.TabIndex = 2;
+            this.label40.Text = "密码：";
+            // 
+            // btnWriteFirstCardOpen
+            // 
+            this.btnWriteFirstCardOpen.Location = new System.Drawing.Point(19, 58);
+            this.btnWriteFirstCardOpen.Name = "btnWriteFirstCardOpen";
+            this.btnWriteFirstCardOpen.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteFirstCardOpen.TabIndex = 92;
+            this.btnWriteFirstCardOpen.Text = "写入";
+            this.btnWriteFirstCardOpen.UseVisualStyleBackColor = true;
+            this.btnWriteFirstCardOpen.Click += new System.EventHandler(this.BtnWriteFirstCardOpen_Click);
+            // 
+            // btnReadFirstCardOpen
+            // 
+            this.btnReadFirstCardOpen.Location = new System.Drawing.Point(19, 20);
+            this.btnReadFirstCardOpen.Name = "btnReadFirstCardOpen";
+            this.btnReadFirstCardOpen.Size = new System.Drawing.Size(48, 23);
+            this.btnReadFirstCardOpen.TabIndex = 91;
+            this.btnReadFirstCardOpen.Text = "读取";
+            this.btnReadFirstCardOpen.UseVisualStyleBackColor = true;
+            this.btnReadFirstCardOpen.Click += new System.EventHandler(this.BtnReadFirstCardOpen_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label42);
+            this.groupBox6.Controls.Add(this.btnWriteGateMagneticAlarm);
+            this.groupBox6.Controls.Add(this.btnReadGateMagneticAlarm);
+            this.groupBox6.Location = new System.Drawing.Point(770, 450);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(333, 49);
+            this.groupBox6.TabIndex = 11;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "门磁报警参数";
+            // 
+            // btnReadGateMagneticAlarm
+            // 
+            this.btnReadGateMagneticAlarm.Location = new System.Drawing.Point(12, 19);
+            this.btnReadGateMagneticAlarm.Name = "btnReadGateMagneticAlarm";
+            this.btnReadGateMagneticAlarm.Size = new System.Drawing.Size(45, 23);
+            this.btnReadGateMagneticAlarm.TabIndex = 4;
+            this.btnReadGateMagneticAlarm.Text = "读取";
+            this.btnReadGateMagneticAlarm.UseVisualStyleBackColor = true;
+            this.btnReadGateMagneticAlarm.Click += new System.EventHandler(this.BtnReadGateMagneticAlarm_Click);
+            // 
+            // btnWriteGateMagneticAlarm
+            // 
+            this.btnWriteGateMagneticAlarm.Location = new System.Drawing.Point(69, 19);
+            this.btnWriteGateMagneticAlarm.Name = "btnWriteGateMagneticAlarm";
+            this.btnWriteGateMagneticAlarm.Size = new System.Drawing.Size(41, 23);
+            this.btnWriteGateMagneticAlarm.TabIndex = 4;
+            this.btnWriteGateMagneticAlarm.Text = "写入";
+            this.btnWriteGateMagneticAlarm.UseVisualStyleBackColor = true;
+            this.btnWriteGateMagneticAlarm.Click += new System.EventHandler(this.BtnWriteGateMagneticAlarm_Click);
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label42.Location = new System.Drawing.Point(114, 25);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(215, 12);
+            this.label42.TabIndex = 5;
+            this.label42.Text = "门磁关好5秒后，断开门磁即可触发报警";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.btnWriteOpenDoorTimeoutAlarm);
+            this.groupBox7.Controls.Add(this.btnReadOpenDoorTimeoutAlarm);
+            this.groupBox7.Location = new System.Drawing.Point(1116, 450);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(136, 49);
+            this.groupBox7.TabIndex = 11;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "开门时长";
+            // 
+            // btnWriteOpenDoorTimeoutAlarm
+            // 
+            this.btnWriteOpenDoorTimeoutAlarm.Location = new System.Drawing.Point(78, 19);
+            this.btnWriteOpenDoorTimeoutAlarm.Name = "btnWriteOpenDoorTimeoutAlarm";
+            this.btnWriteOpenDoorTimeoutAlarm.Size = new System.Drawing.Size(41, 23);
+            this.btnWriteOpenDoorTimeoutAlarm.TabIndex = 3;
+            this.btnWriteOpenDoorTimeoutAlarm.Text = "写入";
+            this.btnWriteOpenDoorTimeoutAlarm.UseVisualStyleBackColor = true;
+            this.btnWriteOpenDoorTimeoutAlarm.Click += new System.EventHandler(this.BtnWriteOpenDoorTimeoutAlarm_Click);
+            // 
+            // btnReadOpenDoorTimeoutAlarm
+            // 
+            this.btnReadOpenDoorTimeoutAlarm.Location = new System.Drawing.Point(15, 19);
+            this.btnReadOpenDoorTimeoutAlarm.Name = "btnReadOpenDoorTimeoutAlarm";
+            this.btnReadOpenDoorTimeoutAlarm.Size = new System.Drawing.Size(45, 23);
+            this.btnReadOpenDoorTimeoutAlarm.TabIndex = 3;
+            this.btnReadOpenDoorTimeoutAlarm.Text = "读取";
+            this.btnReadOpenDoorTimeoutAlarm.UseVisualStyleBackColor = true;
+            this.btnReadOpenDoorTimeoutAlarm.Click += new System.EventHandler(this.BtnReadOpenDoorTimeoutAlarm_Click);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.btnWriteCancelDoorAlarm);
+            this.tabPage5.Controls.Add(this.cmbAlarmCode);
+            this.tabPage5.Controls.Add(this.label43);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1121, 215);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "解除端口警报";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(110, 18);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(65, 12);
+            this.label43.TabIndex = 0;
+            this.label43.Text = "报警代码：";
+            // 
+            // cmbAlarmCode
+            // 
+            this.cmbAlarmCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAlarmCode.FormattingEnabled = true;
+            this.cmbAlarmCode.Location = new System.Drawing.Point(172, 15);
+            this.cmbAlarmCode.Name = "cmbAlarmCode";
+            this.cmbAlarmCode.Size = new System.Drawing.Size(121, 20);
+            this.cmbAlarmCode.TabIndex = 1;
+            // 
+            // btnWriteCancelDoorAlarm
+            // 
+            this.btnWriteCancelDoorAlarm.Location = new System.Drawing.Point(19, 13);
+            this.btnWriteCancelDoorAlarm.Name = "btnWriteCancelDoorAlarm";
+            this.btnWriteCancelDoorAlarm.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteCancelDoorAlarm.TabIndex = 94;
+            this.btnWriteCancelDoorAlarm.Text = "写入";
+            this.btnWriteCancelDoorAlarm.UseVisualStyleBackColor = true;
+            this.btnWriteCancelDoorAlarm.Click += new System.EventHandler(this.BtnWriteCancelDoorAlarm_Click);
             // 
             // frmDoor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 832);
+            this.Controls.Add(this.groupBox7);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -1304,6 +2091,7 @@
             this.Name = "frmDoor";
             this.Text = "端口设置";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmDoor_FormClosed);
+            this.Load += new System.EventHandler(this.FrmDoor_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDoor4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDoor3)).EndInit();
@@ -1313,7 +2101,10 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLockTime)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.DoorOpenTimePanel.ResumeLayout(false);
@@ -1324,10 +2115,21 @@
             this.OpenDoorWayPanel.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLockTime)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.OutDoorTimePanel.ResumeLayout(false);
+            this.OutDoorTimePanel.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1368,31 +2170,29 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Timefwefew;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.ComboBox cmbDoorNum;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button btnWriteAutoLockedSetting;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton rBtnNoAutoLockedSetting;
+        private System.Windows.Forms.RadioButton rBtnAutoLockedSetting;
+        private System.Windows.Forms.Button btnReadAutoLockedSetting;
+        private System.Windows.Forms.DataGridView dgvLockTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EX2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsEx2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WeekDay2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StartTime2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EndTime2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Panel DoorOpenTimePanel;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.ComboBox cbxWeek;
+        private System.Windows.Forms.Button btnFillNowTime;
+        private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Panel DoorTriggerModePanel;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.RadioButton rBtnDoorTriggerMode3;
         private System.Windows.Forms.RadioButton rBtnDoorTriggerMode1;
         private System.Windows.Forms.RadioButton rBtnDoorTriggerMode2;
-        private System.Windows.Forms.Panel OpenDoorWayPanel;
-        private System.Windows.Forms.RadioButton rBtnOpenDoorWay4;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.RadioButton rBtnOpenDoorWay3;
-        private System.Windows.Forms.RadioButton rBtnOpenDoorWay1;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.RadioButton rBtnNoDoorWorkSetting;
-        private System.Windows.Forms.RadioButton rBtnDoorWorkSetting;
-        private System.Windows.Forms.Button btnWriteWorkSetting;
-        private System.Windows.Forms.Button btnReadWorkSetting;
-        private System.Windows.Forms.Label label57;
-        private System.Windows.Forms.ComboBox cmbDoorNum;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label label34;
         private System.Windows.Forms.DateTimePicker endTimePicker8;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.DateTimePicker beginTimePicker8;
@@ -1423,18 +2223,84 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.DateTimePicker endTimePicker1;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.DateTimePicker beginTimePicker1;
-        private System.Windows.Forms.Button btnFillNowTime;
-        private System.Windows.Forms.Button btnWriteAutoLockedSetting;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton rBtnNoAutoLockedSetting;
-        private System.Windows.Forms.RadioButton rBtnAutoLockedSetting;
-        private System.Windows.Forms.Button btnReadAutoLockedSetting;
-        private System.Windows.Forms.DataGridView dgvLockTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EX2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IsEx2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WeekDay2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StartTime2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EndTime2;
+        private System.Windows.Forms.ComboBox cbxWeek;
+        private System.Windows.Forms.Panel OpenDoorWayPanel;
+        private System.Windows.Forms.RadioButton rBtnOpenDoorWay4;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.RadioButton rBtnOpenDoorWay3;
+        private System.Windows.Forms.RadioButton rBtnOpenDoorWay1;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.RadioButton rBtnNoDoorWorkSetting;
+        private System.Windows.Forms.RadioButton rBtnDoorWorkSetting;
+        private System.Windows.Forms.Button btnWriteWorkSetting;
+        private System.Windows.Forms.Button btnReadWorkSetting;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btnWriteUnlockingTime;
+        private System.Windows.Forms.Button btnReadUnlockingTime;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Panel OutDoorTimePanel;
+        private System.Windows.Forms.Button btnFillNowTimeOutDoor;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker EndTPOutDoor8;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker beginTPOutDoor8;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DateTimePicker EndTPOutDoor4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker beginTPOutDoor4;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker EndTPOutDoor7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker beginTPOutDoor7;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DateTimePicker EndTPOutDoor3;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DateTimePicker beginTPOutDoor3;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DateTimePicker EndTPOutDoor6;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DateTimePicker beginTPOutDoor6;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.DateTimePicker EndTPOutDoor2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DateTimePicker beginTPOutDoor2;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.DateTimePicker EndTPOutDoor5;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.DateTimePicker beginTPOutDoor5;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.DateTimePicker EndTPOutDoor1;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.DateTimePicker beginTPOutDoor1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.RadioButton rBtnNoOutDoor;
+        private System.Windows.Forms.RadioButton rBtnOutDoor;
+        private System.Windows.Forms.Button btnWriteOutDoorSwitch;
+        private System.Windows.Forms.Button btnReadOutDoorSwitch;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbxWeekOutDoor;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.CheckBox cbIsPassword;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.CheckBox cbIsCardPassword;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Button btnWriteFirstCardOpen;
+        private System.Windows.Forms.Button btnReadFirstCardOpen;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button btnWriteGateMagneticAlarm;
+        private System.Windows.Forms.Button btnReadGateMagneticAlarm;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Button btnWriteOpenDoorTimeoutAlarm;
+        private System.Windows.Forms.Button btnReadOpenDoorTimeoutAlarm;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Button btnWriteCancelDoorAlarm;
+        private System.Windows.Forms.ComboBox cmbAlarmCode;
+        private System.Windows.Forms.Label label43;
     }
 }

@@ -35,7 +35,7 @@ namespace FCARDIO.Protocol.Util
         /// <returns></returns>
         public static byte BCDToByte(byte iNum)
         {
-            if (iNum == 255)
+            if (iNum > 59)
             {
                 return 0;
             }

@@ -104,6 +104,10 @@ namespace FCARDIO.Protocol.Elevator.Test
 
         public void SetWeekTimeGroupValue(WeekTimeGroup tg,int weekDayIndex, int timeSegmentIndex, int type, DateTime dateTime)
         {
+            if (weekDayIndex == -1)
+            {
+                weekDayIndex = 0;
+            }
             TimeSegment ts = tg.GetItem(weekDayIndex).GetItem(timeSegmentIndex);
             if (type == 1)
             {

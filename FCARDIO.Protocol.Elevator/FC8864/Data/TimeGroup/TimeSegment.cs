@@ -126,7 +126,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Data.TimeGroup
             //byte b2 = bBuf.ReadByte();
             //byte b3 = bBuf.ReadByte();
             //byte b4 = bBuf.ReadByte();
-            //if (b1 != 255)
+            //if (b1 > 96)
             //{
             //    mBeginTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(b1), ByteUtil.BCDToByte(b2), 0);
             //    mEndTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(b3), ByteUtil.BCDToByte(b4), 0);

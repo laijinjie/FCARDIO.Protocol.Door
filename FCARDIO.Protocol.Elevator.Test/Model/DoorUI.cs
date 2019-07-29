@@ -12,6 +12,6 @@ namespace FCARDIO.Protocol.Elevator.Test.Model
         public int Index { get; set; }
         public string OutputFormat { get; set; }
 
-        public int Time { get; set; }
+        public string Time { get; set; }
     }
 }

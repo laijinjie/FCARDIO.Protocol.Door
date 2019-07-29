@@ -109,7 +109,11 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Data.TimeGroup
         /// <returns></returns>
         public DayTimeGroup GetItem(int index)
         {
-            return mDay[index];
+            if (index != -1)
+            {
+                return mDay[index];
+            }
+            return null;
         }
 
         /// <summary>

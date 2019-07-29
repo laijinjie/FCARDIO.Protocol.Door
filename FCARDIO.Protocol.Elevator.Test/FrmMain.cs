@@ -763,7 +763,12 @@ namespace FCARDIO.Protocol.Elevator.Test
         private void butHoliday_Click(object sender, EventArgs e)
         {
 
-            
+            frmHoliday frm = frmHoliday.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
         }
 
         private void ButPassword_Click(object sender, EventArgs e)
@@ -773,7 +778,12 @@ namespace FCARDIO.Protocol.Elevator.Test
 
         private void ButTimeGroup_Click(object sender, EventArgs e)
         {
-            
+            frmTimeGroup frm = frmTimeGroup.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
         }
 
         private void butCard_Click(object sender, EventArgs e)
