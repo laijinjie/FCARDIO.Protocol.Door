@@ -15,7 +15,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     /// </summary>
     public class AddPassword : WritePasswordBase<PasswordDetail,Password_Parameter>
     {
-        
+       
         /// <summary>
         /// 初始化参数
         /// </summary>

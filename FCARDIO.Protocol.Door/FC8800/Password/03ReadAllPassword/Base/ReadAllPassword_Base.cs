@@ -21,20 +21,43 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         protected List<IByteBuffer> mReadBuffers;
 
         /// <summary>
+        /// 指令分类
+        /// </summary>
+        protected byte CmdType;
+
+        /// <summary>
+        /// 返回指令分类
+        /// </summary>
+        protected byte CheckResponseCmdType;
+
+
+        /// <summary>
         /// 初始化命令结构
         /// </summary>
         /// <param name="cd"></param>
         public ReadAllPassword_Base(INCommandDetail cd) : base(cd)
         {
-
+            CmdType = 0x05;
+            CheckResponseCmdType = 0x05;
         }
+
         /// <summary>
-        /// 
+        /// 创建一个通讯指令
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            Packet(CmdType, 3);
+            mReadBuffers = new List<IByteBuffer>();
+            _ProcessMax = 1;
+        }
+
+        /// <summary>
+        /// 处理返回值
         /// </summary>
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck))
+            if (CheckResponse(oPck, CheckResponseCmdType, 3,0))
             {
                 var buf = oPck.CmdData;
                 buf.Retain();
@@ -42,7 +65,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 CommandWaitResponse();
             }
 
-            if (CheckResponse(oPck, 5, 3, 0xff, 4))
+            if (CheckResponse(oPck, CheckResponseCmdType, 3, 0xff, 4))
             {
                 var buf = oPck.CmdData;
                 int iTotal = buf.ReadInt();
@@ -77,15 +100,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="passwordList"></param>
         protected abstract ReadAllPassword_Result_Base<T> CreateResult(List<T> passwordList);
 
-        /// <summary>
-        /// 创建一个通讯指令
-        /// </summary>
-        protected override void CreatePacket0()
-        {
-            Packet(5, 3);
-            mReadBuffers = new List<IByteBuffer>();
-            _ProcessMax = 1;
-        }
+       
 
         /// <summary>
         /// 清空缓冲区
