@@ -19,6 +19,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
     public abstract class ReadTransactionDatabase_Base : FC8800Command_ReadParameter
     {
         /// <summary>
+        /// 指令分类
+        /// </summary>
+        protected byte CmdType;
+
+        /// <summary>
+        /// 返回指令分类
+        /// </summary>
+        protected byte CheckResponseCmdType;
+
+        /// <summary>
         /// 查询参数
         /// </summary>
         ReadTransactionDatabase_Parameter mParameter;
@@ -71,7 +81,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter"></param>
-        public ReadTransactionDatabase_Base(INCommandDetail cd, ReadTransactionDatabase_Parameter parameter) : base(cd, parameter) { }
+        public ReadTransactionDatabase_Base(INCommandDetail cd, ReadTransactionDatabase_Parameter parameter) : base(cd, parameter)
+        {
+            CmdType = 0x08;
+            CheckResponseCmdType = 0x08;
+        }
 
         /// <summary>
         /// 检查参数
@@ -97,8 +111,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
             result.TransactionList = new List<AbstractTransaction>();
             mTransactionType = (int)mParameter.DatabaseType;
             _Result = result;
-            Packet(0x08, 0x01, 0x00, 0x00, null);
-            Packet(0x08, 0x01);
+            Packet(CmdType, 0x01);
         }
 
         /// <summary>
@@ -154,7 +167,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// <param name="oPck"></param>
         private void ReadDataBaseDetailCallBack(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x0D * 6))
+            if (CheckResponse(oPck,CheckResponseCmdType, 0x01, 0x00, 0x0D * 6))
             {
                 var buf = oPck.CmdData;
                 ReadTransactionDatabaseDetail_Result rst = new ReadTransactionDatabaseDetail_Result();
@@ -176,7 +189,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
                     dataBuf.WriteByte((int)mParameter.DatabaseType);
                     dataBuf.WriteInt(0);
                     dataBuf.WriteInt(0);
-                    Packet(0x08, 0x04, 0x00, 0x09, dataBuf);
+                    Packet(CmdType, 0x04, 0x00, 0x09, dataBuf);
 
                     //计算最终需要读取的记录数
                     mReadable = (int)transactionDetail.readable();
@@ -258,12 +271,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// <param name="oPck"></param>
         private void ReadTransactionDatabaseByIndexCallBack(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck))
+            if (CheckResponse(oPck, CheckResponseCmdType, 4, 0))
             {
                 var buf = oPck.CmdData;
                 SaveTransactionToBuf(buf);
             }
-            else if (CheckResponse(oPck, 0x08, 0x04, 0xff, 4))
+            else if (CheckResponse(oPck, CheckResponseCmdType, 0x04, 0xff, 4))
             {
                 ReadTransactionNext();
             }
@@ -399,13 +412,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// <param name="oPck"></param>
         private void ReReadDatabaseCallBack(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck))
+            if (CheckResponse(oPck, CheckResponseCmdType, 4, 0))
             {
                 var buf = oPck.CmdData;
                 SaveTransactionToBuf(buf);
 
             }
-            else if (CheckResponse(oPck, 8, 4, 0xFF, 4))
+            else if (CheckResponse(oPck, CheckResponseCmdType, 4, 0xFF, 4))
             {
                 //继续发送下一波
                 CheckResultList();

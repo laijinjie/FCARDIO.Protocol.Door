@@ -36,7 +36,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseDetail
         /// 进行解码
         /// </summary>
         /// <param name="buf"></param>
-        internal void SetBytes(IByteBuffer buf)
+        public void SetBytes(IByteBuffer buf)
         {
             DatabaseDetail.SetBytes(buf);
         }

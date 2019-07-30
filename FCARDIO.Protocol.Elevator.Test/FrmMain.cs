@@ -838,7 +838,12 @@ namespace FCARDIO.Protocol.Elevator.Test
 
         private void butRecord_Click(object sender, EventArgs e)
         {
-          
+            frmRecord frm = frmRecord.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
         }
 
         private void butUploadSoftware_Click(object sender, EventArgs e)

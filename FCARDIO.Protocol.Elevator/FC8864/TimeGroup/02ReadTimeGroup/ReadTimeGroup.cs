@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Elevator.FC8864.Data.TimeGroup;
+using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
+using FCARDIO.Protocol.Door.FC8800.TimeGroup;
 using FCARDIO.Protocol.OnlineAccess;
-using System;
 using System.Collections.Generic;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.TimeGroup

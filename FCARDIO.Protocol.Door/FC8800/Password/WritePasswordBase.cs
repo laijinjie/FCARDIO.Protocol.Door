@@ -39,7 +39,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 每次上传数量
         /// </summary>
-        protected virtual int mBatchCount{get;set;}
+        protected int mBatchCount = 5;
 
         /// <summary>
         /// 已上传数量
@@ -72,7 +72,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             T model = new T();
             mParDataLen = model.GetDataLen();
             mDeleteDataLen = model.GetDeleteDataLen();
-            mBatchCount = 5;
             CmdType = 0x05;
             CheckResponseCmdType = 0x05;
         }

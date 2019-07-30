@@ -1,5 +1,5 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Elevator.FC8864.Data.TimeGroup;
+using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
 using System;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.Door.OutDoorSwitch

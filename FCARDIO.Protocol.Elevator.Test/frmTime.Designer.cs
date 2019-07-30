@@ -31,7 +31,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtErrorTime = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnWriteBroadcastTime = new System.Windows.Forms.Button();
             this.btnWriteSystemTime = new System.Windows.Forms.Button();
             this.txtComputerTime = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,20 +38,20 @@
             this.label26 = new System.Windows.Forms.Label();
             this.btnReadSystemTime = new System.Windows.Forms.Button();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.btnWriteTimeCorrectionParameter = new System.Windows.Forms.Button();
+            this.label72 = new System.Windows.Forms.Label();
+            this.cbxCorrectionSeconds = new System.Windows.Forms.ComboBox();
+            this.label75 = new System.Windows.Forms.Label();
             this.label77 = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.rBtnSpeedUp = new System.Windows.Forms.RadioButton();
             this.rBtnSlowDown = new System.Windows.Forms.RadioButton();
             this.btnReadTimeCorrectionParameter = new System.Windows.Forms.Button();
-            this.label72 = new System.Windows.Forms.Label();
-            this.cbxCorrectionSeconds = new System.Windows.Forms.ComboBox();
-            this.label75 = new System.Windows.Forms.Label();
-            this.btnWriteTimeCorrectionParameter = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.CustomDateTime = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnWriteCustomDateTime = new System.Windows.Forms.Button();
-            this.CustomDateTime = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.groupBox20.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -63,7 +62,6 @@
             // 
             this.groupBox1.Controls.Add(this.txtErrorTime);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.btnWriteBroadcastTime);
             this.groupBox1.Controls.Add(this.btnWriteSystemTime);
             this.groupBox1.Controls.Add(this.txtComputerTime);
             this.groupBox1.Controls.Add(this.label1);
@@ -94,16 +92,6 @@
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 24;
             this.label2.Text = "误差时间：";
-            // 
-            // btnWriteBroadcastTime
-            // 
-            this.btnWriteBroadcastTime.Location = new System.Drawing.Point(491, 21);
-            this.btnWriteBroadcastTime.Name = "btnWriteBroadcastTime";
-            this.btnWriteBroadcastTime.Size = new System.Drawing.Size(102, 23);
-            this.btnWriteBroadcastTime.TabIndex = 23;
-            this.btnWriteBroadcastTime.Text = "校准时间_广播";
-            this.btnWriteBroadcastTime.UseVisualStyleBackColor = true;
-            this.btnWriteBroadcastTime.Click += new System.EventHandler(this.BtnWriteBroadcastTime_Click);
             // 
             // btnWriteSystemTime
             // 
@@ -177,6 +165,69 @@
             this.groupBox20.TabStop = false;
             this.groupBox20.Text = "时钟自动修正参数";
             // 
+            // btnWriteTimeCorrectionParameter
+            // 
+            this.btnWriteTimeCorrectionParameter.Location = new System.Drawing.Point(105, 85);
+            this.btnWriteTimeCorrectionParameter.Name = "btnWriteTimeCorrectionParameter";
+            this.btnWriteTimeCorrectionParameter.Size = new System.Drawing.Size(90, 23);
+            this.btnWriteTimeCorrectionParameter.TabIndex = 92;
+            this.btnWriteTimeCorrectionParameter.Text = "设置修正参数";
+            this.btnWriteTimeCorrectionParameter.UseVisualStyleBackColor = true;
+            this.btnWriteTimeCorrectionParameter.Click += new System.EventHandler(this.BtnWriteTimeCorrectionParameter_Click);
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(163, 62);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(23, 12);
+            this.label72.TabIndex = 91;
+            this.label72.Text = "/秒";
+            // 
+            // cbxCorrectionSeconds
+            // 
+            this.cbxCorrectionSeconds.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCorrectionSeconds.FormattingEnabled = true;
+            this.cbxCorrectionSeconds.IntegralHeight = false;
+            this.cbxCorrectionSeconds.ItemHeight = 12;
+            this.cbxCorrectionSeconds.Items.AddRange(new object[] {
+            "禁用",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "255"});
+            this.cbxCorrectionSeconds.Location = new System.Drawing.Point(53, 59);
+            this.cbxCorrectionSeconds.MaxLength = 3;
+            this.cbxCorrectionSeconds.Name = "cbxCorrectionSeconds";
+            this.cbxCorrectionSeconds.Size = new System.Drawing.Size(104, 20);
+            this.cbxCorrectionSeconds.TabIndex = 90;
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(11, 62);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(41, 12);
+            this.label75.TabIndex = 89;
+            this.label75.Text = "秒数：";
+            // 
             // label77
             // 
             this.label77.AutoSize = true;
@@ -226,69 +277,6 @@
             this.btnReadTimeCorrectionParameter.UseVisualStyleBackColor = true;
             this.btnReadTimeCorrectionParameter.Click += new System.EventHandler(this.BtnReadTimeCorrectionParameter_Click);
             // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(163, 62);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(23, 12);
-            this.label72.TabIndex = 91;
-            this.label72.Text = "/秒";
-            // 
-            // cbxCorrectionSeconds
-            // 
-            this.cbxCorrectionSeconds.FormattingEnabled = true;
-            this.cbxCorrectionSeconds.IntegralHeight = false;
-            this.cbxCorrectionSeconds.ItemHeight = 12;
-            this.cbxCorrectionSeconds.Items.AddRange(new object[] {
-            "禁用",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "255"});
-            this.cbxCorrectionSeconds.Location = new System.Drawing.Point(53, 59);
-            this.cbxCorrectionSeconds.MaxLength = 3;
-            this.cbxCorrectionSeconds.Name = "cbxCorrectionSeconds";
-            this.cbxCorrectionSeconds.Size = new System.Drawing.Size(104, 20);
-            this.cbxCorrectionSeconds.TabIndex = 90;
-            this.cbxCorrectionSeconds.Text = "禁用";
-            // 
-            // label75
-            // 
-            this.label75.AutoSize = true;
-            this.label75.Location = new System.Drawing.Point(11, 62);
-            this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(41, 12);
-            this.label75.TabIndex = 89;
-            this.label75.Text = "秒数：";
-            // 
-            // btnWriteTimeCorrectionParameter
-            // 
-            this.btnWriteTimeCorrectionParameter.Location = new System.Drawing.Point(105, 85);
-            this.btnWriteTimeCorrectionParameter.Name = "btnWriteTimeCorrectionParameter";
-            this.btnWriteTimeCorrectionParameter.Size = new System.Drawing.Size(90, 23);
-            this.btnWriteTimeCorrectionParameter.TabIndex = 92;
-            this.btnWriteTimeCorrectionParameter.Text = "设置修正参数";
-            this.btnWriteTimeCorrectionParameter.UseVisualStyleBackColor = true;
-            this.btnWriteTimeCorrectionParameter.Click += new System.EventHandler(this.BtnWriteTimeCorrectionParameter_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.CustomDateTime);
@@ -301,6 +289,15 @@
             this.groupBox2.TabIndex = 97;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "自定义时间";
+            // 
+            // CustomDateTime
+            // 
+            this.CustomDateTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.CustomDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.CustomDateTime.Location = new System.Drawing.Point(78, 38);
+            this.CustomDateTime.Name = "CustomDateTime";
+            this.CustomDateTime.Size = new System.Drawing.Size(172, 21);
+            this.CustomDateTime.TabIndex = 90;
             // 
             // label4
             // 
@@ -328,15 +325,6 @@
             this.btnWriteCustomDateTime.Text = "更新设备时间";
             this.btnWriteCustomDateTime.UseVisualStyleBackColor = true;
             this.btnWriteCustomDateTime.Click += new System.EventHandler(this.BtnWriteCustomDateTime_Click);
-            // 
-            // CustomDateTime
-            // 
-            this.CustomDateTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.CustomDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.CustomDateTime.Location = new System.Drawing.Point(78, 38);
-            this.CustomDateTime.Name = "CustomDateTime";
-            this.CustomDateTime.Size = new System.Drawing.Size(172, 21);
-            this.CustomDateTime.TabIndex = 90;
             // 
             // frmTime
             // 
@@ -370,7 +358,6 @@
         private System.Windows.Forms.TextBox txtSystemTime;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button btnReadSystemTime;
-        private System.Windows.Forms.Button btnWriteBroadcastTime;
         private System.Windows.Forms.Button btnWriteSystemTime;
         private System.Windows.Forms.TextBox txtErrorTime;
         private System.Windows.Forms.Label label2;

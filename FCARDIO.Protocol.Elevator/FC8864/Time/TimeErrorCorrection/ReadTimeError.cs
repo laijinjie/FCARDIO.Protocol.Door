@@ -19,7 +19,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Time.TimeErrorCorrection
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x02, 0x03);
+            Packet(0x42, 0x03);
         }
 
         /// <summary>

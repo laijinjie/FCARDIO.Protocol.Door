@@ -18,6 +18,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
     /// </summary>
     public abstract class ReadTransactionDatabaseByIndex_Base : FC8800Command_ReadParameter
     {
+        /// <summary>
+        /// 指令分类
+        /// </summary>
+        protected byte CmdType;
+
+        /// <summary>
+        /// 返回指令分类
+        /// </summary>
+        protected byte CheckResponseCmdType;
 
         /// <summary>
         /// ByteBuffer 队列
@@ -33,7 +42,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter"></param>
-        public ReadTransactionDatabaseByIndex_Base(INCommandDetail cd, ReadTransactionDatabaseByIndex_Parameter parameter) : base(cd, parameter) {  }
+        public ReadTransactionDatabaseByIndex_Base(INCommandDetail cd, ReadTransactionDatabaseByIndex_Parameter parameter) : base(cd, parameter)
+        {
+            CmdType = 0x08;
+            CheckResponseCmdType = 0x08;
+        }
 
         /// <summary>
         /// 检查参数
@@ -54,7 +67,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x08, 0x04, 0x00, 0x09, GetCmdData());
+            Packet(CmdType, 0x04, 0x00, 0x09, GetCmdData());
             mBufs = new Queue<IByteBuffer>();
 
         }
@@ -79,7 +92,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck))
+            if (CheckResponse(oPck, CheckResponseCmdType, 0x04,0))
             {
                 var buf = oPck.CmdData;
                 int iSize = buf.GetInt(0);
@@ -89,7 +102,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
 
                 CommandWaitResponse();
             }
-            if (CheckResponse(oPck, 0x08, 0x04, 0xff, 4))
+            if (CheckResponse(oPck, CheckResponseCmdType, 0x04, 0xff, 4))
             {
                 var buf = oPck.CmdData;
                 int iSize = buf.ReadInt();

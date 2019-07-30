@@ -1,5 +1,5 @@
-﻿using FCARDIO.Protocol.Elevator.FC8864.Data;
-using FCARDIO.Protocol.Elevator.FC8864.Data.TimeGroup;
+﻿using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
+using FCARDIO.Protocol.Elevator.FC8864.Data;
 using FCARDIO.Protocol.Elevator.FC8864.Door;
 using FCARDIO.Protocol.Elevator.FC8864.Door.AutoLockedSetting;
 using FCARDIO.Protocol.Elevator.FC8864.Door.CancelDoorAlarm;
@@ -20,11 +20,8 @@ using FCARDIO.Protocol.Elevator.Test.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FCARDIO.Protocol.Elevator.Test

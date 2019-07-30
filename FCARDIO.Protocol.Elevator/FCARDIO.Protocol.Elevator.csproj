@@ -96,7 +96,7 @@
     <Compile Include="FC8864\Data\CardDetailBase.cs" />
     <Compile Include="FC8864\Data\OpenDoorTimeoutAlarm.cs" />
     <Compile Include="FC8864\Data\TimeGroup\DayTimeGroup.cs" />
-    <Compile Include="FC8864\Data\TimeGroup\E_WeekDay.cs" />
+    <Compile Include="FC8864\Data\E_WeekDay.cs" />
     <Compile Include="FC8864\Data\TimeGroup\TimeSegment.cs" />
     <Compile Include="FC8864\Data\TimeGroup\WeekTimeGroup.cs" />
     <Compile Include="FC8864\Door\01Relay\ReadRelay.cs" />
@@ -294,7 +294,13 @@
     <Compile Include="FC8864\Time\WriteCustomTime.cs" />
     <Compile Include="FC8864\Time\WriteCustomTime_Parameter.cs" />
     <Compile Include="FC8864\Time\WriteTime.cs" />
-    <Compile Include="FC8864\Time\WriteTimeBroadcast.cs" />
+    <Compile Include="FC8864\Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail.cs" />
+    <Compile Include="FC8864\Transaction\02ClearTransactionDatabase\ClearTransactionDatabase.cs" />
+    <Compile Include="FC8864\Transaction\02ClearTransactionDatabase\TransactionDatabaseEmpty.cs" />
+    <Compile Include="FC8864\Transaction\03ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex.cs" />
+    <Compile Include="FC8864\Transaction\04ReadTransactionDatabase\ReadTransactionDatabase.cs" />
+    <Compile Include="FC8864\Transaction\05TransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex.cs" />
+    <Compile Include="FC8864\Transaction\06WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex.cs" />
     <Compile Include="FC8864\Utility\StringUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Read_Command.cs" />

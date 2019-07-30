@@ -1,5 +1,6 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
+using FCARDIO.Protocol.Door.FC8800.TimeGroup;
 using FCARDIO.Protocol.OnlineAccess;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.TimeGroup

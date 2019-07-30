@@ -81,14 +81,6 @@ namespace FCARDIO.Protocol.Elevator.Test
             WriteTime cmd = new WriteTime(cmdDtl);
             mMainForm.AddCommand(cmd);
         }
-
-        private void BtnWriteBroadcastTime_Click(object sender, EventArgs e)
-        {
-            var cmdDtl = mMainForm.GetCommandDetail();
-            if (cmdDtl == null) return;
-            WriteTimeBroadcast cmd = new WriteTimeBroadcast(cmdDtl);
-            mMainForm.AddCommand(cmd);
-        }
         private void BtnWriteCustomDateTime_Click(object sender, EventArgs e)
         {
             DateTime CustomTime = Convert.ToDateTime(CustomDateTime.Text);

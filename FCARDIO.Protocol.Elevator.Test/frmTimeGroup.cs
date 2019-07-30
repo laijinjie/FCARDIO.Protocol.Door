@@ -1,5 +1,5 @@
-﻿using FCARDIO.Protocol.Elevator.FC8864.Data;
-using FCARDIO.Protocol.Elevator.FC8864.Data.TimeGroup;
+﻿using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
+using FCARDIO.Protocol.Door.FC8800.TimeGroup;
 using FCARDIO.Protocol.Elevator.FC8864.TimeGroup;
 using System;
 using System.Collections.Generic;
@@ -84,13 +84,13 @@ namespace FCARDIO.Protocol.Elevator.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            ReadTimeGroup cmd = new ReadTimeGroup(cmdDtl);
+            FC8864.TimeGroup.ReadTimeGroup cmd = new FC8864.TimeGroup.ReadTimeGroup(cmdDtl);
             mMainForm.AddCommand(cmd);
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                ReadTimeGroup_Result result = cmde.Command.getResult() as ReadTimeGroup_Result;
+                FC8864.TimeGroup.ReadTimeGroup_Result result = cmde.Command.getResult() as FC8864.TimeGroup.ReadTimeGroup_Result;
                 ListWeekTimeGroup = result.ListWeekTimeGroup;
 
 
@@ -163,8 +163,8 @@ namespace FCARDIO.Protocol.Elevator.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            AddTimeGroup_Parameter par = new AddTimeGroup_Parameter(ListWeekTimeGroup);
-            AddTimeGroup cmd = new AddTimeGroup(cmdDtl, par);
+            FC8864.TimeGroup.AddTimeGroup_Parameter par = new FC8864.TimeGroup.AddTimeGroup_Parameter(ListWeekTimeGroup);
+            FC8864.TimeGroup.AddTimeGroup cmd = new FC8864.TimeGroup.AddTimeGroup(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -183,7 +183,7 @@ namespace FCARDIO.Protocol.Elevator.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            ClearTimeGroup cmd = new ClearTimeGroup(cmdDtl);
+            FC8864.TimeGroup.ClearTimeGroup cmd = new FC8864.TimeGroup.ClearTimeGroup(cmdDtl);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
