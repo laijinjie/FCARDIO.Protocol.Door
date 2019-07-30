@@ -143,5 +143,16 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
            
         }
 
+        /// <summary>
+        /// 写入 要删除的密码信息
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public override IByteBuffer GetDeleteBytes(IByteBuffer data)
+        {
+            Password = StringUtil.FillHexString(Password, 8, "F", true);
+            StringUtil.HextoByteBuf(Password, data);
+            return data;
+        }
     }
 }

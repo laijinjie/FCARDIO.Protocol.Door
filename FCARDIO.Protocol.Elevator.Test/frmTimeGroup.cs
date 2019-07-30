@@ -1,8 +1,10 @@
-﻿using FCARDIO.Protocol.Elevator.FC8864.Data.TimeGroup;
+﻿using FCARDIO.Protocol.Elevator.FC8864.Data;
+using FCARDIO.Protocol.Elevator.FC8864.Data.TimeGroup;
 using FCARDIO.Protocol.Elevator.FC8864.TimeGroup;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace FCARDIO.Protocol.Elevator.Test
@@ -94,8 +96,24 @@ namespace FCARDIO.Protocol.Elevator.Test
 
                 BindTimeSegment();
                 //dataGridView1
-                string log = $"已读取到数量：{result.Count} ";
-                mMainForm.AddCmdLog(cmde, log);
+                StringBuilder sb = new StringBuilder($"已读取到数量：{result.Count}，");
+                for (int i = 0; i < ListWeekTimeGroup.Count; i++)
+                {
+                    sb.Append($"开门时段【{(i+1).ToString()}】，");
+                    for (int j = 0; j < 7; j++)
+                    {
+                        DayTimeGroup dtg = ListWeekTimeGroup[i].GetItem(j);
+                        sb.Append($"星期【{(j + 1).ToString()}】-");
+                        int segmentCount = dtg.GetSegmentCount();
+                        for (int k = 0; k < segmentCount; k++)
+                        {
+                            TimeSegment ts = dtg.GetItem(k);
+                            sb.Append($"时段{(k+1).ToString()}：{ts.toString()}。");
+                        }
+                       
+                    }
+                }
+                mMainForm.AddCmdLog(cmde, sb.ToString());
             };
         }
 

@@ -43,7 +43,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.TimeGroup
                 CommandWaitResponse();
             }
 
-            if (CheckResponse(oPck, 0x46, 0x02, 0xff, 4))
+            if (CheckResponse(oPck, 0x56, 0x02, 0xff, 4))
             {
                 var buf = oPck.CmdData;
                 int iTotal = buf.ReadInt();
@@ -66,12 +66,18 @@ namespace FCARDIO.Protocol.Elevator.FC8864.TimeGroup
         {
             result.ListWeekTimeGroup.Clear();
             //64个IByteBuffer，每个包含组 号2byte+224byte(7*8*4(时分-时分))
-            foreach (IByteBuffer buf in databufs)
+            int len = mReadBuffers.Count;
+            if (len > 64)
             {
+                len = 64;
+            }
+            for (int i = 0; i < len; i++)
+            {
+
                 //StringUtility.WriteByteBuffer(buf);
                 //continue;
                 WeekTimeGroup wtg = new WeekTimeGroup(8);
-                wtg.SetBytes(buf);
+                wtg.SetBytes(mReadBuffers[i]);
                 result.ListWeekTimeGroup.Add(wtg);
                
             }
@@ -83,7 +89,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.TimeGroup
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(6, 2);
+            Packet(0x46, 2);
             _ProcessMax = 64;
             mReadBuffers = new List<IByteBuffer>();
         }

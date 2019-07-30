@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
+namespace FCARDIO.Protocol.Elevator.FC8864.Card.CardListBySort
 {
     /// <summary>
     /// 将卡片列表写入到控制器排序区 
@@ -16,27 +16,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
     public abstract class WriteCardListBySortBase<T> : WriteCardListBase<T>
         where T : Data.CardDetailBase
     {
-
-        /// <summary>
-        /// 指令分类
-        /// </summary>
-        protected byte CmdType;
-
-        /// <summary>
-        /// 返回指令分类
-        /// </summary>
-        protected byte CheckResponseCmdType;
-
         /// <summary>
         /// 初始化命令结构
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="perameter">参数</param>
-        public WriteCardListBySortBase(INCommandDetail cd, WriteCardList_Parameter_Base<T> perameter) : base(cd, perameter)
-        {
-            CmdType = 0x07;
-            CheckResponseCmdType = 0x07;
-        }
+        public WriteCardListBySortBase(INCommandDetail cd, WriteCardList_Parameter_Base<T> perameter) : base(cd, perameter) { }
 
 
         /// <summary>
@@ -45,7 +30,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
         protected override void CreatePacket0()
         {
             mStep = 1;
-            Packet(CmdType, 0x07, 0x00);
+            Packet(0x07, 0x07, 0x00);
 
             _ProcessMax = _CardPar.CardList.Count + 2;
             _ProcessStep = 1;
@@ -93,7 +78,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
                         //创建一个通讯缓冲区
                         var buf = GetNewCmdDataBuf(MaxBufSize);
                         WriteCardDetailToBuf(buf);
-                        Packet(CmdType, 0x07, 0x01, (uint)buf.ReadableBytes, buf);
+                        Packet(0x07, 0x07, 0x01, (uint)buf.ReadableBytes, buf);
                         CommandReady();//设定命令当前状态为准备就绪，等待发送
                         mStep = 2;//使命令进入下一个阶段
                         return;
@@ -105,7 +90,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
                         //继续发下一包
                         CommandNext1(oPck);
                     }
-                    else if (CheckResponse(oPck, CheckResponseCmdType, 0x07, 0xFF, oPck.DataLen))
+                    else if (CheckResponse(oPck, 0x07, 0x07, 0xFF, oPck.DataLen))
                     {//检查是否不是错误返回值
 
                         //缓存错误返回值
@@ -145,7 +130,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
             if (IsWriteOver())
             {
                 //使命令进入下一个阶段
-                Packet(CmdType, 0x07, 0x2);
+                Packet(0x07, 0x07, 0x2);
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
                 mStep = 3;//使命令进入下一个阶段
                 _ProcessStep++;

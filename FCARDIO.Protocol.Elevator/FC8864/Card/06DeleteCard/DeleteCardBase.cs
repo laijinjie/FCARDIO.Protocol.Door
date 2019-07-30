@@ -8,7 +8,7 @@ using FCARDIO.Core.Command;
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
+namespace FCARDIO.Protocol.Elevator.FC8864.Card.DeleteCard
 {
     /// <summary>
     /// 将卡片列表从到控制器中删除
@@ -16,26 +16,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
     public abstract class DeleteCardBase<T> : WriteCardListBase<T>
         where T : Data.CardDetailBase
     {
-
-        /// <summary>
-        /// 指令分类
-        /// </summary>
-        protected byte CmdType;
-
-        /// <summary>
-        /// 返回指令分类
-        /// </summary>
-        protected byte CheckResponseCmdType;
         /// <summary>
         /// 初始化命令结构
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter"></param>
-        public DeleteCardBase(INCommandDetail cd, WriteCardList_Parameter_Base<T> parameter) : base(cd, parameter)
-        {
-            CmdType = 0x07;
-            CheckResponseCmdType = 0x07;
-        }
+        public DeleteCardBase(INCommandDetail cd, WriteCardList_Parameter_Base<T> parameter) : base(cd, parameter) { }
 
         /// <summary>
         /// 创建一个通讯指令
@@ -49,7 +35,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
             _ProcessMax = _CardPar.CardList.Count;
             WriteCardDetailToBuf(buf);
 
-            Packet(CmdType, 0x05, 0x00, (uint)buf.ReadableBytes, buf);
+            Packet(0x07, 0x05, 0x00, (uint)buf.ReadableBytes, buf);
         }
 
 

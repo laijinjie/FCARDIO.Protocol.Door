@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card
+namespace FCARDIO.Protocol.Elevator.FC8864.Card
 {
     /// <summary>
     /// 将卡片列表写入到控制器排序区 
@@ -34,7 +34,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card
         /// <summary>
         /// 每一包中最大的卡数量
         /// </summary>
-        protected virtual int mPacketCardMax { get; set; }
+        protected int mPacketCardMax = 10;
         /// <summary>
         /// 默认的缓冲区大小
         /// </summary>
@@ -51,7 +51,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="perameter"></param>
-        public WriteCardListBase(INCommandDetail cd, WriteCardList_Parameter_Base<T> perameter) : base(cd, perameter) { _CardPar = perameter; mPacketCardMax = 10; }
+        public WriteCardListBase(INCommandDetail cd, WriteCardList_Parameter_Base<T> perameter) : base(cd, perameter) { _CardPar = perameter; }
 
         /// <summary>
         /// 检查参数

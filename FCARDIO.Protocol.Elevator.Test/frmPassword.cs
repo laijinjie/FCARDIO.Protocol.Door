@@ -3,7 +3,6 @@ using FCARDIO.Protocol.Elevator.Test.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -133,9 +132,10 @@ namespace FCARDIO.Protocol.Elevator.Test
                     ListPassword.Add(dto);
                 }
                 count = result.PasswordList.Count;
-                dataGridView1.Rows.Clear();
+               
                 Invoke(() =>
                 {
+                    dataGridView1.Rows.Clear();
                     foreach (PasswordDetail detail in result.PasswordList)
                     {
                         int index =dataGridView1.Rows.Add();
@@ -186,15 +186,18 @@ namespace FCARDIO.Protocol.Elevator.Test
                 ListPassword.Clear();
                 var comdResult = cmde.Command.getResult() as ReadAllPassword_Result;
                 int count = 0;
-                ReadAllPassword_Result result = comdResult as ReadAllPassword_Result;
-                foreach (PasswordDetail detail in result.PasswordList)
+                if (comdResult != null && comdResult.PasswordList != null)
                 {
-                    PasswordDto dto = new PasswordDto();
-                    dto.SetDoors(detail);
-                    dto.Password = detail.Password;
-                    ListPassword.Add(dto);
+                    foreach (PasswordDetail detail in comdResult.PasswordList)
+                    {
+                        PasswordDto dto = new PasswordDto();
+                        dto.SetDoors(detail);
+                        dto.Password = detail.Password;
+                        ListPassword.Add(dto);
+                    }
+                    count = comdResult.PasswordList.Count;
                 }
-                count = result.PasswordList.Count;
+                
 
                 Invoke(() =>
                 {
@@ -289,17 +292,14 @@ namespace FCARDIO.Protocol.Elevator.Test
         /// <param name="e"></param>
         private void ButDelList_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            for (int i = dataGridView1.Rows.Count - 1; i >= 0; i--)
             {
                 DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[0];
                 if ((bool)cell.FormattedValue)
                 {
-                    DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[1];
-                    var item = ListPassword.FirstOrDefault(t => t.Password == text.Value.ToString());
-                    ListPassword.Remove(item);
+                    dataGridView1.Rows.RemoveAt(i);
                 }
             }
-            dataGridView1.DataSource = new BindingList<PasswordDto>(ListPassword);
         }
 
         /// <summary>
@@ -355,7 +355,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             PasswordDetail detail = new PasswordDetail();
             detail.Password = txtPassword.Text;
             _list.Add(detail);
-            Password_Parameter par = new Password_Parameter(_list);
+            DeletePassword_Parameter par = new DeletePassword_Parameter(_list);
             DeletePassword cmd = new DeletePassword(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
@@ -390,13 +390,13 @@ namespace FCARDIO.Protocol.Elevator.Test
                 }
             }
 
-            dataGridView1.DataSource = new BindingList<PasswordDto>(ListPassword);
+            //dataGridView1.DataSource = new BindingList<PasswordDto>(ListPassword);
             if (_list.Count > 0)
             {
                 var cmdDtl = mMainForm.GetCommandDetail();
                 if (cmdDtl == null) return;
 
-                Password_Parameter par = new Password_Parameter(_list);
+                DeletePassword_Parameter par = new DeletePassword_Parameter(_list);
 
                 DeletePassword cmd = new DeletePassword(cmdDtl, par);
                 mMainForm.AddCommand(cmd);

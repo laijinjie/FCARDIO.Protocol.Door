@@ -793,7 +793,12 @@ namespace FCARDIO.Protocol.Elevator.Test
 
         private void butCard_Click(object sender, EventArgs e)
         {
-            
+            frmCard frm = frmCard.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
 
         }
         /// <summary>

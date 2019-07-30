@@ -10,7 +10,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     /// <summary>
     /// 将密码列表写入到控制器
     /// </summary>
-    public abstract class WritePasswordBase<T,P> : FC8800Command_WriteParameter where T : PasswordDetail,new () where P : Password_Parameter_Base<T>
+    public abstract class WritePasswordBase<T, P> : FC8800Command_WriteParameter where T : PasswordDetail, new() where P : Password_Parameter_Base<T>
     {
         /// <summary>
         /// 指令分类
@@ -39,7 +39,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <summary>
         /// 每次上传数量
         /// </summary>
-        protected const int mBatchCount = 5;
+        protected virtual int mBatchCount{get;set;}
 
         /// <summary>
         /// 已上传数量
@@ -72,7 +72,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             T model = new T();
             mParDataLen = model.GetDataLen();
             mDeleteDataLen = model.GetDeleteDataLen();
-
+            mBatchCount = 5;
             CmdType = 0x05;
             CheckResponseCmdType = 0x05;
         }

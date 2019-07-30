@@ -9,7 +9,7 @@ using FCARDIO.Core.Packet;
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
+namespace FCARDIO.Protocol.Elevator.FC8864.Card.CardListBySequence
 {
     /// <summary>
     /// 将卡片列表写入到控制器非排序区 
@@ -17,27 +17,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
     public abstract class WriteCardListBySequenceBase<T> : WriteCardListBase<T>
         where T : Data.CardDetailBase, new()
     {
-
-        /// <summary>
-        /// 指令分类
-        /// </summary>
-        protected byte CmdType;
-
-        /// <summary>
-        /// 返回指令分类
-        /// </summary>
-        protected byte CheckResponseCmdType;
-
         /// <summary>
         /// 初始化命令结构 
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="perameter">包含需要上传的卡列表参数</param>
-        public WriteCardListBySequenceBase(INCommandDetail cd, WriteCardList_Parameter_Base<T> perameter) : base(cd, perameter)
-        {
-            CmdType = 0x07;
-            CheckResponseCmdType = 0x07;
-        }
+        public WriteCardListBySequenceBase(INCommandDetail cd, WriteCardList_Parameter_Base<T> perameter) : base(cd, perameter) { }
 
         /// <summary>
         /// 写入数据头
@@ -61,7 +46,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
             _ProcessMax = _CardPar.CardList.Count;
             WriteCardDetailToBuf(buf);
 
-            Packet(CmdType, 0x04, 0x00, (uint)buf.ReadableBytes, buf);
+            Packet(0x07, 0x04, 0x00, (uint)buf.ReadableBytes, buf);
         }
 
         /// <summary>
@@ -76,7 +61,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
                 //继续发下一包
                 CommandNext1(oPck);
             }
-            else if (CheckResponse(oPck, CheckResponseCmdType, 0x04, 0xFF, oPck.DataLen))
+            else if (CheckResponse(oPck, 0x07, 0x04, 0xFF, oPck.DataLen))
             {//检查是否不是错误返回值
 
                 //缓存错误返回值

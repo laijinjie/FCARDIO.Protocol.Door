@@ -7,41 +7,27 @@ using System.Text;
 using System.Threading.Tasks;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
+namespace FCARDIO.Protocol.Elevator.FC8864.Card.CardDataBase
 {
     /// <summary>
     /// 从控制器中读取卡片数据<br/>
     /// 成功返回结果参考 @link ReadCardDataBase_Base_Result
     /// </summary>
-    public abstract class ReadCardDataBase_Base<T> : FC8800Command_ReadParameter
+    public abstract class ReadCardDataBase_Base<T> : Read_Command
         where T : Data.CardDetailBase, new()
     {
         private int mStep;//指示当前命令进行的步骤
         /// <summary>
         /// 读取到的卡数据缓冲
         /// </summary>
-        protected Queue<IByteBuffer> mReadBuffers;
-
-        /// <summary>
-        /// 指令分类
-        /// </summary>
-        protected byte CmdType;
-
-        /// <summary>
-        /// 返回指令分类
-        /// </summary>
-        protected byte CheckResponseCmdType;
+        private Queue<IByteBuffer> mReadBuffers;
 
         /// <summary>
         /// 初始化命令结构 
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter"></param>
-        public ReadCardDataBase_Base(INCommandDetail cd, ReadCardDataBase_Parameter parameter) : base(cd, parameter)
-        {
-            CmdType = 0x07;
-            CheckResponseCmdType = 0x07;
-        }
+        public ReadCardDataBase_Base(INCommandDetail cd, ReadCardDataBase_Parameter parameter) : base(cd, parameter) { }
 
         /// <summary>
         /// 创建参数
@@ -60,7 +46,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(CmdType, 0x01, 0x00);//首先读取卡片数据库详情，检查是否有卡片需要读取
+            Packet(0x47, 0x01, 0x00);//首先读取卡片数据库详情，检查是否有卡片需要读取
             mStep = 1;
             _ProcessMax = 1;
 
@@ -89,19 +75,19 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
             switch (mStep)
             {
                 case 1://读取卡片数据库详情回调
-                    if (CheckResponse(oPck, CheckResponseCmdType,0x01,0x00))
+                    if (CheckResponse(oPck))
                     {
                         ReadDetailCallBlack(oPck.CmdData);
                     }
 
                     break;
                 case 2://读取卡片数据库内容
-                    if (CheckResponse(oPck, CheckResponseCmdType, 0x03, 0x00))//检查返回的是否为卡数据
+                    if (CheckResponse(oPck))//检查返回的是否为卡数据
                     {
                         ReadCardDatabaseCallBlack(oPck.CmdData);
                     }
 
-                    if (CheckResponse(oPck, CheckResponseCmdType, 0x03, 0xFF)) //检查数据是否返回完毕
+                    if (CheckResponse(oPck, 0x07, 0x03, 0xFF)) //检查数据是否返回完毕
                     {
                         ReadCardDatabaseOverCallBlack(oPck.CmdData);
                     }
@@ -143,7 +129,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
             {
                 //继续读取卡数据
                 _ProcessMax = (int)iCard;
-                Packet(CmdType, 0x03, 0x00, 0x01, GetCmdData());
+                Packet(0x07, 0x03, 0x00, 0x01, GetCmdData());
                 mStep = 2;//准备接受返回的卡数据
                 mReadBuffers = new Queue<IByteBuffer>();
                 CommandReady();

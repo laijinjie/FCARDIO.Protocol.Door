@@ -18,7 +18,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
     {
         /// <summary>
         /// 将命令打包成一个Packet，准备发送
-        /// </summary>
+        /// </summary>  
         protected override void CreateCommandPacket0()
         {
             var buf = GetNewCmdDataBuf(MaxBufSize);
@@ -36,6 +36,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
             MaxBufSize = (mBatchCount * mDeleteDataLen) + 4;
             CmdType = 0x45;
             CheckResponseCmdType = 0x25;
+            mBatchCount = 1;
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
         /// <returns></returns>
         protected override ReadAllPassword_Result_Base<PasswordDetail> CreateResult(List<PasswordDetail> passwordList)
         {
-            throw new NotImplementedException();
+            return new ReadAllPassword_Result_Base<PasswordDetail>(passwordList);
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card
+namespace FCARDIO.Protocol.Elevator.FC8864.Card
 {
     /// <summary>
     /// 写卡列表的泛型抽象
@@ -43,13 +43,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Card
 
 
             if (CardList.Count == 0) return false;
-           
+
 
             foreach (var c in CardList)
             {
                 if (c == null) return false;
                 if (c.CardData == 0) return false;
-              
             }
 
             return true;

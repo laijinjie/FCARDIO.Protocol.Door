@@ -5,51 +5,42 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card
+namespace FCARDIO.Protocol.Elevator.FC8864.Card.CardDetail
 {
     /// <summary>
-    /// 写卡列表的泛型抽象
+    /// FC88/MC58  读取单个卡片在控制器中的信息
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract  class WriteCardList_Parameter_Base<T> : AbstractParameter 
-        where T:Data.CardDetailBase
+    public class ReadCardDetail_Parameter
+         : AbstractParameter
     {
         /// <summary>
-        /// 需要写入的卡列表
+        /// 要读取详情的授权卡卡号
+        /// 取值：1-0xFFFFFFFF
         /// </summary>
-        public List<T> CardList;
-
+        public UInt64 CardData;
 
         /// <summary>
-        /// 创建 将卡片列表写入到控制器非排序区 指令的参数
+        /// 创建结构
         /// </summary>
-        /// <param name="cardList">需要写入的卡列表</param>
-        public WriteCardList_Parameter_Base(List<T> cardList)
+        /// <param name="carddata">需要读取卡片详情的卡号</param>
+        public ReadCardDetail_Parameter(UInt64 carddata)
         {
-            CardList = cardList;
-            if (!checkedParameter())
-            {
-                throw new ArgumentException("cardList Error");
-            }
+            CardData = carddata;
         }
 
         /// <summary>
-        /// 检查卡片列表参数，任何情况下都不能为空，元素数不能为0,列表元素不能为空
+        /// 检查参数
         /// </summary>
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (CardList == null) return false;
-
-
-            if (CardList.Count == 0) return false;
-           
-
-            foreach (var c in CardList)
+            if(CardData==0)
             {
-                if (c == null) return false;
-                if (c.CardData == 0) return false;
-              
+                throw new ArgumentException("CardData Error!");
+            }
+            if (CardData > (UInt64)UInt32.MaxValue)
+            {
+                throw new ArgumentException("CardData Error!");
             }
 
             return true;
@@ -60,30 +51,36 @@ namespace FCARDIO.Protocol.Door.FC8800.Card
         /// </summary>
         public override void Dispose()
         {
-            CardList = null;
+            return;
         }
 
         /// <summary>
-        /// 不实现此功能
+        /// 将结构编码为 字节缓冲
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
+            if (databuf.WritableBytes < 5)
+            {
+                throw new ArgumentException("Crad Error");
+            }
+            databuf.WriteByte(0);
+            databuf.WriteInt((int)CardData);
             return databuf;
         }
 
         /// <summary>
-        /// 不实现此功能
+        /// 指定此类结构编码为字节缓冲后的长度
         /// </summary>
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 0;
+            return 5;
         }
 
         /// <summary>
-        /// 不实现此功能
+        /// 未实现
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)

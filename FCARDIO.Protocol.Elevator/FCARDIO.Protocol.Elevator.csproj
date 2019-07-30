@@ -77,6 +77,23 @@
   <ItemGroup>
     <Compile Include="AbstractParameter.cs" />
     <Compile Include="CommandEx.cs" />
+    <Compile Include="FC8864\Card\01CardDatabaseDetail\ReadCardDatabaseDetail.cs" />
+    <Compile Include="FC8864\Card\01CardDatabaseDetail\ReadCardDatabaseDetail_Result.cs" />
+    <Compile Include="FC8864\Card\02ClearCardDataBase\ClearCardDataBase.cs" />
+    <Compile Include="FC8864\Card\02ClearCardDataBase\ClearCardDataBase_Parameter.cs" />
+    <Compile Include="FC8864\Card\03CardDataBase\ReadCardDataBase.cs" />
+    <Compile Include="FC8864\Card\03CardDataBase\ReadCardDataBase_Result.cs" />
+    <Compile Include="FC8864\Card\04CardDetail\ReadCardDetail.cs" />
+    <Compile Include="FC8864\Card\04CardDetail\ReadCardDetail_Parameter.cs" />
+    <Compile Include="FC8864\Card\04CardDetail\ReadCardDetail_Result.cs" />
+    <Compile Include="FC8864\Card\06DeleteCard\DeleteCard.cs" />
+    <Compile Include="FC8864\Card\06DeleteCard\DeleteCard_Parameter.cs" />
+    <Compile Include="FC8864\Card\WriteCardList\05CardListBySequence\WriteCardListBySequence.cs" />
+    <Compile Include="FC8864\Card\WriteCardList\05CardListBySequence\WriteCardListBySequence_Parameter.cs" />
+    <Compile Include="FC8864\Card\WriteCardList\07CardListBySort\WriteCardListBySort.cs" />
+    <Compile Include="FC8864\Card\WriteCardList\07CardListBySort\WriteCardListBySort_Parameter.cs" />
+    <Compile Include="FC8864\Data\CardDetail.cs" />
+    <Compile Include="FC8864\Data\CardDetailBase.cs" />
     <Compile Include="FC8864\Data\OpenDoorTimeoutAlarm.cs" />
     <Compile Include="FC8864\Data\TimeGroup\DayTimeGroup.cs" />
     <Compile Include="FC8864\Data\TimeGroup\E_WeekDay.cs" />
@@ -146,6 +163,7 @@
     <Compile Include="FC8864\Password\03ReadAllPassword\ReadAllPassword_Result.cs" />
     <Compile Include="FC8864\Password\04AddPassword\AddPassword.cs" />
     <Compile Include="FC8864\Password\05DeletePassword\DeletePassword.cs" />
+    <Compile Include="FC8864\Password\05DeletePassword\DeletePassword_Parameter.cs" />
     <Compile Include="FC8864\Password\PasswordDetail.cs" />
     <Compile Include="FC8864\Password\Password_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\02ConnectPassword\Password_Parameter.cs" />
