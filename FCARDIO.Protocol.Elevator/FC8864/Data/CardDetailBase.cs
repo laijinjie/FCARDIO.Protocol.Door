@@ -1,10 +1,6 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Extension;
-using FCARDIO.Protocol.Elevator.FC8864.Utility;
 using FCARDIO.Protocol.Util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 
 namespace FCARDIO.Protocol.Elevator.FC8864.Data
@@ -217,6 +213,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Data
 
             int bData = data.ReadByte();
             Privilege = bData & 7;
+            HolidayUse = (bData & 8) == 8;
             CardStatus = data.ReadByte();
 
             data.ReadBytes(Holiday, 0, 4);
