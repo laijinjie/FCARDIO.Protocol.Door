@@ -18,9 +18,9 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.Exp
         public WriteExpirationPrompt_Parameter() { }
 
         /// <summary>
-        /// 使用主板蜂鸣器初始化实例
+        /// 初始化实例
         /// </summary>
-        /// <param name="isUse">主板蜂鸣器</param>
+        /// <param name="isUse">是否启用</param>
         public WriteExpirationPrompt_Parameter(bool isUse)
         {
             IsUse = isUse;
@@ -45,7 +45,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.Exp
         }
 
         /// <summary>
-        /// 对主板蜂鸣器参数进行编码
+        /// 对参数进行编码
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.Exp
         }
 
         /// <summary>
-        /// 对主板蜂鸣器参数进行解码
+        /// 对参数进行解码
         /// </summary>
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)

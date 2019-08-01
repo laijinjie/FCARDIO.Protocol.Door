@@ -9,17 +9,17 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.CloseAlarm
     public class WriteCloseAlarm_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 读卡类型
+        /// 报警类型
         /// <para>bit0 -- 非法卡报警</para>
-        /// <para>bit2 -- 胁迫报警</para>
-        /// <para>bit4 -- 黑名单报警</para>
-        /// <para>bit7 -- 消防报警</para>
+        /// <para>bit1 -- 胁迫报警</para>
+        /// <para>bit2 -- 黑名单报警</para>
+        /// <para>bit3 -- 消防报警</para>
         public byte[] BitList;
 
         /// <summary>
         /// 初始化参数
         /// </summary>
-        /// <param name="bitList">读卡类型</param>
+        /// <param name="bitList">报警类型</param>
         public WriteCloseAlarm_Parameter(byte[] bitList)
         {
             BitList = bitList;

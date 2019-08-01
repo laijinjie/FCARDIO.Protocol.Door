@@ -11,7 +11,7 @@
         public ushort AllowTime;
 
         /// <summary>
-        /// 允许开门的时间
+        /// 是否开启
         /// </summary>
         public bool IsUse;
     }

@@ -14,14 +14,14 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Door.AlarmPassword
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter"></param>
-        public WriteAlarmPassword(INCommandDetail cd, WriteAlarmPassword_parameter parameter) : base(cd, parameter) { }
+        public WriteAlarmPassword(INCommandDetail cd, WriteAlarmPassword_Parameter parameter) : base(cd, parameter) { }
 
         /// <summary>
         /// 创建一个通讯指令
         /// </summary>
         protected override void CreatePacket0()
         {
-            WriteAlarmPassword_parameter model = _Parameter as WriteAlarmPassword_parameter;
+            WriteAlarmPassword_Parameter model = _Parameter as WriteAlarmPassword_Parameter;
             Packet(0x41, 0x0A, 0x0C, 0x06, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
@@ -33,7 +33,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Door.AlarmPassword
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            WriteAlarmPassword_parameter model = value as WriteAlarmPassword_parameter;
+            WriteAlarmPassword_Parameter model = value as WriteAlarmPassword_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }

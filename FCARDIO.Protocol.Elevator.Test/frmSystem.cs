@@ -56,6 +56,7 @@ namespace FCARDIO.Protocol.Elevator.Test
         {
             InitializeComponent();
         }
+
         string[] ReaderByteTypeList = new string[] { "三字节","四字节","二字节","禁用"};
         string[] InputTerminalFunctionList = new string[] { "开锁按钮", "门磁检查" };
         string[] AlarmOptionList = new string[] { "不开门，报警输出", "开门，报警输出", "锁定门，报警，只能软件解锁" };
@@ -1020,7 +1021,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             String pwd = Password.Text.ToString();
             int alarmOption = cmbAlarmOption.SelectedIndex + 1;
 
-            var par = new WriteAlarmPassword_parameter(cbAlarmPasswordUse.Checked, pwd, alarmOption);
+            var par = new WriteAlarmPassword_Parameter(cbAlarmPasswordUse.Checked, pwd, alarmOption);
             var cmd = new WriteAlarmPassword(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 

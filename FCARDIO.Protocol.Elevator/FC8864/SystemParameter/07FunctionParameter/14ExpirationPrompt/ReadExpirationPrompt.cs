@@ -9,7 +9,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.Exp
     public class ReadExpirationPrompt : Read_Command
     {
         /// <summary>
-        /// 获取主板蜂鸣器 初始化命令
+        ///  初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public ReadExpirationPrompt(INCommandDetail cd) : base(cd) { }

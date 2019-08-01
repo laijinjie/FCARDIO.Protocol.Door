@@ -1,0 +1,11 @@
+﻿using FCARDIO.Core.Command;
+
+namespace FCARDIO.Protocol.Fingerprint.SystemParameter.LocalIdentity
+{
+    /// <summary>
+    /// 读取 本机身份 返回结果
+    /// </summary>
+    public class ReadLocalIdentity_Result : WriteLocalIdentity_Parameter, INCommandResult
+    {
+    }
+}

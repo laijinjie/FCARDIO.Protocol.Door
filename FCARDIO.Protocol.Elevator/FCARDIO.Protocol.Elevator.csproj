@@ -217,7 +217,7 @@
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\13AlarmPassword\AlarmPassword_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\13AlarmPassword\ReadAlarmPassword.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\13AlarmPassword\WriteAlarmPassword.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\13AlarmPassword\WriteAlarmPassword_parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\13AlarmPassword\WriteAlarmPassword_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\10ReaderByte\ReadReaderByte.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\10ReaderByte\ReadReaderByte_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\10ReaderByte\WriteReaderByte.cs" />
