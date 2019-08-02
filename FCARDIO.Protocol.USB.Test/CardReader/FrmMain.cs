@@ -214,7 +214,25 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
 
         private void MAllocator_TransactionMessage(INConnectorDetail connector, INData EventData)
         {
-            throw new NotImplementedException();
+            if (EventData is USBDrive.USBDriveTransaction)
+            {
+                USBDriveTransaction USBtr = EventData as USBDriveTransaction;
+                Watch.WatchReadCardTransaction cardTr = USBtr.EventData as Watch.WatchReadCardTransaction;
+
+                ListViewItem oItem = new ListViewItem();
+                string sLog = $"卡类型：{cardTr.CardType} ,卡字节：{cardTr.CardDataLen}，卡号：{cardTr.Card}(0x{cardTr.Card:X16})";
+
+                oItem.Text = "读卡消息";
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, sLog));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, cardTr.TransactionDate.ToDateTimeStr()));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
+                oItem.ToolTipText = sLog;
+
+                AddCmdItem(oItem);
+            }
+
         }
 
         private void MAllocator_AuthenticationErrorEvent(object sender, CommandEventArgs e)
@@ -416,7 +434,7 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
                 }
 
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, txt));
-                string Local,  cType;
+                string Local, cType;
                 GetConnectorDetail(cmdDtl.Connector, out cType, out Local);
                 USBDriveCommandDetail fcDtl = cmdDtl as USBDriveCommandDetail;
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, fcDtl.Addr));
@@ -446,7 +464,7 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
         }
         private string GetConnectorDetail(INConnectorDetail conn)
         {
-            string Local,  cType;
+            string Local, cType;
             GetConnectorDetail(conn, out cType, out Local);
             string ret = $"通道类型：{cType} 本地IP：{Local}";
 
@@ -543,7 +561,7 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
         {
             if (!mShowIOEvent) return;
 
-            string Local,  cType;
+            string Local, cType;
             GetConnectorDetail(connDetail, out cType, out Local);
 
             ListViewItem oItem = new ListViewItem();
@@ -666,7 +684,7 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
 
         private void ButRecord_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void ButSearchCard_Click(object sender, EventArgs e)
@@ -725,9 +743,8 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
 
             switch (cmdIndex)
             {
-                case 0x01://连接确认信息
-                    return 
-                    break;
+                case 0x01://读卡消息
+                    return new FCARDIO.Protocol.USB.CardReader.Watch.WatchReadCardTransaction();
                 default:
                     break;
             }

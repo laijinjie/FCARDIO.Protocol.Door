@@ -122,6 +122,9 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmNodeForm.resx">
+      <DependentUpon>frmNodeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSystem.resx">
       <DependentUpon>frmSystem.cs</DependentUpon>
     </EmbeddedResource>
