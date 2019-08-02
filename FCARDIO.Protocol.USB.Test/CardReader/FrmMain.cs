@@ -518,7 +518,7 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
         {
             if (_IsClosed) return null;
             USBDriveCommandDetail cmdDtl = CommandDetailFactory.CreateDetail(CommandDetailFactory.ConnectType.SerialPort, "", GetSerialPort(),
-                CommandDetailFactory.ControllerType.USBDrive_CardReader, txtAddress.Text, string.Empty) as USBDriveCommandDetail;
+                CommandDetailFactory.ControllerType.USBDrive_CardReader, "", string.Empty) as USBDriveCommandDetail;
             FCARDIO.Core.Connector.SerialPort.SerialPortDetail spd = cmdDtl.Connector as FCARDIO.Core.Connector.SerialPort.SerialPortDetail;
             spd.Baudrate = 19200;
             return cmdDtl;
@@ -706,29 +706,27 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
 
             //使通道保持连接不关闭
             cnt.OpenForciblyConnect();
-            FC8800RequestHandle fC8800Request =
-                new FC8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
-            cnt.RemoveRequestHandle(typeof(FC8800RequestHandle));//先删除，防止已存在就无法添加。
-            cnt.AddRequestHandle(fC8800Request);
+            USBDriveRequestHandle usbRequest =
+                new USBDriveRequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
+            cnt.RemoveRequestHandle(typeof(USBDriveRequestHandle));//先删除，防止已存在就无法添加。
+            cnt.AddRequestHandle(usbRequest);
 
         }
 
         /// <summary>
         /// 用于根据SN，命令参数、命令索引生产用于处理对应消息的处理类工厂函数
         /// </summary>
-        /// <param name="sn"></param>
+        /// <param name="addr"></param>
         /// <param name="cmdIndex"></param>
-        /// <param name="cmdPar"></param>
         /// <returns></returns>
-        private Transaction.AbstractTransaction RequestHandleFactory(string sn, byte cmdIndex, byte cmdPar)
+        private Transaction.AbstractTransaction RequestHandleFactory(byte addr, byte cmdIndex)
         {
-            bool bIsFC89H = true;
+
 
             switch (cmdIndex)
             {
-                case 0x23://连接确认信息
-                    break;
-                case 0x22://连接测试--心跳保活包
+                case 0x01://连接确认信息
+                    return 
                     break;
                 default:
                     break;

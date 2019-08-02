@@ -55,66 +55,13 @@ namespace FCARDIO.Protocol.Fingerprint.SystemParameter.OEM
             {
                 throw new ArgumentException("databuf Size < 127");
             }
-            WriteString(databuf, Manufacturer, 60, StringEncoding);
-            WriteString(databuf, WebAddr, 60, StringEncoding);
+            Util.StringUtil.WriteString(databuf, Manufacturer, 60, StringEncoding);
+            Util.StringUtil.WriteString(databuf, WebAddr, 60, StringEncoding);
             FCARDIO.Protocol.Util.StringUtil.HextoByteBuf(DeliveryDate.ToString("yyyyMMddhhmmss"), databuf);
             return databuf;
         }
 
-        /// <summary>
-        /// 将字符串写入到固定长度的缓冲区，不足补0，超过就截取
-        /// </summary>
-        /// <param name="databuf">缓冲区</param>
-        /// <param name="sValue">需要写入的字符串</param>
-        /// <param name="iLen">缓冲区固定长度</param>
-        /// <returns></returns>
-        private IByteBuffer WriteString(IByteBuffer databuf, string sValue, int iLen, Encoding uc)
-        {
-            int iCount = 0, iNullCount = iLen;
-            if (!string.IsNullOrEmpty(sValue))
-            {
-                iCount = uc.GetByteCount(sValue);
-                if (iCount <= iLen)
-                {
-                    databuf.WriteString(sValue, uc);
-                }
-                else
-                {
-                    iCount = iLen;
-                    var buf = uc.GetBytes(sValue);
-                    databuf.WriteBytes(buf, 0, iCount);
-                }
-                iNullCount = iNullCount - iCount;
-            }
-            if (iNullCount > 0)
-            {
-                for (int i = 0; i < iNullCount; i++)
-                {
-                    databuf.WriteByte(0);
-                }
-            }
-            return databuf;
-        }
-
-
-        /// <summary>
-        /// 从缓冲区中读取一个定长的字符串
-        /// </summary>
-        /// <param name="databuf"></param>
-        /// <param name="sValue"></param>
-        /// <param name="uc"></param>
-        /// <returns></returns>
-        private string GetString(IByteBuffer databuf, int iLen, Encoding uc)
-        {
-            string sValue = string.Empty;
-
-            sValue = databuf.ReadString(iLen, uc);
-            if (sValue.EndsWith("\0"))
-            {
-                sValue = sValue.TrimEnd('\0');
-            }
-            return sValue;
-        }
+        
 
 
         /// <summary>
@@ -127,9 +74,9 @@ namespace FCARDIO.Protocol.Fingerprint.SystemParameter.OEM
             {
                 throw new ArgumentException("databuf Size < 127");
             }
-            Manufacturer = GetString(databuf, 60, StringEncoding);
-            WebAddr = GetString(databuf, 60, StringEncoding);
-            DeliveryDate = Util.TimeUtil.BCDTimeToDate_yyyyMMddhhmmss(databuf);
+            Manufacturer = Util.StringUtil.GetString(databuf, 60, StringEncoding);
+            WebAddr = Util.StringUtil.GetString(databuf, 60, StringEncoding);
+            DeliveryDate = Util.TimeUtil.BCDTimeToDate_yyMMddhhmmss(databuf);
         }
 
 

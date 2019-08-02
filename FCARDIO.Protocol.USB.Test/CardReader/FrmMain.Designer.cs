@@ -100,7 +100,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(41, 21);
             this.txtAddress.TabIndex = 3;
-            this.txtAddress.Text = "1";
+            this.txtAddress.Text = "2";
             // 
             // label2
             // 

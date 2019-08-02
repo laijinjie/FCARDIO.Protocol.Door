@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DotNetty.Buffers;
+using FCARDIO.Protocol.Util;
+using System;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Fingerprint.Data
 {
     /// <summary>
-    /// 
+    /// 人员信息
     /// </summary>
     public class Person : IComparable<Person>
     {
+        public static Encoding StringEncoding = Encoding.BigEndianUnicode;
         /// <summary>
         /// 用户号
         /// </summary>
@@ -39,7 +39,7 @@ namespace FCARDIO.Protocol.Fingerprint.Data
         /// 有效次数,取值范围：0-65535;<para/>
         /// 0表示次数用光了。65535表示不受限制
         /// </summary>
-        public int OpenTimes;
+        public ushort OpenTimes;
 
         /// <summary>
         /// 用户身份
@@ -111,7 +111,7 @@ namespace FCARDIO.Protocol.Fingerprint.Data
         /// ...........
         /// bit9--指纹10
         /// </summary>
-        public ushort IsFingerprintFeatureCode;
+        public byte[] FingerprintFeatureCodeList;
 
         public int CompareTo(Person other)
         {
@@ -126,5 +126,105 @@ namespace FCARDIO.Protocol.Fingerprint.Data
         {
             return 0xA1;//161字节
         }
+
+        /// <summary>
+        /// 从buf中读取人员详情数据
+        /// </summary>
+        /// <param name="data"></param>
+        public virtual void SetDeleteBytes(IByteBuffer data)
+        {
+            UserCode = (uint)data.ReadInt();
+        }
+
+        /// <summary>
+        /// 从buf中读取人员详情数据
+        /// </summary>
+        /// <param name="data"></param>
+        public virtual void SetBytes(IByteBuffer data)
+        {
+            UserCode = (uint)data.ReadInt();
+            CardData = (UInt64)data.ReadLong();
+            Password = StringUtil.ByteBufToHex(data, 4);
+            Expiry = TimeUtil.BCDTimeToDate_yyMMddhhmm(data);
+
+            TimeGroup = data.ReadByte();
+
+            OpenTimes = data.ReadUnsignedShort();
+
+            Identity = data.ReadByte();
+            CardType = data.ReadByte();
+            CardStatus = data.ReadByte();
+            PName = Util.StringUtil.GetString(data, 30, StringEncoding);
+            PCode = Util.StringUtil.GetString(data, 30, StringEncoding);
+            Dept = Util.StringUtil.GetString(data, 30, StringEncoding);
+            Post = Util.StringUtil.GetString(data, 30, StringEncoding);
+
+            data.ReadBytes(Holiday, 0, 4);
+            EnterStatus = data.ReadByte();
+
+            RecordTime = TimeUtil.BCDTimeToDate_yyMMddhhmmss(data);
+
+            IsFaceFeatureCode = data.ReadBoolean();
+
+            FingerprintFeatureCodeList = new byte[10];
+            for (int i = 0; i < 2; i++)
+            {
+                byte type = data.ReadByte();
+                var bytelist = FCARD.Common.NumUtil.ByteToBit(type);
+                for (int j = 0; j < bytelist.Length; j++)
+                {
+                    FingerprintFeatureCodeList[i * 8 + j] = bytelist[j];
+                }
+            }
+        }
+
+        /// <summary>
+        /// 将人员详情实例写入到buf中
+        /// </summary>
+        /// <param name="data"></param>
+        public virtual void GetBytes(IByteBuffer data)
+        {
+            data.WriteInt((int)UserCode);
+            data.WriteLong((long)CardData);
+             Password = StringUtil.FillHexString(Password, 8, "F", true);
+            StringUtil.HextoByteBuf(Password, data);
+            TimeUtil.DateToBCD_yyMMddhhmm(data, Expiry);
+            data.WriteByte(TimeGroup);
+            data.WriteUnsignedShort(OpenTimes);
+
+            data.WriteByte(Identity);
+            data.WriteByte(CardType);
+            data.WriteByte(CardStatus);
+            Util.StringUtil.WriteString(data, PName, 30, StringEncoding);
+            Util.StringUtil.WriteString(data, PCode, 30, StringEncoding);
+            Util.StringUtil.WriteString(data, Dept, 30, StringEncoding);
+            Util.StringUtil.WriteString(data, Post, 30, StringEncoding);
+
+            data.WriteBytes(Holiday, 0, 4);
+
+            data.WriteByte(EnterStatus);
+
+            //最近验证时间 不写入
+            for (int i = 0; i < 6; i++)
+            {
+                data.WriteByte(0);
+            }
+
+            data.WriteBoolean(IsFaceFeatureCode);
+
+            for (int i = 0; i < 2; i++)
+            {
+                byte[] list = new byte[8];
+                for (int j = 0; j < 8; j++)
+                {
+                    list[j] = FingerprintFeatureCodeList[i * 8 + j];
+                }
+
+                byte type = FCARD.Common.NumUtil.BitToByte(list);
+                data.WriteByte(type);
+            }
+            
+        }
+
     }
 }

@@ -1409,5 +1409,78 @@ namespace FCARDIO.Protocol.Elevator.Test
             {
             };
         }
+
+        private void BtnReadDoorWorkSetting_Click(object sender, EventArgs e)
+        {
+            if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
+            {
+                MsgErr("请勾选需要操作的门！");
+                return;
+            }
+            StringBuilder sb = new StringBuilder();
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                byte[] ByteDoorAlarmStateSet = null;
+                BitArray bitSet = null;
+                ReaderWorkSetting_Result result = cmde.Command.getResult() as ReaderWorkSetting_Result;
+                ListWeekTimeGroupDto.Clear();
+                for (int i = 0; i < 7; i++)
+                {
+                    WeekTimeGroupDto dto = new WeekTimeGroupDto();
+                    dto.WeekDay = GetWeekStr(i);
+                    dto.Ex = "-";
+                    dto.IsEx = "true";
+                    ListWeekTimeGroupDto.Add(dto);
+
+                    for (int j = 0; j < 8; j++)
+                    {
+                        var tz = result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j) as TimeSegment_ReaderWork;
+                        ByteDoorAlarmStateSet = new byte[] { tz.GetCheckWay() };
+                        bitSet = new BitArray(ByteDoorAlarmStateSet);
+
+                        string strCheckWay = Convert.ToString(tz.GetCheckWay(), 2).PadLeft(4, '0');
+
+                        dto = new WeekTimeGroupDto();
+                        dto.WeekDay = (j + 1).ToString();
+                        dto.WeekDayIndex = i;
+                        dto.StartTime = result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j).GetBeginTime().ToString("HH:mm");
+                        dto.EndTime = result.weekTimeGroup_ReaderWork.GetItem(i).GetItem(j).GetEndTime().ToString("HH:mm");
+                        dto.id0 = strCheckWay[3] == '1';// bitSet[0];
+                        dto.id1 = strCheckWay[2] == '1';// bitSet[1];
+                        dto.id2 = strCheckWay[1] == '1';// bitSet[2];
+                        dto.id3 = strCheckWay[0] == '1';// bitSet[3];
+                        ListWeekTimeGroupDto.Add(dto);
+                    }
+                }
+                Invoke(() =>
+                {
+                    dataGridView1.DataSource = new BindingList<WeekTimeGroupDto>(ListWeekTimeGroupDto);
+                });
+
+            };
+        }
+
+        private void BtnWriteDoorWorkSetting_Click(object sender, EventArgs e)
+        {
+            //if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
+            //{
+            //    MsgErr("请勾选需要操作的门！");
+            //    return;
+            //}
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WeekTimeGroup_ReaderWork tg = new WeekTimeGroup_ReaderWork(8);
+            ConvertDtoToModel(tg);
+
+            WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter((byte)(cmdDoorNum.SelectedIndex + 1), tg);
+            WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
+            mMainForm.AddCommand(write);
+        }
     }
 }
