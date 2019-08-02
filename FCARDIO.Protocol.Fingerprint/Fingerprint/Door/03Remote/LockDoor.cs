@@ -19,8 +19,7 @@ namespace FCARDIO.Protocol.Fingerprint.Door.Remote
         /// 锁定门
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        /// <param name="par">包含锁定门参数</param>
-        public LockDoor(INCommandDetail cd, Remote_Parameter par) : base(cd, par) { }
+        public LockDoor(INCommandDetail cd) : base(cd) { }
 
         /// <summary>
         /// 将命令打包成一个Packet，准备发送

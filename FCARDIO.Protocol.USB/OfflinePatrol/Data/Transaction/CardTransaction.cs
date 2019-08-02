@@ -57,8 +57,11 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
                 {
                     _IsNull = true;
                     PCode = 0;
-                    byte[] b = new byte[10];
-                    dtBuf.ReadBytes(b);
+                    for (int i = 0; i < 10; i++)
+                    {
+                        dtBuf.ReadByte();
+                    }
+                    
                     return;
                 }
                 _TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhhmmss(dtBuf);

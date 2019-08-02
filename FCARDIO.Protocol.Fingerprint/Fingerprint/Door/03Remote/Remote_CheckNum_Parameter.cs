@@ -15,10 +15,6 @@ namespace FCARDIO.Protocol.Fingerprint.Door.Remote
         /// </summary>
         private byte CheckNum;
 
-        /// <summary>
-        /// 构建一个空的实例
-        /// </summary>
-        public Remote_CheckNum_Parameter() { }
 
         /// <summary>
         /// 远程开关门参数初始化实例

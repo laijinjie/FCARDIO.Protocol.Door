@@ -13,8 +13,7 @@ namespace FCARDIO.Protocol.Fingerprint.Door.Remote
         /// 远程开门
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        /// <param name="par">包含远程开门参数</param>
-        public OpenDoor(INCommandDetail cd, Remote_Parameter par) : base(cd, par) { }
+        public OpenDoor(INCommandDetail cd) : base(cd,null) { }
 
         /// <summary>
         /// 检查命令参数
@@ -23,12 +22,7 @@ namespace FCARDIO.Protocol.Fingerprint.Door.Remote
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            Remote_Parameter model = value as Remote_Parameter;
-            if (model == null)
-            {
-                return false;
-            }
-            return model.checkedParameter();
+            return true;
         }
 
         /// <summary>
@@ -40,18 +34,6 @@ namespace FCARDIO.Protocol.Fingerprint.Door.Remote
             Packet(0x03, 0x03, 0x00);
         }
 
-        /// <summary>
-        /// 创建命令所需的命令数据<br/>
-        /// 将命令打包到ByteBuffer中
-        /// </summary>
-        /// <returns>包含命令数据的ByteBuffer</returns>
-        protected IByteBuffer GetCmdData()
-        {
-            Remote_Parameter model = _Parameter as Remote_Parameter;
-            var acl = _Connector.GetByteBufAllocator();
-            var buf = acl.Buffer(model.GetDataLen());
-            model.GetBytes(buf);
-            return buf;
-        }
+        
     }
 }

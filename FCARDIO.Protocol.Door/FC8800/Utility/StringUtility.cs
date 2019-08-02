@@ -396,6 +396,46 @@ namespace FCARDIO.Protocol.Door.FC8800.Utility
         }
 
         /// <summary>
+        /// 获得数值代表的星期
+        /// </summary>
+        /// <param name="index">数值（0-6，0代表星期一...6代表星期日）</param>
+        /// <returns></returns>
+        public static string GetWeekStr(int index)
+        {
+            string weekStr = string.Empty;
+            if (index == 0)
+            {
+                return "星期一";
+            }
+            else if (index == 1)
+            {
+                return "星期二";
+            }
+            else if (index == 2)
+            {
+                return "星期三";
+            }
+            else if (index == 3)
+            {
+                return "星期四";
+            }
+            else if (index == 4)
+            {
+                return "星期五";
+            }
+            else if (index == 5)
+            {
+                return "星期六";
+            }
+            else if (index == 6)
+            {
+                return "星期日";
+            }
+            return weekStr;
+        }
+
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="buf"></param>

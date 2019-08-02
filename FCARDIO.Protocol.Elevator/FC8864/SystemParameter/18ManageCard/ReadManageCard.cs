@@ -1,7 +1,7 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ManageCard
+namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.ManageCard
 {
     /// <summary>
     /// 读取 管理卡功能

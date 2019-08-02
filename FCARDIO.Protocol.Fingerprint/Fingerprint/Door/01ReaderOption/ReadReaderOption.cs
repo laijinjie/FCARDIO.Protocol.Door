@@ -5,7 +5,7 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Fingerprint.Door.ReaderOption
 {
     /// <summary>
-    /// 读取控制器4个门的读卡器字节数
+    /// 读取 读卡器字节数
     /// </summary>
     public class ReadReaderOption : FC8800Command_ReadParameter
     {

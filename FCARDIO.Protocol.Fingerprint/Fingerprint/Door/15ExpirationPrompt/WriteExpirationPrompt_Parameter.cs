@@ -15,6 +15,7 @@ namespace FCARDIO.Protocol.Fingerprint.Door.ExpirationPrompt
 
         /// <summary>
         /// 有效期阀值
+        /// 1-255
         /// </summary>
         public byte Time;
 

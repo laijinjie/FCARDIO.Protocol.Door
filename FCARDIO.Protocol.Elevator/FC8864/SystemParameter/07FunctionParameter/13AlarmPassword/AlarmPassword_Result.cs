@@ -1,6 +1,6 @@
 ﻿using FCARDIO.Core.Command;
 
-namespace FCARDIO.Protocol.Elevator.FC8864.Door.AlarmPassword
+namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.AlarmPassword
 {
     /// <summary>
     /// 胁迫报警 返回参数

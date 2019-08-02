@@ -14,7 +14,7 @@ namespace FCARDIO.Protocol.Fingerprint.Door.DoorWorkSetting
         /// <summary>
         /// 功能是否启用
         /// </summary>
-        public byte Use;
+        public bool Use;
 
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace FCARDIO.Protocol.Fingerprint.Door.DoorWorkSetting
         /// <param name="use">功能是否启用</param>
         /// <param name="doorTriggerMode">门常开触发模式</param>
         /// <param name="tg">门工作方式时段</param>
-        public WriteDoorWorkSetting_Parameter(byte use, byte doorTriggerMode, WeekTimeGroup tg)
+        public WriteDoorWorkSetting_Parameter(bool use, byte doorTriggerMode, WeekTimeGroup tg)
         {
             Use = use;
             DoorTriggerMode = doorTriggerMode;
@@ -86,7 +86,7 @@ namespace FCARDIO.Protocol.Fingerprint.Door.DoorWorkSetting
             {
                 throw new ArgumentException("databuf Error!");
             }
-            databuf.WriteByte(Use);
+            databuf.WriteBoolean(Use);
             databuf.WriteByte(DoorTriggerMode);
             weekTimeGroup.GetBytes(databuf);
 
@@ -109,15 +109,16 @@ namespace FCARDIO.Protocol.Fingerprint.Door.DoorWorkSetting
         /// <returns></returns>
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (weekTimeGroup == null)
-            {
-                weekTimeGroup = new WeekTimeGroup(8);
-            }
+            
             if (databuf.ReadableBytes != GetDataLen())
             {
                 throw new ArgumentException("databuf Error");
             }
-            Use = databuf.ReadByte();
+            if (weekTimeGroup == null)
+            {
+                weekTimeGroup = new WeekTimeGroup(8);
+            }
+            Use = databuf.ReadBoolean();
             DoorTriggerMode = databuf.ReadByte();
             weekTimeGroup.ReadDoorWorkSetBytes(databuf);
         }

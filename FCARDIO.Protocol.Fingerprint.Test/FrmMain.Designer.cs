@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbTCPClient = new System.Windows.Forms.GroupBox();
             this.txtTCPClientPort = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -102,6 +102,7 @@
             this.txtUDPLocalPort = new System.Windows.Forms.TextBox();
             this.butUDPBind = new System.Windows.Forms.Button();
             this.gbUDP = new System.Windows.Forms.GroupBox();
+            this.butAlarm = new System.Windows.Forms.ToolStripButton();
             this.gbTCPClient.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -250,6 +251,7 @@
             this.butSystem,
             this.butTime,
             this.butDoor,
+            this.butAlarm,
             this.butHoliday,
             this.ButPassword,
             this.ButTimeGroup,
@@ -518,21 +520,21 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn4,
             this.Column7});
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIO.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIO.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvIO.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvIO.Location = new System.Drawing.Point(3, 32);
             this.dgvIO.Name = "dgvIO";
             this.dgvIO.ReadOnly = true;
             this.dgvIO.RowHeadersVisible = false;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIO.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIO.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvIO.RowTemplate.Height = 23;
             this.dgvIO.Size = new System.Drawing.Size(606, 462);
             this.dgvIO.TabIndex = 19;
@@ -625,21 +627,21 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvResult.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvResult.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResult.Location = new System.Drawing.Point(3, 32);
             this.dgvResult.Name = "dgvResult";
             this.dgvResult.ReadOnly = true;
             this.dgvResult.RowHeadersVisible = false;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvResult.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvResult.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvResult.RowTemplate.Height = 23;
             this.dgvResult.Size = new System.Drawing.Size(606, 462);
             this.dgvResult.TabIndex = 18;
@@ -817,6 +819,16 @@
             this.gbUDP.TabStop = false;
             this.gbUDP.Text = "UDP";
             // 
+            // butAlarm
+            // 
+            this.butAlarm.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.butAlarm.Image = ((System.Drawing.Image)(resources.GetObject("butAlarm.Image")));
+            this.butAlarm.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.butAlarm.Name = "butAlarm";
+            this.butAlarm.Size = new System.Drawing.Size(60, 22);
+            this.butAlarm.Text = "报警设置";
+            this.butAlarm.Click += new System.EventHandler(this.ButAlarm_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -942,6 +954,7 @@
         private System.Windows.Forms.TextBox txtUDPLocalPort;
         private System.Windows.Forms.Button butUDPBind;
         private System.Windows.Forms.GroupBox gbUDP;
+        private System.Windows.Forms.ToolStripButton butAlarm;
     }
 }
 

@@ -80,12 +80,21 @@
     <Compile Include="Alarm\05AlarmPassword\ReadAlarmPassword_Result.cs" />
     <Compile Include="Alarm\05AlarmPassword\WriteAlarmPassword.cs" />
     <Compile Include="Alarm\05AlarmPassword\WriteAlarmPassword_Parameter.cs" />
+    <Compile Include="Alarm\06OpenDoorTimeoutAlarm\ReadOpenDoorTimeoutAlarm.cs" />
+    <Compile Include="Alarm\06OpenDoorTimeoutAlarm\ReadOpenDoorTimeoutAlarm_Result.cs" />
+    <Compile Include="Alarm\06OpenDoorTimeoutAlarm\WriteOpenDoorTimeoutAlarm.cs" />
+    <Compile Include="Alarm\06OpenDoorTimeoutAlarm\WriteOpenDoorTimeoutAlarm_Parameter.cs" />
+    <Compile Include="Alarm\07GateMagneticAlarm\ReadGateMagneticAlarm.cs" />
+    <Compile Include="Alarm\07GateMagneticAlarm\ReadGateMagneticAlarm_Result.cs" />
+    <Compile Include="Alarm\07GateMagneticAlarm\WriteGateMagneticAlarm.cs" />
+    <Compile Include="Alarm\07GateMagneticAlarm\WriteGateMagneticAlarm_Parameter.cs" />
     <Compile Include="Alarm\08LegalVerificationCloseAlarm\ReadLegalVerificationCloseAlarm.cs" />
     <Compile Include="Alarm\08LegalVerificationCloseAlarm\ReadLegalVerificationCloseAlarm_Result.cs" />
     <Compile Include="Alarm\08LegalVerificationCloseAlarm\WriteLegalVerificationCloseAlarm.cs" />
     <Compile Include="Alarm\08LegalVerificationCloseAlarm\WriteLegalVerificationCloseAlarm_Parameter.cs" />
-    <Compile Include="Alarm\WriteCloseAlarm\WriteCloseAlarm.cs" />
-    <Compile Include="Alarm\WriteCloseAlarm\WriteCloseAlarm_Parameter.cs" />
+    <Compile Include="Alarm\09WriteCloseAlarm\WriteCloseAlarm.cs" />
+    <Compile Include="Alarm\09WriteCloseAlarm\WriteCloseAlarm_Parameter.cs" />
+    <Compile Include="Data\Person.cs" />
     <Compile Include="Door\01ReaderOption\ReaderOption_Parameter.cs" />
     <Compile Include="Door\01ReaderOption\ReaderOption_Result.cs" />
     <Compile Include="Door\01ReaderOption\ReadReaderOption.cs" />
@@ -100,8 +109,6 @@
     <Compile Include="Door\03Remote\OpenDoor.cs" />
     <Compile Include="Door\03Remote\OpenDoor_CheckNum.cs" />
     <Compile Include="Door\03Remote\Remote_CheckNum_Parameter.cs" />
-    <Compile Include="Door\03Remote\Remote_Parameter.cs" />
-    <Compile Include="Door\03Remote\Remote_Result.cs" />
     <Compile Include="Door\03Remote\UnlockDoor.cs" />
     <Compile Include="Door\09DoorWorkSetting\DoorWorkSetting_Result.cs" />
     <Compile Include="Door\09DoorWorkSetting\ReadDoorWorkSetting.cs" />
@@ -119,6 +126,14 @@
     <Compile Include="Door\13VoiceBroadcastSetting\VoiceBroadcastSetting_Result.cs" />
     <Compile Include="Door\13VoiceBroadcastSetting\WriteVoiceBroadcastSetting.cs" />
     <Compile Include="Door\13VoiceBroadcastSetting\WriteVoiceBroadcastSetting_Parameter.cs" />
+    <Compile Include="Door\14ReaderIntervalTime\ReadReaderIntervalTime.cs" />
+    <Compile Include="Door\14ReaderIntervalTime\ReadReaderIntervalTime_Result.cs" />
+    <Compile Include="Door\14ReaderIntervalTime\WriteReaderIntervalTime.cs" />
+    <Compile Include="Door\14ReaderIntervalTime\WriteReaderIntervalTime_Parameter.cs" />
+    <Compile Include="Door\15ExpirationPrompt\ReadExpirationPrompt.cs" />
+    <Compile Include="Door\15ExpirationPrompt\ReadExpirationPrompt_Result.cs" />
+    <Compile Include="Door\15ExpirationPrompt\WriteExpirationPrompt.cs" />
+    <Compile Include="Door\15ExpirationPrompt\WriteExpirationPrompt_Parameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemParameter\02Password\ReadPassword.cs" />
     <Compile Include="SystemParameter\02Password\ReadPassword_Result.cs" />
@@ -179,11 +194,6 @@
     <Compile Include="SystemParameter\20OEM\ReadOEM.cs" />
     <Compile Include="SystemParameter\20OEM\WriteOEM.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Alarm\06OpenDoorTimeoutAlarm\" />
-    <Folder Include="Alarm\07GateMagneticAlarm\" />
-    <Folder Include="Door\14ReaderIntervalTime\" />
-    <Folder Include="Door\15ExpirationPrompt\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

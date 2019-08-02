@@ -1,10 +1,10 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter
+namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ReadAllSystemSetting
 {
     /// <summary>
-    /// 获取所有系统参数
+    /// 
     /// </summary>
     public class ReadAllSystemSetting : Read_Command
     {
@@ -38,8 +38,14 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            return;
+            if (CheckResponse(oPck, 0x143))
+            {
+                var buf = oPck.CmdData;
+                ReadAllSystemSetting_Result rst = new ReadAllSystemSetting_Result();
+                _Result = rst;
+                rst.SetBytes(buf);
+                CommandCompleted();
+            }
         }
-
     }
 }

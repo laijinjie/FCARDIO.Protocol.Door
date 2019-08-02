@@ -57,7 +57,8 @@
     <Reference Include="FCARDIO.Protocol">
       <HintPath>..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
-    <Reference Include="FCARDIO.Protocol.Door">
+    <Reference Include="FCARDIO.Protocol.Door, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\FCARDIO.Protocol.Door\bin\Debug\FCARDIO.Protocol.Door.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -73,11 +74,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlarm.Designer.cs">
+      <DependentUpon>frmAlarm.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDoor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDoor.Designer.cs">
       <DependentUpon>frmDoor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHoliday.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHoliday.Designer.cs">
+      <DependentUpon>frmHoliday.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -103,13 +116,26 @@
     <Compile Include="frmTime.Designer.cs">
       <DependentUpon>frmTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTimeGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTimeGroup.Designer.cs">
+      <DependentUpon>frmTimeGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="INMain.cs" />
     <Compile Include="Model\CommandResult.cs" />
+    <Compile Include="Model\HolidayDetailDto.cs" />
     <Compile Include="Model\IOMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAlarm.resx">
+      <DependentUpon>frmAlarm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDoor.resx">
       <DependentUpon>frmDoor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHoliday.resx">
+      <DependentUpon>frmHoliday.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
@@ -122,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTime.resx">
       <DependentUpon>frmTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTimeGroup.resx">
+      <DependentUpon>frmTimeGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

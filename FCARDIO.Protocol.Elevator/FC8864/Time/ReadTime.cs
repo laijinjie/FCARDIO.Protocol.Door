@@ -1,16 +1,10 @@
 ﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.Time
 {
     /// <summary>
-    /// 从控制器中读取控制器时间
+    /// 从控制器中读取时间
     /// </summary>
     public class ReadTime : Read_Command
     {

@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DotNetty.Buffers;
+﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.Card.CardDetail
 {
     /// <summary>
     ///  读取单个卡片在控制器中的信息
-    ///  成功返回结果参考 {@link ReadCardDetail_Result}
     /// </summary>
     public class ReadCardDetail
         : Read_Command

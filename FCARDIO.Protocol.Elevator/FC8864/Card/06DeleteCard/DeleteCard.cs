@@ -6,7 +6,7 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Elevator.FC8864.Card.DeleteCard
 {
     /// <summary>
-    /// FC88\MC58 将卡片列表从到控制器中删除
+    /// 将卡片列表从到控制器中删除
     /// </summary>
     public class DeleteCard : DeleteCardBase<Data.CardDetail>
     {

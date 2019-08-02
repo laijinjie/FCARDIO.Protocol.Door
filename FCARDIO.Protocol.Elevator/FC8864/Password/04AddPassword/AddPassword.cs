@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DotNetty.Buffers;
+﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
-using FCARDIO.Core.Packet;
 using FCARDIO.Protocol.Door.FC8800.Password;
 using FCARDIO.Protocol.OnlineAccess;
+using System.Collections.Generic;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.Password
 {
     /// <summary>
-    /// FC88 将密码列表写入到控制器
+    /// 将密码列表写入到控制器
     /// </summary>
     public class AddPassword : WritePasswordBase<PasswordDetail,Password_Parameter>
     {

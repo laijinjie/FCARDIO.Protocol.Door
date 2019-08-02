@@ -3,7 +3,7 @@
 namespace FCARDIO.Protocol.Elevator.FC8864.Door.CloseDoor
 {
     /// <summary>
-    /// 开门
+    /// 关门
     /// </summary>
     public class WriteCloseDoor : Write_Command
     {

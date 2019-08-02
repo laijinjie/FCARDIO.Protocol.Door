@@ -4,7 +4,7 @@ using FCARDIO.Protocol.Door.FC8800;
 namespace FCARDIO.Protocol.Fingerprint.Door.ReaderOption
 {
     /// <summary>
-    /// 设置控制器门的读卡器字节数
+    /// 设置读卡器字节数
     /// </summary>
     public class WriteReaderOption : FC8800Command_WriteParameter
     {

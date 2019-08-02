@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DotNetty.Buffers;
+﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
 using FCARDIO.Protocol.OnlineAccess;
+using System.Collections.Generic;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.Holiday
 {
     /// <summary>
-    /// 读取控制板中已存储的所有节假日<br/>
+    /// 读取控制板中已存储的所有节假日
     /// 读取成功返回 ReadAllHoliday_Result
     /// </summary>
     public class ReadAllHoliday : Read_Command

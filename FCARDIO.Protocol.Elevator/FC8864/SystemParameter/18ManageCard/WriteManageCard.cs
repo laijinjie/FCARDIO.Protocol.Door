@@ -1,7 +1,7 @@
 ﻿using FCARDIO.Core.Command;
 using System;
 
-namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ManageCard
+namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.ManageCard
 {
     /// <summary>
     /// 设置 管理卡功能

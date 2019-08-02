@@ -761,12 +761,12 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         private void butHoliday_Click(object sender, EventArgs e)
         {
 
-            //frmHoliday frm = frmHoliday.GetForm(this);
-            //frm.Show();
-            //if (frm.WindowState == FormWindowState.Minimized)
-            //    frm.WindowState = FormWindowState.Normal;
-            //frm.Activate();
-            //ShowFrm(frm);
+            frmHoliday frm = frmHoliday.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
         }
 
         private void ButPassword_Click(object sender, EventArgs e)
@@ -781,12 +781,12 @@ namespace FCARDIO.Protocol.Fingerprint.Test
 
         private void ButTimeGroup_Click(object sender, EventArgs e)
         {
-            //frmTimeGroup frm = frmTimeGroup.GetForm(this);
-            //frm.Show();
-            //if (frm.WindowState == FormWindowState.Minimized)
-            //    frm.WindowState = FormWindowState.Normal;
-            //frm.Activate();
-            //ShowFrm(frm);
+            frmTimeGroup frm = frmTimeGroup.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
         }
 
         private void butCard_Click(object sender, EventArgs e)
@@ -798,6 +798,17 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             //frm.Activate();
             //ShowFrm(frm);
 
+        }
+
+
+        private void ButAlarm_Click(object sender, EventArgs e)
+        {
+            frmAlarm frm = frmAlarm.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
         }
         /// <summary>
         /// 显示窗口在侧边栏
@@ -1415,5 +1426,6 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                 dgvIO.ReadOnly = false;
             }
         }
+
     }
 }

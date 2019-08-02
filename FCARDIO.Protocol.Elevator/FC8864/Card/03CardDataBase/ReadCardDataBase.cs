@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800.Card.CardDataBase;
 using FCARDIO.Protocol.OnlineAccess;
+using System.Collections.Generic;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.Card.CardDataBase
 {
     /// <summary>
-    /// 从控制器中读取卡片数据<br/>
-    /// 成功返回结果参考 @link ReadCardDataBase_Result 
+    /// 从控制器中读取卡片数据
     /// </summary>
     public class ReadCardDataBase : ReadCardDataBase_Base<Data.CardDetail>
     {

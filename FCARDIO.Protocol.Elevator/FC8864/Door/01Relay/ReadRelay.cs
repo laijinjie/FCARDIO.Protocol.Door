@@ -4,7 +4,7 @@ using FCARDIO.Protocol.OnlineAccess;
 namespace FCARDIO.Protocol.Elevator.FC8864.Door.Relay
 {
     /// <summary>
-    /// 读取 继电器
+    /// 读取 继电器参数
     /// </summary>
     public class ReadRelay : Read_Command
     {

@@ -1,18 +1,13 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800.Password;
-using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.Password
 {
     /// <summary>
-    /// FC88 将密码列表从控制器删除
+    /// 将密码列表从控制器删除
     /// </summary>
     public class DeletePassword : WritePasswordBase<PasswordDetail,Password_Parameter>
     {
