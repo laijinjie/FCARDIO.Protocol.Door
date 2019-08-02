@@ -88,9 +88,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Time
         public override void SetBytes(IByteBuffer databuf)
         {
             //控制器的日期时间
-            byte[] btData = new byte[6];
-            databuf.ReadBytes(btData, 0, 6);
-            ControllerDate = TimeUtil.BCDTimeToDate_ssmmhhddMMyy(btData);
+            ControllerDate = TimeUtil.BCDTimeToDate_ssmmHHddMMWWyy(databuf);
         }
     }
 }

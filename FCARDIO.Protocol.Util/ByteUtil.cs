@@ -103,5 +103,21 @@ namespace FCARDIO.Protocol.Util
             return iNum;
         }
 
+
+
+        /// <summary>
+        /// 从Bytebuf中读取一个int24
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
+        public static int ByteBufReadInt24(IByteBuffer buffer)
+        {
+            int num = 0;
+            num = (int)buffer.ReadByte() << 16;
+            num += (int)buffer.ReadByte() <<8;
+            num += buffer.ReadByte() ;
+            return num;
+        }
     }
 }

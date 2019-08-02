@@ -46,9 +46,6 @@
     <Reference Include="DotNetty.Transport">
       <HintPath>..\..\DLL\DotNetty.Transport.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetty.Transport.Libuv">
-      <HintPath>..\..\DLL\DotNetty.Transport.Libuv.dll</HintPath>
-    </Reference>
     <Reference Include="FCARD.Common">
       <HintPath>..\..\DLL\FCARD.Common.dll</HintPath>
     </Reference>
@@ -57,9 +54,6 @@
     </Reference>
     <Reference Include="FCARDIO.Protocol">
       <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol.Util">
-      <HintPath>..\..\DLL\FCARDIO.Protocol.Util.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -163,6 +157,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FCARDIO.Protocol.Util\FCARDIO.Protocol.Util.csproj">
+      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
+      <Name>FCARDIO.Protocol.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

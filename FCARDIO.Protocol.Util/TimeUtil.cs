@@ -470,16 +470,16 @@ namespace FCARDIO.Protocol.Util
         /// </summary>
         /// <param name="btTime"></param>
         /// <returns></returns>
-        public static DateTime BCDTimeToDate_ssmmHHddMMWWyy(byte[] btTime)
+        public static DateTime BCDTimeToDate_ssmmHHddMMWWyy(IByteBuffer buf)
         {
-            btTime = ByteUtil.BCDToByte(btTime);
-            int year = btTime[6];
-            int month = btTime[4];
-            int dayOfMonth = btTime[3];
-            int hourOfDay = btTime[2];
-            int minute = btTime[1];
-            int second = btTime[0];
+            buf = ByteUtil.BCDToByte(buf, buf.ReaderIndex, 6);
 
+            int sec = buf.ReadByte();
+            int minute = buf.ReadByte();
+            int hour = buf.ReadByte();
+            int day = buf.ReadByte();
+            int month = buf.ReadByte();
+            int year = buf.ReadByte();
 
             if (year > 99)
             {
@@ -489,11 +489,11 @@ namespace FCARDIO.Protocol.Util
             {
                 return DateTime.Now;
             }
-            if (dayOfMonth == 0 || dayOfMonth > 31)
+            if (day == 0 || day > 31)
             {
                 return DateTime.Now;
             }
-            if (hourOfDay > 23)
+            if (hour > 23)
             {
                 return DateTime.Now;
             }
@@ -502,13 +502,12 @@ namespace FCARDIO.Protocol.Util
             {
                 return DateTime.Now;
             }
-
-            if (second > 59)
+            if (sec > 59)
             {
                 return DateTime.Now;
             }
 
-            DateTime dTime = new DateTime(2000 + year, month, dayOfMonth, hourOfDay, minute, second);
+            DateTime dTime = new DateTime(2000 + year, month, day, hour, minute, sec);
             return dTime;
         }
     }

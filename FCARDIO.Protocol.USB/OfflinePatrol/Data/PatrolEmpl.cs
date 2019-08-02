@@ -41,10 +41,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data
                 PCode = 0;
                 return;
             }
-            byte[] bCard = new byte[3];
-            buf.ReadBytes(bCard);
-
-            CardData = FCARD.Common.NumUtil.ByteToInt32(bCard, 0, 3);
+            CardData = (UInt32)buf.ReadUnsignedMedium();
 
             byte[] bName = new byte[10];
             buf.ReadBytes(bName);

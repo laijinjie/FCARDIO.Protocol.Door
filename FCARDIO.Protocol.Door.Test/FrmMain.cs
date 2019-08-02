@@ -446,7 +446,7 @@ namespace FCARDIO.Protocol.Door.Test
                     break;
                 case ConnectorType.TCPServerClient:
                     cType = "TCP客户端节点";
-                    var tcpclientOnly = conn as TCPServerClientDetail_ReadOnly;
+                    var tcpclientOnly = conn as TCPServerClientDetail;
                     Local = $"{local.ToString()}";
                     Remote = $"{tcpclientOnly.Remote.ToString()}";
                     break;
@@ -1391,7 +1391,7 @@ namespace FCARDIO.Protocol.Door.Test
             /// </summary>
             public IPDetail Remote;
 
-            public TCPServerClientDetail_Item(TCPServerClientDetail_ReadOnly detail)
+            public TCPServerClientDetail_Item(TCPServerClientDetail detail)
             {
                 SN = "";
                 Key = detail.Key;
@@ -1505,7 +1505,7 @@ namespace FCARDIO.Protocol.Door.Test
                 Invoke(() => AddTCPServer_Client(detail));
                 return;
             }
-            TCPServerClientDetail_ReadOnly oClient = detail as TCPServerClientDetail_ReadOnly;
+            TCPServerClientDetail oClient = detail as TCPServerClientDetail;
             var oItem = new TCPServerClientDetail_Item(oClient);
 
             cmbTCPClient.Items.Add(oItem);
@@ -1526,7 +1526,7 @@ namespace FCARDIO.Protocol.Door.Test
                 Invoke(() => RemoveTCPServer_Client(detail));
                 return;
             }
-            TCPServerClientDetail_ReadOnly oClient = detail as TCPServerClientDetail_ReadOnly;
+            TCPServerClientDetail oClient = detail as TCPServerClientDetail;
 
             if (!TCPServerClients.ContainsKey(oClient.Key)) return;
 

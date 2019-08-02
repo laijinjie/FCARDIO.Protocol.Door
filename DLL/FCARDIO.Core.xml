@@ -2714,6 +2714,11 @@ FCARDIO.Core
  用于SSL安全连接的数字证书
  </summary>
 </member>
+<member name="F:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.SSLStreamFactory">
+ <summary>
+ 用于创建SSL安全套接字的流工厂
+ </summary>
+</member>
 <member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.#ctor(System.Int32)">
  <summary>
  初始化详情，本地地址指向 "0.0.0.0"
@@ -2735,6 +2740,16 @@ FCARDIO.Core
  <param name="Port">本地监听端口</param>
  <param name="bSSL">是否开启SSL</param>
  <param name="oX509">使用的证书</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.#ctor(System.String,System.Int32,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2,System.Func{System.IO.Stream,System.Net.Security.SslStream})">
+ <summary>
+ 初始化详情
+ </summary>
+ <param name="Addr">本地监听地址</param>
+ <param name="Port">本地监听端口</param>
+ <param name="bSSL">是否开启SSL</param>
+ <param name="oX509">使用的证书</param>
+ <param name="oSSLFac">用于创建SSL安全套接字的流工厂</param>
 </member>
 <member name="M:FCARDIO.Core.Connector.TCPServer.TCPServerDetail.Equals(FCARDIO.Core.Connector.INConnectorDetail)">
  <summary>
@@ -3343,6 +3358,12 @@ FCARDIO.Core
  </summary>
  <param name="skey">指示此节点的唯一Key值</param>
  <param name="_remote">远程客户端身份</param>
+</member>
+<member name="M:FCARDIO.Core.Connector.WebSocket.Server.Client.WebSocketServerClientDetail.GetTypeName">
+ <summary>
+ 获取连接通道的类名
+ </summary>
+ <returns>类名的全名</returns>
 </member>
 <member name="T:FCARDIO.Core.Connector.WebSocket.Server.WebSocketServerAllocator">
  <summary>
@@ -4095,6 +4116,46 @@ FCARDIO.Core
 <member name="M:FCARDIO.Core.ConnectorAllocator.Dispose">
  <summary>
  释放所有线程，关闭所有通道，这个过程需要大概60秒
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.ConnectorType.TCPClient">
+ <summary>
+ 表示一个TCP 客户端连接通道，主动访问远程服务器
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.ConnectorType.TCPServerClient">
+ <summary>
+ 表示一个TCP Server 下的 客户端节点通道，由客户端主动访问本地服务器生成
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.ConnectorType.UDPClient">
+ <summary>
+ UDP 节点通道，一个UDP Server下的UDP节点
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.ConnectorType.UDPServer">
+ <summary>
+ 表示本地的一个 UDP Server 通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.ConnectorType.TCPServer">
+ <summary>
+ 表示本地的一个TCP Server 通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.ConnectorType.SerialPort">
+ <summary>
+ 表示一个串口通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.ConnectorType.WebSocketServer">
+ <summary>
+ 表示一个WebSocket Server 通道
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.ConnectorType.WebSocketServerClient">
+ <summary>
+ 表示一个 WebSocket Server下的WebSocket 子节点通道
  </summary>
 </member>
 <member name="T:FCARDIO.Core.Data.AbstractData">

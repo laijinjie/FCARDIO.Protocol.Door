@@ -88,9 +88,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Time
         public override void SetBytes(IByteBuffer databuf)
         {
             //控制器的日期时间
-            byte[] btData = new byte[7];
-            databuf.ReadBytes(btData, 0, 7);
-            ControllerDate = TimeUtil.BCDTimeToDate_ssmmHHddMMWWyy(btData);
+            ControllerDate = TimeUtil.BCDTimeToDate_ssmmHHddMMWWyy(databuf);
         }
     }
 }

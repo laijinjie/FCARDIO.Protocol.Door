@@ -68,10 +68,8 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
 
                 State = dtBuf.ReadByte();
 
-                byte[] bCard = new byte[3];
-                dtBuf.ReadBytes(bCard);
 
-                CardData = FCARD.Common.NumUtil.ByteToInt32(bCard, 0, 3);
+                CardData = (uint)dtBuf.ReadUnsignedMedium();
                
             }
 #pragma warning disable CS0168 // 声明了变量“e”，但从未使用过
