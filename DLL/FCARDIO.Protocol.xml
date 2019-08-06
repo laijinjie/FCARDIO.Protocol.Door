@@ -1583,6 +1583,12 @@ FCARDIO.Protocol
  处理响应
  </summary>
 </member>
+<member name="M:FCARDIO.Protocol.USBDrive.USBDriveRequestHandle.CheckPacketIsTransaction(FCARDIO.Protocol.USBDrive.USBDrivePacket)">
+ <summary>
+ 检查命令是否为事务
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:FCARDIO.Protocol.USBDrive.USBDriveRequestHandle.fireRequestEvent(FCARDIO.Core.Connector.INConnector,FCARDIO.Core.Packet.INPacket)">
  <summary>
  当处理类接收并验证完毕数据包后，由此产生消息
