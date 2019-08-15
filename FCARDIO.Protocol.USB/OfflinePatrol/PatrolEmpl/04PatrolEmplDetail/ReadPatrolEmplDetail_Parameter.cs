@@ -15,7 +15,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDetail
         /// <summary>
         /// 查询方式：1字节；01--表示按照工号来查询；02--表示按照卡号来查询
         /// </summary>
-        public byte Mode;
+        public int Mode;
 
         /// <summary>
         /// 查询参数

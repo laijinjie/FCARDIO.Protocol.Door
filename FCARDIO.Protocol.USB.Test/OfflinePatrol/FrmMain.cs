@@ -11,6 +11,9 @@ using FCARDIO.Core.Extension;
 using System.Collections.Concurrent;
 using FCARDIO.Protocol.USBDrive;
 using FCARDIO.Core.Connector.SerialPort;
+using FCARDIO.Protocol.Transaction;
+using DotNetty.Buffers;
+using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ReadFlag;
 
 namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
 {
@@ -18,7 +21,9 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
     {
         ConnectorAllocator mAllocator;
         ConnectorObserverHandler mObserver;
+        USBCommandObserverHandler mUSBObserver;
         private static HashSet<Form> NodeForms;
+        IByteBufferAllocator mByteBufferAllocator;
         bool _IsClosed;
 
         /// <summary>
@@ -43,6 +48,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
             mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime.WriteStartupHoldTime).FullName, "设置开机保持时间");
             mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime.ReadLEDOpenHoldTime).FullName, "读取LED开灯保持时间");
             mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime.WriteLEDOpenHoldTime).FullName, "设置LED开灯保持时间");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ReadFlag.OpenReadFlag).FullName, "打开读卡标记");
 
             mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.Time.ReadTime).FullName, "从设备中读取控制器时间");
             mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.Time.WriteTime).FullName, "将电脑的最新时间写入到设备中");
@@ -104,7 +110,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
 
             mAllocator = ConnectorAllocator.GetAllocator();
             mObserver = new ConnectorObserverHandler();
-
+            
             mAllocator.CommandCompleteEvent += mAllocator_CommandCompleteEvent;
             mAllocator.CommandErrorEvent += mAllocator_CommandErrorEvent;
             mAllocator.CommandProcessEvent += mAllocator_CommandProcessEvent;
@@ -122,6 +128,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
 
             mObserver.DisposeRequestEvent += mObserver_DisposeRequestEvent;
             mObserver.DisposeResponseEvent += mObserver_DisposeResponseEvent; ;
+
 
             InitSerialPort();
             IniLstIO();
@@ -219,9 +226,32 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
             AddIOLog(connector, "成功", "通道连接成功");
         }
 
+        /// <summary>
+        /// 处理读卡消息事务
+        /// </summary>
+        /// <param name="connector"></param>
+        /// <param name="EventData"></param>
         private void MAllocator_TransactionMessage(INConnectorDetail connector, INData EventData)
         {
-            throw new NotImplementedException();
+            if (EventData is USBDrive.USBDriveTransaction)
+            {
+                USBDriveTransaction USBtr = EventData as USBDriveTransaction;
+                WatchReadCardTransaction cardTr = USBtr.EventData as WatchReadCardTransaction;
+
+                ListViewItem oItem = new ListViewItem();
+                string sLog = $"卡号：{cardTr.Card}(0x{cardTr.Card:X16})";
+
+                oItem.Text = "读卡消息";
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, sLog));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, cardTr.TransactionDate.ToDateTimeStr()));
+                oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
+                oItem.ToolTipText = sLog;
+
+                AddCmdItem(oItem);
+            }
+
         }
 
         private void MAllocator_AuthenticationErrorEvent(object sender, CommandEventArgs e)
@@ -528,6 +558,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
                 CommandDetailFactory.ControllerType.USBDrive_OfflinePatrol, txtAddress.Text, string.Empty) as USBDriveCommandDetail;
             FCARDIO.Core.Connector.SerialPort.SerialPortDetail spd = cmdDtl.Connector as FCARDIO.Core.Connector.SerialPort.SerialPortDetail;
             spd.Baudrate = 115200;
+           
             return cmdDtl;
         }
         #endregion
@@ -699,5 +730,46 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
             frm.Activate();
             ShowFrm(frm);
         }
+
+        private void BtnWatch_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = GetCommandDetail();
+            if (cmdDtl == null) return;
+            
+       
+
+            cmdDtl.Timeout = 15000;
+            cmdDtl.RestartCount = 0;
+            OpenReadFlag cmd = new OpenReadFlag(cmdDtl);
+            AddCommand(cmd);
+
+            INConnector cnt = mAllocator.GetConnector(cmdDtl.Connector);
+            if (cnt == null)
+            {
+                //未开启监控
+                mAllocator.OpenConnector(cmdDtl.Connector);
+                cnt = mAllocator.GetConnector(cmdDtl.Connector);
+
+            }
+
+            //使通道保持连接不关闭
+            cnt.OpenForciblyConnect();
+            USBCommandObserverHandler usbRequest =
+                new USBCommandObserverHandler(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
+            cnt.RemoveRequestHandle(typeof(USBDriveRequestHandle));//先删除，防止已存在就无法添加。
+            cnt.AddRequestHandle(usbRequest);
+        }
+
+        /// <summary>
+        /// 用于根据SN，命令参数、命令索引生产用于处理对应消息的处理类工厂函数
+        /// </summary>
+        /// <param name="addr"></param>
+        /// <param name="cmdIndex"></param>
+        /// <returns></returns>
+        private AbstractTransaction RequestHandleFactory(byte addr, byte cmdIndex)
+        {
+            return new WatchReadCardTransaction();
+        }
+
     }
 }

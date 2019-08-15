@@ -17,7 +17,7 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
 
         public static string[] mCardTypeList;
 
-        public byte Type;
+        public int Type;
 
         #region 单例模式
         private static object lockobj = new object();
@@ -68,7 +68,7 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
                     Type = result.Type;
                     if (result.IsSuccess)
                     {
-                        txtCardData.Text = result.CardData;
+                        txtCardData.Text = result.CardData.ToString();
                         txtCardType.Text = mCardTypeList[Type];
 
 

@@ -29,7 +29,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN
         protected override void CreatePacket0()
         {
             SN_Parameter model = _Parameter as SN_Parameter;
-            Packet(0x01, 0x01, 1, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
+            Packet(0x01, 0xF1, 1, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
         /// <summary>

@@ -16,7 +16,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.LED
         /// 1表示红灯亮
         /// 2表示绿灯亮
         /// </summary>
-        public byte Code;
+        public int Code;
 
         /// <summary>
         /// 初始化参数

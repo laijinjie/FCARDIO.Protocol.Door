@@ -11,7 +11,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime
         /// <summary>
         /// 时间 最小为5秒，最大为60秒
         /// </summary>
-        public byte Time = 10;
+        public int Time = 10;
 
 
         /// <summary>

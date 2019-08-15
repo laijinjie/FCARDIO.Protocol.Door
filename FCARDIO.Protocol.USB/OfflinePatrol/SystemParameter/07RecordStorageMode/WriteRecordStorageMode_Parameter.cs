@@ -12,7 +12,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode
         /// 记录存储方式
         /// 0表示记录满循环，1表示记录满不循环
         /// </summary>
-        public byte Mode;
+        public int Mode;
 
         /// <summary>
         /// 提供给继承类
@@ -26,7 +26,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode
         /// 初始化参数
         /// </summary>
         /// <param name="mode">记录存储方式 0表示记录满循环，1表示记录满不循环</param>
-        public WriteRecordStorageMode_Parameter(byte mode)
+        public WriteRecordStorageMode_Parameter(int mode)
         {
             Mode = mode;
         }

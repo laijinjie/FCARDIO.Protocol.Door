@@ -51,6 +51,7 @@
             this.butTime = new System.Windows.Forms.ToolStripButton();
             this.butPatrol = new System.Windows.Forms.ToolStripButton();
             this.butRecord = new System.Windows.Forms.ToolStripButton();
+            this.btnWatch = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tbEvent.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -295,11 +296,22 @@
             this.butRecord.Text = "记录操作";
             this.butRecord.Click += new System.EventHandler(this.ButRecord_Click);
             // 
+            // btnWatch
+            // 
+            this.btnWatch.Location = new System.Drawing.Point(507, 12);
+            this.btnWatch.Name = "btnWatch";
+            this.btnWatch.Size = new System.Drawing.Size(75, 23);
+            this.btnWatch.TabIndex = 19;
+            this.btnWatch.Text = "监控读卡";
+            this.btnWatch.UseVisualStyleBackColor = true;
+            this.btnWatch.Click += new System.EventHandler(this.BtnWatch_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 668);
+            this.Controls.Add(this.btnWatch);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tbEvent);
             this.Controls.Add(this.groupBox1);
@@ -345,5 +357,6 @@
         private System.Windows.Forms.ToolStripButton butPatrol;
         private System.Windows.Forms.ToolStripButton butRecord;
         private System.Windows.Forms.Label lblReLoadCOMList;
+        private System.Windows.Forms.Button btnWatch;
     }
 }

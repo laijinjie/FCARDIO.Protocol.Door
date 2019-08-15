@@ -22,14 +22,14 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// 8 - CPU IC卡 S70
         /// 9 - ID卡
         /// </summary>
-        public byte Type;
+        public int Type;
 
         /// <summary>
         /// 扇区号
         /// S50卡的取值范围是0-15
         /// S70卡的取值范围是0-39
         /// </summary>
-        public byte Number;
+        public int Number;
 
         /// <summary>
         /// 起始数据块
@@ -37,26 +37,26 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// S70卡0-31块扇区的块号是0-3，其中块3是密码块
         /// 32-39块扇区的块号是0-15，其中块15是密码块
         /// </summary>
-        public byte StartBlock;
+        public int StartBlock;
 
         /// <summary>
         /// 读取字节数
         /// </summary>
-        public byte ReadCount;
+        public int ReadCount;
 
         /// <summary>
         /// 密钥验证类型
         /// 1--A密钥
         /// 2--B密钥
         /// </summary>
-        public byte VerifyMode;
+        public int VerifyMode;
 
         /// <summary>
         /// 扇区密码
         /// </summary>
         public string Password;
 
-        public ReadSector_Parameter(byte type, byte verifyMode, string password)
+        public ReadSector_Parameter(int type, int verifyMode, string password)
         {
             Number = 0;
             StartBlock = 0;
@@ -75,7 +75,7 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// <param name="readCount">读取字节数</param>
         /// <param name="authenticationType">密钥验证类型</param>
         /// <param name="password">扇区密码</param>
-        public ReadSector_Parameter(byte type, byte number, byte startBlock, byte readCount, byte verifyMode, string password)
+        public ReadSector_Parameter(int type, int number, int startBlock, int readCount, int verifyMode, string password)
         {
             Type = type;
             Number = number;
@@ -92,18 +92,18 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         {
             if (Type == 1 || Type == 5)
             {
-                if (Number > 15)
+                if (Number > 15 || Number < 0)
                 {
                     throw new ArgumentException("Number Error!");
                 }
-                if (StartBlock > 3)
+                if (StartBlock > 3 || StartBlock < 0)
                 {
                     throw new ArgumentException("StartBlock Error!");
                 }
             }
             else if (Type == 7 || Type == 8)
             {
-                if (Number > 39)
+                if (Number > 39 || Number < 0)
                 {
                     throw new ArgumentException("Number Error!");
                 }
@@ -111,7 +111,7 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
                 {
                     throw new ArgumentException("StartBlock Error!");
                 }
-                if (StartBlock > 15)
+                if (StartBlock > 15|| StartBlock < 0)
                 {
                     throw new ArgumentException("StartBlock Error!");
                 }
@@ -126,7 +126,7 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
                 throw new ArgumentException("Password Error!");
             }
 
-            if (ReadCount > 64 || ReadCount == 0)
+            if (ReadCount > 64 || ReadCount <= 0)
             {
                 throw new ArgumentException("ReadCount Error!");
             }

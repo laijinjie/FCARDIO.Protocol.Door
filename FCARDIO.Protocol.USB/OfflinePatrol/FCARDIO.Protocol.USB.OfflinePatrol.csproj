@@ -55,6 +55,10 @@
     <Reference Include="FCARDIO.Protocol">
       <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
+    <Reference Include="FCARDIO.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\FCARDIO.Protocol.Util.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -127,6 +131,10 @@
     <Compile Include="SystemParameter\11LEDOpenHoldTime\WriteLEDOpenHoldTime.cs" />
     <Compile Include="SystemParameter\11LEDOpenHoldTime\WriteLEDOpenHoldTime_Parameter.cs" />
     <Compile Include="SystemParameter\12Initialize\Initialize.cs" />
+    <Compile Include="SystemParameter\ReadFlag\CloseReadFlag.cs" />
+    <Compile Include="SystemParameter\ReadFlag\OpenReadFlag.cs" />
+    <Compile Include="SystemParameter\ReadFlag\OpenReadFlag_Result.cs" />
+    <Compile Include="SystemParameter\ReadFlag\WatchReadCardTransaction.cs" />
     <Compile Include="Time\ReadTime.cs" />
     <Compile Include="Time\ReadTime_Result.cs" />
     <Compile Include="Time\WriteCustomTime.cs" />
@@ -153,16 +161,11 @@
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Base.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Parameter.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Result.cs" />
+    <Compile Include="USBCommandObserverHandler.cs" />
     <Compile Include="Write_Command.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\FCARDIO.Protocol.Util\FCARDIO.Protocol.Util.csproj">
-      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
-      <Name>FCARDIO.Protocol.Util</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

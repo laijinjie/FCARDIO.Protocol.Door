@@ -11,13 +11,13 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.SN
         /// <summary>
         /// 机器号
         /// </summary>
-        public byte SN;
+        public int SN;
 
         /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="sn"></param>
-        public SN_Parameter(byte sn)
+        public SN_Parameter(int sn)
         {
             SN = sn;
         }
@@ -28,7 +28,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.SN
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (SN == 0)
+            if (SN <= 0)
                 throw new ArgumentException("SN Error!");
             return true;
         }

@@ -12,13 +12,13 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.Buzzer
         /// 蜂鸣器鸣叫次数
         /// 1-10
         /// </summary>
-        public byte Times;
+        public int Times;
 
         /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="times">蜂鸣器鸣叫次数</param>
-        public WriteBuzzer_Parameter(byte times)
+        public WriteBuzzer_Parameter(int times)
         {
             Times = times;
         }

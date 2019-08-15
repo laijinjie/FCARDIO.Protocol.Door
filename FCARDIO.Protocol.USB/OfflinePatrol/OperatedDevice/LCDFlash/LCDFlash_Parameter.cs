@@ -16,13 +16,13 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.LCDFlash
         /// 是否开启
         /// 128 - 开启 ， 8 - 关闭
         /// </summary>
-        public byte Code;
+        public int Code;
 
         /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="code">是否开启 128 - 开启 ， 8 - 关闭</param>
-        public LCDFlash_Parameter(byte code)
+        public LCDFlash_Parameter(int code)
         {
             Code = code;
         }

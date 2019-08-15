@@ -11,13 +11,13 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN
         /// <summary>
         /// 机器号
         /// </summary>
-        public byte SN;
+        public int SN;
 
         /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="sn"></param>
-        public SN_Parameter(byte sn)
+        public SN_Parameter(int sn)
         {
             SN = sn;
         }

@@ -11,7 +11,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime
         /// <summary>
         /// 时间 时间最小为1秒，最大为255秒
         /// </summary>
-        public byte Time = 10;
+        public int Time = 10;
 
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Time < 1)
+            if (Time < 1 || Time > 255)
                 throw new ArgumentException("Time Error!");
             return true;
         }

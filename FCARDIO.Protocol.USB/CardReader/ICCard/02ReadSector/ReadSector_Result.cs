@@ -24,7 +24,7 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// S50卡的取值范围是0-15
         /// S70卡的取值范围是0-39
         /// </summary>
-        public byte Number;
+        public int Number;
 
         /// <summary>
         /// 起始数据块
@@ -32,12 +32,12 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// S70卡0-31块扇区的块号是0-3，其中块3是密码块
         /// 32-39块扇区的块号是0-15，其中块15是密码块
         /// </summary>
-        public byte StartBlock;
+        public int StartBlock;
 
         /// <summary>
         /// 读取字节数
         /// </summary>
-        public byte ReadCount;
+        public int ReadCount;
 
         /// <summary>
         /// 数据内容

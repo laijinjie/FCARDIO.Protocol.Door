@@ -60,12 +60,14 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data
 
             buf.WriteUnsignedShort(PCode);
 
-            byte[] b = FCARD.Common.NumUtil.Int24ToByte((int)CardData);
-            buf.WriteBytes(b);
+            buf.WriteMedium((int)CardData);
+            //byte[] b = FCARD.Common.NumUtil.Int24ToByte((int)CardData);
+            //buf.WriteBytes(b);
 
-            byte[] bName = new byte[10];
-            bName = Encoding.GetEncoding("GBK").GetBytes("".PadRight(10, '0'));
-            buf.WriteBytes(bName);
+            Util.StringUtil.WriteString(buf, Name, 10, Encoding.GetEncoding("GBK"));
+            //byte[] bName = new byte[10];
+            //bName = Encoding.GetEncoding("GBK").GetBytes(Name.PadRight(10, '0'));//Name
+            //buf.WriteBytes(bName);
             return buf;
         }
 

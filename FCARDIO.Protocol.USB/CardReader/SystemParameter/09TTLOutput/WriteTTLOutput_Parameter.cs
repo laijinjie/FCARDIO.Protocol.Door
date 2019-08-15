@@ -27,7 +27,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput
         /// 9 - 57600
         /// 10 - 115200
         /// </summary>
-        public byte BaudRate;
+        public int BaudRate;
 
         /// <summary>
         /// 奇偶校验
@@ -35,13 +35,13 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput
         /// 1 - E(偶数)
         /// 2 - O(奇数)
         /// </summary>
-        public byte Parity;
+        public int Parity;
 
         /// <summary>
         /// 数据位数
         /// 4-8
         /// </summary>
-        public byte DataBits;
+        public int DataBits;
 
         /// <summary>
         /// 停止位数
@@ -49,7 +49,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput
         /// 1 - 1.5
         /// 2 - 2
         /// </summary>
-        public byte StopBits;
+        public int StopBits;
         /// <summary>
         /// 提供给继承类
         /// </summary>
@@ -66,7 +66,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput
         /// <param name="parity">奇偶校验</param>
         /// <param name="dataBits">数据位数</param>
         /// <param name="stopBits">停止位数</param>
-        public WriteTTLOutput_Parameter(bool isOpen, byte baudRate, byte parity, byte dataBits, byte stopBits)
+        public WriteTTLOutput_Parameter(bool isOpen, int baudRate, int parity, int dataBits, int stopBits)
         {
             IsOpen = isOpen;
             BaudRate = baudRate;
@@ -81,13 +81,13 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (BaudRate > 10)
+            if (BaudRate > 10 || BaudRate < 0)
                 throw new ArgumentException("BaudRate Error!");
-            if (Parity > 2)
+            if (Parity > 2 || Parity < 0)
                 throw new ArgumentException("Parity > Error!");
             if (DataBits > 8 || DataBits < 4)
                 throw new ArgumentException("DataBits Error!");
-            if (StopBits > 2)
+            if (StopBits > 2 || StopBits < 0)
                 throw new ArgumentException("StopBits Error!");
             return true;
         }

@@ -82,6 +82,7 @@
             this.dtpCreateTime = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnInitialize = new System.Windows.Forms.Button();
             this.btnOpenRed = new System.Windows.Forms.Button();
             this.btnOpenGreen = new System.Windows.Forms.Button();
             this.btnCloseFlash = new System.Windows.Forms.Button();
@@ -98,7 +99,6 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.btnInitialize = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -674,6 +674,16 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "器件测试";
             // 
+            // btnInitialize
+            // 
+            this.btnInitialize.Location = new System.Drawing.Point(479, 119);
+            this.btnInitialize.Name = "btnInitialize";
+            this.btnInitialize.Size = new System.Drawing.Size(108, 22);
+            this.btnInitialize.TabIndex = 49;
+            this.btnInitialize.Text = "初始化读卡模块";
+            this.btnInitialize.UseVisualStyleBackColor = true;
+            this.btnInitialize.Click += new System.EventHandler(this.BtnInitialize_Click);
+            // 
             // btnOpenRed
             // 
             this.btnOpenRed.Location = new System.Drawing.Point(587, 70);
@@ -826,16 +836,6 @@
             this.label17.Size = new System.Drawing.Size(77, 12);
             this.label17.TabIndex = 35;
             this.label17.Text = "蜂鸣器测试：";
-            // 
-            // btnInitialize
-            // 
-            this.btnInitialize.Location = new System.Drawing.Point(479, 119);
-            this.btnInitialize.Name = "btnInitialize";
-            this.btnInitialize.Size = new System.Drawing.Size(108, 22);
-            this.btnInitialize.TabIndex = 49;
-            this.btnInitialize.Text = "初始化读卡模块";
-            this.btnInitialize.UseVisualStyleBackColor = true;
-            this.btnInitialize.Click += new System.EventHandler(this.BtnInitialize_Click);
             // 
             // frmSystem
             // 

@@ -20,7 +20,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum
         /// 扇区号 
         /// 1-15
         /// </summary>
-        public byte Num;
+        public int Num;
 
         /// <summary>
         /// 扇区密码 长度6
@@ -32,20 +32,20 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum
         /// 1 - A密钥
         /// 2 - B密钥
         /// </summary>
-        public byte VerifyMode;
+        public int VerifyMode;
 
         /// <summary>
         /// 密码验证方式
         /// 1 - 直接验证
         /// 2 - 使用动态加密（RC4加密）
         /// </summary>
-        public byte ComputingMode;
+        public int ComputingMode;
 
         /// <summary>
         /// 卡号长度
         /// 2 - 8
         /// </summary>
-        public byte CardLength;
+        public int CardLength;
 
         /// <summary>
         /// 卡号数据起始位
@@ -53,7 +53,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum
         /// 1 - 16-31
         /// 2 - 32-47
         /// </summary>
-        public byte CardDataStartIndex;
+        public int CardDataStartIndex;
 
         /// <summary>
         /// 提供给继承类
@@ -73,8 +73,8 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum
         /// <param name="computingMode">密码计算方式</param>
         /// <param name="cardLength">卡号长度</param>
         /// <param name="cardDataStartIndex">卡号数据起始位</param>
-        public WriteICCardCustomNum_Parameter(bool isOpen, byte num, string password, byte verifyMode, byte computingMode, byte cardLength
-            , byte cardDataStartIndex)
+        public WriteICCardCustomNum_Parameter(bool isOpen, int num, string password, int verifyMode, int computingMode, int cardLength
+            , int cardDataStartIndex)
         {
             IsOpen = isOpen;
             Num = num;
@@ -102,7 +102,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum
                 throw new ArgumentException("ComputingMode Error!");
             if (CardLength < 2 || CardLength > 8)
                 throw new ArgumentException("CardLength Error!");
-            if (CardDataStartIndex > 2)
+            if (CardDataStartIndex > 2 || CardDataStartIndex < 0)
                 throw new ArgumentException("CardDataStartIndex Error!");
 
            

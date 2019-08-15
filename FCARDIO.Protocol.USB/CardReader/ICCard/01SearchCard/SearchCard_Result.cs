@@ -30,17 +30,17 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.SearchCard
         /// 8 - CPU IC卡 S70
         /// 9 - ID卡
         /// </summary>
-        public byte Type;
+        public int Type;
 
         /// <summary>
         /// 卡号长度
         /// </summary>
-        public byte Length;
+        public int Length;
 
         /// <summary>
         /// 卡号
         /// </summary>
-        public string CardData;
+        public UInt64 CardData;
 
         /// <summary>
         /// 将字节缓冲解码为类结构
@@ -53,20 +53,25 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.SearchCard
             {
                 Type = databuf.ReadByte();
                 Length = databuf.ReadByte();
-                if (Length == 4)
+                switch (Length)
                 {
-                    uint carddata = databuf.ReadUnsignedInt();
-                    CardData = carddata.ToString();
-                }
-                else if (Length == 8)
-                {
-                    long carddata = databuf.ReadLong();
-                    CardData = carddata.ToString();
-                }
-                else if (Length == 2)
-                {
-                    ushort carddata = databuf.ReadUnsignedShort();
-                    CardData = carddata.ToString();
+                    case 1:
+                        CardData = databuf.ReadByte();
+                        break;
+                    case 2:
+                        CardData = databuf.ReadUnsignedShort();
+                        break;
+                    case 3:
+                        CardData = (UInt64)databuf.ReadUnsignedMedium();
+                        break;
+                    case 4:
+                        CardData = databuf.ReadUnsignedInt();
+                        break;
+                    case 8:
+                        CardData = (UInt64)databuf.ReadLong();
+                        break;
+                    default:
+                        break;
                 }
             }
         }

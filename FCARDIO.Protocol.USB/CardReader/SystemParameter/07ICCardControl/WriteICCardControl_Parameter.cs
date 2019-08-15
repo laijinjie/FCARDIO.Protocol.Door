@@ -19,7 +19,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl
         /// 扇区号 
         /// 1-15
         /// </summary>
-        public byte Num;
+        public int Num;
 
         /// <summary>
         /// 扇区密码 长度6
@@ -31,14 +31,14 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl
         /// 1 - A密钥
         /// 2 - B密钥
         /// </summary>
-        public byte VerifyMode;
+        public int VerifyMode;
 
         /// <summary>
         /// 密码验证方式
         /// 1 - 直接验证
         /// 2 - 使用动态加密（RC4加密）
         /// </summary>
-        public byte ComputingMode;
+        public int ComputingMode;
 
         /// <summary>
         /// 验证扇区内容开关
@@ -49,7 +49,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl
         /// 扇区内容长度
         /// 0 - 16
         /// </summary>
-        public byte SectorContentLength;
+        public int SectorContentLength;
 
         /// <summary>
         /// 扇区内的需要验证的数据块起始位
@@ -57,7 +57,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl
         /// 1 - 16-31
         /// 2 - 32-47
         /// </summary>
-        public byte VerifyDataStartIndex;
+        public int VerifyDataStartIndex;
 
         /// <summary>
         /// 验证内容 长度16
@@ -83,8 +83,8 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl
         /// <param name="sectorContentLength">扇区内容长度</param>
         /// <param name="verifyDataStartIndex">验证数据起始位</param>
         /// <param name="verifyContent">验证内容</param>
-        public WriteICCardControl_Parameter (bool isOpen, byte num, string password, byte verifyMode, byte computingMode, bool isOpenVerifySector, byte sectorContentLength
-            , byte verifyDataStartIndex, string verifyContent)
+        public WriteICCardControl_Parameter (bool isOpen, int num, string password, int verifyMode, int computingMode, bool isOpenVerifySector, int sectorContentLength
+            , int verifyDataStartIndex, string verifyContent)
         {
             IsOpen = isOpen;
             Num = num;
@@ -112,9 +112,9 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl
                 throw new ArgumentException("VerifyMode Error!");
             if (ComputingMode > 2 || ComputingMode < 1)
                 throw new ArgumentException("ComputingMode Error!");
-            if (SectorContentLength > 16)
+            if (SectorContentLength > 16 || SectorContentLength < 0)
                 throw new ArgumentException("SectorContentLength Error!");
-            if (VerifyDataStartIndex > 2)
+            if (VerifyDataStartIndex > 2 || VerifyDataStartIndex < 0)
                 throw new ArgumentException("VerifyDataStartIndex Error!");
             if (VerifyContent == null || VerifyContent.Length > 32)
                 throw new ArgumentException("VerifyContent Error!");

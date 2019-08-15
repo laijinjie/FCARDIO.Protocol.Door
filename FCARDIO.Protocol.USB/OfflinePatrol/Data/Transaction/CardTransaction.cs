@@ -29,7 +29,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
         /// 0  普通卡
         /// 1  巡更人员卡
         /// </summary>
-        public byte State;
+        public int State;
 
         /// <summary>
         /// 获取读卡记录格式长度
@@ -64,7 +64,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
                     
                     return;
                 }
-                _TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhhmmss(dtBuf);
+                _TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhhmmssByDex(dtBuf);
 
                 State = dtBuf.ReadByte();
 
@@ -72,9 +72,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
                 CardData = (uint)dtBuf.ReadUnsignedMedium();
                
             }
-#pragma warning disable CS0168 // 声明了变量“e”，但从未使用过
             catch (Exception e)
-#pragma warning restore CS0168 // 声明了变量“e”，但从未使用过
             {
             }
 

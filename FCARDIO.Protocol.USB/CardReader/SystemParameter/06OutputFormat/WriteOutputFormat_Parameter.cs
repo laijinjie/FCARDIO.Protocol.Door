@@ -14,14 +14,14 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.OutputFormat
         /// 1 - WG26（三字节）+WG34（4字节需短路key1按键）
         /// 2 - WG26（三字节）+WG66（八字节需短路key1按键）
         /// </summary>
-        public byte Format;
+        public int Format;
 
         /// <summary>
         /// 卡号字节顺序
         /// 1 - 高位在前，低位在后
         /// 2 - 低位在前，高位在后
         /// </summary>
-        public byte Sort;
+        public int Sort;
 
         /// <summary>
         /// 提供给继承类
@@ -36,7 +36,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.OutputFormat
         /// </summary>
         /// <param name="type">输出协议格式</param>
         /// <param name="sort"></param>
-        public WriteOutputFormat_Parameter(byte format, byte sort)
+        public WriteOutputFormat_Parameter(int format, int sort)
         {
             Format = format;
             Sort = sort;
@@ -48,7 +48,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.OutputFormat
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Format > 2)
+            if (Format > 2 || Format < 0)
                 throw new ArgumentException("Type Error!");
             if (Sort < 1 || Sort > 2)
                 throw new ArgumentException("Type Error!");
