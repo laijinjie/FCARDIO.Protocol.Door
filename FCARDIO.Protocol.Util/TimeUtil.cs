@@ -300,6 +300,50 @@ namespace FCARDIO.Protocol.Util
         }
 
         /// <summary>
+        /// 从一个ByteBuf中读取6个BCD字节，并转换为日期格式；  yyMMddhhmmss
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <returns></returns>
+        public static DateTime BCDTimeToDate_yyMMddhhmmssByDex(IByteBuffer buf)
+        {
+            int year = buf.ReadByte();
+            int month = buf.ReadByte();
+            int day = buf.ReadByte();
+            int hour = buf.ReadByte();
+            int minute = buf.ReadByte();
+            int sec = buf.ReadByte();
+
+            if (year > 99)
+            {
+                return DateTime.Now;
+            }
+            if (month == 0 || month > 12)
+            {
+                return DateTime.Now;
+            }
+            if (day == 0 || day > 31)
+            {
+                return DateTime.Now;
+            }
+            if (hour > 23)
+            {
+                return DateTime.Now;
+            }
+
+            if (minute > 59)
+            {
+                return DateTime.Now;
+            }
+            if (sec > 59)
+            {
+                return DateTime.Now;
+            }
+
+            DateTime dTime = new DateTime(2000 + year, month, day, hour, minute, sec);
+            return dTime;
+        }
+
+        /// <summary>
         /// 从一个ByteBuf中读取7个BCD字节，并转换为日期格式；  yyyyMMddhhmmss
         /// </summary>
         /// <param name="buf"></param>

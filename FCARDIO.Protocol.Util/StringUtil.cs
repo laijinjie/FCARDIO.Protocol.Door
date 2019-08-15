@@ -381,5 +381,41 @@ namespace FCARDIO.Protocol.Util
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <param name="sValue"></param>
+        /// <param name="iLen"></param>
+        /// <param name="uc"></param>
+        /// <returns></returns>
+        public static IByteBuffer WriteString(IByteBuffer databuf, string sValue, int iLen, Encoding uc)
+        {
+            int num = 0;
+            int num2 = iLen;
+            if (!string.IsNullOrEmpty(sValue))
+            {
+                num = uc.GetByteCount(sValue);
+                if (num <= iLen)
+                {
+                    databuf.WriteString(sValue, uc);
+                }
+                else
+                {
+                    num = iLen;
+                    byte[] bytes = uc.GetBytes(sValue);
+                    databuf.WriteBytes(bytes, 0, num);
+                }
+                num2 -= num;
+            }
+            if (num2 > 0)
+            {
+                for (int i = 0; i < num2; i++)
+                {
+                    databuf.WriteByte(0);
+                }
+            }
+            return databuf;
+        }
     }
 }
