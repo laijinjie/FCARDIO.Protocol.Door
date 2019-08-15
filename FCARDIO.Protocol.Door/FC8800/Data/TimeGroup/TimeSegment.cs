@@ -120,18 +120,30 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         {
 
             DateTime n = DateTime.Now;
-            mBeginTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(bBuf.ReadByte()), ByteUtil.BCDToByte(bBuf.ReadByte()), 0);
-            mEndTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(bBuf.ReadByte()), ByteUtil.BCDToByte(bBuf.ReadByte()), 0);
-            //byte b1 = bBuf.ReadByte();
-            //byte b2 = bBuf.ReadByte();
-            //byte b3 = bBuf.ReadByte();
-            //byte b4 = bBuf.ReadByte();
-            //if (b1 != 255)
-            //{
-            //    mBeginTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(b1), ByteUtil.BCDToByte(b2), 0);
-            //    mEndTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(b3), ByteUtil.BCDToByte(b4), 0);
-            //}
-
+            //mBeginTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(bBuf.ReadByte()), ByteUtil.BCDToByte(bBuf.ReadByte()), 0);
+            //mEndTime = new DateTime(n.Year, n.Month, n.Day, ByteUtil.BCDToByte(bBuf.ReadByte()), ByteUtil.BCDToByte(bBuf.ReadByte()), 0);
+            byte b1 = ByteUtil.BCDToByte(bBuf.ReadByte());
+            byte b2 = ByteUtil.BCDToByte(bBuf.ReadByte());
+            byte b3 = ByteUtil.BCDToByte(bBuf.ReadByte());
+            byte b4 = ByteUtil.BCDToByte(bBuf.ReadByte());
+            if (b1 > 59)
+            {
+                b1 = 0;
+            }
+            if (b2 > 59)
+            {
+                b2 = 0;
+            }
+            if (b3 > 59)
+            {
+                b3 = 0;
+            }
+            if (b4 > 59)
+            {
+                b4 = 0;
+            }
+            mBeginTime = new DateTime(n.Year, n.Month, n.Day, (b1), (b2), 0);
+            mEndTime = new DateTime(n.Year, n.Month, n.Day, (b3), (b4), 0);
         }
 
         
