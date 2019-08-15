@@ -382,7 +382,7 @@ namespace FCARDIO.Protocol.Util
         }
 
         /// <summary>
-        /// 
+        /// 使用特定的编码写入字符串，超过指定长度会截取，不足长度会补0
         /// </summary>
         /// <param name="databuf"></param>
         /// <param name="sValue"></param>
