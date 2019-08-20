@@ -8,7 +8,7 @@ namespace FCARDIO.Protocol.Fingerprint.Person.PersonDetail
     /// <summary>
     /// 读取单个人员在控制器中的信息
     /// </summary>
-    class ReadPersonDetail : FC8800Command_ReadParameter
+    public class ReadPersonDetail : FC8800Command_ReadParameter
     {
 
         /// <summary>

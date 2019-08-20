@@ -111,11 +111,97 @@ namespace FCARDIO.Protocol.Fingerprint.Data
         /// ...........
         /// bit9--指纹10
         /// </summary>
-        public byte[] FingerprintFeatureCodeList;
+        public int FingerprintFeatureCodeCout;
 
-        public int CompareTo(Person other)
+        public Person()
         {
-            throw new NotImplementedException();
+            CardData = 0;
+            OpenTimes = 65535;
+            Password = string.Empty;
+            Expiry = DateTime.Now.AddYears(5);
+            TimeGroup = 1;
+            Holiday = new byte[] { (byte)255, (byte)255, (byte)255, (byte)255 };
+            CardStatus = 0;
+            EnterStatus = 0;
+            Identity = 0;
+            FingerprintFeatureCodeCout = 0;
+        }
+        public int CompareTo(Person o)
+        {
+            if (o.UserCode == UserCode)
+            {
+                return 0;
+            }
+            else if (UserCode < o.UserCode)
+            {
+                return -1;
+            }
+            else if (UserCode > o.UserCode)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 获取指定序号的节假日开关状态
+        /// </summary>
+        /// <param name="iIndex">取值范围 1-30</param>
+        /// <returns>开关状态 开关true 表示启用，false 表示禁用</returns>
+        public bool GetHolidayValue(int iIndex)
+        {
+            if (iIndex <= 0 || iIndex > 32)
+            {
+                throw new ArgumentException("iIndex= 1 -- 32");
+            }
+            iIndex -= 1;
+            //计算索引所在的字节位置
+            int iByteIndex = iIndex / 8;
+            int iBitIndex = iIndex % 8;
+            int iByteValue = Holiday[iByteIndex] & 0x000000ff;
+            int iMaskValue = (int)Math.Pow(2, iBitIndex);
+            iByteValue = iByteValue & iMaskValue;
+            return ((iByteValue & iMaskValue) > 0);
+
+        }
+
+        /// <summary>
+        /// 设置指定序号的节假日开关状态
+        /// </summary>
+        /// <param name="iIndex">取值范围 1-30</param>
+        /// <param name="bUse">开关状态 开关true 表示启用，false 表示禁用</param>
+        public void SetHolidayValue(int iIndex, bool bUse)
+        {
+            if (iIndex <= 0 || iIndex > 32)
+            {
+                throw new ArgumentException("iIndex= 1 -- 32");
+            }
+
+            iIndex -= 1;
+            //计算索引所在的字节位置
+            int iByteIndex = iIndex / 8;
+            int iBitIndex = iIndex % 8;
+            int iByteValue = Holiday[iByteIndex] & 0x000000ff;
+            int iMaskValue = (int)Math.Pow(2, iBitIndex);
+            bool bOldValue = ((iByteValue & iMaskValue) > 0);
+            if (bUse == bOldValue)
+            {
+                return;
+            }
+            if (bUse)
+            {
+                iByteValue = iByteValue | iMaskValue;
+            }
+            else
+            {
+                iByteValue = iByteValue ^ iMaskValue;
+            }
+
+            Holiday[iByteIndex] = (byte)iByteValue;
+
         }
 
         /// <summary>
@@ -159,23 +245,26 @@ namespace FCARDIO.Protocol.Fingerprint.Data
             Dept = Util.StringUtil.GetString(data, 30, StringEncoding);
             Post = Util.StringUtil.GetString(data, 30, StringEncoding);
 
+            Holiday = new byte[4];
             data.ReadBytes(Holiday, 0, 4);
             EnterStatus = data.ReadByte();
 
             RecordTime = TimeUtil.BCDTimeToDate_yyMMddhhmmss(data);
 
             IsFaceFeatureCode = data.ReadBoolean();
-
-            FingerprintFeatureCodeList = new byte[10];
-            for (int i = 0; i < 2; i++)
-            {
-                byte type = data.ReadByte();
-                var bytelist = FCARD.Common.NumUtil.ByteToBit(type);
-                for (int j = 0; j < bytelist.Length; j++)
-                {
-                    FingerprintFeatureCodeList[i * 8 + j] = bytelist[j];
-                }
-            }
+            FingerprintFeatureCodeCout = (int)data.ReadUnsignedShort();
+            //FingerprintFeatureCodeList = new byte[10];
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    byte type = data.ReadByte();
+            //    var bytelist = FCARD.Common.NumUtil.ByteToBit(type);
+            //    for (int j = 0; j < bytelist.Length; j++)
+            //    {
+            //        if (i * 8 + j > 9)
+            //            break;
+            //        FingerprintFeatureCodeList[i * 8 + j] = bytelist[j];
+            //    }
+            //}
         }
 
         /// <summary>
@@ -211,19 +300,21 @@ namespace FCARDIO.Protocol.Fingerprint.Data
             }
 
             data.WriteBoolean(IsFaceFeatureCode);
+            data.WriteShort(FingerprintFeatureCodeCout);
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    byte[] list = new byte[8];
+            //    for (int j = 0; j < 8; j++)
+            //    {
+            //        if (i * 8 + j == FingerprintFeatureCodeList.Length)
+            //            break;
+            //        list[j] = FingerprintFeatureCodeList[i * 8 + j];
+            //    }
 
-            for (int i = 0; i < 2; i++)
-            {
-                byte[] list = new byte[8];
-                for (int j = 0; j < 8; j++)
-                {
-                    list[j] = FingerprintFeatureCodeList[i * 8 + j];
-                }
+            //    byte type = FCARD.Common.NumUtil.BitToByte(list);
+            //    data.WriteByte(type);
+            //}
 
-                byte type = FCARD.Common.NumUtil.BitToByte(list);
-                data.WriteByte(type);
-            }
-            
         }
 
     }

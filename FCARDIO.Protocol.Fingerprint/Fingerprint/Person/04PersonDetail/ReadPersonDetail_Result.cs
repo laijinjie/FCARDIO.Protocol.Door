@@ -5,7 +5,7 @@ namespace FCARDIO.Protocol.Fingerprint.Person.PersonDetail
     /// <summary>
     /// 读取单个人员在控制器中的信息，命令成功后的返回值
     /// </summary>
-    class ReadPersonDetail_Result : INCommandResult
+    public class ReadPersonDetail_Result : INCommandResult
     {
         /// <summary>
         /// 卡片是否存在

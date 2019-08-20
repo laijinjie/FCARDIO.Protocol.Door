@@ -66,7 +66,16 @@
             this.btnReadLegalVerificationCloseAlarm = new System.Windows.Forms.Button();
             this.cbLegalVerificationCloseAlarmUse = new System.Windows.Forms.CheckBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btnWriteCloseAlarm = new System.Windows.Forms.Button();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.btnFillNowTime = new System.Windows.Forms.Button();
             this.DoorOpenTimePanel = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.endTimePicker8 = new System.Windows.Forms.DateTimePicker();
@@ -108,14 +117,6 @@
             this.btnWriteGateMagneticAlarm = new System.Windows.Forms.Button();
             this.btnReadGateMagneticAlarm = new System.Windows.Forms.Button();
             this.label57 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.btnWriteCloseAlarm = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -488,6 +489,7 @@
             this.btnWriteLegalVerificationCloseAlarm.TabIndex = 4;
             this.btnWriteLegalVerificationCloseAlarm.Text = "写入";
             this.btnWriteLegalVerificationCloseAlarm.UseVisualStyleBackColor = true;
+            this.btnWriteLegalVerificationCloseAlarm.Click += new System.EventHandler(this.BtnWriteLegalVerificationCloseAlarm_Click);
             // 
             // btnReadLegalVerificationCloseAlarm
             // 
@@ -497,6 +499,7 @@
             this.btnReadLegalVerificationCloseAlarm.TabIndex = 3;
             this.btnReadLegalVerificationCloseAlarm.Text = "读取";
             this.btnReadLegalVerificationCloseAlarm.UseVisualStyleBackColor = true;
+            this.btnReadLegalVerificationCloseAlarm.Click += new System.EventHandler(this.BtnReadLegalVerificationCloseAlarm_Click);
             // 
             // cbLegalVerificationCloseAlarmUse
             // 
@@ -525,8 +528,89 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "解除报警";
             // 
+            // btnWriteCloseAlarm
+            // 
+            this.btnWriteCloseAlarm.Location = new System.Drawing.Point(295, 52);
+            this.btnWriteCloseAlarm.Name = "btnWriteCloseAlarm";
+            this.btnWriteCloseAlarm.Size = new System.Drawing.Size(89, 23);
+            this.btnWriteCloseAlarm.TabIndex = 89;
+            this.btnWriteCloseAlarm.Text = "解除报警";
+            this.btnWriteCloseAlarm.UseVisualStyleBackColor = true;
+            this.btnWriteCloseAlarm.Click += new System.EventHandler(this.BtnWriteCloseAlarm_Click);
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(198, 54);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(72, 16);
+            this.checkBox7.TabIndex = 6;
+            this.checkBox7.Text = "消防报警";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(101, 54);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(72, 16);
+            this.checkBox6.TabIndex = 5;
+            this.checkBox6.Text = "防拆报警";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(6, 54);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(84, 16);
+            this.checkBox5.TabIndex = 4;
+            this.checkBox5.Text = "黑名单报警";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(295, 20);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(96, 16);
+            this.checkBox4.TabIndex = 3;
+            this.checkBox4.Text = "开门超时报警";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(198, 20);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(72, 16);
+            this.checkBox3.TabIndex = 2;
+            this.checkBox3.Text = "胁迫报警";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(101, 20);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(72, 16);
+            this.checkBox2.TabIndex = 1;
+            this.checkBox2.Text = "门磁报警";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(6, 20);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(84, 16);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "非法卡报警";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.btnFillNowTime);
             this.groupBox9.Controls.Add(this.DoorOpenTimePanel);
             this.groupBox9.Controls.Add(this.panel6);
             this.groupBox9.Controls.Add(this.btnWriteGateMagneticAlarm);
@@ -538,6 +622,16 @@
             this.groupBox9.TabIndex = 12;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "门磁报警";
+            // 
+            // btnFillNowTime
+            // 
+            this.btnFillNowTime.Location = new System.Drawing.Point(592, 134);
+            this.btnFillNowTime.Name = "btnFillNowTime";
+            this.btnFillNowTime.Size = new System.Drawing.Size(95, 23);
+            this.btnFillNowTime.TabIndex = 88;
+            this.btnFillNowTime.Text = "填充 现在时间";
+            this.btnFillNowTime.UseVisualStyleBackColor = true;
+            this.btnFillNowTime.Click += new System.EventHandler(this.BtnFillNowTime_Click);
             // 
             // DoorOpenTimePanel
             // 
@@ -600,6 +694,7 @@
             this.endTimePicker8.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker8.TabIndex = 116;
             this.endTimePicker8.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endTimePicker8.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
             // 
             // label35
             // 
@@ -620,6 +715,7 @@
             this.beginTimePicker8.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker8.TabIndex = 114;
             this.beginTimePicker8.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTimePicker8.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
             // 
             // label36
             // 
@@ -640,6 +736,7 @@
             this.endTimePicker4.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker4.TabIndex = 112;
             this.endTimePicker4.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endTimePicker4.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
             // 
             // label37
             // 
@@ -660,6 +757,7 @@
             this.beginTimePicker4.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker4.TabIndex = 110;
             this.beginTimePicker4.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTimePicker4.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
             // 
             // label30
             // 
@@ -680,6 +778,7 @@
             this.endTimePicker7.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker7.TabIndex = 108;
             this.endTimePicker7.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endTimePicker7.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
             // 
             // label31
             // 
@@ -700,6 +799,7 @@
             this.beginTimePicker7.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker7.TabIndex = 106;
             this.beginTimePicker7.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTimePicker7.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
             // 
             // label32
             // 
@@ -720,6 +820,7 @@
             this.endTimePicker3.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker3.TabIndex = 104;
             this.endTimePicker3.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endTimePicker3.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
             // 
             // label33
             // 
@@ -740,6 +841,7 @@
             this.beginTimePicker3.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker3.TabIndex = 102;
             this.beginTimePicker3.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTimePicker3.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
             // 
             // label26
             // 
@@ -760,6 +862,7 @@
             this.endTimePicker6.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker6.TabIndex = 100;
             this.endTimePicker6.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endTimePicker6.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
             // 
             // label27
             // 
@@ -780,6 +883,7 @@
             this.beginTimePicker6.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker6.TabIndex = 98;
             this.beginTimePicker6.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTimePicker6.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
             // 
             // label28
             // 
@@ -800,6 +904,7 @@
             this.endTimePicker2.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker2.TabIndex = 96;
             this.endTimePicker2.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endTimePicker2.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
             // 
             // label29
             // 
@@ -820,6 +925,7 @@
             this.beginTimePicker2.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker2.TabIndex = 94;
             this.beginTimePicker2.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTimePicker2.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
             // 
             // label23
             // 
@@ -840,6 +946,7 @@
             this.endTimePicker5.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker5.TabIndex = 92;
             this.endTimePicker5.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endTimePicker5.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
             // 
             // label25
             // 
@@ -860,6 +967,7 @@
             this.beginTimePicker5.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker5.TabIndex = 90;
             this.beginTimePicker5.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTimePicker5.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
             // 
             // label21
             // 
@@ -880,6 +988,7 @@
             this.endTimePicker1.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker1.TabIndex = 88;
             this.endTimePicker1.Value = new System.DateTime(2019, 5, 13, 23, 59, 0, 0);
+            this.endTimePicker1.ValueChanged += new System.EventHandler(this.EndTP_ValueChanged);
             // 
             // label20
             // 
@@ -909,6 +1018,7 @@
             this.beginTimePicker1.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker1.TabIndex = 84;
             this.beginTimePicker1.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTimePicker1.ValueChanged += new System.EventHandler(this.BeginTP_ValueChanged);
             // 
             // cbxWeek
             // 
@@ -989,86 +1099,6 @@
             this.label57.Size = new System.Drawing.Size(65, 12);
             this.label57.TabIndex = 77;
             this.label57.Text = "功能开关：";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 20);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(84, 16);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "非法卡报警";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(101, 20);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(72, 16);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "门磁报警";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(198, 20);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(72, 16);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "胁迫报警";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(295, 20);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(96, 16);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "开门超时报警";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(6, 54);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(84, 16);
-            this.checkBox5.TabIndex = 4;
-            this.checkBox5.Text = "黑名单报警";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(101, 54);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(72, 16);
-            this.checkBox6.TabIndex = 5;
-            this.checkBox6.Text = "防拆报警";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(198, 54);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(72, 16);
-            this.checkBox7.TabIndex = 6;
-            this.checkBox7.Text = "消防报警";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // btnWriteCloseAlarm
-            // 
-            this.btnWriteCloseAlarm.Location = new System.Drawing.Point(295, 52);
-            this.btnWriteCloseAlarm.Name = "btnWriteCloseAlarm";
-            this.btnWriteCloseAlarm.Size = new System.Drawing.Size(89, 23);
-            this.btnWriteCloseAlarm.TabIndex = 89;
-            this.btnWriteCloseAlarm.Text = "解除报警";
-            this.btnWriteCloseAlarm.UseVisualStyleBackColor = true;
-            this.btnWriteCloseAlarm.Click += new System.EventHandler(this.BtnWriteCloseAlarm_Click);
             // 
             // frmAlarm
             // 
@@ -1203,5 +1233,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.Button btnWriteCloseAlarm;
+        private System.Windows.Forms.Button btnFillNowTime;
     }
 }

@@ -92,9 +92,12 @@
     <Compile Include="Alarm\08LegalVerificationCloseAlarm\ReadLegalVerificationCloseAlarm_Result.cs" />
     <Compile Include="Alarm\08LegalVerificationCloseAlarm\WriteLegalVerificationCloseAlarm.cs" />
     <Compile Include="Alarm\08LegalVerificationCloseAlarm\WriteLegalVerificationCloseAlarm_Parameter.cs" />
-    <Compile Include="Alarm\09WriteCloseAlarm\WriteCloseAlarm.cs" />
-    <Compile Include="Alarm\09WriteCloseAlarm\WriteCloseAlarm_Parameter.cs" />
+    <Compile Include="Alarm\09CloseAlarm\WriteCloseAlarm.cs" />
+    <Compile Include="Alarm\09CloseAlarm\WriteCloseAlarm_Parameter.cs" />
     <Compile Include="Data\Person.cs" />
+    <Compile Include="Data\TransactionDatabaseDetail.cs" />
+    <Compile Include="Data\TransactionDetail.cs" />
+    <Compile Include="Data\Transaction\CardTransaction.cs" />
     <Compile Include="Door\01ReaderOption\ReaderOption_Parameter.cs" />
     <Compile Include="Door\01ReaderOption\ReaderOption_Result.cs" />
     <Compile Include="Door\01ReaderOption\ReadReaderOption.cs" />
@@ -175,6 +178,7 @@
     <Compile Include="SystemParameter\08Watch\ReadWatchState.cs" />
     <Compile Include="SystemParameter\09SystemStatus\ReadSystemStatus.cs" />
     <Compile Include="SystemParameter\09SystemStatus\ReadSystemStatus_Result.cs" />
+    <Compile Include="SystemParameter\10Initialize\Initialize.cs" />
     <Compile Include="SystemParameter\11SearchControltor\SearchControltor.cs" />
     <Compile Include="SystemParameter\11SearchControltor\SearchControltor_Parameter.cs" />
     <Compile Include="SystemParameter\11SearchControltor\SearchControltor_Result.cs" />
@@ -208,6 +212,24 @@
     <Compile Include="SystemParameter\20OEM\OEM_Result.cs" />
     <Compile Include="SystemParameter\20OEM\ReadOEM.cs" />
     <Compile Include="SystemParameter\20OEM\WriteOEM.cs" />
+    <Compile Include="Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail.cs" />
+    <Compile Include="Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail_Result.cs" />
+    <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase.cs" />
+    <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase_Parameter.cs" />
+    <Compile Include="Transaction\02ClearTransactionDatabase\TransactionDatabaseEmpty.cs" />
+    <Compile Include="Transaction\04ReadTransactionDatabase\ReadTransactionDatabase.cs" />
+    <Compile Include="Transaction\04ReadTransactionDatabase\ReadTransactionDatabase_Base.cs" />
+    <Compile Include="Transaction\04ReadTransactionDatabase\ReadTransactionDatabase_Parameter.cs" />
+    <Compile Include="Transaction\04ReadTransactionDatabase\ReadTransactionDatabase_Result.cs" />
+    <Compile Include="Transaction\05TransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex.cs" />
+    <Compile Include="Transaction\05TransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex_Parameter.cs" />
+    <Compile Include="Transaction\06WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex.cs" />
+    <Compile Include="Transaction\06WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex_Parameter.cs" />
+    <Compile Include="Transaction\e_TransactionDatabaseType.cs" />
+    <Compile Include="Transaction\03ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex.cs" />
+    <Compile Include="Transaction\03ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Base.cs" />
+    <Compile Include="Transaction\03ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Parameter.cs" />
+    <Compile Include="Transaction\03ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Result.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

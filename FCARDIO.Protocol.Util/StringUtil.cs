@@ -417,5 +417,23 @@ namespace FCARDIO.Protocol.Util
             }
             return databuf;
         }
+
+        /// <summary>
+        /// 用特定编码从buf读取字符串
+        /// </summary>
+        /// <param name="databuf"></param>
+        /// <param name="iLen"></param>
+        /// <param name="uc"></param>
+        /// <returns></returns>
+        public static string GetString(IByteBuffer databuf, int iLen, Encoding uc)
+        {
+            string empty = string.Empty;
+            empty = databuf.ReadString(iLen, uc);
+            if (empty.EndsWith("\0"))
+            {
+                empty = empty.TrimEnd(default(char));
+            }
+            return empty;
+        }
     }
 }

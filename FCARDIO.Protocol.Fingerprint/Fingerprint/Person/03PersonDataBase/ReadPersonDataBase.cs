@@ -36,7 +36,8 @@ namespace FCARDIO.Protocol.Fingerprint.Person.PersonDataBase
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x07, 0x03, 0x00);
+            Packet(0x07, 0x01, 0x00);
+            mStep = 1;
         }
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace FCARDIO.Protocol.Fingerprint.Person.PersonDataBase
                 case 1://读取人员数据库详情回调
                     if (CheckResponse(oPck))
                     {
-                        ReadDetailCallBlack(oPck.CmdData);
+                        ReadDetailCallBlack(oPck);
                     }
 
                     break;
@@ -60,7 +61,7 @@ namespace FCARDIO.Protocol.Fingerprint.Person.PersonDataBase
                         ReadPersonDatabaseCallBlack(oPck.CmdData);
                     }
 
-                    if (CheckResponse(oPck, 0xFF)) //检查数据是否返回完毕
+                    else if (CheckResponse(oPck,0x07,0x03,0xff, 4)) //检查数据是否返回完毕
                     {
                         ReadPersonDatabaseOverCallBlack(oPck.CmdData);
                     }
@@ -77,7 +78,7 @@ namespace FCARDIO.Protocol.Fingerprint.Person.PersonDataBase
         /// <param name="cmdData"></param>
         private void ReadPersonDatabaseOverCallBlack(IByteBuffer buf)
         {
-            int iCount = buf.ReadInt();//获取本次总传输的卡数量
+            int iCount = buf.ReadInt();//获取本次总传输的人员数量
             if (iCount > 0)
                 _ProcessStep = iCount;
             fireCommandProcessEvent();
@@ -86,7 +87,7 @@ namespace FCARDIO.Protocol.Fingerprint.Person.PersonDataBase
             while (mBufs.Count > 0)
             {
                 buf = mBufs.Dequeue();
-                iCount = buf.ReadInt();//返回缓冲区中包含的卡数量
+                iCount = buf.ReadByte();
                 for (int i = 0; i < iCount; i++)
                 {
                     Data.Person person = new Data.Person();
@@ -107,7 +108,7 @@ namespace FCARDIO.Protocol.Fingerprint.Person.PersonDataBase
         /// <param name="cmdData"></param>
         private void ReadPersonDatabaseCallBlack(IByteBuffer buf)
         {
-            int iCount = buf.GetInt(0);//获取本次传输的卡数量
+            int iCount = buf.GetByte(0);//获取本次传输的人员数量
             _ProcessStep += iCount;
             buf.Retain();
             mBufs.Enqueue(buf);
@@ -119,9 +120,13 @@ namespace FCARDIO.Protocol.Fingerprint.Person.PersonDataBase
         /// 读取人员数据库信息回调
         /// </summary>
         /// <param name="cmdData"></param>
-        private void ReadDetailCallBlack(IByteBuffer cmdData)
+        private void ReadDetailCallBlack(OnlineAccessPacket oPck)
         {
-            _ProcessMax = cmdData.ReadInt();
+            _ProcessMax = oPck.CmdData.GetInt(4);
+            mBufs = new Queue<IByteBuffer>();
+            mStep = 2;
+            Packet(0x07, 0x03, 0x00);
+            CommandReady();
         }
 
         /// <summary>

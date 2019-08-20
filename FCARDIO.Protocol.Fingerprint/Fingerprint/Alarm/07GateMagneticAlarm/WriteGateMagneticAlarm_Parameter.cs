@@ -48,6 +48,19 @@ namespace FCARDIO.Protocol.Fingerprint.Alarm.GateMagneticAlarm
             {
                 return false;
             }
+            for (int i = 0; i < 7; i++)
+            {
+                var dayTimeGroup = WeekTimeGroup.GetItem(i);
+                int count = dayTimeGroup.GetSegmentCount();
+                for (int j = 0; j < count; j++)
+                {
+                    var ts = dayTimeGroup.GetItem(j);
+                    if (ts.GetBeginTime() > ts.GetEndTime())
+                    {
+                        return false;
+                    }
+                }
+            }
             return true;
         }
 

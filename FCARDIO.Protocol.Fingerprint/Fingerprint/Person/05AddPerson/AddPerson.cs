@@ -4,7 +4,7 @@ using FCARDIO.Protocol.Door.FC8800;
 using FCARDIO.Protocol.Fingerprint.Data;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.Fingerprint.Person.WritePerson
+namespace FCARDIO.Protocol.Fingerprint.Person.AddPerson
 {
     /// <summary>
     /// 将人员列表写入到控制器
@@ -18,8 +18,9 @@ namespace FCARDIO.Protocol.Fingerprint.Person.WritePerson
         /// <param name="parameter"></param>
         public AddPerson(INCommandDetail cd, WritePerson_ParameterBase parameter) : base(cd, parameter)
         {
-            MaxBufSize = 2 * 0xA1 + 4;
-            mPacketMax = 2;
+            mPacketMax = 1;
+            MaxBufSize = mPacketMax * 0xA1 + 1;
+            
         }
 
         /// <summary>
@@ -39,7 +40,7 @@ namespace FCARDIO.Protocol.Fingerprint.Person.WritePerson
         /// <param name="buf"></param>
         protected override void WritePersonToBuf(Data.Person person, IByteBuffer buf)
         {
-            person.SetBytes(buf);
+            person.GetBytes(buf);
         }
     }
 }

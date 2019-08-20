@@ -1,6 +1,8 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
+using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
 using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter;
+using FCARDIO.Protocol.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,27 +29,15 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.Rea
         /// <summary>
         /// 键盘发卡功能开关
         /// </summary>
-        public byte KeyboardCard;
+        public bool KeyboardCard;
 
         /// <summary>
         /// 主板管理密码
         /// </summary>
-        public byte Password;
-        /// <summary>
-        /// 消防报警功能参数（0 - 不启用、1 - 报警输出，并开所有门，只能软件解除、2 - 报警输出，不开所有门，只能软件解除、3 - 有信号报警并开门，无信号解除报警并关门、4 - 有报警信号时开一次门，就像按钮开门一样）
-        /// </summary>
-        public byte FireAlarmOption;
+        public string Password;
 
-        internal void SetBytes(IByteBuffer buf)
-        {
-            throw new NotImplementedException();
-        }
 
-        /// <summary>
-        /// 匪警报警功能参数（0 - 关闭此功能、1 - 所有门锁定，报警输出，蜂鸣器不响。不开门，刷卡不能解除，软件解除，解除报警后门的锁定也解锁了、2 - 报警输出，不锁定，蜂鸣器响。不开门，刷卡可以解除，软件可以解除、3 - 按报警按钮就报警，门锁定，并输出，不按时就停止。不开门，按钮停止时就解除，软件或刷卡不能解除。按报警按钮的时候门是处于锁定状态的，不按时解除锁定状态）
-        /// </summary>
-        public short OpenAlarmOption;
-
+        
         /// <summary>
         /// 读卡间隔时间（0表示无限制，最大65535秒）
         /// </summary>
@@ -56,7 +46,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.Rea
         /// <summary>
         /// 语音播报开关（语音段对照可参考《FC8800语音表》 每个开关true 表示启用，false 表示禁用）
         /// </summary>
-        public BroadcastDetail SpeakOpen;
+        public BroadcastDetail Broadcast;
 
         /// <summary>
         /// 读卡间隔是否启用（0不启用，1启用，2启用校验，但不提示非法数据或线路异常）
@@ -91,25 +81,41 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.Rea
         /// </summary>
         public byte ReaderByte;
 
-        
-
         /// <summary>
-        /// 防盗主机
+        /// 读卡认证方式
         /// </summary>
-        public TheftAlarmSetting TheftAlarmPar;
+        public WeekTimeGroup_ReaderWork ReaderWorkSetting;
 
         /// <summary>
-        /// 防潜回功能参数（01--单独每个门检测防潜回；02--整个控制器统一防潜回）
+        /// 是否启用
         /// </summary>
-        public short CheckInOut;
+        public bool InvalidCardAlarm;
 
         /// <summary>
-        /// 卡片到期提示（0不启用，1启用）
+        /// 胁迫报警是否启用
         /// </summary>
-        public short CardPeriodSpeak;
+        public bool AlarmPasswordIsUse;
 
         /// <summary>
-        /// 定时播报
+        /// 胁迫报警胁迫密码
+        /// </summary>
+        public string AlarmPassword;
+
+        /// <summary>
+        /// 报警选项
+        /// 1   不开门，报警输出
+        /// 2   开门，报警输出
+        /// 3   锁定门，报警，只能软件解锁
+        /// </summary>
+        public byte AlarmOption;
+
+        /// <summary>
+        /// 卡片到期提示
+        /// </summary>
+        public bool ExpirationPromptIsUse;
+
+        /// <summary>
+        /// 定时读卡播报语音消息
         /// </summary>
         public ReadCardSpeak ReadCardSpeak;
 
@@ -117,6 +123,27 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.Rea
         {
 
         }
+
+        public void SetBytes(IByteBuffer buf)
+        {
+            RecordMode = buf.ReadByte();
+            Keyboard = buf.ReadByte();
+            KeyboardCard = buf.ReadBoolean();
+            Password = StringUtil.ByteBufToHex(buf, 4);
+            if (Broadcast == null)
+            {
+                Broadcast = new BroadcastDetail();
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                Broadcast.Broadcast[i] = buf.ReadByte();
+            }
+            ReaderIntervalTimeUse = buf.ReadBoolean();
+            IntervalTime = buf.ReadUnsignedShort();
+        }
+
+
+        /*
         /// <summary>
         /// 初始化参数
         /// </summary>
@@ -148,7 +175,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.Rea
             CardPeriodSpeak = _CardPeriodSpeak;
             ReadCardSpeak = _ReadCardSpeak;
         }
-
+        */
         /// <summary>
         /// 释放资源
         /// </summary>

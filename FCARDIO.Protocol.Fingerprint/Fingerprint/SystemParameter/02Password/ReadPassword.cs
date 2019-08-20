@@ -1,11 +1,6 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Fingerprint.SystemParameter.Password
 {

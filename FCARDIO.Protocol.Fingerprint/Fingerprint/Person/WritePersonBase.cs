@@ -78,7 +78,7 @@ namespace FCARDIO.Protocol.Fingerprint.Person
             }
             buf.Clear();
 
-            buf.WriteInt(iLen);
+            buf.WriteByte(iLen);
 
             for (int i = 0; i < iLen; i++)
             {

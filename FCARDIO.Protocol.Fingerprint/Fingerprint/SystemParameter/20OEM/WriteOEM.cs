@@ -4,7 +4,7 @@ using FCARDIO.Protocol.Door.FC8800;
 namespace FCARDIO.Protocol.Fingerprint.SystemParameter.OEM
 {
     /// <summary>
-    /// 设置SN
+    /// 设置OEM信息
     /// </summary>
     public class WriteOEM : FC8800Command_WriteParameter
     {

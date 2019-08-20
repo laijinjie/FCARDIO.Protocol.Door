@@ -6,6 +6,7 @@ using FCARDIO.Protocol.Fingerprint.Alarm.BlacklistAlarm;
 using FCARDIO.Protocol.Fingerprint.Alarm.CloseAlarm;
 using FCARDIO.Protocol.Fingerprint.Alarm.GateMagneticAlarm;
 using FCARDIO.Protocol.Fingerprint.Alarm.IllegalVerificationAlarm;
+using FCARDIO.Protocol.Fingerprint.Alarm.LegalVerificationCloseAlarm;
 using FCARDIO.Protocol.Fingerprint.Alarm.OpenDoorTimeoutAlarm;
 using FCARDIO.Protocol.Fingerprint.Alarm.SendFireAlarm;
 using System;
@@ -189,7 +190,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             if (cmdDtl == null) return;
 
             WriteIllegalVerificationAlarm_Parameter par = new WriteIllegalVerificationAlarm_Parameter(cbIllegalVerificationAlarmUse.Checked
-                ,(byte)(cmbIllegalVerificationTimes.SelectedIndex));
+                , (byte)(cmbIllegalVerificationTimes.SelectedIndex));
             WriteIllegalVerificationAlarm write = new WriteIllegalVerificationAlarm(cmdDtl, par);
             mMainForm.AddCommand(write);
         }
@@ -227,8 +228,8 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            WriteAlarmPassword_Parameter par = new WriteAlarmPassword_Parameter(cbAlarmPasswordUse.Checked,txtAlarmPassword.Text
-                ,Convert.ToByte(cmbAlarmPasswordMode.SelectedIndex + 1));
+            WriteAlarmPassword_Parameter par = new WriteAlarmPassword_Parameter(cbAlarmPasswordUse.Checked, txtAlarmPassword.Text
+                , Convert.ToByte(cmbAlarmPasswordMode.SelectedIndex + 1));
             WriteAlarmPassword write = new WriteAlarmPassword(cmdDtl, par);
             mMainForm.AddCommand(write);
         }
@@ -277,7 +278,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             {
                 timeout = 65535;
             }
-            WriteOpenDoorTimeoutAlarm_Parameter par = new WriteOpenDoorTimeoutAlarm_Parameter(cbOpenDoorTimeoutAlarmUse.Checked, timeout,cbRelayOutput.Checked);
+            WriteOpenDoorTimeoutAlarm_Parameter par = new WriteOpenDoorTimeoutAlarm_Parameter(cbOpenDoorTimeoutAlarmUse.Checked, timeout, cbRelayOutput.Checked);
             WriteOpenDoorTimeoutAlarm write = new WriteOpenDoorTimeoutAlarm(cmdDtl, par);
             mMainForm.AddCommand(write);
         }
@@ -321,8 +322,6 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                 }
                 else
                 {
-
-
                     for (int i = 0; i < 7; i++)
                     {
                         sb.Append("\r\n");
@@ -388,6 +387,84 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             WriteCloseAlarm_Parameter par = new WriteCloseAlarm_Parameter(list);
             WriteCloseAlarm write = new WriteCloseAlarm(cmdDtl, par);
             mMainForm.AddCommand(write);
+        }
+
+        private void BtnReadLegalVerificationCloseAlarm_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadLegalVerificationCloseAlarm cmd = new ReadLegalVerificationCloseAlarm(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                StringBuilder sb = new StringBuilder();
+                ReadLegalVerificationCloseAlarm_Result result = cmde.Command.getResult() as ReadLegalVerificationCloseAlarm_Result;
+
+                sb.Clear();
+                sb.Append("合法验证解除报警开关 ");
+                sb.Append(result.IsUse ? "是否启用：【1、启用】，" : "是否启用：【0、不启用】，");
+
+                Invoke(() =>
+                {
+                    cbLegalVerificationCloseAlarmUse.Checked = result.IsUse;
+                });
+
+                mMainForm.AddCmdLog(cmde, sb.ToString());
+            };
+        }
+
+        private void BtnWriteLegalVerificationCloseAlarm_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            WriteLegalVerificationCloseAlarm_Parameter par = new WriteLegalVerificationCloseAlarm_Parameter(cbLegalVerificationCloseAlarmUse.Checked);
+            WriteLegalVerificationCloseAlarm write = new WriteLegalVerificationCloseAlarm(cmdDtl, par);
+            mMainForm.AddCommand(write);
+        }
+
+        private void BtnFillNowTime_Click(object sender, EventArgs e)
+        {
+            //开门时段
+
+            WeekTimeGroup weekTimeGroup = new WeekTimeGroup(8);
+            //weekTimeGroup.mDay
+            //星期一 至 星期日
+            for (int y = 0; y < 7; y++)
+            {
+                DayTimeGroup dayTimeGroup = weekTimeGroup.GetItem(y);
+                //每天时段
+                for (int i = 0; i < 8; i++)
+                {
+                    DateTime dtBegin = DateTime.Now;
+                    DateTime dtEnd = DateTime.Now;
+                    //dt = dt.AddMinutes(-1);
+                    TimeSegment segment = dayTimeGroup.GetItem(i);
+
+                    dtBegin = dtBegin.AddMinutes(i + 1);
+                    segment.SetBeginTime(dtBegin.Hour, dtBegin.Minute);
+                    dtEnd = dtBegin.AddMinutes(1);
+                    segment.SetEndTime(dtEnd.Hour, dtEnd.Minute);
+                    DateTimePicker beginTimePicker = FindControl(DoorOpenTimePanel, "beginTimePicker" + (i + 1).ToString()) as DateTimePicker;
+                    DateTimePicker endTimePicker = FindControl(DoorOpenTimePanel, "endTimePicker" + (i + 1).ToString()) as DateTimePicker;
+                    beginTimePicker.Value = dtBegin;// segment.GetBeginTime();
+                    endTimePicker.Value = dtEnd;// segment.GetEndTime();
+                }
+            }
+        }
+
+        private void BeginTP_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            SetWeekTimeGroupValue(WeekTimeGroupDoorWorkDto, cbxWeek.SelectedIndex, int.Parse(dtp.Name.Substring(15)) - 1, 1, dtp.Value);
+        }
+
+        private void EndTP_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            SetWeekTimeGroupValue(WeekTimeGroupDoorWorkDto, cbxWeek.SelectedIndex, int.Parse(dtp.Name.Substring(13)) - 1, 2, dtp.Value);
         }
     }
 }

@@ -7,7 +7,9 @@ using FCARDIO.Core.Connector.TCPServer.Client;
 using FCARDIO.Core.Connector.UDP;
 using FCARDIO.Core.Extension;
 using FCARDIO.Protocol.FC8800;
+using FCARDIO.Protocol.Fingerprint.SystemParameter.Watch;
 using FCARDIO.Protocol.Fingerprint.Test.Model;
+using FCARDIO.Protocol.Transaction;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -430,7 +432,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                     break;
                 case ConnectorType.TCPServerClient:
                     cType = "TCP客户端节点";
-                    var tcpclientOnly = conn as TCPServerClientDetail_ReadOnly;
+                    var tcpclientOnly = conn as TCPServerClientDetail;
                     Local = $"{local.ToString()}";
                     Remote = $"{tcpclientOnly.Remote.ToString()}";
                     break;
@@ -791,12 +793,12 @@ namespace FCARDIO.Protocol.Fingerprint.Test
 
         private void butCard_Click(object sender, EventArgs e)
         {
-            //frmCard frm = frmCard.GetForm(this);
-            //frm.Show();
-            //if (frm.WindowState == FormWindowState.Minimized)
-            //    frm.WindowState = FormWindowState.Normal;
-            //frm.Activate();
-            //ShowFrm(frm);
+            frmPerson frm = frmPerson.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
 
         }
 
@@ -847,12 +849,12 @@ namespace FCARDIO.Protocol.Fingerprint.Test
 
         private void butRecord_Click(object sender, EventArgs e)
         {
-            //frmRecord frm = frmRecord.GetForm(this);
-            //frm.Show();
-            //if (frm.WindowState == FormWindowState.Minimized)
-            //    frm.WindowState = FormWindowState.Normal;
-            //frm.Activate();
-            //ShowFrm(frm);
+            frmRecord frm = frmRecord.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
         }
 
         private void butUploadSoftware_Click(object sender, EventArgs e)
@@ -877,6 +879,113 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         {
             mCommandClasss = new Dictionary<string, string>();
 
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.SN.ReadSN).FullName, "读取SN");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.SN.WriteSN).FullName, "写SN");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.SN.WriteSN_Broadcast).FullName, "广播写SN");
+
+            mCommandClasss.Add(typeof(SystemParameter.Password.ReadPassword).FullName, "获取通讯密码");
+            mCommandClasss.Add(typeof(SystemParameter.Password.WritePassword).FullName, "设置通讯密码");
+            mCommandClasss.Add(typeof(SystemParameter.Password.ResetPassword).FullName, "重置通讯密码");
+
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.TCPSetting.ReadTCPSetting).FullName, "读取TCP参数");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.TCPSetting.WriteTCPSetting).FullName, "写入TCP参数");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.KeepAliveInterval.ReadKeepAliveInterval).FullName, "读取保活间隔时间");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.KeepAliveInterval.WriteKeepAliveInterval).FullName, "写入保活间隔时间");
+
+            mCommandClasss.Add(typeof(SystemParameter.Version.ReadVersion).FullName, "读取设备版本号");
+            mCommandClasss.Add(typeof(SystemParameter.SystemStatus.ReadSystemRunStatus).FullName, "获取设备运行信息");
+            mCommandClasss.Add(typeof(SystemParameter.RecordMode.ReadRecordMode).FullName, "获取记录存储方式");
+            mCommandClasss.Add(typeof(SystemParameter.RecordMode.WriteRecordMode).FullName, "设置记录存储方式");
+            mCommandClasss.Add(typeof(SystemParameter.Watch.BeginWatch).FullName, "开启数据监控");
+            mCommandClasss.Add(typeof(SystemParameter.Watch.CloseWatch).FullName, "关闭数据监控");
+            mCommandClasss.Add(typeof(SystemParameter.Watch.ReadWatchState).FullName, "读取实时监控状态");
+            mCommandClasss.Add(typeof(SystemParameter.SystemStatus.ReadSystemStatus).FullName, "读取设备状态信息");
+            mCommandClasss.Add(typeof(SystemParameter.Initialize.Initialize).FullName, "初始化设备");
+            mCommandClasss.Add(typeof(SystemParameter.SearchControltor.SearchControltor).FullName, "搜索控制器");
+            mCommandClasss.Add(typeof(SystemParameter.SearchControltor.WriteControltorNetCode).FullName, "根据SN设置网络标识");
+            mCommandClasss.Add(typeof(SystemParameter.DataEncryptionSwitch.ReadDataEncryptionSwitch).FullName, "读取数据包加密开关");
+            mCommandClasss.Add(typeof(SystemParameter.DataEncryptionSwitch.WriteDataEncryptionSwitch).FullName, "设置数据包加密开关");
+            mCommandClasss.Add(typeof(SystemParameter.LocalIdentity.ReadLocalIdentity).FullName, "读取本机身份");
+            mCommandClasss.Add(typeof(SystemParameter.LocalIdentity.WriteLocalIdentity).FullName, "设置本机身份");
+            mCommandClasss.Add(typeof(SystemParameter.WiegandOutput.ReadWiegandOutput).FullName, "读取韦根输出");
+            mCommandClasss.Add(typeof(SystemParameter.WiegandOutput.WriteWiegandOutput).FullName, "设置韦根输出");
+            mCommandClasss.Add(typeof(SystemParameter.ComparisonThreshold.ReadComparisonThreshold).FullName, "读取人脸、指纹比对阈值");
+            mCommandClasss.Add(typeof(SystemParameter.ComparisonThreshold.WriteComparisonThreshold).FullName, "设置人脸、指纹比对阈值");
+            mCommandClasss.Add(typeof(SystemParameter.ScreenDisplayContent.ReadScreenDisplayContent).FullName, "读取屏幕显示内容");
+            mCommandClasss.Add(typeof(SystemParameter.ScreenDisplayContent.WriteScreenDisplayContent).FullName, "设置屏幕显示内容");
+            mCommandClasss.Add(typeof(SystemParameter.ManageMenuPassword.ReadManageMenuPassword).FullName, "读取管理菜单密码");
+            mCommandClasss.Add(typeof(SystemParameter.ManageMenuPassword.WriteManageMenuPassword).FullName, "设置管理菜单密码");
+            mCommandClasss.Add(typeof(SystemParameter.OEM.ReadOEM).FullName, "读取OEM信息");
+            mCommandClasss.Add(typeof(SystemParameter.OEM.WriteOEM).FullName, "设置OEM信息");
+
+
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Time.ReadTime).FullName, "读系统时间");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Time.WriteTime).FullName, "写系统时间");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Time.WriteCustomTime).FullName, "写系统时间");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Time.WriteTimeBroadcast).FullName, "写设备时间_广播命令");
+
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.ReadHolidayDetail).FullName, "从控制板中读取节假日存储详情");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.ClearHoliday).FullName, "清空控制器中的所有节假日");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.ReadAllHoliday).FullName, "读取控制板中已存储的所有节假日");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.AddHoliday).FullName, "添加节假日到控制版");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.DeleteHoliday).FullName, "从控制器删除节假日");
+
+
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.TimeGroup.ClearTimeGroup).FullName, "清空所有开门时段");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.TimeGroup.ReadTimeGroup).FullName, "读取所有开门时段");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.TimeGroup.AddTimeGroup).FullName, "添加开门时段");
+
+            mCommandClasss.Add(typeof(Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
+            mCommandClasss.Add(typeof(Transaction.ClearTransactionDatabase.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
+            mCommandClasss.Add(typeof(Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
+            mCommandClasss.Add(typeof(Transaction.ReadTransactionDatabase.ReadTransactionDatabase).FullName, "读取新记录");
+            mCommandClasss.Add(typeof(Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
+            mCommandClasss.Add(typeof(Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
+
+            mCommandClasss.Add(typeof(Alarm.SendFireAlarm.WriteSendFireAlarm).FullName, "通知设备触发消防报警");
+            mCommandClasss.Add(typeof(Alarm.BlacklistAlarm.ReadBlacklistAlarm).FullName, "读取黑名单报警");
+            mCommandClasss.Add(typeof(Alarm.BlacklistAlarm.WriteBlacklistAlarm).FullName, "设置黑名单报警");
+            mCommandClasss.Add(typeof(Alarm.AntiDisassemblyAlarm.ReadAntiDisassemblyAlarm).FullName, "读取防拆报警功能");
+            mCommandClasss.Add(typeof(Alarm.AntiDisassemblyAlarm.WriteAntiDisassemblyAlarm).FullName, "设置防拆报警功能");
+            mCommandClasss.Add(typeof(Alarm.IllegalVerificationAlarm.ReadIllegalVerificationAlarm).FullName, "读取非法验证报警");
+            mCommandClasss.Add(typeof(Alarm.IllegalVerificationAlarm.WriteIllegalVerificationAlarm).FullName, "设置非法验证报警");
+            mCommandClasss.Add(typeof(Alarm.AlarmPassword.ReadAlarmPassword).FullName, "读取胁迫报警密码");
+            mCommandClasss.Add(typeof(Alarm.AlarmPassword.WriteAlarmPassword).FullName, "设置胁迫报警密码");
+            mCommandClasss.Add(typeof(Alarm.OpenDoorTimeoutAlarm.ReadOpenDoorTimeoutAlarm).FullName, "读取开门超时报警参数");
+            mCommandClasss.Add(typeof(Alarm.OpenDoorTimeoutAlarm.WriteOpenDoorTimeoutAlarm).FullName, "设置开门超时报警参数");
+            mCommandClasss.Add(typeof(Alarm.GateMagneticAlarm.ReadGateMagneticAlarm).FullName, "读取门磁报警参数");
+            mCommandClasss.Add(typeof(Alarm.GateMagneticAlarm.WriteGateMagneticAlarm).FullName, "设置门磁报警参数");
+            mCommandClasss.Add(typeof(Alarm.LegalVerificationCloseAlarm.ReadLegalVerificationCloseAlarm).FullName, "读取合法验证解除报警开关");
+            mCommandClasss.Add(typeof(Alarm.LegalVerificationCloseAlarm.WriteLegalVerificationCloseAlarm).FullName, "设置合法验证解除报警开关");
+            mCommandClasss.Add(typeof(Alarm.CloseAlarm.WriteCloseAlarm).FullName, "解除报警");
+
+            mCommandClasss.Add(typeof(Door.ReaderOption.ReadReaderOption).FullName, "读取读卡器字节数");
+            mCommandClasss.Add(typeof(Door.ReaderOption.WriteReaderOption).FullName, "设置读卡器字节数");
+            mCommandClasss.Add(typeof(Door.RelayOption.ReadRelayOption).FullName, "读取继电器参数");
+            mCommandClasss.Add(typeof(Door.RelayOption.WriteRelayOption).FullName, "设置继电器参数");
+            mCommandClasss.Add(typeof(Door.Remote.CloseDoor).FullName, "远程关门");
+            mCommandClasss.Add(typeof(Door.Remote.HoldDoor).FullName, "设置门常开");
+            mCommandClasss.Add(typeof(Door.Remote.LockDoor).FullName, "锁定门");
+            mCommandClasss.Add(typeof(Door.Remote.OpenDoor).FullName, "远程开门");
+            mCommandClasss.Add(typeof(Door.Remote.UnlockDoor).FullName, "解除锁定门");
+            mCommandClasss.Add(typeof(Door.DoorWorkSetting.ReadDoorWorkSetting).FullName, "读取门定时常开");
+            mCommandClasss.Add(typeof(Door.DoorWorkSetting.WriteDoorWorkSetting).FullName, "设置门定时常开");
+            mCommandClasss.Add(typeof(Door.RelayReleaseTime.ReadUnlockingTime).FullName, "获取开锁时输出时长");
+            mCommandClasss.Add(typeof(Door.RelayReleaseTime.WriteUnlockingTime).FullName, "设置开锁时输出时长");
+            mCommandClasss.Add(typeof(Door.ExemptionVerificationOpen.ReadExemptionVerificationOpen).FullName, "读取免验证开门");
+            mCommandClasss.Add(typeof(Door.ExemptionVerificationOpen.WriteExemptionVerificationOpen).FullName, "设置免验证开门");
+            mCommandClasss.Add(typeof(Door.VoiceBroadcastSetting.ReadVoiceBroadcastSetting).FullName, "读取语音播报功能");
+            mCommandClasss.Add(typeof(Door.VoiceBroadcastSetting.WriteVoiceBroadcastSetting).FullName, "设置语音播报功能");
+            mCommandClasss.Add(typeof(Door.ReaderIntervalTime.ReadReaderIntervalTime).FullName, "获取重复验证权限间隔");
+            mCommandClasss.Add(typeof(Door.ReaderIntervalTime.WriteReaderIntervalTime).FullName, "设置重复验证权限间隔");
+            mCommandClasss.Add(typeof(Door.ExpirationPrompt.ReadExpirationPrompt).FullName, "读取权限到期提示参数");
+            mCommandClasss.Add(typeof(Door.ExpirationPrompt.WriteExpirationPrompt).FullName, "设置权限到期提示参数");
+
+            mCommandClasss.Add(typeof(Person.PersonDatabaseDetail.ReadPersonDatabaseDetail).FullName, "读取人员存储详情");
+            mCommandClasss.Add(typeof(Person.ClearPersonDataBase.ClearPersonDataBase).FullName, "清空所有人员");
+            mCommandClasss.Add(typeof(Person.PersonDetail.ReadPersonDetail).FullName, "读取单个人员");
+            mCommandClasss.Add(typeof(Person.DeletePerson.DeletePerson).FullName, "删除人员");
+            mCommandClasss.Add(typeof(Person.AddPerson.AddPerson).FullName, "添加人员");
 
         }
 
@@ -1100,7 +1209,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             /// </summary>
             public IPDetail Remote;
 
-            public TCPServerClientDetail_Item(TCPServerClientDetail_ReadOnly detail)
+            public TCPServerClientDetail_Item(TCPServerClientDetail detail)
             {
                 SN = "";
                 Key = detail.Key;
@@ -1214,7 +1323,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                 Invoke(() => AddTCPServer_Client(detail));
                 return;
             }
-            TCPServerClientDetail_ReadOnly oClient = detail as TCPServerClientDetail_ReadOnly;
+            TCPServerClientDetail oClient = detail as TCPServerClientDetail;
             var oItem = new TCPServerClientDetail_Item(oClient);
 
             cmbTCPClient.Items.Add(oItem);
@@ -1235,7 +1344,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                 Invoke(() => RemoveTCPServer_Client(detail));
                 return;
             }
-            TCPServerClientDetail_ReadOnly oClient = detail as TCPServerClientDetail_ReadOnly;
+            TCPServerClientDetail oClient = detail as TCPServerClientDetail;
 
             if (!TCPServerClients.ContainsKey(oClient.Key)) return;
 
@@ -1344,7 +1453,6 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                 cnt = mAllocator.GetConnector(cmdDtl.Connector);
 
             }
-            /*
             BeginWatch cmd = new BeginWatch(cmdDtl);
             AddCommand(cmd);
             //处理返回值
@@ -1352,7 +1460,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             {
                 AddCmdLog(cmde, "已开启监控");
             };
-            */
+
             //使通道保持连接不关闭
             cnt.OpenForciblyConnect();
             FC8800RequestHandle fC8800Request =
@@ -1371,7 +1479,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         /// <param name="cmdIndex"></param>
         /// <param name="cmdPar"></param>
         /// <returns></returns>
-        private Transaction.AbstractTransaction RequestHandleFactory(string sn, byte cmdIndex, byte cmdPar)
+        private AbstractTransaction RequestHandleFactory(string sn, byte cmdIndex, byte cmdPar)
         {
             return null;
         }

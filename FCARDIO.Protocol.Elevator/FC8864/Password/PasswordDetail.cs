@@ -136,9 +136,10 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
                 }
             }
             DoorNumList[64] = data.ReadByte();
-            byte[] btData = new byte[4];
-            data.ReadBytes(btData, 0, 4);
-            Password = btData.ToHex().TrimEnd('F');
+            //byte[] btData = new byte[4];
+            //data.ReadBytes(btData, 0, 4);
+            //Password = btData.ToHex().TrimEnd('F');
+            Password = StringUtil.ByteBufToHex(data, 4);
             ReadPassword(data);
            
         }

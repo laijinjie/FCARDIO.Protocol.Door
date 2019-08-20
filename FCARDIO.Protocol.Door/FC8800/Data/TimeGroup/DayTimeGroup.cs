@@ -60,9 +60,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Data.TimeGroup
         /// <returns></returns>
         public TimeSegment GetItem(int iIndex)
         {
-            if (iIndex < 0 || iIndex > GetSegmentCount())
+            if (iIndex < 0 || iIndex >= GetSegmentCount())
             {
-                throw new ArgumentException("iIndex<0 || iIndex > GetSegmentCount()");
+                throw new ArgumentException("iIndex<0 || iIndex >= " + GetSegmentCount().ToString());
             }
             return mSegment[iIndex];
         }

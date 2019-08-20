@@ -50,8 +50,8 @@
             this.butSystem = new System.Windows.Forms.ToolStripButton();
             this.butTime = new System.Windows.Forms.ToolStripButton();
             this.butDoor = new System.Windows.Forms.ToolStripButton();
+            this.butAlarm = new System.Windows.Forms.ToolStripButton();
             this.butHoliday = new System.Windows.Forms.ToolStripButton();
-            this.ButPassword = new System.Windows.Forms.ToolStripButton();
             this.ButTimeGroup = new System.Windows.Forms.ToolStripButton();
             this.butCard = new System.Windows.Forms.ToolStripButton();
             this.butRecord = new System.Windows.Forms.ToolStripButton();
@@ -102,7 +102,6 @@
             this.txtUDPLocalPort = new System.Windows.Forms.TextBox();
             this.butUDPBind = new System.Windows.Forms.Button();
             this.gbUDP = new System.Windows.Forms.GroupBox();
-            this.butAlarm = new System.Windows.Forms.ToolStripButton();
             this.gbTCPClient.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -224,7 +223,7 @@
             this.txtSN.Name = "txtSN";
             this.txtSN.Size = new System.Drawing.Size(164, 21);
             this.txtSN.TabIndex = 7;
-            this.txtSN.Text = "FC-A102E88888888";
+            this.txtSN.Text = "FC-A102E88888882";
             // 
             // label6
             // 
@@ -253,7 +252,6 @@
             this.butDoor,
             this.butAlarm,
             this.butHoliday,
-            this.ButPassword,
             this.ButTimeGroup,
             this.butCard,
             this.butRecord,
@@ -294,6 +292,16 @@
             this.butDoor.Text = "门参数";
             this.butDoor.Click += new System.EventHandler(this.butDoor_Click);
             // 
+            // butAlarm
+            // 
+            this.butAlarm.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.butAlarm.Image = ((System.Drawing.Image)(resources.GetObject("butAlarm.Image")));
+            this.butAlarm.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.butAlarm.Name = "butAlarm";
+            this.butAlarm.Size = new System.Drawing.Size(60, 22);
+            this.butAlarm.Text = "报警设置";
+            this.butAlarm.Click += new System.EventHandler(this.ButAlarm_Click);
+            // 
             // butHoliday
             // 
             this.butHoliday.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -303,16 +311,6 @@
             this.butHoliday.Size = new System.Drawing.Size(48, 22);
             this.butHoliday.Text = "节假日";
             this.butHoliday.Click += new System.EventHandler(this.butHoliday_Click);
-            // 
-            // ButPassword
-            // 
-            this.ButPassword.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ButPassword.Image = ((System.Drawing.Image)(resources.GetObject("ButPassword.Image")));
-            this.ButPassword.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ButPassword.Name = "ButPassword";
-            this.ButPassword.Size = new System.Drawing.Size(36, 22);
-            this.ButPassword.Text = "密码";
-            this.ButPassword.Click += new System.EventHandler(this.ButPassword_Click);
             // 
             // ButTimeGroup
             // 
@@ -331,7 +329,7 @@
             this.butCard.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.butCard.Name = "butCard";
             this.butCard.Size = new System.Drawing.Size(60, 22);
-            this.butCard.Text = "人员管理";
+            this.butCard.Text = "人事档案";
             this.butCard.Click += new System.EventHandler(this.butCard_Click);
             // 
             // butRecord
@@ -773,7 +771,7 @@
             this.txtUDPPort.Name = "txtUDPPort";
             this.txtUDPPort.Size = new System.Drawing.Size(46, 21);
             this.txtUDPPort.TabIndex = 5;
-            this.txtUDPPort.Text = "5005";
+            this.txtUDPPort.Text = "8101";
             // 
             // label12
             // 
@@ -818,16 +816,6 @@
             this.gbUDP.TabIndex = 12;
             this.gbUDP.TabStop = false;
             this.gbUDP.Text = "UDP";
-            // 
-            // butAlarm
-            // 
-            this.butAlarm.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.butAlarm.Image = ((System.Drawing.Image)(resources.GetObject("butAlarm.Image")));
-            this.butAlarm.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.butAlarm.Name = "butAlarm";
-            this.butAlarm.Size = new System.Drawing.Size(60, 22);
-            this.butAlarm.Text = "报警设置";
-            this.butAlarm.Click += new System.EventHandler(this.ButAlarm_Click);
             // 
             // frmMain
             // 
@@ -903,7 +891,6 @@
         private System.Windows.Forms.ToolStripButton butTime;
         private System.Windows.Forms.ToolStripButton butDoor;
         private System.Windows.Forms.ToolStripButton butHoliday;
-        private System.Windows.Forms.ToolStripButton ButPassword;
         private System.Windows.Forms.ToolStripButton ButTimeGroup;
         private System.Windows.Forms.ToolStripButton butCard;
         private System.Windows.Forms.ToolStripButton butRecord;

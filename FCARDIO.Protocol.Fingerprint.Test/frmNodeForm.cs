@@ -84,7 +84,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
 
         public void SetAllTimePicker(Control parent,string beginControlName,string endControlName, DayTimeGroup group)
         {
-            for (int i = 0; i <= 7; i++)
+            for (int i = 0; i < 8; i++)
             {
                 DateTimePicker beginTimePicker = FindControl(parent, beginControlName + (i + 1).ToString()) as DateTimePicker;
                 DateTimePicker endTimePicker = FindControl(parent, endControlName + (i + 1).ToString()) as DateTimePicker;

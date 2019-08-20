@@ -22,6 +22,13 @@ using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.KeyboardCardIssuingManage
 using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.InputTerminalFunction;
 using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.TCP485LineConnection;
 using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.ItemDetectionFunction;
+using FCARDIO.Protocol.Door.FC8800.Door;
+using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ReaderWorkSetting;
+using FCARDIO.Protocol.Elevator.Test.Model;
+using System.Collections.Generic;
+using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
+using System.ComponentModel;
+using System.Linq;
 
 namespace FCARDIO.Protocol.Elevator.Test
 {
@@ -60,7 +67,7 @@ namespace FCARDIO.Protocol.Elevator.Test
         string[] ReaderByteTypeList = new string[] { "三字节","四字节","二字节","禁用"};
         string[] InputTerminalFunctionList = new string[] { "开锁按钮", "门磁检查" };
         string[] AlarmOptionList = new string[] { "不开门，报警输出", "开门，报警输出", "锁定门，报警，只能软件解锁" };
-
+        List<WeekTimeGroupDto> ListWeekTimeGroupDto = new List<WeekTimeGroupDto>();
         private void FrmSystem_Load(object sender, EventArgs e)
         {
             cmbReaderByteType.Items.AddRange(ReaderByteTypeList);
@@ -1374,53 +1381,13 @@ namespace FCARDIO.Protocol.Elevator.Test
             };
         }
 
-        private void BtnReadItemDetectionFunction_Click(object sender, EventArgs e)
-        {
-            var cmdDtl = mMainForm.GetCommandDetail();
-            if (cmdDtl == null) return;
-            ReadItemDetectionFunction cmd = new ReadItemDetectionFunction(cmdDtl);
-            mMainForm.AddCommand(cmd);
-
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                ReadItemDetectionFunction_Result result = cmde.Command.getResult() as ReadItemDetectionFunction_Result;
-
-                Invoke(() =>
-                {
-                    cbItemDetectionFunctionIsUse.Checked = result.IsUse;
-                });
-                string use = result.IsUse ? "开启" : "关闭";
-                string str = $"物品检测功能：【{use}】";
-                mMainForm.AddCmdLog(cmde, str);
-            };
-        }
-
-        private void BtnWriteItemDetectionFunction_Click(object sender, EventArgs e)
-        {
-            var cmdDtl = mMainForm.GetCommandDetail();
-            if (cmdDtl == null) return;
-            WriteItemDetectionFunction_Parameter par = new WriteItemDetectionFunction_Parameter(cbItemDetectionFunctionIsUse.Checked);
-            WriteItemDetectionFunction cmd = new WriteItemDetectionFunction(cmdDtl, par);
-            mMainForm.AddCommand(cmd);
-
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-            };
-        }
-
         private void BtnReadDoorWorkSetting_Click(object sender, EventArgs e)
         {
-            if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
-            {
-                MsgErr("请勾选需要操作的门！");
-                return;
-            }
+           
             StringBuilder sb = new StringBuilder();
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1));
+            ReadReaderWorkSetting cmd = new ReadReaderWorkSetting(cmdDtl);
             mMainForm.AddCommand(cmd);
 
             //处理返回值
@@ -1466,21 +1433,83 @@ namespace FCARDIO.Protocol.Elevator.Test
             };
         }
 
+        /// <summary>
+        /// 获得数值代表的星期
+        /// </summary>
+        /// <param name="index">数值（0-6，0代表星期一...6代表星期日）</param>
+        /// <returns></returns>
+        private string GetWeekStr(int index)
+        {
+            string weekStr = string.Empty;
+            if (index == 0)
+            {
+                return "星期一";
+            }
+            else if (index == 1)
+            {
+                return "星期二";
+            }
+            else if (index == 2)
+            {
+                return "星期三";
+            }
+            else if (index == 3)
+            {
+                return "星期四";
+            }
+            else if (index == 4)
+            {
+                return "星期五";
+            }
+            else if (index == 5)
+            {
+                return "星期六";
+            }
+            else if (index == 6)
+            {
+                return "星期日";
+            }
+            return weekStr;
+        }
+
         private void BtnWriteDoorWorkSetting_Click(object sender, EventArgs e)
         {
-            //if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
-            //{
-            //    MsgErr("请勾选需要操作的门！");
-            //    return;
-            //}
+           
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             WeekTimeGroup_ReaderWork tg = new WeekTimeGroup_ReaderWork(8);
             ConvertDtoToModel(tg);
 
-            WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter((byte)(cmdDoorNum.SelectedIndex + 1), tg);
+            WriteReaderWorkSetting_Parameter par = new WriteReaderWorkSetting_Parameter(tg);
             WriteReaderWorkSetting write = new WriteReaderWorkSetting(cmdDtl, par);
             mMainForm.AddCommand(write);
+        }
+
+        /// <summary>
+        /// GridView数据 转换成 WeekTimeGroup_ReaderWork
+        /// </summary>
+        /// <param name="tg"></param>
+        private void ConvertDtoToModel(WeekTimeGroup_ReaderWork tg)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                var day = tg.GetItem(i);
+                for (int j = 0; j < 8; j++)
+                {
+                    var dto = ListWeekTimeGroupDto.FirstOrDefault(t => t.WeekDay == (j + 1).ToString() && t.WeekDayIndex == i);
+                    //DateTime nw = DateTime.Now;
+                    var tz = day.GetItem(j) as TimeSegment_ReaderWork;
+                    string[] tsStart = dto.StartTime.Split(':');
+                    string[] tsEnd = dto.EndTime.Split(':');
+                    tz.SetBeginTime(int.Parse(tsStart[0]), int.Parse(tsStart[1]));
+                    tz.SetEndTime(int.Parse(tsEnd[0]), int.Parse(tsEnd[1]));
+                    string strDoor1 = (dto.id3 ? "1" : "0") + (dto.id2 ? "1" : "0") + (dto.id1 ? "1" : "0") + (dto.id0 ? "1" : "0");
+                    byte checkWay = Convert.ToByte(strDoor1, 2);
+
+                    tz.SetCheckWay(checkWay);
+                }
+            }
+
         }
     }
 }

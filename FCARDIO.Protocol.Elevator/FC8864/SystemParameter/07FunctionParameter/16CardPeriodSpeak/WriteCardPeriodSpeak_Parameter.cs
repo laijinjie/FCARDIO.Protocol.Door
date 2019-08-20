@@ -8,7 +8,7 @@ using DotNetty.Buffers;
 namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter
 {
     /// <summary>
-    /// 设置卡片到期提示_参数
+    /// 设置定时读卡播报语音消息_参数
     /// </summary>
     public class WriteCardPeriodSpeak_Parameter : AbstractParameter
     {

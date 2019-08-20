@@ -104,6 +104,18 @@
     <Compile Include="frmNodeForm.designer.cs">
       <DependentUpon>frmNodeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPerson.Designer.cs">
+      <DependentUpon>frmPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRecord.Designer.cs">
+      <DependentUpon>frmRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSystem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +138,7 @@
     <Compile Include="Model\CommandResult.cs" />
     <Compile Include="Model\HolidayDetailDto.cs" />
     <Compile Include="Model\IOMessage.cs" />
+    <Compile Include="Model\Person_UI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAlarm.resx">
@@ -142,6 +155,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNodeForm.resx">
       <DependentUpon>frmNodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPerson.resx">
+      <DependentUpon>frmPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRecord.resx">
+      <DependentUpon>frmRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSystem.resx">
       <DependentUpon>frmSystem.cs</DependentUpon>
