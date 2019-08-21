@@ -24,9 +24,9 @@ namespace FCARDIO.Protocol.Fingerprint.Person.AddPerson
             foreach (var p in PersonList)
             {
                 if (p == null) return false;
-                if (p.UserCode == 0) return false;
-                if (p.CardData == 0) return false;
-                if (p.TimeGroup > 64 || p.TimeGroup < 0) return false;
+                if (p.UserCode == 0 || p.UserCode > int.MaxValue) return false;
+                //if (p.CardData == 0 || p.CardData > int.MaxValue) return false;
+                if (p.TimeGroup > 64 || p.TimeGroup < 1) return false;
                 if (p.EnterStatus > 3 || p.EnterStatus < 0) return false;
                 if (p.Expiry.Year > 2099 || p.Expiry.Year < 2000) return false;
 
@@ -34,8 +34,8 @@ namespace FCARDIO.Protocol.Fingerprint.Person.AddPerson
 
                 if (p.Holiday == null || p.Holiday.Length > 4) return false;
                 if (p.Identity > 1 || p.Identity < 0) return false;
-                if (string.IsNullOrEmpty(p.PName)) return false;
-                if (string.IsNullOrEmpty(p.PCode)) return false;
+                //if (string.IsNullOrEmpty(p.PName)) return false;
+                //if (string.IsNullOrEmpty(p.PCode)) return false;
                 //if (string.IsNullOrEmpty(p.))
                 if (p.CardType > 1 || p.CardType < 0) return false;
                 if (p.CardStatus > 3 || p.CardStatus < 0) return false;

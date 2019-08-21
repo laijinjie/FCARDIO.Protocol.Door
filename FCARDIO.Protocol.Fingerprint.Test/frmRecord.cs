@@ -351,12 +351,12 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             }
             sLogs.Append("，时间：").Append(tr.TransactionDate.ToDateTimeStr());
             sLogs.Append("，事件代码：").Append(tr.TransactionCode);
-            if (tr.TransactionType < 7)//1-6
+            if (tr.TransactionType == 3)//1-6
             {
-                string[] codeNameList = mTransactionCodeNameList[tr.TransactionType];
+                string[] codeNameList = mTransactionCodeNameList[3];
                 sLogs.Append("(").Append(codeNameList[tr.TransactionCode]).Append(")");
             }
-            if (tr.TransactionType == 1)//读卡记录
+            else if (tr.TransactionType == 1)//读卡记录
             {
                 Data.Transaction.CardTransaction cardTrans = tr as Data.Transaction.CardTransaction;
                 sLogs.Append("用户号：").Append(cardTrans.UserCode).Append("，读卡器号：").Append(cardTrans.Reader).Append("，照片：").AppendLine(cardTrans.Photo == 1 ? "" : "");

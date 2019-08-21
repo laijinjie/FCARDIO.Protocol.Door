@@ -53,11 +53,17 @@ namespace FCARDIO.Protocol.Fingerprint.Test.Model
         public string Post { get{return Person.Post; } }
         public string Dept { get{return Person.Dept; } }
 
+        /// <summary>
+        /// 指纹数
+        /// </summary>
         public int FingerprintCount
         {
             get { return Person.FingerprintFeatureCodeCout; }
         }
 
+        /// <summary>
+        /// 是否有人脸
+        /// </summary>
         public string IsFaceFeature
         {
             get { return Person.IsFaceFeatureCode ? "有" : "无"; }
@@ -120,7 +126,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test.Model
         {
             get
             {
-                return CardStatusList[Person.CardType];
+                return CardTypeList[Person.CardType];
             }
         }
 
@@ -173,6 +179,67 @@ namespace FCARDIO.Protocol.Fingerprint.Test.Model
                 return mStrBuf.ToString();
             }
         }
+
+        /// <summary>
+        /// 开门时段
+        /// </summary>
+        public string TimeGroup
+        {
+            get
+            {
+                return Person.TimeGroup.ToString();
+            }
+        }
+
+        /// <summary>
+        /// 出入状态
+        /// </summary>
+        public string EnterStatus
+        {
+            get
+            {
+                return GetEnterStatus();
+            }
+        }
+
+        /// <summary>
+        /// 用户身份
+        /// </summary>
+        public string Identity
+        {
+            get
+            {
+                switch (Person.Identity)
+                {
+                    case 1:
+                        return "管理员";
+                    default:
+                        return "普通用户";
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取出入标志
+        /// </summary>
+        public string GetEnterStatus()
+        {
+            switch (Person.EnterStatus)
+            {
+                case 1:
+                    return "入有效";
+                case 2:
+                    return "出有效";
+                default:
+                    return "出入有效";
+            }
+        }
+
+        /// <summary>
+        /// 最近读卡时间
+        /// </summary>
+        public string ReadCardDate { get { return Person.RecordTime.ToDateTimeStr(); } }
+
         /// <summary>
         ///  在属性值更改时发生。
         /// </summary>

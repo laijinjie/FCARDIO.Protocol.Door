@@ -178,8 +178,8 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                 mMainForm.AddCmdLog(cmde, $"读取到的人员数:{result.DataBaseSize}");
                 if (sLogs.Length > 0)
                 {
-                    //string sFile = frmRecord.SaveFile(sLogs, $"读取所有卡片_{DateTime.Now:yyyyMMddHHmmss}.txt");
-                    //mMainForm.AddCmdLog(cmde, $"卡片日志保存路径:{sFile}");
+                    string sFile = frmRecord.SaveFile(sLogs, $"读取所有卡片_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmde, $"卡片日志保存路径:{sFile}");
                 }
             };
         }
@@ -258,13 +258,16 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         private StringBuilder DebugPersonDetail(Data.Person person, StringBuilder strBuf)
         {
             Person_UI ui = new Person_UI(person);
+            strBuf.Append("用户号：").Append(ui.UserCode).Append("；姓名：").Append(ui.PName).Append("；部门：").Append(ui.Dept).Append("；职务：").Append(ui.Post).Append("；工号：").Append(ui.PCode);
             strBuf.Append("卡号：").Append(ui.CardData).Append("；密码：").Append(ui.Password);
             strBuf.Append("；有效期：").Append(ui.Expiry).Append("；有效次数：").Append(ui.OpenTimes).AppendLine("；");
-            //strBuf.Append("权限：").Append(ui.doorAccess).Append("；开门时段：").Append(ui.TimeGroup);
-            //strBuf.Append("；状态：").Append(ui.CardStatus).Append("；特权：").AppendLine(ui.Privilege);
-            //strBuf.Append("节假日：").Append(ui.Holiday).Append("(1->32)");
-            //strBuf.Append("；出入标志：").Append(ui.EnterStatus);
-            //strBuf.Append("；最近读卡时间：").AppendLine(ui.ReadCardDate);
+            strBuf.Append("；开门时段：").Append(ui.TimeGroup);
+            strBuf.Append("；状态：").Append(ui.CardStatus).Append("；用户身份：").AppendLine(ui.Identity);
+            strBuf.Append("；节假日：").Append(ui.Holiday).Append("(1->32)");
+            strBuf.Append("；出入标志：").Append(ui.EnterStatus);
+            strBuf.Append("；最近读卡时间：").AppendLine(ui.ReadCardDate);
+            strBuf.Append("；是否有人脸：").AppendLine(ui.IsFaceFeature);
+            strBuf.Append("；指纹数：").AppendLine(ui.FingerprintCount.ToString());
             return strBuf;
         }
 
@@ -298,34 +301,6 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             //else
             //    txtHoliday.Text = new string('1', 30);
 
-            //CheckBox[] DoorList = { chkDoor1, chkDoor2, chkDoor3, chkDoor4 };
-            //ComboBox[] TGList = { cmbTimeGroup1, cmbTimeGroup2, cmbTimeGroup3, cmbTimeGroup4 };
-            //ComboBox[] EnterStatusList = { cmbEnterStatus1, cmbEnterStatus2, cmbEnterStatus3, cmbEnterStatus4 };
-
-            /*
-            int i;
-            for (i = 1; i <= 4; i++)
-            {
-                //门权限
-                DoorList[i - 1].Checked = card.GetDoor(i);
-                //开门时段
-                if (card.GetTimeGroup(i) < 65)
-                    TGList[i - 1].SelectedIndex = card.GetTimeGroup(i) - 1;
-                //出入状态
-                int value = card.GetEnterStatusValue(i);
-                if (value == 0 || value == 3)
-                    EnterStatusList[i - 1].SelectedIndex = 0;
-                if (value == 1 || value == 2)
-                    EnterStatusList[i - 1].SelectedIndex = value;
-            }
-            if (card.Privilege < 5)
-                cmbPrivilege.SelectedIndex = card.Privilege;
-            cbHolidayUse.Checked = card.HolidayUse;
-            if (card.HolidayUse)
-                txtHoliday.Text = ui.Holiday;
-            else
-                txtHoliday.Text = new string('1', 30);
-            */
         }
 
         private void ButCreateCardNumByRandom_Click(object sender, EventArgs e)
@@ -532,6 +507,22 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             person.CardStatus = cmbCardStatus.SelectedIndex;
             person.CardType = cmbCardType.SelectedIndex;
             person.Identity = cmbIdentity.SelectedIndex;
+            if (cmbOpenTimes.Text == Person_UI.OpenTimes_Invalid)
+                person.OpenTimes = 0;
+            else
+            {
+                if (cmbOpenTimes.Text == Person_UI.OpenTimes_Off)
+                    person.OpenTimes = 65535;
+                else
+                {
+                    string sTimes = cmbOpenTimes.Text.Replace("次", string.Empty).Trim();
+                    if (sTimes.IsNum())
+                    {
+                        person.OpenTimes = Convert.ToUInt16(sTimes);
+                    }
+                }
+            }
+
             string sHol = txtHoliday.Text.Trim();
             sHol.FillString(32, "0");
             var chars = sHol.ToCharArray();
@@ -549,6 +540,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             if (person == null) return;
 
             var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
             //cmdDtl.Timeout = 10000;
             INCommand cmd;
 

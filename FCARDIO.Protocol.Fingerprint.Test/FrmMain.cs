@@ -6,6 +6,7 @@ using FCARDIO.Core.Connector.TCPServer;
 using FCARDIO.Core.Connector.TCPServer.Client;
 using FCARDIO.Core.Connector.UDP;
 using FCARDIO.Core.Extension;
+using FCARDIO.Protocol.Door.FC8800.Data;
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.Fingerprint.SystemParameter.Watch;
 using FCARDIO.Protocol.Fingerprint.Test.Model;
@@ -861,6 +862,16 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         {
           
         }
+
+        private void ButAdditionalData_Click(object sender, EventArgs e)
+        {
+            frmAdditionalData frm = frmAdditionalData.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+        }
         #endregion
 
         /// <summary>
@@ -987,6 +998,10 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             mCommandClasss.Add(typeof(Person.DeletePerson.DeletePerson).FullName, "删除人员");
             mCommandClasss.Add(typeof(Person.AddPerson.AddPerson).FullName, "添加人员");
 
+            mCommandClasss.Add(typeof(AdditionalData.WriteFeatureCode.WriteFeatureCode).FullName, "写入特征码");
+            mCommandClasss.Add(typeof(AdditionalData.ReadFeatureCode.ReadFeatureCode).FullName, "读取特征码");
+            mCommandClasss.Add(typeof(AdditionalData.PersonDetail.ReadPersonDetail).FullName, "查询人员附加数据详情");
+            mCommandClasss.Add(typeof(AdditionalData.DeleteFeatureCode.DeleteFeatureCode).FullName, "删除特征码");
         }
 
 
@@ -1484,10 +1499,6 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             return null;
         }
 
-
-
-
-
         /// <summary>
         /// 监控消息
         /// </summary>
@@ -1495,31 +1506,31 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         /// <param name="EventData"></param>
         private void MAllocator_TransactionMessage(INConnectorDetail connector, Core.Data.INData EventData)
         {
-            /*
+
             FC8800Transaction fcTrn = EventData as FC8800Transaction;
             StringBuilder strbuf = new StringBuilder();
             var evn = fcTrn.EventData;
             strbuf.Append("SN:").Append(fcTrn.SN).Append("；消息类型：").Append(TransactionTypeName[fcTrn.CmdIndex]).Append("；时间：").Append(fcTrn.EventData.TransactionDate.ToDateTimeStr());
             strbuf.Append("；事件代码：").Append(evn.TransactionCode);
-            if (evn.TransactionType < 7)//1-6
+            if (evn.TransactionType == 3)//1-6
             {
-                string[] codeNameList =frmRecord.mTransactionCodeNameList[evn.TransactionType];
+                string[] codeNameList = frmRecord.mTransactionCodeNameList[evn.TransactionType];
                 strbuf.Append("(").Append(codeNameList[evn.TransactionCode]).Append(")");
             }
 
             if (fcTrn.CmdIndex == 1)
             {
-                FC8800.Data.CardTransaction cardtrn = evn as FC8800.Data.CardTransaction;
-                strbuf.Append("；卡号：").Append(cardtrn.CardData).Append("；门号：").Append(cardtrn.DoorNum().ToString());
-                strbuf.Append(cardtrn.IsEnter()?"(进门)":"(出门)");
+                Data.Transaction.CardTransaction cardtrn = evn as Data.Transaction.CardTransaction;
+                strbuf.Append("；用户号：").Append(cardtrn.UserCode.ToString()).Append("；读卡器号：").Append(cardtrn.Reader.ToString());
+                strbuf.Append("，照片：").AppendLine(cardtrn.Photo == 1 ? "" : "");
             }
-            if(fcTrn.CmdIndex>1 && fcTrn.CmdIndex<6)
+            if (fcTrn.CmdIndex == 2)
             {
-                FC8800.Data.AbstractDoorTransaction cardtrn = evn as FC8800.Data.AbstractDoorTransaction;
+                AbstractDoorTransaction cardtrn = evn as AbstractDoorTransaction;
                 strbuf.Append("；门号：").Append(cardtrn.Door);
             }
             AddCmdLog(null, strbuf.ToString());
-            */
+
         }
 
 

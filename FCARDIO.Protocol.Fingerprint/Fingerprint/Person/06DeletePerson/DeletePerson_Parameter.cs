@@ -25,7 +25,7 @@ namespace FCARDIO.Protocol.Fingerprint.Person.DeletePerson
         {
             foreach (var person in personList)
             {
-                if (person.UserCode == 0) return false;
+                if (person.UserCode == 0 || person.UserCode > int.MaxValue) return false;
             }
 
             return true;

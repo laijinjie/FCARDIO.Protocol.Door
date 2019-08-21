@@ -1,11 +1,6 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Protocol.Transaction;
 using FCARDIO.Protocol.Util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Fingerprint.Data.Transaction
 {
