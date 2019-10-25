@@ -111,6 +111,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
                 result.TransactionType = (e_TransactionDatabaseType)mTransactionType;
                 result.ReadIndex = par.ReadIndex;
                 result.Quantity = iSize;
+                result.TransactionList = new List<AbstractTransaction>();
                 _Result = result;
                 if (iSize > 0)
                 {
@@ -168,8 +169,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
         protected virtual void Analysis()
         {
             ReadTransactionDatabaseByIndex_Result result = (ReadTransactionDatabaseByIndex_Result)_Result;
-            result.TransactionList = new List<AbstractTransaction>();
 
+            var lst = result.TransactionList;
             while (mBufs.Count > 0)
             {
                 IByteBuffer buf = mBufs.Dequeue();
@@ -182,7 +183,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByInde
                         AbstractTransaction cd = GetNewTransaction();
                         cd.SetSerialNumber(buf.ReadInt());
                         cd.SetBytes(buf);
-                        result.TransactionList.Add(cd);
+                        lst.Add(cd);
                     }
                     catch (Exception e)
                     {

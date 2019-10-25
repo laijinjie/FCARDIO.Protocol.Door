@@ -794,14 +794,14 @@
         </member>
         <member name="M:FCARD.Common.Extensions.DateExtensions.ToBCDYYMMDD(System.DateTime)">
             <summary>
-            
+            将日期转换为BCD码中的 YYMMDD 格式，返回3个字节
             </summary>
             <param name="b"></param>
             <returns></returns>
         </member>
         <member name="M:FCARD.Common.Extensions.DateExtensions.DateToBCDYYMMdd(System.DateTime)">
             <summary>
-            
+            将日期转换为BCD码中的 YYMMDD 格式，返回3个字节
             </summary>
             <param name="b"></param>
             <returns></returns>
@@ -1531,7 +1531,7 @@
             <returns></returns>
             <remarks></remarks>
         </member>
-        <!-- 对于成员“M:FCARD.Common.NumUtil.Int64ToByte(System.UInt64,System.Byte[],System.Int32,System.Int32)”忽略有格式错误的 XML 注释 -->
+        <!-- Badly formed XML comment ignored for member "M:FCARD.Common.NumUtil.Int64ToByte(System.UInt64,System.Byte[],System.Int32,System.Int32)" -->
         <member name="M:FCARD.Common.NumUtil.UInt64ToByte(System.UInt64,System.Byte[],System.Int32,System.Int32)">
             <summary>
             将一个UInt64数值转换为字节数组
@@ -1541,7 +1541,7 @@
             <param name="iBeginIndex"></param>
             <param name="iLen"></param>
         </member>
-        <!-- 对于成员“M:FCARD.Common.NumUtil.Int24ToByte(System.Int32,System.Byte[],System.Int32,System.Int32)”忽略有格式错误的 XML 注释 -->
+        <!-- Badly formed XML comment ignored for member "M:FCARD.Common.NumUtil.Int24ToByte(System.Int32,System.Byte[],System.Int32,System.Int32)" -->
         <member name="M:FCARD.Common.NumUtil.Int24ToByte(System.Int32)">
             <summary>
             Int32 整形 转 3字节数组 高位在前
@@ -1549,7 +1549,7 @@
             <param name="iValue"></param>
             <returns></returns>
         </member>
-        <!-- 对于成员“M:FCARD.Common.NumUtil.Int32ToByte(System.UInt32,System.Byte[],System.Int32,System.Int32)”忽略有格式错误的 XML 注释 -->
+        <!-- Badly formed XML comment ignored for member "M:FCARD.Common.NumUtil.Int32ToByte(System.UInt32,System.Byte[],System.Int32,System.Int32)" -->
         <member name="M:FCARD.Common.NumUtil.Int32ToByte(System.UInt32)">
             <summary>
             Int32 整形 转 4字节数组 高位在前
@@ -2053,12 +2053,6 @@
             <summary>
             数据库访问工具类
             </summary>
-        </member>
-        <member name="M:FCARD.Common.SqlTool.#ctor(System.String)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="_databaseConnection"></param>
         </member>
         <member name="M:FCARD.Common.SqlTool.ExcuteNonQuery(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
@@ -2976,6 +2970,17 @@
             <param name="url">网络地址</param>
             <param name="par">参数集合</param>
             <param name="errorMessage">错误信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:FCARD.Common.WebRequestTool.HttpPostFormUrlRequest(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.String@,System.Int32,System.Net.CookieCollection)">
+            <summary>
+            发送Post请求
+            </summary>
+            <param name="url">网络地址</param>
+            <param name="par">参数集合</param>
+            <param name="errorMessage">错误信息</param>
+            <param name="timeout">超时时间</param>
+            <param name="cookies">命令携带的Cookie</param>
             <returns></returns>
         </member>
         <member name="M:FCARD.Common.WebRequestTool.HttpPostJsonRequest(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.String@)">

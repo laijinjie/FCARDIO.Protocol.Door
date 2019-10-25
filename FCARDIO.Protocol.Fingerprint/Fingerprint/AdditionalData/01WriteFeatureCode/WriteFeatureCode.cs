@@ -6,7 +6,7 @@ using System;
 namespace FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode
 {
     /// <summary>
-    /// 写入特征码
+    /// 写入头像照片\指纹\人脸特征码
     /// </summary>
     public class WriteFeatureCode : FC8800Command_WriteParameter
     {
@@ -15,6 +15,23 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode
         /// </summary>
         WriteFeatureCode_Result mResult;
         WriteFeatureCode_Parameter mPar;
+
+        /// <summary>
+        /// 写索引
+        /// </summary>
+        private int _WriteIndex = 0;
+
+        /// <summary>
+        /// 文件句柄
+        /// </summary>
+        private int _FileHandle = 0;
+
+        /// <summary>
+        /// 操作步骤
+        /// </summary>
+        private int _Step = 0;
+
+
         /// <summary>
         /// 初始化命令
         /// </summary>
@@ -29,8 +46,11 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode
         {
 
             WriteFeatureCode_Parameter model = _Parameter as WriteFeatureCode_Parameter;
-            var dataBuf = GetNewCmdDataBuf(model.GetWriteFileDataLen());
+            var dataBuf = GetNewCmdDataBuf(model.GetDataLen());
             Packet(0x0B, 0x01, 0x00, 6, model.GetBytes(dataBuf));
+
+            mResult = new WriteFeatureCode_Result();
+            _Result = mResult;
         }
 
         /// <summary>
@@ -48,59 +68,115 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode
             return model.checkedParameter();
         }
 
-        
+
         /// <summary>
-        /// 
+        /// 检查返回值
         /// </summary>
         /// <param name="oPck"></param>
         protected override void CommandNext0(OnlineAccessPacket oPck)
         {
-            if (mResult == null)
+            switch (_Step)
             {
-                mResult = new WriteFeatureCode_Result();
-                _Result = mResult;
+                case 0:
+                    //返回文件句柄
+                    CheckOpenFileResult(oPck);
+                    break;
+                case 1:
+                    CheckWriteFileResult(oPck);
+                    break;
+                case 2://上传完毕
+                    if (CheckResponse(oPck, 0x0B, 3, 0, 1))
+                    {
+                        mResult.Success = oPck.CmdData.ReadByte();
+                        CommandCompleted();
+                    }
+                    break;
+                default:
+                    break;
             }
-            //返回文件句柄
-            if (CheckResponse(oPck,4))
+
+
+
+
+        }
+        /// <summary>
+        /// 检查打开文件返回值
+        /// </summary>
+        private void CheckOpenFileResult(OnlineAccessPacket oPck)
+        {
+            if (CheckResponse(oPck, 4))
             {
                 var buf = oPck.CmdData;
-                mResult.SetBytes(buf);
-                if (mResult.FileHandle == 0)
+                _FileHandle = buf.ReadInt();
+                if (_FileHandle == 0)
                 {
                     CommandCompleted();
                 }
                 else
                 {
-                    mPar.FileHandle = mResult.FileHandle;
-                    var writeBuf = GetCmdBuf();
-                    writeBuf = mPar.GetWriteFileBytes(writeBuf);
-                    FCPacket.CmdIndex = 0x02;
-                    FCPacket.DataLen = writeBuf.ReadableBytes; //mPar.GetWriteFileDataLen();
-                    //Packet(0x0b, 0x02, 0x00, (uint)dataLen, mPar.GetWriteFileBytes(writeBuf));
+                    mResult.FileHandle = _FileHandle;
+                    var data = mPar.Datas;
+                    var iPackSize = 1024;
+                    if (iPackSize > data.Length) iPackSize = data.Length;
+                    _ProcessMax = data.Length;
+                    _ProcessStep = 0;
+                    int iBufSize = 7 + iPackSize;
+                    var writeBuf = GetNewCmdDataBuf(iBufSize);
+                    writeBuf.WriteInt(_FileHandle);
+                    _WriteIndex = 0;
+                    writeBuf.WriteMedium(_WriteIndex);
+                    writeBuf.WriteBytes(data, 0, iPackSize);
+
+                    Packet(0x0B, 2, 0, (uint)writeBuf.ReadableBytes, writeBuf);
+                    _Step = 1;
                     CommandReady();
+
                 }
             }
-            //成功存储 ,写入文件完毕,进行CRC32校验
-            if (CheckResponse(oPck, 0x0b, 2, 0))
+        }
+
+        /// <summary>
+        /// 检查写文件返回值
+        /// </summary>
+        private void CheckWriteFileResult(OnlineAccessPacket oPck)
+        {
+            if (CheckResponse(oPck, 0x0B, 2, 0))
             {
-                var crc32 = FCARD.Common.Cryptography.CRC32_C.CalculateDigest(mPar.Datas,0, (uint)mPar.Datas.Length);
-                var writeBuf = GetCmdBuf();
-                writeBuf.WriteInt((int)crc32);
-                FCPacket.CmdIndex = 0x03;
-                FCPacket.DataLen = 4; 
-                //Packet(0x0b, 0x03, 0x00, 4, mPar.GetWriteFileBytes(GetNewCmdDataBuf(4)));
+                var data = mPar.Datas;
+                var iPackSize = 1024;
+
+                _WriteIndex += iPackSize;
+                _ProcessStep += _WriteIndex;
+
+                var iFileLen = data.Length;
+                var iDataLen = iFileLen - _WriteIndex;
+                var buf = GetCmdBuf();
+                if (iDataLen > iPackSize) iDataLen = iPackSize;
+                if (iDataLen <= 0)
+                {
+                    _ProcessStep = _ProcessMax;
+                    var crc32 = FCARD.Common.Cryptography.CRC32_C.CalculateDigest(data, 0, (uint)data.Length);
+
+                    buf.WriteInt((int)crc32);
+                    FCPacket.CmdIndex = 0x03;
+                    FCPacket.DataLen = 4;
+                    _Step = 2;
+                }
+                else
+                {
+                    buf.WriteInt(_FileHandle);
+                    buf.WriteMedium(_WriteIndex);
+                    buf.WriteBytes(data, _WriteIndex, iDataLen);
+                    FCPacket.DataLen = buf.ReadableBytes;
+                }
                 CommandReady();
-            }//未启动准备状态
-            if (CheckResponse(oPck, 0x0b, 2, 2))
+            }
+            else if (CheckResponse(oPck, 0x0B, 2, 2))
             {
-                mResult.Success = false;
-                CommandCompleted();
-            }//返回CRC32校验结果
-            if (CheckResponse(oPck, 0x0b, 3, 0, 1))
-            {
-                mResult.Success = oPck.CmdData.ReadBoolean();
+                mResult.Success = 255;
                 CommandCompleted();
             }
         }
+
     }
 }

@@ -516,13 +516,14 @@ namespace FCARDIO.Protocol.Util
         /// <returns></returns>
         public static DateTime BCDTimeToDate_ssmmHHddMMWWyy(IByteBuffer buf)
         {
-            buf = ByteUtil.BCDToByte(buf, buf.ReaderIndex, 6);
+            buf = ByteUtil.BCDToByte(buf, buf.ReaderIndex, 7);
 
             int sec = buf.ReadByte();
             int minute = buf.ReadByte();
             int hour = buf.ReadByte();
             int day = buf.ReadByte();
             int month = buf.ReadByte();
+            buf.ReadByte();
             int year = buf.ReadByte();
 
             if (year > 99)

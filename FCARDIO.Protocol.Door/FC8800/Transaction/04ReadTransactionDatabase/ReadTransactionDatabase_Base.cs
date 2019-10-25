@@ -31,7 +31,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// <summary>
         /// 查询参数
         /// </summary>
-        ReadTransactionDatabase_Parameter mParameter;
+        protected ReadTransactionDatabase_Parameter mParameter;
 
 
         /// <summary>
@@ -162,18 +162,32 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         }
 
         /// <summary>
+        /// 获取指定类型的数据库详情信息
+        /// </summary>
+        /// <returns></returns>
+        protected virtual TransactionDetail GetTransactionDetail(OnlineAccessPacket oPck)
+        {
+            if (CheckResponse(oPck, CheckResponseCmdType, 0x01, 0x00, 0x0D * 6))
+            {
+                var buf = oPck.CmdData;
+                ReadTransactionDatabaseDetail_Result rst = new ReadTransactionDatabaseDetail_Result();
+                rst.SetBytes(buf);
+                return rst.DatabaseDetail.ListTransaction[(int)mParameter.DatabaseType - 1];
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// 读取记录数据库空间信息的返回值 mStep=1
         /// </summary>
         /// <param name="oPck"></param>
         private void ReadDataBaseDetailCallBack(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck,CheckResponseCmdType, 0x01, 0x00, 0x0D * 6))
-            {
-                var buf = oPck.CmdData;
-                ReadTransactionDatabaseDetail_Result rst = new ReadTransactionDatabaseDetail_Result();
-                rst.SetBytes(buf);
+            TransactionDetail transactionDetail = GetTransactionDetail(oPck);
 
-                transactionDetail = rst.DatabaseDetail.ListTransaction[(int)mParameter.DatabaseType - 1];
+            if (transactionDetail != null)
+            {
                 if (transactionDetail.readable() == 0)
                 {
                     CommandCompleted();

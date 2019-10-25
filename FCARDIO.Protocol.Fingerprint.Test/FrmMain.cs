@@ -2,11 +2,11 @@
 using FCARDIO.Core.Command;
 using FCARDIO.Core.Connector;
 using FCARDIO.Core.Connector.TCPClient;
-using FCARDIO.Core.Connector.TCPServer;
 using FCARDIO.Core.Connector.TCPServer.Client;
 using FCARDIO.Core.Connector.UDP;
 using FCARDIO.Core.Extension;
 using FCARDIO.Protocol.Door.FC8800.Data;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword;
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.Fingerprint.SystemParameter.Watch;
 using FCARDIO.Protocol.Fingerprint.Test.Model;
@@ -18,6 +18,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FCARDIO.Protocol.Door.FC8800.SystemParameter.SN;
 
 namespace FCARDIO.Protocol.Fingerprint.Test
 {
@@ -48,14 +49,14 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             NodeForms = new HashSet<Form>();
             IniCommandClassNameList();
 
-            TransactionTypeName = new string[7];
+            TransactionTypeName = new string[255];
             TransactionTypeName[1] = "读卡记录";
             TransactionTypeName[2] = "出门开关记录";
             TransactionTypeName[3] = "门磁记录";
             TransactionTypeName[4] = "软件操作记录";
             TransactionTypeName[5] = "报警记录";
             TransactionTypeName[6] = "系统记录";
-
+            TransactionTypeName[0x22] = "保活包";
         }
 
         public static void AddNodeForms(Form frm)
@@ -122,7 +123,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             IniConnTypeList();
             IniLstIO();
             InilstCommand();
-            
+
             Task.Run((Action)ShowCommandProcesslog);
 
             butUDPBind_Click(null, null);
@@ -140,12 +141,10 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         private void MAllocator_ClientOffline(object sender, ServerEventArgs e)
         {
             INConnector inc = sender as INConnector;
-            inc.AddRequestHandle(mObserver);
+            inc.RemoveRequestHandle(typeof(ConnectorObserverHandler));
+            inc.RemoveRequestHandle(typeof(FC8800RequestHandle));
             switch (inc.GetConnectorType())
             {
-                case ConnectorType.TCPServerClient://TCP客户端已连接
-                    RemoveTCPServer_Client(inc.GetConnectorDetail());
-                    break;
                 case ConnectorType.UDPClient://UDP客户端已连接
                     //RemoveUDPClient(inc.GetConnectorDetail());
                     break;
@@ -167,10 +166,14 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             inc.AddRequestHandle(mObserver);
             switch (inc.GetConnectorType())
             {
-                case ConnectorType.TCPServerClient://TCP客户端已连接
-                    AddTCPServer_Client(inc.GetConnectorDetail());
-                    break;
                 case ConnectorType.UDPClient://UDP客户端已连接
+
+                    inc.OpenForciblyConnect();
+                    FC8800RequestHandle fC8800Request =
+                        new FC8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
+                    inc.RemoveRequestHandle(typeof(FC8800RequestHandle));//先删除，防止已存在就无法添加。
+                    inc.AddRequestHandle(fC8800Request);
+
                     //AddUDPClient(inc.GetConnectorDetail());
                     break;
                 default:
@@ -199,10 +202,6 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                     Invoke(() => UDPBindOver(false));
                     AddIOLog(connector, "UDP绑定", "UDP绑定失败");
                     break;
-                case ConnectorType.TCPServer://TCP Server 服务器
-                    Invoke(() => TCPServerBindOver(false));
-                    AddIOLog(connector, "TCP服务", "TCP服务器开启失败");
-                    break;
                 default:
                     AddIOLog(connector, "错误", "连接失败");
                     break;
@@ -217,10 +216,6 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                     Invoke(() => UDPBindOver(false));
                     AddIOLog(connector, "UDP绑定", "UDP绑定已关闭");
                     break;
-                case ConnectorType.TCPServer://TCP Server 服务器
-                    Invoke(() => TCPServerBindOver(false));
-                    AddIOLog(connector, "TCP服务", "TCP服务已关闭");
-                    break;
                 default:
                     AddIOLog(connector, "关闭", "连接通道已关闭");
                     break;
@@ -234,10 +229,6 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                 case ConnectorType.UDPServer://UDP服务器
                     Invoke(() => UDPBindOver(true));
                     AddIOLog(connector, "UDP绑定", "UDP绑定成功");
-                    break;
-                case ConnectorType.TCPServer://TCP Server 服务器
-                    Invoke(() => TCPServerBindOver(true));
-                    AddIOLog(connector, "TCP服务", "TCP服务已启动");
                     break;
                 default:
                     mAllocator.GetConnector(connector).AddRequestHandle(mObserver);
@@ -291,13 +282,26 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             AddCmdLog(e, "命令完成");
             string cName = e.Command.GetType().FullName;
             /*   */
+            var cmddtl = e.CommandDetail;
             switch (cName)
             {
                 case Command_ReadSN://读SN
                     Protocol.Door.FC8800.SystemParameter.SN.SN_Result sn = e.Command.getResult() as Protocol.Door.FC8800.SystemParameter.SN.SN_Result;
                     Invoke(() => txtSN.Text = sn.SNBuf.GetString());
+                    if (cmddtl.UserData != null)
+                    {
+                        string tmpStr = cmddtl.UserData as string;
+                        if (tmpStr != null && tmpStr == "AutoReadSN")
+                        {
+                            FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail ocd = cmddtl as FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail;
+                            ocd.SN = sn.SNBuf.GetString();
+                            ReadConnectPassword cmd = new ReadConnectPassword(cmddtl);
+                            AddCommand(cmd);
+                        }
+                        
+                    }
                     break;
-              
+
                 case Command_ReadConnectPassword://读通讯密码
                     Protocol.Door.FC8800.SystemParameter.ConnectPassword.Password_Result pwd = e.Command.getResult() as Protocol.Door.FC8800.SystemParameter.ConnectPassword.Password_Result;
                     Invoke(() => txtPassword.Text = pwd.Password);
@@ -314,7 +318,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             }
 
 
-          
+
 
         }
         #endregion
@@ -494,7 +498,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         public void AddLog(string s)
         {
             if (_IsClosed) return;
-            
+
         }
 
 
@@ -544,15 +548,8 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                     addr = string.Empty;
                     port = cmbSerialPort.Text.Substring(3).ToInt32();
                     break;
-                case 1://TCP 客户端方式通讯
-                    connectType = CommandDetailFactory.ConnectType.TCPClient;
-                    addr = txtTCPClientAddr.Text;
-                    if (!int.TryParse(txtTCPClientPort.Text, out port))
-                    {
-                        port = 8000;
-                    }
-                    break;
-                case 2://UDP 
+
+                case 1://UDP 
                     if (!mUDPIsBind)
                     {
                         MsgErr("请先绑定UDP端口");
@@ -565,27 +562,11 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                         port = 8000;
                     }
                     break;
-                case 3://TCP服务器
-                    if (!mTCPServerBind)
-                    {
-                        MsgErr("请先开启TCP服务");
-                        return null;
-                    }
 
-                    connectType = CommandDetailFactory.ConnectType.TCPServerClient;
-                    if (cmbTCPClient.SelectedItem == null)
-                    {
-                        MsgErr("请选择一个TCP客户端！");
-                        return null;
-                    }
-                    TCPServerClientDetail_Item oItem = cmbTCPClient.SelectedItem as TCPServerClientDetail_Item;
-
-                    addr = oItem.Key;
-                    break;
                 default:
                     break;
             }
-          
+
 
             if (port > 65535) port = 8000;
 
@@ -706,7 +687,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             {
                 txt = txt.Substring(0, 50) + "\r\n" + txt.Substring(50);
             }
-            
+
             iOMessage.Content = txt;
             iOMessage.Type = cType;
             iOMessage.Remote = Remote;
@@ -860,7 +841,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
 
         private void butUploadSoftware_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void ButAdditionalData_Click(object sender, EventArgs e)
@@ -890,13 +871,13 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         {
             mCommandClasss = new Dictionary<string, string>();
 
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.SN.ReadSN).FullName, "读取SN");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.SN.WriteSN).FullName, "写SN");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.SN.WriteSN_Broadcast).FullName, "广播写SN");
+            mCommandClasss.Add(typeof(ReadSN).FullName, "读取SN");
+            mCommandClasss.Add(typeof(WriteSN).FullName, "写SN");
+            mCommandClasss.Add(typeof(WriteSN_Broadcast).FullName, "广播写SN");
 
-            mCommandClasss.Add(typeof(SystemParameter.Password.ReadPassword).FullName, "获取通讯密码");
-            mCommandClasss.Add(typeof(SystemParameter.Password.WritePassword).FullName, "设置通讯密码");
-            mCommandClasss.Add(typeof(SystemParameter.Password.ResetPassword).FullName, "重置通讯密码");
+            mCommandClasss.Add(typeof(ReadConnectPassword).FullName, "获取通讯密码");
+            mCommandClasss.Add(typeof(WriteConnectPassword).FullName, "设置通讯密码");
+            mCommandClasss.Add(typeof(ResetConnectPassword).FullName, "重置通讯密码");
 
             mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.TCPSetting.ReadTCPSetting).FullName, "读取TCP参数");
             mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.TCPSetting.WriteTCPSetting).FullName, "写入TCP参数");
@@ -1107,23 +1088,20 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         /// </summary>
         private void IniConnTypeList()
         {
-            cmdConnType.Items.AddRange("串口,TCP客户端,UDP,TCP服务器".SplitTrim(","));
-            cmdConnType.SelectedIndex = 2;
+            cmdConnType.Items.AddRange("串口,UDP".SplitTrim(","));
+            cmdConnType.SelectedIndex = 1;
             ShowConnTypePanel();
 
 
             _IsClosed = false;
 
-            int iTop = gbTCPClient.Top, iLeft = gbTCPClient.Left;
-            gbSerialPort.Top = iTop; gbSerialPort.Left = iLeft;
-            gbServer.Top = iTop; gbServer.Left = iLeft;
+            int iTop = gbSerialPort.Top, iLeft = gbSerialPort.Left;
             gbUDP.Top = iTop; gbUDP.Left = iLeft;
 
             IniSerialPortList();
 
             IniLoadLocalIP();
 
-            TCPServerClients = new Dictionary<string, TCPServerClientDetail_Item>();
         }
 
         /// <summary>
@@ -1164,12 +1142,12 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         /// </summary>
         private void ShowConnTypePanel()
         {
-            bool[] pnlShow = new bool[4];
+            bool[] pnlShow = new bool[2];
             pnlShow[cmdConnType.SelectedIndex] = true;
 
-            GroupBox[] pnls = new GroupBox[] { gbSerialPort, gbTCPClient, gbUDP, gbServer };
+            GroupBox[] pnls = new GroupBox[] { gbSerialPort, gbUDP };
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 2; i++)
             {
                 pnls[i].Visible = pnlShow[i];
             }
@@ -1189,195 +1167,12 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         }
         #endregion
 
-        #region TCP 服务器
-        /// <summary>
-        /// TCPServer是否已绑定
-        /// </summary>
-        private bool mTCPServerBind;
-
-        /// <summary>
-        /// 包含所有客户端的项
-        /// </summary>
-        private Dictionary<string, TCPServerClientDetail_Item> TCPServerClients;
-
-        /// <summary>
-        /// 保存TCP客户端的详情
-        /// </summary>
-        private class TCPServerClientDetail_Item
-        {
-            /// <summary>
-            /// 客户端的身份SN
-            /// </summary>
-            public string SN;
-            /// <summary>
-            /// 表示客户端的唯一Key
-            /// </summary>
-            public string Key;
-
-            /// <summary>
-            /// 客户端本地IP
-            /// </summary>
-            public IPDetail Local;
-
-            /// <summary>
-            /// 客户端的远程IP
-            /// </summary>
-            public IPDetail Remote;
-
-            public TCPServerClientDetail_Item(TCPServerClientDetail detail)
-            {
-                SN = "";
-                Key = detail.Key;
-                Remote = new IPDetail(detail.Remote.Addr, detail.Remote.Port);
-                Local = new IPDetail(detail.Local.Addr, detail.Local.Port);
-            }
-
-            public override string ToString()
-            {
-                if (string.IsNullOrEmpty(SN))
-                {
-                    return $"远程:{Remote.Addr}:{Remote.Port}";
-                }
-                else
-                {
-                    return $"{SN}({Remote.Addr}:{Remote.Port})";
-                }
-
-            }
-        }
-
-        private void butBeginTCPServer_Click(object sender, EventArgs e)
-        {
-            if (!txtServerPort.Text.IsNum())
-            {
-                MsgErr("端口号不正确！");
-                return;
-            }
-            int port = txtServerPort.Text.ToInt32();
-            string sLocalIP = cmbLocalIP.SelectedItem?.ToString();
-            if (string.IsNullOrEmpty(sLocalIP))
-            {
-                MsgErr("没有绑定本地IP！");
-                return;
-            }
-
-            FCARDIO.Core.Connector.TCPServer.TCPServerDetail detail = new TCPServerDetail(sLocalIP, port);
-            if (mTCPServerBind)
-            {
-                //关闭UDP服务器
-                mAllocator.CloseConnector(detail);
-                butBeginTCPServer.Text = "开启服务";
-                mTCPServerBind = false;
-                txtServerPort.Enabled = true;
-                cmbLocalIP.Enabled = true;
-            }
-            else
-            {
-                butBeginTCPServer.Enabled = false;
-                mTCPServerBind = true;
-                txtServerPort.Enabled = false;
-                cmbLocalIP.Enabled = false;
-
-                //打开UDP服务器
-                mAllocator.OpenConnector(detail);
-
-                //等待后续事件，事件触发 mAllocator_ConnectorConnectedEvent 表示绑定成功
-                //事件触发 mAllocator_ConnectorClosedEvent 表示绑定失败
-
-
-            }
-
-        }
-        /// <summary>
-        /// TCPServer绑定完毕
-        /// </summary>
-        /// <param name="bind">true 表示绑定成功</param>
-        private void TCPServerBindOver(bool bind)
-        {
-            if (bind)
-            {
-                butBeginTCPServer.Text = "关闭服务";
-            }
-            else
-            {
-                mTCPServerBind = false;
-                cmbLocalIP.Enabled = true;
-                txtServerPort.Enabled = true;
-            }
-
-            butBeginTCPServer.Enabled = true;
-        }
-
-        /// <summary>
-        /// 关闭一个已连接的TCP连接通道
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void butCloseTCPClient_Click(object sender, EventArgs e)
-        {
-            TCPServerClientDetail_Item oItem = cmbTCPClient.SelectedItem as TCPServerClientDetail_Item;
-            if (oItem == null)
-            {
-                MsgErr("请选择一个客户端！");
-                return;
-            }
-
-            TCPServerClientDetail detail = new TCPServerClientDetail(oItem.Key);
-            mAllocator.CloseConnector(detail);
-
-        }
-
-        /// <summary>
-        /// 将客户端添加到列表中
-        /// </summary>
-        /// <param name="detail"></param>
-        private void AddTCPServer_Client(INConnectorDetail detail)
-        {
-            if (cmbTCPClient.InvokeRequired)
-            {
-                Invoke(() => AddTCPServer_Client(detail));
-                return;
-            }
-            TCPServerClientDetail oClient = detail as TCPServerClientDetail;
-            var oItem = new TCPServerClientDetail_Item(oClient);
-
-            cmbTCPClient.Items.Add(oItem);
-            cmbTCPClient.SelectedIndex = cmbTCPClient.Items.Count - 1;
-            TCPServerClients.Add(oItem.Key, oItem);
-
-            AddIOLog(detail, "上线", "TCP 客户端已上线");
-        }
-
-        /// <summary>
-        /// 从列表中删除TCP客户端
-        /// </summary>
-        /// <param name="detail"></param>
-        private void RemoveTCPServer_Client(INConnectorDetail detail)
-        {
-            if (cmbTCPClient.InvokeRequired)
-            {
-                Invoke(() => RemoveTCPServer_Client(detail));
-                return;
-            }
-            TCPServerClientDetail oClient = detail as TCPServerClientDetail;
-
-            if (!TCPServerClients.ContainsKey(oClient.Key)) return;
-
-            var oItem = TCPServerClients[oClient.Key];
-            cmbTCPClient.Items.Remove(oItem);
-            cmbTCPClient.SelectedIndex = cmbTCPClient.Items.Count - 1;
-            TCPServerClients.Remove(oItem.Key);
-            AddIOLog(detail, "离线", "TCP 客户端已离线");
-        }
-
-        #endregion
-
 
         #region 命令结果日志
 
         private void InilstCommand()
         {
-            
+
         }
 
         /// <summary>
@@ -1422,7 +1217,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             else
             {
                 commandResult.Title = "-";
-                
+                commandResult.Content = txt;
             }
             AddCmdItem(commandResult);
         }
@@ -1496,6 +1291,16 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         /// <returns></returns>
         private AbstractTransaction RequestHandleFactory(string sn, byte cmdIndex, byte cmdPar)
         {
+
+            //在这里需要根据SN进行类型判定，也可以根据SN来进行查表
+            if (cmdIndex >= 1 && cmdIndex <= 3)
+            {
+                return Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
+            }
+            if (cmdIndex == 0x22)
+            {
+                return new FCARDIO.Protocol.Door.FC8800.Data.Transaction.ConnectMessageTransaction();
+            }
             return null;
         }
 
@@ -1506,32 +1311,53 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         /// <param name="EventData"></param>
         private void MAllocator_TransactionMessage(INConnectorDetail connector, Core.Data.INData EventData)
         {
+            CommandResult commandResult = new CommandResult();
+
+            if (_IsClosed) return;
 
             FC8800Transaction fcTrn = EventData as FC8800Transaction;
             StringBuilder strbuf = new StringBuilder();
             var evn = fcTrn.EventData;
-            strbuf.Append("SN:").Append(fcTrn.SN).Append("；消息类型：").Append(TransactionTypeName[fcTrn.CmdIndex]).Append("；时间：").Append(fcTrn.EventData.TransactionDate.ToDateTimeStr());
-            strbuf.Append("；事件代码：").Append(evn.TransactionCode);
-            if (evn.TransactionType == 3)//1-6
+
+
+            //消息类型
+            commandResult.Title = TransactionTypeName[fcTrn.CmdIndex];
+            commandResult.SN = fcTrn.SN;
+
+            //客户端信息
+            string Local, Remote, cType;
+            GetConnectorDetail(connector, out cType, out Local, out Remote);
+
+            commandResult.Remote = Remote;
+
+            commandResult.Time = fcTrn.EventData.TransactionDate.ToDateTimeStr();
+            commandResult.Timemill = "-";
+
+
+            if (fcTrn.CmdIndex <= 3)
             {
+                strbuf.Append("事件：").Append(evn.TransactionCode);
+
                 string[] codeNameList = frmRecord.mTransactionCodeNameList[evn.TransactionType];
                 strbuf.Append("(").Append(codeNameList[evn.TransactionCode]).Append(")");
-            }
+                if (fcTrn.CmdIndex == 1)
+                {
+                    Data.Transaction.CardTransaction cardtrn = evn as Data.Transaction.CardTransaction;
+                    strbuf.Append("；用户号：").Append(cardtrn.UserCode.ToString()).Append("；读卡器号：").Append(cardtrn.Reader.ToString());
+                    strbuf.Append("，照片：").AppendLine(cardtrn.Photo == 1 ? "有" : "无");
+                }
+                if (fcTrn.CmdIndex == 2)
+                {
+                    AbstractDoorTransaction cardtrn = evn as AbstractDoorTransaction;
+                    strbuf.Append("；门号：").Append(cardtrn.Door);
+                }
 
-            if (fcTrn.CmdIndex == 1)
-            {
-                Data.Transaction.CardTransaction cardtrn = evn as Data.Transaction.CardTransaction;
-                strbuf.Append("；用户号：").Append(cardtrn.UserCode.ToString()).Append("；读卡器号：").Append(cardtrn.Reader.ToString());
-                strbuf.Append("，照片：").AppendLine(cardtrn.Photo == 1 ? "" : "");
             }
-            if (fcTrn.CmdIndex == 2)
-            {
-                AbstractDoorTransaction cardtrn = evn as AbstractDoorTransaction;
-                strbuf.Append("；门号：").Append(cardtrn.Door);
-            }
-            AddCmdLog(null, strbuf.ToString());
+            commandResult.Content = strbuf.ToString();
 
+            AddCmdItem(commandResult);
         }
+
 
 
         #endregion
@@ -1546,5 +1372,16 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             }
         }
 
+        private void ButReadSN_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            cmdDtl.UserData = "AutoReadSN";
+            ReadSN cmd = new ReadSN(cmdDtl);
+            AddCommand(cmd);
+
+
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FCARDIO.Protocol.Door.FC8800.Data;
 
 namespace FCARDIO.Protocol.Fingerprint.Data
 {
@@ -11,26 +12,8 @@ namespace FCARDIO.Protocol.Fingerprint.Data
     /// 记录数据库的详情
     /// 读卡记录,  门磁,  系统记录
     /// </summary>
-    public class TransactionDatabaseDetail
+    public class TransactionDatabaseDetail: FCARDIO.Protocol.Door.FC8800.Data.TransactionDatabaseDetail
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public TransactionDetail[] ListTransaction { get; set; }
-        /// <summary>
-        /// 读卡相关记录
-        /// </summary>
-        public TransactionDetail CardTransactionDetail;
-        /// <summary>
-        /// 门磁相关记录
-        /// </summary>
-        public TransactionDetail DoorSensorTransactionDetail;
-        
-        /// <summary>
-        /// 系统相关记录
-        /// </summary>
-        public TransactionDetail SystemTransactionDetail;
-
         /// <summary>
         /// 初始化参数
         /// </summary>
@@ -45,7 +28,7 @@ namespace FCARDIO.Protocol.Fingerprint.Data
         /// 获取长度
         /// </summary>
         /// <returns></returns>
-        public int GetDataLen()
+        public override int GetDataLen()
         {
             return 0x0D * 3;
         }
@@ -54,7 +37,7 @@ namespace FCARDIO.Protocol.Fingerprint.Data
         /// 进行解码
         /// </summary>
         /// <param name="data"></param>
-        public void SetBytes(IByteBuffer data)
+        public override void SetBytes(IByteBuffer data)
         {
             ListTransaction = new TransactionDetail[]{CardTransactionDetail, DoorSensorTransactionDetail, SystemTransactionDetail};
             for (int i = 0; i < ListTransaction.Length; i++)
@@ -62,15 +45,6 @@ namespace FCARDIO.Protocol.Fingerprint.Data
                 ListTransaction[i].SetBytes(data);
             }
             return;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IByteBuffer GetBytes()
-        {
-            return null;
         }
     }
 }

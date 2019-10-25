@@ -29,15 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.gbTCPClient = new System.Windows.Forms.GroupBox();
-            this.txtTCPClientPort = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtTCPClientAddr = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdConnType = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -56,17 +51,11 @@
             this.butCard = new System.Windows.Forms.ToolStripButton();
             this.butRecord = new System.Windows.Forms.ToolStripButton();
             this.butUploadSoftware = new System.Windows.Forms.ToolStripButton();
+            this.butAdditionalData = new System.Windows.Forms.ToolStripButton();
             this.gbSerialPort = new System.Windows.Forms.GroupBox();
             this.butReloadSerialPort = new System.Windows.Forms.Button();
             this.cmbSerialPort = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.gbServer = new System.Windows.Forms.GroupBox();
-            this.butCloseTCPClient = new System.Windows.Forms.Button();
-            this.butBeginTCPServer = new System.Windows.Forms.Button();
-            this.txtServerPort = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cmbTCPClient = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.lblLocalAddress = new System.Windows.Forms.Label();
             this.cmbLocalIP = new System.Windows.Forms.ComboBox();
             this.tbEvent = new System.Windows.Forms.TabControl();
@@ -102,12 +91,10 @@
             this.txtUDPLocalPort = new System.Windows.Forms.TextBox();
             this.butUDPBind = new System.Windows.Forms.Button();
             this.gbUDP = new System.Windows.Forms.GroupBox();
-            this.butAdditionalData = new System.Windows.Forms.ToolStripButton();
-            this.gbTCPClient.SuspendLayout();
+            this.butReadSN = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.gbSerialPort.SuspendLayout();
-            this.gbServer.SuspendLayout();
             this.tbEvent.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIO)).BeginInit();
@@ -117,55 +104,6 @@
             this.panel2.SuspendLayout();
             this.gbUDP.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // gbTCPClient
-            // 
-            this.gbTCPClient.Controls.Add(this.txtTCPClientPort);
-            this.gbTCPClient.Controls.Add(this.label3);
-            this.gbTCPClient.Controls.Add(this.txtTCPClientAddr);
-            this.gbTCPClient.Controls.Add(this.label2);
-            this.gbTCPClient.Location = new System.Drawing.Point(11, 59);
-            this.gbTCPClient.Name = "gbTCPClient";
-            this.gbTCPClient.Size = new System.Drawing.Size(321, 82);
-            this.gbTCPClient.TabIndex = 0;
-            this.gbTCPClient.TabStop = false;
-            this.gbTCPClient.Text = "TCP客户端";
-            // 
-            // txtTCPClientPort
-            // 
-            this.txtTCPClientPort.Location = new System.Drawing.Point(69, 50);
-            this.txtTCPClientPort.MaxLength = 5;
-            this.txtTCPClientPort.Name = "txtTCPClientPort";
-            this.txtTCPClientPort.Size = new System.Drawing.Size(164, 21);
-            this.txtTCPClientPort.TabIndex = 5;
-            this.txtTCPClientPort.Text = "8000";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "端口：";
-            // 
-            // txtTCPClientAddr
-            // 
-            this.txtTCPClientAddr.Location = new System.Drawing.Point(69, 23);
-            this.txtTCPClientAddr.MaxLength = 30;
-            this.txtTCPClientAddr.Name = "txtTCPClientAddr";
-            this.txtTCPClientAddr.Size = new System.Drawing.Size(164, 21);
-            this.txtTCPClientAddr.TabIndex = 3;
-            this.txtTCPClientAddr.Text = "192.168.1.42";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "IP：";
             // 
             // label1
             // 
@@ -224,7 +162,7 @@
             this.txtSN.Name = "txtSN";
             this.txtSN.Size = new System.Drawing.Size(164, 21);
             this.txtSN.TabIndex = 7;
-            this.txtSN.Text = "FC-A102E88888882";
+            this.txtSN.Text = "FC-A102E19090008";
             // 
             // label6
             // 
@@ -354,6 +292,17 @@
             this.butUploadSoftware.Text = "远程升级";
             this.butUploadSoftware.Click += new System.EventHandler(this.butUploadSoftware_Click);
             // 
+            // butAdditionalData
+            // 
+            this.butAdditionalData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.butAdditionalData.Image = ((System.Drawing.Image)(resources.GetObject("butAdditionalData.Image")));
+            this.butAdditionalData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.butAdditionalData.Name = "butAdditionalData";
+            this.butAdditionalData.Size = new System.Drawing.Size(84, 22);
+            this.butAdditionalData.Text = "人员附加数据";
+            this.butAdditionalData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.butAdditionalData.Click += new System.EventHandler(this.ButAdditionalData_Click);
+            // 
             // gbSerialPort
             // 
             this.gbSerialPort.Controls.Add(this.butReloadSerialPort);
@@ -393,77 +342,6 @@
             this.label7.Size = new System.Drawing.Size(65, 12);
             this.label7.TabIndex = 3;
             this.label7.Text = "通讯方式：";
-            // 
-            // gbServer
-            // 
-            this.gbServer.Controls.Add(this.butCloseTCPClient);
-            this.gbServer.Controls.Add(this.butBeginTCPServer);
-            this.gbServer.Controls.Add(this.txtServerPort);
-            this.gbServer.Controls.Add(this.label9);
-            this.gbServer.Controls.Add(this.cmbTCPClient);
-            this.gbServer.Controls.Add(this.label8);
-            this.gbServer.Location = new System.Drawing.Point(11, 59);
-            this.gbServer.Name = "gbServer";
-            this.gbServer.Size = new System.Drawing.Size(321, 82);
-            this.gbServer.TabIndex = 10;
-            this.gbServer.TabStop = false;
-            this.gbServer.Text = "TCP客户端";
-            // 
-            // butCloseTCPClient
-            // 
-            this.butCloseTCPClient.Location = new System.Drawing.Point(238, 19);
-            this.butCloseTCPClient.Name = "butCloseTCPClient";
-            this.butCloseTCPClient.Size = new System.Drawing.Size(75, 23);
-            this.butCloseTCPClient.TabIndex = 10;
-            this.butCloseTCPClient.Text = "关闭客户端";
-            this.butCloseTCPClient.UseVisualStyleBackColor = true;
-            this.butCloseTCPClient.Click += new System.EventHandler(this.butCloseTCPClient_Click);
-            // 
-            // butBeginTCPServer
-            // 
-            this.butBeginTCPServer.Location = new System.Drawing.Point(133, 19);
-            this.butBeginTCPServer.Name = "butBeginTCPServer";
-            this.butBeginTCPServer.Size = new System.Drawing.Size(75, 23);
-            this.butBeginTCPServer.TabIndex = 9;
-            this.butBeginTCPServer.Text = "开始监听";
-            this.butBeginTCPServer.UseVisualStyleBackColor = true;
-            this.butBeginTCPServer.Click += new System.EventHandler(this.butBeginTCPServer_Click);
-            // 
-            // txtServerPort
-            // 
-            this.txtServerPort.Location = new System.Drawing.Point(69, 20);
-            this.txtServerPort.MaxLength = 5;
-            this.txtServerPort.Name = "txtServerPort";
-            this.txtServerPort.Size = new System.Drawing.Size(58, 21);
-            this.txtServerPort.TabIndex = 8;
-            this.txtServerPort.Text = "8000";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 24);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 12);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "服务端口：";
-            // 
-            // cmbTCPClient
-            // 
-            this.cmbTCPClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTCPClient.FormattingEnabled = true;
-            this.cmbTCPClient.Location = new System.Drawing.Point(4, 58);
-            this.cmbTCPClient.Name = "cmbTCPClient";
-            this.cmbTCPClient.Size = new System.Drawing.Size(311, 20);
-            this.cmbTCPClient.TabIndex = 6;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 42);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 12);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "客户端：";
             // 
             // lblLocalAddress
             // 
@@ -520,21 +398,21 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn4,
             this.Column7});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIO.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIO.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvIO.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvIO.Location = new System.Drawing.Point(3, 32);
             this.dgvIO.Name = "dgvIO";
             this.dgvIO.ReadOnly = true;
             this.dgvIO.RowHeadersVisible = false;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIO.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIO.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvIO.RowTemplate.Height = 23;
             this.dgvIO.Size = new System.Drawing.Size(606, 462);
             this.dgvIO.TabIndex = 19;
@@ -627,21 +505,21 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvResult.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvResult.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResult.Location = new System.Drawing.Point(3, 32);
             this.dgvResult.Name = "dgvResult";
             this.dgvResult.ReadOnly = true;
             this.dgvResult.RowHeadersVisible = false;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvResult.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvResult.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvResult.RowTemplate.Height = 23;
             this.dgvResult.Size = new System.Drawing.Size(606, 462);
             this.dgvResult.TabIndex = 18;
@@ -706,7 +584,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(344, 145);
+            this.button2.Location = new System.Drawing.Point(344, 144);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(99, 23);
             this.button2.TabIndex = 16;
@@ -731,9 +609,9 @@
             // 
             // butWatch
             // 
-            this.butWatch.Location = new System.Drawing.Point(523, 144);
+            this.butWatch.Location = new System.Drawing.Point(563, 144);
             this.butWatch.Name = "butWatch";
-            this.butWatch.Size = new System.Drawing.Size(99, 23);
+            this.butWatch.Size = new System.Drawing.Size(68, 23);
             this.butWatch.TabIndex = 19;
             this.butWatch.Text = "开启监控";
             this.butWatch.UseVisualStyleBackColor = true;
@@ -755,7 +633,7 @@
             this.txtUDPAddr.Name = "txtUDPAddr";
             this.txtUDPAddr.Size = new System.Drawing.Size(138, 21);
             this.txtUDPAddr.TabIndex = 3;
-            this.txtUDPAddr.Text = "192.168.1.42";
+            this.txtUDPAddr.Text = "192.168.1.63";
             // 
             // label10
             // 
@@ -791,7 +669,7 @@
             this.txtUDPLocalPort.Name = "txtUDPLocalPort";
             this.txtUDPLocalPort.Size = new System.Drawing.Size(46, 21);
             this.txtUDPLocalPort.TabIndex = 7;
-            this.txtUDPLocalPort.Text = "0";
+            this.txtUDPLocalPort.Text = "8100";
             // 
             // butUDPBind
             // 
@@ -819,22 +697,22 @@
             this.gbUDP.TabStop = false;
             this.gbUDP.Text = "UDP";
             // 
-            // butAdditionalData
+            // butReadSN
             // 
-            this.butAdditionalData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.butAdditionalData.Image = ((System.Drawing.Image)(resources.GetObject("butAdditionalData.Image")));
-            this.butAdditionalData.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.butAdditionalData.Name = "butAdditionalData";
-            this.butAdditionalData.Size = new System.Drawing.Size(84, 22);
-            this.butAdditionalData.Text = "人员附加数据";
-            this.butAdditionalData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.butAdditionalData.Click += new System.EventHandler(this.ButAdditionalData_Click);
+            this.butReadSN.Location = new System.Drawing.Point(449, 144);
+            this.butReadSN.Name = "butReadSN";
+            this.butReadSN.Size = new System.Drawing.Size(108, 23);
+            this.butReadSN.TabIndex = 20;
+            this.butReadSN.Text = "获取信息";
+            this.butReadSN.UseVisualStyleBackColor = true;
+            this.butReadSN.Click += new System.EventHandler(this.ButReadSN_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 726);
+            this.Controls.Add(this.butReadSN);
             this.Controls.Add(this.butWatch);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtProcess);
@@ -847,8 +725,6 @@
             this.Controls.Add(this.cmdConnType);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gbUDP);
-            this.Controls.Add(this.gbServer);
-            this.Controls.Add(this.gbTCPClient);
             this.Controls.Add(this.gbSerialPort);
             this.MaximizeBox = false;
             this.Name = "frmMain";
@@ -857,16 +733,12 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
-            this.gbTCPClient.ResumeLayout(false);
-            this.gbTCPClient.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.gbSerialPort.ResumeLayout(false);
             this.gbSerialPort.PerformLayout();
-            this.gbServer.ResumeLayout(false);
-            this.gbServer.PerformLayout();
             this.tbEvent.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIO)).EndInit();
@@ -885,12 +757,6 @@
 
 
         #endregion
-
-        private System.Windows.Forms.GroupBox gbTCPClient;
-        private System.Windows.Forms.TextBox txtTCPClientPort;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtTCPClientAddr;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmdConnType;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -912,13 +778,6 @@
         private System.Windows.Forms.Button butReloadSerialPort;
         private System.Windows.Forms.ComboBox cmbSerialPort;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.GroupBox gbServer;
-        private System.Windows.Forms.Button butCloseTCPClient;
-        private System.Windows.Forms.Button butBeginTCPServer;
-        private System.Windows.Forms.TextBox txtServerPort;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox cmbTCPClient;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblLocalAddress;
         private System.Windows.Forms.ComboBox cmbLocalIP;
         private System.Windows.Forms.TabControl tbEvent;
@@ -956,6 +815,7 @@
         private System.Windows.Forms.GroupBox gbUDP;
         private System.Windows.Forms.ToolStripButton butAlarm;
         private System.Windows.Forms.ToolStripButton butAdditionalData;
+        private System.Windows.Forms.Button butReadSN;
     }
 }
 

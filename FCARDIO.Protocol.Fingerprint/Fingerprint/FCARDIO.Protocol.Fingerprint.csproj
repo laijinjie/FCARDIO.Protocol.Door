@@ -47,12 +47,6 @@
     <Reference Include="FCARDIO.Protocol">
       <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
-    <Reference Include="FCARDIO.Protocol.Door">
-      <HintPath>..\..\DLL\FCARDIO.Protocol.Door.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol.Util">
-      <HintPath>..\..\DLL\FCARDIO.Protocol.Util.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -104,7 +98,6 @@
     <Compile Include="Alarm\09CloseAlarm\WriteCloseAlarm_Parameter.cs" />
     <Compile Include="Data\Person.cs" />
     <Compile Include="Data\TransactionDatabaseDetail.cs" />
-    <Compile Include="Data\TransactionDetail.cs" />
     <Compile Include="Data\Transaction\CardTransaction.cs" />
     <Compile Include="Data\Transaction\DoorSensorTransaction.cs" />
     <Compile Include="Data\Transaction\SystemTransaction.cs" />
@@ -166,11 +159,6 @@
     <Compile Include="Person\06DeletePerson\DeletePerson_Parameter.cs" />
     <Compile Include="Person\WritePersonBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemParameter\02Password\ReadPassword.cs" />
-    <Compile Include="SystemParameter\02Password\ReadPassword_Result.cs" />
-    <Compile Include="SystemParameter\02Password\ResetPassword.cs" />
-    <Compile Include="SystemParameter\02Password\WritePassword.cs" />
-    <Compile Include="SystemParameter\02Password\WritePassword_Parameter.cs" />
     <Compile Include="SystemParameter\03IP\IPDetail.cs" />
     <Compile Include="SystemParameter\03IP\ReadIP.cs" />
     <Compile Include="SystemParameter\03IP\ReadIP_Result.cs" />
@@ -230,20 +218,26 @@
     <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase.cs" />
     <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase_Parameter.cs" />
     <Compile Include="Transaction\02ClearTransactionDatabase\TransactionDatabaseEmpty.cs" />
-    <Compile Include="Transaction\04ReadTransactionDatabase\ReadTransactionDatabase.cs" />
-    <Compile Include="Transaction\04ReadTransactionDatabase\ReadTransactionDatabase_Base.cs" />
-    <Compile Include="Transaction\04ReadTransactionDatabase\ReadTransactionDatabase_Parameter.cs" />
-    <Compile Include="Transaction\04ReadTransactionDatabase\ReadTransactionDatabase_Result.cs" />
-    <Compile Include="Transaction\05TransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex.cs" />
-    <Compile Include="Transaction\05TransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex_Parameter.cs" />
-    <Compile Include="Transaction\06WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex.cs" />
-    <Compile Include="Transaction\06WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex_Parameter.cs" />
+    <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase.cs" />
+    <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Base.cs" />
+    <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Parameter.cs" />
+    <Compile Include="Transaction\03TransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex.cs" />
+    <Compile Include="Transaction\03TransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex_Parameter.cs" />
+    <Compile Include="Transaction\04WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex.cs" />
+    <Compile Include="Transaction\04WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex_Parameter.cs" />
     <Compile Include="Transaction\e_TransactionDatabaseType.cs" />
-    <Compile Include="Transaction\03ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex.cs" />
-    <Compile Include="Transaction\03ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Base.cs" />
-    <Compile Include="Transaction\03ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Parameter.cs" />
-    <Compile Include="Transaction\03ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Result.cs" />
+    <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex.cs" />
+    <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Parameter.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\FCARDIO.Protocol.Door\FCARDIO.Protocol.Door.csproj">
+      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
+      <Name>FCARDIO.Protocol.Door</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FCARDIO.Protocol.Util\FCARDIO.Protocol.Util.csproj">
+      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
+      <Name>FCARDIO.Protocol.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

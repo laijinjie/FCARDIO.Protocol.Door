@@ -475,7 +475,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             Data.Person person = new Data.Person();
             string CardStr = txtCardData.Text;
             person.CardData = CardStr.ToUInt64();
-            if (person.CardData == 0)
+            if (person.CardData < 0)
             {
                 MsgErr("卡号输入不正确！");
                 return null;

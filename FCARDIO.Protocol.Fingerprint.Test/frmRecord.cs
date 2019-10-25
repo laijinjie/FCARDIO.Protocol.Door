@@ -190,7 +190,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         #endregion
 
         #region 判断记录类型
-        private static e_TransactionDatabaseType Gete_TransactionDatabaseType(int type)
+        private static e_TransactionDatabaseType Get_TransactionDatabaseType(int type)
         {
             type = type + 1;
             var i = Transaction.e_TransactionDatabaseType.OnCardTransaction;
@@ -215,7 +215,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             int type = cboe_TransactionDatabaseType1.SelectedIndex;
             int WriteIndex = int.Parse(txtWriteIndex.Text.ToString());
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex_Parameter(Gete_TransactionDatabaseType(type), WriteIndex);
+            var par = new Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex_Parameter(Get_TransactionDatabaseType(type), WriteIndex);
             var cmd = new Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -230,9 +230,10 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         {
             int type = cboe_TransactionDatabaseType1.SelectedIndex;
             int ReadIndex = int.Parse(txtReadIndex.Text.ToString());
-            bool IsCircle = cbIsCircle.Checked ? true : false;
+
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex_Parameter(Gete_TransactionDatabaseType(type), ReadIndex, IsCircle);
+            var par = new Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex_Parameter(
+                Get_TransactionDatabaseType(type), ReadIndex);
             var cmd = new Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -255,7 +256,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             cmdDtl.Timeout = 1000;
             cmdDtl.RestartCount = 20;
 
-            var par = new ReadTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type), Quantity);
+            var par = new ReadTransactionDatabase_Parameter((int)Get_TransactionDatabaseType(type), Quantity);
             if (PacketSize != 0)
             {
                 par.PacketSize = PacketSize;
@@ -267,7 +268,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
 
-                var result = cmde.Command.getResult() as ReadTransactionDatabase_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Result;
                 mMainForm.AddCmdLog(cmde, $"读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count},剩余新记录数：{result.readable}");
 
                 if (result.TransactionList.Count > 0)
@@ -306,10 +307,10 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
 
-                var result = cmde.Command.getResult() as ReadTransactionDatabaseByIndex_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Result;
                 mMainForm.AddCmdLog(cmde, $"按序号读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count}");
 
-                if (result.TransactionList.Count > 0)
+                if (result.Quantity > 0)
                 {
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
                     sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
@@ -424,7 +425,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         {
             int type = cboe_TransactionDatabaseType2.SelectedIndex;
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new Transaction.ClearTransactionDatabase.ClearTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type));
+            var par = new Transaction.ClearTransactionDatabase.ClearTransactionDatabase_Parameter(Get_TransactionDatabaseType(type));
             var cmd = new Transaction.ClearTransactionDatabase.ClearTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>

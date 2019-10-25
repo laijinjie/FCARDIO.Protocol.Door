@@ -18,6 +18,7 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode
         /// 1 - 人员头像照片
         /// 2 - 指纹
         /// 3 - 人脸特征码
+        /// 4 - 动态人脸特征码
         /// </summary>
         public int Type;
 
@@ -26,20 +27,14 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode
         /// </summary>
         public int SerialNumber;
 
-        /// <summary>
-        /// 起始位置
-        /// </summary>
-        const int StartIndex = 0;
+
 
         /// <summary>
         /// 数据
         /// </summary>
         public byte[] Datas;
 
-        /// <summary>
-        /// 文件句柄
-        /// </summary>
-        public int FileHandle;
+
 
         /// <summary>
         /// 初始化参数
@@ -69,11 +64,11 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode
             {
                 return false;
             }
-            if (UserCode  < 0)
+            if (UserCode < 0)
             {
                 return false;
             }
-            if (Datas == null || Datas.Length == 0 || Datas.Length > 1017)
+            if (Datas == null || Datas.Length == 0 || Datas.Length > 150 * 1024)
             {
                 return false;
             }
@@ -88,15 +83,6 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode
         public override int GetDataLen()
         {
             return 6;
-        }
-
-        /// <summary>
-        /// 获取数据长度
-        /// </summary>
-        /// <returns></returns>
-        public int GetWriteFileDataLen()
-        {
-            return 7 + Datas.Length;
         }
 
 
@@ -121,18 +107,6 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode
             return databuf;
         }
 
-        /// <summary>
-        /// 编码参数
-        /// </summary>
-        /// <param name="databuf"></param>
-        /// <returns></returns>
-        public IByteBuffer GetWriteFileBytes(IByteBuffer databuf)
-        {
-            databuf.WriteInt(FileHandle);
-            databuf.WriteMedium(StartIndex);
-            databuf.WriteBytes(Datas);
-            return databuf;
-        }
 
         /// <summary>
         /// 解码参数
@@ -140,7 +114,7 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            
+
         }
     }
 }

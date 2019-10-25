@@ -23,7 +23,8 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.ReadFeatureCode
         /// 1 - 人员头像
         /// 2 - 指纹
         /// 3 - 记录照片
-        /// 4 - 人脸特征码
+        /// 4 - 红外人脸特征码
+        /// 5 - 动态人脸特征码
         /// </summary>
         public int Type;
 
@@ -51,7 +52,7 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.ReadFeatureCode
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Type < 1 || Type > 3)
+            if (Type < 1 || Type > 5)
             {
                 return false;
             }
@@ -69,7 +70,7 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.ReadFeatureCode
                     return false;
                 }
             }
-            if (Type == 4)
+            if (Type > 2)
             {
                 if (SerialNumber != 1)
                 {

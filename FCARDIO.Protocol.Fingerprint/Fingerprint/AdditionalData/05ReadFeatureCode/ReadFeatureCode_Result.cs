@@ -23,7 +23,8 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.ReadFeatureCode
         /// 1 - 人员头像
         /// 2 - 指纹
         /// 3 - 记录照片
-        /// 4 - 人脸特征码
+        /// 4 - 红外人脸特征码
+        /// 5 - 动态人脸特征码
         /// </summary>
         public int Type;
 
@@ -50,7 +51,12 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.ReadFeatureCode
         /// <summary>
         /// CRC32校验数据
         /// </summary>
-        public int CRC;
+        public uint CRC;
+
+        /// <summary>
+        /// 指示命令执行结果
+        /// </summary>
+        public bool Result;
 
 
         public void Dispose()
@@ -68,27 +74,10 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.ReadFeatureCode
             UserCode = buf.ReadInt();
             FileHandle = buf.ReadInt();
             FileSize = buf.ReadMedium();
-            Datas = new byte[FileSize];
+
+
         }
 
-        /// <summary>
-        /// 读取文件句柄 ByteBuffer内容
-        /// </summary>
-        /// <param name="buf"></param>
-        public void SetFileHandleBytes(IByteBuffer buf)
-        {
-            FileHandle = buf.ReadInt();
-            StartIndex = buf.ReadMedium();
-            buf.ReadBytes(Datas, 0, FileSize);
-        }
 
-        /// <summary>
-        /// 读取CRC ByteBuffer内容
-        /// </summary>
-        /// <param name="buf"></param>
-        public void SetCRCBytes(IByteBuffer buf)
-        {
-            CRC = buf.ReadInt();
-        }
     }
 }

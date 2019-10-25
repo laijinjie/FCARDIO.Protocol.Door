@@ -29,18 +29,22 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.gbData = new System.Windows.Forms.GroupBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.butUploadImage = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtCodeData = new System.Windows.Forms.TextBox();
-            this.btnUploadCode = new System.Windows.Forms.Button();
-            this.btnCompute = new System.Windows.Forms.Button();
-            this.btnDeleteCode = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnUploadCode = new System.Windows.Forms.Button();
+            this.btnDeleteCode = new System.Windows.Forms.Button();
+            this.btnCompute = new System.Windows.Forms.Button();
             this.cmbUploadSerialNumber = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbUploadType = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtUploadUserCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnGetPerson = new System.Windows.Forms.Button();
@@ -51,13 +55,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            this.gbData.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.gbData);
+            this.groupBox1.Controls.Add(this.tabControl1);
             this.groupBox1.Controls.Add(this.cmbUploadSerialNumber);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cmbUploadType);
@@ -66,71 +73,103 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(632, 335);
+            this.groupBox1.Size = new System.Drawing.Size(632, 346);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "上传";
             // 
-            // gbData
+            // tabControl1
             // 
-            this.gbData.Controls.Add(this.txtCodeData);
-            this.gbData.Controls.Add(this.btnUploadCode);
-            this.gbData.Controls.Add(this.btnCompute);
-            this.gbData.Controls.Add(this.btnDeleteCode);
-            this.gbData.Controls.Add(this.label4);
-            this.gbData.Location = new System.Drawing.Point(16, 69);
-            this.gbData.Name = "gbData";
-            this.gbData.Size = new System.Drawing.Size(599, 260);
-            this.gbData.TabIndex = 6;
-            this.gbData.TabStop = false;
-            this.gbData.Text = "指纹/人脸特征码";
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Location = new System.Drawing.Point(6, 58);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(626, 280);
+            this.tabControl1.TabIndex = 7;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.butUploadImage);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(618, 254);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "照片";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // butUploadImage
+            // 
+            this.butUploadImage.Location = new System.Drawing.Point(48, 71);
+            this.butUploadImage.Name = "butUploadImage";
+            this.butUploadImage.Size = new System.Drawing.Size(75, 23);
+            this.butUploadImage.TabIndex = 18;
+            this.butUploadImage.Text = "上传照片";
+            this.butUploadImage.UseVisualStyleBackColor = true;
+            this.butUploadImage.Click += new System.EventHandler(this.ButUploadImage_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.txtCodeData);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.btnUploadCode);
+            this.tabPage1.Controls.Add(this.btnDeleteCode);
+            this.tabPage1.Controls.Add(this.btnCompute);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(618, 254);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "特征码";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // txtCodeData
             // 
-            this.txtCodeData.Location = new System.Drawing.Point(10, 37);
+            this.txtCodeData.Location = new System.Drawing.Point(16, 31);
             this.txtCodeData.Multiline = true;
             this.txtCodeData.Name = "txtCodeData";
             this.txtCodeData.Size = new System.Drawing.Size(555, 188);
-            this.txtCodeData.TabIndex = 10;
-            // 
-            // btnUploadCode
-            // 
-            this.btnUploadCode.Location = new System.Drawing.Point(490, 231);
-            this.btnUploadCode.Name = "btnUploadCode";
-            this.btnUploadCode.Size = new System.Drawing.Size(75, 23);
-            this.btnUploadCode.TabIndex = 9;
-            this.btnUploadCode.Text = "上传特征码";
-            this.btnUploadCode.UseVisualStyleBackColor = true;
-            this.btnUploadCode.Click += new System.EventHandler(this.BtnUploadCode_Click);
-            // 
-            // btnCompute
-            // 
-            this.btnCompute.Location = new System.Drawing.Point(390, 231);
-            this.btnCompute.Name = "btnCompute";
-            this.btnCompute.Size = new System.Drawing.Size(75, 23);
-            this.btnCompute.TabIndex = 8;
-            this.btnCompute.Text = "计算CRC32";
-            this.btnCompute.UseVisualStyleBackColor = true;
-            this.btnCompute.Click += new System.EventHandler(this.BtnCompute_Click);
-            // 
-            // btnDeleteCode
-            // 
-            this.btnDeleteCode.Location = new System.Drawing.Point(10, 231);
-            this.btnDeleteCode.Name = "btnDeleteCode";
-            this.btnDeleteCode.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteCode.TabIndex = 7;
-            this.btnDeleteCode.Text = "删除特征码";
-            this.btnDeleteCode.UseVisualStyleBackColor = true;
-            this.btnDeleteCode.Click += new System.EventHandler(this.BtnDeleteCode_Click);
+            this.txtCodeData.TabIndex = 16;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 21);
+            this.label4.Location = new System.Drawing.Point(33, 15);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(125, 12);
-            this.label4.TabIndex = 0;
+            this.label4.TabIndex = 12;
             this.label4.Text = "特征码数据(base64)：";
+            // 
+            // btnUploadCode
+            // 
+            this.btnUploadCode.Location = new System.Drawing.Point(496, 225);
+            this.btnUploadCode.Name = "btnUploadCode";
+            this.btnUploadCode.Size = new System.Drawing.Size(75, 23);
+            this.btnUploadCode.TabIndex = 15;
+            this.btnUploadCode.Text = "上传特征码";
+            this.btnUploadCode.UseVisualStyleBackColor = true;
+            this.btnUploadCode.Click += new System.EventHandler(this.BtnUploadCode_Click);
+            // 
+            // btnDeleteCode
+            // 
+            this.btnDeleteCode.Location = new System.Drawing.Point(16, 225);
+            this.btnDeleteCode.Name = "btnDeleteCode";
+            this.btnDeleteCode.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteCode.TabIndex = 13;
+            this.btnDeleteCode.Text = "删除特征码";
+            this.btnDeleteCode.UseVisualStyleBackColor = true;
+            this.btnDeleteCode.Click += new System.EventHandler(this.BtnDeleteCode_Click);
+            // 
+            // btnCompute
+            // 
+            this.btnCompute.Location = new System.Drawing.Point(396, 225);
+            this.btnCompute.Name = "btnCompute";
+            this.btnCompute.Size = new System.Drawing.Size(75, 23);
+            this.btnCompute.TabIndex = 14;
+            this.btnCompute.Text = "计算CRC32";
+            this.btnCompute.UseVisualStyleBackColor = true;
+            this.btnCompute.Click += new System.EventHandler(this.BtnCompute_Click);
             // 
             // cmbUploadSerialNumber
             // 
@@ -156,7 +195,7 @@
             this.cmbUploadType.FormattingEnabled = true;
             this.cmbUploadType.Location = new System.Drawing.Point(274, 31);
             this.cmbUploadType.Name = "cmbUploadType";
-            this.cmbUploadType.Size = new System.Drawing.Size(105, 20);
+            this.cmbUploadType.Size = new System.Drawing.Size(149, 20);
             this.cmbUploadType.TabIndex = 3;
             this.cmbUploadType.SelectedIndexChanged += new System.EventHandler(this.CmbUploadType_SelectedIndexChanged);
             // 
@@ -185,6 +224,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "用户号：";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(651, 22);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(480, 640);
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnDownload);
@@ -195,9 +242,9 @@
             this.groupBox2.Controls.Add(this.cmbDownloadType);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Location = new System.Drawing.Point(13, 355);
+            this.groupBox2.Location = new System.Drawing.Point(13, 365);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(632, 90);
+            this.groupBox2.Size = new System.Drawing.Size(632, 97);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "下载";
@@ -234,7 +281,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(429, 23);
+            this.label6.Location = new System.Drawing.Point(429, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 9;
@@ -251,16 +298,16 @@
             // 
             this.cmbDownloadType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDownloadType.FormattingEnabled = true;
-            this.cmbDownloadType.Location = new System.Drawing.Point(274, 20);
+            this.cmbDownloadType.Location = new System.Drawing.Point(259, 21);
             this.cmbDownloadType.Name = "cmbDownloadType";
-            this.cmbDownloadType.Size = new System.Drawing.Size(105, 20);
+            this.cmbDownloadType.Size = new System.Drawing.Size(149, 20);
             this.cmbDownloadType.TabIndex = 8;
             this.cmbDownloadType.SelectedIndexChanged += new System.EventHandler(this.CmbDownloadType_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 23);
+            this.label5.Location = new System.Drawing.Point(24, 24);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 7;
@@ -269,7 +316,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(227, 23);
+            this.label7.Location = new System.Drawing.Point(212, 25);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 12);
             this.label7.TabIndex = 7;
@@ -279,15 +326,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 450);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(1138, 666);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
             this.Name = "frmAdditionalData";
             this.Text = "人员附加数据";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.gbData.ResumeLayout(false);
-            this.gbData.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -303,12 +354,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtUploadUserCode;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox gbData;
-        private System.Windows.Forms.TextBox txtCodeData;
-        private System.Windows.Forms.Button btnUploadCode;
-        private System.Windows.Forms.Button btnCompute;
-        private System.Windows.Forms.Button btnDeleteCode;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtDownloadUserCode;
         private System.Windows.Forms.Label label5;
@@ -318,5 +363,15 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.Button btnGetPerson;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox txtCodeData;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnUploadCode;
+        private System.Windows.Forms.Button btnDeleteCode;
+        private System.Windows.Forms.Button btnCompute;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button butUploadImage;
     }
 }

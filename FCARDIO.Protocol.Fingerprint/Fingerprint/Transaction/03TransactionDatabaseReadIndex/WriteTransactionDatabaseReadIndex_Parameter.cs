@@ -18,13 +18,9 @@ namespace FCARDIO.Protocol.Fingerprint.Transaction.TransactionDatabaseReadIndex
        /// </summary>
         public e_TransactionDatabaseType DatabaseType;
         /// <summary>
-        /// 数据库中的读索引号
+        /// 数据库中的索引号
         /// </summary>
-        public int ReadIndex;
-        /// <summary>
-        /// 循环标记
-        /// </summary>
-        public bool IsCircle;
+        public int RecordIndex;
 
         /// <summary>
         /// 创建结构
@@ -32,11 +28,10 @@ namespace FCARDIO.Protocol.Fingerprint.Transaction.TransactionDatabaseReadIndex
         /// <param name="_DatabaseType">记录数据库类型</param>
         /// <param name="_ReadIndex">数据库中的读索引号</param>
         /// <param name="_IsCircle">循环标记</param>
-        public WriteTransactionDatabaseReadIndex_Parameter(e_TransactionDatabaseType _DatabaseType, int _ReadIndex,bool _IsCircle)
+        public WriteTransactionDatabaseReadIndex_Parameter(e_TransactionDatabaseType _DatabaseType, int _ReadIndex)
         {
             DatabaseType = _DatabaseType;
-            ReadIndex = _ReadIndex;
-            IsCircle = _IsCircle;
+            RecordIndex = _ReadIndex;
         }
 
         /// <summary>
@@ -46,7 +41,7 @@ namespace FCARDIO.Protocol.Fingerprint.Transaction.TransactionDatabaseReadIndex
         public override bool checkedParameter()
         {
             
-            if (ReadIndex < 0)
+            if (RecordIndex < 0)
             {
                 throw new ArgumentException("ReadIndex Error!");
             }
@@ -68,13 +63,12 @@ namespace FCARDIO.Protocol.Fingerprint.Transaction.TransactionDatabaseReadIndex
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != 6)
+            if (databuf.WritableBytes != 5)
             {
-                throw new ArgumentException("Crad Error");
+                throw new ArgumentException("Buffer Error");
             }
             databuf.WriteByte((byte)DatabaseType);
-            databuf.WriteInt(ReadIndex);
-            databuf.WriteBoolean(IsCircle);
+            databuf.WriteInt(RecordIndex);
             return databuf;
         }
 
@@ -84,7 +78,7 @@ namespace FCARDIO.Protocol.Fingerprint.Transaction.TransactionDatabaseReadIndex
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 6;
+            return 5;
         }
 
         /// <summary>
@@ -93,8 +87,7 @@ namespace FCARDIO.Protocol.Fingerprint.Transaction.TransactionDatabaseReadIndex
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            ReadIndex = databuf.ReadByte();
-            IsCircle = databuf.ReadBoolean();
+            RecordIndex = databuf.ReadByte();
         }
     }
 }

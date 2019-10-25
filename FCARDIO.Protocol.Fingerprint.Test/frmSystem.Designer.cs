@@ -118,6 +118,16 @@
             this.txtConnectPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.btnWriteOEM = new System.Windows.Forms.Button();
+            this.btnReadOEM = new System.Windows.Forms.Button();
+            this.dtpTime = new System.Windows.Forms.DateTimePicker();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.label36 = new System.Windows.Forms.Label();
+            this.txtWebAddr = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtManufacturer = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.btnWriteManageMenuPassword = new System.Windows.Forms.Button();
             this.btnReadManageMenuPassword = new System.Windows.Forms.Button();
@@ -162,16 +172,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.cmbDoor = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.txtManufacturer = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.txtWebAddr = new System.Windows.Forms.TextBox();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.dtpTime = new System.Windows.Forms.DateTimePicker();
-            this.btnWriteOEM = new System.Windows.Forms.Button();
-            this.btnReadOEM = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -186,12 +186,12 @@
             this.groupBox1.SuspendLayout();
             this.gbPassword.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox14.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.groupBox14.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -777,6 +777,7 @@
             this.cbxProtocolType.Name = "cbxProtocolType";
             this.cbxProtocolType.Size = new System.Drawing.Size(121, 20);
             this.cbxProtocolType.TabIndex = 28;
+            this.cbxProtocolType.Visible = false;
             // 
             // label15
             // 
@@ -786,6 +787,7 @@
             this.label15.Size = new System.Drawing.Size(77, 12);
             this.label15.TabIndex = 27;
             this.label15.Text = "服务器域名：";
+            this.label15.Visible = false;
             // 
             // txtServerAddr
             // 
@@ -794,6 +796,7 @@
             this.txtServerAddr.Name = "txtServerAddr";
             this.txtServerAddr.Size = new System.Drawing.Size(152, 21);
             this.txtServerAddr.TabIndex = 26;
+            this.txtServerAddr.Visible = false;
             // 
             // label13
             // 
@@ -863,6 +866,7 @@
             this.label9.Size = new System.Drawing.Size(83, 12);
             this.label9.TabIndex = 17;
             this.label9.Text = "本地TCP端口：";
+            this.label9.Visible = false;
             // 
             // txtTCPPort
             // 
@@ -871,6 +875,7 @@
             this.txtTCPPort.Name = "txtTCPPort";
             this.txtTCPPort.Size = new System.Drawing.Size(152, 21);
             this.txtTCPPort.TabIndex = 16;
+            this.txtTCPPort.Visible = false;
             // 
             // label10
             // 
@@ -880,6 +885,7 @@
             this.label10.Size = new System.Drawing.Size(83, 12);
             this.label10.TabIndex = 14;
             this.label10.Text = "TCP工作模式：";
+            this.label10.Visible = false;
             // 
             // label7
             // 
@@ -1140,6 +1146,104 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "参数2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.btnWriteOEM);
+            this.groupBox14.Controls.Add(this.btnReadOEM);
+            this.groupBox14.Controls.Add(this.dtpTime);
+            this.groupBox14.Controls.Add(this.dtpDate);
+            this.groupBox14.Controls.Add(this.label36);
+            this.groupBox14.Controls.Add(this.txtWebAddr);
+            this.groupBox14.Controls.Add(this.label35);
+            this.groupBox14.Controls.Add(this.txtManufacturer);
+            this.groupBox14.Controls.Add(this.label34);
+            this.groupBox14.Location = new System.Drawing.Point(9, 394);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(846, 91);
+            this.groupBox14.TabIndex = 5;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "OEM信息";
+            // 
+            // btnWriteOEM
+            // 
+            this.btnWriteOEM.Location = new System.Drawing.Point(783, 62);
+            this.btnWriteOEM.Name = "btnWriteOEM";
+            this.btnWriteOEM.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteOEM.TabIndex = 59;
+            this.btnWriteOEM.Text = "写入";
+            this.btnWriteOEM.UseVisualStyleBackColor = true;
+            this.btnWriteOEM.Click += new System.EventHandler(this.BtnWriteOEM_Click);
+            // 
+            // btnReadOEM
+            // 
+            this.btnReadOEM.Location = new System.Drawing.Point(727, 62);
+            this.btnReadOEM.Name = "btnReadOEM";
+            this.btnReadOEM.Size = new System.Drawing.Size(48, 23);
+            this.btnReadOEM.TabIndex = 60;
+            this.btnReadOEM.Text = "读取";
+            this.btnReadOEM.UseVisualStyleBackColor = true;
+            this.btnReadOEM.Click += new System.EventHandler(this.BtnReadOEM_Click);
+            // 
+            // dtpTime
+            // 
+            this.dtpTime.CustomFormat = "HH:mm:ss";
+            this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTime.Location = new System.Drawing.Point(614, 64);
+            this.dtpTime.Name = "dtpTime";
+            this.dtpTime.ShowUpDown = true;
+            this.dtpTime.Size = new System.Drawing.Size(71, 21);
+            this.dtpTime.TabIndex = 65;
+            // 
+            // dtpDate
+            // 
+            this.dtpDate.CustomFormat = "yyyy-MM-dd";
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDate.Location = new System.Drawing.Point(512, 64);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(100, 21);
+            this.dtpDate.TabIndex = 64;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(453, 67);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(53, 12);
+            this.label36.TabIndex = 63;
+            this.label36.Text = "制造商：";
+            // 
+            // txtWebAddr
+            // 
+            this.txtWebAddr.Location = new System.Drawing.Point(78, 64);
+            this.txtWebAddr.Name = "txtWebAddr";
+            this.txtWebAddr.Size = new System.Drawing.Size(327, 21);
+            this.txtWebAddr.TabIndex = 62;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(18, 67);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(53, 12);
+            this.label35.TabIndex = 61;
+            this.label35.Text = "网  址：";
+            // 
+            // txtManufacturer
+            // 
+            this.txtManufacturer.Location = new System.Drawing.Point(79, 28);
+            this.txtManufacturer.Name = "txtManufacturer";
+            this.txtManufacturer.Size = new System.Drawing.Size(327, 21);
+            this.txtManufacturer.TabIndex = 60;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(19, 31);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(53, 12);
+            this.label34.TabIndex = 59;
+            this.label34.Text = "制造商：";
             // 
             // groupBox13
             // 
@@ -1594,104 +1698,6 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "门号：";
             // 
-            // groupBox14
-            // 
-            this.groupBox14.Controls.Add(this.btnWriteOEM);
-            this.groupBox14.Controls.Add(this.btnReadOEM);
-            this.groupBox14.Controls.Add(this.dtpTime);
-            this.groupBox14.Controls.Add(this.dtpDate);
-            this.groupBox14.Controls.Add(this.label36);
-            this.groupBox14.Controls.Add(this.txtWebAddr);
-            this.groupBox14.Controls.Add(this.label35);
-            this.groupBox14.Controls.Add(this.txtManufacturer);
-            this.groupBox14.Controls.Add(this.label34);
-            this.groupBox14.Location = new System.Drawing.Point(9, 394);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(846, 91);
-            this.groupBox14.TabIndex = 5;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "OEM信息";
-            // 
-            // txtManufacturer
-            // 
-            this.txtManufacturer.Location = new System.Drawing.Point(79, 28);
-            this.txtManufacturer.Name = "txtManufacturer";
-            this.txtManufacturer.Size = new System.Drawing.Size(327, 21);
-            this.txtManufacturer.TabIndex = 60;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(19, 31);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(53, 12);
-            this.label34.TabIndex = 59;
-            this.label34.Text = "制造商：";
-            // 
-            // txtWebAddr
-            // 
-            this.txtWebAddr.Location = new System.Drawing.Point(78, 64);
-            this.txtWebAddr.Name = "txtWebAddr";
-            this.txtWebAddr.Size = new System.Drawing.Size(327, 21);
-            this.txtWebAddr.TabIndex = 62;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(18, 67);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(53, 12);
-            this.label35.TabIndex = 61;
-            this.label35.Text = "网  址：";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(453, 67);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(53, 12);
-            this.label36.TabIndex = 63;
-            this.label36.Text = "制造商：";
-            // 
-            // dtpDate
-            // 
-            this.dtpDate.CustomFormat = "yyyy-MM-dd";
-            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(512, 64);
-            this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(100, 21);
-            this.dtpDate.TabIndex = 64;
-            // 
-            // dtpTime
-            // 
-            this.dtpTime.CustomFormat = "HH:mm:ss";
-            this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTime.Location = new System.Drawing.Point(614, 64);
-            this.dtpTime.Name = "dtpTime";
-            this.dtpTime.ShowUpDown = true;
-            this.dtpTime.Size = new System.Drawing.Size(71, 21);
-            this.dtpTime.TabIndex = 65;
-            // 
-            // btnWriteOEM
-            // 
-            this.btnWriteOEM.Location = new System.Drawing.Point(783, 62);
-            this.btnWriteOEM.Name = "btnWriteOEM";
-            this.btnWriteOEM.Size = new System.Drawing.Size(48, 23);
-            this.btnWriteOEM.TabIndex = 59;
-            this.btnWriteOEM.Text = "写入";
-            this.btnWriteOEM.UseVisualStyleBackColor = true;
-            this.btnWriteOEM.Click += new System.EventHandler(this.BtnWriteOEM_Click);
-            // 
-            // btnReadOEM
-            // 
-            this.btnReadOEM.Location = new System.Drawing.Point(727, 62);
-            this.btnReadOEM.Name = "btnReadOEM";
-            this.btnReadOEM.Size = new System.Drawing.Size(48, 23);
-            this.btnReadOEM.TabIndex = 60;
-            this.btnReadOEM.Text = "读取";
-            this.btnReadOEM.UseVisualStyleBackColor = true;
-            this.btnReadOEM.Click += new System.EventHandler(this.BtnReadOEM_Click);
-            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1727,6 +1733,8 @@
             this.gbPassword.ResumeLayout(false);
             this.gbPassword.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
             this.groupBox10.ResumeLayout(false);
@@ -1737,8 +1745,6 @@
             this.groupBox8.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
             this.ResumeLayout(false);
 
         }

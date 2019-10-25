@@ -59,7 +59,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// 获取长度
         /// </summary>
         /// <returns></returns>
-        public int GetDataLen()
+        public virtual int GetDataLen()
         {
             return 0x0D * 6;
         }
@@ -68,7 +68,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Data
         /// 进行解码
         /// </summary>
         /// <param name="data"></param>
-        public void SetBytes(IByteBuffer data)
+        public virtual void SetBytes(IByteBuffer data)
         {
             ListTransaction = new TransactionDetail[]{CardTransactionDetail, ButtonTransactionDetail, DoorSensorTransactionDetail,
             SoftwareTransactionDetail, AlarmTransactionDetail, SystemTransactionDetail};

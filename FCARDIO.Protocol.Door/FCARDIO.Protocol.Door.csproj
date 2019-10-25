@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\FCARDIO.Protocol.Door.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -130,6 +131,7 @@
     <Compile Include="FC8800\Data\Transaction\AlarmTransaction.cs" />
     <Compile Include="FC8800\Data\Transaction\ButtonTransaction.cs" />
     <Compile Include="FC8800\Data\Transaction\CardTransaction.cs" />
+    <Compile Include="FC8800\Data\Transaction\ConnectMessageTransaction.cs" />
     <Compile Include="FC8800\Data\Transaction\DoorSensorTransaction.cs" />
     <Compile Include="FC8800\Data\Transaction\SoftwareTransaction.cs" />
     <Compile Include="FC8800\Data\Transaction\SystemTransaction.cs" />
