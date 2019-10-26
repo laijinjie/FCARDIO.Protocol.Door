@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData.ReadFeatureCode
+namespace FCARDIO.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 读取人员照片/记录照片/指纹 返回结果
@@ -39,11 +39,6 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.ReadFeatureCode
         public int FileSize;
 
         /// <summary>
-        /// 起始位置
-        /// </summary>
-        public int StartIndex;
-
-        /// <summary>
         /// 数据
         /// </summary>
         public byte[] Datas;
@@ -68,7 +63,7 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.ReadFeatureCode
         /// 读取ByteBuffer内容
         /// </summary>
         /// <param name="buf"></param>
-        public void SetBytes(IByteBuffer buf)
+        public virtual void SetBytes(IByteBuffer buf)
         {
             Type = buf.ReadByte();
             UserCode = buf.ReadInt();

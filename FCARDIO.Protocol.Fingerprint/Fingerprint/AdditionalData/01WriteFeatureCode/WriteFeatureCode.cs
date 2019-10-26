@@ -3,7 +3,7 @@ using FCARDIO.Protocol.Door.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode
+namespace FCARDIO.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 写入头像照片\指纹\人脸特征码

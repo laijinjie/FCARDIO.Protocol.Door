@@ -68,6 +68,14 @@
       <HintPath>..\DLL\FCARDIO.Protocol.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="FCARDIO.Protocol.Door, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\FCARDIO.Protocol.Door.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\FCARDIO.Protocol.Util.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -210,10 +218,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FCARDIO.Protocol.Door\FCARDIO.Protocol.Door.csproj">
-      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
-      <Name>FCARDIO.Protocol.Door</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FCARDIO.Protocol.Fingerprint\Fingerprint\FCARDIO.Protocol.Fingerprint.csproj">
       <Project>{4639e7f7-83aa-4511-8fa8-369a79226b72}</Project>
       <Name>FCARDIO.Protocol.Fingerprint</Name>

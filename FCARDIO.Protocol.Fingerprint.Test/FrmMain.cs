@@ -979,10 +979,11 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             mCommandClasss.Add(typeof(Person.DeletePerson.DeletePerson).FullName, "删除人员");
             mCommandClasss.Add(typeof(Person.AddPerson.AddPerson).FullName, "添加人员");
 
-            mCommandClasss.Add(typeof(AdditionalData.WriteFeatureCode.WriteFeatureCode).FullName, "写入特征码");
-            mCommandClasss.Add(typeof(AdditionalData.ReadFeatureCode.ReadFeatureCode).FullName, "读取特征码");
-            mCommandClasss.Add(typeof(AdditionalData.PersonDetail.ReadPersonDetail).FullName, "查询人员附加数据详情");
-            mCommandClasss.Add(typeof(AdditionalData.DeleteFeatureCode.DeleteFeatureCode).FullName, "删除特征码");
+            mCommandClasss.Add(typeof(AdditionalData.WriteFeatureCode).FullName, "写入特征码");
+            mCommandClasss.Add(typeof(AdditionalData.ReadFeatureCode).FullName, "读取特征码");
+            mCommandClasss.Add(typeof(AdditionalData.ReadPersonDetail).FullName, "查询人员附加数据详情");
+            mCommandClasss.Add(typeof(AdditionalData.DeleteFeatureCode).FullName, "删除特征码");
+            mCommandClasss.Add(typeof(AdditionalData.ReadFile).FullName, "读文件");
         }
 
 

@@ -3,7 +3,7 @@ using FCARDIO.Protocol.Door.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData.ReadFeatureCode
+namespace FCARDIO.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 读取人员照片/记录照片/指纹
@@ -127,5 +127,17 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData.ReadFeatureCode
                 CommandCompleted();
             }
         }
+
+        /// <summary>
+        /// 释放资源
+        /// </summary>
+        protected override void Release1()
+        {
+            mResult = null;
+            mPar = null;
+            _FileDatas = null;
+
+        }
+
     }
 }

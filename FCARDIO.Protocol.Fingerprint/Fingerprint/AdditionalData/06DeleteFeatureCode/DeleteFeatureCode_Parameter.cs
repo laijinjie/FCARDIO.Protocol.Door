@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData.DeleteFeatureCode
+namespace FCARDIO.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 

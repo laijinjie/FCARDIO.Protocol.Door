@@ -47,6 +47,14 @@
     <Reference Include="FCARDIO.Protocol">
       <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
+    <Reference Include="FCARDIO.Protocol.Door, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\FCARDIO.Protocol.Door.dll</HintPath>
+    </Reference>
+    <Reference Include="FCARDIO.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\FCARDIO.Protocol.Util.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -65,6 +73,9 @@
     <Compile Include="AdditionalData\05ReadFeatureCode\ReadFeatureCode_Result.cs" />
     <Compile Include="AdditionalData\06DeleteFeatureCode\DeleteFeatureCode.cs" />
     <Compile Include="AdditionalData\06DeleteFeatureCode\DeleteFeatureCode_Parameter.cs" />
+    <Compile Include="AdditionalData\07ReadFile\ReadFile.cs" />
+    <Compile Include="AdditionalData\07ReadFile\ReadFile_Parameter.cs" />
+    <Compile Include="AdditionalData\07ReadFile\ReadFile_Result.cs" />
     <Compile Include="Alarm\01SendFireAlarm\WriteSendFireAlarm.cs" />
     <Compile Include="Alarm\02BlacklistAlarm\ReadBlacklistAlarm.cs" />
     <Compile Include="Alarm\02BlacklistAlarm\ReadBlacklistAlarm_Result.cs" />
@@ -228,16 +239,6 @@
     <Compile Include="Transaction\e_TransactionDatabaseType.cs" />
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex.cs" />
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Parameter.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\FCARDIO.Protocol.Door\FCARDIO.Protocol.Door.csproj">
-      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
-      <Name>FCARDIO.Protocol.Door</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\FCARDIO.Protocol.Util\FCARDIO.Protocol.Util.csproj">
-      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
-      <Name>FCARDIO.Protocol.Util</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

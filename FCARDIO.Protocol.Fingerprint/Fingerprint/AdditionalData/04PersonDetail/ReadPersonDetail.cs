@@ -3,7 +3,7 @@ using FCARDIO.Protocol.Door.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData.PersonDetail
+namespace FCARDIO.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 查询人员附加数据详情

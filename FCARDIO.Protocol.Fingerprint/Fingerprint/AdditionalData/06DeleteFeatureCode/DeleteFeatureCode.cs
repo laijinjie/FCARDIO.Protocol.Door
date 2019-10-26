@@ -2,7 +2,7 @@
 using FCARDIO.Protocol.Door.FC8800;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData.DeleteFeatureCode
+namespace FCARDIO.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 删除人员照片/指纹/人脸特征码

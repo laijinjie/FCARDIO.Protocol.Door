@@ -54,6 +54,7 @@
             this.cmbDownloadType = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.chkByBlock = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -234,6 +235,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.chkByBlock);
             this.groupBox2.Controls.Add(this.btnDownload);
             this.groupBox2.Controls.Add(this.btnGetPerson);
             this.groupBox2.Controls.Add(this.cmbDownloadSerialNumber);
@@ -322,6 +324,16 @@
             this.label7.TabIndex = 7;
             this.label7.Text = "类型：";
             // 
+            // chkByBlock
+            // 
+            this.chkByBlock.AutoSize = true;
+            this.chkByBlock.Location = new System.Drawing.Point(404, 61);
+            this.chkByBlock.Name = "chkByBlock";
+            this.chkByBlock.Size = new System.Drawing.Size(84, 16);
+            this.chkByBlock.TabIndex = 12;
+            this.chkByBlock.Text = "分块读文件";
+            this.chkByBlock.UseVisualStyleBackColor = true;
+            // 
             // frmAdditionalData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -373,5 +385,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button butUploadImage;
+        private System.Windows.Forms.CheckBox chkByBlock;
     }
 }

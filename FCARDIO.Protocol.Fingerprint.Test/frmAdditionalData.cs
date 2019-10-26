@@ -1,7 +1,5 @@
-﻿using FCARDIO.Protocol.Fingerprint.AdditionalData.DeleteFeatureCode;
-using FCARDIO.Protocol.Fingerprint.AdditionalData.PersonDetail;
-using FCARDIO.Protocol.Fingerprint.AdditionalData.ReadFeatureCode;
-using FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode;
+﻿using FCARDIO.Core.Command;
+using FCARDIO.Protocol.Fingerprint.AdditionalData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -114,8 +112,20 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                 return;
             }
             int serialNumber = Convert.ToInt32(cmbDownloadSerialNumber.SelectedItem);
-            ReadFeatureCode_Parameter par = new ReadFeatureCode_Parameter(iUsercode, cmbDownloadType.SelectedIndex + 1, serialNumber);
-            ReadFeatureCode cmd = new ReadFeatureCode(cmdDtl, par);
+            INCommand cmd ;
+
+
+            if(chkByBlock.Checked)
+            {
+                ReadFile_Parameter par = new ReadFile_Parameter(iUsercode, cmbDownloadType.SelectedIndex + 1, serialNumber);
+                cmd = new ReadFile(cmdDtl, par);
+
+            }
+            else
+            {
+                ReadFeatureCode_Parameter par = new ReadFeatureCode_Parameter(iUsercode, cmbDownloadType.SelectedIndex + 1, serialNumber);
+                cmd = new ReadFeatureCode(cmdDtl, par);
+            }
 
             mMainForm.AddCommand(cmd);
 
@@ -127,7 +137,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                     mMainForm.AddCmdLog(cmde, "待下载文件不存在");
                     return;
                 }
-                if (result.Result)
+                if (!result.Result)
                 {
                     mMainForm.AddCmdLog(cmde, "文件CRC32校验失败！");
                     return;
@@ -137,7 +147,9 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                     if (result.Type == 1 || result.Type == 3)
                     {
                         cmbUploadType.SelectedIndex = 0;
-                        string sNewFile = System.IO.Path.Combine(Application.StartupPath, "Photo", $"tmpImage_{result.UserCode}.jpg");
+                        string sNewFile = System.IO.Path.Combine(Application.StartupPath, "Photo");
+                        Directory.CreateDirectory(sNewFile);
+                        sNewFile = System.IO.Path.Combine(sNewFile, $"tmpPhoto_{result.UserCode}.jpg");
                         File.WriteAllBytes(sNewFile, result.Datas);
                         pictureBox1.Image = Image.FromStream(new System.IO.MemoryStream(result.Datas));
                     }

@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData.PersonDetail
+namespace FCARDIO.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 查询人员附加数据详情 详情

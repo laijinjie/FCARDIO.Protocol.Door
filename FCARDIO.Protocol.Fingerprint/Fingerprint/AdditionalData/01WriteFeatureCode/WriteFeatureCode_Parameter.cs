@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Protocol.Door.FC8800;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData.WriteFeatureCode
+namespace FCARDIO.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 准备写文件
