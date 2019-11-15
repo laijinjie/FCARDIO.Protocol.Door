@@ -42,11 +42,13 @@ namespace FCARDIO.Protocol.Fingerprint.SystemParameter.Version
         /// <param name="databuf">包含参数结构的缓冲区</param>
         public void SetBytes(IByteBuffer databuf)
         {
-            Version = databuf.ReadString(2, System.Text.Encoding.ASCII);
-            CorrectionNumber = databuf.ReadString(2, System.Text.Encoding.ASCII);
+            Version = databuf.ReadString(4, System.Text.Encoding.ASCII);
+            FingerprintVersion = databuf.ReadString(4, System.Text.Encoding.ASCII);
+            FaceVersion = databuf.ReadString(3, System.Text.Encoding.ASCII);
             //版本号与修正号拼接
-            Version = $"{Version}.{CorrectionNumber}";
-
+            Version = Version.Insert(2,".");
+            FingerprintVersion = FingerprintVersion.Insert(2, ".");
+            FaceVersion = FaceVersion.Insert(1, ".");
             //FingerprintVersion = databuf.ReadString(2, System.Text.Encoding.ASCII) + "." + databuf.ReadString(2, System.Text.Encoding.ASCII);
             //FaceVersion = databuf.ReadString(2, System.Text.Encoding.ASCII) + "." + databuf.ReadString(2, System.Text.Encoding.ASCII);
         }

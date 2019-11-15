@@ -29,6 +29,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <DocumentationFile>bin\Release\FCARDIO.Protocol.Fingerprint.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotNetty.Buffers">

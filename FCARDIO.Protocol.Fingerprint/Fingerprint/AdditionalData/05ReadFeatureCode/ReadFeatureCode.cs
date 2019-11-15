@@ -6,7 +6,7 @@ using System;
 namespace FCARDIO.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
-    /// 读取人员照片/记录照片/指纹
+    /// 读取指纹
     /// </summary>
     public class ReadFeatureCode : FC8800Command_WriteParameter
     {
