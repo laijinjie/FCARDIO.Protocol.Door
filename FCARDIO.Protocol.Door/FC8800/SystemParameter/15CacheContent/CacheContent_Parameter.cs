@@ -25,10 +25,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.CacheContent
         /// <summary>
         /// 使用缓存区内容初始化实例
         /// </summary>
-        /// <param name="_CacheContent">缓存区内容</param>
-        public CacheContent_Parameter(string _CacheContent)
+        /// <param name="sCacheContent">缓存区内容</param>
+        public CacheContent_Parameter(string sCacheContent)
         {
-            CacheContent = _CacheContent;
+            CacheContent = sCacheContent;
             if (!checkedParameter())
             {
                 throw new ArgumentException("CacheContent Error");
@@ -72,7 +72,17 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.CacheContent
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            databuf.WriteString(Utility.StringUtility.FillString(CacheContent, Convert.ToInt32(GetDataLen()), "F", true), System.Text.Encoding.ASCII);
+            var bbuf = System.Text.ASCIIEncoding.ASCII.GetBytes(CacheContent);
+            int iLen = 0x1E;
+            if (bbuf.Length < iLen) iLen = bbuf.Length;
+            databuf.WriteBytes(bbuf, 0, iLen);
+
+            iLen = 0x1e - iLen;
+            for (int i = 0; i < iLen; i++)
+            {
+                databuf.WriteByte(0);
+            }
+
             return databuf;
         }
 
@@ -82,7 +92,25 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.CacheContent
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            CacheContent = databuf.ReadString(GetDataLen(), System.Text.Encoding.ASCII).Replace("F","");
+            int iLen = 0x1E;
+            for (int i = 0; i < 0x1E; i++)
+            {
+                if (databuf.GetByte(i) == 0)
+                {
+                    iLen = i;
+                    break;
+                }
+            }
+
+            if (iLen > 0)
+            {
+                CacheContent = databuf.ReadString(iLen, System.Text.Encoding.ASCII);
+            }
+            else
+            {
+                CacheContent = string.Empty;
+            }
+
         }
     }
 }

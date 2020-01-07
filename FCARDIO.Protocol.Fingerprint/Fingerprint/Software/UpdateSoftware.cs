@@ -1,30 +1,32 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using FCARDIO.Protocol.OnlineAccess;
-using System;
+using FCARDIO.Protocol.FC8800;
+using FCARDIO.Core.Extension;
+using FCARDIO.Core.Command;
+using FCARDIO.Protocol.Door.FC8800;
+using System.Diagnostics;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData
+namespace FCARDIO.Protocol.Fingerprint.Software
 {
     /// <summary>
-    /// 写入头像照片\指纹\人脸特征码
+    /// 固件升级
     /// </summary>
-    public class WriteFeatureCode : FC8800Command_WriteParameter
+    public class UpdateSoftware : FC8800Command_WriteParameter
     {
         /// <summary>
-        /// 写入特征码返回结果
+        /// 上传固件的返回结果
         /// </summary>
-        WriteFeatureCode_Result mResult;
-        WriteFeatureCode_Parameter mPar;
+        UpdateSoftware_Result mResult;
+        UpdateSoftware_Parameter mPar;
 
         /// <summary>
         /// 写索引
         /// </summary>
         private int _WriteIndex = 0;
-
-        /// <summary>
-        /// 文件句柄
-        /// </summary>
-        private int _FileHandle = 0;
 
         /// <summary>
         /// 操作步骤
@@ -37,19 +39,22 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par"></param>
-        public WriteFeatureCode(INCommandDetail cd, WriteFeatureCode_Parameter par) : base(cd, par) { mPar = par; }
+        public UpdateSoftware(INCommandDetail cd, UpdateSoftware_Parameter par) : base(cd, par)
+        {
+            mPar = par;
+        }
 
         /// <summary>
         /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
+            var dataBuf = GetNewCmdDataBuf(4);
+            dataBuf.WriteInt(mPar.GetDataLen());
+            Packet(0x0A, 0x11, 0x00, 4, dataBuf);
+            _Step = 0;
 
-            WriteFeatureCode_Parameter model = _Parameter as WriteFeatureCode_Parameter;
-            var dataBuf = GetNewCmdDataBuf(model.GetDataLen());
-            Packet(0x0B, 0x01, 0x00, 6, model.GetBytes(dataBuf));
-
-            mResult = new WriteFeatureCode_Result();
+            mResult = new UpdateSoftware_Result();
             _Result = mResult;
         }
 
@@ -60,12 +65,12 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            WriteFeatureCode_Parameter model = value as WriteFeatureCode_Parameter;
-            if (model == null)
+            UpdateSoftware_Parameter p = value as UpdateSoftware_Parameter;
+            if (p == null)
             {
                 return false;
             }
-            return model.checkedParameter();
+            return p.checkedParameter();
         }
 
 
@@ -77,17 +82,20 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData
         {
             switch (_Step)
             {
-                case 0:
-                    //返回文件句柄
-                    CheckOpenFileResult(oPck);
+                case 0://准备写固件的返回值
+                    //应答OK
+                    CheckOKResult(oPck);
                     break;
                 case 1:
                     CheckWriteFileResult(oPck);
                     break;
                 case 2://上传完毕
-                    if (CheckResponse(oPck, 0x0B, 3, 0, 1))
+                    if (CheckResponse(oPck, 0x0A, 0x13, 0, 1))
                     {
                         mResult.Success = oPck.CmdData.ReadByte();
+                        Trace.WriteLine($"{DateTime.Now:mm:ss.fff} 升级包完毕，返回值：{mResult.Success}！");
+
+                        
                         CommandCompleted();
                     }
                     break;
@@ -102,36 +110,24 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData
         /// <summary>
         /// 检查打开文件返回值
         /// </summary>
-        private void CheckOpenFileResult(OnlineAccessPacket oPck)
+        private void CheckOKResult(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 4))
+            if (CheckResponse_OK(oPck))
             {
-                var buf = oPck.CmdData;
-                _FileHandle = buf.ReadInt();
-                if (_FileHandle == 0)
-                {
-                    CommandCompleted();
-                }
-                else
-                {
-                    mResult.FileHandle = _FileHandle;
-                    var data = mPar.Datas;
-                    var iPackSize = 1024;
-                    if (iPackSize > data.Length) iPackSize = data.Length;
-                    _ProcessMax = data.Length;
-                    _ProcessStep = 0;
-                    int iBufSize = 7 + iPackSize;
-                    var writeBuf = GetNewCmdDataBuf(iBufSize);
-                    writeBuf.WriteInt(_FileHandle);
-                    _WriteIndex = 0;
-                    writeBuf.WriteMedium(_WriteIndex);
-                    writeBuf.WriteBytes(data, 0, iPackSize);
+                var data = mPar.Datas;
+                var iPackSize = 1024;
+                if (iPackSize > data.Length) iPackSize = data.Length;
+                _ProcessMax = data.Length;
+                _ProcessStep = 0;
+                int iBufSize = 4 + iPackSize;
+                var writeBuf = GetNewCmdDataBuf(iBufSize);
+                _WriteIndex = 0;
+                writeBuf.WriteInt(_WriteIndex);
+                writeBuf.WriteBytes(data, 0, iPackSize);
 
-                    Packet(0x0B, 2, 0, (uint)writeBuf.ReadableBytes, writeBuf);
-                    _Step = 1;
-                    CommandReady();
-
-                }
+                Packet(0x0A, 0x12, 0, (uint)writeBuf.ReadableBytes, writeBuf);
+                _Step = 1;
+                CommandReady();
             }
         }
 
@@ -140,7 +136,7 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData
         /// </summary>
         private void CheckWriteFileResult(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x0B, 2, 0))
+            if (CheckResponse(oPck, 0x0A, 0x12, 0))
             {
                 var data = mPar.Datas;
                 var iPackSize = 1024;
@@ -154,33 +150,30 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData
                 if (iDataLen > iPackSize) iDataLen = iPackSize;
                 if (iDataLen <= 0)
                 {
+                    
                     _ProcessStep = _ProcessMax;
-                    if( CommandDetail.Timeout<2500)
-                    {
-                        CommandDetail.Timeout = 2500;
-                    }
-                    var crc32 = FCARD.Common.Cryptography.CRC32_C.CalculateDigest(data, 0, (uint)data.Length);
+                    var crc32 = mPar.SoftwareCRC32;
 
                     buf.WriteInt((int)crc32);
-                    FCPacket.CmdIndex = 0x03;
+                    FCPacket.CmdIndex = 0x13;
                     FCPacket.DataLen = 4;
                     _Step = 2;
                 }
                 else
                 {
-                    buf.WriteInt(_FileHandle);
-                    buf.WriteMedium(_WriteIndex);
+                    //Trace.WriteLine($"{DateTime.Now:mm:ss.fff} 发送包索引：{_WriteIndex}");
+
+                    buf.WriteInt(_WriteIndex);
                     buf.WriteBytes(data, _WriteIndex, iDataLen);
                     FCPacket.DataLen = buf.ReadableBytes;
                 }
                 CommandReady();
             }
-            else if (CheckResponse(oPck, 0x0B, 2, 2))
+            else if (CheckResponse(oPck, 0x0A, 0x12, 2))
             {
                 mResult.Success = 255;
                 CommandCompleted();
             }
         }
-
     }
 }

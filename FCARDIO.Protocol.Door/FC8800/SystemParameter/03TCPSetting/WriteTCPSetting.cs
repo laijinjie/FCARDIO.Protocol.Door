@@ -49,6 +49,12 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
             var buf = acl.Buffer(model.GetDataLen());
 
             Packet(0x01, 0x06, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            var par = _Parameter as WriteTCPSetting_Parameter;
+
+            if (par.UDPBroadcast)
+            {
+                FCPacket.SetUDPBroadcastPacket();
+            }
         }
     }
 }

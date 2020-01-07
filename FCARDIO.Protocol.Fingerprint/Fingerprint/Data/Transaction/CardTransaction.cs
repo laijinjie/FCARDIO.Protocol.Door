@@ -6,16 +6,23 @@ namespace FCARDIO.Protocol.Fingerprint.Data.Transaction
 {
     public class CardTransaction : AbstractTransaction
     {
-        public uint Number { get; private set; }
+        /// <summary>
+        /// 记录唯一序号
+        /// </summary>
+        public uint RecordSerialNumber { get; private set; }
+        /// <summary>
+        /// 用户号
+        /// </summary>
         public uint UserCode { get; private set; }
-
+        /// <summary>
+        /// 是否包含照片
+        /// </summary>
         public byte Photo { get; private set; }
 
         /// <summary>
-        /// 读卡器号
-        /// 1--表示主机；2--表示子机
+        /// 出入类型：1--表示进门；2--表示出门
         /// </summary>
-        public byte Reader { get; private set; }
+        public byte Accesstype { get; private set; }
 
         /// <summary>
         /// 初始化参数
@@ -40,14 +47,13 @@ namespace FCARDIO.Protocol.Fingerprint.Data.Transaction
         /// <param name="dtBuf"></param>
         public override void SetBytes(IByteBuffer dtBuf)
         {
-            Number = dtBuf.ReadUnsignedInt();
+            RecordSerialNumber = dtBuf.ReadUnsignedInt();
             UserCode = dtBuf.ReadUnsignedInt();
             byte[] time = new byte[6];
-            
             dtBuf.ReadBytes(time, 0, 6);
             _TransactionDate = TimeUtil.BCDTimeToDate_ssmmhhddMMyy(time);
             _TransactionDate = _TransactionDate.AddMonths(1);
-            Reader = dtBuf.ReadByte();
+            Accesstype = dtBuf.ReadByte();
             _TransactionCode = dtBuf.ReadByte();
             Photo = dtBuf.ReadByte();
         }

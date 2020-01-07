@@ -1,35 +1,39 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Core.Extension;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.IP
+namespace FCARDIO.Protocol.Fingerprint.Software
 {
-    public class WriteIP_Parameter : AbstractParameter
+    /// <summary>
+    /// 上传固件的参数
+    /// </summary>
+    public class UpdateSoftware_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 保存通讯密码的数组
+        /// 固件文件
         /// </summary>
-        public string Password;
+        public byte[] Datas;
 
         /// <summary>
-        /// 构建一个空的实例
+        /// 固件解密后的CRC32
         /// </summary>
-        public WriteIP_Parameter() { }
+        public uint SoftwareCRC32;
+
 
         /// <summary>
-        /// 使用通讯密码初始化实例
+        /// 初始化参数
         /// </summary>
-        /// <param name="_PWD">通讯密码：十六进制字符串</param>
-        public WriteIP_Parameter(string _PWD)
+        /// <param name="datas">固件文件</param>
+        public UpdateSoftware_Parameter( byte[] datas,uint crc)
         {
-            Password = _PWD;
 
+            Datas = datas;
+            SoftwareCRC32 = crc;
         }
-        /// <summary>
-        /// 使用字节数组初始化实例
-        /// </summary>
-        /// <param name="_PWD">表示通讯密码的字节数组</param>
-        public WriteIP_Parameter(byte[] _PWD) : this(_PWD.ToHex()) { }
 
         /// <summary>
         /// 检查参数
@@ -37,7 +41,11 @@ namespace FCARDIO.Protocol.Fingerprint.SystemParameter.IP
         /// <returns></returns>
         public override bool checkedParameter()
         {
-           
+            if (Datas == null || Datas.Length == 0 )
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -47,7 +55,7 @@ namespace FCARDIO.Protocol.Fingerprint.SystemParameter.IP
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 4;
+            return Datas.Length;
         }
 
 
@@ -66,10 +74,8 @@ namespace FCARDIO.Protocol.Fingerprint.SystemParameter.IP
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-           
             return databuf;
         }
-
 
 
         /// <summary>
@@ -78,6 +84,7 @@ namespace FCARDIO.Protocol.Fingerprint.SystemParameter.IP
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
+
         }
     }
 }

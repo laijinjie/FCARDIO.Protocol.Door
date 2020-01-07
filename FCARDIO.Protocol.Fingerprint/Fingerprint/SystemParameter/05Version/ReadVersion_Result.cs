@@ -12,10 +12,6 @@ namespace FCARDIO.Protocol.Fingerprint.SystemParameter.Version
         /// 版本号
         /// </summary>
         public string Version;
-        /// <summary>
-        /// 修正号
-        /// </summary>
-        public string CorrectionNumber;
 
         /// <summary>
         /// 指纹版本号
@@ -32,7 +28,6 @@ namespace FCARDIO.Protocol.Fingerprint.SystemParameter.Version
         public void Dispose()
         {
             Version = null;
-            CorrectionNumber = null;
             return;
         }
 

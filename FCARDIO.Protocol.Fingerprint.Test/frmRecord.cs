@@ -360,7 +360,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             else if (tr.TransactionType == 1)//读卡记录
             {
                 Data.Transaction.CardTransaction cardTrans = tr as Data.Transaction.CardTransaction;
-                sLogs.Append("用户号：").Append(cardTrans.UserCode).Append("，读卡器号：").Append(cardTrans.Reader).Append("，照片：").AppendLine(cardTrans.Photo == 1 ? "" : "");
+                sLogs.Append("用户号：").Append(cardTrans.UserCode).Append("，读卡器号：").Append(cardTrans.Accesstype).Append("，照片：").AppendLine(cardTrans.Photo == 1 ? "" : "");
             }
             else
             {

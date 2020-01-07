@@ -18,6 +18,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
         public TCPDetail TCP;
 
         /// <summary>
+        /// 命令是否用UDP广播发送？
+        /// </summary>
+        public bool UDPBroadcast;
+
+        /// <summary>
         /// 提供给 ReadTCPSetting_Result 使用
         /// </summary>
         public WriteTCPSetting_Parameter()
@@ -55,8 +60,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
                 string.IsNullOrEmpty(TCP.mIPGateway) ||
                 string.IsNullOrEmpty(TCP.mDNS) ||
                 string.IsNullOrEmpty(TCP.mDNSBackup) ||
-                string.IsNullOrEmpty(TCP.mServerIP) || 
-                string.IsNullOrEmpty(TCP.mServerAddr))
+                string.IsNullOrEmpty(TCP.mServerIP)  )
             {
                 return false;
             }

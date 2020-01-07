@@ -26,6 +26,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         public string SN { get; set; }
 
         /// <summary>
+        /// SN的字节数组
+        /// </summary>
+        public byte[] SNByte { get; set; }
+
+        /// <summary>
         /// TCP
         /// </summary>
         public TCPSetting.TCPDetail TCP => _TCP;
@@ -64,6 +69,32 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         public override int GetDataLen()
         {
             return 0x89;
+        }
+
+        /// <summary>
+        /// SN 是否为可见字符
+        /// </summary>
+        /// <returns></returns>
+        public bool SNIsAsciiString()
+        {
+            if (SNByte == null) return false;
+            bool SNIsAscII = true;
+            foreach (var b in SNByte)
+            {
+
+                if (!(
+                    (b >= 0x41 && b <= 0x5A) || //A-Z
+                    (b >= 0x30 && b <= 0x39) || //0-9
+                    b == 0x2D//-
+                    )
+                    )
+                {
+                    SNIsAscII = false;
+                    break;
+                }
+            }
+            return SNIsAscII;
+
         }
 
         /// <summary>

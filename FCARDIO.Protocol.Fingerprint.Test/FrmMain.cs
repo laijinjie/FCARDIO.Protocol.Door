@@ -118,7 +118,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             mAllocator.ClientOffline += MAllocator_ClientOffline;
 
             mObserver.DisposeRequestEvent += MObserver_DisposeRequestEvent;
-            mObserver.DisposeResponseEvent += MObserver_DisposeResponseEvent; ;
+            mObserver.DisposeResponseEvent += MObserver_DisposeResponseEvent; 
 
             IniConnTypeList();
             IniLstIO();
@@ -168,7 +168,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             {
                 case ConnectorType.UDPClient://UDP客户端已连接
 
-                    inc.OpenForciblyConnect();
+                    //inc.OpenForciblyConnect();
                     FC8800RequestHandle fC8800Request =
                         new FC8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
                     inc.RemoveRequestHandle(typeof(FC8800RequestHandle));//先删除，防止已存在就无法添加。
@@ -610,7 +610,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
 
 
         #region 通讯日志
-        private bool mShowIOEvent = true;
+        private bool mShowIOEvent = false;
         private void chkShowIO_CheckedChanged(object sender, EventArgs e)
         {
             mShowIOEvent = chkShowIO.Checked;
@@ -892,9 +892,9 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             mCommandClasss.Add(typeof(SystemParameter.Watch.CloseWatch).FullName, "关闭数据监控");
             mCommandClasss.Add(typeof(SystemParameter.Watch.ReadWatchState).FullName, "读取实时监控状态");
             mCommandClasss.Add(typeof(SystemParameter.SystemStatus.ReadSystemStatus).FullName, "读取设备状态信息");
-            mCommandClasss.Add(typeof(SystemParameter.Initialize.Initialize).FullName, "初始化设备");
-            mCommandClasss.Add(typeof(SystemParameter.SearchControltor.SearchControltor).FullName, "搜索控制器");
-            mCommandClasss.Add(typeof(SystemParameter.SearchControltor.WriteControltorNetCode).FullName, "根据SN设置网络标识");
+            mCommandClasss.Add(typeof(FCARDIO.Protocol.Door.FC8800.SystemParameter.Controller.FormatController).FullName, "初始化设备");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.SearchControltor.SearchControltor).FullName, "搜索控制器");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.SearchControltor.WriteControltorNetCode).FullName, "根据SN设置网络标识");
             mCommandClasss.Add(typeof(SystemParameter.DataEncryptionSwitch.ReadDataEncryptionSwitch).FullName, "读取数据包加密开关");
             mCommandClasss.Add(typeof(SystemParameter.DataEncryptionSwitch.WriteDataEncryptionSwitch).FullName, "设置数据包加密开关");
             mCommandClasss.Add(typeof(SystemParameter.LocalIdentity.ReadLocalIdentity).FullName, "读取本机身份");
@@ -949,7 +949,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             mCommandClasss.Add(typeof(Alarm.GateMagneticAlarm.WriteGateMagneticAlarm).FullName, "设置门磁报警参数");
             mCommandClasss.Add(typeof(Alarm.LegalVerificationCloseAlarm.ReadLegalVerificationCloseAlarm).FullName, "读取合法验证解除报警开关");
             mCommandClasss.Add(typeof(Alarm.LegalVerificationCloseAlarm.WriteLegalVerificationCloseAlarm).FullName, "设置合法验证解除报警开关");
-            mCommandClasss.Add(typeof(Alarm.CloseAlarm.WriteCloseAlarm).FullName, "解除报警");
+            mCommandClasss.Add(typeof(Alarm.CloseAlarm).FullName, "解除报警");
 
             mCommandClasss.Add(typeof(Door.ReaderOption.ReadReaderOption).FullName, "读取读卡器字节数");
             mCommandClasss.Add(typeof(Door.ReaderOption.WriteReaderOption).FullName, "设置读卡器字节数");
@@ -984,6 +984,10 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             mCommandClasss.Add(typeof(AdditionalData.ReadPersonDetail).FullName, "查询人员附加数据详情");
             mCommandClasss.Add(typeof(AdditionalData.DeleteFeatureCode).FullName, "删除特征码");
             mCommandClasss.Add(typeof(AdditionalData.ReadFile).FullName, "读文件");
+
+
+            mCommandClasss.Add(typeof(Software.UpdateSoftware).FullName, "上传固件");
+            mCommandClasss.Add(typeof(Software.UpdateSoftware_FP).FullName, "上传固件");
         }
 
 
@@ -1344,7 +1348,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                 if (fcTrn.CmdIndex == 1)
                 {
                     Data.Transaction.CardTransaction cardtrn = evn as Data.Transaction.CardTransaction;
-                    strbuf.Append("；用户号：").Append(cardtrn.UserCode.ToString()).Append("；读卡器号：").Append(cardtrn.Reader.ToString());
+                    strbuf.Append("；用户号：").Append(cardtrn.UserCode.ToString()).Append("；出/入：").Append(cardtrn.Accesstype.ToString());
                     strbuf.Append("，照片：").AppendLine(cardtrn.Photo == 1 ? "有" : "无");
                 }
                 if (fcTrn.CmdIndex == 2)

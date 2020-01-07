@@ -9,7 +9,7 @@ using FCARDIO.Protocol.Fingerprint.SystemParameter.Version;
 using FCARDIO.Protocol.Fingerprint.SystemParameter.SystemStatus;
 using FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter;
 using FCARDIO.Protocol.Fingerprint.SystemParameter.Watch;
-using FCARDIO.Protocol.Fingerprint.Alarm.CloseAlarm;
+using FCARDIO.Protocol.Fingerprint.Alarm;
 using System.Drawing;
 using FCARDIO.Protocol.Door.FC8800.SystemParameter.CacheContent;
 using FCARDIO.Protocol.Door.FC8800.SystemParameter.KeepAliveInterval;

@@ -3,7 +3,7 @@ using FCARDIO.Protocol.Door.FC8800.Utility;
 using FCARDIO.Protocol.Fingerprint.Alarm.AlarmPassword;
 using FCARDIO.Protocol.Fingerprint.Alarm.AntiDisassemblyAlarm;
 using FCARDIO.Protocol.Fingerprint.Alarm.BlacklistAlarm;
-using FCARDIO.Protocol.Fingerprint.Alarm.CloseAlarm;
+using FCARDIO.Protocol.Fingerprint.Alarm;
 using FCARDIO.Protocol.Fingerprint.Alarm.GateMagneticAlarm;
 using FCARDIO.Protocol.Fingerprint.Alarm.IllegalVerificationAlarm;
 using FCARDIO.Protocol.Fingerprint.Alarm.LegalVerificationCloseAlarm;
@@ -384,8 +384,8 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             list[5] = Convert.ToByte(checkBox6.Checked ? 1 : 0);
             list[6] = Convert.ToByte(checkBox7.Checked ? 1 : 0);
 
-            WriteCloseAlarm_Parameter par = new WriteCloseAlarm_Parameter(list);
-            WriteCloseAlarm write = new WriteCloseAlarm(cmdDtl, par);
+            CloseAlarm_Parameter par = new CloseAlarm_Parameter(list);
+            CloseAlarm write = new CloseAlarm(cmdDtl, par);
             mMainForm.AddCommand(write);
         }
 

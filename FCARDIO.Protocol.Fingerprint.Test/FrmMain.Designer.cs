@@ -470,8 +470,6 @@
             // chkShowIO
             // 
             this.chkShowIO.AutoSize = true;
-            this.chkShowIO.Checked = true;
-            this.chkShowIO.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkShowIO.Location = new System.Drawing.Point(87, 7);
             this.chkShowIO.Name = "chkShowIO";
             this.chkShowIO.Size = new System.Drawing.Size(84, 16);

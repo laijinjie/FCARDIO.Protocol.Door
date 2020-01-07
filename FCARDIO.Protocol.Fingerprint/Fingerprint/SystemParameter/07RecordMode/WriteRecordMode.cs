@@ -38,7 +38,7 @@ namespace FCARDIO.Protocol.Fingerprint.SystemParameter.RecordMode
         protected override void CreatePacket0()
         {
             WriteRecordMode_Parameter model = _Parameter as WriteRecordMode_Parameter;
-            Packet(0x01, 0x0A, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
+            Packet(0x01, 0x0A, 0x01, (uint)model.GetDataLen(), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
     }
 }

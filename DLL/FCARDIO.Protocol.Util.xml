@@ -25,6 +25,14 @@
             <param name="buf"></param>
             <returns></returns>
         </member>
+        <member name="M:FCARDIO.Protocol.Util.ByteUtil.ByteBufReadInt24(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            从Bytebuf中读取一个int24
+            
+            </summary>
+            <param name="buffer"></param>
+            <returns></returns>
+        </member>
         <member name="T:FCARDIO.Protocol.Util.StringUtil">
             <summary>
             字符串实用工具
@@ -131,6 +139,25 @@
             <param name="fill_right">填充在结尾还是开头？ True 表示填充在结尾。</param>
             <returns></returns>
         </member>
+        <member name="M:FCARDIO.Protocol.Util.StringUtil.WriteString(DotNetty.Buffers.IByteBuffer,System.String,System.Int32,System.Text.Encoding)">
+            <summary>
+            使用特定的编码写入字符串，超过指定长度会截取，不足长度会补0
+            </summary>
+            <param name="databuf"></param>
+            <param name="sValue"></param>
+            <param name="iLen"></param>
+            <param name="uc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FCARDIO.Protocol.Util.StringUtil.GetString(DotNetty.Buffers.IByteBuffer,System.Int32,System.Text.Encoding)">
+            <summary>
+            用特定编码从buf读取字符串
+            </summary>
+            <param name="databuf"></param>
+            <param name="iLen"></param>
+            <param name="uc"></param>
+            <returns></returns>
+        </member>
         <member name="M:FCARDIO.Protocol.Util.TimeUtil.BCDTimeToDate_yyMMdd(DotNetty.Buffers.IByteBuffer)">
             <summary>
             从buf读取3个字节转换成日期
@@ -172,6 +199,13 @@
             <param name="buf"></param>
             <returns></returns>
         </member>
+        <member name="M:FCARDIO.Protocol.Util.TimeUtil.BCDTimeToDate_yyMMddhhmmssByDex(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            从一个ByteBuf中读取6个BCD字节，并转换为日期格式；  yyMMddhhmmss
+            </summary>
+            <param name="buf"></param>
+            <returns></returns>
+        </member>
         <member name="M:FCARDIO.Protocol.Util.TimeUtil.BCDTimeToDate_yyyyMMddhhmmss(DotNetty.Buffers.IByteBuffer)">
             <summary>
             从一个ByteBuf中读取7个BCD字节，并转换为日期格式；  yyyyMMddhhmmss
@@ -205,7 +239,7 @@
              @param date 需要格式化的时间
              @return 时间字符串
         </member>
-        <member name="M:FCARDIO.Protocol.Util.TimeUtil.BCDTimeToDate_ssmmHHddMMWWyy(System.Byte[])">
+        <member name="M:FCARDIO.Protocol.Util.TimeUtil.BCDTimeToDate_ssmmHHddMMWWyy(DotNetty.Buffers.IByteBuffer)">
             <summary>
             BCD格式日期字节数组转换为日期类型
             </summary>

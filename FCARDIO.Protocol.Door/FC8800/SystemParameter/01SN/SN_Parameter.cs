@@ -22,6 +22,12 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SN
         public byte[] SNBuf;
 
         /// <summary>
+        /// 命令是否用UDP广播发送？
+        /// </summary>
+        public bool UDPBroadcast;
+
+
+        /// <summary>
         /// 使用默认构造函数初始化类
         /// </summary>
         public SN_Parameter() { }

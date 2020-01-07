@@ -18,6 +18,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         public ushort NetNum;
 
         /// <summary>
+        /// 命令是否用UDP广播发送？
+        /// </summary>
+        public bool UDPBroadcast;
+
+        /// <summary>
         /// 构建一个空的实例
         /// </summary>
         public SearchControltor_Parameter() { }

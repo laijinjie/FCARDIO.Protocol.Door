@@ -27,8 +27,13 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
         /// </summary>
         protected override void CreatePacket0()
         {
-            
+
             Packet(0x01, 0xFE, 0, 2, GetParameter());
+            var par = _Parameter as SearchControltor_Parameter;
+            if(par.UDPBroadcast)
+            {
+                FCPacket.SetUDPBroadcastPacket();
+            }
         }
 
         /// <summary>
@@ -56,9 +61,22 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor
                 var buf = oPck.CmdData;
                 SearchControltor_Result rst = new SearchControltor_Result();
                 rst.SetBytes(buf);
-                rst.SN = oPck.SN.GetString();
+
+                rst.SNByte = oPck.SN;
+
+                bool SNIsAscII = rst.SNIsAsciiString();
+                
+                if (SNIsAscII)
+                {
+                    rst.SN = oPck.SN.GetString();
+                }
+                else
+                {
+                    rst.SN = string.Empty;
+                }
                 _Result = rst;
-                _Connector.fireCommandCompleteEventNotRemoveCommand(_EventArgs);            }
+                _Connector.fireCommandCompleteEventNotRemoveCommand(_EventArgs);
+            }
         }
     }
 }

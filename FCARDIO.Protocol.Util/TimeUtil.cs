@@ -44,7 +44,7 @@ namespace FCARDIO.Protocol.Util
                 return DateTime.Now;
             }
 
-            DateTime dTime = new DateTime(2000 + year, month - 1, dayOfMonth, hourOfDay, minute, second);
+            DateTime dTime = new DateTime(2000 + year, month , dayOfMonth, hourOfDay, minute, second);
             return dTime;
         }
 

@@ -2,12 +2,12 @@
 using FCARDIO.Protocol.Door.FC8800;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.CloseAlarm
+namespace FCARDIO.Protocol.Fingerprint.Alarm
 {
     /// <summary>
     /// 解除报警 参数
     /// </summary>
-    public class WriteCloseAlarm_Parameter : AbstractParameter
+    public class CloseAlarm_Parameter : AbstractParameter
     {
         /// <summary>
         /// 报警类型
@@ -24,7 +24,7 @@ namespace FCARDIO.Protocol.Fingerprint.Alarm.CloseAlarm
         /// 初始化参数
         /// </summary>
         /// <param name="bitList">读卡类型</param>
-        public WriteCloseAlarm_Parameter(byte[] bitList)
+        public CloseAlarm_Parameter(byte[] bitList)
         {
             BitList = bitList;
         }

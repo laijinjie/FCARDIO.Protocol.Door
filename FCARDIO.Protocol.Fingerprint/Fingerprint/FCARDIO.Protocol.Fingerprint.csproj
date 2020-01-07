@@ -43,20 +43,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\FCARD.Common.dll</HintPath>
     </Reference>
-    <Reference Include="FCARDIO.Core">
-      <HintPath>..\..\DLL\FCARDIO.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol">
-      <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol.Door, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\FCARDIO.Protocol.Door.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\FCARDIO.Protocol.Util.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -107,8 +93,11 @@
     <Compile Include="Alarm\08LegalVerificationCloseAlarm\ReadLegalVerificationCloseAlarm_Result.cs" />
     <Compile Include="Alarm\08LegalVerificationCloseAlarm\WriteLegalVerificationCloseAlarm.cs" />
     <Compile Include="Alarm\08LegalVerificationCloseAlarm\WriteLegalVerificationCloseAlarm_Parameter.cs" />
-    <Compile Include="Alarm\09CloseAlarm\WriteCloseAlarm.cs" />
-    <Compile Include="Alarm\09CloseAlarm\WriteCloseAlarm_Parameter.cs" />
+    <Compile Include="Alarm\09CloseAlarm\CloseAlarm.cs" />
+    <Compile Include="Alarm\09CloseAlarm\CloseAlarm_Parameter.cs" />
+    <Compile Include="AutoTest\AutoTestCommand.cs" />
+    <Compile Include="AutoTest\AutoTestCommand_Parameter.cs" />
+    <Compile Include="AutoTest\AutoTestCommand_Result.cs" />
     <Compile Include="Data\Person.cs" />
     <Compile Include="Data\TransactionDatabaseDetail.cs" />
     <Compile Include="Data\Transaction\CardTransaction.cs" />
@@ -172,11 +161,10 @@
     <Compile Include="Person\06DeletePerson\DeletePerson_Parameter.cs" />
     <Compile Include="Person\WritePersonBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemParameter\03IP\IPDetail.cs" />
-    <Compile Include="SystemParameter\03IP\ReadIP.cs" />
-    <Compile Include="SystemParameter\03IP\ReadIP_Result.cs" />
-    <Compile Include="SystemParameter\03IP\WriteIP.cs" />
-    <Compile Include="SystemParameter\03IP\WriteIP_Parameter.cs" />
+    <Compile Include="Software\UpdateSoftware.cs" />
+    <Compile Include="Software\UpdateSoftware_FP.cs" />
+    <Compile Include="Software\UpdateSoftware_Parameter.cs" />
+    <Compile Include="Software\UpdateSoftware_Result.cs" />
     <Compile Include="SystemParameter\05Version\ReadVersion.cs" />
     <Compile Include="SystemParameter\05Version\ReadVersion_Result.cs" />
     <Compile Include="SystemParameter\06SystemRunStatus\ReadSystemRunStatus.cs" />
@@ -192,11 +180,6 @@
     <Compile Include="SystemParameter\08Watch\ReadWatchState.cs" />
     <Compile Include="SystemParameter\09SystemStatus\ReadSystemStatus.cs" />
     <Compile Include="SystemParameter\09SystemStatus\ReadSystemStatus_Result.cs" />
-    <Compile Include="SystemParameter\10Initialize\Initialize.cs" />
-    <Compile Include="SystemParameter\11SearchControltor\SearchControltor.cs" />
-    <Compile Include="SystemParameter\11SearchControltor\SearchControltor_Parameter.cs" />
-    <Compile Include="SystemParameter\11SearchControltor\SearchControltor_Result.cs" />
-    <Compile Include="SystemParameter\11SearchControltor\WriteControltorNetCode.cs" />
     <Compile Include="SystemParameter\14DataEncryptionSwitch\ReadDataEncryptionSwitch.cs" />
     <Compile Include="SystemParameter\14DataEncryptionSwitch\ReadDataEncryptionSwitch_Result.cs" />
     <Compile Include="SystemParameter\14DataEncryptionSwitch\WriteDataEncryptionSwitch.cs" />
@@ -241,6 +224,24 @@
     <Compile Include="Transaction\e_TransactionDatabaseType.cs" />
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex.cs" />
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Parameter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\DoNet版通讯动态库V2\FCARDIO.Core\FCARDIO.Core\FCARDIO.Core.vbproj">
+      <Project>{a149c4d3-2209-408f-a0de-d9eb8e0fa492}</Project>
+      <Name>FCARDIO.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\DoNet版通讯动态库V2\FCARDIO.Protocol\FCARDIO.Protocol\FCARDIO.Protocol.vbproj">
+      <Project>{4c9b06e5-da6b-49af-8e4d-a0d75046c044}</Project>
+      <Name>FCARDIO.Protocol</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FCARDIO.Protocol.Door\FCARDIO.Protocol.Door.csproj">
+      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
+      <Name>FCARDIO.Protocol.Door</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FCARDIO.Protocol.Util\FCARDIO.Protocol.Util.csproj">
+      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
+      <Name>FCARDIO.Protocol.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

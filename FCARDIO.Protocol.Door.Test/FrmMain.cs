@@ -135,7 +135,7 @@ namespace FCARDIO.Protocol.Door.Test
             IniConnTypeList();
             IniLstIO();
             InilstCommand();
-            
+
             Task.Run((Action)ShowCommandProcesslog);
         }
 
@@ -544,11 +544,25 @@ namespace FCARDIO.Protocol.Door.Test
         }
 
 
+        public INCommandDetail GetCommandDetail()
+        {
+            switch (cmdConnType.SelectedIndex)
+            {
+                case 1://TCP 客户端方式通讯
+                    return GetCommandDetail(txtTCPClientAddr.Text);
+                case 2://UDP 
+                    return GetCommandDetail(txtUDPAddr.Text);
+                default:
+                    return GetCommandDetail(string.Empty);
+            }
+
+        }
+
         /// <summary>
         /// 获取一个命令详情，已经装配好通讯目标的所有信息
         /// </summary>
         /// <returns>命令详情</returns>
-        public INCommandDetail GetCommandDetail()
+        public INCommandDetail GetCommandDetail(string IPAddr)
         {
             if (_IsClosed) return null;
             CommandDetailFactory.ConnectType connectType = CommandDetailFactory.ConnectType.TCPClient;
@@ -569,7 +583,7 @@ namespace FCARDIO.Protocol.Door.Test
                     break;
                 case 1://TCP 客户端方式通讯
                     connectType = CommandDetailFactory.ConnectType.TCPClient;
-                    addr = txtTCPClientAddr.Text;
+                    addr = IPAddr;// txtTCPClientAddr.Text;
                     if (!int.TryParse(txtTCPClientPort.Text, out port))
                     {
                         port = 8000;
@@ -582,7 +596,7 @@ namespace FCARDIO.Protocol.Door.Test
                         return null;
                     }
                     connectType = CommandDetailFactory.ConnectType.UDPClient;
-                    addr = txtUDPAddr.Text;
+                    addr = IPAddr;// txtUDPAddr.Text;
                     if (!int.TryParse(txtUDPPort.Text, out port))
                     {
                         port = 8000;
@@ -1737,7 +1751,7 @@ namespace FCARDIO.Protocol.Door.Test
             strbuf.Append("；事件代码：").Append(evn.TransactionCode);
             if (evn.TransactionType < 7)//1-6
             {
-                string[] codeNameList =frmRecord.mTransactionCodeNameList[evn.TransactionType];
+                string[] codeNameList = frmRecord.mTransactionCodeNameList[evn.TransactionType];
                 strbuf.Append("(").Append(codeNameList[evn.TransactionCode]).Append(")");
             }
 
@@ -1745,9 +1759,9 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 FC8800.Data.CardTransaction cardtrn = evn as FC8800.Data.CardTransaction;
                 strbuf.Append("；卡号：").Append(cardtrn.CardData).Append("；门号：").Append(cardtrn.DoorNum().ToString());
-                strbuf.Append(cardtrn.IsEnter()?"(进门)":"(出门)");
+                strbuf.Append(cardtrn.IsEnter() ? "(进门)" : "(出门)");
             }
-            if(fcTrn.CmdIndex>1 && fcTrn.CmdIndex<6)
+            if (fcTrn.CmdIndex > 1 && fcTrn.CmdIndex < 6)
             {
                 FC8800.Data.AbstractDoorTransaction cardtrn = evn as FC8800.Data.AbstractDoorTransaction;
                 strbuf.Append("；门号：").Append(cardtrn.Door);
@@ -1757,5 +1771,34 @@ namespace FCARDIO.Protocol.Door.Test
 
 
         #endregion
+
+        private void ButSearch_Click(object sender, EventArgs e)
+        {
+
+            var cmdDtl = GetCommandDetail();
+            if (cmdDtl == null) return;
+
+           
+
+
+            var par = new FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor.SearchControltor_Parameter((ushort)FCARDIO.Protocol.Door.FC8800.Utility.StringUtility.GetRandomNum( 1,  65535));
+
+            if (cmdConnType.SelectedIndex == 2 && chkUDPBroadcast.Checked)//UDP 
+            {
+                cmdDtl = GetCommandDetail("255.255.255.255");
+                par.UDPBroadcast = true;
+            }
+
+            var cmd = new FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor.SearchControltor(cmdDtl, par);
+            cmdDtl.Timeout = 10000;
+            cmdDtl.RestartCount = 0;
+            AddCommand(cmd);
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Result as FC8800.SystemParameter.SearchControltor.SearchControltor_Result;
+                AddCmdLog(cmde, $"已搜索到设备,SN={result.SN},IP:{result.TCP.mIP}:{result.TCP.mTCPPort}");
+            };
+        }
     }
 }

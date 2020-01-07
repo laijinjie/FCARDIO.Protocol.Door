@@ -31,6 +31,12 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SN
         protected override void CreatePacket0()
         {
             Packet(0xC1, 0xD1, 0xF7, 0x18, GetCmdData());
+            var par = _Parameter as SN_Parameter;
+
+            if (par.UDPBroadcast)
+            {
+                FCPacket.SetUDPBroadcastPacket();
+            }
         }
     }
 }

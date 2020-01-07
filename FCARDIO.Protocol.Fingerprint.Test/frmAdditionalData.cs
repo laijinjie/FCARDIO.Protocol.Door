@@ -1,4 +1,6 @@
 ﻿using FCARDIO.Core.Command;
+using FCARD.Common.Extensions;
+using FCARD.Common;
 using FCARDIO.Protocol.Fingerprint.AdditionalData;
 using System;
 using System.Collections.Generic;
@@ -50,7 +52,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         string[] mUploadTypeList = new string[] { "人员头像照片", "指纹特征码", "红外人脸特征码", "动态人脸特征码" };
         string[] mDownloadTypeList = new string[] { "人员头像", "指纹特征码", "记录照片", "红外人脸特征码", "动态人脸特征码" };
         /// <summary>
-        /// 
+        /// 初始化控件
         /// </summary>
         private void InitControl()
         {
@@ -62,6 +64,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             cmbDownloadType.Items.AddRange(mDownloadTypeList);
             cmbDownloadType.SelectedIndex = 0;
 
+            IniEquptType();
         }
 
         private void BtnGetPerson_Click(object sender, EventArgs e)
@@ -112,10 +115,10 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                 return;
             }
             int serialNumber = Convert.ToInt32(cmbDownloadSerialNumber.SelectedItem);
-            INCommand cmd ;
+            INCommand cmd;
 
 
-            if(chkByBlock.Checked)
+            if (chkByBlock.Checked)
             {
                 ReadFile_Parameter par = new ReadFile_Parameter(iUsercode, cmbDownloadType.SelectedIndex + 1, serialNumber);
                 cmd = new ReadFile(cmdDtl, par);
@@ -284,6 +287,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             WriteFeatureCode cmd = new WriteFeatureCode(cmdDtl, par);
 
             mMainForm.AddCommand(cmd);
+
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmde.Command.getResult() as WriteFeatureCode_Result;
@@ -314,7 +318,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         /// <summary>
         /// 文件最大尺寸
         /// </summary>
-        private const int ImageSizeMax = 50 * 1024;
+        private const int ImageSizeMax = 100 * 1024;
         /// <summary>
         /// 进行图片转换，图片像素不能超过 480*640，大小尺寸不能超过50K
         /// </summary>
@@ -324,14 +328,14 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         {
             Image img = Image.FromStream(new System.IO.MemoryStream(bImage));
             float rate = 1;
-            if (img.Width > 480 || img.Height > 640 || bImage.Length > ImageSizeMax)
+            if ((img.Width != 480 && img.Height != 640) || bImage.Length > ImageSizeMax)
             {
                 float rate1, rate2;
 
                 rate1 = (float)480 / (float)img.Width;
                 rate2 = (float)640 / (float)img.Height;
                 rate = rate1 > rate2 ? rate2 : rate1;
-                if (rate > 1) rate = 1;
+                //if (rate > 1) rate = 1;
 
             }
             int iWidth = img.Width, iHeight = img.Height;
@@ -347,7 +351,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
 
 
 
-            using (Bitmap bimg = new Bitmap(iWidth, iHeight, PixelFormat.Format32bppArgb))
+            using (Bitmap bimg = new Bitmap(480, 640, PixelFormat.Format32bppArgb))
             {
                 using (Graphics graphics = Graphics.FromImage(bimg))
                 {
@@ -355,14 +359,14 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                     graphics.CompositingQuality = CompositingQuality.HighQuality;
                     graphics.SmoothingMode = SmoothingMode.HighQuality;
                     graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-                    graphics.DrawImage(img, new Rectangle(0, 0, iWidth, iHeight));
+                    graphics.Clear(Color.White);
+                    graphics.DrawImage(img, new Rectangle((480 - iWidth) / 2, (640 - iHeight) / 2, iWidth, iHeight));
                     graphics.Dispose();
                 }
                 newImage = new Bitmap(bimg);
 
                 //进行图片大小的测算
-                long iQuality = 100;
+                long iQuality = 80;
                 bool bSave = false;
                 do
                 {
@@ -410,7 +414,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         private void ButUploadImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "*.jpg|*.jpg";
+            ofd.Filter = "图片文件|*.jpg;*.jpeg;*.bmp;*.png";
             ofd.Multiselect = false;
             if (ofd.ShowDialog() != DialogResult.OK) return;
 
@@ -428,13 +432,14 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             Bitmap newImg;
             datas = ConvertImage(datas, out newImg);
             pictureBox1.Image = newImg;
-            //string sNewFile = System.IO.Path.Combine(Application.StartupPath, "tmpImage.jpg");
-            //File.WriteAllBytes(sNewFile, datas);
+            string sNewFile = System.IO.Path.Combine(Application.StartupPath, "tmpImage.jpg");
+            File.WriteAllBytes(sNewFile, datas);
 
             WriteFeatureCode_Parameter par = new WriteFeatureCode_Parameter(iUsercode, 1, 1, datas);
             WriteFeatureCode cmd = new WriteFeatureCode(cmdDtl, par);
-
+            cmdDtl.Timeout = 5000;
             mMainForm.AddCommand(cmd);
+
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmde.Command.getResult() as WriteFeatureCode_Result;
@@ -448,5 +453,125 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                 }
             };
         }
+        #region 上传固件
+
+        private class EquptAESKey
+        {
+            public string Name;
+            /// <summary>
+            /// AES 密码
+            /// </summary>
+            public string Key;
+            /// <summary>
+            /// 
+            /// </summary>
+            public int PacketByteLen;
+
+            public EquptAESKey(string sName, string sKey, int iPLen)
+            {
+                Name = sName;
+                Key = sKey;
+                PacketByteLen = iPLen;
+            }
+        }
+        private Dictionary<String, EquptAESKey> mAesKey;
+
+        private void IniEquptType()
+        {
+            mAesKey = new Dictionary<string, EquptAESKey>();
+            var oKey = new EquptAESKey("A102 指纹机", "70c5287e4572bdd9", 1024);
+            mAesKey.Add(oKey.Name, oKey);
+
+            oKey = new EquptAESKey("A103 指纹机", "0097d54f8d755a9b", 1024);
+            mAesKey.Add(oKey.Name, oKey);
+
+            oKey = new EquptAESKey("A108 指纹红外人脸机", "f89cabe34e5b9965", 1024);
+            mAesKey.Add(oKey.Name, oKey);
+
+            oKey = new EquptAESKey("FC8300 动态人脸机", "286eb84a8342627c", 1024);
+            mAesKey.Add(oKey.Name, oKey);
+
+            cmbEquptType.Items.Clear();
+            cmbEquptType.Items.AddRange(mAesKey.Keys.ToArray());
+            cmbEquptType.SelectedIndex = 0;
+
+        }
+
+        private void ButUploadSoftware_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "固件文件|*.RCBin";
+            ofd.Multiselect = false;
+            if (ofd.ShowDialog() != DialogResult.OK) return;
+
+            string sFile = ofd.FileName;
+            if (!File.Exists(sFile)) return;
+
+            var oItem = mAesKey[cmbEquptType.Text];
+            int iRCPacketByteLen = oItem.PacketByteLen;
+            var bSurFile = File.ReadAllBytes(sFile);
+            int iFileLen = bSurFile.Length;
+
+            var sKey = Encoding.ASCII.GetString(bSurFile, 0, 16);
+            if (!sKey.Equals(oItem.Key))
+            {
+                MsgErr("固件类型不正确！");
+                return;
+            }
+            string sVer = $"{bSurFile[16]}.{bSurFile[17]}";
+
+            byte[] iCRCBuf = bSurFile.Copy(18, 4);
+            uint iSoftwareCRC32 = iCRCBuf.ToInt32();
+            int iSoftwareSize = iFileLen - 26;
+            uint iFileCRC32 = bSurFile.Copy(iFileLen - 4, 4).ToInt32();
+            byte[] bSoftWareData = bSurFile.Copy(22, iSoftwareSize);
+            uint itmpCRC32 = FCARD.Common.Cryptography.CRC32_C.CalculateDigest(bSoftWareData, 0, (uint)iSoftwareSize);
+            if (itmpCRC32 != iFileCRC32)
+            {
+                MsgErr("固件CRC32不正确！");
+                return;
+            }
+
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var par = new Software.UpdateSoftware_Parameter(bSoftWareData, iSoftwareCRC32);
+            INCommand cmd = null;
+            if (oItem.Name.Equals("FC8300 动态人脸机"))
+            {
+                cmd = new Software.UpdateSoftware(cmdDtl, par);
+            }
+            else
+            {
+                cmd = new Software.UpdateSoftware_FP(cmdDtl, par);
+            }
+
+            cmdDtl.Timeout = 500;
+            cmdDtl.RestartCount = 5;
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Command.getResult() as Software.UpdateSoftware_Result;
+                if (result.Success == 1)
+                {
+                    mMainForm.AddCmdLog(cmde, "固件上传完毕");
+                }
+                else
+                {
+                    mMainForm.AddCmdLog(cmde, $"固件上传失败：code={result.Success}");
+                }
+            };
+
+        }
+
+        private void CreateCRC32()
+        {
+
+        }
+
+        #endregion
+
+
     }
 }

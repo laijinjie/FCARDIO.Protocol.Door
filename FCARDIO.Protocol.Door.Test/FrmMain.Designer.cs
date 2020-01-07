@@ -88,6 +88,8 @@
             this.txtProcess = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.butWatch = new System.Windows.Forms.Button();
+            this.butSearch = new System.Windows.Forms.Button();
+            this.chkUDPBroadcast = new System.Windows.Forms.CheckBox();
             this.gbTCPClient.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -476,6 +478,7 @@
             // 
             // gbUDP
             // 
+            this.gbUDP.Controls.Add(this.chkUDPBroadcast);
             this.gbUDP.Controls.Add(this.butUDPBind);
             this.gbUDP.Controls.Add(this.txtUDPLocalPort);
             this.gbUDP.Controls.Add(this.label12);
@@ -494,7 +497,7 @@
             // 
             this.butUDPBind.Location = new System.Drawing.Point(133, 19);
             this.butUDPBind.Name = "butUDPBind";
-            this.butUDPBind.Size = new System.Drawing.Size(75, 23);
+            this.butUDPBind.Size = new System.Drawing.Size(70, 23);
             this.butUDPBind.TabIndex = 10;
             this.butUDPBind.Text = "绑定";
             this.butUDPBind.UseVisualStyleBackColor = true;
@@ -701,11 +704,32 @@
             this.butWatch.UseVisualStyleBackColor = true;
             this.butWatch.Click += new System.EventHandler(this.buWatch_Click);
             // 
+            // butSearch
+            // 
+            this.butSearch.Location = new System.Drawing.Point(447, 144);
+            this.butSearch.Name = "butSearch";
+            this.butSearch.Size = new System.Drawing.Size(70, 23);
+            this.butSearch.TabIndex = 20;
+            this.butSearch.Text = "搜索";
+            this.butSearch.UseVisualStyleBackColor = true;
+            this.butSearch.Click += new System.EventHandler(this.ButSearch_Click);
+            // 
+            // chkUDPBroadcast
+            // 
+            this.chkUDPBroadcast.AutoSize = true;
+            this.chkUDPBroadcast.Location = new System.Drawing.Point(237, 25);
+            this.chkUDPBroadcast.Name = "chkUDPBroadcast";
+            this.chkUDPBroadcast.Size = new System.Drawing.Size(48, 16);
+            this.chkUDPBroadcast.TabIndex = 11;
+            this.chkUDPBroadcast.Text = "广播";
+            this.chkUDPBroadcast.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 726);
+            this.Controls.Add(this.butSearch);
             this.Controls.Add(this.butWatch);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtProcess);
@@ -816,6 +840,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.CheckBox chkShowIO;
         private System.Windows.Forms.Button butWatch;
+        private System.Windows.Forms.Button butSearch;
+        private System.Windows.Forms.CheckBox chkUDPBroadcast;
     }
 }
 

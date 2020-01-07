@@ -68,7 +68,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// <summary>
         /// 选择的记录模块
         /// </summary>
-        protected TransactionDetail transactionDetail;
+        protected TransactionDetail _TransactionDetail;
 
         /// <summary>
         /// 事务类型
@@ -184,11 +184,11 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         /// <param name="oPck"></param>
         private void ReadDataBaseDetailCallBack(OnlineAccessPacket oPck)
         {
-            TransactionDetail transactionDetail = GetTransactionDetail(oPck);
+            _TransactionDetail = GetTransactionDetail(oPck);
 
-            if (transactionDetail != null)
+            if (_TransactionDetail != null)
             {
-                if (transactionDetail.readable() == 0)
+                if (_TransactionDetail.readable() == 0)
                 {
                     CommandCompleted();
                 }
@@ -206,7 +206,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
                     Packet(CmdType, 0x04, 0x00, 0x09, dataBuf);
 
                     //计算最终需要读取的记录数
-                    mReadable = (int)transactionDetail.readable();
+                    mReadable = (int)_TransactionDetail.readable();
                     if (mParameter.Quantity > 0)
                     {
                         if (mParameter.Quantity < mReadable)
@@ -221,9 +221,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
                     _ProcessMax = mReadable;
                     _ProcessStep = 0;
 
-                    if (transactionDetail.IsCircle)
+                    if (_TransactionDetail.IsCircle)
                     {
-                        transactionDetail.ReadIndex = transactionDetail.WriteIndex;
+                        _TransactionDetail.ReadIndex = _TransactionDetail.WriteIndex;
                     }
                     ReadTransactionNext();
                 }
@@ -248,27 +248,27 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
             mReadQuantity = mParameter.PacketSize;
 
             //如果发现读索引号定位在记录末尾，则强制转移到记录头
-            if (transactionDetail.ReadIndex == transactionDetail.DataBaseMaxSize)
+            if (_TransactionDetail.ReadIndex == _TransactionDetail.DataBaseMaxSize)
             {
-                transactionDetail.ReadIndex = 0;
+                _TransactionDetail.ReadIndex = 0;
             }
             if (mReadQuantity > mReadable)
             {
                 mReadQuantity = mReadable;
             }
 
-            int iBeginIndex = (int)transactionDetail.ReadIndex + 1;
+            int iBeginIndex = (int)_TransactionDetail.ReadIndex + 1;
             int iEndIndex = iBeginIndex + mReadQuantity - 1;
 
-            if (iEndIndex > transactionDetail.DataBaseMaxSize)
+            if (iEndIndex > _TransactionDetail.DataBaseMaxSize)
             {
-                mReadQuantity = (int)(transactionDetail.DataBaseMaxSize - transactionDetail.ReadIndex);
+                mReadQuantity = (int)(_TransactionDetail.DataBaseMaxSize - _TransactionDetail.ReadIndex);
                 iEndIndex = iBeginIndex + mReadQuantity - 1;
             }
-            AddDictSerialNumberRange((int)transactionDetail.ReadIndex, mReadQuantity);
+            AddDictSerialNumberRange((int)_TransactionDetail.ReadIndex, mReadQuantity);
 
 
-            transactionDetail.ReadIndex = iEndIndex;//更新记录尾号
+            _TransactionDetail.ReadIndex = iEndIndex;//更新记录尾号
 
 
             var cmdBuf = FCPacket.CmdData;
@@ -371,7 +371,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         {
             ReadTransactionDatabase_Result result = (ReadTransactionDatabase_Result)_Result;
             result.Quantity = mReadTotal;
-            result.readable = (int)transactionDetail.readable();
+            result.readable = (int)_TransactionDetail.readable();
 
             Analysis();
 
@@ -480,7 +480,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
         {
             var buf = GetCmdBuf();
             buf.WriteByte((int)mParameter.DatabaseType);
-            buf.WriteInt((int)transactionDetail.ReadIndex);
+            buf.WriteInt((int)_TransactionDetail.ReadIndex);
             buf.WriteBoolean(false);
             FCPacket.CmdIndex = 0x03;
             FCPacket.DataLen = buf.ReadableBytes;

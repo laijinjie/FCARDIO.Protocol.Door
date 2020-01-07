@@ -14,11 +14,21 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
     /// </summary>
     public class ReadTCPSetting : FC8800Command_ReadParameter
     {
+
+        /// <summary>
+        /// 命令是否使用广播
+        /// </summary>
+        protected bool UDPBroadcast = false;
+
         /// <summary>
         /// 获取TCP参数 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        public ReadTCPSetting(INCommandDetail cd) : base(cd) { }
+        /// <param name="bUDPBroadcast">命令是否使用广播</param>
+        public ReadTCPSetting(INCommandDetail cd,bool bUDPBroadcast) : base(cd) { UDPBroadcast = bUDPBroadcast; }
+
+        public ReadTCPSetting(INCommandDetail cd) : this(cd,false) {}
+
 
         /// <summary>
         /// 将命令打包成一个Packet，准备发送
@@ -26,6 +36,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
         protected override void CreatePacket0()
         {
             Packet(0x01, 0x06);
+            if (UDPBroadcast)
+            {
+                FCPacket.SetUDPBroadcastPacket();
+            }
         }
 
         /// <summary>
