@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FCARD.Common.Extensions;
 
 namespace FCARDIO.Protocol.USB.CardReader.Test
 {
@@ -82,7 +83,7 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
                     DataList.Clear();
                     foreach (var item in result.DataList)
                     {
-                        DataList.Add(new Model.ICCardData() { Number = item.Number, Block = item.StartBlock, Data = item.Content });
+                        DataList.Add(new Model.ICCardData() { Number = item.Number, Block = item.StartBlock, Data = item.ByteContent.ToHex() });
                     }
                     Invoke(() =>
                     {

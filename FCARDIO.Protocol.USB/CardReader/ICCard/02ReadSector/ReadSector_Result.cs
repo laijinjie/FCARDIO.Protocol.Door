@@ -17,7 +17,7 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// <summary>
         /// 寻卡是否成功
         /// </summary>
-        public bool IsSuccess;
+        public byte IsSuccess;
 
         /// <summary>
         /// 扇区号
@@ -39,10 +39,11 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// </summary>
         public int ReadCount;
 
+
         /// <summary>
         /// 数据内容
         /// </summary>
-        public string Content;
+        public byte[] ByteContent;
 
         public void Dispose()
         {
@@ -55,13 +56,16 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// <param name="buf"></param>
         internal void SetBytes(IByteBuffer buf)
         {
-            IsSuccess = buf.ReadBoolean();
-            if (IsSuccess)
+            IsSuccess = buf.ReadByte();
+            if (IsSuccess == 1)
             {
                 Number = buf.ReadByte();
                 StartBlock = buf.ReadByte();
                 ReadCount = buf.ReadByte();
-                Content = StringUtil.ByteBufToHex(buf, ReadCount );
+
+                ByteContent = new byte[ReadCount];
+                buf.ReadBytes(ByteContent,0, ReadCount);
+                //Content = StringUtil.ByteBufToHex(buf, ReadCount );
 
                 //byte[] b = new byte[ReadCount];
                 //buf.ReadBytes(b);

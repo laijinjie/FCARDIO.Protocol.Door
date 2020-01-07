@@ -41,6 +41,10 @@
     <Reference Include="DotNetty.Common">
       <HintPath>..\..\DLL\DotNetty.Common.dll</HintPath>
     </Reference>
+    <Reference Include="FCARD.Common, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\FCARDWeb云扩展库\代码\DLL\FCARD.Common.dll</HintPath>
+    </Reference>
     <Reference Include="FCARDIO.Core">
       <HintPath>..\..\DLL\FCARDIO.Core.dll</HintPath>
     </Reference>

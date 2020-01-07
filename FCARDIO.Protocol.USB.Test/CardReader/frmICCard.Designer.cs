@@ -34,20 +34,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtCardType = new System.Windows.Forms.TextBox();
             this.plSector = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbNumber = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbStartBlock = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cmbVerifyMode = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cmbReadCount = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtContent = new System.Windows.Forms.TextBox();
-            this.btnReadSector = new System.Windows.Forms.Button();
             this.btnWriteSector = new System.Windows.Forms.Button();
+            this.btnReadSector = new System.Windows.Forms.Button();
+            this.txtContent = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cmbReadCount = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbVerifyMode = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbStartBlock = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbNumber = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.plSector.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,110 +115,15 @@
             this.plSector.TabIndex = 5;
             this.plSector.Visible = false;
             // 
-            // label3
+            // btnWriteSector
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(50, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "扇区号：";
-            // 
-            // cmbNumber
-            // 
-            this.cmbNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbNumber.FormattingEnabled = true;
-            this.cmbNumber.Location = new System.Drawing.Point(109, 20);
-            this.cmbNumber.Name = "cmbNumber";
-            this.cmbNumber.Size = new System.Drawing.Size(100, 20);
-            this.cmbNumber.TabIndex = 7;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(297, 23);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "块号：";
-            // 
-            // cmbStartBlock
-            // 
-            this.cmbStartBlock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStartBlock.FormattingEnabled = true;
-            this.cmbStartBlock.Location = new System.Drawing.Point(344, 20);
-            this.cmbStartBlock.Name = "cmbStartBlock";
-            this.cmbStartBlock.Size = new System.Drawing.Size(100, 20);
-            this.cmbStartBlock.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(38, 65);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "密码类型：";
-            // 
-            // cmbVerifyMode
-            // 
-            this.cmbVerifyMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbVerifyMode.FormattingEnabled = true;
-            this.cmbVerifyMode.Location = new System.Drawing.Point(109, 62);
-            this.cmbVerifyMode.Name = "cmbVerifyMode";
-            this.cmbVerifyMode.Size = new System.Drawing.Size(100, 20);
-            this.cmbVerifyMode.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(273, 65);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "扇区密码：";
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(344, 62);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(100, 21);
-            this.txtPassword.TabIndex = 6;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(26, 107);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 12);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "读取字节数：";
-            // 
-            // cmbReadCount
-            // 
-            this.cmbReadCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbReadCount.FormattingEnabled = true;
-            this.cmbReadCount.Location = new System.Drawing.Point(109, 104);
-            this.cmbReadCount.Name = "cmbReadCount";
-            this.cmbReadCount.Size = new System.Drawing.Size(100, 20);
-            this.cmbReadCount.TabIndex = 14;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(39, 141);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(65, 12);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "密码数据：";
-            // 
-            // txtContent
-            // 
-            this.txtContent.Location = new System.Drawing.Point(110, 138);
-            this.txtContent.Multiline = true;
-            this.txtContent.Name = "txtContent";
-            this.txtContent.Size = new System.Drawing.Size(334, 100);
-            this.txtContent.TabIndex = 16;
+            this.btnWriteSector.Location = new System.Drawing.Point(489, 148);
+            this.btnWriteSector.Name = "btnWriteSector";
+            this.btnWriteSector.Size = new System.Drawing.Size(75, 23);
+            this.btnWriteSector.TabIndex = 17;
+            this.btnWriteSector.Text = "写扇区";
+            this.btnWriteSector.UseVisualStyleBackColor = true;
+            this.btnWriteSector.Click += new System.EventHandler(this.BtnWriteSector_Click);
             // 
             // btnReadSector
             // 
@@ -230,15 +135,112 @@
             this.btnReadSector.UseVisualStyleBackColor = true;
             this.btnReadSector.Click += new System.EventHandler(this.BtnReadSector_Click);
             // 
-            // btnWriteSector
+            // txtContent
             // 
-            this.btnWriteSector.Location = new System.Drawing.Point(489, 148);
-            this.btnWriteSector.Name = "btnWriteSector";
-            this.btnWriteSector.Size = new System.Drawing.Size(75, 23);
-            this.btnWriteSector.TabIndex = 17;
-            this.btnWriteSector.Text = "写扇区";
-            this.btnWriteSector.UseVisualStyleBackColor = true;
-            this.btnWriteSector.Click += new System.EventHandler(this.BtnWriteSector_Click);
+            this.txtContent.Location = new System.Drawing.Point(110, 138);
+            this.txtContent.Multiline = true;
+            this.txtContent.Name = "txtContent";
+            this.txtContent.Size = new System.Drawing.Size(334, 100);
+            this.txtContent.TabIndex = 16;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(39, 141);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(65, 12);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "密码数据：";
+            // 
+            // cmbReadCount
+            // 
+            this.cmbReadCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReadCount.FormattingEnabled = true;
+            this.cmbReadCount.Location = new System.Drawing.Point(109, 104);
+            this.cmbReadCount.Name = "cmbReadCount";
+            this.cmbReadCount.Size = new System.Drawing.Size(100, 20);
+            this.cmbReadCount.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(26, 107);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 12);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "读取字节数：";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(344, 62);
+            this.txtPassword.MaxLength = 12;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(100, 21);
+            this.txtPassword.TabIndex = 6;
+            this.txtPassword.Text = "FFFFFFFFFFFF";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(273, 65);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "扇区密码：";
+            // 
+            // cmbVerifyMode
+            // 
+            this.cmbVerifyMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVerifyMode.FormattingEnabled = true;
+            this.cmbVerifyMode.Location = new System.Drawing.Point(109, 62);
+            this.cmbVerifyMode.Name = "cmbVerifyMode";
+            this.cmbVerifyMode.Size = new System.Drawing.Size(100, 20);
+            this.cmbVerifyMode.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(38, 65);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "密码类型：";
+            // 
+            // cmbStartBlock
+            // 
+            this.cmbStartBlock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStartBlock.FormattingEnabled = true;
+            this.cmbStartBlock.Location = new System.Drawing.Point(344, 20);
+            this.cmbStartBlock.Name = "cmbStartBlock";
+            this.cmbStartBlock.Size = new System.Drawing.Size(100, 20);
+            this.cmbStartBlock.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(297, 23);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "块号：";
+            // 
+            // cmbNumber
+            // 
+            this.cmbNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNumber.FormattingEnabled = true;
+            this.cmbNumber.Location = new System.Drawing.Point(109, 20);
+            this.cmbNumber.Name = "cmbNumber";
+            this.cmbNumber.Size = new System.Drawing.Size(100, 20);
+            this.cmbNumber.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(50, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "扇区号：";
             // 
             // frmICCard
             // 

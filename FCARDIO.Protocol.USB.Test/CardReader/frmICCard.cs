@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FCARD.Common.Extensions;
+
 
 namespace FCARDIO.Protocol.USB.CardReader.Test
 {
@@ -93,19 +95,25 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
             cmbStartBlock.Items.Clear();
             cmbReadCount.Items.Clear();
 
-            cmbNumber.Items.Add("0");
-            cmbNumber.Items.Add("1");
+            for (int i = 0; i < 15; i++)
+            {
+                cmbNumber.Items.Add(i.ToString());
+            }
+           
             cmbNumber.SelectedIndex = 1;
             cmbStartBlock.Items.Add("0");
+            cmbStartBlock.Items.Add("1");
+            cmbStartBlock.Items.Add("2");
+            cmbStartBlock.Items.Add("3");
             cmbStartBlock.SelectedIndex = 0;
 
-            string[] listCount = new string[48];
-            for (int i = 0; i < 48; i++)
+            string[] listCount = new string[64];
+            for (int i = 0; i < 64; i++)
             {
                 listCount[i] = (i + 1).ToString();
             }
             cmbReadCount.Items.AddRange(listCount);
-            cmbReadCount.SelectedIndex = 0;
+            cmbReadCount.SelectedIndex = 15;
 
             cmbVerifyMode.Items.Clear();
             cmbVerifyMode.Items.AddRange(new string[] { "A密钥", "B密钥" });
@@ -128,14 +136,18 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
 
         private void BtnReadSector_Click(object sender, EventArgs e)
         {
+            var eeeee = "".HexToByte();
+            var b = new byte[0];
+            var s = b.ToHex();
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            ReadSector_Parameter par = new ReadSector_Parameter(Type,(byte)cmbNumber.SelectedIndex, (byte)cmbStartBlock.SelectedIndex
-                ,(byte)(cmbReadCount.SelectedIndex + 1),(byte)(cmbVerifyMode.SelectedIndex+1),txtPassword.Text);
+            ReadSector_Parameter par = new ReadSector_Parameter(Type, (byte)cmbNumber.SelectedIndex, (byte)cmbStartBlock.SelectedIndex
+                , (byte)(cmbReadCount.SelectedIndex + 1), (byte)(cmbVerifyMode.SelectedIndex + 1), txtPassword.Text);
+            //ReadSector_Parameter par = new ReadSector_Parameter(1, (byte)1, (byte)0, (byte)48, (byte)1, "131F0153FC11");
             ReadSector cmd = new ReadSector(cmdDtl,par);
             mMainForm.AddCommand(cmd);
-
+            txtContent.Text = "";
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
@@ -143,8 +155,11 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
 
                 Invoke(() =>
                 {
-
-                    txtContent.Text = result.Content;
+                    if (result.IsSuccess == 1)
+                    {
+                        txtContent.Text = result.ByteContent.ToHex();
+                    }
+                    
 
                 });
                 //mMainForm.AddCmdLog(cmde, $"{txtVersion.Text}");
@@ -153,19 +168,67 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
 
         private void BtnWriteSector_Click(object sender, EventArgs e)
         {
-            var cmdDtl = mMainForm.GetCommandDetail();
-            if (cmdDtl == null) return;
 
-            WriteSector_Parameter par = new WriteSector_Parameter(Type, (byte)cmbNumber.SelectedIndex, (byte)cmbStartBlock.SelectedIndex
-                ,  (byte)(cmbVerifyMode.SelectedIndex + 1), txtPassword.Text,txtContent.Text);
+            string sPWD = txtPassword.Text.Trim();
+            if (sPWD.Length != 12)
+            {
+                MessageBox.Show("参数错误");
+                return;
+            }
+            string sData = txtContent.Text.Trim().Replace("\r",string.Empty).Replace("\n",string.Empty);
+            if (!sPWD.IsHex() || !sData.IsHex())
+            {
+                MessageBox.Show("参数错误");
+                return;
+            }
+
+            byte[] bData = sData.HexToByte();
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null)
+            {
+                MessageBox.Show("参数错误");
+                return;
+            }
+            cmdDtl.Timeout = 500;
+
+         WriteSector_Parameter par = new WriteSector_Parameter(Type, (byte)cmbNumber.SelectedIndex, (byte)cmbStartBlock.SelectedIndex
+                ,  (byte)(cmbVerifyMode.SelectedIndex + 1), txtPassword.Text, bData);
+            try
+            {
+                if( !par.checkedParameter() )
+                {
+                    MessageBox.Show("参数错误");
+                    return;
+                }
+            }
+            catch(Exception pe)
+            {
+                MessageBox.Show("参数错误");
+                return;
+            }
             WriteSector cmd = new WriteSector(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                //mMainForm.AddCmdLog(cmde, $"{txtVersion.Text}");
+                WriteSector_Result result = cmde.Command.getResult() as WriteSector_Result;
+
+                Invoke(() =>
+                {
+                    string[] tipList = new string[] { "成功"," 密码不正确","卡片已离开感应区","块数据长度不正确"};
+                    
+                    mMainForm.AddCmdLog(cmde, $"写扇区结果{tipList[result.Result - 1]}");
+                });
             };
+            cmdDtl.CommandErrorEvent += (sdr, cmde) =>
+            {
+            };
+            cmdDtl.CommandTimeout += (sdr, cmde) =>
+            {
+            };
+
         }
     }
 }

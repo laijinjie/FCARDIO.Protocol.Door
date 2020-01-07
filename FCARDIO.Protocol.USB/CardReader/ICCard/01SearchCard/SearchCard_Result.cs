@@ -1,6 +1,7 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
 using System;
+using FCARD.Common.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,8 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.SearchCard
         /// </summary>
         public UInt64 CardData;
 
+        public byte[] CardByteData;
+
         /// <summary>
         /// 将字节缓冲解码为类结构
         /// </summary>
@@ -53,22 +56,24 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.SearchCard
             {
                 Type = databuf.ReadByte();
                 Length = databuf.ReadByte();
+                CardByteData = new byte[4];
+                databuf.ReadBytes(CardByteData);
                 switch (Length)
                 {
                     case 1:
-                        CardData = databuf.ReadByte();
+                        CardData = CardByteData[0]; //databuf.ReadByte();
                         break;
                     case 2:
-                        CardData = databuf.ReadUnsignedShort();
+                        CardData = CardByteData.ToInt16(); //databuf.ReadUnsignedShort();
                         break;
                     case 3:
-                        CardData = (UInt64)databuf.ReadUnsignedMedium();
+                        CardData = CardByteData.ToInt24(); //(UInt64)databuf.ReadUnsignedMedium();
                         break;
                     case 4:
-                        CardData = databuf.ReadUnsignedInt();
+                        CardData = CardByteData.ToInt32(); //databuf.ReadUnsignedInt();
                         break;
                     case 8:
-                        CardData = (UInt64)databuf.ReadLong();
+                        CardData = CardByteData.ToInt64(); //(UInt64)databuf.ReadLong();
                         break;
                     default:
                         break;

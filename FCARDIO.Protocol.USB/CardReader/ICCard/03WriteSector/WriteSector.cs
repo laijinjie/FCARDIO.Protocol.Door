@@ -1,4 +1,5 @@
 ﻿using FCARDIO.Core.Command;
+using FCARDIO.Protocol.USBDrive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,23 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
             WriteSector_Parameter model = value as WriteSector_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
+        }
+
+        /// <summary>
+        /// 命令返回值的判断
+        /// </summary>
+        /// <param name="oPck">包含返回指令的Packet</param>
+        protected override void CommandNext0(USBDrivePacket oPck)
+        {
+            if (CheckResponse(oPck, 2, 2))
+            {
+                var buf = oPck.CmdData;
+                WriteSector_Result rst = new WriteSector_Result();
+                rst.SetBytes(buf);
+
+                _Result = rst;
+                CommandCompleted();
+            }
         }
     }
 }

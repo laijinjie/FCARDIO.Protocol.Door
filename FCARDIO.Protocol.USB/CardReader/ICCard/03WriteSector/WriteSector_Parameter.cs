@@ -30,7 +30,7 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// S50卡的取值范围是0-15
         /// S70卡的取值范围是0-39
         /// </summary>
-        public int Number;
+        public int SectorNumber;
 
         /// <summary>
         /// 起始数据块
@@ -56,7 +56,18 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// <summary>
         /// 待写入数据内容
         /// </summary>
-        public string Content;
+        public byte[] Content;
+
+        /// <summary>
+        /// 写入结果
+        /// </summary>
+        public byte Result;
+
+        /// <summary>
+        /// 写入块数
+        /// </summary>
+        public byte BlockCount;
+
         /// <summary>
         /// 初始化参数
         /// </summary>
@@ -67,14 +78,19 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// <param name="verifyMode">密钥验证类型</param>
         /// <param name="password">扇区密码</param>
         /// <param name="content">待写入数据内容</param>
-        public WriteSector_Parameter(int type, int number, int startBlock, int verifyMode, string password,string content)
+        public WriteSector_Parameter(int type, int number, int startBlock, int verifyMode, string password,byte[] content)
         {
             Type = type;
-            Number = number;
+            SectorNumber = number;
             StartBlock = startBlock;
             VerifyMode = verifyMode;
             Password = password;
             Content = content;
+        }
+
+        public WriteSector_Parameter()
+        {
+
         }
 
         /// <summary>
@@ -83,28 +99,40 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// <returns></returns>
         public override bool checkedParameter()
         {
+
+            if (SectorNumber < 0)
+            {
+                throw new ArgumentException("SectorNumber Error!");
+            }
+
+            if(StartBlock < 0 )
+            {
+                throw new ArgumentException("StartBlock Error!");
+            }
+
+
             if (Type == 1 || Type == 5)
             {
-                if (Number > 15 || Number < 0)
+                if (SectorNumber > 15 )
                 {
                     throw new ArgumentException("Number Error!");
                 }
-                if (StartBlock > 3 || StartBlock < 0)
+                if (StartBlock > 3)
                 {
                     throw new ArgumentException("StartBlock Error!");
                 }
             }
             else if (Type == 7 || Type == 8)
             {
-                if (Number > 39 || Number < 0)
+                if (SectorNumber > 39 )
                 {
                     throw new ArgumentException("Number Error!");
                 }
-                if (Number <= 31 && StartBlock > 3)
+                if (SectorNumber <= 31 && StartBlock > 3)
                 {
                     throw new ArgumentException("StartBlock Error!");
                 }
-                if (StartBlock > 15 || StartBlock < 0)
+                if (SectorNumber >=32 &&  StartBlock > 15 )
                 {
                     throw new ArgumentException("StartBlock Error!");
                 }
@@ -113,11 +141,12 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
             {
                 throw new ArgumentException("Type Error!");
             }
-            if (Password != null && Password.Length > 12)
+            if (string.IsNullOrWhiteSpace( Password))
             {
                 
                 throw new ArgumentException("Password Error!");
             }
+            if(Password.Length != 12) throw new ArgumentException("Password Error!");
             if (!Password.IsHex())
             {
                 throw new ArgumentException("Password Error!");
@@ -129,17 +158,16 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
             }
 
 
-            if (string.IsNullOrEmpty(Content) || Content.Length > 128)
+
+            int iDataCount = GetWriteDataLen();
+
+            if (Content == null)
             {
                 throw new ArgumentException("Content Error!");
             }
-            else
+            if (Content.Length % 16 !=0)
             {
-                Content = Content.Replace("\r\n","");
-                if (!Content.IsHex())
-                {
-                    throw new ArgumentException("Content Error!");
-                }
+                throw new ArgumentException("Content Error!");
             }
           
             return true;
@@ -154,30 +182,26 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (Content.Length % 32 != 0)
-            {
-                for (int i = 1; i < 5; i++)
-                {
-                    if (Content.Length < i * 32)
-                    {
-                        Content = StringUtil.FillHexString(Content, i * 32, "0", true);
-                        break;
-                    }
-                }
-            }
-            int WriteCount = Content.Length / 32;
-            databuf.WriteByte(Number);
+            int iDataCount = GetWriteDataLen();
+            int iWriteCount = Content.Length;
+            if (iWriteCount > iDataCount) iWriteCount = iDataCount;
+
+            databuf.WriteByte(SectorNumber);
             databuf.WriteByte(StartBlock);
-            databuf.WriteByte(WriteCount);
+            databuf.WriteByte(iWriteCount/16);
             databuf.WriteByte(VerifyMode);
 
-            Password = Password ?? "";
-            Password = StringUtil.FillHexString(Password, 12, "F", true);
             StringUtil.HextoByteBuf(Password, databuf);
+            databuf.WriteBytes(Content, 0, iWriteCount);
 
-            //Content = StringUtil.FillHexString(Content, Content.Length * 2, "0", true);
-            StringUtil.HextoByteBuf(Content, databuf);
             return databuf;
+        }
+
+        public int GetWriteDataLen()
+        {
+            int BlockCount = 4;
+            if (SectorNumber >= 32) BlockCount = 16;
+            return (BlockCount - StartBlock) * 16;
         }
 
         /// <summary>
@@ -186,16 +210,31 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 0x0A + Content.Length;
+            int iDataCount = GetWriteDataLen();
+            int iWriteCount = Content.Length;
+            if (iWriteCount > iDataCount) iWriteCount = iDataCount;
+
+            return 0x0A + iWriteCount;
         }
 
         /// <summary>
         /// 将字节缓冲解码为类结构
         /// </summary>
         /// <param name="databuf"></param>
-        public override void SetBytes(IByteBuffer databuf)
+        public override void SetBytes(IByteBuffer buf)
         {
+            Result = buf.ReadByte();
+            if (Result == 1)
+            {
+                SectorNumber = buf.ReadByte();
+                StartBlock = buf.ReadByte();
+                BlockCount = buf.ReadByte();
 
+                //byte[] b = new byte[ReadCount];
+                //buf.ReadBytes(b);
+                ////Content = Encoding.GetEncoding("GB2312").GetString(b);
+                //Content = (System.Text.Encoding.ASCII.GetString(b));
+            }
         }
     }
 }
