@@ -48,7 +48,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// </summary>
         protected override void CreatePacket0()
         {
-            //var buf = GetNewCmdDataBuf(5);
             var buf = GetNewCmdDataBuf(2);
             Packet(0x03, 0x15, 0x00, 2, mManageKeyboardPar.Setting_GetBytes(buf));
             Step = 1;
@@ -61,7 +60,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         private void IniPacketProcess()
         {
             _ProcessMax = 2;
-            Step = 2;
+
 
         }
 
@@ -75,11 +74,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
 
             switch (Step)
             {
-                case 2:
+                case 1:
                     if (CheckResponse_OK(oPck))
                     {
                         WritePassword();
                     }
+                    break;
+                case 2:
+
+                    CommandCompleted();
                     break;
                 default:
                     break;
@@ -93,12 +96,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         private void WritePassword()
         {
             _ProcessStep = 2;
-            //var buf = GetCmdBuf();
-            //Packet(0x15, 0x02, 5);
-
             var buf = GetNewCmdDataBuf(5);
             Packet(0x03, 0x15, 0x02, 5, mManageKeyboardPar.Password_GetBytes(buf));
-            Step = 0;
+            Step = 2;
             CommandReady();
         }
 

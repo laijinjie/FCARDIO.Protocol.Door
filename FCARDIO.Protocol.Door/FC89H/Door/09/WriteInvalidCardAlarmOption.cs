@@ -2,6 +2,7 @@
 using FCARDIO.Protocol.Door.FC8800;
 using FCARDIO.Protocol.Door.FC8800.Door.InvalidCardAlarmOption;
 using FCARDIO.Protocol.OnlineAccess;
+using System.Diagnostics;
 
 namespace FCARDIO.Protocol.Door.FC89H.Door.InvalidCardAlarmOption
 {
@@ -74,6 +75,9 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.InvalidCardAlarmOption
                         WriteReadInvalidCardTime();
                     }
                     break;
+                case 3:
+                    CommandCompleted();
+                    break;
                 default:
                     break;
             }
@@ -87,8 +91,9 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.InvalidCardAlarmOption
         {
             _ProcessStep = 2;
             var buf = GetCmdBuf();
-            Packet(0x03, 0x0A, 0x02, 0x02, mPar.ReadInvalidCardTime_GetBytes(buf));
-            Step = 0;
+            buf = mPar.ReadInvalidCardTime_GetBytes(buf);
+            Packet(0x03, 0x0A, 0x02, 0x02, buf);
+            Step = 3;
         }
     }
 }

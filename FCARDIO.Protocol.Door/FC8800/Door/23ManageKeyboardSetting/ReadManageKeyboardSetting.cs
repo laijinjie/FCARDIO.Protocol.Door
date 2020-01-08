@@ -11,7 +11,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
     /// </summary>
     public class ReadManageKeyboardSetting : FC8800Command_Read_DoorParameter
     {
-        
+        private int Step;
 
         /// <summary>
         /// 初始化参数
@@ -42,6 +42,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
             Packet(0x03, 0x15, 0x01, 0x01, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
             WriteManageKeyboardSetting_Parameter result = new WriteManageKeyboardSetting_Parameter((byte)model.Door);
             _Result = result;
+            Step = 1;
         }
 
 
@@ -51,15 +52,26 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 2))
+            switch (Step)
             {
-                Setting_SetBytes(oPck.CmdData);
+                case 1:
+                    if (CheckResponse(oPck, 2))
+                    {
+                        Setting_SetBytes(oPck.CmdData);
 
+                    }
+                    break;
+                case 2:
+                    if (CheckResponse(oPck, 5))
+                    {
+                        Password_SetBytes(oPck.CmdData);
+                    }
+                    break;
+                default:
+                    break;
             }
-            if (CheckResponse(oPck, 5))
-            {
-                Password_SetBytes(oPck.CmdData);
-            }
+            
+            
         }
 
         /// <summary>
@@ -68,12 +80,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// <param name="tmpBuf"></param>
         public void Setting_SetBytes(IByteBuffer tmpBuf)
         {
-            ((WriteManageKeyboardSetting_Parameter)_Result).DoorNum = tmpBuf.ReadByte();
-            ((WriteManageKeyboardSetting_Parameter)_Result).Use = tmpBuf.ReadBoolean();
-            tmpBuf = _Connector.GetByteBufAllocator().Buffer(1);
-            tmpBuf.WriteByte(((WriteManageKeyboardSetting_Parameter)_Result).DoorNum);
+            var par = _Result as WriteManageKeyboardSetting_Parameter;
+            par.DoorNum = tmpBuf.ReadByte();
+            par.Use = tmpBuf.ReadBoolean();
+            tmpBuf = GetNewCmdDataBuf(1);
+            tmpBuf.WriteByte(par.DoorNum);
             Packet(0x03, 0x15, 0x03, 0x01, tmpBuf);
+            Step = 2;
             CommandReady();//设定命令当前状态为准备就绪，等待发送
+            
         }
 
         /// <summary>
@@ -82,8 +97,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting
         /// <param name="databuf"></param>
         public void Password_SetBytes(IByteBuffer databuf)
         {
-            ((WriteManageKeyboardSetting_Parameter)_Result).DoorNum = databuf.ReadByte();
-            ((WriteManageKeyboardSetting_Parameter)_Result).Password = StringUtil.ByteBufToHex(databuf, 4).TrimEnd('F');
+            var par = _Result as WriteManageKeyboardSetting_Parameter;
+            par.DoorNum = databuf.ReadByte();
+            par.Password = StringUtil.ByteBufToHex(databuf, 4).TrimEnd('F');
             CommandCompleted();
         }
     }

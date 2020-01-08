@@ -2153,7 +2153,7 @@ namespace FCARDIO.Protocol.Door.Test
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            WriteAnyCardSetting_Parameter par = new WriteAnyCardSetting_Parameter(door,cbAnyCardUse.Checked,cbNormallyOpen.Checked, cmbAnyCardTimeGroup.SelectedIndex + 1);
+            WriteAnyCardSetting_Parameter par = new WriteAnyCardSetting_Parameter(door,cbAnyCardUse.Checked, cbAnyCardAuto.Checked, cmbAnyCardTimeGroup.SelectedIndex + 1);
             WriteAnyCardSetting cmd = new WriteAnyCardSetting(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
@@ -3114,8 +3114,8 @@ namespace FCARDIO.Protocol.Door.Test
                     txtInDoorPort.Text = result.InDoorPort.ToString();
                     txtOutDoorPort.Text = result.OutDoorPort.ToString();
 
-                    txtInDoorProtocol.Text = string.Join("", result.InDoorProtocol.Select(t => t.ToString()));
-                    txtOutDoorProtocol.Text = string.Join("", result.OutDoorProtocol.Select(t => t.ToString()));
+                    txtInDoorProtocol.Text = string.Join("", result.InDoorProtocol);
+                    txtOutDoorProtocol.Text = string.Join("", result.OutDoorProtocol);
                 });
             };
         }
@@ -3127,18 +3127,38 @@ namespace FCARDIO.Protocol.Door.Test
             if (cmdDtl == null) return;
 
             byte[] bIndoorIP = new byte[4];
-            string[] listip = txtInDoorIP.Text.Trim().Split('.');
-            for (int i = 0; i < listip.Length; i++)
+            string sIP = txtInDoorIP.Text;
+            if(FCARD.Common.ValidateTool.IsIPAddress(sIP))
             {
-                bIndoorIP[i] = byte.Parse(listip[i]);
+                string[] listip = sIP.Trim().Split('.');
+                for (int i = 0; i < listip.Length; i++)
+                {
+                    bIndoorIP[i] = byte.Parse(listip[i]);
+                }
             }
+            else
+            {
+                MsgErr("请输入IP地址！");
+                return;
+            }
+            
 
             byte[] bOutdoorIP = new byte[4];
-            listip = txtOutDoorIP.Text.Trim().Split('.');
-            for (int i = 0; i < listip.Length; i++)
+            sIP = txtOutDoorIP.Text;
+            if (FCARD.Common.ValidateTool.IsIPAddress(sIP))
             {
-                bOutdoorIP[i] = byte.Parse(listip[i]);
+                string[] listip = sIP.Trim().Split('.');
+                for (int i = 0; i < listip.Length; i++)
+                {
+                    bOutdoorIP[i] = byte.Parse(listip[i]);
+                }
             }
+            else
+            {
+                MsgErr("请输入IP地址！");
+                return;
+            }
+
 
             WriteReadCardAndTakePictures_Parameter par = new WriteReadCardAndTakePictures_Parameter(door, cbInDoorUse.Checked, bIndoorIP,ushort.Parse(txtInDoorPort.Text), txtInDoorProtocol.Text,
                 cbOutDoorUse.Checked, bOutdoorIP,ushort.Parse(txtOutDoorPort.Text),txtOutDoorProtocol.Text);

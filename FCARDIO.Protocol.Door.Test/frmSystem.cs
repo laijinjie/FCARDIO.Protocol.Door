@@ -404,11 +404,11 @@ namespace FCARDIO.Protocol.Door.Test
                 MsgErr("请输入正确服务器端口！");
                 return;
             }
-            if (!Regex.IsMatch(txtServerAddr.Text.Trim(), reg4))
-            {
-                MsgErr("请输入正确服务器域名！");
-                return;
-            }
+            //if (!Regex.IsMatch(txtServerAddr.Text.Trim(), reg4))
+            //{
+            //    MsgErr("请输入正确服务器域名！");
+            //    return;
+            //}
             if (Convert.ToInt16(cbxProtocolType.SelectedIndex) == 0)
             {
                 MsgErr("请选择TCP工作模式！");

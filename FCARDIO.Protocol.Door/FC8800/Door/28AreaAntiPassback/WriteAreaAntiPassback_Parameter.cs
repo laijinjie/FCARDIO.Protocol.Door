@@ -61,7 +61,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
         /// <param name="sn">主机SN</param>
         /// <param name="ip">主机IP地址</param>
         /// <param name="port">主机端口</param>
-        public WriteAreaAntiPassback_Parameter(byte door, bool use,bool type, string sn, byte[] ip, ushort port)
+        public WriteAreaAntiPassback_Parameter(byte door, bool use, bool type, string sn, byte[] ip, ushort port)
         {
             DoorNum = door;
             Use = use;
@@ -79,7 +79,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
         {
             if (DoorNum < 1 || DoorNum > 4)
                 throw new ArgumentException("Door Error!");
-            if (IP == null)
+            if (IP == null || IP.Length != 4)
             {
                 throw new ArgumentException("IP Is Null!");
             }
@@ -87,13 +87,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback
             {
                 throw new ArgumentException("SN Length more then 16!");
             }
-            string ip = string.Join(".", IP.Select(t => t.ToString()));
-            string pattern = @"^((25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))$";
-            bool isHexNum = Regex.IsMatch(ip, pattern);
-            if (!isHexNum)
-            {
-                throw new ArgumentException("IP Error!");
-            }
+
             return true;
         }
 

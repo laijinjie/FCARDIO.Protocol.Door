@@ -130,12 +130,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.InterLockSetting
             databuf.WriteByte(Num);
             databuf.WriteBytes(IP);
             databuf.WriteShort(Port);
-            byte[] b = new byte[11];
-            for (int i = 0; i < b.Length; i++)
+            for (int i = 0; i < 11; i++)
             {
-                b[i] = 0;
+                databuf.WriteByte(0);
             }
-            databuf.WriteBytes(b);
             return databuf;
         }
 

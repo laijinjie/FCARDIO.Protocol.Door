@@ -230,12 +230,20 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.ReadCardAndTakePictures
                 InDoorProtocol = StringUtil.ByteBufToHex(databuf, 127).Substring(0,blength * 2).ToUpper();
                
             }
+            else
+            {
+                InDoorProtocol = string.Empty;
+            }
             
 
             blength = databuf.ReadByte();
             if (blength > 0)
             {
                 OutDoorProtocol = StringUtil.ByteBufToHex(databuf, 127).Substring(0, blength * 2).ToUpper();
+            }
+            else
+            {
+                OutDoorProtocol = string.Empty;
             }
                 
         }

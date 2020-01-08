@@ -67,6 +67,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.lblLocalAddress = new System.Windows.Forms.Label();
             this.gbUDP = new System.Windows.Forms.GroupBox();
+            this.chkUDPBroadcast = new System.Windows.Forms.CheckBox();
             this.butUDPBind = new System.Windows.Forms.Button();
             this.txtUDPLocalPort = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -89,7 +90,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.butWatch = new System.Windows.Forms.Button();
             this.butSearch = new System.Windows.Forms.Button();
-            this.chkUDPBroadcast = new System.Windows.Forms.CheckBox();
             this.gbTCPClient.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -141,7 +141,7 @@
             this.txtTCPClientAddr.Name = "txtTCPClientAddr";
             this.txtTCPClientAddr.Size = new System.Drawing.Size(164, 21);
             this.txtTCPClientAddr.TabIndex = 3;
-            this.txtTCPClientAddr.Text = "192.168.1.66";
+            this.txtTCPClientAddr.Text = "192.168.1.65";
             // 
             // label2
             // 
@@ -227,7 +227,7 @@
             this.txtSN.Name = "txtSN";
             this.txtSN.Size = new System.Drawing.Size(164, 21);
             this.txtSN.TabIndex = 7;
-            this.txtSN.Text = "FC-8940H09030001";
+            this.txtSN.Text = "FC-8940H48120001";
             // 
             // label6
             // 
@@ -493,6 +493,16 @@
             this.gbUDP.TabStop = false;
             this.gbUDP.Text = "UDP";
             // 
+            // chkUDPBroadcast
+            // 
+            this.chkUDPBroadcast.AutoSize = true;
+            this.chkUDPBroadcast.Location = new System.Drawing.Point(237, 25);
+            this.chkUDPBroadcast.Name = "chkUDPBroadcast";
+            this.chkUDPBroadcast.Size = new System.Drawing.Size(48, 16);
+            this.chkUDPBroadcast.TabIndex = 11;
+            this.chkUDPBroadcast.Text = "广播";
+            this.chkUDPBroadcast.UseVisualStyleBackColor = true;
+            // 
             // butUDPBind
             // 
             this.butUDPBind.Location = new System.Drawing.Point(133, 19);
@@ -714,16 +724,6 @@
             this.butSearch.UseVisualStyleBackColor = true;
             this.butSearch.Click += new System.EventHandler(this.ButSearch_Click);
             // 
-            // chkUDPBroadcast
-            // 
-            this.chkUDPBroadcast.AutoSize = true;
-            this.chkUDPBroadcast.Location = new System.Drawing.Point(237, 25);
-            this.chkUDPBroadcast.Name = "chkUDPBroadcast";
-            this.chkUDPBroadcast.Size = new System.Drawing.Size(48, 16);
-            this.chkUDPBroadcast.TabIndex = 11;
-            this.chkUDPBroadcast.Text = "广播";
-            this.chkUDPBroadcast.UseVisualStyleBackColor = true;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -743,10 +743,10 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmdConnType);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.gbUDP);
-            this.Controls.Add(this.gbServer);
             this.Controls.Add(this.gbTCPClient);
             this.Controls.Add(this.gbSerialPort);
+            this.Controls.Add(this.gbUDP);
+            this.Controls.Add(this.gbServer);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
