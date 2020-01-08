@@ -238,6 +238,11 @@ FCARDIO.Core
  命令准备就绪，等待下次发送
  </summary>
 </member>
+<member name="M:FCARDIO.Core.Command.AbstractCommand.SetRuningStatus">
+ <summary>
+ 设定状态为正在执行并立刻加入到线程任务队列中，为发送数据包做准备
+ </summary>
+</member>
 <member name="M:FCARDIO.Core.Command.AbstractCommand.CommandWaitResponse">
  <summary>
  命令继续等待
@@ -1242,6 +1247,11 @@ FCARDIO.Core
  </summary>
  <returns></returns>
 </member>
+<member name="M:FCARDIO.Core.Connector.AbstractConnector.SetInvalid">
+ <summary>
+ 将通道设置为无效状态
+ </summary>
+</member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.IsActivity">
  <summary>
  检查通道是否为活动的状态（已连接的）
@@ -1251,6 +1261,11 @@ FCARDIO.Core
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.UpdateActivityTime">
  <summary>
  更新通道活动时间
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.AbstractConnector.ChannelKeepaliveMaxTime">
+ <summary>
+ 通道保活时长，单位秒，超过这个时间没有调用  UpdateActivityTime 函数就会自动断开连接
  </summary>
 </member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.CheckIsInvalid">
@@ -1283,17 +1298,6 @@ FCARDIO.Core
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.Run">
  <summary>
  开始执行这个连接通道
- </summary>
-</member>
-<member name="P:FCARDIO.Core.Connector.AbstractConnector.TaskIsBegin">
- <summary>
- 用来指示任务是否已经加入任务队列，正在排队等待或者正在执行中
- </summary>
- <returns></returns>
-</member>
-<member name="M:FCARDIO.Core.Connector.AbstractConnector.SetTaskIsBegin">
- <summary>
- 当此通道已加入Task的任务队列时，需要调用此函数来改变此通道的任务状态
  </summary>
 </member>
 <member name="M:FCARDIO.Core.Connector.AbstractConnector.CheckStatus">
@@ -1732,9 +1736,49 @@ FCARDIO.Core
  <param name="ctx"></param>
  <param name="evt"></param>
 </member>
+<member name="F:FCARDIO.Core.Connector.ConnectorManageFactory.mAllocator">
+ <summary>
+ 通道分配器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorManageFactory.GetNewTaskManage(DotNetty.Transport.Channels.IEventLoop)">
+ <summary>
+ 创建任务管理器
+ </summary>
+ <param name="elp"></param>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.Connector.ConnectorManager">
+ <summary>
+ 连接通道管理器，管理一组连接通道，用于维护通道状态和执行通道指令
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.ConnectorManager.mAllocator">
+ <summary>
+ 通道分配器
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorManager.#ctor(DotNetty.Transport.Channels.IEventLoop,FCARDIO.Core.ConnectorAllocator)">
+ <summary>
+ 连接通道管理器，管理一组连接通道，用于维护通道状态和执行通道指令
+ </summary>
+ <param name="elp"></param>
+ <param name="Acr"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorManager._Release">
+ <summary>
+ 释放资源
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorManager.ClientRun(FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 检查客户端状态
+ </summary>
+ <param name="oConn"></param>
+</member>
 <member name="T:FCARDIO.Core.Connector.ConnectorObserverHandler">
  <summary>
- 连接通道观察者，可以观察连接通道上的数据收发
+ 连接通道观察者，可以观察连接通道上的数据收发 十六进制格式输出
  </summary>
 </member>
 <member name="E:FCARDIO.Core.Connector.ConnectorObserverHandler.DisposeRequestEvent">
@@ -1781,7 +1825,7 @@ FCARDIO.Core
 <member name="F:FCARDIO.Core.Connector.ConnectorStatus_Connected.TimeInterval">
  <summary>
  连接建立完毕后，每次检查连接器状态的间隔时间
- 默认为10毫秒
+ 默认为5毫秒
  </summary>
 </member>
 <member name="M:FCARDIO.Core.Connector.ConnectorStatus_Connected.CheckCommandList(FCARDIO.Core.Connector.INConnector)">
@@ -1897,6 +1941,59 @@ FCARDIO.Core
  <summary>
  关闭这个连接通道分配器
  </summary>
+</member>
+<member name="T:FCARDIO.Core.Connector.ConnectorObserverTextHandler">
+ <summary>
+ 基于文本的通道观察者
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.ConnectorObserverTextHandler._Debug">
+ <summary>
+ 输出接口
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.Connector.ConnectorObserverTextHandler.TextEncoding">
+ <summary>
+ 文字编码
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorObserverTextHandler.DisposeRequest(FCARDIO.Core.Connector.INConnector,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 接收的数据
+ </summary>
+ <param name="connector"></param>
+ <param name="msg"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorObserverTextHandler.DisposeResponse(FCARDIO.Core.Connector.INConnector,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 发送的数据
+ </summary>
+ <param name="connector"></param>
+ <param name="msg"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.ConnectorObserverTextHandler.Dispose">
+ <summary>
+ 关闭观察者
+ </summary>
+</member>
+<member name="T:FCARDIO.Core.Connector.IObserverTextDebug">
+ <summary>
+ 文本观察者输出接口
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.Connector.IObserverTextDebug.DisposeRequest(FCARDIO.Core.Connector.INConnector,System.String)">
+ <summary>
+ 接收文本
+ </summary>
+ <param name="connector"></param>
+ <param name="msg"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.IObserverTextDebug.DisposeResponse(FCARDIO.Core.Connector.INConnector,System.String)">
+ <summary>
+ 发送文本
+ </summary>
+ <param name="connector"></param>
+ <param name="msg"></param>
 </member>
 <member name="T:FCARDIO.Core.Connector.SerialPort.SerialPortDetail">
  <summary>
@@ -2456,6 +2553,11 @@ FCARDIO.Core
  </summary>
  <param name="sKey"></param>
  <param name="channel"></param>
+</member>
+<member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.Release1">
+ <summary>
+ 释放资源时调用
+ </summary>
 </member>
 <member name="M:FCARDIO.Core.Connector.TCPServer.Client.TCPClientConnector.GetConnectorDetail0">
  <summary>
@@ -3590,17 +3692,6 @@ FCARDIO.Core
  <param name="cdt">命令详情，如果为Null表示停止此通道中的所有命令</param>
  <returns></returns>
 </member>
-<member name="P:FCARDIO.Core.Connector.INConnector.TaskIsBegin">
- <summary>
- 用来指示任务是否已经加入任务队列，正在排队等待或者正在执行中
- </summary>
- <returns></returns>
-</member>
-<member name="M:FCARDIO.Core.Connector.INConnector.SetTaskIsBegin">
- <summary>
- 当此通道已加入Task的任务队列时，需要调用此函数来改变此通道的任务状态
- </summary>
-</member>
 <member name="M:FCARDIO.Core.Connector.INConnector.UpdateActivityTime">
  <summary>
  更新通道活动时间
@@ -3836,6 +3927,11 @@ FCARDIO.Core
  是否已释放
  </summary>
 </member>
+<member name="F:FCARDIO.Core.ConnectorAllocator.mMagagers">
+ <summary>
+ 连接管理器工厂
+ </summary>
+</member>
 <member name="E:FCARDIO.Core.ConnectorAllocator.CommandCompleteEvent">
  <summary>
  当命令完成时，会触发此函数回调
@@ -3930,50 +4026,6 @@ FCARDIO.Core
  初始化分配器参数
  </summary>
 </member>
-<member name="T:FCARDIO.Core.ConnectorAllocator.ConnectorManager">
- <summary>
- 通道管理员
- </summary>
-</member>
-<member name="M:FCARDIO.Core.ConnectorAllocator.ConnectorManager.AddConnector(System.String,FCARDIO.Core.Connector.INConnector)">
- <summary>
- 添加一个连接通道
- </summary>
- <param name="sKey"></param>
- <param name="conn"></param>
-</member>
-<member name="M:FCARDIO.Core.ConnectorAllocator.ConnectorManager.RemoveConnector(System.String)">
- <summary>
- 删除一个连接通道
- </summary>
- <param name="sKey"></param>
-</member>
-<member name="M:FCARDIO.Core.ConnectorAllocator.ConnectorManager.Release">
- <summary>
- 释放资源
- </summary>
-</member>
-<member name="M:FCARDIO.Core.ConnectorAllocator.ConnectorManager.Run">
- <summary>
- 任务处理器，再此检查各通道的状态
- </summary>
-</member>
-<member name="M:FCARDIO.Core.ConnectorAllocator.IniManages">
- <summary>
- 初始化任务管理器
- </summary>
-</member>
-<member name="F:FCARDIO.Core.ConnectorAllocator.mConnectorCreateCount">
- <summary>
- 已创建的通道数
- </summary>
-</member>
-<member name="M:FCARDIO.Core.ConnectorAllocator.GetManager">
- <summary>
- 返回一个管理者
- </summary>
- <returns></returns>
-</member>
 <member name="M:FCARDIO.Core.ConnectorAllocator.GetOrCreateConnector(FCARDIO.Core.Connector.INConnectorDetail)">
  <summary>
  获取一个已存在的通道，不存在时则创建一个
@@ -4001,6 +4053,13 @@ FCARDIO.Core
  </summary>
  <param name="connectDtl"></param>
  <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.ConnectorAllocator.RemoveConnector(System.String,FCARDIO.Core.Connector.INConnector)">
+ <summary>
+ 删除一个通道
+ </summary>
+ <param name="sKey"></param>
+ <param name="oConn"></param>
 </member>
 <member name="M:FCARDIO.Core.ConnectorAllocator.AddConnector(System.String,FCARDIO.Core.Connector.INConnector)">
  <summary>
@@ -4352,6 +4411,157 @@ FCARDIO.Core
  <param name="buf">待解析数据缓冲区</param>
  <param name="retPacketList">已解析的包会放在这个列表中</param>
  <returns>解析出完整包则返回True</returns>
+</member>
+<member name="T:FCARDIO.Core.TaskManage.AbstractTaskManage`1">
+ <summary>
+ 表示着一组任务缓冲区，让任务在某个时间片内逐个执行
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.TaskManage.AbstractTaskManage`1.ScheduleTime">
+ <summary>
+ 一组任务执行完毕后的休眠间隔
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.TaskManage.AbstractTaskManage`1.mEventLoop">
+ <summary>
+ 任务循环器
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.TaskManage.AbstractTaskManage`1.Clients">
+ <summary>
+ 客户端列表
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.TaskManage.AbstractTaskManage`1._IsRelease">
+ <summary>
+ 是否已释放
+ </summary>
+</member>
+<member name="F:FCARDIO.Core.TaskManage.AbstractTaskManage`1._ThreadID">
+ <summary>
+ 管理器绑定的线程ID
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManage`1.#ctor(DotNetty.Transport.Channels.IEventLoop)">
+ <summary>
+ 初始化缓冲区
+ </summary>
+ <param name="elp">任务循环器</param>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManage`1.#ctor(DotNetty.Transport.Channels.IEventLoop,System.TimeSpan)">
+ <summary>
+ 初始化缓冲区
+ </summary>
+ <param name="elp">任务循环器</param>
+ <param name="SleepTime">设定休眠间隔</param>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManage`1.GetEventLoop">
+ <summary>
+ 返回管理器所使用的任务循环器
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManage`1.Add(`0)">
+ <summary>
+ 添加一个客户端
+ </summary>
+ <param name="conn"></param>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManage`1.TaskCloseEvent(`0)">
+ <summary>
+ 离线客户端回调
+ </summary>
+ <param name="cnt">客户端</param>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManage`1.Remove(System.String)">
+ <summary>
+ 删除一个客户端
+ </summary>
+ <param name="sKey"></param>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManage`1._RemoveClient(`0)">
+ <summary>
+ 客户端被删除后的后续处理
+ </summary>
+ <param name="oClient"></param>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManage`1.Release">
+ <summary>
+ 释放资源
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManage`1._Release">
+ <summary>
+ 资源释放
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManage`1.Run">
+ <summary>
+ 任务处理器，再此检查各通道的状态
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManage`1.ClientRun(`0)">
+ <summary>
+ 执行客户端的逻辑
+ </summary>
+ <param name="tsk"></param>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManageFactory`1.#ctor(DotNetty.Transport.Channels.IEventLoopGroup)">
+ <summary>
+ 初始化任务管理器工厂
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManageFactory`1.IniManage(DotNetty.Transport.Channels.IEventLoopGroup)">
+ <summary>
+ 初始化任务管理器工厂
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManageFactory`1.GetNewTaskManage(DotNetty.Transport.Channels.IEventLoop)">
+ <summary>
+ 创建一个通道管理器
+ </summary>
+ <param name="elp"></param>
+ <returns></returns>
+</member>
+<member name="F:FCARDIO.Core.TaskManage.AbstractTaskManageFactory`1.mConnectorCreateCount">
+ <summary>
+ 已创建的通道数
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.AbstractTaskManageFactory`1.GetManager">
+ <summary>
+ 返回一个管理者
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:FCARDIO.Core.TaskManage.ITaskClient">
+ <summary>
+ 表示一个任务客户端，包含一组自维护逻辑
+ </summary>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.ITaskClient.GetKey">
+ <summary>
+ 获取一个用来标识客户端的Key字符串
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.ITaskClient.IsActivity">
+ <summary>
+ 通道是否为活动状态(已连接)
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:FCARDIO.Core.TaskManage.ITaskClient.GetEventLoop">
+ <summary>
+ 获取此通道所依附的事件循环通道
+ </summary>
+ <returns></returns>
+</member>
+<member name="E:FCARDIO.Core.TaskManage.ITaskClient.TaskCloseEvent">
+ <summary>
+ 任务关闭事件
+ </summary>
+ <param name="client"></param>
 </member>
 <member name="M:FCARDIO.Core.Util.Arrays`1.copyOfRange(`0[],System.Int32,System.Int32)">
  <summary>
