@@ -256,7 +256,7 @@
     <Compile Include="FC8800\Door\04ReaderWorkSetting\WriteReaderWorkSetting.cs" />
     <Compile Include="FC8800\Door\05DoorWorkSetting\DoorWorkSetting_Result.cs" />
     <Compile Include="FC8800\Door\05DoorWorkSetting\ReadDoorWorkSetting.cs" />
-    <Compile Include="FC8800\Door\05DoorWorkSetting\ReadDoorWorkSetting_Parameter.cs" />
+    <Compile Include="FC8800\Door\05DoorWorkSetting\WriteDoorWorkSetting_Parameter.cs" />
     <Compile Include="FC8800\Door\05DoorWorkSetting\WriteDoorWorkSetting.cs" />
     <Compile Include="FC8800\Door\03Remote\CloseDoor.cs" />
     <Compile Include="FC8800\Door\03Remote\HoldDoor.cs" />

@@ -42,7 +42,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (DoorPort == null)
+            if (DoorPort == null || DoorPort.DoorMax != 4)
             {
                 return false;
             }

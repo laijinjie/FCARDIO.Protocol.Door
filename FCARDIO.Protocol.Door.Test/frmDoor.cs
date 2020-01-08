@@ -1266,7 +1266,7 @@ namespace FCARDIO.Protocol.Door.Test
                     }
                 }
             }
-            ReadDoorWorkSetting_Parameter par = new ReadDoorWorkSetting_Parameter(door, use, openDoorWay, doorTriggerMode, retainValue, tg);
+            WriteDoorWorkSetting_Parameter par = new WriteDoorWorkSetting_Parameter(door, use, openDoorWay, doorTriggerMode, retainValue, tg);
             WriteDoorWorkSetting write = new WriteDoorWorkSetting(cmdDtl, par);
             mMainForm.AddCommand(write);
         }

@@ -49,7 +49,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
         /// <param name="use">是否启动此功能</param>
         /// <param name="overtime">超出时间</param>
         /// <param name="alarm">超出后,是否开启此功能</param>
-        public WriteOvertimeAlarmSetting_Parameter(byte door, bool use, byte overtime, bool alarm)
+        public WriteOvertimeAlarmSetting_Parameter(byte door, bool use, int overtime, bool alarm)
         {
             DoorNum = door;
             Use = use;
@@ -93,7 +93,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
             }
             databuf.WriteByte(DoorNum);
             databuf.WriteBoolean(Use);
-            databuf.WriteByte(Overtime);
+            databuf.WriteShort(Overtime);
             databuf.WriteBoolean(Alarm);
             return databuf;
         }
@@ -115,7 +115,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
         {
             DoorNum = databuf.ReadByte();
             Use = databuf.ReadBoolean();
-            Overtime = databuf.ReadByte();
+            Overtime = databuf.ReadUnsignedShort();
             Alarm = databuf.ReadBoolean();
         }
     }

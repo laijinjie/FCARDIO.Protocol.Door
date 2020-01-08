@@ -10,7 +10,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
     /// <summary>
     /// 门工作方式_结果
     /// </summary>
-    public class DoorWorkSetting_Result : ReadDoorWorkSetting_Parameter, INCommandResult
+    public class DoorWorkSetting_Result : WriteDoorWorkSetting_Parameter, INCommandResult
     {
     }
 }

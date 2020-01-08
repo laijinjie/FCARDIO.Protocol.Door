@@ -20,7 +20,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含门工作方式参数</param>
-        public WriteDoorWorkSetting(INCommandDetail cd, ReadDoorWorkSetting_Parameter par) : base(cd, par) { }
+        public WriteDoorWorkSetting(INCommandDetail cd, WriteDoorWorkSetting_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数
@@ -28,7 +28,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            ReadDoorWorkSetting_Parameter model = value as ReadDoorWorkSetting_Parameter;
+            WriteDoorWorkSetting_Parameter model = value as WriteDoorWorkSetting_Parameter;
             if (model == null) return false;
             return model.checkedParameter();
         }
@@ -38,7 +38,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
         /// </summary>
         protected override void CreatePacket0()
         {
-            ReadDoorWorkSetting_Parameter model = _Parameter as ReadDoorWorkSetting_Parameter;
+            WriteDoorWorkSetting_Parameter model = _Parameter as WriteDoorWorkSetting_Parameter;
             Packet(0x03, 0x06, 0x01, 0xE5, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
     }

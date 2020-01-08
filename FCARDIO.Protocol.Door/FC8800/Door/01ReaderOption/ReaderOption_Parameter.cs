@@ -56,7 +56,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderOption
             {
                 if (item < 0 || item > 4)
                 {
-                    throw new ArgumentException("door must between 1 and 6 Error!");
+                    throw new ArgumentException("Error:door must between 1 and 4 !");
                 }
             }
             return true;

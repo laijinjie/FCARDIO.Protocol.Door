@@ -78,67 +78,6 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
             return databuf;
         }
 
-        ///// <summary>
-        ///// DateTime转BCD格式日期时间
-        ///// </summary>
-        ///// <param name="btData">字节数组</param>
-        ///// <param name="date">DateTime</param>
-        //public static void DateToBCD_yyMMddhh(byte[] btData, DateTime date)
-        //{
-        //    if (date == null)
-        //    {
-        //        for (int i = 0; i < 4; i++)
-        //        {
-        //            btData[i] = 0;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        btData[0] = (byte)(date.Year - 2000);
-        //        btData[1] = (byte)(date.Month);
-        //        btData[2] = (byte)date.Day;
-        //        btData[3] = (byte)date.Hour;
-        //        btData = ByteToBCD(btData);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// 字节转BCD格式
-        ///// </summary>
-        ///// <param name="iNum">字节</param>
-        ///// <returns></returns>
-        //public static byte ByteToBCD(byte iNum)
-        //{
-        //    int iValue = uByte(iNum);
-        //    iValue = (iValue / 10) * 16 + (iValue % 10);
-        //    return (byte)iValue;
-        //}
-
-        ///// <summary>
-        ///// 字节转数值
-        ///// </summary>
-        ///// <param name="byte0"></param>
-        ///// <returns></returns>
-        //public static int uByte(byte byte0)
-        //{
-        //    return byte0 & 0x000000ff;
-        //}
-
-        ///// <summary>
-        ///// 字节数组转BCD格式
-        ///// </summary>
-        ///// <param name="iNum">字节数组</param>
-        ///// <returns></returns>
-        //public static byte[] ByteToBCD(byte[] iNum)
-        //{
-        //    int iLen = iNum.Length;
-        //    for (int i = 0; i < iLen; i++)
-        //    {
-        //        iNum[i] = ByteToBCD(iNum[i]);
-        //    }
-        //    return iNum;
-        //}
-
         /// <summary>
         /// 获取数据长度
         /// </summary>

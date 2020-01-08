@@ -38,6 +38,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            if (Keyboard == null || Keyboard.Length != 8)
+            {
+                return false;
+            }
             return true;
         }
 

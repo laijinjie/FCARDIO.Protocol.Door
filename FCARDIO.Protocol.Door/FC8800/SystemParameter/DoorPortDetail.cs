@@ -14,7 +14,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter
         /// <summary>
         /// 最大门数
         /// </summary>
-        public ushort DoorMax;
+        public int DoorMax;
 
         /// <summary>
         /// 门的端口
@@ -22,13 +22,38 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter
         public byte[] DoorPort;
 
         /// <summary>
+        /// 初始化一个4端口集合
+        /// </summary>
+        public DoorPortDetail() : this((int)4) { }
+
+        /// <summary>
         /// 设置几个门的端口
         /// </summary>
         /// <param name="_DoorMax">最大门数</param>
-        public DoorPortDetail(ushort _DoorMax)
+        public DoorPortDetail(int _DoorMax)
         {
             DoorMax = _DoorMax;
             DoorPort = new byte[_DoorMax];
+        }
+
+        /// <summary>
+        /// 设置值
+        /// </summary>
+        /// <param name="iPort">1-4</param>
+        /// <param name="value"></param>
+        public void SetValue(int iPort, byte value)
+        {
+            DoorPort[iPort - 1] = value;
+        }
+        /// <summary>
+        /// 获取值
+        /// </summary>
+        /// <param name="iPort">1-4</param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public byte GetValue(int iPort)
+        {
+            return DoorPort[iPort - 1];
         }
     }
 }
