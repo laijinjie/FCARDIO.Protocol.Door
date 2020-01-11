@@ -36,6 +36,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
             var buf = acl.Buffer(7);
             buf.WriteBytes(DataStrt);
 
+            //Packet(0x01, 0x02, 0x00, 0x08, buf);
             Packet(0x01, 0x04, 0x00, 0x07, buf);
         }
 

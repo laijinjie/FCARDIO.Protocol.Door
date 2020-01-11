@@ -170,10 +170,15 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            
+            if (ListPassword.Count == 0)
+            {
+                MessageBox.Show("密码列表为空");
+                return;
+            }
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
             {
                 List<PasswordDetail> _list = new List<PasswordDetail>();
+               
                 for (int i = 0; i < ListPassword.Count; i++)
                 {
                     PasswordDetail password = new PasswordDetail();

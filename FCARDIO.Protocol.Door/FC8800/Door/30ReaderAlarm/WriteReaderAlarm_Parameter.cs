@@ -21,7 +21,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderAlarm
         /// <summary>
         /// 功能开启 (1)
         /// </summary>
-        public bool Use;
+        public byte Use;
 
         /// <summary>
         /// 提供给继承类使用
@@ -36,7 +36,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderAlarm
         /// </summary>
         /// <param name="door">门号</param>
         /// <param name="use">功能开启</param>
-        public WriteReaderAlarm_Parameter(byte door, bool use)
+        public WriteReaderAlarm_Parameter(byte door, byte use)
         {
             DoorNum = door;
             Use = use;
@@ -73,7 +73,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderAlarm
                 throw new ArgumentException("door Error!");
             }
             databuf.WriteByte(DoorNum);
-            databuf.WriteBoolean(Use);
+            databuf.WriteByte(Use);
             return databuf;
         }
 
@@ -93,7 +93,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderAlarm
         public override void SetBytes(IByteBuffer databuf)
         {
             DoorNum = databuf.ReadByte();
-            Use = databuf.ReadBoolean();
+            Use = databuf.ReadByte();
         }
     }
 }

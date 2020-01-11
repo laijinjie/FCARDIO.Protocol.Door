@@ -1059,6 +1059,7 @@
             this.endTimePicker1.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker1.TabIndex = 88;
             this.endTimePicker1.Value = new System.DateTime(2019, 5, 13, 23, 59, 0, 0);
+            this.endTimePicker1.ValueChanged += new System.EventHandler(this.EndTimePicker_ValueChanged);
             // 
             // label20
             // 
@@ -1088,6 +1089,7 @@
             this.beginTimePicker1.Size = new System.Drawing.Size(57, 21);
             this.beginTimePicker1.TabIndex = 84;
             this.beginTimePicker1.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginTimePicker1.ValueChanged += new System.EventHandler(this.BeginTimePicker_ValueChanged);
             // 
             // cbxWeek
             // 
@@ -3674,6 +3676,7 @@
             this.beginSATP7.Size = new System.Drawing.Size(57, 21);
             this.beginSATP7.TabIndex = 138;
             this.beginSATP7.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginSATP7.ValueChanged += new System.EventHandler(this.BeginSATP_ValueChanged);
             // 
             // label82
             // 
@@ -3694,6 +3697,7 @@
             this.beginSATP1.Size = new System.Drawing.Size(57, 21);
             this.beginSATP1.TabIndex = 118;
             this.beginSATP1.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginSATP1.ValueChanged += new System.EventHandler(this.BeginSATP_ValueChanged);
             // 
             // endSATP8
             // 
@@ -3705,6 +3709,7 @@
             this.endSATP8.Size = new System.Drawing.Size(57, 21);
             this.endSATP8.TabIndex = 148;
             this.endSATP8.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endSATP8.ValueChanged += new System.EventHandler(this.EndSATP_ValueChanged);
             // 
             // label97
             // 
@@ -3734,6 +3739,7 @@
             this.endSATP1.Size = new System.Drawing.Size(57, 21);
             this.endSATP1.TabIndex = 120;
             this.endSATP1.Value = new System.DateTime(2019, 5, 13, 23, 59, 0, 0);
+            this.endSATP1.ValueChanged += new System.EventHandler(this.EndSATP_ValueChanged);
             // 
             // beginSATP8
             // 
@@ -3745,6 +3751,7 @@
             this.beginSATP8.Size = new System.Drawing.Size(57, 21);
             this.beginSATP8.TabIndex = 146;
             this.beginSATP8.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginSATP8.ValueChanged += new System.EventHandler(this.BeginSATP_ValueChanged);
             // 
             // label96
             // 
@@ -3774,6 +3781,7 @@
             this.beginSATP5.Size = new System.Drawing.Size(57, 21);
             this.beginSATP5.TabIndex = 122;
             this.beginSATP5.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginSATP5.ValueChanged += new System.EventHandler(this.BeginSATP_ValueChanged);
             // 
             // endSATP4
             // 
@@ -3785,6 +3793,7 @@
             this.endSATP4.Size = new System.Drawing.Size(57, 21);
             this.endSATP4.TabIndex = 144;
             this.endSATP4.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endSATP4.ValueChanged += new System.EventHandler(this.EndSATP_ValueChanged);
             // 
             // label95
             // 
@@ -3814,6 +3823,7 @@
             this.endSATP5.Size = new System.Drawing.Size(57, 21);
             this.endSATP5.TabIndex = 124;
             this.endSATP5.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endSATP5.ValueChanged += new System.EventHandler(this.EndSATP_ValueChanged);
             // 
             // beginSATP4
             // 
@@ -3825,6 +3835,7 @@
             this.beginSATP4.Size = new System.Drawing.Size(57, 21);
             this.beginSATP4.TabIndex = 142;
             this.beginSATP4.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginSATP4.ValueChanged += new System.EventHandler(this.BeginSATP_ValueChanged);
             // 
             // label94
             // 
@@ -3854,6 +3865,7 @@
             this.beginSATP2.Size = new System.Drawing.Size(57, 21);
             this.beginSATP2.TabIndex = 126;
             this.beginSATP2.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginSATP2.ValueChanged += new System.EventHandler(this.BeginSATP_ValueChanged);
             // 
             // endSATP7
             // 
@@ -3865,6 +3877,7 @@
             this.endSATP7.Size = new System.Drawing.Size(57, 21);
             this.endSATP7.TabIndex = 140;
             this.endSATP7.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endSATP7.ValueChanged += new System.EventHandler(this.EndSATP_ValueChanged);
             // 
             // label93
             // 
@@ -3894,6 +3907,7 @@
             this.endSATP2.Size = new System.Drawing.Size(57, 21);
             this.endSATP2.TabIndex = 128;
             this.endSATP2.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endSATP2.ValueChanged += new System.EventHandler(this.EndSATP_ValueChanged);
             // 
             // label92
             // 
@@ -3923,6 +3937,7 @@
             this.beginSATP6.Size = new System.Drawing.Size(57, 21);
             this.beginSATP6.TabIndex = 130;
             this.beginSATP6.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginSATP6.ValueChanged += new System.EventHandler(this.BeginSATP_ValueChanged);
             // 
             // endSATP3
             // 
@@ -3934,6 +3949,7 @@
             this.endSATP3.Size = new System.Drawing.Size(57, 21);
             this.endSATP3.TabIndex = 136;
             this.endSATP3.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endSATP3.ValueChanged += new System.EventHandler(this.EndSATP_ValueChanged);
             // 
             // label91
             // 
@@ -3963,6 +3979,7 @@
             this.endSATP6.Size = new System.Drawing.Size(57, 21);
             this.endSATP6.TabIndex = 132;
             this.endSATP6.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.endSATP6.ValueChanged += new System.EventHandler(this.EndSATP_ValueChanged);
             // 
             // beginSATP3
             // 
@@ -3974,6 +3991,7 @@
             this.beginSATP3.Size = new System.Drawing.Size(57, 21);
             this.beginSATP3.TabIndex = 134;
             this.beginSATP3.Value = new System.DateTime(2019, 5, 13, 0, 0, 0, 0);
+            this.beginSATP3.ValueChanged += new System.EventHandler(this.BeginSATP_ValueChanged);
             // 
             // label90
             // 
@@ -3992,6 +4010,7 @@
             this.cmbWeek.Name = "cmbWeek";
             this.cmbWeek.Size = new System.Drawing.Size(97, 20);
             this.cmbWeek.TabIndex = 11;
+            this.cmbWeek.SelectedIndexChanged += new System.EventHandler(this.CmbWeek_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -4297,9 +4316,9 @@
             // 
             this.cmdDoorNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdDoorNum.FormattingEnabled = true;
-            this.cmdDoorNum.Location = new System.Drawing.Point(546, 13);
+            this.cmdDoorNum.Location = new System.Drawing.Point(62, 10);
             this.cmdDoorNum.Name = "cmdDoorNum";
-            this.cmdDoorNum.Size = new System.Drawing.Size(121, 20);
+            this.cmdDoorNum.Size = new System.Drawing.Size(69, 20);
             this.cmdDoorNum.TabIndex = 1;
             // 
             // cBoxDoor4
@@ -4307,7 +4326,7 @@
             this.cBoxDoor4.AutoSize = true;
             this.cBoxDoor4.Checked = true;
             this.cBoxDoor4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor4.Location = new System.Drawing.Point(277, 12);
+            this.cBoxDoor4.Location = new System.Drawing.Point(729, 9);
             this.cBoxDoor4.Name = "cBoxDoor4";
             this.cBoxDoor4.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor4.TabIndex = 30;
@@ -4319,7 +4338,7 @@
             this.cBoxDoor3.AutoSize = true;
             this.cBoxDoor3.Checked = true;
             this.cBoxDoor3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor3.Location = new System.Drawing.Point(205, 11);
+            this.cBoxDoor3.Location = new System.Drawing.Point(657, 8);
             this.cBoxDoor3.Name = "cBoxDoor3";
             this.cBoxDoor3.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor3.TabIndex = 29;
@@ -4331,7 +4350,7 @@
             this.cBoxDoor2.AutoSize = true;
             this.cBoxDoor2.Checked = true;
             this.cBoxDoor2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor2.Location = new System.Drawing.Point(133, 11);
+            this.cBoxDoor2.Location = new System.Drawing.Point(585, 8);
             this.cBoxDoor2.Name = "cBoxDoor2";
             this.cBoxDoor2.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor2.TabIndex = 28;
@@ -4343,7 +4362,7 @@
             this.cBoxDoor1.AutoSize = true;
             this.cBoxDoor1.Checked = true;
             this.cBoxDoor1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor1.Location = new System.Drawing.Point(61, 12);
+            this.cBoxDoor1.Location = new System.Drawing.Point(513, 9);
             this.cBoxDoor1.Name = "cBoxDoor1";
             this.cBoxDoor1.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor1.TabIndex = 27;

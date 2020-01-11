@@ -46,7 +46,9 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.InvalidCardAlarmOption
         protected override void CreatePacket0()
         {
             WriteInvalidCardAlarmOption_Parameter model = _Parameter as WriteInvalidCardAlarmOption_Parameter;
-            Packet(0x03, 0x0A, 0x00, 0x02, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
+            var buf = GetNewCmdDataBuf(2);
+            buf = mPar.ReadInvalidCardTime_GetBytes(buf);
+            Packet(0x03, 0x0A, 0x02, 0x02, buf);//model.GetBytes(GetNewCmdDataBuf(model.GetDataLen()))
             IniPacketProcess();
         }
 
@@ -91,9 +93,10 @@ namespace FCARDIO.Protocol.Door.FC89H.Door.InvalidCardAlarmOption
         {
             _ProcessStep = 2;
             var buf = GetCmdBuf();
-            buf = mPar.ReadInvalidCardTime_GetBytes(buf);
-            Packet(0x03, 0x0A, 0x02, 0x02, buf);
+            buf = mPar.GetBytes(GetNewCmdDataBuf(2));
+            Packet(0x03, 0x0A, 0x00, 0x02, buf);
             Step = 3;
+            CommandReady();
         }
     }
 }

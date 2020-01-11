@@ -98,10 +98,15 @@ namespace FCARDIO.Protocol.Door.Test
                 if (group != null)
                 {
                     TimeSegment segment = group.GetItem(i);
-                    Invoke(() => {
-                        beginTimePicker.Value = segment.GetBeginTime();
-                        endTimePicker.Value = segment.GetEndTime();
-                    });
+                    if (segment.GetBeginTime() != DateTime.MinValue)
+                    {
+                        Invoke(() => {
+                            beginTimePicker.Value = segment.GetBeginTime();
+                            endTimePicker.Value = segment.GetEndTime();
+                        });
+
+                    }
+                  
                 }
                 
 

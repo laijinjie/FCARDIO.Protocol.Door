@@ -70,6 +70,7 @@ namespace FCARDIO.Protocol.Door.Test
         List<WeekTimeGroupDto> ListAutoLockedDto = new List<WeekTimeGroupDto>();
         WeekTimeGroup WeekTimeGroupPushButtonDto = new WeekTimeGroup(8);
         WeekTimeGroup WeekTimeGroupSensorAlarmDto = new WeekTimeGroup(8);
+        WeekTimeGroup WeekTimeGroupWorkSettingDto = new WeekTimeGroup(8);
         List<List<ulong>> listGroupA = new List<List<ulong>>();
         List<List<ulong>> listGroupB = new List<List<ulong>>();
         List<MultiCard_GroupFix> listFix = new List<MultiCard_GroupFix>();
@@ -180,7 +181,7 @@ namespace FCARDIO.Protocol.Door.Test
             }
             else
             {
-                cmbVerifyType.Items.AddRange(new string[] { "禁用","AB组合","固定组合","自由" });
+                cmbVerifyType.Items.AddRange(new string[] { "禁用", "AB组合", "固定组合", "自由" });
             }
             cmbVerifyType.SelectedIndex = 0;
             cmbGroupNum.Items.Clear();
@@ -191,7 +192,7 @@ namespace FCARDIO.Protocol.Door.Test
             //{
             //    cmbGroupNum.Items.Add(i);
             //}
-            
+
             cmbGroupNum.SelectedIndex = 0;
             InitCardDataList();
         }
@@ -331,7 +332,11 @@ namespace FCARDIO.Protocol.Door.Test
             cmbOverTime.SelectedIndex = 0;
         }
 
-
+        /// <summary>
+        /// 读取开门超时提示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void butReadOvertimeAlarmSetting_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -341,10 +346,23 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as FC8800.Door.OvertimeAlarmSetting.OvertimeAlarmSetting_Result;
-                mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use}，超时时间：{result.Overtime},是否报警 ：{result.Alarm}");
+                Invoke(() =>
+                {
+                    cmbOvertimeAlarmSetting.SelectedIndex = result.Use ? 0 : 1;
+                    cmbOverTime.SelectedIndex = result.Overtime - 1;
+                    cmdAlarmPassword.SelectedIndex = result.Alarm ? 0 : 1;
+                });
+                string usetip = result.Use ? "启用" : "禁用";
+                string Alarmtip = result.Alarm ? "输出" : "不输出";
+                mMainForm.AddCmdLog(cmde, $"命令成功：门号:{result.DoorNum},功能开关:{usetip}，超时时间：{result.Overtime},是否报警 ：{Alarmtip}");
             };
         }
 
+        /// <summary>
+        /// 设置读取开门超时提示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void butWriteOvertimeAlarmSetting_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -360,7 +378,7 @@ namespace FCARDIO.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddLog($"命令成功：门号:{door},功能开关:{use}");
+                mMainForm.AddCmdLog(cmde, $"命令成功：门号:{door},功能开关:{use}");
             };
         }
         #endregion
@@ -386,7 +404,7 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 cmbWeek.Show();
                 label10.Show();
-               
+
             }
             else
             {
@@ -431,6 +449,27 @@ namespace FCARDIO.Protocol.Door.Test
                 mMainForm.AddLog($"命令成功：门号:{door},功能开关:{use}");
             };
         }
+
+        private void BeginSATP_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            SetWeekTimeGroupValue(WeekTimeGroupSensorAlarmDto, cmbWeek.SelectedIndex, int.Parse(dtp.Name.Substring(9)) - 1, 1, dtp.Value);
+        }
+
+        private void EndSATP_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            SetWeekTimeGroupValue(WeekTimeGroupSensorAlarmDto, cmbWeek.SelectedIndex, int.Parse(dtp.Name.Substring(7)) - 1, 2, dtp.Value);
+        }
+
+        private void CmbWeek_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (WeekTimeGroupSensorAlarmDto != null)
+            {
+                var day = WeekTimeGroupSensorAlarmDto.GetItem(cmbWeek.SelectedIndex);
+                SetAllTimePicker(plSensorAlarm, "beginSATP", "endSATP", day);
+            }
+        }
         #endregion
 
         #region 读卡器参数读写
@@ -446,7 +485,7 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 ReaderOption_Result result = cmde.Command.getResult() as ReaderOption_Result;
                 StringBuilder sb = new StringBuilder();
-                string[] str = new string[5] { "三字节", "四字节", "二字节", "禁用",  "八字节" };
+                string[] str = new string[5] { "三字节", "四字节", "二字节", "禁用", "八字节" };
                 //str[0] = "字节数：【1、韦根26(三字节)】";
                 //str[1] = "字节数：【2、韦根34(四字节)】";
                 //str[2] = "字节数：【3、韦根26(二字节)】";
@@ -494,8 +533,8 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void BtnWriteReaderOption_Click(object sender, EventArgs e)
         {
-            
-            
+
+
             byte[] Door = new byte[4];
             //门1读卡器字节数
             Door[0] = (byte)(cbxDoor1ReaderOption.SelectedIndex + 1);
@@ -510,7 +549,7 @@ namespace FCARDIO.Protocol.Door.Test
                 Door[2] = 0;
                 Door[3] = 0;
             }
-           
+
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
@@ -1270,6 +1309,28 @@ namespace FCARDIO.Protocol.Door.Test
             WriteDoorWorkSetting write = new WriteDoorWorkSetting(cmdDtl, par);
             mMainForm.AddCommand(write);
         }
+
+        private void CbxWeek_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (WeekTimeGroupWorkSettingDto != null)
+            {
+                var day = WeekTimeGroupWorkSettingDto.GetItem(cbxWeek.SelectedIndex);
+                SetAllTimePicker(DoorOpenTimePanel, "beginTimePicker", "endTimePicker", day);
+            }
+        }
+
+        private void BeginTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            SetWeekTimeGroupValue(WeekTimeGroupWorkSettingDto, cbxWeek.SelectedIndex, int.Parse(dtp.Name.Substring(15)) - 1, 1, dtp.Value);
+        }
+
+        private void EndTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            SetWeekTimeGroupValue(WeekTimeGroupWorkSettingDto, cbxWeek.SelectedIndex, int.Parse(dtp.Name.Substring(13)) - 1, 2, dtp.Value);
+        }
+
         /// <summary>
         /// 选择不启用高级功能按钮时触发的事件
         /// </summary>
@@ -1333,10 +1394,7 @@ namespace FCARDIO.Protocol.Door.Test
             DoorOpenTimePanel.Visible = true;
         }
 
-        private void CbxWeek_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
+
         #endregion
 
         #region 定时锁定门参数读写
@@ -1844,8 +1902,8 @@ namespace FCARDIO.Protocol.Door.Test
                     cmdInvalidCardAlarmOptionUse.SelectedIndex = result.Use ? 0 : 1;
                     cmbReadInvalidCardTime.SelectedIndex = result.ReadInvalidCardTime;
                 });
-
-                mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use}");
+                string UseTip = result.Use ? "启用":"禁用";
+                mMainForm.AddCmdLog(cmde,$"命令成功：门号:{result.DoorNum},功能开关:{UseTip}");
             };
         }
         private void ButWriteInvalidCardAlarmOption_Click(object sender, EventArgs e)
@@ -1855,7 +1913,7 @@ namespace FCARDIO.Protocol.Door.Test
             bool use = (cmdInvalidCardAlarmOptionUse.SelectedIndex == 0);
             byte door = byte.Parse(cmdDoorNum.Text);
 
-            var par = new FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption_Parameter(door, use,(byte)(cmbReadInvalidCardTime.SelectedIndex));
+            var par = new FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption_Parameter(door, use, (byte)(cmbReadInvalidCardTime.SelectedIndex));
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
             {
                 var cmd = new FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption(cmdDtl, par);
@@ -1866,7 +1924,7 @@ namespace FCARDIO.Protocol.Door.Test
                 var cmd = new FC89H.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
-                
+
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
@@ -2092,7 +2150,7 @@ namespace FCARDIO.Protocol.Door.Test
             if (cmdDtl == null) return;
 
 
-            WritePushButtonSetting_Parameter par = new WritePushButtonSetting_Parameter(door,cbReadPushButton.Checked,cbNormallyOpen.Checked, WeekTimeGroupPushButtonDto);
+            WritePushButtonSetting_Parameter par = new WritePushButtonSetting_Parameter(door, cbReadPushButton.Checked, cbNormallyOpen.Checked, WeekTimeGroupPushButtonDto);
             WritePushButtonSetting cmd = new WritePushButtonSetting(cmdDtl, par);
             mMainForm.AddCommand(cmd);
         }
@@ -2153,7 +2211,7 @@ namespace FCARDIO.Protocol.Door.Test
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            WriteAnyCardSetting_Parameter par = new WriteAnyCardSetting_Parameter(door,cbAnyCardUse.Checked, cbAnyCardAuto.Checked, cmbAnyCardTimeGroup.SelectedIndex + 1);
+            WriteAnyCardSetting_Parameter par = new WriteAnyCardSetting_Parameter(door, cbAnyCardUse.Checked, cbAnyCardAuto.Checked, cmbAnyCardTimeGroup.SelectedIndex + 1);
             WriteAnyCardSetting cmd = new WriteAnyCardSetting(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
@@ -2240,7 +2298,7 @@ namespace FCARDIO.Protocol.Door.Test
         #endregion
 
         #region 键盘管理功能
-        
+
 
         private void BtnReadManageKeyboardSetting_Click(object sender, EventArgs e)
         {
@@ -2257,15 +2315,15 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 WriteManageKeyboardSetting_Parameter result = cmde.Command.getResult() as WriteManageKeyboardSetting_Parameter;
-                
-                    Invoke(() =>
+
+                Invoke(() =>
+                {
+                    cbManageKeyboardSettingUse.Checked = result.Use;
+                    if (result.Use)
                     {
-                        cbManageKeyboardSettingUse.Checked = result.Use;
-                        if (result.Use)
-                        {
-                            txtPassword.Text = result.Password;
-                        }
-                    });
+                        txtPassword.Text = result.Password;
+                    }
+                });
 
                 //Password_Result password_Result = cmde.Command.getResult() as Password_Result;
                 //if (password_Result != null)
@@ -2332,8 +2390,8 @@ namespace FCARDIO.Protocol.Door.Test
                     txtSN.Text = result.SN;
                     txtPort.Text = result.Port.ToString();
                     byte[] listb = result.IP;
-                   
-                    txtIP.Text = listb[0] + "."+ listb[1] + "."+ listb[2] + "."+ listb[3];
+
+                    txtIP.Text = listb[0] + "." + listb[1] + "." + listb[2] + "." + listb[3];
                     cmbAreaType.SelectedIndex = result.Type ? 0 : 1;
                 });
             };
@@ -2349,7 +2407,7 @@ namespace FCARDIO.Protocol.Door.Test
                 return;
             }
             ushort s = 0;
-            if (!ushort.TryParse(txtPort.Text.Trim(),out s))
+            if (!ushort.TryParse(txtPort.Text.Trim(), out s))
             {
                 MessageBox.Show("端口不正确");
                 return;
@@ -2364,7 +2422,7 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 bIP[i] = byte.Parse(listip[i]);
             }
-            WriteAreaAntiPassback_Parameter par = new WriteAreaAntiPassback_Parameter(door, cbAreaAntiPassbackUse.Checked,cmbAreaType.SelectedIndex == 0,txtSN.Text.Trim(), bIP, ushort.Parse(txtPort.Text.Trim()));
+            WriteAreaAntiPassback_Parameter par = new WriteAreaAntiPassback_Parameter(door, cbAreaAntiPassbackUse.Checked, cmbAreaType.SelectedIndex == 0, txtSN.Text.Trim(), bIP, ushort.Parse(txtPort.Text.Trim()));
             WriteAreaAntiPassback cmd = new WriteAreaAntiPassback(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
@@ -2432,7 +2490,7 @@ namespace FCARDIO.Protocol.Door.Test
                 return;
             }
             int iOut = 0;
-            if (!int.TryParse(txtAreaCode.Text.Trim(),out iOut))
+            if (!int.TryParse(txtAreaCode.Text.Trim(), out iOut))
             {
                 MessageBox.Show("区域代码不正确");
                 return;
@@ -2448,7 +2506,7 @@ namespace FCARDIO.Protocol.Door.Test
                 bIP[i] = byte.Parse(listip[i]);
             }
             WriteInterLockSetting_Parameter par = new WriteInterLockSetting_Parameter(door, cbInterLockSettingUse.Checked, cmbInterLockSettingAreaType.SelectedIndex == 0
-                ,int.Parse(txtAreaCode.Text.Trim()),Convert.ToByte(cmbNum.SelectedIndex + 1), bIP, ushort.Parse(txtInterLockSettingPort.Text.Trim()));
+                , int.Parse(txtAreaCode.Text.Trim()), Convert.ToByte(cmbNum.SelectedIndex + 1), bIP, ushort.Parse(txtInterLockSettingPort.Text.Trim()));
             WriteInterLockSetting cmd = new WriteInterLockSetting(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
@@ -2508,12 +2566,12 @@ namespace FCARDIO.Protocol.Door.Test
                     {
                         listGroupA = result.GroupA;
                         listGroupB = result.GroupB;
-                    } 
+                    }
                     else if (cmbVerifyType.SelectedItem.ToString() == "固定组合")
                     {
                         listFix = result.GroupFix;
                     }
-                    
+
 
                     //foreach (KeyValuePair<int,List<string>> item in result.GroupA)
                     //{
@@ -2568,7 +2626,7 @@ namespace FCARDIO.Protocol.Door.Test
                     return;
                 }
             }
-            
+
 
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -2576,7 +2634,7 @@ namespace FCARDIO.Protocol.Door.Test
 
             var protocolType = mMainForm.GetProtocolType();
 
-           
+
             if (protocolType == CommandDetailFactory.ControllerType.FC88)
             {
                 WriteMultiCard_Parameter par = new WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex
@@ -2613,12 +2671,12 @@ namespace FCARDIO.Protocol.Door.Test
             plMutiCard.Visible = cmbVerifyType.SelectedItem.ToString() == "AB组合";
             if (cmbVerifyType.SelectedItem.ToString() == "固定组合")
             {
-                dataGridView5.Visible = true ;
+                dataGridView5.Visible = true;
                 plMutiCard.Visible = true;
 
                 cmbGroupNum.Items.Clear();
                 int count = 8;
-                
+
                 string[] array = new string[count];
                 for (int i = 1; i <= count; i++)
                 {
@@ -2633,7 +2691,7 @@ namespace FCARDIO.Protocol.Door.Test
                 dataGridView4.Visible = false;
                 dataGridView5.Visible = true;
             }
-            
+
             if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
             {
                 dataGridView3.Visible = true;
@@ -2656,7 +2714,7 @@ namespace FCARDIO.Protocol.Door.Test
         #endregion
 
         #region 多卡开门AB组设置
-        
+
         private void CmbGroupType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.MC58)
@@ -2683,7 +2741,7 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void InitCardDataList()
         {
-           
+
             dataGridView3.AutoGenerateColumns = false;
             dataGridView4.AutoGenerateColumns = false;
             dataGridView5.AutoGenerateColumns = false;
@@ -2694,18 +2752,18 @@ namespace FCARDIO.Protocol.Door.Test
             listGroupB = new List<List<ulong>>(20);
             listFix = new List<MultiCard_GroupFix>(10);
             /**/
-           for (int i = 0; i < 5; i++)
-           {
+            for (int i = 0; i < 5; i++)
+            {
                 listGroupA.Add(new List<ulong>());
 
-               for (int j = 1; j <= 50; j++)
-               {
+                for (int j = 1; j <= 50; j++)
+                {
                     listGroupA[i].Add(0);
-               }
+                }
 
-           }
-           for (int i = 0; i < 20; i++)
-           {
+            }
+            for (int i = 0; i < 20; i++)
+            {
                 listGroupB.Add(new List<ulong>());
 
                 for (int j = 1; j <= 100; j++)
@@ -2814,7 +2872,7 @@ namespace FCARDIO.Protocol.Door.Test
                     groupFix.CardList = new List<ulong>();
                     for (int j = 1; j <= 8; j++)
                     {
-                        groupFix.CardList.Add((ulong)(i* 100000 + j));
+                        groupFix.CardList.Add((ulong)(i * 100000 + j));
                     }
                     listFix.Add(groupFix);
                 }
@@ -2834,18 +2892,18 @@ namespace FCARDIO.Protocol.Door.Test
                 {
                     dataGridView3.Rows.Clear();
                     //dataGridView3.DataSource = new BindingList<CardData>(listGroupA.Skip(cmbGroupNum.SelectedIndex * 50).Take(50).ToArray());
-                    var list = listGroupA[cmbGroupNum.SelectedIndex ];
+                    var list = listGroupA[cmbGroupNum.SelectedIndex];
                     for (int i = 1; i <= 50; i++)
                     {
                         int index = this.dataGridView3.Rows.Add();
-                        this.dataGridView3.Rows[index].Cells[0].Value = i.ToString().PadLeft(2,'0');
+                        this.dataGridView3.Rows[index].Cells[0].Value = i.ToString().PadLeft(2, '0');
                         if (i > list.Count)
                         {
                             this.dataGridView3.Rows[index].Cells[1].Value = "";
                         }
                         else
                         {
-                            this.dataGridView3.Rows[index].Cells[1].Value = list[i -1].ToString();
+                            this.dataGridView3.Rows[index].Cells[1].Value = list[i - 1].ToString();
                         }
                     }
                     dataGridView3.Visible = true;
@@ -2875,7 +2933,7 @@ namespace FCARDIO.Protocol.Door.Test
                     dataGridView5.Visible = false;
                 }
             }
-            
+
             if (cmbVerifyType.SelectedItem.ToString() == "固定组合")
             {
                 dataGridView5.Rows.Clear();
@@ -2942,13 +3000,13 @@ namespace FCARDIO.Protocol.Door.Test
                 //e.CellStyle.BackColor = Color.FromName("window"); 
                 //DataGridViewComboBoxEditingControl editingControl = e.Control as DataGridViewComboBoxEditingControl; 
                 DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
-                editingControl.TextChanged += (se,ea) =>
+                editingControl.TextChanged += (se, ea) =>
                 {   //要判断类型
                     if (true)
                     {
                         listGroupA[cmbGroupNum.SelectedIndex][dataGridView3.CurrentCell.RowIndex] = Convert.ToUInt64(dataGridView3.CurrentCell.EditedFormattedValue.ToString());
                     }
-                   
+
                 };
             }
 
@@ -2961,7 +3019,8 @@ namespace FCARDIO.Protocol.Door.Test
                 //e.CellStyle.BackColor = Color.FromName("window"); 
                 //DataGridViewComboBoxEditingControl editingControl = e.Control as DataGridViewComboBoxEditingControl; 
                 DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
-                editingControl.TextChanged += (se, ea) => {
+                editingControl.TextChanged += (se, ea) =>
+                {
                     //listGroupB[dataGridView4.CurrentCell.RowIndex].Card = dataGridView4.CurrentCell.EditedFormattedValue.ToString();
                     if (true)
                     {
@@ -3035,7 +3094,8 @@ namespace FCARDIO.Protocol.Door.Test
             if (dataGridView5.CurrentCell.ColumnIndex == 1)
             {
                 DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
-                editingControl.TextChanged += (se, ea) => {
+                editingControl.TextChanged += (se, ea) =>
+                {
                     //listFix[dataGridView5.CurrentCell.RowIndex].Card = dataGridView5.CurrentCell.EditedFormattedValue.ToString();
                     if (true)
                     {
@@ -3052,6 +3112,7 @@ namespace FCARDIO.Protocol.Door.Test
         /// <param name="e"></param>
         private void BtnReadReaderAlarm_Click(object sender, EventArgs e)
         {
+
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
@@ -3064,8 +3125,10 @@ namespace FCARDIO.Protocol.Door.Test
                 ReaderAlarm_Result result = cmde.Command.getResult() as ReaderAlarm_Result;
                 Invoke(() =>
                 {
-                    cbReaderAlarmUse.Checked = result.Use;
+                    cbReaderAlarmUse.Checked = result.Use == 1;
                 });
+                string tip2 = result.Use == 1 ? "开" : "关";
+                mMainForm.AddCmdLog(cmde, $"命令成功：端口{door}，功能开关：{result.Use}、{tip2}");
             };
         }
 
@@ -3079,13 +3142,14 @@ namespace FCARDIO.Protocol.Door.Test
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            WriteReaderAlarm_Parameter par = new WriteReaderAlarm_Parameter(door, cbReaderAlarmUse.Checked);
+            WriteReaderAlarm_Parameter par = new WriteReaderAlarm_Parameter(door, (byte)(cbReaderAlarmUse.Checked ? 1 : 0));
             WriteReaderAlarm cmd = new WriteReaderAlarm(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
+
             };
         }
 
@@ -3117,6 +3181,7 @@ namespace FCARDIO.Protocol.Door.Test
                     txtInDoorProtocol.Text = string.Join("", result.InDoorProtocol);
                     txtOutDoorProtocol.Text = string.Join("", result.OutDoorProtocol);
                 });
+
             };
         }
 
@@ -3128,7 +3193,7 @@ namespace FCARDIO.Protocol.Door.Test
 
             byte[] bIndoorIP = new byte[4];
             string sIP = txtInDoorIP.Text;
-            if(FCARD.Common.ValidateTool.IsIPAddress(sIP))
+            if (FCARD.Common.ValidateTool.IsIPAddress(sIP))
             {
                 string[] listip = sIP.Trim().Split('.');
                 for (int i = 0; i < listip.Length; i++)
@@ -3141,7 +3206,7 @@ namespace FCARDIO.Protocol.Door.Test
                 MsgErr("请输入IP地址！");
                 return;
             }
-            
+
 
             byte[] bOutdoorIP = new byte[4];
             sIP = txtOutDoorIP.Text;
@@ -3160,8 +3225,8 @@ namespace FCARDIO.Protocol.Door.Test
             }
 
 
-            WriteReadCardAndTakePictures_Parameter par = new WriteReadCardAndTakePictures_Parameter(door, cbInDoorUse.Checked, bIndoorIP,ushort.Parse(txtInDoorPort.Text), txtInDoorProtocol.Text,
-                cbOutDoorUse.Checked, bOutdoorIP,ushort.Parse(txtOutDoorPort.Text),txtOutDoorProtocol.Text);
+            WriteReadCardAndTakePictures_Parameter par = new WriteReadCardAndTakePictures_Parameter(door, cbInDoorUse.Checked, bIndoorIP, ushort.Parse(txtInDoorPort.Text), txtInDoorProtocol.Text,
+                cbOutDoorUse.Checked, bOutdoorIP, ushort.Parse(txtOutDoorPort.Text), txtOutDoorProtocol.Text);
             WriteReadCardAndTakePictures cmd = new WriteReadCardAndTakePictures(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
@@ -3170,5 +3235,7 @@ namespace FCARDIO.Protocol.Door.Test
             {
             };
         }
+
+
     }
 }

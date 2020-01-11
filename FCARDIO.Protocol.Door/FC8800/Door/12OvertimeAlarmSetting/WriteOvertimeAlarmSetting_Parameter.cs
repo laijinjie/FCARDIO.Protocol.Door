@@ -20,7 +20,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
         public int DoorNum;
 
         /// <summary>
-        /// 是否启用胁迫报警功能
+        /// 是否启用功能
+        /// 0表示关闭，1表示开启
         /// </summary>
         public bool Use;
 
@@ -31,7 +32,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.OvertimeAlarmSetting
         public int Overtime;
 
         /// <summary>
-        /// 在开门超时后，是否报警输出
+        /// 继电器输出
+        /// 0--不输出继电器；1--输出继电器(匪警继电器)。
         /// </summary>
         public bool Alarm;
 
