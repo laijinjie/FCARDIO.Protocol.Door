@@ -9,7 +9,7 @@ using System.Collections;
 using FCARDIO.Protocol.Door.FC8800.Data;
 
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardDetail
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
     /// FC88/MC58 读取单个卡片在控制器中的信息，命令成功后的返回值

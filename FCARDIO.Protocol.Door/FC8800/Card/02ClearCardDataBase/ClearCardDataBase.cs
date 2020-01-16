@@ -3,7 +3,7 @@ using FCARDIO.Core.Command;
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.ClearCardDataBase
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
     /// 从控制器中清空所有卡片,可指定参数控制清空的区域

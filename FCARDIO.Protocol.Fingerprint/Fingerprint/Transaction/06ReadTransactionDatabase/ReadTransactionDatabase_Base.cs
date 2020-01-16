@@ -2,13 +2,12 @@
 using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800;
 using FCARDIO.Protocol.Fingerprint.Data;
-using FCARDIO.Protocol.Fingerprint.Transaction.TransactionDatabaseDetail;
 using FCARDIO.Protocol.OnlineAccess;
 using FCARDIO.Protocol.Transaction;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction.ReadTransactionDatabase
+namespace FCARDIO.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     ///  读取新记录
@@ -16,7 +15,7 @@ namespace FCARDIO.Protocol.Fingerprint.Transaction.ReadTransactionDatabase
     ///  成功返回结果参考 link ReadTransactionDatabase_Result 
     /// </summary>
     public abstract class ReadTransactionDatabase_Base : 
-        FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Base
+        FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase_Base
     {
         
 

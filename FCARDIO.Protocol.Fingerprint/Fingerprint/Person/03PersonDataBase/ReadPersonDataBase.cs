@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.Person.PersonDataBase
+namespace FCARDIO.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 

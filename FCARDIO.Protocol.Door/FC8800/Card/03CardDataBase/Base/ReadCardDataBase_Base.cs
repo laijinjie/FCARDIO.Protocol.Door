@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
     /// 从控制器中读取卡片数据<br/>
@@ -119,7 +119,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
         protected virtual void ReadDetailCallBlack(IByteBuffer buf)
         {
             //应答：卡片容量详情
-            CardDatabaseDetail.ReadCardDatabaseDetail_Result detail_Result = new CardDatabaseDetail.ReadCardDatabaseDetail_Result();
+            ReadCardDatabaseDetail_Result detail_Result = new ReadCardDatabaseDetail_Result();
             detail_Result.SetBytes(buf);
 
             ReadCardDataBase_Parameter model = _Parameter as ReadCardDataBase_Parameter;

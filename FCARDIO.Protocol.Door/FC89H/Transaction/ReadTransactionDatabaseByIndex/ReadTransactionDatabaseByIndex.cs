@@ -1,6 +1,6 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800.Data;
-using FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex;
+using FCARDIO.Protocol.Door.FC8800.Transaction;
 using FCARDIO.Protocol.Door.FC89H.Data;
 using FCARDIO.Protocol.Transaction;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC89H.Transaction.ReadTransactionDatabaseByIndex
+namespace FCARDIO.Protocol.Door.FC89H.Transaction
 {
     /// <summary>
     /// 读记录数据库

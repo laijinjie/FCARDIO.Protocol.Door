@@ -1,11 +1,11 @@
-﻿using FCARDIO.Protocol.Door.FC8800.Card.CardDataBase;
+﻿using FCARDIO.Protocol.Door.FC8800.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC89H.Card.CardDataBase
+namespace FCARDIO.Protocol.Door.FC89H.Card
 {
     /// <summary>
     /// FC89H 读取卡片数据库中的所有卡数据

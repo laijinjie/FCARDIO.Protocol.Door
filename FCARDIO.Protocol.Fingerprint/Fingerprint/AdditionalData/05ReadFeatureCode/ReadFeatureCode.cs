@@ -74,6 +74,7 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData
 
                 if (mResult.FileHandle == 0 || mResult.FileSize == 0)
                 {
+                    mResult.Result = false;
                     CommandCompleted();
                     return;
                 }
@@ -121,7 +122,7 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData
                 if (crc32 == ReadCRC32)
                 {
                     mResult.Datas = _FileDatas;
-
+                    mResult.Result = true;
                 }
                 _FileDatas = null;
                 CommandCompleted();

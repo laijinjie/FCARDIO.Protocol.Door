@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using DotNetty.Buffers;
 using FCARDIO.Protocol.Door.FC8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction.WriteTransactionDatabaseWriteIndex
+namespace FCARDIO.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     /// 修改指定记录数据库的写索引
     /// 记录尾地址
     /// </summary>
-    public class WriteTransactionDatabaseWriteIndex_Parameter : TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex_Parameter
+    public class WriteTransactionDatabaseWriteIndex_Parameter : WriteTransactionDatabaseReadIndex_Parameter
     {
 
         /// <summary>

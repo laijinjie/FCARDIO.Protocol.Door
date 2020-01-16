@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.Person.DeletePerson
+namespace FCARDIO.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 删除人员

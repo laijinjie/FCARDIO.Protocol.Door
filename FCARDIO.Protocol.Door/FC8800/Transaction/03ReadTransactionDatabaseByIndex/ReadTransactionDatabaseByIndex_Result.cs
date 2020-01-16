@@ -6,7 +6,7 @@ using FCARDIO.Core.Extension;
 using FCARDIO.Protocol.Door.FC8800.Data;
 using FCARDIO.Protocol.Transaction;
 
-namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex
+namespace FCARDIO.Protocol.Door.FC8800.Transaction
 {
     /// <summary>
     /// 读取控制器中的卡片数据库信息返回值

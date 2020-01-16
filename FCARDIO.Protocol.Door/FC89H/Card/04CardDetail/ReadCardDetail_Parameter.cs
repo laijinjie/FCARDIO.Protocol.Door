@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC89H.Card.CardDetail
+namespace FCARDIO.Protocol.Door.FC89H.Card
 {
     /// <summary>
     /// FC89H 读取单个卡片在控制器中的信息
     /// </summary>
-    public class ReadCardDetail_Parameter:FC8800.Card.CardDetail.ReadCardDetail_Parameter
+    public class ReadCardDetail_Parameter:FC8800.Card.ReadCardDetail_Parameter
     {
         /// <summary>
         /// 创建结构

@@ -1,7 +1,7 @@
 ﻿using FCARDIO.Core.Command;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.Fingerprint.Person.PersonDataBase
+namespace FCARDIO.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 

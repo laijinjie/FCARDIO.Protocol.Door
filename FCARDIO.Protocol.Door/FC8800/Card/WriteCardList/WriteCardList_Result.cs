@@ -1,4 +1,4 @@
-﻿using FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence;
+﻿using FCARDIO.Protocol.Door.FC8800.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC89H.Card.CardDetail
+namespace FCARDIO.Protocol.Door.FC89H.Card
 {
     /// <summary>
     /// FC88/MC58 读取单个卡片在控制器中的信息

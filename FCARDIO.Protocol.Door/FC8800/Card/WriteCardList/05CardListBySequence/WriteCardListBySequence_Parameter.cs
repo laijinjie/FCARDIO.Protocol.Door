@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
     ///FC88\MC58 将卡片列表写入到控制器非排序区

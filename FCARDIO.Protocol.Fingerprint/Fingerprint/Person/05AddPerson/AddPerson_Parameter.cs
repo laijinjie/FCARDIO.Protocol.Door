@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FCARDIO.Protocol.Fingerprint.Data;
 
-namespace FCARDIO.Protocol.Fingerprint.Person.AddPerson
+namespace FCARDIO.Protocol.Fingerprint.Person
 {
     public class AddPerson_Parameter : WritePerson_ParameterBase
     {

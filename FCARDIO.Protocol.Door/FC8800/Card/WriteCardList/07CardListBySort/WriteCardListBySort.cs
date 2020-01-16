@@ -8,7 +8,7 @@ using FCARDIO.Core.Command;
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
     /// FC88\MC58 将卡片列表写入到控制器排序区 

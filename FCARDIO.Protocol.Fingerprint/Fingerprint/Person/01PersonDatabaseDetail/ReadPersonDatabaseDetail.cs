@@ -2,7 +2,7 @@
 using FCARDIO.Protocol.Door.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Person.PersonDatabaseDetail
+namespace FCARDIO.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 读取人员存储详情

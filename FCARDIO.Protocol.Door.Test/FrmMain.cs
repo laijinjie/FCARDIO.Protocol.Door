@@ -1127,18 +1127,18 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption).FullName, "读取非法读卡报警参数");
 
 
-            mCommandClasss.Add(typeof(FC8800.Card.CardDatabaseDetail.ReadCardDatabaseDetail).FullName, "读取卡片存储详情");
-            mCommandClasss.Add(typeof(FC89H.Card.CardDataBase.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
-            mCommandClasss.Add(typeof(FC8800.Card.CardDataBase.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
-            mCommandClasss.Add(typeof(FC8800.Card.ClearCardDataBase.ClearCardDataBase).FullName, "从控制器中清空所有卡片");
-            mCommandClasss.Add(typeof(FC89H.Card.CardDetail.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
-            mCommandClasss.Add(typeof(FC8800.Card.CardDetail.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
-            mCommandClasss.Add(typeof(FC8800.Card.CardListBySort.WriteCardListBySort).FullName, "上传卡片到排序区");
-            mCommandClasss.Add(typeof(FC89H.Card.CardListBySort.WriteCardListBySort).FullName, "上传卡片到排序区");
-            mCommandClasss.Add(typeof(FC8800.Card.CardListBySequence.WriteCardListBySequence).FullName, "上传卡片到顺序区");
-            mCommandClasss.Add(typeof(FC89H.Card.CardListBySequence.WriteCardListBySequence).FullName, "上传卡片到顺序区");
-            mCommandClasss.Add(typeof(FC8800.Card.DeleteCard.DeleteCard).FullName, "从控制器删除卡片");
-            mCommandClasss.Add(typeof(FC89H.Card.DeleteCard.DeleteCard).FullName, "从控制器删除卡片");
+            mCommandClasss.Add(typeof(FC8800.Card.ReadCardDatabaseDetail).FullName, "读取卡片存储详情");
+            mCommandClasss.Add(typeof(FC89H.Card.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
+            mCommandClasss.Add(typeof(FC8800.Card.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
+            mCommandClasss.Add(typeof(FC8800.Card.ClearCardDataBase).FullName, "从控制器中清空所有卡片");
+            mCommandClasss.Add(typeof(FC89H.Card.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
+            mCommandClasss.Add(typeof(FC8800.Card.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
+            mCommandClasss.Add(typeof(FC8800.Card.WriteCardListBySort).FullName, "上传卡片到排序区");
+            mCommandClasss.Add(typeof(FC89H.Card.WriteCardListBySort).FullName, "上传卡片到排序区");
+            mCommandClasss.Add(typeof(FC8800.Card.WriteCardListBySequence).FullName, "上传卡片到顺序区");
+            mCommandClasss.Add(typeof(FC89H.Card.WriteCardListBySequence).FullName, "上传卡片到顺序区");
+            mCommandClasss.Add(typeof(FC8800.Card.DeleteCard).FullName, "从控制器删除卡片");
+            mCommandClasss.Add(typeof(FC89H.Card.DeleteCard).FullName, "从控制器删除卡片");
 
             mCommandClasss.Add(typeof(FC8800.Password.ReadPasswordDetail).FullName, "读取密码容量信息");
             mCommandClasss.Add(typeof(FC8800.Password.ClearPassword).FullName, "清空所有密码");
@@ -1161,15 +1161,15 @@ namespace FCARDIO.Protocol.Door.Test
             mCommandClasss.Add(typeof(FC8800.TimeGroup.ReadTimeGroup).FullName, "读取所有开门时段");
             mCommandClasss.Add(typeof(FC8800.TimeGroup.AddTimeGroup).FullName, "添加开门时段");
 
-            mCommandClasss.Add(typeof(FC8800.Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
-            mCommandClasss.Add(typeof(FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
-            mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
-            mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase).FullName, "读取新记录");
-            mCommandClasss.Add(typeof(FC89H.Transaction.ReadTransactionDatabase.ReadTransactionDatabase).FullName, "读取新记录");
-            mCommandClasss.Add(typeof(FC8800.Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
-            mCommandClasss.Add(typeof(FC8800.Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
+            mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
+            mCommandClasss.Add(typeof(FC8800.Transaction.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
+            mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
+            mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabase).FullName, "读取新记录");
+            mCommandClasss.Add(typeof(FC89H.Transaction.ReadTransactionDatabase).FullName, "读取新记录");
+            mCommandClasss.Add(typeof(FC8800.Transaction.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
+            mCommandClasss.Add(typeof(FC8800.Transaction.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
 
-            mCommandClasss.Add(typeof(FC89H.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
+            mCommandClasss.Add(typeof(FC89H.Transaction.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
 
 
         }
@@ -1714,11 +1714,11 @@ namespace FCARDIO.Protocol.Door.Test
             {
                 if (bIsFC89H)
                 {
-                    return FC89H.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
+                    return FC89H.Transaction.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
                 }
                 else
                 {
-                    return FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
+                    return FC8800.Transaction.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
                 }
             }
             switch (cmdIndex)

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.ClearCardDataBase
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
     /// 清空卡片数据库

@@ -9,7 +9,7 @@ using FCARDIO.Core.Packet;
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
     /// 将卡片列表写入到控制器非排序区 

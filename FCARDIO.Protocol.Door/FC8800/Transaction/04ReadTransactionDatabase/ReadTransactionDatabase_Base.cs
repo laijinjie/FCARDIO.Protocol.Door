@@ -1,15 +1,14 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800.Data;
-using FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex;
-using FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseDetail;
+using FCARDIO.Protocol.Door.FC8800.Transaction;
 using FCARDIO.Protocol.OnlineAccess;
 using FCARDIO.Protocol.Transaction;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
+namespace FCARDIO.Protocol.Door.FC8800.Transaction
 {
     /// <summary>
     ///  读取新记录

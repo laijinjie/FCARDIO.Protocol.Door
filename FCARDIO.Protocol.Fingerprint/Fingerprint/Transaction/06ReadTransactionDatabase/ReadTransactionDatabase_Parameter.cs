@@ -2,13 +2,13 @@
 using FCARDIO.Protocol.Door.FC8800;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction.ReadTransactionDatabase
+namespace FCARDIO.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     /// 读取新记录
     /// </summary>
     public class ReadTransactionDatabase_Parameter
-        : FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Parameter
+        : FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase_Parameter
     {
 
         /// <summary>

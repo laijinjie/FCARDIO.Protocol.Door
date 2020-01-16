@@ -4,7 +4,7 @@ using FCARDIO.Protocol.Door.FC8800;
 using FCARDIO.Protocol.Fingerprint.Data;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.Fingerprint.Person.AddPerson
+namespace FCARDIO.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 将人员列表写入到控制器

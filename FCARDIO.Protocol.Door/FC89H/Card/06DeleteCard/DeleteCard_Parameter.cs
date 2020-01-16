@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC89H.Card.DeleteCard
+namespace FCARDIO.Protocol.Door.FC89H.Card
 {
     /// <summary>
     /// FC89H 删除卡片

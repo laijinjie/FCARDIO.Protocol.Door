@@ -3,7 +3,7 @@ using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800.Data;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
     /// FC88/MC58 读取卡片数据库中的所有卡数据

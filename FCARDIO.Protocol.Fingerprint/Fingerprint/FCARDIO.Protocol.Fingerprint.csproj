@@ -101,6 +101,7 @@
     <Compile Include="Data\Person.cs" />
     <Compile Include="Data\TransactionDatabaseDetail.cs" />
     <Compile Include="Data\Transaction\CardTransaction.cs" />
+    <Compile Include="Data\Transaction\ConnectTestTransaction.cs" />
     <Compile Include="Data\Transaction\DoorSensorTransaction.cs" />
     <Compile Include="Data\Transaction\SystemTransaction.cs" />
     <Compile Include="Door\01ReaderOption\ReaderOption_Parameter.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="SystemParameter\20OEM\OEM_Result.cs" />
     <Compile Include="SystemParameter\20OEM\ReadOEM.cs" />
     <Compile Include="SystemParameter\20OEM\WriteOEM.cs" />
+    <Compile Include="SystemParameter\A0ConnectTestTransaction\SendConnectTestResponse.cs" />
     <Compile Include="Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail.cs" />
     <Compile Include="Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail_Result.cs" />
     <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase.cs" />

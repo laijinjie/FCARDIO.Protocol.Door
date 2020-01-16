@@ -1,10 +1,10 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800.Data;
-using FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase;
+using FCARDIO.Protocol.Door.FC8800.Transaction;
 using FCARDIO.Protocol.Transaction;
 using System;
 
-namespace FCARDIO.Protocol.Door.FC89H.Transaction.ReadTransactionDatabase
+namespace FCARDIO.Protocol.Door.FC89H.Transaction
 {
     /// <summary>
     ///  读取新记录

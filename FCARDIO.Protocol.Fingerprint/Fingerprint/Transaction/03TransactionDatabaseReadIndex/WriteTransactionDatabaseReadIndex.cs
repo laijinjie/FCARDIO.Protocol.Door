@@ -1,7 +1,7 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction.TransactionDatabaseReadIndex
+namespace FCARDIO.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     /// 更新记录指针

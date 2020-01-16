@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.DeleteCard
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
     /// FC88/MC58 删除卡片

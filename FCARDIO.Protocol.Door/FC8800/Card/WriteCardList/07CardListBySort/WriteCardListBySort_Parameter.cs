@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800.Card.CardListBySequence;
+using FCARDIO.Protocol.Door.FC8800.Card;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardListBySort
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
     /// FC88\MC58 将卡片列表写入到控制器排序区

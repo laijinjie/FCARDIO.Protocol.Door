@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC89H.Card.CardListBySequence
+namespace FCARDIO.Protocol.Door.FC89H.Card
 {
 
     /// <summary>

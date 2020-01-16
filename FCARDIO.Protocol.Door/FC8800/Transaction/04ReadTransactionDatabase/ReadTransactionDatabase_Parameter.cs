@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
+namespace FCARDIO.Protocol.Door.FC8800.Transaction
 {
     /// <summary>
     /// 读取新记录

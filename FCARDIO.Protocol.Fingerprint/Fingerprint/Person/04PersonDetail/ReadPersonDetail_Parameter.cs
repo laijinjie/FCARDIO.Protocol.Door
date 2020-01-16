@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.Person.PersonDetail
+namespace FCARDIO.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 查询人员详情

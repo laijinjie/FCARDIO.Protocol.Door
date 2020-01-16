@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FCARDIO.Core.Command;
 
-namespace FCARDIO.Protocol.Door.FC89H.Card.CardDetail
+namespace FCARDIO.Protocol.Door.FC89H.Card
 {
 
     /// <summary>

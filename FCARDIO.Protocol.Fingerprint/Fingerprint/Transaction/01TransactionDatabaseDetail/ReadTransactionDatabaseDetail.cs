@@ -2,7 +2,7 @@
 using FCARDIO.Protocol.Door.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction.TransactionDatabaseDetail
+namespace FCARDIO.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     /// 读取控制器中的卡片数据库信息

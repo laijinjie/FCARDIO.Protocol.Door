@@ -1,8 +1,4 @@
 ﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Fingerprint.Person.ClearPersonDataBase;
-using FCARDIO.Protocol.Fingerprint.Person.DeletePerson;
-using FCARDIO.Protocol.Fingerprint.Person.PersonDataBase;
-using FCARDIO.Protocol.Fingerprint.Person.PersonDatabaseDetail;
 using FCARDIO.Protocol.Fingerprint.Test.Model;
 using System;
 using System.Collections.Generic;
@@ -14,9 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FCARDIO.Core.Extension;
-using FCARDIO.Protocol.Fingerprint.Person.AddPerson;
 using FCARDIO.Protocol.Fingerprint.Person;
-using FCARDIO.Protocol.Fingerprint.Person.PersonDetail;
 
 namespace FCARDIO.Protocol.Fingerprint.Test
 {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseDetail
+namespace FCARDIO.Protocol.Door.FC8800.Transaction
 {
     /// <summary>
     /// 读取控制器中的卡片数据库信息

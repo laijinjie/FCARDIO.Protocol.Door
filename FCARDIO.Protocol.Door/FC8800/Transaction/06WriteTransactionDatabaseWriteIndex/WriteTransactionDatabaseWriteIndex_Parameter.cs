@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.Door.FC8800.Transaction.WriteTransactionDatabaseWriteIndex
+namespace FCARDIO.Protocol.Door.FC8800.Transaction
 {
     /// <summary>
     /// 修改指定记录数据库的写索引

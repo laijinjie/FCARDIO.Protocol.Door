@@ -8,7 +8,7 @@ using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800.Data;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardDataBase
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
     /// 从控制器中读取卡片数据<br/>

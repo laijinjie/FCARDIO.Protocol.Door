@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction.TransactionDatabaseDetail
+namespace FCARDIO.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     /// 读取控制器中的卡片数据库信息

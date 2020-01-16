@@ -2,7 +2,7 @@
 using FCARDIO.Protocol.Fingerprint.Data;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.Fingerprint.Person.DeletePerson
+namespace FCARDIO.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 删除人员参数

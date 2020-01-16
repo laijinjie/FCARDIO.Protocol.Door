@@ -3,7 +3,7 @@ using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Person.PersonDetail
+namespace FCARDIO.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 读取单个人员在控制器中的信息

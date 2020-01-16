@@ -1,7 +1,7 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction.ClearTransactionDatabase
+namespace FCARDIO.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     /// 清空所有类型的记录数据库

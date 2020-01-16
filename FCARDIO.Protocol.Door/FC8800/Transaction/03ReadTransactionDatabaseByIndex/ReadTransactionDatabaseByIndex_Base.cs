@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex
+namespace FCARDIO.Protocol.Door.FC8800.Transaction
 {
     /// <summary>
     /// 读记录数据库

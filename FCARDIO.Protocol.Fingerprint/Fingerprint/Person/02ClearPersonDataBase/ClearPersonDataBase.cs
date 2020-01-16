@@ -2,7 +2,7 @@
 using FCARDIO.Protocol.Door.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Person.ClearPersonDataBase
+namespace FCARDIO.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 从控制器中清空所有人员信息

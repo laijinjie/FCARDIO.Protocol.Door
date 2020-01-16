@@ -10,10 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FCARDIO.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseByIndex;
-using FCARDIO.Protocol.Door.FC8800.Transaction.ClearTransactionDatabase;
 using FCARDIO.Protocol.Fingerprint.Transaction;
-using FCARDIO.Protocol.Fingerprint.Transaction.ReadTransactionDatabase;
 
 namespace FCARDIO.Protocol.Fingerprint.Test
 {
@@ -215,8 +212,8 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             int type = cboe_TransactionDatabaseType1.SelectedIndex;
             int WriteIndex = int.Parse(txtWriteIndex.Text.ToString());
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex_Parameter(Get_TransactionDatabaseType(type), WriteIndex);
-            var cmd = new Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex(cmdDtl, par);
+            var par = new Transaction.WriteTransactionDatabaseWriteIndex_Parameter(Get_TransactionDatabaseType(type), WriteIndex);
+            var cmd = new Transaction.WriteTransactionDatabaseWriteIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
@@ -232,9 +229,9 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             int ReadIndex = int.Parse(txtReadIndex.Text.ToString());
 
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex_Parameter(
+            var par = new Transaction.WriteTransactionDatabaseReadIndex_Parameter(
                 Get_TransactionDatabaseType(type), ReadIndex);
-            var cmd = new Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex(cmdDtl, par);
+            var cmd = new Transaction.WriteTransactionDatabaseReadIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
@@ -268,7 +265,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
 
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.FC8800.Transaction.ReadTransactionDatabase_Result;
                 mMainForm.AddCmdLog(cmde, $"读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count},剩余新记录数：{result.readable}");
 
                 if (result.TransactionList.Count > 0)
@@ -307,7 +304,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
 
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex_Result;
                 mMainForm.AddCmdLog(cmde, $"按序号读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count}");
 
                 if (result.Quantity > 0)
@@ -380,11 +377,11 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         private void butTransactionDatabaseDetail_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
-            var cmd = new Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail(cmdDtl);
+            var cmd = new Transaction.ReadTransactionDatabaseDetail(cmdDtl);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail_Result;
+                var result = cmd.getResult() as Transaction.ReadTransactionDatabaseDetail_Result;
                 for (int i = 0; i < 3; i++)
                 {
                     TextBox txtQuantity = FindControl(groupBox1, "txtQuantity" + (i + 1).ToString()) as TextBox;
@@ -425,8 +422,8 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         {
             int type = cboe_TransactionDatabaseType2.SelectedIndex;
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new Transaction.ClearTransactionDatabase.ClearTransactionDatabase_Parameter(Get_TransactionDatabaseType(type));
-            var cmd = new Transaction.ClearTransactionDatabase.ClearTransactionDatabase(cmdDtl, par);
+            var par = new Transaction.ClearTransactionDatabase_Parameter(Get_TransactionDatabaseType(type));
+            var cmd = new Transaction.ClearTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {

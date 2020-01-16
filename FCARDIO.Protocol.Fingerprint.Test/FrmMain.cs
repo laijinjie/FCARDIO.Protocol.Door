@@ -927,12 +927,12 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             mCommandClasss.Add(typeof(Protocol.Door.FC8800.TimeGroup.ReadTimeGroup).FullName, "读取所有开门时段");
             mCommandClasss.Add(typeof(Protocol.Door.FC8800.TimeGroup.AddTimeGroup).FullName, "添加开门时段");
 
-            mCommandClasss.Add(typeof(Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
-            mCommandClasss.Add(typeof(Transaction.ClearTransactionDatabase.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
-            mCommandClasss.Add(typeof(Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
-            mCommandClasss.Add(typeof(Transaction.ReadTransactionDatabase.ReadTransactionDatabase).FullName, "读取新记录");
-            mCommandClasss.Add(typeof(Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
-            mCommandClasss.Add(typeof(Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
+            mCommandClasss.Add(typeof(Transaction.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
+            mCommandClasss.Add(typeof(Transaction.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
+            mCommandClasss.Add(typeof(Transaction.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
+            mCommandClasss.Add(typeof(Transaction.ReadTransactionDatabase).FullName, "读取新记录");
+            mCommandClasss.Add(typeof(Transaction.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
+            mCommandClasss.Add(typeof(Transaction.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
 
             mCommandClasss.Add(typeof(Alarm.SendFireAlarm.WriteSendFireAlarm).FullName, "通知设备触发消防报警");
             mCommandClasss.Add(typeof(Alarm.BlacklistAlarm.ReadBlacklistAlarm).FullName, "读取黑名单报警");
@@ -973,11 +973,11 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             mCommandClasss.Add(typeof(Door.ExpirationPrompt.ReadExpirationPrompt).FullName, "读取权限到期提示参数");
             mCommandClasss.Add(typeof(Door.ExpirationPrompt.WriteExpirationPrompt).FullName, "设置权限到期提示参数");
 
-            mCommandClasss.Add(typeof(Person.PersonDatabaseDetail.ReadPersonDatabaseDetail).FullName, "读取人员存储详情");
-            mCommandClasss.Add(typeof(Person.ClearPersonDataBase.ClearPersonDataBase).FullName, "清空所有人员");
-            mCommandClasss.Add(typeof(Person.PersonDetail.ReadPersonDetail).FullName, "读取单个人员");
-            mCommandClasss.Add(typeof(Person.DeletePerson.DeletePerson).FullName, "删除人员");
-            mCommandClasss.Add(typeof(Person.AddPerson.AddPerson).FullName, "添加人员");
+            mCommandClasss.Add(typeof(Person.ReadPersonDatabaseDetail).FullName, "读取人员存储详情");
+            mCommandClasss.Add(typeof(Person.ClearPersonDataBase).FullName, "清空所有人员");
+            mCommandClasss.Add(typeof(Person.ReadPersonDetail).FullName, "读取单个人员");
+            mCommandClasss.Add(typeof(Person.DeletePerson).FullName, "删除人员");
+            mCommandClasss.Add(typeof(Person.AddPerson).FullName, "添加人员");
 
             mCommandClasss.Add(typeof(AdditionalData.WriteFeatureCode).FullName, "写入特征码");
             mCommandClasss.Add(typeof(AdditionalData.ReadFeatureCode).FullName, "读取特征码");
@@ -1300,7 +1300,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             //在这里需要根据SN进行类型判定，也可以根据SN来进行查表
             if (cmdIndex >= 1 && cmdIndex <= 3)
             {
-                return Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
+                return Transaction.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
             }
             if (cmdIndex == 0x22)
             {

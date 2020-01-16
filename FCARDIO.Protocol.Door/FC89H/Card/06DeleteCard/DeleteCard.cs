@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC89H.Card.DeleteCard
+namespace FCARDIO.Protocol.Door.FC89H.Card
 {
     /// <summary>
     ///  FC89H 将卡片列表从到控制器中删除
     /// </summary>
-    public class DeleteCard : FC8800.Card.DeleteCard.DeleteCardBase<Data.CardDetail>
+    public class DeleteCard : FC8800.Card.DeleteCardBase<Data.CardDetail>
     {
 
 

@@ -1,7 +1,7 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction.WriteTransactionDatabaseWriteIndex
+namespace FCARDIO.Protocol.Fingerprint.Transaction
 {
 
     /// <summary>

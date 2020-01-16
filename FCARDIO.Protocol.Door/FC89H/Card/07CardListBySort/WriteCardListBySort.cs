@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC89H.Card.CardListBySort
+namespace FCARDIO.Protocol.Door.FC89H.Card
 {
 
     /// <summary>
     /// FC89H 将卡片列表写入到控制器排序区 
     /// </summary>
-    public class WriteCardListBySort : FCARDIO.Protocol.Door.FC8800.Card.CardListBySort.WriteCardListBySortBase<Data.CardDetail>
+    public class WriteCardListBySort : FCARDIO.Protocol.Door.FC8800.Card.WriteCardListBySortBase<Data.CardDetail>
     {
         /// <summary>
         /// 初始化命令结构

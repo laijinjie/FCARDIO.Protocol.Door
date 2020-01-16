@@ -2,7 +2,7 @@
 using FCARDIO.Protocol.FC8800;
 using FCARDIO.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Door.FC8800.Card.CardDatabaseDetail
+namespace FCARDIO.Protocol.Door.FC8800.Card
 {
     /// <summary>
     /// 读取卡片存储详情

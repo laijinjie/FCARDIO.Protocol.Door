@@ -3,7 +3,7 @@ using FCARDIO.Protocol.Fingerprint.Data.Transaction;
 using FCARDIO.Protocol.Transaction;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction.ReadTransactionDatabase
+namespace FCARDIO.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     ///  读取新记录
@@ -42,7 +42,7 @@ namespace FCARDIO.Protocol.Fingerprint.Transaction.ReadTransactionDatabase
         /// <returns></returns>
         protected override AbstractTransaction GetNewTransaction()
         {
-            return NewTransactionTable[mTransactionType ]();
+            return NewTransactionTable[mTransactionType]();
         }
     }
 }

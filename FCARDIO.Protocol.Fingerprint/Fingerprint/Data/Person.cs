@@ -275,7 +275,7 @@ namespace FCARDIO.Protocol.Fingerprint.Data
         {
             data.WriteInt((int)UserCode);
             data.WriteLong((long)CardData);
-             Password = StringUtil.FillHexString(Password, 8, "F", true);
+            Password = StringUtil.FillHexString(Password, 8, "F", true);
             StringUtil.HextoByteBuf(Password, data);
             TimeUtil.DateToBCD_yyMMddhhmm(data, Expiry);
             data.WriteByte(TimeGroup);
