@@ -33,7 +33,7 @@ namespace FCARDIO.Protocol.Fingerprint.Transaction
         protected override void CreatePacket0()
         {
             WriteTransactionDatabaseReadIndex_Parameter model = _Parameter as WriteTransactionDatabaseReadIndex_Parameter;
-            Packet(0x08, 0x03, 0x00, 0x06, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
+            Packet(0x08, 0x03, 0x00, 0x05, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
     }

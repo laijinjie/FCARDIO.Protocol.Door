@@ -43,6 +43,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\FCARD.Common.dll</HintPath>
     </Reference>
+    <Reference Include="FCARDIO.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\一卡通云平台物联网服务器\DoNetDll\FCARDIO.Protocol.Util.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -239,10 +243,6 @@
     <ProjectReference Include="..\..\FCARDIO.Protocol.Door\FCARDIO.Protocol.Door.csproj">
       <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
       <Name>FCARDIO.Protocol.Door</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\FCARDIO.Protocol.Util\FCARDIO.Protocol.Util.csproj">
-      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
-      <Name>FCARDIO.Protocol.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

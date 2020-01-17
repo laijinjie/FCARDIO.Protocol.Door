@@ -44,7 +44,7 @@ namespace FCARDIO.Protocol.Util
                 return DateTime.Now;
             }
 
-            DateTime dTime = new DateTime(2000 + year, month , dayOfMonth, hourOfDay, minute, second);
+            DateTime dTime = new DateTime(2000 + year, month, dayOfMonth, hourOfDay, minute, second);
             return dTime;
         }
 
@@ -101,7 +101,7 @@ namespace FCARDIO.Protocol.Util
             {
                 return DateTime.Now;
             }
-          
+
 
             DateTime dTime = new DateTime(2000 + year, month, day);
             return dTime;
@@ -119,7 +119,7 @@ namespace FCARDIO.Protocol.Util
             else
             {
                 btData[0] = (byte)(date.Year - 2000);
-                btData[1] = (byte)(date.Month + 1);
+                btData[1] = (byte)(date.Month);
                 btData[2] = (byte)date.Day;
                 btData[3] = (byte)date.Hour;
                 btData = ByteUtil.ByteToBCD(btData);
@@ -389,7 +389,7 @@ namespace FCARDIO.Protocol.Util
                 return DateTime.Now;
             }
 
-            DateTime dTime = new DateTime(year*100 + year1, month, day, hour, minute, sec);
+            DateTime dTime = new DateTime(year * 100 + year1, month, day, hour, minute, sec);
             return dTime;
         }
 
@@ -459,7 +459,7 @@ namespace FCARDIO.Protocol.Util
             else
             {
                 btData[0] = (byte)(date.Year - 2000);
-                btData[1] = (byte)(date.Month + 1);
+                btData[1] = (byte)(date.Month);
                 btData[2] = (byte)date.Day;
                 btData[3] = (byte)date.Hour;
                 btData[4] = (byte)date.Minute;

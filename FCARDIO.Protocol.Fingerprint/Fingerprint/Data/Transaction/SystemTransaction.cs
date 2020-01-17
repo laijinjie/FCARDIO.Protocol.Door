@@ -89,7 +89,6 @@ namespace FCARDIO.Protocol.Fingerprint.Data.Transaction
 
                 data.ReadBytes(time, 0, 6);
                 _TransactionDate = TimeUtil.BCDTimeToDate_ssmmhhddMMyy(time);
-                _TransactionDate = _TransactionDate.AddMonths(1);
                 _TransactionCode = data.ReadByte();
             }
             catch (Exception e)

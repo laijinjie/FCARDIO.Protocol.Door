@@ -52,7 +52,6 @@ namespace FCARDIO.Protocol.Fingerprint.Data.Transaction
             byte[] time = new byte[6];
             dtBuf.ReadBytes(time, 0, 6);
             _TransactionDate = TimeUtil.BCDTimeToDate_ssmmhhddMMyy(time);
-            _TransactionDate = _TransactionDate.AddMonths(1);
             Accesstype = dtBuf.ReadByte();
             _TransactionCode = dtBuf.ReadByte();
             Photo = dtBuf.ReadByte();
