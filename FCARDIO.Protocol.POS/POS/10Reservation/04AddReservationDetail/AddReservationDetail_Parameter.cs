@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 using FCARDIO.Protocol.POS.Data;
+using FCARD.Common.Extensions;
 
 namespace FCARDIO.Protocol.POS.Reservation.AddReservationDetail
 {
@@ -25,6 +26,19 @@ namespace FCARDIO.Protocol.POS.Reservation.AddReservationDetail
             if (ReservationDetailList == null || ReservationDetailList.Count == 0)
             {
                 return false;
+            }
+            int iOut = 0;
+            foreach (var item in ReservationDetailList)
+            {
+                if (item.CardData == 0)
+                {
+                    throw new ArgumentException("CardData Error!");
+                }
+                if (item.ReservationDate.Year < 2000 || item.ReservationDate.Year > 2099)
+                {
+                    throw new ArgumentException("ReservationDate Error!");
+                }
+                //item.TimeGroup
             }
             return true;
         }

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.POS.Reservation.AddReservationDetail
 {
+    /// <summary>
+    /// 添加订餐信息
+    /// </summary>
     public class AddReservationDetail : Write_Command
     {
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
+using FCARDIO.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,9 @@ using System.Threading.Tasks;
 namespace FCARDIO.Protocol.POS.Reservation.ClearDataBase
 {
     /// <summary>
-    /// 从控制器中清空所有卡片,可指定参数控制清空的区域
+    /// 清空所有订餐信息
     /// </summary>
-    public class ClearDataBase
-        : Write_Command
+    public class ClearDataBase : Write_Command
     {
         /// <summary>
         /// 初始化命令结构 

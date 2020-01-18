@@ -83,6 +83,7 @@
             this.txtProcess = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.butWatch = new System.Windows.Forms.Button();
+            this.butReadSN = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.txtUDPAddr = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -91,7 +92,6 @@
             this.txtUDPLocalPort = new System.Windows.Forms.TextBox();
             this.butUDPBind = new System.Windows.Forms.Button();
             this.gbUDP = new System.Windows.Forms.GroupBox();
-            this.butReadSN = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.gbSerialPort.SuspendLayout();
@@ -162,7 +162,7 @@
             this.txtSN.Name = "txtSN";
             this.txtSN.Size = new System.Drawing.Size(164, 21);
             this.txtSN.TabIndex = 7;
-            this.txtSN.Text = "FC-A102E19090008";
+            this.txtSN.Text = "FC-8300T19124012";
             // 
             // label6
             // 
@@ -615,6 +615,16 @@
             this.butWatch.UseVisualStyleBackColor = true;
             this.butWatch.Click += new System.EventHandler(this.buWatch_Click);
             // 
+            // butReadSN
+            // 
+            this.butReadSN.Location = new System.Drawing.Point(449, 144);
+            this.butReadSN.Name = "butReadSN";
+            this.butReadSN.Size = new System.Drawing.Size(108, 23);
+            this.butReadSN.TabIndex = 20;
+            this.butReadSN.Text = "获取信息";
+            this.butReadSN.UseVisualStyleBackColor = true;
+            this.butReadSN.Click += new System.EventHandler(this.ButReadSN_Click);
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -694,16 +704,6 @@
             this.gbUDP.TabIndex = 12;
             this.gbUDP.TabStop = false;
             this.gbUDP.Text = "UDP";
-            // 
-            // butReadSN
-            // 
-            this.butReadSN.Location = new System.Drawing.Point(449, 144);
-            this.butReadSN.Name = "butReadSN";
-            this.butReadSN.Size = new System.Drawing.Size(108, 23);
-            this.butReadSN.TabIndex = 20;
-            this.butReadSN.Text = "获取信息";
-            this.butReadSN.UseVisualStyleBackColor = true;
-            this.butReadSN.Click += new System.EventHandler(this.ButReadSN_Click);
             // 
             // frmMain
             // 
@@ -803,6 +803,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.ToolStripButton butAlarm;
+        private System.Windows.Forms.ToolStripButton butAdditionalData;
+        private System.Windows.Forms.Button butReadSN;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtUDPAddr;
         private System.Windows.Forms.Label label10;
@@ -811,9 +814,6 @@
         private System.Windows.Forms.TextBox txtUDPLocalPort;
         private System.Windows.Forms.Button butUDPBind;
         private System.Windows.Forms.GroupBox gbUDP;
-        private System.Windows.Forms.ToolStripButton butAlarm;
-        private System.Windows.Forms.ToolStripButton butAdditionalData;
-        private System.Windows.Forms.Button butReadSN;
     }
 }
 

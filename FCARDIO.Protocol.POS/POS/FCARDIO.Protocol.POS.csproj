@@ -75,17 +75,50 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractParameter.cs" />
+    <Compile Include="CardType\01DatabaseDetail\ReadDatabaseDetail.cs" />
+    <Compile Include="CardType\01DatabaseDetail\ReadDatabaseDetail_Result.cs" />
+    <Compile Include="CardType\02ClearDataBase\ClearDataBase.cs" />
+    <Compile Include="CardType\02ClearDataBase\ClearDataBase_Parameter.cs" />
+    <Compile Include="CardType\03ReadDataBase\ReadDataBase.cs" />
+    <Compile Include="CardType\03ReadDataBase\ReadDataBase_Result.cs" />
+    <Compile Include="CardType\AddCardTypeDetail\AddCardTypeDetail.cs" />
+    <Compile Include="CardType\AddCardTypeDetail\AddReservationDetail_Parameter.cs" />
     <Compile Include="CommandEx.cs" />
+    <Compile Include="Data\CardTypeDetail.cs" />
+    <Compile Include="Data\ReservationDetail.cs" />
     <Compile Include="Read_Command.cs" />
+    <Compile Include="10Reservation\01DatabaseDetail\ReadDatabaseDetail.cs" />
+    <Compile Include="10Reservation\01DatabaseDetail\ReadDatabaseDetail_Result.cs" />
+    <Compile Include="10Reservation\02ClearDataBase\ClearDataBase.cs" />
+    <Compile Include="10Reservation\02ClearDataBase\ClearDataBase_Parameter.cs" />
+    <Compile Include="10Reservation\03ReadDataBase\ReadDataBase.cs" />
+    <Compile Include="10Reservation\03ReadDataBase\ReadDataBase_Result.cs" />
+    <Compile Include="10Reservation\04AddReservationDetail\AddReservationDetail.cs" />
+    <Compile Include="10Reservation\04AddReservationDetail\AddReservationDetail_Parameter.cs" />
     <Compile Include="Result_Base.cs" />
     <Compile Include="SystemParameter\01SN\ReadSN.cs" />
     <Compile Include="SystemParameter\01SN\SN_Result.cs" />
-    <Compile Include="SystemParameter\ConnectPassword\Password_Parameter.cs" />
-    <Compile Include="SystemParameter\ConnectPassword\Password_Result.cs" />
-    <Compile Include="SystemParameter\ConnectPassword\ReadConnectPassword.cs" />
-    <Compile Include="SystemParameter\ConnectPassword\ResetConnectPassword.cs" />
-    <Compile Include="SystemParameter\ConnectPassword\WriteConnectPassword.cs" />
+    <Compile Include="SystemParameter\02ConnectPassword\Password_Parameter.cs" />
+    <Compile Include="SystemParameter\02ConnectPassword\Password_Result.cs" />
+    <Compile Include="SystemParameter\02ConnectPassword\ReadConnectPassword.cs" />
+    <Compile Include="SystemParameter\02ConnectPassword\ResetConnectPassword.cs" />
+    <Compile Include="SystemParameter\02ConnectPassword\WriteConnectPassword.cs" />
+    <Compile Include="SystemParameter\03Deadline\ReadDeadline.cs" />
+    <Compile Include="SystemParameter\03Deadline\ReadDeadline_Result.cs" />
+    <Compile Include="SystemParameter\03Deadline\WriteDeadline.cs" />
+    <Compile Include="SystemParameter\03Deadline\WriteDeadline_Parameter.cs" />
+    <Compile Include="SystemParameter\04Version\ReadVersion.cs" />
+    <Compile Include="SystemParameter\04Version\ReadVersion_Result.cs" />
+    <Compile Include="SystemParameter\06TCPSetting\ReadTCPSetting.cs" />
+    <Compile Include="SystemParameter\06TCPSetting\ReadTCPSetting_Result.cs" />
+    <Compile Include="SystemParameter\06TCPSetting\TCPDetail.cs" />
+    <Compile Include="SystemParameter\06TCPSetting\WriteTCPSetting.cs" />
+    <Compile Include="SystemParameter\06TCPSetting\WriteTCPSetting_Parameter.cs" />
     <Compile Include="Write_Command.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SystemParameter\ICCardParameter\" />
+    <Folder Include="SystemParameter\SystemMenuPassword\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

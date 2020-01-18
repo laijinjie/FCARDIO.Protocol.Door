@@ -6,22 +6,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.Reservation.DatabaseDetail
+namespace FCARDIO.Protocol.POS.CardType.DatabaseDetail
 {
     /// <summary>
-    /// 控制器中的卡片数据库信息
+    /// 控制器中的订餐数据库信息
     /// </summary>
     public class ReadDatabaseDetail_Result : INCommandResult
     {
         /// <summary>
         /// 最大容量
         /// </summary>
-        public long SortDataBaseSize;
+        public ushort SortDataBaseSize;
 
         /// <summary>
         /// 最大容量
         /// </summary>
-        public long SortSize;
+        public ushort SortSize;
 
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace FCARDIO.Protocol.POS.Reservation.DatabaseDetail
 
         public void SetBytes(IByteBuffer buf)
         {
-            SortDataBaseSize = buf.ReadByte();
-            SortSize = buf.ReadByte();
+            SortDataBaseSize = buf.ReadUnsignedShort();
+            SortSize = buf.ReadUnsignedShort();
 
         }
 

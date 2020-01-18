@@ -1386,7 +1386,21 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             ReadSN cmd = new ReadSN(cmdDtl);
             AddCommand(cmd);
 
+            cmdDtl.CommandTimeout += CmdDtl_CommandTimeout;
+            cmdDtl.CommandCompleteEvent += CmdDtl_CommandCompleteEvent;
+            cmdDtl.CommandErrorEvent += CmdDtl_CommandErrorEvent;
+        }
 
+        private void CmdDtl_CommandErrorEvent(object sender, CommandEventArgs e)
+        {
+        }
+
+        private void CmdDtl_CommandCompleteEvent(object sender, CommandEventArgs e)
+        {
+        }
+
+        private void CmdDtl_CommandTimeout(object sender, CommandEventArgs e)
+        {
         }
     }
 }
