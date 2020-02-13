@@ -32,7 +32,7 @@ namespace FCARDIO.Protocol.POS.Reservation.AddReservationDetail
             {
                 if (item.CardData == 0)
                 {
-                    throw new ArgumentException("CardData Error!");
+                    throw new ArgumentException("Data Error!");
                 }
                 if (item.ReservationDate.Year < 2000 || item.ReservationDate.Year > 2099)
                 {
