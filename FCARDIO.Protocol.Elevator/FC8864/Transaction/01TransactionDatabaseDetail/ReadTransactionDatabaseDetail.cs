@@ -1,5 +1,5 @@
 ﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800.Transaction.TransactionDatabaseDetail;
+using FCARDIO.Protocol.Door.FC8800.Transaction;
 using FCARDIO.Protocol.OnlineAccess;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.Transaction.TransactionDatabaseDetail

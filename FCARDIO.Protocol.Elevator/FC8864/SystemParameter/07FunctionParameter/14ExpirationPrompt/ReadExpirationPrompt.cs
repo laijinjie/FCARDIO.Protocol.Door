@@ -6,21 +6,18 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.Exp
     /// <summary>
     /// 读取 卡片到期提示参数
     /// </summary>
-    public class ReadExpirationPrompt : Read_Command
+    public class ReadExpirationPrompt : Protocol.Door.FC8800.SystemParameter.FunctionParameter.ReadCardPeriodSpeak
     {
         /// <summary>
         ///  初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        public ReadExpirationPrompt(INCommandDetail cd) : base(cd) { }
-
-        /// <summary>
-        /// 将命令打包成一个Packet，准备发送
-        /// </summary>
-        protected override void CreatePacket0()
-        {
-            Packet(0x41, 0x0A, 0x8D);
+        public ReadExpirationPrompt(INCommandDetail cd) : base(cd) {
+            CmdType = 0x41;
+            CmdIndex = 0x0A;
+            CmdPar = 0x8D;
         }
+
 
         /// <summary>
         /// 命令返回值的判断

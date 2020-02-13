@@ -1,6 +1,6 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800.Data;
-using FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase;
+using FCARDIO.Protocol.Door.FC8800.Transaction;
 using FCARDIO.Protocol.OnlineAccess;
 using FCARDIO.Protocol.Transaction;
 using System;
@@ -12,7 +12,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Transaction.ReadTransactionDatabase
     ///  读指定类型的记录数据库最新记录，并读取指定数量。
     ///  成功返回结果参考 link ReadTransactionDatabase_Result 
     /// </summary>
-    public class ReadTransactionDatabase : FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Base
+    public class ReadTransactionDatabase : FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabase
     {
         /// <summary>
         /// 新记录实体创建工厂

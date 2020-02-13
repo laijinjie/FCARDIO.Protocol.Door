@@ -5,13 +5,8 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.Exp
     /// <summary>
     /// 卡片到期提示参数
     /// </summary>
-    public class WriteExpirationPrompt_Parameter : AbstractParameter
+    public class WriteExpirationPrompt_Parameter : Protocol.Door.FC8800.SystemParameter.FunctionParameter.WriteCardPeriodSpeak_Parameter
     {
-        /// <summary>
-        /// 是否启用
-        /// </summary>
-        public bool IsUse;
-
         /// <summary>
         /// 构建一个空的实例
         /// </summary>
@@ -21,55 +16,10 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.Exp
         /// 初始化实例
         /// </summary>
         /// <param name="isUse">是否启用</param>
-        public WriteExpirationPrompt_Parameter(bool isUse)
+        public WriteExpirationPrompt_Parameter(byte _Use)
         {
-            IsUse = isUse;
+            Use = _Use;
         }
 
-        /// <summary>
-        /// 检查参数
-        /// </summary>
-        /// <returns></returns>
-        public override bool checkedParameter()
-        {
-
-            return true;
-        }
-
-        /// <summary>
-        /// 释放资源
-        /// </summary>
-        public override void Dispose()
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 对参数进行编码
-        /// </summary>
-        /// <param name="databuf"></param>
-        /// <returns></returns>
-        public override IByteBuffer GetBytes(IByteBuffer databuf)
-        {
-            return databuf.WriteBoolean(IsUse);
-        }
-
-        /// <summary>
-        /// 获取数据长度
-        /// </summary>
-        /// <returns></returns>
-        public override int GetDataLen()
-        {
-            return 0x01;
-        }
-
-        /// <summary>
-        /// 对参数进行解码
-        /// </summary>
-        /// <param name="databuf"></param>
-        public override void SetBytes(IByteBuffer databuf)
-        {
-            IsUse = databuf.ReadBoolean();
-        }
     }
 }

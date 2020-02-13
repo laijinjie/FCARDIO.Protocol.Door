@@ -6,19 +6,19 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Door
     /// <summary>
     /// 门号参数，取值范围 1-65
     /// </summary>
-    public class DoorPort_Parameter : AbstractParameter
+    public class DoorPort_Parameter : Protocol.Door.FC8800.Door.DoorPort_Parameter
     {
         /// <summary>
         ///  门索引号
         ///  取值范围 1-65
         /// </summary>
-        public int Door;
+        //public int Door;
 
         /// <summary>
         /// 门号参数初始化实例
         /// </summary>
         /// <param name="iDoor"></param>
-        public DoorPort_Parameter(int iDoor)
+        public DoorPort_Parameter(int iDoor):base(iDoor)
         {
             Door = iDoor;
             checkedParameter();
@@ -37,45 +37,5 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Door
         }
 
 
-        /// <summary>
-        /// 释放资源时由上层调用
-        /// </summary>
-        public override void Dispose()
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 将结构编码为字节缓冲
-        /// </summary>
-        /// <param name="databuf"></param>
-        /// <returns></returns>
-        public override IByteBuffer GetBytes(IByteBuffer databuf)
-        {
-            if (databuf.WritableBytes != 1)
-            {
-                return null;
-            }
-            databuf.WriteByte(Door);
-            return databuf;
-        }
-
-        /// <summary>
-        /// 指示此类结构编码为字节缓冲后的长度
-        /// </summary>
-        /// <returns></returns>
-        public override int GetDataLen()
-        {
-            return 1;
-        }
-
-        /// <summary>
-        /// 将字节缓冲解码为类结构
-        /// </summary>
-        /// <param name="databuf"></param>
-        public override void SetBytes(IByteBuffer databuf)
-        {
-            Door = databuf.ReadByte();
-        }
     }
 }

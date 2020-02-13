@@ -516,7 +516,7 @@ namespace FCARDIO.Protocol.Elevator.Test
                 StringBuilder sb = new StringBuilder();
                 string OpenDoorWayStr = string.Empty;
                 string DoorTriggerModeStr = string.Empty;
-                if (!result.Use)
+                if (result.Use == 0)
                 {
                     sb.AppendLine("门" + result.Door + "：是否启用：【0、不启用】");
                     mMainForm.AddCmdLog(cmde, sb.ToString());
@@ -574,7 +574,7 @@ namespace FCARDIO.Protocol.Elevator.Test
                 }
                 Invoke(() =>
                 {
-                    if (!result.Use)
+                    if (result.Use == 0)
                     {
                         rBtnNoDoorWorkSetting.Checked = true;
                     }
@@ -649,7 +649,8 @@ namespace FCARDIO.Protocol.Elevator.Test
                 }
 
             }
-            WriteDoorWorkSetting_Parameter par = new WriteDoorWorkSetting_Parameter(door, rBtnDoorWorkSetting.Checked, openDoorWay, doorTriggerMode, retainValue, WeekTimeGroupDoorWorkDto);
+            byte use = (byte)(rBtnDoorWorkSetting.Checked ? 1 : 0);
+            WriteDoorWorkSetting_Parameter par = new WriteDoorWorkSetting_Parameter(door, use, openDoorWay, doorTriggerMode, retainValue, WeekTimeGroupDoorWorkDto);
             WriteDoorWorkSetting write = new WriteDoorWorkSetting(cmdDtl, par);
             mMainForm.AddCommand(write);
 

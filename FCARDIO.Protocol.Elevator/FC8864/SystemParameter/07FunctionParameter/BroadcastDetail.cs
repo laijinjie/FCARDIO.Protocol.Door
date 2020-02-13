@@ -9,13 +9,8 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter
     /// <summary>
     /// 语音段开关_模型
     /// </summary>
-    public class BroadcastDetail
+    public class BroadcastDetail : Protocol.Door.FC8800.SystemParameter.FunctionParameter.BroadcastDetail
     {
-        /// <summary>
-        /// 语音段开关的字节数组
-        /// </summary>
-        public byte[] Broadcast { get; set; }
-
         /// <summary>
         /// 定义语音段开关的字节数组的长度
         /// </summary>

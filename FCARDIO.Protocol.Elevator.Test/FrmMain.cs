@@ -293,16 +293,16 @@ namespace FCARDIO.Protocol.Elevator.Test
             switch (cName)
             {
                 case Command_ReadSN://读SN
-                    FC8864.SystemParameter.SN.SN_Result sn = e.Command.getResult() as FC8864.SystemParameter.SN.SN_Result;
+                    var sn = e.Command.getResult() as Protocol.Door.FC8800.SystemParameter.SN.SN_Result;
                     Invoke(() => txtSN.Text = sn.SNBuf.GetString());
                     break;
               
                 case Command_ReadConnectPassword://读通讯密码
-                    FC8864.SystemParameter.ConnectPassword.Password_Result pwd = e.Command.getResult() as FC8864.SystemParameter.ConnectPassword.Password_Result;
+                    var pwd = e.Command.getResult() as Protocol.Door.FC8800.SystemParameter.ConnectPassword.Password_Result;
                     Invoke(() => txtPassword.Text = pwd.Password);
                     break;
                 case Command_WriteConnectPassword://写通讯密码
-                    FC8864.SystemParameter.ConnectPassword.Password_Parameter pwdPar = e.Command.Parameter as FC8864.SystemParameter.ConnectPassword.Password_Parameter;
+                    var pwdPar = e.Command.Parameter as Door.FC8800.SystemParameter.ConnectPassword.Password_Parameter;
                     Invoke(() => txtPassword.Text = pwdPar.Password);
                     break;
                 case Command_ResetConnectPassword://复位通讯密码
@@ -432,7 +432,7 @@ namespace FCARDIO.Protocol.Elevator.Test
                     break;
                 case ConnectorType.TCPServerClient:
                     cType = "TCP客户端节点";
-                    var tcpclientOnly = conn as TCPServerClientDetail_ReadOnly;
+                    var tcpclientOnly = conn as TCPServerClientDetail;
                     Local = $"{local.ToString()}";
                     Remote = $"{tcpclientOnly.Remote.ToString()}";
                     break;
@@ -904,14 +904,14 @@ namespace FCARDIO.Protocol.Elevator.Test
             mCommandClasss.Add(typeof(FC8864.SystemParameter.AlarmPassword.WriteAlarmPassword).FullName, "写入胁迫报警功能");
             mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.ExpirationPrompt.ReadExpirationPrompt).FullName, "读取卡片到期提示参数");
             mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.ExpirationPrompt.WriteExpirationPrompt).FullName, "设置卡片到期提示参数");
-            mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.ReadTheftAlarmSetting).FullName, "获取智能防盗主机参数");
-            mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.WriteTheftAlarmSetting).FullName, "设置智能防盗主机参数");
+            //mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.ReadTheftAlarmSetting).FullName, "获取智能防盗主机参数");
+            //mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.WriteTheftAlarmSetting).FullName, "设置智能防盗主机参数");
             mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.ReadCheckInOut).FullName, "获取防潜回模式");
             mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.WriteCheckInOut).FullName, "设置防潜回模式");
             mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.ReadReadCardSpeak).FullName, "获取定时读卡播报语音消息参数");
             mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.WriteReadCardSpeak).FullName, "设置定时读卡播报语音消息参数");
-            mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.ReadReadCardSpeak).FullName, "获取定时读卡播报语音消息参数");
-            mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.WriteReadCardSpeak).FullName, "设置定时读卡播报语音消息参数");
+            //mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.ReadReadCardSpeak).FullName, "获取定时读卡播报语音消息参数");
+            //mCommandClasss.Add(typeof(FC8864.SystemParameter.FunctionParameter.WriteReadCardSpeak).FullName, "设置定时读卡播报语音消息参数");
             mCommandClasss.Add(typeof(FC8864.SystemParameter.FireAlarm.SendFireAlarm).FullName, "通知设备触发消防报警");
             mCommandClasss.Add(typeof(FC8864.SystemParameter.FireAlarm.CloseFireAlarm).FullName, "解除消防报警");
             mCommandClasss.Add(typeof(FC8864.SystemParameter.CloseAlarm.WriteCloseAlarm).FullName, "解除报警");
@@ -951,11 +951,11 @@ namespace FCARDIO.Protocol.Elevator.Test
             mCommandClasss.Add(typeof(FC8864.Door.OpenDoorTimeoutAlarm.ReadOpenDoorTimeoutAlarm).FullName, "读取 开门超时报警参数");
             mCommandClasss.Add(typeof(FC8864.Door.OpenDoorTimeoutAlarm.WriteOpenDoorTimeoutAlarm).FullName, "设置 开门超时报警参数");
             mCommandClasss.Add(typeof(FC8864.Door.CancelDoorAlarm.WriteCancelDoorAlarm).FullName, "解除端口报警");
-            mCommandClasss.Add(typeof(FC8864.Holiday.ReadHolidayDetail).FullName, "读取控制器节假日存储详情");
-            mCommandClasss.Add(typeof(FC8864.Holiday.ClearHoliday).FullName, "清空控制器中的所有节假日");
-            mCommandClasss.Add(typeof(FC8864.Holiday.ReadAllHoliday).FullName, "读取控制板中已存储的所有节假日");
-            mCommandClasss.Add(typeof(FC8864.Holiday.AddHoliday).FullName, "添加节假日到控制版");
-            mCommandClasss.Add(typeof(FC8864.Holiday.DeleteHoliday).FullName, "从控制器删除节假日");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.ReadHolidayDetail).FullName, "读取控制器节假日存储详情");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.ClearHoliday).FullName, "清空控制器中的所有节假日");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.ReadAllHoliday).FullName, "读取控制板中已存储的所有节假日");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.AddHoliday).FullName, "添加节假日到控制版");
+            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.DeleteHoliday).FullName, "从控制器删除节假日");
             mCommandClasss.Add(typeof(FC8864.Password.ReadPasswordDetail).FullName, "从控制器读取密码容量信息");
             mCommandClasss.Add(typeof(FC8864.Password.ClearPassword).FullName, "清空所有密码");
             mCommandClasss.Add(typeof(FC8864.Password.ReadAllPassword).FullName, "从控制器读取所有密码");
@@ -1201,7 +1201,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             /// </summary>
             public IPDetail Remote;
 
-            public TCPServerClientDetail_Item(TCPServerClientDetail_ReadOnly detail)
+            public TCPServerClientDetail_Item(TCPServerClientDetail detail)
             {
                 SN = "";
                 Key = detail.Key;
@@ -1315,7 +1315,7 @@ namespace FCARDIO.Protocol.Elevator.Test
                 Invoke(() => AddTCPServer_Client(detail));
                 return;
             }
-            TCPServerClientDetail_ReadOnly oClient = detail as TCPServerClientDetail_ReadOnly;
+            TCPServerClientDetail oClient = detail as TCPServerClientDetail;
             var oItem = new TCPServerClientDetail_Item(oClient);
 
             cmbTCPClient.Items.Add(oItem);
@@ -1336,7 +1336,7 @@ namespace FCARDIO.Protocol.Elevator.Test
                 Invoke(() => RemoveTCPServer_Client(detail));
                 return;
             }
-            TCPServerClientDetail_ReadOnly oClient = detail as TCPServerClientDetail_ReadOnly;
+            TCPServerClientDetail oClient = detail as TCPServerClientDetail;
 
             if (!TCPServerClients.ContainsKey(oClient.Key)) return;
 

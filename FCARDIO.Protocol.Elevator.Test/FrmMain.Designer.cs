@@ -155,7 +155,7 @@
             this.txtTCPClientAddr.Name = "txtTCPClientAddr";
             this.txtTCPClientAddr.Size = new System.Drawing.Size(164, 21);
             this.txtTCPClientAddr.TabIndex = 3;
-            this.txtTCPClientAddr.Text = "192.168.1.179";
+            this.txtTCPClientAddr.Text = "192.168.51.179";
             // 
             // label2
             // 

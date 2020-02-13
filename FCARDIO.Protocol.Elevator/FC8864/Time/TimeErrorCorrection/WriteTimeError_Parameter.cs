@@ -10,16 +10,10 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Time.TimeErrorCorrection
     /// <summary>
     /// 设置误差自修正_参数
     /// </summary>
-    public class WriteTimeError_Parameter : AbstractParameter
-    {
-        /// <summary>
-        /// 误差自修正（第一字节表示调快还是调慢，0表示调慢，1表示调快；第二字节表示具体秒数。）
-        /// </summary>
-        public byte[] TimeErrorCorrection;
-
-        /// <summary>
-        /// 构建一个空的实例
-        /// </summary>
+    public class WriteTimeError_Parameter : FCARDIO.Protocol.Door.FC8800.Time.TimeErrorCorrection.WriteTimeError_Parameter
+    {/// <summary>
+     /// 构建一个空的实例
+     /// </summary>
         public WriteTimeError_Parameter()
         {
         }
@@ -31,67 +25,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Time.TimeErrorCorrection
         public WriteTimeError_Parameter(byte[] _TimeErrorCorrection)
         {
             TimeErrorCorrection = _TimeErrorCorrection;
-          
-        }
 
-        /// <summary>
-        /// 检查参数
-        /// </summary>
-        /// <returns></returns>
-        public override bool checkedParameter()
-        {
-            if (TimeErrorCorrection == null || TimeErrorCorrection.Length != 2)
-            {
-                return false;
-            }
-            foreach (var item in TimeErrorCorrection)
-            {
-                if (item > 1)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// 释放资源
-        /// </summary>
-        public override void Dispose()
-        {
-            return;
-        }
-
-        /// <summary>
-        /// 对误差自修正参数进行编码
-        /// </summary>
-        /// <param name="databuf"></param>
-        /// <returns></returns>
-        public override IByteBuffer GetBytes(IByteBuffer databuf)
-        {
-            return databuf.WriteBytes(TimeErrorCorrection);
-        }
-
-        /// <summary>
-        /// 获取数据长度
-        /// </summary>
-        /// <returns></returns>
-        public override int GetDataLen()
-        {
-            return 0x02;
-        }
-
-        /// <summary>
-        /// 对误差自修正参数进行解码
-        /// </summary>
-        /// <param name="databuf"></param>
-        public override void SetBytes(IByteBuffer databuf)
-        {
-            if (TimeErrorCorrection == null)
-            {
-                TimeErrorCorrection = new byte[2];
-            }
-            databuf.ReadBytes(TimeErrorCorrection);
         }
     }
 }

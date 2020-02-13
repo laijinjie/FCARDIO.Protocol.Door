@@ -1,6 +1,5 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Core.Extension;
-using FCARDIO.Protocol.Door.FC8800.Card;
 using FCARDIO.Protocol.Elevator.FC8864.Card.CardDataBase;
 using FCARDIO.Protocol.Elevator.FC8864.Card.CardDatabaseDetail;
 using FCARDIO.Protocol.Elevator.FC8864.Card.ClearCardDataBase;
@@ -90,7 +89,7 @@ namespace FCARDIO.Protocol.Elevator.Test
         private void button2_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new Door.FC8800.Card.CardDataBase.ReadCardDataBase_Parameter(cmbcardType.SelectedIndex + 1);
+            var par = new Door.FC8800.Card.ReadCardDataBase_Parameter(cmbcardType.SelectedIndex + 1);
 
 
             ReadCardDataBase cmd = new ReadCardDataBase(cmdDtl, par);
@@ -285,7 +284,7 @@ namespace FCARDIO.Protocol.Elevator.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as WriteCardList_Result;
+                var result = cmd.getResult() as Door.FC8800.Card.WriteCardList_Result;
                 WriteCardCallBlack(cmde, result);
             };
         }
@@ -319,13 +318,13 @@ namespace FCARDIO.Protocol.Elevator.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as WriteCardList_Result;
+                var result = cmd.getResult() as Door.FC8800.Card. WriteCardList_Result;
                 WriteCardCallBlack(cmde, result);
             };
         }
 
 
-        private void WriteCardCallBlack(CommandEventArgs cmde, WriteCardList_Result result)
+        private void WriteCardCallBlack(CommandEventArgs cmde, Door.FC8800.Card.WriteCardList_Result result)
         {
             if (result != null)
             {
@@ -763,7 +762,7 @@ namespace FCARDIO.Protocol.Elevator.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as WriteCardList_Result;
+                var result = cmd.getResult() as Door.FC8800.Card.WriteCardList_Result;
                 WriteCardCallBlack(cmde, result);
             };
         }

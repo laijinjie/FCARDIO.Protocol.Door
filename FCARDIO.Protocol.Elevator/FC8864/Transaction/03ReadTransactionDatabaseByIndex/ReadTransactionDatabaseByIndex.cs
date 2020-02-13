@@ -1,6 +1,6 @@
 ﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.Door.FC8800.Data;
-using FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex;
+using FCARDIO.Protocol.Door.FC8800.Transaction;
 using FCARDIO.Protocol.OnlineAccess;
 using FCARDIO.Protocol.Transaction;
 using System;
@@ -12,7 +12,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Transaction.ReadTransactionDatabaseBy
     /// 按指定索引号开始读指定类型的记录数据库，并读取指定数量。
     /// 成功返回结果参考 ReadTransactionDatabaseByIndex_Result 
     /// </summary>
-    public class ReadTransactionDatabaseByIndex : FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Base
+    public class ReadTransactionDatabaseByIndex : FCARDIO.Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex
     {
         /// <summary>
         /// 新记录实体创建工厂

@@ -5,12 +5,9 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter
     /// <summary>
     /// 设置读卡间隔时间_参数
     /// </summary>
-    public class WriteReaderIntervalTime_Parameter : AbstractParameter
+    public class WriteReaderIntervalTime_Parameter : Protocol.Door.FC8800.SystemParameter.FunctionParameter.WriteReaderIntervalTime_Parameter
     {
-        /// <summary>
-        /// 读卡间隔时间，最大65535秒，0表示无限制
-        /// </summary>
-        public ushort IntervalTime;
+       
 
         /// <summary>
         /// 是否有效

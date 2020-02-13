@@ -60,7 +60,7 @@
     </Reference>
     <Reference Include="FCARDIO.Protocol.Door, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\FCARDIO.Protocol.Door.dll</HintPath>
+      <HintPath>..\FCARDIO.Protocol.Door\bin\Debug\FCARDIO.Protocol.Door.dll</HintPath>
     </Reference>
     <Reference Include="FCARDIO.Protocol.Util">
       <HintPath>..\FCARDIO.Protocol.Util\bin\Debug\FCARDIO.Protocol.Util.dll</HintPath>
@@ -95,10 +95,6 @@
     <Compile Include="FC8864\Data\CardDetail.cs" />
     <Compile Include="FC8864\Data\CardDetailBase.cs" />
     <Compile Include="FC8864\Data\OpenDoorTimeoutAlarm.cs" />
-    <Compile Include="FC8864\Data\TimeGroup\DayTimeGroup.cs" />
-    <Compile Include="FC8864\Data\E_WeekDay.cs" />
-    <Compile Include="FC8864\Data\TimeGroup\TimeSegment.cs" />
-    <Compile Include="FC8864\Data\TimeGroup\WeekTimeGroup.cs" />
     <Compile Include="FC8864\Door\01Relay\ReadRelay.cs" />
     <Compile Include="FC8864\Door\01Relay\ReadRelay_Result.cs" />
     <Compile Include="FC8864\Door\01Relay\WriteRelay.cs" />
@@ -146,16 +142,12 @@
     <Compile Include="FC8864\Door\15OpenDoorTimeoutAlarm\WriteOpenDoorTimeoutAlarm.cs" />
     <Compile Include="FC8864\Door\15OpenDoorTimeoutAlarm\WriteOpenDoorTimeoutAlarm_Parameter.cs" />
     <Compile Include="FC8864\Holiday\01ReadHolidayDetail\ReadHolidayDetail.cs" />
-    <Compile Include="FC8864\Holiday\01ReadHolidayDetail\ReadHolidayDetail_Result.cs" />
     <Compile Include="FC8864\Holiday\02ClearHoliday\ClearHoliday.cs" />
     <Compile Include="FC8864\Holiday\03ReadAllHoliday\ReadAllHoliday.cs" />
-    <Compile Include="FC8864\Holiday\03ReadAllHoliday\ReadAllHoliday_Result.cs" />
     <Compile Include="FC8864\Holiday\04AddHoliday\AddHoliday.cs" />
     <Compile Include="FC8864\Holiday\04AddHoliday\AddHoliday_Parameter.cs" />
     <Compile Include="FC8864\Holiday\05DeleteHoliday\DeleteHoliday.cs" />
     <Compile Include="FC8864\Holiday\05DeleteHoliday\DeleteHoliday_Parameter.cs" />
-    <Compile Include="FC8864\Holiday\HolidayDBDetail.cs" />
-    <Compile Include="FC8864\Holiday\HolidayDetail.cs" />
     <Compile Include="FC8864\Password\01ReadPasswordDetail\ReadPasswordDetail.cs" />
     <Compile Include="FC8864\Password\01ReadPasswordDetail\ReadPasswordDetail_Result.cs" />
     <Compile Include="FC8864\Password\02ClearPassword\ClearPassword.cs" />
@@ -172,34 +164,26 @@
     <Compile Include="FC8864\SystemParameter\02ConnectPassword\ResetConnectPassword.cs" />
     <Compile Include="FC8864\SystemParameter\02ConnectPassword\WriteConnectPassword.cs" />
     <Compile Include="FC8864\SystemParameter\01SN\ReadSN.cs" />
-    <Compile Include="FC8864\SystemParameter\01SN\SN_Result.cs" />
     <Compile Include="FC8864\SystemParameter\03TCPSetting\ReadTCPSetting.cs" />
     <Compile Include="FC8864\SystemParameter\03TCPSetting\ReadTCPSetting_Result.cs" />
     <Compile Include="FC8864\SystemParameter\03TCPSetting\TCPDetail.cs" />
     <Compile Include="FC8864\SystemParameter\03TCPSetting\WriteTCPSetting.cs" />
     <Compile Include="FC8864\SystemParameter\03TCPSetting\WriteTCPSetting_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\04Deadline\ReadDeadline.cs" />
-    <Compile Include="FC8864\SystemParameter\04Deadline\ReadDeadline_Result.cs" />
     <Compile Include="FC8864\SystemParameter\04Deadline\WriteDeadline.cs" />
     <Compile Include="FC8864\SystemParameter\04Deadline\WriteDeadline_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\05Version\ReadVersion.cs" />
-    <Compile Include="FC8864\SystemParameter\05Version\ReadVersion_Result.cs" />
     <Compile Include="FC8864\SystemParameter\06SystemStatus\ReadSystemStatus.cs" />
-    <Compile Include="FC8864\SystemParameter\06SystemStatus\ReadSystemStatus_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\02RecordMode\ReadRecordMode.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\02RecordMode\ReadRecordMode_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\02RecordMode\WriteRecordMode.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\02RecordMode\WriteRecordMode_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\03Keyboard\ReadKeyboard.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\03Keyboard\ReadKeyboard_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\03Keyboard\WriteKeyboard.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\03Keyboard\WriteKeyboard_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\05FireAlarmOption\ReadFireAlarmOption.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\05FireAlarmOption\ReadFireAlarmOption_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\05FireAlarmOption\WriteFireAlarmOption.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\05FireAlarmOption\WriteFireAlarmOption_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\06Broadcast\ReadBroadcast.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\06Broadcast\ReadBroadcast_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\06Broadcast\WriteBroadcast.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\06Broadcast\WriteBroadcast_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\07ReaderIntervalTime\ReadReaderIntervalTime.cs" />
@@ -207,11 +191,9 @@
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\07ReaderIntervalTime\WriteReaderIntervalTime.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\07ReaderIntervalTime\WriteReaderIntervalTime_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\08ReaderCheckMode\ReadReaderCheckMode.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\08ReaderCheckMode\ReadReaderCheckMode_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\08ReaderCheckMode\WriteReaderCheckMode.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\08ReaderCheckMode\WriteReaderCheckMode_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\09Buzzer\ReadBuzzer.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\09Buzzer\ReadBuzzer_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\09Buzzer\WriteBuzzer.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\09Buzzer\WriteBuzzer_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\13AlarmPassword\AlarmPassword_Result.cs" />
@@ -223,29 +205,19 @@
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\10ReaderByte\WriteReaderByte.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\10ReaderByte\WriteReaderByte_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\12SmogAlarmOption\ReadSmogAlarmOption.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\12SmogAlarmOption\ReadSmogAlarmOption_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\12SmogAlarmOption\WriteSmogAlarmOption.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\12SmogAlarmOption\WriteSmogAlarmOption_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\14ExpirationPrompt\ReadExpirationPrompt.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\14ExpirationPrompt\ReadExpirationPrompt_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\14ExpirationPrompt\WriteExpirationPrompt.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\14ExpirationPrompt\WriteExpirationPrompt_Parameter.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\14TheftAlarmSetting\ReadTheftAlarmSetting.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\14TheftAlarmSetting\ReadTheftAlarmSetting_Result.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\14TheftAlarmSetting\WriteTheftAlarmSetting.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\14TheftAlarmSetting\WriteTheftAlarmSetting_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\15CheckInOut\ReadCheckInOut.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\15CheckInOut\ReadCheckInOut_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\15CheckInOut\WriteCheckInOut.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\15CheckInOut\WriteCheckInOut_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\15ReadCardSpeak\ReadReadCardSpeak.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\15ReadCardSpeak\ReadReadCardSpeak_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\15ReadCardSpeak\WriteReadCardSpeak.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\15ReadCardSpeak\WriteReadCardSpeak_Parameter.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\16CardPeriodSpeak\ReadCardPeriodSpeak.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\16CardPeriodSpeak\ReadCardPeriodSpeak_Result.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\16CardPeriodSpeak\WriteCardPeriodSpeak.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\16CardPeriodSpeak\WriteCardPeriodSpeak_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\BroadcastDetail.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\12InvalidCardAlarmOption\ReadInvalidCardAlarmOption.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\12InvalidCardAlarmOption\ReadInvalidCardAlarmOption_Result.cs" />
@@ -254,10 +226,10 @@
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\01ReadAllSystemSetting\ReadAllSystemSetting.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\01ReadAllSystemSetting\ReadAllSystemSetting_Result.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\ReadCardSpeak.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\ReaderWorkSetting\ReaderWorkSetting_Result.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\ReaderWorkSetting\ReadReaderWorkSetting.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\ReaderWorkSetting\WriteReaderWorkSetting.cs" />
-    <Compile Include="FC8864\SystemParameter\07FunctionParameter\ReaderWorkSetting\WriteReaderWorkSetting_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\11ReaderWorkSetting\ReaderWorkSetting_Result.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\11ReaderWorkSetting\ReadReaderWorkSetting.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\11ReaderWorkSetting\WriteReaderWorkSetting.cs" />
+    <Compile Include="FC8864\SystemParameter\07FunctionParameter\11ReaderWorkSetting\WriteReaderWorkSetting_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\07FunctionParameter\TheftAlarmSetting.cs" />
     <Compile Include="FC8864\SystemParameter\09FireAlarm\CloseFireAlarm.cs" />
     <Compile Include="FC8864\SystemParameter\09FireAlarm\ReadFireAlarmState.cs" />
@@ -286,13 +258,10 @@
     <Compile Include="FC8864\SystemParameter\ItemDetectionFunction\WriteItemDetectionFunction_Parameter.cs" />
     <Compile Include="FC8864\TimeGroup\01ClearTimeGroup\ClearTimeGroup.cs" />
     <Compile Include="FC8864\TimeGroup\02ReadTimeGroup\ReadTimeGroup.cs" />
-    <Compile Include="FC8864\TimeGroup\02ReadTimeGroup\ReadTimeGroup_Result.cs" />
     <Compile Include="FC8864\TimeGroup\03AddTimeGroup\AddTimeGroup.cs" />
     <Compile Include="FC8864\TimeGroup\03AddTimeGroup\AddTimeGroup_Parameter.cs" />
     <Compile Include="FC8864\Time\ReadTime.cs" />
-    <Compile Include="FC8864\Time\ReadTime_Result.cs" />
     <Compile Include="FC8864\Time\TimeErrorCorrection\ReadTimeError.cs" />
-    <Compile Include="FC8864\Time\TimeErrorCorrection\ReadTimeError_Result.cs" />
     <Compile Include="FC8864\Time\TimeErrorCorrection\WriteTimeError.cs" />
     <Compile Include="FC8864\Time\TimeErrorCorrection\WriteTimeError_Parameter.cs" />
     <Compile Include="FC8864\Time\WriteCustomTime.cs" />

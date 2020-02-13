@@ -48,7 +48,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                ReadTime_Result result = cmde.Command.getResult() as ReadTime_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.FC8800.Time. ReadTime_Result;
                 string ControllerDate = result.ControllerDate.ToString("yyyy-MM-dd HH:mm:ss"); //设备时间
                 int Seconds = 0; //误差秒数
                 string tip = string.Empty;
@@ -102,7 +102,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                ReadTimeError_Result result = cmde.Command.getResult() as ReadTimeError_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.FC8800.Time.TimeErrorCorrection.ReadTimeError_Result;
                 string CorrectionState = result.TimeErrorCorrection[0] == 0 ? "调慢" : "调快"; //误差修正状态
                 int CorrectionSeconds = result.TimeErrorCorrection[1]; //误差修正秒数
                 string tip = string.Empty;

@@ -221,7 +221,7 @@ namespace FCARDIO.Protocol.Elevator.Test
         {
 
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new Door.FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase_Parameter();
+            var par = new Door.FC8800.Transaction.ClearTransactionDatabase_Parameter();
             var cmd = new FC8864.Transaction.ClearTransactionDatabase.ClearTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -268,7 +268,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             int type = cboe_TransactionDatabaseType1.SelectedIndex;
             int WriteIndex = int.Parse(txtWriteIndex.Text.ToString());
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new Door.FC8800.Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex_Parameter(Gete_TransactionDatabaseType(type), WriteIndex);
+            var par = new Door.FC8800.Transaction.WriteTransactionDatabaseWriteIndex_Parameter(Gete_TransactionDatabaseType(type), WriteIndex);
             var cmd = new FC8864.Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -285,7 +285,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             int ReadIndex = int.Parse(txtReadIndex.Text.ToString());
             bool IsCircle = cbIsCircle.Checked ? true : false;
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new Door.FC8800.Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex_Parameter(Gete_TransactionDatabaseType(type), ReadIndex, IsCircle);
+            var par = new Door.FC8800.Transaction.WriteTransactionDatabaseReadIndex_Parameter(Gete_TransactionDatabaseType(type), ReadIndex, IsCircle);
             var cmd = new FC8864.Transaction.TransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -308,7 +308,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             cmdDtl.Timeout = 1000;
             cmdDtl.RestartCount = 20;
 
-            var par = new Door.FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type), Quantity);
+            var par = new Door.FC8800.Transaction.ReadTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type), Quantity);
             if (PacketSize != 0)
             {
                 par.PacketSize = PacketSize;
@@ -320,7 +320,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
 
-                var result = cmde.Command.getResult() as Door.FC8800.Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Result;
+                var result = cmde.Command.getResult() as Door.FC8800.Transaction.ReadTransactionDatabase_Result;
                 mMainForm.AddCmdLog(cmde, $"读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count},剩余新记录数：{result.readable}");
 
                 if (result.TransactionList.Count > 0)
@@ -350,7 +350,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             int ReadIndex = int.Parse(txtReadIndex0.Text.ToString());
             var cmdDtl = mMainForm.GetCommandDetail();
             cmdDtl.Timeout = 2000;
-            var par = new Door.FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Parameter((cboe_TransactionDatabaseType3.SelectedIndex + 1), ReadIndex, Quantity);
+            var par = new Door.FC8800.Transaction.ReadTransactionDatabaseByIndex_Parameter((cboe_TransactionDatabaseType3.SelectedIndex + 1), ReadIndex, Quantity);
 
             var cmd = new FC8864.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex(cmdDtl, par);
 
@@ -360,7 +360,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
 
-                var result = cmde.Command.getResult() as Door.FC8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Result;
+                var result = cmde.Command.getResult() as Door.FC8800.Transaction.ReadTransactionDatabaseByIndex_Result;
                 mMainForm.AddCmdLog(cmde, $"按序号读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count}");
 
                 if (result.TransactionList.Count > 0)
@@ -437,7 +437,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as Door.FC8800.Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail_Result;
+                var result = cmd.getResult() as Door.FC8800.Transaction.ReadTransactionDatabaseDetail_Result;
                 for (int i = 0; i < 6; i++)
                 {
                     TextBox txtQuantity = FindControl(groupBox1, "txtQuantity" + (i + 1).ToString()) as TextBox;
@@ -478,7 +478,7 @@ namespace FCARDIO.Protocol.Elevator.Test
         {
             int type = cboe_TransactionDatabaseType2.SelectedIndex;
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new Door.FC8800.Transaction.ClearTransactionDatabase.ClearTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type));
+            var par = new Door.FC8800.Transaction.ClearTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type));
             var cmd = new FC8864.Transaction.ClearTransactionDatabase.ClearTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>

@@ -1,5 +1,5 @@
 ﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800.Transaction.WriteTransactionDatabaseWriteIndex;
+using FCARDIO.Protocol.Door.FC8800.Transaction;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.Transaction.WriteTransactionDatabaseWriteIndex
 {

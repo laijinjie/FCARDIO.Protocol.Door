@@ -96,7 +96,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                ReadPasswordDetail_Result result = cmde.Command.getResult() as ReadPasswordDetail_Result;
+                var result = cmde.Command.getResult() as Door.FC8800.Password.ReadPasswordDetail_Result;
 
                 //dataGridView1
                 string log = $"密码容量：{result.DataSize}，已存数量：{result.PasswordSize}";

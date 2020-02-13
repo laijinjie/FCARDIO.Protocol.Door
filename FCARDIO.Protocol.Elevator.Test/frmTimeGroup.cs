@@ -90,7 +90,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                FC8864.TimeGroup.ReadTimeGroup_Result result = cmde.Command.getResult() as FC8864.TimeGroup.ReadTimeGroup_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.FC8800.TimeGroup.ReadTimeGroup_Result;
                 ListWeekTimeGroup = result.ListWeekTimeGroup;
 
 
