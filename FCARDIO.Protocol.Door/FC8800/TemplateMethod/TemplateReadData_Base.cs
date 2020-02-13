@@ -1,36 +1,27 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
 using FCARDIO.Protocol.OnlineAccess;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Password
+namespace FCARDIO.Protocol.Door.FC8800.TemplateMethod
 {
     /// <summary>
-    /// 从控制器读取所有密码
+    /// 读取所有元素命令
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class ReadAllPassword_Base<T> : FC8800Command_ReadParameter where T : PasswordDetail, new()
+    public abstract class TemplateReadData_Base<T> : FC8800Command_ReadParameter where T : TemplateData_Base, new()
     {
         /// <summary>
         /// 读取到的密码缓冲
         /// </summary>
         protected List<IByteBuffer> mReadBuffers;
 
-        
-
-
         /// <summary>
         /// 初始化命令结构
         /// </summary>
         /// <param name="cd"></param>
-        public ReadAllPassword_Base(INCommandDetail cd) : base(cd)
+        public TemplateReadData_Base(INCommandDetail cd) : base(cd)
         {
-            CmdType = 0x05;
-            CheckResponseCmdType = 0x05;
         }
 
         /// <summary>
@@ -38,7 +29,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(CmdType, 3);
+            Packet(CmdType, CmdIndex);
             mReadBuffers = new List<IByteBuffer>();
             _ProcessMax = 1;
         }
@@ -49,7 +40,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, CheckResponseCmdType, 3,0))
+            if (CheckResponse(oPck, CheckResponseCmdType, CmdIndex, CmdPar))
             {
                 var buf = oPck.CmdData;
                 buf.Retain();
@@ -57,12 +48,12 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 CommandWaitResponse();
             }
 
-            if (CheckResponse(oPck, CheckResponseCmdType, 3, 0xff, 4))
+            if (CheckResponse(oPck, CheckResponseCmdType, CmdIndex, 0xff, DataLen))
             {
                 var buf = oPck.CmdData;
                 int iTotal = buf.ReadInt();
                 _ProcessMax = iTotal;
-                List<T> PasswordList = new List<T>(iTotal);
+                List<TemplateData_Base> DataList = new List<TemplateData_Base>(iTotal);
                 foreach (IByteBuffer tmpbuf in mReadBuffers)
                 {
                     int iCount = tmpbuf.ReadInt();
@@ -70,13 +61,13 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                     {
                         T dtl = new T();
                         dtl.SetBytes(tmpbuf);
-                        PasswordList.Add(dtl);
+                        DataList.Add(dtl);
                     }
                     _ProcessStep += iCount;
                     fireCommandProcessEvent();
                 }
 
-                ReadAllPassword_Result_Base<T> rst = CreateResult(PasswordList);
+                TemplateResult_Base rst = CreateResult(DataList);
                 _Result = rst;
 
                 ClearBuf();
@@ -84,15 +75,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             }
         }
 
-        
+
 
         /// <summary>
         /// 创建返回值
         /// </summary>
         /// <param name="passwordList"></param>
-        protected abstract ReadAllPassword_Result_Base<T> CreateResult(List<T> passwordList);
+        protected abstract TemplateResult_Base CreateResult(List<TemplateData_Base> passwordList);
 
-       
+
 
         /// <summary>
         /// 清空缓冲区

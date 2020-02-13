@@ -18,7 +18,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <summary>
         /// 读取到的节假日缓冲
         /// </summary>
-        private List<IByteBuffer> mReadBuffers;
+        protected List<IByteBuffer> mReadBuffers;
 
         /// <summary>
         /// 构造命令，无需其他参数
@@ -26,7 +26,8 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public ReadAllHoliday(INCommandDetail cd) : base(cd, null)
         {
-
+            CmdType = 0x04;
+            CheckResponseCmdType = 0x04;
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(4, 3);
+            Packet(CmdType, 3);
             mReadBuffers = new List<IByteBuffer>();
         }
 
@@ -53,7 +54,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
                 CommandWaitResponse();
             }
             //应答：传输结束
-            if (CheckResponse(oPck, 4, 3, 0xff, 4))
+            if (CheckResponse(oPck, CheckResponseCmdType, 3, 0xff, 4))
             {
                 var buf = oPck.CmdData;
                 int iTotal = buf.ReadInt();
@@ -74,10 +75,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// </summary>
         protected override void CommandReSend()
         {
-
             ClearBuf();
-
-
         }
         /// <summary>
         /// 清空缓冲区

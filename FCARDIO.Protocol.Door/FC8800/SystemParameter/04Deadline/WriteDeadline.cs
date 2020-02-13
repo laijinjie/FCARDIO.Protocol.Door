@@ -19,7 +19,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Deadline
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含设备有效期</param>
-        public WriteDeadline(INCommandDetail cd, WriteDeadline_Parameter par) : base(cd, par) { }
+        public WriteDeadline(INCommandDetail cd, WriteDeadline_Parameter par) : base(cd, par) {
+            CmdType = 0x01;
+            CmdIndex = 0x07;
+        }
 
         /// <summary>
         /// 检查命令参数
@@ -48,7 +51,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.Deadline
 
             var buf = acl.Buffer(model.GetDataLen());
 
-            Packet(0x01, 0x07, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            Packet(CmdType, CmdIndex, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
     }
 }

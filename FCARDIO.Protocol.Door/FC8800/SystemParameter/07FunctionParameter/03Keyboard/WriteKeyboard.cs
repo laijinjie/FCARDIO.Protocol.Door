@@ -19,7 +19,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含读卡器密码键盘启用功能开关</param>
-        public WriteKeyboard(INCommandDetail cd, WriteKeyboard_Parameter par) : base(cd, par) { }
+        public WriteKeyboard(INCommandDetail cd, WriteKeyboard_Parameter par) : base(cd, par) {
+            CmdType = 0x01;
+            CmdIndex = 0x0A;
+        }
 
         /// <summary>
         /// 检查命令参数
@@ -44,7 +47,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         {
             WriteKeyboard_Parameter model = _Parameter as WriteKeyboard_Parameter;
 
-            Packet(0x01, 0x0A, 0x02, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
+            Packet(CmdType, CmdIndex, 0x02, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
     }
 }

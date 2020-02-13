@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
+﻿namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
 {
     /// <summary>
     /// 防盗报警参数_模型

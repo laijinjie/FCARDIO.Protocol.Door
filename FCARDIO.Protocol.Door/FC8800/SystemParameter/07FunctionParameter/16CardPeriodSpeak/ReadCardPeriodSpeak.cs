@@ -18,14 +18,18 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// 获取卡片到期提示 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        public ReadCardPeriodSpeak(INCommandDetail cd) : base(cd) { }
+        public ReadCardPeriodSpeak(INCommandDetail cd) : base(cd) {
+            CmdType = 0x01;
+            CmdIndex = 0x0A;
+            CmdPar = 0x90;
+        }
 
         /// <summary>
         /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x01, 0x0A, 0x90);
+            Packet(CmdType, CmdIndex, CmdPar);
         }
 
         /// <summary>

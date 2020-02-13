@@ -18,14 +18,17 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SystemStatus
         /// 获取设备运行信息 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        public ReadSystemStatus(INCommandDetail cd) : base(cd) { }
+        public ReadSystemStatus(INCommandDetail cd) : base(cd) {
+            CmdType = 0x01;
+            CmdIndex = 0x09;
+        }
 
         /// <summary>
         /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x01, 0x09);
+            Packet(CmdType, CmdIndex);
         }
 
         /// <summary>

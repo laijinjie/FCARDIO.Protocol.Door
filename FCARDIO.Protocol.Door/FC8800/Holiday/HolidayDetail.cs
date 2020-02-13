@@ -1,11 +1,7 @@
 ﻿using DotNetty.Buffers;
 using FCARDIO.Core.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FCARDIO.Protocol.Util;
+using System;
 
 namespace FCARDIO.Protocol.Door.FC8800.Holiday
 {

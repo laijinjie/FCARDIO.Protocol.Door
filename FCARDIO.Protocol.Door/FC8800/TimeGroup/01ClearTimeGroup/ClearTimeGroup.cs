@@ -19,7 +19,8 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// <param name="cd"></param>
         public ClearTimeGroup(INCommandDetail cd) : base(cd, null)
         {
-
+            CmdType = 0x06;
+            CmdIndex = 0x01;
         }
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x06, 0x01);
+            Packet(CmdType, CmdIndex);
         }
     }
 }

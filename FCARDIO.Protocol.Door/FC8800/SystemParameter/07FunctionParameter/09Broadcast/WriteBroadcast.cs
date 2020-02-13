@@ -19,7 +19,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含音播报语音段开关</param>
-        public WriteBroadcast(INCommandDetail cd, WriteBroadcast_Parameter par) : base(cd, par) { }
+        public WriteBroadcast(INCommandDetail cd, WriteBroadcast_Parameter par) : base(cd, par) {
+            CmdType = 0x01;
+            CmdIndex = 0x0A;
+            CmdPar = 0x08;
+        }
 
         /// <summary>
         /// 检查命令参数
@@ -44,7 +48,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         {
             WriteBroadcast_Parameter model = _Parameter as WriteBroadcast_Parameter;
 
-            Packet(0x01, 0x0A, 0x08, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
+            Packet(CmdType, CmdIndex, CmdPar, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
     }
 }

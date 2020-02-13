@@ -23,7 +23,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
         /// 获取控制器通讯密码 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        public ReadConnectPassword(INCommandDetail cd) : base(cd) { }
+        public ReadConnectPassword(INCommandDetail cd) : base(cd) {
+            CmdType = 0x01;
+            CmdIndex = 0x04;
+        }
 
 
         /// <summary>
@@ -37,7 +40,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
             buf.WriteBytes(DataStrt);
 
             //Packet(0x01, 0x02, 0x00, 0x08, buf);
-            Packet(0x01, 0x04, 0x00, 0x07, buf);
+            Packet(CmdType, CmdIndex, 0x00, 0x07, buf);
         }
 
         /// <summary>

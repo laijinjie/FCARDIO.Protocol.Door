@@ -1,12 +1,6 @@
 ﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
 using FCARDIO.Protocol.Util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.Time
 {
@@ -19,7 +13,9 @@ namespace FCARDIO.Protocol.Door.FC8800.Time
         /// 将电脑的最新时间写入到控制器中
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        public WriteTime(INCommandDetail cd) : base(cd, null) { }
+        public WriteTime(INCommandDetail cd) : base(cd, null) {
+            CmdType = 0x02;
+        }
 
         /// <summary>
         /// 检查命令参数
@@ -46,7 +42,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Time
 
             buf.WriteBytes(Datebuf);
 
-            Packet(0x02, 0x02, 0x00, 0x07, buf);
+            Packet(CmdType, 0x02, 0x00, 0x07, buf);
         }
     }
 }

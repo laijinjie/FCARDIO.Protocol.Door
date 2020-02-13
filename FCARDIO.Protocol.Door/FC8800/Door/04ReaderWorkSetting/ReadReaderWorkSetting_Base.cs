@@ -1,31 +1,23 @@
-﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
+﻿using FCARDIO.Core.Command;
+using FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting;
 using FCARDIO.Protocol.OnlineAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
+namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
 {
     /// <summary>
-    /// 读取门工作方式
+    /// 
     /// </summary>
-    public class ReadDoorWorkSetting : FC8800Command_Read_DoorParameter
+    public class ReadReaderWorkSetting_Base<T> : FC8800Command_Read_DoorParameter where T : DoorPort_Parameter
     {
         /// <summary>
-        /// 读取门工作方式
+        /// 设置门认证方式
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        /// <param name="par">包含门端口</param>
-        public ReadDoorWorkSetting(INCommandDetail cd, DoorPort_Parameter par) : base(cd, par) {
+        /// <param name="par">包含门</param>
+        public ReadReaderWorkSetting_Base(INCommandDetail cd, T par) : base(cd, par) {
             CmdType = 0x03;
-            CmdIndex = 0x06;
+            CmdIndex = 0x05;
         }
-
-        
 
         /// <summary>
         /// 命令返回值的判断
@@ -33,16 +25,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting
         /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0xE5))
+            if (CheckResponse(oPck, 0x119))
             {
                 var buf = oPck.CmdData;
-                DoorWorkSetting_Result rst = new DoorWorkSetting_Result();
+                ReaderWorkSetting_Result rst = new ReaderWorkSetting_Result();
                 _Result = rst;
                 rst.SetBytes(buf);
                 CommandCompleted();
             }
         }
-
 
         /// <summary>
         /// 将命令打包成一个Packet，准备发送

@@ -76,10 +76,6 @@
     <Reference Include="FCARDIO.Protocol">
       <HintPath>..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
-    <Reference Include="FCARDIO.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\一卡通云平台物联网服务器\DoNetDll\FCARDIO.Protocol.Util.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Extensions.Logging">
       <HintPath>..\DLL\Microsoft.Extensions.Logging.dll</HintPath>
     </Reference>
@@ -138,6 +134,7 @@
     <Compile Include="FC8800\Data\Transaction\KeepaliveTransaction.cs" />
     <Compile Include="FC8800\Data\Transaction\SoftwareTransaction.cs" />
     <Compile Include="FC8800\Data\Transaction\SystemTransaction.cs" />
+    <Compile Include="FC8800\Door\04ReaderWorkSetting\ReadReaderWorkSetting_Base.cs" />
     <Compile Include="FC8800\Door\25MultiCard\MultiCard_Result.cs" />
     <Compile Include="FC8800\Door\25MultiCard\ReadMultiCard.cs" />
     <Compile Include="FC8800\Door\25MultiCard\ReadMultiCard_Parameter.cs" />
@@ -190,6 +187,10 @@
     <Compile Include="FC8800\Password\03ReadAllPassword\ReadAllPassword_Result.cs" />
     <Compile Include="FC8800\Password\03ReadAllPassword\Base\ReadAllPassword_Result_Base.cs" />
     <Compile Include="FC8800\Password\04AddPassword\AddPassword.cs" />
+    <Compile Include="FC8800\TemplateMethod\TemplateReadData_Base.cs" />
+    <Compile Include="FC8800\TemplateMethod\TemplateResult_Base.cs" />
+    <Compile Include="FC8800\TemplateMethod\TemplateParameter_Base.cs" />
+    <Compile Include="FC8800\TemplateMethod\TemplateData_Base.cs" />
     <Compile Include="FC8800\Password\WritePasswordBase.cs" />
     <Compile Include="FC8800\Password\Password_Parameter.cs" />
     <Compile Include="FC8800\Password\05DeletePassword\DeletePassword.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="FC8800\SystemParameter\25LawfulCardReleaseAlarmSwitch\ReadLawfulCardReleaseAlarmSwitch_Result.cs" />
     <Compile Include="FC8800\SystemParameter\25LawfulCardReleaseAlarmSwitch\WriteLawfulCardReleaseAlarmSwitch.cs" />
     <Compile Include="FC8800\SystemParameter\25LawfulCardReleaseAlarmSwitch\WriteLawfulCardReleaseAlarmSwitch_Parameter.cs" />
+    <Compile Include="FC8800\TemplateMethod\TemplateWriteData_Base.cs" />
     <Compile Include="FC8800\TimeGroup\01ClearTimeGroup\ClearTimeGroup.cs" />
     <Compile Include="FC8800\TimeGroup\02ReadTimeGroup\ReadTimeGroup.cs" />
     <Compile Include="FC8800\TimeGroup\02ReadTimeGroup\ReadTimeGroup_Result.cs" />
@@ -490,5 +492,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FC8800\SystemParameter\01SN\ReadSN.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FCARDIO.Protocol.Util\FCARDIO.Protocol.Util.csproj">
+      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
+      <Name>FCARDIO.Protocol.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

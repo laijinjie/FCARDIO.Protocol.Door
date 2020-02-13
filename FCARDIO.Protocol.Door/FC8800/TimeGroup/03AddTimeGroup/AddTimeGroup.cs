@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DotNetty.Buffers;
+﻿using DotNetty.Buffers;
 using FCARDIO.Core.Command;
-using FCARDIO.Core.Packet;
 using FCARDIO.Protocol.OnlineAccess;
 
 namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
@@ -18,23 +12,27 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// <summary>
         /// 参数
         /// </summary>
-        AddTimeGroup_Parameter mPar;
+        protected AddTimeGroup_Parameter mPar;
         /// <summary>
         /// 写入索引
         /// </summary>
-        private int writeIndex = 0;
+        protected int writeIndex = 0;
 
         /// <summary>
         /// 总开门时段数
         /// </summary>
-        private int maxCount = 0;
+        protected int maxCount = 0;
 
         /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="cd">命令详情</param>
         /// <param name="par">命令逻辑所需要的命令参数 </param>
-        public AddTimeGroup(INCommandDetail cd, AddTimeGroup_Parameter par) : base(cd, par) { mPar = par; }
+        public AddTimeGroup(INCommandDetail cd, AddTimeGroup_Parameter par) : base(cd, par) {
+            mPar = par;
+            CmdType = 0x06;
+            CmdIndex = 0x03;
+        }
 
         /// <summary>
         /// 检查命令参数
@@ -57,7 +55,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         protected override void CreatePacket0()
         {
             maxCount = mPar.ListWeekTimeGroup.Count;
-            Packet(0x6, 0x3, 0x00, 225, GetBytes(GetNewCmdDataBuf(225)));
+            Packet(CmdType, CmdIndex, 0x00, 225, GetBytes(GetNewCmdDataBuf(225)));
             writeIndex++;
             _ProcessMax = maxCount;
 
@@ -68,7 +66,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// </summary>
         /// <param name="databuf"></param>
         /// <returns></returns>
-        private IByteBuffer GetBytes(IByteBuffer databuf)
+        protected IByteBuffer GetBytes(IByteBuffer databuf)
         {
             databuf.WriteByte(writeIndex + 1);
 

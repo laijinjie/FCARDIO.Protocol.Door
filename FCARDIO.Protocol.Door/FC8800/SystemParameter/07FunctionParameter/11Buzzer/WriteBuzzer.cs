@@ -19,7 +19,11 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含主板蜂鸣器</param>
-        public WriteBuzzer(INCommandDetail cd, WriteBuzzer_Parameter par) : base(cd, par) { }
+        public WriteBuzzer(INCommandDetail cd, WriteBuzzer_Parameter par) : base(cd, par) {
+            CmdType = 0x01;
+            CmdIndex = 0x0A;
+            CmdPar = 0x0A;
+        }
 
         /// <summary>
         /// 检查命令参数
@@ -48,7 +52,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
 
             var buf = acl.Buffer(model.GetDataLen());
 
-            Packet(0x01, 0x0A, 0x0A, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            Packet(CmdType, CmdIndex, CmdPar, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
     }
 }

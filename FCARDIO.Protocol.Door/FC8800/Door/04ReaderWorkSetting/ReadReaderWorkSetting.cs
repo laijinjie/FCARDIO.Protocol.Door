@@ -13,7 +13,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
     /// <summary>
     /// 读取门认证方式
     /// </summary>
-    public class ReadReaderWorkSetting : FC8800Command_Read_DoorParameter
+    public class ReadReaderWorkSetting : ReadReaderWorkSetting_Base<DoorPort_Parameter>
     {
         /// <summary>
         /// 读取门认证方式
@@ -22,30 +22,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         /// <param name="par">包含门</param>
         public ReadReaderWorkSetting(INCommandDetail cd, DoorPort_Parameter par) : base(cd, par) { }
 
-        /// <summary>
-        /// 命令返回值的判断
-        /// </summary>
-        /// <param name="oPck">包含返回指令的Packet</param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
-        {
-            if (CheckResponse(oPck, 0x119))
-            {
-                var buf = oPck.CmdData;
-                ReaderWorkSetting_Result rst = new ReaderWorkSetting_Result();
-                _Result = rst;
-                rst.SetBytes(buf);
-                CommandCompleted();
-            }
-        }
-
-        /// <summary>
-        /// 将命令打包成一个Packet，准备发送
-        /// </summary>
-        protected override void CreatePacket0()
-        {
-            DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
-            Packet(0x03, 0x05, 0x00, 0x01, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
-        }
     }
 
 }

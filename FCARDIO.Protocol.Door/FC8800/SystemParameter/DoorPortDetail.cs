@@ -49,7 +49,6 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter
         /// 获取值
         /// </summary>
         /// <param name="iPort">1-4</param>
-        /// <param name="value"></param>
         /// <returns></returns>
         public byte GetValue(int iPort)
         {

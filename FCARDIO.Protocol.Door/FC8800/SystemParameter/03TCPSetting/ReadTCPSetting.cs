@@ -27,6 +27,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting
         /// <param name="bUDPBroadcast">命令是否使用广播</param>
         public ReadTCPSetting(INCommandDetail cd,bool bUDPBroadcast) : base(cd) { UDPBroadcast = bUDPBroadcast; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cd"></param>
         public ReadTCPSetting(INCommandDetail cd) : this(cd,false) {}
 
 

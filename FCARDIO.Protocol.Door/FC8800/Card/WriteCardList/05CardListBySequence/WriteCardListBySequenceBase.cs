@@ -18,15 +18,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card
         where T : Data.CardDetailBase, new()
     {
 
-        /// <summary>
-        /// 指令分类
-        /// </summary>
-        protected byte CmdType;
-
-        /// <summary>
-        /// 返回指令分类
-        /// </summary>
-        protected byte CheckResponseCmdType;
+       
 
         /// <summary>
         /// 初始化命令结构 

@@ -13,7 +13,8 @@ namespace FCARDIO.Protocol.Door.FC8800
     /// 针对命令中的读参数命令进行抽象封装
     /// </summary>
     public abstract class FC8800Command_ReadParameter: FC8800CommandEx
-    {
+    {       
+
         /// <summary>
         /// 初始化命令
         /// </summary>

@@ -1,11 +1,4 @@
 ﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
 {
@@ -23,7 +16,10 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
         /// 重置控制器通讯密码 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        public ResetConnectPassword(INCommandDetail cd) : base(cd, null) { }
+        public ResetConnectPassword(INCommandDetail cd) : base(cd, null) {
+            CmdType = 0x01;
+            CmdIndex = 0x05;
+        }
 
         /// <summary>
         /// 检查命令参数
@@ -45,7 +41,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
             var buf = acl.Buffer(7);
             buf.WriteBytes(DataStrt);
 
-            Packet(0x01, 0x05, 0x00, 0x07, buf);
+            Packet(CmdType, CmdIndex, 0x00, 0x07, buf);
         }
 
 

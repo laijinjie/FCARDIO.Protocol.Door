@@ -27,6 +27,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <returns></returns>
         protected override bool checkedParameterItem(PasswordDetail password)
         {
+            if (password.Password.Length > 8 || password.Password.Length < 4)
+            {
+                return false;
+            }
             return true;
         }
 

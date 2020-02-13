@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FCARDIO.Core.Command;
+﻿using FCARDIO.Core.Command;
 using FCARDIO.Protocol.OnlineAccess;
 
 namespace FCARDIO.Protocol.Door.FC8800.Password
@@ -19,7 +14,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="cd"></param>
         public ReadPasswordDetail(INCommandDetail cd) : base(cd, null)
         {
-
+            CmdType = 0x05;
         }
 
         /// <summary>
@@ -43,7 +38,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(5, 1);
+            Packet(CmdType, 1);
         }
     }
 }

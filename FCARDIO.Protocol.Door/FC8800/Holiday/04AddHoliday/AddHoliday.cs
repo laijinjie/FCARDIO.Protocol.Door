@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using FCARDIO.Core.Command;
+using System;
 
 namespace FCARDIO.Protocol.Door.FC8800.Holiday
 {
@@ -18,7 +13,10 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public AddHoliday(INCommandDetail cd, AddHoliday_Parameter par) : base(cd, par){ }
+        public AddHoliday(INCommandDetail cd, AddHoliday_Parameter par) : base(cd, par){
+            CmdType = 0x04;
+            CmdIndex = 0x04;
+        }
 
         /// <summary>
         /// 检查命令参数
@@ -43,7 +41,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             AddHoliday_Parameter model = _Parameter as AddHoliday_Parameter;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
-            Packet(0x4, 0x4, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            Packet(CmdType, CmdIndex, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
 
        
