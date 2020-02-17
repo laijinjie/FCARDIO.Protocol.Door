@@ -19,7 +19,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public ClearPassword(INCommandDetail cd) : base(cd, null)
         {
-            CmdType = 0x05;
         }
 
         /// <summary>
@@ -36,7 +35,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(CmdType, 2);
+            Packet(0x05, 2);
         }
     }
 }

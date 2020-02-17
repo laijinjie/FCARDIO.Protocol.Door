@@ -20,8 +20,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <param name="par"></param>
         public DeleteHoliday(INCommandDetail cd, DeleteHoliday_Parameter par) : base(cd, par)
         {
-            CmdType = 0x04;
-            CmdIndex = 0x04;
         }
 
         /// <summary>
@@ -48,7 +46,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
             DeleteHoliday_Parameter model = _Parameter as DeleteHoliday_Parameter;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
-            Packet(CmdType, CmdIndex, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            Packet(0x04, 0x04, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
     }
 }

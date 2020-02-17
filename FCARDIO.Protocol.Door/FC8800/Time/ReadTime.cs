@@ -18,17 +18,14 @@ namespace FCARDIO.Protocol.Door.FC8800.Time
         /// 获取设备运行信息 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        public ReadTime(INCommandDetail cd) : base(cd) {
-            CmdType = 0x02;
-            CheckResponseCmdType = 0x02;
-        }
+        public ReadTime(INCommandDetail cd) : base(cd) { }
 
         /// <summary>
         /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(CmdType, 0x01);
+            Packet(0x02, 0x01);
         }
 
         /// <summary>

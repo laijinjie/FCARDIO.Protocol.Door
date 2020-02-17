@@ -22,7 +22,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Card
         /// </summary>
         protected Queue<IByteBuffer> mReadBuffers;
 
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte CmdType;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte CheckResponseCmdType;
 
         /// <summary>
         /// 初始化命令结构 

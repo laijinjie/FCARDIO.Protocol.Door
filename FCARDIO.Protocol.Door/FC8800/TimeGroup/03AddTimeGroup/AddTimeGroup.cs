@@ -30,8 +30,6 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// <param name="par">命令逻辑所需要的命令参数 </param>
         public AddTimeGroup(INCommandDetail cd, AddTimeGroup_Parameter par) : base(cd, par) {
             mPar = par;
-            CmdType = 0x06;
-            CmdIndex = 0x03;
         }
 
         /// <summary>
@@ -55,7 +53,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         protected override void CreatePacket0()
         {
             maxCount = mPar.ListWeekTimeGroup.Count;
-            Packet(CmdType, CmdIndex, 0x00, 225, GetBytes(GetNewCmdDataBuf(225)));
+            Packet(0x06, 0x03, 0x00, 225, GetBytes(GetNewCmdDataBuf(225)));
             writeIndex++;
             _ProcessMax = maxCount;
 

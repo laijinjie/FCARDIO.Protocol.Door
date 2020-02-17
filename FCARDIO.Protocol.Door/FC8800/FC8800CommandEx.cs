@@ -10,31 +10,7 @@ namespace FCARDIO.Protocol.Door.FC8800
     public abstract class FC8800CommandEx : FC8800Command
 
     {
-        /// <summary>
-        /// 控制码分类
-        /// </summary>
-        public byte CmdType;
-
-        /// <summary>
-        /// 控制码命令
-        /// </summary>
-        public byte CmdIndex;
-
-        /// <summary>
-        /// 控制码参数
-        /// </summary>
-        public byte CmdPar;
-
-        /// <summary>
-        /// 数据码长度
-        /// </summary>
-        public byte DataLen;
-
-
-        /// <summary>
-        /// 返回指令分类
-        /// </summary>
-        protected byte CheckResponseCmdType;
+      
 
         /// <summary>
         /// 初始化命令
@@ -81,24 +57,6 @@ namespace FCARDIO.Protocol.Door.FC8800
                 oPck.CmdPar == CmdPar);
 
         }
-
-        /// <summary>
-        /// 徐铭康增加，兼容其他类型(电梯)控制器
-        /// 检查指令返回值
-        /// </summary>
-        /// <param name="oPck"></param>
-        /// <param name="dl">命令类型</param>
-        /// <returns></returns>
-        protected override bool CheckResponse(OnlineAccessPacket oPck, int dl)
-        {
-            if (CheckResponseCmdType == 0)
-            {
-                CheckResponseCmdType = CmdType;
-            }
-            return (oPck.CmdType == CheckResponseCmdType + 0x30) && oPck.DataLen == dl;
-
-        }
-
 
         /// <summary>
         /// 重置命令内容

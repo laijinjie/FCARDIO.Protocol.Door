@@ -18,18 +18,14 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// 获取主板蜂鸣器 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        public ReadBuzzer(INCommandDetail cd) : base(cd) {
-            CmdType = 0x01;
-            CmdIndex = 0x0A;
-            CmdPar = 0x8A;
-        }
+        public ReadBuzzer(INCommandDetail cd) : base(cd) { }
 
         /// <summary>
         /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(CmdType, CmdIndex, CmdPar);
+            Packet(0x01, 0x0A, 0x8A);
         }
 
         /// <summary>

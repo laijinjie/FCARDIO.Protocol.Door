@@ -19,11 +19,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含烟雾报警参数</param>
-        public WriteSmogAlarmOption(INCommandDetail cd, WriteSmogAlarmOption_Parameter par) : base(cd, par) {
-            CmdType = 0x01;
-            CmdIndex = 0x0A;
-            CmdPar = 0x0B;
-        }
+        public WriteSmogAlarmOption(INCommandDetail cd, WriteSmogAlarmOption_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数
@@ -48,7 +44,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter
         {
             WriteSmogAlarmOption_Parameter model = _Parameter as WriteSmogAlarmOption_Parameter;
 
-            Packet(CmdType, CmdIndex, CmdPar, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
+            Packet(0x01, 0x0A, 0x0B, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
     }
 }

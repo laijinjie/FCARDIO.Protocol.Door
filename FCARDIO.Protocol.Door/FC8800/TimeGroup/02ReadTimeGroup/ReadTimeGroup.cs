@@ -24,9 +24,6 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// <param name="cd"></param>
         public ReadTimeGroup(INCommandDetail cd) : base(cd, null)
         {
-            CmdType = 0x06;
-            CmdIndex = 0x02;
-            CheckResponseCmdType = 0x06;
         }
 
         /// <summary>
@@ -45,7 +42,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
                 CommandWaitResponse();
             }
 
-            if (CheckResponse(oPck, CheckResponseCmdType, CmdIndex, 0xff, 4))
+            if (CheckResponse(oPck, 0x06, 0x02, 0xff, 4))
             {
                 var buf = oPck.CmdData;
                 int iTotal = buf.ReadInt();
@@ -85,7 +82,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TimeGroup
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(CmdType, CmdIndex);
+            Packet(0x06, 0x02);
             _ProcessMax = 64;
             mReadBuffers = new List<IByteBuffer>();
         }

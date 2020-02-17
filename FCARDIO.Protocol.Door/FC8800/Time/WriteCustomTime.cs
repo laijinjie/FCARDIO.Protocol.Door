@@ -20,9 +20,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Time
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含自定义时间</param>
-        public WriteCustomTime(INCommandDetail cd, WriteCustomTime_Parameter par) : base(cd, par) {
-            CmdType = 0x02;
-        }
+        public WriteCustomTime(INCommandDetail cd, WriteCustomTime_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数
@@ -48,7 +46,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Time
             WriteCustomTime_Parameter model = _Parameter as WriteCustomTime_Parameter;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
-            Packet(CmdType, 0x02, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            Packet(0x02, 0x02, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
     }
 }

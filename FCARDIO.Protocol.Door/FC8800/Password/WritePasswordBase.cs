@@ -12,7 +12,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
     /// </summary>
     public abstract class WritePasswordBase<T, P> : FC8800Command_WriteParameter where T : PasswordDetail, new() where P : Password_Parameter_Base<T>
     {
-       
 
         /// <summary>
         /// 1个写入参数长度
@@ -64,8 +63,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             T model = new T();
             mParDataLen = model.GetDataLen();
             mDeleteDataLen = model.GetDeleteDataLen();
-            CmdType = 0x05;
-            CheckResponseCmdType = 0x05;
         }
 
         /// <summary>
@@ -171,6 +168,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             }
         }
 
+
+        /// <summary>
+        /// 检测结束指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected abstract bool CheckResponseCompleted(OnlineAccessPacket oPck);
+
+
         /// <summary>
         /// 重写父类对处理返回值的定义
         /// </summary>
@@ -183,7 +189,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 //继续发下一包
                 CommandNext1(oPck);
             }
-            else if (CheckResponse(oPck, CheckResponseCmdType, 0x04, 0xFF, oPck.DataLen))
+            else if (CheckResponseCompleted(oPck))
             {//检查是否不是错误返回值
 
                 //缓存错误返回值

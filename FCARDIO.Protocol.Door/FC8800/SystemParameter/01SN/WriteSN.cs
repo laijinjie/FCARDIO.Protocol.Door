@@ -32,6 +32,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SN
         public WriteSN(INCommandDetail cd, SN_Parameter par) : base(cd, par) {
             DataStrt = new byte[] { 0x03, 0xC5, 0x89, 0x12, 0x3E };
             DataEnd = new byte[] { 0x90, 0x7F, 0x78 };
+
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SN
         /// 将命令打包到ByteBuffer中
         /// </summary>
         /// <returns>包含命令数据的ByteBuffer</returns>
-        protected IByteBuffer GetCmdData()
+        protected virtual IByteBuffer GetCmdData()
         {
             SN_Parameter model = _Parameter as SN_Parameter;
 
@@ -72,5 +73,6 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.SN
             buf.WriteBytes(DataEnd);
             return buf;
         }
+
     }
 }

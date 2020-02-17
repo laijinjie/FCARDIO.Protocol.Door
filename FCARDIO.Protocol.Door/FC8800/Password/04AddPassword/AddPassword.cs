@@ -56,5 +56,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
             ReadAllPassword_Result result = new ReadAllPassword_Result(passwordList);
             return result;
         }
+
+
+        /// <summary>
+        /// 检测结束指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected override bool CheckResponseCompleted(OnlineAccessPacket oPck)
+        {
+            return (oPck.CmdType == 0x35 &&
+                oPck.CmdIndex == 4 &&
+                oPck.CmdPar == 0xff);
+        }
     }
 }

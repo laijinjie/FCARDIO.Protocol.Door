@@ -19,7 +19,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public ReadHolidayDetail(INCommandDetail cd) : base(cd, null)
         {
-            CmdType = 4;
         }
 
         /// <summary>
@@ -27,7 +26,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(CmdType, 1);
+            Packet(4, 1);
         }
 
         /// <summary>

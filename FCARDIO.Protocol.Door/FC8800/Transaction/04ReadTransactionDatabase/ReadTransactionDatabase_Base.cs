@@ -17,7 +17,15 @@ namespace FCARDIO.Protocol.Door.FC8800.Transaction
     /// </summary>
     public abstract class ReadTransactionDatabase_Base : FC8800Command_ReadParameter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        protected byte CmdType;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        protected byte CheckResponseCmdType;
 
         /// <summary>
         /// 查询参数

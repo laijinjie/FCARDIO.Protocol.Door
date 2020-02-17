@@ -19,11 +19,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Time.TimeErrorCorrection
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含误差自修正参数</param>
-        public WriteTimeError(INCommandDetail cd, WriteTimeError_Parameter par) : base(cd, par) {
-            CmdType = 0x02;
-            CmdIndex = 0x03;
-            CmdPar = 0x01;
-        }
+        public WriteTimeError(INCommandDetail cd, WriteTimeError_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数
@@ -51,7 +47,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Time.TimeErrorCorrection
 
             var buf = acl.Buffer(model.GetDataLen());
 
-            Packet(CmdType, CmdIndex, CmdPar, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            Packet(0x02, 0x03, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
     }
 }

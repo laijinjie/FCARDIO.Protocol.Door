@@ -55,5 +55,16 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         {
             throw new NotImplementedException();
         }
+
+
+        /// <summary>
+        /// 检测结束指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected override bool CheckResponseCompleted(OnlineAccessPacket oPck)
+        {
+            return true;
+        }
     }
 }

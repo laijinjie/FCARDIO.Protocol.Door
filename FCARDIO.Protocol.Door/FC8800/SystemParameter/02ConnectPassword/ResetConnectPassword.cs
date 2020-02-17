@@ -17,8 +17,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public ResetConnectPassword(INCommandDetail cd) : base(cd, null) {
-            CmdType = 0x01;
-            CmdIndex = 0x05;
+
         }
 
         /// <summary>
@@ -41,7 +40,7 @@ namespace FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword
             var buf = acl.Buffer(7);
             buf.WriteBytes(DataStrt);
 
-            Packet(CmdType, CmdIndex, 0x00, 0x07, buf);
+            Packet(0x01, 0x05, 0x00, 0x07, buf);
         }
 
 

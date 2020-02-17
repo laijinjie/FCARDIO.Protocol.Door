@@ -11,6 +11,8 @@ namespace FCARDIO.Protocol.Door.FC8800.TemplateMethod
     /// <typeparam name="T"></typeparam>
     public abstract class TemplateReadData_Base<T> : FC8800Command_ReadParameter where T : TemplateData_Base, new()
     {
+       
+
         /// <summary>
         /// 读取到的密码缓冲
         /// </summary>
@@ -24,15 +26,21 @@ namespace FCARDIO.Protocol.Door.FC8800.TemplateMethod
         {
         }
 
+
+
         /// <summary>
-        /// 创建一个通讯指令
+        /// 检测下一包指令返回值
         /// </summary>
-        protected override void CreatePacket0()
-        {
-            Packet(CmdType, CmdIndex);
-            mReadBuffers = new List<IByteBuffer>();
-            _ProcessMax = 1;
-        }
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected abstract bool CheckResponseNext(OnlineAccessPacket oPck);
+
+        /// <summary>
+        /// 检测结束指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected abstract bool CheckResponseCompleted(OnlineAccessPacket oPck);
 
         /// <summary>
         /// 处理返回值
@@ -40,7 +48,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TemplateMethod
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, CheckResponseCmdType, CmdIndex, CmdPar))
+            if (CheckResponseNext(oPck))
             {
                 var buf = oPck.CmdData;
                 buf.Retain();
@@ -48,7 +56,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TemplateMethod
                 CommandWaitResponse();
             }
 
-            if (CheckResponse(oPck, CheckResponseCmdType, CmdIndex, 0xff, DataLen))
+            if (CheckResponseCompleted(oPck))
             {
                 var buf = oPck.CmdData;
                 int iTotal = buf.ReadInt();

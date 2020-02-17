@@ -14,6 +14,8 @@ namespace FCARDIO.Protocol.Door.FC8800.TemplateMethod
     /// </summary>
     public abstract class TemplateWriteData_Base<T> : FC8800Command_WriteParameter where T : TemplateData_Base,new ()
     {
+       
+
         /// <summary>
         /// 1个写入参数长度
         /// </summary>
@@ -171,6 +173,13 @@ namespace FCARDIO.Protocol.Door.FC8800.TemplateMethod
         }
 
         /// <summary>
+        /// 检测结束指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected abstract bool CheckResponseCompleted(OnlineAccessPacket oPck);
+
+        /// <summary>
         /// 重写父类对处理返回值的定义
         /// </summary>
         /// <param name="oPck"></param>
@@ -181,7 +190,7 @@ namespace FCARDIO.Protocol.Door.FC8800.TemplateMethod
                 //继续发下一包
                 CommandNext1(oPck);
             }
-            else if (CheckResponse(oPck, CheckResponseCmdType, CmdIndex, 0xFF, oPck.DataLen))
+            else if (CheckResponseCompleted(oPck))
             {//检查是否不是错误返回值
 
                 //缓存错误返回值

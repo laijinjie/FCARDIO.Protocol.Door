@@ -20,8 +20,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         protected List<IByteBuffer> mReadBuffers;
 
-        
-
 
         /// <summary>
         /// 初始化命令结构
@@ -29,8 +27,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="cd"></param>
         public ReadAllPassword_Base(INCommandDetail cd) : base(cd)
         {
-            CmdType = 0x05;
-            CheckResponseCmdType = 0x05;
         }
 
         /// <summary>
@@ -38,9 +34,33 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(CmdType, 3);
+            Packet(0x05, 3);
             mReadBuffers = new List<IByteBuffer>();
             _ProcessMax = 1;
+        }
+
+        /// <summary>
+        /// 检测下一包指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected virtual bool CheckResponseNext(OnlineAccessPacket oPck)
+        {
+            return (oPck.CmdType == 0x35 &&
+                oPck.CmdIndex == 3 &&
+                oPck.CmdPar == 0);
+        }
+
+        /// <summary>
+        /// 检测结束指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected virtual bool CheckResponseCompleted(OnlineAccessPacket oPck)
+        {
+            return (oPck.CmdType == 0x35 &&
+                oPck.CmdIndex == 3 &&
+                oPck.CmdPar == 0xff && oPck.DataLen == 4);
         }
 
         /// <summary>
@@ -49,7 +69,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, CheckResponseCmdType, 3,0))
+            if (CheckResponseNext(oPck))
             {
                 var buf = oPck.CmdData;
                 buf.Retain();
@@ -57,7 +77,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
                 CommandWaitResponse();
             }
 
-            if (CheckResponse(oPck, CheckResponseCmdType, 3, 0xff, 4))
+            if (CheckResponseCompleted(oPck))
             {
                 var buf = oPck.CmdData;
                 int iTotal = buf.ReadInt();

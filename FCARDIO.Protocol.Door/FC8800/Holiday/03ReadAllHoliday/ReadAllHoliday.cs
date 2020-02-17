@@ -26,8 +26,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public ReadAllHoliday(INCommandDetail cd) : base(cd, null)
         {
-            CmdType = 0x04;
-            CheckResponseCmdType = 0x04;
         }
 
         /// <summary>
@@ -35,8 +33,32 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(CmdType, 3);
+            Packet(0x04, 3);
             mReadBuffers = new List<IByteBuffer>();
+        }
+
+        /// <summary>
+        /// 检测下一包指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected virtual bool CheckResponseOK(OnlineAccessPacket oPck)
+        {
+            return (oPck.CmdType == 0x34 &&
+                oPck.CmdIndex == 3 &&
+                oPck.CmdPar == 0);
+        }
+
+        /// <summary>
+        /// 检测结束指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected virtual bool CheckResponseCompleted(OnlineAccessPacket oPck)
+        {
+            return (oPck.CmdType == 0x34 &&
+                oPck.CmdIndex == 3 &&
+                oPck.CmdPar == 0xff && oPck.DataLen == 4);
         }
 
         /// <summary>
@@ -46,7 +68,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
             //应答：
-            if (CheckResponse(oPck))
+            if (CheckResponseOK(oPck))
             {
                 var buf = oPck.CmdData;
                 buf.Retain();
@@ -54,7 +76,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Holiday
                 CommandWaitResponse();
             }
             //应答：传输结束
-            if (CheckResponse(oPck, CheckResponseCmdType, 3, 0xff, 4))
+            if (CheckResponseCompleted(oPck))
             {
                 var buf = oPck.CmdData;
                 int iTotal = buf.ReadInt();

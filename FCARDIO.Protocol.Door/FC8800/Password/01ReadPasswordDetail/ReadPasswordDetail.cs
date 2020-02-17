@@ -14,7 +14,18 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="cd"></param>
         public ReadPasswordDetail(INCommandDetail cd) : base(cd, null)
         {
-            CmdType = 0x05;
+        }
+
+        /// <summary>
+        /// 检测下一包指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected virtual bool CheckResponseOK(OnlineAccessPacket oPck)
+        {
+            return (oPck.CmdType == 0x35 &&
+                oPck.CmdIndex == 1 &&
+                oPck.CmdPar == 0);
         }
 
         /// <summary>
@@ -23,7 +34,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x04))
+            if (CheckResponseOK(oPck))
             {
                 var buf = oPck.CmdData;
                 ReadPasswordDetail_Result rst = new ReadPasswordDetail_Result();
@@ -38,7 +49,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Password
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(CmdType, 1);
+            Packet(0x05, 1);
         }
     }
 }

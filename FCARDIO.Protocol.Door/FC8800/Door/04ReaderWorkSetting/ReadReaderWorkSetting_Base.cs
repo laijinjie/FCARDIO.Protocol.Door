@@ -15,8 +15,6 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含门</param>
         public ReadReaderWorkSetting_Base(INCommandDetail cd, T par) : base(cd, par) {
-            CmdType = 0x03;
-            CmdIndex = 0x05;
         }
 
         /// <summary>
@@ -41,7 +39,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting
         protected override void CreatePacket0()
         {
             DoorPort_Parameter model = _Parameter as DoorPort_Parameter;
-            Packet(CmdType, CmdIndex, 0x00, 0x01, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
+            Packet(0x03, 0x05, 0x00, 0x01, model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
     }
 }
