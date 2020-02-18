@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.OpenDoorTimeoutAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.OpenDoorTimeoutAlarm
 {
     /// <summary>
     /// 读取 开门超时报警参数
     /// </summary>
-    public class ReadOpenDoorTimeoutAlarm : FC8800Command_ReadParameter
+    public class ReadOpenDoorTimeoutAlarm : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 初始化参数

@@ -1,4 +1,4 @@
-﻿namespace FCARDIO.Protocol.Fingerprint.Test
+﻿namespace DoNetDrive.Protocol.Fingerprint.Test
 {
     partial class frmAlarm
     {

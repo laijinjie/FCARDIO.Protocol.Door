@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm
 {
     /// <summary>
     /// 解除报警
     /// </summary>
-    public class CloseAlarm : FC8800Command_WriteParameter
+    public class CloseAlarm : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令

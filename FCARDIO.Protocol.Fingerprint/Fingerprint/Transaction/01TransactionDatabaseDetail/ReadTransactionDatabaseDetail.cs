@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction
+namespace DoNetDrive.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     /// 读取控制器中的卡片数据库信息
     /// </summary>
-    public class ReadTransactionDatabaseDetail : FC8800Command_ReadParameter
+    public class ReadTransactionDatabaseDetail : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 初始化参数

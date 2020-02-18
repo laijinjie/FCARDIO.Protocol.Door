@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.GateMagneticAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.GateMagneticAlarm
 {
     /// <summary>
     /// 设置门磁报警参数

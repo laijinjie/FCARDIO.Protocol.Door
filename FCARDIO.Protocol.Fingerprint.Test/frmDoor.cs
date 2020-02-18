@@ -1,19 +1,19 @@
-﻿using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
-using FCARDIO.Protocol.Door.FC8800.Utility;
-using FCARDIO.Protocol.Fingerprint.Door.DoorWorkSetting;
-using FCARDIO.Protocol.Fingerprint.Door.ExemptionVerificationOpen;
-using FCARDIO.Protocol.Fingerprint.Door.ExpirationPrompt;
-using FCARDIO.Protocol.Fingerprint.Door.ReaderIntervalTime;
-using FCARDIO.Protocol.Fingerprint.Door.ReaderOption;
-using FCARDIO.Protocol.Fingerprint.Door.RelayOption;
-using FCARDIO.Protocol.Fingerprint.Door.RelayReleaseTime;
-using FCARDIO.Protocol.Fingerprint.Door.Remote;
-using FCARDIO.Protocol.Fingerprint.Door.VoiceBroadcastSetting;
+﻿using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
+using DoNetDrive.Protocol.Door.Door8800.Utility;
+using DoNetDrive.Protocol.Fingerprint.Door.DoorWorkSetting;
+using DoNetDrive.Protocol.Fingerprint.Door.ExemptionVerificationOpen;
+using DoNetDrive.Protocol.Fingerprint.Door.ExpirationPrompt;
+using DoNetDrive.Protocol.Fingerprint.Door.ReaderIntervalTime;
+using DoNetDrive.Protocol.Fingerprint.Door.ReaderOption;
+using DoNetDrive.Protocol.Fingerprint.Door.RelayOption;
+using DoNetDrive.Protocol.Fingerprint.Door.RelayReleaseTime;
+using DoNetDrive.Protocol.Fingerprint.Door.Remote;
+using DoNetDrive.Protocol.Fingerprint.Door.VoiceBroadcastSetting;
 using System;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.Fingerprint.Test
+namespace DoNetDrive.Protocol.Fingerprint.Test
 {
     public partial class frmDoor : frmNodeForm
     {

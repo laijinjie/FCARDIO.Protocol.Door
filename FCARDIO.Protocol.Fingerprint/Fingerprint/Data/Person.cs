@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Protocol.Util;
 using System;
 using System.Text;
 
-namespace FCARDIO.Protocol.Fingerprint.Data
+namespace DoNetDrive.Protocol.Fingerprint.Data
 {
     /// <summary>
     /// 人员信息

@@ -1,19 +1,19 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.Person
+namespace DoNetDrive.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ReadPersonDataBase : FC8800Command_ReadParameter
+    public class ReadPersonDataBase : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 读取到的人员数据缓冲

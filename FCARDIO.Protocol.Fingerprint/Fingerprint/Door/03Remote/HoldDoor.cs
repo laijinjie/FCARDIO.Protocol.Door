@@ -1,14 +1,14 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.Remote
+namespace DoNetDrive.Protocol.Fingerprint.Door.Remote
 {
     /// <summary>
     /// 设置门常开

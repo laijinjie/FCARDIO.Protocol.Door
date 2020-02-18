@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.ExpirationPrompt
+namespace DoNetDrive.Protocol.Fingerprint.Door.ExpirationPrompt
 {
     /// <summary>
     /// 设置 权限到期提示参数
     /// </summary>
-    public class WriteExpirationPrompt : FC8800Command_WriteParameter
+    public class WriteExpirationPrompt : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 设置读卡间隔时间 初始化命令

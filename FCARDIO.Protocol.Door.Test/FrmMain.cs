@@ -9,26 +9,26 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FCARDIO.Core;
-using FCARDIO.Core.Command;
-using FCARDIO.Core.Connector;
-using FCARDIO.Core.Connector.TCPClient;
-using FCARDIO.Core.Connector.TCPServer;
-using FCARDIO.Core.Connector.TCPServer.Client;
-using FCARDIO.Core.Connector.UDP;
-using FCARDIO.Core.Extension;
-using FCARDIO.Protocol.Door.FC8800.Door.ReaderOption;
-using FCARDIO.Protocol.Door.FC8800.SystemParameter.Watch;
-using FCARDIO.Protocol.FC8800;
+using DoNetDrive.Core;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Core.Connector;
+using DoNetDrive.Core.Connector.TCPClient;
+using DoNetDrive.Core.Connector.TCPServer;
+using DoNetDrive.Core.Connector.TCPServer.Client;
+using DoNetDrive.Core.Connector.UDP;
+using DoNetDrive.Core.Extension;
+using DoNetDrive.Protocol.Door.Door8800.Door.ReaderOption;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.Watch;
+using DoNetDrive.Protocol.Door8800;
 
-namespace FCARDIO.Protocol.Door.Test
+namespace DoNetDrive.Protocol.Door.Test
 {
     public partial class frmMain : Form, INMain
     {
         ConnectorAllocator mAllocator;
         ConnectorObserverHandler mObserver;
         private static HashSet<Form> NodeForms;
-        private static HashSet<string> FC89HSNTable;
+        private static HashSet<string> Door89HSNTable;
         private static string[] TransactionTypeName;
 
 
@@ -51,15 +51,15 @@ namespace FCARDIO.Protocol.Door.Test
             NodeForms = new HashSet<Form>();
             IniCommandClassNameList();
 
-            FC89HSNTable = new HashSet<string>();
-            FC89HSNTable.Add("FC-8910H");
-            FC89HSNTable.Add("FC-8920H");
-            FC89HSNTable.Add("FC-8940H");
-            FC89HSNTable.Add("MC-5912T");
-            FC89HSNTable.Add("MC-5912T");
-            FC89HSNTable.Add("MC-5924T");
-            FC89HSNTable.Add("MC-5948T");
-            FC89HSNTable.Add("MC-5926T");
+            Door89HSNTable = new HashSet<string>();
+            Door89HSNTable.Add("FC-8910H");
+            Door89HSNTable.Add("FC-8920H");
+            Door89HSNTable.Add("FC-8940H");
+            Door89HSNTable.Add("MC-5912T");
+            Door89HSNTable.Add("MC-5912T");
+            Door89HSNTable.Add("MC-5924T");
+            Door89HSNTable.Add("MC-5948T");
+            Door89HSNTable.Add("MC-5926T");
 
             TransactionTypeName = new string[7];
             TransactionTypeName[1] = "读卡记录";
@@ -268,7 +268,7 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void mAllocator_CommandTimeout(object sender, CommandEventArgs e)
         {
-            if (e.Command.GetType().FullName == typeof(FC8800.SystemParameter.SearchControltor.SearchControltor).FullName)
+            if (e.Command.GetType().FullName == typeof(Door8800.SystemParameter.SearchControltor.SearchControltor).FullName)
             {
                 AddCmdLog(e, "搜索完毕");
                 return;
@@ -283,16 +283,16 @@ namespace FCARDIO.Protocol.Door.Test
         }
 
 
-        private const string Command_ReadSN = "FCARDIO.Protocol.Door.FC8800.SystemParameter.SN.ReadSN";
-        private const string Command_WriteSN = "FCARDIO.Protocol.Door.FC8800.SystemParameter.SN.WriteSN";
-        private const string Command_WriteSN_Broadcast = "FCARDIO.Protocol.Door.FC8800.SystemParameter.SN.WriteSN_Broadcast";
-        private const string Command_ReadConnectPassword = "FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword.ReadConnectPassword";
-        private const string Command_WriteConnectPassword = "FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword.WriteConnectPassword";
-        private const string Command_ResetConnectPassword = "FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword.ResetConnectPassword";
+        private const string Command_ReadSN = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN.ReadSN";
+        private const string Command_WriteSN = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN.WriteSN";
+        private const string Command_WriteSN_Broadcast = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN.WriteSN_Broadcast";
+        private const string Command_ReadConnectPassword = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword.ReadConnectPassword";
+        private const string Command_WriteConnectPassword = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword.WriteConnectPassword";
+        private const string Command_ResetConnectPassword = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword.ResetConnectPassword";
 
         private void mAllocator_CommandCompleteEvent(object sender, CommandEventArgs e)
         {
-            if (e.Command.GetType().FullName == typeof(FC8800.SystemParameter.SearchControltor.SearchControltor).FullName)
+            if (e.Command.GetType().FullName == typeof(Door8800.SystemParameter.SearchControltor.SearchControltor).FullName)
             {
                 return;
             }
@@ -303,20 +303,20 @@ namespace FCARDIO.Protocol.Door.Test
             switch (cName)
             {
                 case Command_ReadSN://读SN
-                    FC8800.SystemParameter.SN.SN_Result sn = e.Command.getResult() as FC8800.SystemParameter.SN.SN_Result;
+                    Door8800.SystemParameter.SN.SN_Result sn = e.Command.getResult() as Door8800.SystemParameter.SN.SN_Result;
                     Invoke(() => txtSN.Text = sn.SNBuf.GetString());
                     break;
                 case Command_WriteSN://写SN
                 case Command_WriteSN_Broadcast:
-                    FC8800.SystemParameter.SN.SN_Parameter snPar = e.Command.Parameter as FC8800.SystemParameter.SN.SN_Parameter;
+                    Door8800.SystemParameter.SN.SN_Parameter snPar = e.Command.Parameter as Door8800.SystemParameter.SN.SN_Parameter;
                     Invoke(() => txtSN.Text = snPar.SNBuf.GetString());
                     break;
                 case Command_ReadConnectPassword://读通讯密码
-                    FC8800.SystemParameter.ConnectPassword.Password_Result pwd = e.Command.getResult() as FC8800.SystemParameter.ConnectPassword.Password_Result;
+                    Door8800.SystemParameter.ConnectPassword.Password_Result pwd = e.Command.getResult() as Door8800.SystemParameter.ConnectPassword.Password_Result;
                     Invoke(() => txtPassword.Text = pwd.Password);
                     break;
                 case Command_WriteConnectPassword://写通讯密码
-                    FC8800.SystemParameter.ConnectPassword.Password_Parameter pwdPar = e.Command.Parameter as FC8800.SystemParameter.ConnectPassword.Password_Parameter;
+                    Door8800.SystemParameter.ConnectPassword.Password_Parameter pwdPar = e.Command.Parameter as Door8800.SystemParameter.ConnectPassword.Password_Parameter;
                     Invoke(() => txtPassword.Text = pwdPar.Password);
                     break;
                 case Command_ResetConnectPassword://复位通讯密码
@@ -566,7 +566,7 @@ namespace FCARDIO.Protocol.Door.Test
         {
             if (_IsClosed) return null;
             CommandDetailFactory.ConnectType connectType = CommandDetailFactory.ConnectType.TCPClient;
-            CommandDetailFactory.ControllerType protocolType = CommandDetailFactory.ControllerType.FC88;
+            CommandDetailFactory.ControllerType protocolType = CommandDetailFactory.ControllerType.Door88;
             string addr = string.Empty, sn, password;
             int port = 0;
             switch (cmdConnType.SelectedIndex)//串口,TCP客户端,UDP,TCP服务器
@@ -640,11 +640,11 @@ namespace FCARDIO.Protocol.Door.Test
             password = txtPassword.Text;
             if (!password.IsHex())
             {
-                password = FC8800Command.NULLPassword;
+                password = Door8800Command.NULLPassword;
             }
             if (password.Length != 8)
             {
-                password = FC8800Command.NULLPassword;
+                password = Door8800Command.NULLPassword;
             }
 
 
@@ -935,241 +935,241 @@ namespace FCARDIO.Protocol.Door.Test
         {
             mCommandClasss = new Dictionary<string, string>();
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.SN.ReadSN).FullName, "读取SN");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.SN.WriteSN).FullName, "写SN");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.SN.WriteSN_Broadcast).FullName, "广播写SN");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.SN.ReadSN).FullName, "读取SN");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.SN.WriteSN).FullName, "写SN");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.SN.WriteSN_Broadcast).FullName, "广播写SN");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.ConnectPassword.ReadConnectPassword).FullName, "获取通讯密码");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.ConnectPassword.WriteConnectPassword).FullName, "设置通讯密码");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.ConnectPassword.ResetConnectPassword).FullName, "重置通讯密码");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.ConnectPassword.ReadConnectPassword).FullName, "获取通讯密码");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.ConnectPassword.WriteConnectPassword).FullName, "设置通讯密码");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.ConnectPassword.ResetConnectPassword).FullName, "重置通讯密码");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.TCPSetting.ReadTCPSetting).FullName, "读取TCP参数");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.TCPSetting.WriteTCPSetting).FullName, "写入TCP参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.TCPSetting.ReadTCPSetting).FullName, "读取TCP参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.TCPSetting.WriteTCPSetting).FullName, "写入TCP参数");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.Deadline.ReadDeadline).FullName, "读取设备有效期");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.Deadline.WriteDeadline).FullName, "写入设备有效期");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.Deadline.ReadDeadline).FullName, "读取设备有效期");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.Deadline.WriteDeadline).FullName, "写入设备有效期");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.Version.ReadVersion).FullName, "读取设备版本号");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.Version.ReadVersion).FullName, "读取设备版本号");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.SystemStatus.ReadSystemStatus).FullName, "读取设备运行信息");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.SystemStatus.ReadSystemStatus).FullName, "读取设备运行信息");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadRecordMode).FullName, "读取记录存储方式");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteRecordMode).FullName, "写入记录存储方式");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadRecordMode).FullName, "读取记录存储方式");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteRecordMode).FullName, "写入记录存储方式");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadKeyboard).FullName, "读取键盘开关");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteKeyboard).FullName, "设置键盘开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadKeyboard).FullName, "读取键盘开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteKeyboard).FullName, "设置键盘开关");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadLockInteraction).FullName, "读取互锁参数");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteLockInteraction).FullName, "设置互锁参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadLockInteraction).FullName, "读取互锁参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteLockInteraction).FullName, "设置互锁参数");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadFireAlarmOption).FullName, "读取消防报警参数");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteFireAlarmOption).FullName, "设置消防报警参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadFireAlarmOption).FullName, "读取消防报警参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteFireAlarmOption).FullName, "设置消防报警参数");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadOpenAlarmOption).FullName, "读取匪警报警参数");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteOpenAlarmOption).FullName, "设置匪警报警参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadOpenAlarmOption).FullName, "读取匪警报警参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteOpenAlarmOption).FullName, "设置匪警报警参数");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadReaderIntervalTime).FullName, "读取读卡间隔时间");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteReaderIntervalTime).FullName, "设置读卡间隔时间");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadReaderIntervalTime).FullName, "读取读卡间隔时间");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteReaderIntervalTime).FullName, "设置读卡间隔时间");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadBroadcast).FullName, "读取语音段开关");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteBroadcast).FullName, "设置语音段开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadBroadcast).FullName, "读取语音段开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteBroadcast).FullName, "设置语音段开关");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadReaderCheckMode).FullName, "读取读卡器校验");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteReaderCheckMode).FullName, "设置读卡器校验");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadReaderCheckMode).FullName, "读取读卡器校验");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteReaderCheckMode).FullName, "设置读卡器校验");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadBuzzer).FullName, "读取主板蜂鸣器");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteBuzzer).FullName, "设置主板蜂鸣器");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadBuzzer).FullName, "读取主板蜂鸣器");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteBuzzer).FullName, "设置主板蜂鸣器");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadSmogAlarmOption).FullName, "读取烟雾报警参数");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteSmogAlarmOption).FullName, "设置烟雾报警参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadSmogAlarmOption).FullName, "读取烟雾报警参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteSmogAlarmOption).FullName, "设置烟雾报警参数");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadEnterDoorLimit).FullName, "读取门内人数限制");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteEnterDoorLimit).FullName, "设置门内人数限制");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadEnterDoorLimit).FullName, "读取门内人数限制");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteEnterDoorLimit).FullName, "设置门内人数限制");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadTheftAlarmSetting).FullName, "读取智能防盗主机参数");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteTheftAlarmSetting).FullName, "设置智能防盗主机参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadTheftAlarmSetting).FullName, "读取智能防盗主机参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteTheftAlarmSetting).FullName, "设置智能防盗主机参数");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadCheckInOut).FullName, "读取防潜回模式");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteCheckInOut).FullName, "设置防潜回模式");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadCheckInOut).FullName, "读取防潜回模式");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteCheckInOut).FullName, "设置防潜回模式");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadCardPeriodSpeak).FullName, "读取卡片到期提示");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteCardPeriodSpeak).FullName, "设置卡片到期提示");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadCardPeriodSpeak).FullName, "读取卡片到期提示");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteCardPeriodSpeak).FullName, "设置卡片到期提示");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.ReadReadCardSpeak).FullName, "读取定时读卡播报语音消息参数");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FunctionParameter.WriteReadCardSpeak).FullName, "设置定时读卡播报语音消息参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.ReadReadCardSpeak).FullName, "读取定时读卡播报语音消息参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FunctionParameter.WriteReadCardSpeak).FullName, "设置定时读卡播报语音消息参数");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.Watch.ReadWatchState).FullName, "读取实时监控状态");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.Watch.BeginWatch).FullName, "开启实时监控");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.Watch.CloseWatch).FullName, "关闭实时监控");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.Watch.BeginWatch_Broadcast).FullName, "开启实时监控_广播");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.Watch.CloseWatch_Broadcast).FullName, "关闭实时监控_广播");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.Watch.ReadWatchState).FullName, "读取实时监控状态");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.Watch.BeginWatch).FullName, "开启实时监控");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.Watch.CloseWatch).FullName, "关闭实时监控");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.Watch.BeginWatch_Broadcast).FullName, "开启实时监控_广播");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.Watch.CloseWatch_Broadcast).FullName, "关闭实时监控_广播");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FireAlarm.ReadFireAlarmState).FullName, "读取消防报警状态");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FireAlarm.SendFireAlarm).FullName, "消防报警通知");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.FireAlarm.CloseFireAlarm).FullName, "解除消防报警");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FireAlarm.ReadFireAlarmState).FullName, "读取消防报警状态");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FireAlarm.SendFireAlarm).FullName, "消防报警通知");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.FireAlarm.CloseFireAlarm).FullName, "解除消防报警");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.SmogAlarm.ReadSmogAlarmState).FullName, "读取烟雾报警状态");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.SmogAlarm.SendSmogAlarm).FullName, "烟雾报警通知");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.SmogAlarm.CloseSmogAlarm).FullName, "解除烟雾报警");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.SmogAlarm.ReadSmogAlarmState).FullName, "读取烟雾报警状态");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.SmogAlarm.SendSmogAlarm).FullName, "烟雾报警通知");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.SmogAlarm.CloseSmogAlarm).FullName, "解除烟雾报警");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.Alarm.CloseAlarm).FullName, "解除报警");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.WorkStatus.ReadWorkStatus).FullName, "获取设备状态信息");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.WorkStatus.ReadTheftAlarmState).FullName, "获取防盗主机布防状态信息");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.Alarm.CloseAlarm).FullName, "解除报警");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.WorkStatus.ReadWorkStatus).FullName, "获取设备状态信息");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.WorkStatus.ReadTheftAlarmState).FullName, "获取防盗主机布防状态信息");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.Controller.FormatController).FullName, "初始化数据");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.SearchControltor.SearchControltor).FullName, "自动搜索设备");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.SearchControltor.WriteControltorNetCode).FullName, "修改设备的网络代码");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.Controller.FormatController).FullName, "初始化数据");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.SearchControltor.SearchControltor).FullName, "自动搜索设备");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.SearchControltor.WriteControltorNetCode).FullName, "修改设备的网络代码");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.CacheContent.ReadCacheContent).FullName, "读取缓存区内容");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.CacheContent.WriteCacheContent).FullName, "设置缓存区内容");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.CacheContent.ReadCacheContent).FullName, "读取缓存区内容");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.CacheContent.WriteCacheContent).FullName, "设置缓存区内容");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.KeepAliveInterval.ReadKeepAliveInterval).FullName, "读取保活间隔时间");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.KeepAliveInterval.WriteKeepAliveInterval).FullName, "设置保活间隔时间");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.KeepAliveInterval.ReadKeepAliveInterval).FullName, "读取保活间隔时间");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.KeepAliveInterval.WriteKeepAliveInterval).FullName, "设置保活间隔时间");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.TheftFortify.SetTheftFortify).FullName, "防盗报警布防");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.TheftFortify.SetTheftDisarming).FullName, "防盗报警撤防");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.TheftFortify.SetTheftFortify).FullName, "防盗报警布防");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.TheftFortify.SetTheftDisarming).FullName, "防盗报警撤防");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.BalcklistAlarmOption.ReadBalcklistAlarmOption).FullName, "读取黑名单报警参数");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.BalcklistAlarmOption.WriteBalcklistAlarmOption).FullName, "设置黑名单报警功能");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.BalcklistAlarmOption.ReadBalcklistAlarmOption).FullName, "读取黑名单报警参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.BalcklistAlarmOption.WriteBalcklistAlarmOption).FullName, "设置黑名单报警功能");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.ExploreLockMode.ReadExploreLockMode).FullName, "读取防探测功能开关参数");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.ExploreLockMode.WriteExploreLockMode).FullName, "设置防探测功能开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.ExploreLockMode.ReadExploreLockMode).FullName, "读取防探测功能开关参数");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.ExploreLockMode.WriteExploreLockMode).FullName, "设置防探测功能开关");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.Check485Line.ReadCheck485Line).FullName, "读取485线路反接检测开关");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.Check485Line.WriteCheck485Line).FullName, "设置485线路反接检测开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.Check485Line.ReadCheck485Line).FullName, "读取485线路反接检测开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.Check485Line.WriteCheck485Line).FullName, "设置485线路反接检测开关");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.TCPClient.ReadTCPClientList).FullName, "读取TCP客户端列表");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.TCPClient.StopTCPClientConnection).FullName, "停止TCP客户端连接");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.TCPClient.StopAllTCPClientConnection).FullName, "停止所有客户端连接");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.TCPClient.ReadTCPClientList).FullName, "读取TCP客户端列表");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.TCPClient.StopTCPClientConnection).FullName, "停止TCP客户端连接");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.TCPClient.StopAllTCPClientConnection).FullName, "停止所有客户端连接");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.CardDeadlineTipDay.ReadCardDeadlineTipDay).FullName, "读取有效期提醒阀值");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.CardDeadlineTipDay.WriteCardDeadlineTipDay).FullName, "设置有效期提醒阀值");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.CardDeadlineTipDay.ReadCardDeadlineTipDay).FullName, "读取有效期提醒阀值");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.CardDeadlineTipDay.WriteCardDeadlineTipDay).FullName, "设置有效期提醒阀值");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.ControlPanelTamperAlarm.ReadControlPanelTamperAlarm).FullName, "读取控制板防拆报警功能开关");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.ControlPanelTamperAlarm.WriteControlPanelTamperAlarm).FullName, "设置控制板防拆报警功能开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.ControlPanelTamperAlarm.ReadControlPanelTamperAlarm).FullName, "读取控制板防拆报警功能开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.ControlPanelTamperAlarm.WriteControlPanelTamperAlarm).FullName, "设置控制板防拆报警功能开关");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.HTTPPageLandingSwitch.ReadHTTPPageLandingSwitch).FullName, "读取HTTP网页登陆开关");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.HTTPPageLandingSwitch.WriteHTTPPageLandingSwitch).FullName, "设置HTTP网页登陆开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.HTTPPageLandingSwitch.ReadHTTPPageLandingSwitch).FullName, "读取HTTP网页登陆开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.HTTPPageLandingSwitch.WriteHTTPPageLandingSwitch).FullName, "设置HTTP网页登陆开关");
 
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.LawfulCardReleaseAlarmSwitch.ReadLawfulCardReleaseAlarmSwitch).FullName, "读取合法卡解除报警开关");
-            mCommandClasss.Add(typeof(FC8800.SystemParameter.LawfulCardReleaseAlarmSwitch.WriteLawfulCardReleaseAlarmSwitch).FullName, "设置合法卡解除报警开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.LawfulCardReleaseAlarmSwitch.ReadLawfulCardReleaseAlarmSwitch).FullName, "读取合法卡解除报警开关");
+            mCommandClasss.Add(typeof(Door8800.SystemParameter.LawfulCardReleaseAlarmSwitch.WriteLawfulCardReleaseAlarmSwitch).FullName, "设置合法卡解除报警开关");
 
-            mCommandClasss.Add(typeof(FC8800.Time.ReadTime).FullName, "读系统时间");
-            mCommandClasss.Add(typeof(FC8800.Time.WriteTime).FullName, "写系统时间");
-            mCommandClasss.Add(typeof(FC8800.Time.WriteCustomTime).FullName, "写系统时间");
-            mCommandClasss.Add(typeof(FC8800.Time.WriteTimeBroadcast).FullName, "写设备时间_广播命令");
+            mCommandClasss.Add(typeof(Door8800.Time.ReadTime).FullName, "读系统时间");
+            mCommandClasss.Add(typeof(Door8800.Time.WriteTime).FullName, "写系统时间");
+            mCommandClasss.Add(typeof(Door8800.Time.WriteCustomTime).FullName, "写系统时间");
+            mCommandClasss.Add(typeof(Door8800.Time.WriteTimeBroadcast).FullName, "写设备时间_广播命令");
 
-            mCommandClasss.Add(typeof(FC8800.Time.TimeErrorCorrection.ReadTimeError).FullName, "读取误差自修正参数");
-            mCommandClasss.Add(typeof(FC8800.Time.TimeErrorCorrection.WriteTimeError).FullName, "写入误差自修正参数");
+            mCommandClasss.Add(typeof(Door8800.Time.TimeErrorCorrection.ReadTimeError).FullName, "读取误差自修正参数");
+            mCommandClasss.Add(typeof(Door8800.Time.TimeErrorCorrection.WriteTimeError).FullName, "写入误差自修正参数");
 
-            mCommandClasss.Add(typeof(FC8800.Door.ReaderOption.ReadReaderOption).FullName, "读取读卡器字节数");
-            mCommandClasss.Add(typeof(FC8800.Door.ReaderOption.WriteReaderOption<ReaderOption_Parameter>).FullName, "写入读卡器字节数");
+            mCommandClasss.Add(typeof(Door8800.Door.ReaderOption.ReadReaderOption).FullName, "读取读卡器字节数");
+            mCommandClasss.Add(typeof(Door8800.Door.ReaderOption.WriteReaderOption<ReaderOption_Parameter>).FullName, "写入读卡器字节数");
 
-            mCommandClasss.Add(typeof(FC8800.Door.RelayOption.ReadRelayOption).FullName, "读取继电器参数");
-            mCommandClasss.Add(typeof(FC8800.Door.RelayOption.WriteRelayOption).FullName, "写入继电器参数");
+            mCommandClasss.Add(typeof(Door8800.Door.RelayOption.ReadRelayOption).FullName, "读取继电器参数");
+            mCommandClasss.Add(typeof(Door8800.Door.RelayOption.WriteRelayOption).FullName, "写入继电器参数");
 
-            mCommandClasss.Add(typeof(FC8800.Door.Remote.OpenDoor).FullName, "远程开门");
-            mCommandClasss.Add(typeof(FC8800.Door.Remote.CloseDoor).FullName, "远程关门");
-            mCommandClasss.Add(typeof(FC8800.Door.Remote.HoldDoor).FullName, "设置门常开");
-            mCommandClasss.Add(typeof(FC8800.Door.Remote.OpenDoor_CheckNum).FullName, "远程开门_验证");
-            mCommandClasss.Add(typeof(FC8800.Door.Remote.LockDoor).FullName, "锁定门");
-            mCommandClasss.Add(typeof(FC8800.Door.Remote.UnlockDoor).FullName, "解除锁定门");
+            mCommandClasss.Add(typeof(Door8800.Door.Remote.OpenDoor).FullName, "远程开门");
+            mCommandClasss.Add(typeof(Door8800.Door.Remote.CloseDoor).FullName, "远程关门");
+            mCommandClasss.Add(typeof(Door8800.Door.Remote.HoldDoor).FullName, "设置门常开");
+            mCommandClasss.Add(typeof(Door8800.Door.Remote.OpenDoor_CheckNum).FullName, "远程开门_验证");
+            mCommandClasss.Add(typeof(Door8800.Door.Remote.LockDoor).FullName, "锁定门");
+            mCommandClasss.Add(typeof(Door8800.Door.Remote.UnlockDoor).FullName, "解除锁定门");
 
-            mCommandClasss.Add(typeof(FC8800.Door.ReaderWorkSetting.ReadReaderWorkSetting).FullName, "读取门认证方式");
-            mCommandClasss.Add(typeof(FC8800.Door.ReaderWorkSetting.WriteReaderWorkSetting).FullName, "设置门认证方式");
+            mCommandClasss.Add(typeof(Door8800.Door.ReaderWorkSetting.ReadReaderWorkSetting).FullName, "读取门认证方式");
+            mCommandClasss.Add(typeof(Door8800.Door.ReaderWorkSetting.WriteReaderWorkSetting).FullName, "设置门认证方式");
 
-            mCommandClasss.Add(typeof(FC8800.Door.DoorWorkSetting.ReadDoorWorkSetting).FullName, "读取门工作方式");
-            mCommandClasss.Add(typeof(FC8800.Door.DoorWorkSetting.WriteDoorWorkSetting).FullName, "设置门工作方式");
+            mCommandClasss.Add(typeof(Door8800.Door.DoorWorkSetting.ReadDoorWorkSetting).FullName, "读取门工作方式");
+            mCommandClasss.Add(typeof(Door8800.Door.DoorWorkSetting.WriteDoorWorkSetting).FullName, "设置门工作方式");
 
-            mCommandClasss.Add(typeof(FC8800.Door.RelayReleaseTime.ReadRelayReleaseTime).FullName, "读取开锁时输出时长");
-            mCommandClasss.Add(typeof(FC8800.Door.RelayReleaseTime.WriteRelayReleaseTime).FullName, "设置开锁时输出时长");
+            mCommandClasss.Add(typeof(Door8800.Door.RelayReleaseTime.ReadRelayReleaseTime).FullName, "读取开锁时输出时长");
+            mCommandClasss.Add(typeof(Door8800.Door.RelayReleaseTime.WriteRelayReleaseTime).FullName, "设置开锁时输出时长");
 
-            mCommandClasss.Add(typeof(FC8800.Door.AutoLockedSetting.ReadAutoLockedSetting).FullName, "读取定时锁定门参数");
-            mCommandClasss.Add(typeof(FC8800.Door.AutoLockedSetting.WriteAutoLockedSetting).FullName, "设置定时锁定门参数");
+            mCommandClasss.Add(typeof(Door8800.Door.AutoLockedSetting.ReadAutoLockedSetting).FullName, "读取定时锁定门参数");
+            mCommandClasss.Add(typeof(Door8800.Door.AutoLockedSetting.WriteAutoLockedSetting).FullName, "设置定时锁定门参数");
 
-            mCommandClasss.Add(typeof(FC8800.Door.ReaderInterval.ReadReaderInterval).FullName, "读取重复读卡间隔参数");
-            mCommandClasss.Add(typeof(FC8800.Door.ReaderInterval.WriteReaderInterval).FullName, "设置重复读卡间隔参数");
+            mCommandClasss.Add(typeof(Door8800.Door.ReaderInterval.ReadReaderInterval).FullName, "读取重复读卡间隔参数");
+            mCommandClasss.Add(typeof(Door8800.Door.ReaderInterval.WriteReaderInterval).FullName, "设置重复读卡间隔参数");
 
-            mCommandClasss.Add(typeof(FC8800.Door.ReaderAlarm.WriteReaderAlarm).FullName, "设置读卡器防拆报警");
-            mCommandClasss.Add(typeof(FC8800.Door.ReaderAlarm.ReadReaderAlarm).FullName, "读取读卡器防拆报警");
+            mCommandClasss.Add(typeof(Door8800.Door.ReaderAlarm.WriteReaderAlarm).FullName, "设置读卡器防拆报警");
+            mCommandClasss.Add(typeof(Door8800.Door.ReaderAlarm.ReadReaderAlarm).FullName, "读取读卡器防拆报警");
 
-            mCommandClasss.Add(typeof(FC8800.Door.InterLockSetting.WriteInterLockSetting).FullName, "设置区域互锁");
-            mCommandClasss.Add(typeof(FC8800.Door.InterLockSetting.ReadInterLockSetting).FullName, "读取区域互锁");
+            mCommandClasss.Add(typeof(Door8800.Door.InterLockSetting.WriteInterLockSetting).FullName, "设置区域互锁");
+            mCommandClasss.Add(typeof(Door8800.Door.InterLockSetting.ReadInterLockSetting).FullName, "读取区域互锁");
 
-            mCommandClasss.Add(typeof(FC8800.Door.AreaAntiPassback.WriteAreaAntiPassback).FullName, "设置区域防潜回功能");
-            mCommandClasss.Add(typeof(FC8800.Door.AreaAntiPassback.ReadAreaAntiPassback).FullName, "读取区域防潜回");
+            mCommandClasss.Add(typeof(Door8800.Door.AreaAntiPassback.WriteAreaAntiPassback).FullName, "设置区域防潜回功能");
+            mCommandClasss.Add(typeof(Door8800.Door.AreaAntiPassback.ReadAreaAntiPassback).FullName, "读取区域防潜回");
 
-            mCommandClasss.Add(typeof(FC8800.Door.MultiCard.WriteMultiCard).FullName, "设置多卡组合参数");
-            mCommandClasss.Add(typeof(FC8800.Door.MultiCard.ReadMultiCard).FullName, "读取多卡组合参数");
+            mCommandClasss.Add(typeof(Door8800.Door.MultiCard.WriteMultiCard).FullName, "设置多卡组合参数");
+            mCommandClasss.Add(typeof(Door8800.Door.MultiCard.ReadMultiCard).FullName, "读取多卡组合参数");
 
-            mCommandClasss.Add(typeof(FC8800.Door.ManageKeyboardSetting.WriteManageKeyboardSetting).FullName, "设置键盘管理功能");
-            mCommandClasss.Add(typeof(FC8800.Door.ManageKeyboardSetting.ReadManageKeyboardSetting).FullName, "读取键盘管理功能");
+            mCommandClasss.Add(typeof(Door8800.Door.ManageKeyboardSetting.WriteManageKeyboardSetting).FullName, "设置键盘管理功能");
+            mCommandClasss.Add(typeof(Door8800.Door.ManageKeyboardSetting.ReadManageKeyboardSetting).FullName, "读取键盘管理功能");
 
-            mCommandClasss.Add(typeof(FC8800.Door.InOutSideReadOpenSetting.WriteInOutSideReadOpenSetting).FullName, "设置门内外同时读卡开门");
-            mCommandClasss.Add(typeof(FC8800.Door.InOutSideReadOpenSetting.ReadInOutSideReadOpenSetting).FullName, "读取门内外同时读卡开门");
+            mCommandClasss.Add(typeof(Door8800.Door.InOutSideReadOpenSetting.WriteInOutSideReadOpenSetting).FullName, "设置门内外同时读卡开门");
+            mCommandClasss.Add(typeof(Door8800.Door.InOutSideReadOpenSetting.ReadInOutSideReadOpenSetting).FullName, "读取门内外同时读卡开门");
 
-            mCommandClasss.Add(typeof(FC8800.Door.VoiceBroadcastSetting.WriteVoiceBroadcastSetting).FullName, "设置语音播报功能");
-            mCommandClasss.Add(typeof(FC8800.Door.VoiceBroadcastSetting.ReadVoiceBroadcastSetting).FullName, "读取语音播报功能");
+            mCommandClasss.Add(typeof(Door8800.Door.VoiceBroadcastSetting.WriteVoiceBroadcastSetting).FullName, "设置语音播报功能");
+            mCommandClasss.Add(typeof(Door8800.Door.VoiceBroadcastSetting.ReadVoiceBroadcastSetting).FullName, "读取语音播报功能");
 
-            mCommandClasss.Add(typeof(FC8800.Door.AnyCardSetting.WriteAnyCardSetting).FullName, "设置全卡开门功能");
-            mCommandClasss.Add(typeof(FC8800.Door.AnyCardSetting.ReadAnyCardSetting).FullName, "读取全卡开门功能");
+            mCommandClasss.Add(typeof(Door8800.Door.AnyCardSetting.WriteAnyCardSetting).FullName, "设置全卡开门功能");
+            mCommandClasss.Add(typeof(Door8800.Door.AnyCardSetting.ReadAnyCardSetting).FullName, "读取全卡开门功能");
 
-            mCommandClasss.Add(typeof(FC8800.Door.SensorAlarmSetting.WriteSensorAlarmSetting).FullName, "写入门磁报警功能");
-            mCommandClasss.Add(typeof(FC8800.Door.SensorAlarmSetting.ReadSensorAlarmSetting).FullName, "读取门磁报警功能");
+            mCommandClasss.Add(typeof(Door8800.Door.SensorAlarmSetting.WriteSensorAlarmSetting).FullName, "写入门磁报警功能");
+            mCommandClasss.Add(typeof(Door8800.Door.SensorAlarmSetting.ReadSensorAlarmSetting).FullName, "读取门磁报警功能");
 
-            mCommandClasss.Add(typeof(FC8800.Door.PushButtonSetting.WritePushButtonSetting).FullName, "写入出门按钮功能");
-            mCommandClasss.Add(typeof(FC8800.Door.PushButtonSetting.ReadPushButtonSetting).FullName, "读取出门按钮功能");
+            mCommandClasss.Add(typeof(Door8800.Door.PushButtonSetting.WritePushButtonSetting).FullName, "写入出门按钮功能");
+            mCommandClasss.Add(typeof(Door8800.Door.PushButtonSetting.ReadPushButtonSetting).FullName, "读取出门按钮功能");
 
-            mCommandClasss.Add(typeof(FC8800.Door.OvertimeAlarmSetting.WriteOvertimeAlarmSetting).FullName, "写入开门超时报警功能");
-            mCommandClasss.Add(typeof(FC8800.Door.OvertimeAlarmSetting.ReadOvertimeAlarmSetting).FullName, "读取开门超时报警功能");
+            mCommandClasss.Add(typeof(Door8800.Door.OvertimeAlarmSetting.WriteOvertimeAlarmSetting).FullName, "写入开门超时报警功能");
+            mCommandClasss.Add(typeof(Door8800.Door.OvertimeAlarmSetting.ReadOvertimeAlarmSetting).FullName, "读取开门超时报警功能");
 
-            mCommandClasss.Add(typeof(FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption).FullName, "设置非法读卡报警参数");
-            mCommandClasss.Add(typeof(FC8800.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption).FullName, "读取非法读卡报警参数");
+            mCommandClasss.Add(typeof(Door8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption).FullName, "设置非法读卡报警参数");
+            mCommandClasss.Add(typeof(Door8800.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption).FullName, "读取非法读卡报警参数");
 
 
-            mCommandClasss.Add(typeof(FC8800.Card.ReadCardDatabaseDetail).FullName, "读取卡片存储详情");
-            mCommandClasss.Add(typeof(FC89H.Card.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
-            mCommandClasss.Add(typeof(FC8800.Card.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
-            mCommandClasss.Add(typeof(FC8800.Card.ClearCardDataBase).FullName, "从控制器中清空所有卡片");
-            mCommandClasss.Add(typeof(FC89H.Card.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
-            mCommandClasss.Add(typeof(FC8800.Card.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
-            mCommandClasss.Add(typeof(FC8800.Card.WriteCardListBySort).FullName, "上传卡片到排序区");
-            mCommandClasss.Add(typeof(FC89H.Card.WriteCardListBySort).FullName, "上传卡片到排序区");
-            mCommandClasss.Add(typeof(FC8800.Card.WriteCardListBySequence).FullName, "上传卡片到顺序区");
-            mCommandClasss.Add(typeof(FC89H.Card.WriteCardListBySequence).FullName, "上传卡片到顺序区");
-            mCommandClasss.Add(typeof(FC8800.Card.DeleteCard).FullName, "从控制器删除卡片");
-            mCommandClasss.Add(typeof(FC89H.Card.DeleteCard).FullName, "从控制器删除卡片");
+            mCommandClasss.Add(typeof(Door8800.Card.ReadCardDatabaseDetail).FullName, "读取卡片存储详情");
+            mCommandClasss.Add(typeof(Door89H.Card.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
+            mCommandClasss.Add(typeof(Door8800.Card.ReadCardDataBase).FullName, "从控制器中读取所有卡片");
+            mCommandClasss.Add(typeof(Door8800.Card.ClearCardDataBase).FullName, "从控制器中清空所有卡片");
+            mCommandClasss.Add(typeof(Door89H.Card.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
+            mCommandClasss.Add(typeof(Door8800.Card.ReadCardDetail).FullName, "从控制器中读取单个卡详情");
+            mCommandClasss.Add(typeof(Door8800.Card.WriteCardListBySort).FullName, "上传卡片到排序区");
+            mCommandClasss.Add(typeof(Door89H.Card.WriteCardListBySort).FullName, "上传卡片到排序区");
+            mCommandClasss.Add(typeof(Door8800.Card.WriteCardListBySequence).FullName, "上传卡片到顺序区");
+            mCommandClasss.Add(typeof(Door89H.Card.WriteCardListBySequence).FullName, "上传卡片到顺序区");
+            mCommandClasss.Add(typeof(Door8800.Card.DeleteCard).FullName, "从控制器删除卡片");
+            mCommandClasss.Add(typeof(Door89H.Card.DeleteCard).FullName, "从控制器删除卡片");
 
-            mCommandClasss.Add(typeof(FC8800.Password.ReadPasswordDetail).FullName, "读取密码容量信息");
-            mCommandClasss.Add(typeof(FC8800.Password.ClearPassword).FullName, "清空所有密码");
-            mCommandClasss.Add(typeof(FC8800.Password.ReadAllPassword).FullName, "从控制器读取所有密码");
-            mCommandClasss.Add(typeof(FC8800.Password.AddPassword).FullName, "将密码列表写入到控制器");
-            mCommandClasss.Add(typeof(FC8800.Password.DeletePassword).FullName, "将密码列表从控制器删除");
-            mCommandClasss.Add(typeof(FC89H.Password.ReadAllPassword).FullName, "从控制器读取所有密码");
-            mCommandClasss.Add(typeof(FC89H.Password.AddPassword).FullName, "将密码列表写入到控制器");
-            mCommandClasss.Add(typeof(FC89H.Password.DeletePassword).FullName, "将密码列表从控制器删除");
+            mCommandClasss.Add(typeof(Door8800.Password.ReadPasswordDetail).FullName, "读取密码容量信息");
+            mCommandClasss.Add(typeof(Door8800.Password.ClearPassword).FullName, "清空所有密码");
+            mCommandClasss.Add(typeof(Door8800.Password.ReadAllPassword).FullName, "从控制器读取所有密码");
+            mCommandClasss.Add(typeof(Door8800.Password.AddPassword).FullName, "将密码列表写入到控制器");
+            mCommandClasss.Add(typeof(Door8800.Password.DeletePassword).FullName, "将密码列表从控制器删除");
+            mCommandClasss.Add(typeof(Door89H.Password.ReadAllPassword).FullName, "从控制器读取所有密码");
+            mCommandClasss.Add(typeof(Door89H.Password.AddPassword).FullName, "将密码列表写入到控制器");
+            mCommandClasss.Add(typeof(Door89H.Password.DeletePassword).FullName, "将密码列表从控制器删除");
 
 
-            mCommandClasss.Add(typeof(FC8800.Holiday.ReadHolidayDetail).FullName, "从控制板中读取节假日存储详情");
-            mCommandClasss.Add(typeof(FC8800.Holiday.ClearHoliday).FullName, "清空控制器中的所有节假日");
-            mCommandClasss.Add(typeof(FC8800.Holiday.ReadAllHoliday).FullName, "读取控制板中已存储的所有节假日");
-            mCommandClasss.Add(typeof(FC8800.Holiday.AddHoliday).FullName, "添加节假日到控制版");
-            mCommandClasss.Add(typeof(FC8800.Holiday.DeleteHoliday).FullName, "从控制器删除节假日");
+            mCommandClasss.Add(typeof(Door8800.Holiday.ReadHolidayDetail).FullName, "从控制板中读取节假日存储详情");
+            mCommandClasss.Add(typeof(Door8800.Holiday.ClearHoliday).FullName, "清空控制器中的所有节假日");
+            mCommandClasss.Add(typeof(Door8800.Holiday.ReadAllHoliday).FullName, "读取控制板中已存储的所有节假日");
+            mCommandClasss.Add(typeof(Door8800.Holiday.AddHoliday).FullName, "添加节假日到控制版");
+            mCommandClasss.Add(typeof(Door8800.Holiday.DeleteHoliday).FullName, "从控制器删除节假日");
 
 
-            mCommandClasss.Add(typeof(FC8800.TimeGroup.ClearTimeGroup).FullName, "清空所有开门时段");
-            mCommandClasss.Add(typeof(FC8800.TimeGroup.ReadTimeGroup).FullName, "读取所有开门时段");
-            mCommandClasss.Add(typeof(FC8800.TimeGroup.AddTimeGroup).FullName, "添加开门时段");
+            mCommandClasss.Add(typeof(Door8800.TimeGroup.ClearTimeGroup).FullName, "清空所有开门时段");
+            mCommandClasss.Add(typeof(Door8800.TimeGroup.ReadTimeGroup).FullName, "读取所有开门时段");
+            mCommandClasss.Add(typeof(Door8800.TimeGroup.AddTimeGroup).FullName, "添加开门时段");
 
-            mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
-            mCommandClasss.Add(typeof(FC8800.Transaction.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
-            mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
-            mCommandClasss.Add(typeof(FC8800.Transaction.ReadTransactionDatabase).FullName, "读取新记录");
-            mCommandClasss.Add(typeof(FC89H.Transaction.ReadTransactionDatabase).FullName, "读取新记录");
-            mCommandClasss.Add(typeof(FC8800.Transaction.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
-            mCommandClasss.Add(typeof(FC8800.Transaction.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
+            mCommandClasss.Add(typeof(Door8800.Transaction.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
+            mCommandClasss.Add(typeof(Door8800.Transaction.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
+            mCommandClasss.Add(typeof(Door8800.Transaction.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
+            mCommandClasss.Add(typeof(Door8800.Transaction.ReadTransactionDatabase).FullName, "读取新记录");
+            mCommandClasss.Add(typeof(Door89H.Transaction.ReadTransactionDatabase).FullName, "读取新记录");
+            mCommandClasss.Add(typeof(Door8800.Transaction.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
+            mCommandClasss.Add(typeof(Door8800.Transaction.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
 
-            mCommandClasss.Add(typeof(FC89H.Transaction.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
+            mCommandClasss.Add(typeof(Door89H.Transaction.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
 
 
         }
@@ -1225,7 +1225,7 @@ namespace FCARDIO.Protocol.Door.Test
             }
 
 
-            FCARDIO.Core.Connector.UDP.UDPServerDetail detail = new UDPServerDetail(sLocalIP, port);
+            DoNetDrive.Core.Connector.UDP.UDPServerDetail detail = new UDPServerDetail(sLocalIP, port);
             if (mUDPIsBind)
             {
                 //关闭UDP服务器
@@ -1283,9 +1283,9 @@ namespace FCARDIO.Protocol.Door.Test
 
 
 
-            mProtocolTypeTable[0] = CommandDetailFactory.ControllerType.MC58;
-            mProtocolTypeTable[1] = CommandDetailFactory.ControllerType.FC88;
-            mProtocolTypeTable[2] = CommandDetailFactory.ControllerType.FC89H;
+            mProtocolTypeTable[0] = CommandDetailFactory.ControllerType.Door58;
+            mProtocolTypeTable[1] = CommandDetailFactory.ControllerType.Door88;
+            mProtocolTypeTable[2] = CommandDetailFactory.ControllerType.Door89H;
 
             cmdProtocolType.Items.Clear();
             for (int i = 0; i < mProtocolTypeTable.Length; i++)
@@ -1442,7 +1442,7 @@ namespace FCARDIO.Protocol.Door.Test
                 return;
             }
 
-            FCARDIO.Core.Connector.TCPServer.TCPServerDetail detail = new TCPServerDetail(sLocalIP, port);
+            DoNetDrive.Core.Connector.TCPServer.TCPServerDetail detail = new TCPServerDetail(sLocalIP, port);
             if (mTCPServerBind)
             {
                 //关闭UDP服务器
@@ -1687,9 +1687,9 @@ namespace FCARDIO.Protocol.Door.Test
 
             //使通道保持连接不关闭
             cnt.OpenForciblyConnect();
-            FC8800RequestHandle fC8800Request =
-                new FC8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
-            cnt.RemoveRequestHandle(typeof(FC8800RequestHandle));//先删除，防止已存在就无法添加。
+            Door8800RequestHandle fC8800Request =
+                new Door8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
+            cnt.RemoveRequestHandle(typeof(Door8800RequestHandle));//先删除，防止已存在就无法添加。
             cnt.AddRequestHandle(fC8800Request);
 
 
@@ -1705,20 +1705,20 @@ namespace FCARDIO.Protocol.Door.Test
         /// <returns></returns>
         private Transaction.AbstractTransaction RequestHandleFactory(string sn, byte cmdIndex, byte cmdPar)
         {
-            bool bIsFC89H = true;
+            bool bIsDoor89H = true;
 
-            bIsFC89H = FC89HSNTable.Contains(sn.Substring(0, 8));
+            bIsDoor89H = Door89HSNTable.Contains(sn.Substring(0, 8));
 
             //在这里需要根据SN进行类型判定，也可以根据SN来进行查表
             if (cmdIndex >= 1 && cmdIndex <= 6)
             {
-                if (bIsFC89H)
+                if (bIsDoor89H)
                 {
-                    return FC89H.Transaction.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
+                    return Door89H.Transaction.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
                 }
                 else
                 {
-                    return FC8800.Transaction.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
+                    return Door8800.Transaction.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
                 }
             }
             switch (cmdIndex)
@@ -1744,7 +1744,7 @@ namespace FCARDIO.Protocol.Door.Test
         /// <param name="EventData"></param>
         private void MAllocator_TransactionMessage(INConnectorDetail connector, Core.Data.INData EventData)
         {
-            FC8800Transaction fcTrn = EventData as FC8800Transaction;
+            Door8800Transaction fcTrn = EventData as Door8800Transaction;
             StringBuilder strbuf = new StringBuilder();
             var evn = fcTrn.EventData;
             strbuf.Append("SN:").Append(fcTrn.SN).Append("；消息类型：").Append(TransactionTypeName[fcTrn.CmdIndex]).Append("；时间：").Append(fcTrn.EventData.TransactionDate.ToDateTimeStr());
@@ -1757,13 +1757,13 @@ namespace FCARDIO.Protocol.Door.Test
 
             if (fcTrn.CmdIndex == 1)
             {
-                FC8800.Data.CardTransaction cardtrn = evn as FC8800.Data.CardTransaction;
+                Door8800.Data.CardTransaction cardtrn = evn as Door8800.Data.CardTransaction;
                 strbuf.Append("；卡号：").Append(cardtrn.CardData).Append("；门号：").Append(cardtrn.DoorNum().ToString());
                 strbuf.Append(cardtrn.IsEnter() ? "(进门)" : "(出门)");
             }
             if (fcTrn.CmdIndex > 1 && fcTrn.CmdIndex < 6)
             {
-                FC8800.Data.AbstractDoorTransaction cardtrn = evn as FC8800.Data.AbstractDoorTransaction;
+                Door8800.Data.AbstractDoorTransaction cardtrn = evn as Door8800.Data.AbstractDoorTransaction;
                 strbuf.Append("；门号：").Append(cardtrn.Door);
             }
             AddCmdLog(null, strbuf.ToString());
@@ -1781,7 +1781,7 @@ namespace FCARDIO.Protocol.Door.Test
            
 
 
-            var par = new FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor.SearchControltor_Parameter((ushort)FCARDIO.Protocol.Door.FC8800.Utility.StringUtility.GetRandomNum( 1,  65535));
+            var par = new DoNetDrive.Protocol.Door.Door8800.SystemParameter.SearchControltor.SearchControltor_Parameter((ushort)DoNetDrive.Protocol.Door.Door8800.Utility.StringUtility.GetRandomNum( 1,  65535));
 
             if (cmdConnType.SelectedIndex == 2 && chkUDPBroadcast.Checked)//UDP 
             {
@@ -1789,14 +1789,14 @@ namespace FCARDIO.Protocol.Door.Test
                 par.UDPBroadcast = true;
             }
 
-            var cmd = new FCARDIO.Protocol.Door.FC8800.SystemParameter.SearchControltor.SearchControltor(cmdDtl, par);
+            var cmd = new DoNetDrive.Protocol.Door.Door8800.SystemParameter.SearchControltor.SearchControltor(cmdDtl, par);
             cmdDtl.Timeout = 10000;
             cmdDtl.RestartCount = 0;
             AddCommand(cmd);
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Result as FC8800.SystemParameter.SearchControltor.SearchControltor_Result;
+                var result = cmde.Result as Door8800.SystemParameter.SearchControltor.SearchControltor_Result;
                 AddCmdLog(cmde, $"已搜索到设备,SN={result.SN},IP:{result.TCP.mIP}:{result.TCP.mTCPPort}");
             };
         }

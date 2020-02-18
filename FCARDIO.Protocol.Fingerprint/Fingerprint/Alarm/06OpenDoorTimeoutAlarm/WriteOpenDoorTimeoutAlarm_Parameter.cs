@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.OpenDoorTimeoutAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.OpenDoorTimeoutAlarm
 {
     /// <summary>
     /// 设置开门超时报警参数

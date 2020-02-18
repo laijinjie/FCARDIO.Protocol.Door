@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
-using FCARDIO.Core.Data;
+using DoNetDrive.Core.Data;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.OEM
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.OEM
 {
     public class OEMDetail : INData
     {
@@ -57,7 +57,7 @@ namespace FCARDIO.Protocol.Fingerprint.SystemParameter.OEM
             }
             Util.StringUtil.WriteString(databuf, Manufacturer, 60, StringEncoding);
             Util.StringUtil.WriteString(databuf, WebAddr, 60, StringEncoding);
-            FCARDIO.Protocol.Util.StringUtil.HextoByteBuf(DeliveryDate.ToString("yyyyMMddhhmmss"), databuf);
+            DoNetDrive.Protocol.Util.StringUtil.HextoByteBuf(DeliveryDate.ToString("yyyyMMddhhmmss"), databuf);
             return databuf;
         }
 

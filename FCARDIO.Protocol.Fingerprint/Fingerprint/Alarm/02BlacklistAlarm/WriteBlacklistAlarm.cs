@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.BlacklistAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.BlacklistAlarm
 {
     /// <summary>
     /// 设置 黑名单报警
     /// </summary>
-    public class WriteBlacklistAlarm : FC8800Command_WriteParameter
+    public class WriteBlacklistAlarm : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化参数

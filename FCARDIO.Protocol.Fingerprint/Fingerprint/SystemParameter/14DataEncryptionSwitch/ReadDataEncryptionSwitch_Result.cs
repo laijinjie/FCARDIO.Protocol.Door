@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.DataEncryptionSwitch
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.DataEncryptionSwitch
 {
     /// <summary>
     /// 读取 数据包加密开关 返回结果

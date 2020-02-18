@@ -1,27 +1,27 @@
-﻿using FCARDIO.Protocol.Door.FC8800.SystemParameter.SN;
+﻿using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN;
 using System;
-using FCARDIO.Core.Extension;
+using DoNetDrive.Core.Extension;
 using System.Windows.Forms;
-using FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword;
-using FCARDIO.Protocol.Door.FC8800.SystemParameter.TCPSetting;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.TCPSetting;
 using System.Text.RegularExpressions;
-using FCARDIO.Protocol.Fingerprint.SystemParameter.Version;
-using FCARDIO.Protocol.Fingerprint.SystemParameter.SystemStatus;
-using FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter;
-using FCARDIO.Protocol.Fingerprint.SystemParameter.Watch;
-using FCARDIO.Protocol.Fingerprint.Alarm;
+using DoNetDrive.Protocol.Fingerprint.SystemParameter.Version;
+using DoNetDrive.Protocol.Fingerprint.SystemParameter.SystemStatus;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.FunctionParameter;
+using DoNetDrive.Protocol.Fingerprint.SystemParameter.Watch;
+using DoNetDrive.Protocol.Fingerprint.Alarm;
 using System.Drawing;
-using FCARDIO.Protocol.Door.FC8800.SystemParameter.CacheContent;
-using FCARDIO.Protocol.Door.FC8800.SystemParameter.KeepAliveInterval;
-using FCARDIO.Protocol.Fingerprint.SystemParameter.DataEncryptionSwitch;
-using FCARDIO.Protocol.Fingerprint.SystemParameter.LocalIdentity;
-using FCARDIO.Protocol.Fingerprint.SystemParameter.WiegandOutput;
-using FCARDIO.Protocol.Fingerprint.SystemParameter.ComparisonThreshold;
-using FCARDIO.Protocol.Fingerprint.SystemParameter.ScreenDisplayContent;
-using FCARDIO.Protocol.Fingerprint.SystemParameter.ManageMenuPassword;
-using FCARDIO.Protocol.Fingerprint.SystemParameter.OEM;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.CacheContent;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.KeepAliveInterval;
+using DoNetDrive.Protocol.Fingerprint.SystemParameter.DataEncryptionSwitch;
+using DoNetDrive.Protocol.Fingerprint.SystemParameter.LocalIdentity;
+using DoNetDrive.Protocol.Fingerprint.SystemParameter.WiegandOutput;
+using DoNetDrive.Protocol.Fingerprint.SystemParameter.ComparisonThreshold;
+using DoNetDrive.Protocol.Fingerprint.SystemParameter.ScreenDisplayContent;
+using DoNetDrive.Protocol.Fingerprint.SystemParameter.ManageMenuPassword;
+using DoNetDrive.Protocol.Fingerprint.SystemParameter.OEM;
 
-namespace FCARDIO.Protocol.Fingerprint.Test
+namespace DoNetDrive.Protocol.Fingerprint.Test
 {
     public partial class frmSystem : frmNodeForm
     {

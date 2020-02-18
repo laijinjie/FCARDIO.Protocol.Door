@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction
+namespace DoNetDrive.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     /// 修改指定记录数据库的写索引

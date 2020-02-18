@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.ReaderOption
+namespace DoNetDrive.Protocol.Fingerprint.Door.ReaderOption
 {
     /// <summary>
     /// 读取 读卡器字节数
     /// </summary>
-    public class ReadReaderOption : FC8800Command_ReadParameter
+    public class ReadReaderOption : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 读取控制器4个门的读卡器字节数

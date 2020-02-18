@@ -1,12 +1,12 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.OEM
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.OEM
 {
     public class OEM_Parameter : AbstractParameter
 

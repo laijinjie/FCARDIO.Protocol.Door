@@ -1,5 +1,5 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Fingerprint.Test.Model;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Fingerprint.Test.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,10 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FCARDIO.Core.Extension;
-using FCARDIO.Protocol.Fingerprint.Person;
+using DoNetDrive.Core.Extension;
+using DoNetDrive.Protocol.Fingerprint.Person;
 
-namespace FCARDIO.Protocol.Fingerprint.Test
+namespace DoNetDrive.Protocol.Fingerprint.Test
 {
     public partial class frmPerson : frmNodeForm
     {

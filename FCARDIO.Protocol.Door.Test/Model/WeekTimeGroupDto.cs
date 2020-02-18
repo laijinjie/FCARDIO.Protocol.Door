@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.Test.Model
+namespace DoNetDrive.Protocol.Door.Test.Model
 {
     public class WeekTimeGroupDto
     {

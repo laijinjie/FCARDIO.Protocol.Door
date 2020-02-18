@@ -1,14 +1,14 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData
+namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 写入头像照片\指纹\人脸特征码
     /// </summary>
-    public class WriteFeatureCode : FC8800Command_WriteParameter
+    public class WriteFeatureCode : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 写入特征码返回结果
@@ -162,8 +162,8 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData
                     var crc32 = FCARD.Common.Cryptography.CRC32_C.CalculateDigest(data, 0, (uint)data.Length);
 
                     buf.WriteInt((int)crc32);
-                    FCPacket.CmdIndex = 0x03;
-                    FCPacket.DataLen = 4;
+                    DoorPacket.CmdIndex = 0x03;
+                    DoorPacket.DataLen = 4;
                     _Step = 2;
                 }
                 else
@@ -171,7 +171,7 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData
                     buf.WriteInt(_FileHandle);
                     buf.WriteMedium(_WriteIndex);
                     buf.WriteBytes(data, _WriteIndex, iDataLen);
-                    FCPacket.DataLen = buf.ReadableBytes;
+                    DoorPacket.DataLen = buf.ReadableBytes;
                 }
                 CommandReady();
             }

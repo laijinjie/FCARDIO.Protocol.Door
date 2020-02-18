@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.Test.Model
+namespace DoNetDrive.Protocol.Door.Test.Model
 {
     public class CardData
     {

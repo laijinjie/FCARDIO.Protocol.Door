@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.WiegandOutput
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.WiegandOutput
 {
     /// <summary>
     /// 读取 韦根输出 返回结果

@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.RelayReleaseTime
+namespace DoNetDrive.Protocol.Fingerprint.Door.RelayReleaseTime
 {
     /// <summary>
     /// 设置开锁时输出时长
     /// </summary>
-    public class WriteUnlockingTime : FC8800Command_WriteParameter
+    public class WriteUnlockingTime : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 设置开锁时输出时长

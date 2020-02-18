@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData
+namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 准备写文件返回结果

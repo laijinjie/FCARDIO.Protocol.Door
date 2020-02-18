@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.AntiDisassemblyAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.AntiDisassemblyAlarm
 {
     /// <summary>
     /// 设置 防拆报警功能 参数

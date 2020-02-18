@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.ExemptionVerificationOpen
+namespace DoNetDrive.Protocol.Fingerprint.Door.ExemptionVerificationOpen
 {
     /// <summary>
     /// 设置 免验证开门
     /// </summary>
-    public class WriteExemptionVerificationOpen : FC8800Command_WriteParameter
+    public class WriteExemptionVerificationOpen : Door8800Command_WriteParameter
     {
         /// <summary>
         ///  初始化命令

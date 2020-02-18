@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.OEM
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.OEM
 {
     /// <summary>
     /// 设置OEM信息
     /// </summary>
-    public class WriteOEM : FC8800Command_WriteParameter
+    public class WriteOEM : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 写入控制器SN 初始化命令

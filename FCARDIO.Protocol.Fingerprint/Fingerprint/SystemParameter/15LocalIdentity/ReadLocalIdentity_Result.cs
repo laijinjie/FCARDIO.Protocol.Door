@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.LocalIdentity
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.LocalIdentity
 {
     /// <summary>
     /// 读取 本机身份 返回结果

@@ -1,12 +1,12 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.AutoTest
+namespace DoNetDrive.Protocol.Fingerprint.AutoTest
 {
     /// <summary>
     /// 自动测试参数

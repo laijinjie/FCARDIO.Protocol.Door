@@ -1,13 +1,13 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.RelayOption
+namespace DoNetDrive.Protocol.Fingerprint.Door.RelayOption
 {
     /// <summary>
     /// 设置继电器参数
     /// </summary>
-    public class WriteRelayOption : FC8800Command_WriteParameter
+    public class WriteRelayOption : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 继电器参数

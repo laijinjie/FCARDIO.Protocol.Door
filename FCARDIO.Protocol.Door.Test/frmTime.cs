@@ -1,5 +1,5 @@
-﻿using FCARDIO.Protocol.Door.FC8800.Time;
-using FCARDIO.Protocol.Door.FC8800.Time.TimeErrorCorrection;
+﻿using DoNetDrive.Protocol.Door.Door8800.Time;
+using DoNetDrive.Protocol.Door.Door8800.Time.TimeErrorCorrection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.Door.Test
+namespace DoNetDrive.Protocol.Door.Test
 {
     public partial class frmTime : frmNodeForm
     {

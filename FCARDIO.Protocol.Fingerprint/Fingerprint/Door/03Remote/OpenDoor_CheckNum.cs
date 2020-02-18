@@ -1,13 +1,13 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.Remote
+namespace DoNetDrive.Protocol.Fingerprint.Door.Remote
 {
     /// <summary>
     /// 远程开门_带验证码
     /// </summary>
-    public class OpenDoor_CheckNum : FC8800Command_WriteParameter
+    public class OpenDoor_CheckNum : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 远程开门远程开门_验证

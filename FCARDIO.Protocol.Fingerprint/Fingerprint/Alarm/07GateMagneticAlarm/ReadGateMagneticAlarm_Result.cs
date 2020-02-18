@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.GateMagneticAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.GateMagneticAlarm
 {
     /// <summary>
     /// 读取门磁报警参数

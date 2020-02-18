@@ -1,9 +1,9 @@
-﻿using FCARDIO.Protocol.Door.FC8800.Time;
-using FCARDIO.Protocol.Door.FC8800.Time.TimeErrorCorrection;
+﻿using DoNetDrive.Protocol.Door.Door8800.Time;
+using DoNetDrive.Protocol.Door.Door8800.Time.TimeErrorCorrection;
 using System;
 using System.Text.RegularExpressions;
 
-namespace FCARDIO.Protocol.Fingerprint.Test
+namespace DoNetDrive.Protocol.Fingerprint.Test
 {
     public partial class frmTime : frmNodeForm
     {

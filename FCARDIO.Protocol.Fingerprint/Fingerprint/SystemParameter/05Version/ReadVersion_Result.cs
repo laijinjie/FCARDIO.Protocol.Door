@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.Version
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.Version
 {
     /// <summary>
     /// 获取设备版本号_结果

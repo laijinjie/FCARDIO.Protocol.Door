@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.RecordMode
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.RecordMode
 {
     /// <summary>
     /// 获取记录存储方式_结果

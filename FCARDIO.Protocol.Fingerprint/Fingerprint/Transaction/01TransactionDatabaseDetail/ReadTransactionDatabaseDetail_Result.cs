@@ -1,12 +1,12 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Fingerprint.Data;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Fingerprint.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction
+namespace DoNetDrive.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     /// 读取控制器中的卡片数据库信息

@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.Version
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.Version
 {
     /// <summary>
     /// 获取设备版本号
     /// </summary>
-    public class ReadVersion : FC8800Command_ReadParameter
+    public class ReadVersion : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 获取设备版本号 初始化命令

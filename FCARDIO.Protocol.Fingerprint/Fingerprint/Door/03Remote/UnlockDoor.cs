@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.Remote
+namespace DoNetDrive.Protocol.Fingerprint.Door.Remote
 {
     /// <summary>
     /// 解除锁定门

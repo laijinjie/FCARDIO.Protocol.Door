@@ -1,18 +1,18 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData
+namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 读取大型文件 可读取超过16M的文件
     /// </summary>
-    public class ReadFile : FC8800Command_WriteParameter
+    public class ReadFile : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 返回值
@@ -188,8 +188,8 @@ namespace FCARDIO.Protocol.Fingerprint.AdditionalData
                     if (iDataLen <= 0)
                     {   //全部文件读取完毕
                         _ProcessStep = _ProcessMax;
-                        FCPacket.CmdPar = 3;
-                        FCPacket.DataLen = 4;
+                        DoorPacket.CmdPar = 3;
+                        DoorPacket.DataLen = 4;
                         _Step = 2;
                     }
                     else

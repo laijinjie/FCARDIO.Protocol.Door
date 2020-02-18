@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using FCARDIO.Core.Extension;
+using DoNetDrive.Core.Extension;
 
-namespace FCARDIO.Protocol.Fingerprint.Test.Model
+namespace DoNetDrive.Protocol.Fingerprint.Test.Model
 {
     public class Person_UI : INotifyPropertyChanged
     {

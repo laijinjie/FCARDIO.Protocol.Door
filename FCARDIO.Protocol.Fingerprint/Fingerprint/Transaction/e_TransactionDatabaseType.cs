@@ -1,4 +1,4 @@
-﻿namespace FCARDIO.Protocol.Fingerprint.Transaction
+﻿namespace DoNetDrive.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     /// 记录数据库类型

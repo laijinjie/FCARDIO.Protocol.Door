@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.ExpirationPrompt
+namespace DoNetDrive.Protocol.Fingerprint.Door.ExpirationPrompt
 {
     /// <summary>
     /// 读取 权限到期提示参数 返回结果

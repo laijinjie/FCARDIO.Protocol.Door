@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.LegalVerificationCloseAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.LegalVerificationCloseAlarm
 {
     /// <summary>
     /// 读取 合法验证解除报警开关
     /// </summary>
-    public class ReadLegalVerificationCloseAlarm : FC8800Command_ReadParameter
+    public class ReadLegalVerificationCloseAlarm : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 初始化参数

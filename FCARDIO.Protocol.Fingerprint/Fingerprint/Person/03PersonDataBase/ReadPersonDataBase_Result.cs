@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.Fingerprint.Person
+namespace DoNetDrive.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 

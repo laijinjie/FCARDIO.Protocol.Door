@@ -1,14 +1,14 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction
+namespace DoNetDrive.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     /// 读取控制器中的卡片数据库信息返回值
     /// </summary>
     public class ReadTransactionDatabaseByIndex_Parameter
-        : Protocol.Door.FC8800.Transaction.ReadTransactionDatabaseByIndex_Parameter
+        : Protocol.Door.Door8800.Transaction.ReadTransactionDatabaseByIndex_Parameter
     {
 
         /// <summary>

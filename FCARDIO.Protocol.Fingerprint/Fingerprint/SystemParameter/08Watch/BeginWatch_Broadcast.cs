@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.Watch
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.Watch
 {
     /// <summary>
     /// 广播开启监控
     /// </summary>
-    public class BeginWatch_Broadcast : FC8800Command_ReadParameter
+    public class BeginWatch_Broadcast : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 获取广播开启监控 初始化命令

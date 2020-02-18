@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData
+namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 读取大型文件的返回值

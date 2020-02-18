@@ -1,12 +1,12 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.SystemStatus
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.SystemStatus
 {
     /// <summary>
     /// 读取 设备状态信息 返回结果

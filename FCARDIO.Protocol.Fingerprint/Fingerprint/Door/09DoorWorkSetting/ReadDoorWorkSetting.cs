@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.DoorWorkSetting
+namespace DoNetDrive.Protocol.Fingerprint.Door.DoorWorkSetting
 {
     /// <summary>
     /// 读取门定时常开
     /// </summary>
-    public class ReadDoorWorkSetting : FC8800Command_ReadParameter
+    public class ReadDoorWorkSetting : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 初始化参数

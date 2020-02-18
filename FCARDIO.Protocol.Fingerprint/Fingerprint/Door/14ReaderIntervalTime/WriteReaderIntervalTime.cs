@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.ReaderIntervalTime
+namespace DoNetDrive.Protocol.Fingerprint.Door.ReaderIntervalTime
 {
     /// <summary>
     /// 设置重复验证权限间隔
     /// </summary>
-    public class WriteReaderIntervalTime : FC8800Command_WriteParameter
+    public class WriteReaderIntervalTime : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 设置读卡间隔时间 初始化命令

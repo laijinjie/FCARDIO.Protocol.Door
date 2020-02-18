@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.Watch
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.Watch
 {
     /// <summary>
     /// 读取实时监控状态
     /// </summary>
-    public class ReadWatchState : FC8800Command_ReadParameter
+    public class ReadWatchState : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 实时监控状态（0 - 未开启监控、1 - 已开启监控）

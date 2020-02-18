@@ -1,16 +1,16 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800.Data;
-using FCARDIO.Protocol.Door.FC8800.Utility;
+using DoNetDrive.Protocol.Door.Door8800.Data;
+using DoNetDrive.Protocol.Door.Door8800.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FCARDIO.Core.Extension;
+using DoNetDrive.Core.Extension;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace FCARDIO.Protocol.Door.Test.Model
+namespace DoNetDrive.Protocol.Door.Test.Model
 {
     /// <summary>
     /// 卡信息的UI包装器

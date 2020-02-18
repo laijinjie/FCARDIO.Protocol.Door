@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.RecordMode
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.RecordMode
 {
     /// <summary>
     /// 设置记录存储方式_参数

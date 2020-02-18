@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.DoorWorkSetting
+namespace DoNetDrive.Protocol.Fingerprint.Door.DoorWorkSetting
 {
     /// <summary>
     /// 门定时常开_结果

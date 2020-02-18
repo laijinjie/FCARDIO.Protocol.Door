@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.VoiceBroadcastSetting
+namespace DoNetDrive.Protocol.Fingerprint.Door.VoiceBroadcastSetting
 {
     /// <summary>
     /// 语音播报功能

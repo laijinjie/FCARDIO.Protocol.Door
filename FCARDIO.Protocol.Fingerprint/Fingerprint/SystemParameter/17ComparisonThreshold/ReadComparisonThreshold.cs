@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.ComparisonThreshold
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.ComparisonThreshold
 {
     /// <summary>
     /// 读取 人脸、指纹比对阈值
     /// </summary>
-    public class ReadComparisonThreshold : FC8800Command_ReadParameter
+    public class ReadComparisonThreshold : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 获取设备有效期 初始化命令

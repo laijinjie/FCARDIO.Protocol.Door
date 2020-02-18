@@ -1,16 +1,16 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.Person
+namespace DoNetDrive.Protocol.Fingerprint.Person
 {
-    public abstract class WritePersonBase : FC8800Command_WriteParameter
+    public abstract class WritePersonBase : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 当前命令进度
@@ -114,7 +114,7 @@ namespace FCARDIO.Protocol.Fingerprint.Person
                 //未发送完毕，继续发送
                 var buf = GetCmdBuf();
                 WritePersonToBuf(buf);
-                FCPacket.DataLen = buf.ReadableBytes;
+                DoorPacket.DataLen = buf.ReadableBytes;
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
             }
         }

@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.RecordMode
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.RecordMode
 {
     /// <summary>
     /// 设置记录存储方式
     /// </summary>
-    public class WriteRecordMode : FC8800Command_WriteParameter
+    public class WriteRecordMode : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令

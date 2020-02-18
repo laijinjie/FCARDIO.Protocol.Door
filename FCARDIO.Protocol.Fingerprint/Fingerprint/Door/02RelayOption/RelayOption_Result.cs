@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.RelayOption
+namespace DoNetDrive.Protocol.Fingerprint.Door.RelayOption
 {
     /// <summary>
     /// 继电器参数_结果

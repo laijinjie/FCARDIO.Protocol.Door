@@ -1,11 +1,11 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.OEM
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.OEM
 {
     /// <summary>
     /// 读取OEM的返回值

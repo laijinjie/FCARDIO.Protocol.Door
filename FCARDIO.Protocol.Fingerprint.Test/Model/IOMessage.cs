@@ -1,4 +1,4 @@
-﻿namespace FCARDIO.Protocol.Fingerprint.Test.Model
+﻿namespace DoNetDrive.Protocol.Fingerprint.Test.Model
 {
     /// <summary>
     /// 

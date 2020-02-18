@@ -1,18 +1,18 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.AutoTest
+namespace DoNetDrive.Protocol.Fingerprint.AutoTest
 {
     /// <summary>
     /// 自动化测试指令
     /// </summary>
-    public class AutoTestCommand : FC8800Command_ReadParameter
+    public class AutoTestCommand : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 自动化测试指令

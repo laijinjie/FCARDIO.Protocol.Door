@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.AlarmPassword
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.AlarmPassword
 {
     /// <summary>
     /// 读取 胁迫报警密码
     /// </summary>
-    public class ReadAlarmPassword : FC8800Command_ReadParameter
+    public class ReadAlarmPassword : Door8800Command_ReadParameter
     {
 
         /// <summary>

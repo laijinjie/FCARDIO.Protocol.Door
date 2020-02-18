@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FCARDIO.Protocol.Fingerprint.Test.Model
+namespace DoNetDrive.Protocol.Fingerprint.Test.Model
 {
     /// <summary>
     /// 节假日 ViewModel

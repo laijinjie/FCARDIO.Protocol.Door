@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.RelayReleaseTime
+namespace DoNetDrive.Protocol.Fingerprint.Door.RelayReleaseTime
 {
     /// <summary>
     /// 开锁时输出时长_结果

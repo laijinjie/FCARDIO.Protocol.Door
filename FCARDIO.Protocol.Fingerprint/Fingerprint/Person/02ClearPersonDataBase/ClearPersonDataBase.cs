@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Person
+namespace DoNetDrive.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 从控制器中清空所有人员信息
     /// </summary>
-    public class ClearPersonDataBase : FC8800Command_ReadParameter
+    public class ClearPersonDataBase : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 初始化命令结构 

@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.SendFireAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.SendFireAlarm
 {
     /// <summary>
     /// 通知设备触发消防报警
     /// </summary>
-    public class WriteSendFireAlarm : FC8800Command_ReadParameter
+    public class WriteSendFireAlarm : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 通知设备触发消防报警 初始化命令

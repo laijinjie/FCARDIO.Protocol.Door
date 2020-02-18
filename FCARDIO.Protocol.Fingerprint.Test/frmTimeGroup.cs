@@ -1,10 +1,10 @@
-﻿using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
-using FCARDIO.Protocol.Door.FC8800.TimeGroup;
+﻿using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
+using DoNetDrive.Protocol.Door.Door8800.TimeGroup;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.Fingerprint.Test
+namespace DoNetDrive.Protocol.Fingerprint.Test
 {
     public partial class frmTimeGroup : frmNodeForm
     {

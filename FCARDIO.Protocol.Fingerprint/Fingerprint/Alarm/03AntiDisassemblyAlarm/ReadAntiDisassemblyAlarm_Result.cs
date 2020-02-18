@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.AntiDisassemblyAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.AntiDisassemblyAlarm
 {
     /// <summary>
     /// 读取 防拆报警功能 返回结果

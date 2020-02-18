@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.ComparisonThreshold
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.ComparisonThreshold
 {
     /// <summary>
     /// 设置 人脸、指纹比对阈值
     /// </summary>
-    public class WriteComparisonThreshold : FC8800Command_WriteParameter
+    public class WriteComparisonThreshold : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令

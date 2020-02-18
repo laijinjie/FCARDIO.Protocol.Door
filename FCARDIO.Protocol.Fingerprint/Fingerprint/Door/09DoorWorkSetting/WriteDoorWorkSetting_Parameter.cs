@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.DoorWorkSetting
+namespace DoNetDrive.Protocol.Fingerprint.Door.DoorWorkSetting
 {
     /// <summary>
     /// 定时常开_参数

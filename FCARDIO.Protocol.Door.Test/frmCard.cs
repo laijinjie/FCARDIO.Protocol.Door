@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800.Data;
-using FCARDIO.Protocol.Door.Test.Model;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800.Data;
+using DoNetDrive.Protocol.Door.Test.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,9 +8,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using FCARDIO.Core.Extension;
+using DoNetDrive.Core.Extension;
 
-namespace FCARDIO.Protocol.Door.Test
+namespace DoNetDrive.Protocol.Door.Test
 {
     public partial class frmCard : frmNodeForm
     {
@@ -69,13 +69,13 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             INCommand cmd;
 
-            cmd = new FC8800.Card.ReadCardDatabaseDetail(cmdDtl);
+            cmd = new Door8800.Card.ReadCardDatabaseDetail(cmdDtl);
 
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as FC8800.Card.ReadCardDatabaseDetail_Result;
+                var result = cmd.getResult() as Door8800.Card.ReadCardDatabaseDetail_Result;
                 mMainForm.AddCmdLog(cmde, $"命令成功：排序数据区：容量:{result.SortDataBaseSize.ToString()},已使用数量:{result.SortCardSize.ToString()}");
                 mMainForm.AddCmdLog(cmde, $"非排序存储区：容量:{result.SequenceDataBaseSize.ToString()},已使用数量:{result.SequenceCardSize.ToString()}");
             };
@@ -87,15 +87,15 @@ namespace FCARDIO.Protocol.Door.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             INCommand cmd;
-            var par = new FC8800.Card.ReadCardDataBase_Parameter(cmbcardType.SelectedIndex + 1);
+            var par = new Door8800.Card.ReadCardDataBase_Parameter(cmbcardType.SelectedIndex + 1);
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
             {
-                cmd = new FC89H.Card.ReadCardDataBase(cmdDtl, par);
+                cmd = new Door89H.Card.ReadCardDataBase(cmdDtl, par);
             }
             else
             {
-                cmd = new FC8800.Card.ReadCardDataBase(cmdDtl, par);
+                cmd = new Door8800.Card.ReadCardDataBase(cmdDtl, par);
             }
             CardList.Clear();
             CardHashTable.Clear();
@@ -123,7 +123,7 @@ namespace FCARDIO.Protocol.Door.Test
             CardList.Clear();
             CardHashTable.Clear();
             StringBuilder sLogs = new StringBuilder();
-            var result = cmde.Result as FC8800.Card.ReadCardDataBase_Result;
+            var result = cmde.Result as Door8800.Card.ReadCardDataBase_Result;
             if (result != null)
             {
                 iType = result.CardType;
@@ -132,7 +132,7 @@ namespace FCARDIO.Protocol.Door.Test
                 {
                     sLogs.AppendLine($"读取到的卡片数:{iReadCount},带读取的卡片数据类型:{DBTypes[iType]}");
                     sLogs.Capacity = result.CardList.Count * 100;
-                    //FC8800的卡号
+                    //Door8800的卡号
                     foreach (var c in result.CardList)
                     {
                         AddCardDataBaseToList(c);
@@ -143,14 +143,14 @@ namespace FCARDIO.Protocol.Door.Test
             }
             else
             {
-                var fc89Result = cmde.Result as FC89H.Card.ReadCardDataBase_Result;
+                var fc89Result = cmde.Result as Door89H.Card.ReadCardDataBase_Result;
                 iType = fc89Result.CardType;
                 iReadCount = fc89Result.DataBaseSize;
                 if (iReadCount > 0)
                 {
                     sLogs.AppendLine($"读取到的卡片数:{iReadCount},带读取的卡片数据类型:{DBTypes[iType]}");
                     sLogs.Capacity = fc89Result.CardList.Count * 100;
-                    //FC89H的卡号
+                    //Door89H的卡号
                     foreach (var c in fc89Result.CardList)
                     {
                         AddCardDataBaseToList(c);
@@ -221,8 +221,8 @@ namespace FCARDIO.Protocol.Door.Test
         private void butClearCardDataBase_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Card.ClearCardDataBase_Parameter(cmbcardType.SelectedIndex + 1);
-            var cmd = new FC8800.Card.ClearCardDataBase(cmdDtl, par);
+            var par = new Door8800.Card.ClearCardDataBase_Parameter(cmbcardType.SelectedIndex + 1);
+            var cmd = new Door8800.Card.ClearCardDataBase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
@@ -241,34 +241,34 @@ namespace FCARDIO.Protocol.Door.Test
             INCommand cmd = null;
 
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
             {
 
-                List<FC89H.Data.CardDetail> cards = new List<FC89H.Data.CardDetail>();
+                List<Door89H.Data.CardDetail> cards = new List<Door89H.Data.CardDetail>();
                 foreach (var item in CardList)
                 {
-                    cards.Add(new FC89H.Data.CardDetail(item.CardDetail));
+                    cards.Add(new Door89H.Data.CardDetail(item.CardDetail));
                 }
                 if (cards.Count > 0)
                 {
-                    var par = new FC89H.Card.WriteCardListBySequence_Parameter(cards);
-                    cmd = new FC89H.Card.WriteCardListBySequence(cmdDtl, par);
+                    var par = new Door89H.Card.WriteCardListBySequence_Parameter(cards);
+                    cmd = new Door89H.Card.WriteCardListBySequence(cmdDtl, par);
                 }
             }
             else
             {
-                List<FC8800.Data.CardDetail> cards = new List<CardDetail>();
+                List<Door8800.Data.CardDetail> cards = new List<CardDetail>();
                 foreach (var item in CardList)
                 {
                     if (item.CardDetail.CardData < UInt32.MaxValue)
                     {
-                        cards.Add(new FC8800.Data.CardDetail(item.CardDetail));
+                        cards.Add(new Door8800.Data.CardDetail(item.CardDetail));
                     }
                 }
                 if (cards.Count > 0)
                 {
-                    var par = new FC8800.Card.WriteCardListBySequence_Parameter(cards);
-                    cmd = new FC8800.Card.WriteCardListBySequence(cmdDtl, par);
+                    var par = new Door8800.Card.WriteCardListBySequence_Parameter(cards);
+                    cmd = new Door8800.Card.WriteCardListBySequence(cmdDtl, par);
                 }
             }
             if (cmd == null) return;
@@ -277,7 +277,7 @@ namespace FCARDIO.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as FC8800.Card.WriteCardList_Result;
+                var result = cmd.getResult() as Door8800.Card.WriteCardList_Result;
                 WriteCardCallBlack(cmde, result);
             };
         }
@@ -290,35 +290,35 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.Timeout = 5000;
             INCommand cmd = null;
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
             {
 
-                List<FC89H.Data.CardDetail> cards = new List<FC89H.Data.CardDetail>();
+                List<Door89H.Data.CardDetail> cards = new List<Door89H.Data.CardDetail>();
                 foreach (var item in CardList)
                 {
-                    cards.Add(new FC89H.Data.CardDetail(item.CardDetail));
+                    cards.Add(new Door89H.Data.CardDetail(item.CardDetail));
                 }
                 if (cards.Count > 0)
                 {
 
-                    var par = new FC89H.Card.WriteCardListBySort_Parameter(cards);
-                    cmd = new FC89H.Card.WriteCardListBySort(cmdDtl, par);
+                    var par = new Door89H.Card.WriteCardListBySort_Parameter(cards);
+                    cmd = new Door89H.Card.WriteCardListBySort(cmdDtl, par);
                 }
             }
             else
             {
-                List<FC8800.Data.CardDetail> cards = new List<CardDetail>();
+                List<Door8800.Data.CardDetail> cards = new List<CardDetail>();
                 foreach (var item in CardList)
                 {
                     if (item.CardDetail.CardData < UInt32.MaxValue)
                     {
-                        cards.Add(new FC8800.Data.CardDetail(item.CardDetail));
+                        cards.Add(new Door8800.Data.CardDetail(item.CardDetail));
                     }
                 }
                 if (cards.Count > 0)
                 {
-                    var par = new FC8800.Card.WriteCardListBySort_Parameter(cards);
-                    cmd = new FC8800.Card.WriteCardListBySort(cmdDtl, par);
+                    var par = new Door8800.Card.WriteCardListBySort_Parameter(cards);
+                    cmd = new Door8800.Card.WriteCardListBySort(cmdDtl, par);
                 }
 
             }
@@ -328,13 +328,13 @@ namespace FCARDIO.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as FC8800.Card.WriteCardList_Result;
+                var result = cmd.getResult() as Door8800.Card.WriteCardList_Result;
                 WriteCardCallBlack(cmde, result);
             };
         }
 
 
-        private void WriteCardCallBlack(CommandEventArgs cmde, FC8800.Card.WriteCardList_Result result)
+        private void WriteCardCallBlack(CommandEventArgs cmde, Door8800.Card.WriteCardList_Result result)
         {
             if (result != null)
             {
@@ -375,15 +375,15 @@ namespace FCARDIO.Protocol.Door.Test
 
             try
             {
-                if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+                if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
                 {
-                    var par = new FC89H.Card.ReadCardDetail_Parameter(card);
-                    cmd = new FC89H.Card.ReadCardDetail(cmdDtl, par);
+                    var par = new Door89H.Card.ReadCardDetail_Parameter(card);
+                    cmd = new Door89H.Card.ReadCardDetail(cmdDtl, par);
                 }
                 else
                 {
-                    var par = new FC8800.Card.ReadCardDetail_Parameter(card);
-                    cmd = new FC8800.Card.ReadCardDetail(cmdDtl, par);
+                    var par = new Door8800.Card.ReadCardDetail_Parameter(card);
+                    cmd = new Door8800.Card.ReadCardDetail(cmdDtl, par);
                 }
             }
             catch (Exception createcarderr)
@@ -407,7 +407,7 @@ namespace FCARDIO.Protocol.Door.Test
         private void ReadCardDetailCallBlack(CommandEventArgs cmde)
         {
             StringBuilder strBuf = new StringBuilder();
-            var result = cmde.Result as FC8800.Card.ReadCardDetail_Result;
+            var result = cmde.Result as Door8800.Card.ReadCardDetail_Result;
             if (result != null)
             {
                 if (!result.IsReady)
@@ -423,7 +423,7 @@ namespace FCARDIO.Protocol.Door.Test
             }
             else
             {
-                var fc89Result = cmde.Result as FC89H.Card.ReadCardDetail_Result;
+                var fc89Result = cmde.Result as Door89H.Card.ReadCardDetail_Result;
                 if (!fc89Result.IsReady)
                 {
                     mMainForm.AddCmdLog(cmde, $"此卡未注册！");
@@ -587,7 +587,7 @@ namespace FCARDIO.Protocol.Door.Test
         /// <returns></returns>
         private CardDetailBase ContorlToCardDetail()
         {
-            FC89H.Data.CardDetail card = new FC89H.Data.CardDetail();
+            Door89H.Data.CardDetail card = new Door89H.Data.CardDetail();
             string CardStr = txtCardData.Text;
             card.CardData = CardStr.ToUInt64();
             if (card.CardData == 0)
@@ -723,20 +723,20 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.Timeout = 10000;
             INCommand cmd;
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
             {
 
-                List<FC89H.Data.CardDetail> cards = new List<FC89H.Data.CardDetail>();
-                cards.Add((FC89H.Data.CardDetail)card);
-                var par = new FC89H.Card.WriteCardListBySequence_Parameter(cards);
-                cmd = new FC89H.Card.WriteCardListBySequence(cmdDtl, par);
+                List<Door89H.Data.CardDetail> cards = new List<Door89H.Data.CardDetail>();
+                cards.Add((Door89H.Data.CardDetail)card);
+                var par = new Door89H.Card.WriteCardListBySequence_Parameter(cards);
+                cmd = new Door89H.Card.WriteCardListBySequence(cmdDtl, par);
             }
             else
             {
-                List<FC8800.Data.CardDetail> cards = new List<CardDetail>();
-                cards.Add(new FC8800.Data.CardDetail(card));
-                var par = new FC8800.Card.WriteCardListBySequence_Parameter(cards);
-                cmd = new FC8800.Card.WriteCardListBySequence(cmdDtl, par);
+                List<Door8800.Data.CardDetail> cards = new List<CardDetail>();
+                cards.Add(new Door8800.Data.CardDetail(card));
+                var par = new Door8800.Card.WriteCardListBySequence_Parameter(cards);
+                cmd = new Door8800.Card.WriteCardListBySequence(cmdDtl, par);
             }
 
 
@@ -744,7 +744,7 @@ namespace FCARDIO.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as FC8800.Card.WriteCardList_Result;
+                var result = cmd.getResult() as Door8800.Card.WriteCardList_Result;
                 WriteCardCallBlack(cmde, result);
             };
         }
@@ -882,7 +882,7 @@ namespace FCARDIO.Protocol.Door.Test
             if (iCardNum == 0)
             {
                 cardNum = (UInt64)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
-                if (iType == CommandDetailFactory.ControllerType.FC89H)
+                if (iType == CommandDetailFactory.ControllerType.Door89H)
                 {
                     cardNum2 = (UInt64)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
                     cardNum = (cardNum << 32) + cardNum2;
@@ -912,13 +912,13 @@ namespace FCARDIO.Protocol.Door.Test
             }
 
 
-            if (iType == CommandDetailFactory.ControllerType.FC89H)
+            if (iType == CommandDetailFactory.ControllerType.Door89H)
             {
-                card = new FC89H.Data.CardDetail();
+                card = new Door89H.Data.CardDetail();
             }
             else
             {
-                card = new FC8800.Data.CardDetail();
+                card = new Door8800.Data.CardDetail();
             }
             card.CardData = cardNum;
             return card;
@@ -961,21 +961,21 @@ namespace FCARDIO.Protocol.Door.Test
             INCommand cmd = null;
             CardDetailBase card = ContorlToCardDetail();
             if (card == null) return;
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
             {
 
-                List<FC89H.Data.CardDetail> cards = new List<FC89H.Data.CardDetail>();
-                cards.Add((FC89H.Data.CardDetail)card);
-                var par = new FC89H.Card.DeleteCard_Parameter(cards);
-                cmd = new FC89H.Card.DeleteCard(cmdDtl, par);
+                List<Door89H.Data.CardDetail> cards = new List<Door89H.Data.CardDetail>();
+                cards.Add((Door89H.Data.CardDetail)card);
+                var par = new Door89H.Card.DeleteCard_Parameter(cards);
+                cmd = new Door89H.Card.DeleteCard(cmdDtl, par);
 
             }
             else
             {
-                List<FC8800.Data.CardDetail> cards = new List<CardDetail>();
-                cards.Add(new FC8800.Data.CardDetail(card));
-                var par = new FC8800.Card.DeleteCard_Parameter(cards);
-                cmd = new FC8800.Card.DeleteCard(cmdDtl, par);
+                List<Door8800.Data.CardDetail> cards = new List<CardDetail>();
+                cards.Add(new Door8800.Data.CardDetail(card));
+                var par = new Door8800.Card.DeleteCard_Parameter(cards);
+                cmd = new Door8800.Card.DeleteCard(cmdDtl, par);
             }
 
             mMainForm.AddCommand(cmd);
@@ -992,39 +992,39 @@ namespace FCARDIO.Protocol.Door.Test
             cmdDtl.RestartCount = 0;
             INCommand cmd = null;
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
             {
 
-                List<FC89H.Data.CardDetail> cards = new List<FC89H.Data.CardDetail>();
+                List<Door89H.Data.CardDetail> cards = new List<Door89H.Data.CardDetail>();
                 foreach (var item in CardList)
                 {
                     if (item.Selected)
-                        cards.Add(new FC89H.Data.CardDetail(item.CardDetail));
+                        cards.Add(new Door89H.Data.CardDetail(item.CardDetail));
                 }
                 if (cards.Count > 0)
                 {
-                    var par = new FC89H.Card.DeleteCard_Parameter(cards);
-                    cmd = new FC89H.Card.DeleteCard(cmdDtl, par);
+                    var par = new Door89H.Card.DeleteCard_Parameter(cards);
+                    cmd = new Door89H.Card.DeleteCard(cmdDtl, par);
                 }
 
             }
             else
             {
-                List<FC8800.Data.CardDetail> cards = new List<CardDetail>();
+                List<Door8800.Data.CardDetail> cards = new List<CardDetail>();
                 foreach (var item in CardList)
                 {
                     if (item.Selected)
                     {
                         if (item.CardDetail.CardData < UInt32.MaxValue)
                         {
-                            cards.Add(new FC8800.Data.CardDetail(item.CardDetail));
+                            cards.Add(new Door8800.Data.CardDetail(item.CardDetail));
                         }
                     }
                 }
                 if (cards.Count > 0)
                 {
-                    var par = new FC8800.Card.DeleteCard_Parameter(cards);
-                    cmd = new FC8800.Card.DeleteCard(cmdDtl, par);
+                    var par = new Door8800.Card.DeleteCard_Parameter(cards);
+                    cmd = new Door8800.Card.DeleteCard(cmdDtl, par);
                 }
             }
             if (cmd == null)

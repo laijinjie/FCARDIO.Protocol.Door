@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.Remote
+namespace DoNetDrive.Protocol.Fingerprint.Door.Remote
 {
     /// <summary>
     /// 远程开门_带验证码

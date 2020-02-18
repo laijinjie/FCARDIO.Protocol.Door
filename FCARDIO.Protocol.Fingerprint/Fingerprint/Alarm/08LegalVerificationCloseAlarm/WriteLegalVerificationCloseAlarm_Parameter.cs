@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.LegalVerificationCloseAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.LegalVerificationCloseAlarm
 {
     /// <summary>
     /// 设置 合法验证解除报警开关

@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.ManageMenuPassword
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.ManageMenuPassword
 {
     /// <summary>
     /// 读取 管理菜单密码
     /// </summary>
-    public class ReadManageMenuPassword : FC8800Command_ReadParameter
+    public class ReadManageMenuPassword : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 获取设备有效期 初始化命令

@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData
+namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 删除人员照片/指纹/人脸特征码
     /// </summary>
-    public class DeleteFeatureCode : FC8800Command_WriteParameter
+    public class DeleteFeatureCode : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令

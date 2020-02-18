@@ -1,14 +1,14 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.AdditionalData
+namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
 {
     /// <summary>
     /// 查询人员附加数据详情
     /// </summary>
-    public class ReadPersonDetail : FC8800Command_WriteParameter
+    public class ReadPersonDetail : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令

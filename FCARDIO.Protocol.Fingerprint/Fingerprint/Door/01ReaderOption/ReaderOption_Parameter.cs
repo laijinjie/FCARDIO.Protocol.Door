@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.ReaderOption
+namespace DoNetDrive.Protocol.Fingerprint.Door.ReaderOption
 {
     /// <summary>
     /// 读卡器字节数

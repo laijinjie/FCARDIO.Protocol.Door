@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Transaction
+namespace DoNetDrive.Protocol.Fingerprint.Transaction
 {
     /// <summary>
     /// 更新记录指针
     /// </summary>
-    public class WriteTransactionDatabaseReadIndex : FC8800Command_WriteParameter
+    public class WriteTransactionDatabaseReadIndex : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令结构

@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using FCARD.Common.Extensions;
 using FCARD.Common;
-using FCARDIO.Protocol.Fingerprint.AdditionalData;
+using DoNetDrive.Protocol.Fingerprint.AdditionalData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.Fingerprint.Test
+namespace DoNetDrive.Protocol.Fingerprint.Test
 {
     public partial class frmAdditionalData : frmNodeForm
     {

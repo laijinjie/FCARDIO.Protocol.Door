@@ -1,18 +1,18 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.SystemStatus
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.SystemStatus
 {
     /// <summary>
     /// 读取 设备状态信息
     /// </summary>
-    public class ReadSystemStatus : FC8800Command_ReadParameter
+    public class ReadSystemStatus : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 获取设备运行信息 初始化命令

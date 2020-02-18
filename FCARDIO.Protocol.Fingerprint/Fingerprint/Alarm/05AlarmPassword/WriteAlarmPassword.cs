@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.AlarmPassword
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.AlarmPassword
 {
     /// <summary>
     /// 设置胁迫报警密码
     /// </summary>
-    public class WriteAlarmPassword : FC8800Command_WriteParameter
+    public class WriteAlarmPassword : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令结构

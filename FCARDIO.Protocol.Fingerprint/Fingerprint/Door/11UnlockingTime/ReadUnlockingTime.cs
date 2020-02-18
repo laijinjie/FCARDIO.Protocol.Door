@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.RelayReleaseTime
+namespace DoNetDrive.Protocol.Fingerprint.Door.RelayReleaseTime
 {
     /// <summary>
     /// 获取开锁时输出时长
     /// </summary>
-    public class ReadUnlockingTime : FC8800Command_ReadParameter
+    public class ReadUnlockingTime : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 读取门工作方式

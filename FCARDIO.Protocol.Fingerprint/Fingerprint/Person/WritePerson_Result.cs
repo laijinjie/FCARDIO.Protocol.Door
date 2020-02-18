@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 using System;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.Fingerprint.Person
+namespace DoNetDrive.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 将人员列表写入到控制器的返回值

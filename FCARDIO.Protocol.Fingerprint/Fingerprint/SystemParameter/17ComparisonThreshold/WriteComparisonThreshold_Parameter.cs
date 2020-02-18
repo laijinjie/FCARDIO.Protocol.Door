@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.ComparisonThreshold
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.ComparisonThreshold
 {
     /// <summary>
     /// 设置 人脸、指纹比对阈值 参数

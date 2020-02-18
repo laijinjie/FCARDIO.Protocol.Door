@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm
 {
     /// <summary>
     /// 解除报警 参数

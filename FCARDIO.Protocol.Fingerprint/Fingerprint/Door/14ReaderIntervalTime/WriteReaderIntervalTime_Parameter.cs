@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.ReaderIntervalTime
+namespace DoNetDrive.Protocol.Fingerprint.Door.ReaderIntervalTime
 {
     /// <summary>
     /// 设置重复验证权限间隔_参数

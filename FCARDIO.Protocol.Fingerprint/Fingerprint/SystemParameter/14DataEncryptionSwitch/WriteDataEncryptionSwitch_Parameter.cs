@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Core.Extension;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Core.Extension;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.DataEncryptionSwitch
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.DataEncryptionSwitch
 {
     /// <summary>
     /// 数据包加密开关

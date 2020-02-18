@@ -1,14 +1,14 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Person
+namespace DoNetDrive.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 读取单个人员在控制器中的信息
     /// </summary>
-    public class ReadPersonDetail : FC8800Command_ReadParameter
+    public class ReadPersonDetail : Door8800Command_ReadParameter
     {
 
         /// <summary>

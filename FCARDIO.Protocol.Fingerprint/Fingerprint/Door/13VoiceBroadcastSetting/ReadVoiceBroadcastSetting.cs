@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.VoiceBroadcastSetting
+namespace DoNetDrive.Protocol.Fingerprint.Door.VoiceBroadcastSetting
 {
     /// <summary>
     /// 读取语音播报功能
     /// </summary>
-    public class ReadVoiceBroadcastSetting : FC8800Command_ReadParameter
+    public class ReadVoiceBroadcastSetting : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 初始化参数

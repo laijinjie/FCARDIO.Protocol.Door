@@ -1,6 +1,6 @@
-﻿using FCARDIO.Protocol.Door.FC8800.Door.ReaderOption;
-using FCARDIO.Protocol.Door.FC8800.Door.RelayOption;
-using FCARDIO.Protocol.Door.FC8800.Door.Remote;
+﻿using DoNetDrive.Protocol.Door.Door8800.Door.ReaderOption;
+using DoNetDrive.Protocol.Door.Door8800.Door.RelayOption;
+using DoNetDrive.Protocol.Door.Door8800.Door.Remote;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,32 +10,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FCARDIO.Protocol.Door.FC8800.Utility;
-using FCARDIO.Protocol.Door.FC8800.Door;
+using DoNetDrive.Protocol.Door.Door8800.Utility;
+using DoNetDrive.Protocol.Door.Door8800.Door;
 using System.Collections;
-using FCARDIO.Protocol.Door.FC8800.Door.ReaderWorkSetting;
-using FCARDIO.Core.Util;
-using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
-using FCARDIO.Protocol.Door.FC8800.Door.DoorWorkSetting;
-using FCARDIO.Protocol.Door.FC8800.Door.AutoLockedSetting;
-using FCARDIO.Protocol.Door.FC8800.Door.RelayReleaseTime;
+using DoNetDrive.Protocol.Door.Door8800.Door.ReaderWorkSetting;
+using DoNetDrive.Core.Util;
+using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
+using DoNetDrive.Protocol.Door.Door8800.Door.DoorWorkSetting;
+using DoNetDrive.Protocol.Door.Door8800.Door.AutoLockedSetting;
+using DoNetDrive.Protocol.Door.Door8800.Door.RelayReleaseTime;
 using System.Text.RegularExpressions;
-using FCARDIO.Protocol.Door.FC8800.Door.ReaderInterval;
-using FCARDIO.Protocol.Door.Test.Model;
-using FCARDIO.Protocol.Door.FC8800.SystemParameter.FunctionParameter;
-using FCARDIO.Protocol.Door.FC8800.Door.AntiPassback;
-using FCARDIO.Protocol.Door.FC8800.Door.PushButtonSetting;
-using FCARDIO.Protocol.Door.FC8800.Door.AnyCardSetting;
-using FCARDIO.Protocol.Door.FC8800.Door.VoiceBroadcastSetting;
-using FCARDIO.Protocol.Door.FC8800.Door.InOutSideReadOpenSetting;
-using FCARDIO.Protocol.Door.FC8800.Door.ManageKeyboardSetting;
-using FCARDIO.Protocol.Door.FC8800.Door.AreaAntiPassback;
-using FCARDIO.Protocol.Door.FC8800.Door.InterLockSetting;
-using FCARDIO.Protocol.Door.FC8800.Door.MultiCard;
-using FCARDIO.Protocol.Door.FC8800.Door.ReaderAlarm;
-using FCARDIO.Protocol.Door.FC89H.Door.ReadCardAndTakePictures;
+using DoNetDrive.Protocol.Door.Door8800.Door.ReaderInterval;
+using DoNetDrive.Protocol.Door.Test.Model;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.FunctionParameter;
+using DoNetDrive.Protocol.Door.Door8800.Door.AntiPassback;
+using DoNetDrive.Protocol.Door.Door8800.Door.PushButtonSetting;
+using DoNetDrive.Protocol.Door.Door8800.Door.AnyCardSetting;
+using DoNetDrive.Protocol.Door.Door8800.Door.VoiceBroadcastSetting;
+using DoNetDrive.Protocol.Door.Door8800.Door.InOutSideReadOpenSetting;
+using DoNetDrive.Protocol.Door.Door8800.Door.ManageKeyboardSetting;
+using DoNetDrive.Protocol.Door.Door8800.Door.AreaAntiPassback;
+using DoNetDrive.Protocol.Door.Door8800.Door.InterLockSetting;
+using DoNetDrive.Protocol.Door.Door8800.Door.MultiCard;
+using DoNetDrive.Protocol.Door.Door8800.Door.ReaderAlarm;
+using DoNetDrive.Protocol.Door.Door89H.Door.ReadCardAndTakePictures;
 
-namespace FCARDIO.Protocol.Door.Test
+namespace DoNetDrive.Protocol.Door.Test
 {
     public partial class frmDoor : frmNodeForm
     {
@@ -175,7 +175,7 @@ namespace FCARDIO.Protocol.Door.Test
 
             cmbManyCardOpenMode.SelectedIndex = 0;
             cmbAntiPassback.SelectedIndex = 0;
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.MC58)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door58)
             {
                 cmbVerifyType.Items.AddRange(new string[] { "禁用", "固定组合" });
             }
@@ -268,12 +268,12 @@ namespace FCARDIO.Protocol.Door.Test
         private void butReadAlarmPassword_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
-            var cmd = new FC8800.Door.AlarmPassword.ReadAlarmPassword(cmdDtl, par);
+            var par = new Door8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
+            var cmd = new Door8800.Door.AlarmPassword.ReadAlarmPassword(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as FC8800.Door.AlarmPassword.AlarmPassword_Result;
+                var result = cmd.getResult() as Door8800.Door.AlarmPassword.AlarmPassword_Result;
                 Invoke(() =>
                 {
                     cmdAlarmPassword.SelectedIndex = result.Use ? 0 : 1;
@@ -293,8 +293,8 @@ namespace FCARDIO.Protocol.Door.Test
             String pwd = Password.Text.ToString();
             int alarmOption = cmbAlarmOption.SelectedIndex + 1;
 
-            var par = new FC8800.Door.AlarmPassword.WriteAlarmPassword_parameter(door, use, pwd, alarmOption);
-            var cmd = new FC8800.Door.AlarmPassword.WriteAlarmPassword(cmdDtl, par);
+            var par = new Door8800.Door.AlarmPassword.WriteAlarmPassword_parameter(door, use, pwd, alarmOption);
+            var cmd = new Door8800.Door.AlarmPassword.WriteAlarmPassword(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -340,12 +340,12 @@ namespace FCARDIO.Protocol.Door.Test
         private void butReadOvertimeAlarmSetting_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
-            var cmd = new FC8800.Door.OvertimeAlarmSetting.ReadOvertimeAlarmSetting(cmdDtl, par);
+            var par = new Door8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
+            var cmd = new Door8800.Door.OvertimeAlarmSetting.ReadOvertimeAlarmSetting(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as FC8800.Door.OvertimeAlarmSetting.OvertimeAlarmSetting_Result;
+                var result = cmd.getResult() as Door8800.Door.OvertimeAlarmSetting.OvertimeAlarmSetting_Result;
                 Invoke(() =>
                 {
                     cmbOvertimeAlarmSetting.SelectedIndex = result.Use ? 0 : 1;
@@ -372,8 +372,8 @@ namespace FCARDIO.Protocol.Door.Test
             byte overtime = byte.Parse((cmbOverTime.SelectedIndex + 1).ToString());
             bool alarm = (cmdAlarmPassword.SelectedIndex == 0);
 
-            var par = new FC8800.Door.OvertimeAlarmSetting.WriteOvertimeAlarmSetting_Parameter(door, use, overtime, alarm);
-            var cmd = new FC8800.Door.OvertimeAlarmSetting.WriteOvertimeAlarmSetting(cmdDtl, par);
+            var par = new Door8800.Door.OvertimeAlarmSetting.WriteOvertimeAlarmSetting_Parameter(door, use, overtime, alarm);
+            var cmd = new Door8800.Door.OvertimeAlarmSetting.WriteOvertimeAlarmSetting(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -417,13 +417,13 @@ namespace FCARDIO.Protocol.Door.Test
         private void butReadSensorAlarmSetting_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
-            var cmd = new FC8800.Door.SensorAlarmSetting.ReadSensorAlarmSetting(cmdDtl, par);
+            var par = new Door8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
+            var cmd = new Door8800.Door.SensorAlarmSetting.ReadSensorAlarmSetting(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as FC8800.Door.SensorAlarmSetting.SensorAlarmSetting_Result;
+                var result = cmd.getResult() as Door8800.Door.SensorAlarmSetting.SensorAlarmSetting_Result;
                 //cmbSensorAlarmSetting
                 Invoke(() =>
                 {
@@ -440,8 +440,8 @@ namespace FCARDIO.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             bool use = (cmbSensorAlarmSetting.SelectedIndex == 0);
             byte door = byte.Parse(cmdDoorNum.Text);
-            var par = new FC8800.Door.SensorAlarmSetting.WriteSensorAlarmSetting_Parameter(door, use, WeekTimeGroupSensorAlarmDto);
-            var cmd = new FC8800.Door.SensorAlarmSetting.WriteSensorAlarmSetting(cmdDtl, par);
+            var par = new Door8800.Door.SensorAlarmSetting.WriteSensorAlarmSetting_Parameter(door, use, WeekTimeGroupSensorAlarmDto);
+            var cmd = new Door8800.Door.SensorAlarmSetting.WriteSensorAlarmSetting(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -494,7 +494,7 @@ namespace FCARDIO.Protocol.Door.Test
                 Invoke(() =>
                 {
                     int count = 2;
-                    if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+                    if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
                     {
                         count = 4;
                     }
@@ -539,7 +539,7 @@ namespace FCARDIO.Protocol.Door.Test
             //门1读卡器字节数
             Door[0] = (byte)(cbxDoor1ReaderOption.SelectedIndex + 1);
             Door[1] = (byte)(cbxDoor2ReaderOption.SelectedIndex + 1);
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
             {
                 Door[2] = (byte)(cbxDoor3ReaderOption.SelectedIndex + 1);
                 Door[3] = (byte)(cbxDoor4ReaderOption.SelectedIndex + 1);
@@ -552,16 +552,16 @@ namespace FCARDIO.Protocol.Door.Test
 
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door88)
             {
                 ReaderOption_Parameter par = new ReaderOption_Parameter(Door);
                 WriteReaderOption<ReaderOption_Parameter> cmd = new WriteReaderOption<ReaderOption_Parameter>(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
-            else if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC89H)
+            else if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
             {
-                FC89H.Door.ReaderOption.ReaderOption_Parameter par = new FC89H.Door.ReaderOption.ReaderOption_Parameter(Door);
-                WriteReaderOption<FC89H.Door.ReaderOption.ReaderOption_Parameter> cmd = new WriteReaderOption<FC89H.Door.ReaderOption.ReaderOption_Parameter>(cmdDtl, par);
+                Door89H.Door.ReaderOption.ReaderOption_Parameter par = new Door89H.Door.ReaderOption.ReaderOption_Parameter(Door);
+                WriteReaderOption<Door89H.Door.ReaderOption.ReaderOption_Parameter> cmd = new WriteReaderOption<Door89H.Door.ReaderOption.ReaderOption_Parameter>(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
         }
@@ -1881,22 +1881,22 @@ namespace FCARDIO.Protocol.Door.Test
         private void butReadInvalidCardAlarmOption_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new FC8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
+            var par = new Door8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door88)
             {
-                var cmd = new FC8800.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption(cmdDtl, par);
+                var cmd = new Door8800.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
             else
             {
-                var cmd = new FC89H.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption(cmdDtl, par);
+                var cmd = new Door89H.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as FC8800.Door.InvalidCardAlarmOption.InvalidCardAlarmOption_Result;
+                var result = cmde.Command.getResult() as Door8800.Door.InvalidCardAlarmOption.InvalidCardAlarmOption_Result;
                 Invoke(() =>
                 {
                     cmdInvalidCardAlarmOptionUse.SelectedIndex = result.Use ? 0 : 1;
@@ -1913,15 +1913,15 @@ namespace FCARDIO.Protocol.Door.Test
             bool use = (cmdInvalidCardAlarmOptionUse.SelectedIndex == 0);
             byte door = byte.Parse(cmdDoorNum.Text);
 
-            var par = new FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption_Parameter(door, use, (byte)(cmbReadInvalidCardTime.SelectedIndex));
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.FC88)
+            var par = new Door8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption_Parameter(door, use, (byte)(cmbReadInvalidCardTime.SelectedIndex));
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door88)
             {
-                var cmd = new FC8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption(cmdDtl, par);
+                var cmd = new Door8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
             else
             {
-                var cmd = new FC89H.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption(cmdDtl, par);
+                var cmd = new Door89H.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
 
@@ -2534,20 +2534,20 @@ namespace FCARDIO.Protocol.Door.Test
             if (cmdDtl == null) return;
             var protocolType = mMainForm.GetProtocolType();
             ReadMultiCard cmd = null;
-            if (protocolType == CommandDetailFactory.ControllerType.FC88)
+            if (protocolType == CommandDetailFactory.ControllerType.Door88)
             {
                 cmd = new ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, false));
             }
-            else if (protocolType == CommandDetailFactory.ControllerType.FC89H)
+            else if (protocolType == CommandDetailFactory.ControllerType.Door89H)
             {
-                cmd = new FC89H.Door.MultiCard.ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, false));
+                cmd = new Door89H.Door.MultiCard.ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, false));
             }
-            else if (protocolType == CommandDetailFactory.ControllerType.MC58)
+            else if (protocolType == CommandDetailFactory.ControllerType.Door58)
             {
-                cmd = new FC89H.Door.MultiCard.ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, true));
+                cmd = new Door89H.Door.MultiCard.ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, true));
             }
 
-            //ReadMultiCard cmd = new FC89H.Door.MultiCard.ReadMultiCard(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1, mMain.GetProtocolType()));
+            //ReadMultiCard cmd = new Door89H.Door.MultiCard.ReadMultiCard(cmdDtl, new DoorPort_Parameter(cmdDoorNum.SelectedIndex + 1, mMain.GetProtocolType()));
             mMainForm.AddCommand(cmd);
 
             //处理返回值
@@ -2635,7 +2635,7 @@ namespace FCARDIO.Protocol.Door.Test
             var protocolType = mMainForm.GetProtocolType();
 
 
-            if (protocolType == CommandDetailFactory.ControllerType.FC88)
+            if (protocolType == CommandDetailFactory.ControllerType.Door88)
             {
                 WriteMultiCard_Parameter par = new WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex
                     , (byte)cmbVerifyType.SelectedIndex, bAcount, bBcount
@@ -2643,15 +2643,15 @@ namespace FCARDIO.Protocol.Door.Test
                 WriteMultiCard cmd = new WriteMultiCard(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
-            else if (protocolType == CommandDetailFactory.ControllerType.FC89H)
+            else if (protocolType == CommandDetailFactory.ControllerType.Door89H)
             {
-                FC89H.Door.MultiCard.WriteMultiCard_Parameter par = new FC89H.Door.MultiCard.WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex, (byte)cmbVerifyType.SelectedIndex
+                Door89H.Door.MultiCard.WriteMultiCard_Parameter par = new Door89H.Door.MultiCard.WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex, (byte)cmbVerifyType.SelectedIndex
                         , bAcount, bBcount
                         , listGroupA, listGroupB, listFix);
-                FC89H.Door.MultiCard.WriteMultiCard cmd = new FC89H.Door.MultiCard.WriteMultiCard(cmdDtl, par);
+                Door89H.Door.MultiCard.WriteMultiCard cmd = new Door89H.Door.MultiCard.WriteMultiCard(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
-            else if (protocolType == CommandDetailFactory.ControllerType.MC58)
+            else if (protocolType == CommandDetailFactory.ControllerType.Door58)
             {
                 WriteMultiCard_Parameter par = new WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex, listFix);
                 WriteMultiCard cmd = new WriteMultiCard(cmdDtl, par);
@@ -2717,7 +2717,7 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void CmbGroupType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.MC58)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door58)
             {
                 return;
             }
@@ -2882,7 +2882,7 @@ namespace FCARDIO.Protocol.Door.Test
 
         private void CmbGroupNum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (mMainForm.GetProtocolType().Contains("MC58"))
+            //if (mMainForm.GetProtocolType().Contains("Door58"))
             //{
             //    return;
             //}

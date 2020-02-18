@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.BlacklistAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.BlacklistAlarm
 {
     /// <summary>
     /// 黑名单报警 参数

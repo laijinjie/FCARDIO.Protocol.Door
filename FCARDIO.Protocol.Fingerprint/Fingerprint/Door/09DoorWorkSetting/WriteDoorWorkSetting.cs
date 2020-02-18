@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.DoorWorkSetting
+namespace DoNetDrive.Protocol.Fingerprint.Door.DoorWorkSetting
 {
     /// <summary>
     /// 设置门定时常开
     /// </summary>
-    public class WriteDoorWorkSetting : FC8800Command_WriteParameter
+    public class WriteDoorWorkSetting : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 设置门工作方式

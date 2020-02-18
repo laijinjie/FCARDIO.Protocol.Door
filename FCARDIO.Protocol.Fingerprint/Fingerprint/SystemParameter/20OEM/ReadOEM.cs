@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FCARDIO.Protocol.OnlineAccess;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Core.Extension;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.Door8800;
+using DoNetDrive.Core.Extension;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.OEM
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.OEM
 {
     /// <summary>
     /// 读取OEM信息，包含 制造商、网址、出厂日期
     /// </summary>
-    public class ReadOEM : FC8800Command_ReadParameter
+    public class ReadOEM : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 读取OEM信息

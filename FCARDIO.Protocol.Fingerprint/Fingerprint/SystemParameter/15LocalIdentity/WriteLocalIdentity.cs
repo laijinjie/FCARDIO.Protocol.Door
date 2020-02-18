@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.LocalIdentity
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.LocalIdentity
 {
     /// <summary>
     /// 设置 本机身份
     /// </summary>
-    public class WriteLocalIdentity : FC8800Command_WriteParameter
+    public class WriteLocalIdentity : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化命令

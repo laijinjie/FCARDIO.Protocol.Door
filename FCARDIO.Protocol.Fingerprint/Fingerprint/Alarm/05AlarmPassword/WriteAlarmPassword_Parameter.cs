@@ -1,10 +1,10 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Extension;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Core.Extension;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.Util;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.AlarmPassword
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.AlarmPassword
 {
     /// <summary>
     /// 设置 胁迫报警密码 参数

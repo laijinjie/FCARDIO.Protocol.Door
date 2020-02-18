@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.DataEncryptionSwitch
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.DataEncryptionSwitch
 {
     /// <summary>
     /// 读取 数据包加密开关
     /// </summary>
-    public class ReadDataEncryptionSwitch : FC8800Command_ReadParameter
+    public class ReadDataEncryptionSwitch : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 获取设备有效期 初始化命令

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Util
+namespace DoNetDrive.Protocol.Util
 {
     public class ByteUtil
     {

@@ -1,11 +1,11 @@
-﻿using FCARDIO.Protocol.Door.FC8800.Data;
+﻿using DoNetDrive.Protocol.Door.Door8800.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Door.Test.Model
+namespace DoNetDrive.Protocol.Door.Test.Model
 {
     public class PasswordDto
     {
@@ -37,7 +37,7 @@ namespace FCARDIO.Protocol.Door.Test.Model
             }
         }
 
-        public void SetDoors(FC8800.Password.PasswordDetail password)
+        public void SetDoors(Door8800.Password.PasswordDetail password)
         {
             Door1 = password.GetDoor(1);
             Door2 = password.GetDoor(2);

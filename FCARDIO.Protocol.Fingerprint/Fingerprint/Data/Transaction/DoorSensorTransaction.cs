@@ -1,10 +1,10 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800.Data;
-using FCARDIO.Protocol.Transaction;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Protocol.Door.Door8800.Data;
+using DoNetDrive.Protocol.Transaction;
+using DoNetDrive.Protocol.Util;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.Data.Transaction
+namespace DoNetDrive.Protocol.Fingerprint.Data.Transaction
 {
     /// <summary>
     /// 门磁记录

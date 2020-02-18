@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FCARDIO.Protocol.OnlineAccess;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Core.Extension;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.Door8800;
+using DoNetDrive.Core.Extension;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 using System.Diagnostics;
 
-namespace FCARDIO.Protocol.Fingerprint.Software
+namespace DoNetDrive.Protocol.Fingerprint.Software
 {
     /// <summary>
     /// 固件升级
     /// </summary>
-    public class UpdateSoftware : FC8800Command_WriteParameter
+    public class UpdateSoftware : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 上传固件的返回结果
@@ -155,8 +155,8 @@ namespace FCARDIO.Protocol.Fingerprint.Software
                     var crc32 = mPar.SoftwareCRC32;
 
                     buf.WriteInt((int)crc32);
-                    FCPacket.CmdIndex = 0x13;
-                    FCPacket.DataLen = 4;
+                    DoorPacket.CmdIndex = 0x13;
+                    DoorPacket.DataLen = 4;
                     _Step = 2;
                 }
                 else
@@ -165,7 +165,7 @@ namespace FCARDIO.Protocol.Fingerprint.Software
 
                     buf.WriteInt(_WriteIndex);
                     buf.WriteBytes(data, _WriteIndex, iDataLen);
-                    FCPacket.DataLen = buf.ReadableBytes;
+                    DoorPacket.DataLen = buf.ReadableBytes;
                 }
                 CommandReady();
             }

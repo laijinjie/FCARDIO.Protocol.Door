@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.ScreenDisplayContent
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.ScreenDisplayContent
 {
     /// <summary>
     /// 设置 屏幕显示内容 参数

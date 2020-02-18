@@ -1,5 +1,5 @@
-﻿using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
-using FCARDIO.Protocol.Door.FC8800.TimeGroup;
+﻿using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
+using DoNetDrive.Protocol.Door.Door8800.TimeGroup;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.Door.Test
+namespace DoNetDrive.Protocol.Door.Test
 {
     public partial class frmTimeGroup : frmNodeForm
     {

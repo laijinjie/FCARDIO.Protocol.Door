@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.RelayReleaseTime
+namespace DoNetDrive.Protocol.Fingerprint.Door.RelayReleaseTime
 {
     /// <summary>
     /// 开锁时输出时长_参数

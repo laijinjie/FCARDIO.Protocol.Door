@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.BlacklistAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.BlacklistAlarm
 {
     /// <summary>
     /// 读取 黑名单报警
     /// </summary>
-    public class ReadBlacklistAlarm : FC8800Command_ReadParameter
+    public class ReadBlacklistAlarm : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 读取门工作方式

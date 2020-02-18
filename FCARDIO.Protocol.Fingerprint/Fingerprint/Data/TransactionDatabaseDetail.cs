@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FCARDIO.Protocol.Door.FC8800.Data;
+using DoNetDrive.Protocol.Door.Door8800.Data;
 
-namespace FCARDIO.Protocol.Fingerprint.Data
+namespace DoNetDrive.Protocol.Fingerprint.Data
 {
     /// <summary>
     /// 记录数据库的详情
     /// 读卡记录,  门磁,  系统记录
     /// </summary>
-    public class TransactionDatabaseDetail: FCARDIO.Protocol.Door.FC8800.Data.TransactionDatabaseDetail
+    public class TransactionDatabaseDetail: DoNetDrive.Protocol.Door.Door8800.Data.TransactionDatabaseDetail
     {
         /// <summary>
         /// 初始化参数

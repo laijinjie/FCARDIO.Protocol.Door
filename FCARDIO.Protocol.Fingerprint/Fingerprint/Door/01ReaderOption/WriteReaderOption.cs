@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.ReaderOption
+namespace DoNetDrive.Protocol.Fingerprint.Door.ReaderOption
 {
     /// <summary>
     /// 设置读卡器字节数
     /// </summary>
-    public class WriteReaderOption : FC8800Command_WriteParameter
+    public class WriteReaderOption : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 初始化参数

@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
+using DoNetDrive.Protocol.Door.Door8800;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.IllegalVerificationAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.IllegalVerificationAlarm
 {
     /// <summary>
     /// 设置 非法验证报警 参数

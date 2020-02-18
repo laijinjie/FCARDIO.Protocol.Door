@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Fingerprint.Data;
+using DoNetDrive.Protocol.Fingerprint.Data;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.Fingerprint.Person
+namespace DoNetDrive.Protocol.Fingerprint.Person
 {
     /// <summary>
     /// 删除人员参数

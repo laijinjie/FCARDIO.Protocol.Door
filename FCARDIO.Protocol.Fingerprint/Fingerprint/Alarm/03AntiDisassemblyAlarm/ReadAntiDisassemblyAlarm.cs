@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.AntiDisassemblyAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.AntiDisassemblyAlarm
 {
     /// <summary>
     /// 读取 防拆报警功能
     /// </summary>
-    public class ReadAntiDisassemblyAlarm : FC8800Command_ReadParameter
+    public class ReadAntiDisassemblyAlarm : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 初始化参数

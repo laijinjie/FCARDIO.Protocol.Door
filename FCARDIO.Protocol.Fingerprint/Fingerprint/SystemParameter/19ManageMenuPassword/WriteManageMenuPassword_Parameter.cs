@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Core.Extension;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Core.Extension;
 using System;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.ManageMenuPassword
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.ManageMenuPassword
 {
     /// <summary>
     /// 设置 管理菜单密码 参数

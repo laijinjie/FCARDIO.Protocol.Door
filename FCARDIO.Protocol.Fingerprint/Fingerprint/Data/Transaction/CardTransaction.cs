@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Transaction;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Protocol.Transaction;
+using DoNetDrive.Protocol.Util;
 
-namespace FCARDIO.Protocol.Fingerprint.Data.Transaction
+namespace DoNetDrive.Protocol.Fingerprint.Data.Transaction
 {
     public class CardTransaction : AbstractTransaction
     {

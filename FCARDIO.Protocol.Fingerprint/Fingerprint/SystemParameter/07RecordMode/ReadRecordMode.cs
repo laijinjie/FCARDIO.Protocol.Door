@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.RecordMode
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.RecordMode
 {
     /// <summary>
     /// 获取记录存储方式
     /// </summary>
-    public class ReadRecordMode : FC8800Command_ReadParameter
+    public class ReadRecordMode : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 获取设备有效期 初始化命令

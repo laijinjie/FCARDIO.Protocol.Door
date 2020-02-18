@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Alarm.IllegalVerificationAlarm
+namespace DoNetDrive.Protocol.Fingerprint.Alarm.IllegalVerificationAlarm
 {
     /// <summary>
     /// 读取 非法验证报警
     /// </summary>
-    public class ReadIllegalVerificationAlarm : FC8800Command_ReadParameter
+    public class ReadIllegalVerificationAlarm : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 初始化参数

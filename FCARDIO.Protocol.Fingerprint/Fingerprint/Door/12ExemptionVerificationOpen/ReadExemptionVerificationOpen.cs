@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.Fingerprint.Door.ExemptionVerificationOpen
+namespace DoNetDrive.Protocol.Fingerprint.Door.ExemptionVerificationOpen
 {
     /// <summary>
     /// 读取 免验证开门
     /// </summary>
-    public class ReadExemptionVerificationOpen : FC8800Command_ReadParameter
+    public class ReadExemptionVerificationOpen : Door8800Command_ReadParameter
     {
         /// <summary>
         /// 获取设备有效期 初始化命令

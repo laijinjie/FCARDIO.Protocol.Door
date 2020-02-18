@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FCARDIO.Protocol.OnlineAccess;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Core.Extension;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800;
-namespace FCARDIO.Protocol.Fingerprint.Software
+using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.Door8800;
+using DoNetDrive.Core.Extension;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800;
+namespace DoNetDrive.Protocol.Fingerprint.Software
 {
     /// <summary>
     /// 上传固件适用于 指纹机和红外人脸机
     /// </summary>
-    public class UpdateSoftware_FP : FC8800Command_WriteParameter
+    public class UpdateSoftware_FP : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 上传固件的返回结果
@@ -149,15 +149,15 @@ namespace FCARDIO.Protocol.Fingerprint.Software
                     var crc32 = mPar.SoftwareCRC32; //FCARD.Common.Cryptography.CRC32_C.CalculateDigest(data, 0, (uint)data.Length);
 
                     buf.WriteInt((int)crc32);
-                    FCPacket.CmdIndex = 0x3;
-                    FCPacket.DataLen = 4;
+                    DoorPacket.CmdIndex = 0x3;
+                    DoorPacket.DataLen = 4;
                     _Step = 2;
                 }
                 else
                 {
                     buf.WriteMedium(_WriteIndex);
                     buf.WriteBytes(data, _WriteIndex, iDataLen);
-                    FCPacket.DataLen = buf.ReadableBytes;
+                    DoorPacket.DataLen = buf.ReadableBytes;
                 }
                 CommandReady();
             }

@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.Fingerprint.SystemParameter.SystemStatus
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.SystemStatus
 {
     /// <summary>
     /// 获取设备运行信息_结果
@@ -42,7 +42,7 @@ namespace FCARDIO.Protocol.Fingerprint.SystemParameter.SystemStatus
             RestartCount = databuf.ReadUnsignedShort();
 
 
-            //FCARDIO.Protocol.Util.TimeUtil.BCDTimeToDate_ssmmhhddMMyy();
+            //DoNetDrive.Protocol.Util.TimeUtil.BCDTimeToDate_ssmmhhddMMyy();
             //秒
             string second = databuf.ReadByte().ToString("X2");
             //分

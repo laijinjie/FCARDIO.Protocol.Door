@@ -1,16 +1,16 @@
-﻿using FCARDIO.Core;
-using FCARDIO.Core.Command;
-using FCARDIO.Core.Connector;
-using FCARDIO.Core.Connector.TCPClient;
-using FCARDIO.Core.Connector.TCPServer.Client;
-using FCARDIO.Core.Connector.UDP;
-using FCARDIO.Core.Extension;
-using FCARDIO.Protocol.Door.FC8800.Data;
-using FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Protocol.Fingerprint.SystemParameter.Watch;
-using FCARDIO.Protocol.Fingerprint.Test.Model;
-using FCARDIO.Protocol.Transaction;
+﻿using DoNetDrive.Core;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Core.Connector;
+using DoNetDrive.Core.Connector.TCPClient;
+using DoNetDrive.Core.Connector.TCPServer.Client;
+using DoNetDrive.Core.Connector.UDP;
+using DoNetDrive.Core.Extension;
+using DoNetDrive.Protocol.Door.Door8800.Data;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword;
+using DoNetDrive.Protocol.Door8800;
+using DoNetDrive.Protocol.Fingerprint.SystemParameter.Watch;
+using DoNetDrive.Protocol.Fingerprint.Test.Model;
+using DoNetDrive.Protocol.Transaction;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -18,9 +18,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FCARDIO.Protocol.Door.FC8800.SystemParameter.SN;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN;
 
-namespace FCARDIO.Protocol.Fingerprint.Test
+namespace DoNetDrive.Protocol.Fingerprint.Test
 {
     public partial class frmMain : Form, INMain
     {
@@ -142,7 +142,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         {
             INConnector inc = sender as INConnector;
             inc.RemoveRequestHandle(typeof(ConnectorObserverHandler));
-            inc.RemoveRequestHandle(typeof(FC8800RequestHandle));
+            inc.RemoveRequestHandle(typeof(Door8800RequestHandle));
             switch (inc.GetConnectorType())
             {
                 case ConnectorType.UDPClient://UDP客户端已连接
@@ -169,9 +169,9 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                 case ConnectorType.UDPClient://UDP客户端已连接
 
                     //inc.OpenForciblyConnect();
-                    FC8800RequestHandle fC8800Request =
-                        new FC8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
-                    inc.RemoveRequestHandle(typeof(FC8800RequestHandle));//先删除，防止已存在就无法添加。
+                    Door8800RequestHandle fC8800Request =
+                        new Door8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
+                    inc.RemoveRequestHandle(typeof(Door8800RequestHandle));//先删除，防止已存在就无法添加。
                     inc.AddRequestHandle(fC8800Request);
 
                     //AddUDPClient(inc.GetConnectorDetail());
@@ -248,7 +248,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
 
         private void mAllocator_CommandTimeout(object sender, CommandEventArgs e)
         {
-            //if (e.Command.GetType().FullName == typeof(FC8800.SystemParameter.SearchControltor.SearchControltor).FullName)
+            //if (e.Command.GetType().FullName == typeof(Door8800.SystemParameter.SearchControltor.SearchControltor).FullName)
             //{
             //    AddCmdLog(e, "搜索完毕");
             //    return;
@@ -263,17 +263,17 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         }
 
 
-        private const string Command_ReadSN = "FCARDIO.Protocol.Door.FC8800.SystemParameter.SN.ReadSN";
-        private const string Command_WriteSN = "FCARDIO.Protocol.Door.FC8800.SystemParameter.SN.WriteSN";
-        private const string Command_WriteSN_Broadcast = "FCARDIO.Protocol.Door.FC8800.SystemParameter.SN.WriteSN_Broadcast";
-        private const string Command_ReadConnectPassword = "FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword.ReadConnectPassword";
-        private const string Command_WriteConnectPassword = "FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword.WriteConnectPassword";
-        private const string Command_ResetConnectPassword = "FCARDIO.Protocol.Door.FC8800.SystemParameter.ConnectPassword.ResetConnectPassword";
+        private const string Command_ReadSN = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN.ReadSN";
+        private const string Command_WriteSN = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN.WriteSN";
+        private const string Command_WriteSN_Broadcast = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN.WriteSN_Broadcast";
+        private const string Command_ReadConnectPassword = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword.ReadConnectPassword";
+        private const string Command_WriteConnectPassword = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword.WriteConnectPassword";
+        private const string Command_ResetConnectPassword = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword.ResetConnectPassword";
 
         private void mAllocator_CommandCompleteEvent(object sender, CommandEventArgs e)
         {
             /*
-            if (e.Command.GetType().FullName == typeof(FC8800.SystemParameter.SearchControltor.SearchControltor).FullName)
+            if (e.Command.GetType().FullName == typeof(Door8800.SystemParameter.SearchControltor.SearchControltor).FullName)
             {
                 return;
             }
@@ -286,14 +286,14 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             switch (cName)
             {
                 case Command_ReadSN://读SN
-                    Protocol.Door.FC8800.SystemParameter.SN.SN_Result sn = e.Command.getResult() as Protocol.Door.FC8800.SystemParameter.SN.SN_Result;
+                    Protocol.Door.Door8800.SystemParameter.SN.SN_Result sn = e.Command.getResult() as Protocol.Door.Door8800.SystemParameter.SN.SN_Result;
                     Invoke(() => txtSN.Text = sn.SNBuf.GetString());
                     if (cmddtl.UserData != null)
                     {
                         string tmpStr = cmddtl.UserData as string;
                         if (tmpStr != null && tmpStr == "AutoReadSN")
                         {
-                            FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail ocd = cmddtl as FCARDIO.Protocol.OnlineAccess.OnlineAccessCommandDetail;
+                            DoNetDrive.Protocol.OnlineAccess.OnlineAccessCommandDetail ocd = cmddtl as DoNetDrive.Protocol.OnlineAccess.OnlineAccessCommandDetail;
                             ocd.SN = sn.SNBuf.GetString();
                             ReadConnectPassword cmd = new ReadConnectPassword(cmddtl);
                             AddCommand(cmd);
@@ -303,11 +303,11 @@ namespace FCARDIO.Protocol.Fingerprint.Test
                     break;
 
                 case Command_ReadConnectPassword://读通讯密码
-                    Protocol.Door.FC8800.SystemParameter.ConnectPassword.Password_Result pwd = e.Command.getResult() as Protocol.Door.FC8800.SystemParameter.ConnectPassword.Password_Result;
+                    Protocol.Door.Door8800.SystemParameter.ConnectPassword.Password_Result pwd = e.Command.getResult() as Protocol.Door.Door8800.SystemParameter.ConnectPassword.Password_Result;
                     Invoke(() => txtPassword.Text = pwd.Password);
                     break;
                 case Command_WriteConnectPassword://写通讯密码
-                    Protocol.Door.FC8800.SystemParameter.ConnectPassword.Password_Parameter pwdPar = e.Command.Parameter as Protocol.Door.FC8800.SystemParameter.ConnectPassword.Password_Parameter;
+                    Protocol.Door.Door8800.SystemParameter.ConnectPassword.Password_Parameter pwdPar = e.Command.Parameter as Protocol.Door.Door8800.SystemParameter.ConnectPassword.Password_Parameter;
                     Invoke(() => txtPassword.Text = pwdPar.Password);
                     break;
                 case Command_ResetConnectPassword://复位通讯密码
@@ -533,7 +533,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
         {
             if (_IsClosed) return null;
             CommandDetailFactory.ConnectType connectType = CommandDetailFactory.ConnectType.TCPClient;
-            CommandDetailFactory.ControllerType protocolType = CommandDetailFactory.ControllerType.FC88;
+            CommandDetailFactory.ControllerType protocolType = CommandDetailFactory.ControllerType.Door88;
             string addr = string.Empty, sn, password;
             int port = 0;
             switch (cmdConnType.SelectedIndex)//串口,TCP客户端,UDP,TCP服务器
@@ -583,11 +583,11 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             password = txtPassword.Text;
             if (!password.IsHex())
             {
-                password = FC8800Command.NULLPassword;
+                password = Door8800Command.NULLPassword;
             }
             if (password.Length != 8)
             {
-                password = FC8800Command.NULLPassword;
+                password = Door8800Command.NULLPassword;
             }
 
 
@@ -879,10 +879,10 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             mCommandClasss.Add(typeof(WriteConnectPassword).FullName, "设置通讯密码");
             mCommandClasss.Add(typeof(ResetConnectPassword).FullName, "重置通讯密码");
 
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.TCPSetting.ReadTCPSetting).FullName, "读取TCP参数");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.TCPSetting.WriteTCPSetting).FullName, "写入TCP参数");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.KeepAliveInterval.ReadKeepAliveInterval).FullName, "读取保活间隔时间");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.KeepAliveInterval.WriteKeepAliveInterval).FullName, "写入保活间隔时间");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.TCPSetting.ReadTCPSetting).FullName, "读取TCP参数");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.TCPSetting.WriteTCPSetting).FullName, "写入TCP参数");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.KeepAliveInterval.ReadKeepAliveInterval).FullName, "读取保活间隔时间");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.KeepAliveInterval.WriteKeepAliveInterval).FullName, "写入保活间隔时间");
 
             mCommandClasss.Add(typeof(SystemParameter.Version.ReadVersion).FullName, "读取设备版本号");
             mCommandClasss.Add(typeof(SystemParameter.SystemStatus.ReadSystemRunStatus).FullName, "获取设备运行信息");
@@ -892,9 +892,9 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             mCommandClasss.Add(typeof(SystemParameter.Watch.CloseWatch).FullName, "关闭数据监控");
             mCommandClasss.Add(typeof(SystemParameter.Watch.ReadWatchState).FullName, "读取实时监控状态");
             mCommandClasss.Add(typeof(SystemParameter.SystemStatus.ReadSystemStatus).FullName, "读取设备状态信息");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.Door.FC8800.SystemParameter.Controller.FormatController).FullName, "初始化设备");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.SearchControltor.SearchControltor).FullName, "搜索控制器");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.SystemParameter.SearchControltor.WriteControltorNetCode).FullName, "根据SN设置网络标识");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Door.Door8800.SystemParameter.Controller.FormatController).FullName, "初始化设备");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.SearchControltor.SearchControltor).FullName, "搜索控制器");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.SearchControltor.WriteControltorNetCode).FullName, "根据SN设置网络标识");
             mCommandClasss.Add(typeof(SystemParameter.DataEncryptionSwitch.ReadDataEncryptionSwitch).FullName, "读取数据包加密开关");
             mCommandClasss.Add(typeof(SystemParameter.DataEncryptionSwitch.WriteDataEncryptionSwitch).FullName, "设置数据包加密开关");
             mCommandClasss.Add(typeof(SystemParameter.LocalIdentity.ReadLocalIdentity).FullName, "读取本机身份");
@@ -911,21 +911,21 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             mCommandClasss.Add(typeof(SystemParameter.OEM.WriteOEM).FullName, "设置OEM信息");
 
 
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Time.ReadTime).FullName, "读系统时间");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Time.WriteTime).FullName, "写系统时间");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Time.WriteCustomTime).FullName, "写系统时间");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Time.WriteTimeBroadcast).FullName, "写设备时间_广播命令");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Time.ReadTime).FullName, "读系统时间");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Time.WriteTime).FullName, "写系统时间");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Time.WriteCustomTime).FullName, "写系统时间");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Time.WriteTimeBroadcast).FullName, "写设备时间_广播命令");
 
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.ReadHolidayDetail).FullName, "从控制板中读取节假日存储详情");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.ClearHoliday).FullName, "清空控制器中的所有节假日");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.ReadAllHoliday).FullName, "读取控制板中已存储的所有节假日");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.AddHoliday).FullName, "添加节假日到控制版");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.Holiday.DeleteHoliday).FullName, "从控制器删除节假日");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Holiday.ReadHolidayDetail).FullName, "从控制板中读取节假日存储详情");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Holiday.ClearHoliday).FullName, "清空控制器中的所有节假日");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Holiday.ReadAllHoliday).FullName, "读取控制板中已存储的所有节假日");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Holiday.AddHoliday).FullName, "添加节假日到控制版");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Holiday.DeleteHoliday).FullName, "从控制器删除节假日");
 
 
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.TimeGroup.ClearTimeGroup).FullName, "清空所有开门时段");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.TimeGroup.ReadTimeGroup).FullName, "读取所有开门时段");
-            mCommandClasss.Add(typeof(Protocol.Door.FC8800.TimeGroup.AddTimeGroup).FullName, "添加开门时段");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.TimeGroup.ClearTimeGroup).FullName, "清空所有开门时段");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.TimeGroup.ReadTimeGroup).FullName, "读取所有开门时段");
+            mCommandClasss.Add(typeof(Protocol.Door.Door8800.TimeGroup.AddTimeGroup).FullName, "添加开门时段");
 
             mCommandClasss.Add(typeof(Transaction.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
             mCommandClasss.Add(typeof(Transaction.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
@@ -1041,7 +1041,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             }
 
 
-            FCARDIO.Core.Connector.UDP.UDPServerDetail detail = new UDPServerDetail(sLocalIP, port);
+            DoNetDrive.Core.Connector.UDP.UDPServerDetail detail = new UDPServerDetail(sLocalIP, port);
             if (mUDPIsBind)
             {
                 //关闭UDP服务器
@@ -1278,9 +1278,9 @@ namespace FCARDIO.Protocol.Fingerprint.Test
 
             //使通道保持连接不关闭
             cnt.OpenForciblyConnect();
-            FC8800RequestHandle fC8800Request =
-                new FC8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
-            cnt.RemoveRequestHandle(typeof(FC8800RequestHandle));//先删除，防止已存在就无法添加。
+            Door8800RequestHandle fC8800Request =
+                new Door8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
+            cnt.RemoveRequestHandle(typeof(Door8800RequestHandle));//先删除，防止已存在就无法添加。
             cnt.AddRequestHandle(fC8800Request);
 
 
@@ -1304,7 +1304,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
             }
             if (cmdIndex == 0x22)
             {
-                return new FCARDIO.Protocol.Door.FC8800.Data.Transaction.ConnectMessageTransaction();
+                return new DoNetDrive.Protocol.Door.Door8800.Data.Transaction.ConnectMessageTransaction();
             }
             return null;
         }
@@ -1320,7 +1320,7 @@ namespace FCARDIO.Protocol.Fingerprint.Test
 
             if (_IsClosed) return;
 
-            FC8800Transaction fcTrn = EventData as FC8800Transaction;
+            Door8800Transaction fcTrn = EventData as Door8800Transaction;
             StringBuilder strbuf = new StringBuilder();
             var evn = fcTrn.EventData;
 
