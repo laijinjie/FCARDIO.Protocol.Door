@@ -380,9 +380,9 @@ namespace FCARDIO.Protocol.Elevator.Test
                 if ((bool)cell.FormattedValue)
                 {
                     DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[1];
-                    var item = ListPassword.FirstOrDefault(t => t.Password == text.Value.ToString());
+                    //var item = ListPassword.FirstOrDefault(t => t.Password == text.Value.ToString());
                     PasswordDetail detail = new PasswordDetail();
-                    detail.Password = item.Password;
+                    detail.Password = text.Value.ToString();
                     //string strDoor1 = (item.Door1 ? "1" : "0") + (item.Door2 ? "1" : "0") + (item.Door3 ? "1" : "0") + (item.Door4 ? "1" : "0");
                     //detail.Door = Convert.ToInt32(strDoor1, 2);
                     _list.Add(detail);

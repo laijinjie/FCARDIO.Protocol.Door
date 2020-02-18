@@ -50,12 +50,12 @@
             this.btnDelSelect = new System.Windows.Forms.Button();
             this.btnAdd30 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.butAddHoliday = new DevComponents.DotNetBar.ButtonX();
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Holiday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HolidayTypeRender = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RepeatYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.butAddHoliday = new DevComponents.DotNetBar.ButtonX();
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -321,18 +321,6 @@
             this.dataGridView1.TabIndex = 21;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_CellMouseClick);
             // 
-            // butAddHoliday
-            // 
-            this.butAddHoliday.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.butAddHoliday.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.butAddHoliday.Location = new System.Drawing.Point(320, 36);
-            this.butAddHoliday.Name = "butAddHoliday";
-            this.butAddHoliday.Size = new System.Drawing.Size(109, 26);
-            this.butAddHoliday.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.butAddHoliday.TabIndex = 22;
-            this.butAddHoliday.Text = "添加列表节假日";
-            this.butAddHoliday.Click += new System.EventHandler(this.ButAddHoliday_Click);
-            // 
             // Selected
             // 
             this.Selected.DataPropertyName = "Selected";
@@ -372,6 +360,18 @@
             this.RepeatYear.Name = "RepeatYear";
             this.RepeatYear.ReadOnly = true;
             this.RepeatYear.Width = 80;
+            // 
+            // butAddHoliday
+            // 
+            this.butAddHoliday.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.butAddHoliday.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.butAddHoliday.Location = new System.Drawing.Point(320, 36);
+            this.butAddHoliday.Name = "butAddHoliday";
+            this.butAddHoliday.Size = new System.Drawing.Size(109, 26);
+            this.butAddHoliday.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.butAddHoliday.TabIndex = 22;
+            this.butAddHoliday.Text = "添加列表节假日";
+            this.butAddHoliday.Click += new System.EventHandler(this.ButAddHoliday_Click);
             // 
             // frmHoliday
             // 

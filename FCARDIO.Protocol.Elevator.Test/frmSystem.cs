@@ -1358,7 +1358,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                Read485LineConnection_Result result = cmde.Command.getResult() as Read485LineConnection_Result;
+                var result = cmde.Command.getResult() as Door.FC8800.SystemParameter.Check485Line.ReadCheck485Line_Result;
 
                 Invoke(() =>
                 {
