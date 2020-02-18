@@ -4,7 +4,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
 {
     /// <summary>
     /// 记录数据库的详情
-    /// 读卡记录, 出门开关, 门磁, 远程开门, 报警, 系统记录
+    /// 读卡记录, 系统记录
     /// </summary>
     public class TransactionDatabaseDetail
     {

@@ -55,6 +55,9 @@
     <Reference Include="FCARDIO.Protocol">
       <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
+    <Reference Include="FCARDIO.Protocol.Door">
+      <HintPath>..\..\FCARDIO.Protocol.Door\bin\Debug\FCARDIO.Protocol.Door.dll</HintPath>
+    </Reference>
     <Reference Include="FCARDIO.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\FCARDIO.Protocol.Util.dll</HintPath>

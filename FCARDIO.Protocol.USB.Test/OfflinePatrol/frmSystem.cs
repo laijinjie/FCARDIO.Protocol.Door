@@ -108,7 +108,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
                 
                 Invoke(() =>
                 {
-                    txtVersion.Text = result.VerNum + "." + result.Revise;
+                    txtVersion.Text = result.Version;
                 });
                 mMainForm.AddCmdLog(cmde, $"{txtVersion.Text}");
             };

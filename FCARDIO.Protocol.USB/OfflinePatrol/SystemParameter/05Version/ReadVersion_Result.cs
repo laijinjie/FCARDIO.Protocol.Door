@@ -11,19 +11,19 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.Version
         /// <summary>
         /// 版本号
         /// </summary>
-        public string VerNum;
-
+        public string Version;
         /// <summary>
         /// 修正号
         /// </summary>
-        public string Revise;
+        public string CorrectionNumber;
 
         /// <summary>
         /// 释放资源
         /// </summary>
         public void Dispose()
         {
-           
+            Version = null;
+            CorrectionNumber = null;
         }
 
 
@@ -33,12 +33,10 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.Version
         /// <param name="databuf"></param>
         public void SetBytes(IByteBuffer databuf)
         {
-            uint data = databuf.ReadUnsignedInt();
-            byte[] list = FCARD.Common.NumUtil.Int32ToByte(data);
-            var str = System.Text.Encoding.ASCII.GetString(list);
-            VerNum = str.Substring(0, 2);
-            Revise = str.Substring(2, 2);
-            //Revise = databuf.ReadUnsignedShort();
+            Version = databuf.ReadString(2, System.Text.Encoding.ASCII);
+            CorrectionNumber = databuf.ReadString(2, System.Text.Encoding.ASCII);
+            //版本号与修正号拼接
+            Version = $"{Version}.{CorrectionNumber}";
         }
 
         /// <summary>
