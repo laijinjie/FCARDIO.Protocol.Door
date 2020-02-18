@@ -158,6 +158,8 @@
     <Compile Include="FC8864\Password\05DeletePassword\DeletePassword_Parameter.cs" />
     <Compile Include="FC8864\Password\PasswordDetail.cs" />
     <Compile Include="FC8864\Password\Password_Parameter.cs" />
+    <Compile Include="FC8864\SystemParameter\01SN\WriteSN.cs" />
+    <Compile Include="FC8864\SystemParameter\01SN\WriteSN_Broadcast.cs" />
     <Compile Include="FC8864\SystemParameter\02ConnectPassword\Password_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\02ConnectPassword\Password_Result.cs" />
     <Compile Include="FC8864\SystemParameter\02ConnectPassword\ReadConnectPassword.cs" />
@@ -249,7 +251,6 @@
     <Compile Include="FC8864\SystemParameter\20InputTerminalFunction\WriteInputTerminalFunction.cs" />
     <Compile Include="FC8864\SystemParameter\20InputTerminalFunction\WriteInputTerminalFunction_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\21TCP485LineConnection\Read485LineConnection.cs" />
-    <Compile Include="FC8864\SystemParameter\21TCP485LineConnection\Read485LineConnection_Result.cs" />
     <Compile Include="FC8864\SystemParameter\21TCP485LineConnection\Write485LineConnection.cs" />
     <Compile Include="FC8864\SystemParameter\21TCP485LineConnection\Write485LineConnection_Parameter.cs" />
     <Compile Include="FC8864\SystemParameter\ItemDetectionFunction\ReadItemDetectionFunction.cs" />

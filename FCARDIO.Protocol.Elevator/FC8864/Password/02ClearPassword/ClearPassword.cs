@@ -14,7 +14,14 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Password
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public ClearPassword(INCommandDetail cd) : base(cd)
         {
-            CmdType = 0x45;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            Packet(0x45, 2);
         }
     }
 }

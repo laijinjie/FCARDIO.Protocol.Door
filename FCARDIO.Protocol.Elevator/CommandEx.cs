@@ -82,9 +82,6 @@ namespace FCARDIO.Protocol.Elevator
         /// 检查指令返回值
         /// </summary>
         /// <param name="oPck"></param>
-        /// <param name="CmdType">命令类型</param>
-        /// <param name="CmdIndex">命令索引</param>
-        /// <param name="CmdPar">命令参数</param>
         /// <param name="dl">参数长度</param>
         /// <returns></returns>
         protected override bool CheckResponse(OnlineAccessPacket oPck, int dl)

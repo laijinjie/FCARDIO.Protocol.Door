@@ -1,4 +1,5 @@
 ﻿using FCARDIO.Core.Command;
+using System;
 
 namespace FCARDIO.Protocol.Elevator.FC8864.Time
 {
@@ -13,8 +14,17 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Time
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含自定义时间</param>
         public WriteCustomTime(INCommandDetail cd, WriteCustomTime_Parameter par) : base(cd, par) {
-            CmdType = 0x42;
         }
 
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            WriteCustomTime_Parameter model = _Parameter as WriteCustomTime_Parameter;
+            var acl = _Connector.GetByteBufAllocator();
+            var buf = acl.Buffer(model.GetDataLen());
+            Packet(0x42, 0x02, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+        }
     }
 }

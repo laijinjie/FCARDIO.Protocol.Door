@@ -55,7 +55,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Data
         public bool CheckData()
         {
             if (CardData == 0) return false;
-            if (TimeGroup == null || TimeGroup.Length != 65)
+            if (TimeGroup == null || TimeGroup.Length != 64)
                 return false;
             if (Expiry.Year < 2000 || Expiry.Year > 2099)
                 return false;

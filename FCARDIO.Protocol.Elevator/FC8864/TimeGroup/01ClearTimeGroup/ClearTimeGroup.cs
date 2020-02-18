@@ -14,9 +14,14 @@ namespace FCARDIO.Protocol.Elevator.FC8864.TimeGroup
         /// <param name="cd"></param>
         public ClearTimeGroup(INCommandDetail cd) : base(cd)
         {
-            CmdType = 0x46;
-            CmdIndex = 0x01;
         }
 
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            Packet(0x46, 0x01);
+        }
     }
 }

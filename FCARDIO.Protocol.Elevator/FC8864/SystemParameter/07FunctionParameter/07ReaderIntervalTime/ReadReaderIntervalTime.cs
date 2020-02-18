@@ -13,10 +13,15 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public ReadReaderIntervalTime(INCommandDetail cd) : base(cd) {
-            CmdType = 0x41;
-            CmdIndex = 0x0A;
-            CmdPar = 0x86;
-            DataLen = 0x04;
+
+        }
+
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            Packet(0x41, 0x0A, 0x86);
         }
 
         /// <summary>

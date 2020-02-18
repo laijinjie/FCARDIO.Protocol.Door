@@ -16,10 +16,17 @@ namespace FCARDIO.Protocol.Elevator.FC8864.TimeGroup
         /// <param name="par">命令逻辑所需要的命令参数 </param>
         public AddTimeGroup(INCommandDetail cd, AddTimeGroup_Parameter par) : base(cd, par) {
             mPar = par;
-            CmdType = 0x46;
-            CmdIndex = 0x03;
         }
 
-        
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            maxCount = mPar.ListWeekTimeGroup.Count;
+            Packet(0x46, 0x3, 0x00, 225, GetBytes(GetNewCmdDataBuf(225)));
+            writeIndex++;
+            _ProcessMax = maxCount;
+        }
     }
 }

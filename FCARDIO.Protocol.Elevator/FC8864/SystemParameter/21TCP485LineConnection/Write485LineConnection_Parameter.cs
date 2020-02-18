@@ -5,7 +5,7 @@ namespace FCARDIO.Protocol.Elevator.FC8864.SystemParameter.TCP485LineConnection
     /// <summary>
     /// 设置 TCP、485线路桥接 参数
     /// </summary>
-    public class Write485LineConnection_Parameter : Protocol.Door.FC8800.SystemParameter.FunctionParameter.WriteCardPeriodSpeak_Parameter
+    public class Write485LineConnection_Parameter : Protocol.Door.FC8800.SystemParameter.Check485Line.WriteCheck485Line_Parameter
     {
         
         /// <summary>

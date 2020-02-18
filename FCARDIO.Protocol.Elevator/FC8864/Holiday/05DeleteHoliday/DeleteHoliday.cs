@@ -15,9 +15,17 @@ namespace FCARDIO.Protocol.Elevator.FC8864.Holiday
         /// <param name="par"></param>
         public DeleteHoliday(INCommandDetail cd, DeleteHoliday_Parameter par) : base(cd, par)
         {
-            CmdType = 0x44;
-            CmdIndex = 0x04;
         }
 
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            DeleteHoliday_Parameter model = _Parameter as DeleteHoliday_Parameter;
+            var acl = _Connector.GetByteBufAllocator();
+            var buf = acl.Buffer(model.GetDataLen());
+            Packet(0x44, 0x4, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+        }
     }
 }
