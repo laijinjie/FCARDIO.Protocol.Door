@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.FixedFeeRule
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.FixedFeeRule
 {
     /// <summary>
     /// 读取定额扣费规则

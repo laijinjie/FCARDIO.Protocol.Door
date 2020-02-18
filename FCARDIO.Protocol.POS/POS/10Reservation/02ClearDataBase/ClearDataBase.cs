@@ -1,13 +1,13 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.Reservation.ClearDataBase
+namespace DoNetDrive.Protocol.POS.Reservation.ClearDataBase
 {
     /// <summary>
     /// 清空所有订餐信息

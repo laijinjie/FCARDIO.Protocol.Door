@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Core.Data;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Core.Data;
 
-namespace FCARDIO.Protocol.POS
+namespace DoNetDrive.Protocol.POS
 {
     /// <summary>
     /// 所有参数的基类，规定了一个基本数据检查流程

@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.CountingCards
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.CountingCards
 {
     /// <summary>
     /// 设置计次命令参数

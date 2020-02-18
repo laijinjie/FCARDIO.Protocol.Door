@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ForbiddenMifareOne
+namespace DoNetDrive.Protocol.POS.SystemParameter.ForbiddenMifareOne
 {
     /// <summary>
     /// 读取禁用Mifare One 卡命令

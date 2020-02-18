@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.CancelConsume
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.CancelConsume
 {
     /// <summary>
     /// 设置撤销消费命令参数

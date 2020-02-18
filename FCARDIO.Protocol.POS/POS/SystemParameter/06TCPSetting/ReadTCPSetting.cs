@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.TCPSetting
+namespace DoNetDrive.Protocol.POS.SystemParameter.TCPSetting
 {
     /// <summary>
     /// 获取TCP参数

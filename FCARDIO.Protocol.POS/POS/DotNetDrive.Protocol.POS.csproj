@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0F4EB837-9C7D-4365-8496-BEBECCC4B3D1}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>FCARDIO.Protocol.POS</RootNamespace>
-    <AssemblyName>FCARDIO.Protocol.POS</AssemblyName>
+    <RootNamespace>DoNetDrive.Protocol.POS</RootNamespace>
+    <AssemblyName>DoNetDrive.Protocol.POS</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -41,6 +41,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="DoNetDrive.Core">
+      <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol">
+      <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Door">
+      <HintPath>..\..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Util">
+      <HintPath>..\..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\..\DLL\DotNetty.Buffers.dll</HintPath>
     </Reference>
@@ -58,18 +70,6 @@
     </Reference>
     <Reference Include="FCARD.Common">
       <HintPath>..\..\DLL\FCARD.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Core">
-      <HintPath>..\..\DLL\FCARDIO.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol">
-      <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol.Door">
-      <HintPath>..\..\FCARDIO.Protocol.Door\bin\Debug\FCARDIO.Protocol.Door.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol.Util">
-      <HintPath>..\..\DLL\FCARDIO.Protocol.Util.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
       <HintPath>..\..\DLL\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>

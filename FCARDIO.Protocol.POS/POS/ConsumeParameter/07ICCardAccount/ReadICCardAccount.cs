@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.ICCardAccount
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.ICCardAccount
 {
     /// <summary>
     /// 读取IC卡账户命令

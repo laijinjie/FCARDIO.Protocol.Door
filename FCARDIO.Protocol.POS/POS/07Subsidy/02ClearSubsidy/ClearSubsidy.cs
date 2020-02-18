@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.Subsidy
+namespace DoNetDrive.Protocol.POS.Subsidy
 {
     /// <summary>
     /// 清空所有补贴

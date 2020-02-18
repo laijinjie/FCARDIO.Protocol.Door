@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.CardType
+namespace DoNetDrive.Protocol.POS.CardType
 {
     public class DeleteCardTypeDetail_Parameter : AbstractParameter
     {

@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.TemporaryChangeFixedFee
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.TemporaryChangeFixedFee
 {
     /// <summary>
     /// 

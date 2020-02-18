@@ -1,4 +1,4 @@
-﻿namespace FCARDIO.Protocol.POS.SystemParameter.Buzzer
+﻿namespace DoNetDrive.Protocol.POS.SystemParameter.Buzzer
 {
     /// <summary>
     /// 设置主板蜂鸣器_参数

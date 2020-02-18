@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ScreenDisplay.Message
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Message
 {
     /// <summary>
     /// 读取短消息命令

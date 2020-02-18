@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.RecordStorageMode
+namespace DoNetDrive.Protocol.POS.SystemParameter.RecordStorageMode
 {
     /// <summary>
     /// 记录存储方式

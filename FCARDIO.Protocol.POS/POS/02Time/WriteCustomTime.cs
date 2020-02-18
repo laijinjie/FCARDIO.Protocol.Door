@@ -1,11 +1,11 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.Time
+namespace DoNetDrive.Protocol.POS.Time
 {
     /// <summary>
     /// 将自定义时间写入到控制器中

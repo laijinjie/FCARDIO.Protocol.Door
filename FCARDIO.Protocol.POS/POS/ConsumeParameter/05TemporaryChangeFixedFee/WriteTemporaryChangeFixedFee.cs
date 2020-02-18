@@ -1,11 +1,11 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.TemporaryChangeFixedFee
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.TemporaryChangeFixedFee
 {
     /// <summary>
     /// 设置临时变更定额、定次消费额度命令

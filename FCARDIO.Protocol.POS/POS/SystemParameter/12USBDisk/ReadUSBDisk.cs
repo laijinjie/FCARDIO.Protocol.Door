@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.USBDisk
+namespace DoNetDrive.Protocol.POS.SystemParameter.USBDisk
 {
     /// <summary>
     /// 读取U盘命令

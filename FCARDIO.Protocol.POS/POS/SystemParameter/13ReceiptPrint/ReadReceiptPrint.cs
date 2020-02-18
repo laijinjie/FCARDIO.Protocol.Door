@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ReceiptPrint
+namespace DoNetDrive.Protocol.POS.SystemParameter.ReceiptPrint
 {
     class ReadReceiptPrint
     {

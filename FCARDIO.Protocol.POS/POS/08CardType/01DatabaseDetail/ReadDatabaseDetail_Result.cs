@@ -1,12 +1,12 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.CardType.DatabaseDetail
+namespace DoNetDrive.Protocol.POS.CardType.DatabaseDetail
 {
     /// <summary>
     /// 控制器中的订餐数据库信息

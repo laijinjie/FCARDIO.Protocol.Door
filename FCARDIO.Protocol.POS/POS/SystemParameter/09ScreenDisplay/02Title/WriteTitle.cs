@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ScreenDisplay.Name
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Name
 {
     /// <summary>
     /// 设置名称命令

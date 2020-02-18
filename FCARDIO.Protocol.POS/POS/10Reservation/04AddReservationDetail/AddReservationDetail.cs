@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.Reservation.AddReservationDetail
+namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
 {
     /// <summary>
     /// 添加订餐信息

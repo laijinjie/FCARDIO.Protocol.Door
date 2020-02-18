@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace FCARDIO.Protocol.POS.Data
+namespace DoNetDrive.Protocol.POS.Data
 {
     /// <summary>
     /// 菜单

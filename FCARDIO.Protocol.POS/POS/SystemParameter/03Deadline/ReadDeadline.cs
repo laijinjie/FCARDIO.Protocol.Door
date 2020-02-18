@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.Deadline
+namespace DoNetDrive.Protocol.POS.SystemParameter.Deadline
 {
     /// <summary>
     /// 获取设备有效期

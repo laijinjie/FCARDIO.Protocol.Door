@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.TimeGroup
+namespace DoNetDrive.Protocol.POS.TimeGroup
 {
     public class ClearTimeGroup : Door.FC8800.TimeGroup.ClearTimeGroup
     {

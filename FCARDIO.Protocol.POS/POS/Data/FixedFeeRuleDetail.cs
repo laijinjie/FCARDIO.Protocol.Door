@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Data;
+using DoNetDrive.Core.Data;
 using System.Text;
 
-namespace FCARDIO.Protocol.POS.Data
+namespace DoNetDrive.Protocol.POS.Data
 {
     /// <summary>
     /// 定额扣费规则

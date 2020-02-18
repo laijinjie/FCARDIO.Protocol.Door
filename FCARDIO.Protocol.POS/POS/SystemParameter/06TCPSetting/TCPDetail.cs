@@ -1,13 +1,13 @@
 ﻿using DotNetty.Buffers;
 using FCARD.Common.Extensions;
-using FCARDIO.Core.Data;
+using DoNetDrive.Core.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.TCPSetting
+namespace DoNetDrive.Protocol.POS.SystemParameter.TCPSetting
 {
     /// <summary>
     /// TCP/IP信息

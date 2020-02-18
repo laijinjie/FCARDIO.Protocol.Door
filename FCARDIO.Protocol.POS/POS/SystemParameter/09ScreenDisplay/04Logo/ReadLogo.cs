@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ScreenDisplay.Logo
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Logo
 {
     /// <summary>
     /// 读取开机供应商Logo命令

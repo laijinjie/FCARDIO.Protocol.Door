@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.Buzzer
+namespace DoNetDrive.Protocol.POS.SystemParameter.Buzzer
 {
     /// <summary>
     /// 设置主板蜂鸣器

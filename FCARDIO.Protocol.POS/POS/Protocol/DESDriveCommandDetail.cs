@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FCARDIO.Core.Extension;
-using FCARDIO.Core.Connector;
+using DoNetDrive.Core.Extension;
+using DoNetDrive.Core.Connector;
 
-namespace FCARDIO.Protocol.POS.Protocol
+namespace DoNetDrive.Protocol.POS.Protocol
 {
     /// <summary>
     /// 支持 DES加密协议的设备命令详情，包含设备SN和秘钥

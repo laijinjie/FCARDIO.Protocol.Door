@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ScreenDisplay.Logo
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Logo
 {
     public class ReadLogo_Result : WriteLogo_Parameter, INCommandResult
     {

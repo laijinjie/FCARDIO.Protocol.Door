@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.POSWorkMode
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.POSWorkMode
 {
     /// <summary>
     /// 设置消费机工作模式命令参数

@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ScreenDisplay.Title
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Title
 {
     public class ReadTitle_Result : WriteTitle_Parameter, INCommandResult
     {

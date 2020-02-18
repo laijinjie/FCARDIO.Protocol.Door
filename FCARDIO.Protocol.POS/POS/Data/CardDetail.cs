@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.Data
+namespace DoNetDrive.Protocol.POS.Data
 {
     /// <summary>
     /// 卡号名单

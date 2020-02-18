@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.USBDisk
+namespace DoNetDrive.Protocol.POS.SystemParameter.USBDisk
 {
     /// <summary>
     /// 设置U盘命令参数

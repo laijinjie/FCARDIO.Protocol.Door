@@ -52,27 +52,12 @@ namespace DoNetDrive.Protocol.Door.Door8800
         /// <returns></returns>
         protected virtual bool CheckResponse(OnlineAccessPacket oPck, byte CmdType, byte CmdIndex, byte CmdPar)
         {
-            return (oPck.CmdType == CmdType + 0x30 &&
+            return (oPck.CmdType == CmdType + ResultCmdTypeAddValkue &&
                 oPck.CmdIndex == CmdIndex &&
                 oPck.CmdPar == CmdPar);
 
         }
 
-        /// <summary>
-        /// 重置命令内容
-        /// </summary>
-        /// <param name="ct">命令类型</param>
-        /// <param name="ci">命令索引</param>
-        /// <param name="cp">命令参数</param>
-        /// <param name="dl">数据长度</param>
-        protected void RewritePacket(byte ct, byte ci, byte cp, int dl)
-        {
-            DoorPacket.CmdType = ct;
-            DoorPacket.CmdIndex = ci;
-            DoorPacket.CmdPar = cp;
-            DoorPacket.DataLen = dl;
-
-        }
 
 
         /// <summary>

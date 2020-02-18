@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FCARDIO.Protocol.POS.Protocol;
+using DoNetDrive.Protocol.POS.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.POS.Protocol.Tests
+namespace DoNetDrive.Protocol.POS.Protocol.Tests
 {
     [TestClass()]
     public class DESPacketTests
@@ -23,7 +23,7 @@ namespace FCARDIO.Protocol.POS.Protocol.Tests
         public static DESDriveCommandDetail GetCommandDetail()
         {
             DESDriveCommandDetail dtl = new DESDriveCommandDetail(
-                new FCARDIO.Core.Connector.TCPClient.TCPClientDetail("192.168.1.15", 8000),
+                new DoNetDrive.Core.Connector.TCPClient.TCPClientDetail("192.168.1.15", 8000),
                 Ascii.GetBytes(sn), Ascii.GetBytes(Password));
             return dtl;
         }

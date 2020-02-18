@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.Cache
+namespace DoNetDrive.Protocol.POS.SystemParameter.Cache
 {
     /// <summary>
     /// 读取缓存区内容命令

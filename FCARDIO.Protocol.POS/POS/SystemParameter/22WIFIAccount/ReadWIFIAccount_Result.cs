@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.WIFIAccount
+namespace DoNetDrive.Protocol.POS.SystemParameter.WIFIAccount
 {
     public class ReadWIFIAccount_Result : WriteWIFIAccount_Parameter, INCommandResult
     {

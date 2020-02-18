@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.CancelConsume
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.CancelConsume
 {
     /// <summary>
     /// 

@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ScreenDisplay.DisplayContent
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.DisplayContent
 {
     /// <summary>
     /// 设置开机供应商Logo命令

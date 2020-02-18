@@ -1,7 +1,7 @@
-﻿using FCARDIO.Protocol.Door.FC8800.TemplateMethod;
+﻿using DoNetDrive.Protocol.Door.FC8800.TemplateMethod;
 using System;
 
-namespace FCARDIO.Protocol.POS.Card
+namespace DoNetDrive.Protocol.POS.Card
 {
     /// <summary>
     /// 添加名单命令参数

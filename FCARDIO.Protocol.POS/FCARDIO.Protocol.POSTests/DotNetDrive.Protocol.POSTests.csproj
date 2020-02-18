@@ -7,8 +7,8 @@
     <ProjectGuid>{B1C349F6-CA0C-4A4D-9472-2DCAB87AC0DF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FCARDIO.Protocol.POSTests</RootNamespace>
-    <AssemblyName>FCARDIO.Protocol.POSTests</AssemblyName>
+    <RootNamespace>DotNetDrive.Protocol.POSTests</RootNamespace>
+    <AssemblyName>DotNetDrive.Protocol.POSTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DoNetDrive.Core">
+      <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol">
+      <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetty.Buffers, Version=0.6.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DotNetty.Buffers.dll</HintPath>
@@ -50,14 +56,6 @@
     <Reference Include="FCARD.Common, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\FCARD.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Core, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\FCARDIO.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MSTest.TestFramework.1.3.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
@@ -84,9 +82,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\POS\FCARDIO.Protocol.POS.csproj">
+    <ProjectReference Include="..\POS\DotNetDrive.Protocol.POS.csproj">
       <Project>{0F4EB837-9C7D-4365-8496-BEBECCC4B3D1}</Project>
-      <Name>FCARDIO.Protocol.POS</Name>
+      <Name>DotNetDrive.Protocol.POS</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

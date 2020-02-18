@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.POS.Data;
+using DoNetDrive.Protocol.POS.Data;
 using System;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.FixedFeeRule
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.FixedFeeRule
 {
     /// <summary>
     /// 设置定额扣费规则命令参数

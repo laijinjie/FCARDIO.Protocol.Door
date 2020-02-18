@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.Version
+namespace DoNetDrive.Protocol.POS.SystemParameter.Version
 {
     /// <summary>
     /// 获取设备版本号

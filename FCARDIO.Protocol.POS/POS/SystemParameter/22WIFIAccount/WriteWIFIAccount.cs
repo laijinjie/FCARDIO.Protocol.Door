@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.WIFIAccount
+namespace DoNetDrive.Protocol.POS.SystemParameter.WIFIAccount
 {
     /// <summary>
     /// 设置WIFI账号及密码命令

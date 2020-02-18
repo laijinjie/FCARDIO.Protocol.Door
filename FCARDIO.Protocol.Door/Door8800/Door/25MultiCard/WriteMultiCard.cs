@@ -255,7 +255,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
             }
 
 
-            RewritePacket(0x18, 0x02, buf.ReadableBytes);
+            RewritePacket(0x18, 0x02,buf.ReadableBytes);
 
 
             _ProcessStep++;

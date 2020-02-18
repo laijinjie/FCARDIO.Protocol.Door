@@ -1,7 +1,7 @@
-﻿using FCARDIO.Protocol.Door.FC8800.TemplateMethod;
+﻿using DoNetDrive.Protocol.Door.FC8800.TemplateMethod;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.POS.Card
+namespace DoNetDrive.Protocol.POS.Card
 {
     public class ReadAllCard_Result : TemplateResult_Base
     {

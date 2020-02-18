@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.ConsumePassword
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumePassword
 {
     /// <summary>
     /// 设置消费时密码确认命令参数

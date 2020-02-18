@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.TemporaryChangeFixedFee
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.TemporaryChangeFixedFee
 {
     /// <summary>
     /// 设置临时变更定额、临时变更定额命令参数

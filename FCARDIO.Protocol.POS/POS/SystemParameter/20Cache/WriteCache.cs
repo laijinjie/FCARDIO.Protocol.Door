@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.Cache
+namespace DoNetDrive.Protocol.POS.SystemParameter.Cache
 {
     /// <summary>
     /// 设置缓存区内容命令

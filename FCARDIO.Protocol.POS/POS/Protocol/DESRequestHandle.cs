@@ -1,15 +1,15 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Core.Connector;
-using FCARDIO.Core.Packet;
-using FCARDIO.Protocol.Transaction;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Core.Connector;
+using DoNetDrive.Core.Packet;
+using DoNetDrive.Protocol.Transaction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.Protocol
+namespace DoNetDrive.Protocol.POS.Protocol
 {
     public class DESRequestHandle : AbstractRequestHandle
     {

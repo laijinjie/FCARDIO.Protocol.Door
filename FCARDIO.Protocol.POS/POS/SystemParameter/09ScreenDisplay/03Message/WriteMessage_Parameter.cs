@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ScreenDisplay.Message
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Message
 {
     /// <summary>
     /// 设置短消息命令参数

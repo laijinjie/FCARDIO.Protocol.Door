@@ -1,7 +1,7 @@
-﻿using FCARDIO.Protocol.Door.FC8800.TemplateMethod;
+﻿using DoNetDrive.Protocol.Door.FC8800.TemplateMethod;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.POS.Subsidy
+namespace DoNetDrive.Protocol.POS.Subsidy
 {
     public class ReadAllSubsidy_Result : TemplateResult_Base
     {

@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ReaderIntervalTime
+namespace DoNetDrive.Protocol.POS.SystemParameter.ReaderIntervalTime
 {
     public class ReadReaderIntervalTime_Result : WriteReaderIntervalTime_Parameter, INCommandResult
     {

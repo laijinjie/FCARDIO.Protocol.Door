@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.Subsidy
+namespace DoNetDrive.Protocol.POS.Subsidy
 {
     /// <summary>
     /// 读取单个补贴在控制器中的信息，命令成功后的返回值

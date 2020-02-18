@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ScreenDisplay.Message
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Message
 {
     public class ReadMessage_Result : WriteMessage_Parameter, INCommandResult
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.ConsumptionLimits
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits
 {
     /// <summary>
     /// 设置消费限额参数

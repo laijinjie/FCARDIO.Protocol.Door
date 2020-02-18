@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.POS.Subsidy
+namespace DoNetDrive.Protocol.POS.Subsidy
 {
     /// <summary>
     /// 读取单个补贴命令参数

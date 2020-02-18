@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
-using FCARDIO.Protocol.POS.Data;
+using DoNetDrive.Protocol.POS.Data;
 using FCARD.Common.Extensions;
 
-namespace FCARDIO.Protocol.POS.Reservation.AddReservationDetail
+namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
 {
     public class AddReservationDetail_Parameter : AbstractParameter
     {

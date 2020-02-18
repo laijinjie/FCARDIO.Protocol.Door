@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.Time.TimeErrorCorrection
+namespace DoNetDrive.Protocol.POS.Time.TimeErrorCorrection
 {
     /// <summary>
     /// 读取误差自修正参数

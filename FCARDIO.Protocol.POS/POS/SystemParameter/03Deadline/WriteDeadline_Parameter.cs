@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.Deadline
+namespace DoNetDrive.Protocol.POS.SystemParameter.Deadline
 {
     /// <summary>
     /// 设置设备有效期_参数

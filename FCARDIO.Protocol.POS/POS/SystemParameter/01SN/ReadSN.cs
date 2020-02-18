@@ -1,17 +1,17 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.SN
+namespace DoNetDrive.Protocol.POS.SystemParameter.SN
 {
     /// <summary>
     /// 获取控制器SN
     /// </summary>
-    public class ReadSN : Door.FC8800.SystemParameter.SN.ReadSN
+    public class ReadSN : Door.FC8800.SystemParameter.SN.ReadSNf
     {
         /// <summary>
         /// 获取控制器SN 初始化命令

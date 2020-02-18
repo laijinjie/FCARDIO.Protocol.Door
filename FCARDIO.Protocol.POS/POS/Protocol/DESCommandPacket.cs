@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.POS.Protocol
+namespace DoNetDrive.Protocol.POS.Protocol
 {
     /// <summary>
     /// DES的数据包的命令详情部分

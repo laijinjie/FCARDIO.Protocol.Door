@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ReaderIntervalTime
+namespace DoNetDrive.Protocol.POS.SystemParameter.ReaderIntervalTime
 {
     /// <summary>
     /// 设置读卡间隔命令参数

@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Util;
 using System;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.SystemStatus
+namespace DoNetDrive.Protocol.POS.SystemParameter.SystemStatus
 {
     public class ReadSystemStatus_Result : INCommandResult
     {

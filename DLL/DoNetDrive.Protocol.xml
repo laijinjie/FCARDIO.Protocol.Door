@@ -63,26 +63,26 @@ DoNetDrive.Protocol
  <summary>
  修改当前的数据包
  </summary>
- <param name="ct">命令分类</param>
- <param name="ci">命令索引</param>
- <param name="cp">命令参数</param>
- <param name="dl">数据长度</param>
- <param name="cd">命令数据</param>
+ <param name="CmdType">命令分类</param>
+ <param name="CmdIndex">命令索引</param>
+ <param name="CmdPar">命令参数</param>
+ <param name="DataLen">数据长度</param>
+ <param name="CmdDataBuf">命令数据</param>
 </member>
 <member name="M:DoNetDrive.Protocol.FrameCommand.AbstractFrameCommand`1.Packet(System.Byte,System.Byte)">
  <summary>
  修改当前的数据包
  </summary>
- <param name="ct">命令分类</param>
- <param name="ci">命令索引</param>
+ <param name="CmdType">命令分类</param>
+ <param name="CmdIndex">命令索引</param>
 </member>
 <member name="M:DoNetDrive.Protocol.FrameCommand.AbstractFrameCommand`1.Packet(System.Byte,System.Byte,System.Byte)">
  <summary>
  修改当前的数据包
  </summary>
- <param name="ct">命令分类</param>
- <param name="ci">命令索引</param>
- <param name="cp">命令参数</param>
+ <param name="CmdType">命令分类</param>
+ <param name="CmdIndex">命令索引</param>
+ <param name="CmdPar">命令参数</param>
 </member>
 <member name="M:DoNetDrive.Protocol.FrameCommand.AbstractFrameCommand`1.Release0">
  <summary>
@@ -1026,6 +1026,13 @@ DoNetDrive.Protocol
  <param name="cp">命令参数</param>
  <param name="dl">数据长度</param>
  <param name="cd">命令数据</param>
+</member>
+<member name="M:DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket.SetPacketTarget(System.Byte[],System.Byte[])">
+ <summary>
+ 设置数据包的目标（SN和密码）
+ </summary>
+ <param name="SNbuf">SN</param>
+ <param name="ps">密码</param>
 </member>
 <member name="M:DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket.SetCommandDetail(DoNetDrive.Core.Command.INCommandDetail)">
  <summary>

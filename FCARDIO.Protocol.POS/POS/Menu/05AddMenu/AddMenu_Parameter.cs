@@ -1,7 +1,7 @@
-﻿using FCARDIO.Protocol.Door.FC8800.TemplateMethod;
+﻿using DoNetDrive.Protocol.Door.FC8800.TemplateMethod;
 using System;
 
-namespace FCARDIO.Protocol.POS.Menu
+namespace DoNetDrive.Protocol.POS.Menu
 {
     /// <summary>
     /// 添加菜单命令参数

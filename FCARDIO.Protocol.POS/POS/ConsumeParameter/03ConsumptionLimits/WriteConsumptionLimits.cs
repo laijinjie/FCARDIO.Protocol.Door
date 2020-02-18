@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.ConsumptionLimits
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits
 {
     /// <summary>
     /// 设置消费机消费限额命令

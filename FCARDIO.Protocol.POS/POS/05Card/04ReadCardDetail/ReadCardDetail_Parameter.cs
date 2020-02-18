@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.POS.Card
+namespace DoNetDrive.Protocol.POS.Card
 {
     /// <summary>
     /// 读取单个名单命令

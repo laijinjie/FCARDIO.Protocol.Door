@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.Relay
+namespace DoNetDrive.Protocol.POS.SystemParameter.Relay
 {
     /// <summary>
     /// 设置继电器命令

@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.Card
+namespace DoNetDrive.Protocol.POS.Card
 {
     public class ReadCardDataBase_Result : INCommandResult
     {

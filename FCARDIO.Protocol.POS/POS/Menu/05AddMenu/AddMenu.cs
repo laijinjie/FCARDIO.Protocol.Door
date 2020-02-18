@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Door.FC8800.TemplateMethod;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.FC8800.TemplateMethod;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.POS.Menu
+namespace DoNetDrive.Protocol.POS.Menu
 {
     /// <summary>
     /// 添加菜单

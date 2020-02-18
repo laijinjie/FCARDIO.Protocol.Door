@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.Reservation.ClearDataBase
+namespace DoNetDrive.Protocol.POS.Reservation.ClearDataBase
 {
     public class ClearDataBase_Parameter : AbstractParameter
     {

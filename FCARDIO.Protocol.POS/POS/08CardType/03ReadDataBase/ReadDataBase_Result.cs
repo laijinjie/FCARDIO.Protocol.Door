@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.POS.Data;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.POS.Data;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.POS.CardType.ReadDataBase
+namespace DoNetDrive.Protocol.POS.CardType.ReadDataBase
 {
     /// <summary>
     /// 读取到的卡类返回结果

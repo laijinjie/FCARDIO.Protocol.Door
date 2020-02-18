@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
-using FCARDIO.Protocol.POS.Data;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Data;
 
-namespace FCARDIO.Protocol.POS.Card
+namespace DoNetDrive.Protocol.POS.Card
 {
     /// <summary>
     /// 读取单个名单命令

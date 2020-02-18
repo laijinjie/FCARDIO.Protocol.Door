@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Protocol.Util;
 using System;
 
-namespace FCARDIO.Protocol.POS.Data
+namespace DoNetDrive.Protocol.POS.Data
 {
     /// <summary>
     /// 补贴

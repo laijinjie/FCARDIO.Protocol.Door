@@ -1,4 +1,4 @@
-﻿namespace FCARDIO.Protocol.POS.Time.TimeErrorCorrection
+﻿namespace DoNetDrive.Protocol.POS.Time.TimeErrorCorrection
 {
     /// <summary>
     /// 设置误差自修正_参数

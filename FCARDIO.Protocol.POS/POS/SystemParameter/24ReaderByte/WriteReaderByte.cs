@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ReaderByte
+namespace DoNetDrive.Protocol.POS.SystemParameter.ReaderByte
 {
     /// <summary>
     /// 设置读卡器字节命令

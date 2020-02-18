@@ -1,15 +1,15 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
-using FCARDIO.Protocol.POS.CardType.ReadDataBase;
-using FCARDIO.Protocol.POS.Data;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.CardType.ReadDataBase;
+using DoNetDrive.Protocol.POS.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.CardType
+namespace DoNetDrive.Protocol.POS.CardType
 {
     public abstract class WriteCardTypeBase : Write_Command 
     {/// <summary>

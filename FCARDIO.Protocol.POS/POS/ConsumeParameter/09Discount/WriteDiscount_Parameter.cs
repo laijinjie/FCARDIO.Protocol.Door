@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.Discount
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.Discount
 {
     /// <summary>
     /// 设置折扣命令

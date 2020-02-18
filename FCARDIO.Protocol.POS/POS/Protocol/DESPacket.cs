@@ -5,14 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 using FCARD.Common.Cryptography;
-using FCARDIO.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.FrameCommand;
+using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.Protocol
+namespace DoNetDrive.Protocol.POS.Protocol
 {
     /// <summary>
     /// 适用于 消费机和其他加密通讯的数据包
     /// </summary>
-    public class DESPacket : Packet.BasePacket
+    public class DESPacket : AbstractFramePacket
     {
         #region 常量定义
 
@@ -46,20 +48,6 @@ namespace FCARDIO.Protocol.POS.Protocol
         public static byte[] WatchMessagePassword = new byte[] { 0x12, 0x34, 0x56, 0x78, 0x9A, 0xBC, 0xDE, 0xF0 };
         #endregion
 
-        /// <summary>
-        /// 信息代码
-        /// </summary>
-        public UInt32 Code;
-
-        /// <summary>
-        /// 设备SN
-        /// </summary>
-        public Byte[] SN;
-
-        /// <summary>
-        /// 通讯密码
-        /// </summary>
-        public Byte[] Password;
 
         /// <summary>
         /// 包含命令数据详情的子数据包。
@@ -75,7 +63,7 @@ namespace FCARDIO.Protocol.POS.Protocol
         /// </summary>
         public DESPacket()
         {
-
+            CommandPacket = new DESCommandPacket(0, 0, 0, 0, 0, null);
         }
 
         /// <summary>
@@ -210,12 +198,29 @@ namespace FCARDIO.Protocol.POS.Protocol
                byte ct, byte ci, byte cp,
                int dl, IByteBuffer cd)
         {
-            if (dstSN == null)
+
+
+
+            SetPacketTarget(dstSN, ps);
+
+            Code = cc;
+
+            CommandPacket = new DESCommandPacket(cc, ct, ci, cp, dl, cd);
+        }
+
+        /// <summary>
+        /// 设置数据包的目标（SN和密码）
+        /// </summary>
+        /// <param name="SNbuf">SN</param>
+        /// <param name="ps">密码</param>
+        public virtual void SetPacketTarget(byte[] SNbuf, byte[] ps)
+        {
+            if (SNbuf == null)
             {
                 VerifyError("SN");
                 return;
             }
-            if (dstSN.Length != 16)
+            if (SNbuf.Length != 16)
             {
                 VerifyError("SN");
                 return;
@@ -231,30 +236,30 @@ namespace FCARDIO.Protocol.POS.Protocol
                 VerifyError("Password");
                 return;
             }
-
-
-
-            SN = dstSN;
+            SN = SNbuf;
             Password = ps;
-            Code = cc;
-
-            CommandPacket = new DESCommandPacket(cc, ct, ci, cp, dl, cd);
         }
-
         #endregion
 
         #region 改变数据包结构
 
         /// <summary>
-        /// 修改命令包内容
+        /// 设置数据包绑定的命令详情
         /// </summary>
-        /// <param name="ct">命令类型</param>
-        /// <param name="ci">命令索引</param>
-        /// <param name="cp">命令参数</param>
-        public void SetPacket(byte ct, byte ci, byte cp)
+        /// <param name="dtl"></param>
+        public override void SetCommandDetail(INCommandDetail dtl)
         {
-            SetPacket(ct, ci, cp, 0, null);
+            DESDriveCommandDetail detail = dtl as DESDriveCommandDetail;
+            if (detail == null)
+            {
+                VerifyError("CommandDetail");
+                return;
+            }
+            byte[] s = detail.SNByte, ps = detail.PasswordByte;
+            SetPacketTarget(s, ps);
         }
+
+
 
         /// <summary>
         /// 修改命令包内容
@@ -264,10 +269,10 @@ namespace FCARDIO.Protocol.POS.Protocol
         /// <param name="cp">命令参数</param>
         /// <param name="dl">数据长度</param>
         /// <param name="cd">数据内容</param>
-        public void SetPacket(byte ct, byte ci, byte cp,
-                       int dl, IByteBuffer cd)
+        public override void SetPacket(byte ct, byte ci, byte cp,
+                       uint dl, IByteBuffer cd)
         {
-            CommandPacket.SetPacket(ct, ci, cp, dl, cd);
+            CommandPacket.SetPacket(ct, ci, cp, (int)dl, cd);
         }
         #endregion
 
@@ -276,7 +281,7 @@ namespace FCARDIO.Protocol.POS.Protocol
         /// <summary>
         /// 设置当前的数据包为UDP广播数据包,UDP广播发送和接收数据时使用
         /// </summary>
-        public void SetUDPBroadcastPacket()
+        public override void SetUDPBroadcastPacket()
         {
             Code = BroadcastCode;
             CommandPacket.Code = BroadcastCode;
@@ -287,25 +292,25 @@ namespace FCARDIO.Protocol.POS.Protocol
         /// <summary>
         /// 设置当前的数据包为正常播数据包（默认状态就是正常，除非经过修改，否则不必调用此函数）
         /// </summary>
-        public void SetNormalPacket()
+        public override void SetNormalPacket()
         {
-            SetNormalPacket(GetRandomCode(ref CodeMin, ref CodeMax));
+            SetNormalPacket((int)GetRandomCode(ref CodeMin, ref CodeMax));
         }
 
         /// <summary>
         /// 设置当前的数据包为正常播数据包（默认状态就是正常，除非经过修改，否则不必调用此函数）
         /// </summary>
-        public void SetNormalPacket(UInt32 iCode)
+        public override void SetNormalPacket(int iCode)
         {
-            Code = iCode;
-            CommandPacket.Code = iCode;
+            Code = (uint)iCode;
+            CommandPacket.Code = Code;
 
-            if (iCode == BroadcastCode)
+            if (Code == BroadcastCode)
             {
                 Password = BroadcastPassword;
             }
 
-            if (iCode == WatchMessageCode)
+            if (Code == WatchMessageCode)
             {
                 Password = WatchMessagePassword;
             }
@@ -427,7 +432,9 @@ namespace FCARDIO.Protocol.POS.Protocol
             uint subCode = CmdData.GetUnsignedInt(0);
             if (subCode == Code)
             {
-                return true;
+                //不需要解密
+                DecodeSubPacket_SetSubPacket(Allocator);
+                return (Code == CommandPacket.Code);
             }
 
             byte[] key = GetDesKey(Allocator);
@@ -450,6 +457,15 @@ namespace FCARDIO.Protocol.POS.Protocol
                 return false;
             }
 
+            DecodeSubPacket_SetSubPacket(Allocator);
+
+
+            return (Code == CommandPacket.Code);
+
+        }
+
+        protected virtual void DecodeSubPacket_SetSubPacket(IByteBufferAllocator Allocator)
+        {
             CmdData.SetReaderIndex(0);
             if (CommandPacket == null)
             {
@@ -460,10 +476,6 @@ namespace FCARDIO.Protocol.POS.Protocol
                 CommandPacket.Decomplie(Allocator, CmdData);
             }
             CmdData.SetReaderIndex(0);
-
-
-            return (Code == CommandPacket.Code);
-
         }
 
 

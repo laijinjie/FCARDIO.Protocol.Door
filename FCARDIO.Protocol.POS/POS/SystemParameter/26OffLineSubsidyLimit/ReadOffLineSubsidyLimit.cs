@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.OffLineSubsidyLimit
+namespace DoNetDrive.Protocol.POS.SystemParameter.OffLineSubsidyLimit
 {
     /// <summary>
     /// 读取离线补贴充值，卡内补贴余额上限命令

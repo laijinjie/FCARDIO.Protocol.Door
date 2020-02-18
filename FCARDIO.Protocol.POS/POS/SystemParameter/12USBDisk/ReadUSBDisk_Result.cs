@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.USBDisk
+namespace DoNetDrive.Protocol.POS.SystemParameter.USBDisk
 {
     public class ReadUSBDisk_Result : WriteUSBDisk_Parameter, INCommandResult
     {

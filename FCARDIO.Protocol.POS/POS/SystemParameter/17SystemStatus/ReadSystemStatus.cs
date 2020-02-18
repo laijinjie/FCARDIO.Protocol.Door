@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.SystemStatus
+namespace DoNetDrive.Protocol.POS.SystemParameter.SystemStatus
 {
     /// <summary>
     /// 读取设备状态信息命令

@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FCARDIO.Protocol.POS.Protocol;
+using DoNetDrive.Protocol.POS.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.POS.Protocol.Tests
+namespace DoNetDrive.Protocol.POS.Protocol.Tests
 {
     [TestClass()]
     public class DESPacketDecompileTests

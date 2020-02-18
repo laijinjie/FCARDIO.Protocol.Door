@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.Integral
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.Integral
 {
     /// <summary>
     /// 读取积分命令

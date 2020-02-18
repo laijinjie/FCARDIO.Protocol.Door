@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.OffLineSubsidyLimit
+namespace DoNetDrive.Protocol.POS.SystemParameter.OffLineSubsidyLimit
 {
     /// <summary>
     /// 设置离线补贴充值，卡内补贴余额上限命令参数

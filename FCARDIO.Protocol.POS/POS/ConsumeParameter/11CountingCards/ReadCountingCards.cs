@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.CountingCards
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.CountingCards
 {
     /// <summary>
     /// 读取计次命令

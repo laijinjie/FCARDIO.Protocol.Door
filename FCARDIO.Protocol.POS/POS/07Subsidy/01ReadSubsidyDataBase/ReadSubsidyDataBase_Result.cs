@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.Subsidy
+namespace DoNetDrive.Protocol.POS.Subsidy
 {
     /// <summary>
     /// 读取补贴容量信息结果

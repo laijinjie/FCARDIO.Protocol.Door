@@ -1,11 +1,11 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.POS.CardType.ReadDataBase;
-using FCARDIO.Protocol.POS.Data;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.POS.CardType.ReadDataBase;
+using DoNetDrive.Protocol.POS.Data;
 using System;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.POS.CardType
+namespace DoNetDrive.Protocol.POS.CardType
 {
     public class DeleteCardTypeDetail : WriteCardTypeBase
     {

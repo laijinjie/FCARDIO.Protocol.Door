@@ -167,10 +167,10 @@
     <Compile Include="Door8800\Door\30ReaderAlarm\ReadReaderAlarm.cs" />
     <Compile Include="Door8800\Door\30ReaderAlarm\WriteReaderAlarm.cs" />
     <Compile Include="Door8800\Door\30ReaderAlarm\WriteReaderAlarm_Parameter.cs" />
-    <Compile Include="Door8800\FC8800CommandEx.cs" />
-    <Compile Include="Door8800\FC8800Command_Read_DoorParameter.cs" />
-    <Compile Include="Door8800\FC8800Command_ReadParameter.cs" />
-    <Compile Include="Door8800\FC8800Command_WriteParameter.cs" />
+    <Compile Include="Door8800\Door8800CommandEx.cs" />
+    <Compile Include="Door8800\Door8800Command_Read_DoorParameter.cs" />
+    <Compile Include="Door8800\Door8800Command_ReadParameter.cs" />
+    <Compile Include="Door8800\Door8800Command_WriteParameter.cs" />
     <Compile Include="Door8800\Holiday\02ClearHoliday\ClearHoliday.cs" />
     <Compile Include="Door8800\Holiday\04AddHoliday\AddHoliday.cs" />
     <Compile Include="Door8800\Holiday\04AddHoliday\AddHoliday_Parameter.cs" />

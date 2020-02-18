@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.TemporaryChangeFixedFee
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.TemporaryChangeFixedFee
 {
     /// <summary>
     /// 读取临时变更定额、定次消费额度命令

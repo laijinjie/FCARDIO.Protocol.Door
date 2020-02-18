@@ -1,4 +1,4 @@
-﻿namespace FCARDIO.Protocol.POS.SystemParameter.ConnectPassword
+﻿namespace DoNetDrive.Protocol.POS.SystemParameter.ConnectPassword
 {
     /// <summary>
     /// 通讯密码

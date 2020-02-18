@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.Time
+namespace DoNetDrive.Protocol.POS.Time
 {
     /// <summary>
     /// 从控制器中读取控制器时间

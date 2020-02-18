@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ReaderIntervalTime
+namespace DoNetDrive.Protocol.POS.SystemParameter.ReaderIntervalTime
 {
     /// <summary>
     /// 读取读卡间隔命令

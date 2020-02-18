@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.POS.Data;
+using DoNetDrive.Protocol.POS.Data;
 using System;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.POS.CardType
+namespace DoNetDrive.Protocol.POS.CardType
 {
     public class CardType_Parameter_Base : AbstractParameter
     {

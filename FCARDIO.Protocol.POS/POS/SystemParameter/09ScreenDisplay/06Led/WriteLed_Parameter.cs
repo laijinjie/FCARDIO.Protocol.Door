@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ScreenDisplay.Led
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Led
 {
     /// <summary>
     /// 设置Led命令参数

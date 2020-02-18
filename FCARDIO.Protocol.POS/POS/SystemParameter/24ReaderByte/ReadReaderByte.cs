@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ReaderByte
+namespace DoNetDrive.Protocol.POS.SystemParameter.ReaderByte
 {
     /// <summary>
     /// 读取读卡器字节命令

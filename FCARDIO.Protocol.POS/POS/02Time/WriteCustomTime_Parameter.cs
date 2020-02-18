@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.Time
+namespace DoNetDrive.Protocol.POS.Time
 {
     /// <summary>
     /// 设置控制器的日期时间

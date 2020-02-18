@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.Cache
+namespace DoNetDrive.Protocol.POS.SystemParameter.Cache
 {
     /// <summary>
     /// 设置缓存区命令参数

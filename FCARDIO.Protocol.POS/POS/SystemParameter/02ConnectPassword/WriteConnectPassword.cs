@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.ConnectPassword
+namespace DoNetDrive.Protocol.POS.SystemParameter.ConnectPassword
 {
     /// <summary>
     /// 设置控制器通讯密码

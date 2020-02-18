@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.Initialize
+namespace DoNetDrive.Protocol.POS.SystemParameter.Initialize
 {
     /// <summary>
     /// 初始化设备命令

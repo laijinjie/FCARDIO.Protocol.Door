@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.ICCardAccount
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.ICCardAccount
 {
     /// <summary>
     /// 设置IC卡账户命令

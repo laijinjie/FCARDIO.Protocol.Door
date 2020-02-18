@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.POSWorkMode
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.POSWorkMode
 {
     /// <summary>
     /// 读取消费机工作模式命令

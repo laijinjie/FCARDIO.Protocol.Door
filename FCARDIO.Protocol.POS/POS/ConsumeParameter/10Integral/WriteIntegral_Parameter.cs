@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.Integral
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.Integral
 {
     /// <summary>
     /// 设置积分参数

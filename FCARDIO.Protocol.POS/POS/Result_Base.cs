@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.POS
+namespace DoNetDrive.Protocol.POS
 {
     /// <summary>
     /// 针对读命令返回结果进行抽象封装

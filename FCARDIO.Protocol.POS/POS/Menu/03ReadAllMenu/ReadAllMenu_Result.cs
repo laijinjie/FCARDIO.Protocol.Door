@@ -1,7 +1,7 @@
-﻿using FCARDIO.Protocol.Door.FC8800.TemplateMethod;
+﻿using DoNetDrive.Protocol.Door.FC8800.TemplateMethod;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.POS.Menu
+namespace DoNetDrive.Protocol.POS.Menu
 {
     public class ReadAllMenu_Result : TemplateResult_Base
     {

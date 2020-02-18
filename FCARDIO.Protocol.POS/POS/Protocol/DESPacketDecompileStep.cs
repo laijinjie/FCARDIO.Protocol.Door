@@ -1,12 +1,12 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Packet;
+using DoNetDrive.Protocol.Packet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.Protocol
+namespace DoNetDrive.Protocol.POS.Protocol
 {
     /// <summary>
     /// DES数据包解析状态

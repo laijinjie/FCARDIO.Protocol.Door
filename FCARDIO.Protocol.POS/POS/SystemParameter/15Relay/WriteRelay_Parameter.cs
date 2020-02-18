@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.Relay
+namespace DoNetDrive.Protocol.POS.SystemParameter.Relay
 {
     /// <summary>
     /// 设置继电器命令参数

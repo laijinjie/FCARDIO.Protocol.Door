@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.TCPSetting
+namespace DoNetDrive.Protocol.POS.SystemParameter.TCPSetting
 {
     /// <summary>
     /// 设置TCP参数_参数

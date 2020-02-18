@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.FC8800;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.POS
+namespace DoNetDrive.Protocol.POS
 {
     /// <summary>
     /// 针对命令中的写参数命令进行抽象封装

@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.POS.ConsumeParameter.AdditionalCharges
+namespace DoNetDrive.Protocol.POS.ConsumeParameter.AdditionalCharges
 {
     /// <summary>
     /// 设置附加费用命令

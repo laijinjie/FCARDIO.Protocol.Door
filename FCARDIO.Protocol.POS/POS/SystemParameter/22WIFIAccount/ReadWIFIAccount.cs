@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
-namespace FCARDIO.Protocol.POS.SystemParameter.WIFIAccount
+namespace DoNetDrive.Protocol.POS.SystemParameter.WIFIAccount
 {
     /// <summary>
     /// 读取WIFI账号及密码命令
