@@ -314,27 +314,15 @@ namespace FCARDIO.Protocol.POS.Protocol
 
         #endregion
 
+
         /// <summary>
-        /// 获取数据包的打包后的ByteBuf，用于发送数据
+        /// 计算用于DES加解密的秘钥
         /// </summary>
-        /// <param name="Allocator">用于分配ByteBuf的分配器</param>
-        /// <returns>组装后的命令包</returns>
-        public override IByteBuffer GetPacketData(IByteBufferAllocator Allocator)
+        /// <returns></returns>
+        private byte[] GetDesKey(IByteBufferAllocator Allocator)
         {
-            //设备SN   信息代码        长度       数据     检验值
-            //16Byte   4byte          2Byte    可变长度   1Byte
-            if (CmdData != null)
-            {
-                CmdData.Release();
-            }
-            CommandPacket.Code = Code;
-
-            CmdData = CommandPacket.GetPacketData(Allocator);
-            DataLen = CmdData.ReadableBytes;
-
             byte[] key;
             DES_C mDes;
-
             //计算秘钥
             switch (Code)
             {
@@ -358,11 +346,37 @@ namespace FCARDIO.Protocol.POS.Protocol
                     mDes = null;
                     break;
             }
+            return key;
+
+        }
+
+        /// <summary>
+        /// 获取数据包的打包后的ByteBuf，用于发送数据
+        /// </summary>
+        /// <param name="Allocator">用于分配ByteBuf的分配器</param>
+        /// <returns>组装后的命令包</returns>
+        public override IByteBuffer GetPacketData(IByteBufferAllocator Allocator)
+        {
+            //设备SN   信息代码        长度       数据     检验值
+            //16Byte   4byte          2Byte    可变长度   1Byte
+            if (CmdData != null)
+            {
+                CmdData.Release();
+            }
+            CommandPacket.Code = Code;
+
+            CmdData = CommandPacket.GetPacketData(Allocator);
+            DataLen = CmdData.ReadableBytes;
+
+            byte[] key = GetDesKey(Allocator);
+            DES_C mDes;
+
+
             //数据加密
             mDes = new DES_C(key);
             byte[] dataBuf = new byte[DataLen];
             CmdData.ReadBytes(dataBuf);
-            mDes.EncryptAnyLength(dataBuf,dataBuf.Length,0);
+            mDes.EncryptAnyLength(dataBuf, dataBuf.Length, 0);
             dataBuf = mDes.GetCiphertextAnyLength();
             DataLen = dataBuf.Length;
             CmdData.Release();
@@ -402,6 +416,56 @@ namespace FCARDIO.Protocol.POS.Protocol
 
             return buf2;
         }
+
+        /// <summary>
+        /// 解密子数据包
+        /// </summary>
+        /// <returns></returns>
+        public bool DecodeSubPacket(IByteBufferAllocator Allocator)
+        {
+
+            uint subCode = CmdData.GetUnsignedInt(0);
+            if (subCode == Code)
+            {
+                return true;
+            }
+
+            byte[] key = GetDesKey(Allocator);
+            DES_C mDes;
+
+            //数据加密
+            mDes = new DES_C(key);
+            byte[] dataBuf = new byte[DataLen];
+            CmdData.ReadBytes(dataBuf);
+            mDes.DecryptAnyLength(dataBuf, dataBuf.Length, 0);
+            dataBuf = mDes.GetPlaintextAll();
+            DataLen = dataBuf.Length;
+            CmdData.Clear();
+            CmdData.WriteBytes(dataBuf);
+
+
+            subCode = CmdData.GetUnsignedInt(0);
+            if (Code != subCode)//解密失败
+            {
+                return false;
+            }
+
+            CmdData.SetReaderIndex(0);
+            if (CommandPacket == null)
+            {
+                CommandPacket = new DESCommandPacket(Allocator, CmdData);
+            }
+            else
+            {
+                CommandPacket.Decomplie(Allocator, CmdData);
+            }
+            CmdData.SetReaderIndex(0);
+
+
+            return (Code == CommandPacket.Code);
+
+        }
+
 
         /// <summary>
         /// 释放使用的资源

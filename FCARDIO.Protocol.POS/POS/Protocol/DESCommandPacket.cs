@@ -47,6 +47,67 @@ namespace FCARDIO.Protocol.POS.Protocol
             SetPacket(ct, ci, cp, dl, cd);
         }
 
+        /// <summary>
+        /// 根据一个缓冲区创建子命令包
+        /// </summary>
+        /// <param name="buf"></param>
+        public DESCommandPacket(IByteBufferAllocator Allocator, IByteBuffer buf)
+        {
+            Decomplie(Allocator, buf);
+        }
+
+        /// <summary>
+        /// 反编译命令包
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <returns></returns>
+        public bool Decomplie(IByteBufferAllocator Allocator, IByteBuffer buf)
+        {
+            buf.MarkReaderIndex();
+            Code = buf.ReadUnsignedInt();
+            CmdType = buf.ReadByte();
+            CmdIndex = buf.ReadByte();
+            CmdPar = buf.ReadByte();
+
+            Release();
+            DataLen = buf.ReadUnsignedShort();
+
+            if (DataLen > 0)
+            {
+                if(DataLen>4096)
+                {
+                    DataLen = 0;
+                    Code = 0;
+                    buf.ResetReaderIndex();
+                    return false;
+                }
+                CmdData = Allocator.Buffer(DataLen);
+                buf.ReadBytes(CmdData, DataLen);
+            }
+            buf.ResetReaderIndex();
+
+            //计算校验和
+            int iCount = DataLen + 9;
+            for (int i = 0; i < iCount; i++)
+            {
+                Check += buf.ReadByte();
+            }
+            byte bCheck = buf.ReadByte();
+            buf.ResetReaderIndex();
+            Check &= 255;
+            if(Check != bCheck)
+            {
+                Release();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+
+        }
+
         #region 改变数据包结构
 
         /// <summary>
@@ -100,7 +161,7 @@ namespace FCARDIO.Protocol.POS.Protocol
             {
                 try
                 {
-                    if ( CmdData.ReadableBytes >= DataLen )
+                    if (CmdData.ReadableBytes >= DataLen)
                     {
                         buf.WriteShort(DataLen);// 长度
                         buf.WriteBytes(CmdData, CmdData.ReaderIndex, DataLen);// 数据
@@ -122,7 +183,7 @@ namespace FCARDIO.Protocol.POS.Protocol
             //计算校验和
             buf.MarkReaderIndex();
             int icount = buf.ReadableBytes;
-    
+
             for (int i = 0; i < icount; i++)
             {
                 Check = Check + buf.ReadByte();
@@ -136,9 +197,20 @@ namespace FCARDIO.Protocol.POS.Protocol
             return buf;
         }
 
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         protected override void Release()
         {
-            throw new NotImplementedException();
+            if (CmdData != null)
+            {
+                if (CmdData.ReferenceCount > 0)
+                    CmdData.Release();
+
+            }
+            DataLen = 0;
+            CmdData = null;
+            Check = 0;
         }
     }
 }
