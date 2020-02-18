@@ -1,6 +1,6 @@
 ﻿using DoNetDrive.Core.Command;
-using FCARD.Common.Extensions;
-using FCARD.Common;
+using DoNetTool.Common.Extensions;
+using DoNetTool.Common;
 using DoNetDrive.Protocol.Fingerprint.AdditionalData;
 using System;
 using System.Collections.Generic;
@@ -309,7 +309,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 return;
             }
             byte[] datas = Convert.FromBase64String(txtCodeData.Text);
-            uint CRC32 = FCARD.Common.Cryptography.CRC32_C.CalculateDigest(datas, 0, (uint)datas.Length);
+            uint CRC32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(datas, 0, (uint)datas.Length);
             MessageBox.Show("特征码的 CRC32：" + CRC32.ToString("x"));
         }
 
@@ -525,7 +525,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             int iSoftwareSize = iFileLen - 26;
             uint iFileCRC32 = bSurFile.Copy(iFileLen - 4, 4).ToInt32();
             byte[] bSoftWareData = bSurFile.Copy(22, iSoftwareSize);
-            uint itmpCRC32 = FCARD.Common.Cryptography.CRC32_C.CalculateDigest(bSoftWareData, 0, (uint)iSoftwareSize);
+            uint itmpCRC32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(bSoftWareData, 0, (uint)iSoftwareSize);
             if (itmpCRC32 != iFileCRC32)
             {
                 MsgErr("固件CRC32不正确！");

@@ -3193,7 +3193,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             byte[] bIndoorIP = new byte[4];
             string sIP = txtInDoorIP.Text;
-            if (FCARD.Common.ValidateTool.IsIPAddress(sIP))
+            if (DoNetTool.Common.ValidateTool.IsIPAddress(sIP))
             {
                 string[] listip = sIP.Trim().Split('.');
                 for (int i = 0; i < listip.Length; i++)
@@ -3210,7 +3210,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             byte[] bOutdoorIP = new byte[4];
             sIP = txtOutDoorIP.Text;
-            if (FCARD.Common.ValidateTool.IsIPAddress(sIP))
+            if (DoNetTool.Common.ValidateTool.IsIPAddress(sIP))
             {
                 string[] listip = sIP.Trim().Split('.');
                 for (int i = 0; i < listip.Length; i++)

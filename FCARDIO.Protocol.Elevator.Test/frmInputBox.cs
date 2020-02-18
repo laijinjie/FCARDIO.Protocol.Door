@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.Elevator.Test
+namespace DoNetDrive.Protocol.Elevator.Test
 {
     /// <summary>
     /// 通用输入模式窗口

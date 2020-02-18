@@ -1,12 +1,12 @@
-﻿using FCARDIO.Protocol.Door.Test.Model;
-using FCARDIO.Protocol.Elevator.FC8864.Holiday;
+﻿using DoNetDrive.Protocol.Door.Test.Model;
+using DoNetDrive.Protocol.Elevator.FC8864.Holiday;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.Elevator.Test
+namespace DoNetDrive.Protocol.Elevator.Test
 {
     public partial class frmHoliday : frmNodeForm
     {
@@ -70,7 +70,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                FCARDIO.Protocol.Door.FC8800.Holiday.ReadHolidayDetail_Result result = cmde.Command.getResult() as FCARDIO.Protocol.Door.FC8800.Holiday. ReadHolidayDetail_Result;
+                DoNetDrive.Protocol.Door.Door8800.Holiday.ReadHolidayDetail_Result result = cmde.Command.getResult() as DoNetDrive.Protocol.Door.Door8800.Holiday. ReadHolidayDetail_Result;
                 var dtl = result.Detail;
                 string log = $"容量：{dtl.Capacity} ， 已用：{dtl.Count}";
                 mMainForm.AddCmdLog(cmde, log);
@@ -105,8 +105,8 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                FCARDIO.Protocol.Door.FC8800.Holiday. ReadAllHoliday_Result result = cmde.Command.getResult() as FCARDIO.Protocol.Door.FC8800.Holiday.ReadAllHoliday_Result;
-                foreach (Door.FC8800.Holiday.HolidayDetail item in result.Holidays)
+                DoNetDrive.Protocol.Door.Door8800.Holiday. ReadAllHoliday_Result result = cmde.Command.getResult() as DoNetDrive.Protocol.Door.Door8800.Holiday.ReadAllHoliday_Result;
+                foreach (Door.Door8800.Holiday.HolidayDetail item in result.Holidays)
                 {
                     HolidayDetailDto dto = new HolidayDetailDto();
 
@@ -259,14 +259,14 @@ namespace FCARDIO.Protocol.Elevator.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            Door.FC8800.Holiday.HolidayDetail holiday = new Door.FC8800.Holiday.HolidayDetail() { HolidayType = Convert.ToByte(cbType.SelectedIndex + 1), Index = Convert.ToByte(cbIndex.SelectedIndex + 1) };
+            Door.Door8800.Holiday.HolidayDetail holiday = new Door.Door8800.Holiday.HolidayDetail() { HolidayType = Convert.ToByte(cbType.SelectedIndex + 1), Index = Convert.ToByte(cbIndex.SelectedIndex + 1) };
             int year = dtpDay.Value.Year;
             if (cbYear.Checked)
             {
                 year = 0;
             }
             holiday.Holiday = new DateTime(year, dtpDay.Value.Month, dtpDay.Value.Day);
-            List<Door.FC8800.Holiday.HolidayDetail> _list = new List<Door.FC8800.Holiday.HolidayDetail>() { holiday };
+            List<Door.Door8800.Holiday.HolidayDetail> _list = new List<Door.Door8800.Holiday.HolidayDetail>() { holiday };
             AddHoliday_Parameter par = new AddHoliday_Parameter(_list);
             AddHoliday cmd = new AddHoliday(cmdDtl, par);
             mMainForm.AddCommand(cmd);
@@ -287,8 +287,8 @@ namespace FCARDIO.Protocol.Elevator.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            List<Door.FC8800.Holiday.HolidayDetail> _list = new List<Door.FC8800.Holiday.HolidayDetail>();
-            _list.Add(new Door.FC8800.Holiday.HolidayDetail() { Index = Convert.ToByte(cbIndex.SelectedIndex + 1) });
+            List<Door.Door8800.Holiday.HolidayDetail> _list = new List<Door.Door8800.Holiday.HolidayDetail>();
+            _list.Add(new Door.Door8800.Holiday.HolidayDetail() { Index = Convert.ToByte(cbIndex.SelectedIndex + 1) });
             DeleteHoliday_Parameter par = new DeleteHoliday_Parameter(_list);
             DeleteHoliday cmd = new DeleteHoliday(cmdDtl,par);
             mMainForm.AddCommand(cmd);
@@ -320,7 +320,7 @@ namespace FCARDIO.Protocol.Elevator.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            List<Door.FC8800.Holiday.HolidayDetail> _list = new List<Door.FC8800.Holiday.HolidayDetail>();
+            List<Door.Door8800.Holiday.HolidayDetail> _list = new List<Door.Door8800.Holiday.HolidayDetail>();
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)dataGridView1.Rows[i].Cells[0];
@@ -329,7 +329,7 @@ namespace FCARDIO.Protocol.Elevator.Test
                 {
                     DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[1];
                     byte bIndex = Convert.ToByte(text.Value);
-                    _list.Add(new Door.FC8800.Holiday.HolidayDetail() { Index = bIndex });
+                    _list.Add(new Door.Door8800.Holiday.HolidayDetail() { Index = bIndex });
                     listHoliday.RemoveAt(listHoliday.FindIndex(t => t.Index == bIndex));
                 }
             }
@@ -354,10 +354,10 @@ namespace FCARDIO.Protocol.Elevator.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            List<Door.FC8800.Holiday.HolidayDetail> _list = new List<Door.FC8800.Holiday.HolidayDetail>();
+            List<Door.Door8800.Holiday.HolidayDetail> _list = new List<Door.Door8800.Holiday.HolidayDetail>();
             for (int i = 0; i < listHoliday.Count; i++)
             {
-                Door.FC8800.Holiday.HolidayDetail holiday = new Door.FC8800.Holiday.HolidayDetail() { Index = listHoliday[i].Index, HolidayType = listHoliday[i].HolidayType };
+                Door.Door8800.Holiday.HolidayDetail holiday = new Door.Door8800.Holiday.HolidayDetail() { Index = listHoliday[i].Index, HolidayType = listHoliday[i].HolidayType };
                 holiday.Holiday = listHoliday[i].Holiday;
                 if (cbYear.Checked)
                 {

@@ -1,12 +1,12 @@
-﻿using FCARDIO.Protocol.Elevator.FC8864.Password;
-using FCARDIO.Protocol.Elevator.Test.Model;
+﻿using DoNetDrive.Protocol.Elevator.FC8864.Password;
+using DoNetDrive.Protocol.Elevator.Test.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.Elevator.Test
+namespace DoNetDrive.Protocol.Elevator.Test
 {
     public partial class frmPassword : frmNodeForm
     {
@@ -96,7 +96,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Door.FC8800.Password.ReadPasswordDetail_Result;
+                var result = cmde.Command.getResult() as Door.Door8800.Password.ReadPasswordDetail_Result;
 
                 //dataGridView1
                 string log = $"密码容量：{result.DataSize}，已存数量：{result.PasswordSize}";

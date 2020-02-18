@@ -62,15 +62,15 @@
     <Reference Include="DoNetDrive.Protocol">
       <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
     </Reference>
+    <Reference Include="DoNetTool.Common">
+      <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetty.Buffers, Version=0.6.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Common">
       <HintPath>..\DLL\DotNetty.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARD.Common">
-      <HintPath>..\DLL\FCARD.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

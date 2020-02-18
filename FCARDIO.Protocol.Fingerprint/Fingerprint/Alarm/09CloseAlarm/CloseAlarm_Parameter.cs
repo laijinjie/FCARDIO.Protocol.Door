@@ -64,7 +64,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Alarm
                 list[i] = BitList[i];
             }
             list[7] = 0;
-            byte type = FCARD.Common.NumUtil.BitToByte(list);
+            byte type = DoNetTool.Common.NumUtil.BitToByte(list);
             databuf.WriteUnsignedShort(type);
             return databuf;
         }

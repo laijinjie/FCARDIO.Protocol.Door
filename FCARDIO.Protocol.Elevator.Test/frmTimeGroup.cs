@@ -1,13 +1,13 @@
-﻿using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
-using FCARDIO.Protocol.Door.FC8800.TimeGroup;
-using FCARDIO.Protocol.Elevator.FC8864.TimeGroup;
+﻿using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
+using DoNetDrive.Protocol.Door.Door8800.TimeGroup;
+using DoNetDrive.Protocol.Elevator.FC8864.TimeGroup;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.Elevator.Test
+namespace DoNetDrive.Protocol.Elevator.Test
 {
     public partial class frmTimeGroup : frmNodeForm
     {
@@ -90,7 +90,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.TimeGroup.ReadTimeGroup_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.TimeGroup.ReadTimeGroup_Result;
                 ListWeekTimeGroup = result.ListWeekTimeGroup;
 
 

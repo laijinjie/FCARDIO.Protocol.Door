@@ -1,18 +1,18 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door8800;
+using DoNetDrive.Protocol.OnlineAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.Elevator
+namespace DoNetDrive.Protocol.Elevator
 {
     /// <summary>
     /// 针对命令中的写参数命令进行抽象封装
     /// </summary>
-    public abstract class CommandEx : FC8800Command
+    public abstract class CommandEx : Door8800Command
     {
         /// <summary>
         /// 初始化命令

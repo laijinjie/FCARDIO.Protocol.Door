@@ -1,36 +1,36 @@
-﻿using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.SN;
-using FCARDIO.Core.Extension;
+﻿using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.SN;
+using DoNetDrive.Core.Extension;
 using System;
 using System.Windows.Forms;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.ConnectPassword;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.Deadline;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.ConnectPassword;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.Deadline;
 using System.Text.RegularExpressions;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.Version;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.SystemStatus;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.TCPSetting;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.Version;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.SystemStatus;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.TCPSetting;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter;
 using System.Collections;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FireAlarm;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.FireAlarm;
 using System.Text;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ReaderByte;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.InvalidCardAlarmOption;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.AlarmPassword;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ExpirationPrompt;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.CloseAlarm;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.ManageCard;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.KeyboardCardIssuingManage;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.InputTerminalFunction;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.TCP485LineConnection;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.ItemDetectionFunction;
-using FCARDIO.Protocol.Door.FC8800.Door;
-using FCARDIO.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ReaderWorkSetting;
-using FCARDIO.Protocol.Elevator.Test.Model;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ReaderByte;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.InvalidCardAlarmOption;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.AlarmPassword;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ExpirationPrompt;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.CloseAlarm;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.ManageCard;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.KeyboardCardIssuingManage;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.InputTerminalFunction;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.TCP485LineConnection;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.ItemDetectionFunction;
+using DoNetDrive.Protocol.Door.Door8800.Door;
+using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.ReaderWorkSetting;
+using DoNetDrive.Protocol.Elevator.Test.Model;
 using System.Collections.Generic;
-using FCARDIO.Protocol.Door.FC8800.Data.TimeGroup;
+using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
 using System.ComponentModel;
 using System.Linq;
 
-namespace FCARDIO.Protocol.Elevator.Test
+namespace DoNetDrive.Protocol.Elevator.Test
 {
     public partial class frmSystem : frmNodeForm
     {
@@ -97,7 +97,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as FCARDIO.Protocol.Door.FC8800.SystemParameter.SN. SN_Result;
+                var result = cmde.Command.getResult() as DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN. SN_Result;
                 string sn = result.SNBuf.GetString();
                 Invoke(() =>
                 {
@@ -117,7 +117,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Door.FC8800.SystemParameter.ConnectPassword.Password_Result;
+                var result = cmde.Command.getResult() as Door.Door8800.SystemParameter.ConnectPassword.Password_Result;
                 string pwd = result.Password;
                 Invoke(() =>
                 {
@@ -158,7 +158,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Door.FC8800.SystemParameter.ConnectPassword.Password_Result;
+                var result = cmde.Command.getResult() as Door.Door8800.SystemParameter.ConnectPassword.Password_Result;
                 string pwd = result.Password;
 
                 mMainForm.AddCmdLog(cmde, pwd);
@@ -175,7 +175,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Door.FC8800.SystemParameter.Deadline.ReadDeadline_Result;
+                var result = cmde.Command.getResult() as Door.Door8800.SystemParameter.Deadline.ReadDeadline_Result;
 
                 ushort Deadline = result.Deadline; //有效期
                 string DeadlineInfo = string.Empty;
@@ -263,7 +263,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.SystemParameter.Version.ReadVersion_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.SystemParameter.Version.ReadVersion_Result;
                 string version = result.Version.ToString();
                 Invoke(() =>
                 {
@@ -486,7 +486,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.SystemParameter.SystemStatus.ReadSystemStatus_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.SystemParameter.SystemStatus.ReadSystemStatus_Result;
                 string RunDay = result.RunDay.ToString() + "天"; //设备已运行天数
                 string FormatCount = result.FormatCount.ToString() + "次"; //格式化次数
                 string RestartCount = result.RestartCount.ToString() + "次"; //看门狗复位次数
@@ -527,7 +527,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.SystemParameter.FunctionParameter.ReadRecordMode_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.SystemParameter.FunctionParameter.ReadRecordMode_Result;
                 string ModeStr = result.Mode == 0 ? "【0、记录存满后，循环覆盖存储】" : "【1、满后报警，不再保存新纪录】"; //记录存储方式
                 Invoke(() =>
                 {
@@ -569,7 +569,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.SystemParameter.FunctionParameter.ReadKeyboard_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.SystemParameter.FunctionParameter.ReadKeyboard_Result;
                 string KeyboardInfo = string.Empty;
                 Invoke(() =>
                 {
@@ -618,7 +618,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.SystemParameter.FunctionParameter.ReadFireAlarmOption_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.SystemParameter.FunctionParameter.ReadFireAlarmOption_Result;
                 int OptionType = result.Option; //消防报警参数
                 string OptionTypeStr = string.Empty;
                 if (OptionType == 0)
@@ -711,7 +711,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.SystemParameter.FunctionParameter. ReadBroadcast_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.SystemParameter.FunctionParameter. ReadBroadcast_Result;
 
                 Invoke(() =>
                 {
@@ -852,7 +852,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.SystemParameter.FunctionParameter. ReadReaderCheckMode_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.SystemParameter.FunctionParameter. ReadReaderCheckMode_Result;
                 string ModeStr = string.Empty; //读卡器数据校验
                 Invoke(() =>
                 {
@@ -905,7 +905,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.SystemParameter.FunctionParameter.ReadBuzzer_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.SystemParameter.FunctionParameter.ReadBuzzer_Result;
                 string ModeStr = result.Buzzer == 0 ? "【0、不启用】" : "【1、启用】"; //记录存储方式
                 Invoke(() =>
                 {
@@ -1088,7 +1088,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Door.FC8800.SystemParameter.FunctionParameter.ReadReadCardSpeak_Result;
+                var result = cmde.Command.getResult() as Door.Door8800.SystemParameter.FunctionParameter.ReadReadCardSpeak_Result;
                 string UseStr = result.SpeakSetting.Use ? "【1、启用】" : "【0、不启用】"; //定时读卡播报语音消息功能是否启用
                 string MsgIndexStr = result.SpeakSetting.MsgIndex == 1 ? "【1、交房租】" : "【2、交管理费】"; //消息编号类型
                 string STime = result.SpeakSetting.BeginDate.ToString("yyyy-MM-dd HH时");
@@ -1358,7 +1358,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Door.FC8800.SystemParameter.Check485Line.ReadCheck485Line_Result;
+                var result = cmde.Command.getResult() as Door.Door8800.SystemParameter.Check485Line.ReadCheck485Line_Result;
 
                 Invoke(() =>
                 {

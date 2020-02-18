@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FCARDIO.Protocol.Elevator.Test.Properties
+namespace DoNetDrive.Protocol.Elevator.Test.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace FCARDIO.Protocol.Elevator.Test.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FCARDIO.Protocol.Elevator.Test.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DoNetDrive.Protocol.Elevator.Test.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

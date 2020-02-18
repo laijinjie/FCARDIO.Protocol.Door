@@ -159,7 +159,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                     {
                         CommandDetail.Timeout = 2500;
                     }
-                    var crc32 = FCARD.Common.Cryptography.CRC32_C.CalculateDigest(data, 0, (uint)data.Length);
+                    var crc32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(data, 0, (uint)data.Length);
 
                     buf.WriteInt((int)crc32);
                     DoorPacket.CmdIndex = 0x03;

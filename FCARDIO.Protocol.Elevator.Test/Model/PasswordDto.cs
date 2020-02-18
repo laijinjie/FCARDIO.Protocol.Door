@@ -1,7 +1,7 @@
-﻿using FCARDIO.Protocol.Elevator.FC8864.Password;
+﻿using DoNetDrive.Protocol.Elevator.FC8864.Password;
 using System;
 
-namespace FCARDIO.Protocol.Elevator.Test.Model
+namespace DoNetDrive.Protocol.Elevator.Test.Model
 {
     public class PasswordDto
     {

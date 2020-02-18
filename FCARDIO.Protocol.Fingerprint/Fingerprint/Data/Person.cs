@@ -257,7 +257,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
             //for (int i = 0; i < 2; i++)
             //{
             //    byte type = data.ReadByte();
-            //    var bytelist = FCARD.Common.NumUtil.ByteToBit(type);
+            //    var bytelist = DoNetTool.Common.NumUtil.ByteToBit(type);
             //    for (int j = 0; j < bytelist.Length; j++)
             //    {
             //        if (i * 8 + j > 9)
@@ -311,7 +311,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
             //        list[j] = FingerprintFeatureCodeList[i * 8 + j];
             //    }
 
-            //    byte type = FCARD.Common.NumUtil.BitToByte(list);
+            //    byte type = DoNetTool.Common.NumUtil.BitToByte(list);
             //    data.WriteByte(type);
             //}
 

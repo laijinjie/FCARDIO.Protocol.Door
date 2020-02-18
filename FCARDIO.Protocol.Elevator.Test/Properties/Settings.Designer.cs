@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FCARDIO.Protocol.Elevator.Test.Properties
+namespace DoNetDrive.Protocol.Elevator.Test.Properties
 {
 
 

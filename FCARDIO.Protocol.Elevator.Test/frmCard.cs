@@ -1,11 +1,11 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Core.Extension;
-using FCARDIO.Protocol.Elevator.FC8864.Card.CardDataBase;
-using FCARDIO.Protocol.Elevator.FC8864.Card.CardDatabaseDetail;
-using FCARDIO.Protocol.Elevator.FC8864.Card.ClearCardDataBase;
-using FCARDIO.Protocol.Elevator.FC8864.Card.DeleteCard;
-using FCARDIO.Protocol.Elevator.FC8864.Data;
-using FCARDIO.Protocol.Elevator.Test.Model;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Core.Extension;
+using DoNetDrive.Protocol.Elevator.FC8864.Card.CardDataBase;
+using DoNetDrive.Protocol.Elevator.FC8864.Card.CardDatabaseDetail;
+using DoNetDrive.Protocol.Elevator.FC8864.Card.ClearCardDataBase;
+using DoNetDrive.Protocol.Elevator.FC8864.Card.DeleteCard;
+using DoNetDrive.Protocol.Elevator.FC8864.Data;
+using DoNetDrive.Protocol.Elevator.Test.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.Elevator.Test
+namespace DoNetDrive.Protocol.Elevator.Test
 {
     public partial class frmCard : frmNodeForm
     {
@@ -89,7 +89,7 @@ namespace FCARDIO.Protocol.Elevator.Test
         private void button2_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
-            var par = new Door.FC8800.Card.ReadCardDataBase_Parameter(cmbcardType.SelectedIndex + 1);
+            var par = new Door.Door8800.Card.ReadCardDataBase_Parameter(cmbcardType.SelectedIndex + 1);
 
 
             ReadCardDataBase cmd = new ReadCardDataBase(cmdDtl, par);
@@ -129,7 +129,7 @@ namespace FCARDIO.Protocol.Elevator.Test
                 {
                     sLogs.AppendLine($"读取到的卡片数:{iReadCount},带读取的卡片数据类型:{DBTypes[iType]}");
                     sLogs.Capacity = result.CardList.Count * 100;
-                    //FC8800的卡号
+                    //Door8800的卡号
                     int i = 1;
                     foreach (var c in result.CardList)
                     {
@@ -284,7 +284,7 @@ namespace FCARDIO.Protocol.Elevator.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as Door.FC8800.Card.WriteCardList_Result;
+                var result = cmd.getResult() as Door.Door8800.Card.WriteCardList_Result;
                 WriteCardCallBlack(cmde, result);
             };
         }
@@ -318,13 +318,13 @@ namespace FCARDIO.Protocol.Elevator.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as Door.FC8800.Card. WriteCardList_Result;
+                var result = cmd.getResult() as Door.Door8800.Card. WriteCardList_Result;
                 WriteCardCallBlack(cmde, result);
             };
         }
 
 
-        private void WriteCardCallBlack(CommandEventArgs cmde, Door.FC8800.Card.WriteCardList_Result result)
+        private void WriteCardCallBlack(CommandEventArgs cmde, Door.Door8800.Card.WriteCardList_Result result)
         {
             if (result != null)
             {
@@ -762,7 +762,7 @@ namespace FCARDIO.Protocol.Elevator.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as Door.FC8800.Card.WriteCardList_Result;
+                var result = cmd.getResult() as Door.Door8800.Card.WriteCardList_Result;
                 WriteCardCallBlack(cmde, result);
             };
         }

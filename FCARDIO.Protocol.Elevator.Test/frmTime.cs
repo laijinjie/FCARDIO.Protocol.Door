@@ -1,9 +1,9 @@
-﻿using FCARDIO.Protocol.Elevator.FC8864.Time;
-using FCARDIO.Protocol.Elevator.FC8864.Time.TimeErrorCorrection;
+﻿using DoNetDrive.Protocol.Elevator.FC8864.Time;
+using DoNetDrive.Protocol.Elevator.FC8864.Time.TimeErrorCorrection;
 using System;
 using System.Text.RegularExpressions;
 
-namespace FCARDIO.Protocol.Elevator.Test
+namespace DoNetDrive.Protocol.Elevator.Test
 {
     public partial class frmTime : frmNodeForm
     {
@@ -48,7 +48,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.Time. ReadTime_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.Time. ReadTime_Result;
                 string ControllerDate = result.ControllerDate.ToString("yyyy-MM-dd HH:mm:ss"); //设备时间
                 int Seconds = 0; //误差秒数
                 string tip = string.Empty;
@@ -102,7 +102,7 @@ namespace FCARDIO.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.FC8800.Time.TimeErrorCorrection.ReadTimeError_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.Time.TimeErrorCorrection.ReadTimeError_Result;
                 string CorrectionState = result.TimeErrorCorrection[0] == 0 ? "调慢" : "调快"; //误差修正状态
                 int CorrectionSeconds = result.TimeErrorCorrection[1]; //误差修正秒数
                 string tip = string.Empty;
