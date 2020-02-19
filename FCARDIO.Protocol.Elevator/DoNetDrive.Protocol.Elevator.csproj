@@ -40,6 +40,9 @@
     <Reference Include="DoNetDrive.Protocol.Door">
       <HintPath>..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
     </Reference>
+    <Reference Include="DoNetDrive.Protocol.Util">
+      <HintPath>..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
+    </Reference>
     <Reference Include="DoNetTool.Common">
       <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>
     </Reference>

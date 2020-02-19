@@ -72,7 +72,7 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.Door.GateMagneticAlarm
                     list[j] = DoorNumList[i * 8 + j];
                 }
 
-                byte type = FCARD.Common.NumUtil.BitToByte(list);
+                byte type = DoNetTool.Common.NumUtil.BitToByte(list);
                 databuf.WriteByte(type);
             }
 
@@ -100,7 +100,7 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.Door.GateMagneticAlarm
             for (int i = 0; i < 8; i++)
             {
                 byte type = databuf.ReadByte();
-                var bytelist = FCARD.Common.NumUtil.ByteToBit(type);
+                var bytelist = DoNetTool.Common.NumUtil.ByteToBit(type);
                 for (int j = 0; j < 8; j++)
                 {
                     DoorNumList[i * 8 + j] = bytelist[j];

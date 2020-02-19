@@ -101,10 +101,10 @@ namespace DoNetDrive.Protocol.Elevator
         /// <param name="dl">数据长度</param>
         protected void RewritePacket(byte ct, byte ci, byte cp, int dl)
         {
-            FCPacket.CmdType = ct;
-            FCPacket.CmdIndex = ci;
-            FCPacket.CmdPar = cp;
-            FCPacket.DataLen = dl;
+            DoorPacket.CmdType = ct;
+            DoorPacket.CmdIndex = ci;
+            DoorPacket.CmdPar = cp;
+            DoorPacket.DataLen = dl;
 
         }
 
@@ -117,9 +117,9 @@ namespace DoNetDrive.Protocol.Elevator
         /// <param name="dl">数据长度</param>
         protected void RewritePacket(byte ci, byte cp, int dl)
         {
-            FCPacket.CmdIndex = ci;
-            FCPacket.CmdPar = cp;
-            FCPacket.DataLen = dl;
+            DoorPacket.CmdIndex = ci;
+            DoorPacket.CmdPar = cp;
+            DoorPacket.DataLen = dl;
 
         }
     }

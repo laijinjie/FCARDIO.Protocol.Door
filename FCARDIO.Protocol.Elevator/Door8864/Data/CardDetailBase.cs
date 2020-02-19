@@ -158,7 +158,7 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.Data
                     list[j] = DoorNumList[i * 8 + j];
                 }
 
-                byte type = FCARD.Common.NumUtil.BitToByte(list);
+                byte type = DoNetTool.Common.NumUtil.BitToByte(list);
                 data.WriteByte(type);
             }
             data.WriteByte(DoorNumList[64]);
@@ -203,7 +203,7 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.Data
             for (int i = 0; i < 8; i++)
             {
                 byte type = data.ReadByte();
-                var bytelist = FCARD.Common.NumUtil.ByteToBit(type);
+                var bytelist = DoNetTool.Common.NumUtil.ByteToBit(type);
                 for (int j = 0; j < 8; j++)
                 {
                     DoorNumList[i * 8 + j] = bytelist[j];
