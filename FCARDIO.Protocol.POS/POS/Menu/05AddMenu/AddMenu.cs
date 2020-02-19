@@ -1,6 +1,7 @@
-﻿using DotNetty.Buffers;
-using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.Door.FC8800.TemplateMethod;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
+using DoNetDrive.Protocol.OnlineAccess;
+using DotNetty.Buffers;
 using System.Collections.Generic;
 
 namespace DoNetDrive.Protocol.POS.Menu
@@ -8,7 +9,7 @@ namespace DoNetDrive.Protocol.POS.Menu
     /// <summary>
     /// 添加菜单
     /// </summary>
-    public class AddMenu : Door.FC8800.TemplateMethod.TemplateWriteData_Base<Data.MenuDetail>
+    public class AddMenu : TemplateWriteData_Base<Data.MenuDetail>
     {
         /// <summary>
         /// 当前命令进度
@@ -23,8 +24,6 @@ namespace DoNetDrive.Protocol.POS.Menu
         public AddMenu(INCommandDetail cd, AddMenu_Parameter par) : base(cd, par)
         {
             MaxBufSize = (mBatchCount * mParDataLen) + 4;
-            CheckResponseCmdType = 0x06;
-            CmdIndex = 0x04;
         }
 
         /// <summary>
@@ -37,6 +36,20 @@ namespace DoNetDrive.Protocol.POS.Menu
             ReadAllMenu_Result result = new ReadAllMenu_Result(DataList);
             return result;
         }
+
+
+        /// <summary>
+        /// 检测结束指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected override bool CheckResponseCompleted(OnlineAccessPacket oPck)
+        {
+            return (oPck.CmdType == 0x36 &&
+                oPck.CmdIndex == 4 &&
+                oPck.CmdPar == 0xff);
+        }
+
 
         /// <summary>
         /// 

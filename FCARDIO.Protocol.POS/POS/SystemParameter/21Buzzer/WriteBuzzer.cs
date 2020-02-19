@@ -1,11 +1,12 @@
 ﻿using DoNetDrive.Core.Command;
+using System;
 
 namespace DoNetDrive.Protocol.POS.SystemParameter.Buzzer
 {
     /// <summary>
     /// 设置主板蜂鸣器
     /// </summary>
-    public class WriteBuzzer : Door.FC8800.SystemParameter.FunctionParameter.WriteBuzzer
+    public class WriteBuzzer : Door.Door8800.SystemParameter.FunctionParameter.WriteBuzzer
     {
         /// <summary>
         /// 设置主板蜂鸣器 初始化命令
@@ -14,10 +15,21 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.Buzzer
         /// <param name="par"></param>
         public WriteBuzzer(INCommandDetail cd, WriteBuzzer_Parameter par) : base(cd, par)
         {
-            CmdType = 0x01;
-            CmdIndex = 0x12;
-            CmdPar = 0x01;
         }
 
+
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            WriteBuzzer_Parameter model = _Parameter as WriteBuzzer_Parameter;
+
+            var acl = _Connector.GetByteBufAllocator();
+
+            var buf = acl.Buffer(model.GetDataLen());
+
+            Packet(0x01, 0x12, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+        }
     }
 }

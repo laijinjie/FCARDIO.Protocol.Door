@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DoNetDrive.Protocol.Door.FC8800.TemplateMethod;
+﻿using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
+using System;
 
 namespace DoNetDrive.Protocol.POS.Subsidy
 {
-    public class AddSussidy_Parameter : Door.FC8800.TemplateMethod.TemplateParameter_Base
+    public class AddSussidy_Parameter : TemplateParameter_Base
     {
         protected override bool CheckedParameterItem(TemplateData_Base sussidy)
         {

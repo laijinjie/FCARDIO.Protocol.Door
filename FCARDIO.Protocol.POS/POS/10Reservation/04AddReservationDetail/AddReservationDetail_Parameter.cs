@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 using DoNetDrive.Protocol.POS.Data;
-using FCARD.Common.Extensions;
 
 namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
 {

@@ -5,7 +5,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.Deadline
     /// <summary>
     /// 设置设备有效期_参数
     /// </summary>
-    public class WriteDeadline_Parameter : Door.FC8800.SystemParameter.Deadline.WriteDeadline_Parameter
+    public class WriteDeadline_Parameter : Door.Door8800.SystemParameter.Deadline.WriteDeadline_Parameter
     {
         /// <summary>
         /// 构建一个空的实例

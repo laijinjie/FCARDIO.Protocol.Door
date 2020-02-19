@@ -5,7 +5,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.Deadline
     /// <summary>
     /// 获取设备有效期
     /// </summary>
-    public class ReadDeadline : Door.FC8800.SystemParameter.Deadline.ReadDeadline
+    public class ReadDeadline : Door.Door8800.SystemParameter.Deadline.ReadDeadline
     {
         /// <summary>
         /// 获取设备有效期 初始化命令
@@ -13,8 +13,14 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.Deadline
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public ReadDeadline(INCommandDetail cd) : base(cd)
         {
-            CmdType = 0x01;
-            CmdIndex = 0x03;
+        }
+
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            Packet(0x01, 0x03);
         }
     }
 }

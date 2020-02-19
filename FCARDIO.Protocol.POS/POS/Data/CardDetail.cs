@@ -1,16 +1,12 @@
 ﻿using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
 
 namespace DoNetDrive.Protocol.POS.Data
 {
     /// <summary>
     /// 卡号名单
     /// </summary>
-    public class CardDetail : Door.FC8800.TemplateMethod.TemplateData_Base
+    public class CardDetail : TemplateData_Base
     {
         /// <summary>
         /// 卡号
@@ -52,14 +48,15 @@ namespace DoNetDrive.Protocol.POS.Data
             return 8;
         }
 
-        public override IByteBuffer GetDeleteBytes(IByteBuffer data)
+        public override IByteBuffer GetDeleteBytes(IByteBuffer databuf)
         {
-            throw new NotImplementedException();
+            databuf.WriteByte(CardType);
+            return databuf;
         }
 
         public override int GetDeleteDataLen()
         {
-            throw new NotImplementedException();
+            return 1;
         }
 
         public override void SetFailBytes(IByteBuffer databuf)

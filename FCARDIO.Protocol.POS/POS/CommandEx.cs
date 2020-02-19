@@ -1,18 +1,13 @@
 ﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.FC8800;
+using DoNetDrive.Protocol.Door8800;
 using DoNetDrive.Protocol.OnlineAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoNetDrive.Protocol.POS
 {
     /// <summary>
     /// 针对命令中的写参数命令进行抽象封装
     /// </summary>
-    public abstract class CommandEx : FC8800Command
+    public abstract class CommandEx : Door8800Command
     {
         /// <summary>
         /// 初始化命令
@@ -104,10 +99,10 @@ namespace DoNetDrive.Protocol.POS
         /// <param name="dl">数据长度</param>
         protected void RewritePacket(byte ct, byte ci, byte cp, int dl)
         {
-            FCPacket.CmdType = ct;
-            FCPacket.CmdIndex = ci;
-            FCPacket.CmdPar = cp;
-            FCPacket.DataLen = dl;
+            DoorPacket.CmdType = ct;
+            DoorPacket.CmdIndex = ci;
+            DoorPacket.CmdPar = cp;
+            DoorPacket.DataLen = dl;
 
         }
 
@@ -120,9 +115,9 @@ namespace DoNetDrive.Protocol.POS
         /// <param name="dl">数据长度</param>
         protected void RewritePacket(byte ci, byte cp, int dl)
         {
-            FCPacket.CmdIndex = ci;
-            FCPacket.CmdPar = cp;
-            FCPacket.DataLen = dl;
+            DoorPacket.CmdIndex = ci;
+            DoorPacket.CmdPar = cp;
+            DoorPacket.DataLen = dl;
 
         }
     }

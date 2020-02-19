@@ -1,4 +1,5 @@
-﻿using DoNetDrive.Protocol.Door.FC8800.TemplateMethod;
+﻿using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
+
 using System.Collections.Generic;
 
 namespace DoNetDrive.Protocol.POS.Card

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DoNetDrive.Protocol.POS.TimeGroup
 {
-    class ReadTimeGroup_Result : Door.FC8800.TimeGroup.ReadTimeGroup_Result
+    class ReadTimeGroup_Result : Door.Door8800.TimeGroup.ReadTimeGroup_Result
     {
        
 

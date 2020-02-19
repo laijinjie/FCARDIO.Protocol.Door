@@ -3,7 +3,7 @@
     /// <summary>
     /// 设置主板蜂鸣器_参数
     /// </summary>
-    public class WriteBuzzer_Parameter : Door.FC8800.SystemParameter.FunctionParameter.WriteBuzzer_Parameter
+    public class WriteBuzzer_Parameter : Door.Door8800.SystemParameter.FunctionParameter.WriteBuzzer_Parameter
     {
         public WriteBuzzer_Parameter()
         {

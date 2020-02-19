@@ -1,16 +1,12 @@
 ﻿using DoNetDrive.Core.Command;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoNetDrive.Protocol.POS.Time
 {
     /// <summary>
     /// 将自定义时间写入到控制器中
     /// </summary>
-    public class WriteCustomTime : Door.FC8800.Time.WriteCustomTime
+    public class WriteCustomTime : Door.Door8800.Time.WriteCustomTime
     {
         /// <summary>
         /// 将自定义时间写入到控制器中
@@ -19,8 +15,16 @@ namespace DoNetDrive.Protocol.POS.Time
         /// <param name="par">包含自定义时间</param>
         public WriteCustomTime(INCommandDetail cd, WriteCustomTime_Parameter par) : base(cd, par)
         {
-            CmdType = 0x02;
         }
-
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            WriteCustomTime_Parameter model = _Parameter as WriteCustomTime_Parameter;
+            var acl = _Connector.GetByteBufAllocator();
+            var buf = acl.Buffer(model.GetDataLen());
+            Packet(0x02, 0x02, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+        }
     }
 }

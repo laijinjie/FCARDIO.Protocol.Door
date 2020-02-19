@@ -1,4 +1,5 @@
-﻿using DotNetty.Buffers;
+﻿using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
+using DotNetty.Buffers;
 using System;
 using System.Text;
 
@@ -7,7 +8,7 @@ namespace DoNetDrive.Protocol.POS.Data
     /// <summary>
     /// 菜单
     /// </summary>
-    public class MenuDetail : Door.FC8800.TemplateMethod.TemplateData_Base
+    public class MenuDetail : TemplateData_Base
     {
         /// <summary>
         /// 商品代码

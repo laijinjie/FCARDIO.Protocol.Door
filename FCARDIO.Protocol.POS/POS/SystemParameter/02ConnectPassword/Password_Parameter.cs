@@ -3,7 +3,7 @@
     /// <summary>
     /// 通讯密码
     /// </summary>
-    public class Password_Parameter : Door.FC8800.SystemParameter.ConnectPassword.Password_Parameter
+    public class Password_Parameter : Door.Door8800.SystemParameter.ConnectPassword.Password_Parameter
     {
         /// <summary>
         /// 构建一个空的实例

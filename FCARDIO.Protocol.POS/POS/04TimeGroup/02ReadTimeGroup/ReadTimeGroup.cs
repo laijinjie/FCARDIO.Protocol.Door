@@ -12,7 +12,7 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
     /// <summary>
     /// 读取所有时段
     /// </summary>
-    public class ReadTimeGroup : Door.FC8800.TimeGroup.ReadTimeGroup
+    public class ReadTimeGroup : Door.Door8800.TimeGroup.ReadTimeGroup
     {
         /// <summary>
         /// 初始化参数
@@ -20,9 +20,13 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
         /// <param name="cd"></param>
         public ReadTimeGroup(INCommandDetail cd) : base(cd)
         {
-            CmdType = 0x06;
-            CmdIndex = 0x02;
         }
-
+        /// <summary>
+        /// 将命令打包成一个Packet，准备发送
+        /// </summary>
+        protected override void CreatePacket0()
+        {
+            Packet(0x06, 0x02);
+        }
     }
 }

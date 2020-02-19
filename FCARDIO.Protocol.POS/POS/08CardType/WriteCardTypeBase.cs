@@ -150,7 +150,7 @@ namespace DoNetDrive.Protocol.POS.CardType
             //mIndex -= mBatchCount;
             //var buf = GetCmdBuf();
             //WritePasswordToBuf(buf);
-            //FCPacket.DataLen = (UInt32)buf.ReadableBytes;
+            //DoorPacket.DataLen = (UInt32)buf.ReadableBytes;
             //CommandReady();//设定命令当前状态为准备就绪，等待发送
         }
 
@@ -171,7 +171,7 @@ namespace DoNetDrive.Protocol.POS.CardType
                 //未发送完毕，继续发送
                 var buf = GetCmdBuf();
                 WriteCardTypeToBuf(buf);
-                FCPacket.DataLen = buf.ReadableBytes;
+                DoorPacket.DataLen = buf.ReadableBytes;
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
             }
         }

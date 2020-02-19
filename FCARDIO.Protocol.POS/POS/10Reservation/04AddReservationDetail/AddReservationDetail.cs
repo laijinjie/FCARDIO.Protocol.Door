@@ -82,7 +82,7 @@ namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
         {
             OnlineAccessPacket oPck = readPacket as OnlineAccessPacket;
             if (oPck == null) return;
-            if (oPck.Code != FCPacket.Code) return;//信息代码不一致，不是此命令的后续
+            if (oPck.Code != DoorPacket.Code) return;//信息代码不一致，不是此命令的后续
             if (CheckResponse_PasswordErr(oPck))
             {
                 base.CommandNext(readPacket);
@@ -152,7 +152,7 @@ namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
                 //未发送完毕，继续发送
                 var buf = GetCmdBuf();
                 WriteReservationToBuf(buf);
-                FCPacket.DataLen = buf.ReadableBytes;
+                DoorPacket.DataLen = buf.ReadableBytes;
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
             }
         }

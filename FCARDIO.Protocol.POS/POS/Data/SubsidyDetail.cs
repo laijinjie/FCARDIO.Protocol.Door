@@ -1,5 +1,6 @@
-﻿using DotNetty.Buffers;
+﻿using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
 using DoNetDrive.Protocol.Util;
+using DotNetty.Buffers;
 using System;
 
 namespace DoNetDrive.Protocol.POS.Data
@@ -7,7 +8,7 @@ namespace DoNetDrive.Protocol.POS.Data
     /// <summary>
     /// 补贴
     /// </summary>
-    public class SubsidyDetail : Door.FC8800.TemplateMethod.TemplateData_Base
+    public class SubsidyDetail : TemplateData_Base
     {
         /// <summary>
         /// 卡号

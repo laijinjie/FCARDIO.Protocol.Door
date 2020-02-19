@@ -1,16 +1,13 @@
-﻿using DotNetty.Buffers;
-using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.Door.FC8800.TemplateMethod;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
 using DoNetDrive.Protocol.OnlineAccess;
+using DotNetty.Buffers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoNetDrive.Protocol.POS.Subsidy
 {
-    public class AddSussidy : Door.FC8800.TemplateMethod.TemplateWriteData_Base<Data.SubsidyDetail>
+    public class AddSussidy : TemplateWriteData_Base<Data.SubsidyDetail>
     {
         /// <summary>
         /// 当前命令进度
@@ -31,6 +28,16 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         {
             mStep = 1;
             Packet(0x07, 0x04, 0x00);
+        }
+
+        /// <summary>
+        /// 检测结束指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected override bool CheckResponseCompleted(OnlineAccessPacket oPck)
+        {
+            return false;
         }
 
         /// <summary>
