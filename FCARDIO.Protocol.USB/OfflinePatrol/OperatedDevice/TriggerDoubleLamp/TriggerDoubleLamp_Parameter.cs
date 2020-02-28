@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerDoubleLamp
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerDoubleLamp
 {
     /// <summary>
     /// 触发双色指示灯 参数

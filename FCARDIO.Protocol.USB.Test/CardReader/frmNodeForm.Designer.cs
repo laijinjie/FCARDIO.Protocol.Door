@@ -1,4 +1,4 @@
-﻿namespace FCARDIO.Protocol.USB.CardReader.Test
+﻿namespace DoNetDrive.Protocol.USB.CardReader.Test
 {
     partial class frmNodeForm
     {

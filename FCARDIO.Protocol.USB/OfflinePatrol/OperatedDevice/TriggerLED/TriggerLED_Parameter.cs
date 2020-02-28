@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerLED
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerLED
 {
     /// <summary>
     /// 触发LED手电筒 参数

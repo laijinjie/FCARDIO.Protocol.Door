@@ -7,8 +7,8 @@
     <ProjectGuid>{3502F7F1-0805-457D-B8D7-35C22D722550}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FCARDIO.Protocol.USB.CardReader</RootNamespace>
-    <AssemblyName>FCARDIO.Protocol.USB.CardReader</AssemblyName>
+    <RootNamespace>DoNetDrive.Protocol.USB.CardReader</RootNamespace>
+    <AssemblyName>DoNetDrive.Protocol.USB.CardReader</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DoNetDrive.Core">
+      <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol">
+      <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Util">
+      <HintPath>..\..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetTool.Common">
+      <HintPath>..\..\DLL\DoNetTool.Common.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\..\DLL\DotNetty.Buffers.dll</HintPath>
     </Reference>
@@ -45,15 +57,6 @@
     </Reference>
     <Reference Include="DotNetty.Transport">
       <HintPath>..\..\DLL\DotNetty.Transport.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARD.Common">
-      <HintPath>..\..\DLL\FCARD.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Core">
-      <HintPath>..\..\DLL\FCARDIO.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol">
-      <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -123,12 +126,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\FCARDIO.Protocol.Util\FCARDIO.Protocol.Util.csproj">
-      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
-      <Name>FCARDIO.Protocol.Util</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

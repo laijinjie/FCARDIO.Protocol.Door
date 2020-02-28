@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime
 {
     /// <summary>
     /// 设置生产日期
@@ -53,7 +53,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            FCARDIO.Protocol.Util.TimeUtil.DateToBCD_yyMMdd(databuf, Time);
+            DoNetDrive.Protocol.Util.TimeUtil.DateToBCD_yyMMdd(databuf, Time);
             return databuf;
         }
 
@@ -72,7 +72,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            Time = FCARDIO.Protocol.Util.TimeUtil.BCDTimeToDate_yyMMdd(databuf);
+            Time = DoNetDrive.Protocol.Util.TimeUtil.BCDTimeToDate_yyMMdd(databuf);
         }
     }
 }

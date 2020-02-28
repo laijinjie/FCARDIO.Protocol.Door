@@ -7,8 +7,8 @@
     <ProjectGuid>{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FCARDIO.Protocol.USB.OfflinePatrol.Test</RootNamespace>
-    <AssemblyName>FCARDIO.Protocol.USB.OfflinePatrol.Test</AssemblyName>
+    <RootNamespace>DoNetDrive.Protocol.USB.OfflinePatrol.Test</RootNamespace>
+    <AssemblyName>DoNetDrive.Protocol.USB.OfflinePatrol.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -35,17 +35,17 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DoNetDrive.Core">
+      <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol">
+      <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\..\DLL\DotNetty.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Common">
       <HintPath>..\..\DLL\DotNetty.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Core">
-      <HintPath>..\..\DLL\FCARDIO.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol">
-      <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -121,9 +121,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FCARDIO.Protocol.USB\OfflinePatrol\FCARDIO.Protocol.USB.OfflinePatrol.csproj">
+    <ProjectReference Include="..\..\FCARDIO.Protocol.USB\OfflinePatrol\DoNetDrive.Protocol.USB.OfflinePatrol.csproj">
       <Project>{69b0709d-f370-41d8-be55-c115fef3730e}</Project>
-      <Name>FCARDIO.Protocol.USB.OfflinePatrol</Name>
+      <Name>DoNetDrive.Protocol.USB.OfflinePatrol</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

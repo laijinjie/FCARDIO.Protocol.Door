@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Transaction
 {
     /// <summary>
     /// 记录数据库类型

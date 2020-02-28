@@ -1,21 +1,21 @@
-﻿using FCARDIO.Core;
-using FCARDIO.Core.Command;
-using FCARDIO.Core.Connector;
-using FCARDIO.Core.Data;
+﻿using DoNetDrive.Core;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Core.Connector;
+using DoNetDrive.Core.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FCARDIO.Core.Extension;
+using DoNetDrive.Core.Extension;
 using System.Collections.Concurrent;
-using FCARDIO.Protocol.USBDrive;
-using FCARDIO.Core.Connector.SerialPort;
-using FCARDIO.Protocol.Transaction;
+using DoNetDrive.Protocol.USBDrive;
+using DoNetDrive.Core.Connector.SerialPort;
+using DoNetDrive.Protocol.Transaction;
 using DotNetty.Buffers;
-using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ReadFlag;
+using DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.ReadFlag;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 {
     public partial class FrmMain : Form, INMain
     {
@@ -34,40 +34,40 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
         private static void IniCommandClassNameList()
         {
             mCommandClasss = new Dictionary<string, string>();
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN.ReadSN).FullName, "读取SN");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN.WriteSN).FullName, "写入SN");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime.WriteExpireTime).FullName, "写入设备有效期");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime.ReadExpireTime).FullName, "读取设备有效期");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.Version.ReadVersion).FullName, "获取设备版本号");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SystemStatus.ReadSystemStatus).FullName, "获取设备运行信息");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode.ReadRecordStorageMode).FullName, "获取设备运行信息");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode.WriteRecordStorageMode).FullName, "获取设备运行信息");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime.ReadCreateTime).FullName, "读取生产日期");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime.WriteCreateTime).FullName, "设置生产日期");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime.ReadStartupHoldTime).FullName, "获取开机保持时间");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime.WriteStartupHoldTime).FullName, "设置开机保持时间");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime.ReadLEDOpenHoldTime).FullName, "读取LED开灯保持时间");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime.WriteLEDOpenHoldTime).FullName, "设置LED开灯保持时间");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ReadFlag.OpenReadFlag).FullName, "打开读卡标记");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SN.ReadSN).FullName, "读取SN");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SN.WriteSN).FullName, "写入SN");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime.WriteExpireTime).FullName, "写入设备有效期");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime.ReadExpireTime).FullName, "读取设备有效期");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.Version.ReadVersion).FullName, "获取设备版本号");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SystemStatus.ReadSystemStatus).FullName, "获取设备运行信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode.ReadRecordStorageMode).FullName, "获取设备运行信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode.WriteRecordStorageMode).FullName, "获取设备运行信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime.ReadCreateTime).FullName, "读取生产日期");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime.WriteCreateTime).FullName, "设置生产日期");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime.ReadStartupHoldTime).FullName, "获取开机保持时间");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime.WriteStartupHoldTime).FullName, "设置开机保持时间");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime.ReadLEDOpenHoldTime).FullName, "读取LED开灯保持时间");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime.WriteLEDOpenHoldTime).FullName, "设置LED开灯保持时间");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.ReadFlag.OpenReadFlag).FullName, "打开读卡标记");
 
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.Time.ReadTime).FullName, "从设备中读取控制器时间");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.Time.WriteTime).FullName, "将电脑的最新时间写入到设备中");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.Time.WriteCustomTime).FullName, "将自定义时间写入到设备中");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Time.ReadTime).FullName, "从设备中读取控制器时间");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Time.WriteTime).FullName, "将电脑的最新时间写入到设备中");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Time.WriteCustomTime).FullName, "将自定义时间写入到设备中");
 
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDatabaseDetail.ReadPatrolEmplDatabaseDetail).FullName, "读取巡更人员信息");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.ClearPatrolEmplDataBase.ClearPatrolEmplDataBase).FullName, "删除所有巡更人员");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDatabase.ReadPatrolEmplDatabase).FullName, "读取所有巡更人员");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDetail.ReadPatrolEmplDetail).FullName, "读取单个巡更人员资料");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.WritePatrolEmpl.WritePatrolEmpl).FullName, "添加巡更人员");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.DeletePatrolEmpl.DeletePatrolEmpl).FullName, "删除巡更人员");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDatabaseDetail.ReadPatrolEmplDatabaseDetail).FullName, "读取巡更人员信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.PatrolEmpl.ClearPatrolEmplDataBase.ClearPatrolEmplDataBase).FullName, "删除所有巡更人员");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDatabase.ReadPatrolEmplDatabase).FullName, "读取所有巡更人员");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDetail.ReadPatrolEmplDetail).FullName, "读取单个巡更人员资料");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.PatrolEmpl.WritePatrolEmpl.WritePatrolEmpl).FullName, "添加巡更人员");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.PatrolEmpl.DeletePatrolEmpl.DeletePatrolEmpl).FullName, "删除巡更人员");
 
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase.ReadTransactionDatabase).FullName, "读取新记录");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex).FullName, "读记录数据库");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.Transaction.WriteTransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ClearTransactionDatabase.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ClearTransactionDatabase.TransactionDatabaseEmpty).FullName, "清空所有类型的记录数据库");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase.ReadTransactionDatabase).FullName, "读取新记录");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex).FullName, "读记录数据库");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.TransactionDatabaseDetail.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.WriteTransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.ClearTransactionDatabase.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.ClearTransactionDatabase.TransactionDatabaseEmpty).FullName, "清空所有类型的记录数据库");
         }
         private void Invoke(Action p)
         {
@@ -297,8 +297,8 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
             AddCmdLog(e, "命令错误");
         }
 
-        private const string Command_ReadSN = "FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN.ReadSN";
-        private const string Command_WriteSN = "FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN.WriteSN";
+        private const string Command_ReadSN = "DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SN.ReadSN";
+        private const string Command_WriteSN = "DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SN.WriteSN";
 
         private void mAllocator_CommandCompleteEvent(object sender, CommandEventArgs e)
         {
@@ -556,7 +556,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
             if (_IsClosed) return null;
             USBDriveCommandDetail cmdDtl = CommandDetailFactory.CreateDetail(CommandDetailFactory.ConnectType.SerialPort, "", GetSerialPort(),
                 CommandDetailFactory.ControllerType.USBDrive_OfflinePatrol, txtAddress.Text, string.Empty) as USBDriveCommandDetail;
-            FCARDIO.Core.Connector.SerialPort.SerialPortDetail spd = cmdDtl.Connector as FCARDIO.Core.Connector.SerialPort.SerialPortDetail;
+            DoNetDrive.Core.Connector.SerialPort.SerialPortDetail spd = cmdDtl.Connector as DoNetDrive.Core.Connector.SerialPort.SerialPortDetail;
             spd.Baudrate = 115200;
            
             return cmdDtl;

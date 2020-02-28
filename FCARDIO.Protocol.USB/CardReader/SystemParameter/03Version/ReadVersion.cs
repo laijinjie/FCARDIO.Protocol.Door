@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.USBDrive;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.USBDrive;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.Version
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version
 {
     /// <summary>
     /// 获取设备版本号

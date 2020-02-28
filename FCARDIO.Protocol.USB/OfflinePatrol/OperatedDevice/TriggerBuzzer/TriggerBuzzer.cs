@@ -1,11 +1,11 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerBuzzer
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerBuzzer
 {
     /// <summary>
     /// 触发蜂鸣器

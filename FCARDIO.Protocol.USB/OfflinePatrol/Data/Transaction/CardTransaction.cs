@@ -1,13 +1,13 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Transaction;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Protocol.Transaction;
+using DoNetDrive.Protocol.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Data.Transaction
 {
     /// <summary>
     /// 读卡记录

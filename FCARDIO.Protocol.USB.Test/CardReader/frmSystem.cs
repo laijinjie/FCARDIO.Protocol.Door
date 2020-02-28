@@ -1,21 +1,21 @@
 ﻿
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.AgencyCode;
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.Buzzer;
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.CreateTime;
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl;
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum;
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.Initialize;
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.LED;
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.OutputFormat;
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.ReadCardType;
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput;
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.SN;
-using FCARDIO.Protocol.USB.CardReader.SystemParameter.Version;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.Initialize;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.USB.CardReader.Test
+namespace DoNetDrive.Protocol.USB.CardReader.Test
 {
     public partial class frmSystem : frmNodeForm
     {

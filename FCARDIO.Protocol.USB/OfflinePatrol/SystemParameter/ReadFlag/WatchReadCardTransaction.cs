@@ -1,12 +1,12 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Transaction;
+using DoNetDrive.Protocol.Transaction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ReadFlag
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.ReadFlag
 {
     /// <summary>
     /// 读卡消息

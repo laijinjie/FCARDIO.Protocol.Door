@@ -1,10 +1,10 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Util;
-using FCARDIO.Core.Extension;
+using DoNetDrive.Protocol.Util;
+using DoNetDrive.Core.Extension;
 using System;
 using System.Text.RegularExpressions;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum
 {
     /// <summary>
     /// IC卡自定义卡号 参数

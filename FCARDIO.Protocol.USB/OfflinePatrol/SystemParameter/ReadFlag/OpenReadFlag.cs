@@ -1,13 +1,13 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Core.Packet;
-using FCARDIO.Protocol.USBDrive;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Core.Packet;
+using DoNetDrive.Protocol.USBDrive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ReadFlag
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.ReadFlag
 {
     /// <summary>
     /// 发卡标记打开

@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Transaction;
-using FCARDIO.Protocol.USBDrive;
+using DoNetDrive.Protocol.Transaction;
+using DoNetDrive.Protocol.USBDrive;
 using System;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol
+namespace DoNetDrive.Protocol.USB.OfflinePatrol
 {
     /// <summary>
     /// 

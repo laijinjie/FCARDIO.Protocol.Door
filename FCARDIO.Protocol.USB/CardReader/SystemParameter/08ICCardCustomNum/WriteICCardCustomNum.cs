@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum
 {
     /// <summary>
     /// 设置卡号参数

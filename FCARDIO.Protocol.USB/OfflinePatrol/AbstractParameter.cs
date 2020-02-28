@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Core.Data;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Core.Data;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol
+namespace DoNetDrive.Protocol.USB.OfflinePatrol
 {
     /// <summary>
     /// 所有参数的基类，规定了一个基本数据检查流程

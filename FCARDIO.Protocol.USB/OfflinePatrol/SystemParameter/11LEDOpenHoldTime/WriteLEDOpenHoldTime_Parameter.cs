@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime
 {
     /// <summary>
     /// 设置开机保持时间 参数

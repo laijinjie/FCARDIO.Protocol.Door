@@ -1,11 +1,11 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime
 {
     /// <summary>
     /// 设置 开机保持时间

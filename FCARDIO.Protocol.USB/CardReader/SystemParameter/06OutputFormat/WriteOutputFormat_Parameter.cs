@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.OutputFormat
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat
 {
     /// <summary>
     /// 设置输出格式参数

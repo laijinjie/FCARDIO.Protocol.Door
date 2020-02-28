@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.WriteTransactionDatabaseReadIndex
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.WriteTransactionDatabaseReadIndex
 {
     /// <summary>
     /// 更新记录指针

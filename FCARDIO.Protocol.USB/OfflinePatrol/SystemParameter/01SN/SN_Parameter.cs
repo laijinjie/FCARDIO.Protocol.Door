@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SN
 {
     /// <summary>
     /// 写入巡更棒SN_参数

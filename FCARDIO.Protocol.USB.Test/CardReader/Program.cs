@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.USB.CardReader.Test
+namespace DoNetDrive.Protocol.USB.CardReader.Test
 {
     public class Program
     {

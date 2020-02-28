@@ -1,13 +1,13 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 using System;
-using FCARD.Common.Extensions;
+using DoNetTool.Common.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.CardReader.ICCard.SearchCard
+namespace DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard
 {
     /// <summary>
     /// 寻卡 返回结果

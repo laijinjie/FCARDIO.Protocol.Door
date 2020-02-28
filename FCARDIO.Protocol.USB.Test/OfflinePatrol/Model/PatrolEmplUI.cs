@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Test.Model
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test.Model
 {
     public class PatrolEmplUI 
     {

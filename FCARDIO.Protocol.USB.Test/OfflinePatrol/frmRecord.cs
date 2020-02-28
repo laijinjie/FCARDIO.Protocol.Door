@@ -1,6 +1,6 @@
-﻿using FCARDIO.Protocol.Transaction;
-using FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction;
-using FCARDIO.Core.Extension;
+﻿using DoNetDrive.Protocol.Transaction;
+using DoNetDrive.Protocol.USB.OfflinePatrol.Data.Transaction;
+using DoNetDrive.Core.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 {
     public partial class frmRecord : frmNodeForm
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDetail
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDetail
 {
     /// <summary>
     /// 读取单个巡更人员资料 参数
@@ -62,7 +62,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDetail
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             databuf.WriteByte(Mode);
-            byte[] b = FCARD.Common.NumUtil.Int24ToByte(Param);
+            byte[] b = DoNetTool.Common.NumUtil.Int24ToByte(Param);
             databuf.WriteBytes(b);
             return databuf;
         }

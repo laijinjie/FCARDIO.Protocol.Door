@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.LCDFlash
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.OperatedDevice.LCDFlash
 {
     /// <summary>
     /// LCD屏幕刷屏 参数

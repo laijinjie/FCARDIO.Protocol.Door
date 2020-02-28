@@ -1,22 +1,22 @@
 ﻿
-using FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.LCDFlash;
-using FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerBuzzer;
-using FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerDoubleLamp;
-using FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerLED;
-using FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerVibrate;
-using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime;
-using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime;
-using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.Initialize;
-using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime;
-using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode;
-using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN;
-using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime;
-using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SystemStatus;
-using FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.Version;
+using DoNetDrive.Protocol.USB.OfflinePatrol.OperatedDevice.LCDFlash;
+using DoNetDrive.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerBuzzer;
+using DoNetDrive.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerDoubleLamp;
+using DoNetDrive.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerLED;
+using DoNetDrive.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerVibrate;
+using DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime;
+using DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime;
+using DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.Initialize;
+using DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.LEDOpenHoldTime;
+using DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode;
+using DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SN;
+using DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime;
+using DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SystemStatus;
+using DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.Version;
 using System;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 {
     public partial class frmSystem : frmNodeForm
     {

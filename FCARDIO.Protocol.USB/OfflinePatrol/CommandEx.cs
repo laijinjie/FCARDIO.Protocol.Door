@@ -1,14 +1,14 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
-using FCARDIO.Protocol.USBDrive;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.USBDrive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol
+namespace DoNetDrive.Protocol.USB.OfflinePatrol
 {
     public abstract class CommandEx : USBDriveCommand
     {
@@ -61,7 +61,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol
         /// <returns></returns>
         protected IByteBuffer GetCmdBuf()
         {
-            var buf = FCPacket.CmdData;
+            var buf = USBPacket.CmdData;
             buf?.Clear();
             return buf;
         }
@@ -74,8 +74,8 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol
         /// <param name="dl">数据长度</param>
         protected void RewritePacket(byte ci, int dl)
         {
-            FCPacket.CmdIndex = ci;
-            FCPacket.DataLen = dl;
+            USBPacket.CmdIndex = ci;
+            USBPacket.DataLen = dl;
 
         }
     }

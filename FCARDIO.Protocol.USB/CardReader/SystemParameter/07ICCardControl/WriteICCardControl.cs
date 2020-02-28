@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl
 {
     /// <summary>
     /// 设置扇区验证

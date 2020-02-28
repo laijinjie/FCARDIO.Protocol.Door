@@ -1,8 +1,8 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.USBDrive;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.USBDrive;
 using System.Text;
 
-namespace FCARDIO.Protocol.USB.CardReader.Test
+namespace DoNetDrive.Protocol.USB.CardReader.Test
 {
     /// <summary>
     /// 

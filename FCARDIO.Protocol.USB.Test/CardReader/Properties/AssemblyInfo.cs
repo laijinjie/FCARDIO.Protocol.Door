@@ -7,11 +7,11 @@ using System.Windows;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("FCARDIO.Protocol.USB.CardReader.Test")]
+[assembly: AssemblyTitle("DoNetDrive.Protocol.USB.CardReader.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FCARDIO.Protocol.USB.CardReader.Test")]
+[assembly: AssemblyProduct("DoNetDrive.Protocol.USB.CardReader.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

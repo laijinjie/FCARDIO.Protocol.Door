@@ -1,13 +1,13 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
+namespace DoNetDrive.Protocol.USB.CardReader.ICCard.Sector
 {
     /// <summary>
     /// 读扇区内容 返回结果

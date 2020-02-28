@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Data.Transaction
 {
     /// <summary>
     /// 记录指针信息 基类

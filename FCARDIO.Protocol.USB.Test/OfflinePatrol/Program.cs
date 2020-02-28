@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 {
     public class Program
     {

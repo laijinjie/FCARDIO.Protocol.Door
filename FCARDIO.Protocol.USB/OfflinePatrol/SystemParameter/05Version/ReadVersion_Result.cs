@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.Version
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.Version
 {
     /// <summary>
     /// 获取设备运行信息 返回结果

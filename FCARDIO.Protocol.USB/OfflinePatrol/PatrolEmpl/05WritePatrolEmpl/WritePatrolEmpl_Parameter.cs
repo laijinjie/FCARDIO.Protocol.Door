@@ -1,12 +1,12 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.WritePatrolEmpl
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.PatrolEmpl.WritePatrolEmpl
 {
     /// <summary>
     /// 添加巡更人员

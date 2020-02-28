@@ -1,16 +1,16 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction;
-using FCARDIO.Protocol.USB.OfflinePatrol.Transaction.TransactionDatabaseDetail;
-using FCARDIO.Protocol.OnlineAccess;
-using FCARDIO.Protocol.Transaction;
-using FCARDIO.Protocol.USBDrive;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.USB.OfflinePatrol.Data.Transaction;
+using DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.TransactionDatabaseDetail;
+using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.Transaction;
+using DoNetDrive.Protocol.USBDrive;
 using System.Collections.Generic;
 using System.Linq;
-using FCARDIO.Protocol.Packet;
+using DoNetDrive.Protocol.Packet;
 using System;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase
 {
     /// <summary>
     ///  读取新记录
@@ -274,7 +274,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase
             transactionDetail.ReadIndex = Convert.ToUInt32(iEndIndex);//更新记录尾号
 
 
-            var cmdBuf = FCPacket.CmdData;
+            var cmdBuf = USBPacket.CmdData;
             cmdBuf.SetInt(1, iBeginIndex);
             cmdBuf.SetInt(5, mReadQuantity);
 
@@ -461,7 +461,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase
                     if ((iEndNum - iBeginNum) > 150) break;
                 }
 
-                var buf = FCPacket.CmdData;
+                var buf = USBPacket.CmdData;
 
                 buf.SetInt(1, iBeginNum);
                 buf.SetInt(5, (iEndNum - iBeginNum));
@@ -485,8 +485,8 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase
             buf.WriteByte((int)mParameter.DatabaseType);
             buf.WriteInt((int)transactionDetail.ReadIndex);
             buf.WriteBoolean(false);
-            FCPacket.CmdIndex = 0x04;
-            FCPacket.DataLen = buf.ReadableBytes;
+            USBPacket.CmdIndex = 0x04;
+            USBPacket.DataLen = buf.ReadableBytes;
             CommandReady();
             mStep = 4;
         }

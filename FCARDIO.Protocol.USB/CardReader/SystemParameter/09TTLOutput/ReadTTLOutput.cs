@@ -1,7 +1,7 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.USBDrive;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.USBDrive;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput
 {
     /// <summary>
     /// 读取TTL输出参数

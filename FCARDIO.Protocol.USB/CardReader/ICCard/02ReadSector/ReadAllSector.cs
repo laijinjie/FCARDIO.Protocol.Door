@@ -1,8 +1,8 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.USBDrive;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.USBDrive;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
+namespace DoNetDrive.Protocol.USB.CardReader.ICCard.Sector
 {
     /// <summary>
     /// 读取扇区全部内容
@@ -52,7 +52,7 @@ namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
                 {
 
                     mPar.MoveNext();
-                    var cmdBuf = FCPacket.CmdData;
+                    var cmdBuf = USBPacket.CmdData;
                     cmdBuf.SetByte(0, mPar.Number);
                     cmdBuf.SetByte(1, mPar.StartBlock);
                     _ProcessStep++;

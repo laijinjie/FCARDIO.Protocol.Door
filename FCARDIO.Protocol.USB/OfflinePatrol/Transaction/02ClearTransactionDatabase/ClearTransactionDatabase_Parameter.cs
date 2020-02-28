@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ClearTransactionDatabase
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.ClearTransactionDatabase
 {
     /// <summary>
     /// 清空指定类型的记录数据库

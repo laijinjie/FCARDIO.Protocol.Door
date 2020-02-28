@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.CreateTime
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime
 {
     /// <summary>
     /// 设置生产日期
@@ -49,7 +49,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.CreateTime
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            FCARDIO.Protocol.Util.TimeUtil.DateToBCD_yyMMdd(databuf, Time);
+            DoNetDrive.Protocol.Util.TimeUtil.DateToBCD_yyMMdd(databuf, Time);
             return databuf;
         }
 
@@ -68,7 +68,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.CreateTime
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            Time = FCARDIO.Protocol.Util.TimeUtil.BCDTimeToDate_yyMMdd(databuf);
+            Time = DoNetDrive.Protocol.Util.TimeUtil.BCDTimeToDate_yyMMdd(databuf);
         }
     }
 }

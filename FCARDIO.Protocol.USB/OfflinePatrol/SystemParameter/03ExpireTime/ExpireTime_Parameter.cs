@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime
 {
     /// <summary>
     /// 设备有效期参数
@@ -50,7 +50,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            FCARDIO.Protocol.Util.TimeUtil.DateToBCD_yyMMdd(databuf, Time);
+            DoNetDrive.Protocol.Util.TimeUtil.DateToBCD_yyMMdd(databuf, Time);
             return databuf;
         }
 
@@ -69,7 +69,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            Time = FCARDIO.Protocol.Util.TimeUtil.BCDTimeToDate_yyMMdd(databuf);
+            Time = DoNetDrive.Protocol.Util.TimeUtil.BCDTimeToDate_yyMMdd(databuf);
         }
     }
 }

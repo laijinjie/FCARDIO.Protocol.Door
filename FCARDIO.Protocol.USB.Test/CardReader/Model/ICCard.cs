@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.CardReader.Test.Model
+namespace DoNetDrive.Protocol.USB.CardReader.Test.Model
 {
     public class ICCardData
     {

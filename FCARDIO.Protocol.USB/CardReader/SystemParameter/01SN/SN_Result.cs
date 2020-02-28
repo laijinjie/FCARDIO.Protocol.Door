@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.SN
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN
 {
     /// <summary>
     /// 获取控制器SN_结果

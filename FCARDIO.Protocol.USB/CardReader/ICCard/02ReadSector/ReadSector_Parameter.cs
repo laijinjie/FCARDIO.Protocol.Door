@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Protocol.Util;
 using System;
-using FCARDIO.Core.Extension;
+using DoNetDrive.Core.Extension;
 
-namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
+namespace DoNetDrive.Protocol.USB.CardReader.ICCard.Sector
 {
     /// <summary>
     /// 读扇区内容 参数

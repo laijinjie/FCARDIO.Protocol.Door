@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Protocol.Util;
 using System;
 using System.Text.RegularExpressions;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl
 {
     /// <summary>
     /// 设置扇区验证 参数

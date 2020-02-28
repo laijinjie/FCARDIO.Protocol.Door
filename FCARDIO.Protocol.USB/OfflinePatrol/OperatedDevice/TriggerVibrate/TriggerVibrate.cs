@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerVibrate
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.OperatedDevice.TriggerVibrate
 {
     /// <summary>
     /// 触发震动原件

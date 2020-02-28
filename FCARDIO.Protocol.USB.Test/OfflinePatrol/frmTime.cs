@@ -1,4 +1,4 @@
-﻿using FCARDIO.Protocol.USB.OfflinePatrol.Time;
+﻿using DoNetDrive.Protocol.USB.OfflinePatrol.Time;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 {
     public partial class frmTime :  frmNodeForm
     {

@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.AgencyCode
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode
 {
     /// <summary>
     /// 设置经销商代码

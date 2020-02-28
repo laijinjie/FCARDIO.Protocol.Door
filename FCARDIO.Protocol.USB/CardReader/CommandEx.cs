@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.USBDrive;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.USBDrive;
 
-namespace FCARDIO.Protocol.USB.CardReader
+namespace DoNetDrive.Protocol.USB.CardReader
 {
     public abstract class CommandEx : USBDriveCommand
     {
@@ -55,7 +55,7 @@ namespace FCARDIO.Protocol.USB.CardReader
         /// <returns></returns>
         protected IByteBuffer GetCmdBuf()
         {
-            var buf = FCPacket.CmdData;
+            var buf = USBPacket.CmdData;
             buf?.Clear();
             return buf;
         }
@@ -68,8 +68,8 @@ namespace FCARDIO.Protocol.USB.CardReader
         /// <param name="dl">数据长度</param>
         protected void RewritePacket(byte ci, int dl)
         {
-            FCPacket.CmdIndex = ci;
-            FCPacket.DataLen = dl;
+            USBPacket.CmdIndex = ci;
+            USBPacket.DataLen = dl;
 
         }
     }

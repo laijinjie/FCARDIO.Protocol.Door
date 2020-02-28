@@ -1,13 +1,13 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
-using FCARDIO.Protocol.USBDrive;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.USBDrive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.DeletePatrolEmpl
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.PatrolEmpl.DeletePatrolEmpl
 {
     /// <summary>
     /// 删除巡更人员
@@ -113,7 +113,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.DeletePatrolEmpl
                 //未发送完毕，继续发送
                 var buf = GetCmdBuf();
                 WritePatrolEmplToBuf(buf);
-                FCPacket.DataLen = buf.ReadableBytes;
+                USBPacket.DataLen = buf.ReadableBytes;
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
             }
         }

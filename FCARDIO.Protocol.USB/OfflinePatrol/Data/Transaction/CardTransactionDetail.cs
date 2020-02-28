@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Data.Transaction
 {
     /// <summary>
     /// 事件日志详情，包含数据库容量，记录索引，已读取索引，循环标志4个部分

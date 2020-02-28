@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 using System;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SystemStatus
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SystemStatus
 {
     /// <summary>
     /// 获取设备运行信息 返回结果
@@ -69,7 +69,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SystemStatus
         /// <param name="databuf"></param>
         public void SetBytes(IByteBuffer databuf)
         {
-            Time = FCARDIO.Protocol.Util.TimeUtil.BCDTimeToDate_yyMMdd(databuf);
+            Time = DoNetDrive.Protocol.Util.TimeUtil.BCDTimeToDate_yyMMdd(databuf);
             FormatCount = databuf.ReadUnsignedShort();
             StartCount = databuf.ReadUnsignedShort();
             Voltage = string.Concat(databuf.ReadByte().ToString("X"),".", databuf.ReadByte().ToString("X"));

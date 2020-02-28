@@ -1,9 +1,9 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.USB.OfflinePatrol.Data.Transaction;
-using FCARDIO.Protocol.Transaction;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.USB.OfflinePatrol.Data.Transaction;
+using DoNetDrive.Protocol.Transaction;
 using System;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase
 {
     /// <summary>
     ///  读取新记录

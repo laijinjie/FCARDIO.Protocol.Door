@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.USBDrive;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.USBDrive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode
 {
     /// <summary>
     /// 记录存储方式

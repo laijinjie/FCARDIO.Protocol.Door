@@ -1,12 +1,12 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.Util;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Time
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Time
 {
     /// <summary>
     /// 将自定义时间写入到设备中

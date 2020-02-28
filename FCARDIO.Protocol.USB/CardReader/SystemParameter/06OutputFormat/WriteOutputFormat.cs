@@ -1,6 +1,6 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.OutputFormat
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat
 {
     /// <summary>
     /// 设置输出格式

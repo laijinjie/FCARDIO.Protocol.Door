@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Protocol.Util;
 
-namespace FCARDIO.Protocol.USB.CardReader.Watch
+namespace DoNetDrive.Protocol.USB.CardReader.Watch
 {
     /// <summary>
     /// 读卡消息

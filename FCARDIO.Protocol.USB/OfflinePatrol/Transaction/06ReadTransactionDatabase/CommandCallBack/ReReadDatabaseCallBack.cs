@@ -1,6 +1,6 @@
-﻿using FCARDIO.Protocol.USBDrive;
+﻿using DoNetDrive.Protocol.USBDrive;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.ReadTransactionDatabase
 {
     /// <summary>
     /// 重复读取遗漏的记录的返回值

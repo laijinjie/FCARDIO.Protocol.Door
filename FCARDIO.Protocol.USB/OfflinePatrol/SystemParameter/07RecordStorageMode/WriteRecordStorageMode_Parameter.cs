@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode
 {
     /// <summary>
     /// 写入记录存储方式 参数

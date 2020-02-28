@@ -1,12 +1,12 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Protocol.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Data
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Data
 {
     /// <summary>
     /// 巡更人员信息
@@ -61,7 +61,7 @@ namespace FCARDIO.Protocol.USB.OfflinePatrol.Data
             buf.WriteUnsignedShort(PCode);
 
             buf.WriteMedium((int)CardData);
-            //byte[] b = FCARD.Common.NumUtil.Int24ToByte((int)CardData);
+            //byte[] b = DoNetTool.Common.NumUtil.Int24ToByte((int)CardData);
             //buf.WriteBytes(b);
 
             Util.StringUtil.WriteString(buf, Name, 10, Encoding.GetEncoding("GBK"));

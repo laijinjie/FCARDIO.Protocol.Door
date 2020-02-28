@@ -1,11 +1,11 @@
-﻿using FCARDIO.Core.Command;
+﻿using DoNetDrive.Core.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.SystemParameter.SN
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SN
 {
     /// <summary>
     /// 获取控制器SN_结果

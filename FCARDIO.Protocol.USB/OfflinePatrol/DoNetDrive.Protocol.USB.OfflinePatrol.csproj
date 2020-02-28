@@ -7,8 +7,8 @@
     <ProjectGuid>{69B0709D-F370-41D8-BE55-C115FEF3730E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FCARDIO.Protocol.USB.OfflinePatrol</RootNamespace>
-    <AssemblyName>FCARDIO.Protocol.USB.OfflinePatrol</AssemblyName>
+    <RootNamespace>DoNetDrive.Protocol.USB.OfflinePatrol</RootNamespace>
+    <AssemblyName>DoNetDrive.Protocol.USB.OfflinePatrol</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DoNetDrive.Core">
+      <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol">
+      <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Util">
+      <HintPath>..\..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetTool.Common">
+      <HintPath>..\..\DLL\DoNetTool.Common.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\..\DLL\DotNetty.Buffers.dll</HintPath>
     </Reference>
@@ -45,22 +57,6 @@
     </Reference>
     <Reference Include="DotNetty.Transport">
       <HintPath>..\..\DLL\DotNetty.Transport.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARD.Common">
-      <HintPath>..\..\DLL\FCARD.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Core">
-      <HintPath>..\..\DLL\FCARDIO.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol">
-      <HintPath>..\..\DLL\FCARDIO.Protocol.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol.Door">
-      <HintPath>..\..\FCARDIO.Protocol.Door\bin\Debug\FCARDIO.Protocol.Door.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARDIO.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\FCARDIO.Protocol.Util.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

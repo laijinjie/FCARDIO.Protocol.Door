@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.TransactionDatabaseDetail
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.TransactionDatabaseDetail
 {
     /// <summary>
     /// 读取控制器中的卡片数据库信息

@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.Version
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version
 {
     /// <summary>
     /// 获取设备运行信息 返回结果
@@ -34,7 +34,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.Version
         public void SetBytes(IByteBuffer databuf)
         {
             uint data = databuf.ReadUnsignedInt();
-            byte[] list = FCARD.Common.NumUtil.Int32ToByte(data);
+            byte[] list = DoNetTool.Common.NumUtil.Int32ToByte(data);
             var str = System.Text.Encoding.ASCII.GetString(list);
             VerNum = str.Substring(0, 2);
             Revise = str.Substring(2, 2);

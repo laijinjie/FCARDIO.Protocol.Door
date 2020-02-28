@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ReadCardType
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType
 {
     /// <summary>
     /// 写入记录存储方式 参数
@@ -68,7 +68,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ReadCardType
                 list[i] = BitList[i];
             }
             list[7] = 0;
-            byte type = FCARD.Common.NumUtil.BitToByte(list);
+            byte type = DoNetTool.Common.NumUtil.BitToByte(list);
             databuf.WriteUnsignedShort(type);
             return databuf;
         }
@@ -89,7 +89,7 @@ namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.ReadCardType
         public override void SetBytes(IByteBuffer databuf)
         {
             ushort type = databuf.ReadUnsignedShort();
-            BitList = FCARD.Common.NumUtil.ByteToBit((byte)type);
+            BitList = DoNetTool.Common.NumUtil.ByteToBit((byte)type);
 
         }
 

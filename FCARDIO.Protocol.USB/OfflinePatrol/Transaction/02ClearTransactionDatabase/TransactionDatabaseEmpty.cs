@@ -1,13 +1,6 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.FC8800;
-using FCARDIO.Protocol.OnlineAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DoNetDrive.Core.Command;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.ClearTransactionDatabase
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.ClearTransactionDatabase
 {
     /// <summary>
     /// 清空所有类型的记录数据库

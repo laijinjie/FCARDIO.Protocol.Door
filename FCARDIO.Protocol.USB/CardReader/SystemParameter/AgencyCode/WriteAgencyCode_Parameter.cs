@@ -1,9 +1,9 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Protocol.Util;
 using System;
-using FCARDIO.Core.Extension;
+using DoNetDrive.Core.Extension;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.AgencyCode
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode
 {
     /// <summary>
     /// 设置经销商代码

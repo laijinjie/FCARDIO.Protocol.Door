@@ -1,10 +1,10 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Extension;
-using FCARDIO.Protocol.Util;
+using DoNetDrive.Core.Extension;
+using DoNetDrive.Protocol.Util;
 using System;
 using System.Text.RegularExpressions;
 
-namespace FCARDIO.Protocol.USB.CardReader.ICCard.Sector
+namespace DoNetDrive.Protocol.USB.CardReader.ICCard.Sector
 {
     /// <summary>
     /// 写扇区内容

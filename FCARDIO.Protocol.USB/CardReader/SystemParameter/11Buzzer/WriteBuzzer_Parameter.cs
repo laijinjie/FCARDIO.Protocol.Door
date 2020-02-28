@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using System;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.Buzzer
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer
 {
     /// <summary>
     /// 控制蜂鸣器 参数

@@ -1,8 +1,8 @@
-﻿using FCARDIO.Core.Command;
-using FCARDIO.Protocol.OnlineAccess;
-using FCARDIO.Protocol.USBDrive;
+﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.USBDrive;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.Transaction.TransactionDatabaseDetail
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.TransactionDatabaseDetail
 {
     /// <summary>
     /// 读取控制器中的卡片数据库信息

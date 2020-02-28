@@ -1,18 +1,18 @@
-﻿using FCARDIO.Core;
-using FCARDIO.Core.Command;
-using FCARDIO.Core.Connector;
-using FCARDIO.Core.Data;
+﻿using DoNetDrive.Core;
+using DoNetDrive.Core.Command;
+using DoNetDrive.Core.Connector;
+using DoNetDrive.Core.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FCARDIO.Core.Extension;
+using DoNetDrive.Core.Extension;
 using System.Collections.Concurrent;
-using FCARDIO.Protocol.USBDrive;
-using FCARDIO.Protocol.FC8800;
+using DoNetDrive.Protocol.USBDrive;
+using DoNetDrive.Protocol.Door8800;
 
-namespace FCARDIO.Protocol.USB.CardReader.Test
+namespace DoNetDrive.Protocol.USB.CardReader.Test
 {
     public partial class FrmMain : Form, INMain
     {
@@ -29,31 +29,31 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
         private static void IniCommandClassNameList()
         {
             mCommandClasss = new Dictionary<string, string>();
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.SN.ReadSN).FullName, "读取SN");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.SN.WriteSN).FullName, "写入SN");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion).FullName, "获取设备版本号");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.CreateTime.ReadCreateTime).FullName, "读取生产日期");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime).FullName, "写入生产日期");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.ReadCardType.ReadReadCardType).FullName, "读取记录存储方式");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType).FullName, "写入记录存储方式");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.OutputFormat.ReadOutputFormat).FullName, "读取输出格式");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat).FullName, "写入输出格式");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl.ReadICCardControl).FullName, "读取扇区验证");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl).FullName, "写入扇区验证");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.ReadICCardCustomNum).FullName, "读取卡号参数");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum).FullName, "写入卡号参数");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput.ReadTTLOutput).FullName, "读取TTL输出参数");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput).FullName, "写入TTL输出参数");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.Initialize.Initialize).FullName, "初始化读卡器");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer).FullName, "控制蜂鸣器");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.LED.WriteLED).FullName, "控制LED灯");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.AgencyCode.ReadAgencyCode).FullName, "读取经销商代码");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode).FullName, "设置经销商代码");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.ReadSN).FullName, "读取SN");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.WriteSN).FullName, "写入SN");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion).FullName, "获取设备版本号");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.ReadCreateTime).FullName, "读取生产日期");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime).FullName, "写入生产日期");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.ReadReadCardType).FullName, "读取记录存储方式");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType).FullName, "写入记录存储方式");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.ReadOutputFormat).FullName, "读取输出格式");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat).FullName, "写入输出格式");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.ReadICCardControl).FullName, "读取扇区验证");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl).FullName, "写入扇区验证");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.ReadICCardCustomNum).FullName, "读取卡号参数");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum).FullName, "写入卡号参数");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.ReadTTLOutput).FullName, "读取TTL输出参数");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput).FullName, "写入TTL输出参数");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.Initialize.Initialize).FullName, "初始化读卡器");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer).FullName, "控制蜂鸣器");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED).FullName, "控制LED灯");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.ReadAgencyCode).FullName, "读取经销商代码");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode).FullName, "设置经销商代码");
 
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard).FullName, "寻卡");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.ICCard.Sector.ReadSector).FullName, "读扇区内容");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.ICCard.Sector.WriteSector).FullName, "写扇区内容");
-            mCommandClasss.Add(typeof(FCARDIO.Protocol.USB.CardReader.ICCard.Sector.ReadAllSector).FullName, "读取扇区全部内容");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard).FullName, "寻卡");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector).FullName, "读扇区内容");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector).FullName, "写扇区内容");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadAllSector).FullName, "读取扇区全部内容");
 
         }
         private void Invoke(Action p)
@@ -278,8 +278,8 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
             AddCmdLog(e, "命令错误");
         }
 
-        private const string Command_ReadSN = "FCARDIO.Protocol.USB.CardReader.SystemParameter.SN.ReadSN";
-        private const string Command_WriteSN = "FCARDIO.Protocol.USB.CardReader.SystemParameter.SN.WriteSN";
+        private const string Command_ReadSN = "DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.ReadSN";
+        private const string Command_WriteSN = "DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.WriteSN";
 
         private void mAllocator_CommandCompleteEvent(object sender, CommandEventArgs e)
         {
@@ -537,7 +537,7 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
             if (_IsClosed) return null;
             USBDriveCommandDetail cmdDtl = CommandDetailFactory.CreateDetail(CommandDetailFactory.ConnectType.SerialPort, "", GetSerialPort(),
                 CommandDetailFactory.ControllerType.USBDrive_CardReader, "", string.Empty) as USBDriveCommandDetail;
-            FCARDIO.Core.Connector.SerialPort.SerialPortDetail spd = cmdDtl.Connector as FCARDIO.Core.Connector.SerialPort.SerialPortDetail;
+            DoNetDrive.Core.Connector.SerialPort.SerialPortDetail spd = cmdDtl.Connector as DoNetDrive.Core.Connector.SerialPort.SerialPortDetail;
             spd.Baudrate = 19200;
             return cmdDtl;
         }
@@ -744,7 +744,7 @@ namespace FCARDIO.Protocol.USB.CardReader.Test
             switch (cmdIndex)
             {
                 case 0x01://读卡消息
-                    return new FCARDIO.Protocol.USB.CardReader.Watch.WatchReadCardTransaction();
+                    return new DoNetDrive.Protocol.USB.CardReader.Watch.WatchReadCardTransaction();
                 default:
                     break;
             }

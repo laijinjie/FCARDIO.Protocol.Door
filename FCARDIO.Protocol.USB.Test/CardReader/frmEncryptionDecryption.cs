@@ -1,4 +1,4 @@
-﻿using FCARDIO.Protocol.USB.CardReader.ICCard.Sector;
+﻿using DoNetDrive.Protocol.USB.CardReader.ICCard.Sector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FCARD.Common.Extensions;
+using DoNetTool.Common.Extensions;
 
-namespace FCARDIO.Protocol.USB.CardReader.Test
+namespace DoNetDrive.Protocol.USB.CardReader.Test
 {
     public partial class frmEncryptionDecryption : frmNodeForm
     {

@@ -1,4 +1,4 @@
-﻿namespace FCARDIO.Protocol.USB.OfflinePatrol.Test
+﻿namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 {
     partial class frmTime
     {

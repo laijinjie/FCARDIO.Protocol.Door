@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCARDIO.Protocol.USB.CardReader.SystemParameter.LED
+namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED
 {
     /// <summary>
     /// 控制LED灯

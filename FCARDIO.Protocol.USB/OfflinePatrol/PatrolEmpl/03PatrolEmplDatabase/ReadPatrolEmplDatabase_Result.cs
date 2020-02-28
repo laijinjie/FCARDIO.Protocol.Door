@@ -1,8 +1,8 @@
 ﻿using DotNetty.Buffers;
-using FCARDIO.Core.Command;
+using DoNetDrive.Core.Command;
 using System.Collections.Generic;
 
-namespace FCARDIO.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDatabase
+namespace DoNetDrive.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDatabase
 {
     /// <summary>
     /// 读取所有巡更人员 返回结果
