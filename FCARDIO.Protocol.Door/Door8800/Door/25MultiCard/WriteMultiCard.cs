@@ -230,7 +230,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
         protected virtual void WriteMultiCard_GroupAB()
         {
             //先找到对应的组
-            List<UInt64> group = null;
+            List<decimal> group = null;
             int iMax = 50;
             int iCount = 0;
 
@@ -285,7 +285,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
         {
             //先找到对应的组
             MultiCard_GroupFix Fix;
-            List<UInt64> group = null;
+            List<decimal> group = null;
             int iMax = 8;
             int iCount = 0;
 

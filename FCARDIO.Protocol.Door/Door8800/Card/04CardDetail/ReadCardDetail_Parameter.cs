@@ -17,13 +17,13 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
         /// 要读取详情的授权卡卡号
         /// 取值：1-0xFFFFFFFF
         /// </summary>
-        public UInt64 CardData;
+        public virtual uint CardData { get; set; }
 
         /// <summary>
         /// 创建结构
         /// </summary>
         /// <param name="carddata">需要读取卡片详情的卡号</param>
-        public ReadCardDetail_Parameter(UInt64 carddata)
+        public ReadCardDetail_Parameter(uint carddata)
         {
             CardData = carddata;
         }
@@ -38,7 +38,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
             {
                 throw new ArgumentException("CardData Error!");
             }
-            if (CardData > (UInt64)UInt32.MaxValue)
+            if (CardData > uint.MaxValue)
             {
                 throw new ArgumentException("CardData Error!");
             }

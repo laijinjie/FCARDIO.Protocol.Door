@@ -77,7 +77,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
             int FailTotal = 0;
 
             //无法写入的卡列表
-            List<UInt64> CardList = new List<ulong>();
+            List<decimal> CardList = new List<decimal>();
 
 
             if (mBufs != null)
@@ -106,7 +106,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
         /// </summary>
         /// <param name="CardList">错误卡列表</param>
         /// <param name="buf"></param>
-        protected abstract void ReadCardByFailBuf(List<UInt64> CardList, IByteBuffer buf);
+        protected abstract void ReadCardByFailBuf(List<decimal> CardList, IByteBuffer buf);
 
 
 

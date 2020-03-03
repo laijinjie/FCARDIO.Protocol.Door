@@ -115,7 +115,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.AutoLockedSetting
             }
             Door = databuf.ReadByte();
             Use = databuf.ReadByte();
-            weekTimeGroup.ReadDoorWorkSetBytes(databuf);
+            weekTimeGroup.SetBytes(databuf);
         }
     }
 }

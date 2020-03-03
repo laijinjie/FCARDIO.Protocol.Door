@@ -127,8 +127,6 @@ namespace DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup
         /// <param name="data"></param>
         public virtual void SetBytes(IByteBuffer data)
         {
-            data.ReadByte();
-            data.ReadByte();
             SetBytes(E_WeekDay.Monday, data);
         }
 

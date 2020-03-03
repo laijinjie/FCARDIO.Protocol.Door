@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DoNetDrive.Core.Command;
+using DotNetty.Buffers;
 
 namespace DoNetDrive.Protocol.Door.Door89H.Card
 {
@@ -21,6 +22,18 @@ namespace DoNetDrive.Protocol.Door.Door89H.Card
         {
             mPacketCardMax = 8;
             MaxBufSize = (mPacketCardMax * 0x25) + 4;
+        }
+
+        /// <summary>
+        /// 从错误卡列表中读取一个错误卡号，加入到cardlist中
+        /// </summary>
+        /// <param name="CardList">错误卡列表</param>
+        /// <param name="buf"></param>
+        protected override void ReadCardByFailBuf(List<decimal> CardList, IByteBuffer buf)
+        {
+            if (_CardDetail == null) _CardDetail = new Data.CardDetail();
+            _CardDetail.SetBytes(buf);
+            CardList.Add(_CardDetail.BigCard.BigValue);
         }
     }
 }

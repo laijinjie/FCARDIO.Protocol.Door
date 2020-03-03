@@ -155,7 +155,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.DoorWorkSetting
             OpenDoorWay = databuf.ReadByte();
             DoorTriggerMode = databuf.ReadByte();
             RetainValue = databuf.ReadByte();
-            weekTimeGroup.ReadDoorWorkSetBytes(databuf);
+            weekTimeGroup.SetBytes(databuf);
         }
     }
 }

@@ -32,9 +32,9 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
         /// </summary>
         /// <param name="CardList">错误卡列表</param>
         /// <param name="buf"></param>
-        protected override void ReadCardByFailBuf(List<ulong> CardList, IByteBuffer buf)
+        protected override void ReadCardByFailBuf(List<decimal> CardList, IByteBuffer buf)
         {
-            CardList.Add((UInt64)buf.ReadInt());
+            CardList.Add(buf.ReadInt());
         }
     }
 }

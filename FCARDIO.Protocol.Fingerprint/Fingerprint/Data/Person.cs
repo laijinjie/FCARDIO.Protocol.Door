@@ -15,6 +15,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
         /// 用户号
         /// </summary>
         public uint UserCode;
+
         /// <summary>
         /// 卡号，取值范围 0x1-0xFFFFFFFF
         /// </summary>
@@ -87,7 +88,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
         /// <summary>
         /// 人员职务
         /// </summary>
-        public string Post;
+        public string Job;
 
         /// <summary>
         ///最近验证时间
@@ -243,7 +244,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
             PName = Util.StringUtil.GetString(data, 30, StringEncoding);
             PCode = Util.StringUtil.GetString(data, 30, StringEncoding);
             Dept = Util.StringUtil.GetString(data, 30, StringEncoding);
-            Post = Util.StringUtil.GetString(data, 30, StringEncoding);
+            Job = Util.StringUtil.GetString(data, 30, StringEncoding);
 
             Holiday = new byte[4];
             data.ReadBytes(Holiday, 0, 4);
@@ -287,7 +288,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
             Util.StringUtil.WriteString(data, PName, 30, StringEncoding);
             Util.StringUtil.WriteString(data, PCode, 30, StringEncoding);
             Util.StringUtil.WriteString(data, Dept, 30, StringEncoding);
-            Util.StringUtil.WriteString(data, Post, 30, StringEncoding);
+            Util.StringUtil.WriteString(data, Job, 30, StringEncoding);
 
             data.WriteBytes(Holiday, 0, 4);
 

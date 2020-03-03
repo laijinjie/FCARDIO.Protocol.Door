@@ -10,15 +10,26 @@ namespace DoNetDrive.Protocol.Door.Door89H.Card
     /// <summary>
     /// Door89H 读取单个卡片在控制器中的信息
     /// </summary>
-    public class ReadCardDetail_Parameter:Door8800.Card.ReadCardDetail_Parameter
+    public class ReadCardDetail_Parameter : Door8800.Card.ReadCardDetail_Parameter
     {
+        /// <summary>
+        /// 9字节卡号
+        /// </summary>
+        public Core.Util.BigInt BigCard;
+
+        /// <summary>
+        /// 要读取详情的授权卡8字节卡号
+        /// 取值：1-0xFFFFFFFF
+        /// </summary>
+        public override uint CardData { get => BigCard.UInt32Value; set => BigCard.BigValue = value; }
+
         /// <summary>
         /// 创建结构
         /// </summary>
-        /// <param name="carddata">需要读取卡片详情的卡号</param>
-        public ReadCardDetail_Parameter(UInt64 carddata):base(carddata)
+        /// <param name="bCard">需要读取卡片详情的卡号</param>
+        public ReadCardDetail_Parameter(decimal bCard) : base(0)
         {
-
+            BigCard.BigValue = bCard;
         }
 
         /// <summary>
@@ -54,8 +65,7 @@ namespace DoNetDrive.Protocol.Door.Door89H.Card
             {
                 throw new ArgumentException("Crad Error");
             }
-            databuf.WriteByte(0);
-            databuf.WriteLong((long)CardData);
+            BigCard.toBytes(databuf, 9);
             return databuf;
         }
     }

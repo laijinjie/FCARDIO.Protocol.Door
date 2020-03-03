@@ -63,6 +63,17 @@ namespace DoNetDrive.Protocol.Door.Door89H.Data
 
     public class CardTransaction : Door8800.Data.CardTransaction
     {
+
+        /// <summary>
+        /// 9字节卡号
+        /// </summary>
+        public Core.Util.BigInt BigCard;
+
+        /// <summary>
+        /// 4字节卡号
+        /// </summary>
+        public override uint CardData { get => BigCard.UInt32Value; set => BigCard.BigValue = value; }
+
         /// <summary>
         /// 获取读卡记录格式长度
         /// </summary>
@@ -78,9 +89,7 @@ namespace DoNetDrive.Protocol.Door.Door89H.Data
         /// <param name="data"></param>
         protected override void ReadCardData(IByteBuffer data)
         {
-            data.ReadByte();
-
-            CardData = (UInt64)data.ReadLong();
+            BigCard.SetBytes(data, 9);
         }
 
 

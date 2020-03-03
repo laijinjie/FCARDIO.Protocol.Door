@@ -196,15 +196,15 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
             {
                 case 1://读取多卡AB组
                     //初始化AB组容器
-                    mResult.GroupA = new List<List<ulong>>();
+                    mResult.GroupA = new List<List<decimal>>();
                     for (int i = 0; i < 5; i++)
                     {
-                        mResult.GroupA.Add(new List<ulong>());
+                        mResult.GroupA.Add(new List<decimal>());
                     }
-                    mResult.GroupB = new List<List<ulong>>();
+                    mResult.GroupB = new List<List<decimal>>();
                     for (int i = 0; i < 20; i++)
                     {
-                        mResult.GroupB.Add(new List<ulong>());
+                        mResult.GroupB.Add(new List<decimal>());
                     }
 
                     //开启读取多卡开门AB组内容
@@ -246,7 +246,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
                 return;
             }
 
-            List<UInt64> group = FindGroupAB();
+            List<decimal> group = FindGroupAB();
             
 
             if (iCardCount > 0)
@@ -262,9 +262,9 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
         /// 查询当前AB组的容器
         /// </summary>
         /// <returns></returns>
-        protected List<UInt64> FindGroupAB()
+        protected List<decimal> FindGroupAB()
         {
-            List<UInt64> group = null;
+            List<decimal> group = null;
             if (mGroupType == WriteMultiCard.GroupTypeA)
             {
 
@@ -311,7 +311,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
         /// </summary>
         /// <param name="group"></param>
         /// <param name="tmpBuf"></param>
-        protected virtual void ReadGroupABCard(List<UInt64> group, IByteBuffer tmpBuf)
+        protected virtual void ReadGroupABCard(List<decimal> group, IByteBuffer tmpBuf)
         {
             while (tmpBuf.ReadableBytes >= 4)
             {
@@ -340,7 +340,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
                 MultiCard_GroupFix group = new MultiCard_GroupFix();
                 iCount = tmpBuf.ReadByte();
                 group.GroupType = tmpBuf.ReadByte();
-                var cardList = new List<UInt64>();
+                var cardList = new List<decimal>();
                 group.CardList = cardList;
                 if (iCount > 0)
                 {

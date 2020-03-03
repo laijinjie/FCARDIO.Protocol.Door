@@ -71,8 +71,8 @@ namespace DoNetDrive.Protocol.Door.Test
         WeekTimeGroup WeekTimeGroupPushButtonDto = new WeekTimeGroup(8);
         WeekTimeGroup WeekTimeGroupSensorAlarmDto = new WeekTimeGroup(8);
         WeekTimeGroup WeekTimeGroupWorkSettingDto = new WeekTimeGroup(8);
-        List<List<ulong>> listGroupA = new List<List<ulong>>();
-        List<List<ulong>> listGroupB = new List<List<ulong>>();
+        List<List<decimal>> listGroupA = new List<List<decimal>>();
+        List<List<decimal>> listGroupB = new List<List<decimal>>();
         List<MultiCard_GroupFix> listFix = new List<MultiCard_GroupFix>();
 
         private void frmDoor_Load(object sender, EventArgs e)
@@ -2748,13 +2748,13 @@ namespace DoNetDrive.Protocol.Door.Test
             dataGridView4.Visible = false;
             dataGridView5.Visible = false;
 
-            listGroupA = new List<List<ulong>>(5);
-            listGroupB = new List<List<ulong>>(20);
+            listGroupA = new List<List<decimal>>(5);
+            listGroupB = new List<List<decimal>>(20);
             listFix = new List<MultiCard_GroupFix>(10);
             /**/
             for (int i = 0; i < 5; i++)
             {
-                listGroupA.Add(new List<ulong>());
+                listGroupA.Add(new List<decimal>());
 
                 for (int j = 1; j <= 50; j++)
                 {
@@ -2764,7 +2764,7 @@ namespace DoNetDrive.Protocol.Door.Test
             }
             for (int i = 0; i < 20; i++)
             {
-                listGroupB.Add(new List<ulong>());
+                listGroupB.Add(new List<decimal>());
 
                 for (int j = 1; j <= 100; j++)
                 {
@@ -2776,10 +2776,10 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 MultiCard_GroupFix groupFix = new MultiCard_GroupFix();
                 groupFix.GroupType = 1;
-                groupFix.CardList = new List<ulong>();
+                groupFix.CardList = new List<decimal>();
                 for (int j = 1; j <= 8; j++)
                 {
-                    groupFix.CardList.Add((ulong)(100000 + j));
+                    groupFix.CardList.Add((decimal)(100000 + j));
                 }
                 listFix.Add(groupFix);
             }
@@ -2844,20 +2844,20 @@ namespace DoNetDrive.Protocol.Door.Test
                 listGroupA.Clear();
                 for (int i = 1; i <= 5; i++)
                 {
-                    List<ulong> list = new List<ulong>();
+                    List<decimal> list = new List<decimal>();
                     for (int j = 1; j <= 50; j++)
                     {
-                        list.Add((ulong)(100 * i + j));
+                        list.Add((decimal)(100 * i + j));
                     }
                     listGroupA.Add(list);
                 }
                 listGroupB.Clear();
                 for (int i = 1; i <= 20; i++)
                 {
-                    List<ulong> list = new List<ulong>();
+                    List<decimal> list = new List<decimal>();
                     for (int j = 1; j <= 100; j++)
                     {
-                        list.Add((ulong)(1000 * i + j));
+                        list.Add((decimal)(1000 * i + j));
                     }
                     listGroupB.Add(list);
                 }
@@ -2869,7 +2869,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 {
                     MultiCard_GroupFix groupFix = new MultiCard_GroupFix();
                     groupFix.GroupType = 1;
-                    groupFix.CardList = new List<ulong>();
+                    groupFix.CardList = new List<decimal>();
                     for (int j = 1; j <= 8; j++)
                     {
                         groupFix.CardList.Add((ulong)(i * 100000 + j));

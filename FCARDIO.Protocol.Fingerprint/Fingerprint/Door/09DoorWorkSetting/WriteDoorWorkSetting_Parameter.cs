@@ -120,7 +120,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Door.DoorWorkSetting
             }
             Use = databuf.ReadBoolean();
             DoorTriggerMode = databuf.ReadByte();
-            weekTimeGroup.ReadDoorWorkSetBytes(databuf);
+            weekTimeGroup.SetBytes(databuf);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
     /// <summary>
     /// 适用于Door89H协议的多卡组合参数
     /// </summary>
-    public class WriteMultiCard_Parameter: DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.WriteMultiCard_Parameter
+    public class WriteMultiCard_Parameter : DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.WriteMultiCard_Parameter
     {
         /// <summary>
         /// 初始化多卡参数，支持多卡验证参数和AB组，等待模式和固定组多卡
@@ -28,14 +28,26 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
         public WriteMultiCard_Parameter(byte door,
             byte readerWaitMode, byte antiPassback,
             byte verifytype, byte agroupcount, byte bgroupcount,
-            List<List<UInt64>> group_a, List<List<UInt64>> group_b,
+            List<List<decimal>> group_a, List<List<decimal>> group_b,
             List<MultiCard_GroupFix> group_fix)
-            :base(door, 
+            : base(door,
                  readerWaitMode, antiPassback,
                  verifytype, agroupcount, bgroupcount,
                  group_a, group_b, group_fix)
         {
 
         }
+
+        /// <summary>
+        /// 获取卡号最大值
+        /// </summary>
+        public override decimal GetMaxCardValue()
+        {
+            Core.Util.BigInt big = new Core.Util.BigInt();
+            big.ByteValue_4 = 255;
+            big.UInt64Value = UInt64.MaxValue;
+            return big.BigValue;
+        }
+
     }
 }

@@ -11,8 +11,8 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
     /// 写卡列表的泛型抽象
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract  class WriteCardList_Parameter_Base<T> : AbstractParameter 
-        where T:Data.CardDetailBase
+    public abstract class WriteCardList_Parameter_Base<T> : AbstractParameter
+        where T : Data.CardDetailBase
     {
         /// <summary>
         /// 需要写入的卡列表
@@ -43,13 +43,13 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
 
 
             if (CardList.Count == 0) return false;
-           
+
 
             foreach (var c in CardList)
             {
                 if (c == null) return false;
                 if (c.CardData == 0) return false;
-              
+
             }
 
             return true;

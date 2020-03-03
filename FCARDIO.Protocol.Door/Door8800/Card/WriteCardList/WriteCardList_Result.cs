@@ -22,14 +22,14 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
         /// <summary>
         /// 无法写入的卡列表
         /// </summary>
-        public  List<UInt64> CardList;
+        public  List<decimal> CardList;
 
         /// <summary>
         /// 创建结构 
         /// </summary>
         /// <param name="failtotal">卡数量</param>
         /// <param name="cardList">卡列表</param>
-        public WriteCardList_Result(int failtotal, List<UInt64> cardList)
+        public WriteCardList_Result(int failtotal, List<decimal> cardList)
         {
             FailTotal = failtotal;
             CardList = cardList;

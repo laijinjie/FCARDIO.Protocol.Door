@@ -20,7 +20,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
         /// <summary>
         /// 固定多卡组中的卡列表。
         /// </summary>
-        public List<UInt64> CardList;
+        public List<decimal> CardList;
 
 
     }
@@ -30,7 +30,6 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
     /// </summary>
     public class WriteMultiCard_Parameter : AbstractParameter
     {
-
         /// <summary>
         /// 门号
         /// 门端口在控制板中的索引号，取值：1-4
@@ -66,12 +65,12 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
         /// <summary>
         /// 多卡组A组
         /// </summary>
-        public List<List<UInt64>> GroupA;
+        public List<List<decimal>> GroupA;
 
         /// <summary>
         /// 多卡组B组
         /// </summary>
-        public List<List<UInt64>> GroupB;
+        public List<List<decimal>> GroupB;
 
 
         /// <summary>
@@ -103,6 +102,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
             byte readerWaitMode, byte antiPassback,
             List<MultiCard_GroupFix> group_fix)
         {
+
             DoorNum = door;
             ReaderWaitMode = readerWaitMode;
             AntiPassback = antiPassback;
@@ -137,9 +137,10 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
         public WriteMultiCard_Parameter(byte door,
             byte readerWaitMode, byte antiPassback,
             byte verifytype, byte agroupcount, byte bgroupcount,
-            List<List<UInt64>> group_a, List<List<UInt64>> group_b,
+            List<List<decimal>> group_a, List<List<decimal>> group_b,
             List<MultiCard_GroupFix> group_fix)
         {
+
             DoorNum = door;
             ReaderWaitMode = readerWaitMode;
             AntiPassback = antiPassback;
@@ -239,7 +240,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
         /// </summary>
         /// <param name="checkGroup"></param>
 
-        private void CheckGroup(List<List<UInt64>> checkGroup)
+        private void CheckGroup(List<List<decimal>> checkGroup)
         {
             foreach (var group in checkGroup)
             {
@@ -247,20 +248,26 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.MultiCard
             }
         }
 
+
+        /// <summary>
+        /// 获取卡号最大值
+        /// </summary>
+        public virtual decimal GetMaxCardValue() => UInt32.MaxValue;
+
         /// <summary>
         /// 检查卡组数据
         /// </summary>
         /// <param name="group">卡组集合</param>
-        private void CheckGroup(List<UInt64> group)
+        private void CheckGroup(List<decimal> group)
         {
             if (group == null)
             {
                 throw new ArgumentException("Card Group Error!");
             }
-
+            decimal iMax = GetMaxCardValue();
             foreach (var c in group)
             {
-                if (c > UInt32.MaxValue)
+                if (c > iMax)
                 {
                     throw new ArgumentException("Card Error!");
                 }

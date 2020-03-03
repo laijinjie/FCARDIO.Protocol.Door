@@ -89,7 +89,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
             switch (mStep)
             {
                 case 1://读取卡片数据库详情回调
-                    if (CheckResponse(oPck, CheckResponseCmdType,0x01,0x00))
+                    if (CheckResponse(oPck, CheckResponseCmdType, 0x01, 0x00))
                     {
                         ReadDetailCallBlack(oPck.CmdData);
                     }
@@ -178,12 +178,12 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
         {
             ReadCardDataBase_Parameter model = _Parameter as ReadCardDataBase_Parameter;
             int iCount = buf.ReadInt();//获取本次总传输的卡数量
-            if(iCount>0)
+            if (iCount > 0)
                 _ProcessStep = iCount;
             fireCommandProcessEvent();
             //开始解析卡数据
             List<T> cardList = new List<T>();
-            while (mReadBuffers.Count>0)
+            while (mReadBuffers.Count > 0)
             {
                 buf = mReadBuffers.Dequeue();
                 iCount = buf.ReadInt();//返回缓冲区中包含的卡数量
@@ -199,7 +199,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
             _Result = result;
 
             CommandCompleted();
-            
+
         }
 
         /// <summary>

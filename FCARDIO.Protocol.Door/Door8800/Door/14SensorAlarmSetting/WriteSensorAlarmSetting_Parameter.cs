@@ -110,7 +110,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.SensorAlarmSetting
             DoorNum = databuf.ReadByte();
             Use = databuf.ReadBoolean();
             WeekTimeGroup = new WeekTimeGroup(8);
-            WeekTimeGroup.ReadDoorWorkSetBytes(databuf);
+            WeekTimeGroup.SetBytes(databuf);
         }
     }
 }

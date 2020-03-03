@@ -33,16 +33,20 @@
     <DocumentationFile>bin\Release\DoNetDrive.Protocol.Fingerprint.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DoNetDrive.Core">
+    <Reference Include="DoNetDrive.Core, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol">
+    <Reference Include="DoNetDrive.Protocol, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Util">
+    <Reference Include="DoNetDrive.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetTool.Common">
+    <Reference Include="DoNetTool.Common, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DoNetTool.Common.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Buffers">

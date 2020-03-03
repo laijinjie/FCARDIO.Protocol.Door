@@ -61,7 +61,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.txtHoliday = new System.Windows.Forms.TextBox();
-            this.txtPost = new System.Windows.Forms.TextBox();
+            this.txtJob = new System.Windows.Forms.TextBox();
             this.txtDept = new System.Windows.Forms.TextBox();
             this.txtPCode = new System.Windows.Forms.TextBox();
             this.txtPName = new System.Windows.Forms.TextBox();
@@ -178,7 +178,7 @@
             // 
             // Column6
             // 
-            this.Column6.DataPropertyName = "Post";
+            this.Column6.DataPropertyName = "Job";
             this.Column6.HeaderText = "人员职务";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
@@ -389,7 +389,7 @@
             // 
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.txtHoliday);
-            this.groupBox1.Controls.Add(this.txtPost);
+            this.groupBox1.Controls.Add(this.txtJob);
             this.groupBox1.Controls.Add(this.txtDept);
             this.groupBox1.Controls.Add(this.txtPCode);
             this.groupBox1.Controls.Add(this.txtPName);
@@ -445,12 +445,12 @@
             this.txtHoliday.TabIndex = 32;
             this.txtHoliday.Text = "00000000000000000000000000000000";
             // 
-            // txtPost
+            // txtJob
             // 
-            this.txtPost.Location = new System.Drawing.Point(340, 219);
-            this.txtPost.Name = "txtPost";
-            this.txtPost.Size = new System.Drawing.Size(167, 21);
-            this.txtPost.TabIndex = 31;
+            this.txtJob.Location = new System.Drawing.Point(340, 219);
+            this.txtJob.Name = "txtJob";
+            this.txtJob.Size = new System.Drawing.Size(167, 21);
+            this.txtJob.TabIndex = 31;
             // 
             // txtDept
             // 
@@ -891,7 +891,7 @@
         private System.Windows.Forms.Button btnDelDevice;
         private System.Windows.Forms.Button btnDelSelect;
         private System.Windows.Forms.TextBox txtHoliday;
-        private System.Windows.Forms.TextBox txtPost;
+        private System.Windows.Forms.TextBox txtJob;
         private System.Windows.Forms.TextBox txtDept;
         private System.Windows.Forms.TextBox txtPCode;
         private System.Windows.Forms.TextBox txtPName;

@@ -80,7 +80,7 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
                 return;
             }
             //查询此分组的容器
-            List<UInt64> group = FindGroupAB();
+            List<decimal> group = FindGroupAB();
 
             if (iCardCount > 0)
             {   //初始化容器
@@ -108,18 +108,18 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
             int iBeginNum = tmpBuf.ReadByte();
             if (iBeginNum > 0) iBeginNum--;
             //查询此分组的容器
-            List<UInt64> group = FindGroupAB();
+            List<decimal> group = FindGroupAB();
             int iCount = tmpBuf.ReadableBytes / 9; //计算缓冲中的卡数
 
+            Core.Util.BigInt bCard = new Core.Util.BigInt();
 
             for (int i = 0; i < iCount; i++)
             {
-                tmpBuf.ReadByte();
-                UInt64 card = (UInt64)tmpBuf.ReadLong();
-                group[i + iBeginNum] = card;
+                bCard.SetBytes(tmpBuf, 9);
+                group[i + iBeginNum] = bCard.BigValue;
             }
 
-            if(group.Count == (iBeginNum+iCount))
+            if (group.Count == (iBeginNum + iCount))
             {
                 ReadGroupABNext();
             }
@@ -132,7 +132,7 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
         /// <summary>
         /// 创建读取多卡固定组的命令
         /// </summary>
-        protected override  void CreateReadGroupFixPacket()
+        protected override void CreateReadGroupFixPacket()
         {
             base.CreateReadGroupFixPacket();
             _ProcessMax = 13;
@@ -161,7 +161,7 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
                 }
 
             }
-            
+
             int groupNum = tmpBuf.ReadByte();
             if (groupNum > 10) return;
 
@@ -169,21 +169,20 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
 
             fireCommandProcessEvent();
 
-            MultiCard_GroupFix group = mResult.GroupFix[groupNum-1];
+            MultiCard_GroupFix group = mResult.GroupFix[groupNum - 1];
 
             int iCount = tmpBuf.ReadByte();//卡数
             group.GroupType = tmpBuf.ReadByte();//模式
 
             if (group.CardList == null)
-                group.CardList = new List<ulong>();
+                group.CardList = new List<decimal>();
             else
                 group.CardList.Clear();
-
+            Core.Util.BigInt bCard = new Core.Util.BigInt();
             for (int i = 0; i < iCount; i++)
             {
-                tmpBuf.ReadByte();
-                UInt64 card = (UInt64)tmpBuf.ReadLong();
-                group.CardList.Add(card);
+                bCard.SetBytes(tmpBuf, 9);
+                group.CardList.Add(bCard.BigValue);
             }
 
             if (groupNum == 10)

@@ -252,7 +252,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private StringBuilder DebugPersonDetail(Data.Person person, StringBuilder strBuf)
         {
             Person_UI ui = new Person_UI(person);
-            strBuf.Append("用户号：").Append(ui.UserCode).Append("；姓名：").Append(ui.PName).Append("；部门：").Append(ui.Dept).Append("；职务：").Append(ui.Post).Append("；工号：").Append(ui.PCode);
+            strBuf.Append("用户号：").Append(ui.UserCode).Append("；姓名：").Append(ui.PName).Append("；部门：").Append(ui.Dept).Append("；职务：").Append(ui.Job).Append("；工号：").Append(ui.PCode);
             strBuf.Append("卡号：").Append(ui.CardData).Append("；密码：").Append(ui.Password);
             strBuf.Append("；有效期：").Append(ui.Expiry).Append("；有效次数：").Append(ui.OpenTimes).AppendLine("；");
             strBuf.Append("；开门时段：").Append(ui.TimeGroup);
@@ -286,7 +286,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             txtUserCode.Text = person.UserCode.ToString();
             txtPName.Text = person.PName;
             txtPCode.Text = person.PCode;
-            txtPost.Text = person.Post;
+            txtJob.Text = person.Job;
             txtDept.Text = person.Dept;
             cmbEnterStatus.SelectedIndex = person.EnterStatus;
             cmbIdentity.SelectedIndex = person.Identity;
@@ -496,7 +496,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             person.PName = txtPName.Text;
             person.PCode = txtPCode.Text;
             person.Dept = txtDept.Text;
-            person.Post = txtPost.Text;
+            person.Job = txtJob.Text;
             person.TimeGroup = cmbTimeGroup.SelectedIndex + 1;
             person.CardStatus = cmbCardStatus.SelectedIndex;
             person.CardType = cmbCardType.SelectedIndex;

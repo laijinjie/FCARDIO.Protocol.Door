@@ -17,12 +17,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Data.Transaction
     /// 6  使用按钮开门
     /// 7  按钮开门时门已锁定
     /// 8  按钮开门时控制器已过期
-    public class DoorSensorTransaction : AbstractDoorTransaction
+    public class DoorSensorTransaction : SystemTransaction
     {
 
 
-        public DoorSensorTransaction() : base(2)
+        public DoorSensorTransaction() 
         {
+            _TransactionType = 2;
         }
     }
 }

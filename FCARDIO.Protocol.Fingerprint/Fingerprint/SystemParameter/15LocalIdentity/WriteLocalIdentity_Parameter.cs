@@ -86,13 +86,13 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.LocalIdentity
         {
             databuf.WriteByte(Door);
 
-            byte[] bName = new byte[60];
 
             int strLen = LocalName.Length;
             //int gbkLen = Encoding.GetEncoding("GBK").GetBytes(LocalName).Length;
             //int gbkCount = gbkLen - strLen;
+            if (strLen > 60) strLen = 60;
 
-            bName = Encoding.BigEndianUnicode.GetBytes(LocalName.PadRight(60  - strLen, '\0'));
+            byte[]  bName = Encoding.BigEndianUnicode.GetBytes(LocalName.PadRight(60  - strLen, '\0'));
             databuf.WriteBytes(bName);
 
             databuf.WriteByte(InOut);

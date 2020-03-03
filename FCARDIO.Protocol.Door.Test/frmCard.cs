@@ -162,14 +162,14 @@ namespace DoNetDrive.Protocol.Door.Test
             CardList.RaiseListChangedEvents = true;
             CardList.ResetBindings();
 
-            
+
             mMainForm.AddCmdLog(cmde, $"读取到的卡片数:{iReadCount},带读取的卡片数据类型:{DBTypes[iType]}");
-            if(sLogs.Length >0)
+            if (sLogs.Length > 0)
             {
                 string sFile = frmRecord.SaveFile(sLogs, $"读取所有卡片_{DateTime.Now:yyyyMMddHHmmss}.txt");
                 mMainForm.AddCmdLog(cmde, $"卡片日志保存路径:{sFile}");
             }
-            
+
         }
 
         /// <summary>
@@ -382,7 +382,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 }
                 else
                 {
-                    var par = new Door8800.Card.ReadCardDetail_Parameter(card);
+                    var par = new Door8800.Card.ReadCardDetail_Parameter((uint)card);
                     cmd = new Door8800.Card.ReadCardDetail(cmdDtl, par);
                 }
             }
@@ -589,8 +589,8 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             Door89H.Data.CardDetail card = new Door89H.Data.CardDetail();
             string CardStr = txtCardData.Text;
-            card.CardData = CardStr.ToUInt64();
-            if (card.CardData == 0)
+            card.BigCard.BigValue = decimal.Parse(CardStr);
+            if (card.BigCard.BigValue == 0)
             {
                 MsgErr("卡号输入不正确！");
                 return null;
@@ -914,13 +914,16 @@ namespace DoNetDrive.Protocol.Door.Test
 
             if (iType == CommandDetailFactory.ControllerType.Door89H)
             {
-                card = new Door89H.Data.CardDetail();
+                var fc89HCard = new Door89H.Data.CardDetail();
+                card = fc89HCard;
+                fc89HCard.BigCard.BigValue = (uint)cardNum;
             }
             else
             {
                 card = new Door8800.Data.CardDetail();
+                card.CardData = (uint)cardNum;
             }
-            card.CardData = cardNum;
+
             return card;
         }
 

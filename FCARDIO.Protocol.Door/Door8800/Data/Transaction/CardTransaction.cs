@@ -73,9 +73,9 @@ namespace DoNetDrive.Protocol.Door.Door8800.Data
         }
 
         /// <summary>
-        /// 卡号
+        /// 4字节卡号
         /// </summary>
-        public UInt64 CardData;
+        public virtual uint CardData { get; set; }
 
         /// <summary>
         /// 读卡器号
@@ -100,7 +100,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Data
         {
             try
             {
-                _IsNull = CheckNull(dtBuf, 5);
+                _IsNull = CheckNull(dtBuf, 9);
                 if (_IsNull)
                 {
                     ReadNullRecord(dtBuf);
@@ -126,7 +126,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Data
         protected virtual void ReadCardData(IByteBuffer data)
         {
             data.ReadByte();
-            CardData = (UInt64)data.ReadInt();
+            CardData = (uint)data.ReadInt();
         }
 
         /// <summary>

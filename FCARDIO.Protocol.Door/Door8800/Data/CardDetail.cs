@@ -12,6 +12,12 @@ namespace DoNetDrive.Protocol.Door.Door8800.Data
     /// </summary>
     public class CardDetail : CardDetailBase
     {
+
+        /// <summary>
+        /// 4字节卡号
+        /// </summary>
+        public override uint CardData { get; set; }
+
         /// <summary>
         /// 初始化
         /// </summary>
@@ -52,5 +58,6 @@ namespace DoNetDrive.Protocol.Door.Door8800.Data
 
             CardData = data.ReadUnsignedInt();
         }
+
     }
 }

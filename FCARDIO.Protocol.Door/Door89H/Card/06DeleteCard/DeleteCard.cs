@@ -35,8 +35,7 @@ namespace DoNetDrive.Protocol.Door.Door89H.Card
         /// <param name="buf">缓冲区</param>
         protected override void WriteCardBodyToBuf0(Data.CardDetail card, IByteBuffer buf)
         {
-            buf.WriteByte(0);
-            buf.WriteLong((long)card.CardData);
+            card.BigCard.toBytes(buf, 9);
         }
 
 

@@ -101,7 +101,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Alarm.GateMagneticAlarm
         public override void SetBytes(IByteBuffer databuf)
         {
             IsUse = databuf.ReadBoolean();
-            WeekTimeGroup.ReadDoorWorkSetBytes(databuf);
+            WeekTimeGroup.SetBytes(databuf);
         }
     }
 }

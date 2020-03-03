@@ -25,15 +25,17 @@ namespace DoNetDrive.Protocol.Door.Door89H.Card
             MaxBufSize = (mPacketCardMax * 0x25) + 8;
         }
 
-
+        private Core.Util.BigInt BigCard = new Core.Util.BigInt();
         /// <summary>
         /// 从错误卡列表中读取一个错误卡号，加入到cardlist中
         /// </summary>
         /// <param name="CardList"></param>
         /// <param name="buf"></param>
-        protected override void ReadCardByFailBuf(List<ulong> CardList, IByteBuffer buf)
+        protected override void ReadCardByFailBuf(List<decimal> CardList, IByteBuffer buf)
         {
-            CardList.Add((UInt64)buf.ReadInt());
+            
+            BigCard.SetBytes(buf,9);
+            CardList.Add(BigCard.BigValue);
         }
     }
 }

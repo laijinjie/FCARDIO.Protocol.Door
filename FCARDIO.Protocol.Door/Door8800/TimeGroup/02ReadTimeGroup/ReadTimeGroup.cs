@@ -70,6 +70,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.TimeGroup
                 //StringUtility.WriteByteBuffer(buf);
                 //continue;
                 WeekTimeGroup wtg = new WeekTimeGroup(8);
+                buf.ReadShort();
                 wtg.SetBytes(buf);
                 result.ListWeekTimeGroup.Add(wtg);
                

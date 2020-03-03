@@ -15,7 +15,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.SystemStatus
     public class ReadSystemStatus : Door8800Command_ReadParameter
     {
         /// <summary>
-        /// 获取设备运行信息 初始化命令
+        /// 获取设备运行信息
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public ReadSystemStatus(INCommandDetail cd) : base(cd) { }

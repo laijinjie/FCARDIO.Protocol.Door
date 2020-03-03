@@ -39,7 +39,7 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
         {
             //检查当前组是否已发送完毕
             int iCount = 0;
-            List<UInt64> group = FindGroupAB(ref iCount);
+            List<decimal> group = FindGroupAB(ref iCount);
             if (iCount > mCardListIndex)
             {
                 //当前组还未写完，继续写;
@@ -71,10 +71,10 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
         /// </summary>
         /// <param name="iGroupCardCount">返回 组中的卡数量</param>
         /// <returns></returns>
-        private List<UInt64> FindGroupAB(ref int iGroupCardCount)
+        private List<decimal> FindGroupAB(ref int iGroupCardCount)
         {
             int iMax = 50;
-            List<UInt64> group = null;
+            List<decimal> group = null;
             if (mGroupType == GroupTypeA)
             {
                 iMax = 50;
@@ -102,7 +102,7 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
             //先找到对应的组
 
             int iCount = 0;
-            List<UInt64> group = FindGroupAB(ref iCount);
+            List<decimal> group = FindGroupAB(ref iCount);
             var buf = GetCmdBuf();
 
             //检查是否已发送详情
@@ -127,12 +127,13 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
             //开始发送卡列表
             buf.WriteByte(mCardListIndex + 1);
 
+            Core.Util.BigInt bCard = new Core.Util.BigInt();
 
             int iAddCount = 0;
             for (int i = mCardListIndex; i < iCount; i++)
             {
-                buf.WriteByte(0);
-                buf.WriteLong((long)group[i]);
+                bCard.BigValue = group[i];
+                bCard.toBytes(buf, 9);
                 iAddCount++;
                 if (iAddCount == 20) break;
             }
@@ -152,7 +153,7 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
         {
             //先找到对应的组
             Door8800.Door.MultiCard.MultiCard_GroupFix Fix;
-            List<UInt64> group = null;
+            List<decimal> group = null;
             int iMax = 8;
             int iCount = 0;
 
@@ -168,10 +169,12 @@ namespace DoNetDrive.Protocol.Door.Door89H.Door.MultiCard
             buf.WriteByte(iCount);//卡数
             buf.WriteByte(Fix.GroupType);//模式
 
+
+            Core.Util.BigInt bCard = new Core.Util.BigInt();
             for (int i = 0; i < iCount; i++)
             {
-                buf.WriteByte(0);
-                buf.WriteLong((long)group[i]);
+                bCard.BigValue = group[i];
+                bCard.toBytes(buf, 9);
             }
             //不足8个，补0
             if (iCount != 8)

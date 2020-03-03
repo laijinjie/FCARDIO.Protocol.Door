@@ -131,7 +131,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Door.PushButtonSetting
             DoorNum = databuf.ReadByte();
             Use = databuf.ReadBoolean();
             NormallyOpen = databuf.ReadBoolean();
-            weekTimeGroup.ReadDoorWorkSetBytes(databuf);
+            weekTimeGroup.SetBytes(databuf);
            
         }
     }

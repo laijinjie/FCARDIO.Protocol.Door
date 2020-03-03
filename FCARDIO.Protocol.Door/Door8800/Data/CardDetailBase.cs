@@ -17,7 +17,8 @@ namespace DoNetDrive.Protocol.Door.Door8800.Data
         /// <summary>
         /// 卡号，取值范围 0x1-0xFFFFFFFF
         /// </summary>
-        public UInt64 CardData;
+        public abstract uint CardData {get;set;}
+
         /// <summary>
         /// 卡密码,无密码不填。密码是4-8位的数字。
         /// </summary>
@@ -125,7 +126,6 @@ namespace DoNetDrive.Protocol.Door.Door8800.Data
         /// </summary>
         public CardDetailBase()
         {
-            CardData = 0;
             OpenTimes = 65535;
             Password = string.Empty;
             Expiry = DateTime.Now.AddYears(5);
@@ -139,13 +139,12 @@ namespace DoNetDrive.Protocol.Door.Door8800.Data
             HolidayUse = true;
         }
 
-
         /// <summary>
-        /// 对卡号进行比较，以便进行排序
+        /// 比较卡号是否一致
         /// </summary>
         /// <param name="o"></param>
         /// <returns></returns>
-        public int CompareTo(CardDetailBase o)
+        public virtual int CompareTo(CardDetailBase o)
         {
             if (o.CardData == CardData)
             {
@@ -163,7 +162,9 @@ namespace DoNetDrive.Protocol.Door.Door8800.Data
             {
                 return 0;
             }
+
         }
+
 
         /// <summary>
         /// 获取一个卡详情实例，序列化到buf中的字节占比
@@ -508,7 +509,6 @@ namespace DoNetDrive.Protocol.Door.Door8800.Data
 
             EnterStatus = iTmpStatus | iStatus;
         }
-
 
     }
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace DoNetDrive.Protocol.Fingerprint.Person
 {
@@ -24,6 +25,22 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         /// 指示当前命令进行的步骤
         /// </summary>
         private int mStep;
+
+        /// <summary>
+        /// 读索引
+        /// </summary>
+        private int mReadIndex;
+
+
+        /// <summary>
+        /// 每次读取数量
+        /// </summary>
+        private int mReadCount;
+
+        /// <summary>
+        /// 用户总数
+        /// </summary>
+        private int mUserTotal;
 
         /// <summary>
         /// 初始化命令结构
@@ -58,12 +75,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
                 case 2://读取人员数据库内容
                     if (CheckResponse(oPck))//检查返回的是否为卡数据
                     {
-                        ReadPersonDatabaseCallBlack(oPck.CmdData);
-                    }
+                        try
+                        {
+                            ReadPersonDatabaseCallBlack(oPck.CmdData);
+                        }
+                        catch (Exception ex)
+                        {
 
-                    else if (CheckResponse(oPck,0x07,0x03,0xff, 4)) //检查数据是否返回完毕
-                    {
-                        ReadPersonDatabaseOverCallBlack(oPck.CmdData);
+                            Trace.WriteLine("读取人员时发生错误！" + ex.ToString());
+                        }
+
+                        
                     }
 
                     break;
@@ -76,12 +98,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         /// 读取人员数据库内容完毕
         /// </summary>
         /// <param name="cmdData"></param>
-        private void ReadPersonDatabaseOverCallBlack(IByteBuffer buf)
+        private void ReadPersonDatabaseOverCallBlack()
         {
-            int iCount = buf.ReadInt();//获取本次总传输的人员数量
-            if (iCount > 0)
-                _ProcessStep = iCount;
-            fireCommandProcessEvent();
+            int iCount = 0;//获取本次总传输的人员数量
+            IByteBuffer buf;
             //开始解析卡数据
             List<Data.Person> personList = new List<Data.Person>();
             while (mBufs.Count > 0)
@@ -113,7 +133,35 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
             buf.Retain();
             mBufs.Enqueue(buf);
             fireCommandProcessEvent();
-            CommandWaitResponse();
+
+            mReadIndex += mReadCount;
+            if (mReadIndex == mUserTotal)
+            {
+                try
+                {
+                    ReadPersonDatabaseOverCallBlack();
+                    return;
+                }
+                catch (Exception ex)
+                {
+
+                    Trace.WriteLine("采集完毕，保存数据时发生错误：" + ex.ToString());
+                }
+
+            }
+
+            try
+            {
+                //发送下一条
+                buf = GetCmdBuf();
+                ReadDetailNext(buf);
+            }
+            catch (Exception ex)
+            {
+
+                Trace.WriteLine("发送继续采集命令时发生错误：" + ex.ToString());
+            }
+           
         }
 
         /// <summary>
@@ -122,10 +170,41 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         /// <param name="cmdData"></param>
         private void ReadDetailCallBlack(OnlineAccessPacket oPck)
         {
-            _ProcessMax = oPck.CmdData.GetInt(4);
+            mUserTotal = oPck.CmdData.GetInt(4);
+            if (mUserTotal == 0)
+            {
+                fireCommandProcessEvent();
+
+                //没有用户
+                List<Data.Person> personList = new List<Data.Person>();
+
+                ReadPersonDataBase_Result result = new ReadPersonDataBase_Result(personList);
+                _Result = result;
+
+                CommandCompleted();
+                return;
+            }
+            _ProcessMax = mUserTotal;
             mBufs = new Queue<IByteBuffer>();
             mStep = 2;
-            Packet(0x07, 0x03, 0x00);
+            mReadCount = 5;
+            mReadIndex = 0;
+            var buf = GetNewCmdDataBuf(5);
+            ReadDetailNext(buf);
+        }
+        /// <summary>
+        /// 继续读取人事档案
+        /// </summary>
+        /// <param name="buf"></param>
+        private void ReadDetailNext(IByteBuffer buf)
+        {
+
+            int iNewCount = mUserTotal - mReadIndex;
+            if (mReadCount > iNewCount) mReadCount = iNewCount;
+
+            buf.WriteInt(mReadIndex);
+            buf.WriteByte(mReadCount);
+            Packet(0x07, 0x13, 0x00, 5, buf);
             CommandReady();
         }
 

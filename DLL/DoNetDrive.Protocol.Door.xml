@@ -449,13 +449,13 @@
             Door88/Door58  读取单个卡片在控制器中的信息
             </summary>
         </member>
-        <member name="F:DoNetDrive.Protocol.Door.Door8800.Card.ReadCardDetail_Parameter.CardData">
+        <member name="P:DoNetDrive.Protocol.Door.Door8800.Card.ReadCardDetail_Parameter.CardData">
             <summary>
             要读取详情的授权卡卡号
             取值：1-0xFFFFFFFF
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door8800.Card.ReadCardDetail_Parameter.#ctor(System.UInt64)">
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Card.ReadCardDetail_Parameter.#ctor(System.UInt32)">
             <summary>
             创建结构
             </summary>
@@ -557,7 +557,7 @@
             </summary>
             <param name="oPck"></param>
         </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door8800.Card.DeleteCardBase`1.ReadCardByFailBuf(System.Collections.Generic.List{System.UInt64},DotNetty.Buffers.IByteBuffer)">
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Card.DeleteCardBase`1.ReadCardByFailBuf(System.Collections.Generic.List{System.Decimal},DotNetty.Buffers.IByteBuffer)">
             <summary>
             从错误卡列表中读取一个错误卡号，加入到cardlist中---本命令不实现此功能
             </summary>
@@ -596,6 +596,13 @@
             </summary>
             <param name="cd"></param>
             <param name="perameter"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Card.WriteCardListBySequence.ReadCardByFailBuf(System.Collections.Generic.List{System.Decimal},DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            从错误卡列表中读取一个错误卡号，加入到cardlist中
+            </summary>
+            <param name="CardList">错误卡列表</param>
+            <param name="buf"></param>
         </member>
         <member name="T:DoNetDrive.Protocol.Door.Door8800.Card.WriteCardListBySequenceBase`1">
             <summary>
@@ -647,13 +654,6 @@
             <summary>
             用来解析返回的错误卡数据
             </summary>
-        </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door8800.Card.WriteCardListBySequenceBase`1.ReadCardByFailBuf(System.Collections.Generic.List{System.UInt64},DotNetty.Buffers.IByteBuffer)">
-            <summary>
-            从错误卡列表中读取一个错误卡号，加入到cardlist中
-            </summary>
-            <param name="CardList">错误卡列表</param>
-            <param name="buf"></param>
         </member>
         <member name="T:DoNetDrive.Protocol.Door.Door8800.Card.WriteCardListBySequence_Parameter">
              <summary>
@@ -714,7 +714,7 @@
             <param name="cd"></param>
             <param name="perameter"></param>
         </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door8800.Card.WriteCardListBySort.ReadCardByFailBuf(System.Collections.Generic.List{System.UInt64},DotNetty.Buffers.IByteBuffer)">
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Card.WriteCardListBySort.ReadCardByFailBuf(System.Collections.Generic.List{System.Decimal},DotNetty.Buffers.IByteBuffer)">
             <summary>
             从错误卡列表中读取一个错误卡号，加入到cardlist中
             </summary>
@@ -840,7 +840,7 @@
             创建命令成功返回值
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door8800.Card.WriteCardListBase`1.ReadCardByFailBuf(System.Collections.Generic.List{System.UInt64},DotNetty.Buffers.IByteBuffer)">
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Card.WriteCardListBase`1.ReadCardByFailBuf(System.Collections.Generic.List{System.Decimal},DotNetty.Buffers.IByteBuffer)">
             <summary>
             从错误卡列表中读取一个错误卡号，加入到cardlist中
             </summary>
@@ -934,7 +934,7 @@
             无法写入的卡列表
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door8800.Card.WriteCardList_Result.#ctor(System.Int32,System.Collections.Generic.List{System.UInt64})">
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Card.WriteCardList_Result.#ctor(System.Int32,System.Collections.Generic.List{System.Decimal})">
             <summary>
             创建结构 
             </summary>
@@ -951,7 +951,7 @@
             授权卡信息 抽象类
             </summary>
         </member>
-        <member name="F:DoNetDrive.Protocol.Door.Door8800.Data.CardDetailBase.CardData">
+        <member name="P:DoNetDrive.Protocol.Door.Door8800.Data.CardDetailBase.CardData">
             <summary>
             卡号，取值范围 0x1-0xFFFFFFFF
             </summary>
@@ -1046,7 +1046,7 @@
         </member>
         <member name="M:DoNetDrive.Protocol.Door.Door8800.Data.CardDetailBase.CompareTo(DoNetDrive.Protocol.Door.Door8800.Data.CardDetailBase)">
             <summary>
-            对卡号进行比较，以便进行排序
+            比较卡号是否一致
             </summary>
             <param name="o"></param>
             <returns></returns>
@@ -1786,9 +1786,9 @@
             初始化参数
             </summary>
         </member>
-        <member name="F:DoNetDrive.Protocol.Door.Door8800.Data.CardTransaction.CardData">
+        <member name="P:DoNetDrive.Protocol.Door.Door8800.Data.CardTransaction.CardData">
             <summary>
-            卡号
+            4字节卡号
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Door.Door8800.Data.CardTransaction.Reader">
@@ -1957,6 +1957,11 @@
         <member name="T:DoNetDrive.Protocol.Door.Door8800.Data.CardDetail">
             <summary>
             Door88A、Door58 卡片权限详情
+            </summary>
+        </member>
+        <member name="P:DoNetDrive.Protocol.Door.Door8800.Data.CardDetail.CardData">
+            <summary>
+            4字节卡号
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Door.Door8800.Data.CardDetail.#ctor">
@@ -2268,7 +2273,7 @@
             读下一个AB组
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.ReadMultiCard.ReadGroupABCard(System.Collections.Generic.List{System.UInt64},DotNetty.Buffers.IByteBuffer)">
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.ReadMultiCard.ReadGroupABCard(System.Collections.Generic.List{System.Decimal},DotNetty.Buffers.IByteBuffer)">
             <summary>
             读取AB组的卡数据
             </summary>
@@ -2497,7 +2502,7 @@
             <param name="antiPassback">防潜回功能检测模式</param>
             <param name="group_fix">多卡固定组合</param>
         </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.WriteMultiCard_Parameter.#ctor(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Collections.Generic.List{System.Collections.Generic.List{System.UInt64}},System.Collections.Generic.List{System.Collections.Generic.List{System.UInt64}},System.Collections.Generic.List{DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.MultiCard_GroupFix})">
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.WriteMultiCard_Parameter.#ctor(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Collections.Generic.List{System.Collections.Generic.List{System.Decimal}},System.Collections.Generic.List{System.Collections.Generic.List{System.Decimal}},System.Collections.Generic.List{DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.MultiCard_GroupFix})">
             <summary>
             初始化多卡参数，支持多卡验证参数和AB组，等待模式和固定组多卡
             </summary>
@@ -2518,13 +2523,18 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.WriteMultiCard_Parameter.CheckGroup(System.Collections.Generic.List{System.Collections.Generic.List{System.UInt64}})">
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.WriteMultiCard_Parameter.CheckGroup(System.Collections.Generic.List{System.Collections.Generic.List{System.Decimal}})">
             <summary>
             检查卡组
             </summary>
             <param name="checkGroup"></param>
         </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.WriteMultiCard_Parameter.CheckGroup(System.Collections.Generic.List{System.UInt64})">
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.WriteMultiCard_Parameter.GetMaxCardValue">
+            <summary>
+            获取卡号最大值
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.WriteMultiCard_Parameter.CheckGroup(System.Collections.Generic.List{System.Decimal})">
             <summary>
             检查卡组数据
             </summary>
@@ -5296,15 +5306,6 @@
             <param name="CmdIndex">命令索引</param>
             <param name="CmdPar">命令参数</param>
             <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door8800.Door8800CommandEx.RewritePacket(System.Byte,System.Byte,System.Byte,System.Int32)">
-            <summary>
-            重置命令内容
-            </summary>
-            <param name="ct">命令类型</param>
-            <param name="ci">命令索引</param>
-            <param name="cp">命令参数</param>
-            <param name="dl">数据长度</param>
         </member>
         <member name="M:DoNetDrive.Protocol.Door.Door8800.Door8800CommandEx.RewritePacket(System.Byte,System.Byte,System.Int32)">
             <summary>
@@ -12556,11 +12557,22 @@
             Door89H 读取单个卡片在控制器中的信息
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door89H.Card.ReadCardDetail_Parameter.#ctor(System.UInt64)">
+        <member name="F:DoNetDrive.Protocol.Door.Door89H.Card.ReadCardDetail_Parameter.BigCard">
+            <summary>
+            9字节卡号
+            </summary>
+        </member>
+        <member name="P:DoNetDrive.Protocol.Door.Door89H.Card.ReadCardDetail_Parameter.CardData">
+            <summary>
+            要读取详情的授权卡8字节卡号
+            取值：1-0xFFFFFFFF
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Door.Door89H.Card.ReadCardDetail_Parameter.#ctor(System.Decimal)">
             <summary>
             创建结构
             </summary>
-            <param name="carddata">需要读取卡片详情的卡号</param>
+            <param name="bCard">需要读取卡片详情的卡号</param>
         </member>
         <member name="M:DoNetDrive.Protocol.Door.Door89H.Card.ReadCardDetail_Parameter.checkedParameter">
             <summary>
@@ -12620,6 +12632,13 @@
             <param name="cd"></param>
             <param name="perameter"></param>
         </member>
+        <member name="M:DoNetDrive.Protocol.Door.Door89H.Card.WriteCardListBySequence.ReadCardByFailBuf(System.Collections.Generic.List{System.Decimal},DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            从错误卡列表中读取一个错误卡号，加入到cardlist中
+            </summary>
+            <param name="CardList">错误卡列表</param>
+            <param name="buf"></param>
+        </member>
         <member name="T:DoNetDrive.Protocol.Door.Door89H.Card.WriteCardListBySequence_Parameter">
              <summary>
             Door89H 将卡片列表写入到控制器非排序区
@@ -12673,7 +12692,7 @@
             <param name="cd"></param>
             <param name="perameter"></param>
         </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door89H.Card.WriteCardListBySort.ReadCardByFailBuf(System.Collections.Generic.List{System.UInt64},DotNetty.Buffers.IByteBuffer)">
+        <member name="M:DoNetDrive.Protocol.Door.Door89H.Card.WriteCardListBySort.ReadCardByFailBuf(System.Collections.Generic.List{System.Decimal},DotNetty.Buffers.IByteBuffer)">
             <summary>
             从错误卡列表中读取一个错误卡号，加入到cardlist中
             </summary>
@@ -12694,6 +12713,16 @@
         <member name="T:DoNetDrive.Protocol.Door.Door89H.Data.CardDetail">
             <summary>
             Door89H 适用于此型号的卡详情
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Door.Door89H.Data.CardDetail.BigCard">
+            <summary>
+            9字节大卡号
+            </summary>
+        </member>
+        <member name="P:DoNetDrive.Protocol.Door.Door89H.Data.CardDetail.CardData">
+            <summary>
+            4字节卡号
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Door.Door89H.Data.CardDetail.#ctor">
@@ -12724,6 +12753,13 @@
             从buf中读取卡号
             </summary>
             <param name="data"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Door.Door89H.Data.CardDetail.CompareTo(DoNetDrive.Protocol.Door.Door8800.Data.CardDetailBase)">
+            <summary>
+            比较
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
         </member>
         <member name="T:DoNetDrive.Protocol.Door.Door89H.Data.CardTransaction">
             <summary>
@@ -12778,6 +12814,16 @@
             47  拒绝开门--区域互锁，失去主机连接                           
             48  区域防潜回--拒绝开门    
             49  区域互锁--有门未关好，拒绝开门
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Door.Door89H.Data.CardTransaction.BigCard">
+            <summary>
+            9字节卡号
+            </summary>
+        </member>
+        <member name="P:DoNetDrive.Protocol.Door.Door89H.Data.CardTransaction.CardData">
+            <summary>
+            4字节卡号
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Door.Door89H.Data.CardTransaction.GetDataLen">
@@ -12904,7 +12950,7 @@
             适用于Door89H协议的多卡组合参数
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Door.Door89H.Door.MultiCard.WriteMultiCard_Parameter.#ctor(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Collections.Generic.List{System.Collections.Generic.List{System.UInt64}},System.Collections.Generic.List{System.Collections.Generic.List{System.UInt64}},System.Collections.Generic.List{DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.MultiCard_GroupFix})">
+        <member name="M:DoNetDrive.Protocol.Door.Door89H.Door.MultiCard.WriteMultiCard_Parameter.#ctor(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Collections.Generic.List{System.Collections.Generic.List{System.Decimal}},System.Collections.Generic.List{System.Collections.Generic.List{System.Decimal}},System.Collections.Generic.List{DoNetDrive.Protocol.Door.Door8800.Door.MultiCard.MultiCard_GroupFix})">
             <summary>
             初始化多卡参数，支持多卡验证参数和AB组，等待模式和固定组多卡
             </summary>
@@ -12918,6 +12964,11 @@
             <param name="group_a">多卡A组组合</param>
             <param name="group_b">多卡B组组合</param>
             <param name="group_fix">多卡固定组合</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Door.Door89H.Door.MultiCard.WriteMultiCard_Parameter.GetMaxCardValue">
+            <summary>
+            获取卡号最大值
+            </summary>
         </member>
         <member name="T:DoNetDrive.Protocol.Door.Door89H.Door.ReadCardAndTakePictures.ReadCardAndTakePictures_Result">
             <summary>

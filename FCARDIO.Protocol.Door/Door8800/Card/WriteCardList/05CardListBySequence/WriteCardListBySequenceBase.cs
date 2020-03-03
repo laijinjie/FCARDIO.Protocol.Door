@@ -118,18 +118,8 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
         /// <summary>
         /// 用来解析返回的错误卡数据
         /// </summary>
-        T _CardDetail;
-        /// <summary>
-        /// 从错误卡列表中读取一个错误卡号，加入到cardlist中
-        /// </summary>
-        /// <param name="CardList">错误卡列表</param>
-        /// <param name="buf"></param>
-        protected override void ReadCardByFailBuf(List<UInt64> CardList, IByteBuffer buf)
-        {
-            if (_CardDetail == null) _CardDetail = new T();
-            _CardDetail.SetBytes(buf);
-            CardList.Add(_CardDetail.CardData);
-        }
+        protected T _CardDetail;
+
 
     }
 

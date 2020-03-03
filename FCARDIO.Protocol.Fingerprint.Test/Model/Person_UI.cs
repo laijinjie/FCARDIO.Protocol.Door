@@ -50,7 +50,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test.Model
 
         public string PName{get{return Person.PName; } }
         public string PCode { get{return Person.PCode; } }
-        public string Post { get{return Person.Post; } }
+        public string Job { get{return Person.Job; } }
         public string Dept { get{return Person.Dept; } }
 
         /// <summary>

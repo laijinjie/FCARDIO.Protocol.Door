@@ -57,6 +57,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data.Transaction
         public SystemTransaction()
         {
             _TransactionType = 3;
+            _IsNull = false;
         }
 
 
