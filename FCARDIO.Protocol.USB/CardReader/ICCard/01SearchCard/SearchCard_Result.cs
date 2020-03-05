@@ -56,7 +56,11 @@ namespace DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard
             {
                 Type = databuf.ReadByte();
                 Length = databuf.ReadByte();
-                CardByteData = new byte[4];
+                if (Length > 8 || Length > databuf.ReadableBytes)
+                {
+                    Length = 8;
+                }
+                CardByteData = new byte[Length];
                 databuf.ReadBytes(CardByteData);
                 switch (Length)
                 {
