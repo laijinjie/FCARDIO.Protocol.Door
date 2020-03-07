@@ -4839,6 +4839,210 @@
             将命令打包成一个Packet，准备发送
             </summary>
         </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceBioassay.ReadFaceBioassay">
+            <summary>
+            表示读取人脸机活体检测的命令
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceBioassay.ReadFaceBioassay.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建读取人脸机活体检测的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceBioassay.ReadFaceBioassay.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceBioassay.ReadFaceBioassay.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceBioassay_Result">
+            <summary>
+            表示人脸机活体检测的命令返回值
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay">
+            <summary>
+            表示设置人脸机活体检测的命令
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay_Parameter)">
+            <summary>
+            创建人脸机活体检测的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查命令参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay_Parameter">
+            <summary>
+            表示人脸机活体检测的命令参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay_Parameter.BioassayType">
+            <summary>
+            活体检测类型：0--关闭；1--红外探测；2--红外+彩色；
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay_Parameter.#ctor">
+            <summary>
+            构建一个空的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay_Parameter.#ctor(System.Int32)">
+            <summary>
+            创建人脸机活体检测的命令参数
+            </summary>
+            <param name="iType">活体检测类型：0--关闭；1--红外探测；2--红外+彩色</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            编码参数
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBioassay_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceIdentifyRange_Result">
+            <summary>
+            表示人脸机识别距离的命令返回值
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceIdentifyRange.ReadFaceIdentifyRange">
+            <summary>
+            表示读取人脸机识别距离的命令
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceIdentifyRange.ReadFaceIdentifyRange.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建读取人脸机识别距离的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceIdentifyRange.ReadFaceIdentifyRange.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceIdentifyRange.ReadFaceIdentifyRange.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange">
+            <summary>
+            表示设置人脸机识别距离的命令
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange_Parameter)">
+            <summary>
+            创建人脸机识别距离的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查命令参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange_Parameter">
+            <summary>
+            表示人脸机识别距离的命令参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange_Parameter.IdentifyRange">
+            <summary>
+            识别距离类型：1--近距离（0.2-0.5米）；2--中距离（0.2-1.5米）；3--远距离（0.2-1.5米以上）
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange_Parameter.#ctor">
+            <summary>
+            构建一个空的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange_Parameter.#ctor(System.Int32)">
+            <summary>
+            创建人脸机识别距离的命令参数
+            </summary>
+            <param name="iRange">识别距离：1--近距离（0.2-0.5米）；2--中距离（0.2-1.5米）；3--远距离（0.2-1.5米以上）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            编码参数
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.SendConnectTestResponse">
             <summary>
             连接测试响应消息

@@ -53,6 +53,9 @@
     <Reference Include="DoNetDrive.Protocol.Util">
       <HintPath>..\..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
     </Reference>
+    <Reference Include="DoNetTool.Common">
+      <HintPath>..\..\DLL\DoNetTool.Common.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\..\DLL\DotNetty.Buffers.dll</HintPath>
     </Reference>
@@ -67,9 +70,6 @@
     </Reference>
     <Reference Include="DotNetty.Transport">
       <HintPath>..\..\DLL\DotNetty.Transport.dll</HintPath>
-    </Reference>
-    <Reference Include="FCARD.Common">
-      <HintPath>..\..\DLL\FCARD.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
       <HintPath>..\..\DLL\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>

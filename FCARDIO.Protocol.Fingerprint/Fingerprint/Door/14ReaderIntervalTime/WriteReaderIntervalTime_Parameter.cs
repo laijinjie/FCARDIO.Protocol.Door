@@ -75,8 +75,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Door.ReaderIntervalTime
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             databuf.WriteBoolean(IsUse);
-            databuf.WriteUnsignedShort(IntervalTime);
             databuf.WriteByte(Mode);
+            databuf.WriteUnsignedShort(IntervalTime);
             return databuf;
         }
 
@@ -96,8 +96,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Door.ReaderIntervalTime
         public override void SetBytes(IByteBuffer databuf)
         {
             IsUse = databuf.ReadBoolean();
-            IntervalTime = databuf.ReadUnsignedShort();
             Mode = databuf.ReadByte();
+            IntervalTime = databuf.ReadUnsignedShort();
         }
     }
 }
