@@ -64,7 +64,19 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Data.Transaction
                     
                     return;
                 }
-                _TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhhmmssByDex(dtBuf);
+
+                int year = dtBuf.ReadByte() + 2000;
+
+                try
+                {
+                    _TransactionDate = new DateTime(year, dtBuf.ReadByte(), dtBuf.ReadByte(), dtBuf.ReadByte(), dtBuf.ReadByte(), dtBuf.ReadByte());
+                }
+                catch (Exception)
+                {
+
+                    _TransactionDate = DateTime.MinValue;
+                }
+                
 
                 State = dtBuf.ReadByte();
 

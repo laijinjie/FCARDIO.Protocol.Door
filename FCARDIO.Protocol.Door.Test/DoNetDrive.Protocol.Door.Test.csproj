@@ -228,11 +228,5 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FCARDIO.Protocol.Door\DoNetDrive.Protocol.Door.csproj">
-      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
-      <Name>DoNetDrive.Protocol.Door</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

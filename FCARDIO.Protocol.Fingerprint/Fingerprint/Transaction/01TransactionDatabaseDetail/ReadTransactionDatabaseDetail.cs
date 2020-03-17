@@ -29,7 +29,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <param name="oPck"></param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x0D * 3))
+            if (CheckResponse(oPck))
             {
                 var buf = oPck.CmdData;
                 ReadTransactionDatabaseDetail_Result rst = new ReadTransactionDatabaseDetail_Result();
