@@ -25,38 +25,48 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\DLL\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\DLL\DoNetDrive.Protocol.USB.CardReader.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DoNetDrive.Core">
       <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol">
       <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Util">
       <HintPath>..\..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetTool.Common">
       <HintPath>..\..\DLL\DoNetTool.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\..\DLL\DotNetty.Buffers.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Codecs">
       <HintPath>..\..\DLL\DotNetty.Codecs.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Common">
       <HintPath>..\..\DLL\DotNetty.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Handlers">
       <HintPath>..\..\DLL\DotNetty.Handlers.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Transport">
       <HintPath>..\..\DLL\DotNetty.Transport.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -123,9 +133,6 @@
     <Compile Include="SystemParameter\AgencyCode\WriteAgencyCode_Parameter.cs" />
     <Compile Include="Watch\WatchReadCardTransaction.cs" />
     <Compile Include="Write_Command.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

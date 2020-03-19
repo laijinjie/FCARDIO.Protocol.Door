@@ -25,20 +25,23 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\DLL\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RegisterForComInterop>false</RegisterForComInterop>
-    <DocumentationFile>bin\Release\DoNetDrive.Protocol.Fingerprint.xml</DocumentationFile>
+    <DocumentationFile>..\..\DLL\DoNetDrive.Protocol.Fingerprint.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DoNetDrive.Core, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DoNetDrive.Core">
       <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Door, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DoNetDrive.Protocol">
+      <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Door, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
       <Private>False</Private>
@@ -59,6 +62,10 @@
     </Reference>
     <Reference Include="DotNetty.Common">
       <HintPath>..\..\DLL\DotNetty.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetty.Transport">
+      <HintPath>..\..\DLL\DotNetty.Transport.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -118,10 +125,12 @@
     <Compile Include="AutoTest\AutoTestCommand_Result.cs" />
     <Compile Include="Data\Person.cs" />
     <Compile Include="Data\TransactionDatabaseDetail.cs" />
+    <Compile Include="Data\Transaction\BodyTemperatureRecord.cs" />
     <Compile Include="Data\Transaction\CardTransaction.cs" />
     <Compile Include="Data\Transaction\ConnectTestTransaction.cs" />
     <Compile Include="Data\Transaction\DoorSensorTransaction.cs" />
     <Compile Include="Data\Transaction\SystemTransaction.cs" />
+    <Compile Include="Data\Transaction\TransactionDetail.cs" />
     <Compile Include="Door\01ReaderOption\ReaderOption_Parameter.cs" />
     <Compile Include="Door\01ReaderOption\ReaderOption_Result.cs" />
     <Compile Include="Door\01ReaderOption\ReadReaderOption.cs" />
@@ -252,13 +261,6 @@
     <Compile Include="Transaction\e_TransactionDatabaseType.cs" />
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex.cs" />
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Parameter.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\DoNet版通讯动态库V2\FCARDIO.Protocol\FCARDIO.Protocol\DoNetDrive.Protocol.vbproj">
-      <Project>{4c9b06e5-da6b-49af-8e4d-a0d75046c044}</Project>
-      <Name>DoNetDrive.Protocol</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

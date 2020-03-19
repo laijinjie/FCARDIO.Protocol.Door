@@ -21,10 +21,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// </summary>
         static ReadTransactionDatabaseByIndex()
         {
-            NewTransactionTable = new Func<AbstractTransaction>[4];
+            NewTransactionTable = new Func<AbstractTransaction>[5];
             NewTransactionTable[1] = () => new CardTransaction();//读卡记录
             NewTransactionTable[2] = () => new DoorSensorTransaction();//门磁记录
             NewTransactionTable[3] = () => new SystemTransaction();//系统记录
+            NewTransactionTable[4] = () => new BodyTemperatureTransaction();//系统记录
         }
 
 

@@ -16,6 +16,10 @@
         /// <summary>
         /// 系统相关记录
         /// </summary>
-        OnSystemTransaction = 3
+        OnSystemTransaction = 3,
+        /// <summary>
+        /// 体温记录
+        /// </summary>
+        OnBodyTemperatureTransaction = 4
     }
 }

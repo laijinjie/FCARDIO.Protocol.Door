@@ -64,7 +64,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Data
         /// 可用的新记录数
         /// </summary>
         /// <returns>新记录数</returns>
-        public long readable()
+        public virtual long readable()
         {
             if (IsCircle)
             {

@@ -7,8 +7,8 @@
     <ProjectGuid>{FF0CB605-1697-4CDE-AC68-A982D92ED53A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FCARDIO.Protocol.Elevator</RootNamespace>
-    <AssemblyName>FCARDIO.Protocol.Elevator</AssemblyName>
+    <RootNamespace>DoNetDrive.Protocol.Elevator</RootNamespace>
+    <AssemblyName>DoNetDrive.Protocol.Elevator</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -33,36 +33,47 @@
   <ItemGroup>
     <Reference Include="DoNetDrive.Core">
       <HintPath>..\DLL\DoNetDrive.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol">
       <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Door">
       <HintPath>..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Util">
       <HintPath>..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetTool.Common">
       <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Codecs">
       <HintPath>..\DLL\DotNetty.Codecs.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Common">
       <HintPath>..\DLL\DotNetty.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Handlers">
       <HintPath>..\DLL\DotNetty.Handlers.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Transport">
       <HintPath>..\DLL\DotNetty.Transport.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Transport.Libuv">
       <HintPath>..\DLL\DotNetty.Transport.Libuv.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -275,11 +286,12 @@
     <Compile Include="Door8864\Transaction\05TransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex.cs" />
     <Compile Include="Door8864\Transaction\06WriteTransactionDatabaseWriteIndex\WriteTransactionDatabaseWriteIndex.cs" />
     <Compile Include="Door8864\Utility\StringUtility.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Read_Command.cs" />
     <Compile Include="Result_Base.cs" />
     <Compile Include="Write_Command.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

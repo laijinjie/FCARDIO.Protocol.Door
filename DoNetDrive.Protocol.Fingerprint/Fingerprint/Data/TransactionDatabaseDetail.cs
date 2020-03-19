@@ -10,10 +10,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
 {
     /// <summary>
     /// 记录数据库的详情
-    /// 读卡记录,  门磁,  系统记录
+    /// 读卡记录,  门磁,  系统记录  体温记录
     /// </summary>
-    public class TransactionDatabaseDetail: DoNetDrive.Protocol.Door.Door8800.Data.TransactionDatabaseDetail
+    public class TransactionDatabaseDetail : DoNetDrive.Protocol.Door.Door8800.Data.TransactionDatabaseDetail
     {
+        /// <summary>
+        /// 表示体温记录详情
+        /// </summary>
+        public TransactionDetail BodyTemperatureTransactionDetail;
+
         /// <summary>
         /// 初始化参数
         /// </summary>
@@ -22,6 +27,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
             CardTransactionDetail = new TransactionDetail();
             DoorSensorTransactionDetail = new TransactionDetail();
             SystemTransactionDetail = new TransactionDetail();
+            BodyTemperatureTransactionDetail = new TransactionDetail();
         }
 
         /// <summary>
@@ -30,7 +36,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 0x0D * 3;
+            return 0x0D * 4;
         }
 
         /// <summary>
@@ -39,10 +45,24 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
         /// <param name="data"></param>
         public override void SetBytes(IByteBuffer data)
         {
-            ListTransaction = new TransactionDetail[]{CardTransactionDetail, DoorSensorTransactionDetail, SystemTransactionDetail};
+            if (data.ReadableBytes == 52)// 0x0D * 4;
+            {
+                ListTransaction = new TransactionDetail[] { CardTransactionDetail, DoorSensorTransactionDetail, SystemTransactionDetail, BodyTemperatureTransactionDetail };
+            }
+            else// 0x0D * 3;
+            {
+                ListTransaction = new TransactionDetail[] { CardTransactionDetail, DoorSensorTransactionDetail, SystemTransactionDetail };
+            }
+
             for (int i = 0; i < ListTransaction.Length; i++)
             {
                 ListTransaction[i].SetBytes(data);
+
+                if(ListTransaction[i].ReadIndex> ListTransaction[i].WriteIndex)
+                {
+                    ListTransaction[i].ReadIndex = 0;
+
+                }
             }
             return;
         }

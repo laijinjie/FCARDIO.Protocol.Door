@@ -36,7 +36,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <returns></returns>
         protected override Protocol.Door.Door8800.Data.TransactionDetail GetTransactionDetail(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, CheckResponseCmdType, 0x01, 0x00, 0x0D * 3))
+            if (CheckResponse(oPck, CheckResponseCmdType, 0x01, 0x00))
             {
                 var buf = oPck.CmdData;
                 ReadTransactionDatabaseDetail_Result rst = new ReadTransactionDatabaseDetail_Result();
