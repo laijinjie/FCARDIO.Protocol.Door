@@ -230,5 +230,21 @@ namespace DoNetDrive.Protocol.USB.CardReader.Test
             };
 
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
+            var b = new byte[0];
+            var s = b.ToHex();
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            for (int i = 11; i < 14; i++)
+            {
+                ReadSector_Parameter par = new ReadSector_Parameter(Type, (byte)i, (byte)0
+                , (byte)48, (byte)1, $"131F{i}531234");
+                ReadSector cmd = new ReadSector(cmdDtl, par);
+                mMainForm.AddCommand(cmd);
+            }
+        }
     }
 }

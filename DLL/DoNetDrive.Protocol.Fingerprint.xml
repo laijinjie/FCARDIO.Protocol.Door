@@ -1698,7 +1698,12 @@
         <member name="T:DoNetDrive.Protocol.Fingerprint.Data.TransactionDatabaseDetail">
             <summary>
             记录数据库的详情
-            读卡记录,  门磁,  系统记录
+            读卡记录,  门磁,  系统记录  体温记录
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Data.TransactionDatabaseDetail.BodyTemperatureTransactionDetail">
+            <summary>
+            表示体温记录详情
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Data.TransactionDatabaseDetail.#ctor">
@@ -1717,6 +1722,38 @@
             进行解码
             </summary>
             <param name="data"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Data.Transaction.BodyTemperatureTransaction">
+            <summary>
+            表示一个体温记录
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Data.Transaction.BodyTemperatureTransaction.Temperature">
+            <summary>
+            体温
+            </summary>
+        </member>
+        <member name="P:DoNetDrive.Protocol.Fingerprint.Data.Transaction.BodyTemperatureTransaction.BodyTemperature">
+            <summary>
+            体温，整数，需要除100
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Transaction.BodyTemperatureTransaction.#ctor">
+            <summary>
+            创建一个体温记录
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Transaction.BodyTemperatureTransaction.GetDataLen">
+            <summary>
+            指示一个事务记录所占用的缓冲区长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Transaction.BodyTemperatureTransaction.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            使用缓冲区构造一个事务实例
+            </summary>
+            <param name="data">缓冲区</param>
         </member>
         <member name="P:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardTransaction.RecordSerialNumber">
             <summary>
@@ -1829,6 +1866,17 @@
             使用缓冲区构造一个事务实例
             </summary>
             <param name="data">缓冲区</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Data.Transaction.TransactionDetail">
+            <summary>
+            人脸机、指纹机记录详情
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Transaction.TransactionDetail.readable">
+            <summary>
+            可用的新记录数
+            </summary>
+            <returns>新记录数</returns>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Door.ReaderOption.ReaderOption_Parameter">
             <summary>
@@ -5425,6 +5473,11 @@
         <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.e_TransactionDatabaseType.OnSystemTransaction">
             <summary>
             系统相关记录
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.e_TransactionDatabaseType.OnBodyTemperatureTransaction">
+            <summary>
+            体温记录
             </summary>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseByIndex">

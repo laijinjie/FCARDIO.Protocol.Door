@@ -3926,7 +3926,7 @@ DoNetDrive.Core
  是否已释放
  </summary>
 </member>
-<member name="F:DoNetDrive.Core.ConnectorAllocator.mMagagers">
+<member name="F:DoNetDrive.Core.ConnectorAllocator.mManagers">
  <summary>
  连接管理器工厂
  </summary>

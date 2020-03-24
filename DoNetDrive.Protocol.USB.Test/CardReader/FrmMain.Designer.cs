@@ -51,6 +51,7 @@
             this.butSearchCard = new System.Windows.Forms.ToolStripButton();
             this.butEncryptionDecryption = new System.Windows.Forms.ToolStripButton();
             this.btnWatch = new System.Windows.Forms.Button();
+            this.burReadSN = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tbEvent.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -294,11 +295,22 @@
             this.btnWatch.UseVisualStyleBackColor = true;
             this.btnWatch.Click += new System.EventHandler(this.BtnWatch_Click);
             // 
+            // burReadSN
+            // 
+            this.burReadSN.Location = new System.Drawing.Point(425, 12);
+            this.burReadSN.Name = "burReadSN";
+            this.burReadSN.Size = new System.Drawing.Size(75, 23);
+            this.burReadSN.TabIndex = 19;
+            this.burReadSN.Text = "读SN";
+            this.burReadSN.UseVisualStyleBackColor = true;
+            this.burReadSN.Click += new System.EventHandler(this.BurReadSN_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 668);
+            this.Controls.Add(this.burReadSN);
             this.Controls.Add(this.btnWatch);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tbEvent);
@@ -345,5 +357,6 @@
         private System.Windows.Forms.ToolStripButton butEncryptionDecryption;
         private System.Windows.Forms.Label lblReLoadCOMList;
         private System.Windows.Forms.Button btnWatch;
+        private System.Windows.Forms.Button burReadSN;
     }
 }

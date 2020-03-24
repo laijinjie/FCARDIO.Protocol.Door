@@ -332,7 +332,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (!System.IO.Directory.Exists(sPath))
                 System.IO.Directory.CreateDirectory(sPath);
 
-            string sFile = System.IO.Path.Combine(sPath, $"按序号读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
+            string sFile = System.IO.Path.Combine(sPath, sFileName);
 
             System.IO.File.WriteAllText(sFile, sLogs.ToString(), Encoding.UTF8);
             return sFile;

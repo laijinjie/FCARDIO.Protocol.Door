@@ -11,6 +11,7 @@ using DoNetDrive.Core.Extension;
 using System.Collections.Concurrent;
 using DoNetDrive.Protocol.USBDrive;
 using DoNetDrive.Protocol.Door8800;
+using DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN;
 
 namespace DoNetDrive.Protocol.USB.CardReader.Test
 {
@@ -242,6 +243,8 @@ namespace DoNetDrive.Protocol.USB.CardReader.Test
 
         private void mAllocator_CommandTimeout(object sender, CommandEventArgs e)
         {
+            if (e.CommandDetail.UserData?.ToString() == "TestReadSN")
+                return;
             //if (e.Command.GetType().FullName == typeof(FC8800.SystemParameter.SearchControltor.SearchControltor).FullName)
             //{
             //    AddCmdLog(e, "搜索完毕");
@@ -275,6 +278,8 @@ namespace DoNetDrive.Protocol.USB.CardReader.Test
 
         private void mAllocator_CommandErrorEvent(object sender, CommandEventArgs e)
         {
+            if (e.CommandDetail.UserData?.ToString() == "TestReadSN")
+                return;
             AddCmdLog(e, "命令错误");
         }
 
@@ -531,15 +536,26 @@ namespace DoNetDrive.Protocol.USB.CardReader.Test
         /// <summary>
         /// 获取一个命令详情，已经装配好通讯目标的所有信息
         /// </summary>
-        /// <returns>命令详情</returns>
-        public USBDriveCommandDetail GetCommandDetail()
+        /// <param name="iPort"></param>
+        /// <returns></returns>
+        public USBDriveCommandDetail GetCommandDetail(int iPort)
         {
             if (_IsClosed) return null;
-            USBDriveCommandDetail cmdDtl = CommandDetailFactory.CreateDetail(CommandDetailFactory.ConnectType.SerialPort, "", GetSerialPort(),
+            USBDriveCommandDetail cmdDtl = CommandDetailFactory.CreateDetail(
+                CommandDetailFactory.ConnectType.SerialPort, "", iPort,
                 CommandDetailFactory.ControllerType.USBDrive_CardReader, "", string.Empty) as USBDriveCommandDetail;
             DoNetDrive.Core.Connector.SerialPort.SerialPortDetail spd = cmdDtl.Connector as DoNetDrive.Core.Connector.SerialPort.SerialPortDetail;
             spd.Baudrate = 19200;
             return cmdDtl;
+        }
+
+        /// <summary>
+        /// 获取一个命令详情，已经装配好通讯目标的所有信息
+        /// </summary>
+        /// <returns>命令详情</returns>
+        public USBDriveCommandDetail GetCommandDetail()
+        {
+            return GetCommandDetail(GetSerialPort());
         }
         #endregion
 
@@ -739,8 +755,6 @@ namespace DoNetDrive.Protocol.USB.CardReader.Test
         /// <returns></returns>
         private Transaction.AbstractTransaction RequestHandleFactory(byte addr, byte cmdIndex)
         {
-
-
             switch (cmdIndex)
             {
                 case 0x01://读卡消息
@@ -750,6 +764,50 @@ namespace DoNetDrive.Protocol.USB.CardReader.Test
             }
             return null;
         }
+
+        private void BurReadSN_Click(object sender, EventArgs e)
+        {
+
+            var Ports = System.IO.Ports.SerialPort.GetPortNames();
+
+            foreach (var p in Ports)
+            {
+                AddCmdLog(null,$" 读取串口号： {p}");
+
+                int port = int.Parse(p.Replace("COM", string.Empty));
+
+                var cmdDtl = GetCommandDetail(port);
+                cmdDtl.UserData = "TestReadSN";
+
+                if (cmdDtl == null) return;
+
+
+                ReadSN cmd = new ReadSN(cmdDtl);
+                AddCommand(cmd);
+
+                //处理返回值
+                cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+                {
+                    SN_Result result = cmde.Command.getResult() as SN_Result;
+                    string sn = result.SN.ToString();
+                    Invoke(() =>
+                    {
+                        txtAddress.Text = sn;
+                    });
+                    AddCmdLog(cmde, $"COM{port} -- 地址号：{sn}");
+                };
+                cmdDtl.CommandErrorEvent += (sdr, cmde) =>
+                {
+                    AddCmdLog(cmde, $"COM{port} -- 读地址号命令错误");
+                };
+                cmdDtl.CommandTimeout += (sdr, cmde) => {
+                    AddCmdLog(cmde, $"COM{port} -- 读地址号命令超时");
+                };
+
+            }
+            
+        }
+
 
     }
 }

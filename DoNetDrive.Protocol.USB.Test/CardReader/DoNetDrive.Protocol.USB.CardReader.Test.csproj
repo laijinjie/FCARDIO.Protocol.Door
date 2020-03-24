@@ -35,14 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DoNetDrive.Core">
-      <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
-    </Reference>
     <Reference Include="DoNetDrive.Protocol">
       <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Door">
-      <HintPath>..\..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol.USB.CardReader, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\DoNetDrive.Protocol.USB.CardReader.dll</HintPath>
     </Reference>
     <Reference Include="DoNetTool.Common">
       <HintPath>..\..\DLL\DoNetTool.Common.dll</HintPath>
@@ -147,9 +145,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FCARDIO.Protocol.USB\CardReader\DoNetDrive.Protocol.USB.CardReader.csproj">
-      <Project>{3502f7f1-0805-457d-b8d7-35c22d722550}</Project>
-      <Name>DoNetDrive.Protocol.USB.CardReader</Name>
+    <ProjectReference Include="..\..\..\DoNet版通讯动态库V2\FCARDIO.Core\FCARDIO.Core\DoNetDrive.Core.vbproj">
+      <Project>{a149c4d3-2209-408f-a0de-d9eb8e0fa492}</Project>
+      <Name>DoNetDrive.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
