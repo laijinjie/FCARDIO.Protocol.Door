@@ -778,13 +778,15 @@ namespace DoNetDrive.Protocol.USB.CardReader.Test
 
                 var cmdDtl = GetCommandDetail(port);
                 cmdDtl.UserData = "TestReadSN";
-
+                cmdDtl.Timeout = 400;
+                cmdDtl.RestartCount = 0;
                 if (cmdDtl == null) return;
 
 
                 ReadSN cmd = new ReadSN(cmdDtl);
                 AddCommand(cmd);
-
+                var connter = mAllocator.GetConnector(cmdDtl.Connector) as AbstractConnector;
+                connter.ChannelKeepaliveMaxTime = 2;
                 //处理返回值
                 cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
                 {

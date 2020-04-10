@@ -14,7 +14,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <summary>
         ///创建结构
         /// </summary>
-        /// <param name="_DatabaseType">记录数据库类型 取值1-6</param>
+        /// <param name="_DatabaseType">记录数据库类型 取值1-4</param>
         /// <param name="_ReadIndex">读索引号</param>
         /// <param name="_Quantity">读取数量</param>
         public ReadTransactionDatabaseByIndex_Parameter(int _DatabaseType, int _ReadIndex, int _Quantity)
@@ -28,7 +28,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (TransactionType < 1 || TransactionType > 3)
+            if (TransactionType < 1 || TransactionType > 4)
                 throw new ArgumentException("DatabaseType Error!");
             if (Quantity <= 0 || Quantity > 500)
             {

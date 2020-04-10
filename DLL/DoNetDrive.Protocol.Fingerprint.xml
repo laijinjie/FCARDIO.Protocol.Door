@@ -5202,7 +5202,8 @@
             记录数据库类型
             1  读卡记录 
             2  门磁记录  
-            3  系统记录  
+            3  系统记录 
+            4  体温记录
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ClearTransactionDatabase_Parameter.#ctor(DoNetDrive.Protocol.Fingerprint.Transaction.e_TransactionDatabaseType)">
@@ -5328,7 +5329,7 @@
             <summary>
             初始化参数
             </summary>
-            <param name="type">取值范围 1-3</param>
+            <param name="type">取值范围 1-4</param>
             <param name="_Quantity">读取数量</param>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Parameter.checkedParameter">
@@ -5372,6 +5373,7 @@
              1  读卡记录
              2  门磁记录
              3  系统记录
+             4  体温记录
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.WriteTransactionDatabaseReadIndex_Parameter.RecordIndex">
@@ -5519,7 +5521,7 @@
              <summary>
             创建结构
              </summary>
-             <param name="_DatabaseType">记录数据库类型 取值1-6</param>
+             <param name="_DatabaseType">记录数据库类型 取值1-4</param>
              <param name="_ReadIndex">读索引号</param>
              <param name="_Quantity">读取数量</param>
         </member>

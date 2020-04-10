@@ -2072,6 +2072,11 @@ DoNetDrive.Core
  表示一个串口通道，使用RS232、RS485方式或USB转串口方式和硬件通讯
  </summary>
 </member>
+<member name="F:DoNetDrive.Core.Connector.SerialPort.SerialPortConnector.mConnectorWriteError">
+ <summary>
+ 串口的写操作错误次数
+ </summary>
+</member>
 <member name="F:DoNetDrive.Core.Connector.SerialPort.SerialPortConnector.mSerialPort">
  <summary>
  串口操作类

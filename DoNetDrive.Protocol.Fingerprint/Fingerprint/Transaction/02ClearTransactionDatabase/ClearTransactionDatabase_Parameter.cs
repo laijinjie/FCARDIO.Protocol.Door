@@ -13,7 +13,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// 记录数据库类型
         /// 1  读卡记录 
         /// 2  门磁记录  
-        /// 3  系统记录  
+        /// 3  系统记录 
+        /// 4  体温记录
         /// </summary>
         public e_TransactionDatabaseType? DatabaseType;
         
@@ -40,10 +41,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <returns></returns>
         public override bool checkedParameter()
         {
+
             if (DatabaseType == null)
             {
                 throw new ArgumentException("DatabaseType Error!");
             }
+
+            int iType = (int)DatabaseType;
+            if (iType < 1 || iType > 4)
+                throw new ArgumentException("DatabaseType Error!");
+
             return true;
         }
 

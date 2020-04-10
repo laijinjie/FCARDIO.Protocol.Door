@@ -14,7 +14,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <summary>
         /// 初始化参数
         /// </summary>
-        /// <param name="type">取值范围 1-3</param>
+        /// <param name="type">取值范围 1-4</param>
         /// <param name="_Quantity">读取数量</param>
         public ReadTransactionDatabase_Parameter(int type, int _Quantity) :
             base((Protocol.Door.Door8800.Transaction.e_TransactionDatabaseType)type, _Quantity)
@@ -27,6 +27,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <returns></returns>
         public override bool checkedParameter()
         {
+            int iType = (int)DatabaseType;
+            if (iType < 1 || iType > 4)
+                throw new ArgumentException("DatabaseType Error!");
+
             if (PacketSize < 1 || PacketSize > 200)
             {
                 throw new ArgumentException("PacketSize Error!");
