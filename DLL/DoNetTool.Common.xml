@@ -1298,6 +1298,21 @@
             Xml 工具类
             </summary>
         </member>
+        <member name="F:DoNetTool.Common.MyXML.mXMLDoc">
+            <summary>
+            XML文档
+            </summary>
+        </member>
+        <member name="F:DoNetTool.Common.MyXML.mElement">
+            <summary>
+            XML根节点
+            </summary>
+        </member>
+        <member name="F:DoNetTool.Common.MyXML.mMajorNode">
+            <summary>
+            XML主节点
+            </summary>
+        </member>
         <member name="M:DoNetTool.Common.MyXML.#ctor">
             <summary>
             构造函数
@@ -1426,6 +1441,28 @@
         <member name="M:DoNetTool.Common.MyXML.DeleteValue(System.String)">
             <summary>
             删除子节点
+            </summary>
+            <param name="sName"></param>
+        </member>
+        <member name="M:DoNetTool.Common.MyXML.SetNodeAttribute(System.String,System.String,System.String)">
+            <summary>
+            设置子节点属性值
+            </summary>
+            <param name="sNodeKey"></param>
+            <param name="sName"></param>
+            <param name="sValue"></param>
+        </member>
+        <member name="M:DoNetTool.Common.MyXML.GetNodeAttribute(System.String,System.String,System.String)">
+            <summary>
+            读取子节点属性值
+            </summary>
+            <param name="sName"></param>
+            <param name="sDefault_value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetTool.Common.MyXML.DeleteNodeAttribute(System.String,System.String)">
+            <summary>
+            删除子节点属性
             </summary>
             <param name="sName"></param>
         </member>
@@ -2621,6 +2658,13 @@
             <returns></returns>
         </member>
         <member name="M:DoNetTool.Common.StringUtil.CheckIDListNoDelete(System.String)">
+            <summary>
+            检查ID列表
+            </summary>
+            <param name="IDList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetTool.Common.StringUtil.CheckStrListNoDelete(System.String)">
             <summary>
             检查ID列表
             </summary>

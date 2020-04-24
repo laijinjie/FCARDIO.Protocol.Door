@@ -1881,6 +1881,16 @@ DoNetDrive.Core
  是否已释放
  </summary>
 </member>
+<member name="F:DoNetDrive.Core.Connector.DotNettyAllocator.DefaultServerEventLoopGroupCount">
+ <summary>
+ 默认的事件循环数量
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.DotNettyAllocator.DefaultChildEventLoopGroupCount">
+ <summary>
+ 默认的事件循环数量
+ </summary>
+</member>
 <member name="P:DoNetDrive.Core.Connector.DotNettyAllocator.IsRelease">
  <summary>
  检查事件循环组是否已释放
@@ -3893,6 +3903,11 @@ DoNetDrive.Core
 <member name="F:DoNetDrive.Core.ConnectorAllocator.DefaultConnectorFactory">
  <summary>
  默认的通道生成工厂
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.ConnectorAllocator.DefaultEventLoopGroupTaskCount">
+ <summary>
+ 默认的事件循环数量
  </summary>
 </member>
 <member name="F:DoNetDrive.Core.ConnectorAllocator.staticConnectorAllocator">
