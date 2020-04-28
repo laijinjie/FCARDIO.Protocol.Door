@@ -50,12 +50,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             IniCommandClassNameList();
 
             TransactionTypeName = new string[255];
-            TransactionTypeName[1] = "读卡记录";
-            TransactionTypeName[2] = "出门开关记录";
-            TransactionTypeName[3] = "门磁记录";
-            TransactionTypeName[4] = "软件操作记录";
-            TransactionTypeName[5] = "报警记录";
-            TransactionTypeName[6] = "系统记录";
+            TransactionTypeName[1] = "认证记录";
+            TransactionTypeName[2] = "门操作记录";
+            TransactionTypeName[3] = "系统记录";
+            TransactionTypeName[4] = "体温记录";
+
+            TransactionTypeName[0xA0] = "连接测试";
             TransactionTypeName[0x22] = "保活包";
         }
 
@@ -89,6 +89,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 Invoke(new Action(IniForm));
 
             });
+
+            tbEvent.SelectedIndex = 1;
         }
 
 
@@ -118,7 +120,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mAllocator.ClientOffline += MAllocator_ClientOffline;
 
             mObserver.DisposeRequestEvent += MObserver_DisposeRequestEvent;
-            mObserver.DisposeResponseEvent += MObserver_DisposeResponseEvent; 
+            mObserver.DisposeResponseEvent += MObserver_DisposeResponseEvent;
 
             IniConnTypeList();
             IniLstIO();
@@ -232,6 +234,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     break;
                 default:
                     mAllocator.GetConnector(connector).AddRequestHandle(mObserver);
+                    //加入消息事件处理器
+                    INConnector cnt = mAllocator.GetConnector(connector);
+                    Door8800RequestHandle fC8800Request =
+                    new Door8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
+                    cnt.RemoveRequestHandle(typeof(Door8800RequestHandle));//先删除，防止已存在就无法添加。
 
                     AddIOLog(connector, "成功", "通道连接成功");
                     break;
@@ -298,7 +305,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                             ReadConnectPassword cmd = new ReadConnectPassword(cmddtl);
                             AddCommand(cmd);
                         }
-                        
+
                     }
                     break;
 
@@ -601,6 +608,31 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 dtl.LocalAddr = cmbLocalIP.Text;
                 dtl.LocalPort = txtUDPLocalPort.Text.ToInt32();
             }
+            cmdDtl.Timeout = 600;
+            cmdDtl.RestartCount = 3;
+            return cmdDtl;
+
+        }
+
+
+        /// <summary>
+        /// 获取一个命令详情，已经装配好通讯目标的所有信息
+        /// </summary>
+        /// <returns>命令详情</returns>
+        public INCommandDetail GetCommandDetail(string sSN, string sPassword, string sRemoteIP, int iRemotePort)
+        {
+            if (_IsClosed) return null;
+            CommandDetailFactory.ConnectType connectType = CommandDetailFactory.ConnectType.UDPClient;
+            CommandDetailFactory.ControllerType protocolType = CommandDetailFactory.ControllerType.Door89H;
+
+
+            var cmdDtl = CommandDetailFactory.CreateDetail(connectType, sRemoteIP, iRemotePort,
+                protocolType, sSN, sPassword);
+
+            UDPClientDetail dtl = cmdDtl.Connector as UDPClientDetail;
+            dtl.LocalAddr = mServerIP;
+            dtl.LocalPort = mServerPort;
+
             cmdDtl.Timeout = 600;
             cmdDtl.RestartCount = 3;
             return cmdDtl;
@@ -1025,6 +1057,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// </summary>
         private bool mUDPIsBind = false;
 
+        private string mServerIP;
+        private int mServerPort;
+
         private void butUDPBind_Click(object sender, EventArgs e)
         {
             if (!txtUDPLocalPort.Text.IsNum())
@@ -1059,7 +1094,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 cmbLocalIP.Enabled = false;
                 //打开UDP服务器
                 mAllocator.OpenConnector(detail);
-
+                mServerIP = sLocalIP;
+                mServerPort = port;
                 //等待后续事件，事件触发 mAllocator_ConnectorConnectedEvent 表示绑定成功
                 //事件触发 mAllocator_ConnectorClosedEvent 表示绑定失败
 
@@ -1298,11 +1334,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
 
             //在这里需要根据SN进行类型判定，也可以根据SN来进行查表
-            if (cmdIndex >= 1 && cmdIndex <= 3)
+            if (cmdIndex >= 1 && cmdIndex <= 4)
             {
                 return Transaction.ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
             }
             if (cmdIndex == 0x22)
+            {
+                return new DoNetDrive.Protocol.Door.Door8800.Data.Transaction.KeepaliveTransaction();
+            }
+
+            if (cmdIndex == 0xA0)
             {
                 return new DoNetDrive.Protocol.Door.Door8800.Data.Transaction.ConnectMessageTransaction();
             }
@@ -1337,27 +1378,68 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             commandResult.Time = fcTrn.EventData.TransactionDate.ToDateTimeStr();
             commandResult.Timemill = "-";
+            TCPClientDetail dtl = connector as TCPClientDetail;
 
 
-            if (fcTrn.CmdIndex <= 3)
+            if (fcTrn.CmdIndex <= 4)
             {
-                strbuf.Append("事件：").Append(evn.TransactionCode);
+                strbuf.Append("序号：").Append(evn.SerialNumber).Append("；");
 
-                string[] codeNameList = frmRecord.mTransactionCodeNameList[evn.TransactionType];
-                strbuf.Append("(").Append(codeNameList[evn.TransactionCode]).Append(")");
+                if (evn.TransactionType < 4)
+                {
+                    string[] codeNameList = frmRecord.mTransactionCodeNameList[evn.TransactionType];
+                    strbuf.Append("事件：").Append(evn.TransactionCode).Append("(").Append(codeNameList[evn.TransactionCode]).Append(")");
+
+                    strbuf.Append("；时间：").Append(evn.TransactionDate.ToString("yyyy-MM-dd hh:mm:ss"));
+                }
+
+                strbuf.AppendLine();
                 if (fcTrn.CmdIndex == 1)
                 {
                     Data.Transaction.CardTransaction cardtrn = evn as Data.Transaction.CardTransaction;
-                    strbuf.Append("；用户号：").Append(cardtrn.UserCode.ToString()).Append("；出/入：").Append(cardtrn.Accesstype.ToString());
-                    strbuf.Append("，照片：").AppendLine(cardtrn.Photo == 1 ? "有" : "无");
+                    strbuf.Append("用户号：").Append(cardtrn.UserCode.ToString()).Append("；出/入：").Append(cardtrn.Accesstype.ToString());
+                    strbuf.Append("，照片：").Append(cardtrn.Photo == 1 ? "有" : "无");
                 }
                 if (fcTrn.CmdIndex == 2)
                 {
                     AbstractDoorTransaction cardtrn = evn as AbstractDoorTransaction;
-                    strbuf.Append("；门号：").Append(cardtrn.Door);
+                    strbuf.Append("门号：").Append(cardtrn.Door);
+                }
+                if (fcTrn.CmdIndex == 4)
+                {
+                    Data.Transaction.BodyTemperatureTransaction btr = evn as Data.Transaction.BodyTemperatureTransaction;
+                    strbuf.Append("体温：").Append((float)btr.BodyTemperature / (float)10);
                 }
 
+
             }
+            if (fcTrn.CmdIndex == 0x22)
+            {
+                strbuf.Append(fcTrn.SN).Append("保活包消息，远端信息：").Append(dtl.Addr).Append(":").Append(dtl.Port);
+            }
+
+            if (fcTrn.CmdIndex == 0xA0)
+            {
+
+                //连接测试消息
+                var cmdDtl = GetCommandDetail(fcTrn.SN, "FFFFFFFF", dtl.Addr, dtl.Port);
+
+                Protocol.Fingerprint.SystemParameter.SendConnectTestResponse sndConntmsg = new SystemParameter.SendConnectTestResponse(cmdDtl);
+                AddCommand(sndConntmsg);
+
+                strbuf.Append(fcTrn.SN).Append("连接测试消息，远端信息：").Append(dtl.Addr).Append(":").Append(dtl.Port);
+            }
+
+            if (fcTrn.CmdIndex == 0x22 || fcTrn.CmdIndex == 0xA0)
+            {
+                Invoke(() =>
+                {
+                    txtUDPAddr.Text = dtl.Addr;
+                    txtUDPPort.Text = dtl.Port.ToString();
+                    txtSN.Text = fcTrn.SN;
+                });
+            }
+
             commandResult.Content = strbuf.ToString();
 
             AddCmdItem(commandResult);

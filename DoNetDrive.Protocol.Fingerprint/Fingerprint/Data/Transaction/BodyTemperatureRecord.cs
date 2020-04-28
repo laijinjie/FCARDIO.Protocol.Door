@@ -18,7 +18,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data.Transaction
         /// </summary>
         protected int Temperature;
         /// <summary>
-        /// 体温，整数，需要除100
+        /// 体温，整数，需要除10
         /// </summary>
         public int BodyTemperature => Temperature;
 

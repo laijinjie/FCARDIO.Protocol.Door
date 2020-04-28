@@ -70,7 +70,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mCardTransactionList[27] = "禁止指纹验证  --  【权限认证方式】中禁用指纹时";//
             mCardTransactionList[28] = "控制器已过期";//
             mCardTransactionList[29] = "验证通过—有效期即将过期";//
-           
+            mCardTransactionList[30] = "体温异常，拒绝进入";//
+
 
             mDoorSensorTransactionList[1] = "开门";//
             mDoorSensorTransactionList[2] = "关门";//

@@ -47,7 +47,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Data.Transaction
         /// <param name="dtBuf"></param>
         public override void SetBytes(IByteBuffer dtBuf)
         {
+            
             RecordSerialNumber = dtBuf.ReadUnsignedInt();
+            _SerialNumber = (int)RecordSerialNumber;
             UserCode = dtBuf.ReadUnsignedInt();
             byte[] time = new byte[6];
             dtBuf.ReadBytes(time, 0, 6);
