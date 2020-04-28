@@ -17,7 +17,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.TCPSetting
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含TCP参数信息</param>
-        public WriteTCPSetting(INCommandDetail cd, WriteTCPSetting_Parameter par) : base(cd, par) { }
+        public WriteTCPSetting(Protocol.DESDriveCommandDetail cd, WriteTCPSetting_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数

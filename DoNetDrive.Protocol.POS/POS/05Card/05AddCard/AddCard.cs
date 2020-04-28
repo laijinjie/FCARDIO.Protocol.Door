@@ -1,6 +1,6 @@
 ﻿using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 using DotNetty.Buffers;
 using System.Collections.Generic;
 
@@ -21,7 +21,7 @@ namespace DoNetDrive.Protocol.POS.Card
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public AddCard(INCommandDetail cd, AddCard_Parameter par) : base(cd, par)
+        public AddCard(Protocol.DESDriveCommandDetail cd, AddCard_Parameter par) : base(cd, par)
         {
             MaxBufSize = (mBatchCount * mParDataLen) + 4;
         }
@@ -42,7 +42,7 @@ namespace DoNetDrive.Protocol.POS.Card
         /// </summary>
         /// <param name="oPck"></param>
         /// <returns></returns>
-        protected override bool CheckResponseCompleted(OnlineAccessPacket oPck)
+        protected override bool CheckResponseCompleted(DESCommandPacket oPck)
         {
             return (oPck.CmdType == 0x35 &&
                 oPck.CmdIndex == 4 &&

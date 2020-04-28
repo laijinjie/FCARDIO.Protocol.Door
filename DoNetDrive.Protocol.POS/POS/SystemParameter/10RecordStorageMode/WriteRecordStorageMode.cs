@@ -13,7 +13,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.RecordStorageMode
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public WriteRecordStorageMode(INCommandDetail cd, WriteRecordStorageMode_Parameter par) : base(cd, par)
+        public WriteRecordStorageMode(Protocol.DESDriveCommandDetail cd, WriteRecordStorageMode_Parameter par) : base(cd, par)
         {
 
         }

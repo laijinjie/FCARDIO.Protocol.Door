@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 
 namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
 {
@@ -49,7 +49,7 @@ namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
         /// </summary>
         protected AddReservationDetail_Parameter _ReservationPar = null;
 
-        public AddReservationDetail(INCommandDetail cd, AddReservationDetail_Parameter par) : base(cd,par)
+        public AddReservationDetail(Protocol.DESDriveCommandDetail cd, AddReservationDetail_Parameter par) : base(cd,par)
         {
 
         }
@@ -80,7 +80,7 @@ namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
         /// <param name="readPacket"></param>
         protected override void CommandNext(Core.Packet.INPacket readPacket)
         {
-            OnlineAccessPacket oPck = readPacket as OnlineAccessPacket;
+            DESCommandPacket oPck = readPacket as DESCommandPacket;
             if (oPck == null) return;
             if (oPck.Code != DoorPacket.Code) return;//信息代码不一致，不是此命令的后续
             if (CheckResponse_PasswordErr(oPck))
@@ -103,7 +103,7 @@ namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
         /// 重写父类对处理返回值的定义
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext0(OnlineAccessPacket oPck)
+        protected override void CommandNext0(DESCommandPacket oPck)
         {
             switch (mStep)
             {
@@ -141,7 +141,7 @@ namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
         /// 处理返回值
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
+        protected override void CommandNext1(DESPacket oPck)
         {
             if (IsWriteOver())
             {

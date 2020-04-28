@@ -12,7 +12,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.Initialize
         /// 初始化命令
         /// </summary>
         /// <param name="cd"></param>
-        public Initialize(INCommandDetail cd, Initialize_Parameter par) : base(cd, par)
+        public Initialize(Protocol.DESDriveCommandDetail cd, Initialize_Parameter par) : base(cd, par)
         {
 
         }

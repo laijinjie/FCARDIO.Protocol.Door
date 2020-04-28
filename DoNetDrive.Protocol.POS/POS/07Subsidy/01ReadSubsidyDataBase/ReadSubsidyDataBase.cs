@@ -1,5 +1,5 @@
 ﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 
 namespace DoNetDrive.Protocol.POS.Subsidy
 {
@@ -12,7 +12,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// 初始化参数
         /// </summary>
         /// <param name="cd"></param>
-        public ReadSubsidyDataBase(INCommandDetail cd) : base(cd, null)
+        public ReadSubsidyDataBase(DESDriveCommandDetail cd) : base(cd, null)
         {
         }
 
@@ -20,7 +20,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// 处理返回通知
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
+        protected override void CommandNext1(DESPacket oPck)
         {
             if (CheckResponse(oPck, 0x04))
             {

@@ -13,7 +13,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.CountingCards
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含设备有效期</param>
-        public WriteCountingCards(INCommandDetail cd, WriteCountingCards_Parameter par) : base(cd, par) { }
+        public WriteCountingCards(Protocol.DESDriveCommandDetail cd, WriteCountingCards_Parameter par) : base(cd, par) { }
 
 
         /// <summary>

@@ -66,7 +66,16 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.DisplayContent
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            
+            if (Name != 0 && Name != 1)
+                throw new ArgumentException("Name Error!");
+            if (PCode != 0 && PCode != 1)
+                throw new ArgumentException("PCode Error!");
+            if (Dept != 0 && Dept != 1)
+                throw new ArgumentException("Dept Error!");
+            if (Job != 0 && Job != 1)
+                throw new ArgumentException("Job Error!");
+            if (Balance != 0 && Balance != 1)
+                throw new ArgumentException("Balance Error!");
             return true;
         }
 

@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
         /// 初始化参数
         /// </summary>
         /// <param name="cd"></param>
-        public ReadTimeGroup(INCommandDetail cd) : base(cd)
+        public ReadTimeGroup(DESDriveCommandDetail cd) : base(cd)
         {
         }
         /// <summary>

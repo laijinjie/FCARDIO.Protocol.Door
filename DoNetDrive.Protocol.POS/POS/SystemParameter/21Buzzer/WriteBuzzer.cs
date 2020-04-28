@@ -6,14 +6,14 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.Buzzer
     /// <summary>
     /// 设置主板蜂鸣器
     /// </summary>
-    public class WriteBuzzer : Door.Door8800.SystemParameter.FunctionParameter.WriteBuzzer
+    public class WriteBuzzer : Write_Command
     {
         /// <summary>
         /// 设置主板蜂鸣器 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par"></param>
-        public WriteBuzzer(INCommandDetail cd, WriteBuzzer_Parameter par) : base(cd, par)
+        public WriteBuzzer(Protocol.DESDriveCommandDetail cd, WriteBuzzer_Parameter par) : base(cd, par)
         {
         }
 
@@ -30,6 +30,22 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.Buzzer
             var buf = acl.Buffer(model.GetDataLen());
 
             Packet(0x01, 0x12, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+        }
+
+        /// <summary>
+        /// 检查命令参数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        protected override bool CheckCommandParameter(INCommandParameter value)
+        {
+            WriteBuzzer_Parameter model = value as WriteBuzzer_Parameter;
+            if (model == null)
+            {
+                return false;
+            }
+
+            return model.checkedParameter();
         }
     }
 }

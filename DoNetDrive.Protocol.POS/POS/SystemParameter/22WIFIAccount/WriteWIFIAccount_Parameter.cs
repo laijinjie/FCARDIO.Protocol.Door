@@ -76,8 +76,8 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.WIFIAccount
             {
                 throw new ArgumentException("databuf len error");
             }
-            Util.StringUtil.WriteString(databuf, Account, 0x20, Encoding.BigEndianUnicode);
-            Util.StringUtil.WriteString(databuf, Password, 0x20, Encoding.BigEndianUnicode);
+            Util.StringUtil.WriteString(databuf, Account, 0x20, Encoding.GetEncoding("GB2312"));
+            Util.StringUtil.WriteString(databuf, Password, 0x20, Encoding.GetEncoding("GB2312"));
             return databuf;
         }
 
@@ -100,8 +100,8 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.WIFIAccount
             {
                 throw new ArgumentException("databuf Error");
             }
-            Account = Util.StringUtil.GetString(databuf, 0x20, Encoding.BigEndianUnicode);
-            Password = Util.StringUtil.GetString(databuf, 0x20, Encoding.BigEndianUnicode);
+            Account = Util.StringUtil.GetString(databuf, 0x20, Encoding.GetEncoding("GB2312"));
+            Password = Util.StringUtil.GetString(databuf, 0x20, Encoding.GetEncoding("GB2312"));
         }
     }
 }

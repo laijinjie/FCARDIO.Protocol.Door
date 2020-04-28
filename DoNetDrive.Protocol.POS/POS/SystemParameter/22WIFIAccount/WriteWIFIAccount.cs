@@ -1,4 +1,5 @@
 ﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.POS.Protocol;
 using System;
 
 namespace DoNetDrive.Protocol.POS.SystemParameter.WIFIAccount
@@ -13,7 +14,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.WIFIAccount
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含设备有效期</param>
-        public WriteWIFIAccount(INCommandDetail cd, WriteWIFIAccount_Parameter par) : base(cd, par) { }
+        public WriteWIFIAccount(Protocol.DESDriveCommandDetail cd, WriteWIFIAccount_Parameter par) : base(cd, par) { }
 
 
         /// <summary>
@@ -31,6 +32,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.WIFIAccount
 
             return model.checkedParameter();
         }
+
 
         /// <summary>
         /// 将命令打包成一个Packet，准备发送

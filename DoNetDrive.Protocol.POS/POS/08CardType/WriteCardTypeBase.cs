@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 using DoNetDrive.Protocol.POS.CardType.ReadDataBase;
 using DoNetDrive.Protocol.POS.Data;
 using System;
@@ -66,7 +66,7 @@ namespace DoNetDrive.Protocol.POS.CardType
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter">包含需要上传的密码列表参数</param>
-        public WriteCardTypeBase(INCommandDetail cd, CardType_Parameter_Base parameter) : base(cd, parameter)
+        public WriteCardTypeBase(Protocol.DESDriveCommandDetail cd, CardType_Parameter_Base parameter) : base(cd, parameter)
         {
             mPar = parameter;
             CardTypeDetail model = new CardTypeDetail();
@@ -159,7 +159,7 @@ namespace DoNetDrive.Protocol.POS.CardType
         /// 处理返回值
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
+        protected override void CommandNext1(DESPacket oPck)
         {
             if (IsWriteOver())
             {
@@ -180,7 +180,7 @@ namespace DoNetDrive.Protocol.POS.CardType
         /// 重写父类对处理返回值的定义
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext0(OnlineAccessPacket oPck)
+        protected override void CommandNext0(DESCommandPacket oPck)
         {
             if (CheckResponse_OK(oPck))
             {

@@ -1,4 +1,5 @@
 ﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.POS.Protocol;
 
 namespace DoNetDrive.Protocol.POS
 {
@@ -11,7 +12,7 @@ namespace DoNetDrive.Protocol.POS
         /// 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        public Read_Command(INCommandDetail cd) : base(cd, null)
+        public Read_Command(DESDriveCommandDetail cd) : base(cd, null)
         {
 
         }
@@ -21,7 +22,7 @@ namespace DoNetDrive.Protocol.POS
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含命令所需要的其他参数</param>
-        public Read_Command(INCommandDetail cd, INCommandParameter par) : base(cd, par)
+        public Read_Command(Protocol.DESDriveCommandDetail cd, INCommandParameter par) : base(cd, par)
         {
 
         }

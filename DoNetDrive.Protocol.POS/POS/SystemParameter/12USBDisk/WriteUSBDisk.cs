@@ -13,7 +13,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.USBDisk
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par"></param>
-        public WriteUSBDisk(INCommandDetail cd, WriteUSBDisk_Parameter par) : base(cd, par) { }
+        public WriteUSBDisk(Protocol.DESDriveCommandDetail cd, WriteUSBDisk_Parameter par) : base(cd, par) { }
 
 
         /// <summary>

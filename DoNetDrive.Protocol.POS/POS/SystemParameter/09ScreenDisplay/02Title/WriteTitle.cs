@@ -13,7 +13,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Name
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par"></param>
-        public WriteName(INCommandDetail cd, WriteName_Parameter par) : base(cd, par) { }
+        public WriteName(Protocol.DESDriveCommandDetail cd, WriteName_Parameter par) : base(cd, par) { }
 
 
         /// <summary>

@@ -1,5 +1,5 @@
 ﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 
 namespace DoNetDrive.Protocol.POS.TimeGroup
 {
@@ -9,7 +9,7 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
         /// 初始化参数
         /// </summary>
         /// <param name="cd"></param>
-        public ClearTimeGroup(INCommandDetail cd) : base(cd)
+        public ClearTimeGroup(DESDriveCommandDetail cd) : base(cd)
         {
         }
         /// <summary>

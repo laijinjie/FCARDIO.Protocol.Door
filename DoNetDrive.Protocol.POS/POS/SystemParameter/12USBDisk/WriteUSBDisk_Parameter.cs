@@ -10,29 +10,70 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.USBDisk
     public class WriteUSBDisk_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 人名
+        /// 卡片名单
         /// </summary>
-        public byte Name;
+        public byte UploadCardList;
 
         /// <summary>
-        /// 编号
+        /// 菜单
         /// </summary>
-        public byte PCode;
+        public byte UploadMenu;
 
         /// <summary>
-        /// 部门
+        /// 消费时段
         /// </summary>
-        public byte Dept;
+        public byte UploadTimeGroup;
 
         /// <summary>
-        /// 职务
+        /// 卡类名单
         /// </summary>
-        public byte Job;
+        public byte UploadCardTypeList;
 
         /// <summary>
-        /// 余额
+        /// 消费参数
         /// </summary>
-        public byte Balance;
+        public byte UploadConsumeParameter;
+
+        /// <summary>
+        /// 程序固件升
+        /// </summary>
+        public byte UploadUpgrade;
+
+
+        /// <summary>
+        /// 下载卡片名单
+        /// </summary>
+        public byte DownloadCardList;
+
+        /// <summary>
+        /// 下载菜单
+        /// </summary>
+        public byte DownloadMenu;
+
+        /// <summary>
+        /// 下载消费时段
+        /// </summary>
+        public byte DownloadTimeGroup;
+
+        /// <summary>
+        /// 下载卡类名单
+        /// </summary>
+        public byte DownloadCardTypeList;
+
+        /// <summary>
+        /// 下载消费参数
+        /// </summary>
+        public byte DownloadConsumeParameter;
+
+        /// <summary>
+        /// 下载消费日志
+        /// </summary>
+        public byte DownloadTransaction;
+
+        /// <summary>
+        /// 下载系统日志
+        /// </summary>
+        public byte DownloadSystemTransaction;
 
         /// <summary>
         /// 构建一个空的实例
@@ -42,18 +83,37 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.USBDisk
         /// <summary>
         /// 初始化实例
         /// </summary>
-        /// <param name="Name">人名</param>
-        /// <param name="PCode">编号</param>
-        /// <param name="Dept">部门</param>
-        /// <param name="Job">职务</param>
-        /// <param name="Balance">余额</param>
-        public WriteUSBDisk_Parameter(byte Name, byte PCode, byte Dept, byte Job, byte Balance)
+        /// <param name="CardList"></param>
+        /// <param name="Menu"></param>
+        /// <param name="TimeGroup"></param>
+        /// <param name="CardTypeList"></param>
+        /// <param name="ConsumeParameter"></param>
+        /// <param name="Upgrade"></param>
+        /// <param name="DownloadCardList"></param>
+        /// <param name="DownloadMenu"></param>
+        /// <param name="DownloadTimeGroup"></param>
+        /// <param name="DownloadCardTypeList"></param>
+        /// <param name="DownloadConsumeParameter"></param>
+        /// <param name="DownloadTransaction"></param>
+        /// <param name="DownloadSystemTransaction"></param>
+        public WriteUSBDisk_Parameter(byte CardList, byte Menu, byte TimeGroup, byte CardTypeList, byte ConsumeParameter, byte Upgrade,
+            byte DownloadCardList, byte DownloadMenu, byte DownloadTimeGroup, byte DownloadCardTypeList, byte DownloadConsumeParameter, byte DownloadTransaction, byte DownloadSystemTransaction)
         {
-            this.Name = Name;
-            this.PCode = PCode;
-            this.Dept = Dept;
-            this.Job = Job;
-            this.Balance = Balance;
+            this.UploadCardList = CardList;
+            this.UploadMenu = Menu;
+            this.UploadTimeGroup = TimeGroup;
+            this.UploadCardTypeList = CardTypeList;
+            this.UploadConsumeParameter = ConsumeParameter;
+            this.UploadUpgrade = Upgrade;
+
+            this.DownloadCardList = DownloadCardList;
+            this.DownloadMenu = DownloadMenu;
+            this.DownloadTimeGroup = DownloadTimeGroup;
+            this.DownloadCardTypeList = DownloadCardTypeList;
+            this.DownloadConsumeParameter = DownloadConsumeParameter;
+            this.DownloadTransaction = DownloadTransaction;
+            this.DownloadSystemTransaction = DownloadSystemTransaction;
+
             if (!checkedParameter())
             {
                 throw new ArgumentException("Parameter Error");
@@ -66,7 +126,34 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.USBDisk
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            
+            if (UploadCardList != 0 && UploadCardList != 1)
+                throw new ArgumentException("UploadCardList Error!");
+            if (UploadMenu != 0 && UploadMenu != 1)
+                throw new ArgumentException("UploadMenu Error!");
+            if (UploadTimeGroup != 0 && UploadTimeGroup != 1)
+                throw new ArgumentException("UploadTimeGroup Error!");
+            if (UploadCardTypeList != 0 && UploadCardTypeList != 1)
+                throw new ArgumentException("UploadCardTypeList Error!");
+            if (UploadConsumeParameter != 0 && UploadConsumeParameter != 1)
+                throw new ArgumentException("UploadConsumeParameter Error!");
+            if (UploadUpgrade != 0 && UploadUpgrade != 1)
+                throw new ArgumentException("UploadUpgrade Error!");
+
+            if (DownloadCardList != 0 && DownloadCardList != 1)
+                throw new ArgumentException("DownloadCardList Error!");
+
+            if (DownloadMenu != 0 && DownloadMenu != 1)
+                throw new ArgumentException("DownloadMenu Error!");
+            if (DownloadTimeGroup != 0 && DownloadTimeGroup != 1)
+                throw new ArgumentException("DownloadTimeGroup Error!");
+            if (DownloadCardTypeList != 0 && DownloadCardTypeList != 1)
+                throw new ArgumentException("DownloadCardTypeList Error!");
+            if (DownloadConsumeParameter != 0 && DownloadConsumeParameter != 1)
+                throw new ArgumentException("DownloadConsumeParameter Error!");
+            if (DownloadTransaction != 0 && DownloadTransaction != 1)
+                throw new ArgumentException("DownloadTransaction Error!");
+            if (DownloadSystemTransaction != 0 && DownloadSystemTransaction != 1)
+                throw new ArgumentException("DownloadSystemTransaction Error!");
             return true;
         }
 
@@ -89,11 +176,20 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.USBDisk
             {
                 throw new ArgumentException("databuf len error");
             }
-            databuf.WriteByte(Name);
-            databuf.WriteByte(PCode);
-            databuf.WriteByte(Dept);
-            databuf.WriteByte(Job);
-            databuf.WriteByte(Balance);
+            databuf.WriteByte(UploadCardList);
+            databuf.WriteByte(UploadMenu);
+            databuf.WriteByte(UploadTimeGroup);
+            databuf.WriteByte(UploadCardTypeList);
+            databuf.WriteByte(UploadConsumeParameter);
+            databuf.WriteByte(UploadUpgrade);
+
+            databuf.WriteByte(DownloadCardList);
+            databuf.WriteByte(DownloadMenu);
+            databuf.WriteByte(DownloadTimeGroup);
+            databuf.WriteByte(DownloadCardTypeList);
+            databuf.WriteByte(DownloadConsumeParameter);
+            databuf.WriteByte(DownloadTransaction);
+            databuf.WriteByte(DownloadSystemTransaction);
             return databuf;
         }
 
@@ -103,7 +199,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.USBDisk
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 0x05;
+            return 0x0D;
         }
 
         /// <summary>
@@ -116,11 +212,22 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.USBDisk
             {
                 throw new ArgumentException("databuf Error");
             }
-            Name = databuf.ReadByte();
-            PCode = databuf.ReadByte();
-            Dept = databuf.ReadByte();
-            Job = databuf.ReadByte();
-            Balance = databuf.ReadByte();
+            UploadCardList = databuf.ReadByte();
+            UploadMenu = databuf.ReadByte();
+            UploadTimeGroup = databuf.ReadByte();
+            UploadCardTypeList = databuf.ReadByte();
+            UploadConsumeParameter = databuf.ReadByte();
+            UploadUpgrade = databuf.ReadByte();
+
+            DownloadCardList = databuf.ReadByte();
+            DownloadMenu = databuf.ReadByte();
+            DownloadTimeGroup = databuf.ReadByte();
+            DownloadCardTypeList = databuf.ReadByte();
+            DownloadConsumeParameter = databuf.ReadByte();
+            DownloadTransaction = databuf.ReadByte();
+            DownloadSystemTransaction = databuf.ReadByte();
+
+
         }
     }
 }

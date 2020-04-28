@@ -1,20 +1,24 @@
 ﻿using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.Door8800;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.FrameCommand;
+using DoNetDrive.Protocol.POS.Protocol;
 
 namespace DoNetDrive.Protocol.POS
 {
     /// <summary>
     /// 针对命令中的写参数命令进行抽象封装
     /// </summary>
-    public abstract class CommandEx : Door8800Command
+    public abstract class CommandEx : DESCommand
     {
+
+        protected DESCommandPacket PosPacket;
+
         /// <summary>
         /// 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含命令所需要的其他参数</param>
-        public CommandEx(INCommandDetail cd, INCommandParameter par) : base(cd, par)
+        public CommandEx(Protocol.DESDriveCommandDetail cd, INCommandParameter par) : base(cd, par)
         {
 
         }
@@ -47,7 +51,7 @@ namespace DoNetDrive.Protocol.POS
         /// <param name="CmdIndex">命令索引</param>
         /// <param name="CmdPar">命令参数</param>
         /// <returns></returns>
-        protected virtual bool CheckResponse(OnlineAccessPacket oPck, byte CmdType, byte CmdIndex, byte CmdPar)
+        protected virtual bool CheckResponse(DESCommandPacket oPck, byte CmdType, byte CmdIndex, byte CmdPar)
         {
             return (oPck.CmdType == CmdType &&
                 oPck.CmdIndex == CmdIndex &&
@@ -64,7 +68,7 @@ namespace DoNetDrive.Protocol.POS
         /// <param name="CmdPar">命令参数</param>
         /// <param name="dl">参数长度</param>
         /// <returns></returns>
-        protected override bool CheckResponse(OnlineAccessPacket oPck, byte CmdType, byte CmdIndex, byte CmdPar,int dl)
+        protected virtual bool CheckResponse(DESCommandPacket oPck, byte CmdType, byte CmdIndex, byte CmdPar, int dl)
         {
             return (oPck.CmdType == CmdType &&
                 oPck.CmdIndex == CmdIndex &&
@@ -82,9 +86,9 @@ namespace DoNetDrive.Protocol.POS
         /// <param name="CmdPar">命令参数</param>
         /// <param name="dl">参数长度</param>
         /// <returns></returns>
-        protected override bool CheckResponse(OnlineAccessPacket oPck, int dl)
+        protected virtual bool CheckResponse(DESCommandPacket oPck, int dl)
         {
-            return (  oPck.DataLen == dl);
+            return (oPck.DataLen == dl);
 
         }
 
@@ -97,12 +101,12 @@ namespace DoNetDrive.Protocol.POS
         /// <param name="ci">命令索引</param>
         /// <param name="cp">命令参数</param>
         /// <param name="dl">数据长度</param>
-        protected void RewritePacket(byte ct, byte ci, byte cp, int dl)
+        protected virtual void RewritePacket(byte ct, byte ci, byte cp, int dl)
         {
-            DoorPacket.CmdType = ct;
-            DoorPacket.CmdIndex = ci;
-            DoorPacket.CmdPar = cp;
-            DoorPacket.DataLen = dl;
+            PosPacket.CmdType = ct;
+            PosPacket.CmdIndex = ci;
+            PosPacket.CmdPar = cp;
+            PosPacket.DataLen = dl;
 
         }
 
@@ -113,12 +117,13 @@ namespace DoNetDrive.Protocol.POS
         /// <param name="ci">命令索引</param>
         /// <param name="cp">命令参数</param>
         /// <param name="dl">数据长度</param>
-        protected void RewritePacket(byte ci, byte cp, int dl)
+        protected virtual void RewritePacket(byte ci, byte cp, int dl)
         {
-            DoorPacket.CmdIndex = ci;
-            DoorPacket.CmdPar = cp;
-            DoorPacket.DataLen = dl;
+            PosPacket.CmdIndex = ci;
+            PosPacket.CmdPar = cp;
+            PosPacket.DataLen = dl;
 
         }
+
     }
 }

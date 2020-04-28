@@ -18,7 +18,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.Relay
         /// 2 - 输出            COM 和 NO
         /// 3 - 读卡切换输出状态（当读到合法卡后自动自动切换到当前相反的状态。）例如卷闸门
         /// </summary>
-        public byte Relay;
+        public byte Mode;
 
         /// <summary>
         /// 输出保持
@@ -36,10 +36,10 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.Relay
         /// <param name="Use">功能启用</param>
         /// <param name="Relay">继电器类型</param>
         /// <param name="OutputRetention">输出保持</param>
-        public WriteRelay_Parameter(byte Use,byte Relay, ushort OutputRetention)
+        public WriteRelay_Parameter(byte Use,byte Mode, ushort OutputRetention)
         {
             this.Use = Use;
-            this.Relay = Relay;
+            this.Mode = Mode;
             this.OutputRetention = OutputRetention;
             if (!checkedParameter())
             {
@@ -57,7 +57,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.Relay
             {
                 return false;
             }
-            if (Relay < 1 || Relay > 3)
+            if (Mode < 1 || Mode > 3)
             {
                 return false;
             }
@@ -85,7 +85,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.Relay
                 throw new ArgumentException("databuf len error");
             }
             databuf.WriteByte(Use);
-            databuf.WriteByte(Relay);
+            databuf.WriteByte(Mode);
             databuf.WriteUnsignedShort(OutputRetention);
             return databuf;
         }
@@ -110,7 +110,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.Relay
                 throw new ArgumentException("databuf Error");
             }
             Use = databuf.ReadByte();
-            Relay = databuf.ReadByte();
+            Mode = databuf.ReadByte();
             OutputRetention = databuf.ReadUnsignedShort();
         }
     }

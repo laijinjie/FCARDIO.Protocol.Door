@@ -1,6 +1,6 @@
 ﻿using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 using DotNetty.Buffers;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public AddSussidy(INCommandDetail cd, AddSussidy_Parameter par) : base(cd, par)
+        public AddSussidy(Protocol.DESDriveCommandDetail cd, AddSussidy_Parameter par) : base(cd, par)
         {
             MaxBufSize = (mBatchCount * mParDataLen) + 4;
         }
@@ -35,7 +35,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// </summary>
         /// <param name="oPck"></param>
         /// <returns></returns>
-        protected override bool CheckResponseCompleted(OnlineAccessPacket oPck)
+        protected override bool CheckResponseCompleted(DESCommandPacket oPck)
         {
             return false;
         }
@@ -44,7 +44,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// 重写父类对处理返回值的定义
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext0(OnlineAccessPacket oPck)
+        protected override void CommandNext0(DESCommandPacket oPck)
         {
             switch (mStep)
             {

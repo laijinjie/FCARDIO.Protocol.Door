@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 using DoNetDrive.Protocol.POS.Data;
 
 namespace DoNetDrive.Protocol.POS.Subsidy
@@ -10,7 +10,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
     /// </summary>
     public class ReadSubsidyDetail : Read_Command
     {
-        public ReadSubsidyDetail(INCommandDetail cd, ReadSubsidyDetail_Parameter parameter) : base(cd, parameter) { }
+        public ReadSubsidyDetail(Protocol.DESDriveCommandDetail cd, ReadSubsidyDetail_Parameter parameter) : base(cd, parameter) { }
 
         /// <summary>
         /// 创建参数
@@ -46,7 +46,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// 处理返回值
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
+        protected override void CommandNext1(DESPacket oPck)
         {
             if (CheckResponse(oPck, 0x10))
             {

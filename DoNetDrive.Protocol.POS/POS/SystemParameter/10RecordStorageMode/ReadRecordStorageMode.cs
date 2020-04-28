@@ -1,5 +1,5 @@
 ﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 
 namespace DoNetDrive.Protocol.POS.SystemParameter.RecordStorageMode
 {
@@ -12,7 +12,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.RecordStorageMode
         /// 读取记录存储方式 初始化命令
         /// </summary>
         /// <param name="cd"></param>
-        public ReadRecordStorageMode(INCommandDetail cd) : base(cd, null)
+        public ReadRecordStorageMode(DESDriveCommandDetail cd) : base(cd, null)
         {
         }
 
@@ -21,11 +21,11 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.RecordStorageMode
         /// 命令返回值的判断
         /// </summary>
         /// <param name="oPck">包含返回指令的Packet</param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
+        protected override void CommandNext1(DESPacket oPck)
         {
             if (CheckResponse(oPck, 1))
             {
-                var buf = oPck.CmdData;
+                var buf = oPck.CommandPacket.CmdData;
                 ReadRecordStorageMode_Result rst = new ReadRecordStorageMode_Result();
                 _Result = rst;
                 rst.SetBytes(buf);

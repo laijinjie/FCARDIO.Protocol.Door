@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 using DoNetDrive.Protocol.POS.Data;
 
 namespace DoNetDrive.Protocol.POS.Card
@@ -10,7 +10,7 @@ namespace DoNetDrive.Protocol.POS.Card
     /// </summary>
     public class ReadCardDetail : Read_Command
     {
-        public ReadCardDetail(INCommandDetail cd, ReadCardDetail_Parameter parameter) : base(cd, parameter) { }
+        public ReadCardDetail(Protocol.DESDriveCommandDetail cd, ReadCardDetail_Parameter parameter) : base(cd, parameter) { }
 
         /// <summary>
         /// 创建参数
@@ -46,7 +46,7 @@ namespace DoNetDrive.Protocol.POS.Card
         /// 处理返回值
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
+        protected override void CommandNext1(DESPacket oPck)
         {
             if (CheckResponse(oPck, 0x08))
             {

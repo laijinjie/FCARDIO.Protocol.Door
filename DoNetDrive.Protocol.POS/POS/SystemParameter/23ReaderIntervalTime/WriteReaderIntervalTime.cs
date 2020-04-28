@@ -13,7 +13,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ReaderIntervalTime
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含设备有效期</param>
-        public WriteReaderIntervalTime(INCommandDetail cd, WriteReaderIntervalTime_Parameter par) : base(cd, par) { }
+        public WriteReaderIntervalTime(Protocol.DESDriveCommandDetail cd, WriteReaderIntervalTime_Parameter par) : base(cd, par) { }
 
 
         /// <summary>

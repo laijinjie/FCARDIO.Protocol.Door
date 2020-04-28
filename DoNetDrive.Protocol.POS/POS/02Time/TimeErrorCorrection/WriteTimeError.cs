@@ -13,7 +13,7 @@ namespace DoNetDrive.Protocol.POS.Time.TimeErrorCorrection
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">包含误差自修正参数</param>
-        public WriteTimeError(INCommandDetail cd, WriteTimeError_Parameter par) : base(cd, par)
+        public WriteTimeError(Protocol.DESDriveCommandDetail cd, WriteTimeError_Parameter par) : base(cd, par)
         {
         }
 

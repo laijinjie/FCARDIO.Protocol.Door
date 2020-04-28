@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace DoNetDrive.Protocol.POS.Reservation.ClearDataBase
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter"></param>
-        public ClearDataBase(INCommandDetail cd, ClearDataBase_Parameter parameter) : base(cd, parameter) { }
+        public ClearDataBase(Protocol.DESDriveCommandDetail cd, ClearDataBase_Parameter parameter) : base(cd, parameter) { }
 
         /// <summary>
         /// 创建参数
@@ -59,7 +59,7 @@ namespace DoNetDrive.Protocol.POS.Reservation.ClearDataBase
         /// 处理返回值
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
+        protected override void CommandNext1(DESPacket oPck)
         {
             return;
         }

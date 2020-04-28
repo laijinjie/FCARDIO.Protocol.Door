@@ -1,5 +1,5 @@
 ﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 
 namespace DoNetDrive.Protocol.POS.Card
 {
@@ -12,7 +12,7 @@ namespace DoNetDrive.Protocol.POS.Card
         /// 初始化命令结构
         /// </summary>
         /// <param name="detail"></param>
-        public ReadCardDataBase(INCommandDetail detail) : base(detail, null) { }
+        public ReadCardDataBase(DESDriveCommandDetail detail) : base(detail, null) { }
 
         /// <summary>
         /// 检查参数
@@ -36,7 +36,7 @@ namespace DoNetDrive.Protocol.POS.Card
         /// 处理返回值
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
+        protected override void CommandNext1(DESPacket oPck)
         {
             if (CheckResponse(oPck, 0x04))
             {

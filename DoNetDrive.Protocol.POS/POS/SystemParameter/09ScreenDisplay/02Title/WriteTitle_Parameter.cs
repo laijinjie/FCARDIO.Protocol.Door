@@ -64,7 +64,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Title
             {
                 throw new ArgumentException("databuf len error");
             }
-            Util.StringUtil.WriteString(databuf, Title, 0x1E, Encoding.BigEndianUnicode);
+            Util.StringUtil.WriteString(databuf, Title, 0x1E, Encoding.GetEncoding("GB2312"));
             return databuf;
         }
 
@@ -87,7 +87,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Title
             {
                 throw new ArgumentException("databuf Error");
             }
-            Title = Util.StringUtil.GetString(databuf, 0x1E, Encoding.BigEndianUnicode);
+            Title = Util.StringUtil.GetString(databuf, 0x1E, Encoding.GetEncoding("GB2312"));
         }
     }
 }

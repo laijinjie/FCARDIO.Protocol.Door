@@ -15,6 +15,11 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Logo
         public string Logo;
 
         /// <summary>
+        /// 开机供应商Logo
+        /// </summary>
+        public string Phone;
+
+        /// <summary>
         /// 构建一个空的实例
         /// </summary>
         public WriteLogo_Parameter() { }
@@ -23,9 +28,11 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Logo
         /// 初始化实例
         /// </summary>
         /// <param name="Logo">开机供应商Logo</param>
-        public WriteLogo_Parameter(string Logo)
+        /// <param name="Phone">开机供应商电话</param>
+        public WriteLogo_Parameter(string Logo, string Phone)
         {
             this.Logo = Logo;
+            this.Phone = Phone;
             if (!checkedParameter())
             {
                 throw new ArgumentException("Parameter Error");
@@ -39,6 +46,10 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Logo
         public override bool checkedParameter()
         {
             if (string.IsNullOrWhiteSpace(Logo))
+            {
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(Phone))
             {
                 return false;
             }
@@ -64,7 +75,8 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Logo
             {
                 throw new ArgumentException("databuf len error");
             }
-            Util.StringUtil.WriteString(databuf, Logo, 0x3C, Encoding.BigEndianUnicode);
+            Util.StringUtil.WriteString(databuf, Logo, 0x1e, Encoding.GetEncoding("GB2312"));
+            Util.StringUtil.WriteString(databuf, Phone, 0x1e, Encoding.GetEncoding("GB2312"));
             return databuf;
         }
 
@@ -87,7 +99,8 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Logo
             {
                 throw new ArgumentException("databuf Error");
             }
-            Logo = Util.StringUtil.GetString(databuf, 0x3C, Encoding.BigEndianUnicode);
+            Logo = Util.StringUtil.GetString(databuf, 0x1e, Encoding.GetEncoding("GB2312"));
+            Phone = Util.StringUtil.GetString(databuf, 0x1e, Encoding.GetEncoding("GB2312"));
         }
     }
 }

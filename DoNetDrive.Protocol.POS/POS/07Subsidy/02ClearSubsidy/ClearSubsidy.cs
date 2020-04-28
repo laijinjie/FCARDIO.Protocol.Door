@@ -1,5 +1,5 @@
 ﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 
 namespace DoNetDrive.Protocol.POS.Subsidy
 {
@@ -12,7 +12,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// 构造命令，无需其他参数
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        public ClearSubsidy(INCommandDetail cd) : base(cd, null)
+        public ClearSubsidy(DESDriveCommandDetail cd) : base(cd, null)
         {
         }
 
@@ -20,7 +20,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// 
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
+        protected override void CommandNext1(DESPacket oPck)
         {
             return;
         }

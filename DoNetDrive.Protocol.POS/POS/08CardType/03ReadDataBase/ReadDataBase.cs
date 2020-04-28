@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 using DoNetDrive.Protocol.POS.Data;
 using System;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace DoNetDrive.Protocol.POS.CardType.ReadDataBase
         /// 初始化命令结构
         /// </summary>
         /// <param name="detail"></param>
-        public ReadDataBase(INCommandDetail detail) : base(detail, null) { }
+        public ReadDataBase(DESDriveCommandDetail detail) : base(detail, null) { }
 
         /// <summary>
         /// 检查参数
@@ -45,7 +45,7 @@ namespace DoNetDrive.Protocol.POS.CardType.ReadDataBase
         /// 处理返回值
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
+        protected override void CommandNext1(DESPacket oPck)
         {
             if (CheckResponse(oPck, 0x03))
             {

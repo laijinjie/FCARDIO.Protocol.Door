@@ -1,7 +1,7 @@
 
 using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
-using DoNetDrive.Protocol.OnlineAccess;
+using DoNetDrive.Protocol.POS.Protocol;
 using DoNetDrive.Protocol.POS.Data;
 using DotNetty.Buffers;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace DoNetDrive.Protocol.POS.Card
     /// </summary>
     public class ReadAllCard : Door.Door8800.TemplateMethod.TemplateReadData_Base<CardDetail>
     {
-        public ReadAllCard(INCommandDetail cd) : base(cd)
+        public ReadAllCard(DESDriveCommandDetail cd) : base(cd)
         {
            
         }
@@ -33,7 +33,7 @@ namespace DoNetDrive.Protocol.POS.Card
         /// </summary>
         /// <param name="oPck"></param>
         /// <returns></returns>
-        protected override bool CheckResponseNext(OnlineAccessPacket oPck)
+        protected override bool CheckResponseNext(DESCommandPacket oPck)
         {
             return (oPck.CmdType == 0x35 &&
                 oPck.CmdIndex == 3 &&
@@ -45,7 +45,7 @@ namespace DoNetDrive.Protocol.POS.Card
         /// </summary>
         /// <param name="oPck"></param>
         /// <returns></returns>
-        protected override bool CheckResponseCompleted(OnlineAccessPacket oPck)
+        protected override bool CheckResponseCompleted(DESCommandPacket oPck)
         {
             return (oPck.CmdType == 0x35 &&
                 oPck.CmdIndex == 3 &&
