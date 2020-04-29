@@ -11,7 +11,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.FixedFeeRule
     public class WriteFixedFeeRule_Parameter : AbstractParameter
     {
 
-        protected List<FixedFeeRuleDetail> DataList;
+        public List<FixedFeeRuleDetail> DataList;
 
         /// <summary>
         /// 构建一个空的实例

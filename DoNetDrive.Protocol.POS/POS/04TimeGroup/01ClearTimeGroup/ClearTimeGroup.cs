@@ -3,7 +3,7 @@ using DoNetDrive.Protocol.POS.Protocol;
 
 namespace DoNetDrive.Protocol.POS.TimeGroup
 {
-    public class ClearTimeGroup : Door.Door8800.TimeGroup.ClearTimeGroup
+    public class ClearTimeGroup : Read_Command
     {
         /// <summary>
         /// 初始化参数
@@ -12,6 +12,12 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
         public ClearTimeGroup(DESDriveCommandDetail cd) : base(cd)
         {
         }
+
+        protected override void CommandNext1(DESPacket oPck)
+        {
+            CommandCompleted();
+        }
+
         /// <summary>
         /// 将命令打包成一个Packet，准备发送
         /// </summary>

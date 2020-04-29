@@ -28,14 +28,14 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.Discount
         public byte UsePOSDiscount;
 
         /// <summary>
-        /// 机器折扣
+        /// 本机折扣
         /// </summary>
         public byte POSDiscount;
 
         /// <summary>
         /// 折上折开关
         /// </summary>
-        public byte DoubleDiscount;
+        public byte UseDoubleDiscount;
 
         /// <summary>
         /// 构建一个空的实例
@@ -56,7 +56,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.Discount
             this.UseCardTypeDiscount = UseCardTypeDiscount;
             this.UsePOSDiscount = UsePOSDiscount;
             this.POSDiscount = POSDiscount;
-            this.DoubleDiscount = DoubleDiscount;
+            this.UseDoubleDiscount = DoubleDiscount;
             if (!checkedParameter())
             {
                 throw new ArgumentException("Parameter Error");
@@ -85,7 +85,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.Discount
             {
                 return false;
             }
-            if (DoubleDiscount > 100)
+            if (UseDoubleDiscount > 100)
             {
                 return false;
             }
@@ -115,7 +115,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.Discount
             databuf.WriteByte(UseCardTypeDiscount);
             databuf.WriteByte(UsePOSDiscount);
             databuf.WriteByte(POSDiscount);
-            databuf.WriteByte(DoubleDiscount);
+            databuf.WriteByte(UseDoubleDiscount);
             return databuf;
         }
 
@@ -142,7 +142,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.Discount
             UseCardTypeDiscount = databuf.ReadByte();
             UsePOSDiscount = databuf.ReadByte();
             POSDiscount = databuf.ReadByte();
-            DoubleDiscount = databuf.ReadByte();
+            UseDoubleDiscount = databuf.ReadByte();
         }
     }
 }

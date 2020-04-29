@@ -47,9 +47,6 @@
     <Reference Include="DoNetDrive.Protocol">
       <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Door">
-      <HintPath>..\..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
-    </Reference>
     <Reference Include="DoNetDrive.Protocol.Util">
       <HintPath>..\..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
     </Reference>
@@ -83,6 +80,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="02Time\ReadTime_Result.cs" />
+    <Compile Include="02Time\TimeErrorCorrection\ReadTimeError.cs" />
+    <Compile Include="02Time\TimeErrorCorrection\WriteTimeError.cs" />
+    <Compile Include="02Time\TimeErrorCorrection\WriteTimeError_Parameter.cs" />
+    <Compile Include="04TimeGroup\02ReadTimeGroup\ReadTimeGroup_Parameter.cs" />
+    <Compile Include="04TimeGroup\03AddTimeGroup\AddTimeGroup_Parameter.cs" />
     <Compile Include="AbstractParameter.cs" />
     <Compile Include="CommandEx.cs" />
     <Compile Include="ConsumeParameter\01POSWorkMode\ReadPOSWorkMode.cs" />
@@ -169,12 +172,8 @@
     <Compile Include="04TimeGroup\02ReadTimeGroup\ReadTimeGroup.cs" />
     <Compile Include="04TimeGroup\02ReadTimeGroup\ReadTimeGroup_Result.cs" />
     <Compile Include="02Time\ReadTime.cs" />
-    <Compile Include="02Time\TimeErrorCorrection\ReadTimeError.cs" />
-    <Compile Include="02Time\TimeErrorCorrection\WriteTimeError.cs" />
-    <Compile Include="02Time\TimeErrorCorrection\WriteTimeError_Parameter.cs" />
-    <Compile Include="02Time\WriteCustomTime.cs" />
-    <Compile Include="02Time\WriteCustomTime_Parameter.cs" />
     <Compile Include="02Time\WriteTime.cs" />
+    <Compile Include="02Time\WriteCustomTime_Parameter.cs" />
     <Compile Include="SystemParameter\13ReceiptPrint\PrintContent.cs" />
     <Compile Include="SystemParameter\13ReceiptPrint\ReadPrintContent.cs" />
     <Compile Include="SystemParameter\13ReceiptPrint\ReadReceiptPrint.cs" />
@@ -263,6 +262,12 @@
   <ItemGroup>
     <Folder Include="SystemParameter\ICCardParameter\" />
     <Folder Include="SystemParameter\SystemMenuPassword\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door.csproj">
+      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
+      <Name>DoNetDrive.Protocol.Door</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

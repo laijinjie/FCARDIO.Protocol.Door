@@ -39,9 +39,6 @@
     <Reference Include="DoNetDrive.Protocol">
       <HintPath>..\..\一卡通云平台客户端辅助工具\DLL\DoNetDrive.Protocol.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Door">
-      <HintPath>..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
-    </Reference>
     <Reference Include="DoNetTool.Common">
       <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>
     </Reference>
@@ -67,6 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmConsumeParameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsumeParameter.Designer.cs">
+      <DependentUpon>frmConsumeParameter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,17 +88,39 @@
     <Compile Include="frmSystem.Designer.cs">
       <DependentUpon>frmSystem.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTime.designer.cs">
+      <DependentUpon>frmTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTimeGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTimeGroup.designer.cs">
+      <DependentUpon>frmTimeGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="INMain.cs" />
     <Compile Include="Model\CommandResult.cs" />
+    <Compile Include="Model\FixedFeeRuleDto.cs" />
     <Compile Include="Model\IOMessage.cs" />
     <Compile Include="Model\PrintContentDto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmConsumeParameter.resx">
+      <DependentUpon>frmConsumeParameter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSystem.resx">
       <DependentUpon>frmSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTime.resx">
+      <DependentUpon>frmTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTimeGroup.resx">
+      <DependentUpon>frmTimeGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -120,6 +145,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door.csproj">
+      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
+      <Name>DoNetDrive.Protocol.Door</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DoNetDrive.Protocol.POS\POS\DotNetDrive.Protocol.POS.csproj">
       <Project>{0f4eb837-9c7d-4365-8496-bebeccc4b3d1}</Project>
       <Name>DotNetDrive.Protocol.POS</Name>

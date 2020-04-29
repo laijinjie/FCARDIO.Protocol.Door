@@ -25,7 +25,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits
         /// <summary>
         /// 单日限次
         /// </summary>
-        public byte Limit;
+        public byte DayLimit;
 
         /// <summary>
         /// 月限额
@@ -52,15 +52,15 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits
         /// </summary>
         /// <param name="LimitMoney">单次限额</param>
         /// <param name="DayLimitMoney">单日限额</param>
-        /// <param name="Limit">单日限次</param>
+        /// <param name="DayLimit">单日限次</param>
         /// <param name="MonthLimitMoney">月限额</param>
         /// <param name="MonthLimit">月限次</param>
         /// <param name="MinimumReservedBalance">卡内最低保留余额</param>
-        public WriteConsumptionLimits_Parameter(int LimitMoney, int DayLimitMoney, byte Limit, int MonthLimitMoney, byte MonthLimit, int MinimumReservedBalance)
+        public WriteConsumptionLimits_Parameter(int LimitMoney, int DayLimitMoney, byte DayLimit, int MonthLimitMoney, byte MonthLimit, int MinimumReservedBalance)
         {
             this.LimitMoney = LimitMoney;
             this.DayLimitMoney = DayLimitMoney;
-            this.Limit = Limit;
+            this.DayLimit = DayLimit;
             this.MonthLimitMoney = MonthLimitMoney;
             this.MonthLimit = MonthLimit;
             this.MinimumReservedBalance = MinimumReservedBalance;
@@ -114,12 +114,12 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits
             {
                 throw new ArgumentException("databuf len error");
             }
-            databuf.WriteInt(LimitMoney);
-            databuf.WriteInt(DayLimitMoney);
-            databuf.WriteByte(Limit);
-            databuf.WriteInt(MonthLimitMoney);
+            databuf.WriteInt(LimitMoney * 100);
+            databuf.WriteInt(DayLimitMoney * 100);
+            databuf.WriteByte(DayLimit);
+            databuf.WriteInt(MonthLimitMoney * 100);
             databuf.WriteByte(MonthLimit);
-            databuf.WriteInt(MinimumReservedBalance);
+            databuf.WriteInt(MinimumReservedBalance * 100);
             return databuf;
         }
 
@@ -142,12 +142,12 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits
             {
                 throw new ArgumentException("databuf Error");
             }
-            LimitMoney = databuf.ReadInt();
-            DayLimitMoney = databuf.ReadInt();
-            Limit = databuf.ReadByte();
-            MonthLimitMoney = databuf.ReadInt();
+            LimitMoney = databuf.ReadInt() / 100;
+            DayLimitMoney = databuf.ReadInt() / 100;
+            DayLimit = databuf.ReadByte();
+            MonthLimitMoney = databuf.ReadInt() / 100;
             MonthLimit = databuf.ReadByte();
-            MinimumReservedBalance = databuf.ReadInt();
+            MinimumReservedBalance = databuf.ReadInt() / 100;
 
 
         }

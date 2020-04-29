@@ -1,45 +1,33 @@
-﻿using DotNetty.Buffers;
+﻿using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
+using DotNetty.Buffers;
 using System;
 
-namespace DoNetDrive.Protocol.POS.ConsumeParameter.CountingCards
+namespace DoNetDrive.Protocol.POS.TimeGroup
 {
-    /// <summary>
-    /// 设置计次命令参数
-    /// </summary>
-    public class WriteCountingCards_Parameter : AbstractParameter
+    public class AddTimeGroup_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 功能开关
+        /// 
         /// </summary>
-        public byte Use;
+        public byte Index { get; set; }
 
         /// <summary>
-        /// 单次消费扣费次数
+        /// 
         /// </summary>
-        public byte DeductionCount;
+        public WeekTimeGroup WeekTimeGroup { get; set; }
 
-        /// <summary>
-        /// 计次卡消费后不扣除剩余次数
-        /// </summary>
-        public byte UseResidueCount;
-
-        
         /// <summary>
         /// 构建一个空的实例
         /// </summary>
-        public WriteCountingCards_Parameter() { }
+        public AddTimeGroup_Parameter() { }
 
         /// <summary>
         /// 初始化实例
         /// </summary>
-        /// <param name="Use">功能开关</param>
-        /// <param name="DeductionCount">单次消费扣费次数</param>
-        /// <param name="ResidueCount">计次卡消费后不扣除剩余次数</param>
-        public WriteCountingCards_Parameter(byte Use, byte DeductionCount, byte ResidueCount)
+        /// <param name="Index">消费时段号</param>
+        public AddTimeGroup_Parameter(WeekTimeGroup WeekTimeGroup)
         {
-            this.Use = Use;
-            this.DeductionCount = DeductionCount;
-            this.UseResidueCount = ResidueCount;
+            this.WeekTimeGroup = WeekTimeGroup;
             if (!checkedParameter())
             {
                 throw new ArgumentException("Parameter Error");
@@ -52,14 +40,11 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.CountingCards
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Use != 0 && Use != 1)
+            if (WeekTimeGroup == null)
             {
                 return false;
             }
-            if (UseResidueCount != 0 && UseResidueCount != 1)
-            {
-                return false;
-            }
+
             return true;
         }
 
@@ -82,9 +67,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.CountingCards
             {
                 throw new ArgumentException("databuf len error");
             }
-            databuf.WriteByte(Use);
-            databuf.WriteByte(DeductionCount);
-            databuf.WriteByte(UseResidueCount);
+            WeekTimeGroup.SetBytes(databuf);
             return databuf;
         }
 
@@ -94,7 +77,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.CountingCards
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 3;
+            return 0x71;
         }
 
         /// <summary>
@@ -103,13 +86,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.CountingCards
         /// <param name="databuf">包含参数结构的缓冲区</param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != GetDataLen())
-            {
-                throw new ArgumentException("databuf Error");
-            }
-            Use = databuf.ReadByte();
-            DeductionCount = databuf.ReadByte();
-            UseResidueCount = databuf.ReadByte();
+            return;
         }
     }
 }

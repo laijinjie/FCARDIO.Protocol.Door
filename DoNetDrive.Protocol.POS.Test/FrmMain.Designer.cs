@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tbEvent = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -85,7 +85,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.butSystem = new System.Windows.Forms.ToolStripButton();
             this.butTime = new System.Windows.Forms.ToolStripButton();
-            this.butDoor = new System.Windows.Forms.ToolStripButton();
+            this.butConsumeParameter = new System.Windows.Forms.ToolStripButton();
             this.butAlarm = new System.Windows.Forms.ToolStripButton();
             this.butHoliday = new System.Windows.Forms.ToolStripButton();
             this.ButTimeGroup = new System.Windows.Forms.ToolStripButton();
@@ -143,21 +143,21 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn4,
             this.Column7});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIO.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIO.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvIO.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvIO.Location = new System.Drawing.Point(3, 32);
             this.dgvIO.Name = "dgvIO";
             this.dgvIO.ReadOnly = true;
             this.dgvIO.RowHeadersVisible = false;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIO.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIO.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvIO.RowTemplate.Height = 23;
             this.dgvIO.Size = new System.Drawing.Size(606, 462);
             this.dgvIO.TabIndex = 19;
@@ -255,21 +255,21 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvResult.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvResult.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResult.Location = new System.Drawing.Point(3, 32);
             this.dgvResult.Name = "dgvResult";
             this.dgvResult.ReadOnly = true;
             this.dgvResult.RowHeadersVisible = false;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvResult.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvResult.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvResult.RowTemplate.Height = 23;
             this.dgvResult.Size = new System.Drawing.Size(606, 462);
             this.dgvResult.TabIndex = 18;
@@ -594,7 +594,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.butSystem,
             this.butTime,
-            this.butDoor,
+            this.butConsumeParameter,
             this.butAlarm,
             this.butHoliday,
             this.ButTimeGroup,
@@ -626,15 +626,17 @@
             this.butTime.Name = "butTime";
             this.butTime.Size = new System.Drawing.Size(60, 22);
             this.butTime.Text = "日期时间";
+            this.butTime.Click += new System.EventHandler(this.butTime_Click);
             // 
-            // butDoor
+            // butConsumeParameter
             // 
-            this.butDoor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.butDoor.Image = ((System.Drawing.Image)(resources.GetObject("butDoor.Image")));
-            this.butDoor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.butDoor.Name = "butDoor";
-            this.butDoor.Size = new System.Drawing.Size(48, 22);
-            this.butDoor.Text = "门参数";
+            this.butConsumeParameter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.butConsumeParameter.Image = ((System.Drawing.Image)(resources.GetObject("butConsumeParameter.Image")));
+            this.butConsumeParameter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.butConsumeParameter.Name = "butConsumeParameter";
+            this.butConsumeParameter.Size = new System.Drawing.Size(60, 22);
+            this.butConsumeParameter.Text = "消费参数";
+            this.butConsumeParameter.Click += new System.EventHandler(this.butConsumeParameter_Click);
             // 
             // butAlarm
             // 
@@ -661,7 +663,8 @@
             this.ButTimeGroup.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ButTimeGroup.Name = "ButTimeGroup";
             this.ButTimeGroup.Size = new System.Drawing.Size(60, 22);
-            this.ButTimeGroup.Text = "开门时段";
+            this.ButTimeGroup.Text = "消费时段";
+            this.ButTimeGroup.Click += new System.EventHandler(this.ButTimeGroup_Click);
             // 
             // butCard
             // 
@@ -696,7 +699,7 @@
             this.butAdditionalData.Image = ((System.Drawing.Image)(resources.GetObject("butAdditionalData.Image")));
             this.butAdditionalData.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.butAdditionalData.Name = "butAdditionalData";
-            this.butAdditionalData.Size = new System.Drawing.Size(84, 22);
+            this.butAdditionalData.Size = new System.Drawing.Size(84, 21);
             this.butAdditionalData.Text = "人员附加数据";
             this.butAdditionalData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             // 
@@ -797,7 +800,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton butSystem;
         private System.Windows.Forms.ToolStripButton butTime;
-        private System.Windows.Forms.ToolStripButton butDoor;
+        private System.Windows.Forms.ToolStripButton butConsumeParameter;
         private System.Windows.Forms.ToolStripButton butAlarm;
         private System.Windows.Forms.ToolStripButton butHoliday;
         private System.Windows.Forms.ToolStripButton ButTimeGroup;

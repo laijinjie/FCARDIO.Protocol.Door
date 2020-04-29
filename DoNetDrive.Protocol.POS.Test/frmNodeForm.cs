@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
+using System;
 using System.Windows.Forms;
 
 namespace DotNetDrive.Protocol.POS.Test
@@ -64,5 +65,61 @@ namespace DotNetDrive.Protocol.POS.Test
 
         }
 
+        public Control FindControl(Control parentControl, string findCtrlName)
+        {
+            Control _findedControl = null;
+            if (!string.IsNullOrEmpty(findCtrlName) && parentControl != null)
+            {
+                foreach (Control ctrl in parentControl.Controls)
+                {
+                    if (ctrl.Name.Equals(findCtrlName))
+                    {
+                        _findedControl = ctrl;
+                        break;
+                    }
+                }
+            }
+            return _findedControl;
+        }
+
+
+        public void SetAllTimePicker(Control parent, string beginControlName, string endControlName, DayTimeGroup group)
+        {
+            for (int i = 0; i <= 3; i++)
+            {
+                DateTimePicker beginTimePicker = FindControl(parent, beginControlName + (i + 1).ToString()) as DateTimePicker;
+                DateTimePicker endTimePicker = FindControl(parent, endControlName + (i + 1).ToString()) as DateTimePicker;
+                if (group != null)
+                {
+                    TimeSegment segment = group.GetItem(i);
+                    if (segment.GetBeginTime() != DateTime.MinValue)
+                    {
+                        Invoke(() => {
+                            beginTimePicker.Value = segment.GetBeginTime();
+                            endTimePicker.Value = segment.GetEndTime();
+                        });
+
+                    }
+
+                }
+
+
+            }
+
+        }
+
+
+        public void SetWeekTimeGroupValue(WeekTimeGroup tg, int weekDayIndex, int timeSegmentIndex, int type, DateTime dateTime)
+        {
+            TimeSegment ts = tg.GetItem(weekDayIndex).GetItem(timeSegmentIndex);
+            if (type == 1)
+            {
+                ts.SetBeginTime(dateTime.Hour, dateTime.Minute);
+            }
+            else
+            {
+                ts.SetEndTime(dateTime.Hour, dateTime.Minute);
+            }
+        }
     }
 }

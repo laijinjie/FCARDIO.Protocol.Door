@@ -1019,5 +1019,36 @@ namespace DotNetDrive.Protocol.POS.Test
             frm.Activate();
             ShowFrm(frm);
         }
+
+        private void butTime_Click(object sender, EventArgs e)
+        {
+            frmTime frm = frmTime.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+        }
+
+        private void butConsumeParameter_Click(object sender, EventArgs e)
+        {
+            frmConsumeParameter frm = frmConsumeParameter.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+
+        }
+
+        private void ButTimeGroup_Click(object sender, EventArgs e)
+        {
+            frmTimeGroup frm = frmTimeGroup.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace DoNetDrive.Protocol.POS.Time.TimeErrorCorrection
     /// <summary>
     /// 设置误差自修正参数
     /// </summary>
-    public class WriteTimeError : Door.Door8800.Time.TimeErrorCorrection.WriteTimeError
+    public class WriteTimeError : Write_Command
     {
         /// <summary>
         /// 设置误差自修正参数
@@ -15,6 +15,17 @@ namespace DoNetDrive.Protocol.POS.Time.TimeErrorCorrection
         /// <param name="par">包含误差自修正参数</param>
         public WriteTimeError(Protocol.DESDriveCommandDetail cd, WriteTimeError_Parameter par) : base(cd, par)
         {
+        }
+
+        protected override bool CheckCommandParameter(INCommandParameter value)
+        {
+            WriteTimeError_Parameter model = value as WriteTimeError_Parameter;
+            if (model == null)
+            {
+                return false;
+            }
+
+            return model.checkedParameter();
         }
 
         /// <summary>
