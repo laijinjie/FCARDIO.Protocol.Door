@@ -50,7 +50,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         {
             if (CheckResponse(oPck, 0x10))
             {
-                var buf = oPck.CmdData;
+                var buf = oPck.CommandPacket.CmdData;
                 bool IsReady = false;
                 IsReady = (buf.GetByte(0) != 0xff);
 

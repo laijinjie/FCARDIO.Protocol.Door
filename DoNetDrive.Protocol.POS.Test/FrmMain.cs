@@ -1050,5 +1050,16 @@ namespace DotNetDrive.Protocol.POS.Test
             frm.Activate();
             ShowFrm(frm);
         }
+
+        private void butMenu_Click(object sender, EventArgs e)
+        {
+
+            FrmMenu frm = FrmMenu.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+        }
     }
 }

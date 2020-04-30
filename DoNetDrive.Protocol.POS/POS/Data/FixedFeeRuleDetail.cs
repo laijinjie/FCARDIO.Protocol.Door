@@ -14,7 +14,7 @@ namespace DoNetDrive.Protocol.POS.Data
         /// <summary>
         /// 序号
         /// </summary>
-        public byte SerialNumber;
+        public byte SerialNumber { get; set; }
 
         public string ShowBeginTime
         {
@@ -43,48 +43,48 @@ namespace DoNetDrive.Protocol.POS.Data
         /// <summary>
         /// 开始时间
         /// </summary>
-        public DateTime BeginTime;
+        public DateTime BeginTime { get; set; }
 
         /// <summary>
         /// 结束时间
         /// </summary>
-        public DateTime EndTime;
+        public DateTime EndTime { get; set; }
 
         /// <summary>
         /// 定额值
         /// </summary>
-        public int FixedFee;
+        public int FixedFee { get; set; }
 
         /// <summary>
         /// 消费限额
         /// </summary>
-        public int ConsumptionLimits;
+        public int ConsumptionLimits { get; set; }
 
         /// <summary>
         /// 限次
         /// </summary>
-        public byte Limite;
+        public byte Limite { get; set; }
 
 
         /// <summary>
         /// 计次卡扣次
         /// </summary>
-        public byte CountingCardsDeductionCount;
+        public byte CountingCardsDeductionCount { get; set; }
 
         /// <summary>
         /// 计次卡限次
         /// </summary>
-        public byte CountingCardsLimitsCount;
+        public byte CountingCardsLimitsCount { get; set; }
 
         /// <summary>
         /// 是否订餐
         /// </summary>
-        public byte IsReservation;
+        public byte IsReservation { get; set; }
 
         /// <summary>
         /// 餐段名称
         /// </summary>
-        public string MealTimeName;
+        public string MealTimeName { get; set; }
 
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {

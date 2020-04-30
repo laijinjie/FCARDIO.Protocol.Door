@@ -1,43 +1,44 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Core.Data;
 using System;
+using DoNetDrive.Protocol.POS.TemplateMethod;
 
 namespace DoNetDrive.Protocol.POS.Data
 {
     /// <summary>
     /// 卡类
     /// </summary>
-    public class CardTypeDetail : AbstractData
+    public class CardTypeDetail : TemplateData_Base
     {
         /// <summary>
         /// 卡类类型 
         /// 1字节
         /// </summary>
-        public byte CardType;
+        public byte CardType { get; set; }
 
         /// <summary>
         /// 消费折扣
         /// 1字节
         /// </summary>
-        public byte Discount;
+        public byte Discount { get; set; }
 
         /// <summary>
         /// 月补贴
         /// 4字节
         /// </summary>
-        public int SubsidyMoney;
+        public int SubsidyMoney { get; set; }
 
         /// <summary>
         /// 餐段权限
         /// 1字节
         /// </summary>
-        public byte TimeGroup;
+        public byte TimeGroup { get; set; }
 
         /// <summary>
         /// 积分倍率
         /// 1字节
         /// </summary>
-        public byte Integral;
+        public byte Integral { get; set; }
 
         /// <summary>
         /// 获取指定餐段是否有权限
@@ -78,7 +79,7 @@ namespace DoNetDrive.Protocol.POS.Data
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public virtual IByteBuffer GetDeleteBytes(IByteBuffer data)
+        public override IByteBuffer GetDeleteBytes(IByteBuffer data)
         {
             data.WriteByte(CardType);
             return data;
@@ -107,10 +108,14 @@ namespace DoNetDrive.Protocol.POS.Data
         /// 获取每个删除卡类长度
         /// </summary>
         /// <returns></returns>
-        public virtual int GetDeleteDataLen()
+        public override int GetDeleteDataLen()
         {
             return 1;
         }
 
+        public override void SetFailBytes(IByteBuffer databuf)
+        {
+            CardType = databuf.ReadByte();
+        }
     }
 }

@@ -45,7 +45,7 @@ namespace DoNetDrive.Protocol.POS.CardType.DatabaseDetail
         {
             if (CheckResponse(oPck, 0x04))
             {
-                var buf = oPck.CmdData;
+                var buf = oPck.CommandPacket.CmdData;
                 ReadDatabaseDetail_Result rst = new ReadDatabaseDetail_Result();
                 rst.SetBytes(buf);
                 _Result = rst;

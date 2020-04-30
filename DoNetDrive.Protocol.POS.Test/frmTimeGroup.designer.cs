@@ -92,6 +92,7 @@
             this.groupBox1.Controls.Add(this.btnFillNowTime);
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.endTimePicker4);
+            this.groupBox1.Controls.Add(this.cbTimeGroup);
             this.groupBox1.Controls.Add(this.beginTimePicker4);
             this.groupBox1.Controls.Add(this.endTimePicker3);
             this.groupBox1.Controls.Add(this.beginTimePicker3);
@@ -335,10 +336,11 @@
             "第 8 时段"});
             this.cbTimeGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTimeGroup.FormattingEnabled = true;
-            this.cbTimeGroup.Location = new System.Drawing.Point(83, 14);
+            this.cbTimeGroup.Location = new System.Drawing.Point(76, 0);
             this.cbTimeGroup.Name = "cbTimeGroup";
             this.cbTimeGroup.Size = new System.Drawing.Size(97, 20);
             this.cbTimeGroup.TabIndex = 0;
+            this.cbTimeGroup.SelectedIndexChanged += new System.EventHandler(this.CbTimeGroup_SelectedIndexChanged);
             // 
             // label19
             // 
@@ -357,7 +359,6 @@
             this.Controls.Add(this.label19);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnClearTimeGroup);
-            this.Controls.Add(this.cbTimeGroup);
             this.Controls.Add(this.btnAddTimeGroup);
             this.Controls.Add(this.btnReadTimeGroup);
             this.Name = "frmTimeGroup";

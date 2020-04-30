@@ -15,28 +15,27 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
     /// </summary>
     public class ReadTimeGroup : Read_Command
     {
-
+        /// <summary>
+        /// 读取到的开门时段缓冲
+        /// </summary>
+        protected List<IByteBuffer> mReadBuffers;
         /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="cd"></param>
-        public ReadTimeGroup(DESDriveCommandDetail cd, ReadTimeGroup_Parameter par) : base(cd, par)
+        public ReadTimeGroup(DESDriveCommandDetail cd) : base(cd)
         {
         }
-
 
         /// <summary>
         /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
-            ReadTimeGroup_Parameter model = _Parameter as ReadTimeGroup_Parameter;
-
-            var acl = _Connector.GetByteBufAllocator();
-
-            var buf = acl.Buffer(model.GetDataLen());
-
-            Packet(0x04, 0x02, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            var buf = GetNewCmdDataBuf(1);
+            Packet(0x04, 0x02, 0x00, 1, buf.WriteByte(0));
+            _ProcessMax = 64;
+            mReadBuffers = new List<IByteBuffer>();
         }
 
         /// <summary>
@@ -45,17 +44,29 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
         /// <param name="oPck"></param>
         protected override void CommandNext1(DESPacket oPck)
         {
-            if (CheckResponse(oPck, 0x71))
+
+            if (CheckResponse(oPck,0x71))
             {
                 var buf = oPck.CommandPacket.CmdData;
+                buf.Retain();
+                mReadBuffers.Add(buf);
+                _ProcessStep++;
+                fireCommandProcessEvent();
+                //CommandWaitResponse();
+            }
+
+            if (CheckResponse(oPck, 0x04, 0x02, 0xff, 1))
+            {
+                var buf = oPck.CommandPacket.CmdData;
+                int iTotal = buf.ReadByte();
 
                 ReadTimeGroup_Result rtgr = new ReadTimeGroup_Result();
                 _Result = rtgr;
 
-                SetBytes(rtgr, buf);
+                SetBytes(rtgr, mReadBuffers);
+                ClearBuf();
                 CommandCompleted();
             }
-
         }
 
         /// <summary>
@@ -63,15 +74,35 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
         /// </summary>
         /// <param name="result">读取所有开门时段结果</param>
         /// <param name="databufs"></param>
-        public void SetBytes(ReadTimeGroup_Result result, IByteBuffer databufs)
+        public void SetBytes(ReadTimeGroup_Result result, List<IByteBuffer> databufs)
         {
-            result.Index = databufs.ReadByte();
-            WeekTimeGroup wtg = new WeekTimeGroup(4);
-            
-            wtg.SetBytes(databufs);
-            result.WeekTimeGroup = wtg;
+            result.ListWeekTimeGroup.Clear();
+            //64个IByteBuffer，每个包含组 号2byte+224byte(7*4*4(时分-时分))
+            foreach (IByteBuffer buf in databufs)
+            {
+                //StringUtility.WriteByteBuffer(buf);
+                //continue;
+                WeekTimeGroup wtg = new WeekTimeGroup(4);
+                //buf.ReadShort();
+                buf.ReadByte();
+                wtg.SetBytes(buf);
+                result.ListWeekTimeGroup.Add(wtg);
+
+            }
+            result.Count = result.ListWeekTimeGroup.Count;
         }
 
-
+        /// <summary>
+        /// 清空缓冲区
+        /// </summary>
+        protected void ClearBuf()
+        {
+            foreach (IByteBuffer buf in mReadBuffers)
+            {
+                buf.Release();
+            }
+            mReadBuffers.Clear();
+            mReadBuffers = null;
+        }
     }
 }

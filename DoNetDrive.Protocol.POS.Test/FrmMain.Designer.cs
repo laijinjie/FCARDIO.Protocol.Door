@@ -86,7 +86,7 @@
             this.butSystem = new System.Windows.Forms.ToolStripButton();
             this.butTime = new System.Windows.Forms.ToolStripButton();
             this.butConsumeParameter = new System.Windows.Forms.ToolStripButton();
-            this.butAlarm = new System.Windows.Forms.ToolStripButton();
+            this.butMenu = new System.Windows.Forms.ToolStripButton();
             this.butHoliday = new System.Windows.Forms.ToolStripButton();
             this.ButTimeGroup = new System.Windows.Forms.ToolStripButton();
             this.butCard = new System.Windows.Forms.ToolStripButton();
@@ -595,7 +595,7 @@
             this.butSystem,
             this.butTime,
             this.butConsumeParameter,
-            this.butAlarm,
+            this.butMenu,
             this.butHoliday,
             this.ButTimeGroup,
             this.butCard,
@@ -638,14 +638,15 @@
             this.butConsumeParameter.Text = "消费参数";
             this.butConsumeParameter.Click += new System.EventHandler(this.butConsumeParameter_Click);
             // 
-            // butAlarm
+            // butMenu
             // 
-            this.butAlarm.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.butAlarm.Image = ((System.Drawing.Image)(resources.GetObject("butAlarm.Image")));
-            this.butAlarm.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.butAlarm.Name = "butAlarm";
-            this.butAlarm.Size = new System.Drawing.Size(60, 22);
-            this.butAlarm.Text = "报警设置";
+            this.butMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.butMenu.Image = ((System.Drawing.Image)(resources.GetObject("butMenu.Image")));
+            this.butMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.butMenu.Name = "butMenu";
+            this.butMenu.Size = new System.Drawing.Size(36, 22);
+            this.butMenu.Text = "商品";
+            this.butMenu.Click += new System.EventHandler(this.butMenu_Click);
             // 
             // butHoliday
             // 
@@ -699,7 +700,7 @@
             this.butAdditionalData.Image = ((System.Drawing.Image)(resources.GetObject("butAdditionalData.Image")));
             this.butAdditionalData.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.butAdditionalData.Name = "butAdditionalData";
-            this.butAdditionalData.Size = new System.Drawing.Size(84, 21);
+            this.butAdditionalData.Size = new System.Drawing.Size(84, 22);
             this.butAdditionalData.Text = "人员附加数据";
             this.butAdditionalData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             // 
@@ -801,7 +802,7 @@
         private System.Windows.Forms.ToolStripButton butSystem;
         private System.Windows.Forms.ToolStripButton butTime;
         private System.Windows.Forms.ToolStripButton butConsumeParameter;
-        private System.Windows.Forms.ToolStripButton butAlarm;
+        private System.Windows.Forms.ToolStripButton butMenu;
         private System.Windows.Forms.ToolStripButton butHoliday;
         private System.Windows.Forms.ToolStripButton ButTimeGroup;
         private System.Windows.Forms.ToolStripButton butCard;

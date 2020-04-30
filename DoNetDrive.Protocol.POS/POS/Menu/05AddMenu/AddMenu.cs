@@ -1,6 +1,6 @@
 ﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
 using DoNetDrive.Protocol.POS.Protocol;
+using DoNetDrive.Protocol.POS.TemplateMethod;
 using DotNetty.Buffers;
 using System.Collections.Generic;
 
@@ -9,7 +9,7 @@ namespace DoNetDrive.Protocol.POS.Menu
     /// <summary>
     /// 添加菜单
     /// </summary>
-    public class AddMenu : TemplateWriteData_Base<Data.MenuDetail>
+    public class AddMenu : TemplateWriteData_Base<AddMenu_Parameter, Data.MenuDetail>
     {
         /// <summary>
         /// 当前命令进度
@@ -21,7 +21,7 @@ namespace DoNetDrive.Protocol.POS.Menu
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public AddMenu(Protocol.DESDriveCommandDetail cd, AddMenu_Parameter par) : base(cd, par)
+        public AddMenu(DESDriveCommandDetail cd, AddMenu_Parameter par) : base(cd, par)
         {
             MaxBufSize = (mBatchCount * mParDataLen) + 4;
         }
@@ -31,7 +31,7 @@ namespace DoNetDrive.Protocol.POS.Menu
         /// </summary>
         /// <param name="DataList"></param>
         /// <returns></returns>
-        protected override TemplateResult_Base CreateResult(List<TemplateData_Base> DataList)
+        protected override TemplateResult_Base CreateResult(List<Data.MenuDetail> DataList)
         {
             ReadAllMenu_Result result = new ReadAllMenu_Result(DataList);
             return result;
@@ -43,11 +43,12 @@ namespace DoNetDrive.Protocol.POS.Menu
         /// </summary>
         /// <param name="oPck"></param>
         /// <returns></returns>
-        protected override bool CheckResponseCompleted(DESCommandPacket oPck)
+        protected override bool CheckResponseCompleted(DESPacket oPck)
         {
-            return (oPck.CmdType == 0x36 &&
-                oPck.CmdIndex == 4 &&
-                oPck.CmdPar == 0xff);
+            var subPck = oPck.CommandPacket;
+            return (subPck.CmdType == 0x36 &&
+                subPck.CmdIndex == 4 &&
+                subPck.CmdPar == 0xff);
         }
 
 

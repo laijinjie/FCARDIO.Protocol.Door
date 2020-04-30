@@ -1,4 +1,5 @@
-﻿using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
+﻿
+using DoNetDrive.Protocol.POS.TemplateMethod;
 using DoNetDrive.Protocol.Util;
 using DotNetty.Buffers;
 using System;
@@ -13,37 +14,37 @@ namespace DoNetDrive.Protocol.POS.Data
         /// <summary>
         /// 卡号
         /// </summary>
-        public int CardData;
+        public int CardData { get; set; }
 
         /// <summary>
         /// 补贴状态
         /// </summary>
-        public byte SubsidyState;
+        public byte SubsidyState { get; set; }
 
         /// <summary>
         /// 补贴金
         /// </summary>
-        public decimal SubsidyMoney;
+        public decimal SubsidyMoney { get; set; }
 
         /// <summary>
         /// 补贴实际发放金
         /// </summary>
-        public decimal ActualSubsidyMoney;
+        public decimal ActualSubsidyMoney { get; set; }
 
         /// <summary>
         /// 补贴截止时间
         /// </summary>
-        public DateTime SubsidyDate;
+        public DateTime SubsidyDate { get; set; }
 
         /// <summary>
         /// 补贴类型
         /// </summary>
-        public byte SubsidyType;
+        public byte SubsidyType { get; set; }
 
         /// <summary>
         /// 自定义编号
         /// </summary>
-        public byte CustomNumber;
+        public byte CustomNumber { get; set; }
 
         public override void SetBytes(IByteBuffer data)
         {

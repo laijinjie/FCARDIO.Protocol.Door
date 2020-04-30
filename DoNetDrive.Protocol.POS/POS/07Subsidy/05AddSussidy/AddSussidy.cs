@@ -1,13 +1,14 @@
 ﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
+using DoNetDrive.Protocol.POS.Data;
 using DoNetDrive.Protocol.POS.Protocol;
+using DoNetDrive.Protocol.POS.TemplateMethod;
 using DotNetty.Buffers;
 using System;
 using System.Collections.Generic;
 
 namespace DoNetDrive.Protocol.POS.Subsidy
 {
-    public class AddSussidy : TemplateWriteData_Base<Data.SubsidyDetail>
+    public class AddSussidy : TemplateWriteData_Base<AddSussidy_Parameter, SubsidyDetail>
     {
         /// <summary>
         /// 当前命令进度
@@ -29,64 +30,31 @@ namespace DoNetDrive.Protocol.POS.Subsidy
             mStep = 1;
             Packet(0x07, 0x04, 0x00);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="DataList"></param>
+        /// <returns></returns>
+        protected override TemplateResult_Base CreateResult(List<SubsidyDetail> DataList)
+        {
+            ReadAllSubsidy_Result result = new ReadAllSubsidy_Result(DataList);
+            return result;
+        }
+
 
         /// <summary>
         /// 检测结束指令返回值
         /// </summary>
         /// <param name="oPck"></param>
         /// <returns></returns>
-        protected override bool CheckResponseCompleted(DESCommandPacket oPck)
+        protected override bool CheckResponseCompleted(DESPacket oPck)
         {
-            return false;
+            var subPck = oPck.CommandPacket;
+            return (subPck.CmdType == 0x36 &&
+                subPck.CmdIndex == 4 &&
+                subPck.CmdPar == 0xff);
         }
 
-        /// <summary>
-        /// 重写父类对处理返回值的定义
-        /// </summary>
-        /// <param name="oPck"></param>
-        protected override void CommandNext0(DESCommandPacket oPck)
-        {
-            switch (mStep)
-            {
-                case 1://处理开始写入指令返回
-                    if (CheckResponse_OK(oPck))
-                    {
-                        _ProcessStep++;
-                        //硬件已准备就绪，开始写入卡
-
-                        //创建一个通讯缓冲区
-                        var buf = GetNewCmdDataBuf(MaxBufSize);
-                        WriteDataToBuf(buf);
-                        Packet(0x07, 0x04, 0x01, (uint)buf.ReadableBytes, buf);
-                        CommandReady();//设定命令当前状态为准备就绪，等待发送
-                        mStep = 2;//使命令进入下一个阶段
-                        return;
-                    }
-                    break;
-                case 2:
-                    if (CheckResponse_OK(oPck))
-                    {
-                        //继续发下一包
-                        CommandNext1(oPck);
-                    }
-                    break;
-
-                default:
-                    break;
-            }
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="DataList"></param>
-        /// <returns></returns>
-        protected override TemplateResult_Base CreateResult(List<TemplateData_Base> DataList)
-        {
-            ReadAllSubsidy_Result result = new ReadAllSubsidy_Result(DataList);
-            return result;
-        }
 
         /// <summary>
         /// 
@@ -95,8 +63,8 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// <param name="data"></param>
         protected override void WriteDataBodyToBuf(IByteBuffer databuf, TemplateData_Base data)
         {
-            Data.SubsidyDetail subsidy = data as Data.SubsidyDetail;
-            subsidy.GetBytes(databuf);
+            Data.MenuDetail menuDetail = data as Data.MenuDetail;
+            menuDetail.GetBytes(databuf);
         }
 
         /// <summary>
@@ -104,7 +72,9 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// </summary>
         protected override void CreateCommandPacket0()
         {
-            throw new NotImplementedException();
+            var buf = GetNewCmdDataBuf(MaxBufSize);
+            WriteDataToBuf(buf);
+            Packet(0x07, 0x4, 0x00, (uint)buf.ReadableBytes, buf);
         }
     }
 }

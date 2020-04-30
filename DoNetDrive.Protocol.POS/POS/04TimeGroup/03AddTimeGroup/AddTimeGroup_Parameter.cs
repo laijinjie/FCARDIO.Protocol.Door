@@ -1,37 +1,28 @@
 ﻿using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
 using DotNetty.Buffers;
 using System;
+using System.Collections.Generic;
 
 namespace DoNetDrive.Protocol.POS.TimeGroup
 {
     public class AddTimeGroup_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 
+        /// 写入索引
         /// </summary>
-        public byte Index { get; set; }
-
+        private int writeIndex = 0;
         /// <summary>
         /// 
         /// </summary>
-        public WeekTimeGroup WeekTimeGroup { get; set; }
+        public readonly List<WeekTimeGroup> ListWeekTimeGroup;
 
         /// <summary>
-        /// 构建一个空的实例
+        /// 初始化参数
         /// </summary>
-        public AddTimeGroup_Parameter() { }
-
-        /// <summary>
-        /// 初始化实例
-        /// </summary>
-        /// <param name="Index">消费时段号</param>
-        public AddTimeGroup_Parameter(WeekTimeGroup WeekTimeGroup)
+        /// <param name="list">开门时段集合</param>
+        public AddTimeGroup_Parameter(List<WeekTimeGroup> list)
         {
-            this.WeekTimeGroup = WeekTimeGroup;
-            if (!checkedParameter())
-            {
-                throw new ArgumentException("Parameter Error");
-            }
+            ListWeekTimeGroup = list;
         }
 
         /// <summary>
@@ -40,39 +31,46 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (WeekTimeGroup == null)
+            if (ListWeekTimeGroup == null || ListWeekTimeGroup.Count != 64)
             {
-                return false;
+                throw new ArgumentException("ListWeekTimeGroup.Count Error!");
             }
 
             return true;
         }
 
         /// <summary>
-        /// 释放资源
+        /// 关闭
         /// </summary>
         public override void Dispose()
         {
-            return;
+            ListWeekTimeGroup.Clear();
         }
 
         /// <summary>
-        /// 对有效期参数进行编码
+        /// 设置写入索引
         /// </summary>
-        /// <param name="databuf">需要填充参数结构的字节缓冲区</param>
+        /// <param name="index">写入索引号</param>
+        public void SetWriteIndex(int index)
+        {
+            if (index < ListWeekTimeGroup.Count)
+            {
+                writeIndex = index;
+            }
+        }
+
+        /// <summary>
+        /// 将 参数 编码到字节流
+        /// </summary>
+        /// <param name="databuf"></param>
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            if (databuf.WritableBytes != GetDataLen())
-            {
-                throw new ArgumentException("databuf len error");
-            }
-            WeekTimeGroup.SetBytes(databuf);
             return databuf;
         }
 
         /// <summary>
-        /// 获取数据长度
+        /// 获取长度
         /// </summary>
         /// <returns></returns>
         public override int GetDataLen()
@@ -81,12 +79,13 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
         }
 
         /// <summary>
-        /// 对有效期参数进行解码
+        /// 没有实现
         /// </summary>
-        /// <param name="databuf">包含参数结构的缓冲区</param>
+        /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            return;
+
+
         }
     }
 }

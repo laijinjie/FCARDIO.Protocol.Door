@@ -51,14 +51,10 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
         /// </summary>
         protected override void CreatePacket0()
         {
-            AddTimeGroup_Parameter model = _Parameter as AddTimeGroup_Parameter;
-
-            var acl = _Connector.GetByteBufAllocator();
-
-            var buf = acl.Buffer(model.GetDataLen());
-
-            Packet(0x04, 0x03, 0x00, 0x71, model.GetBytes(buf));
-
+            maxCount = mPar.ListWeekTimeGroup.Count;
+            Packet(0x04, 0x03, 0x00, 0x71, GetBytes(GetNewCmdDataBuf(0x71)));
+            writeIndex++;
+            _ProcessMax = maxCount;
         }
 
         /// <summary>
@@ -68,13 +64,49 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
         /// <returns></returns>
         protected IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            databuf.WriteByte(mPar.Index);
+            databuf.WriteByte(writeIndex + 1);
 
-            mPar.WeekTimeGroup.GetBytes(databuf);
+            mPar.ListWeekTimeGroup[writeIndex].GetBytes(databuf);
             return databuf;
         }
 
-       
+        /// <summary>
+        /// 没有触发
+        /// </summary>
+        /// <param name="oPck"></param>
+        protected override void CommandNext1(DESPacket oPck)
+        {
+            //应答
+            if (writeIndex < maxCount)
+            {
+                var buf = GetBytes(GetCmdBuf());
+                oPck.CommandPacket.DataLen = buf.ReadableBytes;
+                writeIndex++;
+                _ProcessStep++;
+                fireCommandProcessEvent();
+                CommandReady();
+            }
+            else
+            {
+                CommandCompleted();
+            }
+
+        }
+
+
+        /// <summary>
+        /// 处理返回值
+        /// </summary>
+        /// <param name="oPck">包含返回指令的Packet</param>
+        protected override void CommandNext0(DESPacket oPck)
+        {
+            if (CheckResponse_OK(oPck))
+            {
+                //继续发下一包
+                CommandNext1(oPck);
+            }
+
+        }
 
     }
 }

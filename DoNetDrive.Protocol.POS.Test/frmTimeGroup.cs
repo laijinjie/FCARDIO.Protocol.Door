@@ -21,7 +21,7 @@ namespace DotNetDrive.Protocol.POS.Test
         /// <summary>
         /// 64个
         /// </summary>
-        WeekTimeGroup mWeekTimeGroup = new WeekTimeGroup(4);
+        List<WeekTimeGroup> ListWeekTimeGroup = new List<WeekTimeGroup>();
         public static frmTimeGroup GetForm(INMain main)
         {
             if (onlyObj == null)
@@ -58,13 +58,13 @@ namespace DotNetDrive.Protocol.POS.Test
             cbWeekday.SelectedIndex = 0;
         }
 
-        #region 消费时段
+        #region 开门时段
         public void InitTimeGroup()
         {
             string[] time = new string[64];
             for (int i = 0; i < 64; i++)
             {
-                time[i] = "消费时段" + (i + 1).ToString();
+                time[i] = "开门时段" + (i + 1).ToString();
             }
             cbTimeGroup.Items.Clear();
             cbTimeGroup.Items.AddRange(time);
@@ -87,25 +87,24 @@ namespace DotNetDrive.Protocol.POS.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            ReadTimeGroup_Parameter par = new ReadTimeGroup_Parameter((byte)(cbTimeGroup.SelectedIndex + 1));
-            ReadTimeGroup cmd = new ReadTimeGroup(cmdDtl, par);
+            ReadTimeGroup cmd = new ReadTimeGroup(cmdDtl);
             mMainForm.AddCommand(cmd);
 
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadTimeGroup_Result result = cmde.Command.getResult() as ReadTimeGroup_Result;
-                mWeekTimeGroup = result.WeekTimeGroup;
+                ListWeekTimeGroup = result.ListWeekTimeGroup;
 
 
-                BindTimeSegment(result.WeekTimeGroup);
+                BindTimeSegment();
                 //dataGridView1
                 string log = $"已读取到数量：{result.Count} ";
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
 
-        
+
 
         /// <summary>
         /// 
@@ -113,72 +112,32 @@ namespace DotNetDrive.Protocol.POS.Test
         /// <param name="timeSegmentIndex"></param>
         /// <param name="type"></param>
         /// <param name="dateTime"></param>
-        private void SetWeekTimeGroupValue(int timeSegmentIndex,int type, DateTime dateTime)
+        private void SetWeekTimeGroupValue(int timeSegmentIndex, int type, DateTime dateTime)
         {
-            TimeSegment ts = mWeekTimeGroup.GetItem(cbWeekday.SelectedIndex).GetItem(timeSegmentIndex);
-            if (type == 1)
+            if (ListWeekTimeGroup.Count > cbTimeGroup.SelectedIndex)
             {
-                ts.SetBeginTime(dateTime.Hour, dateTime.Minute);
+                TimeSegment ts = ListWeekTimeGroup[cbTimeGroup.SelectedIndex].GetItem(cbWeekday.SelectedIndex).GetItem(timeSegmentIndex);
+                if (type == 1)
+                {
+                    ts.SetBeginTime(dateTime.Hour, dateTime.Minute);
+                }
+                else
+                {
+                    ts.SetEndTime(dateTime.Hour, dateTime.Minute);
+                }
             }
-            else
-            {
-                ts.SetEndTime(dateTime.Hour, dateTime.Minute);
-            }
+
         }
 
 
-        private void BindTimeSegment(WeekTimeGroup wtg)
+        private void BindTimeSegment()
         {
             DateTime nw = DateTime.Now;
-            var day = wtg.GetItem(0);
+            WeekTimeGroup tg = ListWeekTimeGroup[0];
+            var day = tg.GetItem(0);
             //var tz = day.GetItem(0) as TimeSegment;
             SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
-            /*
-            for (int j = 0; j < 8; j++)
-            {
-                var tz = day.GetItem(j) as TimeSegment;
-                if (j == 0)
-                {
-                    tz.SetBeginTime(beginTimePicker1.Text == "" ? 0 : DateTime.Parse(beginTimePicker1.Text).Hour, beginTimePicker1.Text == "" ? 0 : DateTime.Parse(beginTimePicker1.Text).Minute);
-                    tz.SetEndTime(endTimePicker1.Text == "" ? 0 : DateTime.Parse(endTimePicker1.Text).Hour, endTimePicker1.Text == "" ? 0 : DateTime.Parse(endTimePicker1.Text).Minute);
-                }
-                else if (j == 1)
-                {
-                    tz.SetBeginTime(beginTimePicker2.Text == "" ? 0 : DateTime.Parse(beginTimePicker2.Text).Hour, beginTimePicker1.Text == "" ? 0 : DateTime.Parse(beginTimePicker2.Text).Minute);
-                    tz.SetEndTime(endTimePicker2.Text == "" ? 0 : DateTime.Parse(endTimePicker2.Text).Hour, endTimePicker1.Text == "" ? 0 : DateTime.Parse(endTimePicker2.Text).Minute);
-                }
-                else if (j == 2)
-                {
-                    tz.SetBeginTime(beginTimePicker3.Text == "" ? 0 : DateTime.Parse(beginTimePicker3.Text).Hour, beginTimePicker1.Text == "" ? 0 : DateTime.Parse(beginTimePicker3.Text).Minute);
-                    tz.SetEndTime(endTimePicker3.Text == "" ? 0 : DateTime.Parse(endTimePicker3.Text).Hour, endTimePicker1.Text == "" ? 0 : DateTime.Parse(endTimePicker3.Text).Minute);
-                }
-                else if (j == 3)
-                {
-                    tz.SetBeginTime(beginTimePicker4.Text == "" ? 0 : DateTime.Parse(beginTimePicker4.Text).Hour, beginTimePicker1.Text == "" ? 0 : DateTime.Parse(beginTimePicker4.Text).Minute);
-                    tz.SetEndTime(endTimePicker4.Text == "" ? 0 : DateTime.Parse(endTimePicker4.Text).Hour, endTimePicker1.Text == "" ? 0 : DateTime.Parse(endTimePicker4.Text).Minute);
-                }
-                else if (j == 4)
-                {
-                    tz.SetBeginTime(beginTimePicker5.Text == "" ? 0 : DateTime.Parse(beginTimePicker5.Text).Hour, beginTimePicker1.Text == "" ? 0 : DateTime.Parse(beginTimePicker5.Text).Minute);
-                    tz.SetEndTime(endTimePicker5.Text == "" ? 0 : DateTime.Parse(endTimePicker5.Text).Hour, endTimePicker1.Text == "" ? 0 : DateTime.Parse(endTimePicker5.Text).Minute);
-                }
-                else if (j == 5)
-                {
-                    tz.SetBeginTime(beginTimePicker6.Text == "" ? 0 : DateTime.Parse(beginTimePicker6.Text).Hour, beginTimePicker1.Text == "" ? 0 : DateTime.Parse(beginTimePicker6.Text).Minute);
-                    tz.SetEndTime(endTimePicker6.Text == "" ? 0 : DateTime.Parse(endTimePicker6.Text).Hour, endTimePicker1.Text == "" ? 0 : DateTime.Parse(endTimePicker6.Text).Minute);
-                }
-                else if (j == 6)
-                {
-                    tz.SetBeginTime(beginTimePicker7.Text == "" ? 0 : DateTime.Parse(beginTimePicker7.Text).Hour, beginTimePicker1.Text == "" ? 0 : DateTime.Parse(beginTimePicker7.Text).Minute);
-                    tz.SetEndTime(endTimePicker7.Text == "" ? 0 : DateTime.Parse(endTimePicker7.Text).Hour, endTimePicker1.Text == "" ? 0 : DateTime.Parse(endTimePicker7.Text).Minute);
-                }
-                else if (j == 7)
-                {
-                    tz.SetBeginTime(beginTimePicker8.Text == "" ? 0 : DateTime.Parse(beginTimePicker8.Text).Hour, beginTimePicker1.Text == "" ? 0 : DateTime.Parse(beginTimePicker8.Text).Minute);
-                    tz.SetEndTime(endTimePicker8.Text == "" ? 0 : DateTime.Parse(endTimePicker8.Text).Hour, endTimePicker1.Text == "" ? 0 : DateTime.Parse(endTimePicker8.Text).Minute);
-                }
-            }
-            */
+            
         }
 
         /// <summary>
@@ -191,7 +150,7 @@ namespace DotNetDrive.Protocol.POS.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            AddTimeGroup_Parameter par = new AddTimeGroup_Parameter(mWeekTimeGroup);
+            AddTimeGroup_Parameter par = new AddTimeGroup_Parameter(ListWeekTimeGroup);
             AddTimeGroup cmd = new AddTimeGroup(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
@@ -228,14 +187,24 @@ namespace DotNetDrive.Protocol.POS.Test
         /// <param name="e"></param>
         private void CbTimeGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var day = mWeekTimeGroup.GetItem(0);
-            SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
+            if (ListWeekTimeGroup.Count > 0)
+            {
+                WeekTimeGroup tg = ListWeekTimeGroup[cbTimeGroup.SelectedIndex];
+                var day = tg.GetItem(0);
+                SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
+            }
+
         }
 
         private void CbWeekday_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var day = mWeekTimeGroup.GetItem(cbWeekday.SelectedIndex);
-            SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
+            if (ListWeekTimeGroup.Count > 0)
+            {
+                WeekTimeGroup tg = ListWeekTimeGroup[cbTimeGroup.SelectedIndex];
+                var day = tg.GetItem(cbWeekday.SelectedIndex);
+                SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
+            }
+
         }
 
         private void BeginTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -278,32 +247,37 @@ namespace DotNetDrive.Protocol.POS.Test
             SetWeekTimeGroupValue(3, 2, endTimePicker4.Value);
         }
 
-     
-
         private void BtnFillNowTime_Click(object sender, EventArgs e)
         {
+            ListWeekTimeGroup.Clear();
 
-            mWeekTimeGroup = new WeekTimeGroup(4);
-            //weekTimeGroup.mDay
-            //星期一 至 星期日
-            for (int y = 0; y < 7; y++)
+            //开门时段
+            for (int x = 0; x < 64; x++)
             {
-                DayTimeGroup dayTimeGroup = mWeekTimeGroup.GetItem(y);
-                //每天时段
-                for (int i = 0; i < 4; i++)
+                WeekTimeGroup weekTimeGroup = new WeekTimeGroup(4);
+                //weekTimeGroup.mDay
+                //星期一 至 星期日
+                for (int y = 0; y < 7; y++)
                 {
-                    DateTime dt = DateTime.Now;
-                    //dt = dt.AddMinutes(-1);
-                    TimeSegment segment = dayTimeGroup.GetItem(i);
-                    dt = dt.AddMinutes(i + 1);
-                    segment.SetBeginTime(dt.Hour, dt.Minute);
-                    dt = dt.AddMinutes(i + 1);
-                    segment.SetEndTime(dt.Hour, dt.Minute);
-                    DateTimePicker beginTimePicker = FindControl(groupBox1, "beginTimePicker" + (i + 1).ToString()) as DateTimePicker;
-                    DateTimePicker endTimePicker = FindControl(groupBox1, "endTimePicker" + (i + 1).ToString()) as DateTimePicker;
-                    beginTimePicker.Value = segment.GetBeginTime();
-                    endTimePicker.Value = segment.GetEndTime();
+                    DayTimeGroup dayTimeGroup = weekTimeGroup.GetItem(y);
+                    //每天时段
+                    for (int i = 0; i < 4; i++)
+                    {
+                        DateTime dt = DateTime.Now;
+                        //dt = dt.AddMinutes(-1);
+                        TimeSegment segment = dayTimeGroup.GetItem(i);
+                        dt = dt.AddMinutes(i + 1);
+                        segment.SetBeginTime(dt.Hour, dt.Minute);
+                        dt = dt.AddMinutes(i + 1);
+                        segment.SetEndTime(dt.Hour, dt.Minute);
+                        DateTimePicker beginTimePicker = FindControl(groupBox1, "beginTimePicker" + (i + 1).ToString()) as DateTimePicker;
+                        DateTimePicker endTimePicker = FindControl(groupBox1, "endTimePicker" + (i + 1).ToString()) as DateTimePicker;
+                        beginTimePicker.Value = segment.GetBeginTime();
+                        endTimePicker.Value = segment.GetEndTime();
+                    }
                 }
+
+                ListWeekTimeGroup.Add(weekTimeGroup);
             }
 
         }

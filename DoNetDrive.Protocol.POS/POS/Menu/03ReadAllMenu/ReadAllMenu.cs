@@ -1,7 +1,6 @@
-﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
+﻿using DoNetDrive.Protocol.POS.Data;
 using DoNetDrive.Protocol.POS.Protocol;
-using DoNetDrive.Protocol.POS.Data;
+using DoNetDrive.Protocol.POS.TemplateMethod;
 using DotNetty.Buffers;
 using System.Collections.Generic;
 
@@ -29,11 +28,12 @@ namespace DoNetDrive.Protocol.POS.Menu
         /// </summary>
         /// <param name="oPck"></param>
         /// <returns></returns>
-        protected override bool CheckResponseNext(DESCommandPacket oPck)
+        protected override bool CheckResponseNext(DESPacket oPck)
         {
-            return (oPck.CmdType == 0x36 &&
-                oPck.CmdIndex == 3 &&
-                oPck.CmdPar == 0);
+            var subPck = oPck.CommandPacket;
+            return (subPck.CmdType == 0x36 &&
+                subPck.CmdIndex == 3 &&
+                subPck.CmdPar == 0);
         }
 
         /// <summary>
@@ -41,11 +41,12 @@ namespace DoNetDrive.Protocol.POS.Menu
         /// </summary>
         /// <param name="oPck"></param>
         /// <returns></returns>
-        protected override bool CheckResponseCompleted(DESCommandPacket oPck)
+        protected override bool CheckResponseCompleted(DESPacket oPck)
         {
-            return (oPck.CmdType == 0x36 &&
-                oPck.CmdIndex == 3 &&
-                oPck.CmdPar == 0xff && oPck.DataLen == 2);
+            var subPck = oPck.CommandPacket;
+            return (subPck.CmdType == 0x36 &&
+                subPck.CmdIndex == 3 &&
+                subPck.CmdPar == 0xff && subPck.DataLen == 2);
         }
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace DoNetDrive.Protocol.POS.Menu
         /// </summary>
         /// <param name="dataList"></param>
         /// <returns></returns>
-        protected override TemplateResult_Base CreateResult(List<TemplateData_Base> dataList)
+        protected override TemplateResult_Base CreateResult(List<MenuDetail> dataList)
         {
             ReadAllMenu_Result result = new ReadAllMenu_Result(dataList);
             return result;

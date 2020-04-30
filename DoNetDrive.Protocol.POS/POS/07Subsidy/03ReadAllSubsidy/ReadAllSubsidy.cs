@@ -1,9 +1,9 @@
 using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
 using DoNetDrive.Protocol.POS.Protocol;
 using DoNetDrive.Protocol.POS.Data;
 using DotNetty.Buffers;
 using System.Collections.Generic;
+using DoNetDrive.Protocol.POS.TemplateMethod;
 
 namespace DoNetDrive.Protocol.POS.Subsidy
 {
@@ -31,11 +31,12 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// </summary>
         /// <param name="oPck"></param>
         /// <returns></returns>
-        protected override bool CheckResponseNext(DESCommandPacket oPck)
+        protected override bool CheckResponseNext(DESPacket oPck)
         {
-            return (oPck.CmdType == 0x37 &&
-                oPck.CmdIndex == 3 &&
-                oPck.CmdPar == 0);
+            var subPck = oPck.CommandPacket;
+            return (subPck.CmdType == 0x37 &&
+                subPck.CmdIndex == 3 &&
+                subPck.CmdPar == 0);
         }
 
         /// <summary>
@@ -43,11 +44,12 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// </summary>
         /// <param name="oPck"></param>
         /// <returns></returns>
-        protected override bool CheckResponseCompleted(DESCommandPacket oPck)
+        protected override bool CheckResponseCompleted(DESPacket oPck)
         {
-            return (oPck.CmdType == 0x37 &&
-                oPck.CmdIndex == 3 &&
-                oPck.CmdPar == 0xff && oPck.DataLen == 2);
+            var subPck = oPck.CommandPacket;
+            return (subPck.CmdType == 0x37 &&
+                subPck.CmdIndex == 3 &&
+                subPck.CmdPar == 0xff && subPck.DataLen == 2);
         }
 
 
@@ -56,7 +58,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// </summary>
         /// <param name="dataList"></param>
         /// <returns></returns>
-        protected override TemplateResult_Base CreateResult(List<TemplateData_Base> dataList)
+        protected override TemplateResult_Base CreateResult(List<SubsidyDetail> dataList)
         {
             ReadAllSubsidy_Result result = new ReadAllSubsidy_Result(dataList);
             return result;

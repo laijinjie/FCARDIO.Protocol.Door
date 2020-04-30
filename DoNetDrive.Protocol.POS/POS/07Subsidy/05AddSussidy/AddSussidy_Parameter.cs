@@ -1,13 +1,26 @@
-﻿using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
+﻿
+using DoNetDrive.Protocol.POS.Data;
+using DoNetDrive.Protocol.POS.TemplateMethod;
 using System;
+using System.Collections.Generic;
 
 namespace DoNetDrive.Protocol.POS.Subsidy
 {
-    public class AddSussidy_Parameter : TemplateParameter_Base
+    public class AddSussidy_Parameter : TemplateParameter_Base<SubsidyDetail>
     {
-        protected override bool CheckedParameterItem(TemplateData_Base sussidy)
+        public AddSussidy_Parameter()
         {
-            throw new NotImplementedException();
+
+        }
+
+        public AddSussidy_Parameter(List<SubsidyDetail> list) : base(list)
+        {
+        }
+
+        protected override bool CheckedParameterItem(SubsidyDetail Menu)
+        {
+           
+            return true;
         }
     }
 }

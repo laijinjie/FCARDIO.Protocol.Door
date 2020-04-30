@@ -7,21 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DoNetDrive.Protocol.POS.TemplateMethod;
 
 namespace DoNetDrive.Protocol.POS.CardType.ReadDataBase
 {
-    public class ReadDataBase : Read_Command
+    public class ReadDataBase : TemplateReadData_Base<CardTypeDetail>
     {
-        /// <summary>
-        /// 读取到的密码缓冲
-        /// </summary>
-        protected List<IByteBuffer> mReadBuffers;
-
+        
         /// <summary>
         /// 初始化命令结构
         /// </summary>
         /// <param name="detail"></param>
-        public ReadDataBase(DESDriveCommandDetail detail) : base(detail, null) { }
+        public ReadDataBase(DESDriveCommandDetail detail) : base(detail) { }
 
         /// <summary>
         /// 检查参数
@@ -38,77 +35,45 @@ namespace DoNetDrive.Protocol.POS.CardType.ReadDataBase
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x08, 0x03, 0x00, 0x00, null);
+            Packet(0x08, 0x03);
+            mReadBuffers = new List<IByteBuffer>();
+            _ProcessMax = 1;
         }
 
-        /// <summary>
-        /// 处理返回值
+        /// 检测下一包指令返回值
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext1(DESPacket oPck)
+        /// <returns></returns>
+        protected override bool CheckResponseNext(DESPacket oPck)
         {
-            if (CheckResponse(oPck, 0x03))
-            {
-                var buf = oPck.CmdData;
-                buf.Retain();
-                mReadBuffers.Add(buf);
-                CommandWaitResponse();
-            }
-
-            if (CheckResponse(oPck, 0x03, 0xff, 2))
-            {
-                var buf = oPck.CmdData;
-                int iTotal = buf.ReadInt();
-                _ProcessMax = iTotal;
-                List<CardTypeDetail> cardTypeDetailList = new List<CardTypeDetail>(iTotal);
-                foreach (IByteBuffer tmpbuf in mReadBuffers)
-                {
-                    int iCount = tmpbuf.ReadInt();
-                    for (int i = 0; i < iCount; i++)
-                    {
-                        CardTypeDetail dtl = new CardTypeDetail();
-                        dtl.SetBytes(tmpbuf);
-                        cardTypeDetailList.Add(dtl);
-                    }
-                    _ProcessStep += iCount;
-                    fireCommandProcessEvent();
-                }
-
-                ReadDataBase_Result rst = new ReadDataBase_Result(cardTypeDetailList);
-                _Result = rst;
-
-                ClearBuf();
-                CommandCompleted();
-            }
+            var subPck = oPck.CommandPacket;
+            return (subPck.CmdType == 0x38 &&
+                subPck.CmdIndex == 3 &&
+                subPck.CmdPar == 0);
         }
 
         /// <summary>
-        /// 命令重发时需要处理的函数
+        /// 检测结束指令返回值
         /// </summary>
-        protected override void CommandReSend()
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected override bool CheckResponseCompleted(DESPacket oPck)
         {
-            return;
+            var subPck = oPck.CommandPacket;
+            return (subPck.CmdType == 0x38 &&
+                subPck.CmdIndex == 3 &&
+                subPck.CmdPar == 0xff && subPck.DataLen == 2);
         }
 
         /// <summary>
-        /// 命令释放时需要处理的函数
+        /// 
         /// </summary>
-        protected override void Release1()
+        /// <param name="dataList"></param>
+        /// <returns></returns>
+        protected override TemplateResult_Base CreateResult(List<CardTypeDetail> dataList)
         {
-            return;
-        }
-
-        /// <summary>
-        /// 清空缓冲区
-        /// </summary>
-        protected void ClearBuf()
-        {
-            foreach (IByteBuffer buf in mReadBuffers)
-            {
-                buf.Release();
-            }
-            mReadBuffers.Clear();
-            mReadBuffers = null;
+            ReadDataBase_Result result = new ReadDataBase_Result(dataList);
+            return result;
         }
     }
 }

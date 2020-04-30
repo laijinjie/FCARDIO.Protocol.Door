@@ -1,6 +1,6 @@
-﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
+﻿
 using DoNetDrive.Protocol.POS.Protocol;
+using DoNetDrive.Protocol.POS.TemplateMethod;
 using DotNetty.Buffers;
 using System.Collections.Generic;
 
@@ -9,7 +9,7 @@ namespace DoNetDrive.Protocol.POS.Menu
     /// <summary>
     /// 删除菜单命令
     /// </summary>
-    public class DeleteMenu : TemplateWriteData_Base<Data.MenuDetail>
+    public class DeleteMenu : TemplateWriteData_Base<AddMenu_Parameter, Data.MenuDetail>
     {
         /// <summary>
         /// 当前命令进度
@@ -31,7 +31,7 @@ namespace DoNetDrive.Protocol.POS.Menu
         /// </summary>
         /// <param name="DataList"></param>
         /// <returns></returns>
-        protected override TemplateResult_Base CreateResult(List<TemplateData_Base> DataList)
+        protected override TemplateResult_Base CreateResult(List<Data.MenuDetail> DataList)
         {
             ReadAllMenu_Result result = new ReadAllMenu_Result(DataList);
             return result;
@@ -58,7 +58,7 @@ namespace DoNetDrive.Protocol.POS.Menu
             Packet(0x06, 0x05, 0x00, (uint)buf.ReadableBytes, buf);
         }
 
-        protected override bool CheckResponseCompleted(DESCommandPacket oPck)
+        protected override bool CheckResponseCompleted(DESPacket oPck)
         {
             return false;
         }

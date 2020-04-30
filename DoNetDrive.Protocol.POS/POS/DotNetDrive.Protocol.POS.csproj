@@ -86,6 +86,25 @@
     <Compile Include="02Time\TimeErrorCorrection\WriteTimeError_Parameter.cs" />
     <Compile Include="04TimeGroup\02ReadTimeGroup\ReadTimeGroup_Parameter.cs" />
     <Compile Include="04TimeGroup\03AddTimeGroup\AddTimeGroup_Parameter.cs" />
+    <Compile Include="07Subsidy\01ReadSubsidyDataBase\ReadSubsidyDataBase.cs" />
+    <Compile Include="07Subsidy\01ReadSubsidyDataBase\ReadSubsidyDataBase_Result.cs" />
+    <Compile Include="07Subsidy\02ClearSubsidy\ClearSubsidy.cs" />
+    <Compile Include="07Subsidy\03ReadAllSubsidy\ReadAllSubsidy.cs" />
+    <Compile Include="07Subsidy\03ReadAllSubsidy\ReadAllSubsidy_Result.cs" />
+    <Compile Include="07Subsidy\04ReadSubsidyDetail\ReadSubsidyDetail.cs" />
+    <Compile Include="07Subsidy\04ReadSubsidyDetail\ReadSubsidyDetail_Parameter.cs" />
+    <Compile Include="07Subsidy\04ReadSubsidyDetail\ReadSubsidyDetail_Result.cs" />
+    <Compile Include="07Subsidy\05AddSussidy\AddSussidy.cs" />
+    <Compile Include="07Subsidy\05AddSussidy\AddSussidy_Parameter.cs" />
+    <Compile Include="08CardType\01DatabaseDetail\ReadDatabaseDetail.cs" />
+    <Compile Include="08CardType\01DatabaseDetail\ReadDatabaseDetail_Result.cs" />
+    <Compile Include="08CardType\02ClearDataBase\ClearDataBase.cs" />
+    <Compile Include="08CardType\02ClearDataBase\ClearDataBase_Parameter.cs" />
+    <Compile Include="08CardType\03ReadDataBase\ReadDataBase.cs" />
+    <Compile Include="08CardType\03ReadDataBase\ReadDataBase_Result.cs" />
+    <Compile Include="08CardType\04AddCardTypeDetail\AddCardTypeDetail.cs" />
+    <Compile Include="08CardType\04AddCardTypeDetail\AddCardTypeDetail_Parameter.cs" />
+    <Compile Include="08CardType\05DeleteCardTypeDetail\DeleteCardTypeDetail.cs" />
     <Compile Include="AbstractParameter.cs" />
     <Compile Include="CommandEx.cs" />
     <Compile Include="ConsumeParameter\01POSWorkMode\ReadPOSWorkMode.cs" />
@@ -138,6 +157,17 @@
     <Compile Include="Data\MenuDetail.cs" />
     <Compile Include="Data\ReservationDetail.cs" />
     <Compile Include="Data\SubsidyDetail.cs" />
+    <Compile Include="Menu\01ReadDataBase\ReadMenuDataBase.cs" />
+    <Compile Include="Menu\01ReadDataBase\ReadMenuDataBase_Result.cs" />
+    <Compile Include="Menu\02ClearDataBase\ClearMenuDataBase.cs" />
+    <Compile Include="Menu\03ReadAllMenu\ReadAllMenu.cs" />
+    <Compile Include="Menu\03ReadAllMenu\ReadAllMenu_Result.cs" />
+    <Compile Include="Menu\04ReadMenuDetail\ReadMenuDetail.cs" />
+    <Compile Include="Menu\04ReadMenuDetail\ReadMenuDetail_Parameter.cs" />
+    <Compile Include="Menu\04ReadMenuDetail\ReadMenuDetail_Result.cs" />
+    <Compile Include="Menu\05AddMenu\AddMenu.cs" />
+    <Compile Include="Menu\05AddMenu\AddMenu_Parameter.cs" />
+    <Compile Include="Menu\06DeleteMenu\DeleteMenu.cs" />
     <Compile Include="Protocol\DESCommand.cs" />
     <Compile Include="Protocol\DESCommandPacket.cs" />
     <Compile Include="Protocol\DESDriveCommandDetail.cs" />
@@ -257,6 +287,11 @@
     <Compile Include="SystemParameter\14Voice\ReadVoice_Result.cs" />
     <Compile Include="SystemParameter\14Voice\WriteVoice.cs" />
     <Compile Include="SystemParameter\14Voice\WriteVoice_Parameter.cs" />
+    <Compile Include="TemplateMethod\TemplateData_Base.cs" />
+    <Compile Include="TemplateMethod\TemplateParameter_Base.cs" />
+    <Compile Include="TemplateMethod\TemplateReadData_Base.cs" />
+    <Compile Include="TemplateMethod\TemplateResult_Base.cs" />
+    <Compile Include="TemplateMethod\TemplateWriteData_Base.cs" />
     <Compile Include="Write_Command.cs" />
   </ItemGroup>
   <ItemGroup>

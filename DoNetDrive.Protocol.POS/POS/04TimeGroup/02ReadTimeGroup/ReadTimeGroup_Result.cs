@@ -10,8 +10,6 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
 {
     public class ReadTimeGroup_Result : Door.Door8800.TimeGroup.ReadTimeGroup_Result
     {
-        public WeekTimeGroup WeekTimeGroup { get; set; }
-
-        public byte Index { get; set; }
+        
     }
 }

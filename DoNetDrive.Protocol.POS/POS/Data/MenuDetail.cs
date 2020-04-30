@@ -1,4 +1,5 @@
-﻿using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
+﻿
+using DoNetDrive.Protocol.POS.TemplateMethod;
 using DotNetty.Buffers;
 using System;
 using System.Text;
@@ -13,37 +14,37 @@ namespace DoNetDrive.Protocol.POS.Data
         /// <summary>
         /// 商品代码
         /// </summary>
-        public int MenuNum;
+        public int MenuCode { get; set; }
 
         /// <summary>
         /// 商品条形码
         /// </summary>
-        public string MenuBarCode;
+        public string MenuBarCode { get; set; }
 
         /// <summary>
         /// 商品名称
         /// </summary>
-        public string MenuName;
+        public string MenuName { get; set; }
 
         /// <summary>
         /// 商品价格
         /// </summary>
-        public int MenuPrice;
+        public int MenuPrice { get; set; }
 
         public override void SetBytes(IByteBuffer databuf)
         {
-            MenuNum = databuf.ReadInt();
+            MenuCode = databuf.ReadInt();
             MenuBarCode = Util.StringUtil.GetString(databuf, 40, Encoding.BigEndianUnicode);
-            MenuName = Util.StringUtil.GetString(databuf, 16, Encoding.BigEndianUnicode);
+            MenuName = Util.StringUtil.GetString(databuf, 16, Encoding.GetEncoding("GB2312"));
             MenuPrice = databuf.ReadInt();
         }
 
 
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            databuf.WriteInt(MenuNum);
-            Util.StringUtil.WriteString(databuf, MenuBarCode, 40, Encoding.BigEndianUnicode);
-            Util.StringUtil.WriteString(databuf, MenuName, 16, Encoding.BigEndianUnicode);
+            databuf.WriteInt(MenuCode);
+            Util.StringUtil.WriteString(databuf, MenuBarCode, 40, Encoding.GetEncoding("GB2312"));
+            Util.StringUtil.WriteString(databuf, MenuName, 16, Encoding.GetEncoding("GB2312"));
             databuf.WriteInt(MenuPrice);
             return databuf;
         }
@@ -69,7 +70,7 @@ namespace DoNetDrive.Protocol.POS.Data
 
         public override void SetFailBytes(IByteBuffer databuf)
         {
-            MenuNum = databuf.ReadInt();
+            MenuCode = databuf.ReadInt();
         }
     }
 }
