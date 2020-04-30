@@ -6,29 +6,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DoNetDrive.Protocol.POS.TemplateMethod;
 
 namespace DoNetDrive.Protocol.POS.Reservation.ReadDataBase
 {
-    public class ReadDataBase_Result : INCommandResult
+    public class ReadDataBase_Result : TemplateResult_Base
     {
         /// <summary>
-        /// 读取到的卡片列表
+        /// 
         /// </summary>
         public List<ReservationDetail> ReservationDetailList;
 
-        public ReadDataBase_Result(List<ReservationDetail> reservationDetailList)
+        /// <summary>
+        /// 创建结构
+        /// </summary>
+        public ReadDataBase_Result(List<ReservationDetail> DataList)
         {
-            ReservationDetailList = reservationDetailList;
-        }
-        public void Dispose()
-        {
-            
+            this.ReservationDetailList = DataList;
         }
 
-        public void SetBytes(IByteBuffer buf)
+        public override void Dispose()
         {
-           
-
+            ReservationDetailList = null;
         }
     }
 }

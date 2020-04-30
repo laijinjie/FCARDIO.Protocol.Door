@@ -105,6 +105,14 @@
     <Compile Include="08CardType\04AddCardTypeDetail\AddCardTypeDetail.cs" />
     <Compile Include="08CardType\04AddCardTypeDetail\AddCardTypeDetail_Parameter.cs" />
     <Compile Include="08CardType\05DeleteCardTypeDetail\DeleteCardTypeDetail.cs" />
+    <Compile Include="10Reservation\01DatabaseDetail\ReadDatabaseDetail.cs" />
+    <Compile Include="10Reservation\01DatabaseDetail\ReadDatabaseDetail_Result.cs" />
+    <Compile Include="10Reservation\02ClearDataBase\ClearDataBase.cs" />
+    <Compile Include="10Reservation\02ClearDataBase\ClearDataBase_Parameter.cs" />
+    <Compile Include="10Reservation\03ReadDataBase\ReadDataBase.cs" />
+    <Compile Include="10Reservation\03ReadDataBase\ReadDataBase_Result.cs" />
+    <Compile Include="10Reservation\04AddReservationDetail\AddReservationDetail.cs" />
+    <Compile Include="10Reservation\04AddReservationDetail\AddReservationDetail_Parameter.cs" />
     <Compile Include="AbstractParameter.cs" />
     <Compile Include="CommandEx.cs" />
     <Compile Include="ConsumeParameter\01POSWorkMode\ReadPOSWorkMode.cs" />

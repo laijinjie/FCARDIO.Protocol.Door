@@ -29,6 +29,16 @@ namespace DoNetDrive.Protocol.POS.Menu
         /// <summary>
         /// 
         /// </summary>
+        protected override void CreateCommandPacket0()
+        {
+            var buf = GetNewCmdDataBuf(MaxBufSize);
+            WriteDataToBuf(buf);
+            Packet(0x06, 0x4, 0x00, (uint)buf.ReadableBytes, buf);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="DataList"></param>
         /// <returns></returns>
         protected override TemplateResult_Base CreateResult(List<Data.MenuDetail> DataList)
@@ -63,14 +73,6 @@ namespace DoNetDrive.Protocol.POS.Menu
             menuDetail.GetBytes(databuf);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override void CreateCommandPacket0()
-        {
-            var buf = GetNewCmdDataBuf(MaxBufSize);
-            WriteDataToBuf(buf);
-            Packet(0x06, 0x4, 0x00, (uint)buf.ReadableBytes, buf);
-        }
+       
     }
 }

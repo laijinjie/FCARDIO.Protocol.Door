@@ -7,108 +7,65 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DoNetDrive.Protocol.POS.TemplateMethod;
 
 namespace DoNetDrive.Protocol.POS.Reservation.ReadDataBase
 {
-    public class ReadDataBase : Read_Command
+    public class ReadDataBase : TemplateReadData_Base<ReservationDetail>
     {
-        /// <summary>
-        /// 读取到的密码缓冲
-        /// </summary>
-        protected List<IByteBuffer> mReadBuffers;
 
         /// <summary>
         /// 初始化命令结构
         /// </summary>
         /// <param name="detail"></param>
-        public ReadDataBase(DESDriveCommandDetail detail) : base(detail, null) { }
+        public ReadDataBase(DESDriveCommandDetail detail) : base(detail) { }
 
-        /// <summary>
-        /// 检查参数
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        protected override bool CheckCommandParameter(INCommandParameter value)
-        {
-            return true;
-        }
 
         /// <summary>
         /// 创建一个通讯指令
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x0A, 0x03, 0x00, 0x00, null);
+            Packet(0x0A, 0x03);
+            mReadBuffers = new List<IByteBuffer>();
+            _ProcessMax = 1;
         }
 
         /// <summary>
-        /// 处理返回值
+        /// 检测下一包指令返回值
         /// </summary>
         /// <param name="oPck"></param>
-        protected override void CommandNext1(DESPacket oPck)
+        /// <returns></returns>
+        protected override bool CheckResponseNext(DESPacket oPck)
         {
-            if (CheckResponse(oPck, 0x03))
-            {
-                var buf = oPck.CmdData;
-                buf.Retain();
-                mReadBuffers.Add(buf);
-                CommandWaitResponse();
-            }
-
-            if (CheckResponse(oPck,0x03, 0xff,2))
-            {
-                var buf = oPck.CmdData;
-                int iTotal = buf.ReadInt();
-                _ProcessMax = iTotal;
-                List<ReservationDetail> reservationDetailList = new List<ReservationDetail>(iTotal);
-                foreach (IByteBuffer tmpbuf in mReadBuffers)
-                {
-                    int iCount = tmpbuf.ReadInt();
-                    for (int i = 0; i < iCount; i++)
-                    {
-                        ReservationDetail dtl = new ReservationDetail();
-                        dtl.SetBytes(tmpbuf);
-                        reservationDetailList.Add(dtl);
-                    }
-                    _ProcessStep += iCount;
-                    fireCommandProcessEvent();
-                }
-
-                ReadDataBase_Result rst = new ReadDataBase_Result(reservationDetailList);
-                _Result = rst;
-
-                ClearBuf();
-                CommandCompleted();
-            }
+            var subPck = oPck.CommandPacket;
+            return (subPck.CmdType == 0x3A &&
+                subPck.CmdIndex == 3 &&
+                subPck.CmdPar == 0);
         }
 
         /// <summary>
-        /// 命令重发时需要处理的函数
+        /// 检测结束指令返回值
         /// </summary>
-        protected override void CommandReSend()
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected override bool CheckResponseCompleted(DESPacket oPck)
         {
-            return;
+            var subPck = oPck.CommandPacket;
+            return (subPck.CmdType == 0x3A &&
+                subPck.CmdIndex == 3 &&
+                subPck.CmdPar == 0xff && subPck.DataLen == 2);
         }
 
         /// <summary>
-        /// 命令释放时需要处理的函数
+        /// 
         /// </summary>
-        protected override void Release1()
+        /// <param name="dataList"></param>
+        /// <returns></returns>
+        protected override TemplateResult_Base CreateResult(List<ReservationDetail> dataList)
         {
-            return;
-        }
-
-        /// <summary>
-        /// 清空缓冲区
-        /// </summary>
-        protected void ClearBuf()
-        {
-            foreach (IByteBuffer buf in mReadBuffers)
-            {
-                buf.Release();
-            }
-            mReadBuffers.Clear();
-            mReadBuffers = null;
+            ReadDataBase_Result result = new ReadDataBase_Result(dataList);
+            return result;
         }
     }
 }
