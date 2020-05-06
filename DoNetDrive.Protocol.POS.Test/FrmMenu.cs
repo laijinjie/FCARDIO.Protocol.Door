@@ -39,7 +39,17 @@ namespace DotNetDrive.Protocol.POS.Test
         }
         #endregion
 
-        private List<MenuDetail> ListMenuDetail = new List<MenuDetail>();
+        /// <summary>
+        /// 卡号字典
+        /// </summary>
+        HashSet<int> MenudHashTable = null;
+
+        private void FrmMenu_Load(object sender, EventArgs e)
+        {
+            MenudHashTable = new HashSet<int>();
+        }
+
+        private BindingList<MenuDetail> ListMenuDetail = new BindingList<MenuDetail>();
 
         public FrmMenu()
         {
@@ -50,6 +60,7 @@ namespace DotNetDrive.Protocol.POS.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
+
             ReadMenuDataBase cmd = new ReadMenuDataBase(cmdDtl);
             mMainForm.AddCommand(cmd);
 
@@ -102,7 +113,26 @@ namespace DotNetDrive.Protocol.POS.Test
 
         private void butAddAll_Click(object sender, EventArgs e)
         {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            List<MenuDetail> _list = new List<MenuDetail>();
+            for (int i = 0; i < ListMenuDetail.Count; i++)
+            {
+                MenuDetail menu = new MenuDetail() {  };
+                menu.MenuBarCode = ListMenuDetail[i].MenuBarCode;
+                menu.MenuCode = ListMenuDetail[i].MenuCode;
+                menu.MenuPrice = ListMenuDetail[i].MenuPrice;
+                menu.MenuName = ListMenuDetail[i].MenuName;
+                _list.Add(menu);
+            }
+            WriteMenu_Parameter par = new WriteMenu_Parameter(_list);
+            AddMenu cmd = new AddMenu(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
 
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddLog($"命令成功：");
+            };
         }
 
         private void butAddToList_Click(object sender, EventArgs e)
@@ -167,18 +197,20 @@ namespace DotNetDrive.Protocol.POS.Test
                 MessageBox.Show("请输入商品代码");
                 return;
             }
-            int print = 0;
-            if (!int.TryParse(txtPrice.Text.Trim(), out print))
+            decimal price = 0;
+            if (!decimal.TryParse(txtPrice.Text.Trim(), out price))
             {
                 MessageBox.Show("请输入商品价格");
                 return;
             }
             List<MenuDetail> _list = new List<MenuDetail>();
             MenuDetail menu = new MenuDetail();
-           
-         
+            menu.MenuBarCode = txtBarCode.Text;
+            menu.MenuCode = code;
+            menu.MenuPrice = Convert.ToInt32(price * 100);
+            menu.MenuName = txtName.Text;
             _list.Add(menu);
-            AddMenu_Parameter par = new AddMenu_Parameter(_list);
+            WriteMenu_Parameter par = new WriteMenu_Parameter(_list);
 
             AddMenu cmd = new AddMenu(cmdDtl, par);
             mMainForm.AddCommand(cmd);
@@ -187,6 +219,200 @@ namespace DotNetDrive.Protocol.POS.Test
             {
                 mMainForm.AddLog($"命令成功：");
             };
+        }
+
+        private void butClearList_Click(object sender, EventArgs e)
+        {
+            ListMenuDetail.Clear();
+        }
+
+        private void butReadMenu_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            int usercode = 0;
+            if (!int.TryParse(txtCode.Text, out usercode))
+            {
+                MessageBox.Show("商品代码格式不正确");
+                return;
+            }
+            var par = new ReadMenuDetail_Parameter(usercode);
+            var cmd = new ReadMenuDetail(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmd.getResult() as ReadMenuDetail_Result;
+
+                if (!result.IsReady)
+                {
+                    mMainForm.AddCmdLog(cmde, $"商品不存在");
+                }
+                else
+                {
+                    //PersonToControl(result.Person);
+                    mMainForm.AddCmdLog(cmde, $"商品存在");
+                }
+            };
+        }
+
+        private void butDeleteFromDevice_Click(object sender, EventArgs e)
+        {
+            int usercode = 0;
+            if (!int.TryParse(txtCode.Text, out usercode))
+            {
+                MessageBox.Show("商品代码格式不正确");
+                return;
+            }
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            List<MenuDetail> _list = new List<MenuDetail>();
+            for (int i = 0; i < dgvMenu.Rows.Count; i++)
+            {
+                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgvMenu.Rows[i].Cells[0];
+                DataGridViewTextBoxCell cellContent = (DataGridViewTextBoxCell)dgvMenu.Rows[i].Cells[1];
+                if ((bool)cell.FormattedValue)
+                {
+                    _list.Add(new MenuDetail() { MenuCode = Convert.ToInt32(cellContent.Value) });
+                }
+            }
+          
+           
+            WriteMenu_Parameter par = new WriteMenu_Parameter(_list);
+            DeleteMenu cmd = new DeleteMenu(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddLog($"命令成功：");
+            };
+        }
+
+        private void butCreateByRandom_Click(object sender, EventArgs e)
+        {
+            int iCreateCount = CheckCreateCardCount();
+            if (iCreateCount <= 0) return;
+
+            //string sBeginNum = frmInputBox.ShowBox("起始序号", "请输入卡号的起始序号，取值范围：1-4000000000", "1", 10);
+            int iBeginNum = Convert.ToInt32(txtStartCode.Value);
+            //if (!UInt64.TryParse(.ToString(), out iBeginNum))
+            //{
+            //    return;
+            //}
+
+
+            ListMenuDetail.RaiseListChangedEvents = false;
+            MenuDetail menu;
+            while (iCreateCount > 0)
+            {
+                menu = CreateNewMenuDetail(iBeginNum++);
+                if (menu != null)
+                {
+                    menu.MenuPrice = 100;
+                    menu.MenuName = "商品：" + menu.MenuCode.ToString();
+                    AddMenuBaseToList(menu);
+
+                    iCreateCount--;
+                }
+
+            }
+            ListMenuDetail.RaiseListChangedEvents = true;
+            ListMenuDetail.ResetBindings();
+            dgvMenu.DataSource = ListMenuDetail;
+        }
+
+        private bool AddMenuBaseToList(MenuDetail menu)
+        {
+            if (!MenudHashTable.Contains(menu.MenuCode))
+            {
+                ListMenuDetail.Add(menu);
+                MenudHashTable.Add(menu.MenuCode);
+                return true;
+            }
+            return false;
+        }
+
+
+        /// <summary>
+        /// 创建一个不重复的卡
+        /// </summary>
+        /// <param name="iType"></param>
+        /// <param name="iCardNum"></param>
+        /// <returns></returns>
+        private MenuDetail CreateNewMenuDetail(int code)
+        {
+           
+            //检查卡片是否重复
+            if (MenudHashTable.Contains(code))
+            {
+                if (code == 0)
+                {
+                    //有重复
+                    return CreateNewMenuDetail( 0);
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            MenuDetail menu = new MenuDetail();
+            menu.MenuCode = code;
+            menu.MenuName = "";
+            menu.MenuBarCode = "";
+            return menu;
+        }
+
+        /// <summary>
+        /// 检查待创建的菜单数量
+        /// </summary>
+        /// <returns></returns>
+        private int CheckCreateCardCount()
+        {
+            int iCreateCount = 0;
+            if (!int.TryParse(txtCreateCount.Text, out iCreateCount))
+            {
+                MessageBox.Show("输入的数字不正确，取值范围：1-32000！");
+                return 0;
+            }
+            if (iCreateCount > 32000)
+            {
+                MessageBox.Show("输入的数字不正确，取值范围：1-32000！");
+                return 0;
+            }
+            if ((iCreateCount + ListMenuDetail.Count) > 32000)
+            {
+                iCreateCount = 32000 - ListMenuDetail.Count;
+
+            }
+            if (iCreateCount <= 0) return 0;
+
+            return iCreateCount;
+        }
+
+        private void dgvMenu_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int col = e.ColumnIndex, row = e.RowIndex;
+            if (row < 0) return;
+            var gdRow = dgvMenu.Rows[row];
+            var menu = gdRow.DataBoundItem as MenuDetail;
+            //StringBuilder strBuf = new StringBuilder();
+
+            //DebugCardDetail(CardUI.CardDetail, strBuf);
+            //txtDebug.Text = strBuf.ToString();
+            MenuDetailToControl(menu);
+        }
+
+        /// <summary>
+        /// 将卡片输出到控件中
+        /// </summary>
+        /// <param name="card"></param>
+        private void MenuDetailToControl(MenuDetail menu)
+        {
+            txtCode.Text = menu.MenuCode.ToString();
+            txtName.Text = menu.MenuName;
+            txtBarCode.Text = menu.MenuBarCode;
+            txtPrice.Value = Convert.ToDecimal(menu.MenuPrice) / 100;
         }
     }
 }

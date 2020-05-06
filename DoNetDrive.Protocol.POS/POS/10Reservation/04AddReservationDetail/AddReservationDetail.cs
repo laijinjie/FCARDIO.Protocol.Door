@@ -40,7 +40,6 @@ namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
         /// <param name="par"></param>
         public AddReservationDetail(DESDriveCommandDetail cd, AddReservationDetail_Parameter par) : base(cd, par)
         {
-            MaxBufSize = (mBatchCount * mParDataLen) + 4;
         }
 
         /// <summary>

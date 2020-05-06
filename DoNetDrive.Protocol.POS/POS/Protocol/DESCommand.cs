@@ -61,6 +61,11 @@ namespace DoNetDrive.Protocol.POS.Protocol
             base.CommandNext(readPacket);
         }
 
+        protected override void CommandNext0(DESPacket oPck)
+        {
+            base.CommandNext0(oPck);    
+        }
+
         /// <summary>
         /// 命令返回值成功
         /// </summary>

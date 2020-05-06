@@ -87,7 +87,7 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
         /// 不实现此功能
         /// </summary>
         /// <returns></returns>
-        public int GetDeleteDataLen()
+        public virtual int GetDeleteDataLen()
         {
             return 0;
         }

@@ -22,7 +22,6 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// <param name="par"></param>
         public AddSussidy(Protocol.DESDriveCommandDetail cd, AddSussidy_Parameter par) : base(cd, par)
         {
-            MaxBufSize = (mBatchCount * mParDataLen) + 4;
         }
 
         protected override void CreatePacket0()

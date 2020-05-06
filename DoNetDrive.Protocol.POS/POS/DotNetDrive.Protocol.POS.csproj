@@ -174,7 +174,7 @@
     <Compile Include="Menu\04ReadMenuDetail\ReadMenuDetail_Parameter.cs" />
     <Compile Include="Menu\04ReadMenuDetail\ReadMenuDetail_Result.cs" />
     <Compile Include="Menu\05AddMenu\AddMenu.cs" />
-    <Compile Include="Menu\05AddMenu\AddMenu_Parameter.cs" />
+    <Compile Include="Menu\05AddMenu\WriteMenu_Parameter.cs" />
     <Compile Include="Menu\06DeleteMenu\DeleteMenu.cs" />
     <Compile Include="Protocol\DESCommand.cs" />
     <Compile Include="Protocol\DESCommandPacket.cs" />

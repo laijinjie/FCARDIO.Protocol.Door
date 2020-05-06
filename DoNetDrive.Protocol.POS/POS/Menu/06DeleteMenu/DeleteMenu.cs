@@ -9,7 +9,7 @@ namespace DoNetDrive.Protocol.POS.Menu
     /// <summary>
     /// 删除菜单命令
     /// </summary>
-    public class DeleteMenu : TemplateWriteData_Base<AddMenu_Parameter, Data.MenuDetail>
+    public class DeleteMenu : TemplateWriteData_Base<WriteMenu_Parameter, Data.MenuDetail>
     {
         /// <summary>
         /// 当前命令进度
@@ -21,9 +21,8 @@ namespace DoNetDrive.Protocol.POS.Menu
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public DeleteMenu(Protocol.DESDriveCommandDetail cd, AddMenu_Parameter par) : base(cd, par)
+        public DeleteMenu(Protocol.DESDriveCommandDetail cd, WriteMenu_Parameter par) : base(cd, par)
         {
-            MaxBufSize = (mBatchCount * mDeleteDataLen) + 4;
         }
 
         /// <summary>

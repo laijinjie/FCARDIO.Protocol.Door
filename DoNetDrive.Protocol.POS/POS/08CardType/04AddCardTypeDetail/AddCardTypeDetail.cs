@@ -18,7 +18,6 @@ namespace DoNetDrive.Protocol.POS.CardType.AddCardTypeDetail
         /// <param name="par"></param>
         public AddCardTypeDetail(Protocol.DESDriveCommandDetail cd, AddCardTypeDetail_Parameter par) : base(cd, par)
         {
-            MaxBufSize = (mBatchCount * mParDataLen) + 4;
         }
 
         /// <summary>

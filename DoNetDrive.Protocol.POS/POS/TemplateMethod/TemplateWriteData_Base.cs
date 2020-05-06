@@ -12,28 +12,16 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
     /// <summary>
     /// 写入元素命令
     /// </summary>
-    public abstract class TemplateWriteData_Base<T,D> : Write_Command where T : TemplateParameter_Base<D>, new() where D : TemplateData_Base, new()
+    public abstract class TemplateWriteData_Base<T, D> : Write_Command where T : TemplateParameter_Base<D>, new() where D : TemplateData_Base, new()
     {
-       
 
-        /// <summary>
-        /// 1个写入参数长度
-        /// </summary>
-        protected int mParDataLen;
 
-        /// <summary>
-        /// 1个删除参数长度
-        /// </summary>
-        protected int mDeleteDataLen;
+
         /// <summary>
         /// 参数
         /// </summary>
         T mPar;
 
-        /// <summary>
-        /// 每次上传数量
-        /// </summary>
-        protected int mBatchCount = 5;
 
         /// <summary>
         /// 已上传数量
@@ -43,7 +31,13 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
         /// <summary>
         /// 默认的缓冲区大小
         /// </summary>
-        protected int MaxBufSize = 350;
+        protected virtual int MaxBufSize
+        {
+            get
+            {
+                return GetMaxBufSize();
+            }
+        }
 
         /// <summary>
         /// 需要写入密码数
@@ -63,10 +57,10 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
         public TemplateWriteData_Base(DESDriveCommandDetail cd, T parameter) : base(cd, parameter)
         {
             mPar = parameter;
-            T model = new T();
-            mParDataLen = model.GetDataLen();
-            mDeleteDataLen = model.GetDeleteDataLen();
-         
+            //T model = new T();
+            //mParDataLen = model.GetDataLen();
+            //mDeleteDataLen = model.GetDeleteDataLen();
+
         }
 
         /// <summary>
@@ -111,22 +105,21 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
             int iCount = lst.Count;//获取列表总长度
             iCount = iCount - mIndex;//计算未上传总数
 
-            int iLen = iCount;
-            if (iLen > mBatchCount)
+            if (iCount > GetBatchCount())
             {
-                iLen = mBatchCount;
+                iCount = GetBatchCount();
             }
 
             databuf.Clear();
 
-            databuf.WriteInt(iLen);
-            for (int i = 0; i < iLen; i++)
+            databuf.WriteByte(iCount);
+            for (int i = 0; i < iCount; i++)
             {
                 WriteDataBodyToBuf(databuf, lst[mIndex + i]);
             }
 
-            mIndex += iLen;
-            _ProcessStep += iLen;
+            mIndex += iCount;
+            _ProcessStep += iCount;
             return databuf;
         }
 
@@ -137,6 +130,23 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
         /// <param name="data">要写入到缓冲区的元素</param>
         protected abstract void WriteDataBodyToBuf(IByteBuffer databuf, TemplateData_Base data);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        public virtual int GetBatchCount()
+        {
+            return 5;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        public virtual int GetMaxBufSize()
+        {
+            return (GetBatchCount() * mPar.GetDataLen()) + 1;
+        }
         /**/
         /// <summary>
         /// 命令超时
@@ -165,9 +175,10 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
             else
             {
                 //未发送完毕，继续发送
-                var buf = GetCmdBuf();
+                var b = GetCmdBuf();
+                var buf = GetNewCmdDataBuf(MaxBufSize);
                 WriteDataToBuf(buf);
-                oPck.CommandPacket.DataLen = buf.ReadableBytes;
+                //oPck.CommandPacket.DataLen = buf.ReadableBytes;
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
             }
         }
@@ -222,7 +233,7 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
             {
                 foreach (var buf in mBufs)
                 {
-                    int iCount = buf.ReadInt();
+                    int iCount = buf.ReadByte();
                     FailTotal += iCount;
 
                     for (int i = 0; i < iCount; i++)

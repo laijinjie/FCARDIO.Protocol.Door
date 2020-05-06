@@ -9,7 +9,7 @@ namespace DoNetDrive.Protocol.POS.Menu
     /// <summary>
     /// 添加菜单
     /// </summary>
-    public class AddMenu : TemplateWriteData_Base<AddMenu_Parameter, Data.MenuDetail>
+    public class AddMenu : TemplateWriteData_Base<WriteMenu_Parameter, Data.MenuDetail>
     {
         /// <summary>
         /// 当前命令进度
@@ -21,9 +21,8 @@ namespace DoNetDrive.Protocol.POS.Menu
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public AddMenu(DESDriveCommandDetail cd, AddMenu_Parameter par) : base(cd, par)
+        public AddMenu(DESDriveCommandDetail cd, WriteMenu_Parameter par) : base(cd, par)
         {
-            MaxBufSize = (mBatchCount * mParDataLen) + 4;
         }
 
         /// <summary>
@@ -73,6 +72,9 @@ namespace DoNetDrive.Protocol.POS.Menu
             menuDetail.GetBytes(databuf);
         }
 
-       
+        public override int GetBatchCount()
+        {
+            return 3;
+        }
     }
 }

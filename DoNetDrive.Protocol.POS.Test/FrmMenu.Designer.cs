@@ -33,11 +33,6 @@
             this.butReadAllMenu = new System.Windows.Forms.Button();
             this.butReadDataBase = new System.Windows.Forms.Button();
             this.dgvMenu = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtBarCode = new System.Windows.Forms.TextBox();
@@ -55,13 +50,26 @@
             this.butAddToDevice = new System.Windows.Forms.Button();
             this.butAddToList = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtStartCode = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtCreateCount = new System.Windows.Forms.NumericUpDown();
+            this.butCreateByRandom = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.butClearList = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenu)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreateCount)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,42 +135,7 @@
             this.dgvMenu.RowTemplate.Height = 23;
             this.dgvMenu.Size = new System.Drawing.Size(800, 595);
             this.dgvMenu.TabIndex = 1;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "序号";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 60;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "MenuCode";
-            this.Column2.HeaderText = "商品代码";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "MenuName";
-            this.Column3.HeaderText = "商品名称";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "MenuPrice";
-            this.Column4.HeaderText = "价格";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "MenuBarCode";
-            this.Column5.HeaderText = "条形码";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 200;
+            this.dgvMenu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenu_CellClick);
             // 
             // tabControl1
             // 
@@ -272,6 +245,7 @@
             this.butDeleteFromDevice.TabIndex = 5;
             this.butDeleteFromDevice.Text = "从控制器删除";
             this.butDeleteFromDevice.UseVisualStyleBackColor = true;
+            this.butDeleteFromDevice.Click += new System.EventHandler(this.butDeleteFromDevice_Click);
             // 
             // butDeleteFromList
             // 
@@ -291,6 +265,7 @@
             this.butReadMenu.TabIndex = 3;
             this.butReadMenu.Text = "从设备读取商品信息";
             this.butReadMenu.UseVisualStyleBackColor = true;
+            this.butReadMenu.Click += new System.EventHandler(this.butReadMenu_Click);
             // 
             // butAddAll
             // 
@@ -324,6 +299,11 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.txtStartCode);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.txtCreateCount);
+            this.tabPage2.Controls.Add(this.butCreateByRandom);
+            this.tabPage2.Controls.Add(this.label18);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -331,6 +311,48 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "批量操作";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // txtStartCode
+            // 
+            this.txtStartCode.Location = new System.Drawing.Point(109, 43);
+            this.txtStartCode.Name = "txtStartCode";
+            this.txtStartCode.Size = new System.Drawing.Size(120, 21);
+            this.txtStartCode.TabIndex = 58;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 43);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 12);
+            this.label5.TabIndex = 57;
+            this.label5.Text = "代码起始数值：";
+            // 
+            // txtCreateCount
+            // 
+            this.txtCreateCount.Location = new System.Drawing.Point(109, 11);
+            this.txtCreateCount.Name = "txtCreateCount";
+            this.txtCreateCount.Size = new System.Drawing.Size(120, 21);
+            this.txtCreateCount.TabIndex = 56;
+            // 
+            // butCreateByRandom
+            // 
+            this.butCreateByRandom.Location = new System.Drawing.Point(24, 79);
+            this.butCreateByRandom.Name = "butCreateByRandom";
+            this.butCreateByRandom.Size = new System.Drawing.Size(99, 23);
+            this.butCreateByRandom.TabIndex = 53;
+            this.butCreateByRandom.Text = "生成顺序商品";
+            this.butCreateByRandom.UseVisualStyleBackColor = true;
+            this.butCreateByRandom.Click += new System.EventHandler(this.butCreateByRandom_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(30, 13);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(65, 12);
+            this.label18.TabIndex = 55;
+            this.label18.Text = "生成数量：";
             // 
             // panel1
             // 
@@ -349,6 +371,45 @@
             this.butClearList.TabIndex = 0;
             this.butClearList.Text = "清空表格";
             this.butClearList.UseVisualStyleBackColor = true;
+            this.butClearList.Click += new System.EventHandler(this.butClearList_Click);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "选择";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column1.Width = 60;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "MenuCode";
+            this.Column2.HeaderText = "商品代码";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "MenuName";
+            this.Column3.HeaderText = "商品名称";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "MenuPrice";
+            this.Column4.HeaderText = "价格";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "MenuBarCode";
+            this.Column5.HeaderText = "条形码";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 200;
             // 
             // FrmMenu
             // 
@@ -361,12 +422,17 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmMenu";
             this.Text = "商品";
+            this.Load += new System.EventHandler(this.FrmMenu_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenu)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreateCount)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -398,7 +464,12 @@
         private System.Windows.Forms.Button butAddAll;
         private System.Windows.Forms.Button butAddToDevice;
         private System.Windows.Forms.Button butAddToList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.NumericUpDown txtStartCode;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown txtCreateCount;
+        private System.Windows.Forms.Button butCreateByRandom;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;

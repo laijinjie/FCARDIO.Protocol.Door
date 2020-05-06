@@ -9,14 +9,14 @@ namespace DoNetDrive.Protocol.POS.Menu
     /// <summary>
     /// 添加菜单命令参数
     /// </summary>
-    public class AddMenu_Parameter : TemplateParameter_Base<MenuDetail>
+    public class WriteMenu_Parameter : TemplateParameter_Base<MenuDetail>
     {
-        public AddMenu_Parameter()
+        public WriteMenu_Parameter()
         {
 
         }
 
-        public AddMenu_Parameter(List<MenuDetail> list): base(list)
+        public WriteMenu_Parameter(List<MenuDetail> list): base(list)
         {
         }
 
@@ -26,19 +26,29 @@ namespace DoNetDrive.Protocol.POS.Menu
             {
                 return false;
             }
-            if (Menu.MenuCode < 0 || Menu.MenuCode > 21474836)
+            if (Menu.MenuCode < 0 || Menu.MenuCode > int.MaxValue)
             {
                 return false;
             }
-            if (Menu.MenuName?.Length > 16)
+            if (Menu.MenuName == null || Menu.MenuName.Length > 16)
             {
                 return false;
             }
-            if (Menu.MenuBarCode?.Length > 40)
+            if (Menu.MenuBarCode == null || Menu.MenuBarCode.Length > 40)
             {
                 return false;
             }
             return true;
+        }
+
+        public override int GetDataLen()
+        {
+            return 0x40;
+        }
+
+        public override int GetDeleteDataLen()
+        {
+            return 4;
         }
     }
 }

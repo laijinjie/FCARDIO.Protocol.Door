@@ -58,9 +58,9 @@ namespace DoNetDrive.Protocol.POS.Data
             return 64;
         }
 
-        public override IByteBuffer GetDeleteBytes(IByteBuffer data)
+        public override IByteBuffer GetDeleteBytes(IByteBuffer databuf)
         {
-            throw new NotImplementedException();
+            return databuf.WriteInt(MenuCode);
         }
 
         public override int GetDeleteDataLen()
