@@ -175,10 +175,10 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
             else
             {
                 //未发送完毕，继续发送
-                var b = GetCmdBuf();
-                var buf = GetNewCmdDataBuf(MaxBufSize);
+                var buf = GetCmdBuf();
+                //var buf = GetNewCmdDataBuf(MaxBufSize);
                 WriteDataToBuf(buf);
-                //oPck.CommandPacket.DataLen = buf.ReadableBytes;
+                oPck.CommandPacket.DataLen = buf.ReadableBytes;
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
             }
         }

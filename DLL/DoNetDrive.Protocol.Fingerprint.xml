@@ -1735,7 +1735,7 @@
         </member>
         <member name="P:DoNetDrive.Protocol.Fingerprint.Data.Transaction.BodyTemperatureTransaction.BodyTemperature">
             <summary>
-            体温，整数，需要除100
+            体温，整数，需要除10
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Transaction.BodyTemperatureTransaction.#ctor">
@@ -4994,23 +4994,23 @@
             表示人脸机识别距离的命令返回值
             </summary>
         </member>
-        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceIdentifyRange.ReadFaceIdentifyRange">
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceIdentifyRange">
             <summary>
             表示读取人脸机识别距离的命令
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceIdentifyRange.ReadFaceIdentifyRange.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceIdentifyRange.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
             创建读取人脸机识别距离的命令
             </summary>
             <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceIdentifyRange.ReadFaceIdentifyRange.CreatePacket0">
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceIdentifyRange.CreatePacket0">
             <summary>
             将命令打包成一个Packet，准备发送
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceIdentifyRange.ReadFaceIdentifyRange.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceIdentifyRange.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
             <summary>
             命令返回值的判断
             </summary>
@@ -5086,6 +5086,210 @@
             <returns></returns>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceIdentifyRange_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadDriveLanguage">
+            <summary>
+            读取设备语言
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadDriveLanguage.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建读取设备语言的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadDriveLanguage.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadDriveLanguage.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadDriveLanguage_Result">
+            <summary>
+            表示设备语言的命令返回值
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage">
+            <summary>
+            写入设备语言
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage_Parameter)">
+            <summary>
+            创建设备语言的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查命令参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage_Parameter">
+            <summary>
+            表示设备语言的命令参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage_Parameter.Language">
+            <summary>
+            设备语言：1--中文；2--英文；3--繁体
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage_Parameter.#ctor">
+            <summary>
+            构建一个空的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage_Parameter.#ctor(System.Int32)">
+            <summary>
+            创建设备语言的命令参数
+            </summary>
+            <param name="iLanguage">设备语言：1--中文；2--英文；3--繁体</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            编码参数
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveLanguage_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadDriveVolume">
+            <summary>
+            读取设备音量的命令
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadDriveVolume.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建读取设备音量的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadDriveVolume.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadDriveVolume.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadDriveVolume_Result">
+            <summary>
+            表示设备音量的命令返回值
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume">
+            <summary>
+            修改设备音量的命令
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume_Parameter)">
+            <summary>
+            创建修改设备音量的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查命令参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume_Parameter">
+            <summary>
+            表示设备音量的命令参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume_Parameter.Volume">
+            <summary>
+            设备音量：0-10；0--关闭声音；10--最大声音
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume_Parameter.#ctor">
+            <summary>
+            构建一个空的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume_Parameter.#ctor(System.Int32)">
+            <summary>
+            创建设备音量的命令参数
+            </summary>
+            <param name="iVolume">设备音量：0-10；0--关闭声音；10--最大声音</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            编码参数
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteDriveVolume_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
             解码参数
             </summary>

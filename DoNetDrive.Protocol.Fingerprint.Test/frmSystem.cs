@@ -20,6 +20,7 @@ using DoNetDrive.Protocol.Fingerprint.SystemParameter.ComparisonThreshold;
 using DoNetDrive.Protocol.Fingerprint.SystemParameter.ScreenDisplayContent;
 using DoNetDrive.Protocol.Fingerprint.SystemParameter.ManageMenuPassword;
 using DoNetDrive.Protocol.Fingerprint.SystemParameter.OEM;
+using DoNetDrive.Protocol.Fingerprint.SystemParameter;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -83,6 +84,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbFingerprint.Items.AddRange(ComparisonThresholdList);
             cmbFace.SelectedIndex = 0;
             cmbFingerprint.SelectedIndex = 0;
+
+            IniDriveLanguage();
+            IniDriveVolume();
         }
 
         string[] DoorList = new string[] { "1", "2", "3", "4"};
@@ -919,5 +923,106 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             WriteOEM cmd = new WriteOEM(cmdDtl, par);
             mMainForm.AddCommand(cmd);
         }
+        #region 设备语言
+        private void IniDriveLanguage()
+        {
+            cmbLanguage.Items.Clear();
+            cmbLanguage.Items.AddRange("1--中文,2--英文,3--繁体".SplitTrim(","));
+            cmbLanguage.SelectedIndex = 0;
+        }
+
+        private void ButReadLanguage_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            ReadDriveLanguage cmd = new ReadDriveLanguage(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadDriveLanguage_Result result = cmde.Result as ReadDriveLanguage_Result;
+
+                Invoke(() =>
+                {
+                    if(result.Language<3)
+                    {
+                        cmbLanguage.SelectedIndex = result.Language - 1;
+                        mMainForm.AddCmdLog(cmde, $"语言：{cmbLanguage.Text}");
+                    }
+                    else
+                    {
+                        mMainForm.AddCmdLog(cmde, $"语言：{result.Language}");
+                    }
+                    
+                });
+                
+            };
+
+        }
+
+
+        private void ButWriteLanguage_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            int Lang = cmbLanguage.SelectedIndex + 1;
+            WriteDriveLanguage_Parameter par = new WriteDriveLanguage_Parameter(Lang);
+            WriteDriveLanguage cmd = new WriteDriveLanguage(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 设备音量
+        private void IniDriveVolume()
+        {
+            cmbDriveVolume.Items.Clear();
+            cmbDriveVolume.Items.Add("静音");
+            for (int i = 1; i <= 10; i++)
+            {
+                cmbDriveVolume.Items.Add(i.ToString());
+            }
+            cmbDriveVolume.SelectedIndex = 10;
+        }
+
+        private void ButReadVolume_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            ReadDriveVolume cmd = new ReadDriveVolume(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadDriveVolume_Result result = cmde.Result as ReadDriveVolume_Result;
+
+                Invoke(() =>
+                {
+                    if (result.Volume <= 10)
+                    {
+                        cmbDriveVolume.SelectedIndex = result.Volume ;
+                        mMainForm.AddCmdLog(cmde, $"音量：{cmbDriveVolume.Text}");
+                    }
+                    else
+                    {
+                        mMainForm.AddCmdLog(cmde, $"语言：{result.Volume}");
+                    }
+
+                });
+
+            };
+        }
+
+        private void ButWriteVolume_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            int iVolume = cmbDriveVolume.SelectedIndex ;
+            WriteDriveVolume_Parameter par = new WriteDriveVolume_Parameter(iVolume);
+            WriteDriveVolume cmd = new WriteDriveVolume(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
     }
 }

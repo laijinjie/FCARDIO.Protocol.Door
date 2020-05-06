@@ -41,10 +41,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DoNetDrive.Core">
+    <Reference Include="DoNetDrive.Core, Version=1.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol">
+    <Reference Include="DoNetDrive.Protocol, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Util">

@@ -245,6 +245,14 @@
     <Compile Include="SystemParameter\24FaceIdentifyRange\ReadFaceIdentifyRange.cs" />
     <Compile Include="SystemParameter\24FaceIdentifyRange\WriteFaceIdentifyRange.cs" />
     <Compile Include="SystemParameter\24FaceIdentifyRange\WriteFaceIdentifyRange_Parameter.cs" />
+    <Compile Include="SystemParameter\26DriveLanguage\ReadDriveLanguage.cs" />
+    <Compile Include="SystemParameter\26DriveLanguage\ReadDriveLanguage_Result.cs" />
+    <Compile Include="SystemParameter\26DriveLanguage\WriteDriveLanguage.cs" />
+    <Compile Include="SystemParameter\26DriveLanguage\WriteDriveLanguage_Parameter.cs" />
+    <Compile Include="SystemParameter\27DriveVolume\ReadDriveVolume.cs" />
+    <Compile Include="SystemParameter\27DriveVolume\ReadDriveVolume_Result.cs" />
+    <Compile Include="SystemParameter\27DriveVolume\WriteDriveVolume.cs" />
+    <Compile Include="SystemParameter\27DriveVolume\WriteDriveVolume_Parameter.cs" />
     <Compile Include="SystemParameter\A0ConnectTestTransaction\SendConnectTestResponse.cs" />
     <Compile Include="Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail.cs" />
     <Compile Include="Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail_Result.cs" />

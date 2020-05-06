@@ -172,6 +172,17 @@
             this.label21 = new System.Windows.Forms.Label();
             this.cmbDoor = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.cmbDriveVolume = new System.Windows.Forms.ComboBox();
+            this.butWriteVolume = new System.Windows.Forms.Button();
+            this.butReadVolume = new System.Windows.Forms.Button();
+            this.label38 = new System.Windows.Forms.Label();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.butWriteLanguage = new System.Windows.Forms.Button();
+            this.butReadLanguage = new System.Windows.Forms.Button();
+            this.label37 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -192,12 +203,16 @@
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.groupBox16.SuspendLayout();
+            this.groupBox15.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -1698,6 +1713,120 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "门号：";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox16);
+            this.tabPage3.Controls.Add(this.groupBox15);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(863, 559);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "参数3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.cmbDriveVolume);
+            this.groupBox16.Controls.Add(this.butWriteVolume);
+            this.groupBox16.Controls.Add(this.butReadVolume);
+            this.groupBox16.Controls.Add(this.label38);
+            this.groupBox16.Location = new System.Drawing.Point(420, 6);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(361, 63);
+            this.groupBox16.TabIndex = 6;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "设备音量";
+            // 
+            // cmbDriveVolume
+            // 
+            this.cmbDriveVolume.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDriveVolume.FormattingEnabled = true;
+            this.cmbDriveVolume.Location = new System.Drawing.Point(78, 29);
+            this.cmbDriveVolume.Name = "cmbDriveVolume";
+            this.cmbDriveVolume.Size = new System.Drawing.Size(154, 20);
+            this.cmbDriveVolume.TabIndex = 59;
+            // 
+            // butWriteVolume
+            // 
+            this.butWriteVolume.Location = new System.Drawing.Point(304, 29);
+            this.butWriteVolume.Name = "butWriteVolume";
+            this.butWriteVolume.Size = new System.Drawing.Size(48, 23);
+            this.butWriteVolume.TabIndex = 57;
+            this.butWriteVolume.Text = "写入";
+            this.butWriteVolume.UseVisualStyleBackColor = true;
+            this.butWriteVolume.Click += new System.EventHandler(this.ButWriteVolume_Click);
+            // 
+            // butReadVolume
+            // 
+            this.butReadVolume.Location = new System.Drawing.Point(248, 29);
+            this.butReadVolume.Name = "butReadVolume";
+            this.butReadVolume.Size = new System.Drawing.Size(48, 23);
+            this.butReadVolume.TabIndex = 58;
+            this.butReadVolume.Text = "读取";
+            this.butReadVolume.UseVisualStyleBackColor = true;
+            this.butReadVolume.Click += new System.EventHandler(this.ButReadVolume_Click);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(31, 32);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(41, 12);
+            this.label38.TabIndex = 56;
+            this.label38.Text = "音量：";
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.cmbLanguage);
+            this.groupBox15.Controls.Add(this.butWriteLanguage);
+            this.groupBox15.Controls.Add(this.butReadLanguage);
+            this.groupBox15.Controls.Add(this.label37);
+            this.groupBox15.Location = new System.Drawing.Point(53, 6);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(361, 63);
+            this.groupBox15.TabIndex = 5;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "设备语言";
+            // 
+            // cmbLanguage
+            // 
+            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Location = new System.Drawing.Point(78, 29);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(154, 20);
+            this.cmbLanguage.TabIndex = 59;
+            // 
+            // butWriteLanguage
+            // 
+            this.butWriteLanguage.Location = new System.Drawing.Point(304, 29);
+            this.butWriteLanguage.Name = "butWriteLanguage";
+            this.butWriteLanguage.Size = new System.Drawing.Size(48, 23);
+            this.butWriteLanguage.TabIndex = 57;
+            this.butWriteLanguage.Text = "写入";
+            this.butWriteLanguage.UseVisualStyleBackColor = true;
+            this.butWriteLanguage.Click += new System.EventHandler(this.ButWriteLanguage_Click);
+            // 
+            // butReadLanguage
+            // 
+            this.butReadLanguage.Location = new System.Drawing.Point(248, 29);
+            this.butReadLanguage.Name = "butReadLanguage";
+            this.butReadLanguage.Size = new System.Drawing.Size(48, 23);
+            this.butReadLanguage.TabIndex = 58;
+            this.butReadLanguage.Text = "读取";
+            this.butReadLanguage.UseVisualStyleBackColor = true;
+            this.butReadLanguage.Click += new System.EventHandler(this.ButReadLanguage_Click);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(31, 32);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(41, 12);
+            this.label37.TabIndex = 56;
+            this.label37.Text = "语言：";
+            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1745,6 +1874,11 @@
             this.groupBox8.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.groupBox16.ResumeLayout(false);
+            this.groupBox16.PerformLayout();
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1895,5 +2029,16 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.TextBox txtManufacturer;
         private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.GroupBox groupBox16;
+        private System.Windows.Forms.ComboBox cmbDriveVolume;
+        private System.Windows.Forms.Button butWriteVolume;
+        private System.Windows.Forms.Button butReadVolume;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.ComboBox cmbLanguage;
+        private System.Windows.Forms.Button butWriteLanguage;
+        private System.Windows.Forms.Button butReadLanguage;
+        private System.Windows.Forms.Label label37;
     }
 }

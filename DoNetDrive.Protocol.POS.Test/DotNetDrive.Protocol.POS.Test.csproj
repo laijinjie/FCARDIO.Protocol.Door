@@ -33,11 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DoNetDrive.Core">
+    <Reference Include="DoNetDrive.Core, Version=1.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\DoNetDrive.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol">
-      <HintPath>..\..\一卡通云平台客户端辅助工具\DLL\DoNetDrive.Protocol.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
     </Reference>
     <Reference Include="DoNetTool.Common">
       <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>

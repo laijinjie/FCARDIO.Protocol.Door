@@ -41,7 +41,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.LocalIdentity
         /// <param name="door">本机所属门号</param>
         /// <param name="localName">本机名称</param>
         /// <param name="inOut">进出类别</param>
-        public WriteLocalIdentity_Parameter(byte door,string localName, byte inOut)
+        public WriteLocalIdentity_Parameter(byte door, string localName, byte inOut)
         {
             Door = door;
             LocalName = localName;
@@ -62,7 +62,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.LocalIdentity
             {
                 return false;
             }
-            if (string.IsNullOrEmpty(LocalName) || Encoding.GetEncoding("GBK").GetBytes(LocalName).Length > 60)
+            if (!string.IsNullOrEmpty(LocalName) && Encoding.GetEncoding("GBK").GetBytes(LocalName).Length > 60)
             {
                 return false;
             }
@@ -86,17 +86,25 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.LocalIdentity
         {
             databuf.WriteByte(Door);
 
+            int iWriteNullCount = 60;
+            if (string.IsNullOrEmpty(LocalName))
+            {
+                byte[] bName = Encoding.BigEndianUnicode.GetBytes(LocalName);
+                int strLen = bName.Length;
+                if (strLen > 60) strLen = 60;
+                databuf.WriteBytes(bName, 0, strLen);
+                iWriteNullCount -= strLen;
 
-            int strLen = LocalName.Length;
-            //int gbkLen = Encoding.GetEncoding("GBK").GetBytes(LocalName).Length;
-            //int gbkCount = gbkLen - strLen;
-            if (strLen > 60) strLen = 60;
+            }
+            //填充0
+            for (int i = 0; i < iWriteNullCount; i++)
+            {
+                databuf.WriteByte(0);
+            }
 
-            byte[]  bName = Encoding.BigEndianUnicode.GetBytes(LocalName.PadRight(60  - strLen, '\0'));
-            databuf.WriteBytes(bName);
 
             databuf.WriteByte(InOut);
-          
+
             return databuf;
         }
 

@@ -42,6 +42,8 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
         /// <returns></returns>
         protected abstract bool CheckResponseCompleted(DESPacket oPck);
 
+
+
         /// <summary>
         /// 处理返回值
         /// </summary>

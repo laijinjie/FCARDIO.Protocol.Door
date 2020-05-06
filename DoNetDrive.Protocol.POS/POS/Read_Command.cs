@@ -36,5 +36,10 @@ namespace DoNetDrive.Protocol.POS
         {
             return true;
         }
+
+        protected override void CommandNext0(DESPacket oPck)
+        {
+            CommandNext1(oPck);
+        }
     }
 }

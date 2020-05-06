@@ -749,8 +749,8 @@ namespace DotNetDrive.Protocol.POS.Test
                 dtl.LocalAddr = cmbLocalIP.Text;
                 dtl.LocalPort = txtUDPLocalPort.Text.ToInt32();
             }
-            cmdDtl.Timeout = 600;
-            cmdDtl.RestartCount = 3;
+            cmdDtl.Timeout = 1200;
+            cmdDtl.RestartCount = 2;
             return cmdDtl;
 
         }

@@ -63,7 +63,8 @@ namespace DoNetDrive.Protocol.POS.Protocol
         /// </summary>
         public DESPacket()
         {
-            CommandPacket = new DESCommandPacket(0, 0, 0, 0, 0, null);
+            Code = GetRandomCode(ref CodeMin, ref CodeMax);
+            CommandPacket = new DESCommandPacket(Code, 0, 0, 0, 0, null);
         }
 
         /// <summary>
@@ -273,6 +274,7 @@ namespace DoNetDrive.Protocol.POS.Protocol
                        uint dl, IByteBuffer cd)
         {
             CommandPacket.SetPacket(ct, ci, cp, (int)dl, cd);
+            SetNormalPacket();
         }
         #endregion
 
@@ -362,6 +364,7 @@ namespace DoNetDrive.Protocol.POS.Protocol
         /// <returns>组装后的命令包</returns>
         public override IByteBuffer GetPacketData(IByteBufferAllocator Allocator)
         {
+            if (Allocator == null) return null;
             //设备SN   信息代码        长度       数据     检验值
             //16Byte   4byte          2Byte    可变长度   1Byte
             if (CmdData != null)
@@ -372,7 +375,8 @@ namespace DoNetDrive.Protocol.POS.Protocol
 
             CmdData = CommandPacket.GetPacketData(Allocator);
             DataLen = CmdData.ReadableBytes;
-
+            //需要发送的命令：
+            Console.WriteLine("待发送数据：" + ByteBufferUtil.HexDump(CmdData));
             byte[] key = GetDesKey(Allocator);
             DES_C mDes;
 

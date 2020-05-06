@@ -101,6 +101,7 @@ namespace DotNetDrive.Protocol.POS.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
+            cmdDtl.Timeout = 4000;
             ClearMenuDataBase cmd = new ClearMenuDataBase(cmdDtl);
             mMainForm.AddCommand(cmd);
 

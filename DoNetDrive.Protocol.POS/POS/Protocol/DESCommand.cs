@@ -50,14 +50,18 @@ namespace DoNetDrive.Protocol.POS.Protocol
         protected override void CommandNext(INPacket readPacket)
         {
             DESPacket psk = readPacket as DESPacket;
-            if (psk.Code != FPacket.Code) return;
+            
             psk.Password = FPacket.Password;
             //检查是否需要解密
             var acl = _Connector.GetByteBufAllocator();
             if (acl == null) return;
             bool bRet = psk.DecodeSubPacket(acl);
             if (!bRet) return;//解密失败
+            
+            var pkt = psk.CommandPacket;
+            Console.WriteLine($"收到 网络标识：{pkt.Code:X}  命令：{pkt.CmdType:X},分类：{pkt.CmdIndex:X}，参数：{pkt.CmdPar:X}，数据长度：{pkt.DataLen}");
 
+            if (psk.Code != FPacket.Code) return;
             base.CommandNext(readPacket);
         }
 
@@ -74,7 +78,7 @@ namespace DoNetDrive.Protocol.POS.Protocol
         protected override bool CheckResponse_OK(DESPacket pck)
         {
             var subPck = pck.CommandPacket;
-
+            if (subPck == null) return false;
             return (subPck.CmdType == 0x21 && subPck.CmdIndex == 1);
         }
 
