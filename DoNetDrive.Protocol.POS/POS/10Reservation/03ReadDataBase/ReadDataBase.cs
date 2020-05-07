@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DoNetDrive.Protocol.POS.TemplateMethod;
 
-namespace DoNetDrive.Protocol.POS.Reservation.ReadDataBase
+namespace DoNetDrive.Protocol.POS.Reservation
 {
     public class ReadDataBase : TemplateReadData_Base<ReservationDetail>
     {

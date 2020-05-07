@@ -24,7 +24,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         {
             if (CheckResponse(oPck, 0x04))
             {
-                var buf = oPck.CmdData;
+                var buf = oPck.CommandPacket.CmdData;
                 ReadSubsidyDataBase_Result rst = new ReadSubsidyDataBase_Result();
                 _Result = rst;
                 rst.SetBytes(buf);

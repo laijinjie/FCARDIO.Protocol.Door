@@ -1,33 +1,43 @@
 ﻿
 
+using DoNetDrive.Protocol.Door.Door8800.Data;
 using DotNetty.Buffers;
 
 namespace DoNetDrive.Protocol.POS.Data
 {
-    public class TransactionDatabaseDetail
+    public class TransactionDatabaseDetail //:DoNetDrive.Protocol.Door.Door8800.Data.TransactionDatabaseDetail
     {
         /// <summary>
         /// 
         /// </summary>
-        public TransactionDetailBase[] ListTransaction { get; set; }
+        public TransactionDetail[] ListTransaction { get; set; }
+
         /// <summary>
         /// 读卡相关记录
         /// </summary>
-        public CardTransactionDetail CardTransactionDetail;
-
+        public TransactionDetail CardTransactionDetail;
+       
         /// <summary>
         /// 系统相关记录
         /// </summary>
-        public SystemTransactionDetail SystemTransactionDetail;
+        public TransactionDetail SystemTransactionDetail;
 
         /// <summary>
         /// 初始化参数
         /// </summary>
         public TransactionDatabaseDetail()
         {
-            CardTransactionDetail = new CardTransactionDetail();
+            CardTransactionDetail = new TransactionDetail();
+            SystemTransactionDetail = new TransactionDetail();
+        }
 
-            SystemTransactionDetail = new SystemTransactionDetail();
+        /// <summary>
+        /// 获取长度
+        /// </summary>
+        /// <returns></returns>
+        public int GetDataLen()
+        {
+            return 0x20;
         }
 
         /// <summary>
@@ -36,21 +46,20 @@ namespace DoNetDrive.Protocol.POS.Data
         /// <param name="data"></param>
         public void SetBytes(IByteBuffer data)
         {
-            ListTransaction = new TransactionDetailBase[] { CardTransactionDetail, SystemTransactionDetail };
+            ListTransaction = new TransactionDetail[] { CardTransactionDetail, SystemTransactionDetail };
+
+
             for (int i = 0; i < ListTransaction.Length; i++)
             {
                 ListTransaction[i].SetBytes(data);
+
+                if (ListTransaction[i].ReadIndex > ListTransaction[i].WriteIndex)
+                {
+                    ListTransaction[i].ReadIndex = 0;
+
+                }
             }
             return;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IByteBuffer GetBytes()
-        {
-            return null;
         }
     }
 }

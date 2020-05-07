@@ -13,6 +13,8 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
         /// </summary>
         public List<T> DataList { get; set; }
 
+        public bool mIsDeleteCommand;
+
         /// <summary>
         /// 
         /// </summary>
@@ -39,13 +41,27 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
             {
                 return false;
             }
-            foreach (var item in DataList)
+            if (mIsDeleteCommand)
             {
-                if (!CheckedParameterItem(item))
+                foreach (var item in DataList)
                 {
-                    return false;
+                    if (!CheckedDeleteParameterItem(item))
+                    {
+                        return false;
+                    }
                 }
             }
+            else
+            {
+                foreach (var item in DataList)
+                {
+                    if (!CheckedParameterItem(item))
+                    {
+                        return false;
+                    }
+                }
+            }
+           
 
             return true;
         }
@@ -56,6 +72,13 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
         /// <param name="password">密码信息</param>
         /// <returns></returns>
         protected abstract bool CheckedParameterItem(T data);
+
+        /// <summary>
+        /// 检查每个密码
+        /// </summary>
+        /// <param name="password">密码信息</param>
+        /// <returns></returns>
+        protected abstract bool CheckedDeleteParameterItem(T data);
 
         /// <summary>
         /// 释放资源

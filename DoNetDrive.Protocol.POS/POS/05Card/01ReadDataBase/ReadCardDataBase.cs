@@ -40,7 +40,7 @@ namespace DoNetDrive.Protocol.POS.Card
         {
             if (CheckResponse(oPck, 0x04))
             {
-                var buf = oPck.CmdData;
+                var buf = oPck.CommandPacket.CmdData;
                 ReadCardDataBase_Result rst = new ReadCardDataBase_Result();
                 rst.SetBytes(buf);
                 _Result = rst;

@@ -3,10 +3,9 @@ using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.POS.Protocol;
 using DoNetDrive.Protocol.POS.TemplateMethod;
 using System.Collections.Generic;
-using DoNetDrive.Protocol.POS.Reservation.ReadDataBase;
 using DoNetDrive.Protocol.POS.Data;
 
-namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
+namespace DoNetDrive.Protocol.POS.Reservation
 {
     /// <summary>
     /// 添加订餐信息
@@ -20,12 +19,13 @@ namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
         /// </summary>
         protected override void CreateCommandPacket0()
         {
-            //mStep = 1;
+            mStep = 1;
             //Packet(0x0A, 0x04, 0x00);
 
-            var buf = GetNewCmdDataBuf(MaxBufSize);
-            WriteDataToBuf(buf);
-            Packet(0x0A, 0x04, 0x00, (uint)buf.ReadableBytes, buf);
+            Packet(0x0A, 0x04);
+
+            _ProcessMax = mPar.DataList.Count + 2;
+            _ProcessStep = 1;
         }
 
         /// <summary>
@@ -79,5 +79,70 @@ namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
             reservationDetail.GetBytes(databuf);
         }
 
+        protected override void CreateCommandNextPacket(IByteBuffer buf)
+        {
+            Packet(0x0A, 0x04, 0x01, (uint)buf.ReadableBytes, buf);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        public override int GetBatchCount()
+        {
+            return 20;
+        }
+
+        /// <summary>
+        /// 重写父类对处理返回值的定义
+        /// </summary>
+        /// <param name="oPck"></param>
+        protected override void CommandNext0(DESPacket oPck)
+        {
+            switch (mStep)
+            {
+                case 1://处理开始写入指令返回
+                    if (CheckResponse_OK(oPck))
+                    {
+                        _ProcessStep++;
+                        //硬件已准备就绪，开始写入卡
+
+                        //创建一个通讯缓冲区
+                        int bufSize = mPar.DataList.Count * 8 + 1;
+                        var buf = GetNewCmdDataBuf(bufSize);
+                        WriteDataToBuf(buf);
+                        Packet(0x0A, 0x04, 0x01, (uint)buf.ReadableBytes, buf);
+                        CommandReady();//设定命令当前状态为准备就绪，等待发送
+                        mStep = 2;//使命令进入下一个阶段
+                        return;
+                    }
+                    break;
+                case 2:
+                    if (CheckResponse_OK(oPck))
+                    {
+                        //继续发下一包
+                        CommandNext1(oPck);
+                    }
+                   
+                    break;
+                case 3:
+                    if (CheckResponse_OK(oPck))
+                    {
+                        CommandCompleted();
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        protected override void SendCommandCompleted()
+        {
+            mStep = 3;
+            Packet(0x0A, 0x04, 0x02);
+            CommandReady();
+           
+        }
     }
 }

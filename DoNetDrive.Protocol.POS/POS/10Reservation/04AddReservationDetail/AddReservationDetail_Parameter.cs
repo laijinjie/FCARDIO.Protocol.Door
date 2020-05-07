@@ -7,7 +7,7 @@ using DotNetty.Buffers;
 using DoNetDrive.Protocol.POS.Data;
 using DoNetDrive.Protocol.POS.TemplateMethod;
 
-namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
+namespace DoNetDrive.Protocol.POS.Reservation
 {
     public class AddReservationDetail_Parameter : TemplateParameter_Base<ReservationDetail>
     {
@@ -16,11 +16,22 @@ namespace DoNetDrive.Protocol.POS.Reservation.AddReservationDetail
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<ReservationDetail> ReservationDetailList;
+
         public AddReservationDetail_Parameter(List<ReservationDetail> list) : base(list)
         {
+            ReservationDetailList = list;
         }
 
-        protected override bool CheckedParameterItem(ReservationDetail Menu)
+        protected override bool CheckedDeleteParameterItem(ReservationDetail reservation)
+        {
+            return true;
+        }
+
+        protected override bool CheckedParameterItem(ReservationDetail reservation)
         {
             
             return true;

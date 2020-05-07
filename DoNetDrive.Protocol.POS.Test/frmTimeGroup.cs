@@ -61,10 +61,11 @@ namespace DotNetDrive.Protocol.POS.Test
         #region 开门时段
         public void InitTimeGroup()
         {
-            string[] time = new string[64];
-            for (int i = 0; i < 64; i++)
+            string[] time = new string[65];
+            time[0] = "全部";
+            for (int i = 1; i <= 64; i++)
             {
-                time[i] = "开门时段" + (i + 1).ToString();
+                time[i] = "开门时段" + (i).ToString();
             }
             cbTimeGroup.Items.Clear();
             cbTimeGroup.Items.AddRange(time);
@@ -87,7 +88,8 @@ namespace DotNetDrive.Protocol.POS.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            ReadTimeGroup cmd = new ReadTimeGroup(cmdDtl);
+            ReadTimeGroup_Parameter par = new ReadTimeGroup_Parameter((byte)(cbTimeGroup.SelectedIndex));
+            ReadTimeGroup cmd = new ReadTimeGroup(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             //处理返回值

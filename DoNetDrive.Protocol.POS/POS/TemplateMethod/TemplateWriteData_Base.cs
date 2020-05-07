@@ -20,7 +20,7 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
         /// <summary>
         /// 参数
         /// </summary>
-        T mPar;
+        protected T mPar;
 
 
         /// <summary>
@@ -77,6 +77,11 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
         /// 继承类具体实现
         /// </summary>
         protected abstract void CreateCommandPacket0();
+
+        /// <summary>
+        /// 继承类具体实现
+        /// </summary>
+        protected abstract void CreateCommandNextPacket(IByteBuffer buf);
 
         /// <summary>
         /// 检查参数
@@ -140,7 +145,7 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
         }
 
         /// <summary>
-        /// 
+        /// 获取一次命令发送数据的最大长度
         /// </summary>
         /// <param name="count"></param>
         public virtual int GetMaxBufSize()
@@ -160,6 +165,10 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
             //CommandReady();//设定命令当前状态为准备就绪，等待发送
         }
 
+        protected virtual void SendCommandCompleted()
+        {
+            CommandCompleted();
+        }
 
         /// <summary>
         /// 处理返回值
@@ -170,16 +179,35 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
             if (IsWriteOver())
             {
                 Create_Result();
-                CommandCompleted();
+                SendCommandCompleted();
             }
             else
             {
+
                 //未发送完毕，继续发送
+                var lst = mPar.DataList;
+                int iCount = lst.Count;//获取列表总长度
+                iCount = iCount - mIndex;//计算未上传总数
+
+                if (iCount > GetBatchCount())
+                {
+                    iCount = GetBatchCount();
+                }
+                D par = new D();
+                var bufSize = (iCount * par.GetDataLen()) + 1;
+                var buf = GetNewCmdDataBuf(bufSize);
+                WriteDataToBuf(buf);
+
+                CreateCommandNextPacket(buf);
+                /*
                 var buf = GetCmdBuf();
-                //var buf = GetNewCmdDataBuf(MaxBufSize);
                 WriteDataToBuf(buf);
                 oPck.CommandPacket.DataLen = buf.ReadableBytes;
+                oPck.DataLen = buf.ReadableBytes;
+                //oPck.SetPacketCmdData(buf.ReadableBytes, buf);
+                //SetPacketCmdData()
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
+                */
             }
         }
 

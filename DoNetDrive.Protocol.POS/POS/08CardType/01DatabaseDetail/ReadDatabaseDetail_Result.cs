@@ -16,12 +16,12 @@ namespace DoNetDrive.Protocol.POS.CardType.DatabaseDetail
         /// <summary>
         /// 最大容量
         /// </summary>
-        public ushort SortDataBaseSize;
+        public ushort SortSize;
 
         /// <summary>
-        /// 最大容量
+        /// 已存数量
         /// </summary>
-        public ushort SortSize;
+        public ushort UseSize;
 
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace DoNetDrive.Protocol.POS.CardType.DatabaseDetail
 
         public void SetBytes(IByteBuffer buf)
         {
-            SortDataBaseSize = buf.ReadUnsignedShort();
             SortSize = buf.ReadUnsignedShort();
+            UseSize = buf.ReadUnsignedShort();
 
         }
 

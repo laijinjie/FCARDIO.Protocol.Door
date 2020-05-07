@@ -11,12 +11,12 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// <summary>
         /// 补贴名单容量
         /// </summary>
-        public short DataSize;
+        public short SortSize;
 
         /// <summary>
         /// 已存数量
         /// </summary>
-        public short UsedSize;
+        public short UseSize;
 
         /// <summary>
         /// 初始化，构造一个空的 HolidayDBDetail 详情实例
@@ -32,8 +32,8 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// <param name="buf"></param>
         public void SetBytes(IByteBuffer buf)
         {
-            DataSize = buf.ReadShort();
-            UsedSize = buf.ReadShort();
+            SortSize = buf.ReadShort();
+            UseSize = buf.ReadShort();
         }
 
         /// <summary>

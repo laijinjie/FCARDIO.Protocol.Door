@@ -1,5 +1,5 @@
 ﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.Door.Door8800.TemplateMethod;
+using DoNetDrive.Protocol.POS.TemplateMethod;
 using DoNetDrive.Protocol.POS.Protocol;
 using DotNetty.Buffers;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace DoNetDrive.Protocol.POS.Card
     /// <summary>
     /// 删除菜单命令
     /// </summary>
-    public class DeleteCard : TemplateWriteData_Base<Data.MenuDetail>
+    public class DeleteCard : TemplateWriteData_Base<WriteCard_Parameter, Data.CardDetail>
     {
         /// <summary>
         /// 当前命令进度
@@ -21,9 +21,9 @@ namespace DoNetDrive.Protocol.POS.Card
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public DeleteCard(Protocol.DESDriveCommandDetail cd, AddCard_Parameter par) : base(cd, par)
+        public DeleteCard(Protocol.DESDriveCommandDetail cd, WriteCard_Parameter par) : base(cd, par)
         {
-            MaxBufSize = (mBatchCount * mDeleteDataLen) + 4;
+            par.mIsDeleteCommand = true;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace DoNetDrive.Protocol.POS.Card
         /// </summary>
         /// <param name="DataList"></param>
         /// <returns></returns>
-        protected override TemplateResult_Base CreateResult(List<TemplateData_Base> DataList)
+        protected override TemplateResult_Base CreateResult(List<Data.CardDetail> DataList)
         {
             ReadAllCard_Result result = new ReadAllCard_Result(DataList);
             return result;
@@ -58,9 +58,14 @@ namespace DoNetDrive.Protocol.POS.Card
             Packet(0x05, 0x05, 0x00, (uint)buf.ReadableBytes, buf);
         }
 
-        protected override bool CheckResponseCompleted(DESCommandPacket oPck)
+        protected override bool CheckResponseCompleted(DESPacket oPck)
         {
             return false;
+        }
+
+        protected override void CreateCommandNextPacket(IByteBuffer buf)
+        {
+            Packet(0x05, 0x05, 0x00, (uint)buf.ReadableBytes, buf);
         }
     }
 }

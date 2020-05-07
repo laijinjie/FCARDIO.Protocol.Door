@@ -1,4 +1,5 @@
 ﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.POS.Protocol;
 using System;
 
 namespace DoNetDrive.Protocol.POS.Transaction
@@ -18,7 +19,7 @@ namespace DoNetDrive.Protocol.POS.Transaction
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter"></param>
-        public WriteTransactionDatabaseIndex(INCommandDetail cd, WriteTransactionDatabaseIndex_Parameter parameter) : base(cd, parameter)
+        public WriteTransactionDatabaseIndex(DESDriveCommandDetail cd, WriteTransactionDatabaseIndex_Parameter parameter) : base(cd, parameter)
         {
         }
 

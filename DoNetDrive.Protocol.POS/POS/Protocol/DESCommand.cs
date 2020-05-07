@@ -23,6 +23,7 @@ namespace DoNetDrive.Protocol.POS.Protocol
         /// <param name="par">命令参数</param>
         public DESCommand(DESDriveCommandDetail cd, INCommandParameter par) : base(cd, par)
         {
+            _IsWaitResponse = true;
         }
 
         /// <summary>
@@ -63,11 +64,6 @@ namespace DoNetDrive.Protocol.POS.Protocol
 
             if (psk.Code != FPacket.Code) return;
             base.CommandNext(readPacket);
-        }
-
-        protected override void CommandNext0(DESPacket oPck)
-        {
-            base.CommandNext0(oPck);    
         }
 
         /// <summary>

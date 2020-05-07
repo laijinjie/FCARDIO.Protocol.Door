@@ -23,7 +23,7 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
         /// 初始化参数
         /// </summary>
         /// <param name="cd"></param>
-        public ReadTimeGroup(DESDriveCommandDetail cd) : base(cd)
+        public ReadTimeGroup(DESDriveCommandDetail cd, ReadTimeGroup_Parameter par) : base(cd,par)
         {
         }
 
@@ -32,9 +32,15 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
         /// </summary>
         protected override void CreatePacket0()
         {
+            ReadTimeGroup_Parameter model = _Parameter as ReadTimeGroup_Parameter;
+           
             var buf = GetNewCmdDataBuf(1);
-            Packet(0x04, 0x02, 0x00, 1, buf.WriteByte(0));
-            _ProcessMax = 64;
+            Packet(0x04, 0x02, 0x00, 1, buf.WriteByte(model.Index));
+            if (model.Index ==  0)
+            {
+                _ProcessMax = 64;
+            }
+          
             mReadBuffers = new List<IByteBuffer>();
         }
 

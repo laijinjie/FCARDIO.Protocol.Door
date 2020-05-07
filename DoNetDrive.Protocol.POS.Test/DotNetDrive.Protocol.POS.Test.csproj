@@ -66,6 +66,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCard.Designer.cs">
+      <DependentUpon>FrmCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCardType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCardType.Designer.cs">
+      <DependentUpon>FrmCardType.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmConsumeParameter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +101,24 @@
     </Compile>
     <Compile Include="frmNodeForm.Designer.cs">
       <DependentUpon>frmNodeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRecord.Designer.cs">
+      <DependentUpon>FrmRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReservation.Designer.cs">
+      <DependentUpon>FrmReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSubsidy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSubsidy.Designer.cs">
+      <DependentUpon>FrmSubsidy.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSystem.cs">
       <SubType>Form</SubType>
@@ -115,6 +145,12 @@
     <Compile Include="Model\PrintContentDto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmCard.resx">
+      <DependentUpon>FrmCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCardType.resx">
+      <DependentUpon>FrmCardType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmConsumeParameter.resx">
       <DependentUpon>frmConsumeParameter.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,6 +159,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenu.resx">
       <DependentUpon>FrmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRecord.resx">
+      <DependentUpon>FrmRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReservation.resx">
+      <DependentUpon>FrmReservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSubsidy.resx">
+      <DependentUpon>FrmSubsidy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSystem.resx">
       <DependentUpon>frmSystem.cs</DependentUpon>

@@ -87,12 +87,12 @@
             this.butTime = new System.Windows.Forms.ToolStripButton();
             this.butConsumeParameter = new System.Windows.Forms.ToolStripButton();
             this.butMenu = new System.Windows.Forms.ToolStripButton();
-            this.butHoliday = new System.Windows.Forms.ToolStripButton();
+            this.butCardType = new System.Windows.Forms.ToolStripButton();
             this.ButTimeGroup = new System.Windows.Forms.ToolStripButton();
             this.butCard = new System.Windows.Forms.ToolStripButton();
             this.butRecord = new System.Windows.Forms.ToolStripButton();
-            this.butUploadSoftware = new System.Windows.Forms.ToolStripButton();
-            this.butAdditionalData = new System.Windows.Forms.ToolStripButton();
+            this.butSubsidy = new System.Windows.Forms.ToolStripButton();
+            this.butReservation = new System.Windows.Forms.ToolStripButton();
             this.tbEvent.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIO)).BeginInit();
@@ -214,12 +214,15 @@
             // chkShowIO
             // 
             this.chkShowIO.AutoSize = true;
+            this.chkShowIO.Checked = true;
+            this.chkShowIO.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkShowIO.Location = new System.Drawing.Point(87, 7);
             this.chkShowIO.Name = "chkShowIO";
             this.chkShowIO.Size = new System.Drawing.Size(84, 16);
             this.chkShowIO.TabIndex = 8;
             this.chkShowIO.Text = "显示IO日志";
             this.chkShowIO.UseVisualStyleBackColor = true;
+            this.chkShowIO.CheckedChanged += new System.EventHandler(this.chkShowIO_CheckedChanged);
             // 
             // butClear
             // 
@@ -229,6 +232,7 @@
             this.butClear.TabIndex = 7;
             this.butClear.Text = "清空";
             this.butClear.UseVisualStyleBackColor = true;
+            this.butClear.Click += new System.EventHandler(this.butClear_Click);
             // 
             // tabPage2
             // 
@@ -330,6 +334,7 @@
             this.butClearCommand.TabIndex = 7;
             this.butClearCommand.Text = "清空";
             this.butClearCommand.UseVisualStyleBackColor = true;
+            this.butClearCommand.Click += new System.EventHandler(this.butClearCommand_Click);
             // 
             // butReadSN
             // 
@@ -596,12 +601,12 @@
             this.butTime,
             this.butConsumeParameter,
             this.butMenu,
-            this.butHoliday,
+            this.butCardType,
             this.ButTimeGroup,
             this.butCard,
             this.butRecord,
-            this.butUploadSoftware,
-            this.butAdditionalData});
+            this.butSubsidy,
+            this.butReservation});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(637, 25);
@@ -648,14 +653,15 @@
             this.butMenu.Text = "商品";
             this.butMenu.Click += new System.EventHandler(this.butMenu_Click);
             // 
-            // butHoliday
+            // butCardType
             // 
-            this.butHoliday.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.butHoliday.Image = ((System.Drawing.Image)(resources.GetObject("butHoliday.Image")));
-            this.butHoliday.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.butHoliday.Name = "butHoliday";
-            this.butHoliday.Size = new System.Drawing.Size(48, 22);
-            this.butHoliday.Text = "节假日";
+            this.butCardType.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.butCardType.Image = ((System.Drawing.Image)(resources.GetObject("butCardType.Image")));
+            this.butCardType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.butCardType.Name = "butCardType";
+            this.butCardType.Size = new System.Drawing.Size(36, 22);
+            this.butCardType.Text = "卡类";
+            this.butCardType.Click += new System.EventHandler(this.butCardType_Click);
             // 
             // ButTimeGroup
             // 
@@ -673,8 +679,9 @@
             this.butCard.Image = ((System.Drawing.Image)(resources.GetObject("butCard.Image")));
             this.butCard.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.butCard.Name = "butCard";
-            this.butCard.Size = new System.Drawing.Size(60, 22);
-            this.butCard.Text = "人事档案";
+            this.butCard.Size = new System.Drawing.Size(48, 22);
+            this.butCard.Text = "黑名单";
+            this.butCard.Click += new System.EventHandler(this.butCard_Click);
             // 
             // butRecord
             // 
@@ -684,25 +691,28 @@
             this.butRecord.Name = "butRecord";
             this.butRecord.Size = new System.Drawing.Size(60, 22);
             this.butRecord.Text = "记录操作";
+            this.butRecord.Click += new System.EventHandler(this.butRecord_Click);
             // 
-            // butUploadSoftware
+            // butSubsidy
             // 
-            this.butUploadSoftware.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.butUploadSoftware.Image = ((System.Drawing.Image)(resources.GetObject("butUploadSoftware.Image")));
-            this.butUploadSoftware.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.butUploadSoftware.Name = "butUploadSoftware";
-            this.butUploadSoftware.Size = new System.Drawing.Size(60, 22);
-            this.butUploadSoftware.Text = "远程升级";
+            this.butSubsidy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.butSubsidy.Image = ((System.Drawing.Image)(resources.GetObject("butSubsidy.Image")));
+            this.butSubsidy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.butSubsidy.Name = "butSubsidy";
+            this.butSubsidy.Size = new System.Drawing.Size(36, 22);
+            this.butSubsidy.Text = "补贴";
+            this.butSubsidy.Click += new System.EventHandler(this.butSubsidy_Click);
             // 
-            // butAdditionalData
+            // butReservation
             // 
-            this.butAdditionalData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.butAdditionalData.Image = ((System.Drawing.Image)(resources.GetObject("butAdditionalData.Image")));
-            this.butAdditionalData.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.butAdditionalData.Name = "butAdditionalData";
-            this.butAdditionalData.Size = new System.Drawing.Size(84, 22);
-            this.butAdditionalData.Text = "人员附加数据";
-            this.butAdditionalData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.butReservation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.butReservation.Image = ((System.Drawing.Image)(resources.GetObject("butReservation.Image")));
+            this.butReservation.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.butReservation.Name = "butReservation";
+            this.butReservation.Size = new System.Drawing.Size(36, 22);
+            this.butReservation.Text = "订餐";
+            this.butReservation.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.butReservation.Click += new System.EventHandler(this.butReservation_Click);
             // 
             // FrmMain
             // 
@@ -803,12 +813,12 @@
         private System.Windows.Forms.ToolStripButton butTime;
         private System.Windows.Forms.ToolStripButton butConsumeParameter;
         private System.Windows.Forms.ToolStripButton butMenu;
-        private System.Windows.Forms.ToolStripButton butHoliday;
+        private System.Windows.Forms.ToolStripButton butCardType;
         private System.Windows.Forms.ToolStripButton ButTimeGroup;
         private System.Windows.Forms.ToolStripButton butCard;
         private System.Windows.Forms.ToolStripButton butRecord;
-        private System.Windows.Forms.ToolStripButton butUploadSoftware;
-        private System.Windows.Forms.ToolStripButton butAdditionalData;
+        private System.Windows.Forms.ToolStripButton butSubsidy;
+        private System.Windows.Forms.ToolStripButton butReservation;
     }
 }
 

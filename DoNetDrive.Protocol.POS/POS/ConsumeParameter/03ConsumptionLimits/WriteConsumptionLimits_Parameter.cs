@@ -15,12 +15,12 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits
         /// <summary>
         /// 单次限额
         /// </summary>
-        public int LimitMoney;
+        public decimal LimitMoney;
 
         /// <summary>
         /// 单日限额
         /// </summary>
-        public int DayLimitMoney;
+        public decimal DayLimitMoney;
 
         /// <summary>
         /// 单日限次
@@ -30,7 +30,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits
         /// <summary>
         /// 月限额
         /// </summary>
-        public int MonthLimitMoney;
+        public decimal MonthLimitMoney;
 
         /// <summary>
         /// 月限次
@@ -40,7 +40,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits
         /// <summary>
         /// 卡内最低保留余额
         /// </summary>
-        public int MinimumReservedBalance;
+        public decimal MinimumReservedBalance;
 
         /// <summary>
         /// 构建一个空的实例
@@ -114,12 +114,12 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits
             {
                 throw new ArgumentException("databuf len error");
             }
-            databuf.WriteInt(LimitMoney * 100);
-            databuf.WriteInt(DayLimitMoney * 100);
+            databuf.WriteInt(Convert.ToInt32(LimitMoney * 100));
+            databuf.WriteInt(Convert.ToInt32(DayLimitMoney * 100));
             databuf.WriteByte(DayLimit);
-            databuf.WriteInt(MonthLimitMoney * 100);
+            databuf.WriteInt(Convert.ToInt32(MonthLimitMoney * 100));
             databuf.WriteByte(MonthLimit);
-            databuf.WriteInt(MinimumReservedBalance * 100);
+            databuf.WriteInt(Convert.ToInt32(MinimumReservedBalance * 100));
             return databuf;
         }
 
@@ -142,12 +142,12 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits
             {
                 throw new ArgumentException("databuf Error");
             }
-            LimitMoney = databuf.ReadInt() / 100;
-            DayLimitMoney = databuf.ReadInt() / 100;
+            LimitMoney = (decimal)databuf.ReadInt() / (decimal)100;
+            DayLimitMoney = (decimal)databuf.ReadInt() / (decimal)100;
             DayLimit = databuf.ReadByte();
-            MonthLimitMoney = databuf.ReadInt() / 100;
+            MonthLimitMoney = (decimal)databuf.ReadInt() / (decimal)100;
             MonthLimit = databuf.ReadByte();
-            MinimumReservedBalance = databuf.ReadInt() / 100;
+            MinimumReservedBalance = (decimal)databuf.ReadInt() / (decimal)100;
 
 
         }

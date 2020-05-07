@@ -10,7 +10,7 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
     public class ReadTimeGroup_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 功能开关
+        /// 消费时段号
         /// </summary>
         public byte Index;
 

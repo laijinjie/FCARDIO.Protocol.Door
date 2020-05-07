@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoNetDrive.Protocol.POS.Reservation.DatabaseDetail
+namespace DoNetDrive.Protocol.POS.Reservation
 {
     /// <summary>
     /// 读取订餐名单信息
@@ -45,7 +45,7 @@ namespace DoNetDrive.Protocol.POS.Reservation.DatabaseDetail
         {
             if (CheckResponse(oPck, 0x04))
             {
-                var buf = oPck.CmdData;
+                var buf = oPck.CommandPacket.CmdData;
                 ReadDatabaseDetail_Result rst = new ReadDatabaseDetail_Result();
                 rst.SetBytes(buf);
                 _Result = rst;

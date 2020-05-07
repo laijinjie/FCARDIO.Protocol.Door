@@ -53,12 +53,12 @@ namespace DoNetDrive.Protocol.POS.Data
         /// <summary>
         /// 定额值
         /// </summary>
-        public int FixedFee { get; set; }
+        public decimal FixedFee { get; set; }
 
         /// <summary>
         /// 消费限额
         /// </summary>
-        public int ConsumptionLimits { get; set; }
+        public decimal ConsumptionLimits { get; set; }
 
         /// <summary>
         /// 限次
@@ -96,8 +96,8 @@ namespace DoNetDrive.Protocol.POS.Data
             databuf.WriteByte(ByteUtil.ByteToBCD((byte)BeginTime.Minute));
             databuf.WriteByte(ByteUtil.ByteToBCD((byte)EndTime.Hour));
             databuf.WriteByte(ByteUtil.ByteToBCD((byte)EndTime.Minute));
-            databuf.WriteMedium(FixedFee * 100);
-            databuf.WriteMedium(ConsumptionLimits * 100);
+            databuf.WriteMedium(Convert.ToInt32(FixedFee * 100));
+            databuf.WriteMedium(Convert.ToInt32(ConsumptionLimits * 100));
             databuf.WriteByte(Limite);
             databuf.WriteByte(CountingCardsDeductionCount);
             databuf.WriteByte(CountingCardsLimitsCount);
@@ -122,8 +122,8 @@ namespace DoNetDrive.Protocol.POS.Data
             byte b4 = ByteUtil.BCDToByte(databuf.ReadByte());
             BeginTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,b1,b2,0);
             EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,b3,b4,0);
-            FixedFee = databuf.ReadUnsignedMedium() / 100;
-            ConsumptionLimits = databuf.ReadUnsignedMedium() / 100;
+            FixedFee = (decimal)databuf.ReadUnsignedMedium() / (decimal)100;
+            ConsumptionLimits = (decimal)databuf.ReadUnsignedMedium() / (decimal)100;
             Limite = databuf.ReadByte();
             CountingCardsDeductionCount = databuf.ReadByte();
             CountingCardsLimitsCount = databuf.ReadByte();

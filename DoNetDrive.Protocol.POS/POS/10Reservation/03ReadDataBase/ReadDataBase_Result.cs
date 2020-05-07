@@ -8,26 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using DoNetDrive.Protocol.POS.TemplateMethod;
 
-namespace DoNetDrive.Protocol.POS.Reservation.ReadDataBase
+namespace DoNetDrive.Protocol.POS.Reservation
 {
     public class ReadDataBase_Result : TemplateResult_Base
     {
         /// <summary>
         /// 
         /// </summary>
-        public List<ReservationDetail> ReservationDetailList;
+        public List<ReservationDetail> ReservationDetails;
 
         /// <summary>
         /// 创建结构
         /// </summary>
         public ReadDataBase_Result(List<ReservationDetail> DataList)
         {
-            this.ReservationDetailList = DataList;
+            this.ReservationDetails = DataList;
         }
 
         public override void Dispose()
         {
-            ReservationDetailList = null;
+            ReservationDetails = null;
         }
     }
 }

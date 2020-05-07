@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace DoNetDrive.Protocol.POS.Data
 {
-    public class CardTransactionDetail : TransactionDetailBase
+    public class CardTransactionDetail : TransactionDetail
     {
         /// <summary>
         /// 获取长度
         /// </summary>
         /// <returns></returns>
-        public int GetDataLen()
+        public new int GetDataLen()
         {
             return 0x20;
         }
@@ -22,7 +22,7 @@ namespace DoNetDrive.Protocol.POS.Data
         /// 从字节缓冲区中生成一个对象
         /// </summary>
         /// <param name="data"></param>
-        public override void SetBytes(IByteBuffer data)
+        public void SetBytes(IByteBuffer data)
         {
             DataBaseMaxSize = data.ReadUnsignedInt();
             StartIndex = data.ReadUnsignedInt();

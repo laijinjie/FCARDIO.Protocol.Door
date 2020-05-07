@@ -63,7 +63,7 @@ namespace DoNetDrive.Protocol.POS.Transaction
         {
             if (databuf.WritableBytes != 5)
             {
-                throw new ArgumentException("Crad Error");
+                throw new ArgumentException("Error");
             }
             databuf.WriteByte((byte)DatabaseType);
             databuf.WriteInt(Index);

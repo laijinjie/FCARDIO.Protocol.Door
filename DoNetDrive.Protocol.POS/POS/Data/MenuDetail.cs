@@ -29,14 +29,14 @@ namespace DoNetDrive.Protocol.POS.Data
         /// <summary>
         /// 商品价格
         /// </summary>
-        public int MenuPrice { get; set; }
+        public decimal MenuPrice { get; set; }
 
         public override void SetBytes(IByteBuffer databuf)
         {
             MenuCode = databuf.ReadInt();
             MenuBarCode = Util.StringUtil.GetString(databuf, 40, Encoding.BigEndianUnicode);
             MenuName = Util.StringUtil.GetString(databuf, 16, Encoding.GetEncoding("GB2312"));
-            MenuPrice = databuf.ReadInt();
+            MenuPrice = (decimal)databuf.ReadInt() / (decimal)100;
         }
 
 
@@ -45,7 +45,7 @@ namespace DoNetDrive.Protocol.POS.Data
             databuf.WriteInt(MenuCode);
             Util.StringUtil.WriteString(databuf, MenuBarCode, 40, Encoding.GetEncoding("GB2312"));
             Util.StringUtil.WriteString(databuf, MenuName, 16, Encoding.GetEncoding("GB2312"));
-            databuf.WriteInt(MenuPrice);
+            databuf.WriteInt((int)(MenuPrice * 100));
             return databuf;
         }
 

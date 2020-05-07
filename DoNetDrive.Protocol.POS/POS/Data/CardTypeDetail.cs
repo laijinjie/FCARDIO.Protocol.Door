@@ -2,6 +2,7 @@
 using DoNetDrive.Core.Data;
 using System;
 using DoNetDrive.Protocol.POS.TemplateMethod;
+using System.Text;
 
 namespace DoNetDrive.Protocol.POS.Data
 {
@@ -26,19 +27,46 @@ namespace DoNetDrive.Protocol.POS.Data
         /// 月补贴
         /// 4字节
         /// </summary>
-        public int SubsidyMoney { get; set; }
+        public decimal SubsidyMoney { get; set; }
 
         /// <summary>
         /// 餐段权限
         /// 1字节
         /// </summary>
-        public byte TimeGroup { get; set; }
+        public int TimeGroup { get; set; }
 
         /// <summary>
         /// 积分倍率
         /// 1字节
         /// </summary>
         public byte Integral { get; set; }
+
+        private static StringBuilder mStrBuf = new StringBuilder(1024);
+
+        /// <summary>
+        /// 显示餐段权限
+        /// </summary>
+        public string ShowTimeGroup {
+            get
+            {
+                mStrBuf.Clear();
+                for (int i = 1; i <= 8; i++)
+                {
+                    mStrBuf.Append(GetTimeGroup(i) ? "时段"+i.ToString() + "，" : "");
+                }
+                //if (Person.HolidayUse)
+                //{
+
+                //}
+                //else
+                //{
+                //    mStrBuf.Append("节假日不受限制！");
+                //}
+
+
+                return mStrBuf.ToString();
+            }
+        }
 
         /// <summary>
         /// 获取指定餐段是否有权限
@@ -64,13 +92,42 @@ namespace DoNetDrive.Protocol.POS.Data
             return iByteValue == 1;
         }
 
+        /// <summary>
+        /// 设置指定门是否有权限
+        /// </summary>
+        /// <param name="iTimeGroup">餐段，取值范围：1-8</param>
+        /// <param name="bUse">true 有权限，false 无权限。</param>
+        public void SetTimeGroup(int iTimeGroup, bool bUse)
+        {
+            if (iTimeGroup < 1 || iTimeGroup > 8)
+            {
+
+                throw new ArgumentException("TimeGroup 1-8");
+            }
+            iTimeGroup -= 1;
+            int iMaskValue = (int)Math.Pow(2, iTimeGroup);
+            bool bOldValue = (TimeGroup & iMaskValue) > 0;
+            if (bUse == bOldValue)
+            {
+                return;
+            }
+            if (bUse)
+            {
+                TimeGroup = TimeGroup | iMaskValue;
+            }
+            else
+            {
+                TimeGroup = TimeGroup ^ iMaskValue;
+            }
+        }
+
         public override void SetBytes(IByteBuffer data)
         {
             CardType = data.ReadByte();
             Discount = data.ReadByte();
-            SubsidyMoney = data.ReadInt();
+            SubsidyMoney = (decimal)data.ReadInt() / (decimal)100;
             TimeGroup = data.ReadByte();
-            Integral = data.ReadByte();
+            Integral = (byte)(data.ReadByte() / (10));
 
         }
 
@@ -89,9 +146,9 @@ namespace DoNetDrive.Protocol.POS.Data
         {
             data.WriteByte(CardType);
             data.WriteByte(Discount);
-            data.WriteInt(SubsidyMoney);
+            data.WriteInt((int)(SubsidyMoney * 100));
             data.WriteByte(TimeGroup);
-            data.WriteByte(Integral);
+            data.WriteByte(Integral * 10);
             return data;
         }
 

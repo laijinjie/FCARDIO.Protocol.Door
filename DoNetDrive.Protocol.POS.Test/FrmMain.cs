@@ -758,7 +758,7 @@ namespace DotNetDrive.Protocol.POS.Test
 
 
         #region 通讯日志
-        private bool mShowIOEvent = false;
+        private bool mShowIOEvent = true;
         private void chkShowIO_CheckedChanged(object sender, EventArgs e)
         {
             mShowIOEvent = chkShowIO.Checked;
@@ -1055,6 +1055,56 @@ namespace DotNetDrive.Protocol.POS.Test
         {
 
             FrmMenu frm = FrmMenu.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+        }
+
+        private void butCardType_Click(object sender, EventArgs e)
+        {
+            FrmCardType frm = FrmCardType.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+        }
+
+        private void butCard_Click(object sender, EventArgs e)
+        {
+            FrmCard frm = FrmCard.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+        }
+
+        private void butRecord_Click(object sender, EventArgs e)
+        {
+            FrmRecord frm = FrmRecord.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+        }
+
+        private void butSubsidy_Click(object sender, EventArgs e)
+        {
+            FrmSubsidy frm = FrmSubsidy.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+        }
+
+        private void butReservation_Click(object sender, EventArgs e)
+        {
+            FrmReservation frm = FrmReservation.GetForm(this);
             frm.Show();
             if (frm.WindowState == FormWindowState.Minimized)
                 frm.WindowState = FormWindowState.Normal;

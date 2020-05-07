@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoNetDrive.Protocol.POS.Reservation.DatabaseDetail
+namespace DoNetDrive.Protocol.POS.Reservation
 {
     /// <summary>
     /// 控制器中的订餐数据库信息
@@ -16,12 +16,12 @@ namespace DoNetDrive.Protocol.POS.Reservation.DatabaseDetail
         /// <summary>
         /// 最大容量
         /// </summary>
-        public ushort SortDataBaseSize;
+        public ushort SortSize;
 
         /// <summary>
         /// 最大容量
         /// </summary>
-        public ushort SortSize;
+        public ushort UseSize;
 
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace DoNetDrive.Protocol.POS.Reservation.DatabaseDetail
 
         public void SetBytes(IByteBuffer buf)
         {
-            SortDataBaseSize = buf.ReadUnsignedShort();
             SortSize = buf.ReadUnsignedShort();
+            UseSize = buf.ReadUnsignedShort();
 
         }
 

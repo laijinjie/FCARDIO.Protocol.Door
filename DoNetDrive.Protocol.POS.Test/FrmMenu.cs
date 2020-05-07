@@ -42,11 +42,12 @@ namespace DotNetDrive.Protocol.POS.Test
         /// <summary>
         /// 卡号字典
         /// </summary>
-        HashSet<int> MenudHashTable = null;
+        HashSet<int> MenuHashTable = null;
 
         private void FrmMenu_Load(object sender, EventArgs e)
         {
-            MenudHashTable = new HashSet<int>();
+            MenuHashTable = new HashSet<int>();
+            dgvMenu.AutoGenerateColumns = false;
         }
 
         private BindingList<MenuDetail> ListMenuDetail = new BindingList<MenuDetail>();
@@ -102,6 +103,7 @@ namespace DotNetDrive.Protocol.POS.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             cmdDtl.Timeout = 4000;
+            MenuHashTable.Clear();
             ClearMenuDataBase cmd = new ClearMenuDataBase(cmdDtl);
             mMainForm.AddCommand(cmd);
 
@@ -125,6 +127,10 @@ namespace DotNetDrive.Protocol.POS.Test
                 menu.MenuPrice = ListMenuDetail[i].MenuPrice;
                 menu.MenuName = ListMenuDetail[i].MenuName;
                 _list.Add(menu);
+            }
+            if (_list.Count == 0)
+            {
+                return;
             }
             WriteMenu_Parameter par = new WriteMenu_Parameter(_list);
             AddMenu cmd = new AddMenu(cmdDtl, par);
@@ -208,7 +214,7 @@ namespace DotNetDrive.Protocol.POS.Test
             MenuDetail menu = new MenuDetail();
             menu.MenuBarCode = txtBarCode.Text;
             menu.MenuCode = code;
-            menu.MenuPrice = Convert.ToInt32(price * 100);
+            menu.MenuPrice = price;
             menu.MenuName = txtName.Text;
             _list.Add(menu);
             WriteMenu_Parameter par = new WriteMenu_Parameter(_list);
@@ -225,6 +231,8 @@ namespace DotNetDrive.Protocol.POS.Test
         private void butClearList_Click(object sender, EventArgs e)
         {
             ListMenuDetail.Clear();
+            dgvMenu.DataSource = ListMenuDetail;
+            MenuHashTable.Clear();
         }
 
         private void butReadMenu_Click(object sender, EventArgs e)
@@ -259,12 +267,7 @@ namespace DotNetDrive.Protocol.POS.Test
 
         private void butDeleteFromDevice_Click(object sender, EventArgs e)
         {
-            int usercode = 0;
-            if (!int.TryParse(txtCode.Text, out usercode))
-            {
-                MessageBox.Show("商品代码格式不正确");
-                return;
-            }
+         
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             List<MenuDetail> _list = new List<MenuDetail>();
@@ -277,8 +280,12 @@ namespace DotNetDrive.Protocol.POS.Test
                     _list.Add(new MenuDetail() { MenuCode = Convert.ToInt32(cellContent.Value) });
                 }
             }
-          
-           
+            if (_list.Count == 0)
+            {
+                return;
+            }
+
+
             WriteMenu_Parameter par = new WriteMenu_Parameter(_list);
             DeleteMenu cmd = new DeleteMenu(cmdDtl, par);
             mMainForm.AddCommand(cmd);
@@ -300,6 +307,7 @@ namespace DotNetDrive.Protocol.POS.Test
             //{
             //    return;
             //}
+            if (iBeginNum == 0) iBeginNum = 1;
 
 
             ListMenuDetail.RaiseListChangedEvents = false;
@@ -309,7 +317,7 @@ namespace DotNetDrive.Protocol.POS.Test
                 menu = CreateNewMenuDetail(iBeginNum++);
                 if (menu != null)
                 {
-                    menu.MenuPrice = 100;
+                    menu.MenuPrice = 1;
                     menu.MenuName = "商品：" + menu.MenuCode.ToString();
                     AddMenuBaseToList(menu);
 
@@ -324,10 +332,10 @@ namespace DotNetDrive.Protocol.POS.Test
 
         private bool AddMenuBaseToList(MenuDetail menu)
         {
-            if (!MenudHashTable.Contains(menu.MenuCode))
+            if (!MenuHashTable.Contains(menu.MenuCode))
             {
                 ListMenuDetail.Add(menu);
-                MenudHashTable.Add(menu.MenuCode);
+                MenuHashTable.Add(menu.MenuCode);
                 return true;
             }
             return false;
@@ -344,7 +352,7 @@ namespace DotNetDrive.Protocol.POS.Test
         {
            
             //检查卡片是否重复
-            if (MenudHashTable.Contains(code))
+            if (MenuHashTable.Contains(code))
             {
                 if (code == 0)
                 {
@@ -395,6 +403,22 @@ namespace DotNetDrive.Protocol.POS.Test
         {
             int col = e.ColumnIndex, row = e.RowIndex;
             if (row < 0) return;
+
+            if (e.ColumnIndex == 0)
+            {
+                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgvMenu.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if ((bool)cell.FormattedValue)
+                {
+                    cell.Value = false;
+                    cell.EditingCellFormattedValue = false;
+                }
+                else
+                {
+                    cell.Value = true;
+                    cell.EditingCellFormattedValue = true;
+                }
+            }
+
             var gdRow = dgvMenu.Rows[row];
             var menu = gdRow.DataBoundItem as MenuDetail;
             //StringBuilder strBuf = new StringBuilder();
@@ -413,7 +437,7 @@ namespace DotNetDrive.Protocol.POS.Test
             txtCode.Text = menu.MenuCode.ToString();
             txtName.Text = menu.MenuName;
             txtBarCode.Text = menu.MenuBarCode;
-            txtPrice.Value = Convert.ToDecimal(menu.MenuPrice) / 100;
+            txtPrice.Value = Convert.ToDecimal(menu.MenuPrice) / (decimal)100;
         }
     }
 }

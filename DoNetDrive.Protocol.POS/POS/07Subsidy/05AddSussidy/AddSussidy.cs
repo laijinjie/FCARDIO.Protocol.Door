@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace DoNetDrive.Protocol.POS.Subsidy
 {
-    public class AddSussidy : TemplateWriteData_Base<AddSussidy_Parameter, SubsidyDetail>
+    public class AddSussidy : TemplateWriteData_Base<WriteSussidy_Parameter, SubsidyDetail>
     {
         /// <summary>
         /// 当前命令进度
@@ -20,14 +20,17 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="par"></param>
-        public AddSussidy(Protocol.DESDriveCommandDetail cd, AddSussidy_Parameter par) : base(cd, par)
+        public AddSussidy(Protocol.DESDriveCommandDetail cd, WriteSussidy_Parameter par) : base(cd, par)
         {
         }
 
         protected override void CreatePacket0()
         {
             mStep = 1;
-            Packet(0x07, 0x04, 0x00);
+            Packet(0x07, 0x04);
+
+            _ProcessMax = mPar.DataList.Count + 2;
+            _ProcessStep = 1;
         }
         /// <summary>
         /// 
@@ -49,7 +52,7 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         protected override bool CheckResponseCompleted(DESPacket oPck)
         {
             var subPck = oPck.CommandPacket;
-            return (subPck.CmdType == 0x36 &&
+            return (subPck.CmdType == 0x37 &&
                 subPck.CmdIndex == 4 &&
                 subPck.CmdPar == 0xff);
         }
@@ -62,8 +65,52 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         /// <param name="data"></param>
         protected override void WriteDataBodyToBuf(IByteBuffer databuf, TemplateData_Base data)
         {
-            Data.MenuDetail menuDetail = data as Data.MenuDetail;
-            menuDetail.GetBytes(databuf);
+            SubsidyDetail subsidyDetail = data as SubsidyDetail;
+            subsidyDetail.GetBytes(databuf);
+        }
+
+        /// <summary>
+        /// 重写父类对处理返回值的定义
+        /// </summary>
+        /// <param name="oPck"></param>
+        protected override void CommandNext0(DESPacket oPck)
+        {
+            switch (mStep)
+            {
+                case 1://处理开始写入指令返回
+                    if (CheckResponse_OK(oPck))
+                    {
+                        _ProcessStep++;
+                        //硬件已准备就绪，开始写入卡
+
+                        //创建一个通讯缓冲区
+                        int bufSize = mPar.DataList.Count * 8 + 1;
+                        var buf = GetNewCmdDataBuf(bufSize);
+                        WriteDataToBuf(buf);
+                        Packet(0x07, 0x04, 0x01, (uint)buf.ReadableBytes, buf);
+                        CommandReady();//设定命令当前状态为准备就绪，等待发送
+                        mStep = 2;//使命令进入下一个阶段
+                        return;
+                    }
+                    break;
+                case 2:
+                    if (CheckResponse_OK(oPck))
+                    {
+                        //继续发下一包
+                        CommandNext1(oPck);
+                    }
+
+                    break;
+                case 3:
+                    if (CheckResponse_OK(oPck))
+                    {
+                        CommandCompleted();
+                    }
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         /// <summary>
@@ -74,6 +121,19 @@ namespace DoNetDrive.Protocol.POS.Subsidy
             var buf = GetNewCmdDataBuf(MaxBufSize);
             WriteDataToBuf(buf);
             Packet(0x07, 0x4, 0x00, (uint)buf.ReadableBytes, buf);
+        }
+
+        protected override void CreateCommandNextPacket(IByteBuffer buf)
+        {
+            Packet(0x07, 0x04, 0x01, (uint)buf.ReadableBytes, buf);
+        }
+
+        protected override void SendCommandCompleted()
+        {
+            mStep = 3;
+            Packet(0x07, 0x04, 0x02);
+            CommandReady();
+
         }
     }
 }

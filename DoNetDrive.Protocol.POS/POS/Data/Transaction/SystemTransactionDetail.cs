@@ -1,17 +1,34 @@
-﻿using System;
+﻿using DotNetty.Buffers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DotNetty.Buffers;
 
 namespace DoNetDrive.Protocol.POS.Data
 {
-    public class SystemTransactionDetail : TransactionDetailBase
+    public class SystemTransactionDetail : TransactionDetail
     {
-        public override void SetBytes(IByteBuffer data)
+        /// <summary>
+        /// 获取长度
+        /// </summary>
+        /// <returns></returns>
+        public new int GetDataLen()
         {
-            throw new NotImplementedException();
+            return 0x20;
+        }
+
+        /// <summary>
+        /// 从字节缓冲区中生成一个对象
+        /// </summary>
+        /// <param name="data"></param>
+        public new void SetBytes(IByteBuffer data)
+        {
+            DataBaseMaxSize = data.ReadUnsignedInt();
+            StartIndex = data.ReadUnsignedInt();
+            EndIndex = data.ReadUnsignedInt();
+            WriteIndex = data.ReadUnsignedInt();
+            return;
         }
     }
 }

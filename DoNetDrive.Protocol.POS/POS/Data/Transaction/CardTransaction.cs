@@ -2,6 +2,7 @@
 using DoNetDrive.Protocol.Transaction;
 using DoNetDrive.Protocol.Util;
 using System;
+using DoNetTool.Common.Extensions;
 
 namespace DoNetDrive.Protocol.POS.Data
 {
@@ -10,7 +11,10 @@ namespace DoNetDrive.Protocol.POS.Data
     /// </summary>
     public class CardTransaction : AbstractTransaction
     {
-       
+        /// <summary>
+        /// 记录编号
+        /// </summary>
+        public int RecordNumber;
         /// <summary>
         /// 卡号
         /// </summary>
@@ -45,24 +49,24 @@ namespace DoNetDrive.Protocol.POS.Data
         public byte Discount;
 
         /// <summary>
-        /// 现金账户现金账户(3B)
+        /// 现金账户变动金额(3B)
         /// </summary>
-        public int POSMoney;
+        public decimal POSMoney;
 
         /// <summary>
-        /// 补贴账户现金账户(3B)
+        /// 补贴账户变动金额(3B)
         /// </summary>
-        public int SubsidyMoney;
+        public decimal SubsidyMoney;
 
         /// <summary>
         /// 现金余额(3B)
         /// </summary>
-        public int POSMoneyTotal;
+        public decimal POSMoneyTotal;
 
         /// <summary>
         /// 补贴余额(3B)
         /// </summary>
-        public int POSSubsidyMoneyTotal;
+        public decimal POSSubsidyMoneyTotal;
 
         /// <summary>
         /// 消费时段
@@ -99,18 +103,20 @@ namespace DoNetDrive.Protocol.POS.Data
         {
             try
             {
+                RecordNumber = dtBuf.ReadMedium();
                 CardData = (ulong)dtBuf.ReadLong();
                 POSWorkMode = dtBuf.ReadByte();
                 CardType = dtBuf.ReadByte();
                 _TransactionCode = dtBuf.ReadByte();
-
-                _TransactionDate = TimeUtil.BCDTimeToDate_yyMMddhhmmssByDex(dtBuf);
+                byte[] bData = new byte[4];
+                dtBuf.ReadBytes(bData, 0,4);
+                _TransactionDate = BufToDateTime(bData);//TimeUtil.BCDTimeToDate_ssmmHHddMMWWyy(dtBuf);
                 POSSerialNumber = dtBuf.ReadUnsignedShort();
                 Discount = dtBuf.ReadByte();
-                POSMoney = dtBuf.ReadUnsignedMedium();
-                SubsidyMoney = dtBuf.ReadUnsignedMedium();
-                POSMoneyTotal = dtBuf.ReadUnsignedMedium();
-                SubsidyMoney = dtBuf.ReadUnsignedMedium();
+                POSMoney = (decimal)dtBuf.ReadUnsignedMedium() / (decimal)100.0;
+                SubsidyMoney = (decimal)dtBuf.ReadUnsignedMedium() / (decimal)100.0;
+                POSMoneyTotal = (decimal)dtBuf.ReadUnsignedMedium() / (decimal)100.0;
+                POSSubsidyMoneyTotal = (decimal)dtBuf.ReadUnsignedMedium() / (decimal)100.0;
                 POSTimeGroup = dtBuf.ReadByte();
                 SpecialMarking = dtBuf.ReadByte();
             }
@@ -120,6 +126,20 @@ namespace DoNetDrive.Protocol.POS.Data
 
             return;
 
+        }
+
+        DateTime BufToDateTime(byte[] bData)
+        {
+            Array.Reverse(bData);
+            var time = bData.ToInt32(); //0x80ca3050;
+            var s = time >> 26 & 0x3f;
+            var m = time >> 20 & 0x3f;
+            var h = time >> 15 & 0x1f;
+            var d = time >> 10 & 0x1f;
+            var mm = time >> 6 & 0xf;
+            var y = time & 0x3f;
+
+            return new DateTime(2000 + (int)y, (int)mm, (int)d, (int)h, (int)m, (int)s);
         }
     }
 }
