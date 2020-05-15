@@ -16,7 +16,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.Integral
         /// <summary>
         /// 消费金额
         /// </summary>
-        public int Money;
+        public decimal Money;
 
         /// <summary>
         /// 积分值
@@ -69,7 +69,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.Integral
             {
                 return false;
             }
-            if (Money < 0)
+            if (Money < 0 || Money > 21474836)
             {
                 return false;
             }
@@ -108,7 +108,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.Integral
                 throw new ArgumentException("databuf len error");
             }
             databuf.WriteByte(Use);
-            databuf.WriteInt(Money);
+            databuf.WriteInt(Convert.ToInt32(Money * 100));
             databuf.WriteInt(Integral);
             databuf.WriteInt(MaxIntegral);
             databuf.WriteInt(MaxCount);
@@ -135,7 +135,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.Integral
                 throw new ArgumentException("databuf Error");
             }
             Use = databuf.ReadByte();
-            Money = databuf.ReadInt();
+            Money = (decimal)databuf.ReadInt() / (decimal)100;
             Integral = databuf.ReadInt();
             MaxIntegral = databuf.ReadInt();
             MaxCount = databuf.ReadInt();

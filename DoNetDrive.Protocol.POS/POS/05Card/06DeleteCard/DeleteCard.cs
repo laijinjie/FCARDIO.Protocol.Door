@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace DoNetDrive.Protocol.POS.Card
 {
     /// <summary>
-    /// 删除菜单命令
+    /// 删除名单命令
     /// </summary>
     public class DeleteCard : TemplateWriteData_Base<WriteCard_Parameter, Data.CardDetail>
     {

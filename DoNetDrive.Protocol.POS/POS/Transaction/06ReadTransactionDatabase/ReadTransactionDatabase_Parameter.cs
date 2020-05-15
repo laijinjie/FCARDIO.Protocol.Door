@@ -43,7 +43,7 @@ namespace DoNetDrive.Protocol.POS.Transaction
             {
                 throw new ArgumentException("PacketSize Error!");
             }
-            if (Quantity < 0 || Quantity > 1000000)
+            if (Quantity < 0 || Quantity > 1000)
             {
                 throw new ArgumentException("Quantity Error!");
             }

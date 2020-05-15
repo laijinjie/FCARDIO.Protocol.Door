@@ -1,7 +1,7 @@
 ﻿using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.POS.Protocol;
 
-namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Message
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay
 {
     /// <summary>
     /// 读取短消息命令

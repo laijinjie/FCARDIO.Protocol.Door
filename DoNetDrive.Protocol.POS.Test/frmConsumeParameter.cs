@@ -8,8 +8,10 @@ using DoNetDrive.Protocol.POS.ConsumeParameter.FixedFeeRule;
 using DoNetDrive.Protocol.POS.ConsumeParameter.ICCardAccount;
 using DoNetDrive.Protocol.POS.ConsumeParameter.Integral;
 using DoNetDrive.Protocol.POS.ConsumeParameter.POSWorkMode;
+using DoNetDrive.Protocol.POS.ConsumeParameter.ReservationRule;
 using DoNetDrive.Protocol.POS.ConsumeParameter.TemporaryChangeFixedFee;
 using DoNetDrive.Protocol.POS.Data;
+using DoNetTool.Common.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +19,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -51,10 +54,33 @@ namespace DotNetDrive.Protocol.POS.Test
 
         List<string> mPOSWorkMode = new List<string> { "标准收费", "定额收费", "菜单收费", "订餐机", "补贴机", "子账收费", "子账补贴" };
 
+        string[] WeekdayList = new string[] { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日" };
+
+        int mWeekdayIndex = 1;
+
+        private BindingList<ReservationRuleDetail> ListReservationRuleDetail = new BindingList<ReservationRuleDetail>();
+
+        /// <summary>
+        /// 订餐规则
+        /// </summary>
+        WeekReservationRule mWeekReservationRule;
+
         private void frmConsumeParameter_Load(object sender, EventArgs e)
         {
             cmbPOSWorkMode.Items.AddRange(mPOSWorkMode.ToArray());
             cmbPOSWorkMode.SelectedIndex = 0;
+
+            for (int i = 0; i < 8; i++)
+            {
+                ReservationRuleDetail detail = new ReservationRuleDetail();
+                detail.SerialNumber = (byte)(i + 1);
+                detail.BeginTime = new DateTime(2000,1,1,0,0,0);
+                detail.EndTime = new DateTime(2000,1,1,0,0,0);
+                ListReservationRuleDetail.Add(detail);
+            }
+            dgvReservationRule.AutoGenerateColumns = false; 
+            dgvReservationRule.DataSource = new BindingList<ReservationRuleDetail>(ListReservationRuleDetail);
+
         }
 
         public frmConsumeParameter()
@@ -74,7 +100,7 @@ namespace DotNetDrive.Protocol.POS.Test
             {
                 ReadPOSWorkMode_Result result = cmde.Command.getResult() as ReadPOSWorkMode_Result;
 
-                string tip = $"消费模式:{mPOSWorkMode[result.Mode - 1]}";
+                string tip = $"消费模式：{mPOSWorkMode[result.Mode - 1]}";
                 Invoke(() =>
                 {
                     cmbPOSWorkMode.SelectedIndex = result.Mode - 1;
@@ -104,7 +130,7 @@ namespace DotNetDrive.Protocol.POS.Test
             {
                 ReadConsumptionLimits_Result result = cmde.Command.getResult() as ReadConsumptionLimits_Result;
 
-                string tip = "";
+                string tip = $"消费限额：单次限额:{result.LimitMoney},单日限额:{result.DayLimitMoney},单日限次:{result.DayLimit},月限额:{result.MonthLimitMoney},月限次:{result.MonthLimit},卡内最低保留余额:{result.MinimumReservedBalance}";
                 Invoke(() =>
                 {
                     txtLimitMoney.Value = result.LimitMoney;
@@ -266,7 +292,11 @@ namespace DotNetDrive.Protocol.POS.Test
             {
                 ReadAdditionalCharges_Result result = cmde.Command.getResult() as ReadAdditionalCharges_Result;
                 bool bUseAdditionalCharges = result.Use == 1;
-                string tip = $"附加费用，时段多次消费收取附加费:【{(bUseAdditionalCharges ? "启用" : "不启用")}，】";
+                string tip = $"附加费用，时段多次消费收取附加费:【{(bUseAdditionalCharges ? "启用" : "不启用")}】";
+                if (bUseAdditionalCharges)
+                {
+                    tip += $"，时段消费超过 {result.FreeTimes} 次时收取附加费";
+                }
                 Invoke(() =>
                 {
                     cbUseAdditionalCharges.Checked = bUseAdditionalCharges;
@@ -300,7 +330,7 @@ namespace DotNetDrive.Protocol.POS.Test
                 bool bUsePOSDiscount = result.UsePOSDiscount == 1;
                 bool bUseCardTypeDiscount = result.UseCardTypeDiscount == 1;
                 bool bUseDoubleDiscount = result.UseDoubleDiscount == 1;
-                string tip = $"折扣:【{(bUseICCardDiscount ? "IC卡折扣启用" : "IC卡折扣不启用")}，】";
+                string tip = $"折扣:【本机折扣:{result.POSDiscount}，{(bUseICCardDiscount ? "IC卡折扣启用" : "IC卡折扣不启用")}，{(bUseCardTypeDiscount ? "卡类折扣启用" : "卡类折扣不启用")}，{(bUsePOSDiscount ? "机器折扣启用" : "机器折扣不启用")}，{(bUseDoubleDiscount ? "折上折扣启用" : "折上折扣不启用")}】";
                 Invoke(() =>
                 {
                     cbUseICCardDiscount.Checked = bUseICCardDiscount;
@@ -335,7 +365,7 @@ namespace DotNetDrive.Protocol.POS.Test
             {
                 ReadIntegral_Result result = cmde.Command.getResult() as ReadIntegral_Result;
                 bool bUse = result.Use == 1;
-                string tip = $"积分:【{(bUse ? "积分启用" : "积分不启用")}，】";
+                string tip = $"积分:【{(bUse ? "积分启用" : "积分不启用")}，消费金额:{result.Money}，积分值:{result.Integral}，单次最大累计次数:{result.MaxCount}，单次消费最高积分:{result.MaxIntegral}】";
                 Invoke(() =>
                 {
                     cbUseIntegral.Checked = bUse;
@@ -372,7 +402,7 @@ namespace DotNetDrive.Protocol.POS.Test
                 bool bUse = result.Use == 1;
                 bool bUseResidueCount = result.UseResidueCount == 1;
 
-                string tip = $"积分:【{(bUse ? "积分启用" : "积分不启用")}，】";
+                string tip = $"计次:【{(bUse ? "计次启用" : "计次不启用")}，单次消费扣除次数{result.DeductionCount},{(bUseResidueCount ? "启用计次卡消费后不扣除剩余次数":"不启用计次卡消费后不扣除剩余次数")}】";
                 Invoke(() =>
                 {
                     cbUseCountingCards.Checked = bUse;
@@ -411,7 +441,13 @@ namespace DotNetDrive.Protocol.POS.Test
                     dgvFixedFeeRule.DataSource = new BindingList<FixedFeeRuleDetail>(result.DataList);
                     //dgvFixedFeeRule.DataSource = result.PrintContents;
                 });
-                //mMainForm.AddCmdLog(cmde, result.Message);
+                StringBuilder sb = new StringBuilder($"定额扣费规则：");
+                foreach (var item in result.DataList)
+                {
+                    sb.AppendLine($"序号:{item.SerialNumber},开始时间:{item.BeginTime.ToString("HH:mm")},结束时间:{item.EndTime.ToString("HH:mm")},订餐:{(item.IsReservation == 1 ? "启用" : "禁用")},定额值:{item.FixedFee},消费限额:{item.ConsumptionLimits},限次:{item.Limite},计次卡限次:{item.CountingCardsLimitsCount},计次卡扣次:{item.CountingCardsDeductionCount},餐段名称:{item.MealTimeName}");
+                }
+
+                mMainForm.AddCmdLog(cmde, sb.ToString());
             };
         }
 
@@ -445,9 +481,9 @@ namespace DotNetDrive.Protocol.POS.Test
                 var endminute = cellEndTime.Value.ToString().Split(':')[1];
                 model.BeginTime = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,int.Parse(beginhour), int.Parse(beginminute), 0) ;
                 model.EndTime = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,int.Parse(endhour), int.Parse(endminute), 0) ;
-                model.ConsumptionLimits = (int)cellConsumptionLimits.Value;
+                model.ConsumptionLimits = (decimal)cellConsumptionLimits.Value;
                 model.Limite = (byte)cellLimite.Value;
-                model.FixedFee = (int)cellFixedFee.Value;
+                model.FixedFee = (decimal)cellFixedFee.Value;
                 model.CountingCardsDeductionCount = (byte)cellCountingCardsDeductionCount.Value;
                 model.CountingCardsLimitsCount = (byte)cellCountingCardsLimitsCount.Value;
                 model.MealTimeName = cellMealTimeName.Value.ToString();
@@ -497,6 +533,164 @@ namespace DotNetDrive.Protocol.POS.Test
             {
                 dgvFixedFeeRule.BeginEdit(false); //开始编辑状态
                 dgvFixedFeeRule.ReadOnly = true;
+            }
+        }
+
+        private void dgvReservationRule_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+           
+            if ((e.ColumnIndex >= 1 && e.ColumnIndex <= 4) )
+            {
+                DataGridViewTextBoxColumn textbox = dgvReservationRule.Columns[e.ColumnIndex] as DataGridViewTextBoxColumn;
+                if (textbox != null) //如果该列是TextBox列
+                {
+                    dgvReservationRule.BeginEdit(true); //开始编辑状态
+                    dgvReservationRule.ReadOnly = false;
+                }
+
+            }
+            else
+            {
+                dgvReservationRule.BeginEdit(false);
+                dgvReservationRule.ReadOnly = true;
+            }
+        }
+
+        private void butReadReservationRule_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadReservationRule cmd = new ReadReservationRule(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadReservationRule_Result result = cmde.Command.getResult() as ReadReservationRule_Result;
+
+                Invoke(() =>
+                {
+                    mWeekReservationRule = result.WeekReservationRule;
+                    dgvReservationRule.DataSource = new BindingList<ReservationRuleDetail>(mWeekReservationRule.GetItem(mWeekdayIndex - 1).mReservationRules);
+                    //dgvReservationRule.DataSource = new BindingList<ReservationRuleDetail>(result.DataList);
+                    //dgvFixedFeeRule.DataSource = result.PrintContents;
+                });
+                StringBuilder sb = new StringBuilder($"订餐规则：");
+                for (int i = 0; i < 7; i++)
+                {
+                    DayReservationRule dayReservationRule = mWeekReservationRule.GetItem(i);
+                    sb.AppendLine(WeekdayList[i]);
+                    for (int j = 0; j < 8; j++)
+                    {
+                        ReservationRuleDetail item = dayReservationRule.GetItem(j);
+                        sb.AppendLine($"序号:{item.SerialNumber},开始时间:{item.ShowBeginTime},结束时间:{item.ShowEndTime},订餐星期:{item.ShowWeekday},订餐餐段:{item.MealTimeIndex}");
+                    }
+                }
+                //foreach (var item in result.DataList)
+                //{
+                //    sb.AppendLine($"序号:{item.SerialNumber},开始时间:{item.BeginTime.ToString("HH:mm")},结束时间:{item.EndTime.ToString("HH:mm")},订餐:{(item.IsReservation == 1 ? "启用" : "禁用")},定额值:{item.FixedFee},消费限额:{item.ConsumptionLimits},限次:{item.Limite},计次卡限次:{item.CountingCardsLimitsCount},计次卡扣次:{item.CountingCardsDeductionCount},餐段名称:{item.MealTimeName}");
+                //}
+
+                mMainForm.AddCmdLog(cmde, sb.ToString());
+            };
+        }
+
+        private void butWriteReservationRule_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            WriteReservationRule_Parameter par = new WriteReservationRule_Parameter(mWeekReservationRule);
+            WriteReservationRule cmd = new WriteReservationRule(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+        }
+
+
+        private void butWeekday_Click(object sender, EventArgs e)
+        {
+            for (int i = 1; i <= 7; i++)
+            {
+                Button btnWeekday = FindControl(gbReservationRule, "butWeekday" + i.ToString()) as Button;
+                btnWeekday.BackColor = Color.Transparent;
+            }
+            Button button = sender as Button;
+            button.BackColor = Color.LightGreen;
+            mWeekdayIndex = button.Name.Substring(10, 1).ToInt32();
+
+            dgvReservationRule.DataSource = new BindingList<ReservationRuleDetail>(mWeekReservationRule.GetItem(mWeekdayIndex - 1).mReservationRules);
+        }
+
+        private void dgvReservationRule_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dgvReservationRule.CurrentCell.ColumnIndex == 1 || dgvReservationRule.CurrentCell.ColumnIndex == 2 || dgvReservationRule.CurrentCell.ColumnIndex == 4)
+            {
+                DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
+                editingControl.TextChanged += (se, ea) =>
+                {
+                    int RowIndex = dgvReservationRule.CurrentCell.RowIndex;
+                    int ColumnIndex = dgvReservationRule.CurrentCell.ColumnIndex;
+                    //listFix[dataGridView5.CurrentCell.RowIndex].Card = dataGridView5.CurrentCell.EditedFormattedValue.ToString();
+                    string value = dgvReservationRule.CurrentCell.EditedFormattedValue.ToString();
+                    int MealTimeIndex = 0;
+                    //订餐餐段
+                    if (ColumnIndex == 4)
+                    {
+                        if (!int.TryParse(value,out MealTimeIndex) || (MealTimeIndex < 1 || MealTimeIndex > 8))
+                        {
+                            return;
+                        }
+                        mWeekReservationRule.GetItem(mWeekdayIndex - 1).mReservationRules[RowIndex].MealTimeIndex = MealTimeIndex;
+
+                    }
+
+                    if (ColumnIndex == 1)
+                    {
+                        Regex r = new Regex(@"^([01]\d|2[0123]):([0-5]\d|60)$");
+                        if (r.Match(value).Success)
+                        {
+                            int hour = value.Split(':')[0].ToInt32();
+                            int minute = value.Split(':')[1].ToInt32();
+                            mWeekReservationRule.GetItem(mWeekdayIndex - 1).mReservationRules[RowIndex].BeginTime = new DateTime(2000,1,1, hour,minute,0);
+                        }
+                        else
+                        {
+
+                        }
+
+                    }
+                    if (ColumnIndex == 2)
+                    {
+                        Regex r = new Regex(@"^([01]\d|2[0-3]):([0-5]\d)$");
+                        if (r.Match(value).Success)
+                        {
+                            int hour = value.Split(':')[0].ToInt32();
+                            int minute = value.Split(':')[1].ToInt32();
+                            mWeekReservationRule.GetItem(mWeekdayIndex - 1).mReservationRules[RowIndex].EndTime = new DateTime(2000, 1, 1, hour, minute, 0);
+                        }
+                        else
+                        {
+
+                        }
+
+                    }
+                };
+            }
+            if (dgvReservationRule.CurrentCell.ColumnIndex == 3)
+            {
+                DataGridViewComboBoxEditingControl editingControl = e.Control as DataGridViewComboBoxEditingControl;
+                editingControl.SelectedIndexChanged += (se, ea) =>
+                {
+                    int RowIndex = dgvReservationRule.CurrentCell.RowIndex;
+                    int ColumnIndex = dgvReservationRule.CurrentCell.ColumnIndex;
+                    if (editingControl.SelectedIndex != 0)
+                    {
+                        mWeekReservationRule.GetItem(mWeekdayIndex - 1).mReservationRules[RowIndex].Weekday = editingControl.SelectedIndex;
+                    }
+                };
+                   
             }
         }
     }

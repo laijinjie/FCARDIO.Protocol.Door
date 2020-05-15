@@ -76,19 +76,19 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (LimitMoney < 0)
+            if (LimitMoney < 0 || LimitMoney > 21474836)
             {
                 return false;
             }
-            if (DayLimitMoney < 0)
+            if (DayLimitMoney < 0 || DayLimitMoney > 21474836)
             {
                 return false;
             }
-            if (MonthLimitMoney < 0)
+            if (MonthLimitMoney < 0 || MonthLimitMoney > 21474836)
             {
                 return false;
             }
-            if (MinimumReservedBalance < 0)
+            if (MinimumReservedBalance < 0 || MinimumReservedBalance > 21474836)
             {
                 return false;
             }

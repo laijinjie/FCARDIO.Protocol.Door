@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.DisplayContent
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay
 {
     /// <summary>
     /// 设置消费时显示内容命令参数

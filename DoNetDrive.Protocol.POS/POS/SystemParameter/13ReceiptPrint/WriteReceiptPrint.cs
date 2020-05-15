@@ -29,6 +29,17 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ReceiptPrint
             Packet(0x01, 0x0D, 0x00, 2, model.GetBytes(buf));
         }
 
+        /// <summary>
+        /// 处理返回值
+        /// </summary>
+        /// <param name="oPck">包含返回指令的Packet</param>
+        protected override void CommandNext0(Protocol.DESPacket oPck)
+        {
+            if (CheckResponse_OK(oPck))
+            {
+                CommandCompleted();
+            }
 
+        }
     }
 }

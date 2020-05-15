@@ -30,7 +30,22 @@ namespace DoNetDrive.Protocol.POS.Subsidy
 
         protected override bool CheckedParameterItem(SubsidyDetail subsidy)
         {
-           
+            if (subsidy.SubsidyDate.Year < 2000 || subsidy.SubsidyDate.Year > 2099)
+            {
+                return false;
+            }
+            if (subsidy.SubsidyState > 1)
+            {
+                return false;
+            }
+            if (subsidy.SubsidyMoney < 0 || subsidy.SubsidyMoney > 21474836)
+            {
+                return false;
+            }
+            if (subsidy.ActualSubsidyMoney < 0 || subsidy.ActualSubsidyMoney > 21474836)
+            {
+                return false;
+            }
             return true;
         }
     }

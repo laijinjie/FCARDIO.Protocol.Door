@@ -48,5 +48,14 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.TCPSetting
 
             Packet(0x01, 0x06, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
+
+        protected override void CommandNext0(Protocol.DESPacket oPck)
+        {
+            if (CheckResponse_OK(oPck))
+            {
+                CommandCompleted();
+            }
+
+        }
     }
 }

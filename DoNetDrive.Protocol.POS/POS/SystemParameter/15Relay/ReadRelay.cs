@@ -1,10 +1,4 @@
-﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.POS.Protocol;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DoNetDrive.Protocol.POS.Protocol;
 
 namespace DoNetDrive.Protocol.POS.SystemParameter.Relay
 {

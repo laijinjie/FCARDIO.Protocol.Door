@@ -1,7 +1,7 @@
 ﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Message
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay
 {
     /// <summary>
     /// 设置消息命令
@@ -44,6 +44,15 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Message
             var buf = acl.Buffer(model.GetDataLen());
 
             Packet(0x01, 0x09, 0x04, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+        }
+
+        protected override void CommandNext0(Protocol.DESPacket oPck)
+        {
+            if (CheckResponse_OK(oPck))
+            {
+                CommandCompleted();
+            }
+
         }
     }
 }

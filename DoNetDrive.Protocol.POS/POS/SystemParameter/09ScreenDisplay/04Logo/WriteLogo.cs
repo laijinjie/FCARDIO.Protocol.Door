@@ -1,7 +1,7 @@
 ﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Logo
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay
 {
     /// <summary>
     /// 设置开机供应商Logo命令

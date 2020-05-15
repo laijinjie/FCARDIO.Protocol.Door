@@ -49,5 +49,14 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.Integral
 
             Packet(0x03, 0x10, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
+
+        protected override void CommandNext0(Protocol.DESPacket oPck)
+        {
+            if (CheckResponse_OK(oPck))
+            {
+                CommandCompleted();
+            }
+
+        }
     }
 }

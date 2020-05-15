@@ -16,7 +16,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumePassword
         /// <summary>
         /// 消费阀值
         /// </summary>
-        public int LimitMoney;
+        public decimal LimitMoney;
 
         /// <summary>
         /// 构建一个空的实例
@@ -28,7 +28,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumePassword
         /// </summary>
         /// <param name="Use">功能开关</param>
         /// <param name="LimitMoney">消费阀值</param>
-        public WriteConsumePassword_Parameter(byte Use, int LimitMoney)
+        public WriteConsumePassword_Parameter(byte Use, decimal LimitMoney)
         {
             this.Use = Use;
             this.LimitMoney = LimitMoney;
@@ -48,7 +48,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumePassword
             {
                 return false;
             }
-            if (LimitMoney < 0)
+            if (LimitMoney < 0 || LimitMoney > 21474836)
             {
                 return false;
             }
@@ -76,7 +76,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumePassword
                 throw new ArgumentException("databuf len error");
             }
             databuf.WriteByte(Use);
-            databuf.WriteInt(LimitMoney);
+            databuf.WriteInt(Convert.ToInt32(LimitMoney * 100));
             return databuf;
         }
 
@@ -100,7 +100,7 @@ namespace DoNetDrive.Protocol.POS.ConsumeParameter.ConsumePassword
                 throw new ArgumentException("databuf Error");
             }
             Use = databuf.ReadByte();
-            LimitMoney = databuf.ReadInt();
+            LimitMoney = (decimal)databuf.ReadInt() / (decimal)100;
         }
     }
 }

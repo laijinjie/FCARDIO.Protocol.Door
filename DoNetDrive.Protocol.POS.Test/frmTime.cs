@@ -1,5 +1,6 @@
 ﻿
 using DoNetDrive.Protocol.POS.Time;
+using DoNetDrive.Protocol.POS.Time.TimeErrorCorrection;
 using System;
 using System.Text.RegularExpressions;
 
@@ -84,5 +85,83 @@ namespace DotNetDrive.Protocol.POS.Test
             mMainForm.AddCommand(cmd);
         }
         #endregion
+
+        private void btnReadTimeCorrectionParameter_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadTimeError cmd = new ReadTimeError(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadTimeError_Result result = cmde.Command.getResult() as ReadTimeError_Result;
+                string CorrectionState = result.TimeErrorCorrection[0] == 0 ? "调慢" : "调快"; //误差修正状态
+                int CorrectionSeconds = result.TimeErrorCorrection[1]; //误差修正秒数
+                string tip = string.Empty;
+                if (CorrectionSeconds == 0)
+                {
+                    tip = "禁用";
+                }
+                else
+                {
+                    tip = "每天自动" + CorrectionState + CorrectionSeconds + "秒";
+                }
+
+                Invoke(() =>
+                {
+                    rBtnSlowDown.Checked = result.TimeErrorCorrection[0] == 0;
+                    cbxCorrectionSeconds.Text = CorrectionSeconds == 0 ? "禁用" : CorrectionSeconds.ToString();
+                });
+                mMainForm.AddCmdLog(cmde, tip);
+            };
+        }
+
+        private void btnWriteTimeCorrectionParameter_Click(object sender, EventArgs e)
+        {
+            string reg = @"^\+?[0-9]*$";
+            if (!Regex.IsMatch(cbxCorrectionSeconds.Text.Trim(), reg) || string.IsNullOrEmpty(cbxCorrectionSeconds.Text.Trim()))
+            {
+                if (cbxCorrectionSeconds.Text != "禁用")
+                {
+                    MsgErr("请输入正确修正秒数！");
+                    return;
+                }
+            }
+            if (Regex.IsMatch(cbxCorrectionSeconds.Text.Trim(), reg))
+            {
+                if (Convert.ToUInt32(cbxCorrectionSeconds.Text) < 0 || Convert.ToUInt32(cbxCorrectionSeconds.Text) > 255)
+                {
+                    MsgErr("请输入正确修正秒数！");
+                    return;
+                }
+            }
+
+            byte[] TimeErrorCorrection = new byte[2];
+
+            if (rBtnSpeedUp.Checked == true)
+            {
+                TimeErrorCorrection[0] = 1;
+            }
+            else
+            {
+                TimeErrorCorrection[0] = 0;
+            }
+
+            if (cbxCorrectionSeconds.Text == "禁用")
+            {
+                TimeErrorCorrection[1] = 0;
+            }
+            else
+            {
+                TimeErrorCorrection[1] = Convert.ToByte(cbxCorrectionSeconds.Text);
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteTimeError cmd = new WriteTimeError(cmdDtl, new WriteTimeError_Parameter(TimeErrorCorrection));
+            mMainForm.AddCommand(cmd);
+        }
     }
 }

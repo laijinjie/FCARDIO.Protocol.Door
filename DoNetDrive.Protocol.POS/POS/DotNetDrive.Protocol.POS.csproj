@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="02Time\ReadTime_Result.cs" />
     <Compile Include="02Time\TimeErrorCorrection\ReadTimeError.cs" />
+    <Compile Include="02Time\TimeErrorCorrection\ReadTimeError_Result.cs" />
     <Compile Include="02Time\TimeErrorCorrection\WriteTimeError.cs" />
     <Compile Include="02Time\TimeErrorCorrection\WriteTimeError_Parameter.cs" />
     <Compile Include="04TimeGroup\02ReadTimeGroup\ReadTimeGroup_Parameter.cs" />
@@ -173,11 +174,17 @@
     <Compile Include="ConsumeParameter\11CountingCards\ReadCountingCards_Result.cs" />
     <Compile Include="ConsumeParameter\11CountingCards\WriteCountingCards.cs" />
     <Compile Include="ConsumeParameter\11CountingCards\WriteCountingCards_Parameter.cs" />
+    <Compile Include="ConsumeParameter\12ReservationRule\ReadReservationRule.cs" />
+    <Compile Include="ConsumeParameter\12ReservationRule\ReadReservationRule_Result.cs" />
+    <Compile Include="ConsumeParameter\12ReservationRule\WriteReservationRule.cs" />
+    <Compile Include="ConsumeParameter\12ReservationRule\WriteReservationRule_Parameter.cs" />
     <Compile Include="Data\CardDetail.cs" />
     <Compile Include="Data\CardTypeDetail.cs" />
+    <Compile Include="Data\DayReservationRule.cs" />
     <Compile Include="Data\FixedFeeRuleDetail.cs" />
     <Compile Include="Data\MenuDetail.cs" />
     <Compile Include="Data\ReservationDetail.cs" />
+    <Compile Include="Data\ReservationRuleDetail.cs" />
     <Compile Include="Data\SubsidyDetail.cs" />
     <Compile Include="06Menu\01ReadDataBase\ReadMenuDataBase.cs" />
     <Compile Include="06Menu\01ReadDataBase\ReadMenuDataBase_Result.cs" />
@@ -190,12 +197,14 @@
     <Compile Include="06Menu\05AddMenu\AddMenu.cs" />
     <Compile Include="06Menu\05AddMenu\WriteMenu_Parameter.cs" />
     <Compile Include="06Menu\06DeleteMenu\DeleteMenu.cs" />
+    <Compile Include="Data\TimeGroup.cs" />
     <Compile Include="Data\TransactionDatabaseDetail.cs" />
     <Compile Include="Data\Transaction\CardTransaction.cs" />
     <Compile Include="Data\Transaction\SystemTransactionDetail.cs" />
     <Compile Include="Data\Transaction\CardTransactionDetail.cs" />
     <Compile Include="Data\Transaction\SystemTransaction.cs" />
     <Compile Include="Data\Transaction\TransactionDetail.cs" />
+    <Compile Include="Data\WeekReservationRule.cs" />
     <Compile Include="Protocol\DESCommand.cs" />
     <Compile Include="Protocol\DESCommandPacket.cs" />
     <Compile Include="Protocol\DESDriveCommandDetail.cs" />
@@ -209,6 +218,7 @@
     <Compile Include="SystemParameter\01SN\SN_Parameter.cs" />
     <Compile Include="SystemParameter\01SN\SN_Result.cs" />
     <Compile Include="SystemParameter\01SN\WriteSN.cs" />
+    <Compile Include="SystemParameter\01SN\WriteSN_Broadcast.cs" />
     <Compile Include="SystemParameter\02ConnectPassword\Password_Parameter.cs" />
     <Compile Include="SystemParameter\02ConnectPassword\Password_Result.cs" />
     <Compile Include="SystemParameter\02ConnectPassword\ReadConnectPassword.cs" />
@@ -315,6 +325,12 @@
     <Compile Include="SystemParameter\14Voice\ReadVoice_Result.cs" />
     <Compile Include="SystemParameter\14Voice\WriteVoice.cs" />
     <Compile Include="SystemParameter\14Voice\WriteVoice_Parameter.cs" />
+    <Compile Include="SystemParameter\16Watch\BeginWatch.cs" />
+    <Compile Include="SystemParameter\16Watch\CloseWatch.cs" />
+    <Compile Include="SystemParameter\11ConsumeLogStatisticsTime\ReadConsumeLogStatisticsTime.cs" />
+    <Compile Include="SystemParameter\11ConsumeLogStatisticsTime\ReadConsumeLogStatisticsTime_Result.cs" />
+    <Compile Include="SystemParameter\11ConsumeLogStatisticsTime\WriteConsumeLogStatisticsTime.cs" />
+    <Compile Include="SystemParameter\11ConsumeLogStatisticsTime\WriteConsumeLogStatisticsTime_Parameter.cs" />
     <Compile Include="TemplateMethod\TemplateData_Base.cs" />
     <Compile Include="TemplateMethod\TemplateParameter_Base.cs" />
     <Compile Include="TemplateMethod\TemplateReadData_Base.cs" />
@@ -333,6 +349,8 @@
     <Compile Include="Transaction\04WriteTransactionDatabaseIndex\WriteTransactionDatabaseIndex_Parameter.cs" />
     <Compile Include="Transaction\04WriteTransactionDatabaseIndex\WriteTransactionDatabaseStartIndex.cs" />
     <Compile Include="Transaction\04WriteTransactionDatabaseIndex\WriteTransactionDatabaseEndIndex.cs" />
+    <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Parameter.cs" />
+    <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Result.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Base.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Parameter.cs" />

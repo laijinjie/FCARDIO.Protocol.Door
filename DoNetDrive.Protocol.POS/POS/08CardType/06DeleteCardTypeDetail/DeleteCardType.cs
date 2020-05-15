@@ -1,14 +1,14 @@
-﻿using DotNetty.Buffers;
-using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.POS.CardType.ReadDataBase;
-using DoNetDrive.Protocol.POS.Data;
-using System;
-using System.Collections.Generic;
-using DoNetDrive.Protocol.POS.TemplateMethod;
+﻿using DoNetDrive.Protocol.POS.Data;
 using DoNetDrive.Protocol.POS.Protocol;
+using DoNetDrive.Protocol.POS.TemplateMethod;
+using DotNetty.Buffers;
+using System.Collections.Generic;
 
 namespace DoNetDrive.Protocol.POS.CardType
 {
+    /// <summary>
+    /// 删除卡类
+    /// </summary>
     public class DeleteCardType : TemplateWriteData_Base<WriteCardTypeDetail_Parameter, CardTypeDetail>
     {
         /// <summary>

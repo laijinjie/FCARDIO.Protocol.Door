@@ -1,10 +1,10 @@
 ﻿using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.POS.Protocol;
 
-namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.DisplayContent
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay
 {
     /// <summary>
-    /// 读取开机供应商Logo命令
+    /// 读取消费时显示内容命令
     /// </summary>
     public class ReadDisplayContent : Read_Command
     {

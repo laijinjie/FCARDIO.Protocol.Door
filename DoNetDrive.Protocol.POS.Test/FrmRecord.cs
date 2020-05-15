@@ -332,6 +332,47 @@ namespace DotNetDrive.Protocol.POS.Test
             }
         }
 
+        private void butReadTransactionDatabaseByIndex_Click(object sender, EventArgs e)
+        {
+            int type = cmbTransactionDatabaseType.SelectedIndex;
+            int Quantity = int.Parse(txtReadTransactionQuantity.Text);
+
+            int index = Convert.ToInt32(txtReadIndex.Value);
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            cmdDtl.Timeout = 1000;
+            cmdDtl.RestartCount = 20;
+
+            var par = new ReadTransactionDatabaseByIndex_Parameter((int)Get_TransactionDatabaseType(type), index, Quantity);
+          
+            var cmd = new ReadTransactionDatabaseByIndex(cmdDtl, par);
+            cmdDtl.Timeout = 4000;
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+
+                var result = cmde.Command.getResult() as ReadTransactionDatabaseByIndex_Result;
+                mMainForm.AddCmdLog(cmde, $"读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count}");
+
+                if (result.TransactionList.Count > 0)
+                {
+                    StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
+                    sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
+                    //sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
+
+                    //按序号排序
+                    result.TransactionList.Sort((x, y) => x.SerialNumber.CompareTo(y.SerialNumber));
+                    foreach (var t in result.TransactionList)
+                    {
+                        PrintTransactionList(t, sLogs);
+                    }
+                    string sFile = SaveFile(sLogs, $"读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
+                }
+            };
+        }
+
         public static string SaveFile(StringBuilder sLogs, string sFileName)
         {
             string sPath = System.IO.Path.Combine(Application.StartupPath, "记录日志");

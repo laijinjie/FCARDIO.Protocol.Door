@@ -1,8 +1,10 @@
 ﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.POS.SystemParameter.ReceiptPrint;
 
 namespace DoNetDrive.Protocol.POS.SystemParameter.ReceiptPrint
 {
+    /// <summary>
+    /// 设置小票打印
+    /// </summary>
     public class WritePrintContent : Write_Command
     {
         /// <summary>
@@ -28,6 +30,19 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ReceiptPrint
             var buf = acl.Buffer(198);
 
             Packet(0x01, 0x0D, 0x02, 198, mReceiptPrintPar.Content_GetBytes(buf));
+        }
+
+        /// <summary>
+        /// 处理返回值
+        /// </summary>
+        /// <param name="oPck">包含返回指令的Packet</param>
+        protected override void CommandNext0(Protocol.DESPacket oPck)
+        {
+            if (CheckResponse_OK(oPck))
+            {
+                CommandCompleted();
+            }
+
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoNetDrive.Protocol.POS.CardType.DatabaseDetail
+namespace DoNetDrive.Protocol.POS.CardType
 {
     /// <summary>
     /// 控制器中的订餐数据库信息

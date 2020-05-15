@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Title
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay
 {
     /// <summary>
     /// 设置标题命令参数

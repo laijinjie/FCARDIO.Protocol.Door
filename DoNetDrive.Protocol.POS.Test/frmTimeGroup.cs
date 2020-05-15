@@ -21,7 +21,8 @@ namespace DotNetDrive.Protocol.POS.Test
         /// <summary>
         /// 64个
         /// </summary>
-        List<WeekTimeGroup> ListWeekTimeGroup = new List<WeekTimeGroup>();
+        List<WeekTimeGroup> ListWeekTimeGroup = new List<WeekTimeGroup>(64);
+        Dictionary<int,WeekTimeGroup> DictWeekTimeGroup = new Dictionary<int, WeekTimeGroup>();
         public static frmTimeGroup GetForm(INMain main)
         {
             if (onlyObj == null)
@@ -61,11 +62,10 @@ namespace DotNetDrive.Protocol.POS.Test
         #region 开门时段
         public void InitTimeGroup()
         {
-            string[] time = new string[65];
-            time[0] = "全部";
-            for (int i = 1; i <= 64; i++)
+            string[] time = new string[64];
+            for (int i = 0; i < 64; i++)
             {
-                time[i] = "开门时段" + (i).ToString();
+                time[i] = "消费时段" + (i + 1).ToString();
             }
             cbTimeGroup.Items.Clear();
             cbTimeGroup.Items.AddRange(time);
@@ -88,7 +88,8 @@ namespace DotNetDrive.Protocol.POS.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            ReadTimeGroup_Parameter par = new ReadTimeGroup_Parameter((byte)(cbTimeGroup.SelectedIndex));
+            int index = cbTimeGroup.SelectedIndex + 1;
+            ReadTimeGroup_Parameter par = new ReadTimeGroup_Parameter((byte)index);
             ReadTimeGroup cmd = new ReadTimeGroup(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
@@ -97,16 +98,59 @@ namespace DotNetDrive.Protocol.POS.Test
             {
                 ReadTimeGroup_Result result = cmde.Command.getResult() as ReadTimeGroup_Result;
                 ListWeekTimeGroup = result.ListWeekTimeGroup;
-
-
+                //var wtg = ListWeekTimeGroup.FirstOrDefault(t => t.GetIndex() == index);
+                //if (wtg == null)
+                //{
+                //    ListWeekTimeGroup.Add(result.ListWeekTimeGroup[0]);
+                //}
+                //else
+                //{
+                //    ListWeekTimeGroup[index - 1] = result.ListWeekTimeGroup[0];
+                //}
+                Invoke(() =>
+                {
+                    if (DictWeekTimeGroup.ContainsKey(index))
+                    {
+                        DictWeekTimeGroup.Remove(index);
+                    }
+                    DictWeekTimeGroup.Add(index, result.ListWeekTimeGroup[0]);
+                });
+                   
                 BindTimeSegment();
                 //dataGridView1
-                string log = $"已读取到数量：{result.Count} ";
+                string log = DebugWeekTimeGroup(ListWeekTimeGroup[0], index) ;
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
 
+        string DebugWeekTimeGroup(WeekTimeGroup wtg,int index)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"时段："+ index);
+            sb.AppendLine($" 星期       时段1           时段2           时段3           时段 4   ");
 
+
+            for (int i = 0; i < 7; i++)
+            {
+                StringBuilder sbWeek = new StringBuilder();
+                sbWeek.Append($"{WeekdayList[i]}  ");
+                for (int j = 0; j < 4; j++)
+                {
+                    TimeSegment ts = wtg.GetItem(i).GetItem(j);
+                    sbWeek.Append($"{ts.GetBeginTime().ToString("HH")}:{ts.GetBeginTime().ToString("mm")} - {ts.GetEndTime().ToString("HH")}:{ts.GetEndTime().ToString("mm")}   ");
+                }
+
+                sb.AppendLine(sbWeek.ToString().TrimEnd(' '));
+            }
+            //sb.AppendLine($"星期一  00:00 - 00:00   00:00 - 00:00   00:00 - 00:00   00:00 - 00:00");
+            //sb.AppendLine($"星期二  00:00 - 00:00   00:00 - 00:00   00:00 - 00:00   00:00 - 00:00");
+            //sb.AppendLine($"星期三  00:00 - 00:00   00:00 - 00:00   00:00 - 00:00   00:00 - 00:00");
+            //sb.AppendLine($"星期四  00:00 - 00:00   00:00 - 00:00   00:00 - 00:00   00:00 - 00:00");
+            //sb.AppendLine($"星期五  00:00 - 00:00   00:00 - 00:00   00:00 - 00:00   00:00 - 00:00");
+            //sb.AppendLine($"星期六  00:00 - 00:00   00:00 - 00:00   00:00 - 00:00   00:00 - 00:00");
+            //sb.AppendLine($"星期七  00:00 - 00:00   00:00 - 00:00   00:00 - 00:00   00:00 - 00:00");
+            return sb.ToString();
+        }
 
         /// <summary>
         /// 
@@ -156,11 +200,6 @@ namespace DotNetDrive.Protocol.POS.Test
             AddTimeGroup cmd = new AddTimeGroup(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-
-            };
         }
 
         /// <summary>
@@ -189,20 +228,34 @@ namespace DotNetDrive.Protocol.POS.Test
         /// <param name="e"></param>
         private void CbTimeGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListWeekTimeGroup.Count > 0)
+           
+            if (ListWeekTimeGroup.Count > 0 && DictWeekTimeGroup.ContainsKey(cbTimeGroup.SelectedIndex + 1))
             {
-                WeekTimeGroup tg = ListWeekTimeGroup[cbTimeGroup.SelectedIndex];
-                var day = tg.GetItem(0);
+                try
+                {
+                    WeekTimeGroup tg = DictWeekTimeGroup[cbTimeGroup.SelectedIndex + 1];
+                    var day = tg.GetItem(0);
+                    SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
+                }
+                catch (Exception ex)
+                {
+
+                }
+               
+            }
+            else
+            {
+                DayTimeGroup day = new DayTimeGroup(4);
                 SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
             }
-
         }
 
         private void CbWeekday_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListWeekTimeGroup.Count > 0)
+       
+            if (ListWeekTimeGroup.Count > 0 && DictWeekTimeGroup.ContainsKey(cbTimeGroup.SelectedIndex + 1))
             {
-                WeekTimeGroup tg = ListWeekTimeGroup[cbTimeGroup.SelectedIndex];
+                WeekTimeGroup tg = DictWeekTimeGroup[cbTimeGroup.SelectedIndex + 1];
                 var day = tg.GetItem(cbWeekday.SelectedIndex);
                 SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
             }
@@ -252,7 +305,7 @@ namespace DotNetDrive.Protocol.POS.Test
         private void BtnFillNowTime_Click(object sender, EventArgs e)
         {
             ListWeekTimeGroup.Clear();
-
+            DictWeekTimeGroup.Clear();
             //开门时段
             for (int x = 0; x < 64; x++)
             {
@@ -278,10 +331,39 @@ namespace DotNetDrive.Protocol.POS.Test
                         endTimePicker.Value = segment.GetEndTime();
                     }
                 }
-
+                DictWeekTimeGroup.Add(x + 1, weekTimeGroup);
                 ListWeekTimeGroup.Add(weekTimeGroup);
             }
 
+        }
+
+        private void BtnReadAllTimeGroup_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadTimeGroup_Parameter par = new ReadTimeGroup_Parameter(0);
+            ReadTimeGroup cmd = new ReadTimeGroup(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadTimeGroup_Result result = cmde.Command.getResult() as ReadTimeGroup_Result;
+                ListWeekTimeGroup = result.ListWeekTimeGroup;
+
+                DictWeekTimeGroup.Clear();
+                //开门时段
+                for (int x = 0; x < 64; x++)
+                {
+                    DictWeekTimeGroup.Add(x + 1, ListWeekTimeGroup[x]);
+                    string log = DebugWeekTimeGroup(ListWeekTimeGroup[x], x + 1);
+                    mMainForm.AddCmdLog(cmde, log);
+                }
+                BindTimeSegment();
+                //dataGridView1
+                
+                
+            };
         }
     }
 }

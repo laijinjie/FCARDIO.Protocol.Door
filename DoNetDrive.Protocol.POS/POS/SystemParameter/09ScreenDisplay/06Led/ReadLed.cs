@@ -1,10 +1,10 @@
 ﻿using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.POS.Protocol;
 
-namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Led
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay
 {
     /// <summary>
-    /// 读取开机供应商Logo命令
+    /// 读取背光灯命令
     /// </summary>
     public class ReadLed : Read_Command
     {

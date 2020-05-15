@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace DoNetDrive.Protocol.POS.Menu
 {
+    /// <summary>
+    /// 读取所有菜单
+    /// </summary>
     public class ReadAllMenu : TemplateReadData_Base<MenuDetail>
     {
         public ReadAllMenu(DESDriveCommandDetail cd) : base(cd)

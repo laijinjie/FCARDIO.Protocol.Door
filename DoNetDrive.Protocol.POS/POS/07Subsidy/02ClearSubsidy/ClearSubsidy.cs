@@ -26,6 +26,19 @@ namespace DoNetDrive.Protocol.POS.Subsidy
         }
 
         /// <summary>
+        /// 处理返回值
+        /// </summary>
+        /// <param name="oPck">包含返回指令的Packet</param>
+        protected override void CommandNext0(DESPacket oPck)
+        {
+            if (CheckResponse_OK(oPck))
+            {
+                CommandCompleted();
+            }
+
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         protected override void CreatePacket0()

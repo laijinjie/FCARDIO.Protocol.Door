@@ -1,13 +1,12 @@
 ﻿using DoNetDrive.Protocol.POS.Protocol;
-using DoNetDrive.Protocol.POS.SystemParameter.ReceiptPrint;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DoNetDrive.Protocol.POS.SystemParameter.ReceiptPrint
 {
+    /// <summary>
+    /// 读取小票打印
+    /// </summary>
     public class ReadPrintContent : Read_Command
     {
         /// <summary>

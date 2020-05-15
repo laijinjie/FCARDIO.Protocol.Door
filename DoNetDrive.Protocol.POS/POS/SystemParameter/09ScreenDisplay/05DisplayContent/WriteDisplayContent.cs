@@ -1,10 +1,10 @@
 ﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.DisplayContent
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay
 {
     /// <summary>
-    /// 设置开机供应商Logo命令
+    /// 设置消费时显示内容命令
     /// </summary>
     public class WriteDisplayContent : Write_Command
     {
@@ -44,6 +44,15 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.DisplayContent
             var buf = acl.Buffer(model.GetDataLen());
 
             Packet(0x01, 0x09, 0x08, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+        }
+
+        protected override void CommandNext0(Protocol.DESPacket oPck)
+        {
+            if (CheckResponse_OK(oPck))
+            {
+                CommandCompleted();
+            }
+
         }
     }
 }

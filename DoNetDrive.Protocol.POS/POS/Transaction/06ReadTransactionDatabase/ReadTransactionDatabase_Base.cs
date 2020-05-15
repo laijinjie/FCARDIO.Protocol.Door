@@ -205,8 +205,8 @@ namespace DoNetDrive.Protocol.POS.Transaction
 
                     var dataBuf = GetNewCmdDataBuf(7);
                     dataBuf.WriteByte((int)mParameter.DatabaseType);
-                    dataBuf.WriteInt(0);
-                    dataBuf.WriteShort(0);
+                    dataBuf.WriteInt((int)_TransactionDetail.WriteIndex + 1);
+                    dataBuf.WriteShort(mParameter.PacketSize);
                     Packet(CmdType, 0x04, 0x00, 0x07, dataBuf);
 
                     //计算最终需要读取的记录数
@@ -225,10 +225,7 @@ namespace DoNetDrive.Protocol.POS.Transaction
                     _ProcessMax = mReadable;
                     _ProcessStep = 0;
 
-                    if (_TransactionDetail.IsCircle)
-                    {
-                        _TransactionDetail.ReadIndex = _TransactionDetail.WriteIndex;
-                    }
+                    _TransactionDetail.ReadIndex = _TransactionDetail.WriteIndex;
                     ReadTransactionNext();
                 }
             }
@@ -262,6 +259,7 @@ namespace DoNetDrive.Protocol.POS.Transaction
             }
 
             int iBeginIndex = (int)_TransactionDetail.ReadIndex + 1;
+            int iWriteIndex = (int)_TransactionDetail.WriteIndex + 1;
             int iEndIndex = iBeginIndex + mReadQuantity - 1;
 
             if (iEndIndex > _TransactionDetail.DataBaseMaxSize)
@@ -276,7 +274,7 @@ namespace DoNetDrive.Protocol.POS.Transaction
 
             //PosPacket.CmdData
             var cmdBuf = FPacket.CommandPacket.CmdData; //DoorPacket.CmdData;
-            cmdBuf.SetInt(1, iBeginIndex);
+            cmdBuf.SetInt(1, iBeginIndex);//iBeginIndex
             cmdBuf.SetShort(5, mReadQuantity);
 
             CommandReady();
@@ -310,7 +308,7 @@ namespace DoNetDrive.Protocol.POS.Transaction
         /// 将返回的事务暂时保存在缓冲中
         /// </summary>
         /// <param name="bTransactionBuf"></param>
-        private void SaveTransactionToBuf(IByteBuffer bTransactionBuf)
+        protected void SaveTransactionToBuf(IByteBuffer bTransactionBuf)
         {
 
             bTransactionBuf.MarkReaderIndex();

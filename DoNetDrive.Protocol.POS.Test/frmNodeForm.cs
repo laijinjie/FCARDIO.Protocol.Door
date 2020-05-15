@@ -94,13 +94,21 @@ namespace DotNetDrive.Protocol.POS.Test
                     TimeSegment segment = group.GetItem(i);
                     if (segment.GetBeginTime() != DateTime.MinValue)
                     {
-                        Invoke(() => {
+                        Invoke(() =>
+                        {
                             beginTimePicker.Value = segment.GetBeginTime();
                             endTimePicker.Value = segment.GetEndTime();
                         });
 
                     }
-
+                    else
+                    {
+                        Invoke(() =>
+                        {
+                            beginTimePicker.Value = new DateTime(2000, 1, 1, 0, 0, 0);
+                            endTimePicker.Value = new DateTime(2000, 1, 1, 0, 0, 0);
+                        });
+                    }
                 }
 
 

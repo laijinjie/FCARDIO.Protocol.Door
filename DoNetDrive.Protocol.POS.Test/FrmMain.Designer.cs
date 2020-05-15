@@ -354,6 +354,7 @@
             this.butWatch.TabIndex = 31;
             this.butWatch.Text = "开启监控";
             this.butWatch.UseVisualStyleBackColor = true;
+            this.butWatch.Click += new System.EventHandler(this.butWatch_Click);
             // 
             // label13
             // 
@@ -414,11 +415,11 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(83, 51);
-            this.txtPassword.MaxLength = 8;
+            this.txtPassword.MaxLength = 16;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(164, 21);
             this.txtPassword.TabIndex = 9;
-            this.txtPassword.Text = "00000000";
+            this.txtPassword.Text = "3030303030303030";
             // 
             // label5
             // 

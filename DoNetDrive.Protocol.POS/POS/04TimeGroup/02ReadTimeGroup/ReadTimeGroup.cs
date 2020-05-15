@@ -90,7 +90,7 @@ namespace DoNetDrive.Protocol.POS.TimeGroup
                 //continue;
                 WeekTimeGroup wtg = new WeekTimeGroup(4);
                 //buf.ReadShort();
-                buf.ReadByte();
+                result.Index = buf.ReadByte();
                 wtg.SetBytes(buf);
                 result.ListWeekTimeGroup.Add(wtg);
 

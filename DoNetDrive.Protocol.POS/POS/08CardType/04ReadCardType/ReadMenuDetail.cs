@@ -6,7 +6,7 @@ using DoNetDrive.Protocol.POS.Data;
 namespace DoNetDrive.Protocol.POS.CardType
 {
     /// <summary>
-    /// 读取单个菜单命令
+    /// 读取单个卡类命令
     /// </summary>
     public class ReadCardTypeDetail : Read_Command
     {

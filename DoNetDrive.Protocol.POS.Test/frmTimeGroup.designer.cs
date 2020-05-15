@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnReadTimeGroup = new System.Windows.Forms.Button();
+            this.btnAllReadTimeGroup = new System.Windows.Forms.Button();
             this.btnAddTimeGroup = new System.Windows.Forms.Button();
             this.btnClearTimeGroup = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnReadTimeGroup = new System.Windows.Forms.Button();
             this.btnFillNowTime = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.endTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.cbTimeGroup = new System.Windows.Forms.ComboBox();
             this.beginTimePicker4 = new System.Windows.Forms.DateTimePicker();
             this.endTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.beginTimePicker3 = new System.Windows.Forms.DateTimePicker();
@@ -52,20 +54,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbWeekday = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbTimeGroup = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnReadTimeGroup
+            // btnAllReadTimeGroup
             // 
-            this.btnReadTimeGroup.Location = new System.Drawing.Point(196, 12);
-            this.btnReadTimeGroup.Name = "btnReadTimeGroup";
-            this.btnReadTimeGroup.Size = new System.Drawing.Size(108, 23);
-            this.btnReadTimeGroup.TabIndex = 0;
-            this.btnReadTimeGroup.Text = "采集消费时段";
-            this.btnReadTimeGroup.UseVisualStyleBackColor = true;
-            this.btnReadTimeGroup.Click += new System.EventHandler(this.BtnReadTimeGroup_Click);
+            this.btnAllReadTimeGroup.Location = new System.Drawing.Point(196, 12);
+            this.btnAllReadTimeGroup.Name = "btnAllReadTimeGroup";
+            this.btnAllReadTimeGroup.Size = new System.Drawing.Size(108, 23);
+            this.btnAllReadTimeGroup.TabIndex = 0;
+            this.btnAllReadTimeGroup.Text = "读取全部消费时段";
+            this.btnAllReadTimeGroup.UseVisualStyleBackColor = true;
+            this.btnAllReadTimeGroup.Click += new System.EventHandler(this.BtnReadAllTimeGroup_Click);
             // 
             // btnAddTimeGroup
             // 
@@ -89,6 +90,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnReadTimeGroup);
             this.groupBox1.Controls.Add(this.btnFillNowTime);
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.endTimePicker4);
@@ -116,6 +118,16 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "消费时段：";
+            // 
+            // btnReadTimeGroup
+            // 
+            this.btnReadTimeGroup.Location = new System.Drawing.Point(208, -1);
+            this.btnReadTimeGroup.Name = "btnReadTimeGroup";
+            this.btnReadTimeGroup.Size = new System.Drawing.Size(108, 23);
+            this.btnReadTimeGroup.TabIndex = 5;
+            this.btnReadTimeGroup.Text = "读取消费时段";
+            this.btnReadTimeGroup.UseVisualStyleBackColor = true;
+            this.btnReadTimeGroup.Click += new System.EventHandler(this.BtnReadTimeGroup_Click);
             // 
             // btnFillNowTime
             // 
@@ -146,6 +158,25 @@
             this.endTimePicker4.Size = new System.Drawing.Size(57, 21);
             this.endTimePicker4.TabIndex = 26;
             this.endTimePicker4.ValueChanged += new System.EventHandler(this.EndTimePicker4_ValueChanged);
+            // 
+            // cbTimeGroup
+            // 
+            this.cbTimeGroup.AutoCompleteCustomSource.AddRange(new string[] {
+            "第 1 时段",
+            "第 2 时段",
+            "第 3 时段",
+            "第 4 时段",
+            "第 5 时段",
+            "第 6 时段",
+            "第 7 时段",
+            "第 8 时段"});
+            this.cbTimeGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTimeGroup.FormattingEnabled = true;
+            this.cbTimeGroup.Location = new System.Drawing.Point(76, 0);
+            this.cbTimeGroup.Name = "cbTimeGroup";
+            this.cbTimeGroup.Size = new System.Drawing.Size(97, 20);
+            this.cbTimeGroup.TabIndex = 0;
+            this.cbTimeGroup.SelectedIndexChanged += new System.EventHandler(this.CbTimeGroup_SelectedIndexChanged);
             // 
             // beginTimePicker4
             // 
@@ -323,25 +354,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "星期：";
             // 
-            // cbTimeGroup
-            // 
-            this.cbTimeGroup.AutoCompleteCustomSource.AddRange(new string[] {
-            "第 1 时段",
-            "第 2 时段",
-            "第 3 时段",
-            "第 4 时段",
-            "第 5 时段",
-            "第 6 时段",
-            "第 7 时段",
-            "第 8 时段"});
-            this.cbTimeGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTimeGroup.FormattingEnabled = true;
-            this.cbTimeGroup.Location = new System.Drawing.Point(76, 0);
-            this.cbTimeGroup.Name = "cbTimeGroup";
-            this.cbTimeGroup.Size = new System.Drawing.Size(97, 20);
-            this.cbTimeGroup.TabIndex = 0;
-            this.cbTimeGroup.SelectedIndexChanged += new System.EventHandler(this.CbTimeGroup_SelectedIndexChanged);
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -360,7 +372,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnClearTimeGroup);
             this.Controls.Add(this.btnAddTimeGroup);
-            this.Controls.Add(this.btnReadTimeGroup);
+            this.Controls.Add(this.btnAllReadTimeGroup);
             this.Name = "frmTimeGroup";
             this.Text = "frmTimeGroup";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmTimeGroup_FormClosed);
@@ -374,7 +386,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnReadTimeGroup;
+        private System.Windows.Forms.Button btnAllReadTimeGroup;
         private System.Windows.Forms.Button btnAddTimeGroup;
         private System.Windows.Forms.Button btnClearTimeGroup;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -400,5 +412,6 @@
         private System.Windows.Forms.Button btnFillNowTime;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button btnReadTimeGroup;
     }
 }

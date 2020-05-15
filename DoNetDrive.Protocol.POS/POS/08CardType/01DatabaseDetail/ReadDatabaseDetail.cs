@@ -1,12 +1,7 @@
 ﻿using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.POS.Protocol;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DoNetDrive.Protocol.POS.CardType.DatabaseDetail
+namespace DoNetDrive.Protocol.POS.CardType
 {
     /// <summary>
     /// 读取卡类信息

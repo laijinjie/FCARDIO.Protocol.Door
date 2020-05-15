@@ -45,11 +45,11 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.WIFIAccount
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (string.IsNullOrEmpty(Account))
+            if (Account == null || Account.Length > 0x20)
             {
                 return false;
             }
-            if (string.IsNullOrEmpty(Password))
+            if (Password == null || Password.Length > 0x20 )
             {
                 return false;
             }

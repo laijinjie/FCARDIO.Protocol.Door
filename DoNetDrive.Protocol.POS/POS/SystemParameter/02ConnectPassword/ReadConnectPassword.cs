@@ -21,7 +21,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ConnectPassword
 
         protected override void CommandNext1(DESPacket oPck)
         {
-            if (CheckResponse(oPck, 4))
+            if (CheckResponse(oPck, 8))
             {
                 var buf = oPck.CommandPacket.CmdData;
                 Password_Result rst = new Password_Result();

@@ -9,7 +9,10 @@ using DoNetDrive.Protocol;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword;
 using DoNetDrive.Protocol.POS.Protocol;
 using DoNetDrive.Protocol.POS.SystemParameter.SN;
+using DoNetDrive.Protocol.POS.SystemParameter.Watch;
 using DoNetDrive.Protocol.POS.Test.Model;
+using DoNetDrive.Protocol.POS.Transaction;
+using DoNetDrive.Protocol.Transaction;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -141,6 +144,164 @@ namespace DotNetDrive.Protocol.POS.Test
         private static void IniCommandClassNameList()
         {
             mCommandClasss = new Dictionary<string, string>();
+
+            mCommandClasss.Add(typeof(ReadSN).FullName, "读取SN");
+            mCommandClasss.Add(typeof(WriteSN).FullName, "写SN");
+            mCommandClasss.Add(typeof(WriteSN_Broadcast).FullName, "广播写SN");
+
+            mCommandClasss.Add(typeof(ReadConnectPassword).FullName, "获取通讯密码");
+            mCommandClasss.Add(typeof(WriteConnectPassword).FullName, "设置通讯密码");
+            mCommandClasss.Add(typeof(ResetConnectPassword).FullName, "重置通讯密码");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.TCPSetting.ReadTCPSetting).FullName, "读取TCP参数");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.TCPSetting.WriteTCPSetting).FullName, "写入TCP参数");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Deadline.ReadDeadline).FullName, "读取设备有效期");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Deadline.WriteDeadline).FullName, "写入设备有效期");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Version.ReadVersion).FullName, "读取设备版本号");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.SystemStatus.ReadSystemStatus).FullName, "读取设备运行信息");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.ReadName).FullName, "读取屏幕显示内容名称");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.WriteName).FullName, "写入屏幕显示内容名称");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.ReadTitle).FullName, "读取屏幕显示内容标题");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.WriteTitle).FullName, "写入屏幕显示内容标题");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.ReadMessage).FullName, "读取屏幕显示内容短消息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.WriteMessage).FullName, "写入屏幕显示内容短消息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.ReadLogo).FullName, "读取屏幕显示内容开机供应商Logo");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.WriteLogo).FullName, "写入屏幕显示内容开机供应商Logo");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.ReadDisplayContent).FullName, "读取屏幕显示内容消费时显示内容");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.WriteDisplayContent).FullName, "写入屏幕显示内容消费时显示内容");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.ReadLed).FullName, "读取屏幕显示内容背光灯");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.WriteLed).FullName, "写入屏幕显示内容背光灯");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.RecordStorageMode.ReadRecordStorageMode).FullName, "读取记录存储方式");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.RecordStorageMode.WriteRecordStorageMode).FullName, "写入记录存储方式");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.USBDisk.ReadUSBDisk).FullName, "读取U盘");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.USBDisk.WriteUSBDisk).FullName, "写入U盘");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ReceiptPrint.ReadReceiptPrint).FullName, "读取小票打印");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ReceiptPrint.WriteReceiptPrint).FullName, "写入小票打印");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Voice.ReadVoice).FullName, "读取语音");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Voice.WriteVoice).FullName, "写入语音");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Voice.ReadVoiceStart).FullName, "读取开机语音及广告语音");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Voice.WriteVoiceStart).FullName, "写入开机语音及广告语音");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Relay.ReadRelay).FullName, "读取继电器");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Relay.WriteRelay).FullName, "写入继电器");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Watch.BeginWatch).FullName, "开启监控");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Watch.CloseWatch).FullName, "关闭监控");
+
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Initialize.Initialize).FullName, "初始化设备");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Cache.ReadCache).FullName, "读取缓存区内容");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Cache.WriteCache).FullName, "写入缓存区内容");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Buzzer.ReadBuzzer).FullName, "读取主板蜂鸣器");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.Buzzer.WriteBuzzer).FullName, "写入主板蜂鸣器");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.WIFIAccount.ReadWIFIAccount).FullName, "读取WIFI账号及密码");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.WIFIAccount.WriteWIFIAccount).FullName, "写入WIFI账号及密码");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ReaderIntervalTime.ReadReaderIntervalTime).FullName, "读取读卡间隔");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ReaderIntervalTime.WriteReaderIntervalTime).FullName, "写入读卡间隔");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ReaderByte.ReadReaderByte).FullName, "读取读卡器字节");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ReaderByte.WriteReaderByte).FullName, "写入读卡器字节");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ForbiddenMifareOne.ReadForbiddenMifareOne).FullName, "读取禁用Mifare One 卡");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.ForbiddenMifareOne.WriteForbiddenMifareOne).FullName, "写入禁用Mifare One 卡");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.OffLineSubsidyLimit.ReadOffLineSubsidyLimit).FullName, "读取离线补贴充值，卡内补贴余额上限");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.SystemParameter.OffLineSubsidyLimit.WriteOffLineSubsidyLimit).FullName, "写入离线补贴充值，卡内补贴余额上限");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Time.ReadTime).FullName, "读系统时间");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Time.WriteTime).FullName, "写系统时间");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Time.TimeErrorCorrection.ReadTimeError).FullName, "读取误差自修正参数");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Time.TimeErrorCorrection.WriteTimeError).FullName, "写入误差自修正参数");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.POSWorkMode.ReadPOSWorkMode).FullName, "读取消费机工作模式");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.POSWorkMode.WritePOSWorkMode).FullName, "写入消费机工作模式");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.FixedFeeRule.ReadFixedFeeRule).FullName, "读取定额扣费规则");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.FixedFeeRule.WriteFixedFeeRule).FullName, "写入定额扣费规则");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits.ReadConsumptionLimits).FullName, "读取消费机消费限额");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.ConsumptionLimits.WriteConsumptionLimits).FullName, "写入消费机消费限额");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.ConsumePassword.ReadConsumePassword).FullName, "读取消费时密码确认");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.ConsumePassword.WriteConsumePassword).FullName, "写入消费时密码确认");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.TemporaryChangeFixedFee.ReadTemporaryChangeFixedFee).FullName, "读取临时变更定额、定次消费额度");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.TemporaryChangeFixedFee.WriteTemporaryChangeFixedFee).FullName, "写入临时变更定额、定次消费额度");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.CancelConsume.ReadCancelConsume).FullName, "读取撤销消费");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.CancelConsume.WriteCancelConsume).FullName, "写入撤销消费");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.ICCardAccount.ReadICCardAccount).FullName, "读取IC卡账户");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.ICCardAccount.WriteICCardAccount).FullName, "写入IC卡账户");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.AdditionalCharges.ReadAdditionalCharges).FullName, "读取附加费用");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.AdditionalCharges.WriteAdditionalCharges).FullName, "写入附加费用");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.Discount.ReadDiscount).FullName, "读取折扣");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.Discount.WriteDiscount).FullName, "写入折扣");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.Integral.ReadIntegral).FullName, "读取积分");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.Integral.WriteIntegral).FullName, "写入积分");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.CountingCards.ReadCountingCards).FullName, "读取计次");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.ConsumeParameter.CountingCards.WriteCountingCards).FullName, "写入计次");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.TimeGroup.ClearTimeGroup).FullName, "清空所有开门时段");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.TimeGroup.ReadTimeGroup).FullName, "读取所有开门时段");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.TimeGroup.AddTimeGroup).FullName, "添加开门时段");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Card.ReadCardDataBase).FullName, "读取卡号名单信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Card.ClearCardDataBase).FullName, "清空所有名单命令");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Card.ReadAllCard).FullName, "读取所有名单");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Card.ReadCardDetail).FullName, "读取单个名单");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Card.AddCard).FullName, "添加名单");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Card.DeleteCard).FullName, "删除名单");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.CardType.ReadDatabaseDetail).FullName, "读取卡类信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.CardType.ClearDataBase).FullName, "清空所有卡类信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.CardType.ReadDataBase).FullName, "读取所有卡类信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.CardType.ReadCardTypeDetail).FullName, "读取单个卡类");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.CardType.AddCardType).FullName, "添加卡类");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.CardType.DeleteCardType).FullName, "删除卡类");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Menu.ReadMenuDataBase).FullName, "读取菜单信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Menu.ClearMenuDataBase).FullName, "清空所有菜单");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Menu.ReadAllMenu).FullName, "读取所有菜单");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Menu.ReadMenuDetail).FullName, "读取单个菜单");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Menu.AddMenu).FullName, "添加菜单");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Menu.DeleteMenu).FullName, "删除菜单");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Subsidy.ReadSubsidyDataBase).FullName, "读取补贴容量信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Subsidy.ClearSubsidy).FullName, "清空所有补贴");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Subsidy.ReadAllSubsidy).FullName, "读取所有补贴");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Subsidy.ReadSubsidyDetail).FullName, "读取单个补贴");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Subsidy.AddSussidy).FullName, "添加补贴");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Reservation.ReadDatabaseDetail).FullName, "读取订餐容量信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Reservation.ClearDataBase).FullName, "清空所有订餐");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Reservation.ReadDataBase).FullName, "读取所有订餐");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Reservation.AddReservationDetail).FullName, "添加订餐");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Transaction.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Transaction.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Transaction.TransactionDatabaseEmpty).FullName, "清空所有类型的记录数据库");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Transaction.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Transaction.ReadTransactionDatabase).FullName, "读取新记录");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Transaction.WriteTransactionDatabaseEndIndex).FullName, "更新记录尾号");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Transaction.WriteTransactionDatabaseIndex).FullName, "更新记录指针");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.POS.Transaction.WriteTransactionDatabaseStartIndex).FullName, "更新记录起始号");
         }
 
         #region UDP
@@ -1111,5 +1272,63 @@ namespace DotNetDrive.Protocol.POS.Test
             frm.Activate();
             ShowFrm(frm);
         }
+
+        private void butWatch_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            INConnector cnt = mAllocator.GetConnector(cmdDtl.Connector);
+            if (cnt == null)
+            {
+                //未开启监控
+                mAllocator.OpenConnector(cmdDtl.Connector);
+                cnt = mAllocator.GetConnector(cmdDtl.Connector);
+
+            }
+
+            BeginWatch cmd = new BeginWatch(cmdDtl);
+            AddCommand(cmd);
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                AddCmdLog(cmde, "已开启监控");
+            };
+
+            //使通道保持连接不关闭
+            cnt.OpenForciblyConnect();
+            DESRequestHandle posRequest =
+                new DESRequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
+            cnt.RemoveRequestHandle(typeof(DESRequestHandle));//先删除，防止已存在就无法添加。
+            cnt.AddRequestHandle(posRequest);
+        }
+
+        /// <summary>
+        /// 用于根据SN，命令参数、命令索引生产用于处理对应消息的处理类工厂函数
+        /// </summary>
+        /// <param name="sn"></param>
+        /// <param name="cmdIndex"></param>
+        /// <param name="cmdPar"></param>
+        /// <returns></returns>
+        private AbstractTransaction RequestHandleFactory(string sn, byte cmdIndex, byte cmdPar)
+        {
+
+            //在这里需要根据SN进行类型判定，也可以根据SN来进行查表
+            if (cmdIndex >= 1 && cmdIndex <= 2)
+            {
+                return ReadTransactionDatabaseByIndex.NewTransactionTable[cmdIndex]();
+            }
+            switch (cmdIndex)
+            {
+                case 0x23://连接确认信息
+                    break;
+                case 0x22://连接测试--心跳保活包
+                    break;
+                default:
+                    break;
+            }
+            return null;
+        }
+
     }
 }

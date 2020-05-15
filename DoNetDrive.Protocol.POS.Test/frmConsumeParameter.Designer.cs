@@ -34,6 +34,16 @@
             this.butWriteFixedFeeRule = new System.Windows.Forms.Button();
             this.butReadFixedFeeRule = new System.Windows.Forms.Button();
             this.dgvFixedFeeRule = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.cbUseSubsidyAccount = new System.Windows.Forms.CheckBox();
             this.cbUseCashAccount = new System.Windows.Forms.CheckBox();
@@ -80,6 +90,17 @@
             this.butWritePOSWorkMode = new System.Windows.Forms.Button();
             this.butReadPOSWorkMode = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.gbReservationRule = new System.Windows.Forms.GroupBox();
+            this.butWeekday7 = new System.Windows.Forms.Button();
+            this.butWeekday6 = new System.Windows.Forms.Button();
+            this.butWeekday5 = new System.Windows.Forms.Button();
+            this.butWeekday4 = new System.Windows.Forms.Button();
+            this.butWeekday3 = new System.Windows.Forms.Button();
+            this.butWeekday2 = new System.Windows.Forms.Button();
+            this.butWeekday1 = new System.Windows.Forms.Button();
+            this.dgvReservationRule = new System.Windows.Forms.DataGridView();
+            this.butWriteReservationRule = new System.Windows.Forms.Button();
+            this.butReadReservationRule = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.cbUseResidueCount = new System.Windows.Forms.CheckBox();
             this.txtDeductionCount = new System.Windows.Forms.NumericUpDown();
@@ -121,16 +142,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.butWriteAdditionalCharges = new System.Windows.Forms.Button();
             this.butReadAdditionalCharges = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -152,6 +168,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.gbReservationRule.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservationRule)).BeginInit();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDeductionCount)).BeginInit();
             this.groupBox8.SuspendLayout();
@@ -249,6 +267,85 @@
             this.dgvFixedFeeRule.Size = new System.Drawing.Size(761, 250);
             this.dgvFixedFeeRule.TabIndex = 0;
             this.dgvFixedFeeRule.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFixedFeeRule_CellClick);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "SerialNumber";
+            this.Column1.HeaderText = "序号";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 40;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "ShowBeginTime";
+            this.Column2.HeaderText = "开始时间";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 80;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "ShowEndTime";
+            this.Column3.HeaderText = "结束时间";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 80;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "FixedFee";
+            this.Column4.HeaderText = "定额值";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 80;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "ConsumptionLimits";
+            this.Column5.HeaderText = "消费限额";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 80;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "Limite";
+            this.Column6.HeaderText = "限次";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 60;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "CountingCardsDeductionCount";
+            this.Column7.HeaderText = "计次卡扣次";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "CountingCardsLimitsCount";
+            this.Column8.HeaderText = "计次卡限次";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "ShowIsReservation";
+            this.Column9.HeaderText = "订餐";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column9.Width = 60;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "MealTimeName";
+            this.Column10.HeaderText = "餐段名称";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
             // 
             // groupBox6
             // 
@@ -451,6 +548,7 @@
             // 
             // txtPwdLimitMoney
             // 
+            this.txtPwdLimitMoney.DecimalPlaces = 2;
             this.txtPwdLimitMoney.Location = new System.Drawing.Point(328, 17);
             this.txtPwdLimitMoney.Name = "txtPwdLimitMoney";
             this.txtPwdLimitMoney.Size = new System.Drawing.Size(120, 21);
@@ -700,6 +798,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.gbReservationRule);
             this.tabPage2.Controls.Add(this.groupBox9);
             this.tabPage2.Controls.Add(this.groupBox8);
             this.tabPage2.Controls.Add(this.groupBox13);
@@ -711,6 +810,137 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "参数2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // gbReservationRule
+            // 
+            this.gbReservationRule.Controls.Add(this.butWeekday7);
+            this.gbReservationRule.Controls.Add(this.butWeekday6);
+            this.gbReservationRule.Controls.Add(this.butWeekday5);
+            this.gbReservationRule.Controls.Add(this.butWeekday4);
+            this.gbReservationRule.Controls.Add(this.butWeekday3);
+            this.gbReservationRule.Controls.Add(this.butWeekday2);
+            this.gbReservationRule.Controls.Add(this.butWeekday1);
+            this.gbReservationRule.Controls.Add(this.dgvReservationRule);
+            this.gbReservationRule.Controls.Add(this.butWriteReservationRule);
+            this.gbReservationRule.Controls.Add(this.butReadReservationRule);
+            this.gbReservationRule.Location = new System.Drawing.Point(6, 346);
+            this.gbReservationRule.Name = "gbReservationRule";
+            this.gbReservationRule.Size = new System.Drawing.Size(775, 331);
+            this.gbReservationRule.TabIndex = 77;
+            this.gbReservationRule.TabStop = false;
+            this.gbReservationRule.Text = "订餐规则";
+            // 
+            // butWeekday7
+            // 
+            this.butWeekday7.Location = new System.Drawing.Point(495, 20);
+            this.butWeekday7.Name = "butWeekday7";
+            this.butWeekday7.Size = new System.Drawing.Size(75, 23);
+            this.butWeekday7.TabIndex = 50;
+            this.butWeekday7.Text = "星期日";
+            this.butWeekday7.UseVisualStyleBackColor = true;
+            this.butWeekday7.Click += new System.EventHandler(this.butWeekday_Click);
+            // 
+            // butWeekday6
+            // 
+            this.butWeekday6.Location = new System.Drawing.Point(414, 20);
+            this.butWeekday6.Name = "butWeekday6";
+            this.butWeekday6.Size = new System.Drawing.Size(75, 23);
+            this.butWeekday6.TabIndex = 49;
+            this.butWeekday6.Text = "星期六";
+            this.butWeekday6.UseVisualStyleBackColor = true;
+            this.butWeekday6.Click += new System.EventHandler(this.butWeekday_Click);
+            // 
+            // butWeekday5
+            // 
+            this.butWeekday5.Location = new System.Drawing.Point(333, 20);
+            this.butWeekday5.Name = "butWeekday5";
+            this.butWeekday5.Size = new System.Drawing.Size(75, 23);
+            this.butWeekday5.TabIndex = 48;
+            this.butWeekday5.Text = "星期五";
+            this.butWeekday5.UseVisualStyleBackColor = true;
+            this.butWeekday5.Click += new System.EventHandler(this.butWeekday_Click);
+            // 
+            // butWeekday4
+            // 
+            this.butWeekday4.Location = new System.Drawing.Point(252, 20);
+            this.butWeekday4.Name = "butWeekday4";
+            this.butWeekday4.Size = new System.Drawing.Size(75, 23);
+            this.butWeekday4.TabIndex = 47;
+            this.butWeekday4.Text = "星期四";
+            this.butWeekday4.UseVisualStyleBackColor = true;
+            this.butWeekday4.Click += new System.EventHandler(this.butWeekday_Click);
+            // 
+            // butWeekday3
+            // 
+            this.butWeekday3.Location = new System.Drawing.Point(171, 20);
+            this.butWeekday3.Name = "butWeekday3";
+            this.butWeekday3.Size = new System.Drawing.Size(75, 23);
+            this.butWeekday3.TabIndex = 46;
+            this.butWeekday3.Text = "星期三";
+            this.butWeekday3.UseVisualStyleBackColor = true;
+            this.butWeekday3.Click += new System.EventHandler(this.butWeekday_Click);
+            // 
+            // butWeekday2
+            // 
+            this.butWeekday2.Location = new System.Drawing.Point(90, 20);
+            this.butWeekday2.Name = "butWeekday2";
+            this.butWeekday2.Size = new System.Drawing.Size(75, 23);
+            this.butWeekday2.TabIndex = 45;
+            this.butWeekday2.Text = "星期二";
+            this.butWeekday2.UseVisualStyleBackColor = true;
+            this.butWeekday2.Click += new System.EventHandler(this.butWeekday_Click);
+            // 
+            // butWeekday1
+            // 
+            this.butWeekday1.BackColor = System.Drawing.Color.LightGreen;
+            this.butWeekday1.Location = new System.Drawing.Point(9, 20);
+            this.butWeekday1.Name = "butWeekday1";
+            this.butWeekday1.Size = new System.Drawing.Size(75, 23);
+            this.butWeekday1.TabIndex = 44;
+            this.butWeekday1.Text = "星期一";
+            this.butWeekday1.UseVisualStyleBackColor = false;
+            this.butWeekday1.Click += new System.EventHandler(this.butWeekday_Click);
+            // 
+            // dgvReservationRule
+            // 
+            this.dgvReservationRule.AllowUserToAddRows = false;
+            this.dgvReservationRule.AllowUserToDeleteRows = false;
+            this.dgvReservationRule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReservationRule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.Column11,
+            this.dataGridViewTextBoxColumn5});
+            this.dgvReservationRule.Location = new System.Drawing.Point(9, 49);
+            this.dgvReservationRule.Name = "dgvReservationRule";
+            this.dgvReservationRule.ReadOnly = true;
+            this.dgvReservationRule.RowHeadersVisible = false;
+            this.dgvReservationRule.RowTemplate.Height = 23;
+            this.dgvReservationRule.Size = new System.Drawing.Size(561, 276);
+            this.dgvReservationRule.TabIndex = 43;
+            this.dgvReservationRule.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservationRule_CellClick);
+            this.dgvReservationRule.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvReservationRule_EditingControlShowing);
+            // 
+            // butWriteReservationRule
+            // 
+            this.butWriteReservationRule.Location = new System.Drawing.Point(721, 20);
+            this.butWriteReservationRule.Name = "butWriteReservationRule";
+            this.butWriteReservationRule.Size = new System.Drawing.Size(48, 23);
+            this.butWriteReservationRule.TabIndex = 42;
+            this.butWriteReservationRule.Text = "写入";
+            this.butWriteReservationRule.UseVisualStyleBackColor = true;
+            this.butWriteReservationRule.Click += new System.EventHandler(this.butWriteReservationRule_Click);
+            // 
+            // butReadReservationRule
+            // 
+            this.butReadReservationRule.Location = new System.Drawing.Point(665, 20);
+            this.butReadReservationRule.Name = "butReadReservationRule";
+            this.butReadReservationRule.Size = new System.Drawing.Size(48, 23);
+            this.butReadReservationRule.TabIndex = 41;
+            this.butReadReservationRule.Text = "读取";
+            this.butReadReservationRule.UseVisualStyleBackColor = true;
+            this.butReadReservationRule.Click += new System.EventHandler(this.butReadReservationRule_Click);
             // 
             // groupBox9
             // 
@@ -1115,84 +1345,53 @@
             this.butReadAdditionalCharges.UseVisualStyleBackColor = true;
             this.butReadAdditionalCharges.Click += new System.EventHandler(this.butReadAdditionalCharges_Click);
             // 
-            // Column1
+            // dataGridViewTextBoxColumn1
             // 
-            this.Column1.DataPropertyName = "SerialNumber";
-            this.Column1.HeaderText = "序号";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 40;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "SerialNumber";
+            this.dataGridViewTextBoxColumn1.HeaderText = "序号";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 40;
             // 
-            // Column2
+            // dataGridViewTextBoxColumn2
             // 
-            this.Column2.DataPropertyName = "ShowBeginTime";
-            this.Column2.HeaderText = "开始时间";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 80;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "ShowBeginTime";
+            this.dataGridViewTextBoxColumn2.HeaderText = "开始时间";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 80;
             // 
-            // Column3
+            // dataGridViewTextBoxColumn3
             // 
-            this.Column3.DataPropertyName = "ShowEndTime";
-            this.Column3.HeaderText = "结束时间";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 80;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "ShowEndTime";
+            this.dataGridViewTextBoxColumn3.HeaderText = "结束时间";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 80;
             // 
-            // Column4
+            // Column11
             // 
-            this.Column4.DataPropertyName = "FixedFee";
-            this.Column4.HeaderText = "定额值";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 80;
+            this.Column11.DataPropertyName = "ShowWeekday";
+            this.Column11.HeaderText = "订餐星期";
+            this.Column11.Items.AddRange(new object[] {
+            "",
+            "星期一",
+            "星期二",
+            "星期三",
+            "星期四",
+            "星期五",
+            "星期六",
+            "星期日"});
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
             // 
-            // Column5
+            // dataGridViewTextBoxColumn5
             // 
-            this.Column5.DataPropertyName = "ConsumptionLimits";
-            this.Column5.HeaderText = "消费限额";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 80;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "Limite";
-            this.Column6.HeaderText = "限次";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 60;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "CountingCardsDeductionCount";
-            this.Column7.HeaderText = "计次卡扣次";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "CountingCardsLimitsCount";
-            this.Column8.HeaderText = "计次卡限次";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "ShowIsReservation";
-            this.Column9.HeaderText = "订餐";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column9.Width = 60;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "MealTimeName";
-            this.Column10.HeaderText = "餐段名称";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "MealTimeIndex";
+            this.dataGridViewTextBoxColumn5.HeaderText = "订餐餐段";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 80;
             // 
             // frmConsumeParameter
             // 
@@ -1229,6 +1428,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.gbReservationRule.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservationRule)).EndInit();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDeductionCount)).EndInit();
@@ -1353,5 +1554,21 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.GroupBox gbReservationRule;
+        private System.Windows.Forms.Button butWriteReservationRule;
+        private System.Windows.Forms.Button butReadReservationRule;
+        private System.Windows.Forms.DataGridView dgvReservationRule;
+        private System.Windows.Forms.Button butWeekday1;
+        private System.Windows.Forms.Button butWeekday7;
+        private System.Windows.Forms.Button butWeekday6;
+        private System.Windows.Forms.Button butWeekday5;
+        private System.Windows.Forms.Button butWeekday4;
+        private System.Windows.Forms.Button butWeekday3;
+        private System.Windows.Forms.Button butWeekday2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }

@@ -1,16 +1,14 @@
-﻿using DotNetty.Buffers;
-using DoNetDrive.Core.Command;
+﻿using DoNetDrive.Protocol.POS.Data;
 using DoNetDrive.Protocol.POS.Protocol;
-using DoNetDrive.Protocol.POS.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DoNetDrive.Protocol.POS.TemplateMethod;
+using DotNetty.Buffers;
+using System.Collections.Generic;
 
 namespace DoNetDrive.Protocol.POS.Reservation
 {
+    /// <summary>
+    /// 读取订餐容量信息
+    /// </summary>
     public class ReadDataBase : TemplateReadData_Base<ReservationDetail>
     {
 

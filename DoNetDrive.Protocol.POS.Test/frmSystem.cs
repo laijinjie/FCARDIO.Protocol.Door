@@ -1,15 +1,16 @@
-﻿using DoNetDrive.Protocol.POS.SystemParameter.Buzzer;
+﻿
+using DoNetDrive.Protocol.POS.SystemParameter.Buzzer;
+using DoNetDrive.Protocol.POS.SystemParameter.Cache;
 using DoNetDrive.Protocol.POS.SystemParameter.ConnectPassword;
+using DoNetDrive.Protocol.POS.SystemParameter.ConsumeLogStatisticsTime;
 using DoNetDrive.Protocol.POS.SystemParameter.Deadline;
+using DoNetDrive.Protocol.POS.SystemParameter.ForbiddenMifareOne;
 using DoNetDrive.Protocol.POS.SystemParameter.ReceiptPrint;
 using DoNetDrive.Protocol.POS.SystemParameter.RecordStorageMode;
 using DoNetDrive.Protocol.POS.SystemParameter.Relay;
-using DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.DisplayContent;
-using DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Logo;
-using DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Message;
-using DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Name;
-using DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Title;
+using DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay;
 using DoNetDrive.Protocol.POS.SystemParameter.SN;
+using DoNetDrive.Protocol.POS.SystemParameter.TCPSetting;
 using DoNetDrive.Protocol.POS.SystemParameter.USBDisk;
 using DoNetDrive.Protocol.POS.SystemParameter.Version;
 using DoNetDrive.Protocol.POS.SystemParameter.Voice;
@@ -22,6 +23,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -60,8 +62,9 @@ namespace DotNetDrive.Protocol.POS.Test
         }
 
         string[] mRecordStorage = { "满循环", "满报警" };
+        string[] mLED = { "常亮", "常灭", "刷卡时亮" };
         List<string> mPrintLocation = new List<string> { "","页头", "页尾" };
-        List<string> mRelayMode = new List<string> { "", "COM-NO", "COM-NC", "双稳态" };
+        List<string> mRelayMode = new List<string> { "COM-NO", "COM-NC", "双稳态" };
 
         #region SN
         private void butReadSN_Click(object sender, EventArgs e)
@@ -75,7 +78,7 @@ namespace DotNetDrive.Protocol.POS.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 SN_Result result = cmde.Command.getResult() as SN_Result;
-                string sn = Encoding.ASCII.GetString(result.SNBuf);
+                string sn = "SN：" + Encoding.ASCII.GetString(result.SNBuf);
                 Invoke(() =>
                 {
                     txtSN.Text = sn;
@@ -114,6 +117,16 @@ namespace DotNetDrive.Protocol.POS.Test
 
         private void butWriteConnectPassword_Click(object sender, EventArgs e)
         {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            Password_Parameter par = new Password_Parameter(txtConnectPassword.Text);
+            WriteConnectPassword cmd = new WriteConnectPassword(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddCmdLog(cmde, "命令执行成功");
+            };
 
         }
 
@@ -142,12 +155,193 @@ namespace DotNetDrive.Protocol.POS.Test
         #region TCP
         private void butRendTCPSetting_Click(object sender, EventArgs e)
         {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadTCPSetting cmd = new ReadTCPSetting(cmdDtl);
+            mMainForm.AddCommand(cmd);
 
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadTCPSetting_Result result = cmde.Command.getResult() as ReadTCPSetting_Result;
+                Invoke(() =>
+                {
+                    txtMAC.Text = result.TCP.mMAC;
+                    txtIP.Text = result.TCP.mIP;
+                    txtDNS.Text = result.TCP.mDNS;
+                    txtDNSBackup.Text = result.TCP.mDNSBackup;
+                    txtUDPPort.Text = result.TCP.mUDPPort.ToString();
+                    txtTCPPort.Text = result.TCP.mTCPPort.ToString();
+                    txtServerPort.Text = result.TCP.mServerPort.ToString();
+                    txtServerIP.Text = result.TCP.mServerIP;
+                    txtIPGateway.Text = result.TCP.mIPGateway;
+                    txtIPMask.Text = result.TCP.mIPMask;
+                    cbxProtocolType.SelectedIndex = result.TCP.mProtocolType;
+                    cbxAutoIP.SelectedIndex = result.TCP.mAutoIP ? 1 : 0;
+
+                });
+                string TCPInfo = DebugTCPDetail(result.TCP);
+                mMainForm.AddCmdLog(cmde, TCPInfo);
+                //mMainForm.AddCmdLog(cmde, result.Deadline.ToString("yyyy-MM-dd"));
+            };
+        }
+
+        private string DebugTCPDetail(TCPDetail tcp)
+        {
+            string MAC = tcp.mMAC; //MAC地址
+            string IP = tcp.mIP; //IP
+            string IPMask = tcp.mIPMask; //子网掩码
+            string IPGateway = tcp.mIPGateway; //网关地址
+            string DNS = tcp.mDNS; //DNS
+            string DNSBackup = tcp.mDNSBackup; //备用DNS
+            string TCPPort = tcp.mTCPPort.ToString(); //本地TCP端口
+            string UDPPort = tcp.mUDPPort.ToString(); //本地UDP端口
+            string ServerIP = tcp.mServerIP; //服务器IP
+            string ServerAddr = tcp.mServerAddr; //服务器域名
+            string ServerPort = tcp.mServerPort.ToString(); //服务器端口
+
+            int ProtocolType = tcp.mProtocolType; //TCP工作模式
+            bool AutoIP = tcp.mAutoIP; //是否自动获得IP
+
+
+            string TCPInfo = "MAC地址：" + MAC +
+                             "  IP：" + IP +
+                             "  子网掩码：" + IPMask +
+                             "  网关地址：" + IPGateway +
+                             "  DNS：" + DNS +
+                             "  备用DNS：" + DNSBackup +
+                             "  本地TCP端口：" + TCPPort +
+                             "  本地UDP端口：" + UDPPort +
+                             "  服务器IP：" + ServerIP +
+                             "  服务器域名：" + ServerAddr +
+                             "  服务器端口：" + ServerPort;
+            return TCPInfo;
         }
 
         private void butWriteTCPSetting_Click(object sender, EventArgs e)
         {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
 
+
+            string reg = @"([A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2}";
+            string reg2 = @"^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$";
+            string reg3 = @"^\+?[1-9][0-9]*$";
+            string reg4 = @"^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$";
+
+            if (!Regex.IsMatch(txtMAC.Text.Trim(), reg))
+            {
+                MsgErr("请输入正确MAC地址！");
+                return;
+            }
+
+            if (!Regex.IsMatch(txtIP.Text.Trim(), reg2))
+            {
+                MsgErr("请输入正确IP地址！");
+                return;
+            }
+            if (!Regex.IsMatch(txtIPMask.Text.Trim(), reg2))
+            {
+                MsgErr("请输入正确子网掩码！");
+                return;
+            }
+            if (!Regex.IsMatch(txtIPGateway.Text.Trim(), reg2))
+            {
+                MsgErr("请输入正确网关IP！");
+                return;
+            }
+            if (!Regex.IsMatch(txtDNS.Text.Trim(), reg2))
+            {
+                MsgErr("请输入正确DNS！");
+                return;
+            }
+            if (!Regex.IsMatch(txtDNSBackup.Text.Trim(), reg2))
+            {
+                MsgErr("请输入正确备用DNS！");
+                return;
+            }
+            if (!Regex.IsMatch(txtServerIP.Text.Trim(), reg2))
+            {
+                MsgErr("请输入正确服务器IP！");
+                return;
+            }
+            if (!Regex.IsMatch(txtTCPPort.Text.Trim(), reg3))
+            {
+                MsgErr("请输入正确本地TCP端口！");
+                return;
+            }
+            if (Convert.ToInt32(txtTCPPort.Text.Trim()) > 65535)
+            {
+                MsgErr("请输入正确本地TCP端口！");
+                return;
+            }
+            if (!Regex.IsMatch(txtUDPPort.Text.Trim(), reg3))
+            {
+                MsgErr("请输入正确本地UDP端口！");
+                return;
+            }
+            if (Convert.ToInt32(txtUDPPort.Text.Trim()) > 65535)
+            {
+                MsgErr("请输入正确本地TCP端口！");
+                return;
+            }
+            if (!Regex.IsMatch(txtServerPort.Text.Trim(), reg3))
+            {
+                MsgErr("请输入正确服务器端口！");
+                return;
+            }
+            if (Convert.ToInt32(txtServerPort.Text.Trim()) > 65535)
+            {
+                MsgErr("请输入正确服务器端口！");
+                return;
+            }
+            //if (!Regex.IsMatch(txtServerAddr.Text.Trim(), reg4))
+            //{
+            //    MsgErr("请输入正确服务器域名！");
+            //    return;
+            //}
+            if (Convert.ToInt16(cbxProtocolType.SelectedIndex) == 0)
+            {
+                MsgErr("请选择TCP工作模式！");
+                return;
+            }
+            if (Convert.ToInt16(cbxAutoIP.SelectedIndex) == -1)
+            {
+                MsgErr("请选择是否自动获得IP！");
+                return;
+            }
+
+            TCPDetail tcp = new TCPDetail();
+            tcp.mIP = txtIP.Text.Trim();
+            tcp.mMAC = txtMAC.Text.Trim();
+            tcp.mIPMask = txtIPMask.Text.Trim();
+            tcp.mIPGateway = txtIPGateway.Text.Trim();
+            tcp.mDNS = txtDNS.Text.Trim();
+            tcp.mDNSBackup = txtDNSBackup.Text.Trim();
+            tcp.mTCPPort = Convert.ToInt32(txtTCPPort.Text.Trim());
+            tcp.mUDPPort = Convert.ToInt32(txtUDPPort.Text.Trim());
+            tcp.mServerIP = txtServerIP.Text.Trim();
+            tcp.mServerAddr = txtServerAddr.Text.Trim();
+            tcp.mServerPort = Convert.ToInt32(txtServerPort.Text.Trim());
+
+            tcp.mProtocolType = Convert.ToUInt16(cbxProtocolType.SelectedIndex);
+
+            if (cbxAutoIP.SelectedIndex == 1)
+            {
+                tcp.mAutoIP = true;
+            }
+            else
+            {
+                tcp.mAutoIP = false;
+            }
+            WriteTCPSetting_Parameter par = new WriteTCPSetting_Parameter(tcp);
+            WriteTCPSetting cmd = new WriteTCPSetting(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddCmdLog(cmde, "命令执行成功");
+            };
         }
 
         #endregion
@@ -201,7 +395,8 @@ namespace DotNetDrive.Protocol.POS.Test
                 {
                     cmbRecordStorageMode.SelectedIndex = result.Mode;
                 });
-                mMainForm.AddCmdLog(cmde, mRecordStorage[result.Mode]);
+                string tip = $"记录存储方式：{mRecordStorage[result.Mode]}";
+                mMainForm.AddCmdLog(cmde, tip);
             };
         }
 
@@ -227,6 +422,9 @@ namespace DotNetDrive.Protocol.POS.Test
 
             cmbRelayMode.Items.AddRange(mRelayMode.ToArray());
             cmbRelayMode.SelectedIndex = 0;
+
+            cmbLED.Items.AddRange(mLED);
+            cmbLED.SelectedIndex = 0;
         }
 
         private void butReadName_Click(object sender, EventArgs e)
@@ -244,7 +442,8 @@ namespace DotNetDrive.Protocol.POS.Test
                 {
                     txtName.Text = result.Name;
                 });
-                mMainForm.AddCmdLog(cmde, result.Name);
+                string tip = $"消费机名称：{result.Name}";
+                mMainForm.AddCmdLog(cmde, tip);
             };
         }
 
@@ -256,12 +455,6 @@ namespace DotNetDrive.Protocol.POS.Test
             WriteName cmd = new WriteName(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-               
-                mMainForm.AddCmdLog(cmde, "命令执行成功");
-            };
         }
 
         private void butReadTitle_Click(object sender, EventArgs e)
@@ -279,7 +472,8 @@ namespace DotNetDrive.Protocol.POS.Test
                 {
                     txtTitle.Text = result.Title;
                 });
-                mMainForm.AddCmdLog(cmde, result.Title);
+                string tip = $"消费机标题：{result.Title}";
+                mMainForm.AddCmdLog(cmde, tip);
             };
         }
 
@@ -291,11 +485,6 @@ namespace DotNetDrive.Protocol.POS.Test
             WriteTitle cmd = new WriteTitle(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, "命令执行成功");
-            };
         }
 
         private void butReadMessage_Click(object sender, EventArgs e)
@@ -313,7 +502,8 @@ namespace DotNetDrive.Protocol.POS.Test
                 {
                     txtMessage.Text = result.Message;
                 });
-                mMainForm.AddCmdLog(cmde, result.Message);
+                string tip = $"短消息：{result.Message}";
+                mMainForm.AddCmdLog(cmde, tip);
             };
 
         }
@@ -326,11 +516,6 @@ namespace DotNetDrive.Protocol.POS.Test
             WriteMessage cmd = new WriteMessage(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, "命令执行成功");
-            };
         }
 
         private void butReadShow_Click(object sender, EventArgs e)
@@ -355,6 +540,8 @@ namespace DotNetDrive.Protocol.POS.Test
                     cbShowDept.Checked = showDept;
                     cbShowMoney.Checked = showBalance;
                 });
+                string tip = $"消费时显示内容：人名:{(showName ? "ON" : "OFF")}，编号:{(showPCode ? "ON" : "OFF")}，部门：{(showDept ? "ON" : "OFF")}，余额：{(showBalance ? "ON" : "OFF")}";
+                mMainForm.AddCmdLog(cmde, tip);
                 //mMainForm.AddCmdLog(cmde, result.Message);
             };
 
@@ -395,6 +582,8 @@ namespace DotNetDrive.Protocol.POS.Test
                     txtLogo.Text = result.Logo;
                     txtPhone.Text = result.Phone;
                 });
+                string tip = $"供应商Logo：{result.Logo},服务电话：{result.Phone}。";
+                mMainForm.AddCmdLog(cmde, tip);
                 //mMainForm.AddCmdLog(cmde, result.Message);
             };
         }
@@ -461,7 +650,11 @@ namespace DotNetDrive.Protocol.POS.Test
                     cbDownloadTransaction.Checked = bDownloadTransaction;
                     cbDownloadSystemTransaction.Checked = bDownloadSystemTransaction;
                 });
-                //mMainForm.AddCmdLog(cmde, result.Message);
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine($"U盘上传功能：卡片名单:{(bUploadCardList ? "ON" : "OFF")}，卡类名单:{(bUploadCardTypeList ? "ON" : "OFF")}，商品菜单:{(bUploadMenu ? "ON" : "OFF")}，消费时段：{(bUploadTimeGroup ? "ON" : "OFF")}，消费参数：{(bUploadConsumeParameter ? "ON" : "OFF")}，固件升级：{(bUploadUpgrade ? "ON" : "OFF")}");
+                sb.AppendLine($"U盘下载功能：卡片名单:{(bDownloadCardList ? "ON" : "OFF")}，卡类名单:{(bDownloadCardTypeList ? "ON" : "OFF")}，商品菜单:{(bDownloadMenu ? "ON" : "OFF")}" +
+                    $"，消费时段：{(bDownloadTimeGroup ? "ON" : "OFF")}，消费参数：{(bDownloadConsumeParameter ? "ON" : "OFF")}，消费日志：{(bDownloadTransaction ? "ON" : "OFF")}，系统日志：{(bDownloadSystemTransaction ? "ON" : "OFF")}");
+                mMainForm.AddCmdLog(cmde, sb.ToString());
             };
         }
 
@@ -512,7 +705,8 @@ namespace DotNetDrive.Protocol.POS.Test
                     cbIsOpenPrint.Checked = bIsOpen;
                     cmbPrintCount.SelectedIndex = result.PrintCount - 1;
                 });
-                //mMainForm.AddCmdLog(cmde, result.Message);
+                string tip = $"小票打印功能：{(bIsOpen ? "开启" : "关闭")}，份数：{result.PrintCount}";
+                mMainForm.AddCmdLog(cmde, tip);
             };
         }
 
@@ -526,11 +720,6 @@ namespace DotNetDrive.Protocol.POS.Test
             WriteReceiptPrint cmd = new WriteReceiptPrint(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, "命令执行成功");
-            };
         }
 
         private void butReadPrintContent_Click(object sender, EventArgs e)
@@ -544,14 +733,19 @@ namespace DotNetDrive.Protocol.POS.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadReceiptPrint_Result result = cmde.Command.getResult() as ReadReceiptPrint_Result;
-             
+                bool bIsOpen = result.IsOpen == 1;
                 Invoke(() =>
                 {
                     dgvPrintContent.AutoGenerateColumns = false;
                     dgvPrintContent.DataSource = new BindingList<PrintContent>(result.PrintContents);
                     //dgvPrintContent.DataSource = result.PrintContents;
                 });
-                //mMainForm.AddCmdLog(cmde, result.Message);
+                StringBuilder sb = new StringBuilder($"打印内容：");
+                foreach (var item in result.PrintContents)
+                {
+                    sb.AppendLine($"序号:{item.Index},状态:{(item.IsOpen == 1 ? "启用":"禁用")},打印内容:{item.Content},位置:{item.ShowLocation}");
+                }
+                mMainForm.AddCmdLog(cmde, sb.ToString());
             };
         }
 
@@ -581,11 +775,6 @@ namespace DotNetDrive.Protocol.POS.Test
             WritePrintContent cmd = new WritePrintContent(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, "命令执行成功");
-            };
         }
 
         private void dgvPrintContent_CellMouseClick(object sender, DataGridViewCellEventArgs e)
@@ -651,7 +840,9 @@ namespace DotNetDrive.Protocol.POS.Test
                     cbVoiceBlacklist.Checked = bBlackList;
                     cbVoiceErrorTip.Checked = bErrorTip;
                 });
-                //mMainForm.AddCmdLog(cmde, result.Message);
+                StringBuilder sb = new StringBuilder($"开机语音：{(bIsOpen ? "启用" : "禁用")}");
+                sb.AppendLine($"播报开关：卡内余额:{(bCardMoney ? "ON" : "OFF")}，消费金额:{(bPayMoney ? "ON" : "OFF")}，黑名单:{(bBlackList ? "ON" : "OFF")}，错误提示：{(bErrorTip ? "ON" : "OFF")}，刷卡或密码提示：{(bPasswordTip ? "ON" : "OFF")}");
+                mMainForm.AddCmdLog(cmde, sb.ToString());
             };
 
             var cmdDtl2 = mMainForm.GetCommandDetail();
@@ -672,7 +863,9 @@ namespace DotNetDrive.Protocol.POS.Test
                     cbVoiceAdvertisement.Checked = bAdvertisement;
                     
                 });
-                //mMainForm.AddCmdLog(cmde, result.Message);
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine($"开机语音及广告语音开关：开机欢迎语:{(bStart ? "ON" : "OFF")}，供应商广告:{(bAdvertisement ? "ON" : "OFF")}");
+                mMainForm.AddCmdLog(cmde, sb.ToString());
             };
         }
 
@@ -690,11 +883,7 @@ namespace DotNetDrive.Protocol.POS.Test
             WriteVoice cmd = new WriteVoice(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, "命令执行成功");
-            };
+           
 
             var cmdDtl2 = mMainForm.GetCommandDetail();
             if (cmdDtl2 == null) return;
@@ -704,11 +893,7 @@ namespace DotNetDrive.Protocol.POS.Test
             WriteVoiceStart cmd2 = new WriteVoiceStart(cmdDtl2, par2);
             mMainForm.AddCommand(cmd2);
 
-            //处理返回值
-            cmdDtl2.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, "命令执行成功");
-            };
+            
         }
 
         private void butReadRelay_Click(object sender, EventArgs e)
@@ -723,7 +908,11 @@ namespace DotNetDrive.Protocol.POS.Test
             {
                 ReadRelay_Result result = cmde.Command.getResult() as ReadRelay_Result;
                 bool bIsOpen = result.Use == 1;
-                string tip = "";
+                string tip = $"继电器类型：{mRelayMode[result.Mode]}，输出保持(s)：{result.OutputRetention}";
+                if (!bIsOpen)
+                {
+                    tip = "继电器已禁用";
+                }
                 Invoke(() =>
                 {
                     cbRelayIsOpen.Checked = bIsOpen;
@@ -758,7 +947,7 @@ namespace DotNetDrive.Protocol.POS.Test
             {
                 ReadBuzzer_Result result = cmde.Command.getResult() as ReadBuzzer_Result;
                 bool bIsOpen = result.Buzzer == 1;
-                string tip = "";
+                string tip = $"蜂鸣器{(bIsOpen ? "已启用": "已禁用")}";
                 Invoke(() =>
                 {
                     cbBuzzerUse.Checked = bIsOpen;
@@ -789,7 +978,7 @@ namespace DotNetDrive.Protocol.POS.Test
             {
                 ReadWIFIAccount_Result result = cmde.Command.getResult() as ReadWIFIAccount_Result;
                 
-                string tip = "";
+                string tip = $"名称：{result.Account}，密码：{result.Password}";
                 Invoke(() =>
                 {
                     txtAccount.Text = result.Account;
@@ -803,9 +992,147 @@ namespace DotNetDrive.Protocol.POS.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            
+            if (txtAccount.Text.Length > 0x20)
+            {
+                MessageBox.Show("wifi名称长度不能超过" + 0x20);
+                return;
+            }
+            if (txtPassword.Text.Length > 0x20)
+            {
+                MessageBox.Show("wifi密码长度不能超过" + 0x20);
+                return;
+            }
             WriteWIFIAccount_Parameter par = new WriteWIFIAccount_Parameter(txtAccount.Text, txtPassword.Text);
             WriteWIFIAccount cmd = new WriteWIFIAccount(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void btnReadCacheContent_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadCache cmd = new ReadCache(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadCache_Result result = cmde.Command.getResult() as ReadCache_Result;
+
+                string tip = "";
+                Invoke(() =>
+                {
+                    txtCacheContent.Text = result.Content;
+                });
+                mMainForm.AddCmdLog(cmde, tip);
+            };
+        }
+
+        private void btnWriteCacheContent_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            WriteCache_Parameter par = new WriteCache_Parameter(txtCacheContent.Text);
+            WriteCache cmd = new WriteCache(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+        }
+
+        private void butReadForbiddenMifareOne_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadForbiddenMifareOne cmd = new ReadForbiddenMifareOne(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadForbiddenMifareOne_Result result = cmde.Command.getResult() as ReadForbiddenMifareOne_Result;
+                bool bIsOpen = result.Use == 1;
+                string tip = $"{(bIsOpen ? "已禁用" : "已启用")}MifareOne卡";
+                Invoke(() =>
+                {
+                    cbUseForbiddenMifareOne.Checked = bIsOpen;
+                });
+                mMainForm.AddCmdLog(cmde, tip);
+            };
+        }
+
+        private void butWriteForbiddenMifareOne_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            byte bIsOpen = (byte)(cbUseForbiddenMifareOne.Checked ? 1 : 0);
+            WriteForbiddenMifareOne_Parameter par = new WriteForbiddenMifareOne_Parameter(bIsOpen);
+            WriteForbiddenMifareOne cmd = new WriteForbiddenMifareOne(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void butReadStatisticsTime_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadConsumeLogStatisticsTime cmd = new ReadConsumeLogStatisticsTime(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadConsumeLogStatisticsTime_Result result = cmde.Command.getResult() as ReadConsumeLogStatisticsTime_Result;
+                
+                DateTime dt = DateTime.Now;
+                string strTime = result.Time.ToString().PadLeft(4, '0');
+                int hour = strTime.Substring(0, 2).ToInt32();
+                int minute = strTime.Substring(2, 2).ToInt32();
+                string tip = $"消费日志统计时间点：{hour}:{minute}";
+                Invoke(() =>
+                {
+                    dtpStatisticsTime.Value = new DateTime(dt.Year, dt.Month, dt.Day,hour,minute,0);
+                });
+                mMainForm.AddCmdLog(cmde, tip);
+            };
+        }
+
+        private void butWriteStatisticsTime_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            int time = dtpStatisticsTime.Value.ToString("HHmm").ToInt32();
+            WriteConsumeLogStatisticsTime_Parameter par = new WriteConsumeLogStatisticsTime_Parameter(time);
+            WriteConsumeLogStatisticsTime cmd = new WriteConsumeLogStatisticsTime(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void butReadLed_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadLed cmd = new ReadLed(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadLed_Result result = cmde.Command.getResult() as ReadLed_Result;
+
+                string tip = $"背光灯的工作模式：{mLED[result.Mode - 1]}";
+                Invoke(() =>
+                {
+                    cmbLED.SelectedIndex = result.Mode - 1;
+                });
+                mMainForm.AddCmdLog(cmde, tip);
+            };
+        }
+
+        private void butWriteLed_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            byte mode = (byte)(cmbLED.SelectedIndex + 1);
+            WriteLed_Parameter par = new WriteLed_Parameter(mode);
+            WriteLed cmd = new WriteLed(cmdDtl, par);
             mMainForm.AddCommand(cmd);
         }
     }

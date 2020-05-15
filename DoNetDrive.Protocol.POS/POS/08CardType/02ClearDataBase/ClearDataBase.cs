@@ -1,6 +1,6 @@
 ﻿using DoNetDrive.Protocol.POS.Protocol;
 
-namespace DoNetDrive.Protocol.POS.CardType.ClearDataBase
+namespace DoNetDrive.Protocol.POS.CardType
 {
     /// <summary>
     /// 清空所有卡类信息

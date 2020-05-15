@@ -43,6 +43,13 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.RecordStorageMode
             return model.checkedParameter();
         }
 
-        
+        protected override void CommandNext0(Protocol.DESPacket oPck)
+        {
+            if (CheckResponse_OK(oPck))
+            {
+                CommandCompleted();
+            }
+
+        }
     }
 }

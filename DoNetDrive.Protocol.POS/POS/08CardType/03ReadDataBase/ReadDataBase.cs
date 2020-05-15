@@ -1,16 +1,15 @@
-﻿using DotNetty.Buffers;
-using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.POS.Protocol;
+﻿using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.POS.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DoNetDrive.Protocol.POS.Protocol;
 using DoNetDrive.Protocol.POS.TemplateMethod;
+using DotNetty.Buffers;
+using System.Collections.Generic;
 
-namespace DoNetDrive.Protocol.POS.CardType.ReadDataBase
+namespace DoNetDrive.Protocol.POS.CardType
 {
+    /// <summary>
+    /// 读取所有卡类
+    /// </summary>
     public class ReadDataBase : TemplateReadData_Base<CardTypeDetail>
     {
         

@@ -1,7 +1,7 @@
 ﻿using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.POS.Protocol;
 
-namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Name
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay
 {
     /// <summary>
     /// 读取名称命令

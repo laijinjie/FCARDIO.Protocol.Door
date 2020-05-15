@@ -61,6 +61,7 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.SystemStatus
 
         /// <summary>
         /// 继电器状态
+        /// 1--COM&NO；2--COM&NC；0--禁用
         /// </summary>
         public byte Relay;
 
@@ -100,8 +101,8 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.SystemStatus
             ConsumeCount = databuf.ReadInt();
 
             //各定额段统计
-
-
+            FixedFee = new byte[64];
+            databuf.ReadBytes(FixedFee, 0,64);
             Relay = databuf.ReadByte();
             Language = databuf.ReadByte();
             MenuLock = databuf.ReadByte();

@@ -185,6 +185,7 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
             {
 
                 //未发送完毕，继续发送
+                /*
                 var lst = mPar.DataList;
                 int iCount = lst.Count;//获取列表总长度
                 iCount = iCount - mIndex;//计算未上传总数
@@ -199,15 +200,16 @@ namespace DoNetDrive.Protocol.POS.TemplateMethod
                 WriteDataToBuf(buf);
 
                 CreateCommandNextPacket(buf);
-                /*
+                */
+                /**/
                 var buf = GetCmdBuf();
                 WriteDataToBuf(buf);
-                oPck.CommandPacket.DataLen = buf.ReadableBytes;
-                oPck.DataLen = buf.ReadableBytes;
+                FPacket.CommandPacket.DataLen = buf.ReadableBytes;
+                //FPacket.DataLen = buf.ReadableBytes;
                 //oPck.SetPacketCmdData(buf.ReadableBytes, buf);
                 //SetPacketCmdData()
                 CommandReady();//设定命令当前状态为准备就绪，等待发送
-                */
+                
             }
         }
 

@@ -130,6 +130,10 @@
             this.cmbPrintCount = new System.Windows.Forms.ComboBox();
             this.cbIsOpenPrint = new System.Windows.Forms.CheckBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.butWriteLed = new System.Windows.Forms.Button();
+            this.butReadLed = new System.Windows.Forms.Button();
+            this.cmbLED = new System.Windows.Forms.ComboBox();
+            this.label51 = new System.Windows.Forms.Label();
             this.butWriteShow = new System.Windows.Forms.Button();
             this.butReadShow = new System.Windows.Forms.Button();
             this.butWriteLogo = new System.Windows.Forms.Button();
@@ -187,6 +191,21 @@
             this.btnWriteUSBDisk = new System.Windows.Forms.Button();
             this.btnReadUSBDisk = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.dtpStatisticsTime = new System.Windows.Forms.DateTimePicker();
+            this.butWriteStatisticsTime = new System.Windows.Forms.Button();
+            this.butReadStatisticsTime = new System.Windows.Forms.Button();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.butWriteForbiddenMifareOne = new System.Windows.Forms.Button();
+            this.butReadForbiddenMifareOne = new System.Windows.Forms.Button();
+            this.cbUseForbiddenMifareOne = new System.Windows.Forms.CheckBox();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.txtAccount = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.butWriteWIFIAccount = new System.Windows.Forms.Button();
+            this.butReadWIFIAccount = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.butWriteBuzzer = new System.Windows.Forms.Button();
             this.butReadBuzzer = new System.Windows.Forms.Button();
@@ -218,13 +237,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.butWriteVoice = new System.Windows.Forms.Button();
             this.butReadVoice = new System.Windows.Forms.Button();
-            this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.butWriteWIFIAccount = new System.Windows.Forms.Button();
-            this.butReadWIFIAccount = new System.Windows.Forms.Button();
-            this.label49 = new System.Windows.Forms.Label();
-            this.txtAccount = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label50 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox15.SuspendLayout();
@@ -245,11 +257,13 @@
             this.groupBox14.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox18.SuspendLayout();
+            this.groupBox17.SuspendLayout();
+            this.groupBox16.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtOutputRetention)).BeginInit();
             this.groupBox8.SuspendLayout();
-            this.groupBox16.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -490,6 +504,7 @@
             this.btnWriteCacheContent.TabIndex = 3;
             this.btnWriteCacheContent.Text = "写入";
             this.btnWriteCacheContent.UseVisualStyleBackColor = true;
+            this.btnWriteCacheContent.Click += new System.EventHandler(this.btnWriteCacheContent_Click);
             // 
             // btnReadCacheContent
             // 
@@ -499,6 +514,7 @@
             this.btnReadCacheContent.TabIndex = 2;
             this.btnReadCacheContent.Text = "读取";
             this.btnReadCacheContent.UseVisualStyleBackColor = true;
+            this.btnReadCacheContent.Click += new System.EventHandler(this.btnReadCacheContent_Click);
             // 
             // txtCacheContent
             // 
@@ -1321,6 +1337,10 @@
             // 
             // groupBox14
             // 
+            this.groupBox14.Controls.Add(this.butWriteLed);
+            this.groupBox14.Controls.Add(this.butReadLed);
+            this.groupBox14.Controls.Add(this.cmbLED);
+            this.groupBox14.Controls.Add(this.label51);
             this.groupBox14.Controls.Add(this.butWriteShow);
             this.groupBox14.Controls.Add(this.butReadShow);
             this.groupBox14.Controls.Add(this.butWriteLogo);
@@ -1348,10 +1368,48 @@
             this.groupBox14.Controls.Add(this.label34);
             this.groupBox14.Location = new System.Drawing.Point(8, 6);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(846, 173);
+            this.groupBox14.Size = new System.Drawing.Size(846, 176);
             this.groupBox14.TabIndex = 5;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "屏幕显示内容";
+            // 
+            // butWriteLed
+            // 
+            this.butWriteLed.Location = new System.Drawing.Point(395, 150);
+            this.butWriteLed.Name = "butWriteLed";
+            this.butWriteLed.Size = new System.Drawing.Size(48, 23);
+            this.butWriteLed.TabIndex = 90;
+            this.butWriteLed.Text = "写入";
+            this.butWriteLed.UseVisualStyleBackColor = true;
+            this.butWriteLed.Click += new System.EventHandler(this.butWriteLed_Click);
+            // 
+            // butReadLed
+            // 
+            this.butReadLed.Location = new System.Drawing.Point(341, 150);
+            this.butReadLed.Name = "butReadLed";
+            this.butReadLed.Size = new System.Drawing.Size(48, 23);
+            this.butReadLed.TabIndex = 89;
+            this.butReadLed.Text = "读取";
+            this.butReadLed.UseVisualStyleBackColor = true;
+            this.butReadLed.Click += new System.EventHandler(this.butReadLed_Click);
+            // 
+            // cmbLED
+            // 
+            this.cmbLED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLED.FormattingEnabled = true;
+            this.cmbLED.Location = new System.Drawing.Point(113, 152);
+            this.cmbLED.Name = "cmbLED";
+            this.cmbLED.Size = new System.Drawing.Size(121, 20);
+            this.cmbLED.TabIndex = 88;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(51, 155);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(53, 12);
+            this.label51.TabIndex = 87;
+            this.label51.Text = "背光灯：";
             // 
             // butWriteShow
             // 
@@ -1895,6 +1953,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.groupBox18);
+            this.tabPage3.Controls.Add(this.groupBox17);
             this.tabPage3.Controls.Add(this.groupBox16);
             this.tabPage3.Controls.Add(this.groupBox10);
             this.tabPage3.Controls.Add(this.groupBox9);
@@ -1906,6 +1966,156 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "参数3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.dtpStatisticsTime);
+            this.groupBox18.Controls.Add(this.butWriteStatisticsTime);
+            this.groupBox18.Controls.Add(this.butReadStatisticsTime);
+            this.groupBox18.Location = new System.Drawing.Point(6, 384);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(846, 52);
+            this.groupBox18.TabIndex = 99;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "消费日志统计时间点";
+            // 
+            // dtpStatisticsTime
+            // 
+            this.dtpStatisticsTime.CustomFormat = "HH:mm";
+            this.dtpStatisticsTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpStatisticsTime.Location = new System.Drawing.Point(65, 21);
+            this.dtpStatisticsTime.Name = "dtpStatisticsTime";
+            this.dtpStatisticsTime.Size = new System.Drawing.Size(119, 21);
+            this.dtpStatisticsTime.TabIndex = 91;
+            // 
+            // butWriteStatisticsTime
+            // 
+            this.butWriteStatisticsTime.Location = new System.Drawing.Point(778, 19);
+            this.butWriteStatisticsTime.Name = "butWriteStatisticsTime";
+            this.butWriteStatisticsTime.Size = new System.Drawing.Size(48, 23);
+            this.butWriteStatisticsTime.TabIndex = 89;
+            this.butWriteStatisticsTime.Text = "写入";
+            this.butWriteStatisticsTime.UseVisualStyleBackColor = true;
+            this.butWriteStatisticsTime.Click += new System.EventHandler(this.butWriteStatisticsTime_Click);
+            // 
+            // butReadStatisticsTime
+            // 
+            this.butReadStatisticsTime.Location = new System.Drawing.Point(722, 19);
+            this.butReadStatisticsTime.Name = "butReadStatisticsTime";
+            this.butReadStatisticsTime.Size = new System.Drawing.Size(48, 23);
+            this.butReadStatisticsTime.TabIndex = 90;
+            this.butReadStatisticsTime.Text = "读取";
+            this.butReadStatisticsTime.UseVisualStyleBackColor = true;
+            this.butReadStatisticsTime.Click += new System.EventHandler(this.butReadStatisticsTime_Click);
+            // 
+            // groupBox17
+            // 
+            this.groupBox17.Controls.Add(this.butWriteForbiddenMifareOne);
+            this.groupBox17.Controls.Add(this.butReadForbiddenMifareOne);
+            this.groupBox17.Controls.Add(this.cbUseForbiddenMifareOne);
+            this.groupBox17.Location = new System.Drawing.Point(6, 316);
+            this.groupBox17.Name = "groupBox17";
+            this.groupBox17.Size = new System.Drawing.Size(846, 52);
+            this.groupBox17.TabIndex = 98;
+            this.groupBox17.TabStop = false;
+            this.groupBox17.Text = "禁止使用IC卡";
+            // 
+            // butWriteForbiddenMifareOne
+            // 
+            this.butWriteForbiddenMifareOne.Location = new System.Drawing.Point(778, 19);
+            this.butWriteForbiddenMifareOne.Name = "butWriteForbiddenMifareOne";
+            this.butWriteForbiddenMifareOne.Size = new System.Drawing.Size(48, 23);
+            this.butWriteForbiddenMifareOne.TabIndex = 89;
+            this.butWriteForbiddenMifareOne.Text = "写入";
+            this.butWriteForbiddenMifareOne.UseVisualStyleBackColor = true;
+            this.butWriteForbiddenMifareOne.Click += new System.EventHandler(this.butWriteForbiddenMifareOne_Click);
+            // 
+            // butReadForbiddenMifareOne
+            // 
+            this.butReadForbiddenMifareOne.Location = new System.Drawing.Point(722, 19);
+            this.butReadForbiddenMifareOne.Name = "butReadForbiddenMifareOne";
+            this.butReadForbiddenMifareOne.Size = new System.Drawing.Size(48, 23);
+            this.butReadForbiddenMifareOne.TabIndex = 90;
+            this.butReadForbiddenMifareOne.Text = "读取";
+            this.butReadForbiddenMifareOne.UseVisualStyleBackColor = true;
+            this.butReadForbiddenMifareOne.Click += new System.EventHandler(this.butReadForbiddenMifareOne_Click);
+            // 
+            // cbUseForbiddenMifareOne
+            // 
+            this.cbUseForbiddenMifareOne.AutoSize = true;
+            this.cbUseForbiddenMifareOne.Location = new System.Drawing.Point(8, 21);
+            this.cbUseForbiddenMifareOne.Name = "cbUseForbiddenMifareOne";
+            this.cbUseForbiddenMifareOne.Size = new System.Drawing.Size(48, 16);
+            this.cbUseForbiddenMifareOne.TabIndex = 0;
+            this.cbUseForbiddenMifareOne.Text = "启用";
+            this.cbUseForbiddenMifareOne.UseVisualStyleBackColor = true;
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.txtPassword);
+            this.groupBox16.Controls.Add(this.label50);
+            this.groupBox16.Controls.Add(this.txtAccount);
+            this.groupBox16.Controls.Add(this.label49);
+            this.groupBox16.Controls.Add(this.butWriteWIFIAccount);
+            this.groupBox16.Controls.Add(this.butReadWIFIAccount);
+            this.groupBox16.Location = new System.Drawing.Point(6, 249);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(846, 52);
+            this.groupBox16.TabIndex = 95;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "Wifi 名称及密码";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(414, 21);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(230, 21);
+            this.txtPassword.TabIndex = 97;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(370, 24);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(41, 12);
+            this.label50.TabIndex = 96;
+            this.label50.Text = "密码：";
+            // 
+            // txtAccount
+            // 
+            this.txtAccount.Location = new System.Drawing.Point(65, 21);
+            this.txtAccount.Name = "txtAccount";
+            this.txtAccount.Size = new System.Drawing.Size(230, 21);
+            this.txtAccount.TabIndex = 95;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(21, 24);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(41, 12);
+            this.label49.TabIndex = 94;
+            this.label49.Text = "名称：";
+            // 
+            // butWriteWIFIAccount
+            // 
+            this.butWriteWIFIAccount.Location = new System.Drawing.Point(778, 19);
+            this.butWriteWIFIAccount.Name = "butWriteWIFIAccount";
+            this.butWriteWIFIAccount.Size = new System.Drawing.Size(48, 23);
+            this.butWriteWIFIAccount.TabIndex = 89;
+            this.butWriteWIFIAccount.Text = "写入";
+            this.butWriteWIFIAccount.UseVisualStyleBackColor = true;
+            this.butWriteWIFIAccount.Click += new System.EventHandler(this.butWriteWIFIAccount_Click);
+            // 
+            // butReadWIFIAccount
+            // 
+            this.butReadWIFIAccount.Location = new System.Drawing.Point(722, 19);
+            this.butReadWIFIAccount.Name = "butReadWIFIAccount";
+            this.butReadWIFIAccount.Size = new System.Drawing.Size(48, 23);
+            this.butReadWIFIAccount.TabIndex = 90;
+            this.butReadWIFIAccount.Text = "读取";
+            this.butReadWIFIAccount.UseVisualStyleBackColor = true;
+            this.butReadWIFIAccount.Click += new System.EventHandler(this.butReadWIFIAccount_Click);
             // 
             // groupBox10
             // 
@@ -2221,73 +2431,6 @@
             this.butReadVoice.UseVisualStyleBackColor = true;
             this.butReadVoice.Click += new System.EventHandler(this.butReadVoice_Click);
             // 
-            // groupBox16
-            // 
-            this.groupBox16.Controls.Add(this.txtPassword);
-            this.groupBox16.Controls.Add(this.label50);
-            this.groupBox16.Controls.Add(this.txtAccount);
-            this.groupBox16.Controls.Add(this.label49);
-            this.groupBox16.Controls.Add(this.butWriteWIFIAccount);
-            this.groupBox16.Controls.Add(this.butReadWIFIAccount);
-            this.groupBox16.Location = new System.Drawing.Point(6, 249);
-            this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(846, 52);
-            this.groupBox16.TabIndex = 95;
-            this.groupBox16.TabStop = false;
-            this.groupBox16.Text = "Wifi 名称及密码";
-            // 
-            // butWriteWIFIAccount
-            // 
-            this.butWriteWIFIAccount.Location = new System.Drawing.Point(778, 19);
-            this.butWriteWIFIAccount.Name = "butWriteWIFIAccount";
-            this.butWriteWIFIAccount.Size = new System.Drawing.Size(48, 23);
-            this.butWriteWIFIAccount.TabIndex = 89;
-            this.butWriteWIFIAccount.Text = "写入";
-            this.butWriteWIFIAccount.UseVisualStyleBackColor = true;
-            this.butWriteWIFIAccount.Click += new System.EventHandler(this.butWriteWIFIAccount_Click);
-            // 
-            // butReadWIFIAccount
-            // 
-            this.butReadWIFIAccount.Location = new System.Drawing.Point(722, 19);
-            this.butReadWIFIAccount.Name = "butReadWIFIAccount";
-            this.butReadWIFIAccount.Size = new System.Drawing.Size(48, 23);
-            this.butReadWIFIAccount.TabIndex = 90;
-            this.butReadWIFIAccount.Text = "读取";
-            this.butReadWIFIAccount.UseVisualStyleBackColor = true;
-            this.butReadWIFIAccount.Click += new System.EventHandler(this.butReadWIFIAccount_Click);
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(21, 24);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(41, 12);
-            this.label49.TabIndex = 94;
-            this.label49.Text = "名称：";
-            // 
-            // txtAccount
-            // 
-            this.txtAccount.Location = new System.Drawing.Point(65, 21);
-            this.txtAccount.Name = "txtAccount";
-            this.txtAccount.Size = new System.Drawing.Size(230, 21);
-            this.txtAccount.TabIndex = 95;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(414, 21);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(230, 21);
-            this.txtPassword.TabIndex = 97;
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(370, 24);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(41, 12);
-            this.label50.TabIndex = 96;
-            this.label50.Text = "密码：";
-            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2330,6 +2473,11 @@
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.groupBox18.ResumeLayout(false);
+            this.groupBox17.ResumeLayout(false);
+            this.groupBox17.PerformLayout();
+            this.groupBox16.ResumeLayout(false);
+            this.groupBox16.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox9.ResumeLayout(false);
@@ -2337,8 +2485,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtOutputRetention)).EndInit();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            this.groupBox16.ResumeLayout(false);
-            this.groupBox16.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2542,5 +2688,17 @@
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.TextBox txtAccount;
         private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.GroupBox groupBox17;
+        private System.Windows.Forms.Button butWriteForbiddenMifareOne;
+        private System.Windows.Forms.Button butReadForbiddenMifareOne;
+        private System.Windows.Forms.CheckBox cbUseForbiddenMifareOne;
+        private System.Windows.Forms.GroupBox groupBox18;
+        private System.Windows.Forms.Button butWriteStatisticsTime;
+        private System.Windows.Forms.Button butReadStatisticsTime;
+        private System.Windows.Forms.DateTimePicker dtpStatisticsTime;
+        private System.Windows.Forms.Button butWriteLed;
+        private System.Windows.Forms.Button butReadLed;
+        private System.Windows.Forms.ComboBox cmbLED;
+        private System.Windows.Forms.Label label51;
     }
 }

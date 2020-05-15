@@ -33,7 +33,14 @@ namespace DoNetDrive.Protocol.POS.Reservation
 
         protected override bool CheckedParameterItem(ReservationDetail reservation)
         {
-            
+            if (reservation.CardData < 0)
+            {
+                return false;
+            }
+            if (reservation.ReservationDate.Year < 2000 || reservation.ReservationDate.Year > 2099)
+            {
+                return false;
+            }
             return true;
         }
     }

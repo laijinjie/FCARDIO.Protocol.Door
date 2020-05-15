@@ -1,10 +1,10 @@
 ﻿using DoNetDrive.Core.Command;
 using System;
 
-namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Led
+namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay
 {
     /// <summary>
-    /// 设置开机供应商Logo命令
+    /// 设置背光灯命令
     /// </summary>
     public class WriteLed : Write_Command
     {
@@ -44,6 +44,15 @@ namespace DoNetDrive.Protocol.POS.SystemParameter.ScreenDisplay.Led
             var buf = acl.Buffer(model.GetDataLen());
 
             Packet(0x01, 0x09, 0x0A, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+        }
+
+        protected override void CommandNext0(Protocol.DESPacket oPck)
+        {
+            if (CheckResponse_OK(oPck))
+            {
+                CommandCompleted();
+            }
+
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Protocol.Door.Door8800.Time.TimeErrorCorrection;
-using DoNetDrive.Protocol.POS.Protocol;
+﻿using DoNetDrive.Protocol.POS.Protocol;
 
 namespace DoNetDrive.Protocol.POS.Time.TimeErrorCorrection
 {

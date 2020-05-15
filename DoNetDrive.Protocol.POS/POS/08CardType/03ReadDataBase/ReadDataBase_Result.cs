@@ -4,7 +4,7 @@ using DoNetDrive.Protocol.POS.Data;
 using System.Collections.Generic;
 using DoNetDrive.Protocol.POS.TemplateMethod;
 
-namespace DoNetDrive.Protocol.POS.CardType.ReadDataBase
+namespace DoNetDrive.Protocol.POS.CardType
 {
     /// <summary>
     /// 读取到的卡类返回结果
