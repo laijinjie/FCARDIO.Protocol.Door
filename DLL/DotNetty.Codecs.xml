@@ -270,7 +270,7 @@
                 to parse the JSON text into a more usable form i.e.a POCO.
             </summary>
         </member>
-        <!-- 对于成员“T:DotNetty.Codecs.LengthFieldBasedFrameDecoder”忽略有格式错误的 XML 注释 -->
+        <!-- Badly formed XML comment ignored for member "T:DotNetty.Codecs.LengthFieldBasedFrameDecoder" -->
         <member name="M:DotNetty.Codecs.LengthFieldBasedFrameDecoder.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
                 Create a new instance.

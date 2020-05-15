@@ -110,6 +110,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 _FileHandle = buf.ReadInt();
                 if (_FileHandle == 0)
                 {
+                    mResult.Success = 0;
                     CommandCompleted();
                 }
                 else
@@ -177,8 +178,12 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
             }
             else if (CheckResponse(oPck, 0x0B, 2, 2))
             {
-                mResult.Success = 255;
-                CommandCompleted();
+                //mResult.Success = 255;
+                WriteFeatureCode_Parameter model = _Parameter as WriteFeatureCode_Parameter;
+                var dataBuf = GetNewCmdDataBuf(model.GetDataLen());
+                Packet(0x0B, 0x01, 0x00, 6, model.GetBytes(dataBuf));
+                CommandReady();
+                
             }
         }
 
