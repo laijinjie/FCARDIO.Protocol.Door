@@ -85,6 +85,12 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.butClearAllTransactionDatabase = new System.Windows.Forms.Button();
+            this.txtIsCircle4 = new System.Windows.Forms.TextBox();
+            this.txtReadIndex4 = new System.Windows.Forms.TextBox();
+            this.txtQuantity4 = new System.Windows.Forms.TextBox();
+            this.txtWriteIndex4 = new System.Windows.Forms.TextBox();
+            this.txtNewRecord4 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -93,6 +99,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtIsCircle4);
+            this.groupBox1.Controls.Add(this.txtReadIndex4);
+            this.groupBox1.Controls.Add(this.txtQuantity4);
+            this.groupBox1.Controls.Add(this.txtWriteIndex4);
+            this.groupBox1.Controls.Add(this.txtNewRecord4);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.butTransactionDatabaseDetail);
             this.groupBox1.Controls.Add(this.txtIsCircle3);
             this.groupBox1.Controls.Add(this.txtIsCircle2);
@@ -126,7 +138,7 @@
             // 
             // butTransactionDatabaseDetail
             // 
-            this.butTransactionDatabaseDetail.Location = new System.Drawing.Point(610, 111);
+            this.butTransactionDatabaseDetail.Location = new System.Drawing.Point(610, 173);
             this.butTransactionDatabaseDetail.Name = "butTransactionDatabaseDetail";
             this.butTransactionDatabaseDetail.Size = new System.Drawing.Size(89, 23);
             this.butTransactionDatabaseDetail.TabIndex = 41;
@@ -632,6 +644,50 @@
             this.butClearAllTransactionDatabase.UseVisualStyleBackColor = true;
             this.butClearAllTransactionDatabase.Click += new System.EventHandler(this.butClearAllTransactionDatabase_Click);
             // 
+            // txtIsCircle4
+            // 
+            this.txtIsCircle4.Location = new System.Drawing.Point(510, 149);
+            this.txtIsCircle4.Name = "txtIsCircle4";
+            this.txtIsCircle4.Size = new System.Drawing.Size(100, 21);
+            this.txtIsCircle4.TabIndex = 47;
+            // 
+            // txtReadIndex4
+            // 
+            this.txtReadIndex4.Location = new System.Drawing.Point(404, 149);
+            this.txtReadIndex4.Name = "txtReadIndex4";
+            this.txtReadIndex4.Size = new System.Drawing.Size(100, 21);
+            this.txtReadIndex4.TabIndex = 46;
+            // 
+            // txtQuantity4
+            // 
+            this.txtQuantity4.Location = new System.Drawing.Point(80, 149);
+            this.txtQuantity4.Name = "txtQuantity4";
+            this.txtQuantity4.Size = new System.Drawing.Size(100, 21);
+            this.txtQuantity4.TabIndex = 44;
+            // 
+            // txtWriteIndex4
+            // 
+            this.txtWriteIndex4.Location = new System.Drawing.Point(298, 149);
+            this.txtWriteIndex4.Name = "txtWriteIndex4";
+            this.txtWriteIndex4.Size = new System.Drawing.Size(100, 21);
+            this.txtWriteIndex4.TabIndex = 45;
+            // 
+            // txtNewRecord4
+            // 
+            this.txtNewRecord4.Location = new System.Drawing.Point(190, 149);
+            this.txtNewRecord4.Name = "txtNewRecord4";
+            this.txtNewRecord4.Size = new System.Drawing.Size(100, 21);
+            this.txtNewRecord4.TabIndex = 43;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(24, 153);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 42;
+            this.label3.Text = "体温记录";
+            // 
             // frmRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -716,5 +772,11 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtReadTransactionDatabaseQuantity;
         private System.Windows.Forms.TextBox txtReadTransactionDatabasePacketSize;
+        private System.Windows.Forms.TextBox txtIsCircle4;
+        private System.Windows.Forms.TextBox txtReadIndex4;
+        private System.Windows.Forms.TextBox txtQuantity4;
+        private System.Windows.Forms.TextBox txtWriteIndex4;
+        private System.Windows.Forms.TextBox txtNewRecord4;
+        private System.Windows.Forms.Label label3;
     }
 }

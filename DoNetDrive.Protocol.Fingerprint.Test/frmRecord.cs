@@ -157,7 +157,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         #region 记录类型
         public void e_TransactionDatabaseType()
         {
-            string[] array = new string[] { "读卡记录", "门磁记录", "系统记录" };
+            string[] array = new string[] { "读卡记录", "门磁记录", "系统记录","体温记录" };
             cboe_TransactionDatabaseType1.Items.Clear();
             cboe_TransactionDatabaseType1.Items.AddRange(array);
             cboe_TransactionDatabaseType1.SelectedIndex = 0;
@@ -191,19 +191,21 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private static e_TransactionDatabaseType Get_TransactionDatabaseType(int type)
         {
             type = type + 1;
-            var i = Transaction.e_TransactionDatabaseType.OnCardTransaction;
-
 
             if (type == 2)
             {
-                i = Transaction.e_TransactionDatabaseType.OnDoorSensorTransaction;
+                return Transaction.e_TransactionDatabaseType.OnDoorSensorTransaction;
             }
 
             if (type == 3)
             {
-                i = Transaction.e_TransactionDatabaseType.OnSystemTransaction;
+                return Transaction.e_TransactionDatabaseType.OnSystemTransaction;
             }
-            return i;
+            if (type == 4)
+            {
+                return Transaction.e_TransactionDatabaseType.OnBodyTemperatureTransaction;
+            }
+            return Transaction.e_TransactionDatabaseType.OnCardTransaction;
         }
         #endregion
 
@@ -313,13 +315,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
                     sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
                     sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).AppendLine();
-
+                    
                     foreach (var t in result.TransactionList)
                     {
 
                         PrintTransactionList(t, sLogs);
                     }
-                    string sFile = SaveFile(sLogs, $"按序号读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    string sFile = SaveFile(sLogs, $"按序号读取记录_{result.TransactionType}_{DateTime.Now:yyyyMMddHHmmss}.txt");
 
                     mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
 
@@ -348,30 +350,25 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 sLogs.AppendLine(" --- 空记录");
                 return;
             }
-            sLogs.Append("，时间：").Append(tr.TransactionDate.ToDateTimeStr());
-            sLogs.Append("，事件代码：").Append(tr.TransactionCode);
-            if (tr.TransactionType == 3)//1-6
+            if(tr.TransactionType == 4)
             {
-                string[] codeNameList = mTransactionCodeNameList[3];
-                sLogs.Append("(").Append(codeNameList[tr.TransactionCode]).Append(")");
+                Fingerprint.Data.Transaction.BodyTemperatureTransaction btr = (Data.Transaction.BodyTemperatureTransaction  ) tr;
+                float btmp = (float)btr.BodyTemperature / (float)10;
+                sLogs.Append("体温：").Append(btmp).AppendLine(" ℃");
+                return;
             }
-            else if (tr.TransactionType == 1)//读卡记录
+            sLogs.Append("，时间：").Append(tr.TransactionDate.ToDateTimeStr());
+            string[] codeNameList = mTransactionCodeNameList[tr.TransactionType];
+            
+            sLogs.Append("，事件代码：").Append(tr.TransactionCode);
+            sLogs.Append("(").Append(codeNameList[tr.TransactionCode]).Append(")");
+            if (tr.TransactionType == 1)//读卡记录
             {
                 Data.Transaction.CardTransaction cardTrans = tr as Data.Transaction.CardTransaction;
-                sLogs.Append("用户号：").Append(cardTrans.UserCode).Append("，读卡器号：").Append(cardTrans.Accesstype).Append("，照片：").AppendLine(cardTrans.Photo == 1 ? "" : "");
+                sLogs.Append("用户号：").Append(cardTrans.UserCode).Append("，进/出：")
+                    .Append(cardTrans.Accesstype).Append("，照片：").AppendLine(cardTrans.Photo == 1 ? "" : "");
             }
-            else
-            {
-                if (tr.TransactionType >= 2 && tr.TransactionType <= 2)
-                {
-                    AbstractDoorTransaction doorTr = tr as AbstractDoorTransaction;
-                    sLogs.Append("，门号：").Append(doorTr.Door).AppendLine();
-                }
-                else
-                {
-                    sLogs.AppendLine();
-                }
-            }
+           
         }
         #endregion
 
@@ -383,7 +380,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as Transaction.ReadTransactionDatabaseDetail_Result;
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     TextBox txtQuantity = FindControl(groupBox1, "txtQuantity" + (i + 1).ToString()) as TextBox;
                     TextBox txtNewRecord = FindControl(groupBox1, "txtNewRecord" + (i + 1).ToString()) as TextBox;
