@@ -48,6 +48,12 @@ DoNetDrive.Core
  命令的当前工作状态
  </summary>
 </member>
+<member name="P:DoNetDrive.Core.Command.AbstractCommand.IsWaitExecute">
+ <summary>
+ 是否正在等待执行
+ </summary>
+ <returns></returns>
+</member>
 <member name="F:DoNetDrive.Core.Command.AbstractCommand._EventArgs">
  <summary>
  包含一个命令事件对象
@@ -670,6 +676,12 @@ DoNetDrive.Core
  <summary>
  命令返回值的存储接口
  </summary>
+</member>
+<member name="P:DoNetDrive.Core.Command.INCommandRuntime.IsWaitExecute">
+ <summary>
+ 是否正在等待执行
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:DoNetDrive.Core.Command.INCommandRuntime.GetStatus_Stop">
  <summary>
@@ -1792,6 +1804,16 @@ DoNetDrive.Core
  连接通道观察者，可以观察连接通道上的数据收发 十六进制格式输出
  </summary>
 </member>
+<member name="F:DoNetDrive.Core.Connector.ConnectorObserverHandler.UseEcho">
+ <summary>
+ 使用Echo，返回发送的内容
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.ConnectorObserverHandler.HexDump">
+ <summary>
+ 十六进制输出内容
+ </summary>
+</member>
 <member name="E:DoNetDrive.Core.Connector.ConnectorObserverHandler.DisposeRequestEvent">
  <summary>
  接收到数据
@@ -2243,6 +2265,34 @@ DoNetDrive.Core
  <param name="ip"></param>
  <param name="iPort"></param>
 </member>
+<member name="T:DoNetDrive.Core.Connector.TCPClient.SSLCertificateDetail">
+ <summary>
+ 表示一个SSL证书
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.TCPClient.SSLCertificateDetail.IsSSL">
+ <summary>
+ 是否启用SSL安全连接
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.TCPClient.SSLCertificateDetail.Certificate">
+ <summary>
+ 用于SSL安全连接的数字证书
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.TCPClient.SSLCertificateDetail.SSLStreamFactory">
+ <summary>
+ 用于创建SSL安全套接字的流工厂
+ </summary>
+</member>
+<member name="M:DoNetDrive.Core.Connector.TCPClient.SSLCertificateDetail.#ctor(System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2,System.Func{System.IO.Stream,System.Net.Security.SslStream})">
+ <summary>
+ 创建一个证书详情
+ </summary>
+ <param name="bSSL"></param>
+ <param name="oX509"></param>
+ <param name="oSSLFac"></param>
+</member>
 <member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientAllocator.lockobj">
  <summary>
  用于单例模式加锁的
@@ -2274,7 +2324,7 @@ DoNetDrive.Core
  最大重新连接次数
  </summary>
 </member>
-<member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientAllocator.#ctor">
+<member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientAllocator.#ctor(DoNetDrive.Core.Connector.TCPClient.TCPClientChannelInitializer)">
  <summary>
  初始化分配器，建立 Bootstrap ，并分配 EventLoopGroup
  </summary>
@@ -2301,8 +2351,39 @@ DoNetDrive.Core
  <summary>
  连接到远程服务器
  </summary>
- <param name="addr"></param>
- <param name="iPort"></param>
+ <param name="detail"></param>
+ <param name="iTimeOut"></param>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientAllocator.SetTCPInitializerPar(System.Net.IPEndPoint,DoNetDrive.Core.Connector.TCPClient.TCPClientDetail)">
+ <summary>
+ 设置初始化参数
+ </summary>
+ <param name="detail"></param>
+</member>
+<member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientChannelInitializer.mLastCertificate">
+ <summary>
+ 最近使用的SSL证书
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientChannelInitializer._CertificateList">
+ <summary>
+ 证书列表
+ </summary>
+</member>
+<member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientChannelInitializer.SetSSLPar(System.Net.IPEndPoint,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2,System.Func{System.IO.Stream,System.Net.Security.SslStream})">
+ <summary>
+ 设置SSL参数
+ </summary>
+ <param name="bSSL"></param>
+ <param name="oX509"></param>
+ <param name="oSSLFac"></param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientChannelInitializer.CreateSSLStream(System.IO.Stream)">
+ <summary>
+ 创建一个SSL流
+ </summary>
+ <param name="oIOStream"></param>
  <returns></returns>
 </member>
 <member name="T:DoNetDrive.Core.Connector.TCPClient.TCPClientConnector">
@@ -2382,6 +2463,11 @@ DoNetDrive.Core
  </summary>
  <param name="tak"></param>
 </member>
+<member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientConnector.AddChannelHandler">
+ <summary>
+ 添加通道处理器
+ </summary>
+</member>
 <member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientConnector.ConnectFail0">
  <summary>
  当连接通道连接已失效时调用
@@ -2443,6 +2529,12 @@ DoNetDrive.Core
  <param name="slocal">指定本地IP</param>
  <param name="ilocalPort">指定本地端口</param>
 </member>
+<member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail_Readonly.#ctor(DoNetDrive.Core.Connector.TCPClient.TCPClientDetail)">
+ <summary>
+ 初始化连接器详细
+ </summary>
+ <param name="oTCP">远程服务器的详情</param>
+</member>
 <member name="P:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail_Readonly.Addr">
  <summary>
  远程服务器的IP或域名
@@ -2497,7 +2589,12 @@ DoNetDrive.Core
 </member>
 <member name="P:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail.Addr">
  <summary>
- 远程服务器的IP或域名
+ 远程服务器的IP
+ </summary>
+</member>
+<member name="P:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail.RemoteHost">
+ <summary>
+ 远程主机名
  </summary>
 </member>
 <member name="P:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail.Port">
@@ -2515,6 +2612,21 @@ DoNetDrive.Core
  连接远程服务器的本地端口
  </summary>
 </member>
+<member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail.IsSSL">
+ <summary>
+ 是否启用SSL安全连接
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail.Certificate">
+ <summary>
+ 用于SSL安全连接的数字证书
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail.SSLStreamFactory">
+ <summary>
+ 用于创建SSL安全套接字的流工厂
+ </summary>
+</member>
 <member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail.#ctor(System.String,System.Int32)">
  <summary>
  初始化连接器详细
@@ -2530,6 +2642,29 @@ DoNetDrive.Core
  <param name="iPort">远程服务器的监听端口</param>
  <param name="slocal">指定本地IP</param>
  <param name="ilocalPort">指定本地端口</param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail.#ctor(System.String,System.Int32,System.String,System.Int32,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2)">
+ <summary>
+ 初始化详情
+ </summary>
+ <param name="sAddr">远程服务器的IP或域名</param>
+ <param name="iPort">远程服务器的监听端口</param>
+ <param name="slocal">指定本地IP</param>
+ <param name="ilocalPort">指定本地端口</param>
+ <param name="bSSL">是否开启SSL</param>
+ <param name="oX509">使用的证书</param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail.#ctor(System.String,System.Int32,System.String,System.Int32,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2,System.Func{System.IO.Stream,System.Net.Security.SslStream})">
+ <summary>
+ 初始化详情
+ </summary>
+ <param name="sAddr">远程服务器的IP或域名</param>
+ <param name="iPort">远程服务器的监听端口</param>
+ <param name="slocal">指定本地IP</param>
+ <param name="ilocalPort">指定本地端口</param>
+ <param name="bSSL">是否开启SSL</param>
+ <param name="oX509">使用的证书</param>
+ <param name="oSSLFac">用于创建SSL安全套接字的流工厂</param>
 </member>
 <member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail.GetAssemblyName">
  <summary>
@@ -3037,6 +3172,29 @@ DoNetDrive.Core
  <param name="slocal">指定本地IP</param>
  <param name="ilocalPort">指定本地端口</param>
 </member>
+<member name="M:DoNetDrive.Core.Connector.UDP.UDPClientDetail.#ctor(System.String,System.Int32,System.String,System.Int32,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2)">
+ <summary>
+ 初始化详情
+ </summary>
+ <param name="sAddr">远程服务器的IP或域名</param>
+ <param name="iPort">远程服务器的监听端口</param>
+ <param name="slocal">指定本地IP</param>
+ <param name="ilocalPort">指定本地端口</param>
+ <param name="bSSL">是否开启SSL</param>
+ <param name="oX509">使用的证书</param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.UDP.UDPClientDetail.#ctor(System.String,System.Int32,System.String,System.Int32,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2,System.Func{System.IO.Stream,System.Net.Security.SslStream})">
+ <summary>
+ 初始化详情
+ </summary>
+ <param name="sAddr">远程服务器的IP或域名</param>
+ <param name="iPort">远程服务器的监听端口</param>
+ <param name="slocal">指定本地IP</param>
+ <param name="ilocalPort">指定本地端口</param>
+ <param name="bSSL">是否开启SSL</param>
+ <param name="oX509">使用的证书</param>
+ <param name="oSSLFac">用于创建SSL安全套接字的流工厂</param>
+</member>
 <member name="M:DoNetDrive.Core.Connector.UDP.UDPClientDetail.GetTypeName">
  <summary>
  获取连接通道的类名
@@ -3208,6 +3366,11 @@ DoNetDrive.Core
  通道的子节点
  </summary>
 </member>
+<member name="F:DoNetDrive.Core.Connector.UDP.UDPServerConnector.BroadcastChannel">
+ <summary>
+ 广播的通道
+ </summary>
+</member>
 <member name="E:DoNetDrive.Core.Connector.UDP.UDPServerConnector.ConnectorDisposeEvent">
  <summary>
  通道销毁事件
@@ -3368,6 +3531,214 @@ DoNetDrive.Core
  </summary>
  <returns></returns>
 </member>
+<member name="F:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientAllocator.lockobj">
+ <summary>
+ 用于单例模式加锁的
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientAllocator.mWebSocketClientAllocator">
+ <summary>
+ 用于生成WebSocketClient的分配器
+ </summary>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientAllocator.GetAllocator">
+ <summary>
+ 获取用于生成WebSocketClient的分配器
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientAllocator.#ctor">
+ <summary>
+ 初始化分配器，建立 Bootstrap ，并分配 EventLoopGroup
+ </summary>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientAllocator.shutdownGracefully">
+ <summary>
+ 关闭这个连接通道分配器
+ </summary>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientAllocator.GetConnectorTypeName">
+ <summary>
+ 获取分配器可分配的连接器类全名
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientAllocator.GetNewConnector(DoNetDrive.Core.Connector.INConnectorDetail)">
+ <summary>
+ 创建一个新的连接通道
+ </summary>
+ <param name="detail"></param>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientAllocator.SetTCPInitializerPar(System.Net.IPEndPoint,DoNetDrive.Core.Connector.TCPClient.TCPClientDetail)">
+ <summary>
+ 设置初始化参数
+ </summary>
+ <param name="detail"></param>
+</member>
+<member name="T:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientConnector">
+ <summary>
+ 用于和TCP Server进行通讯的TCP Client
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientConnector._WebsocketPath">
+ <summary>
+ Websocket 地址
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientConnector._WebsocketHandler">
+ <summary>
+ Websocket Client 处理器
+ </summary>
+</member>
+<member name="P:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientConnector.WebsocketPath">
+ <summary>
+ Websocket 地址
+ </summary>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientConnector.#ctor(DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientAllocator,DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientDetail)">
+ <summary>
+ 初始化TCP客户端对象
+ </summary>
+ <param name="acr">通道分配器</param>
+ <param name="detail">标识此通道的信息类</param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientConnector.GetConnectorType">
+ <summary>
+ 返回此通道的类路径
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientConnector.AddChannelHandler">
+ <summary>
+ 添加通道处理器
+ </summary>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientConnector.WriteByteBuf(DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将生成的bytebuf写入到通道中
+ 写入完毕后自动释放
+ </summary>
+ <param name="buf"></param>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientConnector.HandshakeOver(System.Threading.Tasks.Task)">
+ <summary>
+ 握手完毕
+ </summary>
+ <param name="oTsk"></param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientConnector.Release1">
+ <summary>
+ 释放资源
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientDetail.Path">
+ <summary>
+ 路径
+ </summary>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientDetail.#ctor(System.String,System.Int32)">
+ <summary>
+ 初始化连接器详细
+ </summary>
+ <param name="sHost">远程服务器的IP或域名</param>
+ <param name="iPort">远程服务器的监听端口</param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientDetail.#ctor(DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientDetail)">
+ <summary>
+ 初始化连接器详细
+ </summary>
+ <param name="oWebSocketClient">远程服务器的详情</param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientDetail.#ctor(System.String,System.Int32,System.String,System.Int32)">
+ <summary>
+ 初始化连接器详细
+ </summary>
+ <param name="sHost">远程服务器的IP或域名</param>
+ <param name="iPort">远程服务器的监听端口</param>
+ <param name="slocal">指定本地IP</param>
+ <param name="ilocalPort">指定本地端口</param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientDetail.#ctor(System.String,System.Int32,System.String,System.Int32,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2)">
+ <summary>
+ 初始化详情
+ </summary>
+ <param name="sAddr">远程服务器的IP或域名</param>
+ <param name="iPort">远程服务器的监听端口</param>
+ <param name="slocal">指定本地IP</param>
+ <param name="ilocalPort">指定本地端口</param>
+ <param name="bSSL">是否开启SSL</param>
+ <param name="oX509">使用的证书</param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientDetail.#ctor(System.String,System.Int32,System.String,System.Int32,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2,System.Func{System.IO.Stream,System.Net.Security.SslStream},System.String)">
+ <summary>
+ 初始化详情
+ </summary>
+ <param name="sAddr">远程服务器的IP或域名</param>
+ <param name="iPort">远程服务器的监听端口</param>
+ <param name="slocal">指定本地IP</param>
+ <param name="ilocalPort">指定本地端口</param>
+ <param name="bSSL">是否开启SSL</param>
+ <param name="oX509">使用的证书</param>
+ <param name="oSSLFac">用于创建SSL安全套接字的流工厂</param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientDetail.GetTypeName">
+ <summary>
+ 获取连接通道的类名
+ </summary>
+ <returns>类名的全名</returns>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientDetail_Readonly.#ctor(DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientDetail)">
+ <summary>
+ 初始化连接器详细
+ </summary>
+ <param name="oDtl">远程服务器的详情</param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientHandler.Release">
+ <summary>
+ 释放关联
+ </summary>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientHandler.ChannelInactive(DotNetty.Transport.Channels.IChannelHandlerContext)">
+ <summary>
+ 不活跃事件，一般就是关闭连接
+ Websocket 断开连接
+ </summary>
+ <param name="ctx"></param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientHandler.ChannelReadComplete(DotNetty.Transport.Channels.IChannelHandlerContext)">
+ <summary>
+ 当通道全部读取完毕后发生的事件
+ </summary>
+ <param name="context"></param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientHandler.ExceptionCaught(DotNetty.Transport.Channels.IChannelHandlerContext,System.Exception)">
+ <summary>
+ 意外发生错误
+ </summary>
+ <param name="ctx"></param>
+ <param name="ex"></param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientHandshakeHandler.HandshakeCompletion">
+ <summary>
+ 指示Websocket Client 握手是否完成
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientHandshakeHandler.ChannelActive(DotNetty.Transport.Channels.IChannelHandlerContext)">
+ <summary>
+ Websocket 连接成功，握手完毕
+ </summary>
+ <param name="ctx"></param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Client.WebSocketClientHandshakeHandler.ExceptionCaught(DotNetty.Transport.Channels.IChannelHandlerContext,System.Exception)">
+ <summary>
+ 意外发生错误
+ </summary>
+ <param name="ctx"></param>
+ <param name="ex"></param>
+</member>
 <member name="T:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientConnector">
  <summary>
  表示一个WebSocket Server下的客户端节点连接通道
@@ -3378,9 +3749,9 @@ DoNetDrive.Core
  从 HTTP 到 WebSocket 协议升级处理器
  </summary>
 </member>
-<member name="F:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientConnector.IsUseBinary">
+<member name="F:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientConnector._HandshakeIsCompleted">
  <summary>
- 指示是否使用二进制发送数据
+ 检查握手是否成功
  </summary>
 </member>
 <member name="M:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientConnector.#ctor(System.String,DotNetty.Transport.Channels.IChannel)">
@@ -3403,6 +3774,12 @@ DoNetDrive.Core
  </summary>
  <param name="ctx"></param>
  <param name="req"></param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientConnector.HandshakeOver(System.Threading.Tasks.Task)">
+ <summary>
+ 握手完毕
+ </summary>
+ <param name="oTsk"></param>
 </member>
 <member name="M:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientConnector.HandleWebSocketFrame(DotNetty.Transport.Channels.IChannelHandlerContext,DotNetty.Codecs.Http.WebSockets.WebSocketFrame)">
  <summary>
@@ -3596,12 +3973,6 @@ DoNetDrive.Core
  <param name="Port">本地监听端口</param>
  <param name="bSSL">是否开启SSL</param>
  <param name="oX509">使用的证书</param>
-</member>
-<member name="M:DoNetDrive.Core.Connector.WebSocket.Server.WebSocketServerDetail.GetKey">
- <summary>
- 获取一个关于服务端点的Key值
- </summary>
- <returns></returns>
 </member>
 <member name="M:DoNetDrive.Core.Connector.WebSocket.Server.WebSocketServerDetail.GetTypeName">
  <summary>
@@ -4234,6 +4605,11 @@ DoNetDrive.Core
 <member name="F:DoNetDrive.Core.ConnectorType.WebSocketServerClient">
  <summary>
  表示一个 WebSocket Server下的WebSocket 子节点通道
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.ConnectorType.WebSocketClient">
+ <summary>
+ 表示一个Websocket客户端
  </summary>
 </member>
 <member name="T:DoNetDrive.Core.Data.AbstractData">

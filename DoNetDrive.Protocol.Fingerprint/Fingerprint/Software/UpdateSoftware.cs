@@ -153,7 +153,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
                     
                     _ProcessStep = _ProcessMax;
                     var crc32 = mPar.SoftwareCRC32;
-
+                    CommandDetail.Timeout = mPar.WaitVerifyTime;
                     buf.WriteInt((int)crc32);
                     DoorPacket.CmdIndex = 0x13;
                     DoorPacket.DataLen = 4;

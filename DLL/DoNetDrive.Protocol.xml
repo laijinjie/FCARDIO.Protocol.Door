@@ -59,6 +59,11 @@ DoNetDrive.Protocol
  生成命令的第一个数据包，后续的数据包应该在接收到返回值在 CommandNext 函数中陆续组装
  </summary>
 </member>
+<member name="M:DoNetDrive.Protocol.FrameCommand.AbstractFrameCommand`1.CommandReady">
+ <summary>
+ 命令准备就绪，等待下次发送
+ </summary>
+</member>
 <member name="M:DoNetDrive.Protocol.FrameCommand.AbstractFrameCommand`1.Packet(System.Byte,System.Byte,System.Byte,System.UInt32,DotNetty.Buffers.IByteBuffer)">
  <summary>
  修改当前的数据包
@@ -480,6 +485,16 @@ DoNetDrive.Protocol
 <member name="T:DoNetDrive.Protocol.Packet.BaseDecompile`1">
  <summary>
  抽象的命令包解析类。
+ </summary>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1.DecompileTimeout">
+ <summary>
+ 解码器中缓存数据超时时间
+ </summary>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1.ActivityTime">
+ <summary>
+ 解码器活跃时间
  </summary>
 </member>
 <member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1.DecompileStep">

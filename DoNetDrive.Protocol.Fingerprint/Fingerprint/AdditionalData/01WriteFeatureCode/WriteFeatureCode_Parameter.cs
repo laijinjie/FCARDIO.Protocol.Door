@@ -34,6 +34,10 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// </summary>
         public byte[] Datas;
 
+        /// <summary>
+        /// 等待校验的时间，单位毫秒
+        /// </summary>
+        public int WaitVerifyTime;
 
 
         /// <summary>
@@ -48,6 +52,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
             Type = type;
             SerialNumber = serialNumber;
             Datas = datas;
+            WaitVerifyTime = 6000;
         }
 
         /// <summary>

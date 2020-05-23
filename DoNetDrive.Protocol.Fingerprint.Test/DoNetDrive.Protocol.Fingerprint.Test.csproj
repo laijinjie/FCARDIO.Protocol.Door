@@ -48,14 +48,6 @@
       <HintPath>C:\Windows\assembly\GAC_MSIL\DevComponents.Instrumentation\10.9.0.4__bc4a9d761ea44ef0\DevComponents.Instrumentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Core">
-      <HintPath>..\DLL\DoNetDrive.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol">
-      <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DoNetDrive.Protocol.Door, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
@@ -220,6 +212,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DoNet版通讯动态库V2\FCARDIO.Core\FCARDIO.Core\DoNetDrive.Core.vbproj">
+      <Project>{a149c4d3-2209-408f-a0de-d9eb8e0fa492}</Project>
+      <Name>DoNetDrive.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DoNet版通讯动态库V2\FCARDIO.Protocol\FCARDIO.Protocol\DoNetDrive.Protocol.vbproj">
+      <Project>{4c9b06e5-da6b-49af-8e4d-a0d75046c044}</Project>
+      <Name>DoNetDrive.Protocol</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DoNetDrive.Protocol.Fingerprint\Fingerprint\DoNetDrive.Protocol.Fingerprint.csproj">
       <Project>{4639e7f7-83aa-4511-8fa8-369a79226b72}</Project>
       <Name>DoNetDrive.Protocol.Fingerprint</Name>

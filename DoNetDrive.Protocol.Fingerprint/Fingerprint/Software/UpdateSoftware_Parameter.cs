@@ -23,6 +23,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
         /// </summary>
         public uint SoftwareCRC32;
 
+        /// <summary>
+        /// 等待校验的时间，单位毫秒
+        /// </summary>
+        public int WaitVerifyTime;
 
         /// <summary>
         /// 初始化参数
@@ -31,6 +35,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
         public UpdateSoftware_Parameter( byte[] datas,uint crc)
         {
 
+            WaitVerifyTime = 8000;
             Datas = datas;
             SoftwareCRC32 = crc;
         }

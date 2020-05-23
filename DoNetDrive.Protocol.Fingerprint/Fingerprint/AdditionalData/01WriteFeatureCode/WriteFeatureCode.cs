@@ -156,10 +156,8 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 if (iDataLen <= 0)
                 {
                     _ProcessStep = _ProcessMax;
-                    if( CommandDetail.Timeout<2500)
-                    {
-                        CommandDetail.Timeout = 2500;
-                    }
+                    CommandDetail.Timeout = mPar.WaitVerifyTime;
+
                     var crc32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(data, 0, (uint)data.Length);
 
                     buf.WriteInt((int)crc32);
@@ -178,12 +176,12 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
             }
             else if (CheckResponse(oPck, 0x0B, 2, 2))
             {
+
                 //mResult.Success = 255;
-                WriteFeatureCode_Parameter model = _Parameter as WriteFeatureCode_Parameter;
-                var dataBuf = GetNewCmdDataBuf(model.GetDataLen());
-                Packet(0x0B, 0x01, 0x00, 6, model.GetBytes(dataBuf));
+                var dataBuf = GetNewCmdDataBuf(mPar.GetDataLen());
+                Packet(0x0B, 0x01, 0x00, 6, mPar.GetBytes(dataBuf));
                 CommandReady();
-                
+
             }
         }
 

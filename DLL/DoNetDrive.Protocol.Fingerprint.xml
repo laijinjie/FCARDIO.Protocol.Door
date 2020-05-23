@@ -552,6 +552,11 @@
             数据
             </summary>
         </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFeatureCode_Parameter.WaitVerifyTime">
+            <summary>
+            等待校验的时间，单位毫秒
+            </summary>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFeatureCode_Parameter.#ctor(System.Int32,System.Int32,System.Int32,System.Byte[])">
             <summary>
             初始化参数
@@ -3610,6 +3615,11 @@
         <member name="F:DoNetDrive.Protocol.Fingerprint.Software.UpdateSoftware_Parameter.SoftwareCRC32">
             <summary>
             固件解密后的CRC32
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Software.UpdateSoftware_Parameter.WaitVerifyTime">
+            <summary>
+            等待校验的时间，单位毫秒
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Software.UpdateSoftware_Parameter.#ctor(System.Byte[],System.UInt32)">
