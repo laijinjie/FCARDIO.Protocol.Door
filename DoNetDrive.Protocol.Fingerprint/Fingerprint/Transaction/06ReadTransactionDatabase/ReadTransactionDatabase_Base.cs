@@ -14,10 +14,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
     ///  读指定类型的记录数据库最新记录，并读取指定数量。
     ///  成功返回结果参考 link ReadTransactionDatabase_Result 
     /// </summary>
-    public abstract class ReadTransactionDatabase_Base : 
+    public abstract class ReadTransactionDatabase_Base :
         DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Base
     {
-        
+
 
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// </summary>
         /// <param name="cd"></param>
         /// <param name="parameter"></param>
-        public ReadTransactionDatabase_Base(INCommandDetail cd, ReadTransactionDatabase_Parameter parameter) 
+        public ReadTransactionDatabase_Base(INCommandDetail cd, ReadTransactionDatabase_Parameter parameter)
             : base(cd, parameter)
         {
         }
@@ -45,6 +45,33 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// 检查上传断点是否异常
+        /// </summary>
+        protected override void CheckReadIndex()
+        {
+            if (_TransactionDetail.ReadIndex > _TransactionDetail.WriteIndex)
+            {
+                _TransactionDetail.ReadIndex = _TransactionDetail.WriteIndex;
+            }
+        }
+
+        /// <summary>
+        /// 检查上传断点是否异常
+        /// </summary>
+        protected override void GetReadIndexRange(out int iBeginIndex, out int iEndIndex)
+        {
+
+            iBeginIndex = (int)_TransactionDetail.ReadIndex + 1;
+            iEndIndex = iBeginIndex + mReadQuantity - 1;
+
+            if (iEndIndex > _TransactionDetail.WriteIndex)
+            {
+                iEndIndex = (int)_TransactionDetail.WriteIndex;
+                mReadQuantity = (int)(iEndIndex - iBeginIndex);
+            }
         }
 
     }

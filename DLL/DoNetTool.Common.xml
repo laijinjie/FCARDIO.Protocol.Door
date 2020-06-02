@@ -1479,6 +1479,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:DoNetTool.Common.MyXML.GetElement">
+            <summary>
+            返回 XML根节点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetTool.Common.MyXML.GetNode">
+            <summary>
+            返回 XML根节点
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:DoNetTool.Common.MyXML.ToString">
             <summary>
             返回xml InnerXml

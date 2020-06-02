@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DoNetDrive.Protocol.Door.Door8800.Data;
 
 namespace DoNetDrive.Protocol.Fingerprint.Data
 {
@@ -47,11 +46,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
         {
             if (data.ReadableBytes == 52)// 0x0D * 4;
             {
-                ListTransaction = new TransactionDetail[] { CardTransactionDetail, DoorSensorTransactionDetail, SystemTransactionDetail, BodyTemperatureTransactionDetail };
+                ListTransaction = new DoNetDrive.Protocol.Door.Door8800.Data.TransactionDetail[] 
+                { CardTransactionDetail, DoorSensorTransactionDetail, SystemTransactionDetail, BodyTemperatureTransactionDetail };
             }
             else// 0x0D * 3;
             {
-                ListTransaction = new TransactionDetail[] { CardTransactionDetail, DoorSensorTransactionDetail, SystemTransactionDetail };
+                ListTransaction = new DoNetDrive.Protocol.Door.Door8800.Data.TransactionDetail[] 
+                { CardTransactionDetail, DoorSensorTransactionDetail, SystemTransactionDetail };
             }
 
             for (int i = 0; i < ListTransaction.Length; i++)

@@ -1728,6 +1728,17 @@
             </summary>
             <param name="data"></param>
         </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Data.TransactionDetail">
+            <summary>
+            适用于人脸机和指纹机的详情
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.TransactionDetail.readable">
+            <summary>
+            可用的新记录数
+            </summary>
+            <returns>新记录数</returns>
+        </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Data.Transaction.BodyTemperatureTransaction">
             <summary>
             表示一个体温记录
@@ -1871,17 +1882,6 @@
             使用缓冲区构造一个事务实例
             </summary>
             <param name="data">缓冲区</param>
-        </member>
-        <member name="T:DoNetDrive.Protocol.Fingerprint.Data.Transaction.TransactionDetail">
-            <summary>
-            人脸机、指纹机记录详情
-            </summary>
-        </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Transaction.TransactionDetail.readable">
-            <summary>
-            可用的新记录数
-            </summary>
-            <returns>新记录数</returns>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Door.ReaderOption.ReaderOption_Parameter">
             <summary>
@@ -4897,23 +4897,23 @@
             将命令打包成一个Packet，准备发送
             </summary>
         </member>
-        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceBioassay.ReadFaceBioassay">
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceBioassay">
             <summary>
             表示读取人脸机活体检测的命令
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceBioassay.ReadFaceBioassay.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceBioassay.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
             创建读取人脸机活体检测的命令
             </summary>
             <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceBioassay.ReadFaceBioassay.CreatePacket0">
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceBioassay.CreatePacket0">
             <summary>
             将命令打包成一个Packet，准备发送
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceBioassay.ReadFaceBioassay.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceBioassay.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
             <summary>
             命令返回值的判断
             </summary>
@@ -5533,6 +5533,16 @@
             获取指定类型的数据库详情信息
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Base.CheckReadIndex">
+            <summary>
+            检查上传断点是否异常
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Base.GetReadIndexRange(System.Int32@,System.Int32@)">
+            <summary>
+            检查上传断点是否异常
+            </summary>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Parameter">
             <summary>

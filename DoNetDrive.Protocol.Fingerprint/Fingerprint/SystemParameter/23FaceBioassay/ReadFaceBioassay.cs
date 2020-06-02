@@ -2,7 +2,7 @@
 using DoNetDrive.Protocol.Door.Door8800;
 using DoNetDrive.Protocol.OnlineAccess;
 
-namespace DoNetDrive.Protocol.Fingerprint.SystemParameter._23FaceBioassay
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 {
     /// <summary>
     /// 表示读取人脸机活体检测的命令

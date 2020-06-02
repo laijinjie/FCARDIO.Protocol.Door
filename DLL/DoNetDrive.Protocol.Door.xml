@@ -11947,9 +11947,19 @@
             </summary>
             <param name="oPck"></param>
         </member>
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Base.CheckReadIndex">
+            <summary>
+            检查上传断点是否异常
+            </summary>
+        </member>
         <member name="M:DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Base.ReadTransactionNext">
             <summary>
             读取下一包记录
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Base.GetReadIndexRange(System.Int32@,System.Int32@)">
+            <summary>
+            检查上传断点是否异常
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Base.ReadTransactionDatabaseByIndexCallBack(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">

@@ -52,7 +52,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DoNetDrive.Core, Version=1.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DoNetDrive.Core, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\DoNetDrive.Core.dll</HintPath>
     </Reference>

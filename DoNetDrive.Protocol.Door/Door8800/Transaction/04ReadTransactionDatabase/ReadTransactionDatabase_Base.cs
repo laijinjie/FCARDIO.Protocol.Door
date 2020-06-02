@@ -220,12 +220,19 @@ namespace DoNetDrive.Protocol.Door.Door8800.Transaction
                     _ProcessMax = mReadable;
                     _ProcessStep = 0;
 
-                    if (_TransactionDetail.IsCircle)
-                    {
-                        _TransactionDetail.ReadIndex = _TransactionDetail.WriteIndex;
-                    }
+                    CheckReadIndex();
                     ReadTransactionNext();
                 }
+            }
+        }
+        /// <summary>
+        /// 检查上传断点是否异常
+        /// </summary>
+        protected virtual void CheckReadIndex()
+        {
+            if (_TransactionDetail.IsCircle)
+            {
+                _TransactionDetail.ReadIndex = _TransactionDetail.WriteIndex;
             }
         }
 
@@ -245,30 +252,15 @@ namespace DoNetDrive.Protocol.Door.Door8800.Transaction
 
             //计算本次读取的数量
             mReadQuantity = mParameter.PacketSize;
-
-            //如果发现读索引号定位在记录末尾，则强制转移到记录头
-            if (_TransactionDetail.ReadIndex == _TransactionDetail.DataBaseMaxSize)
-            {
-                _TransactionDetail.ReadIndex = 0;
-            }
             if (mReadQuantity > mReadable)
             {
                 mReadQuantity = mReadable;
             }
 
-            int iBeginIndex = (int)_TransactionDetail.ReadIndex + 1;
-            int iEndIndex = iBeginIndex + mReadQuantity - 1;
+            GetReadIndexRange(out int iBeginIndex, out int iEndIndex);
 
-            if (iEndIndex > _TransactionDetail.DataBaseMaxSize)
-            {
-                mReadQuantity = (int)(_TransactionDetail.DataBaseMaxSize - _TransactionDetail.ReadIndex);
-                iEndIndex = iBeginIndex + mReadQuantity - 1;
-            }
             AddDictSerialNumberRange((int)_TransactionDetail.ReadIndex, mReadQuantity);
-
-
             _TransactionDetail.ReadIndex = iEndIndex;//更新记录尾号
-
 
             var cmdBuf = DoorPacket.CmdData;
             cmdBuf.SetInt(1, iBeginIndex);
@@ -276,6 +268,30 @@ namespace DoNetDrive.Protocol.Door.Door8800.Transaction
 
             CommandReady();
         }
+
+        /// <summary>
+        /// 检查上传断点是否异常
+        /// </summary>
+        protected virtual void GetReadIndexRange(out int iBeginIndex, out int iEndIndex)
+        {
+
+            //如果发现读索引号定位在记录末尾，则强制转移到记录头
+            if (_TransactionDetail.ReadIndex == _TransactionDetail.DataBaseMaxSize)
+            {
+                _TransactionDetail.ReadIndex = 0;
+            }
+
+
+            iBeginIndex = (int)_TransactionDetail.ReadIndex + 1;
+            iEndIndex = iBeginIndex + mReadQuantity - 1;
+
+            if (iEndIndex > _TransactionDetail.DataBaseMaxSize)
+            {
+                mReadQuantity = (int)(_TransactionDetail.DataBaseMaxSize - _TransactionDetail.ReadIndex);
+                iEndIndex = iBeginIndex + mReadQuantity - 1;
+            }
+        }
+
 
         /// <summary>
         /// 读记录数据库的返回值 mStep=2
@@ -446,6 +462,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Transaction
         private void CheckResultList()
         {
             var tSerialNumber = mTransactionSerialNumberList.FirstOrDefault(t => t.Value == false);
+            int iReadQuantity = mParameter.PacketSize;
             if (tSerialNumber.Key != 0)
             {
                 //检查丢失的记录是否连续
@@ -454,7 +471,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Transaction
                 while (mTransactionSerialNumberList.ContainsKey(iEndNum) && mTransactionSerialNumberList[iEndNum] == false)
                 {
                     iEndNum++;
-                    if ((iEndNum - iBeginNum) > 150) break;
+                    if ((iEndNum - iBeginNum) > iReadQuantity) break;
                 }
 
                 var buf = DoorPacket.CmdData;

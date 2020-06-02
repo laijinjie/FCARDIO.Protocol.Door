@@ -45,6 +45,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.SearchControltor
             SearchControltor_Parameter par = Parameter as SearchControltor_Parameter;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(2);
+            Console.WriteLine($"{System.Threading.Thread.CurrentThread.ManagedThreadId} 创建CmdData");
             par.GetBytes(buf);
             return buf;
         }
