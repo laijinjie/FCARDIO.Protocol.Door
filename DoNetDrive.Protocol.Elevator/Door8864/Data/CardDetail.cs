@@ -7,6 +7,8 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.Data
     /// </summary>
     public class CardDetail : CardDetailBase
     {
+        public override uint CardData { get; set; }
+
         /// <summary>
         /// 初始化
         /// </summary>

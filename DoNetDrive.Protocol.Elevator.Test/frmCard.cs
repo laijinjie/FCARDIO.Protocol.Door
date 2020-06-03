@@ -607,7 +607,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
                 card.DoorNumList[x] = 0;
             }
             string CardStr = txtCardData.Text;
-            card.CardData = CardStr.ToUInt64();
+            card.CardData = CardStr.ToUInt32();
             if (card.CardData == 0)
             {
                 MsgErr("卡号输入不正确！");
@@ -934,7 +934,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
 
 
             card = new CardDetail();
-            card.CardData = cardNum;
+            card.CardData = (uint)cardNum;
             card.DoorNumList = new byte[65];
             for (int i = 0; i < 65; i++)
             {
@@ -1024,7 +1024,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
                 if ((bool)cell.FormattedValue)
                 {
                     CardDetail card = new CardDetail();
-                    card.CardData = ulong.Parse(tbcell.Value.ToString());
+                    card.CardData = uint.Parse(tbcell.Value.ToString());
                     cards.Add(card);
                 }
             }

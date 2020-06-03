@@ -51,6 +51,9 @@
     <Reference Include="DoNetDrive.Protocol">
       <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
     </Reference>
+    <Reference Include="DoNetDrive.Protocol.Door">
+      <HintPath>..\DoNetDrive.Protocol.Door\bin\Debug\DoNetDrive.Protocol.Door.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
     </Reference>

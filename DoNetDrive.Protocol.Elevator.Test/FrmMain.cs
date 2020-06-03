@@ -528,7 +528,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
         {
             if (_IsClosed) return null;
             CommandDetailFactory.ConnectType connectType = CommandDetailFactory.ConnectType.TCPClient;
-            CommandDetailFactory.ControllerType protocolType = CommandDetailFactory.ControllerType.FC88;
+            CommandDetailFactory.ControllerType protocolType = CommandDetailFactory.ControllerType.Door88;
             string addr = string.Empty, sn, password;
             int port = 0;
             switch (cmdConnType.SelectedIndex)//串口,TCP客户端,UDP,TCP服务器

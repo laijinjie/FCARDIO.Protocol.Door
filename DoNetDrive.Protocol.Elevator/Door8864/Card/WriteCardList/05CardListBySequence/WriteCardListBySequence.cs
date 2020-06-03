@@ -1,6 +1,8 @@
 ﻿using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.Door.Door8800.Card;
 using DoNetDrive.Protocol.OnlineAccess;
+using DotNetty.Buffers;
+using System.Collections.Generic;
 
 namespace DoNetDrive.Protocol.Elevator.FC8864.Card.CardListBySequence
 {
@@ -45,6 +47,11 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.Card.CardListBySequence
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
             base.CommandNext1(oPck);
+        }
+
+        protected override void ReadCardByFailBuf(List<decimal> CardList, IByteBuffer buf)
+        {
+
         }
     }
 }
