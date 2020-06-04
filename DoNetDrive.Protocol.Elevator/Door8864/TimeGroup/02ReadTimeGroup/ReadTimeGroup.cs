@@ -47,18 +47,51 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.TimeGroup
                 CommandWaitResponse();
             }
 
-            if (CheckResponse(oPck, 0x56, 0x02, 0xff, 4))
+            if (CheckResponse(oPck, 0x56, 0x02, 0xff, 4)) //
             {
                 var buf = oPck.CmdData;
                 int iTotal = buf.ReadInt();
 
                 ReadTimeGroup_Result rtgr = new ReadTimeGroup_Result();
                 _Result = rtgr;
-
+                if (mReadBuffers.Count > 64)
+                {
+                    mReadBuffers.RemoveAt(64);
+                }
                 SetBytes(rtgr, mReadBuffers);
                 ClearBuf();
                 CommandCompleted();
             }
+        }
+
+        /// <summary>
+        /// 检查指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <param name="dl">参数长度</param>
+        /// <returns></returns>
+        protected override bool CheckResponse(OnlineAccessPacket oPck, int dl)
+        {
+            return (oPck.DataLen == dl);
+
+        }
+
+        /// <summary>
+        /// 检查指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <param name="CmdType">命令类型</param>
+        /// <param name="CmdIndex">命令索引</param>
+        /// <param name="CmdPar">命令参数</param>
+        /// <param name="dl">参数长度</param>
+        /// <returns></returns>
+        protected override bool CheckResponse(OnlineAccessPacket oPck, byte CmdType, byte CmdIndex, byte CmdPar, int dl)
+        {
+            return (oPck.CmdType == CmdType &&
+                oPck.CmdIndex == CmdIndex &&
+                oPck.CmdPar == CmdPar &&
+                oPck.DataLen == dl);
+
         }
     }
 }

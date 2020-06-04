@@ -6,7 +6,7 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter.
     /// <summary>
     /// 读取 卡片到期提示参数
     /// </summary>
-    public class ReadExpirationPrompt : Protocol.Door.Door8800.SystemParameter.FunctionParameter.ReadCardPeriodSpeak
+    public class ReadExpirationPrompt : Read_Command
     {
         /// <summary>
         ///  初始化命令

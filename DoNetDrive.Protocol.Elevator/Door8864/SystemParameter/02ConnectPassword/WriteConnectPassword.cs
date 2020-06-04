@@ -12,7 +12,7 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.ConnectPassword
     /// <summary>
     /// 设置控制器通讯密码
     /// </summary>
-    public class WriteConnectPassword : Protocol.Door.Door8800.SystemParameter.ConnectPassword.WriteConnectPassword
+    public class WriteConnectPassword : Write_Command
     {
         /// <summary>
         /// 设置控制器通讯密码 初始化命令

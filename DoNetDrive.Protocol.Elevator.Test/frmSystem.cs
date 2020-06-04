@@ -97,7 +97,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN. SN_Result;
+                var result = cmde.Command.getResult() as Door.Door8800.SystemParameter.SN. SN_Result;
                 string sn = result.SNBuf.GetString();
                 Invoke(() =>
                 {
@@ -158,7 +158,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Door.Door8800.SystemParameter.ConnectPassword.Password_Result;
+                var result = cmde.Command.getResult() as Door.Door8800.SystemParameter.ConnectPassword. Password_Result;
                 string pwd = result.Password;
 
                 mMainForm.AddCmdLog(cmde, pwd);

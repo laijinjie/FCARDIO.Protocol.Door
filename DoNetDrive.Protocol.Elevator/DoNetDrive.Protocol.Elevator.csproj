@@ -39,17 +39,12 @@
       <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Door">
-      <HintPath>..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DoNetDrive.Protocol.Util">
       <HintPath>..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DoNetTool.Common">
-      <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\云一卡通基础功能模块\Lib\DoNetTool.Common.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
@@ -292,6 +287,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door.csproj">
+      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
+      <Name>DoNetDrive.Protocol.Door</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

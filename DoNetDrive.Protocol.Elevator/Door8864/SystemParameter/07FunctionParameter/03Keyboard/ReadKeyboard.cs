@@ -31,19 +31,15 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter
         }
 
         /// <summary>
-        /// 命令返回值的判断
+        /// 检查指令返回值
         /// </summary>
-        /// <param name="oPck">包含返回指令的Packet</param>
-        protected override void CommandNext1(OnlineAccessPacket oPck)
+        /// <param name="oPck"></param>
+        /// <param name="dl">参数长度</param>
+        /// <returns></returns>
+        protected override bool CheckResponse(OnlineAccessPacket oPck, int dl)
         {
-            if (CheckResponse(oPck, 0x01))
-            {
-                var buf = oPck.CmdData;
-                var rst = new ReadKeyboard_Result();
-                _Result = rst;
-                rst.SetBytes(buf);
-                CommandCompleted();
-            }
+            return (oPck.DataLen == dl);
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DoNetDrive.Core.Command;
+using DoNetDrive.Protocol.OnlineAccess;
 
 namespace DoNetDrive.Protocol.Elevator.FC8864.Holiday
 {
@@ -21,6 +22,18 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.Holiday
         protected override void CreatePacket0()
         {
             Packet(0x44, 1);
+        }
+
+        /// <summary>
+        /// 检查指令返回值
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <param name="dl">参数长度</param>
+        /// <returns></returns>
+        protected override bool CheckResponse(OnlineAccessPacket oPck, int dl)
+        {
+            return (oPck.DataLen == dl);
+
         }
     }
 }
