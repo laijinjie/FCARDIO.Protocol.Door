@@ -47,6 +47,14 @@
             this.butCardDatabaseDetail = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgCardList = new System.Windows.Forms.DataGridView();
+            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CardIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardData10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardStatus1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilege1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OpenTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -57,7 +65,6 @@
             this.button14 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
-            this.txtCount = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView7 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -119,14 +126,7 @@
             this.cbHolidayUse = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.CardIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardData10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardStatus1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilege1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OpenTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtCount = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCardList)).BeginInit();
             this.tabPage4.SuspendLayout();
@@ -141,6 +141,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView0)).BeginInit();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCount)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -277,6 +278,70 @@
             this.dgCardList.TabIndex = 9;
             this.dgCardList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCardList_CellClick);
             // 
+            // Selected
+            // 
+            this.Selected.DataPropertyName = "Selected";
+            this.Selected.HeaderText = "选择";
+            this.Selected.Name = "Selected";
+            this.Selected.ReadOnly = true;
+            this.Selected.Width = 40;
+            // 
+            // CardIndex
+            // 
+            this.CardIndex.DataPropertyName = "CardIndex";
+            this.CardIndex.HeaderText = "序号";
+            this.CardIndex.Name = "CardIndex";
+            this.CardIndex.ReadOnly = true;
+            this.CardIndex.Width = 40;
+            // 
+            // CardData10
+            // 
+            this.CardData10.DataPropertyName = "CardData";
+            this.CardData10.HeaderText = "卡号";
+            this.CardData10.Name = "CardData10";
+            this.CardData10.ReadOnly = true;
+            this.CardData10.Width = 80;
+            // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "密码";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            this.Password.Width = 56;
+            // 
+            // Expiry
+            // 
+            this.Expiry.DataPropertyName = "Expiry";
+            this.Expiry.HeaderText = "有效期";
+            this.Expiry.Name = "Expiry";
+            this.Expiry.ReadOnly = true;
+            this.Expiry.Width = 120;
+            // 
+            // CardStatus1
+            // 
+            this.CardStatus1.DataPropertyName = "CardStatus";
+            this.CardStatus1.HeaderText = "卡片状态";
+            this.CardStatus1.Name = "CardStatus1";
+            this.CardStatus1.ReadOnly = true;
+            this.CardStatus1.Width = 80;
+            // 
+            // Privilege1
+            // 
+            this.Privilege1.DataPropertyName = "Privilege";
+            this.Privilege1.HeaderText = "特权";
+            this.Privilege1.Name = "Privilege1";
+            this.Privilege1.ReadOnly = true;
+            this.Privilege1.Width = 60;
+            // 
+            // OpenTime
+            // 
+            this.OpenTime.DataPropertyName = "OpenTimes";
+            this.OpenTime.HeaderText = "有效次数";
+            this.OpenTime.Name = "OpenTime";
+            this.OpenTime.ReadOnly = true;
+            this.OpenTime.Width = 80;
+            // 
             // chkSelectAll
             // 
             this.chkSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -325,12 +390,12 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.txtCount);
             this.tabPage3.Controls.Add(this.butCreateCardNumByRandom);
             this.tabPage3.Controls.Add(this.butCreateCardNumByOrder);
             this.tabPage3.Controls.Add(this.button14);
             this.tabPage3.Controls.Add(this.label15);
             this.tabPage3.Controls.Add(this.button13);
-            this.tabPage3.Controls.Add(this.txtCount);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -384,14 +449,6 @@
             this.button13.TabIndex = 48;
             this.button13.Text = "导入";
             this.button13.UseVisualStyleBackColor = true;
-            // 
-            // txtCount
-            // 
-            this.txtCount.Location = new System.Drawing.Point(29, 42);
-            this.txtCount.Name = "txtCount";
-            this.txtCount.Size = new System.Drawing.Size(100, 21);
-            this.txtCount.TabIndex = 48;
-            this.txtCount.Text = "10";
             // 
             // tabPage1
             // 
@@ -1066,69 +1123,22 @@
             this.tabControl1.Size = new System.Drawing.Size(1002, 460);
             this.tabControl1.TabIndex = 56;
             // 
-            // Selected
+            // txtCount
             // 
-            this.Selected.DataPropertyName = "Selected";
-            this.Selected.HeaderText = "选择";
-            this.Selected.Name = "Selected";
-            this.Selected.ReadOnly = true;
-            this.Selected.Width = 40;
-            // 
-            // CardIndex
-            // 
-            this.CardIndex.DataPropertyName = "CardIndex";
-            this.CardIndex.HeaderText = "序号";
-            this.CardIndex.Name = "CardIndex";
-            this.CardIndex.ReadOnly = true;
-            this.CardIndex.Width = 40;
-            // 
-            // CardData10
-            // 
-            this.CardData10.DataPropertyName = "CardData";
-            this.CardData10.HeaderText = "卡号";
-            this.CardData10.Name = "CardData10";
-            this.CardData10.ReadOnly = true;
-            this.CardData10.Width = 80;
-            // 
-            // Password
-            // 
-            this.Password.DataPropertyName = "Password";
-            this.Password.HeaderText = "密码";
-            this.Password.Name = "Password";
-            this.Password.ReadOnly = true;
-            this.Password.Width = 56;
-            // 
-            // Expiry
-            // 
-            this.Expiry.DataPropertyName = "Expiry";
-            this.Expiry.HeaderText = "有效期";
-            this.Expiry.Name = "Expiry";
-            this.Expiry.ReadOnly = true;
-            this.Expiry.Width = 120;
-            // 
-            // CardStatus1
-            // 
-            this.CardStatus1.DataPropertyName = "CardStatus";
-            this.CardStatus1.HeaderText = "卡片状态";
-            this.CardStatus1.Name = "CardStatus1";
-            this.CardStatus1.ReadOnly = true;
-            this.CardStatus1.Width = 80;
-            // 
-            // Privilege1
-            // 
-            this.Privilege1.DataPropertyName = "Privilege";
-            this.Privilege1.HeaderText = "特权";
-            this.Privilege1.Name = "Privilege1";
-            this.Privilege1.ReadOnly = true;
-            this.Privilege1.Width = 60;
-            // 
-            // OpenTime
-            // 
-            this.OpenTime.DataPropertyName = "OpenTimes";
-            this.OpenTime.HeaderText = "有效次数";
-            this.OpenTime.Name = "OpenTime";
-            this.OpenTime.ReadOnly = true;
-            this.OpenTime.Width = 80;
+            this.txtCount.Location = new System.Drawing.Point(29, 46);
+            this.txtCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtCount.Name = "txtCount";
+            this.txtCount.Size = new System.Drawing.Size(120, 21);
+            this.txtCount.TabIndex = 50;
+            this.txtCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // frmCard
             // 
@@ -1161,6 +1171,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView0)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1189,7 +1200,6 @@
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.TextBox txtCount;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ComboBox cmbPrivilege;
         private System.Windows.Forms.Button butReadCardDetail;
@@ -1259,5 +1269,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CardStatus1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Privilege1;
         private System.Windows.Forms.DataGridViewTextBoxColumn OpenTime;
+        private System.Windows.Forms.NumericUpDown txtCount;
     }
 }
