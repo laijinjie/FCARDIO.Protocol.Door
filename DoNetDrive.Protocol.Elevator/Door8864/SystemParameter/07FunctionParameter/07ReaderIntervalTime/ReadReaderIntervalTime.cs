@@ -6,7 +6,7 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.FunctionParameter
     /// <summary>
     /// 获取读卡间隔时间
     /// </summary>
-    public class ReadReaderIntervalTime : Protocol.Door.Door8800.SystemParameter.FunctionParameter.ReadReaderIntervalTime
+    public class ReadReaderIntervalTime : Read_Command
     {
         /// <summary>
         /// 获取设备有效期 初始化命令
