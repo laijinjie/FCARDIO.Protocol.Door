@@ -627,6 +627,7 @@
             this.button4.TabIndex = 26;
             this.button4.Text = "修复记录";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             // 
             // cboe_TransactionDatabaseType2
             // 
