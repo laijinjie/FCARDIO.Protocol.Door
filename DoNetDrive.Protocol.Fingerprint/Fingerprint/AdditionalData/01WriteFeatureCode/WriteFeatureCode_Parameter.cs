@@ -61,7 +61,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Type < 1 || Type > 3)
+            if (Type < 1 || Type > 255)
             {
                 return false;
             }
@@ -73,7 +73,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
             {
                 return false;
             }
-            if (Datas == null || Datas.Length == 0 || Datas.Length > 150 * 1024)
+            if (Datas == null || Datas.Length == 0  )
             {
                 return false;
             }
