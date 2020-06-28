@@ -5,27 +5,27 @@ using System;
 namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 {
     /// <summary>
-    /// 表示设备音量的命令参数
+    /// 补光灯模式参数
     /// </summary>
-    public class WriteDriveVolume_Parameter : AbstractParameter
+    public class WriteFaceLEDMode_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 设备音量：0-10；0--关闭声音；10--最大声音
+        /// 补光灯模式  1--一直亮；2--检测到人员时开；0--一直关
         /// </summary>
-        public int Volume;
+        public int LEDMode;
 
         /// <summary>
-        /// 构建一个空的实例
+        /// 构建一个补光灯模式参数的实例
         /// </summary>
-        public WriteDriveVolume_Parameter() { Volume = 1; }
+        public WriteFaceLEDMode_Parameter() { LEDMode = 2; }
 
         /// <summary>
-        /// 创建设备音量的命令参数
+        /// 创建补光灯模式的命令参数
         /// </summary>
-        /// <param name="iVolume">设备音量：0-10；0--关闭声音；10--最大声音</param>
-        public WriteDriveVolume_Parameter(int iVolume)
+        /// <param name="iLEDMode">补光灯模式  1--一直亮；2--检测到人员时开；0--一直关</param>
+        public WriteFaceLEDMode_Parameter(int iLEDMode)
         {
-            Volume = iVolume;
+            LEDMode = iLEDMode;
 
         }
 
@@ -35,9 +35,9 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Volume < 0 || Volume > 10)
+            if (LEDMode < 0 || LEDMode > 2)
             {
-                Volume = 10;
+                LEDMode = 2;
             }
 
             return true;
@@ -68,7 +68,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            databuf.WriteByte(Volume);
+            databuf.WriteByte(LEDMode);
             return databuf;
         }
 
@@ -84,7 +84,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
             {
                 throw new ArgumentException("databuf Error");
             }
-            Volume = databuf.ReadByte();
+            LEDMode = databuf.ReadByte();
         }
     }
 }

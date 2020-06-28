@@ -2,7 +2,7 @@
 using DoNetDrive.Protocol.Door.Door8800;
 using DoNetDrive.Protocol.OnlineAccess;
 
-namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.LocalIdentity
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 {
     /// <summary>
     /// 读取 本机身份

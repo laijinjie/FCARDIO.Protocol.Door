@@ -2,7 +2,7 @@
 using DoNetDrive.Protocol.Door.Door8800;
 using System;
 
-namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.ComparisonThreshold
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 {
     /// <summary>
     /// 设置 人脸、指纹比对阈值

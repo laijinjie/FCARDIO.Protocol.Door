@@ -5,22 +5,22 @@ using DoNetDrive.Protocol.OnlineAccess;
 namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 {
     /// <summary>
-    /// 读取 人脸、指纹比对阈值
+    /// 读取人脸机体温数值显示开关
     /// </summary>
-    public class ReadComparisonThreshold : Door8800Command_ReadParameter
+    public class ReadFaceBodyTemperatureShowPar : Door8800Command_ReadParameter
     {
         /// <summary>
-        /// 获取设备有效期 初始化命令
+        /// 创建读取人脸机体温数值显示开关的命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
-        public ReadComparisonThreshold(INCommandDetail cd) : base(cd) { }
+        public ReadFaceBodyTemperatureShowPar(INCommandDetail cd) : base(cd) { }
 
         /// <summary>
         /// 将命令打包成一个Packet，准备发送
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x01, 0x1c, 0x05);
+            Packet(0x01, 0x2E, 0x01);
         }
 
         /// <summary>
@@ -29,10 +29,10 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x02))
+            if (CheckResponse(oPck, 0x01))
             {
                 var buf = oPck.CmdData;
-                ReadComparisonThreshold_Result rst = new ReadComparisonThreshold_Result();
+                ReadFaceBodyTemperatureShowPar_Result rst = new ReadFaceBodyTemperatureShowPar_Result();
                 _Result = rst;
                 rst.SetBytes(buf);
                 CommandCompleted();

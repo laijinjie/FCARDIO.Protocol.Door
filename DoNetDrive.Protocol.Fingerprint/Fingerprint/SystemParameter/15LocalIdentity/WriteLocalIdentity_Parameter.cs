@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.LocalIdentity
+namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 {
     /// <summary>
     /// 设置本机身份参数
@@ -125,11 +125,8 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.LocalIdentity
         {
             Door = databuf.ReadByte();
 
-            //LocalName = databuf.ReadString(60, System.Text.Encoding.GetEncoding("gb2312"));
             byte[] bName = new byte[60];
             databuf.ReadBytes(bName);
-            //LocalName = Encoding.GetEncoding("GB2312").GetString(bName).Replace("\0", "");
-            //LocalName = Encoding.ASCII.GetString(bName).Replace("\0", "");
             LocalName = Encoding.BigEndianUnicode.GetString(bName).Replace("\0", "");
             InOut = databuf.ReadByte();
         }

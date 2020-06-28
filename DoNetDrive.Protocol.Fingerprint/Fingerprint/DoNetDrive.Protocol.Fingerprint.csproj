@@ -254,6 +254,30 @@
     <Compile Include="SystemParameter\27DriveVolume\ReadDriveVolume_Result.cs" />
     <Compile Include="SystemParameter\27DriveVolume\WriteDriveVolume.cs" />
     <Compile Include="SystemParameter\27DriveVolume\WriteDriveVolume_Parameter.cs" />
+    <Compile Include="SystemParameter\28FaceLEDMode\ReadFaceLEDMode.cs" />
+    <Compile Include="SystemParameter\28FaceLEDMode\ReadFaceLEDMode_Result.cs" />
+    <Compile Include="SystemParameter\28FaceLEDMode\WriteFaceLEDMode.cs" />
+    <Compile Include="SystemParameter\28FaceLEDMode\WriteFaceLEDMode_Parameter.cs" />
+    <Compile Include="SystemParameter\29FaceMouthmufflePar\ReadFaceMouthmufflePar.cs" />
+    <Compile Include="SystemParameter\29FaceMouthmufflePar\ReadFaceMouthmufflePar_Result.cs" />
+    <Compile Include="SystemParameter\29FaceMouthmufflePar\WriteFaceMouthmufflePar.cs" />
+    <Compile Include="SystemParameter\29FaceMouthmufflePar\WriteFaceMouthmufflePar_Parameter.cs" />
+    <Compile Include="SystemParameter\30FaceBodyTemperaturePar\ReadFaceBodyTemperaturePar.cs" />
+    <Compile Include="SystemParameter\30FaceBodyTemperaturePar\ReadFaceBodyTemperaturePar_Result.cs" />
+    <Compile Include="SystemParameter\30FaceBodyTemperaturePar\WriteFaceBodyTemperaturePar.cs" />
+    <Compile Include="SystemParameter\30FaceBodyTemperaturePar\WriteFaceBodyTemperaturePar_Parameter.cs" />
+    <Compile Include="SystemParameter\34FaceBodyTemperatureAlarmPar\ReadFaceBodyTemperatureAlarmPar.cs" />
+    <Compile Include="SystemParameter\34FaceBodyTemperatureAlarmPar\ReadFaceBodyTemperatureAlarmPar_Result.cs" />
+    <Compile Include="SystemParameter\34FaceBodyTemperatureAlarmPar\WriteFaceBodyTemperatureAlarmPar.cs" />
+    <Compile Include="SystemParameter\34FaceBodyTemperatureAlarmPar\WriteFaceBodyTemperatureAlarmPar_Parameter.cs" />
+    <Compile Include="SystemParameter\35FaceBodyTemperatureShowPar\ReadFaceBodyTemperatureShowPar.cs" />
+    <Compile Include="SystemParameter\35FaceBodyTemperatureShowPar\ReadFaceBodyTemperatureShowPar_Result.cs" />
+    <Compile Include="SystemParameter\35FaceBodyTemperatureShowPar\WriteFaceBodyTemperatureShowPar.cs" />
+    <Compile Include="SystemParameter\35FaceBodyTemperatureShowPar\WriteFaceBodyTemperatureShowPar_Parameter.cs" />
+    <Compile Include="SystemParameter\36ShortMessage\ReadShortMessage.cs" />
+    <Compile Include="SystemParameter\36ShortMessage\ReadShortMessage_Result.cs" />
+    <Compile Include="SystemParameter\36ShortMessage\WriteShortMessage_Parameter.cs" />
+    <Compile Include="SystemParameter\36ShortMessage\WriteShortMessage.cs" />
     <Compile Include="SystemParameter\A0ConnectTestTransaction\SendConnectTestResponse.cs" />
     <Compile Include="Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail.cs" />
     <Compile Include="Transaction\01TransactionDatabaseDetail\ReadTransactionDatabaseDetail_Result.cs" />
@@ -271,5 +295,6 @@
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex.cs" />
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Parameter.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

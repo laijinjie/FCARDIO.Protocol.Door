@@ -2,10 +2,11 @@
 
 namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 {
+
     /// <summary>
-    /// 读取 本机身份 返回结果
+    /// 读取口罩识别开关命令的返回值
     /// </summary>
-    public class ReadLocalIdentity_Result : WriteLocalIdentity_Parameter, INCommandResult
+    public class ReadFaceMouthmufflePar_Result : WriteFaceMouthmufflePar_Parameter, INCommandResult
     {
     }
 }

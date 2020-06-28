@@ -1,31 +1,32 @@
-﻿using DoNetDrive.Protocol.Door.Door8800;
+﻿using System;
+using DoNetDrive.Protocol.Door.Door8800;
 using DotNetty.Buffers;
-using System;
+
 
 namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 {
     /// <summary>
-    /// 表示设备音量的命令参数
+    /// 写入口罩识别开关参数
     /// </summary>
-    public class WriteDriveVolume_Parameter : AbstractParameter
+    public class WriteFaceMouthmufflePar_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 设备音量：0-10；0--关闭声音；10--最大声音
+        /// 口罩识别开关 0--禁止；1--启用
         /// </summary>
-        public int Volume;
+        public int Mouthmuffle;
 
         /// <summary>
-        /// 构建一个空的实例
+        /// 构建一个口罩识别开关参数的实例
         /// </summary>
-        public WriteDriveVolume_Parameter() { Volume = 1; }
+        public WriteFaceMouthmufflePar_Parameter() { Mouthmuffle = 2; }
 
         /// <summary>
-        /// 创建设备音量的命令参数
+        /// 创建口罩识别开关的命令参数
         /// </summary>
-        /// <param name="iVolume">设备音量：0-10；0--关闭声音；10--最大声音</param>
-        public WriteDriveVolume_Parameter(int iVolume)
+        /// <param name="iMouthmuffle">口罩识别开关  0--禁止；1--启用</param>
+        public WriteFaceMouthmufflePar_Parameter(int iMouthmuffle)
         {
-            Volume = iVolume;
+            Mouthmuffle = iMouthmuffle;
 
         }
 
@@ -35,9 +36,9 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Volume < 0 || Volume > 10)
+            if (Mouthmuffle < 0 || Mouthmuffle > 1)
             {
-                Volume = 10;
+                Mouthmuffle = 1;
             }
 
             return true;
@@ -68,7 +69,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            databuf.WriteByte(Volume);
+            databuf.WriteByte(Mouthmuffle);
             return databuf;
         }
 
@@ -84,7 +85,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
             {
                 throw new ArgumentException("databuf Error");
             }
-            Volume = databuf.ReadByte();
+            Mouthmuffle = databuf.ReadByte();
         }
     }
 }

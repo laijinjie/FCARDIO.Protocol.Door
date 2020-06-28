@@ -3,9 +3,9 @@
 namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 {
     /// <summary>
-    /// 读取 本机身份 返回结果
+    /// 读取补光灯模式命令的返回值
     /// </summary>
-    public class ReadLocalIdentity_Result : WriteLocalIdentity_Parameter, INCommandResult
+    public class ReadFaceLEDMode_Result : WriteFaceLEDMode_Parameter, INCommandResult
     {
     }
 }

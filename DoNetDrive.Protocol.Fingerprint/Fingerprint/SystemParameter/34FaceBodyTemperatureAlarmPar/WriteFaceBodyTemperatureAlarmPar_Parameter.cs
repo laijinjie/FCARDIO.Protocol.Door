@@ -1,32 +1,32 @@
-﻿using DoNetDrive.Protocol.Door.Door8800;
+﻿using System;
+using DoNetDrive.Protocol.Door.Door8800;
 using DotNetty.Buffers;
-using System;
+
 
 namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 {
     /// <summary>
-    /// 表示设备音量的命令参数
+    /// 写入体温报警阈值参数
     /// </summary>
-    public class WriteDriveVolume_Parameter : AbstractParameter
+    public class WriteFaceBodyTemperatureAlarmPar_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 设备音量：0-10；0--关闭声音；10--最大声音
+        /// 体温报警阈值 0--禁止；1--摄氏度（默认值）；2--华氏度
         /// </summary>
-        public int Volume;
+        public int AlarmPar;
 
         /// <summary>
-        /// 构建一个空的实例
+        /// 构建一个体温报警阈值参数的实例
         /// </summary>
-        public WriteDriveVolume_Parameter() { Volume = 1; }
+        public WriteFaceBodyTemperatureAlarmPar_Parameter() { AlarmPar = 375; }
 
         /// <summary>
-        /// 创建设备音量的命令参数
+        /// 创建体温报警阈值的命令参数
         /// </summary>
-        /// <param name="iVolume">设备音量：0-10；0--关闭声音；10--最大声音</param>
-        public WriteDriveVolume_Parameter(int iVolume)
+        /// <param name="iAlarmPar">体温报警阈值  350-500  稳定用整形存储，显示时除10，例如37.5，存储为375</param>
+        public WriteFaceBodyTemperatureAlarmPar_Parameter(int iAlarmPar)
         {
-            Volume = iVolume;
-
+            AlarmPar = iAlarmPar;
         }
 
         /// <summary>
@@ -35,9 +35,9 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Volume < 0 || Volume > 10)
+            if (AlarmPar < 350 || AlarmPar > 500)
             {
-                Volume = 10;
+                AlarmPar = 375;
             }
 
             return true;
@@ -49,7 +49,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <returns></returns>
         public override int GetDataLen()
         {
-            return 1;
+            return 2;
         }
 
 
@@ -68,7 +68,8 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            databuf.WriteByte(Volume);
+
+            databuf.WriteShort(AlarmPar);
             return databuf;
         }
 
@@ -80,11 +81,11 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != 1)
+            if (databuf.ReadableBytes != 2)
             {
                 throw new ArgumentException("databuf Error");
             }
-            Volume = databuf.ReadByte();
+            AlarmPar = databuf.ReadShort();
         }
     }
 }
