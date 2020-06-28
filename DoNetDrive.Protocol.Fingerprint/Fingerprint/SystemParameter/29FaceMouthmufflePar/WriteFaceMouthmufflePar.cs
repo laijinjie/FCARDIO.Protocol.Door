@@ -6,7 +6,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
     /// <summary>
     /// 写入口罩识别开关
     /// </summary>
-    class WriteFaceMouthmufflePar : Door8800Command_WriteParameter
+    public class WriteFaceMouthmufflePar : Door8800Command_WriteParameter
     {
         /// <summary>
         /// 创建写入口罩识别开关的命令
