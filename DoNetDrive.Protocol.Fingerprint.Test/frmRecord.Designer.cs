@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtIsCircle4 = new System.Windows.Forms.TextBox();
+            this.txtReadIndex4 = new System.Windows.Forms.TextBox();
+            this.txtQuantity4 = new System.Windows.Forms.TextBox();
+            this.txtWriteIndex4 = new System.Windows.Forms.TextBox();
+            this.txtNewRecord4 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.butTransactionDatabaseDetail = new System.Windows.Forms.Button();
             this.txtIsCircle3 = new System.Windows.Forms.TextBox();
             this.txtIsCircle2 = new System.Windows.Forms.TextBox();
@@ -85,12 +91,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.butClearAllTransactionDatabase = new System.Windows.Forms.Button();
-            this.txtIsCircle4 = new System.Windows.Forms.TextBox();
-            this.txtReadIndex4 = new System.Windows.Forms.TextBox();
-            this.txtQuantity4 = new System.Windows.Forms.TextBox();
-            this.txtWriteIndex4 = new System.Windows.Forms.TextBox();
-            this.txtNewRecord4 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnReadImageTransactionDatabase = new System.Windows.Forms.Button();
+            this.butSelectDire = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -135,6 +137,50 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "存储器状况";
+            // 
+            // txtIsCircle4
+            // 
+            this.txtIsCircle4.Location = new System.Drawing.Point(510, 149);
+            this.txtIsCircle4.Name = "txtIsCircle4";
+            this.txtIsCircle4.Size = new System.Drawing.Size(100, 21);
+            this.txtIsCircle4.TabIndex = 47;
+            // 
+            // txtReadIndex4
+            // 
+            this.txtReadIndex4.Location = new System.Drawing.Point(404, 149);
+            this.txtReadIndex4.Name = "txtReadIndex4";
+            this.txtReadIndex4.Size = new System.Drawing.Size(100, 21);
+            this.txtReadIndex4.TabIndex = 46;
+            // 
+            // txtQuantity4
+            // 
+            this.txtQuantity4.Location = new System.Drawing.Point(80, 149);
+            this.txtQuantity4.Name = "txtQuantity4";
+            this.txtQuantity4.Size = new System.Drawing.Size(100, 21);
+            this.txtQuantity4.TabIndex = 44;
+            // 
+            // txtWriteIndex4
+            // 
+            this.txtWriteIndex4.Location = new System.Drawing.Point(298, 149);
+            this.txtWriteIndex4.Name = "txtWriteIndex4";
+            this.txtWriteIndex4.Size = new System.Drawing.Size(100, 21);
+            this.txtWriteIndex4.TabIndex = 45;
+            // 
+            // txtNewRecord4
+            // 
+            this.txtNewRecord4.Location = new System.Drawing.Point(190, 149);
+            this.txtNewRecord4.Name = "txtNewRecord4";
+            this.txtNewRecord4.Size = new System.Drawing.Size(100, 21);
+            this.txtNewRecord4.TabIndex = 43;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(24, 153);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 42;
+            this.label3.Text = "体温记录";
             // 
             // butTransactionDatabaseDetail
             // 
@@ -505,9 +551,9 @@
             // 
             // butTransactionDatabaseByIndex
             // 
-            this.butTransactionDatabaseByIndex.Location = new System.Drawing.Point(510, 34);
+            this.butTransactionDatabaseByIndex.Location = new System.Drawing.Point(568, 34);
             this.butTransactionDatabaseByIndex.Name = "butTransactionDatabaseByIndex";
-            this.butTransactionDatabaseByIndex.Size = new System.Drawing.Size(170, 23);
+            this.butTransactionDatabaseByIndex.Size = new System.Drawing.Size(112, 23);
             this.butTransactionDatabaseByIndex.TabIndex = 25;
             this.butTransactionDatabaseByIndex.Text = "按序号采集记录";
             this.butTransactionDatabaseByIndex.UseVisualStyleBackColor = true;
@@ -515,6 +561,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.butSelectDire);
+            this.groupBox4.Controls.Add(this.btnReadImageTransactionDatabase);
             this.groupBox4.Controls.Add(this.btnReadTransactionDatabase);
             this.groupBox4.Controls.Add(this.label23);
             this.groupBox4.Controls.Add(this.label22);
@@ -536,9 +584,9 @@
             // 
             // btnReadTransactionDatabase
             // 
-            this.btnReadTransactionDatabase.Location = new System.Drawing.Point(510, 95);
+            this.btnReadTransactionDatabase.Location = new System.Drawing.Point(568, 95);
             this.btnReadTransactionDatabase.Name = "btnReadTransactionDatabase";
-            this.btnReadTransactionDatabase.Size = new System.Drawing.Size(170, 23);
+            this.btnReadTransactionDatabase.Size = new System.Drawing.Size(112, 23);
             this.btnReadTransactionDatabase.TabIndex = 33;
             this.btnReadTransactionDatabase.Text = "读新记录";
             this.btnReadTransactionDatabase.UseVisualStyleBackColor = true;
@@ -644,49 +692,25 @@
             this.butClearAllTransactionDatabase.UseVisualStyleBackColor = true;
             this.butClearAllTransactionDatabase.Click += new System.EventHandler(this.butClearAllTransactionDatabase_Click);
             // 
-            // txtIsCircle4
+            // btnReadImageTransactionDatabase
             // 
-            this.txtIsCircle4.Location = new System.Drawing.Point(510, 149);
-            this.txtIsCircle4.Name = "txtIsCircle4";
-            this.txtIsCircle4.Size = new System.Drawing.Size(100, 21);
-            this.txtIsCircle4.TabIndex = 47;
+            this.btnReadImageTransactionDatabase.Location = new System.Drawing.Point(568, 63);
+            this.btnReadImageTransactionDatabase.Name = "btnReadImageTransactionDatabase";
+            this.btnReadImageTransactionDatabase.Size = new System.Drawing.Size(112, 23);
+            this.btnReadImageTransactionDatabase.TabIndex = 34;
+            this.btnReadImageTransactionDatabase.Text = "读人脸体温新记录";
+            this.btnReadImageTransactionDatabase.UseVisualStyleBackColor = true;
+            this.btnReadImageTransactionDatabase.Click += new System.EventHandler(this.btnReadImageTransactionDatabase_Click);
             // 
-            // txtReadIndex4
+            // butSelectDire
             // 
-            this.txtReadIndex4.Location = new System.Drawing.Point(404, 149);
-            this.txtReadIndex4.Name = "txtReadIndex4";
-            this.txtReadIndex4.Size = new System.Drawing.Size(100, 21);
-            this.txtReadIndex4.TabIndex = 46;
-            // 
-            // txtQuantity4
-            // 
-            this.txtQuantity4.Location = new System.Drawing.Point(80, 149);
-            this.txtQuantity4.Name = "txtQuantity4";
-            this.txtQuantity4.Size = new System.Drawing.Size(100, 21);
-            this.txtQuantity4.TabIndex = 44;
-            // 
-            // txtWriteIndex4
-            // 
-            this.txtWriteIndex4.Location = new System.Drawing.Point(298, 149);
-            this.txtWriteIndex4.Name = "txtWriteIndex4";
-            this.txtWriteIndex4.Size = new System.Drawing.Size(100, 21);
-            this.txtWriteIndex4.TabIndex = 45;
-            // 
-            // txtNewRecord4
-            // 
-            this.txtNewRecord4.Location = new System.Drawing.Point(190, 149);
-            this.txtNewRecord4.Name = "txtNewRecord4";
-            this.txtNewRecord4.Size = new System.Drawing.Size(100, 21);
-            this.txtNewRecord4.TabIndex = 43;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 153);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
-            this.label3.TabIndex = 42;
-            this.label3.Text = "体温记录";
+            this.butSelectDire.Location = new System.Drawing.Point(430, 63);
+            this.butSelectDire.Name = "butSelectDire";
+            this.butSelectDire.Size = new System.Drawing.Size(112, 23);
+            this.butSelectDire.TabIndex = 35;
+            this.butSelectDire.Text = "选择照片文件目录";
+            this.butSelectDire.UseVisualStyleBackColor = true;
+            this.butSelectDire.Click += new System.EventHandler(this.butSelectDire_Click);
             // 
             // frmRecord
             // 
@@ -778,5 +802,7 @@
         private System.Windows.Forms.TextBox txtWriteIndex4;
         private System.Windows.Forms.TextBox txtNewRecord4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnReadImageTransactionDatabase;
+        private System.Windows.Forms.Button butSelectDire;
     }
 }

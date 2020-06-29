@@ -641,7 +641,7 @@
             this.txtUDPAddr.Name = "txtUDPAddr";
             this.txtUDPAddr.Size = new System.Drawing.Size(138, 21);
             this.txtUDPAddr.TabIndex = 3;
-            this.txtUDPAddr.Text = "192.168.1.63";
+            this.txtUDPAddr.Text = "192.168.1.81";
             // 
             // label10
             // 
@@ -659,7 +659,7 @@
             this.txtUDPPort.Name = "txtUDPPort";
             this.txtUDPPort.Size = new System.Drawing.Size(46, 21);
             this.txtUDPPort.TabIndex = 5;
-            this.txtUDPPort.Text = "8101";
+            this.txtUDPPort.Text = "996";
             // 
             // label12
             // 

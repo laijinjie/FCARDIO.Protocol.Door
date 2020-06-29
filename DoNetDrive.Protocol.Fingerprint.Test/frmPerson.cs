@@ -43,6 +43,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// 卡号字典
         /// </summary>
         HashSet<uint> CardHashTable = null;
+
+        string mPersonImagePath;
         private frmPerson(INMain main)
         {
             InitializeComponent();
@@ -288,8 +290,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             txtPCode.Text = person.PCode;
             txtJob.Text = person.Job;
             txtDept.Text = person.Dept;
-            cmbEnterStatus.SelectedIndex = person.EnterStatus;
-            cmbIdentity.SelectedIndex = person.Identity;
+            try
+            {
+                cmbEnterStatus.SelectedIndex = person.EnterStatus;
+                cmbIdentity.SelectedIndex = person.Identity;
+            }
+            catch (Exception)
+            {
+
+            }
+          
             //if (person.HolidayUse)
                 txtHoliday.Text = ui.Holiday;
             //else
@@ -611,6 +621,41 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     PersonToControl(result.Person);
                     mMainForm.AddCmdLog(cmde, $"人员存在");
                 }
+            };
+        }
+
+        private void butSelectImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "图片文件|*.jpg;*.jpeg;*.bmp;*.png";
+            ofd.Multiselect = false;
+            if (ofd.ShowDialog() != DialogResult.OK) return;
+
+            mPersonImagePath = ofd.FileName;
+        }
+
+        private void btnAddPesonAndImage_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(mPersonImagePath)) return;
+            Data.Person person = AddPersonDetailToList();
+            if (person == null) return;
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            //cmdDtl.Timeout = 10000;
+            INCommand cmd;
+
+            byte[] datas = System.IO.File.ReadAllBytes(mPersonImagePath);
+            var par = new AddPersonAndImage_Parameter(person,datas);
+            cmd = new AddPeosonAndImage(cmdDtl, par);
+
+
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmd.getResult() as WritePerson_Result;
+                WritePersonCallBlack(cmde, result);
             };
         }
     }

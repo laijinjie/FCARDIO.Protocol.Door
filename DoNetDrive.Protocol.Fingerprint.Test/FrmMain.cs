@@ -929,12 +929,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.SearchControltor.WriteControltorNetCode).FullName, "根据SN设置网络标识");
             mCommandClasss.Add(typeof(SystemParameter.DataEncryptionSwitch.ReadDataEncryptionSwitch).FullName, "读取数据包加密开关");
             mCommandClasss.Add(typeof(SystemParameter.DataEncryptionSwitch.WriteDataEncryptionSwitch).FullName, "设置数据包加密开关");
-            mCommandClasss.Add(typeof(SystemParameter.LocalIdentity.ReadLocalIdentity).FullName, "读取本机身份");
-            mCommandClasss.Add(typeof(SystemParameter.LocalIdentity.WriteLocalIdentity).FullName, "设置本机身份");
+            mCommandClasss.Add(typeof(SystemParameter.ReadLocalIdentity).FullName, "读取本机身份");
+            mCommandClasss.Add(typeof(SystemParameter.WriteLocalIdentity).FullName, "设置本机身份");
             mCommandClasss.Add(typeof(SystemParameter.WiegandOutput.ReadWiegandOutput).FullName, "读取韦根输出");
             mCommandClasss.Add(typeof(SystemParameter.WiegandOutput.WriteWiegandOutput).FullName, "设置韦根输出");
-            mCommandClasss.Add(typeof(SystemParameter.ComparisonThreshold.ReadComparisonThreshold).FullName, "读取人脸、指纹比对阈值");
-            mCommandClasss.Add(typeof(SystemParameter.ComparisonThreshold.WriteComparisonThreshold).FullName, "设置人脸、指纹比对阈值");
+            mCommandClasss.Add(typeof(SystemParameter.ReadComparisonThreshold).FullName, "读取人脸、指纹比对阈值");
+            mCommandClasss.Add(typeof(SystemParameter.WriteComparisonThreshold).FullName, "设置人脸、指纹比对阈值");
             mCommandClasss.Add(typeof(SystemParameter.ScreenDisplayContent.ReadScreenDisplayContent).FullName, "读取屏幕显示内容");
             mCommandClasss.Add(typeof(SystemParameter.ScreenDisplayContent.WriteScreenDisplayContent).FullName, "设置屏幕显示内容");
             mCommandClasss.Add(typeof(SystemParameter.ManageMenuPassword.ReadManageMenuPassword).FullName, "读取管理菜单密码");

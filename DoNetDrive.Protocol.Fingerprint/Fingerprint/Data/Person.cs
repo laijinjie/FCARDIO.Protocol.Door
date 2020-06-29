@@ -2,6 +2,7 @@
 using DoNetDrive.Protocol.Util;
 using System;
 using System.Text;
+using System.Data;
 
 namespace DoNetDrive.Protocol.Fingerprint.Data
 {
@@ -272,7 +273,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
         /// 将人员详情实例写入到buf中
         /// </summary>
         /// <param name="data"></param>
-        public virtual void GetBytes(IByteBuffer data)
+        public virtual IByteBuffer GetBytes(IByteBuffer data)
         {
             data.WriteInt((int)UserCode);
             data.WriteLong((long)CardData);
@@ -302,6 +303,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
 
             data.WriteBoolean(IsFaceFeatureCode);
             data.WriteShort(FingerprintFeatureCodeCout);
+            return data;
             //for (int i = 0; i < 2; i++)
             //{
             //    byte[] list = new byte[8];

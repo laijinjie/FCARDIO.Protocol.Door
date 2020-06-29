@@ -30,7 +30,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         static frmRecord()
         {
 
-            mWatchTypeNameList = new string[] { "", "读卡信息",  "门磁信息","系统信息", "连接保活消息", "连接确认信息" };
+            mWatchTypeNameList = new string[] { "", "读卡信息", "门磁信息", "系统信息", "连接保活消息", "连接确认信息" };
             mCardTransactionList = new string[256];
             mDoorSensorTransactionList = new string[256];
             mSystemTransactionList = new string[256];
@@ -157,7 +157,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         #region 记录类型
         public void e_TransactionDatabaseType()
         {
-            string[] array = new string[] { "读卡记录", "门磁记录", "系统记录","体温记录" };
+            string[] array = new string[] { "读卡记录", "门磁记录", "系统记录", "体温记录" };
             cboe_TransactionDatabaseType1.Items.Clear();
             cboe_TransactionDatabaseType1.Items.AddRange(array);
             cboe_TransactionDatabaseType1.SelectedIndex = 0;
@@ -315,7 +315,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
                     sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
                     sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).AppendLine();
-                    
+
                     foreach (var t in result.TransactionList)
                     {
 
@@ -350,25 +350,47 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 sLogs.AppendLine(" --- 空记录");
                 return;
             }
-            if(tr.TransactionType == 4)
+            if (tr.TransactionType == 4)
             {
-                Fingerprint.Data.Transaction.BodyTemperatureTransaction btr = (Data.Transaction.BodyTemperatureTransaction  ) tr;
+                Fingerprint.Data.Transaction.BodyTemperatureTransaction btr = (Data.Transaction.BodyTemperatureTransaction)tr;
                 float btmp = (float)btr.BodyTemperature / (float)10;
                 sLogs.Append("体温：").Append(btmp).AppendLine(" ℃");
                 return;
             }
             sLogs.Append("，时间：").Append(tr.TransactionDate.ToDateTimeStr());
             string[] codeNameList = mTransactionCodeNameList[tr.TransactionType];
-            
+
             sLogs.Append("，事件代码：").Append(tr.TransactionCode);
             sLogs.Append("(").Append(codeNameList[tr.TransactionCode]).Append(")");
             if (tr.TransactionType == 1)//读卡记录
             {
                 Data.Transaction.CardTransaction cardTrans = tr as Data.Transaction.CardTransaction;
                 sLogs.Append("用户号：").Append(cardTrans.UserCode).Append("，进/出：")
-                    .Append(cardTrans.Accesstype).Append("，照片：").AppendLine(cardTrans.Photo == 1 ? "" : "");
+                    .Append(cardTrans.Accesstype).Append("，照片：").AppendLine(cardTrans.Photo == 1 ? "有" : "无");
             }
-           
+
+        }
+
+        private void PrintCardAndImageTransactionList(AbstractTransaction tr, StringBuilder sLogs)
+        {
+
+            sLogs.Append("序号：").Append(tr.SerialNumber.ToString());
+            if (tr.IsNull())
+            {
+                sLogs.AppendLine(" --- 空记录");
+                return;
+            }
+            Data.Transaction.CardAndImageTransaction cardTrans = (Data.Transaction.CardAndImageTransaction)tr;
+            float btmp = (float)cardTrans.Temperature / (float)10;
+            sLogs.Append("，体温：").Append(btmp).AppendLine(" ℃");
+            sLogs.Append("，时间：").Append(tr.TransactionDate.ToDateTimeStr());
+            string[] codeNameList = mTransactionCodeNameList[tr.TransactionType];
+
+            sLogs.Append("，事件代码：").Append(tr.TransactionCode);
+            sLogs.Append("(").Append(codeNameList[tr.TransactionCode]).Append(")");
+            sLogs.Append("用户号：").Append(cardTrans.UserCode).Append("，进/出：")
+                .Append(cardTrans.Accesstype).Append("，照片：").AppendLine(cardTrans.Photo == 1 ? "有" : "无");
+
         }
         #endregion
 
@@ -397,6 +419,75 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     });
                 }
             };
+        }
+
+        private void btnReadImageTransactionDatabase_Click(object sender, EventArgs e)
+        {
+            int type = cboe_TransactionDatabaseType3.SelectedIndex;
+            int Quantity = int.Parse(txtReadTransactionDatabaseQuantity.Text.ToString());
+            int PacketSize = 0;
+            if (txtReadTransactionDatabasePacketSize.Text != "")
+            {
+                PacketSize = int.Parse(txtReadTransactionDatabasePacketSize.Text.ToString());
+            }
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            cmdDtl.Timeout = 1000;
+            cmdDtl.RestartCount = 20;
+            if (SelectedPath == "")
+            {
+
+                return;
+            }
+            var par = new ReadTransactionAndImageDatabase_Parameter(Quantity, SelectedPath);
+            if (PacketSize != 0)
+            {
+                par.PacketSize = PacketSize;
+            }
+
+            var cmd = new ReadTransactionAndImageDatabase(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+
+                var result = cmde.Command.getResult() as ReadTransactionAndImageDatabase_Result;
+                mMainForm.AddCmdLog(cmde, $"读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count},剩余新记录数：{result.readable}");
+
+                if (result.TransactionList.Count > 0)
+                {
+                    StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
+                    sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
+                    sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
+
+                    //按序号排序
+                    result.TransactionList.Sort((x, y) => x.SerialNumber.CompareTo(y.SerialNumber));
+                    foreach (var t in result.TransactionList)
+                    {
+                        PrintCardAndImageTransactionList(t, sLogs);
+                    }
+                    string sFile = SaveFile(sLogs, $"读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
+                }
+            };
+        }
+
+        string SelectedPath = "";
+
+        private void butSelectDire_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            dialog.Description = "请选择下载照片所在文件夹";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(dialog.SelectedPath))
+                {
+                    //System.Windows.MessageBox.Show(this, "文件夹路径不能为空", "提示");
+                    MessageBox.Show("请选择文件夹");
+                    return;
+                }
+                SelectedPath = dialog.SelectedPath;
+            }
         }
 
         public Control FindControl(Control parentControl, string findCtrlName)

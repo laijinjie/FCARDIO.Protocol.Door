@@ -128,6 +128,7 @@
     <Compile Include="Data\TransactionDatabaseDetail.cs" />
     <Compile Include="Data\TransactionDetail.cs" />
     <Compile Include="Data\Transaction\BodyTemperatureRecord.cs" />
+    <Compile Include="Data\Transaction\CardAndImageTransaction.cs" />
     <Compile Include="Data\Transaction\CardTransaction.cs" />
     <Compile Include="Data\Transaction\ConnectTestTransaction.cs" />
     <Compile Include="Data\Transaction\DoorSensorTransaction.cs" />
@@ -179,11 +180,14 @@
     <Compile Include="Person\01PersonDatabaseDetail\ReadPersonDatabaseDetail_Result.cs" />
     <Compile Include="Person\03PersonDataBase\ReadPersonDataBase.cs" />
     <Compile Include="Person\03PersonDataBase\ReadPersonDataBase_Result.cs" />
+    <Compile Include="Person\05AddPerson\AddPeosonAndImage.cs" />
     <Compile Include="Person\05AddPerson\AddPerson.cs" />
     <Compile Include="Person\04PersonDetail\ReadPersonDetail.cs" />
     <Compile Include="Person\04PersonDetail\ReadPersonDetail_Parameter.cs" />
     <Compile Include="Person\04PersonDetail\ReadPersonDetail_Result.cs" />
+    <Compile Include="Person\05AddPerson\AddPersonAndImage_Parameter.cs" />
     <Compile Include="Person\05AddPerson\AddPerson_Parameter.cs" />
+    <Compile Include="Person\05AddPerson\AddPeosonAndImage_Result.cs" />
     <Compile Include="Person\WritePerson_ParameterBase.cs" />
     <Compile Include="Person\WritePerson_Result.cs" />
     <Compile Include="Person\06DeletePerson\DeletePerson.cs" />
@@ -284,6 +288,9 @@
     <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase.cs" />
     <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase_Parameter.cs" />
     <Compile Include="Transaction\02ClearTransactionDatabase\TransactionDatabaseEmpty.cs" />
+    <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionAndImageDatabase.cs" />
+    <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionAndImageDatabase_Parameter.cs" />
+    <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionAndImageDatabase_Result.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Base.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Parameter.cs" />

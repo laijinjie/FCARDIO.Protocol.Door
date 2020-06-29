@@ -103,6 +103,8 @@
             this.btnAddDevice = new System.Windows.Forms.Button();
             this.btnDelDevice = new System.Windows.Forms.Button();
             this.btnDelSelect = new System.Windows.Forms.Button();
+            this.btnAddPesonAndImage = new System.Windows.Forms.Button();
+            this.butSelectImage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgPersonList)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -335,6 +337,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.butSelectImage);
+            this.tabPage1.Controls.Add(this.btnAddPesonAndImage);
             this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.btnCheckUserCode);
@@ -817,6 +821,26 @@
             this.btnDelSelect.Text = "从设备删除选中卡";
             this.btnDelSelect.UseVisualStyleBackColor = true;
             // 
+            // btnAddPesonAndImage
+            // 
+            this.btnAddPesonAndImage.Location = new System.Drawing.Point(526, 258);
+            this.btnAddPesonAndImage.Name = "btnAddPesonAndImage";
+            this.btnAddPesonAndImage.Size = new System.Drawing.Size(188, 23);
+            this.btnAddPesonAndImage.TabIndex = 5;
+            this.btnAddPesonAndImage.Text = "增加用户和照片至设备";
+            this.btnAddPesonAndImage.UseVisualStyleBackColor = true;
+            this.btnAddPesonAndImage.Click += new System.EventHandler(this.btnAddPesonAndImage_Click);
+            // 
+            // butSelectImage
+            // 
+            this.butSelectImage.Location = new System.Drawing.Point(526, 224);
+            this.butSelectImage.Name = "butSelectImage";
+            this.butSelectImage.Size = new System.Drawing.Size(188, 23);
+            this.butSelectImage.TabIndex = 6;
+            this.butSelectImage.Text = "选择照片";
+            this.butSelectImage.UseVisualStyleBackColor = true;
+            this.butSelectImage.Click += new System.EventHandler(this.butSelectImage_Click);
+            // 
             // frmPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -928,5 +952,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button butSelectImage;
+        private System.Windows.Forms.Button btnAddPesonAndImage;
     }
 }
