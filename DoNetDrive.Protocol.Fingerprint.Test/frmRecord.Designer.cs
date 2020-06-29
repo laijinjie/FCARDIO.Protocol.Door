@@ -79,6 +79,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.butTransactionDatabaseByIndex = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.butSelectDire = new System.Windows.Forms.Button();
+            this.btnReadImageTransactionDatabase = new System.Windows.Forms.Button();
             this.btnReadTransactionDatabase = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -91,8 +93,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.butClearAllTransactionDatabase = new System.Windows.Forms.Button();
-            this.btnReadImageTransactionDatabase = new System.Windows.Forms.Button();
-            this.butSelectDire = new System.Windows.Forms.Button();
+            this.txtImageDire = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -561,6 +563,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.txtImageDire);
             this.groupBox4.Controls.Add(this.butSelectDire);
             this.groupBox4.Controls.Add(this.btnReadImageTransactionDatabase);
             this.groupBox4.Controls.Add(this.btnReadTransactionDatabase);
@@ -577,10 +581,30 @@
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Location = new System.Drawing.Point(13, 400);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(705, 133);
+            this.groupBox4.Size = new System.Drawing.Size(705, 170);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "记录操作";
+            // 
+            // butSelectDire
+            // 
+            this.butSelectDire.Location = new System.Drawing.Point(421, 131);
+            this.butSelectDire.Name = "butSelectDire";
+            this.butSelectDire.Size = new System.Drawing.Size(112, 23);
+            this.butSelectDire.TabIndex = 35;
+            this.butSelectDire.Text = "选择照片文件目录";
+            this.butSelectDire.UseVisualStyleBackColor = true;
+            this.butSelectDire.Click += new System.EventHandler(this.butSelectDire_Click);
+            // 
+            // btnReadImageTransactionDatabase
+            // 
+            this.btnReadImageTransactionDatabase.Location = new System.Drawing.Point(568, 131);
+            this.btnReadImageTransactionDatabase.Name = "btnReadImageTransactionDatabase";
+            this.btnReadImageTransactionDatabase.Size = new System.Drawing.Size(112, 23);
+            this.btnReadImageTransactionDatabase.TabIndex = 34;
+            this.btnReadImageTransactionDatabase.Text = "读人脸体温新记录";
+            this.btnReadImageTransactionDatabase.UseVisualStyleBackColor = true;
+            this.btnReadImageTransactionDatabase.Click += new System.EventHandler(this.btnReadImageTransactionDatabase_Click);
             // 
             // btnReadTransactionDatabase
             // 
@@ -684,7 +708,7 @@
             // 
             // butClearAllTransactionDatabase
             // 
-            this.butClearAllTransactionDatabase.Location = new System.Drawing.Point(603, 561);
+            this.butClearAllTransactionDatabase.Location = new System.Drawing.Point(603, 576);
             this.butClearAllTransactionDatabase.Name = "butClearAllTransactionDatabase";
             this.butClearAllTransactionDatabase.Size = new System.Drawing.Size(109, 29);
             this.butClearAllTransactionDatabase.TabIndex = 28;
@@ -692,25 +716,21 @@
             this.butClearAllTransactionDatabase.UseVisualStyleBackColor = true;
             this.butClearAllTransactionDatabase.Click += new System.EventHandler(this.butClearAllTransactionDatabase_Click);
             // 
-            // btnReadImageTransactionDatabase
+            // txtImageDire
             // 
-            this.btnReadImageTransactionDatabase.Location = new System.Drawing.Point(568, 63);
-            this.btnReadImageTransactionDatabase.Name = "btnReadImageTransactionDatabase";
-            this.btnReadImageTransactionDatabase.Size = new System.Drawing.Size(112, 23);
-            this.btnReadImageTransactionDatabase.TabIndex = 34;
-            this.btnReadImageTransactionDatabase.Text = "读人脸体温新记录";
-            this.btnReadImageTransactionDatabase.UseVisualStyleBackColor = true;
-            this.btnReadImageTransactionDatabase.Click += new System.EventHandler(this.btnReadImageTransactionDatabase_Click);
+            this.txtImageDire.Location = new System.Drawing.Point(91, 132);
+            this.txtImageDire.Name = "txtImageDire";
+            this.txtImageDire.Size = new System.Drawing.Size(314, 21);
+            this.txtImageDire.TabIndex = 36;
             // 
-            // butSelectDire
+            // label4
             // 
-            this.butSelectDire.Location = new System.Drawing.Point(430, 63);
-            this.butSelectDire.Name = "butSelectDire";
-            this.butSelectDire.Size = new System.Drawing.Size(112, 23);
-            this.butSelectDire.TabIndex = 35;
-            this.butSelectDire.Text = "选择照片文件目录";
-            this.butSelectDire.UseVisualStyleBackColor = true;
-            this.butSelectDire.Click += new System.EventHandler(this.butSelectDire_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 136);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 12);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "照片保存路径";
             // 
             // frmRecord
             // 
@@ -804,5 +824,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnReadImageTransactionDatabase;
         private System.Windows.Forms.Button butSelectDire;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtImageDire;
     }
 }

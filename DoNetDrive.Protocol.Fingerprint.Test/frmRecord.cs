@@ -434,12 +434,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             cmdDtl.Timeout = 1000;
             cmdDtl.RestartCount = 20;
-            if (SelectedPath == "")
+            if (txtImageDire.Text == "")
             {
-
                 return;
             }
-            var par = new ReadTransactionAndImageDatabase_Parameter(Quantity, SelectedPath);
+            var par = new ReadTransactionAndImageDatabase_Parameter(Quantity, txtImageDire.Text);
             if (PacketSize != 0)
             {
                 par.PacketSize = PacketSize;
@@ -486,7 +485,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     MessageBox.Show("请选择文件夹");
                     return;
                 }
-                SelectedPath = dialog.SelectedPath;
+                txtImageDire.Text = dialog.SelectedPath;
             }
         }
 
