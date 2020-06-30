@@ -13,6 +13,8 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
     /// </summary>
     public class WriteLocalIdentity_Parameter : AbstractParameter
     {
+        public static Encoding StringEncoding = Encoding.BigEndianUnicode;
+
         /// <summary>
         /// 本机所属门号 1-4
         /// </summary>
@@ -86,22 +88,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         {
             databuf.WriteByte(Door);
 
-            int iWriteNullCount = 60;
-            if (string.IsNullOrEmpty(LocalName))
-            {
-                byte[] bName = Encoding.BigEndianUnicode.GetBytes(LocalName);
-                int strLen = bName.Length;
-                if (strLen > 60) strLen = 60;
-                databuf.WriteBytes(bName, 0, strLen);
-                iWriteNullCount -= strLen;
-
-            }
-            //填充0
-            for (int i = 0; i < iWriteNullCount; i++)
-            {
-                databuf.WriteByte(0);
-            }
-
+            Util.StringUtil.WriteString(databuf, LocalName, 60, StringEncoding);
 
             databuf.WriteByte(InOut);
 
@@ -127,7 +114,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 
             byte[] bName = new byte[60];
             databuf.ReadBytes(bName);
-            LocalName = Encoding.BigEndianUnicode.GetString(bName).Replace("\0", "");
+            LocalName = Util.StringUtil.GetString(databuf,60,StringEncoding);
             InOut = databuf.ReadByte();
         }
     }

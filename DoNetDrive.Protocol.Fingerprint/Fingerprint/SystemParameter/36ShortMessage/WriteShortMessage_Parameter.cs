@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using DoNetDrive.Protocol.Door.Door8800;
 using DotNetty.Buffers;
 
@@ -9,6 +10,8 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
     /// </summary>
     public class WriteShortMessage_Parameter : AbstractParameter
     {
+        public static Encoding StringEncoding = Encoding.BigEndianUnicode;
+
         /// <summary>
         /// 合法验证后显示的短消息 30个字符
         /// </summary>
@@ -66,19 +69,10 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            var eng = System.Text.Encoding.BigEndianUnicode;
-            int iNullCount = 60;
-            if (!string.IsNullOrEmpty(Message))
-            {
-                byte[] b = eng.GetBytes(Message);
-                databuf.WriteBytes(b);
-                iNullCount -= b.Length;
-            }
 
-            for (int i = 0; i < iNullCount; i++)
-            {
-                databuf.WriteByte(0);
-            }
+
+            Util.StringUtil.WriteString(databuf, Message, 60, StringEncoding);
+
             return databuf;
         }
 
@@ -102,10 +96,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
             else
             {
                 databuf.SetWriterIndex(0);
-                byte[] buf = new byte[60];
-                databuf.ReadBytes(buf);
-                var eng = System.Text.Encoding.BigEndianUnicode;
-                Message = eng.GetString(buf).Replace("\0", ""); 
+                Message = Util.StringUtil.GetString(databuf,60, StringEncoding); 
             }
             
         }

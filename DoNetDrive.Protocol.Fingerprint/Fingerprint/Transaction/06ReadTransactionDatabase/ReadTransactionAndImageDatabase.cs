@@ -1,4 +1,4 @@
-﻿using DoNetDrive.Core.Command;
+﻿ using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.Door.Door8800;
 using DoNetDrive.Protocol.Fingerprint.AdditionalData;
 using DoNetDrive.Protocol.Fingerprint.Data;
@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace DoNetDrive.Protocol.Fingerprint.Transaction
 {
+    /// <summary>
+    /// 读取认证记录及附加数据（体温，照片）
+    /// </summary>
     public class ReadTransactionAndImageDatabase : Door8800Command_ReadParameter
     {
         /// <summary>
@@ -31,8 +34,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// </summary>
         protected ReadTransactionAndImageDatabase_Parameter mParameter;
 
-
+        /// <summary>
+        /// 记录详情
+        /// </summary>
         DoNetDrive.Protocol.Door.Door8800.Data.TransactionDetail[] mTransactionDetailList;
+
         /// <summary>
         /// 记录序号是否已读取的集合，
         /// </summary>
@@ -52,6 +58,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// 指示当前下载照片的记录序号
         /// </summary>
         private int mSaveFileSerialNumber;
+
         /// <summary>
         /// 读取到的记录数据缓冲
         /// </summary>

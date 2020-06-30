@@ -1771,6 +1771,54 @@
             </summary>
             <param name="data">缓冲区</param>
         </member>
+        <member name="P:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardAndImageTransaction.RecordSerialNumber">
+            <summary>
+            记录唯一序号
+            </summary>
+        </member>
+        <member name="P:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardAndImageTransaction.UserCode">
+            <summary>
+            用户号
+            </summary>
+        </member>
+        <member name="P:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardAndImageTransaction.Photo">
+            <summary>
+            是否包含照片
+            </summary>
+        </member>
+        <member name="P:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardAndImageTransaction.Accesstype">
+            <summary>
+            出入类型：1--表示进门；2--表示出门
+            </summary>
+        </member>
+        <member name="P:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardAndImageTransaction.Temperature">
+            <summary>
+            体温
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardAndImageTransaction.#ctor">
+            <summary>
+            初始化参数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardAndImageTransaction.GetDataLen">
+            <summary>
+            获取读卡记录格式长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardAndImageTransaction.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            从buf中读取记录数据
+            </summary>
+            <param name="dtBuf"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardAndImageTransaction.SetBodyTemperatureBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            使用缓冲区构造一个事务实例
+            </summary>
+            <param name="data">缓冲区</param>
+        </member>
         <member name="P:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardTransaction.RecordSerialNumber">
             <summary>
             记录唯一序号
@@ -3147,6 +3195,71 @@
             <param name="dataBaseSize">读取到的卡数量</param>
             <param name="cardType">卡数据库类型</param>
         </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.mResult">
+            <summary>
+            写入特征码返回结果
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage._WriteIndex">
+            <summary>
+            写索引
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage._FileHandle">
+            <summary>
+            文件句柄
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.mBufs">
+            <summary>
+            保存写入失败的数据缓冲区
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage._Step">
+            <summary>
+            操作步骤
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查命令参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.CommandNext0(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            检查返回值
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.Create_Result">
+            <summary>
+            创建命令成功返回值
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.ReadPasswordByFailBuf(System.Collections.Generic.List{System.UInt32},DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            从错误密码列表中读取一个错误密码，加入到passwordList中
+            </summary>
+            <param name="personList">错误人员列表</param>
+            <param name="buf"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.CheckOpenFileResult(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            检查打开文件返回值
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.CheckWriteFileResult(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            检查写文件返回值
+            </summary>
+        </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Person.AddPerson">
             <summary>
             将人员列表写入到控制器
@@ -3286,6 +3399,28 @@
             </summary>
             <param name="PersonList"></param>
             <returns></returns>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage_Result.FileHandle">
+            <summary>
+            文件句柄
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage_Result.Success" -->
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage_Result.FailTotal">
+            <summary>
+            无法写入的人员数量
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage_Result.PersonList">
+            <summary>
+            无法写入的人员列表
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            读取ByteBuffer内容
+            </summary>
+            <param name="buf"></param>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Person.WritePerson_ParameterBase">
             <summary>
@@ -3491,6 +3626,11 @@
             检查是否已写完所有卡
             </summary>
             <returns></returns>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.AddPersonAndImage_Parameter.WaitVerifyTime">
+            <summary>
+            等待校验的时间，单位毫秒
+            </summary>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Software.UpdateSoftware">
             <summary>
@@ -6095,6 +6235,327 @@
             <summary>
             创建一个通讯指令
             </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase">
+            <summary>
+            读取认证记录及附加数据（体温，照片）
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.CmdType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.CheckResponseCmdType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mParameter">
+            <summary>
+            查询参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mTransactionDetailList">
+            <summary>
+            记录详情
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mTransactionSerialNumberList">
+            <summary>
+            记录序号是否已读取的集合，
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mBodyTemperatureTransactionSerialNumberList">
+            <summary>
+            体温记录序号是否已读取的集合，
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mStep">
+            <summary>
+            指示当前命令进行的步骤
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mSaveFileSerialNumber">
+            <summary>
+            指示当前下载照片的记录序号
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mBufs">
+            <summary>
+            读取到的记录数据缓冲
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mReadQuantity">
+            <summary>
+            本次读取的数量
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mReadable">
+            <summary>
+            可读取的新记录数量
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mReadTotal">
+            <summary>
+            读取计数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase._TransactionDetail">
+            <summary>
+            选择的记录模块
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mTransactionType">
+            <summary>
+            事务类型
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mResult">
+            <summary>
+            下载照片返回值
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase._FileDatas">
+            <summary>
+            读取到的文件块缓冲区
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter)">
+            <summary>
+            初始化命令结构
+            </summary>
+            <param name="cd"></param>
+            <param name="parameter"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.CreatePacket0">
+            <summary>
+            创建一个指令
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.CommandNext0(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            
+            处理接收返回值，避免父类直接完成命令，重写逻辑
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            处理返回值
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.GetTransactionDetail(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            获取指定类型的数据库详情信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.ReadCardDataBaseDetailCallBack(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            读取记录数据库空间信息的返回值 mStep=1
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.ReadBodyTemperatureDataBaseDetailCallBack">
+            <summary>
+            读取体温记录数据库空间信息的返回值 mStep=11
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.CheckReadIndex">
+            <summary>
+            检查上传断点是否异常
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.ReadTransactionNext">
+            <summary>
+            读取下一包记录
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.GetReadIndexRange(System.Int32@,System.Int32@)">
+            <summary>
+            检查上传断点是否异常
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.ReadTransactionDatabaseByIndexCallBack(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            读记录数据库的返回值 mStep=2
+            读取下一包记录
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.ReadBodyTemperatureTransactionDatabaseByIndexCallBack(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            读记录数据库的返回值 mStep=2
+            读取下一包记录
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.SaveTransactionToBuf(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            将返回的事务暂时保存在缓冲中
+            </summary>
+            <param name="bTransactionBuf"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.ReadIndexComplete">
+            <summary>
+            检查修改记录读索引号的返回值  mStep=2
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.Analysis">
+            <summary>
+            分析缓冲中的数据包
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.ReReadDatabaseCallBack(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            重复读取遗漏的记录 mStep=3
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.CheckResultList">
+            <summary>
+            检查是否有遗漏
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.WriteTransactionReadIndex">
+            <summary>
+            记录读取完毕，需要更新读索引（更新记录尾号）
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.WriteBodyTemperatureTransactionReadIndex">
+            <summary>
+            记录体温读取完毕，需要更新读索引（更新记录尾号）
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.Release1">
+            <summary>
+            命令释放时需要的函数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.AddDictSerialNumberRange(System.Int32,System.Int32)">
+            <summary>
+            提交序号到未读集合
+            </summary>
+            <param name="startIndex"></param>
+            <param name="len"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.AddBodyTemperatureDictSerialNumberRange(System.Int32,System.Int32)">
+            <summary>
+            提交序号到未读集合
+            </summary>
+            <param name="startIndex"></param>
+            <param name="len"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.ReadImageFile">
+            <summary>
+            下载记录照片
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.CheckOpenFileResule(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            检查打开文件的返回值
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.CheckReadFileBlockResule(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            接收读取到的文件块
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.CheckReadFile(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            读取文件完毕，检验CRC32
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.Quantity">
+            <summary>
+            读取数量 0-160000,0表示都取所有新记录
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.PacketSize">
+            <summary>
+             每次读取数量 1-150
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.#ctor(System.Int32,System.String)">
+            <summary>
+            初始化参数
+            </summary>
+            <param name="type">取值范围 1-6</param>
+            <param name="_Quantity">读取数量</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            将结构编码为字节缓冲
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.GetDataLen">
+            <summary>
+            指定此类结构编码为字节缓冲后的长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            将字节缓冲解码为类结构
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Result.Quantity">
+            <summary>
+            读取数量
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Result.readable">
+            <summary>
+            剩余新记录数量
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Result.TransactionList">
+            <summary>
+            记录列表
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Result.#ctor">
+            <summary>
+            初始化参数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Result.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            
+            </summary>
+            <param name="buf"></param>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase">
             <summary>
