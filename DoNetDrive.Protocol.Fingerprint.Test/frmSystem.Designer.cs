@@ -183,6 +183,31 @@
             this.butWriteLanguage = new System.Windows.Forms.Button();
             this.butReadLanguage = new System.Windows.Forms.Button();
             this.label37 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.Cmb_FaceBodyTemperature = new System.Windows.Forms.ComboBox();
+            this.Cmb_FaceMouthmuffle = new System.Windows.Forms.ComboBox();
+            this.Cmb_FaceLEDMode = new System.Windows.Forms.ComboBox();
+            this.But_ReadShortMessage = new System.Windows.Forms.Button();
+            this.But_WriteShortMessage = new System.Windows.Forms.Button();
+            this.But_ReadFaceBodyTemperatureShow = new System.Windows.Forms.Button();
+            this.But_WriteFaceBodyTemperatureShow = new System.Windows.Forms.Button();
+            this.But_ReadFaceBodyTemperatureAlarm = new System.Windows.Forms.Button();
+            this.But_WriteFaceBodyTemperatureAlarm = new System.Windows.Forms.Button();
+            this.But_ReadFaceBodyTemperature = new System.Windows.Forms.Button();
+            this.But_WriteFaceBodyTemperature = new System.Windows.Forms.Button();
+            this.But_ReadFaceMouthmufflePar = new System.Windows.Forms.Button();
+            this.But_WriteFaceMouthmufflePar = new System.Windows.Forms.Button();
+            this.But_ReadFaceLEDMode = new System.Windows.Forms.Button();
+            this.But_WriteFaceLEDMode = new System.Windows.Forms.Button();
+            this.label44 = new System.Windows.Forms.Label();
+            this.cmb_FaceBodyTemperatureShow = new System.Windows.Forms.ComboBox();
+            this.Txt_ShortMessage = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.Txt_BodyTemperatureAlarm = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -206,6 +231,7 @@
             this.tabPage3.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.groupBox15.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -213,6 +239,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -1827,6 +1854,275 @@
             this.label37.TabIndex = 56;
             this.label37.Text = "语言：";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.Cmb_FaceBodyTemperature);
+            this.tabPage4.Controls.Add(this.Cmb_FaceMouthmuffle);
+            this.tabPage4.Controls.Add(this.Cmb_FaceLEDMode);
+            this.tabPage4.Controls.Add(this.But_ReadShortMessage);
+            this.tabPage4.Controls.Add(this.But_WriteShortMessage);
+            this.tabPage4.Controls.Add(this.But_ReadFaceBodyTemperatureShow);
+            this.tabPage4.Controls.Add(this.But_WriteFaceBodyTemperatureShow);
+            this.tabPage4.Controls.Add(this.But_ReadFaceBodyTemperatureAlarm);
+            this.tabPage4.Controls.Add(this.But_WriteFaceBodyTemperatureAlarm);
+            this.tabPage4.Controls.Add(this.But_ReadFaceBodyTemperature);
+            this.tabPage4.Controls.Add(this.But_WriteFaceBodyTemperature);
+            this.tabPage4.Controls.Add(this.But_ReadFaceMouthmufflePar);
+            this.tabPage4.Controls.Add(this.But_WriteFaceMouthmufflePar);
+            this.tabPage4.Controls.Add(this.But_ReadFaceLEDMode);
+            this.tabPage4.Controls.Add(this.But_WriteFaceLEDMode);
+            this.tabPage4.Controls.Add(this.label44);
+            this.tabPage4.Controls.Add(this.cmb_FaceBodyTemperatureShow);
+            this.tabPage4.Controls.Add(this.Txt_ShortMessage);
+            this.tabPage4.Controls.Add(this.label43);
+            this.tabPage4.Controls.Add(this.Txt_BodyTemperatureAlarm);
+            this.tabPage4.Controls.Add(this.label42);
+            this.tabPage4.Controls.Add(this.label41);
+            this.tabPage4.Controls.Add(this.label40);
+            this.tabPage4.Controls.Add(this.label39);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(863, 559);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "参数4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // Cmb_FaceBodyTemperature
+            // 
+            this.Cmb_FaceBodyTemperature.FormattingEnabled = true;
+            this.Cmb_FaceBodyTemperature.Location = new System.Drawing.Point(152, 140);
+            this.Cmb_FaceBodyTemperature.Name = "Cmb_FaceBodyTemperature";
+            this.Cmb_FaceBodyTemperature.Size = new System.Drawing.Size(270, 20);
+            this.Cmb_FaceBodyTemperature.TabIndex = 5;
+            // 
+            // Cmb_FaceMouthmuffle
+            // 
+            this.Cmb_FaceMouthmuffle.FormattingEnabled = true;
+            this.Cmb_FaceMouthmuffle.Items.AddRange(new object[] {
+            "禁止",
+            "启用"});
+            this.Cmb_FaceMouthmuffle.Location = new System.Drawing.Point(152, 94);
+            this.Cmb_FaceMouthmuffle.Name = "Cmb_FaceMouthmuffle";
+            this.Cmb_FaceMouthmuffle.Size = new System.Drawing.Size(270, 20);
+            this.Cmb_FaceMouthmuffle.TabIndex = 5;
+            // 
+            // Cmb_FaceLEDMode
+            // 
+            this.Cmb_FaceLEDMode.FormattingEnabled = true;
+            this.Cmb_FaceLEDMode.Location = new System.Drawing.Point(152, 50);
+            this.Cmb_FaceLEDMode.Name = "Cmb_FaceLEDMode";
+            this.Cmb_FaceLEDMode.Size = new System.Drawing.Size(270, 20);
+            this.Cmb_FaceLEDMode.TabIndex = 5;
+            // 
+            // But_ReadShortMessage
+            // 
+            this.But_ReadShortMessage.Location = new System.Drawing.Point(551, 267);
+            this.But_ReadShortMessage.Name = "But_ReadShortMessage";
+            this.But_ReadShortMessage.Size = new System.Drawing.Size(75, 23);
+            this.But_ReadShortMessage.TabIndex = 4;
+            this.But_ReadShortMessage.Text = "读取";
+            this.But_ReadShortMessage.UseVisualStyleBackColor = true;
+            this.But_ReadShortMessage.Visible = false;
+            this.But_ReadShortMessage.Click += new System.EventHandler(this.But_ReadShortMessage_Click);
+            // 
+            // But_WriteShortMessage
+            // 
+            this.But_WriteShortMessage.Location = new System.Drawing.Point(460, 267);
+            this.But_WriteShortMessage.Name = "But_WriteShortMessage";
+            this.But_WriteShortMessage.Size = new System.Drawing.Size(75, 23);
+            this.But_WriteShortMessage.TabIndex = 4;
+            this.But_WriteShortMessage.Text = "写入";
+            this.But_WriteShortMessage.UseVisualStyleBackColor = true;
+            this.But_WriteShortMessage.Visible = false;
+            this.But_WriteShortMessage.Click += new System.EventHandler(this.But_WriteShortMessage_Click);
+            // 
+            // But_ReadFaceBodyTemperatureShow
+            // 
+            this.But_ReadFaceBodyTemperatureShow.Location = new System.Drawing.Point(551, 222);
+            this.But_ReadFaceBodyTemperatureShow.Name = "But_ReadFaceBodyTemperatureShow";
+            this.But_ReadFaceBodyTemperatureShow.Size = new System.Drawing.Size(75, 23);
+            this.But_ReadFaceBodyTemperatureShow.TabIndex = 4;
+            this.But_ReadFaceBodyTemperatureShow.Text = "读取";
+            this.But_ReadFaceBodyTemperatureShow.UseVisualStyleBackColor = true;
+            this.But_ReadFaceBodyTemperatureShow.Visible = false;
+            this.But_ReadFaceBodyTemperatureShow.Click += new System.EventHandler(this.But_ReadFaceBodyTemperatureShow_Click);
+            // 
+            // But_WriteFaceBodyTemperatureShow
+            // 
+            this.But_WriteFaceBodyTemperatureShow.Location = new System.Drawing.Point(460, 222);
+            this.But_WriteFaceBodyTemperatureShow.Name = "But_WriteFaceBodyTemperatureShow";
+            this.But_WriteFaceBodyTemperatureShow.Size = new System.Drawing.Size(75, 23);
+            this.But_WriteFaceBodyTemperatureShow.TabIndex = 4;
+            this.But_WriteFaceBodyTemperatureShow.Text = "写入";
+            this.But_WriteFaceBodyTemperatureShow.UseVisualStyleBackColor = true;
+            this.But_WriteFaceBodyTemperatureShow.Visible = false;
+            this.But_WriteFaceBodyTemperatureShow.Click += new System.EventHandler(this.But_WriteFaceBodyTemperatureShow_Click);
+            // 
+            // But_ReadFaceBodyTemperatureAlarm
+            // 
+            this.But_ReadFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(551, 180);
+            this.But_ReadFaceBodyTemperatureAlarm.Name = "But_ReadFaceBodyTemperatureAlarm";
+            this.But_ReadFaceBodyTemperatureAlarm.Size = new System.Drawing.Size(75, 23);
+            this.But_ReadFaceBodyTemperatureAlarm.TabIndex = 4;
+            this.But_ReadFaceBodyTemperatureAlarm.Text = "读取";
+            this.But_ReadFaceBodyTemperatureAlarm.UseVisualStyleBackColor = true;
+            this.But_ReadFaceBodyTemperatureAlarm.Click += new System.EventHandler(this.But_ReadFaceBodyTemperatureAlarm_Click);
+            // 
+            // But_WriteFaceBodyTemperatureAlarm
+            // 
+            this.But_WriteFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(460, 180);
+            this.But_WriteFaceBodyTemperatureAlarm.Name = "But_WriteFaceBodyTemperatureAlarm";
+            this.But_WriteFaceBodyTemperatureAlarm.Size = new System.Drawing.Size(75, 23);
+            this.But_WriteFaceBodyTemperatureAlarm.TabIndex = 4;
+            this.But_WriteFaceBodyTemperatureAlarm.Text = "写入";
+            this.But_WriteFaceBodyTemperatureAlarm.UseVisualStyleBackColor = true;
+            this.But_WriteFaceBodyTemperatureAlarm.Click += new System.EventHandler(this.But_WriteFaceBodyTemperatureAlarm_Click);
+            // 
+            // But_ReadFaceBodyTemperature
+            // 
+            this.But_ReadFaceBodyTemperature.Location = new System.Drawing.Point(551, 138);
+            this.But_ReadFaceBodyTemperature.Name = "But_ReadFaceBodyTemperature";
+            this.But_ReadFaceBodyTemperature.Size = new System.Drawing.Size(75, 23);
+            this.But_ReadFaceBodyTemperature.TabIndex = 4;
+            this.But_ReadFaceBodyTemperature.Text = "读取";
+            this.But_ReadFaceBodyTemperature.UseVisualStyleBackColor = true;
+            this.But_ReadFaceBodyTemperature.Click += new System.EventHandler(this.But_ReadFaceBodyTemperature_Click);
+            // 
+            // But_WriteFaceBodyTemperature
+            // 
+            this.But_WriteFaceBodyTemperature.Location = new System.Drawing.Point(460, 138);
+            this.But_WriteFaceBodyTemperature.Name = "But_WriteFaceBodyTemperature";
+            this.But_WriteFaceBodyTemperature.Size = new System.Drawing.Size(75, 23);
+            this.But_WriteFaceBodyTemperature.TabIndex = 4;
+            this.But_WriteFaceBodyTemperature.Text = "写入";
+            this.But_WriteFaceBodyTemperature.UseVisualStyleBackColor = true;
+            this.But_WriteFaceBodyTemperature.Click += new System.EventHandler(this.But_WriteFaceBodyTemperature_Click);
+            // 
+            // But_ReadFaceMouthmufflePar
+            // 
+            this.But_ReadFaceMouthmufflePar.Location = new System.Drawing.Point(551, 92);
+            this.But_ReadFaceMouthmufflePar.Name = "But_ReadFaceMouthmufflePar";
+            this.But_ReadFaceMouthmufflePar.Size = new System.Drawing.Size(75, 23);
+            this.But_ReadFaceMouthmufflePar.TabIndex = 4;
+            this.But_ReadFaceMouthmufflePar.Text = "读取";
+            this.But_ReadFaceMouthmufflePar.UseVisualStyleBackColor = true;
+            this.But_ReadFaceMouthmufflePar.Click += new System.EventHandler(this.But_ReadFaceMouthmufflePar_Click);
+            // 
+            // But_WriteFaceMouthmufflePar
+            // 
+            this.But_WriteFaceMouthmufflePar.Location = new System.Drawing.Point(460, 92);
+            this.But_WriteFaceMouthmufflePar.Name = "But_WriteFaceMouthmufflePar";
+            this.But_WriteFaceMouthmufflePar.Size = new System.Drawing.Size(75, 23);
+            this.But_WriteFaceMouthmufflePar.TabIndex = 4;
+            this.But_WriteFaceMouthmufflePar.Text = "写入";
+            this.But_WriteFaceMouthmufflePar.UseVisualStyleBackColor = true;
+            this.But_WriteFaceMouthmufflePar.Click += new System.EventHandler(this.But_WriteFaceMouthmufflePar_Click);
+            // 
+            // But_ReadFaceLEDMode
+            // 
+            this.But_ReadFaceLEDMode.Location = new System.Drawing.Point(551, 47);
+            this.But_ReadFaceLEDMode.Name = "But_ReadFaceLEDMode";
+            this.But_ReadFaceLEDMode.Size = new System.Drawing.Size(75, 23);
+            this.But_ReadFaceLEDMode.TabIndex = 4;
+            this.But_ReadFaceLEDMode.Text = "读取";
+            this.But_ReadFaceLEDMode.UseVisualStyleBackColor = true;
+            this.But_ReadFaceLEDMode.Click += new System.EventHandler(this.But_ReadFaceLEDMode_Click);
+            // 
+            // But_WriteFaceLEDMode
+            // 
+            this.But_WriteFaceLEDMode.Location = new System.Drawing.Point(460, 47);
+            this.But_WriteFaceLEDMode.Name = "But_WriteFaceLEDMode";
+            this.But_WriteFaceLEDMode.Size = new System.Drawing.Size(75, 23);
+            this.But_WriteFaceLEDMode.TabIndex = 4;
+            this.But_WriteFaceLEDMode.Text = "写入";
+            this.But_WriteFaceLEDMode.UseVisualStyleBackColor = true;
+            this.But_WriteFaceLEDMode.Click += new System.EventHandler(this.But_WriteFaceLEDMode_Click);
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(34, 226);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(113, 12);
+            this.label44.TabIndex = 3;
+            this.label44.Text = "体温数值显示开关：";
+            this.label44.Visible = false;
+            // 
+            // cmb_FaceBodyTemperatureShow
+            // 
+            this.cmb_FaceBodyTemperatureShow.FormattingEnabled = true;
+            this.cmb_FaceBodyTemperatureShow.Items.AddRange(new object[] {
+            "禁止显示体温",
+            "显示体温信息"});
+            this.cmb_FaceBodyTemperatureShow.Location = new System.Drawing.Point(152, 224);
+            this.cmb_FaceBodyTemperatureShow.Name = "cmb_FaceBodyTemperatureShow";
+            this.cmb_FaceBodyTemperatureShow.Size = new System.Drawing.Size(270, 20);
+            this.cmb_FaceBodyTemperatureShow.TabIndex = 2;
+            this.cmb_FaceBodyTemperatureShow.Visible = false;
+            // 
+            // Txt_ShortMessage
+            // 
+            this.Txt_ShortMessage.Location = new System.Drawing.Point(152, 267);
+            this.Txt_ShortMessage.Name = "Txt_ShortMessage";
+            this.Txt_ShortMessage.Size = new System.Drawing.Size(270, 21);
+            this.Txt_ShortMessage.TabIndex = 1;
+            this.Txt_ShortMessage.Visible = false;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(94, 272);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(53, 12);
+            this.label43.TabIndex = 0;
+            this.label43.Text = "短消息：";
+            this.label43.Visible = false;
+            // 
+            // Txt_BodyTemperatureAlarm
+            // 
+            this.Txt_BodyTemperatureAlarm.Location = new System.Drawing.Point(152, 182);
+            this.Txt_BodyTemperatureAlarm.Name = "Txt_BodyTemperatureAlarm";
+            this.Txt_BodyTemperatureAlarm.Size = new System.Drawing.Size(270, 21);
+            this.Txt_BodyTemperatureAlarm.TabIndex = 1;
+            this.Txt_BodyTemperatureAlarm.Text = "37.5";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(58, 187);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(89, 12);
+            this.label42.TabIndex = 0;
+            this.label42.Text = "体温报警阈值：";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(46, 142);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(101, 12);
+            this.label41.TabIndex = 0;
+            this.label41.Text = "体温检测及格式：";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(58, 97);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(89, 12);
+            this.label40.TabIndex = 0;
+            this.label40.Text = "口罩识别开关：";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(70, 52);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(77, 12);
+            this.label39.TabIndex = 0;
+            this.label39.Text = "补光灯模式：";
+            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1879,6 +2175,8 @@
             this.groupBox16.PerformLayout();
             this.groupBox15.ResumeLayout(false);
             this.groupBox15.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2040,5 +2338,30 @@
         private System.Windows.Forms.Button butWriteLanguage;
         private System.Windows.Forms.Button butReadLanguage;
         private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.ComboBox Cmb_FaceBodyTemperature;
+        private System.Windows.Forms.ComboBox Cmb_FaceMouthmuffle;
+        private System.Windows.Forms.ComboBox Cmb_FaceLEDMode;
+        private System.Windows.Forms.Button But_ReadShortMessage;
+        private System.Windows.Forms.Button But_WriteShortMessage;
+        private System.Windows.Forms.Button But_ReadFaceBodyTemperatureShow;
+        private System.Windows.Forms.Button But_WriteFaceBodyTemperatureShow;
+        private System.Windows.Forms.Button But_ReadFaceBodyTemperatureAlarm;
+        private System.Windows.Forms.Button But_WriteFaceBodyTemperatureAlarm;
+        private System.Windows.Forms.Button But_ReadFaceBodyTemperature;
+        private System.Windows.Forms.Button But_WriteFaceBodyTemperature;
+        private System.Windows.Forms.Button But_ReadFaceMouthmufflePar;
+        private System.Windows.Forms.Button But_WriteFaceMouthmufflePar;
+        private System.Windows.Forms.Button But_ReadFaceLEDMode;
+        private System.Windows.Forms.Button But_WriteFaceLEDMode;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.ComboBox cmb_FaceBodyTemperatureShow;
+        private System.Windows.Forms.TextBox Txt_ShortMessage;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.TextBox Txt_BodyTemperatureAlarm;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label39;
     }
 }

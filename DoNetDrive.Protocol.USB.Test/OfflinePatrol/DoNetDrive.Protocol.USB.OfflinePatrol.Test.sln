@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCARDIO.Protocol.USB.OfflinePatrol.Test", "FCARDIO.Protocol.USB.OfflinePatrol.Test.csproj", "{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoNetDrive.Protocol.USB.OfflinePatrol.Test", "DoNetDrive.Protocol.USB.OfflinePatrol.Test.csproj", "{AD1D9691-E423-4C0D-BFCB-4FB7CF0F3380}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

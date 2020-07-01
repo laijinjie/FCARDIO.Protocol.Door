@@ -51,6 +51,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         }
         #endregion
 
+
         private void FrmSystem_Load(object sender, EventArgs e)
         {
             cmbDoor.Items.Clear();
@@ -85,13 +86,23 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbFace.SelectedIndex = 0;
             cmbFingerprint.SelectedIndex = 0;
 
+            Cmb_FaceLEDMode.Items.AddRange(FaceLEDModeList);
+            Cmb_FaceLEDMode.SelectedIndex = 0;
+
+            Cmb_FaceMouthmuffle.SelectedIndex = 0;
+
+            cmb_FaceBodyTemperatureShow.SelectedIndex = 0;
+
+            Cmb_FaceBodyTemperature.Items.AddRange(FaceBodyTemperatureList);
+            Cmb_FaceBodyTemperature.SelectedIndex = 0;
             IniDriveLanguage();
             IniDriveVolume();
         }
-
-        string[] DoorList = new string[] { "1", "2", "3", "4"};
+        string[] FaceBodyTemperatureList = { "禁止", "摄氏度（默认值）", "华氏度" };
+        string[] FaceLEDModeList = { "一直关", "一直亮", "检测到人员时开" };
+        string[] DoorList = new string[] { "1", "2", "3", "4" };
         string[] ReadCardByteList = new string[] { "韦根26", "韦根34", "韦根26", "韦根66", "禁用" };
-        string[] IsUseList = new string[] { "启用", "禁用"};
+        string[] IsUseList = new string[] { "启用", "禁用" };
         string[] WGByteSortList = new string[] { "高位在前低位在后", "低位在前高位在后" };
         string[] OutputTypeList = new string[] { "输出用户号", "输出人员卡号" };
         private void ButReadSN_Click(object sender, EventArgs e)
@@ -698,7 +709,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            WriteDataEncryptionSwitch_Parameter par = new WriteDataEncryptionSwitch_Parameter(cbDataEncryptionSwitchIsUse.Checked,txtSecretKey.Text);
+            WriteDataEncryptionSwitch_Parameter par = new WriteDataEncryptionSwitch_Parameter(cbDataEncryptionSwitchIsUse.Checked, txtSecretKey.Text);
             WriteDataEncryptionSwitch cmd = new WriteDataEncryptionSwitch(cmdDtl, par);
             mMainForm.AddCommand(cmd);
         }
@@ -733,7 +744,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            WriteLocalIdentity_Parameter par = new WriteLocalIdentity_Parameter(Convert.ToByte(cmbDoor.SelectedItem),txtLocalName.Text, (byte)(cmbInOut.SelectedIndex + 1));
+            WriteLocalIdentity_Parameter par = new WriteLocalIdentity_Parameter(Convert.ToByte(cmbDoor.SelectedItem), txtLocalName.Text, (byte)(cmbInOut.SelectedIndex + 1));
             WriteLocalIdentity cmd = new WriteLocalIdentity(cmdDtl, par);
             mMainForm.AddCommand(cmd);
         }
@@ -773,7 +784,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 });
                 mMainForm.AddCmdLog(cmde, "");
             };
-            
+
         }
 
         private void BtnReadComparisonThreshold_Click(object sender, EventArgs e)
@@ -917,8 +928,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            OEMDetail oEM = new OEMDetail() { Manufacturer = txtManufacturer.Text, WebAddr = txtWebAddr.Text
-                , DeliveryDate = new DateTime(dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day,dtpTime.Value.Hour, dtpTime.Value.Minute, dtpTime.Value.Second) };
+            OEMDetail oEM = new OEMDetail()
+            {
+                Manufacturer = txtManufacturer.Text,
+                WebAddr = txtWebAddr.Text
+                ,
+                DeliveryDate = new DateTime(dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day, dtpTime.Value.Hour, dtpTime.Value.Minute, dtpTime.Value.Second)
+            };
             OEM_Parameter par = new OEM_Parameter(oEM);
             WriteOEM cmd = new WriteOEM(cmdDtl, par);
             mMainForm.AddCommand(cmd);
@@ -945,7 +961,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 Invoke(() =>
                 {
-                    if(result.Language<3)
+                    if (result.Language < 3)
                     {
                         cmbLanguage.SelectedIndex = result.Language - 1;
                         mMainForm.AddCmdLog(cmde, $"语言：{cmbLanguage.Text}");
@@ -954,9 +970,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     {
                         mMainForm.AddCmdLog(cmde, $"语言：{result.Language}");
                     }
-                    
+
                 });
-                
+
             };
 
         }
@@ -1001,7 +1017,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 {
                     if (result.Volume <= 10)
                     {
-                        cmbDriveVolume.SelectedIndex = result.Volume ;
+                        cmbDriveVolume.SelectedIndex = result.Volume;
                         mMainForm.AddCmdLog(cmde, $"音量：{cmbDriveVolume.Text}");
                     }
                     else
@@ -1018,11 +1034,227 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            int iVolume = cmbDriveVolume.SelectedIndex ;
+            int iVolume = cmbDriveVolume.SelectedIndex;
             WriteDriveVolume_Parameter par = new WriteDriveVolume_Parameter(iVolume);
             WriteDriveVolume cmd = new WriteDriveVolume(cmdDtl, par);
             mMainForm.AddCommand(cmd);
         }
         #endregion
+        /// <summary>
+        /// 补光灯模式写入
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void But_WriteFaceLEDMode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmdPar = new Fingerprint.SystemParameter.WriteFaceLEDMode_Parameter(Cmb_FaceLEDMode.SelectedIndex);
+            var cmd = new Fingerprint.SystemParameter.WriteFaceLEDMode(cmdDtl, cmdPar);
+            mMainForm.AddCommand(cmd);
+        }
+        /// <summary>
+        /// 补光灯模式读取
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void But_ReadFaceLEDMode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            var cmd = new Fingerprint.SystemParameter.ReadFaceLEDMode(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+             {
+                 var result = cmde.Command.getResult() as ReadFaceLEDMode_Result;
+                 Invoke(() =>
+                 {
+                     Cmb_FaceLEDMode.SelectedIndex = result.LEDMode;
+                 });
+
+             };
+        }
+        /// <summary>
+        /// 写入口罩识别开关
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void But_WriteFaceMouthmufflePar_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmdPar = new Fingerprint.SystemParameter.WriteFaceMouthmufflePar_Parameter(Cmb_FaceMouthmuffle.SelectedIndex);
+            var cmd = new WriteFaceMouthmufflePar(cmdDtl, cmdPar);
+            mMainForm.AddCommand(cmd);
+        }
+        /// <summary>
+        /// 读取口罩识别开关
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void But_ReadFaceMouthmufflePar_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new ReadFaceMouthmufflePar(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Command.getResult() as ReadFaceMouthmufflePar_Result;
+                Invoke(() =>
+                {
+                    Cmb_FaceMouthmuffle.SelectedIndex = result.Mouthmuffle;
+                });
+
+            };
+        }
+        /// <summary>
+        /// 写入体温检测及格式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void But_WriteFaceBodyTemperature_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            var cmdPar = new Fingerprint.SystemParameter.WriteFaceBodyTemperaturePar_Parameter(Cmb_FaceBodyTemperature.SelectedIndex);
+            var cmd = new WriteFaceBodyTemperaturePar(cmdDtl, cmdPar);
+            mMainForm.AddCommand(cmd);
+        }
+        /// <summary>
+        /// 读取体温检测及格式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void But_ReadFaceBodyTemperature_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new ReadFaceBodyTemperaturePar(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Command.getResult() as ReadFaceBodyTemperaturePar_Result;
+                Invoke(() =>
+                {
+                    Cmb_FaceBodyTemperature.SelectedIndex = result.BodyTemperaturePar;
+                });
+
+            };
+        }
+        /// <summary>
+        /// 写入体温报警阈值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void But_WriteFaceBodyTemperatureAlarm_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            if (!double.TryParse(Txt_BodyTemperatureAlarm.Text, out double alarmPar))
+            {
+                MessageBox.Show("报警阈值有误");
+                return;
+            }
+            var cmdPar = new Fingerprint.SystemParameter.WriteFaceBodyTemperatureAlarmPar_Parameter(((int)alarmPar * 10));
+            var cmd = new Fingerprint.SystemParameter.WriteFaceBodyTemperatureAlarmPar(cmdDtl, cmdPar);
+            mMainForm.AddCommand(cmd);
+        }
+        /// <summary>
+        /// 读取体温报警阈值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void But_ReadFaceBodyTemperatureAlarm_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new ReadFaceBodyTemperatureAlarmPar(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Command.getResult() as ReadFaceBodyTemperatureAlarmPar_Result;
+                Invoke(() =>
+                {
+                    Txt_BodyTemperatureAlarm.Text = ((double)result.AlarmPar / (double)10).ToString("0.0");
+                });
+
+            };
+        }
+        /// <summary>
+        /// 写入体温数值显示开关
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void But_WriteFaceBodyTemperatureShow_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmdPar = new Fingerprint.SystemParameter.WriteFaceBodyTemperatureShowPar_Parameter(cmb_FaceBodyTemperatureShow.SelectedIndex);
+            var cmd = new Fingerprint.SystemParameter.WriteFaceBodyTemperatureShowPar(cmdDtl, cmdPar);
+            mMainForm.AddCommand(cmd);
+        }
+        /// <summary>
+        /// 读取体温数值显示开关
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void But_ReadFaceBodyTemperatureShow_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new ReadFaceBodyTemperatureShowPar(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Command.getResult() as ReadFaceBodyTemperatureShowPar_Result;
+                Invoke(() =>
+                {
+                    cmb_FaceBodyTemperatureShow.SelectedIndex = result.IsShow;
+                });
+
+            };
+        }
+        /// <summary>
+        /// 写入短消息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void But_WriteShortMessage_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            if (Txt_ShortMessage.TextLength > 30)
+            {
+                MessageBox.Show("消息内容不能超过30个字");
+                return;
+            }
+            var cmdPar = new Fingerprint.SystemParameter.WriteShortMessage_Parameter(Txt_ShortMessage.Text);
+            var cmd = new Fingerprint.SystemParameter.WriteShortMessage(cmdDtl, cmdPar);
+            mMainForm.AddCommand(cmd);
+        }
+        /// <summary>
+        /// 读取短消息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void But_ReadShortMessage_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new ReadShortMessage(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Command.getResult() as ReadShortMessage_Result;
+                Invoke(() =>
+                {
+                    Txt_ShortMessage.Text = result.Message;
+                });
+
+            };
+        }
     }
 }

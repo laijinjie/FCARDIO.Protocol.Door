@@ -400,6 +400,11 @@ namespace DoNetDrive.Protocol.Door.Test
             };
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public static string SaveFile(StringBuilder sLogs, string sFileName)
         {
             string sPath = System.IO.Path.Combine(Application.StartupPath, "记录日志");

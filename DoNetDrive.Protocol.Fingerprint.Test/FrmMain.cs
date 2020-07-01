@@ -902,6 +902,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private static void IniCommandClassNameList()
         {
             mCommandClasss = new Dictionary<string, string>();
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceLEDMode).FullName, "读取补光灯模式");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceLEDMode).FullName, "写入补光灯模式");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceMouthmufflePar).FullName, "读取口罩识别开关");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceMouthmufflePar).FullName, "写入口罩识别开关");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceBodyTemperaturePar).FullName, "读取体温检测及格式");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBodyTemperaturePar).FullName, "写入体温检测及格式");
+
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceBodyTemperatureAlarmPar).FullName, "读取体温报警阈值");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBodyTemperatureAlarmPar).FullName, "写入体温报警阈值");
 
             mCommandClasss.Add(typeof(ReadSN).FullName, "读取SN");
             mCommandClasss.Add(typeof(WriteSN).FullName, "写SN");
