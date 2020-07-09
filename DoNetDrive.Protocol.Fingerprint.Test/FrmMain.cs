@@ -912,6 +912,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceBodyTemperatureAlarmPar).FullName, "读取体温报警阈值");
             mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBodyTemperatureAlarmPar).FullName, "写入体温报警阈值");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData).FullName, "注册识别信息");
 
             mCommandClasss.Add(typeof(ReadSN).FullName, "读取SN");
             mCommandClasss.Add(typeof(WriteSN).FullName, "写SN");

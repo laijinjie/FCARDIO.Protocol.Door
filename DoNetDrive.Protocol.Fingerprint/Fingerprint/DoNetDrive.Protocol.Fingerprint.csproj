@@ -188,6 +188,10 @@
     <Compile Include="Person\05AddPerson\AddPersonAndImage_Parameter.cs" />
     <Compile Include="Person\05AddPerson\AddPerson_Parameter.cs" />
     <Compile Include="Person\05AddPerson\AddPeosonAndImage_Result.cs" />
+    <Compile Include="Person\07Register\RegisterIdentificationData.cs" />
+    <Compile Include="Person\07Register\RegisterIdentificationData_Parameter.cs" />
+    <Compile Include="Person\07Register\RegisterIdentificationData_Result.cs" />
+    <Compile Include="Person\IdentificationData.cs" />
     <Compile Include="Person\WritePerson_ParameterBase.cs" />
     <Compile Include="Person\WritePerson_Result.cs" />
     <Compile Include="Person\06DeletePerson\DeletePerson.cs" />

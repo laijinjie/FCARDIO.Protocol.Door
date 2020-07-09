@@ -115,19 +115,54 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
         /// </summary>
         public int FingerprintFeatureCodeCout;
 
+        /// <summary>
+        /// 创建一个人员
+        /// </summary>
         public Person()
         {
+            UserCode = 0;
             CardData = 0;
-            OpenTimes = 65535;
             Password = string.Empty;
-            Expiry = DateTime.Now.AddYears(5);
+            Expiry = DateTime.Now.AddYears(30);
             TimeGroup = 1;
-            Holiday = new byte[] { (byte)255, (byte)255, (byte)255, (byte)255 };
+            OpenTimes = 65535;
+            Identity = 0;
+            CardType = 0;
             CardStatus = 0;
             EnterStatus = 0;
-            Identity = 0;
+            PName = string.Empty;
+            PCode = string.Empty;
+            Dept = string.Empty;
+            Job = string.Empty;
+            RecordTime = DateTime.Now;
+            IsFaceFeatureCode = false;
+            Holiday = new byte[] { (byte)255, (byte)255, (byte)255, (byte)255 };
             FingerprintFeatureCodeCout = 0;
         }
+        /// <summary>
+        /// 创建一个人员，并指定用户号和人员姓名
+        /// </summary>
+        public Person(uint uCode,string pName):this()
+        {
+            UserCode = uCode;
+            PName = pName;
+        }
+
+        /// <summary>
+        /// 创建一个人员，并指定用户号、密码、人员姓名、部门名称
+        /// </summary>
+        public Person(uint uCode, string sPWD,string pName,string dept) : this(uCode, pName)
+        {
+            Password = sPWD;
+            Dept = dept;
+        }
+
+
+        /// <summary>
+        /// 比较人员，使用人员用户号进行排序
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
         public int CompareTo(Person o)
         {
             if (o.UserCode == UserCode)
@@ -215,14 +250,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
             return 0xA1;//161字节
         }
 
-        /// <summary>
-        /// 从buf中读取人员详情数据
-        /// </summary>
-        /// <param name="data"></param>
-        public virtual void SetDeleteBytes(IByteBuffer data)
-        {
-            UserCode = (uint)data.ReadInt();
-        }
 
         /// <summary>
         /// 从buf中读取人员详情数据

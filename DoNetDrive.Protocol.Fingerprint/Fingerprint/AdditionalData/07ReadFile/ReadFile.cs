@@ -49,7 +49,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
             mResult = new ReadFile_Result();
             _Result = mResult;
             ReadFile_Parameter model = _Parameter as ReadFile_Parameter;
-            Packet(0x0B, 0x15, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
+            Packet(0x0B, 0x15, 0x00, (uint)model.GetDataLen(), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }
 
         /// <summary>
@@ -88,11 +88,6 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 default:
                     break;
             }
-
-
-
-
-
         }
 
         /// <summary>
@@ -137,7 +132,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                     readBuf.WriteInt(mResult.FileHandle);
                     readBuf.WriteInt(0);
                     readBuf.WriteShort(iPackSize);
-
+                    fireCommandProcessEvent();
                     Packet(0x0B, 0x15, 2, (uint)readBuf.ReadableBytes, readBuf);
 
                     CommandReady();
@@ -167,7 +162,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 uint crc = buf.ReadUnsignedInt();
 
                 _ProcessStep = iDataIndex + iSize;
-
+                fireCommandProcessEvent();
 
                 buf.ReadBytes(_FileDatas, iDataIndex, iSize);
 

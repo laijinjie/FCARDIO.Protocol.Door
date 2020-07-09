@@ -168,7 +168,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     PersonList.RaiseListChangedEvents = true;
                     PersonList.ResetBindings();
                 });
-                
+
 
 
                 mMainForm.AddCmdLog(cmde, $"读取到的人员数:{result.DataBaseSize}");
@@ -235,12 +235,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var PersonUI = gdRow.DataBoundItem as Person_UI;
             StringBuilder strBuf = new StringBuilder();
 
-            DebugPerson(PersonUI.Person,strBuf);
+            DebugPerson(PersonUI.Person, strBuf);
             //txtDebug.Text = strBuf.ToString();
             PersonToControl(PersonUI.Person);
         }
 
-        private void DebugPerson(Data.Person person,StringBuilder sLogs)
+        private void DebugPerson(Data.Person person, StringBuilder sLogs)
         {
             var ui = new Person_UI(person);
             DebugPersonDetail(person, sLogs);
@@ -284,7 +284,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (person.CardStatus < 4)
                 cmbCardStatus.SelectedIndex = person.CardStatus;
 
-            cmbTimeGroup.SelectedIndex = person.TimeGroup -1 ;
+            cmbTimeGroup.SelectedIndex = person.TimeGroup - 1;
             txtUserCode.Text = person.UserCode.ToString();
             txtPName.Text = person.PName;
             txtPCode.Text = person.PCode;
@@ -299,9 +299,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
 
             }
-          
+
             //if (person.HolidayUse)
-                txtHoliday.Text = ui.Holiday;
+            txtHoliday.Text = ui.Holiday;
             //else
             //    txtHoliday.Text = new string('1', 30);
 
@@ -599,7 +599,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             uint usercode = 0;
-            if (!uint.TryParse(txtUserCode.Text,out usercode))
+            if (!uint.TryParse(txtUserCode.Text, out usercode))
             {
                 MessageBox.Show("用户号格式不正确");
                 return;
@@ -646,7 +646,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             INCommand cmd;
 
             byte[] datas = System.IO.File.ReadAllBytes(mPersonImagePath);
-            var par = new AddPersonAndImage_Parameter(person,datas);
+            var par = new AddPersonAndImage_Parameter(person, datas);
             cmd = new AddPeosonAndImage(cmdDtl, par);
 
 
@@ -656,6 +656,51 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 var result = cmd.getResult() as WritePerson_Result;
                 WritePersonCallBlack(cmde, result);
+            };
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            int sCode = int.Parse(txtRegUserCode.Text);
+            string sName = txtRegUserName.Text;
+
+            Data.Person person = new Data.Person((uint)sCode, sName);
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            //cmdDtl.Timeout = 10000;
+            INCommand cmd;
+
+            var par = new RegisterIdentificationData_Parameter(person, 3);
+            cmd = new RegisterIdentificationData(cmdDtl, par);
+
+
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmd.getResult() as RegisterIdentificationData_Result;
+                if (result.Status == 101)
+                {
+                    if (result.ResultData != null)
+                    {
+                        string sFile = System.IO.Path.Combine(Application.StartupPath, $"Photo_{sCode}.jpg");
+                        var buf = result.ResultData.DataBuf;
+                        System.IO.File.WriteAllBytes(sFile, buf);
+                        using (var ms = new System.IO.MemoryStream(buf))
+                        {
+                            Image img = Image.FromStream(ms);
+                            picReg.Image = img;
+                        }
+                        
+                        MsgTip("注册成功！");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show($"注册失败--{result.Status}");
+                }
             };
         }
     }

@@ -54,6 +54,8 @@
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.butSelectImage = new System.Windows.Forms.Button();
+            this.btnAddPesonAndImage = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnCheckUserCode = new System.Windows.Forms.Button();
@@ -103,13 +105,20 @@
             this.btnAddDevice = new System.Windows.Forms.Button();
             this.btnDelDevice = new System.Windows.Forms.Button();
             this.btnDelSelect = new System.Windows.Forms.Button();
-            this.btnAddPesonAndImage = new System.Windows.Forms.Button();
-            this.butSelectImage = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtRegUserName = new System.Windows.Forms.TextBox();
+            this.txtRegUserCode = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.picReg = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgPersonList)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picReg)).BeginInit();
             this.SuspendLayout();
             // 
             // dgPersonList
@@ -329,6 +338,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 301);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -351,6 +361,26 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "人员详情";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // butSelectImage
+            // 
+            this.butSelectImage.Location = new System.Drawing.Point(526, 224);
+            this.butSelectImage.Name = "butSelectImage";
+            this.butSelectImage.Size = new System.Drawing.Size(188, 23);
+            this.butSelectImage.TabIndex = 6;
+            this.butSelectImage.Text = "选择照片";
+            this.butSelectImage.UseVisualStyleBackColor = true;
+            this.butSelectImage.Click += new System.EventHandler(this.butSelectImage_Click);
+            // 
+            // btnAddPesonAndImage
+            // 
+            this.btnAddPesonAndImage.Location = new System.Drawing.Point(526, 258);
+            this.btnAddPesonAndImage.Name = "btnAddPesonAndImage";
+            this.btnAddPesonAndImage.Size = new System.Drawing.Size(188, 23);
+            this.btnAddPesonAndImage.TabIndex = 5;
+            this.btnAddPesonAndImage.Text = "增加用户和照片至设备";
+            this.btnAddPesonAndImage.UseVisualStyleBackColor = true;
+            this.btnAddPesonAndImage.Click += new System.EventHandler(this.btnAddPesonAndImage_Click);
             // 
             // button4
             // 
@@ -821,25 +851,74 @@
             this.btnDelSelect.Text = "从设备删除选中卡";
             this.btnDelSelect.UseVisualStyleBackColor = true;
             // 
-            // btnAddPesonAndImage
+            // tabPage3
             // 
-            this.btnAddPesonAndImage.Location = new System.Drawing.Point(526, 258);
-            this.btnAddPesonAndImage.Name = "btnAddPesonAndImage";
-            this.btnAddPesonAndImage.Size = new System.Drawing.Size(188, 23);
-            this.btnAddPesonAndImage.TabIndex = 5;
-            this.btnAddPesonAndImage.Text = "增加用户和照片至设备";
-            this.btnAddPesonAndImage.UseVisualStyleBackColor = true;
-            this.btnAddPesonAndImage.Click += new System.EventHandler(this.btnAddPesonAndImage_Click);
+            this.tabPage3.Controls.Add(this.picReg);
+            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.txtRegUserName);
+            this.tabPage3.Controls.Add(this.txtRegUserCode);
+            this.tabPage3.Controls.Add(this.label19);
+            this.tabPage3.Controls.Add(this.label20);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(768, 287);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "再机器上注册信息";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // butSelectImage
+            // txtRegUserName
             // 
-            this.butSelectImage.Location = new System.Drawing.Point(526, 224);
-            this.butSelectImage.Name = "butSelectImage";
-            this.butSelectImage.Size = new System.Drawing.Size(188, 23);
-            this.butSelectImage.TabIndex = 6;
-            this.butSelectImage.Text = "选择照片";
-            this.butSelectImage.UseVisualStyleBackColor = true;
-            this.butSelectImage.Click += new System.EventHandler(this.butSelectImage_Click);
+            this.txtRegUserName.Location = new System.Drawing.Point(309, 27);
+            this.txtRegUserName.Name = "txtRegUserName";
+            this.txtRegUserName.Size = new System.Drawing.Size(141, 21);
+            this.txtRegUserName.TabIndex = 32;
+            this.txtRegUserName.Text = "测试人员";
+            // 
+            // txtRegUserCode
+            // 
+            this.txtRegUserCode.Location = new System.Drawing.Point(83, 27);
+            this.txtRegUserCode.Name = "txtRegUserCode";
+            this.txtRegUserCode.Size = new System.Drawing.Size(141, 21);
+            this.txtRegUserCode.TabIndex = 31;
+            this.txtRegUserCode.Text = "10000";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(238, 31);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(65, 12);
+            this.label19.TabIndex = 30;
+            this.label19.Text = "人员姓名：";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(24, 31);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(53, 12);
+            this.label20.TabIndex = 29;
+            this.label20.Text = "用户号：";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(480, 26);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 33;
+            this.button2.Text = "注册人脸";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // picReg
+            // 
+            this.picReg.Location = new System.Drawing.Point(32, 64);
+            this.picReg.Name = "picReg";
+            this.picReg.Size = new System.Drawing.Size(218, 217);
+            this.picReg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picReg.TabIndex = 34;
+            this.picReg.TabStop = false;
             // 
             // frmPerson
             // 
@@ -870,6 +949,9 @@
             this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picReg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -954,5 +1036,12 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button butSelectImage;
         private System.Windows.Forms.Button btnAddPesonAndImage;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.PictureBox picReg;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtRegUserName;
+        private System.Windows.Forms.TextBox txtRegUserCode;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
     }
 }
