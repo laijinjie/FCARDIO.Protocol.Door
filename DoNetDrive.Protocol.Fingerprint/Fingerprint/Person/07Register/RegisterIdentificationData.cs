@@ -33,7 +33,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            return true;
+            return (value as RegisterIdentificationData_Parameter).checkedParameter();
         }
 
         /// <summary>

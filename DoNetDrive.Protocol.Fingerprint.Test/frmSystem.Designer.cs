@@ -1923,7 +1923,6 @@
             this.But_ReadShortMessage.TabIndex = 4;
             this.But_ReadShortMessage.Text = "读取";
             this.But_ReadShortMessage.UseVisualStyleBackColor = true;
-            this.But_ReadShortMessage.Visible = false;
             this.But_ReadShortMessage.Click += new System.EventHandler(this.But_ReadShortMessage_Click);
             // 
             // But_WriteShortMessage
@@ -1934,7 +1933,6 @@
             this.But_WriteShortMessage.TabIndex = 4;
             this.But_WriteShortMessage.Text = "写入";
             this.But_WriteShortMessage.UseVisualStyleBackColor = true;
-            this.But_WriteShortMessage.Visible = false;
             this.But_WriteShortMessage.Click += new System.EventHandler(this.But_WriteShortMessage_Click);
             // 
             // But_ReadFaceBodyTemperatureShow
@@ -1945,7 +1943,6 @@
             this.But_ReadFaceBodyTemperatureShow.TabIndex = 4;
             this.But_ReadFaceBodyTemperatureShow.Text = "读取";
             this.But_ReadFaceBodyTemperatureShow.UseVisualStyleBackColor = true;
-            this.But_ReadFaceBodyTemperatureShow.Visible = false;
             this.But_ReadFaceBodyTemperatureShow.Click += new System.EventHandler(this.But_ReadFaceBodyTemperatureShow_Click);
             // 
             // But_WriteFaceBodyTemperatureShow
@@ -1956,7 +1953,6 @@
             this.But_WriteFaceBodyTemperatureShow.TabIndex = 4;
             this.But_WriteFaceBodyTemperatureShow.Text = "写入";
             this.But_WriteFaceBodyTemperatureShow.UseVisualStyleBackColor = true;
-            this.But_WriteFaceBodyTemperatureShow.Visible = false;
             this.But_WriteFaceBodyTemperatureShow.Click += new System.EventHandler(this.But_WriteFaceBodyTemperatureShow_Click);
             // 
             // But_ReadFaceBodyTemperatureAlarm
@@ -2047,7 +2043,6 @@
             this.label44.Size = new System.Drawing.Size(113, 12);
             this.label44.TabIndex = 3;
             this.label44.Text = "体温数值显示开关：";
-            this.label44.Visible = false;
             // 
             // cmb_FaceBodyTemperatureShow
             // 
@@ -2059,7 +2054,6 @@
             this.cmb_FaceBodyTemperatureShow.Name = "cmb_FaceBodyTemperatureShow";
             this.cmb_FaceBodyTemperatureShow.Size = new System.Drawing.Size(270, 20);
             this.cmb_FaceBodyTemperatureShow.TabIndex = 2;
-            this.cmb_FaceBodyTemperatureShow.Visible = false;
             // 
             // Txt_ShortMessage
             // 
@@ -2067,7 +2061,7 @@
             this.Txt_ShortMessage.Name = "Txt_ShortMessage";
             this.Txt_ShortMessage.Size = new System.Drawing.Size(270, 21);
             this.Txt_ShortMessage.TabIndex = 1;
-            this.Txt_ShortMessage.Visible = false;
+            this.Txt_ShortMessage.Text = "abcd";
             // 
             // label43
             // 
@@ -2077,7 +2071,6 @@
             this.label43.Size = new System.Drawing.Size(53, 12);
             this.label43.TabIndex = 0;
             this.label43.Text = "短消息：";
-            this.label43.Visible = false;
             // 
             // Txt_BodyTemperatureAlarm
             // 

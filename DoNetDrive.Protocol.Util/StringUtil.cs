@@ -51,7 +51,7 @@ namespace DoNetDrive.Protocol.Util
             HexToByte_Digit = digits;
 
             digits = new byte[256];
-            tmp = Encoding.ASCII.GetBytes("0123456789"); 
+            tmp = Encoding.ASCII.GetBytes("0123456789");
             for (i = 0; i < tmp.Length; i++)
             {
                 digits[tmp[i]] = (byte)i;
@@ -67,7 +67,7 @@ namespace DoNetDrive.Protocol.Util
         /// <param name="iLen"></param>
         /// <returns></returns>
         /// <remarks></remarks>
-        public static string ByteBufToHex(IByteBuffer bData,int iLen)
+        public static string ByteBufToHex(IByteBuffer bData, int iLen)
         {
             byte[] bHex;
             int i;
@@ -165,7 +165,7 @@ namespace DoNetDrive.Protocol.Util
                 //判断是否为十六进制字符串
                 if (digits[sbuf[i]] == 0 && sbuf[i] != 0x30)
                 {
-                    return ;
+                    return;
                 }
 
                 iData = digits[sbuf[i++]] * 16;
@@ -429,9 +429,13 @@ namespace DoNetDrive.Protocol.Util
         {
             string empty = string.Empty;
             empty = databuf.ReadString(iLen, uc);
-            if (empty.EndsWith("\0"))
+            int iIndex = empty.IndexOf("\0");
+            if (iIndex >= 0)
             {
-                empty = empty.TrimEnd(default(char));
+                if (iIndex > 0)
+                    empty = empty.Substring(0, iIndex);
+                else
+                    empty = string.Empty;
             }
             return empty;
         }

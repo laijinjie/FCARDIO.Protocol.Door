@@ -1662,6 +1662,28 @@
             bit9--指纹10
             </summary>
         </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Person.#ctor">
+            <summary>
+            创建一个人员
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Person.#ctor(System.UInt32,System.String)">
+            <summary>
+            创建一个人员，并指定用户号和人员姓名
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Person.#ctor(System.UInt32,System.String,System.String,System.String)">
+            <summary>
+            创建一个人员，并指定用户号、密码、人员姓名、部门名称
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Person.CompareTo(DoNetDrive.Protocol.Fingerprint.Data.Person)">
+            <summary>
+            比较人员，使用人员用户号进行排序
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Person.GetHolidayValue(System.Int32)">
             <summary>
             获取指定序号的节假日开关状态
@@ -1681,12 +1703,6 @@
             获取一个人员详情实例，序列化到buf中的字节占比
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Person.SetDeleteBytes(DotNetty.Buffers.IByteBuffer)">
-            <summary>
-            从buf中读取人员详情数据
-            </summary>
-            <param name="data"></param>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Data.Person.SetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
@@ -3088,7 +3104,7 @@
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Person.ReadPersonDataBase">
             <summary>
-            
+            从设备中读取所有已注册的人员信息
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Person.ReadPersonDataBase.mBufs">
@@ -3195,9 +3211,24 @@
             <param name="dataBaseSize">读取到的卡数量</param>
             <param name="cardType">卡数据库类型</param>
         </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage">
+            <summary>
+            添加人员并上传人员识别信息
+            </summary>
+        </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.mResult">
             <summary>
-            写入特征码返回结果
+            添加人员的返回值
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.mPar">
+            <summary>
+            添加人员的参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.UserCode">
+            <summary>
+            用户号
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage._WriteIndex">
@@ -3210,9 +3241,9 @@
             文件句柄
             </summary>
         </member>
-        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.mBufs">
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage._FileIndex">
             <summary>
-            保存写入失败的数据缓冲区
+            文件索引号
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage._Step">
@@ -3238,17 +3269,10 @@
             </summary>
             <param name="oPck"></param>
         </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.Create_Result">
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.WriteImage">
             <summary>
-            创建命令成功返回值
+            写文件
             </summary>
-        </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.ReadPasswordByFailBuf(System.Collections.Generic.List{System.UInt32},DotNetty.Buffers.IByteBuffer)">
-            <summary>
-            从错误密码列表中读取一个错误密码，加入到passwordList中
-            </summary>
-            <param name="personList">错误人员列表</param>
-            <param name="buf"></param>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.CheckOpenFileResult(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
             <summary>
@@ -3258,6 +3282,17 @@
         <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.CheckWriteFileResult(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
             <summary>
             检查写文件返回值
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.CheckWriteOver(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            检查文件写入是否完毕
+            </summary>
+            <param name="iStatus"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.WriteNextImage">
+            <summary>
+            开始写下一个文件
             </summary>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Person.AddPerson">
@@ -3393,6 +3428,53 @@
             释放资源
             </summary>
         </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Parameter">
+            <summary>
+            添加人员及识别信息命令的参数
+            </summary>
+        </member>
+        <member name="P:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Parameter.PersonDetail">
+            <summary>
+            人员详情
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Parameter.IdentificationDatas">
+            <summary>
+            人员识别信息
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Parameter.WaitVerifyTime">
+            <summary>
+            等待校验的时间，单位毫秒
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Parameter.WaitRepeatMessage">
+            <summary>
+            如果发生照片重复消息时，是否等待重复详情，适用于人脸机固件版本4.24以上版本
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Parameter.#ctor(DoNetDrive.Protocol.Fingerprint.Data.Person,DoNetDrive.Protocol.Fingerprint.Person.IdentificationData)">
+            <summary>
+            创建添加人员及识别信息命令的参数
+            </summary>
+            <param name="person">人员详情</param>
+            <param name="data">人员识别信息</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Parameter.#ctor(DoNetDrive.Protocol.Fingerprint.Data.Person,DoNetDrive.Protocol.Fingerprint.Person.IdentificationData[])">
+            <summary>
+            创建添加人员及识别信息命令的参数
+            </summary>
+            <param name="person">人员详情</param>
+            <param name="datas">人员识别信息</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Parameter.#ctor(DoNetDrive.Protocol.Fingerprint.Data.Person,DoNetDrive.Protocol.Fingerprint.Person.IdentificationData[],System.Boolean)">
+            <summary>
+            创建添加人员及识别信息命令的参数
+            </summary>
+            <param name="person">人员详情</param>
+            <param name="datas">人员识别信息</param>
+            <param name="bWaitRepeatMessage">是否等待重复详情回馈</param>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPerson_Parameter.CheckedParameterItem(System.Collections.Generic.List{DoNetDrive.Protocol.Fingerprint.Data.Person})">
             <summary>
             检查每个人员
@@ -3400,27 +3482,289 @@
             <param name="PersonList"></param>
             <returns></returns>
         </member>
-        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage_Result.FileHandle">
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Result">
             <summary>
-            文件句柄
+            添加人员及识别信息命令返回值
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage_Result.Success" -->
-        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage_Result.FailTotal">
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Result.UserCode">
             <summary>
-            无法写入的人员数量
+            用户号
             </summary>
         </member>
-        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage_Result.PersonList">
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Result.UserUploadStatus">
             <summary>
-            无法写入的人员列表
+            用户上传状态
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
+        <member name="P:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Result.IdDataUploadStatus">
             <summary>
-            读取ByteBuffer内容
+            识别信息上传状态
+            1--上传完毕；2--特征码无法识别；3--人员照片不可识别；4--人员照片或特征码重复
             </summary>
-            <param name="buf"></param>
+        </member>
+        <member name="P:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Result.IdDataRepeatUser">
+            <summary>
+            识别信息重复的用户号
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPersonAndImage_Result.#ctor(DoNetDrive.Protocol.Fingerprint.Data.Person,System.Collections.Generic.List{DoNetDrive.Protocol.Fingerprint.Person.IdentificationData})">
+            <summary>
+            创建添加人员及识别信息命令返回值
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData">
+            <summary>
+            注册人员指纹特征码或注册人员头像
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Parameter)">
+            <summary>
+            初始化命令结构
+            </summary>
+            <param name="detail"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.CreatePacket0">
+            <summary>
+            创建一个通讯指令
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.CommandNext0(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            处理返回值
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.DeleteFile">
+            <summary>
+            删除文件
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.BeginReg">
+            <summary>
+            开始注册信息
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.ReadIdentificationData">
+            <summary>
+            读取人员识别信息
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.ReadPersonDetail(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            读取人员详情
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData._FileDatas">
+            <summary>
+            读取到的文件块缓冲区
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.FileType">
+            <summary>
+            文件类型
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData._FileStep">
+            <summary>
+            执行步骤
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.mReadFileResult">
+            <summary>
+            返回值
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.ReadFile(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            读取文件
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.CheckOpenFileResule(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            检查打开文件的返回值
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.CheckReadFileBlockResule(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            接收读取到的文件块
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.CheckReadFile(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            读取文件完毕，检验CRC32
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.CommandReSend">
+            <summary>
+            命令重发时需要处理的函数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData.Release1">
+            <summary>
+            命令释放时需要处理的函数
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Parameter">
+            <summary>
+            注册人员识别信息参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Parameter.PersonDetail">
+            <summary>
+            需要注册识别信息的人员
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Parameter.DataType">
+            <summary>
+            识别信息的类型,取值范围：1-5
+            1、指纹
+            2、红外人脸
+            3、动态人脸
+            4、刷卡
+            5、密码
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Parameter.DataNum">
+            <summary>
+            数据序号，仅注册指纹时有效，数据类型为1时，取值范围：0-9
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Parameter.#ctor(DoNetDrive.Protocol.Fingerprint.Data.Person,System.Int32)">
+            <summary>
+            创建注册人员识别信息参数
+            </summary>
+            <param name="per">需要注册识别信息的人员</param>
+            <param name="dtype">识别信息的类型,取值范围：1-5</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            将结构编码为 字节缓冲
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Parameter.GetDataLen">
+            <summary>
+            指定此类结构编码为字节缓冲后的长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            未实现
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Result">
+            <summary>
+            注册人员识别信息返回值
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Result.Status">
+            <summary>
+            状态代码：
+            1、已开始注册；2、用户号不存在；3、类型错误或不支持；4、序号已超出范围。5、设备存储空间已满
+            101、注册成功；102、用户取消操作
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Result.ResultData">
+            <summary>
+            注册类型为 指纹、红外人脸、动态人脸时，返回值存储在这里
+            注册类型为 刷卡、密码，时，返回值存储在 PersonDetail 字段中
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Result.#ctor(DoNetDrive.Protocol.Fingerprint.Data.Person,System.Int32,System.Int32)">
+            <summary>
+            创建返回值
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData_Result.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Person.IdentificationData">
+            <summary>
+            人员识别信息
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.IdentificationData.DataType">
+            <summary>
+            数据类型,取值范围：1-4
+            1、人员照片
+            2、指纹特征码
+            3、红外人脸特征码
+            4、动态人脸特征码
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.IdentificationData.DataNum">
+            <summary>
+            数据序号， 数据类型为2时，取值范围：0-9
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.IdentificationData.DataBuf">
+            <summary>
+            数据缓冲区
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.IdentificationData.DataBufOffset">
+            <summary>
+            缓冲区偏移量
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Person.IdentificationData.DataBufLen">
+            <summary>
+            缓冲区长度
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.IdentificationData.#ctor(System.Int32,System.Byte[])">
+            <summary>
+            创建人员识别信息
+            </summary>
+            <param name="iType">数据类型,取值范围：1-4</param>
+            <param name="bData">数据缓冲区</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.IdentificationData.#ctor(System.Int32,System.Int32,System.Byte[])">
+            <summary>
+            创建人员识别信息
+            </summary>
+            <param name="iType">数据类型,取值范围：1-4</param>
+            <param name="iNum">数据序号， 数据类型为2时，取值范围：0-9</param>
+            <param name="bData">数据缓冲区</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.IdentificationData.#ctor(System.Int32,System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            创建人员识别信息
+            </summary>
+            <param name="iType">数据类型,取值范围：1-4</param>
+            <param name="iNum">数据序号， 数据类型为2时，取值范围：0-9</param>
+            <param name="bData">数据缓冲区</param>
+            <param name="ioffset">缓冲区偏移量</param>
+            <param name="len">缓冲区长度</param>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Person.WritePerson_ParameterBase">
             <summary>
@@ -3626,11 +3970,6 @@
             检查是否已写完所有卡
             </summary>
             <returns></returns>
-        </member>
-        <member name="F:DoNetDrive.Protocol.Fingerprint.AddPersonAndImage_Parameter.WaitVerifyTime">
-            <summary>
-            等待校验的时间，单位毫秒
-            </summary>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Software.UpdateSoftware">
             <summary>

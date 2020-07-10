@@ -12,7 +12,7 @@ using System.Diagnostics;
 namespace DoNetDrive.Protocol.Fingerprint.Person
 {
     /// <summary>
-    /// 
+    /// 从设备中读取所有已注册的人员信息
     /// </summary>
     public class ReadPersonDataBase : Door8800Command_ReadParameter
     {

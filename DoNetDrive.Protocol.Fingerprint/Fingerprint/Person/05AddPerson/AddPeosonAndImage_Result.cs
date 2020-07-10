@@ -8,55 +8,56 @@ using System.Threading.Tasks;
 
 namespace DoNetDrive.Protocol.Fingerprint.Person
 {
-    public class AddPeosonAndImage_Result : INCommandResult
+    /// <summary>
+    /// 添加人员及识别信息命令返回值
+    /// </summary>
+    public class AddPersonAndImage_Result : INCommandResult
     {
         /// <summary>
-        /// 文件句柄
+        /// 用户号
         /// </summary>
-        public int FileHandle;
+        public uint UserCode;
 
         /// <summary>
-        /// 写入结果
-        /// 1--校验成功
-        //0--校验失败
-        //2--特征码无法识别
-        //3--人员照片不可识别
-        //255-文件未准备就绪
+        /// 用户上传状态
         /// </summary>
-        public byte Success { get; set; }
+        public bool UserUploadStatus;
+
 
         /// <summary>
-        /// 无法写入的人员数量
+        /// 识别信息上传状态
+        /// 1--上传完毕；2--特征码无法识别；3--人员照片不可识别；4--人员照片或特征码重复
         /// </summary>
-        public readonly int FailTotal;
+        public List<int> IdDataUploadStatus { get; set; }
 
         /// <summary>
-        /// 无法写入的人员列表
+        /// 识别信息重复的用户号
         /// </summary>
-        public List<uint> PersonList;
+        public List<uint> IdDataRepeatUser { get; set; }
 
-        public AddPeosonAndImage_Result()
+        /// <summary>
+        /// 创建添加人员及识别信息命令返回值
+        /// </summary>
+        public AddPersonAndImage_Result(Data.Person person, List<IdentificationData> datas)
         {
+            UserCode = person.UserCode;
+            IdDataRepeatUser = new List<uint>();
+            IdDataUploadStatus = new List<int>();
 
-        }
-        public AddPeosonAndImage_Result(List<uint> personList)
-        {
-            FailTotal = personList.Count;
-            PersonList = personList;
+            for (int i = 0; i < datas.Count; i++)
+            {
+                IdDataRepeatUser.Add(0);
+                IdDataUploadStatus.Add(0);
+            }
+
         }
 
         public void Dispose()
         {
-
+            IdDataRepeatUser = null;
+            IdDataUploadStatus = null;
         }
 
-        /// <summary>
-        /// 读取ByteBuffer内容
-        /// </summary>
-        /// <param name="buf"></param>
-        public void SetBytes(IByteBuffer buf)
-        {
-            FileHandle = buf.ReadInt();
-        }
+
     }
 }

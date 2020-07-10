@@ -902,17 +902,25 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private static void IniCommandClassNameList()
         {
             mCommandClasss = new Dictionary<string, string>();
-            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceLEDMode).FullName, "读取补光灯模式");
-            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceLEDMode).FullName, "写入补光灯模式");
-            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceMouthmufflePar).FullName, "读取口罩识别开关");
-            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceMouthmufflePar).FullName, "写入口罩识别开关");
+            mCommandClasss.Add(typeof(SystemParameter.ReadFaceLEDMode).FullName, "读取补光灯模式");
+            mCommandClasss.Add(typeof(SystemParameter.WriteFaceLEDMode).FullName, "写入补光灯模式");
+            mCommandClasss.Add(typeof(SystemParameter.ReadFaceMouthmufflePar).FullName, "读取口罩识别开关");
+            mCommandClasss.Add(typeof(SystemParameter.WriteFaceMouthmufflePar).FullName, "写入口罩识别开关");
 
-            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceBodyTemperaturePar).FullName, "读取体温检测及格式");
-            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBodyTemperaturePar).FullName, "写入体温检测及格式");
+            mCommandClasss.Add(typeof(SystemParameter.ReadFaceBodyTemperaturePar).FullName, "读取体温检测及格式");
+            mCommandClasss.Add(typeof(SystemParameter.WriteFaceBodyTemperaturePar).FullName, "写入体温检测及格式");
 
-            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadFaceBodyTemperatureAlarmPar).FullName, "读取体温报警阈值");
-            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteFaceBodyTemperatureAlarmPar).FullName, "写入体温报警阈值");
-            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Fingerprint.Person.RegisterIdentificationData).FullName, "注册识别信息");
+            mCommandClasss.Add(typeof(SystemParameter.ReadFaceBodyTemperatureAlarmPar).FullName, "读取体温报警阈值");
+            mCommandClasss.Add(typeof(SystemParameter.WriteFaceBodyTemperatureAlarmPar).FullName, "写入体温报警阈值");
+            mCommandClasss.Add(typeof(Person.RegisterIdentificationData).FullName, "注册识别信息");
+
+            mCommandClasss.Add(typeof(SystemParameter.WriteShortMessage).FullName, "写入合法验证后显示的短消息");
+            mCommandClasss.Add(typeof(SystemParameter.ReadShortMessage).FullName, "读取合法验证后显示的短消息");
+
+            mCommandClasss.Add(typeof(SystemParameter.WriteFaceBodyTemperatureShowPar).FullName, "写入人脸机体温数值显示开关");
+            mCommandClasss.Add(typeof(SystemParameter.ReadFaceBodyTemperatureShowPar).FullName, "读取人脸机体温数值显示开关");
+
+            mCommandClasss.Add(typeof(Person.AddPeosonAndImage).FullName, "添加人员及照片");
 
             mCommandClasss.Add(typeof(ReadSN).FullName, "读取SN");
             mCommandClasss.Add(typeof(WriteSN).FullName, "写SN");

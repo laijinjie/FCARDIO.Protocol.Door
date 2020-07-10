@@ -84,7 +84,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            if (databuf.ReadableBytes != 1)
+            if (databuf.ReadableBytes != 60)
             {
                 throw new ArgumentException("databuf Error");
             }
@@ -95,7 +95,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
             }
             else
             {
-                databuf.SetWriterIndex(0);
+                databuf.SetReaderIndex(0);
                 Message = Util.StringUtil.GetString(databuf,60, StringEncoding); 
             }
             

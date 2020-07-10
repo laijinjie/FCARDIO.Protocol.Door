@@ -627,17 +627,62 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void butSelectImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "图片文件|*.jpg;*.jpeg;*.bmp;*.png";
+            ofd.Filter = "图片文件|*.jpg";
             ofd.Multiselect = false;
             if (ofd.ShowDialog() != DialogResult.OK) return;
+            picUpload.Image = null;
+            mPersonImagePath = string.Empty;
+
+
+            using (var ms = new System.IO.MemoryStream(System.IO.File.ReadAllBytes(ofd.FileName)))
+            {
+                if (ms.Length > 122880)//不能超过120KB
+                {
+                    MsgErr("照片文件大小： 20-120KB之间!");
+                    return;
+                }
+
+                Image m = Image.FromStream(ms);
+                if (m.Width > 480 || m.Height > 640)
+                {
+                    MsgErr("照片文件尺寸： 120X140 -- 480X640!");
+                    return;
+                }
+
+                if (m.Width < 120 || m.Height < 140)
+                {
+                    MsgErr("照片文件尺寸： 120X140 -- 480X640!");
+                    return;
+                }
+
+                picUpload.Image = m;
+            }
 
             mPersonImagePath = ofd.FileName;
         }
 
         private void btnAddPesonAndImage_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(mPersonImagePath)) return;
-            Data.Person person = AddPersonDetailToList();
+            if (string.IsNullOrEmpty(mPersonImagePath))
+            {
+                MsgTip("请先选择照片！");
+                return;
+            }
+            uint sCode = 0;
+            string sName = string.Empty;
+            try
+            {
+                sCode = uint.Parse(txtUploadCode.Text);
+                sName = txtUploadName.Text;
+            }
+            catch (Exception)
+            {
+                MsgErr("输入的内容错误！");
+                return;
+            }
+
+
+            Data.Person person = new Data.Person(sCode, sName);
             if (person == null) return;
 
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -646,7 +691,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             INCommand cmd;
 
             byte[] datas = System.IO.File.ReadAllBytes(mPersonImagePath);
-            var par = new AddPersonAndImage_Parameter(person, datas);
+
+            IdentificationData id = new IdentificationData(1, datas);
+
+            var par = new AddPersonAndImage_Parameter(person, id);
+            par.WaitRepeatMessage = true;//固件版本v4.28以上才能用
             cmd = new AddPeosonAndImage(cmdDtl, par);
 
 
@@ -654,17 +703,34 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as WritePerson_Result;
-                WritePersonCallBlack(cmde, result);
+                var result = cmd.getResult() as AddPersonAndImage_Result;
+                AddPersonAndImageCallBlack(cmde, result);
             };
         }
 
+        private void AddPersonAndImageCallBlack(CommandEventArgs cmde, AddPersonAndImage_Result result)
+        {
+            if (result != null)
+            {
+                var ids = result.IdDataUploadStatus;
+
+                mMainForm.AddCmdLog(cmde, $"命令成功：人员添加状态:{result.UserUploadStatus} 照片上传状态:{ids[0]}");
+                if (ids[0] == 4)
+                {
+                    mMainForm.AddCmdLog(cmde, $"照片重复，重复的人员编号:{result.IdDataRepeatUser[0]}");
+                }
+                
+
+            }
+        }
+
+
         private void Button2_Click(object sender, EventArgs e)
         {
-            int sCode = int.Parse(txtRegUserCode.Text);
+            uint sCode = uint.Parse(txtRegUserCode.Text);
             string sName = txtRegUserName.Text;
 
-            Data.Person person = new Data.Person((uint)sCode, sName);
+            Data.Person person = new Data.Person(sCode, sName);
 
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
@@ -692,7 +758,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                             Image img = Image.FromStream(ms);
                             picReg.Image = img;
                         }
-                        
+
                         MsgTip("注册成功！");
                     }
 

@@ -10,14 +10,26 @@ using System.Threading.Tasks;
 
 namespace DoNetDrive.Protocol.Fingerprint.Person
 {
+    /// <summary>
+    /// 添加人员并上传人员识别信息
+    /// </summary>
     public class AddPeosonAndImage : Door8800Command_WriteParameter
     {
         /// <summary>
-        /// 写入特征码返回结果
+        /// 添加人员的返回值
         /// </summary>
-        AddPeosonAndImage_Result mResult;
-        //WriteFeatureCode_Parameter mPar;
+        AddPersonAndImage_Result mResult;
+
+        /// <summary>
+        /// 添加人员的参数
+        /// </summary>
         AddPersonAndImage_Parameter mPar;
+
+        /// <summary>
+        /// 用户号
+        /// </summary>
+        private uint UserCode;
+
         /// <summary>
         /// 写索引
         /// </summary>
@@ -27,11 +39,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         /// 文件句柄
         /// </summary>
         private int _FileHandle = 0;
-
         /// <summary>
-        /// 保存写入失败的数据缓冲区
+        /// 文件索引号
         /// </summary>
-        protected Queue<IByteBuffer> mBufs = null;
+        private int _FileIndex = 0;
 
         /// <summary>
         /// 操作步骤
@@ -45,15 +56,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         /// </summary>
         protected override void CreatePacket0()
         {
+            mResult = new AddPersonAndImage_Result(mPar.PersonDetail, mPar.IdentificationDatas);
 
-            AddPersonAndImage_Parameter model = _Parameter as AddPersonAndImage_Parameter;
-            var dataBuf = GetNewCmdDataBuf(0xA1 + 1);
+            UserCode = mPar.PersonDetail.UserCode;
+            var dataBuf = GetNewCmdDataBuf(0xA2);
 
             dataBuf.WriteByte(1);
-            model.mPerson.GetBytes(dataBuf);
-            Packet(0x07, 0x04, 0x00, (uint)dataBuf.ReadableBytes, dataBuf);
+            mPar.PersonDetail.GetBytes(dataBuf);
+            Packet(0x07, 0x04, 0x00, 0xA2, dataBuf);
             _Step = 0;
-            mResult = new AddPeosonAndImage_Result();
             _Result = mResult;
         }
 
@@ -64,12 +75,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            AddPersonAndImage_Parameter model = value as AddPersonAndImage_Parameter;
-            if (model == null)
-            {
-                return false;
-            }
-            return model.checkedParameter();
+            return (value as AddPersonAndImage_Parameter).checkedParameter();
         }
 
 
@@ -81,23 +87,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         {
             switch (_Step)
             {
-                case 0:
+                case 0://添加人员
                     if (CheckResponse_OK(oPck))
                     {
+                        mResult.UserUploadStatus = true;
                         WriteImage();
                     }
                     else if (CheckResponse(oPck, 0x07, 0x04, 0xFF))
                     {//检查是否不是错误返回值
-
-                        //缓存错误返回值
-                        if (mBufs == null)
-                        {
-                            mBufs = new Queue<IByteBuffer>();
-                        }
-                        oPck.CmdData.Retain();
-                        mBufs.Enqueue(oPck.CmdData);
-
-                        Create_Result();
+                        mResult.UserUploadStatus = false;
                         CommandCompleted();
                     }
                     break;
@@ -109,68 +107,35 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
                     CheckWriteFileResult(oPck);
                     break;
                 case 3://上传完毕
-                    if (CheckResponse(oPck, 0x0B, 3, 0, 1))
-                    {
-                        mResult.Success = oPck.CmdData.ReadByte();
-                        CommandCompleted();
-                    }
+                    CheckWriteOver(oPck);
                     break;
                 default:
                     break;
             }
         }
 
-        /// <summary>
-        /// 创建命令成功返回值
-        /// </summary>
-        protected virtual void Create_Result()
-        {
-            //无法写入的人员数量
-            int FailTotal = 0;
-
-            //无法写入的人员列表
-            List<uint> list = new List<uint>();
-
-            if (mBufs != null)
-            {
-                foreach (var buf in mBufs)
-                {
-                    int iCount = buf.ReadInt();
-                    FailTotal += iCount;
-
-                    for (int i = 0; i < iCount; i++)
-                    {
-                        ReadPasswordByFailBuf(list, buf);
-                    }
-
-                    buf.Release();
-                }
-
-            }
-            _Result = new AddPeosonAndImage_Result(list);
-        }
 
         /// <summary>
-        /// 从错误密码列表中读取一个错误密码，加入到passwordList中
+        /// 写文件
         /// </summary>
-        /// <param name="personList">错误人员列表</param>
-        /// <param name="buf"></param>
-        private void ReadPasswordByFailBuf(List<uint> personList, IByteBuffer buf)
-        {
-            personList.Add(buf.ReadUnsignedInt());
-        }
-
         private void WriteImage()
         {
-            AddPersonAndImage_Parameter model = _Parameter as AddPersonAndImage_Parameter;
+            if ((_FileIndex + 1) > mPar.IdentificationDatas.Count)
+            {
+                //文件写完了
+                CommandCompleted();
+                return;
+            }
+            var id = mPar.IdentificationDatas[_FileIndex];
+
             var dataBuf = GetNewCmdDataBuf(6);
-            Packet(0x0B, 0x01, 0x00, 6, model.GetWriteImageBytes(dataBuf));
+            dataBuf.WriteInt((int)UserCode);
+            dataBuf.WriteByte(id.DataType); //数据类型, 1、人员照片;2、指纹特征码 ; 3、红外人脸特征码;4、动态人脸特征码
+            dataBuf.WriteByte(id.DataNum);
+
+            Packet(0x0B, 0x01, 0x00, 6, dataBuf);
             CommandReady();
             _Step = 1;
-            //DoorPacket.CmdIndex = 0x01;
-            //DoorPacket.CmdPar = 0x00;
-            //DoorPacket.DataLen = 6;
-            //DoorPacket.CmdType = 0x0B;
         }
 
         /// <summary>
@@ -184,28 +149,29 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
                 _FileHandle = buf.ReadInt();
                 if (_FileHandle == 0)
                 {
-                    mResult.Success = 0;
-                    CommandCompleted();
+                    WriteImage();//没有获取到文件句柄，则重新获取
                 }
                 else
                 {
-                    mResult.FileHandle = _FileHandle;
-                    var data = mPar.Datas;
+                    var id = mPar.IdentificationDatas[_FileIndex];
+                    var data = id.DataBuf;
+                    var iLen = id.DataBufLen;
                     var iPackSize = 1024;
-                    if (iPackSize > data.Length) iPackSize = data.Length;
-                    _ProcessMax = data.Length;
+                    if (iPackSize > iLen) iPackSize = iLen;
+                    _ProcessMax = iLen;
                     _ProcessStep = 0;
+                    fireCommandProcessEvent();
+
                     int iBufSize = 7 + iPackSize;
                     var writeBuf = GetNewCmdDataBuf(iBufSize);
                     writeBuf.WriteInt(_FileHandle);
                     _WriteIndex = 0;
                     writeBuf.WriteMedium(_WriteIndex);
-                    writeBuf.WriteBytes(data, 0, iPackSize);
+                    writeBuf.WriteBytes(data, id.DataBufOffset, iPackSize);
 
                     Packet(0x0B, 2, 0, (uint)writeBuf.ReadableBytes, writeBuf);
                     _Step = 2;
                     CommandReady();
-
                 }
             }
         }
@@ -217,19 +183,23 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         {
             if (CheckResponse(oPck, 0x0B, 2, 0))
             {
-                var data = mPar.Datas;
+                var id = mPar.IdentificationDatas[_FileIndex];
+
+                var data = id.DataBuf;
                 var iPackSize = 1024;
 
                 _WriteIndex += iPackSize;
                 _ProcessStep += iPackSize;
 
-                var iFileLen = data.Length;
+                var iFileLen = id.DataBufLen;
                 var iDataLen = iFileLen - _WriteIndex;
                 var buf = GetCmdBuf();
                 if (iDataLen > iPackSize) iDataLen = iPackSize;
-                if (iDataLen <= 0)
+                if (iDataLen <= 0)//文件上传完毕
                 {
                     _ProcessStep = _ProcessMax;
+
+
                     CommandDetail.Timeout = mPar.WaitVerifyTime;
 
                     var crc32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(data, 0, (uint)data.Length);
@@ -243,20 +213,68 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
                 {
                     buf.WriteInt(_FileHandle);
                     buf.WriteMedium(_WriteIndex);
-                    buf.WriteBytes(data, _WriteIndex, iDataLen);
+                    buf.WriteBytes(data, id.DataBufOffset + _WriteIndex, iDataLen);
                     DoorPacket.DataLen = buf.ReadableBytes;
                 }
+                fireCommandProcessEvent();
                 CommandReady();
             }
             else if (CheckResponse(oPck, 0x0B, 2, 2))
             {
 
-                //mResult.Success = 255;
-                var dataBuf = GetNewCmdDataBuf(mPar.GetDataLen());
-                Packet(0x0B, 0x01, 0x00, 6, mPar.GetBytes(dataBuf));
-                CommandReady();
+                //文件意外关闭
+                WriteImage();
 
             }
+        }
+
+        /// <summary>
+        /// 检查文件写入是否完毕
+        /// </summary>
+        /// <param name="iStatus"></param>
+        private void CheckWriteOver(OnlineAccessPacket oPck)
+        {
+            if (CheckResponse(oPck, 0x0B, 3, 0, 1))
+            {
+                int iStatus = oPck.CmdData.ReadByte();
+                mResult.IdDataUploadStatus[_FileIndex] = iStatus;
+
+                if (iStatus == 4)
+                {
+                    if (!mPar.WaitRepeatMessage)
+                    {
+                        WriteNextImage();
+                        return;
+                    }
+                }
+                else
+                {
+                    WriteNextImage();
+                    return;
+                }
+            }
+
+            if (CheckResponse(oPck, 0x0B, 0x03, 1, 4))
+            {
+                uint code = oPck.CmdData.ReadUnsignedInt();
+                mResult.IdDataRepeatUser[_FileIndex] = code;
+                WriteNextImage();
+            }
+        }
+
+        /// <summary>
+        /// 开始写下一个文件
+        /// </summary>
+        private void WriteNextImage()
+        {
+            _FileIndex += 1;//开始写下一个
+            if ((_FileIndex + 1) > mPar.IdentificationDatas.Count)
+            {
+                //文件写完了
+                CommandCompleted();
+                return;
+            }
+            WriteImage();
         }
 
     }

@@ -47,11 +47,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DoNetTool.Common, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DoNetTool.Common.dll</HintPath>
@@ -306,6 +301,11 @@
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex.cs" />
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Parameter.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util.csproj">
+      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
+      <Name>DoNetDrive.Protocol.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
