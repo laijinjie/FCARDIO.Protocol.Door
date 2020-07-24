@@ -13,24 +13,34 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
     {
 
         /// <summary>
-        /// 读取数量 0-160000,0表示都取所有新记录
+        /// 读取数量 0-200000,0表示都取所有新记录
         /// </summary>
         public int Quantity;
 
         /// <summary>
-        ///  每次读取数量 1-150
+        ///  每次读取数量 1-60
         /// </summary>
-        public int PacketSize = 200;
+        public int PacketSize = 60;
 
+        /// <summary>
+        /// 照片文件保存的文件夹
+        /// </summary>
         public string SaveImageDirectory { get; set; }
+
+        /// <summary>
+        /// 将照片保存到文件
+        /// </summary>
+        public bool PhotoSaveToFile;
 
         /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="type">取值范围 1-6</param>
         /// <param name="_Quantity">读取数量</param>
-        public ReadTransactionAndImageDatabase_Parameter(int _Quantity,string _SaveImageDirectory)
+        public ReadTransactionAndImageDatabase_Parameter(int _Quantity,bool savetoFile, string _SaveImageDirectory)
         {
+            PacketSize = 60;
+            PhotoSaveToFile = savetoFile;
             SaveImageDirectory = _SaveImageDirectory;
             Quantity = _Quantity;
         }
@@ -41,21 +51,25 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (string.IsNullOrEmpty(SaveImageDirectory))
+            if(PhotoSaveToFile)
             {
-                throw new ArgumentException("SaveImagePath Error!");
+                if (string.IsNullOrEmpty(SaveImageDirectory))
+                {
+                    throw new ArgumentException("SaveImagePath Error!");
+                }
+                if (!Directory.Exists(SaveImageDirectory))
+                {
+                    throw new ArgumentException("SaveImagePath Error!");
+                }
             }
-            if (!Directory.Exists(SaveImageDirectory))
+            
+            if (PacketSize < 1 || PacketSize > 60)
             {
-                throw new ArgumentException("SaveImagePath Error!");
+                PacketSize = 60;
             }
-            if (PacketSize < 1 || PacketSize > 200)
+            if (Quantity < 0 || Quantity > 200000)
             {
-                throw new ArgumentException("PacketSize Error!");
-            }
-            if (Quantity < 0 || Quantity > 300000)
-            {
-                throw new ArgumentException("Quantity Error!");
+                Quantity = 0;
             }
             return true;
         }

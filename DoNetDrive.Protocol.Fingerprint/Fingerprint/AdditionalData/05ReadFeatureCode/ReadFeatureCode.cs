@@ -70,7 +70,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 var buf = oPck.CmdData;
 
                 mResult.SetBytes(buf);
-                if (mResult.UserCode != mPar.UserCode || mResult.Type != mPar.Type) return;
+                if (mResult.UserCode != mPar.UserCode || mResult.FileType != mPar.Type) return;
 
                 if (mResult.FileHandle == 0 || mResult.FileSize == 0)
                 {
@@ -116,12 +116,12 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 var buf = oPck.CmdData;
                 uint ReadCRC32 = buf.ReadUnsignedInt();
                 var crc32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(_FileDatas, 0, (uint)_FileDatas.Length);
-                mResult.CRC = ReadCRC32;
+                mResult.FileCRC = ReadCRC32;
                 _ProcessStep = _ProcessMax;
 
                 if (crc32 == ReadCRC32)
                 {
-                    mResult.Datas = _FileDatas;
+                    mResult.FileDatas = _FileDatas;
                     mResult.Result = true;
                 }
                 _FileDatas = null;

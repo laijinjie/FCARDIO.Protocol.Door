@@ -266,7 +266,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void mAllocator_CommandErrorEvent(object sender, CommandEventArgs e)
         {
-            AddCmdLog(e, "命令错误");
+            if (e.Command.GetStatus().IsCanceled )
+            {
+                AddCmdLog(e, "命令已停止");
+            }
+            else
+                AddCmdLog(e, "命令错误");
+
         }
 
 
@@ -664,25 +670,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     {
                         Invoke(() =>
                         {
-                            //lstIO.BeginUpdate();
-
                             do
                             {
                                 IOMessage oItem;
                                 if (mIOMessageList.TryDequeue(out oItem))
                                 {
                                     dgvIO.Rows.Insert(0, oItem.Title, oItem.Content, oItem.Type, oItem.Time, oItem.Remote, oItem.Local);
-                                    //int index = this.dgvIO.Rows.Add();
-                                    //dgvIO.Rows[index].Cells[0].Value = oItem.Title.Title;
-                                    //dgvIO.Rows[index].Cells[1].Value = oItem.Content;
-                                    //dgvIO.Rows[index].Cells[2].Value = oItem.Type;
-                                    //dgvIO.Rows[index].Cells[3].Value = oItem.Time;
-                                    //dgvIO.Rows[index].Cells[4].Value = oItem.Remote;
-                                    //dgvIO.Rows[index].Cells[5].Value = oItem.Local;
                                 }
                             } while (!mIOMessageList.IsEmpty);
 
-                            //lstIO.EndUpdate();
                         });
 
                     }
@@ -921,7 +917,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mCommandClasss.Add(typeof(SystemParameter.ReadFaceBodyTemperatureShowPar).FullName, "读取人脸机体温数值显示开关");
 
             mCommandClasss.Add(typeof(Person.AddPeosonAndImage).FullName, "添加人员及照片");
-
+            mCommandClasss.Add(typeof(Transaction.ReadTransactionAndImageDatabase).FullName, "读取记录、体温、照片");
             mCommandClasss.Add(typeof(ReadSN).FullName, "读取SN");
             mCommandClasss.Add(typeof(WriteSN).FullName, "写SN");
             mCommandClasss.Add(typeof(WriteSN_Broadcast).FullName, "广播写SN");
@@ -1409,7 +1405,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     string[] codeNameList = frmRecord.mTransactionCodeNameList[evn.TransactionType];
                     strbuf.Append("事件：").Append(evn.TransactionCode).Append("(").Append(codeNameList[evn.TransactionCode]).Append(")");
 
-                    strbuf.Append("；时间：").Append(evn.TransactionDate.ToString("yyyy-MM-dd hh:mm:ss"));
+                    strbuf.Append("；时间：").Append(evn.TransactionDate.ToString("yyyy-MM-dd HH:mm:ss"));
                 }
 
                 strbuf.AppendLine();
@@ -1502,6 +1498,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void CmdDtl_CommandTimeout(object sender, CommandEventArgs e)
         {
+        }
+
+        private void ButStopCommand_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = GetCommandDetail();
+            if (cmdDtl == null) return;
+            mAllocator.StopCommand(cmdDtl);
         }
     }
 }

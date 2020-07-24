@@ -79,6 +79,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.butTransactionDatabaseByIndex = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtImageDire = new System.Windows.Forms.TextBox();
             this.butSelectDire = new System.Windows.Forms.Button();
             this.btnReadImageTransactionDatabase = new System.Windows.Forms.Button();
             this.btnReadTransactionDatabase = new System.Windows.Forms.Button();
@@ -93,8 +95,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.butClearAllTransactionDatabase = new System.Windows.Forms.Button();
-            this.txtImageDire = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -586,6 +586,23 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "记录操作";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 136);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 12);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "照片保存路径";
+            // 
+            // txtImageDire
+            // 
+            this.txtImageDire.Location = new System.Drawing.Point(91, 132);
+            this.txtImageDire.Name = "txtImageDire";
+            this.txtImageDire.Size = new System.Drawing.Size(314, 21);
+            this.txtImageDire.TabIndex = 36;
+            this.txtImageDire.Text = "d:\\RecordImage\\";
+            // 
             // butSelectDire
             // 
             this.butSelectDire.Location = new System.Drawing.Point(421, 131);
@@ -641,7 +658,7 @@
             this.txtReadTransactionDatabaseQuantity.Name = "txtReadTransactionDatabaseQuantity";
             this.txtReadTransactionDatabaseQuantity.Size = new System.Drawing.Size(100, 21);
             this.txtReadTransactionDatabaseQuantity.TabIndex = 30;
-            this.txtReadTransactionDatabaseQuantity.Text = "0";
+            this.txtReadTransactionDatabaseQuantity.Text = "200";
             // 
             // txtReadTransactionDatabasePacketSize
             // 
@@ -650,7 +667,7 @@
             this.txtReadTransactionDatabasePacketSize.Name = "txtReadTransactionDatabasePacketSize";
             this.txtReadTransactionDatabasePacketSize.Size = new System.Drawing.Size(100, 21);
             this.txtReadTransactionDatabasePacketSize.TabIndex = 29;
-            this.txtReadTransactionDatabasePacketSize.Text = "200";
+            this.txtReadTransactionDatabasePacketSize.Text = "60";
             // 
             // cboe_TransactionDatabaseType3
             // 
@@ -715,22 +732,6 @@
             this.butClearAllTransactionDatabase.Text = "清空所有记录";
             this.butClearAllTransactionDatabase.UseVisualStyleBackColor = true;
             this.butClearAllTransactionDatabase.Click += new System.EventHandler(this.butClearAllTransactionDatabase_Click);
-            // 
-            // txtImageDire
-            // 
-            this.txtImageDire.Location = new System.Drawing.Point(91, 132);
-            this.txtImageDire.Name = "txtImageDire";
-            this.txtImageDire.Size = new System.Drawing.Size(314, 21);
-            this.txtImageDire.TabIndex = 36;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 136);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 12);
-            this.label4.TabIndex = 37;
-            this.label4.Text = "照片保存路径";
             // 
             // frmRecord
             // 

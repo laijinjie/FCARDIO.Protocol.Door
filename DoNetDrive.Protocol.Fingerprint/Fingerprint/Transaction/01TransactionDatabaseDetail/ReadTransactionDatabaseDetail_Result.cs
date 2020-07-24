@@ -1,11 +1,6 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.Fingerprint.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace DoNetDrive.Protocol.Fingerprint.Transaction
 {
     /// <summary>
@@ -16,14 +11,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <summary>
         /// 记录数据库的详情
         /// </summary>
-        public Data.TransactionDatabaseDetail DatabaseDetail;
+        public TransactionDatabaseDetail DatabaseDetail;
 
         /// <summary>
         /// 初始化参数
         /// </summary>
         public ReadTransactionDatabaseDetail_Result()
         {
-            DatabaseDetail = new Data.TransactionDatabaseDetail();
+            DatabaseDetail = new TransactionDatabaseDetail();
         }
         /// <summary>
         /// 释放资源

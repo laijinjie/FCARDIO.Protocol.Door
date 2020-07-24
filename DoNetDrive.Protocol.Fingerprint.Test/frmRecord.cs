@@ -253,8 +253,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
 
             var cmdDtl = mMainForm.GetCommandDetail();
-            cmdDtl.Timeout = 1000;
-            cmdDtl.RestartCount = 20;
+            cmdDtl.Timeout = 1300;
+            cmdDtl.RestartCount = 200;
 
             var par = new ReadTransactionDatabase_Parameter((int)Get_TransactionDatabaseType(type), Quantity);
             if (PacketSize != 0)
@@ -381,14 +381,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 return;
             }
             Data.Transaction.CardAndImageTransaction cardTrans = (Data.Transaction.CardAndImageTransaction)tr;
-            float btmp = (float)cardTrans.Temperature / (float)10;
-            sLogs.Append("，体温：").Append(btmp).AppendLine(" ℃");
+            float btmp = (float)cardTrans.BodyTemperature / (float)10;
+            sLogs.Append("，体温：").Append(btmp).Append(" ℃");
             sLogs.Append("，时间：").Append(tr.TransactionDate.ToDateTimeStr());
             string[] codeNameList = mTransactionCodeNameList[tr.TransactionType];
 
             sLogs.Append("，事件代码：").Append(tr.TransactionCode);
             sLogs.Append("(").Append(codeNameList[tr.TransactionCode]).Append(")");
-            sLogs.Append("用户号：").Append(cardTrans.UserCode).Append("，进/出：")
+            sLogs.Append("，用户号：").Append(cardTrans.UserCode).Append("，进/出：")
                 .Append(cardTrans.Accesstype).Append("，照片：").AppendLine(cardTrans.Photo == 1 ? "有" : "无");
 
         }
@@ -433,12 +433,26 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             var cmdDtl = mMainForm.GetCommandDetail();
             cmdDtl.Timeout = 1000;
-            cmdDtl.RestartCount = 20;
-            if (txtImageDire.Text == "")
+            cmdDtl.RestartCount = 200;
+            string sDir = txtImageDire.Text;
+            if (string.IsNullOrWhiteSpace(sDir))
             {
                 return;
             }
-            var par = new ReadTransactionAndImageDatabase_Parameter(Quantity, txtImageDire.Text);
+            if(!System.IO.Directory.Exists(sDir))
+            {
+                try
+                {
+                    System.IO.Directory.CreateDirectory(sDir);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "创建目录错误");
+                    return;
+                }
+            }
+
+            var par = new ReadTransactionAndImageDatabase_Parameter(Quantity, true, sDir);
             if (PacketSize != 0)
             {
                 par.PacketSize = PacketSize;

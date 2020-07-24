@@ -19,6 +19,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         public ReadTransactionDatabase_Parameter(int type, int _Quantity) :
             base((Protocol.Door.Door8800.Transaction.e_TransactionDatabaseType)type, _Quantity)
         {
+            PacketSize = 60;
         }
 
         /// <summary>
@@ -31,9 +32,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             if (iType < 1 || iType > 4)
                 throw new ArgumentException("DatabaseType Error!");
 
-            if (PacketSize < 1 || PacketSize > 200)
+            if (PacketSize < 1 || PacketSize > 60)
             {
-                throw new ArgumentException("PacketSize Error!");
+                PacketSize=60;
             }
             if (Quantity < 0 || Quantity > 1000000)
             {

@@ -31,13 +31,9 @@
     <WarningLevel>4</WarningLevel>
     <RegisterForComInterop>false</RegisterForComInterop>
     <DocumentationFile>..\..\DLL\DoNetDrive.Protocol.Fingerprint.xml</DocumentationFile>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DoNetDrive.Core, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DoNetDrive.Protocol, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
@@ -46,6 +42,12 @@
     <Reference Include="DoNetDrive.Protocol.Door, Version=1.5.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetTool.Common, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -74,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalData\01WriteFeatureCode\WriteFileSubCommand.cs" />
     <Compile Include="AdditionalData\04PersonDetail\ReadPersonDetail.cs" />
     <Compile Include="AdditionalData\04PersonDetail\ReadPersonDetail_Parameter.cs" />
     <Compile Include="AdditionalData\04PersonDetail\ReadPersonDetail_Result.cs" />
@@ -83,6 +86,7 @@
     <Compile Include="AdditionalData\06DeleteFeatureCode\DeleteFeatureCode.cs" />
     <Compile Include="AdditionalData\06DeleteFeatureCode\DeleteFeatureCode_Parameter.cs" />
     <Compile Include="AdditionalData\07ReadFile\ReadFile.cs" />
+    <Compile Include="AdditionalData\07ReadFile\ReadFileSubCommand.cs" />
     <Compile Include="AdditionalData\07ReadFile\ReadFile_Parameter.cs" />
     <Compile Include="AdditionalData\07ReadFile\ReadFile_Result.cs" />
     <Compile Include="Alarm\01SendFireAlarm\WriteSendFireAlarm.cs" />
@@ -119,6 +123,8 @@
     <Compile Include="AutoTest\AutoTestCommand.cs" />
     <Compile Include="AutoTest\AutoTestCommand_Parameter.cs" />
     <Compile Include="AutoTest\AutoTestCommand_Result.cs" />
+    <Compile Include="CombinedCommand\BaseCombinedCommand.cs" />
+    <Compile Include="CombinedCommand\BaseSubCommand.cs" />
     <Compile Include="Data\Person.cs" />
     <Compile Include="Data\TransactionDatabaseDetail.cs" />
     <Compile Include="Data\TransactionDetail.cs" />
@@ -170,6 +176,8 @@
     <Compile Include="AdditionalData\01WriteFeatureCode\WriteFeatureCode.cs" />
     <Compile Include="AdditionalData\01WriteFeatureCode\WriteFeatureCode_Parameter.cs" />
     <Compile Include="AdditionalData\01WriteFeatureCode\WriteFeatureCode_Result.cs" />
+    <Compile Include="CombinedCommand\ICombinedCommand.cs" />
+    <Compile Include="CombinedCommand\ISubCommand.cs" />
     <Compile Include="Person\02ClearPersonDataBase\ClearPersonDataBase.cs" />
     <Compile Include="Person\01PersonDatabaseDetail\ReadPersonDatabaseDetail.cs" />
     <Compile Include="Person\01PersonDatabaseDetail\ReadPersonDatabaseDetail_Result.cs" />
@@ -287,10 +295,12 @@
     <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase.cs" />
     <Compile Include="Transaction\02ClearTransactionDatabase\ClearTransactionDatabase_Parameter.cs" />
     <Compile Include="Transaction\02ClearTransactionDatabase\TransactionDatabaseEmpty.cs" />
+    <Compile Include="Transaction\06ReadTransactionDatabase\BaseReadTransactionDatabaseSubCommand.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionAndImageDatabase.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionAndImageDatabase_Parameter.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionAndImageDatabase_Result.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase.cs" />
+    <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabaseSubCommand.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Base.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Parameter.cs" />
     <Compile Include="Transaction\03TransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex.cs" />
@@ -302,9 +312,9 @@
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Parameter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util.csproj">
-      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
-      <Name>DoNetDrive.Protocol.Util</Name>
+    <ProjectReference Include="..\..\..\DoNet版通讯动态库V2\FCARDIO.Core\FCARDIO.Core\DoNetDrive.Core.vbproj">
+      <Project>{a149c4d3-2209-408f-a0de-d9eb8e0fa492}</Project>
+      <Name>DoNetDrive.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

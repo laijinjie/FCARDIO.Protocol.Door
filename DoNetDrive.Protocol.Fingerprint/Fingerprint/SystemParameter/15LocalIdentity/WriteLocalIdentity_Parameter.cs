@@ -113,7 +113,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
             Door = databuf.ReadByte();
 
             byte[] bName = new byte[60];
-            databuf.ReadBytes(bName);
+            //databuf.ReadBytes(bName);
             LocalName = Util.StringUtil.GetString(databuf,60,StringEncoding);
             InOut = databuf.ReadByte();
         }

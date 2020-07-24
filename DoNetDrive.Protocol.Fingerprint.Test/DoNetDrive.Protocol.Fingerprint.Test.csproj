@@ -31,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=10.9.0.4, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
@@ -48,10 +49,6 @@
       <HintPath>C:\Windows\assembly\GAC_MSIL\DevComponents.Instrumentation\10.9.0.4__bc4a9d761ea44ef0\DevComponents.Instrumentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Core, Version=1.13.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\DoNetDrive.Core.dll</HintPath>
-    </Reference>
     <Reference Include="DoNetDrive.Protocol">
       <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
       <Private>False</Private>
@@ -59,6 +56,10 @@
     <Reference Include="DoNetDrive.Protocol.Door">
       <HintPath>..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
     </Reference>
     <Reference Include="DoNetTool.Common">
       <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>
@@ -154,6 +155,7 @@
     <Compile Include="INMain.cs" />
     <Compile Include="Model\CommandResult.cs" />
     <Compile Include="Model\HolidayDetailDto.cs" />
+    <Compile Include="Model\ImageTool.cs" />
     <Compile Include="Model\IOMessage.cs" />
     <Compile Include="Model\Person_UI.cs" />
     <Compile Include="Program.cs" />
@@ -215,13 +217,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DoNet版通讯动态库V2\FCARDIO.Core\FCARDIO.Core\DoNetDrive.Core.vbproj">
+      <Project>{a149c4d3-2209-408f-a0de-d9eb8e0fa492}</Project>
+      <Name>DoNetDrive.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DoNetDrive.Protocol.Fingerprint\Fingerprint\DoNetDrive.Protocol.Fingerprint.csproj">
       <Project>{4639e7f7-83aa-4511-8fa8-369a79226b72}</Project>
       <Name>DoNetDrive.Protocol.Fingerprint</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util.csproj">
-      <Project>{e2174f51-6a95-410d-a33e-7b7bf4b18671}</Project>
-      <Name>DoNetDrive.Protocol.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

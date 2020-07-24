@@ -147,22 +147,22 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 }
                 Invoke(() =>
                 {
-                    if (result.Type == 1 || result.Type == 3)
+                    if (result.FileType == 1 || result.FileType == 3)
                     {
                         cmbUploadType.SelectedIndex = 0;
                         string sNewFile = System.IO.Path.Combine(Application.StartupPath, "Photo");
                         Directory.CreateDirectory(sNewFile);
                         sNewFile = System.IO.Path.Combine(sNewFile, $"tmpPhoto_{result.UserCode}.jpg");
-                        File.WriteAllBytes(sNewFile, result.Datas);
-                        pictureBox1.Image = Image.FromStream(new System.IO.MemoryStream(result.Datas));
+                        File.WriteAllBytes(sNewFile, result.FileDatas);
+                        pictureBox1.Image = Image.FromStream(new System.IO.MemoryStream(result.FileDatas));
                     }
                     else
                     {
-                        txtCodeData.Text = Convert.ToBase64String(result.Datas);
+                        txtCodeData.Text = Convert.ToBase64String(result.FileDatas);
                     }
-                    if (result.Type == 2) cmbUploadType.SelectedIndex = 1;
-                    if (result.Type == 4) cmbUploadType.SelectedIndex = 2;
-                    if (result.Type == 5) cmbUploadType.SelectedIndex = 3;
+                    if (result.FileType == 2) cmbUploadType.SelectedIndex = 1;
+                    if (result.FileType == 4) cmbUploadType.SelectedIndex = 2;
+                    if (result.FileType == 5) cmbUploadType.SelectedIndex = 3;
 
                 });
 
@@ -291,13 +291,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmde.Command.getResult() as WriteFeatureCode_Result;
-                if (result.Success == 1)
+                if (result.Result == 1)
                 {
                     mMainForm.AddCmdLog(cmde, "写入成功");
                 }
                 else
                 {
-                    mMainForm.AddCmdLog(cmde, $"写入失败：code={result.Success}");
+                    mMainForm.AddCmdLog(cmde, $"写入失败：code={result.Result}");
                 }
             };
         }
@@ -436,6 +436,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             File.WriteAllBytes(sNewFile, datas);
 
             WriteFeatureCode_Parameter par = new WriteFeatureCode_Parameter(iUsercode, 1, 1, datas);
+            par.WaitRepeatMessage = true;
             WriteFeatureCode cmd = new WriteFeatureCode(cmdDtl, par);
             cmdDtl.Timeout = 5000;
             mMainForm.AddCommand(cmd);
@@ -443,13 +444,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmde.Command.getResult() as WriteFeatureCode_Result;
-                if (result.Success == 1)
+                if (result.Result == 1)
                 {
                     mMainForm.AddCmdLog(cmde, "写入成功");
                 }
                 else
                 {
-                    mMainForm.AddCmdLog(cmde, $"写入失败：code={result.Success}");
+                    if (result.Result == 4)
+                    {
+                        mMainForm.AddCmdLog(cmde, $"写入失败：照片重复，重复的人员编号：{result.RepeatUser}");
+                    }
+                    else
+                        mMainForm.AddCmdLog(cmde, $"写入失败：code={result.Result}");
                 }
             };
         }

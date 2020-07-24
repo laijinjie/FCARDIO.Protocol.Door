@@ -14,6 +14,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Data.Transaction
     public class BodyTemperatureTransaction : AbstractTransaction
     {
         /// <summary>
+        /// 记录逻辑存储位置序号
+        /// </summary>
+        public int RecordSerialNumber { get; protected set; }
+
+        /// <summary>
         /// 体温
         /// </summary>
         protected int Temperature;
@@ -56,7 +61,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data.Transaction
                     ReadNullRecord(data);
                     return;
                 }
-
+                RecordSerialNumber = _SerialNumber;
                 _SerialNumber = data.ReadInt();
                 _TransactionDate = DateTime.MinValue;
                 _TransactionCode = 1;

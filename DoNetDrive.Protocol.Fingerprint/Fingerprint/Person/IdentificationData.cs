@@ -31,20 +31,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         public byte[] DataBuf;
 
         /// <summary>
-        /// 缓冲区偏移量
-        /// </summary>
-        public int DataBufOffset = 0;
-        /// <summary>
-        /// 缓冲区长度
-        /// </summary>
-        public int DataBufLen;
-
-        /// <summary>
         /// 创建人员识别信息
         /// </summary>
         /// <param name="iType">数据类型,取值范围：1-4</param>
         /// <param name="bData">数据缓冲区</param>
-        public IdentificationData(int iType,byte[] bData) : this(iType, 1, bData, 0, bData.Length)
+        public IdentificationData(int iType,byte[] bData) : this(iType, 1, bData)
         {
 
         }
@@ -55,24 +46,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         /// <param name="iType">数据类型,取值范围：1-4</param>
         /// <param name="iNum">数据序号， 数据类型为2时，取值范围：0-9</param>
         /// <param name="bData">数据缓冲区</param>
-        public IdentificationData(int iType, int iNum, byte[] bData):this(iType, iNum, bData,0, bData.Length)
+        public IdentificationData(int iType, int iNum, byte[] bData)
         {
-        }
-        /// <summary>
-        /// 创建人员识别信息
-        /// </summary>
-        /// <param name="iType">数据类型,取值范围：1-4</param>
-        /// <param name="iNum">数据序号， 数据类型为2时，取值范围：0-9</param>
-        /// <param name="bData">数据缓冲区</param>
-        /// <param name="ioffset">缓冲区偏移量</param>
-        /// <param name="len">缓冲区长度</param>
-        public IdentificationData(int iType,int iNum, byte[] bData,int ioffset,int len)
-        {
+
             DataType = iType;
             DataNum = iNum;
             DataBuf = bData;
-            DataBufOffset = ioffset;
-            DataBufLen = len;
         }
 
     }

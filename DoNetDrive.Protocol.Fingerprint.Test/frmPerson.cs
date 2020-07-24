@@ -633,31 +633,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             picUpload.Image = null;
             mPersonImagePath = string.Empty;
 
+            var buf = System.IO.File.ReadAllBytes(ofd.FileName);
+            buf = ImageTool.ConvertImage(buf, 480, 640, 122880);
 
-            using (var ms = new System.IO.MemoryStream(System.IO.File.ReadAllBytes(ofd.FileName)))
-            {
-                if (ms.Length > 122880)//不能超过120KB
-                {
-                    MsgErr("照片文件大小： 20-120KB之间!");
-                    return;
-                }
-
-                Image m = Image.FromStream(ms);
-                if (m.Width > 480 || m.Height > 640)
-                {
-                    MsgErr("照片文件尺寸： 120X140 -- 480X640!");
-                    return;
-                }
-
-                if (m.Width < 120 || m.Height < 140)
-                {
-                    MsgErr("照片文件尺寸： 120X140 -- 480X640!");
-                    return;
-                }
-
-                picUpload.Image = m;
-            }
-
+            picUpload.Image = ImageTool.ReadImageByBuf(buf);
             mPersonImagePath = ofd.FileName;
         }
 
@@ -691,9 +670,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             INCommand cmd;
 
             byte[] datas = System.IO.File.ReadAllBytes(mPersonImagePath);
-
+            datas = ImageTool.ConvertImage(datas, 480, 640, 122880);
             IdentificationData id = new IdentificationData(1, datas);
-
+            
             var par = new AddPersonAndImage_Parameter(person, id);
             par.WaitRepeatMessage = true;//固件版本v4.28以上才能用
             cmd = new AddPeosonAndImage(cmdDtl, par);

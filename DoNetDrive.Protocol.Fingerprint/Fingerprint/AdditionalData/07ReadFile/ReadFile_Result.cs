@@ -18,7 +18,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// <param name="buf"></param>
         public override void SetBytes(IByteBuffer buf)
         {
-            Type = buf.ReadByte();
+            FileType = buf.ReadByte();
             UserCode = buf.ReadInt();
             FileHandle = buf.ReadInt();
             FileSize = buf.ReadInt();
@@ -27,7 +27,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 FileHandle = 0;
                 FileSize = 0;
             }
-            CRC = buf.ReadUnsignedInt();
+            FileCRC = buf.ReadUnsignedInt();
 
         }
     }

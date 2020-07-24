@@ -588,6 +588,7 @@
             this.button2.TabIndex = 16;
             this.button2.Text = "停止所有通讯";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.ButStopCommand_Click);
             // 
             // txtProcess
             // 
@@ -641,7 +642,7 @@
             this.txtUDPAddr.Name = "txtUDPAddr";
             this.txtUDPAddr.Size = new System.Drawing.Size(138, 21);
             this.txtUDPAddr.TabIndex = 3;
-            this.txtUDPAddr.Text = "192.168.1.81";
+            this.txtUDPAddr.Text = "192.168.1.71";
             // 
             // label10
             // 

@@ -26,7 +26,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// 4 - 红外人脸特征码
         /// 5 - 动态人脸特征码
         /// </summary>
-        public int Type;
+        public int FileType;
 
         /// <summary>
         /// 文件句柄
@@ -41,12 +41,12 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// <summary>
         /// 数据
         /// </summary>
-        public byte[] Datas;
+        public byte[] FileDatas;
 
         /// <summary>
         /// CRC32校验数据
         /// </summary>
-        public uint CRC;
+        public uint FileCRC;
 
         /// <summary>
         /// 指示命令执行结果
@@ -65,7 +65,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// <param name="buf"></param>
         public virtual void SetBytes(IByteBuffer buf)
         {
-            Type = buf.ReadByte();
+            FileType = buf.ReadByte();
             UserCode = buf.ReadInt();
             FileHandle = buf.ReadInt();
             FileSize = buf.ReadMedium();

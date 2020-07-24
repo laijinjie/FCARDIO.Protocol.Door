@@ -19,20 +19,25 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// 2 - 指纹
         /// 3 - 人脸特征码
         /// 4 - 动态人脸特征码
+        /// 10 - 开机图片
+        /// 11 - 待机图片
         /// </summary>
-        public int Type;
+        public int FileType;
 
         /// <summary>
         /// 序号
         /// </summary>
-        public int SerialNumber;
+        public int FileNum;
 
-
+        /// <summary>
+        /// 如果发生照片重复消息时，是否等待重复详情，适用于人脸机固件版本4.24以上版本
+        /// </summary>
+        public bool WaitRepeatMessage;
 
         /// <summary>
         /// 数据
         /// </summary>
-        public byte[] Datas;
+        public byte[] FileDatas;
 
         /// <summary>
         /// 等待校验的时间，单位毫秒
@@ -44,15 +49,16 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// 初始化参数
         /// </summary>
         /// <param name="userCode">用户号</param>
-        /// <param name="type">文件类型</param>
-        /// <param name="serialNumber">序号</param>
-        public WriteFeatureCode_Parameter(int userCode, int type, int serialNumber, byte[] datas)
+        /// <param name="filetype">文件类型</param>
+        /// <param name="filenum">序号</param>
+        public WriteFeatureCode_Parameter(int userCode, int filetype, int filenum, byte[] datas)
         {
             UserCode = userCode;
-            Type = type;
-            SerialNumber = serialNumber;
-            Datas = datas;
+            FileType = filetype;
+            FileNum = filenum;
+            FileDatas = datas;
             WaitVerifyTime = 6000;
+            WaitRepeatMessage = false;
         }
 
         /// <summary>
@@ -61,11 +67,11 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Type < 1 || Type > 255)
+            if (FileType < 1 || FileType > 255)
             {
                 return false;
             }
-            if (SerialNumber < 0)
+            if (FileNum < 0)
             {
                 return false;
             }
@@ -73,7 +79,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
             {
                 return false;
             }
-            if (Datas == null || Datas.Length == 0  )
+            if (FileDatas == null || FileDatas.Length == 0  )
             {
                 return false;
             }
@@ -107,8 +113,8 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             databuf.WriteInt(UserCode);
-            databuf.WriteByte(Type);
-            databuf.WriteByte(SerialNumber);
+            databuf.WriteByte(FileType);
+            databuf.WriteByte(FileNum);
             return databuf;
         }
 

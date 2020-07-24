@@ -9,20 +9,20 @@ namespace DoNetDrive.Protocol.Fingerprint.Data.Transaction
         /// <summary>
         /// 记录唯一序号
         /// </summary>
-        public uint RecordSerialNumber { get; private set; }
+        public uint RecordSerialNumber { get; protected set; }
         /// <summary>
         /// 用户号
         /// </summary>
-        public uint UserCode { get; private set; }
+        public uint UserCode { get; protected set; }
         /// <summary>
         /// 是否包含照片
         /// </summary>
-        public byte Photo { get; private set; }
+        public byte Photo { get; protected set; }
 
         /// <summary>
         /// 出入类型：1--表示进门；2--表示出门
         /// </summary>
-        public byte Accesstype { get; private set; }
+        public byte Accesstype { get; protected set; }
 
         /// <summary>
         /// 初始化参数
@@ -57,6 +57,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Data.Transaction
             Accesstype = dtBuf.ReadByte();
             _TransactionCode = dtBuf.ReadByte();
             Photo = dtBuf.ReadByte();
+        }
+
+        /// <summary>
+        /// 设定是否具有照片
+        /// </summary>
+        /// <param name="iValue"></param>
+        public void SetPhoto(byte iValue)
+        {
+            Photo = iValue;
         }
     }
 }

@@ -324,7 +324,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
                 var buf = oPck.CmdData;
 
                 mReadFileResult.SetBytes(buf);
-                if (mReadFileResult.UserCode != UserCode || mReadFileResult.Type != FileType) return;
+                if (mReadFileResult.UserCode != UserCode || mReadFileResult.FileType != FileType) return;
 
                 if (mReadFileResult.FileHandle == 0 || mReadFileResult.FileSize == 0)
                 {
@@ -439,7 +439,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
             {
 
                 var crc32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(_FileDatas, 0, (uint)_FileDatas.Length);
-                mReadFileResult.Result = (mReadFileResult.CRC == crc32);
+                mReadFileResult.Result = (mReadFileResult.FileCRC == crc32);
                 _ProcessStep = _ProcessMax;
 
                 if (mReadFileResult.Result)

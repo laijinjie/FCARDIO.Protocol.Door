@@ -5,90 +5,38 @@ using System;
 
 namespace DoNetDrive.Protocol.Fingerprint.Data.Transaction
 {
-    public class CardAndImageTransaction : AbstractTransaction
+    public class CardAndImageTransaction : CardTransaction
     {
         /// <summary>
-        /// 记录唯一序号
+        /// 体温，整数，需要除10
         /// </summary>
-        public uint RecordSerialNumber { get; private set; }
-        /// <summary>
-        /// 用户号
-        /// </summary>
-        public uint UserCode { get; private set; }
-        /// <summary>
-        /// 是否包含照片
-        /// </summary>
-        public byte Photo { get; set; }
+        public int BodyTemperature;
+
+        
 
         /// <summary>
-        /// 出入类型：1--表示进门；2--表示出门
+        /// 照片路径
         /// </summary>
-        public byte Accesstype { get; private set; }
+        public string PhotoFile;
 
         /// <summary>
-        /// 体温
+        /// 照片缓冲区
         /// </summary>
-        public int Temperature { get; private set; }
+        public byte[] PhotoDataBuf;
 
         /// <summary>
-        /// 初始化参数
+        /// 创建一个认证记录
         /// </summary>
-        public CardAndImageTransaction()
+        /// <param name="ct"></param>
+        public CardAndImageTransaction(CardTransaction ct)
         {
-            _TransactionType = 1;
-        }
-
-        /// <summary>
-        /// 获取读卡记录格式长度
-        /// </summary>
-        /// <returns></returns>
-        public override int GetDataLen()
-        {
-            return 13;
-        }
-
-        /// <summary>
-        /// 从buf中读取记录数据
-        /// </summary>
-        /// <param name="dtBuf"></param>
-        public override void SetBytes(IByteBuffer dtBuf)
-        {
-
-            RecordSerialNumber = dtBuf.ReadUnsignedInt();
-            _SerialNumber = (int)RecordSerialNumber;
-            UserCode = dtBuf.ReadUnsignedInt();
-            byte[] time = new byte[6];
-            dtBuf.ReadBytes(time, 0, 6);
-            _TransactionDate = TimeUtil.BCDTimeToDate_ssmmhhddMMyy(time);
-            Accesstype = dtBuf.ReadByte();
-            _TransactionCode = dtBuf.ReadByte();
-            Photo = dtBuf.ReadByte();
-        }
-
-        /// <summary>
-        /// 使用缓冲区构造一个事务实例
-        /// </summary>
-        /// <param name="data">缓冲区</param>
-        public void SetBodyTemperatureBytes(IByteBuffer data)
-        {
-            try
-            {
-                _IsNull = CheckNull(data, 2);
-
-                if (_IsNull)
-                {
-                    ReadNullRecord(data);
-                    return;
-                }
-
-                data.ReadInt();
-                Temperature = data.ReadUnsignedShort();
-            }
-            catch (Exception e)
-            {
-            }
-
-            return;
+            RecordSerialNumber = ct.RecordSerialNumber;
+            _SerialNumber = ct.SerialNumber;
+            UserCode = ct.UserCode;
+            _TransactionDate =ct.TransactionDate;
+            Accesstype = ct.Accesstype;
+            _TransactionCode =ct.TransactionCode;
+            Photo = ct.Photo;
         }
     }
 }
