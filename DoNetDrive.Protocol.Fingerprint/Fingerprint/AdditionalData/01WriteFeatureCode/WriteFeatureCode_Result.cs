@@ -20,6 +20,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// 2--特征码无法识别
         /// 3--人员照片不可识别
         /// 4--人员重复
+        /// -1 -- 拒绝写入
         /// </summary>
         public int Result;
 

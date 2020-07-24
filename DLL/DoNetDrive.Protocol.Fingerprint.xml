@@ -57,6 +57,7 @@
             2--特征码无法识别
             3--人员照片不可识别
             4--人员重复
+            -1 -- 拒绝写入
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileSubCommand.RepeatUser">
@@ -77,11 +78,6 @@
         <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileSubCommand._WriteIndex">
             <summary>
             写索引
-            </summary>
-        </member>
-        <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileSubCommand._FileHandle">
-            <summary>
-            文件句柄
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileSubCommand._Step">
@@ -595,9 +591,14 @@
             释放
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileSubCommand.Begin(System.Int32,System.Int32,System.Int32)">
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileSubCommand.BeginRead(System.Int32,System.Int32,System.Int32)">
             <summary>
             开始读取文件
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileSubCommand.BeginRead">
+            <summary>
+            开始读
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileSubCommand.CommandNext(DoNetDrive.Core.Packet.INPacket)">
@@ -791,6 +792,7 @@
             2--特征码无法识别
             3--人员照片不可识别
             4--人员重复
+            -1 -- 拒绝写入
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFeatureCode_Result.RepeatUser">
@@ -7249,9 +7251,14 @@
             </summary>
             <param name="subCmd"></param>
         </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter">
+            <summary>
+            读取记录、体温、照片的参数
+            </summary>
+        </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.Quantity">
             <summary>
-            读取数量 0-200000,0表示都取所有新记录
+            读取数量 1-500
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.PacketSize">
@@ -7274,7 +7281,7 @@
             初始化参数
             </summary>
             <param name="type">取值范围 1-6</param>
-            <param name="_Quantity">读取数量</param>
+            <param name="_Quantity">读取数量 1 - 500</param>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.checkedParameter">
             <summary>

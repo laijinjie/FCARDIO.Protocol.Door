@@ -79,15 +79,14 @@
             this.label17 = new System.Windows.Forms.Label();
             this.butTransactionDatabaseByIndex = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chkAutoRead = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtImageDire = new System.Windows.Forms.TextBox();
             this.butSelectDire = new System.Windows.Forms.Button();
             this.btnReadImageTransactionDatabase = new System.Windows.Forms.Button();
             this.btnReadTransactionDatabase = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             this.txtReadTransactionDatabaseQuantity = new System.Windows.Forms.TextBox();
-            this.txtReadTransactionDatabasePacketSize = new System.Windows.Forms.TextBox();
             this.cboe_TransactionDatabaseType3 = new System.Windows.Forms.ComboBox();
             this.txtReadIndex0 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -563,15 +562,14 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.chkAutoRead);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.txtImageDire);
             this.groupBox4.Controls.Add(this.butSelectDire);
             this.groupBox4.Controls.Add(this.btnReadImageTransactionDatabase);
             this.groupBox4.Controls.Add(this.btnReadTransactionDatabase);
             this.groupBox4.Controls.Add(this.label23);
-            this.groupBox4.Controls.Add(this.label22);
             this.groupBox4.Controls.Add(this.txtReadTransactionDatabaseQuantity);
-            this.groupBox4.Controls.Add(this.txtReadTransactionDatabasePacketSize);
             this.groupBox4.Controls.Add(this.cboe_TransactionDatabaseType3);
             this.groupBox4.Controls.Add(this.butTransactionDatabaseByIndex);
             this.groupBox4.Controls.Add(this.txtReadIndex0);
@@ -585,6 +583,16 @@
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "记录操作";
+            // 
+            // chkAutoRead
+            // 
+            this.chkAutoRead.AutoSize = true;
+            this.chkAutoRead.Location = new System.Drawing.Point(421, 102);
+            this.chkAutoRead.Name = "chkAutoRead";
+            this.chkAutoRead.Size = new System.Drawing.Size(60, 16);
+            this.chkAutoRead.TabIndex = 38;
+            this.chkAutoRead.Text = "连续读";
+            this.chkAutoRead.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -642,15 +650,6 @@
             this.label23.TabIndex = 32;
             this.label23.Text = "读取数量";
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(207, 72);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(77, 12);
-            this.label22.TabIndex = 31;
-            this.label22.Text = "单次读取数量";
-            // 
             // txtReadTransactionDatabaseQuantity
             // 
             this.txtReadTransactionDatabaseQuantity.Location = new System.Drawing.Point(305, 97);
@@ -658,16 +657,7 @@
             this.txtReadTransactionDatabaseQuantity.Name = "txtReadTransactionDatabaseQuantity";
             this.txtReadTransactionDatabaseQuantity.Size = new System.Drawing.Size(100, 21);
             this.txtReadTransactionDatabaseQuantity.TabIndex = 30;
-            this.txtReadTransactionDatabaseQuantity.Text = "200";
-            // 
-            // txtReadTransactionDatabasePacketSize
-            // 
-            this.txtReadTransactionDatabasePacketSize.Location = new System.Drawing.Point(190, 97);
-            this.txtReadTransactionDatabasePacketSize.MaxLength = 3;
-            this.txtReadTransactionDatabasePacketSize.Name = "txtReadTransactionDatabasePacketSize";
-            this.txtReadTransactionDatabasePacketSize.Size = new System.Drawing.Size(100, 21);
-            this.txtReadTransactionDatabasePacketSize.TabIndex = 29;
-            this.txtReadTransactionDatabasePacketSize.Text = "60";
+            this.txtReadTransactionDatabaseQuantity.Text = "20";
             // 
             // cboe_TransactionDatabaseType3
             // 
@@ -814,9 +804,7 @@
         private System.Windows.Forms.Button butClearAllTransactionDatabase;
         private System.Windows.Forms.Button btnReadTransactionDatabase;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtReadTransactionDatabaseQuantity;
-        private System.Windows.Forms.TextBox txtReadTransactionDatabasePacketSize;
         private System.Windows.Forms.TextBox txtIsCircle4;
         private System.Windows.Forms.TextBox txtReadIndex4;
         private System.Windows.Forms.TextBox txtQuantity4;
@@ -827,5 +815,6 @@
         private System.Windows.Forms.Button butSelectDire;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtImageDire;
+        private System.Windows.Forms.CheckBox chkAutoRead;
     }
 }

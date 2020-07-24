@@ -246,21 +246,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             int type = cboe_TransactionDatabaseType3.SelectedIndex;
             int Quantity = int.Parse(txtReadTransactionDatabaseQuantity.Text.ToString());
-            int PacketSize = 0;
-            if (txtReadTransactionDatabasePacketSize.Text != "")
-            {
-                PacketSize = int.Parse(txtReadTransactionDatabasePacketSize.Text.ToString());
-            }
+
 
             var cmdDtl = mMainForm.GetCommandDetail();
             cmdDtl.Timeout = 1300;
             cmdDtl.RestartCount = 200;
 
             var par = new ReadTransactionDatabase_Parameter((int)Get_TransactionDatabaseType(type), Quantity);
-            if (PacketSize != 0)
-            {
-                par.PacketSize = PacketSize;
-            }
+
 
             var cmd = new ReadTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
@@ -285,9 +278,23 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     }
                     string sFile = SaveFile(sLogs, $"读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
                     mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
+                    if (result.readable > 0) AutoReadTransaction();
                 }
             };
         }
+        private void AutoReadTransaction()
+        {
+            if (this.InvokeRequired)
+            {
+                Invoke(AutoReadTransaction);
+                return;
+            }
+            if (chkAutoRead.Checked)
+            {
+                BtnReadTransactionDatabase_Click(null, null);
+            }
+        }
+
         #endregion
 
         #region 按序号采集信息
@@ -425,21 +432,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             int type = cboe_TransactionDatabaseType3.SelectedIndex;
             int Quantity = int.Parse(txtReadTransactionDatabaseQuantity.Text.ToString());
-            int PacketSize = 0;
-            if (txtReadTransactionDatabasePacketSize.Text != "")
-            {
-                PacketSize = int.Parse(txtReadTransactionDatabasePacketSize.Text.ToString());
-            }
 
             var cmdDtl = mMainForm.GetCommandDetail();
-            cmdDtl.Timeout = 1000;
-            cmdDtl.RestartCount = 200;
+            cmdDtl.Timeout = 600;
+            cmdDtl.RestartCount = 5;
             string sDir = txtImageDire.Text;
             if (string.IsNullOrWhiteSpace(sDir))
             {
                 return;
             }
-            if(!System.IO.Directory.Exists(sDir))
+            if (!System.IO.Directory.Exists(sDir))
             {
                 try
                 {
@@ -453,10 +455,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
 
             var par = new ReadTransactionAndImageDatabase_Parameter(Quantity, true, sDir);
-            if (PacketSize != 0)
-            {
-                par.PacketSize = PacketSize;
-            }
 
             var cmd = new ReadTransactionAndImageDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
@@ -481,8 +479,21 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     }
                     string sFile = SaveFile(sLogs, $"读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
                     mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
+                    if (result.readable > 0) AutoReadTransactionAndImage();
                 }
             };
+        }
+        private void AutoReadTransactionAndImage()
+        {
+            if (this.InvokeRequired)
+            {
+                Invoke(AutoReadTransactionAndImage);
+                return;
+            }
+            if (chkAutoRead.Checked)
+            {
+                btnReadImageTransactionDatabase_Click(null, null);
+            }
         }
 
         string SelectedPath = "";

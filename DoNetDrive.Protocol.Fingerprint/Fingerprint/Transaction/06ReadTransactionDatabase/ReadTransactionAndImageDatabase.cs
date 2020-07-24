@@ -372,7 +372,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
 
             _ReadFileCommand = new ReadFileSubCommand(this);
 
-            _ReadFileCommand.Begin(mSaveFileSerialNumber, 3, 1);
+            _ReadFileCommand.BeginRead(mSaveFileSerialNumber, 3, 1);
             CommandReady();
         }
         /// <summary>
@@ -432,7 +432,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
                 _ProcessStep++;
                 fireCommandProcessEvent();
 
-                _ReadFileCommand.Begin(mSaveFileSerialNumber, 3, 1);
+                _ReadFileCommand.BeginRead(mSaveFileSerialNumber, 3, 1);
                 CommandReady();
             }
             else

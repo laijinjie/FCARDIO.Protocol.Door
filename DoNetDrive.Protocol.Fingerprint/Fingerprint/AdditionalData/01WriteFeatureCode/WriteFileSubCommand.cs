@@ -60,6 +60,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// 2--特征码无法识别
         /// 3--人员照片不可识别
         /// 4--人员重复
+        /// -1 -- 拒绝写入
         /// </summary>
         public int FileResult;
 
@@ -82,10 +83,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// </summary>
         private int _WriteIndex = 0;
 
-        /// <summary>
-        /// 文件句柄
-        /// </summary>
-        private int _FileHandle = 0;
+
 
         /// <summary>
         /// 操作步骤
@@ -174,7 +172,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                             CommandOver();
                             return;
                         }
-                            
+
                     }
                     //等待接收重复的用户号
                     if (CheckResponse(oPck, 0x0B, 0x03, 1, 4))
@@ -198,13 +196,23 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// </summary>
         private void CheckOpenFileResult(OnlineAccessPacket oPck)
         {
+            /// <summary>
+            /// 文件句柄
+            /// </summary>
+            uint _FileHandle = 0;
+
             if (CheckResponse(oPck, 4))
             {
                 var buf = oPck.CmdData;
-                _FileHandle = buf.ReadInt();
+                _FileHandle = buf.ReadUnsignedInt();
                 if (_FileHandle == 0)
                 {
-
+                    FileResult = -1;
+                    CommandOver();
+                    return;
+                }
+                if (_FileHandle == UInt32.MaxValue)
+                {
                     mCommand.GetCommandDetail().Timeout = 150000;
                     //延迟三秒后再试
                     mCommand.GetConnector().GetEventLoop().Schedule(() =>
@@ -216,7 +224,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 }
                 else
                 {
-                    FileHandle = _FileHandle;
+                    FileHandle = (int)_FileHandle;
                     var data = _FileDatas;
                     var iPackSize = 1024;
                     if (iPackSize > data.Length) iPackSize = data.Length;
@@ -224,7 +232,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                     ProcessStep = 0;
                     int iBufSize = 7 + iPackSize;
                     var writeBuf = GetNewCmdDataBuf(iBufSize);
-                    writeBuf.WriteInt(_FileHandle);
+                    writeBuf.WriteInt(FileHandle);
                     _WriteIndex = 0;
                     writeBuf.WriteMedium(_WriteIndex);
                     writeBuf.WriteBytes(data, 0, iPackSize);
@@ -269,7 +277,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 }
                 else
                 {
-                    buf.WriteInt(_FileHandle);
+                    buf.WriteInt(FileHandle);
                     buf.WriteMedium(_WriteIndex);
                     buf.WriteBytes(data, _WriteIndex, iDataLen);
                     DoorPacket.DataLen = buf.ReadableBytes;

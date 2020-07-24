@@ -37,7 +37,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
 
             ReadFile_Parameter model = _Parameter as ReadFile_Parameter;
             scReadFile = new ReadFileSubCommand(this);
-            scReadFile.Begin(model.UserCode, model.Type, model.SerialNumber);
+            scReadFile.BeginRead(model.UserCode, model.Type, model.SerialNumber);
 
             
         }

@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 
 namespace DoNetDrive.Protocol.Fingerprint.Transaction
 {
+    /// <summary>
+    /// 读取记录、体温、照片的参数
+    /// </summary>
     public class ReadTransactionAndImageDatabase_Parameter : AbstractParameter
     {
 
         /// <summary>
-        /// 读取数量 0-200000,0表示都取所有新记录
+        /// 读取数量 1-500
         /// </summary>
         public int Quantity;
 
@@ -36,13 +39,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// 初始化参数
         /// </summary>
         /// <param name="type">取值范围 1-6</param>
-        /// <param name="_Quantity">读取数量</param>
+        /// <param name="_Quantity">读取数量 1 - 500</param>
         public ReadTransactionAndImageDatabase_Parameter(int _Quantity,bool savetoFile, string _SaveImageDirectory)
         {
             PacketSize = 60;
             PhotoSaveToFile = savetoFile;
             SaveImageDirectory = _SaveImageDirectory;
             Quantity = _Quantity;
+            checkedParameter();
         }
 
         /// <summary>
@@ -67,9 +71,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             {
                 PacketSize = 60;
             }
-            if (Quantity < 0 || Quantity > 200000)
+            if (Quantity < 1 || Quantity > 500)
             {
-                Quantity = 0;
+                throw new ArgumentException("Quantity value error (1-500)!");
             }
             return true;
         }

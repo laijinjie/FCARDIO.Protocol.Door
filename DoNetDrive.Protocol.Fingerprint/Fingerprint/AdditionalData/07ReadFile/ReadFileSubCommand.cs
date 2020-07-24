@@ -88,24 +88,35 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// <summary>
         /// 开始读取文件
         /// </summary>
-        public void Begin(int userCode,int iType,int iNum)
+        public void BeginRead(int userCode,int iType,int iNum)
+        {
+            
+            UserCode = userCode;
+            FileType = iType;
+            
+            if (iType != 2) iNum = 1;
+            FileNum = iNum;
+            
+            BeginRead();
+        }
+
+        /// <summary>
+        /// 开始读
+        /// </summary>
+        private void BeginRead()
         {
             FileHandle = 0;
             FileSize = 0;
             FileCRC = 0;
             FileResult = false;
             _IsOver = false;
+
             _Step = 0;
-            UserCode = userCode;
-            FileType = iType;
-            
-            if (iType != 2) iNum = 1;
-            FileNum = iNum;
             ProcessMax = 3;
             ProcessStep = 1;
             var buf = GetNewCmdDataBuf(6);
             buf.WriteByte(FileType);
-            buf.WriteByte(iNum);
+            buf.WriteByte(FileNum);
             buf.WriteInt(UserCode);
             Packet(0x0B, 0x15, 0x00, 6, buf);
         }
@@ -149,7 +160,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 //解析返回值
                 int iFileType = buf.ReadByte();
                 int iFileUserCode = buf.ReadInt();
-                int iFileHandle = buf.ReadInt();
+                uint iFileHandle = buf.ReadUnsignedInt();
                 int iFileSize = buf.ReadInt();
                 if (iFileSize < 0)
                 {
@@ -161,9 +172,21 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 
                 if (iFileUserCode != UserCode || FileType != iFileType) return;
 
-                if (iFileHandle == 0 || iFileSize == 0)
+                if (iFileHandle == 0 )
                 {
+                    FileResult = false;
                     CommandOver();
+                    return;
+                }
+                if (iFileHandle == uint.MaxValue)
+                {
+                    mCommand.GetCommandDetail().Timeout = 150000;
+                    //延迟三秒后再试
+                    mCommand.GetConnector().GetEventLoop().Schedule(() =>
+                    {
+                        BeginRead();
+                        CommandReady();
+                    }, new TimeSpan(0, 0, 3));
                     return;
                 }
                 else
@@ -171,7 +194,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                     ProcessMax = iFileSize;
 
                     FileSize = iFileSize;
-                    FileHandle = iFileHandle;
+                    FileHandle = (int)iFileHandle;
                     FileCRC = iFileCRC;
 
   
@@ -284,7 +307,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                     FileDatas = null;
                 
                     //校验不通过，重新读取
-                    Begin(UserCode,FileType,FileNum);
+                    BeginRead(UserCode,FileType,FileNum);
                     CommandReady();
                     return;
                 }
