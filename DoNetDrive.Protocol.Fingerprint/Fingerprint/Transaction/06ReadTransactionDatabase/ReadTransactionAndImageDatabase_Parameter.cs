@@ -39,7 +39,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// 初始化参数
         /// </summary>
         /// <param name="type">取值范围 1-6</param>
-        /// <param name="_Quantity">读取数量 1 - 500</param>
+        /// <param name="_Quantity">读取数量 1 - 50</param>
         public ReadTransactionAndImageDatabase_Parameter(int _Quantity,bool savetoFile, string _SaveImageDirectory)
         {
             PacketSize = 60;

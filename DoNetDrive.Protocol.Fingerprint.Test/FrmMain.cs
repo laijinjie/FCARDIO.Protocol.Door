@@ -1506,5 +1506,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (cmdDtl == null) return;
             mAllocator.StopCommand(cmdDtl);
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            GC.Collect();
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            button3.Text = AbstractCommand.CommandObjectTotal.ToString();
+        }
     }
 }

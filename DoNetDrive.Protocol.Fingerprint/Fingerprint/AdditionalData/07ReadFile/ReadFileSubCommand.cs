@@ -3,6 +3,7 @@ using DoNetDrive.Protocol.OnlineAccess;
 using DotNetty.Buffers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,8 +71,8 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// 创建一个读取文件子命令
         /// </summary>
         /// <param name="mainCmd"></param>
-        public ReadFileSubCommand(ICombinedCommand mainCmd):base(mainCmd)
-        { 
+        public ReadFileSubCommand(ICombinedCommand mainCmd) : base(mainCmd)
+        {
         }
 
         /// <summary>
@@ -88,15 +89,15 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// <summary>
         /// 开始读取文件
         /// </summary>
-        public void BeginRead(int userCode,int iType,int iNum)
+        public void BeginRead(int userCode, int iType, int iNum)
         {
-            
+
             UserCode = userCode;
             FileType = iType;
-            
+
             if (iType != 2) iNum = 1;
             FileNum = iNum;
-            
+
             BeginRead();
         }
 
@@ -131,19 +132,28 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         {
             OnlineAccessPacket oPck = accessPacket as OnlineAccessPacket;
             if (oPck == null) return;
-            switch (_Step)
+            try
             {
-                case 0://读取文件句柄
-                    CheckOpenFileResule(oPck);
-                    break;
-                case 1://读文件块
-                    CheckReadFileBlockResule(oPck);
-                    break;
-                case 2://关闭文件
-                    CheckReadFile(oPck);
-                    break;
-                default:
-                    break;
+
+                switch (_Step)
+                {
+                    case 0://读取文件句柄
+                        CheckOpenFileResule(oPck);
+                        break;
+                    case 1://读文件块
+                        CheckReadFileBlockResule(oPck);
+                        break;
+                    case 2://关闭文件
+                        CheckReadFile(oPck);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Trace.WriteLine($"{mCommand.GetConnector().GetKey()} ReadFileSubCommand_CommandNext {UserCode} -- {_Step}:{FileHandle}:{ProcessStep}/{ProcessMax} {ex.Message}");
             }
         }
 
@@ -169,10 +179,18 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 }
                 uint iFileCRC = buf.ReadUnsignedInt();
 
-                
+
                 if (iFileUserCode != UserCode || FileType != iFileType) return;
 
-                if (iFileHandle == 0 )
+                if (iFileHandle == 0)
+                {
+                    Trace.WriteLine($"{mCommand.GetConnector().GetKey()} 读文件返回尺寸为长度0 {UserCode},{FileType},{iFileHandle} , {iFileSize}");
+
+                    FileResult = false;
+                    CommandOver();
+                    return;
+                }
+                if(iFileSize == 0)
                 {
                     FileResult = false;
                     CommandOver();
@@ -197,7 +215,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                     FileHandle = (int)iFileHandle;
                     FileCRC = iFileCRC;
 
-  
+
                     FileDatas = new byte[FileSize];
 
                     //开始读文件块
@@ -221,7 +239,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
 
 
 
-       
+
 
         /// <summary>
         /// 接收读取到的文件块
@@ -265,7 +283,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                         ProcessStep = ProcessMax;
 
                         //全部文件读取完毕
-                        OnlineAccessPacket DoorPacket= GetPacket();
+                        OnlineAccessPacket DoorPacket = GetPacket();
                         DoorPacket.CmdPar = 3;
                         DoorPacket.DataLen = 4;
                         _Step = 2;
@@ -305,9 +323,9 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 if (!FileResult)
                 {
                     FileDatas = null;
-                
+
                     //校验不通过，重新读取
-                    BeginRead(UserCode,FileType,FileNum);
+                    BeginRead(UserCode, FileType, FileNum);
                     CommandReady();
                     return;
                 }

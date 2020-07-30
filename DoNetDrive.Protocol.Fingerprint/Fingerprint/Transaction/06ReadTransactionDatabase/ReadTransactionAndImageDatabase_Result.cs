@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace DoNetDrive.Protocol.Fingerprint.Transaction
 {
+    /// <summary>
+    /// 读取认证记录和图片的返回值
+    /// </summary>
     public class ReadTransactionAndImageDatabase_Result : INCommandResult
     {
-
-
         /// <summary>
         /// 读取数量
         /// </summary>

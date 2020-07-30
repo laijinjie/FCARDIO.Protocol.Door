@@ -7281,7 +7281,7 @@
             初始化参数
             </summary>
             <param name="type">取值范围 1-6</param>
-            <param name="_Quantity">读取数量 1 - 500</param>
+            <param name="_Quantity">读取数量 1 - 50</param>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.checkedParameter">
             <summary>
@@ -7312,6 +7312,11 @@
             将字节缓冲解码为类结构
             </summary>
             <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Result">
+            <summary>
+            读取认证记录和图片的返回值
+            </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Result.Quantity">
             <summary>

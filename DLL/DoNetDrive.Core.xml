@@ -27,6 +27,11 @@ DoNetDrive.Core
  命令类的基类，定义了一组基本命令逻辑
  </summary>
 </member>
+<member name="F:DoNetDrive.Core.Command.AbstractCommand.CommandObjectTotal">
+ <summary>
+ 命令计数器
+ </summary>
+</member>
 <member name="F:DoNetDrive.Core.Command.AbstractCommand._Parameter">
  <summary>
  保存用于命令的各种参数
@@ -112,6 +117,12 @@ DoNetDrive.Core
  </summary>
  <param name="cd">表示命令详情，包含通道信息，对端信息，超时时间，重发次数</param>
  <param name="par">表示此命令逻辑所需要的命令参数</param>
+</member>
+<member name="M:DoNetDrive.Core.Command.AbstractCommand.IsRelease">
+ <summary>
+ 检测命令是否已释放
+ </summary>
+ <returns></returns>
 </member>
 <member name="P:DoNetDrive.Core.Command.AbstractCommand.Parameter">
  <summary>
@@ -232,6 +243,11 @@ DoNetDrive.Core
 <member name="M:DoNetDrive.Core.Command.AbstractCommand.CommandOver">
  <summary>
  命令结束的时候调用
+ </summary>
+</member>
+<member name="M:DoNetDrive.Core.Command.AbstractCommand.RemoveBinding">
+ <summary>
+ 解除绑定
  </summary>
 </member>
 <member name="M:DoNetDrive.Core.Command.AbstractCommand.CommandCompleted">
@@ -735,6 +751,17 @@ DoNetDrive.Core
  让命令强制完结，释放掉临时缓冲
  </summary>
 </member>
+<member name="M:DoNetDrive.Core.Command.INCommandRuntime.RemoveBinding">
+ <summary>
+ 从连接通道中结束绑定，命令设定为结束，并释放已使用资源
+ </summary>
+</member>
+<member name="M:DoNetDrive.Core.Command.INCommandRuntime.IsRelease">
+ <summary>
+ 检测命令是否已释放
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:DoNetDrive.Core.Command.INCommandStatus.IsCompleted">
  <summary>
  命令是否已完成
@@ -1050,7 +1077,7 @@ DoNetDrive.Core
 </member>
 <member name="F:DoNetDrive.Core.Connector.AbstractConnector._IsForcibly">
  <summary>
- 表示此连接是否一致保持连接
+ 表示此连接是保持连接
  </summary>
 </member>
 <member name="F:DoNetDrive.Core.Connector.AbstractConnector._ActivityCommand">

@@ -105,19 +105,20 @@
             this.txtRegUserCode = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.picUpload = new System.Windows.Forms.PictureBox();
+            this.txtUploadName = new System.Windows.Forms.TextBox();
+            this.txtUploadCode = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.butSelectImage = new System.Windows.Forms.Button();
+            this.btnAddPesonAndImage = new System.Windows.Forms.Button();
             this.btnAddList = new System.Windows.Forms.Button();
             this.btnDelList = new System.Windows.Forms.Button();
             this.btnAddDevice = new System.Windows.Forms.Button();
             this.btnDelDevice = new System.Windows.Forms.Button();
             this.btnDelSelect = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.butSelectImage = new System.Windows.Forms.Button();
-            this.btnAddPesonAndImage = new System.Windows.Forms.Button();
-            this.txtUploadName = new System.Windows.Forms.TextBox();
-            this.txtUploadCode = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.picUpload = new System.Windows.Forms.PictureBox();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgPersonList)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -860,6 +861,89 @@
             this.label20.TabIndex = 29;
             this.label20.Text = "用户号：";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.button5);
+            this.tabPage4.Controls.Add(this.picUpload);
+            this.tabPage4.Controls.Add(this.txtUploadName);
+            this.tabPage4.Controls.Add(this.txtUploadCode);
+            this.tabPage4.Controls.Add(this.label21);
+            this.tabPage4.Controls.Add(this.label22);
+            this.tabPage4.Controls.Add(this.butSelectImage);
+            this.tabPage4.Controls.Add(this.btnAddPesonAndImage);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(768, 287);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "上传人员及照片";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // picUpload
+            // 
+            this.picUpload.Location = new System.Drawing.Point(466, 6);
+            this.picUpload.Name = "picUpload";
+            this.picUpload.Size = new System.Drawing.Size(296, 275);
+            this.picUpload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picUpload.TabIndex = 38;
+            this.picUpload.TabStop = false;
+            // 
+            // txtUploadName
+            // 
+            this.txtUploadName.Location = new System.Drawing.Point(296, 19);
+            this.txtUploadName.MaxLength = 15;
+            this.txtUploadName.Name = "txtUploadName";
+            this.txtUploadName.Size = new System.Drawing.Size(141, 21);
+            this.txtUploadName.TabIndex = 37;
+            this.txtUploadName.Text = "测试人员";
+            // 
+            // txtUploadCode
+            // 
+            this.txtUploadCode.Location = new System.Drawing.Point(70, 19);
+            this.txtUploadCode.MaxLength = 10;
+            this.txtUploadCode.Name = "txtUploadCode";
+            this.txtUploadCode.Size = new System.Drawing.Size(141, 21);
+            this.txtUploadCode.TabIndex = 36;
+            this.txtUploadCode.Text = "10000";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(225, 23);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(65, 12);
+            this.label21.TabIndex = 35;
+            this.label21.Text = "人员姓名：";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(11, 23);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(53, 12);
+            this.label22.TabIndex = 34;
+            this.label22.Text = "用户号：";
+            // 
+            // butSelectImage
+            // 
+            this.butSelectImage.Location = new System.Drawing.Point(23, 55);
+            this.butSelectImage.Name = "butSelectImage";
+            this.butSelectImage.Size = new System.Drawing.Size(188, 23);
+            this.butSelectImage.TabIndex = 8;
+            this.butSelectImage.Text = "1、选择照片";
+            this.butSelectImage.UseVisualStyleBackColor = true;
+            this.butSelectImage.Click += new System.EventHandler(this.butSelectImage_Click);
+            // 
+            // btnAddPesonAndImage
+            // 
+            this.btnAddPesonAndImage.Location = new System.Drawing.Point(249, 55);
+            this.btnAddPesonAndImage.Name = "btnAddPesonAndImage";
+            this.btnAddPesonAndImage.Size = new System.Drawing.Size(188, 23);
+            this.btnAddPesonAndImage.TabIndex = 7;
+            this.btnAddPesonAndImage.Text = "2、上传到设备";
+            this.btnAddPesonAndImage.UseVisualStyleBackColor = true;
+            this.btnAddPesonAndImage.Click += new System.EventHandler(this.btnAddPesonAndImage_Click);
+            // 
             // btnAddList
             // 
             this.btnAddList.Location = new System.Drawing.Point(48, 620);
@@ -909,87 +993,15 @@
             this.btnDelSelect.Text = "从设备删除选中卡";
             this.btnDelSelect.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // button5
             // 
-            this.tabPage4.Controls.Add(this.picUpload);
-            this.tabPage4.Controls.Add(this.txtUploadName);
-            this.tabPage4.Controls.Add(this.txtUploadCode);
-            this.tabPage4.Controls.Add(this.label21);
-            this.tabPage4.Controls.Add(this.label22);
-            this.tabPage4.Controls.Add(this.butSelectImage);
-            this.tabPage4.Controls.Add(this.btnAddPesonAndImage);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(768, 287);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "上传人员及照片";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // butSelectImage
-            // 
-            this.butSelectImage.Location = new System.Drawing.Point(23, 55);
-            this.butSelectImage.Name = "butSelectImage";
-            this.butSelectImage.Size = new System.Drawing.Size(188, 23);
-            this.butSelectImage.TabIndex = 8;
-            this.butSelectImage.Text = "1、选择照片";
-            this.butSelectImage.UseVisualStyleBackColor = true;
-            this.butSelectImage.Click += new System.EventHandler(this.butSelectImage_Click);
-            // 
-            // btnAddPesonAndImage
-            // 
-            this.btnAddPesonAndImage.Location = new System.Drawing.Point(249, 55);
-            this.btnAddPesonAndImage.Name = "btnAddPesonAndImage";
-            this.btnAddPesonAndImage.Size = new System.Drawing.Size(188, 23);
-            this.btnAddPesonAndImage.TabIndex = 7;
-            this.btnAddPesonAndImage.Text = "2、上传到设备";
-            this.btnAddPesonAndImage.UseVisualStyleBackColor = true;
-            this.btnAddPesonAndImage.Click += new System.EventHandler(this.btnAddPesonAndImage_Click);
-            // 
-            // txtUploadName
-            // 
-            this.txtUploadName.Location = new System.Drawing.Point(296, 19);
-            this.txtUploadName.MaxLength = 15;
-            this.txtUploadName.Name = "txtUploadName";
-            this.txtUploadName.Size = new System.Drawing.Size(141, 21);
-            this.txtUploadName.TabIndex = 37;
-            this.txtUploadName.Text = "测试人员";
-            // 
-            // txtUploadCode
-            // 
-            this.txtUploadCode.Location = new System.Drawing.Point(70, 19);
-            this.txtUploadCode.MaxLength = 10;
-            this.txtUploadCode.Name = "txtUploadCode";
-            this.txtUploadCode.Size = new System.Drawing.Size(141, 21);
-            this.txtUploadCode.TabIndex = 36;
-            this.txtUploadCode.Text = "10000";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(225, 23);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(65, 12);
-            this.label21.TabIndex = 35;
-            this.label21.Text = "人员姓名：";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(11, 23);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(53, 12);
-            this.label22.TabIndex = 34;
-            this.label22.Text = "用户号：";
-            // 
-            // picUpload
-            // 
-            this.picUpload.Location = new System.Drawing.Point(466, 6);
-            this.picUpload.Name = "picUpload";
-            this.picUpload.Size = new System.Drawing.Size(296, 275);
-            this.picUpload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picUpload.TabIndex = 38;
-            this.picUpload.TabStop = false;
+            this.button5.Location = new System.Drawing.Point(249, 84);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(188, 23);
+            this.button5.TabIndex = 39;
+            this.button5.Text = "2、上传到设备";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // frmPerson
             // 
@@ -1123,5 +1135,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button butSelectImage;
         private System.Windows.Forms.Button btnAddPesonAndImage;
+        private System.Windows.Forms.Button button5;
     }
 }

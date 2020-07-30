@@ -90,6 +90,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
 
         public override void Dispose()
         {
+            IdentificationDatas?.Clear();
+            IdentificationDatas = null;
 
         }
 

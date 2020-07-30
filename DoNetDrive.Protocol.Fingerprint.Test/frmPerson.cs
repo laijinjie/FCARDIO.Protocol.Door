@@ -698,8 +698,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 {
                     mMainForm.AddCmdLog(cmde, $"照片重复，重复的人员编号:{result.IdDataRepeatUser[0]}");
                 }
-                
-
             }
         }
 
@@ -747,6 +745,50 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     MessageBox.Show($"注册失败--{result.Status}");
                 }
             };
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(mPersonImagePath))
+            {
+                MsgTip("请先选择照片！");
+                return;
+            }
+            uint sCode = 0;
+            string sName = string.Empty;
+            try
+            {
+                sCode = uint.Parse(txtUploadCode.Text);
+                sName = txtUploadName.Text;
+            }
+            catch (Exception)
+            {
+                MsgErr("输入的内容错误！");
+                return;
+            }
+
+            int i;
+            for (i = 0; i < 5000; i++)
+            {
+                Data.Person person = new Data.Person(sCode, sName);
+                if (person == null) return;
+
+                var cmdDtl = mMainForm.GetCommandDetail();
+                if (cmdDtl == null) return;
+                //cmdDtl.Timeout = 10000;
+                INCommand cmd;
+
+                byte[] datas = System.IO.File.ReadAllBytes(mPersonImagePath);
+                datas = ImageTool.ConvertImage(datas, 480, 640, 122880);
+                IdentificationData id = new IdentificationData(1, datas);
+
+                var par = new AddPersonAndImage_Parameter(person, id);
+                par.WaitRepeatMessage = true;//固件版本v4.28以上才能用
+                cmd = new AddPeosonAndImage(cmdDtl, par);
+
+                mMainForm.AddCommand(cmd);
+            }
+            MsgTip("完毕");
         }
     }
 }
