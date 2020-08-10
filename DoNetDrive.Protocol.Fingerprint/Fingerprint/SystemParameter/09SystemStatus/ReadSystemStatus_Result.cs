@@ -61,11 +61,21 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.SystemStatus
         public byte WatchState;
 
         /// <summary>
+        /// 返回值内容
+        /// </summary>
+        public byte[] ResultContent;
+
+        /// <summary>
         /// 对设备状态信息进行解码
         /// </summary>
         /// <param name="databuf">包含设备运行信息结构的缓冲区</param>
         public void SetBytes(IByteBuffer databuf)
         {
+            int iReadIndex = databuf.ReaderIndex;
+            ResultContent = new byte[databuf.ReadableBytes];
+            databuf.ReadBytes(ResultContent);
+            databuf.SetReaderIndex(iReadIndex);
+
             Relay = databuf.ReadByte();
             RunState = databuf.ReadByte();
             GateMagnetic = databuf.ReadByte();

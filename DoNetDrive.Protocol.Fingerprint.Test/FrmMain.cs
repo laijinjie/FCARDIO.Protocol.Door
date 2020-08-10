@@ -1449,9 +1449,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 Invoke(() =>
                 {
-                    txtUDPAddr.Text = dtl.Addr;
-                    txtUDPPort.Text = dtl.Port.ToString();
-                    txtSN.Text = fcTrn.SN;
+                    if(chkIsServer.Checked)
+                    {
+                        txtUDPAddr.Text = dtl.Addr;
+                        txtUDPPort.Text = dtl.Port.ToString();
+                        txtSN.Text = fcTrn.SN;
+                    }
+                    
                 });
             }
 

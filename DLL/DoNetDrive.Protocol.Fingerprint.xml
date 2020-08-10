@@ -2171,6 +2171,11 @@
             照片路径
             </summary>
         </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardAndImageTransaction.PhotoSize">
+            <summary>
+            照片尺寸
+            </summary>
+        </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Data.Transaction.CardAndImageTransaction.PhotoDataBuf">
             <summary>
             照片缓冲区
@@ -4669,6 +4674,11 @@
             上电时间
             </summary>
         </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.SystemStatus.ReadSystemRunStatus_Result.ResultContent">
+            <summary>
+            返回值内容
+            </summary>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.SystemStatus.ReadSystemRunStatus_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
             对设备运行信息进行解码
@@ -4752,6 +4762,11 @@
             监控状态
             0 - 未开启监控
             1 - 开启监控
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.SystemStatus.ReadSystemStatus_Result.ResultContent">
+            <summary>
+            返回值内容
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.SystemStatus.ReadSystemStatus_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">

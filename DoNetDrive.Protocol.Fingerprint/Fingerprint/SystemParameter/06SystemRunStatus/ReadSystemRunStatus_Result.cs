@@ -30,6 +30,10 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.SystemStatus
         /// </summary>
         public string StartTime;
 
+        /// <summary>
+        /// 返回值内容
+        /// </summary>
+        public byte[] ResultContent;
 
         /// <summary>
         /// 对设备运行信息进行解码
@@ -37,6 +41,11 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.SystemStatus
         /// <param name="databuf">包含设备运行信息结构的缓冲区</param>
         public void SetBytes(IByteBuffer databuf)
         {
+            int iReadIndex = databuf.ReaderIndex;
+            ResultContent = new byte[databuf.ReadableBytes];
+            databuf.ReadBytes(ResultContent);
+            databuf.SetReaderIndex(iReadIndex);
+
             RunDay = databuf.ReadUnsignedShort();
             FormatCount = databuf.ReadUnsignedShort();
             RestartCount = databuf.ReadUnsignedShort();

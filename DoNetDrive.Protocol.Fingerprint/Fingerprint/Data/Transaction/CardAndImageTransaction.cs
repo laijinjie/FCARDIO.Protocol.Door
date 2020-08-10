@@ -20,6 +20,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Data.Transaction
         public string PhotoFile;
 
         /// <summary>
+        /// 照片尺寸
+        /// </summary>
+        public int PhotoSize;
+
+        /// <summary>
         /// 照片缓冲区
         /// </summary>
         public byte[] PhotoDataBuf;

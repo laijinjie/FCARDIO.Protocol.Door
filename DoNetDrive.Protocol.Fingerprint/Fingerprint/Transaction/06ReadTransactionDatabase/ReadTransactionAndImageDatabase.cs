@@ -425,6 +425,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
                 {
 
                     CardTr.SetPhoto(1);
+                    CardTr.PhotoSize = _ReadFileCommand.FileSize;
+
                     if (mSaveImageToFile)
                     {
                         try
