@@ -42,6 +42,12 @@ namespace DoNetDrive.Protocol.Door.Door8800.Transaction
         public List<AbstractTransaction> TransactionList;
 
         /// <summary>
+        /// 读取记录后，记录的读取索引（上传断点）
+        /// </summary>
+        public int TransactionReadIndex;
+
+
+        /// <summary>
         /// 初始化参数
         /// </summary>
         public ReadTransactionDatabase_Result() { }

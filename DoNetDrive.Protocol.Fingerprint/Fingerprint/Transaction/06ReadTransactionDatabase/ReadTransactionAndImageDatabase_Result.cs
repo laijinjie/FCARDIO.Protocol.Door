@@ -26,6 +26,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         public int readable;
 
         /// <summary>
+        /// 读取记录后，认证记录的读取索引（上传断点）
+        /// </summary>
+        public int CardTransactionReadIndex;
+
+        /// <summary>
+        /// 读取记录后，体温记录的读取索引（上传断点）
+        /// </summary>
+        public int BodyTemperatureReadIndex;
+
+        /// <summary>
         /// 记录列表
         /// </summary>
         public List<CardAndImageTransaction> TransactionList;

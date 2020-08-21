@@ -90,6 +90,18 @@ namespace DoNetDrive.Protocol.Fingerprint
         }
 
         /// <summary>
+        /// 检查命令返回值 OK
+        /// </summary>
+        /// <param name="oPck"></param>
+        /// <returns></returns>
+        protected virtual bool CheckResponseOK(OnlineAccessPacket oPck)
+        {
+            var pk = mCommand.GetPacket() as OnlineAccessPacket;
+            return (oPck.CmdType == (0x21) && oPck.CmdIndex == 1 &&
+                oPck.CmdPar == 0 && oPck.DataLen == 0);
+        }
+
+        /// <summary>
         /// 释放占用的资源
         /// </summary>
         public virtual void Release()

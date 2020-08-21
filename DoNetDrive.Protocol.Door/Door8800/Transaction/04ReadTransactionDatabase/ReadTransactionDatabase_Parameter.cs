@@ -35,12 +35,18 @@ namespace DoNetDrive.Protocol.Door.Door8800.Transaction
         public int PacketSize = 200;
 
         /// <summary>
+        /// 自动更新读索引（上传断点）
+        /// </summary>
+        public bool AutoWriteReadIndex;
+
+        /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="type">取值范围 1-6</param>
         /// <param name="_Quantity">读取数量</param>
         public ReadTransactionDatabase_Parameter(e_TransactionDatabaseType type, int _Quantity)
         {
+            AutoWriteReadIndex = true;
             DatabaseType = type;
             Quantity = _Quantity;
         }

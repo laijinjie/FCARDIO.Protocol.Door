@@ -64,6 +64,23 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <returns></returns>
         public Dictionary<int, AbstractTransaction> GetTransactions() => _TransactionList;
 
+        /// <summary>
+        /// 进行的步骤
+        /// </summary>
+        private int mStep;
+        /// <summary>
+        /// 任务开始时的读索引(上传断点)
+        /// </summary>
+        private long mOldReadIndex;
+
+        /// <summary>
+        /// 检查记录遗漏次数
+        /// </summary>
+        private int mCheckRecordCount;
+        /// <summary>
+        /// 回滚读索引（上传断点）
+        /// </summary>
+        public bool RollbackWriteReadIndex;
 
         /// <summary>
         /// 创建一个读取事务的子命令
@@ -71,7 +88,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <param name="mainCmd"></param>
         public BaseReadTransactionDatabaseSubCommand(ICombinedCommand mainCmd) : base(mainCmd)
         {
-            PacketSize = 60;
+            PacketSize = 50;
         }
 
         /// <summary>
@@ -93,9 +110,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         public void BeginRead(int iTransactionType, Data.TransactionDetail dtl, int iReadQuantity)
         {
             //_TransactionList.Clear();
+            mStep = 1;
             mReadTotal = 0;
             mReadable = 0;
             mReadQuantity = 0;
+            mCheckRecordCount = 0;
             _IsOver = false;
             Quantity = iReadQuantity;
             mTransactionType = iTransactionType;
@@ -103,7 +122,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             _TransactionList = new Dictionary<int, AbstractTransaction>();
             _SerialNumberList = new Dictionary<int, bool>();
             CheckReadIndex();
-
+            mOldReadIndex = TransactionDetail.ReadIndex;
 
             var dataBuf = GetNewCmdDataBuf(9);
             dataBuf.WriteByte(mTransactionType);
@@ -146,6 +165,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             mReadable -= mReadQuantity;
             if (mReadable <= 0)
             {
+                if(RollbackWriteReadIndex)
+                {
+                    //开始回滚上传断点
+                    BeginRollbackWriteReadIndex();
+                    return true;
+                }
                 //记录读取完毕，
                 return CheckResultList();
             }
@@ -163,6 +188,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
 
             TransactionDetail.ReadIndex = iEndIndex;//更新记录尾号
 
+            //Console.WriteLine($"读取记录，起始序号：{iBeginIndex}，读取数量：{mReadQuantity}");
             var cmdBuf = GetPacket().CmdData;
             cmdBuf.SetInt(1, iBeginIndex);
             cmdBuf.SetInt(5, mReadQuantity);
@@ -181,22 +207,59 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             OnlineAccessPacket oPck = accessPacket as OnlineAccessPacket;
             if (oPck == null) return;
 
+            switch (mStep)
+            {
+                case 1://读记录
+                case 3://读取遗漏记录
+                    if (CheckResponse(oPck, 0x08, 4, 0))
+                    {
+                        var buf = oPck.CmdData;
+                        SaveTransaction(buf);
+                    }
+                    else if (CheckResponse(oPck, 0x08, 0x04, 0xff, 4))
+                    {
+                        if (ReadTransactionNext())
+                            CommandReady();
+                    }
+                    break;
+                case 2://回滚上传断点
+                    if (CheckResponseOK(oPck))
+                    {
+                        var buf = GetPacket().CmdData;
+                        Packet(0x08, 0x04, 0x00, 0x09, buf);
+                        if (CheckResultList())
+                        {
+                            CommandReady();
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
 
-            if (CheckResponse(oPck, 0x08, 4, 0))
-            {
-                var buf = oPck.CmdData;
-                SaveTransaction(buf);
-            }
-            else if (CheckResponse(oPck, 0x08, 0x04, 0xff, 4))
-            {
-                if (ReadTransactionNext())
-                    CommandReady();
-            }
+            
         }
 
+        //Random ran = new Random();
+        
+        /// <summary>
+        /// 保存记录
+        /// </summary>
+        /// <param name="buf"></param>
         private void SaveTransaction(IByteBuffer buf)
         {
+            
             int iRecordCount = buf.ReadInt();
+            /*int RandKey = ran.Next(1, 100);
+            if (RandKey > 80)
+            {
+                int iSerialNumber = buf.ReadInt();
+                Console.WriteLine($"跳过记录，起始序号：{iSerialNumber},数量： {iRecordCount}");
+                return;
+            }*/
+
+
+
             for (int i = 0; i < iRecordCount; i++)
             {
                 int iSerialNumber = buf.ReadInt();
@@ -252,11 +315,32 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         }
 
 
+
+
         /// <summary>
         /// 检查是否有遗漏
         /// </summary>
         private bool CheckResultList()
         {
+            mStep = 3;
+
+            if (Quantity == 0)
+            {
+                if (mCheckRecordCount > 1000)
+                {
+                    CommandOver();
+                    return false;
+                }
+            }
+            else
+            {
+                if (mCheckRecordCount > (Quantity * 10))
+                {
+                    CommandOver();
+                    return false;
+                }
+            }
+
             var tSerialNumber = _SerialNumberList.FirstOrDefault(t => t.Value == false);
             int iReadQuantity = PacketSize;
             if (tSerialNumber.Key != 0)
@@ -267,14 +351,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
                 while (_SerialNumberList.ContainsKey(iEndNum) && _SerialNumberList[iEndNum] == false)
                 {
                     iEndNum++;
-                    if ((iEndNum - iBeginNum) > iReadQuantity) break;
+                    if ((iEndNum - iBeginNum) >= iReadQuantity) break;
                 }
-
+                //Console.WriteLine($"记录丢失，重读，起始序号：{iBeginNum}，读取数量：{mReadQuantity}");
                 var buf = GetPacket().CmdData;
-
+                mReadQuantity = (iEndNum - iBeginNum);
+                mReadable = mReadQuantity;
                 buf.SetInt(1, iBeginNum);
-                buf.SetInt(5, (iEndNum - iBeginNum));
-
+                buf.SetInt(5, mReadQuantity);
+                mCheckRecordCount += 1;
                 return true;
             }
             else
@@ -282,6 +367,19 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
                 CommandOver();
                 return false;
             }
+        }
+
+        /// <summary>
+        /// 回滚上传断点
+        /// </summary>
+        private void BeginRollbackWriteReadIndex()
+        {
+            //Console.WriteLine($"回滚上传断点，断点号：{mOldReadIndex}");
+            mStep = 2;
+            var buf = GetPacket().CmdData;
+            buf.SetInt(1, (int)mOldReadIndex);
+            buf.SetInt(5, 0);
+            Packet(0x08, 0x03, 0x00, 0x05, buf);
         }
 
     }

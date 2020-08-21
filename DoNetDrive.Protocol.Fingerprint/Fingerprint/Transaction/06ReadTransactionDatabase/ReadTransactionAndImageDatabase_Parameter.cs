@@ -14,6 +14,21 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
     /// </summary>
     public class ReadTransactionAndImageDatabase_Parameter : AbstractParameter
     {
+        /// <summary>
+        /// 自动更新读索引（上传断点）
+        /// </summary>
+        public bool AutoWriteReadIndex;
+
+        /// <summary>
+        /// 自动读取照片
+        /// </summary>
+        public bool AutoDownloadImage;
+
+        /// <summary>
+        /// 图片下载检测器，用来判断是否需要下载此图片
+        /// </summary>
+        /// <returns>true--需要下载照片；false--不需要下载照片</returns>
+        public Func<int, bool> ImageDownloadCheckCallblack;
 
         /// <summary>
         /// 读取数量 1-500
@@ -42,6 +57,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <param name="_Quantity">读取数量 1 - 50</param>
         public ReadTransactionAndImageDatabase_Parameter(int _Quantity,bool savetoFile, string _SaveImageDirectory)
         {
+            AutoWriteReadIndex = true;
+            AutoDownloadImage = true;
             PacketSize = 60;
             PhotoSaveToFile = savetoFile;
             SaveImageDirectory = _SaveImageDirectory;

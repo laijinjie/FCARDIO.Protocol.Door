@@ -1873,6 +1873,13 @@
             <param name="DataLen"></param>
             <returns></returns>
         </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.BaseSubCommand.CheckResponseOK(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            检查命令返回值 OK
+            </summary>
+            <param name="oPck"></param>
+            <returns></returns>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.BaseSubCommand.Release">
             <summary>
             释放占用的资源
@@ -3436,6 +3443,184 @@
             让子命令推进进度
             </summary>
             <param name="oPck"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Holiday.ReadHolidayDetail">
+            <summary>
+            从人脸机中读取节假日存储详情，命令成功后返回 ReadHolidayDetail_Result
+            </summary> 
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ReadHolidayDetail.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            构造从人脸机中读取节假日存储详情命令，无需其他参数
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ReadHolidayDetail.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ReadHolidayDetail.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Holiday.ReadHolidayDetail_Result">
+            <summary>
+            ReadHolidayDetail 指令的结果返回，保存控制器中存储的节假日详情
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Holiday.ClearHoliday">
+            <summary>
+            清空人脸机中的所有节假日
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ClearHoliday.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            构造清空人脸机中的所有节假日命令，无需其他参数
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ClearHoliday.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ClearHoliday.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Holiday.ReadAllHoliday">
+            <summary>
+            读取人脸机中已存储的所有节假日<br/>
+            读取成功返回 ReadAllHoliday_Result
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Holiday.ReadAllHoliday.mReadBuffers">
+            <summary>
+            读取到的节假日缓冲
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ReadAllHoliday.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            构造读取人脸机中已存储的所有节假日命令，无需其他参数
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ReadAllHoliday.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ReadAllHoliday.CheckResponseOK(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            检测下一包指令返回值
+            </summary>
+            <param name="oPck"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ReadAllHoliday.CheckResponseCompleted(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            检测结束指令返回值
+            </summary>
+            <param name="oPck"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ReadAllHoliday.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ReadAllHoliday.CommandReSend">
+            <summary>
+            命令重发时，对命令中一些缓冲做清空或参数重置<br/>
+            此命令一般情况下不需要实现！
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.ReadAllHoliday.ClearBuf">
+            <summary>
+            清空缓冲区
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Holiday.ReadAllHoliday_Result">
+            <summary>
+            ReadAllHoliday 命令的返回值<br/>
+            保存已读取到的所有节假日的集合
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Holiday.AddHoliday">
+            <summary>
+            添加节假日到人脸机
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.AddHoliday.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.Holiday.AddHoliday_Parameter)">
+            <summary>
+            创建添加节假日到人脸机命令
+            </summary>
+            <param name="cd"></param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.AddHoliday.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查命令参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.AddHoliday.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Holiday.AddHoliday_Parameter">
+            <summary>
+            添加节假日参数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.AddHoliday_Parameter.#ctor(System.Collections.Generic.List{DoNetDrive.Protocol.Door.Door8800.Holiday.HolidayDetail})">
+            <summary>
+            创建添加节假日参数
+            </summary>
+            <param name="list">节假日集合</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Holiday.DeleteHoliday">
+            <summary>
+            从控制器删除节假日
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.DeleteHoliday.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.Holiday.DeleteHoliday_Parameter)">
+            <summary>
+            初始化参数
+            </summary>
+            <param name="cd"></param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.DeleteHoliday.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.DeleteHoliday.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Holiday.DeleteHoliday_Parameter">
+            <summary>
+            删除节假日参数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Holiday.DeleteHoliday_Parameter.#ctor(System.Collections.Generic.List{DoNetDrive.Protocol.Door.Door8800.Holiday.HolidayDetail})">
+            <summary>
+            创建删除节假日参数
+            </summary>
+            <param name="list">删除节假日集合</param>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Person.ClearPersonDataBase">
             <summary>
@@ -6892,6 +7077,11 @@
             记录数据库的详情
             </summary>
         </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseDetail_Result.ResultContent">
+            <summary>
+            记录数据库详情缓冲区
+            </summary>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseDetail_Result.#ctor">
             <summary>
             初始化参数
@@ -7072,6 +7262,26 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.BaseReadTransactionDatabaseSubCommand.mStep">
+            <summary>
+            进行的步骤
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.BaseReadTransactionDatabaseSubCommand.mOldReadIndex">
+            <summary>
+            任务开始时的读索引(上传断点)
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.BaseReadTransactionDatabaseSubCommand.mCheckRecordCount">
+            <summary>
+            检查记录遗漏次数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.BaseReadTransactionDatabaseSubCommand.RollbackWriteReadIndex">
+            <summary>
+            回滚读索引（上传断点）
+            </summary>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.BaseReadTransactionDatabaseSubCommand.#ctor(DoNetDrive.Protocol.Fingerprint.ICombinedCommand)">
             <summary>
             创建一个读取事务的子命令
@@ -7104,6 +7314,12 @@
             </summary>
             <param name="oPck"></param>
         </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.BaseReadTransactionDatabaseSubCommand.SaveTransaction(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            保存记录
+            </summary>
+            <param name="buf"></param>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.BaseReadTransactionDatabaseSubCommand.GetNewTransaction">
             <summary>
             获取一个新的事务实例
@@ -7125,6 +7341,11 @@
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.BaseReadTransactionDatabaseSubCommand.CheckResultList">
             <summary>
             检查是否有遗漏
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.BaseReadTransactionDatabaseSubCommand.BeginRollbackWriteReadIndex">
+            <summary>
+            回滚上传断点
             </summary>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase">
@@ -7152,9 +7373,9 @@
             记录详情
             </summary>
         </member>
-        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mReadIndex_Blackup">
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mMarkReadIndex">
             <summary>
-            记录的上传断点备份
+            读取记录开始时的上传断点
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mStep">
@@ -7167,9 +7388,9 @@
             指示当前下载照片的记录序号
             </summary>
         </member>
-        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mMaxSerialNum">
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mCardRecord_ReadIndex">
             <summary>
-            最大的记录序号
+            读取记录后的上传断点
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.mReadTotal">
@@ -7260,6 +7481,18 @@
             读取照片完毕
             </summary>
         </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.GetDownloadImageIndex(System.Int32)">
+            <summary>
+            获取需要下载的图片索引号
+            </summary>
+            <param name="iCurrentIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.DownloadImageNext">
+            <summary>
+            准备下载下一张照片
+            </summary>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase.SubCommandReady(DoNetDrive.Protocol.Fingerprint.ISubCommand)">
             <summary>
             命令准备就绪
@@ -7270,6 +7503,22 @@
             <summary>
             读取记录、体温、照片的参数
             </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.AutoWriteReadIndex">
+            <summary>
+            自动更新读索引（上传断点）
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.AutoDownloadImage">
+            <summary>
+            自动读取照片
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.ImageDownloadCheckCallblack">
+            <summary>
+            图片下载检测器，用来判断是否需要下载此图片
+            </summary>
+            <returns>true--需要下载照片；false--不需要下载照片</returns>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Parameter.Quantity">
             <summary>
@@ -7341,6 +7590,16 @@
         <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Result.readable">
             <summary>
             剩余新记录数量
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Result.CardTransactionReadIndex">
+            <summary>
+            读取记录后，认证记录的读取索引（上传断点）
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Result.BodyTemperatureReadIndex">
+            <summary>
+            读取记录后，体温记录的读取索引（上传断点）
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionAndImageDatabase_Result.TransactionList">
@@ -7450,39 +7709,14 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Base">
-            <summary>
-             读取新记录
-             读指定类型的记录数据库最新记录，并读取指定数量。
-             成功返回结果参考 link ReadTransactionDatabase_Result 
-            </summary>
-        </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Base.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Parameter)">
-            <summary>
-            初始化命令结构
-            </summary>
-            <param name="cd"></param>
-            <param name="parameter"></param>
-        </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Base.GetTransactionDetail(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
-            <summary>
-            获取指定类型的数据库详情信息
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Base.CheckReadIndex">
-            <summary>
-            检查上传断点是否异常
-            </summary>
-        </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Base.GetReadIndexRange(System.Int32@,System.Int32@)">
-            <summary>
-            检查上传断点是否异常
-            </summary>
-        </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Parameter">
             <summary>
             读取新记录
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Parameter.RollbackWriteReadIndex">
+            <summary>
+            自动回滚读索引（适用于人脸机固件版本小于V4.41）
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Parameter.#ctor(System.Int32,System.Int32)">

@@ -148,6 +148,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             }
 
             _SubCommand.PacketSize = model.PacketSize;
+            _SubCommand.RollbackWriteReadIndex = model.RollbackWriteReadIndex;
             _SubCommand.BeginRead(iType, transactionDetail, model.Quantity);
             _Step = 2;
             CommandReady();
@@ -170,8 +171,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             rst.Quantity = lst.Count;
             rst.TransactionList = new List<AbstractTransaction>(lst.Values);
             rst.readable = (int)sc.TransactionDetail.readable();
-
-            WriteTransactionReadIndex((int)model.DatabaseType, sc.TransactionDetail);
+            rst.TransactionReadIndex = (int)sc.TransactionDetail.ReadIndex;
+            if (model.AutoWriteReadIndex)
+            {
+                WriteTransactionReadIndex((int)model.DatabaseType, sc.TransactionDetail);
+            }
+            else
+            {
+                CommandCompleted();
+            }
+            
             sc.Release();
         }
 
@@ -181,6 +190,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         private void WriteTransactionReadIndex(int iType, TransactionDetail dtl)
         {
             _Step = 3;
+            
             var buf = GetCmdBuf();
             buf.WriteByte(iType);
             buf.WriteInt((int)dtl.ReadIndex);

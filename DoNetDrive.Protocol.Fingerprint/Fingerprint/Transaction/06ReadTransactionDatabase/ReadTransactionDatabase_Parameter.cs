@@ -10,6 +10,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
     public class ReadTransactionDatabase_Parameter
         : DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Parameter
     {
+        /// <summary>
+        /// 自动回滚读索引（适用于人脸机固件版本小于V4.41）
+        /// </summary>
+        public bool RollbackWriteReadIndex;
 
         /// <summary>
         /// 初始化参数
@@ -19,6 +23,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         public ReadTransactionDatabase_Parameter(int type, int _Quantity) :
             base((Protocol.Door.Door8800.Transaction.e_TransactionDatabaseType)type, _Quantity)
         {
+            RollbackWriteReadIndex = false;
             PacketSize = 60;
         }
 

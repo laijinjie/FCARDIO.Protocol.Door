@@ -41,9 +41,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         DoNetDrive.Protocol.Door.Door8800.Data.TransactionDetail[] mTransactionDetailList;
 
         /// <summary>
-        /// 记录的上传断点备份
+        /// 读取记录开始时的上传断点
         /// </summary>
-        private int mReadIndex_Blackup;
+        private int mMarkReadIndex;
 
         /// <summary>
         /// 指示当前命令进行的步骤
@@ -56,9 +56,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         private int mSaveFileSerialNumber;
 
         /// <summary>
-        /// 最大的记录序号
+        /// 读取记录后的上传断点
         /// </summary>
-        private int mMaxSerialNum;
+        private int mCardRecord_ReadIndex;
 
         /// <summary>
         /// 读取计数
@@ -178,9 +178,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             //读卡记录
             _ReadTransactionCommand = new ReadTransactionDatabaseSubCommand<CardTransaction>(this);
 
-            mReadIndex_Blackup = (int)transactionDetail.ReadIndex;
+            mMarkReadIndex = (int)transactionDetail.ReadIndex;
 
             _ReadTransactionCommand.PacketSize = model.PacketSize;
+            _ReadTransactionCommand.RollbackWriteReadIndex = true;
             if (transactionDetail.readable() > 0)
             {
                 _ReadTransactionCommand.BeginRead(1, transactionDetail, model.Quantity);
@@ -223,6 +224,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         private void ReadCardTransactionOver()
         {
             var lst = _ReadTransactionCommand.GetTransactions();
+            var RecordDTL = _ReadTransactionCommand.TransactionDetail;
             _TransactionList = new Dictionary<int, CardAndImageTransaction>(lst.Count);
             foreach (var kv in lst)
             {
@@ -232,8 +234,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             mStep = 3;
             _ReadTransactionCommand.Release();
             _ReadTransactionCommand = null;
-            mMaxSerialNum = _TransactionList.Keys.Max();
-            WriteTransactionReadIndex(1, mReadIndex_Blackup);//还原上传断点为备份断点
+
+            if (RecordDTL != mTransactionDetailList[0])
+                mTransactionDetailList[0].ReadIndex = RecordDTL.ReadIndex;
+            mCardRecord_ReadIndex = (int)RecordDTL.ReadIndex;
+            WriteTransactionReadIndex(1, mMarkReadIndex);//还原上传断点为备份断点
         }
 
         #region 读取体温记录
@@ -243,23 +248,39 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// </summary>
         private void BeginReadBodyTemperature()
         {
+            if (mTransactionDetailList.Length == 3)
+            {
+                BeginReadImageFile();
+                return;
+            }
             mStep = 4;
             var tr = mTransactionDetailList[3];
 
-            mReadIndex_Blackup = (int)tr.ReadIndex;
+            mMarkReadIndex = (int)tr.ReadIndex;
 
-            if (tr.readable() > 0)
+            if (tr.WriteIndex > 1)
             {
-                _ReadTransactionCommand = new ReadTransactionDatabaseSubCommand<BodyTemperatureTransaction>(this);
-                //开始读取体温记录
-                _ReadTransactionCommand.BeginRead(4,
-                    tr as TransactionDetail, _TransactionList.Count);
-                CommandReady();
+                if (tr.readable() > 0)
+                {
+                    var model = _Parameter as ReadTransactionAndImageDatabase_Parameter;
+                    _ReadTransactionCommand = new ReadTransactionDatabaseSubCommand<BodyTemperatureTransaction>(this);
+                    _ReadTransactionCommand.PacketSize = model.PacketSize;
+                    _ReadTransactionCommand.RollbackWriteReadIndex = true;
+                    //开始读取体温记录
+                    _ReadTransactionCommand.BeginRead(4,
+                        tr as TransactionDetail, _TransactionList.Count);
+                    CommandReady();
+                }
+                else
+                {
+                    BeginReadImageFile();
+                }
             }
             else
             {
                 BeginReadImageFile();
             }
+
 
         }
 
@@ -293,11 +314,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
 
             var BT_Dtl = mTransactionDetailList[3] as TransactionDetail;
 
-            if (iBTMaxNum > mMaxSerialNum)
+            if (iBTMaxNum > mCardRecord_ReadIndex)
             {
                 //序号已经超过了认证记录，不能在读了，需要回滚
-                var bt = trLst.First((x) => x.SerialNumber >= mMaxSerialNum) as BodyTemperatureTransaction;
-                if (bt.SerialNumber > mMaxSerialNum)
+                var bt = trLst.First((x) => x.SerialNumber >= mCardRecord_ReadIndex) as BodyTemperatureTransaction;
+                if (bt.SerialNumber > mCardRecord_ReadIndex)
                 {
 
                     BT_Dtl.ReadIndex = bt.RecordSerialNumber - 1;
@@ -312,8 +333,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             }
             else
             {
-                if (iBTMaxNum != mMaxSerialNum)
+                if (iBTMaxNum != mCardRecord_ReadIndex)
                 {
+                    _ReadTransactionCommand.RollbackWriteReadIndex = false;
                     //体温记录中的序号，没有超过或等于记录序号，需要继续读取
                     _ReadTransactionCommand.BeginRead(4, BT_Dtl, _TransactionList.Count);
                     CommandReady();
@@ -330,11 +352,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// </summary>
         private void ReadBodyTemperatureTransaction_UpdateReadIndexBlackup()
         {
+            if (mTransactionDetailList[3] != _ReadTransactionCommand.TransactionDetail)
+                mTransactionDetailList[3].ReadIndex = _ReadTransactionCommand.TransactionDetail.ReadIndex;
             _ReadTransactionCommand?.Release();
             _ReadTransactionCommand = null;
 
             mStep = 5;
-            WriteTransactionReadIndex(4, mReadIndex_Blackup);
+            WriteTransactionReadIndex(4, mMarkReadIndex);
             CommandReady();
         }
         #endregion
@@ -343,6 +367,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         #region 修改上传断点
         private void WriteTransactionReadIndex_Card()
         {
+            var oPar = _Parameter as ReadTransactionAndImageDatabase_Parameter;
+            if (!oPar.AutoWriteReadIndex)
+            {
+                CreateResult();
+                return;
+            }
             mStep = 7;
             WriteTransactionReadIndex(1, (int)mTransactionDetailList[0].ReadIndex);
         }
@@ -377,7 +407,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         {
             var rst = new ReadTransactionAndImageDatabase_Result();
             _Result = rst;
-            rst.readable = (int)mTransactionDetailList[0].readable();
+
+            var tDtl = mTransactionDetailList[0];
+            rst.readable = (int)tDtl.readable();
             if (_TransactionList != null)
             {
                 rst.Quantity = _TransactionList.Count;
@@ -390,6 +422,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
 
                 rst.TransactionList = new List<CardAndImageTransaction>();
             }
+            rst.CardTransactionReadIndex = (int)tDtl.ReadIndex;
+
+            if (mTransactionDetailList.Length > 3)
+            {
+                rst.BodyTemperatureReadIndex = (int)mTransactionDetailList[3].ReadIndex;
+            }
+            else
+            {
+                rst.BodyTemperatureReadIndex = 0;
+            }
 
 
             CommandCompleted();
@@ -400,6 +442,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         #region 读取照片
         private void BeginReadImageFile()
         {
+            var oPar = _Parameter as ReadTransactionAndImageDatabase_Parameter;
+            if (!oPar.AutoDownloadImage)//不需要读照片
+            {
+                //读取完毕
+                WriteTransactionReadIndex_Card();
+                return;
+            }
+
             mStep = 6;
 
             _ProcessMax = _TransactionList.Count;
@@ -407,6 +457,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             fireCommandProcessEvent();
 
             mSaveFileSerialNumber = _TransactionList.Keys.Min();
+            mSaveFileSerialNumber = GetDownloadImageIndex(mSaveFileSerialNumber);
+            if (mSaveFileSerialNumber == -1)
+            {
+                //读取完毕
+                WriteTransactionReadIndex_Card();
+                return;
+            }
 
             _ReadFileCommand = new ReadFileSubCommand(this);
             //Trace.WriteLine($"{_Connector.GetKey()} 开始下载记录照片:{mSaveFileSerialNumber}/{mMaxSerialNum} ");
@@ -451,17 +508,51 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
                     CardTr.SetPhoto(0);
                 }
 
-                ReadImageNext();
+                DownloadImageNext();
             }
             else
             {
-                ReadImageNext();
+                DownloadImageNext();
             }
         }
-        private void ReadImageNext()
+
+        /// <summary>
+        /// 获取需要下载的图片索引号
+        /// </summary>
+        /// <param name="iCurrentIndex"></param>
+        /// <returns></returns>
+        private int GetDownloadImageIndex(int iCurrentIndex)
+        {
+            var par = _Parameter as ReadTransactionAndImageDatabase_Parameter;
+            if (par.ImageDownloadCheckCallblack == null)
+            {
+                return iCurrentIndex;
+            }
+            else
+            {
+                do
+                {
+                    if (par.ImageDownloadCheckCallblack(iCurrentIndex))
+                    {
+                        return iCurrentIndex;
+                    }
+                    iCurrentIndex++;
+                    if (iCurrentIndex > mCardRecord_ReadIndex)
+                    {
+                        return -1;
+                    }
+                } while (true);
+
+            }
+        }
+
+        /// <summary>
+        /// 准备下载下一张照片
+        /// </summary>
+        private void DownloadImageNext()
         {
             mSaveFileSerialNumber++;
-            if (mSaveFileSerialNumber > mMaxSerialNum)
+            if (mSaveFileSerialNumber > mCardRecord_ReadIndex)
             {
                 _ReadFileCommand.Release();
                 //读取完毕
@@ -470,6 +561,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             }
             if (_TransactionList.ContainsKey(mSaveFileSerialNumber))
             {
+                mSaveFileSerialNumber = GetDownloadImageIndex(mSaveFileSerialNumber);
+                if (mSaveFileSerialNumber == -1)
+                {
+                    _ReadFileCommand.Release();
+                    //读取完毕
+                    WriteTransactionReadIndex_Card();
+                    return;
+                }
                 _ProcessStep++;
                 fireCommandProcessEvent();
 
@@ -478,7 +577,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             }
             else
             {
-                ReadImageNext();
+                DownloadImageNext();
             }
         }
 

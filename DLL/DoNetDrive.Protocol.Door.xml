@@ -12019,6 +12019,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Base.ReadTransactionOver">
+            <summary>
+            读取记录完毕
+            </summary>
+        </member>
         <member name="T:DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Parameter">
             <summary>
             读取新记录
@@ -12043,6 +12048,11 @@
         <member name="F:DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Parameter.PacketSize">
             <summary>
              每次读取数量 1-150
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Parameter.AutoWriteReadIndex">
+            <summary>
+            自动更新读索引（上传断点）
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Parameter.#ctor(DoNetDrive.Protocol.Door.Door8800.Transaction.e_TransactionDatabaseType,System.Int32)">
@@ -12111,6 +12121,11 @@
         <member name="F:DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Result.TransactionList">
             <summary>
             记录列表
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Result.TransactionReadIndex">
+            <summary>
+            读取记录后，记录的读取索引（上传断点）
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Result.#ctor">

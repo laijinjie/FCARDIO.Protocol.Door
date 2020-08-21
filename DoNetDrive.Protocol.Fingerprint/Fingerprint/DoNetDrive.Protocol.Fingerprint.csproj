@@ -44,11 +44,6 @@
       <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Door, Version=1.5.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DoNetDrive.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
@@ -183,6 +178,15 @@
     <Compile Include="AdditionalData\01WriteFeatureCode\WriteFeatureCode_Result.cs" />
     <Compile Include="CombinedCommand\ICombinedCommand.cs" />
     <Compile Include="CombinedCommand\ISubCommand.cs" />
+    <Compile Include="Holiday\01ReadHolidayDetail\ReadHolidayDetail.cs" />
+    <Compile Include="Holiday\01ReadHolidayDetail\ReadHolidayDetail_Result.cs" />
+    <Compile Include="Holiday\02ClearHoliday\ClearHoliday.cs" />
+    <Compile Include="Holiday\03ReadAllHoliday\ReadAllHoliday.cs" />
+    <Compile Include="Holiday\03ReadAllHoliday\ReadAllHoliday_Result.cs" />
+    <Compile Include="Holiday\04AddHoliday\AddHoliday.cs" />
+    <Compile Include="Holiday\04AddHoliday\AddHoliday_Parameter.cs" />
+    <Compile Include="Holiday\05DeleteHoliday\DeleteHoliday.cs" />
+    <Compile Include="Holiday\05DeleteHoliday\DeleteHoliday_Parameter.cs" />
     <Compile Include="Person\02ClearPersonDataBase\ClearPersonDataBase.cs" />
     <Compile Include="Person\01PersonDatabaseDetail\ReadPersonDatabaseDetail.cs" />
     <Compile Include="Person\01PersonDatabaseDetail\ReadPersonDatabaseDetail_Result.cs" />
@@ -306,7 +310,6 @@
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionAndImageDatabase_Result.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabaseSubCommand.cs" />
-    <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Base.cs" />
     <Compile Include="Transaction\06ReadTransactionDatabase\ReadTransactionDatabase_Parameter.cs" />
     <Compile Include="Transaction\03TransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex.cs" />
     <Compile Include="Transaction\03TransactionDatabaseReadIndex\WriteTransactionDatabaseReadIndex_Parameter.cs" />
@@ -315,6 +318,12 @@
     <Compile Include="Transaction\e_TransactionDatabaseType.cs" />
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex.cs" />
     <Compile Include="Transaction\05ReadTransactionDatabaseByIndex\ReadTransactionDatabaseByIndex_Parameter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door.csproj">
+      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
+      <Name>DoNetDrive.Protocol.Door</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

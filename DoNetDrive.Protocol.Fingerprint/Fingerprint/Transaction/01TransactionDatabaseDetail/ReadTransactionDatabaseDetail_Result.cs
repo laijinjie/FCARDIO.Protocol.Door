@@ -14,6 +14,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         public TransactionDatabaseDetail DatabaseDetail;
 
         /// <summary>
+        /// 记录数据库详情缓冲区
+        /// </summary>
+        public byte[] ResultContent;
+
+        /// <summary>
         /// 初始化参数
         /// </summary>
         public ReadTransactionDatabaseDetail_Result()
@@ -34,6 +39,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <param name="buf"></param>
         public void SetBytes(IByteBuffer buf)
         {
+            ResultContent = new byte[buf.ReadableBytes];
+            int iMark = buf.ReaderIndex;
+            buf.ReadBytes(ResultContent);
+            buf.SetReaderIndex(iMark);
+
             DatabaseDetail.SetBytes(buf);
         }
     }

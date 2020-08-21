@@ -144,14 +144,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Transaction
                 case 4://写记录上传断点
                     if (CheckResponse_OK(oPck))
                     {
-                        _ProcessStep = _ProcessMax;
-                        fireCommandProcessEvent();
-
-                        ReadTransactionDatabase_Result result = (ReadTransactionDatabase_Result)_Result;
-                        result.Quantity = mReadTotal;
-
-                        //Console.WriteLine($"丢失总数：{mLoseCount}，重读次数：{mReReadCount}" );
-                        CommandCompleted();
+                        ReadTransactionOver();
                     }
                     break;
                 default:
@@ -451,7 +444,6 @@ namespace DoNetDrive.Protocol.Door.Door8800.Transaction
             {
                 //继续发送下一波
                 CheckResultList();
-
             }
         }
 
@@ -494,6 +486,11 @@ namespace DoNetDrive.Protocol.Door.Door8800.Transaction
         /// </summary>
         private void WriteTransactionReadIndex()
         {
+            if(!mParameter.AutoWriteReadIndex)
+            {
+                ReadTransactionOver();
+                return;
+            }
             var buf = GetCmdBuf();
             buf.WriteByte((int)mParameter.DatabaseType);
             buf.WriteInt((int)_TransactionDetail.ReadIndex);
@@ -532,5 +529,20 @@ namespace DoNetDrive.Protocol.Door.Door8800.Transaction
         /// </summary>
         /// <returns></returns>
         protected abstract AbstractTransaction GetNewTransaction();
+
+        /// <summary>
+        /// 读取记录完毕
+        /// </summary>
+        protected virtual void ReadTransactionOver()
+        {
+            _ProcessStep = _ProcessMax;
+            fireCommandProcessEvent();
+
+            ReadTransactionDatabase_Result result = (ReadTransactionDatabase_Result)_Result;
+            result.Quantity = mReadTotal;
+
+            //Console.WriteLine($"丢失总数：{mLoseCount}，重读次数：{mReReadCount}" );
+            CommandCompleted();
+        }
     }
 }
