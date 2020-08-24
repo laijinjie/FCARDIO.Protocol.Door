@@ -7781,7 +7781,6 @@
             </summary>
             <param name="_DatabaseType">记录数据库类型</param>
             <param name="_ReadIndex">数据库中的读索引号</param>
-            <param name="_IsCircle">循环标记</param>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.WriteTransactionDatabaseReadIndex_Parameter.checkedParameter">
             <summary>

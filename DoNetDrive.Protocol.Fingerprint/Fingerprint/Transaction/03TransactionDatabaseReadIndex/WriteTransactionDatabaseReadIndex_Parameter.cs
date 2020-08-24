@@ -28,7 +28,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// </summary>
         /// <param name="_DatabaseType">记录数据库类型</param>
         /// <param name="_ReadIndex">数据库中的读索引号</param>
-        /// <param name="_IsCircle">循环标记</param>
         public WriteTransactionDatabaseReadIndex_Parameter(e_TransactionDatabaseType _DatabaseType, int _ReadIndex)
         {
             DatabaseType = _DatabaseType;

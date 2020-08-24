@@ -28,6 +28,10 @@ namespace DoNetDrive.Protocol.Door.Door8800.Holiday
         /// </summary>
         public byte HolidayType;
 
+        /// <summary>
+        /// 表示，是否每年循环
+        /// </summary>
+        public bool YearLoop;
 
 
         /// <summary>
@@ -38,7 +42,14 @@ namespace DoNetDrive.Protocol.Door.Door8800.Holiday
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             databuf.WriteByte(Index);
-            databuf.WriteByte(ByteUtil.ByteToBCD((byte)(Holiday.Year - 2000)));
+            if(YearLoop)
+            {
+                databuf.WriteByte(0);
+            }
+            else
+            {
+                databuf.WriteByte(ByteUtil.ByteToBCD((byte)(Holiday.Year - 2000)));
+            }
             databuf.WriteByte(ByteUtil.ByteToBCD((byte)(Holiday.Month)));
             databuf.WriteByte(ByteUtil.ByteToBCD((byte)(Holiday.Day)));
             databuf.WriteByte(HolidayType);
@@ -65,7 +76,18 @@ namespace DoNetDrive.Protocol.Door.Door8800.Holiday
         {
             Index = databuf.ReadByte();
             int iYear, iMonth, iDay;
-            iYear = 2000 + ByteUtil.BCDToByte(databuf.ReadByte());
+            iYear = databuf.ReadByte();
+            if(iYear ==0)
+            {
+                YearLoop = true;
+                iYear = DateTime.Now.Year;
+            }
+            else
+            {
+                YearLoop = false;
+                iYear = 2000 + ByteUtil.BCDToByte((byte)iYear);
+            }
+            
             iMonth = ByteUtil.BCDToByte(databuf.ReadByte());
             iDay = ByteUtil.BCDToByte(databuf.ReadByte());
             Holiday = new DateTime(iYear, iMonth, iDay);

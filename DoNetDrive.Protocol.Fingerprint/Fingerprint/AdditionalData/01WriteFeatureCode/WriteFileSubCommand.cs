@@ -186,10 +186,6 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 default:
                     break;
             }
-
-
-
-
         }
         /// <summary>
         /// 检查打开文件返回值

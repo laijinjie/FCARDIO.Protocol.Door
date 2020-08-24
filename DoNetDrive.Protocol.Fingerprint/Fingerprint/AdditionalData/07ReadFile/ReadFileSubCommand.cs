@@ -184,7 +184,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
 
                 if (iFileHandle == 0)
                 {
-                    Trace.WriteLine($"{mCommand.GetConnector().GetKey()} 读文件返回尺寸为长度0 {UserCode},{FileType},{iFileHandle} , {iFileSize}");
+                    //Trace.WriteLine($"{mCommand.GetConnector().GetKey()} 读文件返回尺寸为长度0 {UserCode},{FileType},{iFileHandle} , {iFileSize}");
 
                     FileResult = false;
                     CommandOver();
@@ -204,7 +204,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                     {
                         BeginRead();
                         CommandReady();
-                    }, new TimeSpan(0, 0, 3));
+                    }, new TimeSpan(0, 0, 2));
                     return;
                 }
                 else

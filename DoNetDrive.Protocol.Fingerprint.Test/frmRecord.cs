@@ -457,7 +457,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             var par = new ReadTransactionAndImageDatabase_Parameter(Quantity, true, sDir);
             par.AutoWriteReadIndex = false;
-            par.AutoDownloadImage = true;
+            par.AutoDownloadImage = false;
             par.ImageDownloadCheckCallblack = (imgSerialNumber) => {
                 /*int RandKey = ran.Next(1, 100);
                 if (RandKey > 60)
@@ -476,7 +476,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 var result = cmde.Command.getResult() as ReadTransactionAndImageDatabase_Result;
                 mMainForm.AddCmdLog(cmde, $"读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count},剩余新记录数：{result.readable}");
-
+                Console.WriteLine("BodyTemperatureReadIndex =" + result.BodyTemperatureReadIndex);
                 if (result.TransactionList.Count > 0)
                 {
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);

@@ -5565,6 +5565,11 @@
             3、全天 (00:00:00  -  23:59:59)
             </summary>
         </member>
+        <member name="F:DoNetDrive.Protocol.Door.Door8800.Holiday.HolidayDetail.YearLoop">
+            <summary>
+            表示，是否每年循环
+            </summary>
+        </member>
         <member name="M:DoNetDrive.Protocol.Door.Door8800.Holiday.HolidayDetail.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
             将实例序列化到字节缓冲区中
