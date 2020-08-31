@@ -361,32 +361,32 @@ namespace DoNetDrive.Protocol.Util
 
             if (year > 99)
             {
-                return DateTime.Now;
+                return DateTime.MinValue;
             }
             if (year1 > 99)
             {
-                return DateTime.Now;
+                return DateTime.MinValue;
             }
             if (month == 0 || month > 12)
             {
-                return DateTime.Now;
+                return DateTime.MinValue;
             }
             if (day == 0 || day > 31)
             {
-                return DateTime.Now;
+                return DateTime.MinValue;
             }
             if (hour > 23)
             {
-                return DateTime.Now;
+                return DateTime.MinValue;
             }
 
             if (minute > 59)
             {
-                return DateTime.Now;
+                return DateTime.MinValue;
             }
             if (sec > 59)
             {
-                return DateTime.Now;
+                return DateTime.MinValue;
             }
 
             DateTime dTime = new DateTime(year * 100 + year1, month, day, hour, minute, sec);

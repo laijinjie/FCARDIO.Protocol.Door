@@ -25,6 +25,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// 3 - 记录照片
         /// 4 - 红外人脸特征码
         /// 5 - 动态人脸特征码
+        /// 6 - 现场视频截图
         /// </summary>
         public int Type;
 

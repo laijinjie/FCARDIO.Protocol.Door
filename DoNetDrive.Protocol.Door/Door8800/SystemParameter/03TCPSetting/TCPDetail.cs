@@ -180,7 +180,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.TCPSetting
         /// </summary>
         /// <param name="IP">IP地址</param>
         /// <param name="buf"></param>
-        private void SaveIPToByteBuf(string IP, IByteBuffer buf)
+        public static void SaveIPToByteBuf(string IP, IByteBuffer buf)
         {
             if (!CheckIP(IP))
             {
@@ -239,7 +239,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.TCPSetting
         /// </summary>
         /// <param name="buf"></param>
         /// <param name="iCount"></param>
-        private void Save0toByteBuf(IByteBuffer buf, int iCount)
+        public static void Save0toByteBuf(IByteBuffer buf, int iCount)
         {
             for (int i = 0; i < iCount; i++)
             {
@@ -338,7 +338,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.TCPSetting
             databuf.SetReaderIndex(iReadIndex);
             if (iCharCount == 0)
             {
-                mServerAddr = null;
+                mServerAddr = string.Empty;
             }
             else
             {
@@ -354,7 +354,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.TCPSetting
         /// </summary>
         /// <param name="data">包含参数结构的缓冲区</param>
         /// <param name="strbuilder">字符串</param>
-        private void ReadIPByByteBuf(IByteBuffer data, StringBuilder strbuilder)
+        public static void ReadIPByByteBuf(IByteBuffer data, StringBuilder strbuilder)
         {
             for (int i = 0; i < 4; i++)
             {

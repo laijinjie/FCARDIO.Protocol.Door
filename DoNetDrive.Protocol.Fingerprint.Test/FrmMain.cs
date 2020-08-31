@@ -1,9 +1,9 @@
 ﻿using DoNetDrive.Core;
 using DoNetDrive.Core.Command;
 using DoNetDrive.Core.Connector;
-using DoNetDrive.Core.Connector.TCPClient;
 using DoNetDrive.Core.Connector.TCPServer.Client;
 using DoNetDrive.Core.Connector.UDP;
+using DoNetDrive.Core.Connector.TCPServer;
 using DoNetDrive.Core.Extension;
 using DoNetDrive.Protocol.Door.Door8800.Data;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword;
@@ -18,7 +18,10 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Concurrent;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN;
+using System.Linq;
+using System.Configuration;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -132,6 +135,76 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         }
 
 
+        private void LoadSetting()
+        {
+            string sValue = ConfigurationManager.AppSettings["UDPPort"];
+            if (!string.IsNullOrEmpty(sValue)) txtUDPLocalPort.Text = sValue;
+
+
+            sValue = ConfigurationManager.AppSettings["UDPRemoteIP"];
+            if (!string.IsNullOrEmpty(sValue)) txtUDPAddr.Text = sValue;
+
+            sValue = ConfigurationManager.AppSettings["UDPRemotePort"];
+            if (!string.IsNullOrEmpty(sValue)) txtUDPPort.Text = sValue;
+
+            txtSN.Text = ConfigurationManager.AppSettings["DriveSN"];
+            txtPassword.Text = ConfigurationManager.AppSettings["DrivePassword"];
+
+            sValue = ConfigurationManager.AppSettings["ConnType"];
+            if (!string.IsNullOrEmpty(sValue)) cmdConnType.SelectedIndex = int.Parse(sValue);
+
+
+            sValue = ConfigurationManager.AppSettings["SerialPort"];
+            if (!string.IsNullOrEmpty(sValue)) SelectComboxItem(cmbSerialPort, sValue);
+
+            sValue = ConfigurationManager.AppSettings["LocalIP"];
+            if (!string.IsNullOrEmpty(sValue)) SelectComboxItem(cmbLocalIP, sValue);
+
+            sValue = ConfigurationManager.AppSettings["TCPServerPort"];
+            if (!string.IsNullOrEmpty(sValue)) txtTCPServerPort.Text = sValue;
+
+        }
+
+
+        private void SaveSetting()
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var kv = config.AppSettings.Settings;
+            SetConfigKey(config, "UDPPort", txtUDPLocalPort.Text);
+            SetConfigKey(config, "UDPRemoteIP", txtUDPAddr.Text);
+            SetConfigKey(config, "UDPRemotePort", txtUDPPort.Text);
+            SetConfigKey(config, "DriveSN", txtSN.Text);
+            SetConfigKey(config, "DrivePassword", txtPassword.Text);
+            SetConfigKey(config, "ConnType", cmdConnType.SelectedIndex.ToString());
+            SetConfigKey(config, "SerialPort", cmbSerialPort.Text);
+            SetConfigKey(config, "LocalIP", cmbLocalIP.Text);
+            SetConfigKey(config, "TCPServerPort", txtTCPServerPort.Text);
+
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+
+        private void SetConfigKey(Configuration config, string key, string sValue)
+        {
+            var kv = config.AppSettings.Settings;
+            if (kv[key] == null)
+                kv.Add(key, sValue);
+            else
+                kv[key].Value = sValue;
+        }
+
+        private void SelectComboxItem(ComboBox cmb, string sValue)
+        {
+            foreach (string sItem in cmb.Items)
+            {
+                if (sItem == sValue)
+                {
+                    cmb.SelectedItem = sItem;
+                    return;
+                }
+            }
+        }
+
 
 
         #region 通道事件
@@ -147,8 +220,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             inc.RemoveRequestHandle(typeof(Door8800RequestHandle));
             switch (inc.GetConnectorType())
             {
-                case ConnectorType.UDPClient://UDP客户端已连接
-                    //RemoveUDPClient(inc.GetConnectorDetail());
+                case ConnectorType.TCPServerClient://tcp客户端断开连接
+                    RemoteTCPClient(inc.GetKey());
                     break;
                 default:
                     break;
@@ -168,6 +241,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             inc.AddRequestHandle(mObserver);
             switch (inc.GetConnectorType())
             {
+                case ConnectorType.TCPServerClient://tcp 客户端已连接
                 case ConnectorType.UDPClient://UDP客户端已连接
 
                     //inc.OpenForciblyConnect();
@@ -178,6 +252,20 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                     //AddUDPClient(inc.GetConnectorDetail());
                     break;
+
+                default:
+                    break;
+            }
+
+            switch (inc.GetConnectorType())
+            {
+                case ConnectorType.TCPServerClient://tcp 客户端已连接
+                    AbstractConnector connector = inc as AbstractConnector;
+                    connector.ChannelKeepaliveMaxTime = 60;
+                    TCPServerClientDetail clientDetail = connector.GetConnectorDetail() as TCPServerClientDetail;
+                    AddTCPClient(inc.GetKey(), clientDetail.Remote);
+                    break;
+
                 default:
                     break;
             }
@@ -202,7 +290,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 case ConnectorType.UDPServer://UDP服务器
                     Invoke(() => UDPBindOver(false));
+                    MsgErr("UDP绑定失败");
                     AddIOLog(connector, "UDP绑定", "UDP绑定失败");
+                    break;
+                case ConnectorType.TCPServer://UDP服务器
+                    Invoke(() => TCPBindOver(false));
+                    MsgErr("TCP Server绑定失败");
+                    AddIOLog(connector, "TCP Server绑定", "TCP Server绑定失败");
                     break;
                 default:
                     AddIOLog(connector, "错误", "连接失败");
@@ -218,6 +312,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     Invoke(() => UDPBindOver(false));
                     AddIOLog(connector, "UDP绑定", "UDP绑定已关闭");
                     break;
+                case ConnectorType.TCPServer:
+                    Invoke(() => TCPBindOver(false));
+                    AddIOLog(connector, "TCP Server 绑定", "TCP Server 绑定已关闭");
+                    break;
                 default:
                     AddIOLog(connector, "关闭", "连接通道已关闭");
                     break;
@@ -228,6 +326,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             switch (connector.GetTypeName())
             {
+                case ConnectorType.TCPServer://TCP Server 连接绑定成功
+                    Invoke(() => TCPBindOver(true));
+                    AddIOLog(connector, "TCPServer绑定", "TCPServer绑定成功");
+                    break;
                 case ConnectorType.UDPServer://UDP服务器
                     Invoke(() => UDPBindOver(true));
                     AddIOLog(connector, "UDP绑定", "UDP绑定成功");
@@ -266,7 +368,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void mAllocator_CommandErrorEvent(object sender, CommandEventArgs e)
         {
-            if (e.Command.GetStatus().IsCanceled )
+            if (e.Command.GetStatus().IsCanceled)
             {
                 AddCmdLog(e, "命令已停止");
             }
@@ -442,12 +544,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             switch (conn.GetTypeName())
             {
-                case ConnectorType.TCPClient:
-                    var tcpclient = conn as TCPClientDetail;
-                    cType = "TCP客户端";
-                    Local = $"{local.ToString()}";
-                    Remote = $"{tcpclient.Addr}:{tcpclient.Port}";
-                    break;
+
                 case ConnectorType.TCPServerClient:
                     cType = "TCP客户端节点";
                     var tcpclientOnly = conn as TCPServerClientDetail;
@@ -456,7 +553,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     break;
                 case ConnectorType.UDPClient:
                     cType = "UDP客户端";
-                    var udpOnly = conn as TCPClientDetail;
+                    var udpOnly = conn as Core.Connector.TCPClient.TCPClientDetail;
                     Local = $"{local.ToString()}";
                     Remote = $"{udpOnly.Addr}:{udpOnly.Port}";
                     break;
@@ -485,6 +582,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             _IsClosed = true;
+            SaveSetting();
             Sleep(500);
             foreach (var frm in NodeForms)
             {
@@ -545,10 +643,31 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public INCommandDetail GetCommandDetail()
         {
             if (_IsClosed) return null;
-            CommandDetailFactory.ConnectType connectType = CommandDetailFactory.ConnectType.TCPClient;
-            CommandDetailFactory.ControllerType protocolType = CommandDetailFactory.ControllerType.Door88;
+            var connectType = CommandDetailFactory.ConnectType.TCPClient;
+            var protocolType = CommandDetailFactory.ControllerType.Door88;
             string addr = string.Empty, sn, password;
             int port = 0;
+
+            sn = txtSN.Text;
+            if (string.IsNullOrEmpty(sn))
+            {
+                sn = "0000000000000000";
+            }
+            if (sn.GetBytes().Length != 16)
+            {
+                sn = "0000000000000000";
+            }
+
+            password = txtPassword.Text;
+            if (!password.IsHex())
+            {
+                password = Door8800Command.NULLPassword;
+            }
+            if (password.Length != 8)
+            {
+                password = Door8800Command.NULLPassword;
+            }
+
             switch (cmdConnType.SelectedIndex)//串口,TCP客户端,UDP,TCP服务器
             {
                 case 0://串口
@@ -575,48 +694,31 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         port = 8000;
                     }
                     break;
-
-                default:
+                case 2://tcp server 模式，需要寻找客户端
+                    if (!mTCPServerBind)
+                    {
+                        MsgErr("请先绑定 TCP Server 端口");
+                        return null;
+                    }
+                    connectType = CommandDetailFactory.ConnectType.TCPServerClient;
+                    if (cmbTCPClientList.SelectedIndex == -1)
+                    {
+                        MsgErr("请先选择一个 TCP 客户端!");
+                        return null;
+                    }
+                    var myClient = cmbTCPClientList.SelectedItem as MyTCPServerClientDetail;
+                    addr = myClient.Key;
+                    port = 0;
                     break;
+                default:
+                    return null;
             }
 
 
             if (port > 65535) port = 8000;
 
-            sn = txtSN.Text;
-            if (string.IsNullOrEmpty(sn))
-            {
-                sn = "0000000000000000";
-            }
-            if (sn.GetBytes().Length != 16)
-            {
-                sn = "0000000000000000";
-            }
 
-            password = txtPassword.Text;
-            if (!password.IsHex())
-            {
-                password = Door8800Command.NULLPassword;
-            }
-            if (password.Length != 8)
-            {
-                password = Door8800Command.NULLPassword;
-            }
-
-
-
-            var cmdDtl = CommandDetailFactory.CreateDetail(connectType, addr, port,
-                protocolType, sn, password);
-
-            if (connectType == CommandDetailFactory.ConnectType.UDPClient)
-            {
-                UDPClientDetail dtl = cmdDtl.Connector as UDPClientDetail;
-                dtl.LocalAddr = cmbLocalIP.Text;
-                dtl.LocalPort = txtUDPLocalPort.Text.ToInt32();
-            }
-            cmdDtl.Timeout = 600;
-            cmdDtl.RestartCount = 3;
-            return cmdDtl;
+            return GetCommandDetail(connectType, sn, password, addr, port);
 
         }
 
@@ -625,24 +727,57 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// 获取一个命令详情，已经装配好通讯目标的所有信息
         /// </summary>
         /// <returns>命令详情</returns>
-        public INCommandDetail GetCommandDetail(string sSN, string sPassword, string sRemoteIP, int iRemotePort)
+        public INCommandDetail GetCommandDetail(CommandDetailFactory.ConnectType connectType,
+            string sSN, string sPassword, string sRemoteIP, int iRemotePort)
         {
             if (_IsClosed) return null;
-            CommandDetailFactory.ConnectType connectType = CommandDetailFactory.ConnectType.UDPClient;
-            CommandDetailFactory.ControllerType protocolType = CommandDetailFactory.ControllerType.Door89H;
+            var protocolType = CommandDetailFactory.ControllerType.Door89H;
 
 
             var cmdDtl = CommandDetailFactory.CreateDetail(connectType, sRemoteIP, iRemotePort,
                 protocolType, sSN, sPassword);
 
-            UDPClientDetail dtl = cmdDtl.Connector as UDPClientDetail;
-            dtl.LocalAddr = mServerIP;
-            dtl.LocalPort = mServerPort;
+            if (connectType == CommandDetailFactory.ConnectType.UDPClient)
+            {
+                var dtl = cmdDtl.Connector as Core.Connector.TCPClient.TCPClientDetail;
+                dtl.LocalAddr = mServerIP;
+                dtl.LocalPort = mServerPort;
+            }
+
 
             cmdDtl.Timeout = 600;
             cmdDtl.RestartCount = 3;
             return cmdDtl;
 
+        }
+
+
+        /// <summary>
+        /// 获取UDP连接详情
+        /// </summary>
+        /// <param name="sSN"></param>
+        /// <param name="sPassword"></param>
+        /// <param name="sKey"></param>
+        /// <returns></returns>
+        private INCommandDetail GetUDPCommandDetail(string sSN, string sPassword, string sRemote, int iPort)
+        {
+            if (_IsClosed) return null;
+            var connectType = CommandDetailFactory.ConnectType.UDPClient;
+            return GetCommandDetail(connectType, sSN, sPassword, sRemote, iPort);
+        }
+
+        /// <summary>
+        /// 获取TCP连接详情
+        /// </summary>
+        /// <param name="sSN"></param>
+        /// <param name="sPassword"></param>
+        /// <param name="sKey"></param>
+        /// <returns></returns>
+        private INCommandDetail GetTCPCommandDetail(string sSN, string sPassword, string sKey)
+        {
+            if (_IsClosed) return null;
+            var connectType = CommandDetailFactory.ConnectType.TCPServerClient;
+            return GetCommandDetail(connectType, sSN, sPassword, sKey, 0);
         }
         #endregion
 
@@ -1091,7 +1226,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
 
 
-            DoNetDrive.Core.Connector.UDP.UDPServerDetail detail = new UDPServerDetail(sLocalIP, port);
+            UDPServerDetail detail = new UDPServerDetail(sLocalIP, port);
             if (mUDPIsBind)
             {
                 //关闭UDP服务器
@@ -1144,7 +1279,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// </summary>
         private void IniConnTypeList()
         {
-            cmdConnType.Items.AddRange("串口,UDP".SplitTrim(","));
+            cmdConnType.Items.AddRange("串口,UDP,TCP Server".SplitTrim(","));
             cmdConnType.SelectedIndex = 1;
             ShowConnTypePanel();
 
@@ -1153,11 +1288,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             int iTop = gbSerialPort.Top, iLeft = gbSerialPort.Left;
             gbUDP.Top = iTop; gbUDP.Left = iLeft;
+            gpTCPServer.Top = iTop; gpTCPServer.Left = iLeft;
 
             IniSerialPortList();
 
             IniLoadLocalIP();
-
+            LoadSetting();
         }
 
         /// <summary>
@@ -1198,12 +1334,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// </summary>
         private void ShowConnTypePanel()
         {
-            bool[] pnlShow = new bool[2];
+            bool[] pnlShow = new bool[3];
             pnlShow[cmdConnType.SelectedIndex] = true;
 
-            GroupBox[] pnls = new GroupBox[] { gbSerialPort, gbUDP };
+            GroupBox[] pnls = new GroupBox[] { gbSerialPort, gbUDP, gpTCPServer };
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 pnls[i].Visible = pnlShow[i];
             }
@@ -1379,7 +1515,21 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             Door8800Transaction fcTrn = EventData as Door8800Transaction;
             StringBuilder strbuf = new StringBuilder();
             var evn = fcTrn.EventData;
-
+            string sRemoteIP; int iRemotePort;
+            bool bIsUDP = false;
+            if (connector is TCPServerClientDetail)
+            {
+                var tcp = connector as TCPServerClientDetail;
+                sRemoteIP = tcp.Remote.Addr;
+                iRemotePort = tcp.Remote.Port;
+            }
+            else
+            {
+                bIsUDP = true;
+                var UDP = connector as Core.Connector.TCPClient.TCPClientDetail; ;
+                sRemoteIP = UDP.Addr;
+                iRemotePort = UDP.Port;
+            }
 
             //消息类型
             commandResult.Title = TransactionTypeName[fcTrn.CmdIndex];
@@ -1393,7 +1543,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             commandResult.Time = fcTrn.EventData.TransactionDate.ToDateTimeStr();
             commandResult.Timemill = "-";
-            TCPClientDetail dtl = connector as TCPClientDetail;
 
 
             if (fcTrn.CmdIndex <= 4)
@@ -1430,32 +1579,35 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
             if (fcTrn.CmdIndex == 0x22)
             {
-                strbuf.Append(fcTrn.SN).Append("保活包消息，远端信息：").Append(dtl.Addr).Append(":").Append(dtl.Port);
+                strbuf.Append(fcTrn.SN).Append("保活包消息，远端信息：").Append(Remote);
             }
 
             if (fcTrn.CmdIndex == 0xA0)
             {
 
                 //连接测试消息
-                var cmdDtl = GetCommandDetail(fcTrn.SN, "FFFFFFFF", dtl.Addr, dtl.Port);
-
-                Protocol.Fingerprint.SystemParameter.SendConnectTestResponse sndConntmsg = new SystemParameter.SendConnectTestResponse(cmdDtl);
+                INCommandDetail cmdDtl;
+                if (bIsUDP)
+                    cmdDtl = GetUDPCommandDetail(fcTrn.SN, "FFFFFFFF", sRemoteIP, iRemotePort);
+                else
+                    cmdDtl = GetTCPCommandDetail(fcTrn.SN, "FFFFFFFF", connector.GetKey());
+                var sndConntmsg = new SystemParameter.SendConnectTestResponse(cmdDtl);
                 AddCommand(sndConntmsg);
 
-                strbuf.Append(fcTrn.SN).Append("连接测试消息，远端信息：").Append(dtl.Addr).Append(":").Append(dtl.Port);
+                strbuf.Append(fcTrn.SN).Append("连接测试消息，远端信息：").Append(Remote);
             }
 
-            if (fcTrn.CmdIndex == 0x22 || fcTrn.CmdIndex == 0xA0)
+            if ((fcTrn.CmdIndex == 0x22 || fcTrn.CmdIndex == 0xA0) && bIsUDP)
             {
                 Invoke(() =>
                 {
-                    if(chkIsServer.Checked)
+                    if (chkIsServer.Checked)
                     {
-                        txtUDPAddr.Text = dtl.Addr;
-                        txtUDPPort.Text = dtl.Port.ToString();
+                        txtUDPAddr.Text = sRemoteIP;
+                        txtUDPPort.Text = iRemotePort.ToString();
                         txtSN.Text = fcTrn.SN;
                     }
-                    
+
                 });
             }
 
@@ -1510,15 +1662,163 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (cmdDtl == null) return;
             mAllocator.StopCommand(cmdDtl);
         }
+        #region  TCP Server 服务绑定
+        private bool mTCPServerBind = false;
+        private string mTCPServer_IP;
+        private int mTCPServer_Port;
 
-        private void Button1_Click(object sender, EventArgs e)
+
+        private class MyTCPServerClientDetail : TCPServerClientDetail
         {
-            GC.Collect();
+            public String SN;
+            public MyTCPServerClientDetail(string sKey, IPEndPoint remoteIP) : base(sKey, remoteIP, null)
+            {
+
+            }
+
+            public override string ToString()
+            {
+                if (string.IsNullOrEmpty(SN))
+                {
+                    return Remote.ToString();
+                }
+                return $"{SN} {Remote.ToString()}";
+            }
+
+        }
+        /// <summary>
+        /// 客户端连接对象集合
+        /// </summary>
+        private ConcurrentDictionary<string, MyTCPServerClientDetail> mTCPClients;
+
+        private void butTCPServerBind_Click(object sender, EventArgs e)
+        {
+            if (!mTCPServerBind)
+            {
+                //开始绑定
+                BeginTCPServer();
+            }
+            else
+            {
+                //解除绑定
+                StopTCPServer();
+            }
+
+        }
+        /// <summary>
+        /// 解除绑定
+        /// </summary>
+        private void StopTCPServer()
+        {
+            if (!mTCPServerBind) return;
+            var tcp = new TCPServerDetail(mTCPServer_IP, mTCPServer_Port);
+
+            mAllocator.CloseConnector(tcp);
+
+            var sKeys = mTCPClients.Keys.ToArray();
+            foreach (var key in sKeys)
+            {
+                TCPServerClientDetail cdt = new TCPServerClientDetail(key);
+                mAllocator.CloseConnector(cdt);
+            }
+            //mTCPClients.Clear();
+            //cmbTCPClientList.Items.Clear();
+
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 开始绑定
+        /// </summary>
+        private void BeginTCPServer()
         {
-            button3.Text = AbstractCommand.CommandObjectTotal.ToString();
+            if (mTCPClients == null) mTCPClients = new ConcurrentDictionary<string, MyTCPServerClientDetail>();
+            try
+            {   //生成连接通道消息
+                mTCPServer_IP = cmbLocalIP.Text;
+                mTCPServer_Port = int.Parse(txtTCPServerPort.Text);
+                var tcp = new TCPServerDetail(mTCPServer_IP, mTCPServer_Port);
+
+                mAllocator.OpenConnector(tcp);
+                //等待后续事件，事件触发 mAllocator_ConnectorConnectedEvent 表示绑定成功
+                //事件触发 mAllocator_ConnectorClosedEvent 表示绑定失败
+                butTCPServerBind.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MsgErr(ex.Message);
+                return;
+            }
+
         }
+
+        private void TCPBindOver(bool bResult)
+        {
+            butTCPServerBind.Enabled = true;
+            mTCPServerBind = bResult;
+            txtTCPServerPort.Enabled = !bResult;
+            cmbLocalIP.Enabled = !bResult;
+            if (bResult)
+            {
+                //绑定成功
+                butTCPServerBind.Text = "关闭";
+            }
+            else
+            {
+                butTCPServerBind.Text = "绑定";
+            }
+
+        }
+
+        /// <summary>
+        /// Add TCP Client 到列表
+        /// </summary>
+        private void AddTCPClient(string sKey, IPDetail remoteIP)
+        {
+            MyTCPServerClientDetail myTCP = new MyTCPServerClientDetail(
+                sKey, new IPEndPoint(IPAddress.Parse(remoteIP.Addr), remoteIP.Port));
+            if (!mTCPClients.TryAdd(sKey, myTCP))
+            {
+                AddLog($"重复添加客户端，Key:{sKey}");
+                return;
+            }
+            else
+            {
+                Invoke(new Action(() =>
+                {
+                    cmbTCPClientList.BeginUpdate();
+                    cmbTCPClientList.Items.Add(myTCP);
+                    if (cmbTCPClientList.Items.Count == 1)
+                    {
+                        cmbTCPClientList.SelectedIndex = 0;
+                    }
+                    cmbTCPClientList.EndUpdate();
+                }));
+
+            }
+        }
+        /// <summary>
+        /// 删除客户端
+        /// </summary>
+        /// <param name="sKey"></param>
+        private void RemoteTCPClient(string sKey)
+        {
+            MyTCPServerClientDetail myTCP = null;
+            if (mTCPClients.TryRemove(sKey, out myTCP))
+            {
+                Invoke(new Action(() =>
+                {
+                    cmbTCPClientList.BeginUpdate();
+                    cmbTCPClientList.Items.Remove(myTCP);
+                    cmbTCPClientList.EndUpdate();
+                }));
+            }
+            else
+            {
+
+
+            }
+        }
+        #endregion
+
     }
 }

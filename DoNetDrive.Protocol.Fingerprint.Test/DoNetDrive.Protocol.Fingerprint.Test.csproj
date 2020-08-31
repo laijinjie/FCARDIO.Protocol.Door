@@ -34,19 +34,16 @@
     <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=10.9.0.4, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\assembly\GAC_MSIL\DevComponents.DotNetBar.SuperGrid\10.9.0.4__c39c3242a43eee2b\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
+    <Reference Include="DevComponents.DotNetBar.SuperGrid">
+      <HintPath>..\DLL\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar2, Version=10.9.0.4, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\assembly\GAC_MSIL\DevComponents.DotNetBar2\10.9.0.4__c39c3242a43eee2b\DevComponents.DotNetBar2.dll</HintPath>
+    <Reference Include="DevComponents.DotNetBar2">
+      <HintPath>..\DLL\DevComponents.DotNetBar2.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevComponents.Instrumentation, Version=10.9.0.4, Culture=neutral, PublicKeyToken=f90dc37c26666a67, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\assembly\GAC_MSIL\DevComponents.Instrumentation\10.9.0.4__bc4a9d761ea44ef0\DevComponents.Instrumentation.dll</HintPath>
+    <Reference Include="DevComponents.Instrumentation">
+      <HintPath>..\DLL\DevComponents.Instrumentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Core, Version=1.13.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -61,6 +58,11 @@
     <Reference Include="DoNetDrive.Protocol.Door, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Fingerprint">
+      <HintPath>..\DLL\DoNetDrive.Protocol.Fingerprint.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -80,6 +82,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -223,10 +226,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DoNetDrive.Protocol.Fingerprint\Fingerprint\DoNetDrive.Protocol.Fingerprint.csproj">
-      <Project>{4639e7f7-83aa-4511-8fa8-369a79226b72}</Project>
-      <Name>DoNetDrive.Protocol.Fingerprint</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

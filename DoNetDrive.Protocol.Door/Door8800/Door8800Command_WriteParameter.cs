@@ -34,9 +34,25 @@ namespace DoNetDrive.Protocol.Door.Door8800
             return;
         }
 
-        
+        /// <summary>
+        /// 检查命令参数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        protected override bool CheckCommandParameter(INCommandParameter value)
+        {
+            if (value == null)
+            {
+                return false;
+            }
 
-        
+            var model = value as AbstractParameter;
+            if(model != null)
+                return model.checkedParameter();
+            return true;
+        }
+
+
 
     }
 }
