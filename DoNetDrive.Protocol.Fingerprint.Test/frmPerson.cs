@@ -790,5 +790,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
             MsgTip("完毕");
         }
+
+        private void btnDelSelect_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

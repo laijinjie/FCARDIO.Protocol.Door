@@ -56,7 +56,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void FrmSystem_Load(object sender, EventArgs e)
         {
             LoadUILanguage();
-            
+
         }
 
         #region 多语言
@@ -111,7 +111,74 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             GetLanguage(btnBeginWatch_Broadcast);//  开启广播
             GetLanguage(btnCloseWatch_Broadcast);//  关闭广播
 
+            GetLanguage(tabPage2);//参数2
+            GetLanguage(gpLocalIdentity);//本机身份
+            GetLanguage(Lbl_p2_DoorNum);//门号
+            GetLanguage(Lbl_p2_InOut);//进出
+            GetLanguage(btnReadLocalIdentity);//读取本机身份
+            GetLanguage(btnWriteLocalIdentity);//写入本机身份
+            GetLanguage(Lbl_p2_LocalName);//本机名称
+            GetLanguage(gpWgOut);//韦根输出
+            GetLanguage(Lbl_p2_ReadCardByte);//读卡字节
+            GetLanguage(Lbl_p2_WgOut);//韦根输出
+            GetLanguage(Lbl_p2_WgOrder);//WG字节顺序
+            GetLanguage(Lbl_p2_OutputDataType);//输出数据类型
+            GetLanguage(btnReadWiegandOutput);//读取韦根输出
+            GetLanguage(btnWriteWiegandOutput);//写入韦根输出
+            GetLanguage(gpFace_fingerprint_threshold);//人脸、指纹对比阈值
+            GetLanguage(Lbl_p2_FoFReadCardByte);//读卡字节
+            GetLanguage(Lbl_p2_FoFWgOut);//韦根输出
+            GetLanguage(btnReadComparisonThreshold);//读取人脸、指纹对比阈值
+            GetLanguage(btnWriteComparisonThreshold);//写入人脸、指纹对比阈值
+            GetLanguage(gpScreenContent);//屏幕显示内容
+            GetLanguage(cbDisplay1);//人名
+            GetLanguage(cbDisplay2);//人员编号
+            GetLanguage(cbDisplay3);//部门
+            GetLanguage(cbDisplay4);//职务
+            GetLanguage(cbDisplay5);//人员照片
+            GetLanguage(cbDisplay6);//卡号
+            GetLanguage(cbDisplay7);//记录照片
+            GetLanguage(cbDisplay8);//记录时间
+            GetLanguage(cbDisplay9);//用户号
+            GetLanguage(gpMenuManagementPassword);//菜单管理密码
+            GetLanguage(Lbl_p2_pwd);//密码
+            GetLanguage(btnReadManageMenuPassword);//读取菜单管理密码
+            GetLanguage(btnWriteManageMenuPassword);//写入菜单管理密码
+            GetLanguage(gpOemInfo);//OEM信息
+            GetLanguage(Lbl_p2_Manufacturers);//制造商
+            GetLanguage(Lbl_p2_Url);//网 址
+            GetLanguage(Lbl_p2_MakeDate);//生产日期
+            GetLanguage(btnReadOEM);//制造商读取
+            GetLanguage(btnWriteOEM);//制造商写入
 
+
+            GetLanguage(tabPage3);//                                  参数3
+            GetLanguage(gpDeviceLanguage);//                          设备语言
+            GetLanguage(Lbl_p3_Language);//                           语言
+            GetLanguage(butReadLanguage);//                           读取
+            GetLanguage(butWriteLanguage);//                          写入
+            GetLanguage(gpDeviceVolume);//                            设备音量
+            GetLanguage(Lbl_Volume);//                                音量
+            GetLanguage(butReadVolume);//                             读取
+            GetLanguage(butWriteVolume);//                            写入
+            GetLanguage(Lbl_Filllightmode);//                         补光灯模式
+            GetLanguage(But_WriteFaceLEDMode);//                      写入
+            GetLanguage(But_ReadFaceLEDMode);//                       读取
+            GetLanguage(Lbl_MaskRecognitionSwitch);//                 口罩识别开关
+            GetLanguage(But_WriteFaceMouthmufflePar);//               写入
+            GetLanguage(But_ReadFaceMouthmufflePar);//                读取
+            GetLanguage(Lbl_TemperatureExaminationAndFormat);//       体温检测及格式
+            GetLanguage(But_WriteFaceBodyTemperature);//              写入
+            GetLanguage(But_ReadFaceBodyTemperature);//               读取
+            GetLanguage(Lbl_TemperatureAlarmThreshold);//             体温报警阈值
+            GetLanguage(But_WriteFaceBodyTemperatureAlarm);//         写入
+            GetLanguage(But_ReadFaceBodyTemperatureAlarm);//          读取
+            GetLanguage(Lbl_TemperatureIndicatorSwitch);//            体温数值显示开关
+            GetLanguage(But_WriteFaceBodyTemperatureShow);//          写入
+            GetLanguage(But_ReadFaceBodyTemperatureShow);//           读取
+            GetLanguage(Lbl_ShortMessage);//                          短消息
+            GetLanguage(But_WriteShortMessage);//                     写入
+            GetLanguage(But_ReadShortMessage);//                      读取
 
             GetLanguage(tpNetwork);//客户端网络参数
             GetLanguage(gbServerDetail);//服务器参数
@@ -365,7 +432,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
             txtServerAddr.Text = "www.pc15.net";
 
-  
+
 
             if (Convert.ToInt16(cbxAutoIP.SelectedIndex) == -1)
             {
@@ -386,7 +453,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             tcp.mServerAddr = txtServerAddr.Text.Trim();
             tcp.mServerPort = Convert.ToInt32(txtServerPort.Text.Trim());
 
-            tcp.mProtocolType =1 ;
+            tcp.mProtocolType = 1;
 
             if (cbxAutoIP.SelectedIndex == 1)
             {

@@ -1,13 +1,12 @@
-﻿using DoNetDrive.Protocol.Door;
+﻿
 using DoNetDrive.Protocol.Fingerprint.Test.Model;
-using DoNetDrive.Protocol.Fingerprint.Holiday;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using HolidayDetail = DoNetDrive.Protocol.Door.Door8800.Holiday.HolidayDetail;
-using HolidayDBDetail = DoNetDrive.Protocol.Door.Door8800.Holiday.HolidayDBDetail;
+using DoNetDrive.Protocol.Door.Door8800.Holiday;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {

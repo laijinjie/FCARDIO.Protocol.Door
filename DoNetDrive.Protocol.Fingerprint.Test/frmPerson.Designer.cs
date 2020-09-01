@@ -106,6 +106,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
             this.picUpload = new System.Windows.Forms.PictureBox();
             this.txtUploadName = new System.Windows.Forms.TextBox();
             this.txtUploadCode = new System.Windows.Forms.TextBox();
@@ -118,7 +119,6 @@
             this.btnAddDevice = new System.Windows.Forms.Button();
             this.btnDelDevice = new System.Windows.Forms.Button();
             this.btnDelSelect = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgPersonList)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -879,6 +879,16 @@
             this.tabPage4.Text = "上传人员及照片";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(249, 84);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(188, 23);
+            this.button5.TabIndex = 39;
+            this.button5.Text = "2、上传到设备";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            // 
             // picUpload
             // 
             this.picUpload.Location = new System.Drawing.Point(466, 6);
@@ -992,16 +1002,7 @@
             this.btnDelSelect.TabIndex = 13;
             this.btnDelSelect.Text = "从设备删除选中卡";
             this.btnDelSelect.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(249, 84);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(188, 23);
-            this.button5.TabIndex = 39;
-            this.button5.Text = "2、上传到设备";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            this.btnDelSelect.Click += new System.EventHandler(this.btnDelSelect_Click);
             // 
             // frmPerson
             // 

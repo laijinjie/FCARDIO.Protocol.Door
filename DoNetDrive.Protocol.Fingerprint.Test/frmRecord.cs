@@ -526,6 +526,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public Control FindControl(Control parentControl, string findCtrlName)
         {
             Control _findedControl = null;
