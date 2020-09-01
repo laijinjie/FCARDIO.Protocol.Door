@@ -4,6 +4,68 @@
         <name>DoNetDrive.Protocol.Fingerprint</name>
     </assembly>
     <members>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileByTCP">
+            <summary>
+            TCP Client 模式下写文件
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileByTCP.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileByTCP_Parameter)">
+            <summary>
+            创建TCP Client 模式下写文件的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileByTCP.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileByTCP.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileByTCP_Parameter">
+            <summary>
+            TCP Client 模式下写文件
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileByTCP_Parameter.#ctor(System.Int32,System.Int32,System.Int32,System.Byte[])">
+            <summary>
+            初始化参数
+            </summary>
+            <param name="userCode">用户号</param>
+            <param name="filetype">文件类型</param>
+            <param name="filenum">序号</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileByTCP_Result">
+            <summary>
+            TCP Client 模式下写文件的返回值
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileByTCP_Result.Result">
+            <summary>
+            写入结果
+            0--非法参数;
+            1--文件存储完毕;  
+            2--CRC校验失败;
+            3--用户不存在;
+            4--存储已满;
+            5--文件不可识别（照片不可识别或特征码错误）;
+            6--照片、特征码重复;
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileByTCP_Result.RepeatUser">
+            <summary>
+            当结果为重复时，重复的用户编号
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileByTCP_Result.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.AdditionalData.WriteFileSubCommand">
             <summary>
             写文件子命令
@@ -289,6 +351,7 @@
             3 - 记录照片
             4 - 红外人脸特征码
             5 - 动态人脸特征码
+            6 - 现场视频截图
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFeatureCode_Parameter.SerialNumber">
@@ -524,6 +587,92 @@
             <summary>
             释放资源
             </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP">
+            <summary>
+            TCP Client 模式下读文件
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP_Parameter)">
+            <summary>
+            创建TCP Client 模式下读文件的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP_Parameter">
+            <summary>
+            TCP Client 模式下读文件 参数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP_Parameter.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            创建 TCP Client 模式下读文件 参数
+            </summary>
+            <param name="userCode">用户号</param>
+            <param name="type">文件类型</param>
+            <param name="serialNumber">序号</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP_Result">
+            <summary>
+            TCP Client 模式下读文件 返回值
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP_Result.UserCode">
+            <summary>
+            用户号
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP_Result.FileType">
+            <summary>
+            文件类型
+            1 - 人员头像
+            2 - 指纹
+            3 - 记录照片
+            4 - 红外人脸特征码
+            5 - 动态人脸特征码
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP_Result.FileSerialNumber">
+            <summary>
+            文件序号
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP_Result.FileSize">
+            <summary>
+            文件大小
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP_Result.FileDatas">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP_Result.FileCRC">
+            <summary>
+            CRC32校验数据
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP_Result.ResultCode">
+            <summary>
+            指示命令执行结果
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileByTCP_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            读取ByteBuffer内容
+            </summary>
+            <param name="buf"></param>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadFileSubCommand">
             <summary>
@@ -7021,6 +7170,674 @@
             </summary>
             <param name="value"></param>
             <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadNetworkServerDetail">
+            <summary>
+            读取网络服务器参数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadNetworkServerDetail.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建读取网络服务器参数的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadNetworkServerDetail.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadNetworkServerDetail.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadNetworkServerDetail_Result">
+            <summary>
+            读取网络服务器参数返回值
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail">
+            <summary>
+            修改网络服务器参数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail_Parameter)">
+            <summary>
+            创建修改网络服务器参数的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail_Parameter">
+            <summary>
+            写入网络服务器参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail_Parameter.ServerPort">
+            <summary>
+            服务器端口,取值范围：0-65534
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail_Parameter.ServerIP">
+            <summary>
+            服务器IP
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail_Parameter.ServerDomain">
+            <summary>
+            服务器域名
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail_Parameter.#ctor">
+            <summary>
+            构建一个空的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail_Parameter.#ctor(System.Int32,System.String)">
+            <summary>
+            创建网络服务器参数
+            </summary>
+            <param name="iServerPort">服务器端口,取值范围：0-65534</param>
+            <param name="sServerIP">服务器IP</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            编码参数
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteNetworkServerDetail_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientWorkMode">
+             <summary>
+             读取客户端模式通讯方式 
+            0--禁用;
+            1--UDP;
+            2--TCP Client;
+            3--TCP Client + TLS ;
+            4--MQTT（TCP Client）;
+            5--MQTT（TCP Client） + TLS ;
+             </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientWorkMode.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建读取客户端模式通讯方式的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientWorkMode.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientWorkMode.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientWorkMode_Result">
+            <summary>
+            读取客户端模式通讯方式 返回值
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode">
+             <summary>
+             写入客户端模式通讯方式 
+            0--禁用;
+            1--UDP;
+            2--TCP Client;
+            3--TCP Client + TLS ;
+            4--MQTT（TCP Client）;
+            5--MQTT（TCP Client） + TLS ;
+             </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode_Parameter)">
+            <summary>
+            创建写入客户端模式通讯方式的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode_Parameter">
+            <summary>
+            写入客户端模式通讯方式 参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode_Parameter.ClientModel">
+             <summary>
+             客户端模式通讯方式 
+            0--禁用;
+            1--UDP;
+            2--TCP Client;
+            3--TCP Client + TLS ;
+            4--MQTT（TCP Client）;
+            5--MQTT（TCP Client） + TLS ;
+             </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode_Parameter.#ctor">
+            <summary>
+            构建一个空的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode_Parameter.#ctor(System.Int32)">
+            <summary>
+            创建网络服务器参数
+            </summary>
+            <param name="iMode">客户端模式通讯方式</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            编码参数
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireSendKeepalivePacket">
+            <summary>
+            要求设备立刻发送一次保活包
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireSendKeepalivePacket.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建要求设备立刻发送一次保活包的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireSendKeepalivePacket.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireSendKeepalivePacket.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireSendKeepalivePacket_Result">
+            <summary>
+            保活包发送状态返回值
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireSendKeepalivePacket_Result.ResultStatus">
+            <summary>
+            保活包状态返回值 
+            1--发送成功
+            2--Server 参数未设置
+            3--Server 参数错误
+            4--Server 连接失败 （TCP）
+            5--服务器无应答
+            6--网络参数设置错误
+            7--网线未连接
+            8--Wifi 未连接
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireSendKeepalivePacket_Result.#ctor">
+            <summary>
+            构建一个保活包发送状态返回值的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireSendKeepalivePacket_Result.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireSendKeepalivePacket_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientStatus">
+            <summary>
+            获取设备客户端连接状态
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientStatus.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建获取设备客户端连接状态的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientStatus.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientStatus.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientStatus_Result">
+            <summary>
+            获取设备客户端连接状态 返回值
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientStatus_Result.ClientModel">
+             <summary>
+             客户端模式通讯方式 
+            0--禁用;
+            1--UDP;
+            2--TCP Client;
+            3--TCP Client + TLS ;
+            4--MQTT（TCP Client）;
+            5--MQTT（TCP Client） + TLS ;
+             </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientStatus_Result.ServerIP">
+            <summary>
+            服务器IP
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientStatus_Result.LastKeepaliveTime">
+            <summary>
+            最近一次保活包发送时间
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientStatus_Result.ConnectStatus">
+            <summary>
+            连接状态
+            0--TCP Client 未连接；
+            1--TCP Client 已连接；
+            2--UDP Client 无连接状态
+            255--已禁用
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientStatus_Result.#ctor">
+            <summary>
+            构建一个获取设备客户端连接状返回值的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientStatus_Result.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadClientStatus_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireConnectServer">
+            <summary>
+            命令设备立刻重新连接服务器
+            让设备立即重新连接服务器，已连接时，立即断开，然后重新连接；
+            适用于 TCP Client 模式，UDP Client模式时，仅重发保活包。
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireConnectServer.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建命令设备立刻重新连接服务器的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireConnectServer.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireConnectServer.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireConnectServer_Result">
+            <summary>
+            命令设备立刻重新连接服务器 返回值
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireConnectServer_Result.ResultStatus">
+            <summary>
+            保活包状态返回值 
+            1--已重新连接（UDP时表示已发送保活包）
+            2--Server 参数未设置
+            3--Server 参数错误
+            4--Server 连接失败 （TCP）
+            5--服务器无应答
+            6--网络参数设置错误
+            7--网线未连接
+            8--Wifi 未连接
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireConnectServer_Result.#ctor">
+            <summary>
+            构建一个获取设备客户端连接状返回值的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireConnectServer_Result.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireConnectServer_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter._37NetworkSetting._06PUSH_AUTO.Read_PUSH_AUTO_Service">
+            <summary>
+            获取自动推送服务器详情
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._37NetworkSetting._06PUSH_AUTO.Read_PUSH_AUTO_Service.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建获取自动推送服务器详情的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._37NetworkSetting._06PUSH_AUTO.Read_PUSH_AUTO_Service.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter._37NetworkSetting._06PUSH_AUTO.Read_PUSH_AUTO_Service.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.Read_PUSH_AUTO_Service_Result">
+            <summary>
+            获取自动推送服务器详情返回值
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Read_PUSH_AUTO_Service_Result.IsUse">
+            <summary>
+            启动标志
+            1--启用；0--禁用
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Read_PUSH_AUTO_Service_Result.UserTransaction">
+            <summary>
+            认证记录
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Read_PUSH_AUTO_Service_Result.DoorSensorTransaction">
+            <summary>
+            门磁记录
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Read_PUSH_AUTO_Service_Result.SystemTransaction">
+            <summary>
+            系统记录
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Read_PUSH_AUTO_Service_Result.BodyTempTransaction">
+            <summary>
+            体温记录
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Read_PUSH_AUTO_Service_Result.TransactionImage">
+            <summary>
+            记录照片
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Read_PUSH_AUTO_Service_Result.User_Readable">
+            <summary>
+            人员待推送数量
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Read_PUSH_AUTO_Service_Result.#ctor">
+            <summary>
+            构建一个获取自动推送服务器详情返回值的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Read_PUSH_AUTO_Service_Result.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Read_PUSH_AUTO_Service_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service">
+            <summary>
+            重置推送服务推送断点
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter)">
+            <summary>
+            创建写入自动推送服务参数的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter">
+            <summary>
+            重置推送服务推送断点
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter.UserTransaction">
+            <summary>
+            认证记录 推送断点
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter.DoorSensorTransaction">
+            <summary>
+            门磁记录 推送断点
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter.SystemTransaction">
+            <summary>
+            系统记录 推送断点
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter.BodyTempTransaction">
+            <summary>
+            体温记录 推送断点
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter.TransactionImage">
+            <summary>
+            记录照片 推送断点
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter.#ctor">
+            <summary>
+            创建重置推送服务推送断点参数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            编码参数
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Reset_PUSH_AUTO_Service_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            废弃
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.Transaction_PUSH_Detail">
+            <summary>
+            记录上传详情，包含目前记录上传断点、已上传记录数量统计
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Transaction_PUSH_Detail.ReadIndex">
+            <summary>
+            上传断点
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Transaction_PUSH_Detail.Readable">
+            <summary>
+            待上传的数量
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Transaction_PUSH_Detail.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.Write_PUSH_AUTO_Service">
+            <summary>
+            写入自动推送服务参数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Write_PUSH_AUTO_Service.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.SystemParameter.Write_PUSH_AUTO_Service_Parameter)">
+            <summary>
+            创建写入自动推送服务参数的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Write_PUSH_AUTO_Service.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.Write_PUSH_AUTO_Service_Parameter">
+            <summary>
+            写入自动推送服务开关参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.Write_PUSH_AUTO_Service_Parameter.IsUse">
+            <summary>
+            启动标志
+            1--启用；0--禁用
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Write_PUSH_AUTO_Service_Parameter.#ctor(System.Boolean)">
+            <summary>
+            创建写入自动推送服务开关参数
+            </summary>
+            <param name="bUse">开关</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Write_PUSH_AUTO_Service_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Write_PUSH_AUTO_Service_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Write_PUSH_AUTO_Service_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Write_PUSH_AUTO_Service_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            编码参数
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.Write_PUSH_AUTO_Service_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            废弃
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireRestart">
+            <summary>
+            命令设备立刻重新启动
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireRestart.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建命令设备立刻重新启动的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireRestart.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.SendConnectTestResponse">
             <summary>

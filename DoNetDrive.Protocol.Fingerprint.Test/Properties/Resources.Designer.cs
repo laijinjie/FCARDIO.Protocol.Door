@@ -59,5 +59,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        internal static byte[] SSLX509 {
+            get {
+                object obj = ResourceManager.GetObject("SSLX509", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

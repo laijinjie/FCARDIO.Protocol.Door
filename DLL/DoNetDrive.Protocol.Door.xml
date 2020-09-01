@@ -5380,6 +5380,13 @@
             </summary>
             <param name="oPck">包含返回指令的Packet</param>
         </member>
+        <member name="M:DoNetDrive.Protocol.Door.Door8800.Door8800Command_WriteParameter.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查命令参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
         <member name="T:DoNetDrive.Protocol.Door.Door8800.Holiday.ClearHoliday">
             <summary>
             清空控制器中的所有节假日

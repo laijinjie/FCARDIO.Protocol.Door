@@ -162,6 +162,7 @@
       <DependentUpon>frmTimeGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="INMain.cs" />
+    <Compile Include="Language\ToolLanguage.cs" />
     <Compile Include="Model\CommandResult.cs" />
     <Compile Include="Model\HolidayDetailDto.cs" />
     <Compile Include="Model\ImageTool.cs" />
@@ -221,12 +222,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\SSLX509.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <Content Include="Language\China.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language\English.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

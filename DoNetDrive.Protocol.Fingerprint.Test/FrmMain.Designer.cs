@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmdConnType = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.LblConnType = new System.Windows.Forms.Label();
+            this.cmbConnType = new System.Windows.Forms.ComboBox();
+            this.gbDriveSN = new System.Windows.Forms.GroupBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblPassword = new System.Windows.Forms.Label();
             this.txtSN = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.butClear = new System.Windows.Forms.Button();
+            this.LblSN = new System.Windows.Forms.Label();
+            this.butIOClear = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.butSystem = new System.Windows.Forms.ToolStripButton();
             this.butTime = new System.Windows.Forms.ToolStripButton();
@@ -55,11 +55,11 @@
             this.gbSerialPort = new System.Windows.Forms.GroupBox();
             this.butReloadSerialPort = new System.Windows.Forms.Button();
             this.cmbSerialPort = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblSerialPort = new System.Windows.Forms.Label();
             this.lblLocalAddress = new System.Windows.Forms.Label();
             this.cmbLocalIP = new System.Windows.Forms.ComboBox();
             this.tbEvent = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tpIO = new System.Windows.Forms.TabPage();
             this.dgvIO = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,7 +69,7 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkShowIO = new System.Windows.Forms.CheckBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tpCommand = new System.Windows.Forms.TabPage();
             this.dgvResult = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,71 +79,74 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.butClearCommand = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.butStopCommand = new System.Windows.Forms.Button();
             this.txtProcess = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblProcess = new System.Windows.Forms.Label();
             this.butWatch = new System.Windows.Forms.Button();
             this.butReadSN = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblUDPAddr = new System.Windows.Forms.Label();
             this.txtUDPAddr = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblUDPPort = new System.Windows.Forms.Label();
             this.txtUDPPort = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.LblUDPLocalPort = new System.Windows.Forms.Label();
             this.txtUDPLocalPort = new System.Windows.Forms.TextBox();
             this.butUDPBind = new System.Windows.Forms.Button();
             this.gbUDP = new System.Windows.Forms.GroupBox();
-            this.chkIsServer = new System.Windows.Forms.CheckBox();
+            this.chkIsUDPServer = new System.Windows.Forms.CheckBox();
             this.gpTCPServer = new System.Windows.Forms.GroupBox();
+            this.ChkTLS12 = new System.Windows.Forms.CheckBox();
             this.cmbTCPClientList = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.LblTCPClients = new System.Windows.Forms.Label();
             this.butTCPServerBind = new System.Windows.Forms.Button();
             this.txtTCPServerPort = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.lblLocalPort = new System.Windows.Forms.Label();
+            this.cmbToolLanguage = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.gbDriveSN.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.gbSerialPort.SuspendLayout();
             this.tbEvent.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tpIO.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIO)).BeginInit();
             this.panel1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tpCommand.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.panel2.SuspendLayout();
             this.gbUDP.SuspendLayout();
             this.gpTCPServer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // LblConnType
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "通讯方式：";
+            this.LblConnType.AutoSize = true;
+            this.LblConnType.Location = new System.Drawing.Point(9, 34);
+            this.LblConnType.Name = "LblConnType";
+            this.LblConnType.Size = new System.Drawing.Size(65, 12);
+            this.LblConnType.TabIndex = 1;
+            this.LblConnType.Text = "通讯方式：";
             // 
-            // cmdConnType
+            // cmbConnType
             // 
-            this.cmdConnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmdConnType.FormattingEnabled = true;
-            this.cmdConnType.Location = new System.Drawing.Point(80, 33);
-            this.cmdConnType.Name = "cmdConnType";
-            this.cmdConnType.Size = new System.Drawing.Size(252, 20);
-            this.cmdConnType.TabIndex = 2;
-            this.cmdConnType.SelectedIndexChanged += new System.EventHandler(this.cmdConnType_SelectedIndexChanged);
+            this.cmbConnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConnType.FormattingEnabled = true;
+            this.cmbConnType.Location = new System.Drawing.Point(80, 30);
+            this.cmbConnType.Name = "cmbConnType";
+            this.cmbConnType.Size = new System.Drawing.Size(252, 20);
+            this.cmbConnType.TabIndex = 2;
+            this.cmbConnType.SelectedIndexChanged += new System.EventHandler(this.cmdConnType_SelectedIndexChanged);
             // 
-            // groupBox1
+            // gbDriveSN
             // 
-            this.groupBox1.Controls.Add(this.txtPassword);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtSN);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(344, 59);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(287, 85);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "控制器身份";
+            this.gbDriveSN.Controls.Add(this.txtPassword);
+            this.gbDriveSN.Controls.Add(this.lblPassword);
+            this.gbDriveSN.Controls.Add(this.txtSN);
+            this.gbDriveSN.Controls.Add(this.LblSN);
+            this.gbDriveSN.Location = new System.Drawing.Point(344, 59);
+            this.gbDriveSN.Name = "gbDriveSN";
+            this.gbDriveSN.Size = new System.Drawing.Size(287, 85);
+            this.gbDriveSN.TabIndex = 5;
+            this.gbDriveSN.TabStop = false;
+            this.gbDriveSN.Text = "控制器身份";
             // 
             // txtPassword
             // 
@@ -154,14 +157,14 @@
             this.txtPassword.TabIndex = 9;
             this.txtPassword.Text = "ffffffff";
             // 
-            // label5
+            // lblPassword
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(36, 55);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "密码：";
+            this.lblPassword.Location = new System.Drawing.Point(6, 54);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(71, 14);
+            this.lblPassword.TabIndex = 8;
+            this.lblPassword.Text = "密码：";
+            this.lblPassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtSN
             // 
@@ -172,24 +175,24 @@
             this.txtSN.TabIndex = 7;
             this.txtSN.Text = "FC-8300T19124012";
             // 
-            // label6
+            // LblSN
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(48, 27);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 12);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "SN：";
+            this.LblSN.Location = new System.Drawing.Point(20, 28);
+            this.LblSN.Name = "LblSN";
+            this.LblSN.Size = new System.Drawing.Size(57, 12);
+            this.LblSN.TabIndex = 6;
+            this.LblSN.Text = "SN：";
+            this.LblSN.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // butClear
+            // butIOClear
             // 
-            this.butClear.Location = new System.Drawing.Point(6, 3);
-            this.butClear.Name = "butClear";
-            this.butClear.Size = new System.Drawing.Size(75, 23);
-            this.butClear.TabIndex = 7;
-            this.butClear.Text = "清空";
-            this.butClear.UseVisualStyleBackColor = true;
-            this.butClear.Click += new System.EventHandler(this.butClear_Click);
+            this.butIOClear.Location = new System.Drawing.Point(6, 3);
+            this.butIOClear.Name = "butIOClear";
+            this.butIOClear.Size = new System.Drawing.Size(75, 23);
+            this.butIOClear.TabIndex = 7;
+            this.butIOClear.Text = "清空";
+            this.butIOClear.UseVisualStyleBackColor = true;
+            this.butIOClear.Click += new System.EventHandler(this.butClear_Click);
             // 
             // toolStrip1
             // 
@@ -315,7 +318,7 @@
             // 
             this.gbSerialPort.Controls.Add(this.butReloadSerialPort);
             this.gbSerialPort.Controls.Add(this.cmbSerialPort);
-            this.gbSerialPort.Controls.Add(this.label7);
+            this.gbSerialPort.Controls.Add(this.lblSerialPort);
             this.gbSerialPort.Location = new System.Drawing.Point(11, 59);
             this.gbSerialPort.Name = "gbSerialPort";
             this.gbSerialPort.Size = new System.Drawing.Size(321, 85);
@@ -325,7 +328,7 @@
             // 
             // butReloadSerialPort
             // 
-            this.butReloadSerialPort.Location = new System.Drawing.Point(92, 46);
+            this.butReloadSerialPort.Location = new System.Drawing.Point(123, 53);
             this.butReloadSerialPort.Name = "butReloadSerialPort";
             this.butReloadSerialPort.Size = new System.Drawing.Size(75, 23);
             this.butReloadSerialPort.TabIndex = 8;
@@ -337,36 +340,36 @@
             // 
             this.cmbSerialPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSerialPort.FormattingEnabled = true;
-            this.cmbSerialPort.Location = new System.Drawing.Point(92, 20);
+            this.cmbSerialPort.Location = new System.Drawing.Point(138, 22);
             this.cmbSerialPort.Name = "cmbSerialPort";
             this.cmbSerialPort.Size = new System.Drawing.Size(111, 20);
             this.cmbSerialPort.TabIndex = 4;
             // 
-            // label7
+            // lblSerialPort
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 23);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 12);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "通讯方式：";
+            this.lblSerialPort.Location = new System.Drawing.Point(31, 26);
+            this.lblSerialPort.Name = "lblSerialPort";
+            this.lblSerialPort.Size = new System.Drawing.Size(101, 12);
+            this.lblSerialPort.TabIndex = 3;
+            this.lblSerialPort.Text = "串口号：";
+            this.lblSerialPort.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblLocalAddress
             // 
-            this.lblLocalAddress.AutoSize = true;
-            this.lblLocalAddress.Location = new System.Drawing.Point(12, 154);
+            this.lblLocalAddress.Location = new System.Drawing.Point(11, 154);
             this.lblLocalAddress.Name = "lblLocalAddress";
-            this.lblLocalAddress.Size = new System.Drawing.Size(53, 12);
+            this.lblLocalAddress.Size = new System.Drawing.Size(64, 12);
             this.lblLocalAddress.TabIndex = 11;
             this.lblLocalAddress.Text = "本机IP：";
+            this.lblLocalAddress.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cmbLocalIP
             // 
             this.cmbLocalIP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLocalIP.FormattingEnabled = true;
-            this.cmbLocalIP.Location = new System.Drawing.Point(69, 150);
+            this.cmbLocalIP.Location = new System.Drawing.Point(80, 150);
             this.cmbLocalIP.Name = "cmbLocalIP";
-            this.cmbLocalIP.Size = new System.Drawing.Size(263, 20);
+            this.cmbLocalIP.Size = new System.Drawing.Size(252, 20);
             this.cmbLocalIP.TabIndex = 13;
             // 
             // tbEvent
@@ -374,25 +377,25 @@
             this.tbEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbEvent.Controls.Add(this.tabPage1);
-            this.tbEvent.Controls.Add(this.tabPage2);
+            this.tbEvent.Controls.Add(this.tpIO);
+            this.tbEvent.Controls.Add(this.tpCommand);
             this.tbEvent.Location = new System.Drawing.Point(11, 202);
             this.tbEvent.Name = "tbEvent";
             this.tbEvent.SelectedIndex = 0;
             this.tbEvent.Size = new System.Drawing.Size(620, 458);
             this.tbEvent.TabIndex = 15;
             // 
-            // tabPage1
+            // tpIO
             // 
-            this.tabPage1.Controls.Add(this.dgvIO);
-            this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(612, 432);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "通讯IO";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tpIO.Controls.Add(this.dgvIO);
+            this.tpIO.Controls.Add(this.panel1);
+            this.tpIO.Location = new System.Drawing.Point(4, 22);
+            this.tpIO.Name = "tpIO";
+            this.tpIO.Padding = new System.Windows.Forms.Padding(3);
+            this.tpIO.Size = new System.Drawing.Size(612, 432);
+            this.tpIO.TabIndex = 0;
+            this.tpIO.Text = "通讯IO";
+            this.tpIO.UseVisualStyleBackColor = true;
             // 
             // dgvIO
             // 
@@ -407,21 +410,21 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn4,
             this.Column7});
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIO.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIO.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvIO.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvIO.Location = new System.Drawing.Point(3, 32);
             this.dgvIO.Name = "dgvIO";
             this.dgvIO.ReadOnly = true;
             this.dgvIO.RowHeadersVisible = false;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIO.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIO.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvIO.RowTemplate.Height = 23;
             this.dgvIO.Size = new System.Drawing.Size(606, 397);
             this.dgvIO.TabIndex = 19;
@@ -469,7 +472,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.chkShowIO);
-            this.panel1.Controls.Add(this.butClear);
+            this.panel1.Controls.Add(this.butIOClear);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
@@ -487,17 +490,17 @@
             this.chkShowIO.UseVisualStyleBackColor = true;
             this.chkShowIO.CheckedChanged += new System.EventHandler(this.chkShowIO_CheckedChanged);
             // 
-            // tabPage2
+            // tpCommand
             // 
-            this.tabPage2.Controls.Add(this.dgvResult);
-            this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(612, 432);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "命令结果";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tpCommand.Controls.Add(this.dgvResult);
+            this.tpCommand.Controls.Add(this.panel2);
+            this.tpCommand.Location = new System.Drawing.Point(4, 22);
+            this.tpCommand.Name = "tpCommand";
+            this.tpCommand.Padding = new System.Windows.Forms.Padding(3);
+            this.tpCommand.Size = new System.Drawing.Size(612, 432);
+            this.tpCommand.TabIndex = 1;
+            this.tpCommand.Text = "命令结果";
+            this.tpCommand.UseVisualStyleBackColor = true;
             // 
             // dgvResult
             // 
@@ -512,21 +515,21 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvResult.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvResult.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResult.Location = new System.Drawing.Point(3, 32);
             this.dgvResult.Name = "dgvResult";
             this.dgvResult.ReadOnly = true;
             this.dgvResult.RowHeadersVisible = false;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvResult.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvResult.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvResult.RowTemplate.Height = 23;
             this.dgvResult.Size = new System.Drawing.Size(606, 397);
             this.dgvResult.TabIndex = 18;
@@ -581,7 +584,7 @@
             // 
             // butClearCommand
             // 
-            this.butClearCommand.Location = new System.Drawing.Point(28, 3);
+            this.butClearCommand.Location = new System.Drawing.Point(6, 3);
             this.butClearCommand.Name = "butClearCommand";
             this.butClearCommand.Size = new System.Drawing.Size(75, 23);
             this.butClearCommand.TabIndex = 7;
@@ -589,37 +592,37 @@
             this.butClearCommand.UseVisualStyleBackColor = true;
             this.butClearCommand.Click += new System.EventHandler(this.butClearCommand_Click);
             // 
-            // button2
+            // butStopCommand
             // 
-            this.button2.Location = new System.Drawing.Point(344, 147);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 23);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "停止所有通讯";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.ButStopCommand_Click);
+            this.butStopCommand.Location = new System.Drawing.Point(344, 149);
+            this.butStopCommand.Name = "butStopCommand";
+            this.butStopCommand.Size = new System.Drawing.Size(88, 23);
+            this.butStopCommand.TabIndex = 16;
+            this.butStopCommand.Text = "停止所有通讯";
+            this.butStopCommand.UseVisualStyleBackColor = true;
+            this.butStopCommand.Click += new System.EventHandler(this.ButStopCommand_Click);
             // 
             // txtProcess
             // 
-            this.txtProcess.Location = new System.Drawing.Point(69, 175);
+            this.txtProcess.Location = new System.Drawing.Point(80, 175);
             this.txtProcess.Name = "txtProcess";
-            this.txtProcess.Size = new System.Drawing.Size(558, 21);
+            this.txtProcess.Size = new System.Drawing.Size(551, 21);
             this.txtProcess.TabIndex = 17;
             // 
-            // label13
+            // lblProcess
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(22, 178);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(41, 12);
-            this.label13.TabIndex = 18;
-            this.label13.Text = "进度：";
+            this.lblProcess.Location = new System.Drawing.Point(12, 179);
+            this.lblProcess.Name = "lblProcess";
+            this.lblProcess.Size = new System.Drawing.Size(63, 17);
+            this.lblProcess.TabIndex = 18;
+            this.lblProcess.Text = "进度：";
+            this.lblProcess.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // butWatch
             // 
-            this.butWatch.Location = new System.Drawing.Point(563, 147);
+            this.butWatch.Location = new System.Drawing.Point(542, 149);
             this.butWatch.Name = "butWatch";
-            this.butWatch.Size = new System.Drawing.Size(68, 23);
+            this.butWatch.Size = new System.Drawing.Size(88, 23);
             this.butWatch.TabIndex = 19;
             this.butWatch.Text = "开启监控";
             this.butWatch.UseVisualStyleBackColor = true;
@@ -627,22 +630,22 @@
             // 
             // butReadSN
             // 
-            this.butReadSN.Location = new System.Drawing.Point(449, 147);
+            this.butReadSN.Location = new System.Drawing.Point(443, 149);
             this.butReadSN.Name = "butReadSN";
-            this.butReadSN.Size = new System.Drawing.Size(108, 23);
+            this.butReadSN.Size = new System.Drawing.Size(88, 23);
             this.butReadSN.TabIndex = 20;
             this.butReadSN.Text = "获取信息";
             this.butReadSN.UseVisualStyleBackColor = true;
             this.butReadSN.Click += new System.EventHandler(this.ButReadSN_Click);
             // 
-            // label11
+            // lblUDPAddr
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(11, 59);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(29, 12);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "IP：";
+            this.lblUDPAddr.Location = new System.Drawing.Point(2, 59);
+            this.lblUDPAddr.Name = "lblUDPAddr";
+            this.lblUDPAddr.Size = new System.Drawing.Size(38, 12);
+            this.lblUDPAddr.TabIndex = 0;
+            this.lblUDPAddr.Text = "IP：";
+            this.lblUDPAddr.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtUDPAddr
             // 
@@ -653,32 +656,32 @@
             this.txtUDPAddr.TabIndex = 3;
             this.txtUDPAddr.Text = "192.168.1.71";
             // 
-            // label10
+            // lblUDPPort
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(190, 59);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 12);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "端口：";
+            this.lblUDPPort.Location = new System.Drawing.Point(190, 57);
+            this.lblUDPPort.Name = "lblUDPPort";
+            this.lblUDPPort.Size = new System.Drawing.Size(59, 17);
+            this.lblUDPPort.TabIndex = 4;
+            this.lblUDPPort.Text = "端口：";
+            this.lblUDPPort.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtUDPPort
             // 
-            this.txtUDPPort.Location = new System.Drawing.Point(237, 55);
+            this.txtUDPPort.Location = new System.Drawing.Point(252, 55);
             this.txtUDPPort.MaxLength = 5;
             this.txtUDPPort.Name = "txtUDPPort";
             this.txtUDPPort.Size = new System.Drawing.Size(46, 21);
             this.txtUDPPort.TabIndex = 5;
             this.txtUDPPort.Text = "996";
             // 
-            // label12
+            // LblUDPLocalPort
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(11, 24);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 12);
-            this.label12.TabIndex = 6;
-            this.label12.Text = "本地端口：";
+            this.LblUDPLocalPort.AutoSize = true;
+            this.LblUDPLocalPort.Location = new System.Drawing.Point(11, 24);
+            this.LblUDPLocalPort.Name = "LblUDPLocalPort";
+            this.LblUDPLocalPort.Size = new System.Drawing.Size(65, 12);
+            this.LblUDPLocalPort.TabIndex = 6;
+            this.LblUDPLocalPort.Text = "本地端口：";
             // 
             // txtUDPLocalPort
             // 
@@ -701,14 +704,14 @@
             // 
             // gbUDP
             // 
-            this.gbUDP.Controls.Add(this.chkIsServer);
+            this.gbUDP.Controls.Add(this.chkIsUDPServer);
             this.gbUDP.Controls.Add(this.butUDPBind);
             this.gbUDP.Controls.Add(this.txtUDPLocalPort);
-            this.gbUDP.Controls.Add(this.label12);
+            this.gbUDP.Controls.Add(this.LblUDPLocalPort);
             this.gbUDP.Controls.Add(this.txtUDPPort);
-            this.gbUDP.Controls.Add(this.label10);
+            this.gbUDP.Controls.Add(this.lblUDPPort);
             this.gbUDP.Controls.Add(this.txtUDPAddr);
-            this.gbUDP.Controls.Add(this.label11);
+            this.gbUDP.Controls.Add(this.lblUDPAddr);
             this.gbUDP.Location = new System.Drawing.Point(11, 59);
             this.gbUDP.Name = "gbUDP";
             this.gbUDP.Size = new System.Drawing.Size(321, 85);
@@ -716,29 +719,40 @@
             this.gbUDP.TabStop = false;
             this.gbUDP.Text = "UDP";
             // 
-            // chkIsServer
+            // chkIsUDPServer
             // 
-            this.chkIsServer.AutoSize = true;
-            this.chkIsServer.Location = new System.Drawing.Point(231, 20);
-            this.chkIsServer.Name = "chkIsServer";
-            this.chkIsServer.Size = new System.Drawing.Size(84, 16);
-            this.chkIsServer.TabIndex = 11;
-            this.chkIsServer.Text = "服务器模式";
-            this.chkIsServer.UseVisualStyleBackColor = true;
+            this.chkIsUDPServer.AutoSize = true;
+            this.chkIsUDPServer.Location = new System.Drawing.Point(231, 20);
+            this.chkIsUDPServer.Name = "chkIsUDPServer";
+            this.chkIsUDPServer.Size = new System.Drawing.Size(84, 16);
+            this.chkIsUDPServer.TabIndex = 11;
+            this.chkIsUDPServer.Text = "服务器模式";
+            this.chkIsUDPServer.UseVisualStyleBackColor = true;
             // 
             // gpTCPServer
             // 
+            this.gpTCPServer.Controls.Add(this.ChkTLS12);
             this.gpTCPServer.Controls.Add(this.cmbTCPClientList);
-            this.gpTCPServer.Controls.Add(this.label3);
+            this.gpTCPServer.Controls.Add(this.LblTCPClients);
             this.gpTCPServer.Controls.Add(this.butTCPServerBind);
             this.gpTCPServer.Controls.Add(this.txtTCPServerPort);
-            this.gpTCPServer.Controls.Add(this.label2);
+            this.gpTCPServer.Controls.Add(this.lblLocalPort);
             this.gpTCPServer.Location = new System.Drawing.Point(11, 59);
             this.gpTCPServer.Name = "gpTCPServer";
             this.gpTCPServer.Size = new System.Drawing.Size(321, 85);
             this.gpTCPServer.TabIndex = 23;
             this.gpTCPServer.TabStop = false;
             this.gpTCPServer.Text = "TCP Server";
+            // 
+            // ChkTLS12
+            // 
+            this.ChkTLS12.AutoSize = true;
+            this.ChkTLS12.Location = new System.Drawing.Point(214, 22);
+            this.ChkTLS12.Name = "ChkTLS12";
+            this.ChkTLS12.Size = new System.Drawing.Size(84, 16);
+            this.ChkTLS12.TabIndex = 15;
+            this.ChkTLS12.Text = "启用TLS1.2";
+            this.ChkTLS12.UseVisualStyleBackColor = true;
             // 
             // cmbTCPClientList
             // 
@@ -749,14 +763,14 @@
             this.cmbTCPClientList.Size = new System.Drawing.Size(302, 20);
             this.cmbTCPClientList.TabIndex = 14;
             // 
-            // label3
+            // LblTCPClients
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 46);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 12);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "客户端列表：";
+            this.LblTCPClients.AutoSize = true;
+            this.LblTCPClients.Location = new System.Drawing.Point(11, 46);
+            this.LblTCPClients.Name = "LblTCPClients";
+            this.LblTCPClients.Size = new System.Drawing.Size(77, 12);
+            this.LblTCPClients.TabIndex = 11;
+            this.LblTCPClients.Text = "客户端列表：";
             // 
             // butTCPServerBind
             // 
@@ -777,35 +791,57 @@
             this.txtTCPServerPort.TabIndex = 7;
             this.txtTCPServerPort.Text = "9002";
             // 
-            // label2
+            // lblLocalPort
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "本地端口：";
+            this.lblLocalPort.AutoSize = true;
+            this.lblLocalPort.Location = new System.Drawing.Point(11, 24);
+            this.lblLocalPort.Name = "lblLocalPort";
+            this.lblLocalPort.Size = new System.Drawing.Size(65, 12);
+            this.lblLocalPort.TabIndex = 6;
+            this.lblLocalPort.Text = "本地端口：";
+            this.lblLocalPort.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbToolLanguage
+            // 
+            this.cmbToolLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbToolLanguage.FormattingEnabled = true;
+            this.cmbToolLanguage.Location = new System.Drawing.Point(427, 30);
+            this.cmbToolLanguage.Name = "cmbToolLanguage";
+            this.cmbToolLanguage.Size = new System.Drawing.Size(197, 20);
+            this.cmbToolLanguage.TabIndex = 25;
+            this.cmbToolLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbToolLanguage_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(362, 34);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Language:";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 661);
+            this.Controls.Add(this.cmbToolLanguage);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.butReadSN);
             this.Controls.Add(this.butWatch);
-            this.Controls.Add(this.label13);
+            this.Controls.Add(this.lblProcess);
             this.Controls.Add(this.txtProcess);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.butStopCommand);
             this.Controls.Add(this.tbEvent);
             this.Controls.Add(this.cmbLocalIP);
             this.Controls.Add(this.lblLocalAddress);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.cmdConnType);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.gbDriveSN);
+            this.Controls.Add(this.cmbConnType);
+            this.Controls.Add(this.LblConnType);
+            this.Controls.Add(this.gpTCPServer);
             this.Controls.Add(this.gbUDP);
             this.Controls.Add(this.gbSerialPort);
-            this.Controls.Add(this.gpTCPServer);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -813,18 +849,17 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbDriveSN.ResumeLayout(false);
+            this.gbDriveSN.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.gbSerialPort.ResumeLayout(false);
-            this.gbSerialPort.PerformLayout();
             this.tbEvent.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tpIO.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIO)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
+            this.tpCommand.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
             this.panel2.ResumeLayout(false);
             this.gbUDP.ResumeLayout(false);
@@ -839,14 +874,14 @@
 
 
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmdConnType;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label LblConnType;
+        private System.Windows.Forms.ComboBox cmbConnType;
+        private System.Windows.Forms.GroupBox gbDriveSN;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox txtSN;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button butClear;
+        private System.Windows.Forms.Label LblSN;
+        private System.Windows.Forms.Button butIOClear;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton butSystem;
         private System.Windows.Forms.ToolStripButton butTime;
@@ -859,18 +894,18 @@
         private System.Windows.Forms.GroupBox gbSerialPort;
         private System.Windows.Forms.Button butReloadSerialPort;
         private System.Windows.Forms.ComboBox cmbSerialPort;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblSerialPort;
         private System.Windows.Forms.Label lblLocalAddress;
         private System.Windows.Forms.ComboBox cmbLocalIP;
         private System.Windows.Forms.TabControl tbEvent;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tpIO;
+        private System.Windows.Forms.TabPage tpCommand;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button butClearCommand;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button butStopCommand;
         private System.Windows.Forms.TextBox txtProcess;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblProcess;
         private System.Windows.Forms.CheckBox chkShowIO;
         private System.Windows.Forms.Button butWatch;
         private System.Windows.Forms.DataGridView dgvResult;
@@ -890,21 +925,24 @@
         private System.Windows.Forms.ToolStripButton butAlarm;
         private System.Windows.Forms.ToolStripButton butAdditionalData;
         private System.Windows.Forms.Button butReadSN;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblUDPAddr;
         private System.Windows.Forms.TextBox txtUDPAddr;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblUDPPort;
         private System.Windows.Forms.TextBox txtUDPPort;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label LblUDPLocalPort;
         private System.Windows.Forms.TextBox txtUDPLocalPort;
         private System.Windows.Forms.Button butUDPBind;
         private System.Windows.Forms.GroupBox gbUDP;
-        private System.Windows.Forms.CheckBox chkIsServer;
+        private System.Windows.Forms.CheckBox chkIsUDPServer;
         private System.Windows.Forms.GroupBox gpTCPServer;
         private System.Windows.Forms.ComboBox cmbTCPClientList;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label LblTCPClients;
         private System.Windows.Forms.Button butTCPServerBind;
         private System.Windows.Forms.TextBox txtTCPServerPort;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblLocalPort;
+        private System.Windows.Forms.CheckBox ChkTLS12;
+        private System.Windows.Forms.ComboBox cmbToolLanguage;
+        private System.Windows.Forms.Label label4;
     }
 }
 

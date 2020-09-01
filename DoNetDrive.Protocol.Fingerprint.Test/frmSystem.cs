@@ -21,6 +21,7 @@ using DoNetDrive.Protocol.Fingerprint.SystemParameter.ScreenDisplayContent;
 using DoNetDrive.Protocol.Fingerprint.SystemParameter.ManageMenuPassword;
 using DoNetDrive.Protocol.Fingerprint.SystemParameter.OEM;
 using DoNetDrive.Protocol.Fingerprint.SystemParameter;
+using System.Text;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -54,6 +55,84 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void FrmSystem_Load(object sender, EventArgs e)
         {
+            LoadUILanguage();
+            
+        }
+
+        #region 多语言
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(tpPar1);//  设备参数设置
+            GetLanguage(gpSN);//  SN
+            GetLanguage(LblDriveSN);//  SN：
+            GetLanguage(butReadSN);//  读取
+            GetLanguage(butWriteSN);//  写入
+            GetLanguage(butWriteSN_Broadcast);//  广播写
+            GetLanguage(gbPassword);//  通讯密码
+            GetLanguage(LblConnectPassword);//  密码：
+            GetLanguage(butReadConnectPassword);//  读取
+            GetLanguage(butWriteConnectPassword);//  写入
+            GetLanguage(butResetConnectPassword);//  重置
+            GetLanguage(gbVersion);//  版本号
+            GetLanguage(LblVersion);//  硬件版本号：
+            GetLanguage(btnReadVersion);//  读取
+            GetLanguage(gbTCP);//  TCP/IP 连接参数
+            GetLanguage(lblMAC);//  MAC地址：
+            GetLanguage(LblIP);//  IP地址：
+            GetLanguage(LblIPMask);//  子网掩码：
+            GetLanguage(LblIPGateway);//  网关IP：
+            GetLanguage(LblDNS);//  DNS：
+            GetLanguage(LblDNSBackup);//  备用DNS：
+            GetLanguage(lblAutoIP);//  自动获得IP：
+            GetLanguage(LblUDPPort);//  本地UDP端口：
+            GetLanguage(LblServerPort);//  服务器端口：
+            GetLanguage(LblServerIP);//  服务器IP：
+            GetLanguage(LblServerAddr);//  服务器域名：
+            GetLanguage(butRendTCPSetting);//  读取
+            GetLanguage(butWriteTCPSetting);//  写入
+            GetLanguage(gbRunStatus);//  设备运行信息
+            GetLanguage(lblRunDay);//  设备已运行天数：
+            GetLanguage(LblRestartCount);//  看门狗复位次数：
+            GetLanguage(lblFormatCount);//  格式化次数：
+            GetLanguage(LblStartTime);//  上电时间：
+            GetLanguage(gbRecordMode);//  记录存储方式
+            GetLanguage(lblRecordMode);//  记录满盘后：
+            GetLanguage(rBtnCover);//  循环覆盖存储
+            GetLanguage(rBtnNoCover);//  不再保存新纪录
+            GetLanguage(btnReadRecordMode);//  读取
+            GetLanguage(btnWriteRecordMode);//  写入
+            GetLanguage(gbWatch);//  数据监控
+            GetLanguage(lbWatchStateTag);//  监控状态：
+            GetLanguage(lbWatchState);//  未开启
+            GetLanguage(btnBeginWatch);//  实时监控开
+            GetLanguage(btnCloseWatch);//  实时监控关
+            GetLanguage(btnReadWatchState);//  状态
+            GetLanguage(btnBeginWatch_Broadcast);//  开启广播
+            GetLanguage(btnCloseWatch_Broadcast);//  关闭广播
+
+
+
+            GetLanguage(tpNetwork);//客户端网络参数
+            GetLanguage(gbServerDetail);//服务器参数
+            GetLanguage(lblServerPort_1);//服务器端口号：
+            GetLanguage(lblServerIP_1);//服务器IP：
+            GetLanguage(LblServerDomain);//服务器域名：
+            GetLanguage(butReadNetworkServerDetail);//读取
+            GetLanguage(butWriteNetworkServerDetail);//写入
+            GetLanguage(gbClientDetail);//客户端参数
+            GetLanguage(LblKeepAliveInterval);//与服务器建立连接后，每隔
+            GetLanguage(LblKeepAliveInterval1);//秒，发送一次保活包
+            GetLanguage(btnReadKeepAliveInterval);//读取
+            GetLanguage(btnWriteKeepAliveInterval);//写入
+            GetLanguage(butRequireSendKeepalivePacket);//立即发送保活包
+            GetLanguage(butReadClientWorkMode);//读取
+            GetLanguage(butWriteClientWorkMode);//写入
+            GetLanguage(butRequireConnectServer);//立即重连服务器
+            GetLanguage(butReadClientStatus_Result);//获取状态
+            GetLanguage(LblClientNetWorkMode);//客户端网络模式：
+            GetLanguage(LblServerStatus);//客户端网络状态：
+
             cmbDoor.Items.Clear();
             cmbDoor.Items.AddRange(DoorList);
             cmbDoor.SelectedIndex = 0;
@@ -95,9 +174,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             Cmb_FaceBodyTemperature.Items.AddRange(FaceBodyTemperatureList);
             Cmb_FaceBodyTemperature.SelectedIndex = 0;
+
+            cbxKeepAliveInterval.Text = "10";
+
+            cmbClientNetWorkMode.Items.AddRange(ClientNetWorkMode);
+            cmbClientNetWorkMode.SelectedIndex = 1;
+
             IniDriveLanguage();
             IniDriveVolume();
         }
+        #endregion
+
+        string[] ClientNetWorkMode = { "禁用", "UDP Client", "TCP Client", "TCP Client + TLS1.2" };
         string[] FaceBodyTemperatureList = { "禁止", "摄氏度（默认值）", "华氏度" };
         string[] FaceLEDModeList = { "一直关", "一直亮", "检测到人员时开" };
         string[] DoorList = new string[] { "1", "2", "3", "4" };
@@ -105,6 +193,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         string[] IsUseList = new string[] { "启用", "禁用" };
         string[] WGByteSortList = new string[] { "高位在前低位在后", "低位在前高位在后" };
         string[] OutputTypeList = new string[] { "输出用户号", "输出人员卡号" };
+
         private void ButReadSN_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -199,13 +288,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     txtIPGateway.Text = result.TCP.mIPGateway;
                     txtDNS.Text = result.TCP.mDNS;
                     txtDNSBackup.Text = result.TCP.mDNSBackup;
-                    txtTCPPort.Text = result.TCP.mTCPPort.ToString();
                     txtUDPPort.Text = result.TCP.mUDPPort.ToString();
                     txtServerIP.Text = result.TCP.mServerIP;
                     txtServerAddr.Text = result.TCP.mServerAddr;
                     txtServerPort.Text = result.TCP.mServerPort.ToString();
 
-                    cbxProtocolType.SelectedIndex = result.TCP.mProtocolType;
                     cbxAutoIP.SelectedIndex = result.TCP.mAutoIP == true ? 1 : 0;
                 });
                 string TCPInfo = DebugTCPDetail(result.TCP);
@@ -256,7 +343,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 MsgErr("请输入正确服务器IP！");
                 return;
             }
-            txtTCPPort.Text = "8000";
             if (!Regex.IsMatch(txtUDPPort.Text.Trim(), reg3))
             {
                 MsgErr("请输入正确本地UDP端口！");
@@ -279,7 +365,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
             txtServerAddr.Text = "www.pc15.net";
 
-            cbxProtocolType.SelectedIndex = 1;
+  
 
             if (Convert.ToInt16(cbxAutoIP.SelectedIndex) == -1)
             {
@@ -294,13 +380,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             tcp.mIPGateway = txtIPGateway.Text.Trim();
             tcp.mDNS = txtDNS.Text.Trim();
             tcp.mDNSBackup = txtDNSBackup.Text.Trim();
-            tcp.mTCPPort = Convert.ToInt32(txtTCPPort.Text.Trim());
+            tcp.mTCPPort = 8000;
             tcp.mUDPPort = Convert.ToInt32(txtUDPPort.Text.Trim());
             tcp.mServerIP = txtServerIP.Text.Trim();
             tcp.mServerAddr = txtServerAddr.Text.Trim();
             tcp.mServerPort = Convert.ToInt32(txtServerPort.Text.Trim());
 
-            tcp.mProtocolType = Convert.ToUInt16(cbxProtocolType.SelectedIndex);
+            tcp.mProtocolType =1 ;
 
             if (cbxAutoIP.SelectedIndex == 1)
             {
@@ -575,43 +661,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         }
 
 
-        private void BtnReadCacheContent_Click(object sender, EventArgs e)
-        {
-            var cmdDtl = mMainForm.GetCommandDetail();
-            if (cmdDtl == null) return;
-            ReadCacheContent cmd = new ReadCacheContent(cmdDtl);
-            mMainForm.AddCommand(cmd);
-
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                CacheContent_Result result = cmde.Command.getResult() as CacheContent_Result;
-                string CacheContent = result.CacheContent;
-                Invoke(() =>
-                {
-                    txtCacheContent.Text = CacheContent;
-                });
-                CacheContent = "缓存区内容：" + CacheContent;
-                mMainForm.AddCmdLog(cmde, CacheContent);
-            };
-        }
-
-        private void BtnWriteCacheContent_Click(object sender, EventArgs e)
-        {
-            string reg = @"^\+?[0-9]*$";
-            if (!Regex.IsMatch(txtCacheContent.Text.Trim(), reg) || txtCacheContent.Text.Trim().Length > 30 || string.IsNullOrEmpty(txtCacheContent.Text.Trim()))
-            {
-                MsgErr("请输入正确缓存区内容！");
-                return;
-            }
-            string cacheContent = txtCacheContent.Text.Trim();
-
-            var cmdDtl = mMainForm.GetCommandDetail();
-            if (cmdDtl == null) return;
-            WriteCacheContent cmd = new WriteCacheContent(cmdDtl, new CacheContent_Parameter(cacheContent));
-            mMainForm.AddCommand(cmd);
-        }
-
+        #region 保活包间隔
         private void BtnReadKeepAliveInterval_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -637,7 +687,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 Invoke(() =>
                 {
-                    cbxKeepAliveInterval.Text = IntervalTimeInfo.Replace("秒", "");
+                    cbxKeepAliveInterval.Text = IntervalTime.ToString();
                 });
                 string IntervalTimeStr = "与服务器建立连接后，每隔：" + IntervalTimeInfo + "，发送一次保活包";
                 mMainForm.AddCmdLog(cmde, IntervalTimeStr);
@@ -646,73 +696,26 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void BtnWriteKeepAliveInterval_Click(object sender, EventArgs e)
         {
-            string reg = @"^\+?[0-9]*$";
-            if (!Regex.IsMatch(cbxKeepAliveInterval.Text.Trim(), reg))
-            {
-                if (cbxKeepAliveInterval.Text != "禁用")
-                {
-                    MsgErr("请输入正确保活间隔时间！");
-                    return;
-                }
-            }
-            if (Regex.IsMatch(cbxKeepAliveInterval.Text.Trim(), reg))
-            {
-                if (Convert.ToUInt32(cbxKeepAliveInterval.Text) < 0 || Convert.ToUInt32(cbxKeepAliveInterval.Text) > 65535)
-                {
-                    MsgErr("请输入正确保活间隔时间！");
-                    return;
-                }
-            }
-
             ushort IntervalTime = 0;
-            string deadlineInfo = cbxKeepAliveInterval.Text;
-            if (deadlineInfo == "禁用")
+            string sIntervalTime = cbxKeepAliveInterval.Text.Trim();
+            if (sIntervalTime == "禁用")
             {
                 IntervalTime = 0;
             }
             else
             {
-                IntervalTime = Convert.ToUInt16(cbxKeepAliveInterval.Text);
+                if (!ushort.TryParse(sIntervalTime, out IntervalTime))
+                {
+                    MsgErr("请输入正确保活间隔时间！");
+                    return;
+                }
             }
-
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             WriteKeepAliveInterval cmd = new WriteKeepAliveInterval(cmdDtl, new WriteKeepAliveInterval_Parameter(IntervalTime));
             mMainForm.AddCommand(cmd);
         }
-
-        private void BtnReadDataEncryptionSwitch_Click(object sender, EventArgs e)
-        {
-            var cmdDtl = mMainForm.GetCommandDetail();
-            if (cmdDtl == null) return;
-            ReadDataEncryptionSwitch cmd = new ReadDataEncryptionSwitch(cmdDtl);
-            mMainForm.AddCommand(cmd);
-
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                ReadDataEncryptionSwitch_Result result = cmde.Command.getResult() as ReadDataEncryptionSwitch_Result;
-
-                string Info = result.IsUse ? "启用通讯加密，" : "禁用通讯加密，";
-
-                Info += "密钥：" + result.SecretKey;
-                Invoke(() =>
-                {
-                    cbDataEncryptionSwitchIsUse.Checked = result.IsUse;
-                    txtSecretKey.Text = result.SecretKey;
-                });
-                mMainForm.AddCmdLog(cmde, Info);
-            };
-        }
-
-        private void BtnWriteDataEncryptionSwitch_Click(object sender, EventArgs e)
-        {
-            var cmdDtl = mMainForm.GetCommandDetail();
-            if (cmdDtl == null) return;
-            WriteDataEncryptionSwitch_Parameter par = new WriteDataEncryptionSwitch_Parameter(cbDataEncryptionSwitchIsUse.Checked, txtSecretKey.Text);
-            WriteDataEncryptionSwitch cmd = new WriteDataEncryptionSwitch(cmdDtl, par);
-            mMainForm.AddCommand(cmd);
-        }
+        #endregion
 
         private void BtnReadLocalIdentity_Click(object sender, EventArgs e)
         {
@@ -874,6 +877,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mMainForm.AddCommand(cmd);
         }
 
+        #region 菜单管理密码
         private void BtnReadManageMenuPassword_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -901,7 +905,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             WriteManageMenuPassword cmd = new WriteManageMenuPassword(cmdDtl, par);
             mMainForm.AddCommand(cmd);
         }
+        #endregion
 
+        #region OEM
         private void BtnReadOEM_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -939,6 +945,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             WriteOEM cmd = new WriteOEM(cmdDtl, par);
             mMainForm.AddCommand(cmd);
         }
+        #endregion
+
         #region 设备语言
         private void IniDriveLanguage()
         {
@@ -1040,6 +1048,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mMainForm.AddCommand(cmd);
         }
         #endregion
+
+        #region 补光灯模式读取
         /// <summary>
         /// 补光灯模式写入
         /// </summary>
@@ -1075,6 +1085,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
              };
         }
+        #endregion
+
+        #region 口罩识别开关
         /// <summary>
         /// 写入口罩识别开关
         /// </summary>
@@ -1109,6 +1122,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             };
         }
+        #endregion
+
+        #region 体温检测及格式
         /// <summary>
         /// 写入体温检测及格式
         /// </summary>
@@ -1144,6 +1160,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             };
         }
+        #endregion
+
+        #region 体温报警阈值
         /// <summary>
         /// 写入体温报警阈值
         /// </summary>
@@ -1183,6 +1202,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             };
         }
+        #endregion
+
+        #region 体温数值显示开关
         /// <summary>
         /// 写入体温数值显示开关
         /// </summary>
@@ -1217,6 +1239,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             };
         }
+        #endregion
+
+        #region 短消息
+
         /// <summary>
         /// 写入短消息
         /// </summary>
@@ -1248,13 +1274,220 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mMainForm.AddCommand(cmd);
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
+
                 var result = cmde.Command.getResult() as ReadShortMessage_Result;
+                mMainForm.AddCmdLog(cmde, $"短消息：{ result.Message}");
                 Invoke(() =>
                 {
                     Txt_ShortMessage.Text = result.Message;
                 });
 
+
             };
         }
+        #endregion
+
+        #region 服务器网络参数
+
+        private void butReadNetworkServerDetail_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new ReadNetworkServerDetail(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Command.getResult() as ReadNetworkServerDetail_Result;
+                mMainForm.AddCmdLog(cmde, $"服务器参数： 端口:{result.ServerPort}  IP：{ result.ServerIP}，域名：{result.ServerDomain}");
+                Invoke(() =>
+                {
+                    txtServerIP_1.Text = result.ServerIP;
+                    txtServerPort_1.Text = result.ServerPort.ToString();
+                    txtServerDomain.Text = result.ServerDomain;
+
+                });
+
+            };
+        }
+
+        private void butWriteNetworkServerDetail_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            string sIP = txtServerIP_1.Text;
+            int iPort = 0;
+            if (!int.TryParse(txtServerPort_1.Text, out iPort))
+            {
+                MsgErr("服务器端口号输入错误！");
+                return;
+            }
+            string sDomain = txtServerDomain.Text;
+
+            var par = new WriteNetworkServerDetail_Parameter(iPort, sIP);
+            par.ServerDomain = sDomain;
+            if (!par.checkedParameter())
+            {
+                MsgErr("服务器参数验证失败！");
+                return;
+            }
+
+            var cmd = new WriteNetworkServerDetail(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddCmdLog(cmde, $"服务器参数： 端口:{iPort}  IP：{ sIP}，域名：{sDomain}");
+            };
+        }
+
+        #endregion
+
+        #region 立即发送一次保活包
+
+        private void butRequireSendKeepalivePacket_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new RequireSendKeepalivePacket(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Command.getResult() as RequireSendKeepalivePacket_Result;
+                int iCode = result.ResultStatus;
+                string[] sCodeName = new string[10];
+                sCodeName[1] = "发送成功";
+                sCodeName[2] = "Server 参数未设置";
+                sCodeName[3] = "Server 参数错误";
+                sCodeName[4] = "Server 连接失败 （TCP）";
+                sCodeName[5] = "服务器无应答";
+                sCodeName[6] = "网络参数设置错误";
+                sCodeName[7] = "网线未连接";
+                sCodeName[8] = "Wifi 未连接";
+                mMainForm.AddCmdLog(cmde, $"状态:{sCodeName[iCode]} ");
+
+            };
+        }
+        #endregion
+
+        #region 使设备重新连接服务器
+        private void butRequireConnectServer_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new RequireConnectServer(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Command.getResult() as RequireConnectServer_Result;
+                int iCode = result.ResultStatus;
+                string[] sCodeName = new string[10];
+                sCodeName[1] = "已重新连接（UDP时表示已发送保活包）";
+                sCodeName[2] = "Server 参数未设置";
+                sCodeName[3] = "Server 参数错误";
+                sCodeName[4] = "Server 连接失败 （TCP）";
+                sCodeName[5] = "服务器无应答";
+                sCodeName[6] = "网络参数设置错误";
+                sCodeName[7] = "网线未连接";
+                sCodeName[8] = "Wifi 未连接";
+                mMainForm.AddCmdLog(cmde, $"状态:{sCodeName[iCode]} ");
+
+            };
+        }
+        #endregion
+
+        #region 获取客户端连接状态
+        private void butReadClientStatus_Result_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new ReadClientStatus(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Command.getResult() as ReadClientStatus_Result;
+                int iModel = result.ClientModel;
+
+                var strbuf = new StringBuilder();
+
+                strbuf.Append("客户端网络模式：").Append(ClientNetWorkMode[iModel]);
+                strbuf.Append("，服务器IP：").Append(result.ServerIP);
+                string[] sConnectStatus = new string[256];
+                sConnectStatus[0] = "TCP Client 未连接";
+                sConnectStatus[2] = "TCP Client 已连接";
+                sConnectStatus[3] = "UDP Client 无连接状态";
+                sConnectStatus[255] = "已禁用";
+
+                strbuf.Append(",连接状态：").Append(sConnectStatus[result.ConnectStatus]);
+
+                strbuf.AppendLine().Append("最近一次保活包发送时间：");
+                if (result.LastKeepaliveTime != DateTime.MinValue)
+                {
+                    strbuf.Append(result.LastKeepaliveTime);
+                }
+                else
+                {
+                    strbuf.Append("-");
+                }
+
+
+                mMainForm.AddCmdLog(cmde, strbuf.ToString());
+                Invoke(() =>
+                {
+                    cmbClientNetWorkMode.SelectedIndex = iModel;
+                    txtServerStatus.Text = strbuf.ToString();
+                });
+
+            };
+        }
+        #endregion
+
+        #region 客户端网络模式
+        private void butReadClientWorkMode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new ReadClientWorkMode(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Command.getResult() as ReadClientWorkMode_Result;
+                int iModel = result.ClientModel;
+                cmbClientNetWorkMode.SelectedIndex = result.ClientModel;
+                var strbuf = new StringBuilder();
+
+                strbuf.Append("客户端网络模式：").Append(ClientNetWorkMode[iModel]);
+
+                mMainForm.AddCmdLog(cmde, strbuf.ToString());
+                Invoke(() =>
+                {
+                    cmbClientNetWorkMode.SelectedIndex = iModel;
+                });
+            };
+        }
+
+        private void butWriteClientWorkMode_Click(object sender, EventArgs e)
+        {
+            int iModel = cmbClientNetWorkMode.SelectedIndex;
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var par = new WriteClientWorkMode_Parameter(iModel);
+            var cmd = new WriteClientWorkMode(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var strbuf = new StringBuilder();
+                strbuf.Append("客户端网络模式：").Append(ClientNetWorkMode[iModel]);
+
+                mMainForm.AddCmdLog(cmde, strbuf.ToString());
+            };
+        }
+        #endregion
+
+
     }
 }

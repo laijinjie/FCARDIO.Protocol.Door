@@ -22,6 +22,9 @@ using System.Collections.Concurrent;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN;
 using System.Linq;
 using System.Configuration;
+using DoNetDrive.Protocol.Fingerprint.Test.Properties;
+using System.Security.Cryptography.X509Certificates;
+using System.IO;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -29,7 +32,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
     {
         ConnectorAllocator mAllocator;
         ConnectorObserverHandler mObserver;
-        private static HashSet<Form> NodeForms;
+        private static HashSet<frmNodeForm> NodeForms;
         private static string[] TransactionTypeName;
 
 
@@ -49,20 +52,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         static frmMain()
         {
-            NodeForms = new HashSet<Form>();
-            IniCommandClassNameList();
-
-            TransactionTypeName = new string[255];
-            TransactionTypeName[1] = "认证记录";
-            TransactionTypeName[2] = "门操作记录";
-            TransactionTypeName[3] = "系统记录";
-            TransactionTypeName[4] = "体温记录";
-
-            TransactionTypeName[0xA0] = "连接测试";
-            TransactionTypeName[0x22] = "保活包";
+            NodeForms = new HashSet<frmNodeForm>();
         }
 
-        public static void AddNodeForms(Form frm)
+        public static void AddNodeForms(frmNodeForm frm)
         {
             if (!NodeForms.Contains(frm))
             {
@@ -86,6 +79,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void FrmMain_Load(object sender, EventArgs e)
         {
             _IsClosed = false;
+
+            string sLanguage = ConfigurationManager.AppSettings["Languages"];
+            cmbToolLanguage.Items.AddRange(sLanguage.SplitTrim(","));
+            cmbToolLanguage.SelectedIndex = 0;
+            LoadUILanguage();
+
+            tbEvent.SelectedIndex = 1;
+
             Task.Run(() =>
             {
                 System.Threading.Thread.Sleep(100);
@@ -93,8 +94,124 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             });
 
-            tbEvent.SelectedIndex = 1;
         }
+
+        #region 多语言
+
+        private string GetLanguage(string sKey)
+        {
+            return ToolLanguage.GetLanguage(Name, sKey);
+        }
+        private string GetLanguage(string sKey, params object[] args)
+        {
+            string str = ToolLanguage.GetLanguage(Name, sKey);
+            return string.Format(str, args);
+        }
+
+
+        private void GetLanguage(ToolStripItem ctr)
+        {
+            ctr.Text = ToolLanguage.GetLanguage(Name, ctr.Name);
+        }
+        private void GetLanguage(Control ctr)
+        {
+            ctr.Text = ToolLanguage.GetLanguage(Name, ctr.Name);
+        }
+        private void GetLanguage(DataGridView dg)
+        {
+            string sCols = GetLanguage($"{dg.Name}_Cols");
+            var sArr = sCols.SplitTrim(",");
+            var cols = dg.Columns;
+            for (int i = 0; i < cols.Count; i++)
+            {
+                var col = cols[i];
+                col.HeaderText = sArr[i];
+            }
+
+        }
+
+
+        private void LoadComboxItemsLanguage(ComboBox cbx, string sKey)
+        {
+            int iOldSelectIndex = cbx.SelectedIndex;
+            cbx.Items.Clear();
+            string sItems = GetLanguage(sKey);
+            if (string.IsNullOrEmpty(sItems))
+                return;
+
+            string[] sArr = sItems.SplitTrim(",");
+            cbx.Items.AddRange(sArr);
+            if (cbx.Items.Count > iOldSelectIndex)
+            {
+                cbx.SelectedIndex = iOldSelectIndex;
+            }
+            else
+            {
+                cbx.SelectedIndex = 0;
+            }
+        }
+
+        private void LoadUILanguage()
+        {
+            //指纹机、人脸机 调试程序
+            Text = GetLanguage("FormCaption") + "  Ver " + Application.ProductVersion;
+            GetLanguage(butSystem);//  系统参数                             
+            GetLanguage(butTime);//日期时间                             
+            GetLanguage(butDoor);//门参数                             
+            GetLanguage(butAlarm);// 报警设置                             
+            GetLanguage(butHoliday);//   节假日                             
+            GetLanguage(ButTimeGroup);//     开门时段                             
+            GetLanguage(butCard);//人事档案                             
+            GetLanguage(butRecord);//  记录操作                             
+            GetLanguage(butUploadSoftware);//          远程升级                             
+            GetLanguage(butAdditionalData);//          人员附加数据   
+            GetLanguage(LblConnType);
+            LoadComboxItemsLanguage(cmbConnType, "ConnType_Items");
+            GetLanguage(lblLocalPort);
+            GetLanguage(butTCPServerBind);
+            GetLanguage(ChkTLS12);
+            GetLanguage(LblTCPClients);
+            GetLanguage(gbDriveSN);
+            GetLanguage(lblPassword);
+            GetLanguage(lblLocalAddress);
+            GetLanguage(butStopCommand);
+            GetLanguage(butReadSN);
+            GetLanguage(butWatch);
+            GetLanguage(lblProcess);
+            GetLanguage(tpIO);
+            GetLanguage(butIOClear);
+            GetLanguage(chkShowIO);
+            GetLanguage(tpCommand);
+            GetLanguage(butClearCommand);
+            GetLanguage(chkIsUDPServer);//  服务器模式
+            GetLanguage(LblUDPLocalPort);//  本地端口：
+            GetLanguage(butUDPBind);//  绑定
+            GetLanguage(lblSerialPort);//  串口号：
+            GetLanguage(butReloadSerialPort);//   刷新
+            GetLanguage(gbSerialPort);//   串口
+            GetLanguage(lblUDPPort);//   端口：
+            GetLanguage(lblUDPAddr);//   IP：
+            GetLanguage(LblSN);//   SN：
+            GetLanguage(dgvIO);//标签,内容,类型,时间,远程信息,本地信息
+            GetLanguage(dgvResult);//类型,内容,身份信息,远程信息,时间,耗时
+            IniCommandClassNameList();
+
+            TransactionTypeName = new string[255];
+            TransactionTypeName[1] = GetLanguage("TransactionTypeName_1");//认证记录
+            TransactionTypeName[2] = GetLanguage("TransactionTypeName_2");//"门操作记录";
+            TransactionTypeName[3] = GetLanguage("TransactionTypeName_3");//"系统记录";
+            TransactionTypeName[4] = GetLanguage("TransactionTypeName_4");//"体温记录";
+
+            TransactionTypeName[0xA0] = GetLanguage("TransactionTypeName_0xA0");//"连接测试";
+            TransactionTypeName[0x22] = GetLanguage("TransactionTypeName_0x22");//"保活包";
+
+            foreach (var frm in NodeForms)
+            {
+                frm.LoadUILanguage();
+            }
+        }
+        #endregion
+
 
 
         /// <summary>
@@ -137,6 +254,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void LoadSetting()
         {
+
+
             string sValue = ConfigurationManager.AppSettings["UDPPort"];
             if (!string.IsNullOrEmpty(sValue)) txtUDPLocalPort.Text = sValue;
 
@@ -151,7 +270,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             txtPassword.Text = ConfigurationManager.AppSettings["DrivePassword"];
 
             sValue = ConfigurationManager.AppSettings["ConnType"];
-            if (!string.IsNullOrEmpty(sValue)) cmdConnType.SelectedIndex = int.Parse(sValue);
+            if (!string.IsNullOrEmpty(sValue)) cmbConnType.SelectedIndex = int.Parse(sValue);
 
 
             sValue = ConfigurationManager.AppSettings["SerialPort"];
@@ -162,6 +281,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             sValue = ConfigurationManager.AppSettings["TCPServerPort"];
             if (!string.IsNullOrEmpty(sValue)) txtTCPServerPort.Text = sValue;
+
+            sValue = ConfigurationManager.AppSettings["UseSSL"];
+            if (!string.IsNullOrEmpty(sValue)) ChkTLS12.Checked = bool.Parse(sValue);
+
+            sValue = ConfigurationManager.AppSettings["ToolLanguage"];
+            if (!string.IsNullOrEmpty(sValue)) SelectComboxItem(cmbToolLanguage, sValue);
+
 
         }
 
@@ -175,10 +301,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             SetConfigKey(config, "UDPRemotePort", txtUDPPort.Text);
             SetConfigKey(config, "DriveSN", txtSN.Text);
             SetConfigKey(config, "DrivePassword", txtPassword.Text);
-            SetConfigKey(config, "ConnType", cmdConnType.SelectedIndex.ToString());
+            SetConfigKey(config, "ConnType", cmbConnType.SelectedIndex.ToString());
             SetConfigKey(config, "SerialPort", cmbSerialPort.Text);
             SetConfigKey(config, "LocalIP", cmbLocalIP.Text);
             SetConfigKey(config, "TCPServerPort", txtTCPServerPort.Text);
+            SetConfigKey(config, "UseSSL", ChkTLS12.Checked.ToString());
+            SetConfigKey(config, "ToolLanguage", cmbToolLanguage.Text);
 
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
@@ -274,14 +402,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void MObserver_DisposeResponseEvent(INConnector connector, string msg)
         {
             if (!mShowIOEvent) return;
-            AddIOLog(connector.GetConnectorDetail(), "发送数据", msg);
+            AddIOLog(connector.GetConnectorDetail(), GetLanguage("DisposeResponse"), msg);//"发送数据"
         }
 
 
         private void MObserver_DisposeRequestEvent(INConnector connector, string msg)
         {
             if (!mShowIOEvent) return;
-            AddIOLog(connector.GetConnectorDetail(), "接收数据", msg);
+            AddIOLog(connector.GetConnectorDetail(), GetLanguage("DisposeRequest"), msg);//"接收数据"
         }
 
         private void mAllocator_ConnectorErrorEvent(object sender, Core.Connector.INConnectorDetail connector)
@@ -290,16 +418,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 case ConnectorType.UDPServer://UDP服务器
                     Invoke(() => UDPBindOver(false));
-                    MsgErr("UDP绑定失败");
-                    AddIOLog(connector, "UDP绑定", "UDP绑定失败");
+                    MsgErr(GetLanguage("UDPBindErr"));//"UDP绑定失败"
+                    //                 "UDP绑定", "UDP绑定失败"
+                    AddIOLog(connector, GetLanguage("UDPBind"), GetLanguage("UDPBindErr"));
                     break;
                 case ConnectorType.TCPServer://UDP服务器
                     Invoke(() => TCPBindOver(false));
-                    MsgErr("TCP Server绑定失败");
-                    AddIOLog(connector, "TCP Server绑定", "TCP Server绑定失败");
+                    MsgErr(GetLanguage("TCPBindErr"));//"TCP Server绑定失败"
+                    //                 "TCP Server绑定", "TCP Server绑定失败"
+                    AddIOLog(connector, GetLanguage("TCPBind"), GetLanguage("TCPBindErr"));
                     break;
                 default:
-                    AddIOLog(connector, "错误", "连接失败");
+                    AddIOLog(connector, GetLanguage("Error"), GetLanguage("ConnectorError"));//"连接失败"
                     break;
             }
         }
@@ -310,14 +440,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 case ConnectorType.UDPServer://UDP服务器
                     Invoke(() => UDPBindOver(false));
-                    AddIOLog(connector, "UDP绑定", "UDP绑定已关闭");
+                    //                 "UDP绑定", "UDP绑定已关闭"
+                    AddIOLog(connector, GetLanguage("UDPBind"), GetLanguage("UDPConnectorClosed"));
                     break;
                 case ConnectorType.TCPServer:
                     Invoke(() => TCPBindOver(false));
-                    AddIOLog(connector, "TCP Server 绑定", "TCP Server 绑定已关闭");
+                    //"TCP Server 绑定已关闭"
+                    AddIOLog(connector, GetLanguage("TCPBind"), GetLanguage("TCPConnectorClosed"));
                     break;
                 default:
-                    AddIOLog(connector, "关闭", "连接通道已关闭");
+                    // "关闭", "连接通道已关闭"
+                    AddIOLog(connector, GetLanguage("Closed"), GetLanguage("ConnectorClosed"));
                     break;
             }
         }
@@ -328,11 +461,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 case ConnectorType.TCPServer://TCP Server 连接绑定成功
                     Invoke(() => TCPBindOver(true));
-                    AddIOLog(connector, "TCPServer绑定", "TCPServer绑定成功");
+                    //"TCPServer绑定", "TCPServer绑定成功"
+                    AddIOLog(connector, GetLanguage("TCPBind"), GetLanguage("TCPConnectorConnected"));
                     break;
                 case ConnectorType.UDPServer://UDP服务器
                     Invoke(() => UDPBindOver(true));
-                    AddIOLog(connector, "UDP绑定", "UDP绑定成功");
+                    //"UDP绑定", "UDP绑定成功"
+                    AddIOLog(connector, GetLanguage("UDPBind"), GetLanguage("UDPConnectorConnected"));
                     break;
                 default:
                     mAllocator.GetConnector(connector).AddRequestHandle(mObserver);
@@ -342,7 +477,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     new Door8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
                     cnt.RemoveRequestHandle(typeof(Door8800RequestHandle));//先删除，防止已存在就无法添加。
 
-                    AddIOLog(connector, "成功", "通道连接成功");
+                    // "成功", "通道连接成功"
+                    AddIOLog(connector, GetLanguage("Connected"), GetLanguage("ConnectorConnected"));
                     break;
             }
         }
@@ -352,7 +488,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         #region 命令事件
         private void MAllocator_AuthenticationErrorEvent(object sender, CommandEventArgs e)
         {
-            AddCmdLog(e, "通讯密码错误");
+            AddCmdLog(e, GetLanguage("AuthenticationError"));//"通讯密码错误"
         }
 
         private void mAllocator_CommandTimeout(object sender, CommandEventArgs e)
@@ -362,7 +498,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             //    AddCmdLog(e, "搜索完毕");
             //    return;
             //}
-            AddCmdLog(e, "命令超时");
+            AddCmdLog(e, GetLanguage("CommandTimeoutEvent"));//"命令超时");
         }
 
 
@@ -370,10 +506,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             if (e.Command.GetStatus().IsCanceled)
             {
-                AddCmdLog(e, "命令已停止");
+                AddCmdLog(e, GetLanguage("CommandStopEvent"));// "命令已停止");
             }
             else
-                AddCmdLog(e, "命令错误");
+                AddCmdLog(e, GetLanguage("CommandErrorEvent"));//"命令错误");
 
         }
 
@@ -394,7 +530,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
             */
             mAllocator_CommandProcessEvent(sender, e);
-            AddCmdLog(e, "命令完成");
+            AddCmdLog(e, GetLanguage("CommandCompleteEvent"));//"命令完成");
             string cName = e.Command.GetType().FullName;
             /*   */
             var cmddtl = e.CommandDetail;
@@ -483,8 +619,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     time = (DateTime.Now - e.CommandDetail.BeginTime).TotalMilliseconds;
             }
 
-
-            string sLog = $"{sName} 已耗时：{time:0},进度：{cmd.getProcessStep()} / {cmd.getProcessMax()}";
+            //{sName} 已耗时：{time:0},进度：{cmd.getProcessStep()} / {cmd.getProcessMax()}
+            string sLog = GetLanguage("CommandProcessEvent", sName, time, cmd.getProcessStep(), cmd.getProcessMax());
             mCommandProcessLog = sLog;
         }
 
@@ -501,21 +637,26 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             string Local, Remote, cType;
             GetConnectorDetail(conn, out cType, out Local, out Remote);
-            string ret = $"通道类型：{cType} 本地IP：{Local} ,远端IP：{Remote}";
-
+            // $"通道类型：{cType} 本地IP：{Local} ,远端IP：{Remote}";
+            string ret = GetLanguage("GetConnectorDetail0", cType, Local, Remote);
             switch (conn.GetTypeName())
             {
                 case ConnectorType.UDPServer:
-                    ret = $"通道类型：{cType}  本地绑定IP：{Local}";
+                    // $"通道类型：{cType}  本地绑定IP：{Local}";
+                    ret = GetLanguage("GetConnectorDetail1", cType, Local);
                     break;
                 case ConnectorType.TCPServer:
-                    ret = $"通道类型：{cType} 本地绑定IP：{Local}";
+                    // $"通道类型：{cType}  本地绑定IP：{Local}";
+                    ret = GetLanguage("GetConnectorDetail1", cType, Local);
                     break;
                 case ConnectorType.SerialPort:
-                    ret = $"通道类型：{cType} {Local}";
+                    //$"通道类型：{cType} {Local}";
+                    ret = GetLanguage("GetConnectorDetail2", cType, Local);
+                    
                     break;
                 default:
-                    ret = $"通道类型：{cType} {Local}";
+                    //"通道类型：{cType} {Local}";
+                    ret = GetLanguage("GetConnectorDetail3", cType, Local);
                     break;
             }
 
@@ -546,27 +687,27 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
 
                 case ConnectorType.TCPServerClient:
-                    cType = "TCP客户端节点";
+                    cType = GetLanguage("GetConnectorDetail_TCPServerClient");//TCP客户端节点
                     var tcpclientOnly = conn as TCPServerClientDetail;
                     Local = $"{local.ToString()}";
                     Remote = $"{tcpclientOnly.Remote.ToString()}";
                     break;
                 case ConnectorType.UDPClient:
-                    cType = "UDP客户端";
+                    cType = GetLanguage("GetConnectorDetail_UDPClient");//UDP客户端";
                     var udpOnly = conn as Core.Connector.TCPClient.TCPClientDetail;
                     Local = $"{local.ToString()}";
                     Remote = $"{udpOnly.Addr}:{udpOnly.Port}";
                     break;
                 case ConnectorType.UDPServer:
-                    cType = "UDP服务器";
+                    cType = GetLanguage("GetConnectorDetail_UDPServer");//UDP服务器";
                     Local = $"{local.ToString()}";
                     break;
                 case ConnectorType.TCPServer:
-                    cType = "TCP服务器";
+                    cType = GetLanguage("GetConnectorDetail_TCPServer");//TCP服务器";
                     Local = $"{local.ToString()}";
                     break;
                 case ConnectorType.SerialPort:
-                    cType = "串口";
+                    cType = GetLanguage("GetConnectorDetail_SerialPort");//串口";
                     var com = conn as Core.Connector.SerialPort.SerialPortDetail;
                     Local = $"COM{local.Port}:{com.Baudrate}";
                     break;
@@ -668,12 +809,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 password = Door8800Command.NULLPassword;
             }
 
-            switch (cmdConnType.SelectedIndex)//串口,TCP客户端,UDP,TCP服务器
+            switch (cmbConnType.SelectedIndex)//串口,TCP客户端,UDP,TCP服务器
             {
                 case 0://串口
                     if (cmbSerialPort.SelectedIndex == -1)
                     {
-                        MsgTip("请先选择一个串口号！");
+                        MsgTip(GetLanguage("GetCommandDetail0"));//"请先选择一个串口号！");
                         return null;
                     }
                     connectType = CommandDetailFactory.ConnectType.SerialPort;
@@ -684,7 +825,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 case 1://UDP 
                     if (!mUDPIsBind)
                     {
-                        MsgErr("请先绑定UDP端口");
+                        MsgErr(GetLanguage("GetCommandDetail1"));//"请先绑定UDP端口");
                         return null;
                     }
                     connectType = CommandDetailFactory.ConnectType.UDPClient;
@@ -697,13 +838,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 case 2://tcp server 模式，需要寻找客户端
                     if (!mTCPServerBind)
                     {
-                        MsgErr("请先绑定 TCP Server 端口");
+                        MsgErr(GetLanguage("GetCommandDetail2"));//"请先绑定 TCP Server 端口");
                         return null;
                     }
                     connectType = CommandDetailFactory.ConnectType.TCPServerClient;
                     if (cmbTCPClientList.SelectedIndex == -1)
                     {
-                        MsgErr("请先选择一个 TCP 客户端!");
+                        MsgErr(GetLanguage("GetCommandDetail3"));//"请先选择一个 TCP 客户端!");
                         return null;
                     }
                     var myClient = cmbTCPClientList.SelectedItem as MyTCPServerClientDetail;
@@ -988,7 +1129,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             chi.Left = scrRc.Left + iLeft + this.Width;
             chi.Top = scrRc.Top + iTop;
-
+            if (this.Left < 0) this.Left = 0;
+            if((chi.Left + chi.Width)> scrRc.Width)
+            {
+                chi.Left = scrRc.Width - chi.Width;
+            }
 
         }
 
@@ -1030,146 +1175,164 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// <summary>
         /// 初始化命令类型的功能名称
         /// </summary>
-        private static void IniCommandClassNameList()
+        private void IniCommandClassNameList()
         {
             mCommandClasss = new Dictionary<string, string>();
-            mCommandClasss.Add(typeof(SystemParameter.ReadFaceLEDMode).FullName, "读取补光灯模式");
-            mCommandClasss.Add(typeof(SystemParameter.WriteFaceLEDMode).FullName, "写入补光灯模式");
-            mCommandClasss.Add(typeof(SystemParameter.ReadFaceMouthmufflePar).FullName, "读取口罩识别开关");
-            mCommandClasss.Add(typeof(SystemParameter.WriteFaceMouthmufflePar).FullName, "写入口罩识别开关");
+            AddCommandClassNameList(typeof(SystemParameter.WriteClientWorkMode));// "写入客户端网络模式 
+            AddCommandClassNameList(typeof(SystemParameter.ReadClientWorkMode));// "读取客户端网络模式 
+            AddCommandClassNameList(typeof(SystemParameter.ReadClientStatus));// "获取设备客户端连接状态 
+            AddCommandClassNameList(typeof(SystemParameter.RequireConnectServer));// "命令设备立刻重新连接服务器 
+            AddCommandClassNameList(typeof(SystemParameter.RequireSendKeepalivePacket));// "要求设备立刻发送一次保活包 
+            AddCommandClassNameList(typeof(SystemParameter.WriteNetworkServerDetail));// "写入网络服务器参数 
+            AddCommandClassNameList(typeof(SystemParameter.ReadNetworkServerDetail));// "读取网络服务器参数 
 
-            mCommandClasss.Add(typeof(SystemParameter.ReadFaceBodyTemperaturePar).FullName, "读取体温检测及格式");
-            mCommandClasss.Add(typeof(SystemParameter.WriteFaceBodyTemperaturePar).FullName, "写入体温检测及格式");
+            AddCommandClassNameList(typeof(SystemParameter.ReadFaceLEDMode));// "读取补光灯模式 
+            AddCommandClassNameList(typeof(SystemParameter.WriteFaceLEDMode));// "写入补光灯模式 
+            AddCommandClassNameList(typeof(SystemParameter.ReadFaceMouthmufflePar));// "读取口罩识别开关 
+            AddCommandClassNameList(typeof(SystemParameter.WriteFaceMouthmufflePar));// "写入口罩识别开关 
 
-            mCommandClasss.Add(typeof(SystemParameter.ReadFaceBodyTemperatureAlarmPar).FullName, "读取体温报警阈值");
-            mCommandClasss.Add(typeof(SystemParameter.WriteFaceBodyTemperatureAlarmPar).FullName, "写入体温报警阈值");
-            mCommandClasss.Add(typeof(Person.RegisterIdentificationData).FullName, "注册识别信息");
+            AddCommandClassNameList(typeof(SystemParameter.ReadFaceBodyTemperaturePar));// "读取体温检测及格式 
+            AddCommandClassNameList(typeof(SystemParameter.WriteFaceBodyTemperaturePar));// "写入体温检测及格式 
 
-            mCommandClasss.Add(typeof(SystemParameter.WriteShortMessage).FullName, "写入合法验证后显示的短消息");
-            mCommandClasss.Add(typeof(SystemParameter.ReadShortMessage).FullName, "读取合法验证后显示的短消息");
+            AddCommandClassNameList(typeof(SystemParameter.ReadFaceBodyTemperatureAlarmPar));// "读取体温报警阈值 
+            AddCommandClassNameList(typeof(SystemParameter.WriteFaceBodyTemperatureAlarmPar));// "写入体温报警阈值 
+            AddCommandClassNameList(typeof(Person.RegisterIdentificationData));// "注册识别信息 
 
-            mCommandClasss.Add(typeof(SystemParameter.WriteFaceBodyTemperatureShowPar).FullName, "写入人脸机体温数值显示开关");
-            mCommandClasss.Add(typeof(SystemParameter.ReadFaceBodyTemperatureShowPar).FullName, "读取人脸机体温数值显示开关");
+            AddCommandClassNameList(typeof(SystemParameter.WriteShortMessage));// "写入合法验证后显示的短消息 
+            AddCommandClassNameList(typeof(SystemParameter.ReadShortMessage));// "读取合法验证后显示的短消息 
 
-            mCommandClasss.Add(typeof(Person.AddPeosonAndImage).FullName, "添加人员及照片");
-            mCommandClasss.Add(typeof(Transaction.ReadTransactionAndImageDatabase).FullName, "读取记录、体温、照片");
-            mCommandClasss.Add(typeof(ReadSN).FullName, "读取SN");
-            mCommandClasss.Add(typeof(WriteSN).FullName, "写SN");
-            mCommandClasss.Add(typeof(WriteSN_Broadcast).FullName, "广播写SN");
+            AddCommandClassNameList(typeof(SystemParameter.WriteFaceBodyTemperatureShowPar));// "写入人脸机体温数值显示开关 
+            AddCommandClassNameList(typeof(SystemParameter.ReadFaceBodyTemperatureShowPar));// "读取人脸机体温数值显示开关 
 
-            mCommandClasss.Add(typeof(ReadConnectPassword).FullName, "获取通讯密码");
-            mCommandClasss.Add(typeof(WriteConnectPassword).FullName, "设置通讯密码");
-            mCommandClasss.Add(typeof(ResetConnectPassword).FullName, "重置通讯密码");
+            AddCommandClassNameList(typeof(Person.AddPeosonAndImage));// "添加人员及照片 
+            AddCommandClassNameList(typeof(Transaction.ReadTransactionAndImageDatabase));// "读取记录、体温、照片 
+            AddCommandClassNameList(typeof(ReadSN));// "读取SN 
+            AddCommandClassNameList(typeof(WriteSN));// "写SN 
+            AddCommandClassNameList(typeof(WriteSN_Broadcast));// "广播写SN 
 
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.TCPSetting.ReadTCPSetting).FullName, "读取TCP参数");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.TCPSetting.WriteTCPSetting).FullName, "写入TCP参数");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.KeepAliveInterval.ReadKeepAliveInterval).FullName, "读取保活间隔时间");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.KeepAliveInterval.WriteKeepAliveInterval).FullName, "写入保活间隔时间");
+            AddCommandClassNameList(typeof(ReadConnectPassword));// "获取通讯密码 
+            AddCommandClassNameList(typeof(WriteConnectPassword));// "设置通讯密码 
+            AddCommandClassNameList(typeof(ResetConnectPassword));// "重置通讯密码 
 
-            mCommandClasss.Add(typeof(SystemParameter.Version.ReadVersion).FullName, "读取设备版本号");
-            mCommandClasss.Add(typeof(SystemParameter.SystemStatus.ReadSystemRunStatus).FullName, "获取设备运行信息");
-            mCommandClasss.Add(typeof(SystemParameter.RecordMode.ReadRecordMode).FullName, "获取记录存储方式");
-            mCommandClasss.Add(typeof(SystemParameter.RecordMode.WriteRecordMode).FullName, "设置记录存储方式");
-            mCommandClasss.Add(typeof(SystemParameter.Watch.BeginWatch).FullName, "开启数据监控");
-            mCommandClasss.Add(typeof(SystemParameter.Watch.CloseWatch).FullName, "关闭数据监控");
-            mCommandClasss.Add(typeof(SystemParameter.Watch.ReadWatchState).FullName, "读取实时监控状态");
-            mCommandClasss.Add(typeof(SystemParameter.SystemStatus.ReadSystemStatus).FullName, "读取设备状态信息");
-            mCommandClasss.Add(typeof(DoNetDrive.Protocol.Door.Door8800.SystemParameter.Controller.FormatController).FullName, "初始化设备");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.SearchControltor.SearchControltor).FullName, "搜索控制器");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.SystemParameter.SearchControltor.WriteControltorNetCode).FullName, "根据SN设置网络标识");
-            mCommandClasss.Add(typeof(SystemParameter.DataEncryptionSwitch.ReadDataEncryptionSwitch).FullName, "读取数据包加密开关");
-            mCommandClasss.Add(typeof(SystemParameter.DataEncryptionSwitch.WriteDataEncryptionSwitch).FullName, "设置数据包加密开关");
-            mCommandClasss.Add(typeof(SystemParameter.ReadLocalIdentity).FullName, "读取本机身份");
-            mCommandClasss.Add(typeof(SystemParameter.WriteLocalIdentity).FullName, "设置本机身份");
-            mCommandClasss.Add(typeof(SystemParameter.WiegandOutput.ReadWiegandOutput).FullName, "读取韦根输出");
-            mCommandClasss.Add(typeof(SystemParameter.WiegandOutput.WriteWiegandOutput).FullName, "设置韦根输出");
-            mCommandClasss.Add(typeof(SystemParameter.ReadComparisonThreshold).FullName, "读取人脸、指纹比对阈值");
-            mCommandClasss.Add(typeof(SystemParameter.WriteComparisonThreshold).FullName, "设置人脸、指纹比对阈值");
-            mCommandClasss.Add(typeof(SystemParameter.ScreenDisplayContent.ReadScreenDisplayContent).FullName, "读取屏幕显示内容");
-            mCommandClasss.Add(typeof(SystemParameter.ScreenDisplayContent.WriteScreenDisplayContent).FullName, "设置屏幕显示内容");
-            mCommandClasss.Add(typeof(SystemParameter.ManageMenuPassword.ReadManageMenuPassword).FullName, "读取管理菜单密码");
-            mCommandClasss.Add(typeof(SystemParameter.ManageMenuPassword.WriteManageMenuPassword).FullName, "设置管理菜单密码");
-            mCommandClasss.Add(typeof(SystemParameter.OEM.ReadOEM).FullName, "读取OEM信息");
-            mCommandClasss.Add(typeof(SystemParameter.OEM.WriteOEM).FullName, "设置OEM信息");
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.SystemParameter.TCPSetting.ReadTCPSetting));// "读取TCP参数 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.SystemParameter.TCPSetting.WriteTCPSetting));// "写入TCP参数 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.SystemParameter.KeepAliveInterval.ReadKeepAliveInterval));// "读取保活间隔时间 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.SystemParameter.KeepAliveInterval.WriteKeepAliveInterval));// "写入保活间隔时间 
 
-
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Time.ReadTime).FullName, "读系统时间");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Time.WriteTime).FullName, "写系统时间");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Time.WriteCustomTime).FullName, "写系统时间");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Time.WriteTimeBroadcast).FullName, "写设备时间_广播命令");
-
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Holiday.ReadHolidayDetail).FullName, "从控制板中读取节假日存储详情");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Holiday.ClearHoliday).FullName, "清空控制器中的所有节假日");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Holiday.ReadAllHoliday).FullName, "读取控制板中已存储的所有节假日");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Holiday.AddHoliday).FullName, "添加节假日到控制版");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.Holiday.DeleteHoliday).FullName, "从控制器删除节假日");
+            AddCommandClassNameList(typeof(SystemParameter.Version.ReadVersion));// "读取设备版本号 
+            AddCommandClassNameList(typeof(SystemParameter.SystemStatus.ReadSystemRunStatus));// "获取设备运行信息 
+            AddCommandClassNameList(typeof(SystemParameter.RecordMode.ReadRecordMode));// "获取记录存储方式 
+            AddCommandClassNameList(typeof(SystemParameter.RecordMode.WriteRecordMode));// "设置记录存储方式 
+            AddCommandClassNameList(typeof(SystemParameter.Watch.BeginWatch));// "开启数据监控 
+            AddCommandClassNameList(typeof(SystemParameter.Watch.CloseWatch));// "关闭数据监控 
+            AddCommandClassNameList(typeof(SystemParameter.Watch.ReadWatchState));// "读取实时监控状态 
+            AddCommandClassNameList(typeof(SystemParameter.SystemStatus.ReadSystemStatus));// "读取设备状态信息 
+            AddCommandClassNameList(typeof(DoNetDrive.Protocol.Door.Door8800.SystemParameter.Controller.FormatController));// "初始化设备 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.SystemParameter.SearchControltor.SearchControltor));// "搜索控制器 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.SystemParameter.SearchControltor.WriteControltorNetCode));// "根据SN设置网络标识 
+            AddCommandClassNameList(typeof(SystemParameter.DataEncryptionSwitch.ReadDataEncryptionSwitch));// "读取数据包加密开关 
+            AddCommandClassNameList(typeof(SystemParameter.DataEncryptionSwitch.WriteDataEncryptionSwitch));// "设置数据包加密开关 
+            AddCommandClassNameList(typeof(SystemParameter.ReadLocalIdentity));// "读取本机身份 
+            AddCommandClassNameList(typeof(SystemParameter.WriteLocalIdentity));// "设置本机身份 
+            AddCommandClassNameList(typeof(SystemParameter.WiegandOutput.ReadWiegandOutput));// "读取韦根输出 
+            AddCommandClassNameList(typeof(SystemParameter.WiegandOutput.WriteWiegandOutput));// "设置韦根输出 
+            AddCommandClassNameList(typeof(SystemParameter.ReadComparisonThreshold));// "读取人脸、指纹比对阈值 
+            AddCommandClassNameList(typeof(SystemParameter.WriteComparisonThreshold));// "设置人脸、指纹比对阈值 
+            AddCommandClassNameList(typeof(SystemParameter.ScreenDisplayContent.ReadScreenDisplayContent));// "读取屏幕显示内容 
+            AddCommandClassNameList(typeof(SystemParameter.ScreenDisplayContent.WriteScreenDisplayContent));// "设置屏幕显示内容 
+            AddCommandClassNameList(typeof(SystemParameter.ManageMenuPassword.ReadManageMenuPassword));// "读取管理菜单密码 
+            AddCommandClassNameList(typeof(SystemParameter.ManageMenuPassword.WriteManageMenuPassword));// "设置管理菜单密码 
+            AddCommandClassNameList(typeof(SystemParameter.OEM.ReadOEM));// "读取OEM信息 
+            AddCommandClassNameList(typeof(SystemParameter.OEM.WriteOEM));// "设置OEM信息 
 
 
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.TimeGroup.ClearTimeGroup).FullName, "清空所有开门时段");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.TimeGroup.ReadTimeGroup).FullName, "读取所有开门时段");
-            mCommandClasss.Add(typeof(Protocol.Door.Door8800.TimeGroup.AddTimeGroup).FullName, "添加开门时段");
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.Time.ReadTime));// "读系统时间 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.Time.WriteTime));// "写系统时间 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.Time.WriteCustomTime));// "写系统时间 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.Time.WriteTimeBroadcast));// "写设备时间_广播命令 
 
-            mCommandClasss.Add(typeof(Transaction.ReadTransactionDatabaseDetail).FullName, "读取控制器中的卡片数据库信息");
-            mCommandClasss.Add(typeof(Transaction.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
-            mCommandClasss.Add(typeof(Transaction.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
-            mCommandClasss.Add(typeof(Transaction.ReadTransactionDatabase).FullName, "读取新记录");
-            mCommandClasss.Add(typeof(Transaction.WriteTransactionDatabaseReadIndex).FullName, "更新记录指针");
-            mCommandClasss.Add(typeof(Transaction.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
-
-            mCommandClasss.Add(typeof(Alarm.SendFireAlarm.WriteSendFireAlarm).FullName, "通知设备触发消防报警");
-            mCommandClasss.Add(typeof(Alarm.BlacklistAlarm.ReadBlacklistAlarm).FullName, "读取黑名单报警");
-            mCommandClasss.Add(typeof(Alarm.BlacklistAlarm.WriteBlacklistAlarm).FullName, "设置黑名单报警");
-            mCommandClasss.Add(typeof(Alarm.AntiDisassemblyAlarm.ReadAntiDisassemblyAlarm).FullName, "读取防拆报警功能");
-            mCommandClasss.Add(typeof(Alarm.AntiDisassemblyAlarm.WriteAntiDisassemblyAlarm).FullName, "设置防拆报警功能");
-            mCommandClasss.Add(typeof(Alarm.IllegalVerificationAlarm.ReadIllegalVerificationAlarm).FullName, "读取非法验证报警");
-            mCommandClasss.Add(typeof(Alarm.IllegalVerificationAlarm.WriteIllegalVerificationAlarm).FullName, "设置非法验证报警");
-            mCommandClasss.Add(typeof(Alarm.AlarmPassword.ReadAlarmPassword).FullName, "读取胁迫报警密码");
-            mCommandClasss.Add(typeof(Alarm.AlarmPassword.WriteAlarmPassword).FullName, "设置胁迫报警密码");
-            mCommandClasss.Add(typeof(Alarm.OpenDoorTimeoutAlarm.ReadOpenDoorTimeoutAlarm).FullName, "读取开门超时报警参数");
-            mCommandClasss.Add(typeof(Alarm.OpenDoorTimeoutAlarm.WriteOpenDoorTimeoutAlarm).FullName, "设置开门超时报警参数");
-            mCommandClasss.Add(typeof(Alarm.GateMagneticAlarm.ReadGateMagneticAlarm).FullName, "读取门磁报警参数");
-            mCommandClasss.Add(typeof(Alarm.GateMagneticAlarm.WriteGateMagneticAlarm).FullName, "设置门磁报警参数");
-            mCommandClasss.Add(typeof(Alarm.LegalVerificationCloseAlarm.ReadLegalVerificationCloseAlarm).FullName, "读取合法验证解除报警开关");
-            mCommandClasss.Add(typeof(Alarm.LegalVerificationCloseAlarm.WriteLegalVerificationCloseAlarm).FullName, "设置合法验证解除报警开关");
-            mCommandClasss.Add(typeof(Alarm.CloseAlarm).FullName, "解除报警");
-
-            mCommandClasss.Add(typeof(Door.ReaderOption.ReadReaderOption).FullName, "读取读卡器字节数");
-            mCommandClasss.Add(typeof(Door.ReaderOption.WriteReaderOption).FullName, "设置读卡器字节数");
-            mCommandClasss.Add(typeof(Door.RelayOption.ReadRelayOption).FullName, "读取继电器参数");
-            mCommandClasss.Add(typeof(Door.RelayOption.WriteRelayOption).FullName, "设置继电器参数");
-            mCommandClasss.Add(typeof(Door.Remote.CloseDoor).FullName, "远程关门");
-            mCommandClasss.Add(typeof(Door.Remote.HoldDoor).FullName, "设置门常开");
-            mCommandClasss.Add(typeof(Door.Remote.LockDoor).FullName, "锁定门");
-            mCommandClasss.Add(typeof(Door.Remote.OpenDoor).FullName, "远程开门");
-            mCommandClasss.Add(typeof(Door.Remote.UnlockDoor).FullName, "解除锁定门");
-            mCommandClasss.Add(typeof(Door.DoorWorkSetting.ReadDoorWorkSetting).FullName, "读取门定时常开");
-            mCommandClasss.Add(typeof(Door.DoorWorkSetting.WriteDoorWorkSetting).FullName, "设置门定时常开");
-            mCommandClasss.Add(typeof(Door.RelayReleaseTime.ReadUnlockingTime).FullName, "获取开锁时输出时长");
-            mCommandClasss.Add(typeof(Door.RelayReleaseTime.WriteUnlockingTime).FullName, "设置开锁时输出时长");
-            mCommandClasss.Add(typeof(Door.ExemptionVerificationOpen.ReadExemptionVerificationOpen).FullName, "读取免验证开门");
-            mCommandClasss.Add(typeof(Door.ExemptionVerificationOpen.WriteExemptionVerificationOpen).FullName, "设置免验证开门");
-            mCommandClasss.Add(typeof(Door.VoiceBroadcastSetting.ReadVoiceBroadcastSetting).FullName, "读取语音播报功能");
-            mCommandClasss.Add(typeof(Door.VoiceBroadcastSetting.WriteVoiceBroadcastSetting).FullName, "设置语音播报功能");
-            mCommandClasss.Add(typeof(Door.ReaderIntervalTime.ReadReaderIntervalTime).FullName, "获取重复验证权限间隔");
-            mCommandClasss.Add(typeof(Door.ReaderIntervalTime.WriteReaderIntervalTime).FullName, "设置重复验证权限间隔");
-            mCommandClasss.Add(typeof(Door.ExpirationPrompt.ReadExpirationPrompt).FullName, "读取权限到期提示参数");
-            mCommandClasss.Add(typeof(Door.ExpirationPrompt.WriteExpirationPrompt).FullName, "设置权限到期提示参数");
-
-            mCommandClasss.Add(typeof(Person.ReadPersonDatabaseDetail).FullName, "读取人员存储详情");
-            mCommandClasss.Add(typeof(Person.ClearPersonDataBase).FullName, "清空所有人员");
-            mCommandClasss.Add(typeof(Person.ReadPersonDetail).FullName, "读取单个人员");
-            mCommandClasss.Add(typeof(Person.DeletePerson).FullName, "删除人员");
-            mCommandClasss.Add(typeof(Person.AddPerson).FullName, "添加人员");
-
-            mCommandClasss.Add(typeof(AdditionalData.WriteFeatureCode).FullName, "写入特征码");
-            mCommandClasss.Add(typeof(AdditionalData.ReadFeatureCode).FullName, "读取特征码");
-            mCommandClasss.Add(typeof(AdditionalData.ReadPersonDetail).FullName, "查询人员附加数据详情");
-            mCommandClasss.Add(typeof(AdditionalData.DeleteFeatureCode).FullName, "删除特征码");
-            mCommandClasss.Add(typeof(AdditionalData.ReadFile).FullName, "读文件");
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.Holiday.ReadHolidayDetail));// "从控制板中读取节假日存储详情 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.Holiday.ClearHoliday));// "清空控制器中的所有节假日 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.Holiday.ReadAllHoliday));// "读取控制板中已存储的所有节假日 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.Holiday.AddHoliday));// "添加节假日到控制版 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.Holiday.DeleteHoliday));// "从控制器删除节假日 
 
 
-            mCommandClasss.Add(typeof(Software.UpdateSoftware).FullName, "上传固件");
-            mCommandClasss.Add(typeof(Software.UpdateSoftware_FP).FullName, "上传固件");
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.TimeGroup.ClearTimeGroup));// "清空所有开门时段 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.TimeGroup.ReadTimeGroup));// "读取所有开门时段 
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.TimeGroup.AddTimeGroup));// "添加开门时段 
+
+            AddCommandClassNameList(typeof(Transaction.ReadTransactionDatabaseDetail));// "读取控制器中的卡片数据库信息 
+            AddCommandClassNameList(typeof(Transaction.ClearTransactionDatabase));// "清空指定类型的记录数据库 
+            AddCommandClassNameList(typeof(Transaction.ReadTransactionDatabaseByIndex));// "按指定序号读记录 
+            AddCommandClassNameList(typeof(Transaction.ReadTransactionDatabase));// "读取新记录 
+            AddCommandClassNameList(typeof(Transaction.WriteTransactionDatabaseReadIndex));// "更新记录指针 
+            AddCommandClassNameList(typeof(Transaction.WriteTransactionDatabaseWriteIndex));// "修改指定记录数据库的写索引 
+
+            AddCommandClassNameList(typeof(Alarm.SendFireAlarm.WriteSendFireAlarm));// "通知设备触发消防报警 
+            AddCommandClassNameList(typeof(Alarm.BlacklistAlarm.ReadBlacklistAlarm));// "读取黑名单报警 
+            AddCommandClassNameList(typeof(Alarm.BlacklistAlarm.WriteBlacklistAlarm));// "设置黑名单报警 
+            AddCommandClassNameList(typeof(Alarm.AntiDisassemblyAlarm.ReadAntiDisassemblyAlarm));// "读取防拆报警功能 
+            AddCommandClassNameList(typeof(Alarm.AntiDisassemblyAlarm.WriteAntiDisassemblyAlarm));// "设置防拆报警功能 
+            AddCommandClassNameList(typeof(Alarm.IllegalVerificationAlarm.ReadIllegalVerificationAlarm));// "读取非法验证报警 
+            AddCommandClassNameList(typeof(Alarm.IllegalVerificationAlarm.WriteIllegalVerificationAlarm));// "设置非法验证报警 
+            AddCommandClassNameList(typeof(Alarm.AlarmPassword.ReadAlarmPassword));// "读取胁迫报警密码 
+            AddCommandClassNameList(typeof(Alarm.AlarmPassword.WriteAlarmPassword));// "设置胁迫报警密码 
+            AddCommandClassNameList(typeof(Alarm.OpenDoorTimeoutAlarm.ReadOpenDoorTimeoutAlarm));// "读取开门超时报警参数 
+            AddCommandClassNameList(typeof(Alarm.OpenDoorTimeoutAlarm.WriteOpenDoorTimeoutAlarm));// "设置开门超时报警参数 
+            AddCommandClassNameList(typeof(Alarm.GateMagneticAlarm.ReadGateMagneticAlarm));// "读取门磁报警参数 
+            AddCommandClassNameList(typeof(Alarm.GateMagneticAlarm.WriteGateMagneticAlarm));// "设置门磁报警参数 
+            AddCommandClassNameList(typeof(Alarm.LegalVerificationCloseAlarm.ReadLegalVerificationCloseAlarm));// "读取合法验证解除报警开关 
+            AddCommandClassNameList(typeof(Alarm.LegalVerificationCloseAlarm.WriteLegalVerificationCloseAlarm));// "设置合法验证解除报警开关 
+            AddCommandClassNameList(typeof(Alarm.CloseAlarm));// "解除报警 
+
+            AddCommandClassNameList(typeof(Door.ReaderOption.ReadReaderOption));// "读取读卡器字节数 
+            AddCommandClassNameList(typeof(Door.ReaderOption.WriteReaderOption));// "设置读卡器字节数 
+            AddCommandClassNameList(typeof(Door.RelayOption.ReadRelayOption));// "读取继电器参数 
+            AddCommandClassNameList(typeof(Door.RelayOption.WriteRelayOption));// "设置继电器参数 
+            AddCommandClassNameList(typeof(Door.Remote.CloseDoor));// "远程关门 
+            AddCommandClassNameList(typeof(Door.Remote.HoldDoor));// "设置门常开 
+            AddCommandClassNameList(typeof(Door.Remote.LockDoor));// "锁定门 
+            AddCommandClassNameList(typeof(Door.Remote.OpenDoor));// "远程开门 
+            AddCommandClassNameList(typeof(Door.Remote.UnlockDoor));// "解除锁定门 
+            AddCommandClassNameList(typeof(Door.DoorWorkSetting.ReadDoorWorkSetting));// "读取门定时常开 
+            AddCommandClassNameList(typeof(Door.DoorWorkSetting.WriteDoorWorkSetting));// "设置门定时常开 
+            AddCommandClassNameList(typeof(Door.RelayReleaseTime.ReadUnlockingTime));// "获取开锁时输出时长 
+            AddCommandClassNameList(typeof(Door.RelayReleaseTime.WriteUnlockingTime));// "设置开锁时输出时长 
+            AddCommandClassNameList(typeof(Door.ExemptionVerificationOpen.ReadExemptionVerificationOpen));// "读取免验证开门 
+            AddCommandClassNameList(typeof(Door.ExemptionVerificationOpen.WriteExemptionVerificationOpen));// "设置免验证开门 
+            AddCommandClassNameList(typeof(Door.VoiceBroadcastSetting.ReadVoiceBroadcastSetting));// "读取语音播报功能 
+            AddCommandClassNameList(typeof(Door.VoiceBroadcastSetting.WriteVoiceBroadcastSetting));// "设置语音播报功能 
+            AddCommandClassNameList(typeof(Door.ReaderIntervalTime.ReadReaderIntervalTime));// "获取重复验证权限间隔 
+            AddCommandClassNameList(typeof(Door.ReaderIntervalTime.WriteReaderIntervalTime));// "设置重复验证权限间隔 
+            AddCommandClassNameList(typeof(Door.ExpirationPrompt.ReadExpirationPrompt));// "读取权限到期提示参数 
+            AddCommandClassNameList(typeof(Door.ExpirationPrompt.WriteExpirationPrompt));// "设置权限到期提示参数 
+
+            AddCommandClassNameList(typeof(Person.ReadPersonDatabaseDetail));// "读取人员存储详情 
+            AddCommandClassNameList(typeof(Person.ClearPersonDataBase));// "清空所有人员 
+            AddCommandClassNameList(typeof(Person.ReadPersonDetail));// "读取单个人员 
+            AddCommandClassNameList(typeof(Person.DeletePerson));// "删除人员 
+            AddCommandClassNameList(typeof(Person.AddPerson));// "添加人员 
+
+            AddCommandClassNameList(typeof(AdditionalData.WriteFeatureCode));// "写入特征码 
+            AddCommandClassNameList(typeof(AdditionalData.ReadFeatureCode));// "读取特征码 
+            AddCommandClassNameList(typeof(AdditionalData.ReadPersonDetail));// "查询人员附加数据详情 
+            AddCommandClassNameList(typeof(AdditionalData.DeleteFeatureCode));// "删除特征码 
+            AddCommandClassNameList(typeof(AdditionalData.ReadFile));// "读文件 
+
+
+            AddCommandClassNameList(typeof(Software.UpdateSoftware));// "上传固件 
+            AddCommandClassNameList(typeof(Software.UpdateSoftware_FP));// "上传固件 
+        }
+
+
+        private void AddCommandClassNameList(System.Type tType)
+        {
+            string sKey = tType.FullName;
+            sKey = sKey.Replace('.', '_');
+            string sValue = GetLanguage(sKey);
+            if (sValue == "NULL") sValue = sKey;
+            mCommandClasss.Add(tType.FullName, sValue);
         }
 
 
@@ -1214,14 +1377,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             if (!txtUDPLocalPort.Text.IsNum())
             {
-                MsgErr("端口号不正确！");
+                MsgErr(GetLanguage("butUDPBind_Click0"));// "端口号不正确！
                 return;
             }
             int port = txtUDPLocalPort.Text.ToInt32();
             string sLocalIP = cmbLocalIP.SelectedItem?.ToString();
             if (string.IsNullOrEmpty(sLocalIP))
             {
-                MsgErr("没有绑定本地IP！");
+                MsgErr(GetLanguage("butUDPBind_Click1"));//"没有绑定本地IP！");
                 return;
             }
 
@@ -1231,7 +1394,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 //关闭UDP服务器
                 mAllocator.CloseConnector(detail);
-                butUDPBind.Text = "开启服务";
+                butUDPBind.Text = GetLanguage("butUDPBind_Click2") ;// "开启服务";
                 mUDPIsBind = false;
                 txtUDPLocalPort.Enabled = true;
                 cmbLocalIP.Enabled = true;
@@ -1260,7 +1423,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             if (bind)
             {
-                butUDPBind.Text = "关闭服务";
+                butUDPBind.Text = GetLanguage("UDPBindOver0");// "关闭服务";
             }
             else
             {
@@ -1279,8 +1442,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// </summary>
         private void IniConnTypeList()
         {
-            cmdConnType.Items.AddRange("串口,UDP,TCP Server".SplitTrim(","));
-            cmdConnType.SelectedIndex = 1;
+            cmbConnType.SelectedIndex = 1;
             ShowConnTypePanel();
 
 
@@ -1335,7 +1497,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void ShowConnTypePanel()
         {
             bool[] pnlShow = new bool[3];
-            pnlShow[cmdConnType.SelectedIndex] = true;
+            pnlShow[cmbConnType.SelectedIndex] = true;
 
             GroupBox[] pnls = new GroupBox[] { gbSerialPort, gbUDP, gpTCPServer };
 
@@ -1350,12 +1512,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         #region 提示框
         public void MsgTip(string sText)
         {
-            MessageBox.Show(sText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //提示
+            MessageBox.Show(sText, GetLanguage("MsgTip"), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void MsgErr(string sText)
         {
-            MessageBox.Show(sText, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //错误
+            MessageBox.Show(sText, GetLanguage("MsgErr"), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
 
@@ -1460,7 +1624,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                AddCmdLog(cmde, "已开启监控");
+                AddCmdLog(cmde, GetLanguage("buWatch_Click0"));// "已开启监控
             };
 
             //使通道保持连接不关闭
@@ -1547,39 +1711,52 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             if (fcTrn.CmdIndex <= 4)
             {
-                strbuf.Append("序号：").Append(evn.SerialNumber).Append("；");
+                //"序号："
+                strbuf.Append(GetLanguage("TransactionMessage0")).Append(evn.SerialNumber).Append("；");
 
                 if (evn.TransactionType < 4)
                 {
                     string[] codeNameList = frmRecord.mTransactionCodeNameList[evn.TransactionType];
-                    strbuf.Append("事件：").Append(evn.TransactionCode).Append("(").Append(codeNameList[evn.TransactionCode]).Append(")");
-
-                    strbuf.Append("；时间：").Append(evn.TransactionDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                    //"事件："
+                    strbuf.Append(GetLanguage("TransactionMessage1")).Append(evn.TransactionCode).Append("(").Append(codeNameList[evn.TransactionCode]).Append(")");
+                    //"；时间："
+                    strbuf.Append(GetLanguage("TransactionMessage2")).Append(evn.TransactionDate.ToString("yyyy-MM-dd HH:mm:ss"));
                 }
 
                 strbuf.AppendLine();
                 if (fcTrn.CmdIndex == 1)
                 {
                     Data.Transaction.CardTransaction cardtrn = evn as Data.Transaction.CardTransaction;
-                    strbuf.Append("用户号：").Append(cardtrn.UserCode.ToString()).Append("；出/入：").Append(cardtrn.Accesstype.ToString());
-                    strbuf.Append("，照片：").Append(cardtrn.Photo == 1 ? "有" : "无");
+                    //"用户号："
+                    strbuf.Append(GetLanguage("TransactionMessage3")).Append(cardtrn.UserCode.ToString());
+                    //；出/入：
+                    strbuf.Append(GetLanguage("TransactionMessage4")).Append(cardtrn.Accesstype.ToString());
+
+                    string sPhotoUse, PhotoNULL;
+                    sPhotoUse = GetLanguage("TransactionMessage5_1");//有
+                    PhotoNULL = GetLanguage("TransactionMessage5_0");//无
+                    //"，照片："
+                    strbuf.Append(GetLanguage("TransactionMessage5")).Append(cardtrn.Photo == 1 ? sPhotoUse : PhotoNULL);
                 }
                 if (fcTrn.CmdIndex == 2)
                 {
                     AbstractDoorTransaction cardtrn = evn as AbstractDoorTransaction;
-                    strbuf.Append("门号：").Append(cardtrn.Door);
+                    //"门号："
+                    strbuf.Append(GetLanguage("TransactionMessage6")).Append(cardtrn.Door);
                 }
                 if (fcTrn.CmdIndex == 4)
                 {
                     Data.Transaction.BodyTemperatureTransaction btr = evn as Data.Transaction.BodyTemperatureTransaction;
-                    strbuf.Append("体温：").Append((float)btr.BodyTemperature / (float)10);
+                    //体温：
+                    strbuf.Append(GetLanguage("TransactionMessage7")).Append((float)btr.BodyTemperature / (float)10);
                 }
 
 
             }
             if (fcTrn.CmdIndex == 0x22)
             {
-                strbuf.Append(fcTrn.SN).Append("保活包消息，远端信息：").Append(Remote);
+                //"保活包消息，远端信息：
+                strbuf.Append(fcTrn.SN).Append(GetLanguage("TransactionMessage8")).Append(Remote);
             }
 
             if (fcTrn.CmdIndex == 0xA0)
@@ -1593,15 +1770,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     cmdDtl = GetTCPCommandDetail(fcTrn.SN, "FFFFFFFF", connector.GetKey());
                 var sndConntmsg = new SystemParameter.SendConnectTestResponse(cmdDtl);
                 AddCommand(sndConntmsg);
-
-                strbuf.Append(fcTrn.SN).Append("连接测试消息，远端信息：").Append(Remote);
+                //"连接测试消息，远端信息："
+                strbuf.Append(fcTrn.SN).Append(GetLanguage("TransactionMessage9")).Append(Remote);
             }
 
             if ((fcTrn.CmdIndex == 0x22 || fcTrn.CmdIndex == 0xA0) && bIsUDP)
             {
                 Invoke(() =>
                 {
-                    if (chkIsServer.Checked)
+                    if (chkIsUDPServer.Checked)
                     {
                         txtUDPAddr.Text = sRemoteIP;
                         txtUDPPort.Text = iRemotePort.ToString();
@@ -1736,12 +1913,26 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {   //生成连接通道消息
                 mTCPServer_IP = cmbLocalIP.Text;
                 mTCPServer_Port = int.Parse(txtTCPServerPort.Text);
-                var tcp = new TCPServerDetail(mTCPServer_IP, mTCPServer_Port);
+                if (ChkTLS12.Checked)
+                {
 
-                mAllocator.OpenConnector(tcp);
+                    var x509Data = Resources.SSLX509;
+                    var x509 = new X509Certificate2(x509Data, "BRUsqOWH");
+                    var tcp = new TCPServerDetail(mTCPServer_IP, mTCPServer_Port, true, x509);
+
+                    mAllocator.OpenConnector(tcp);
+                }
+                else
+                {
+                    var tcp = new TCPServerDetail(mTCPServer_IP, mTCPServer_Port);
+
+                    mAllocator.OpenConnector(tcp);
+                }
+
                 //等待后续事件，事件触发 mAllocator_ConnectorConnectedEvent 表示绑定成功
                 //事件触发 mAllocator_ConnectorClosedEvent 表示绑定失败
                 butTCPServerBind.Enabled = false;
+                ChkTLS12.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -1757,14 +1948,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mTCPServerBind = bResult;
             txtTCPServerPort.Enabled = !bResult;
             cmbLocalIP.Enabled = !bResult;
+            ChkTLS12.Enabled = !bResult;
             if (bResult)
             {
                 //绑定成功
-                butTCPServerBind.Text = "关闭";
+                butTCPServerBind.Text =GetLanguage("butTCPServerBind_Close");//"关闭"
             }
             else
             {
-                butTCPServerBind.Text = "绑定";
+                butTCPServerBind.Text = GetLanguage("butTCPServerBind");// "绑定";
             }
 
         }
@@ -1778,7 +1970,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 sKey, new IPEndPoint(IPAddress.Parse(remoteIP.Addr), remoteIP.Port));
             if (!mTCPClients.TryAdd(sKey, myTCP))
             {
-                AddLog($"重复添加客户端，Key:{sKey}");
+                //重复添加客户端，Key:{sKey}
+                AddLog(GetLanguage("AddTCPClient0", sKey));
                 return;
             }
             else
@@ -1820,5 +2013,21 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         }
         #endregion
 
+        #region 调试器多语言
+        private void cmbToolLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadLanguage();
+        }
+
+        private void LoadLanguage()
+        {
+            var sFile = cmbToolLanguage.Text;
+            sFile = ConfigurationManager.AppSettings[$"Language_{sFile}"];
+            sFile = Path.Combine(Application.StartupPath, sFile);
+            if (File.Exists(sFile))
+                ToolLanguage.LoadLanguage(sFile);
+            LoadUILanguage();
+        }
+        #endregion
     }
 }
