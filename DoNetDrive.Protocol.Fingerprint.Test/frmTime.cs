@@ -34,9 +34,22 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void frmTime_Load(object sender, EventArgs e)
         {
-            
+            LoadUILanguage();
         }
-
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(gpDeviceTime);
+            GetLanguage(Lbl_DeviceTime);
+            GetLanguage(Lbl_ComputerTime);
+            GetLanguage(Lbl_DisparityTime);
+            GetLanguage(btnReadSystemTime);
+            GetLanguage(btnWriteSystemTime);
+            GetLanguage(btnWriteBroadcastTime);
+            GetLanguage(gpDiyTime);
+            GetLanguage(Lbl_DateTime);
+            GetLanguage(btnWriteCustomDateTime);
+        }
         #region 设备时间读写
         private void BtnReadSystemTime_Click(object sender, EventArgs e)
         {
@@ -60,16 +73,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     Seconds = Math.Abs(Convert.ToInt32(ts.TotalSeconds));
                     if (Seconds < 4 && Seconds > -4)
                     {
-                        tip = "无误差";
+                        tip = GetLanguage("Msg_1");
                     }
                     else
                     {
-                        tip = "误差" + Seconds + "秒";
+                        tip =string.Format(GetLanguage("Msg_2"), Seconds);
                     }
                     txtErrorTime.Text = tip;
                 });
-                string ControllerDateInfo = "电脑时间：" + txtComputerTime.Text +
-                                            "，控制板时间：" + ControllerDate + "，" + tip;
+                string ControllerDateInfo = GetLanguage("Msg_3") + txtComputerTime.Text +System.Environment.NewLine+
+                                            GetLanguage("Msg_4") + ControllerDate + System.Environment.NewLine +
+                                            GetLanguage("Msg_5") + tip;
                 mMainForm.AddCmdLog(cmde, ControllerDateInfo);
             };
         }

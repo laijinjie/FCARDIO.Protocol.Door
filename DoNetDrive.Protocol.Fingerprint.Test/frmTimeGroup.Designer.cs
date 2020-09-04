@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnReadTimeGroup = new System.Windows.Forms.Button();
-            this.btnAddTimeGroup = new System.Windows.Forms.Button();
-            this.btnClearTimeGroup = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gpTimeGroup = new System.Windows.Forms.GroupBox();
+            this.btnFillNowTime = new System.Windows.Forms.Button();
+            this.Lbl_Test = new System.Windows.Forms.Label();
             this.cbTimeGroup = new System.Windows.Forms.ComboBox();
             this.endTimePicker8 = new System.Windows.Forms.DateTimePicker();
             this.beginTimePicker8 = new System.Windows.Forms.DateTimePicker();
@@ -49,104 +48,94 @@
             this.beginTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.endTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.beginTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.Lbl_EndTime8 = new System.Windows.Forms.Label();
+            this.Lbl_StartTime8 = new System.Windows.Forms.Label();
+            this.Lbl_EndTime7 = new System.Windows.Forms.Label();
+            this.Lbl_StartTime7 = new System.Windows.Forms.Label();
+            this.Lbl_EndTime6 = new System.Windows.Forms.Label();
+            this.Lbl_StartTime6 = new System.Windows.Forms.Label();
+            this.Lbl_EndTime5 = new System.Windows.Forms.Label();
+            this.Lbl_StartTime5 = new System.Windows.Forms.Label();
+            this.Lbl_EndTime4 = new System.Windows.Forms.Label();
+            this.Lbl_StartTime4 = new System.Windows.Forms.Label();
+            this.Lbl_EndTime3 = new System.Windows.Forms.Label();
+            this.Lbl_StartTime3 = new System.Windows.Forms.Label();
+            this.Lbl_EndTime2 = new System.Windows.Forms.Label();
+            this.Lbl_StartTime2 = new System.Windows.Forms.Label();
+            this.Lbl_EndTime1 = new System.Windows.Forms.Label();
+            this.Lbl_StartTime1 = new System.Windows.Forms.Label();
             this.cbWeekday = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.btnFillNowTime = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.Lbl_Weekday = new System.Windows.Forms.Label();
+            this.btnClearTimeGroup = new System.Windows.Forms.Button();
+            this.btnAddTimeGroup = new System.Windows.Forms.Button();
+            this.btnReadTimeGroup = new System.Windows.Forms.Button();
+            this.gpTimeGroup.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnReadTimeGroup
+            // gpTimeGroup
             // 
-            this.btnReadTimeGroup.Location = new System.Drawing.Point(196, 12);
-            this.btnReadTimeGroup.Name = "btnReadTimeGroup";
-            this.btnReadTimeGroup.Size = new System.Drawing.Size(108, 23);
-            this.btnReadTimeGroup.TabIndex = 0;
-            this.btnReadTimeGroup.Text = "采集开门时段";
-            this.btnReadTimeGroup.UseVisualStyleBackColor = true;
-            this.btnReadTimeGroup.Click += new System.EventHandler(this.BtnReadTimeGroup_Click);
+            this.gpTimeGroup.Controls.Add(this.btnFillNowTime);
+            this.gpTimeGroup.Controls.Add(this.Lbl_Test);
+            this.gpTimeGroup.Controls.Add(this.cbTimeGroup);
+            this.gpTimeGroup.Controls.Add(this.endTimePicker8);
+            this.gpTimeGroup.Controls.Add(this.beginTimePicker8);
+            this.gpTimeGroup.Controls.Add(this.endTimePicker7);
+            this.gpTimeGroup.Controls.Add(this.beginTimePicker7);
+            this.gpTimeGroup.Controls.Add(this.endTimePicker6);
+            this.gpTimeGroup.Controls.Add(this.beginTimePicker6);
+            this.gpTimeGroup.Controls.Add(this.endTimePicker5);
+            this.gpTimeGroup.Controls.Add(this.beginTimePicker5);
+            this.gpTimeGroup.Controls.Add(this.endTimePicker4);
+            this.gpTimeGroup.Controls.Add(this.beginTimePicker4);
+            this.gpTimeGroup.Controls.Add(this.endTimePicker3);
+            this.gpTimeGroup.Controls.Add(this.beginTimePicker3);
+            this.gpTimeGroup.Controls.Add(this.endTimePicker2);
+            this.gpTimeGroup.Controls.Add(this.beginTimePicker2);
+            this.gpTimeGroup.Controls.Add(this.endTimePicker1);
+            this.gpTimeGroup.Controls.Add(this.beginTimePicker1);
+            this.gpTimeGroup.Controls.Add(this.Lbl_EndTime8);
+            this.gpTimeGroup.Controls.Add(this.Lbl_StartTime8);
+            this.gpTimeGroup.Controls.Add(this.Lbl_EndTime7);
+            this.gpTimeGroup.Controls.Add(this.Lbl_StartTime7);
+            this.gpTimeGroup.Controls.Add(this.Lbl_EndTime6);
+            this.gpTimeGroup.Controls.Add(this.Lbl_StartTime6);
+            this.gpTimeGroup.Controls.Add(this.Lbl_EndTime5);
+            this.gpTimeGroup.Controls.Add(this.Lbl_StartTime5);
+            this.gpTimeGroup.Controls.Add(this.Lbl_EndTime4);
+            this.gpTimeGroup.Controls.Add(this.Lbl_StartTime4);
+            this.gpTimeGroup.Controls.Add(this.Lbl_EndTime3);
+            this.gpTimeGroup.Controls.Add(this.Lbl_StartTime3);
+            this.gpTimeGroup.Controls.Add(this.Lbl_EndTime2);
+            this.gpTimeGroup.Controls.Add(this.Lbl_StartTime2);
+            this.gpTimeGroup.Controls.Add(this.Lbl_EndTime1);
+            this.gpTimeGroup.Controls.Add(this.Lbl_StartTime1);
+            this.gpTimeGroup.Controls.Add(this.cbWeekday);
+            this.gpTimeGroup.Controls.Add(this.Lbl_Weekday);
+            this.gpTimeGroup.Location = new System.Drawing.Point(12, 56);
+            this.gpTimeGroup.Name = "gpTimeGroup";
+            this.gpTimeGroup.Size = new System.Drawing.Size(610, 227);
+            this.gpTimeGroup.TabIndex = 3;
+            this.gpTimeGroup.TabStop = false;
+            this.gpTimeGroup.Text = "开门时段，组号：";
             // 
-            // btnAddTimeGroup
+            // btnFillNowTime
             // 
-            this.btnAddTimeGroup.Location = new System.Drawing.Point(328, 12);
-            this.btnAddTimeGroup.Name = "btnAddTimeGroup";
-            this.btnAddTimeGroup.Size = new System.Drawing.Size(132, 23);
-            this.btnAddTimeGroup.TabIndex = 1;
-            this.btnAddTimeGroup.Text = "上传所有开门时段";
-            this.btnAddTimeGroup.UseVisualStyleBackColor = true;
-            this.btnAddTimeGroup.Click += new System.EventHandler(this.BtnAddTimeGroup_Click);
+            this.btnFillNowTime.Location = new System.Drawing.Point(100, 188);
+            this.btnFillNowTime.Name = "btnFillNowTime";
+            this.btnFillNowTime.Size = new System.Drawing.Size(95, 23);
+            this.btnFillNowTime.TabIndex = 36;
+            this.btnFillNowTime.Text = "填充 现在时间";
+            this.btnFillNowTime.UseVisualStyleBackColor = true;
+            this.btnFillNowTime.Click += new System.EventHandler(this.BtnFillNowTime_Click);
             // 
-            // btnClearTimeGroup
+            // Lbl_Test
             // 
-            this.btnClearTimeGroup.Location = new System.Drawing.Point(484, 12);
-            this.btnClearTimeGroup.Name = "btnClearTimeGroup";
-            this.btnClearTimeGroup.Size = new System.Drawing.Size(138, 23);
-            this.btnClearTimeGroup.TabIndex = 2;
-            this.btnClearTimeGroup.Text = "清空所有开门时段";
-            this.btnClearTimeGroup.UseVisualStyleBackColor = true;
-            this.btnClearTimeGroup.Click += new System.EventHandler(this.BtnClearTimeGroup_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnFillNowTime);
-            this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.cbTimeGroup);
-            this.groupBox1.Controls.Add(this.endTimePicker8);
-            this.groupBox1.Controls.Add(this.beginTimePicker8);
-            this.groupBox1.Controls.Add(this.endTimePicker7);
-            this.groupBox1.Controls.Add(this.beginTimePicker7);
-            this.groupBox1.Controls.Add(this.endTimePicker6);
-            this.groupBox1.Controls.Add(this.beginTimePicker6);
-            this.groupBox1.Controls.Add(this.endTimePicker5);
-            this.groupBox1.Controls.Add(this.beginTimePicker5);
-            this.groupBox1.Controls.Add(this.endTimePicker4);
-            this.groupBox1.Controls.Add(this.beginTimePicker4);
-            this.groupBox1.Controls.Add(this.endTimePicker3);
-            this.groupBox1.Controls.Add(this.beginTimePicker3);
-            this.groupBox1.Controls.Add(this.endTimePicker2);
-            this.groupBox1.Controls.Add(this.beginTimePicker2);
-            this.groupBox1.Controls.Add(this.endTimePicker1);
-            this.groupBox1.Controls.Add(this.beginTimePicker1);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cbWeekday);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 56);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(610, 227);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "开门时段，组号：";
+            this.Lbl_Test.AutoSize = true;
+            this.Lbl_Test.Location = new System.Drawing.Point(32, 193);
+            this.Lbl_Test.Name = "Lbl_Test";
+            this.Lbl_Test.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_Test.TabIndex = 35;
+            this.Lbl_Test.Text = "方便测试：";
             // 
             // cbTimeGroup
             // 
@@ -343,149 +332,149 @@
             this.beginTimePicker1.TabIndex = 19;
             this.beginTimePicker1.ValueChanged += new System.EventHandler(this.BeginTimePicker1_ValueChanged);
             // 
-            // label16
+            // Lbl_EndTime8
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(518, 126);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(59, 12);
-            this.label16.TabIndex = 18;
-            this.label16.Text = "结束时间8";
+            this.Lbl_EndTime8.AutoSize = true;
+            this.Lbl_EndTime8.Location = new System.Drawing.Point(518, 126);
+            this.Lbl_EndTime8.Name = "Lbl_EndTime8";
+            this.Lbl_EndTime8.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_EndTime8.TabIndex = 18;
+            this.Lbl_EndTime8.Text = "结束时间8";
             // 
-            // label17
+            // Lbl_StartTime8
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(453, 126);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(59, 12);
-            this.label17.TabIndex = 17;
-            this.label17.Text = "开始时间8";
+            this.Lbl_StartTime8.AutoSize = true;
+            this.Lbl_StartTime8.Location = new System.Drawing.Point(453, 126);
+            this.Lbl_StartTime8.Name = "Lbl_StartTime8";
+            this.Lbl_StartTime8.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_StartTime8.TabIndex = 17;
+            this.Lbl_StartTime8.Text = "开始时间8";
             // 
-            // label14
+            // Lbl_EndTime7
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(379, 126);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(59, 12);
-            this.label14.TabIndex = 16;
-            this.label14.Text = "结束时间7";
+            this.Lbl_EndTime7.AutoSize = true;
+            this.Lbl_EndTime7.Location = new System.Drawing.Point(379, 126);
+            this.Lbl_EndTime7.Name = "Lbl_EndTime7";
+            this.Lbl_EndTime7.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_EndTime7.TabIndex = 16;
+            this.Lbl_EndTime7.Text = "结束时间7";
             // 
-            // label15
+            // Lbl_StartTime7
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(313, 126);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(59, 12);
-            this.label15.TabIndex = 15;
-            this.label15.Text = "开始时间7";
+            this.Lbl_StartTime7.AutoSize = true;
+            this.Lbl_StartTime7.Location = new System.Drawing.Point(313, 126);
+            this.Lbl_StartTime7.Name = "Lbl_StartTime7";
+            this.Lbl_StartTime7.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_StartTime7.TabIndex = 15;
+            this.Lbl_StartTime7.Text = "开始时间7";
             // 
-            // label12
+            // Lbl_EndTime6
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(237, 126);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(59, 12);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "结束时间6";
+            this.Lbl_EndTime6.AutoSize = true;
+            this.Lbl_EndTime6.Location = new System.Drawing.Point(237, 126);
+            this.Lbl_EndTime6.Name = "Lbl_EndTime6";
+            this.Lbl_EndTime6.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_EndTime6.TabIndex = 14;
+            this.Lbl_EndTime6.Text = "结束时间6";
             // 
-            // label13
+            // Lbl_StartTime6
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(172, 126);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(59, 12);
-            this.label13.TabIndex = 13;
-            this.label13.Text = "开始时间6";
+            this.Lbl_StartTime6.AutoSize = true;
+            this.Lbl_StartTime6.Location = new System.Drawing.Point(172, 126);
+            this.Lbl_StartTime6.Name = "Lbl_StartTime6";
+            this.Lbl_StartTime6.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_StartTime6.TabIndex = 13;
+            this.Lbl_StartTime6.Text = "开始时间6";
             // 
-            // label10
+            // Lbl_EndTime5
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(98, 126);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 12);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "结束时间5";
+            this.Lbl_EndTime5.AutoSize = true;
+            this.Lbl_EndTime5.Location = new System.Drawing.Point(98, 126);
+            this.Lbl_EndTime5.Name = "Lbl_EndTime5";
+            this.Lbl_EndTime5.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_EndTime5.TabIndex = 12;
+            this.Lbl_EndTime5.Text = "结束时间5";
             // 
-            // label11
+            // Lbl_StartTime5
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(30, 126);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(59, 12);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "开始时间5";
+            this.Lbl_StartTime5.AutoSize = true;
+            this.Lbl_StartTime5.Location = new System.Drawing.Point(30, 126);
+            this.Lbl_StartTime5.Name = "Lbl_StartTime5";
+            this.Lbl_StartTime5.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_StartTime5.TabIndex = 11;
+            this.Lbl_StartTime5.Text = "开始时间5";
             // 
-            // label8
+            // Lbl_EndTime4
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(518, 71);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 12);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "结束时间4";
+            this.Lbl_EndTime4.AutoSize = true;
+            this.Lbl_EndTime4.Location = new System.Drawing.Point(518, 71);
+            this.Lbl_EndTime4.Name = "Lbl_EndTime4";
+            this.Lbl_EndTime4.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_EndTime4.TabIndex = 10;
+            this.Lbl_EndTime4.Text = "结束时间4";
             // 
-            // label9
+            // Lbl_StartTime4
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(453, 71);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(59, 12);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "开始时间4";
+            this.Lbl_StartTime4.AutoSize = true;
+            this.Lbl_StartTime4.Location = new System.Drawing.Point(453, 71);
+            this.Lbl_StartTime4.Name = "Lbl_StartTime4";
+            this.Lbl_StartTime4.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_StartTime4.TabIndex = 9;
+            this.Lbl_StartTime4.Text = "开始时间4";
             // 
-            // label6
+            // Lbl_EndTime3
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(378, 71);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 12);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "结束时间3";
+            this.Lbl_EndTime3.AutoSize = true;
+            this.Lbl_EndTime3.Location = new System.Drawing.Point(378, 71);
+            this.Lbl_EndTime3.Name = "Lbl_EndTime3";
+            this.Lbl_EndTime3.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_EndTime3.TabIndex = 8;
+            this.Lbl_EndTime3.Text = "结束时间3";
             // 
-            // label7
+            // Lbl_StartTime3
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(313, 71);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 12);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "开始时间3";
+            this.Lbl_StartTime3.AutoSize = true;
+            this.Lbl_StartTime3.Location = new System.Drawing.Point(313, 71);
+            this.Lbl_StartTime3.Name = "Lbl_StartTime3";
+            this.Lbl_StartTime3.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_StartTime3.TabIndex = 7;
+            this.Lbl_StartTime3.Text = "开始时间3";
             // 
-            // label4
+            // Lbl_EndTime2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(237, 71);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "结束时间2";
+            this.Lbl_EndTime2.AutoSize = true;
+            this.Lbl_EndTime2.Location = new System.Drawing.Point(237, 71);
+            this.Lbl_EndTime2.Name = "Lbl_EndTime2";
+            this.Lbl_EndTime2.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_EndTime2.TabIndex = 6;
+            this.Lbl_EndTime2.Text = "结束时间2";
             // 
-            // label5
+            // Lbl_StartTime2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(172, 71);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 12);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "开始时间2";
+            this.Lbl_StartTime2.AutoSize = true;
+            this.Lbl_StartTime2.Location = new System.Drawing.Point(172, 71);
+            this.Lbl_StartTime2.Name = "Lbl_StartTime2";
+            this.Lbl_StartTime2.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_StartTime2.TabIndex = 5;
+            this.Lbl_StartTime2.Text = "开始时间2";
             // 
-            // label3
+            // Lbl_EndTime1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(98, 71);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 12);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "结束时间1";
+            this.Lbl_EndTime1.AutoSize = true;
+            this.Lbl_EndTime1.Location = new System.Drawing.Point(98, 71);
+            this.Lbl_EndTime1.Name = "Lbl_EndTime1";
+            this.Lbl_EndTime1.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_EndTime1.TabIndex = 4;
+            this.Lbl_EndTime1.Text = "结束时间1";
             // 
-            // label2
+            // Lbl_StartTime1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 71);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 12);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "开始时间1";
+            this.Lbl_StartTime1.AutoSize = true;
+            this.Lbl_StartTime1.Location = new System.Drawing.Point(30, 71);
+            this.Lbl_StartTime1.Name = "Lbl_StartTime1";
+            this.Lbl_StartTime1.Size = new System.Drawing.Size(59, 12);
+            this.Lbl_StartTime1.TabIndex = 3;
+            this.Lbl_StartTime1.Text = "开始时间1";
             // 
             // cbWeekday
             // 
@@ -505,40 +494,51 @@
             this.cbWeekday.TabIndex = 2;
             this.cbWeekday.SelectedIndexChanged += new System.EventHandler(this.CbWeekday_SelectedIndexChanged);
             // 
-            // label1
+            // Lbl_Weekday
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(179, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "星期：";
+            this.Lbl_Weekday.AutoSize = true;
+            this.Lbl_Weekday.Location = new System.Drawing.Point(179, 37);
+            this.Lbl_Weekday.Name = "Lbl_Weekday";
+            this.Lbl_Weekday.Size = new System.Drawing.Size(41, 12);
+            this.Lbl_Weekday.TabIndex = 1;
+            this.Lbl_Weekday.Text = "星期：";
             // 
-            // label18
+            // btnClearTimeGroup
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(32, 193);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(65, 12);
-            this.label18.TabIndex = 35;
-            this.label18.Text = "方便测试：";
+            this.btnClearTimeGroup.Location = new System.Drawing.Point(484, 12);
+            this.btnClearTimeGroup.Name = "btnClearTimeGroup";
+            this.btnClearTimeGroup.Size = new System.Drawing.Size(138, 23);
+            this.btnClearTimeGroup.TabIndex = 2;
+            this.btnClearTimeGroup.Text = "清空所有开门时段";
+            this.btnClearTimeGroup.UseVisualStyleBackColor = true;
+            this.btnClearTimeGroup.Click += new System.EventHandler(this.BtnClearTimeGroup_Click);
             // 
-            // btnFillNowTime
+            // btnAddTimeGroup
             // 
-            this.btnFillNowTime.Location = new System.Drawing.Point(100, 188);
-            this.btnFillNowTime.Name = "btnFillNowTime";
-            this.btnFillNowTime.Size = new System.Drawing.Size(95, 23);
-            this.btnFillNowTime.TabIndex = 36;
-            this.btnFillNowTime.Text = "填充 现在时间";
-            this.btnFillNowTime.UseVisualStyleBackColor = true;
-            this.btnFillNowTime.Click += new System.EventHandler(this.BtnFillNowTime_Click);
+            this.btnAddTimeGroup.Location = new System.Drawing.Point(328, 12);
+            this.btnAddTimeGroup.Name = "btnAddTimeGroup";
+            this.btnAddTimeGroup.Size = new System.Drawing.Size(132, 23);
+            this.btnAddTimeGroup.TabIndex = 1;
+            this.btnAddTimeGroup.Text = "上传所有开门时段";
+            this.btnAddTimeGroup.UseVisualStyleBackColor = true;
+            this.btnAddTimeGroup.Click += new System.EventHandler(this.BtnAddTimeGroup_Click);
+            // 
+            // btnReadTimeGroup
+            // 
+            this.btnReadTimeGroup.Location = new System.Drawing.Point(196, 12);
+            this.btnReadTimeGroup.Name = "btnReadTimeGroup";
+            this.btnReadTimeGroup.Size = new System.Drawing.Size(108, 23);
+            this.btnReadTimeGroup.TabIndex = 0;
+            this.btnReadTimeGroup.Text = "采集开门时段";
+            this.btnReadTimeGroup.UseVisualStyleBackColor = true;
+            this.btnReadTimeGroup.Click += new System.EventHandler(this.BtnReadTimeGroup_Click);
             // 
             // frmTimeGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 295);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gpTimeGroup);
             this.Controls.Add(this.btnClearTimeGroup);
             this.Controls.Add(this.btnAddTimeGroup);
             this.Controls.Add(this.btnReadTimeGroup);
@@ -546,8 +546,8 @@
             this.Text = "frmTimeGroup";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmTimeGroup_FormClosed);
             this.Load += new System.EventHandler(this.frmTimeGroup_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gpTimeGroup.ResumeLayout(false);
+            this.gpTimeGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -557,7 +557,7 @@
         private System.Windows.Forms.Button btnReadTimeGroup;
         private System.Windows.Forms.Button btnAddTimeGroup;
         private System.Windows.Forms.Button btnClearTimeGroup;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gpTimeGroup;
         private System.Windows.Forms.DateTimePicker endTimePicker8;
         private System.Windows.Forms.DateTimePicker beginTimePicker8;
         private System.Windows.Forms.DateTimePicker endTimePicker7;
@@ -574,26 +574,26 @@
         private System.Windows.Forms.DateTimePicker beginTimePicker2;
         private System.Windows.Forms.DateTimePicker endTimePicker1;
         private System.Windows.Forms.DateTimePicker beginTimePicker1;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Lbl_EndTime8;
+        private System.Windows.Forms.Label Lbl_StartTime8;
+        private System.Windows.Forms.Label Lbl_EndTime7;
+        private System.Windows.Forms.Label Lbl_StartTime7;
+        private System.Windows.Forms.Label Lbl_EndTime6;
+        private System.Windows.Forms.Label Lbl_StartTime6;
+        private System.Windows.Forms.Label Lbl_EndTime5;
+        private System.Windows.Forms.Label Lbl_StartTime5;
+        private System.Windows.Forms.Label Lbl_EndTime4;
+        private System.Windows.Forms.Label Lbl_StartTime4;
+        private System.Windows.Forms.Label Lbl_EndTime3;
+        private System.Windows.Forms.Label Lbl_StartTime3;
+        private System.Windows.Forms.Label Lbl_EndTime2;
+        private System.Windows.Forms.Label Lbl_StartTime2;
+        private System.Windows.Forms.Label Lbl_EndTime1;
+        private System.Windows.Forms.Label Lbl_StartTime1;
         private System.Windows.Forms.ComboBox cbWeekday;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Lbl_Weekday;
         private System.Windows.Forms.ComboBox cbTimeGroup;
         private System.Windows.Forms.Button btnFillNowTime;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label Lbl_Test;
     }
 }

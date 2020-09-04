@@ -30,7 +30,85 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         static frmRecord()
         {
 
-            mWatchTypeNameList = new string[] { "", "读卡信息", "门磁信息", "系统信息", "连接保活消息", "连接确认信息" };
+
+        }
+
+        #endregion
+
+        #region 窗口单例模式
+        private static object lockobj = new object();
+        private static frmRecord onlyObj;
+        public static frmRecord GetForm(INMain main)
+        {
+            if (onlyObj == null)
+            {
+                lock (lockobj)
+                {
+                    if (onlyObj == null)
+                    {
+                        onlyObj = new frmRecord(main);
+                        frmMain.AddNodeForms(onlyObj);
+                    }
+                }
+            }
+            return onlyObj;
+        }
+        #endregion
+
+        private frmRecord(INMain main)
+        {
+            InitializeComponent();
+            mMainForm = main;
+        }
+
+        private void frmRecord_Load(object sender, EventArgs e)
+        {
+            LoadUILanguage();
+
+        }
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(gpTransactionDatabaseDetail);
+            GetLanguage(Lbl_Quantity);
+            GetLanguage(Lbl_NewRecord);
+            GetLanguage(Lbl_WriteIndex);
+            GetLanguage(Lbl_ReadIndex);
+            GetLanguage(Lbl_CardRecord);
+            GetLanguage(Lbl_DoorMagneticRecord);
+            GetLanguage(Lbl_SystemRecord);
+            GetLanguage(Lbl_BodyTemperature);
+            GetLanguage(butTransactionDatabaseDetail);
+            GetLanguage(Lbl_MemoryPointerOperation);
+            GetLanguage(Lbl_TransactionDatabaseType1);
+            GetLanguage(Lbl_WriteIndex1);
+            GetLanguage(Lbl_ReadIndex1);
+            GetLanguage(butTransactionDatabaseWriteIndex);
+            GetLanguage(butTransactionDatabaseReadIndex);
+            GetLanguage(gpRecordOperation);
+            GetLanguage(Lbl_TransactionDatabaseType2);
+            GetLanguage(Lbl_Quantity2);
+            GetLanguage(button4);
+            GetLanguage(butClearTransactionDatabase);
+            GetLanguage(gpRecordOperation2);
+            GetLanguage(Lbl_TransactionDatabaseType3);
+            GetLanguage(Lbl_Quantity3);
+            GetLanguage(Lbl_ReadIndex3);
+            GetLanguage(butTransactionDatabaseByIndex);
+            GetLanguage(Lbl_Quantity4);
+            GetLanguage(chkAutoRead);
+            GetLanguage(btnReadTransactionDatabase);
+            GetLanguage(Lbl_ImageDire);
+            GetLanguage(butSelectDire);
+            GetLanguage(btnReadImageTransactionDatabase);
+            GetLanguage(butClearAllTransactionDatabase);
+            e_TransactionDatabaseType();
+            LoadCmb();
+        }
+
+        private void LoadCmb()
+        {
+            mWatchTypeNameList = GetLanguage("WatchTypeNameList").Split(',');//new string[] { "", "读卡信息", "门磁信息", "系统信息", "连接保活消息", "连接确认信息" };
             mCardTransactionList = new string[256];
             mDoorSensorTransactionList = new string[256];
             mSystemTransactionList = new string[256];
@@ -121,43 +199,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mSystemTransactionList[37] = "WIFI 已断开";//
         }
 
-        #endregion
-
-        #region 窗口单例模式
-        private static object lockobj = new object();
-        private static frmRecord onlyObj;
-        public static frmRecord GetForm(INMain main)
-        {
-            if (onlyObj == null)
-            {
-                lock (lockobj)
-                {
-                    if (onlyObj == null)
-                    {
-                        onlyObj = new frmRecord(main);
-                        frmMain.AddNodeForms(onlyObj);
-                    }
-                }
-            }
-            return onlyObj;
-        }
-        #endregion
-
-        private frmRecord(INMain main)
-        {
-            InitializeComponent();
-            mMainForm = main;
-        }
-
-        private void frmRecord_Load(object sender, EventArgs e)
-        {
-            e_TransactionDatabaseType();
-        }
-
         #region 记录类型
         public void e_TransactionDatabaseType()
         {
-            string[] array = new string[] { "读卡记录", "门磁记录", "系统记录", "体温记录" };
+            string[] array = GetLanguage("TransactionDatabaseType").Split(','); //new string[] { "读卡记录", "门磁记录", "系统记录", "体温记录" };
             cboe_TransactionDatabaseType1.Items.Clear();
             cboe_TransactionDatabaseType1.Items.AddRange(array);
             cboe_TransactionDatabaseType1.SelectedIndex = 0;
@@ -180,10 +225,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var par = new ClearTransactionDatabase_Parameter();
             var cmd = new ClearTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
         }
         #endregion
 
@@ -218,10 +259,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var par = new Transaction.WriteTransactionDatabaseWriteIndex_Parameter(Get_TransactionDatabaseType(type), WriteIndex);
             var cmd = new Transaction.WriteTransactionDatabaseWriteIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
         }
         #endregion
 
@@ -236,10 +273,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 Get_TransactionDatabaseType(type), ReadIndex);
             var cmd = new Transaction.WriteTransactionDatabaseReadIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
+
         }
 
         private void BtnReadTransactionDatabase_Click(object sender, EventArgs e)
@@ -263,13 +297,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
 
                 var result = cmde.Command.getResult() as Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Result;
-                mMainForm.AddCmdLog(cmde, $"读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count},剩余新记录数：{result.readable}");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_1", result.Quantity, result.TransactionList.Count, result.readable));
 
                 if (result.TransactionList.Count > 0)
                 {
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
-                    sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
-                    sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
+                    sLogs.AppendLine(GetLanguage("Msg_2") + mWatchTypeNameList[result.TransactionList[0].TransactionType]);
+                    sLogs.AppendLine(GetLanguage("Msg_3", result.Quantity, result.TransactionList.Count, result.readable));
+                    // sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
 
                     //按序号排序
                     result.TransactionList.Sort((x, y) => x.SerialNumber.CompareTo(y.SerialNumber));
@@ -277,8 +312,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     {
                         PrintTransactionList(t, sLogs);
                     }
-                    string sFile = SaveFile(sLogs, $"读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
-                    mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
+                    string sFile = SaveFile(sLogs, GetLanguage("Msg_4") + $"_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg_5") + sFile);
                     if (result.readable > 0) AutoReadTransaction();
                 }
             };
@@ -316,22 +351,22 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
 
                 var result = cmde.Command.getResult() as Protocol.Door.Door8800.Transaction.ReadTransactionDatabaseByIndex_Result;
-                mMainForm.AddCmdLog(cmde, $"按序号读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count}");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_6", result.Quantity, result.TransactionList.Count));//$"按序号读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count}");
 
                 if (result.Quantity > 0)
                 {
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
-                    sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
-                    sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).AppendLine();
-
+                    sLogs.AppendLine(GetLanguage("Msg_2") + mWatchTypeNameList[result.TransactionList[0].TransactionType]);
+                    //sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).AppendLine();sLogs
+                    sLogs.AppendLine(GetLanguage("Msg_7", result.Quantity, result.TransactionList.Count));
                     foreach (var t in result.TransactionList)
                     {
 
                         PrintTransactionList(t, sLogs);
                     }
-                    string sFile = SaveFile(sLogs, $"按序号读取记录_{result.TransactionType}_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    string sFile = SaveFile(sLogs, GetLanguage("Msg_8") + $"_{result.TransactionType}_{DateTime.Now:yyyyMMddHHmmss}.txt");
 
-                    mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
+                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg_5") + sFile);
 
                 }
             };
@@ -339,7 +374,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         public static string SaveFile(StringBuilder sLogs, string sFileName)
         {
-            string sPath = System.IO.Path.Combine(Application.StartupPath, "记录日志");
+            string sPath = System.IO.Path.Combine(Application.StartupPath, "Log");
             if (!System.IO.Directory.Exists(sPath))
                 System.IO.Directory.CreateDirectory(sPath);
 
@@ -352,29 +387,29 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void PrintTransactionList(AbstractTransaction tr, StringBuilder sLogs)
         {
 
-            sLogs.Append("序号：").Append(tr.SerialNumber.ToString());
+            sLogs.Append(GetLanguage("Msg_10")).Append(tr.SerialNumber.ToString());
             if (tr.IsNull())
             {
-                sLogs.AppendLine(" --- 空记录");
+                sLogs.AppendLine(" --- " + GetLanguage("Msg_11"));
                 return;
             }
             if (tr.TransactionType == 4)
             {
                 Fingerprint.Data.Transaction.BodyTemperatureTransaction btr = (Data.Transaction.BodyTemperatureTransaction)tr;
                 float btmp = (float)btr.BodyTemperature / (float)10;
-                sLogs.Append("体温：").Append(btmp).AppendLine(" ℃");
+                sLogs.Append(GetLanguage("Msg_12")).Append(btmp).AppendLine(" ℃");
                 return;
             }
-            sLogs.Append("，时间：").Append(tr.TransactionDate.ToDateTimeStr());
+            sLogs.Append("，" + GetLanguage("Msg_13")).Append(tr.TransactionDate.ToDateTimeStr());
             string[] codeNameList = mTransactionCodeNameList[tr.TransactionType];
 
-            sLogs.Append("，事件代码：").Append(tr.TransactionCode);
+            sLogs.Append("，" + GetLanguage("Msg_14")).Append(tr.TransactionCode);
             sLogs.Append("(").Append(codeNameList[tr.TransactionCode]).Append(")");
             if (tr.TransactionType == 1)//读卡记录
             {
                 Data.Transaction.CardTransaction cardTrans = tr as Data.Transaction.CardTransaction;
-                sLogs.Append("用户号：").Append(cardTrans.UserCode).Append("，进/出：")
-                    .Append(cardTrans.Accesstype).Append("，照片：").AppendLine(cardTrans.Photo == 1 ? "有" : "无");
+                sLogs.Append(GetLanguage("Msg_15")).Append(cardTrans.UserCode).Append("，" + GetLanguage("Msg_16"))
+                    .Append(cardTrans.Accesstype).Append("，" + GetLanguage("Msg_17")).AppendLine(cardTrans.Photo == 1 ? GetLanguage("Msg_18") : GetLanguage("Msg_19"));
             }
 
         }
@@ -382,22 +417,22 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void PrintCardAndImageTransactionList(AbstractTransaction tr, StringBuilder sLogs)
         {
 
-            sLogs.Append("序号：").Append(tr.SerialNumber.ToString());
+            sLogs.Append(GetLanguage("Msg_10")).Append(tr.SerialNumber.ToString());
             if (tr.IsNull())
             {
-                sLogs.AppendLine(" --- 空记录");
+                sLogs.AppendLine(" --- " + GetLanguage("Msg_11"));
                 return;
             }
             Data.Transaction.CardAndImageTransaction cardTrans = (Data.Transaction.CardAndImageTransaction)tr;
             float btmp = (float)cardTrans.BodyTemperature / (float)10;
-            sLogs.Append("，体温：").Append(btmp).Append(" ℃");
-            sLogs.Append("，时间：").Append(tr.TransactionDate.ToDateTimeStr());
+            sLogs.Append("，" + GetLanguage("Msg_12")).Append(btmp).Append(" ℃");
+            sLogs.Append("，" + GetLanguage("Msg_13")).Append(tr.TransactionDate.ToDateTimeStr());
             string[] codeNameList = mTransactionCodeNameList[tr.TransactionType];
 
-            sLogs.Append("，事件代码：").Append(tr.TransactionCode);
+            sLogs.Append("，" + GetLanguage("Msg_14")).Append(tr.TransactionCode);
             sLogs.Append("(").Append(codeNameList[tr.TransactionCode]).Append(")");
-            sLogs.Append("，用户号：").Append(cardTrans.UserCode).Append("，进/出：")
-                .Append(cardTrans.Accesstype).Append("，照片：").AppendLine(cardTrans.Photo == 1 ? "有" : "无");
+            sLogs.Append("，" + GetLanguage("Msg_15")).Append(cardTrans.UserCode).Append("，" + GetLanguage("Msg_16"))
+                .Append(cardTrans.Accesstype).Append("，" + GetLanguage("Msg_17")).AppendLine(cardTrans.Photo == 1 ? GetLanguage("Msg_18") : GetLanguage("Msg_19"));
 
         }
         #endregion
@@ -412,18 +447,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 var result = cmd.getResult() as Transaction.ReadTransactionDatabaseDetail_Result;
                 for (int i = 0; i < 4; i++)
                 {
-                    TextBox txtQuantity = FindControl(groupBox1, "txtQuantity" + (i + 1).ToString()) as TextBox;
-                    TextBox txtNewRecord = FindControl(groupBox1, "txtNewRecord" + (i + 1).ToString()) as TextBox;
-                    TextBox txtWriteIndex = FindControl(groupBox1, "txtWriteIndex" + (i + 1).ToString()) as TextBox;
-                    TextBox txtReadIndex = FindControl(groupBox1, "txtReadIndex" + (i + 1).ToString()) as TextBox;
-                    TextBox txtIsCircle = FindControl(groupBox1, "txtIsCircle" + (i + 1).ToString()) as TextBox;
+                    TextBox txtQuantity = FindControl(gpTransactionDatabaseDetail, "txtQuantity" + (i + 1).ToString()) as TextBox;
+                    TextBox txtNewRecord = FindControl(gpTransactionDatabaseDetail, "txtNewRecord" + (i + 1).ToString()) as TextBox;
+                    TextBox txtWriteIndex = FindControl(gpTransactionDatabaseDetail, "txtWriteIndex" + (i + 1).ToString()) as TextBox;
+                    TextBox txtReadIndex = FindControl(gpTransactionDatabaseDetail, "txtReadIndex" + (i + 1).ToString()) as TextBox;
+                    TextBox txtIsCircle = FindControl(gpTransactionDatabaseDetail, "txtIsCircle" + (i + 1).ToString()) as TextBox;
                     Invoke(() =>
                     {
                         txtQuantity.Text = result.DatabaseDetail.ListTransaction[i].DataBaseMaxSize.ToString();
                         txtWriteIndex.Text = result.DatabaseDetail.ListTransaction[i].WriteIndex.ToString();
                         txtNewRecord.Text = result.DatabaseDetail.ListTransaction[i].readable().ToString();
                         txtReadIndex.Text = result.DatabaseDetail.ListTransaction[i].ReadIndex.ToString();
-                        txtIsCircle.Text = result.DatabaseDetail.ListTransaction[i].IsCircle ? "【1、循环】" : "【0、未循环】";
+                        // txtIsCircle.Text = result.DatabaseDetail.ListTransaction[i].IsCircle ? "【1、循环】" : "【0、未循环】";
                     });
                 }
             };
@@ -450,7 +485,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "创建目录错误");
+                    MessageBox.Show(ex.Message, GetLanguage("Msg_20"));
                     return;
                 }
             }
@@ -458,7 +493,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var par = new ReadTransactionAndImageDatabase_Parameter(Quantity, true, sDir);
             par.AutoWriteReadIndex = false;
             par.AutoDownloadImage = false;
-            par.ImageDownloadCheckCallblack = (imgSerialNumber) => {
+            par.ImageDownloadCheckCallblack = (imgSerialNumber) =>
+            {
                 /*int RandKey = ran.Next(1, 100);
                 if (RandKey > 60)
                 {
@@ -475,22 +511,22 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
 
                 var result = cmde.Command.getResult() as ReadTransactionAndImageDatabase_Result;
-                mMainForm.AddCmdLog(cmde, $"读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count},剩余新记录数：{result.readable}");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_1", result.Quantity, result.TransactionList.Count, result.readable));
                 Console.WriteLine("BodyTemperatureReadIndex =" + result.BodyTemperatureReadIndex);
                 if (result.TransactionList.Count > 0)
                 {
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
-                    sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
-                    sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
-
+                    sLogs.AppendLine(GetLanguage("Msg_2") + mWatchTypeNameList[result.TransactionList[0].TransactionType]);
+                    //sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
+                    sLogs.Append(GetLanguage("Msg_3", result.Quantity, result.TransactionList.Count, result.readable));
                     //按序号排序
                     result.TransactionList.Sort((x, y) => x.SerialNumber.CompareTo(y.SerialNumber));
                     foreach (var t in result.TransactionList)
                     {
                         PrintCardAndImageTransactionList(t, sLogs);
                     }
-                    string sFile = SaveFile(sLogs, $"读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
-                    mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
+                    string sFile = SaveFile(sLogs, GetLanguage("Msg_4") + $"_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg_5") + sFile);
                     if (result.readable > 0) AutoReadTransactionAndImage();
                 }
             };
@@ -513,13 +549,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void butSelectDire_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            dialog.Description = "请选择下载照片所在文件夹";
+            dialog.Description = GetLanguage("Msg_21");
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 if (string.IsNullOrEmpty(dialog.SelectedPath))
                 {
                     //System.Windows.MessageBox.Show(this, "文件夹路径不能为空", "提示");
-                    MessageBox.Show("请选择文件夹");
+                    MessageBox.Show(GetLanguage("Msg_22"));
                     return;
                 }
                 txtImageDire.Text = dialog.SelectedPath;
@@ -555,10 +591,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var par = new Transaction.ClearTransactionDatabase_Parameter(Get_TransactionDatabaseType(type));
             var cmd = new Transaction.ClearTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
         }
     }
 }

@@ -42,6 +42,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void frmHoliday_Load(object sender, EventArgs e)
         {
+            LoadUILanguage();
             cbIndex.Items.Clear();
             for (int i = 1; i < 31; i++)
             {
@@ -54,10 +55,32 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
 
         }
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(gpAllHoliday);
+            GetLanguage(butReadHolidayDetail);
+            GetLanguage(butReadAllHoliday);
+            GetLanguage(butAddHoliday);
+            GetLanguage(butClearHoliday);
+            GetLanguage(Lbl_HolidayList);
+            GetLanguage(checkBoxX1);
+            GetLanguage(Lbl_Index);
+            GetLanguage(Lbl_HolidayTime);
+            GetLanguage(cbYear);
+            GetLanguage(btnAddList);
+            GetLanguage(btnDelList);
+            GetLanguage(btnAddDecive);
+            GetLanguage(btnDelDevice);
+            GetLanguage(btnDelSelect);
+            GetLanguage(btnAdd30);
+            GetLanguage(dataGridView1);
+            LoadComboxItemsLanguage(cbType, "cbType");
+        }
 
         private void BindDataGrid()
         {
-            
+
         }
 
 
@@ -74,7 +97,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 ReadHolidayDetail_Result result = cmde.Command.getResult() as ReadHolidayDetail_Result;
                 var dtl = result.Detail;
-                string log = $"容量：{dtl.Capacity} ， 已用：{dtl.Count}";
+                string log = GetLanguage("Msg_8") + "\r\n" + string.Format(GetLanguage("Msg_4"), dtl.Capacity, dtl.Count);
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
@@ -87,12 +110,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (cmdDtl == null) return;
             ClearHoliday cmd = new ClearHoliday(cmdDtl);
             mMainForm.AddCommand(cmd);
-
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-
-            };
         }
         #endregion
 
@@ -113,7 +130,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     HolidayDetailDto dto = new HolidayDetailDto();
 
                     dto.HolidayTypeRender = ConvertHolidayType(item.HolidayType);
-                    dto.RepeatYear = item.Holiday.Year == 2000 ? "是" : "否";
+                    dto.RepeatYear = item.Holiday.Year == 2000 ? GetLanguage("Msg_1") : GetLanguage("Msg_2");
                     if (item.Holiday.Year == 2000)
                     {
                         dto.Holiday = new DateTime(DateTime.Now.Year, item.Holiday.Month, item.Holiday.Day);
@@ -122,19 +139,20 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     {
                         dto.Holiday = item.Holiday;
                     }
-                    
+                    dto.HolidayType = item.HolidayType;
                     dto.Index = item.Index;
                     dto.Selected = false;
                     listHoliday.Add(dto);
                     //superGridControl1.PrimaryGrid.Rows.Add(new GridRow(new object[] { item.Index, item.Holiday, ConvertHolidayType(item.HolidayType),item.Year }));
                 }
-                Invoke(() => {
+                Invoke(() =>
+                {
                     dataGridView1.DataSource = new BindingList<HolidayDetailDto>(listHoliday);
 
                 });
-               
+
                 //dataGridView1
-                string log = $"已读取到数量：{result.Count} ";
+                string log = GetLanguage("Msg_3") + result.Count;
                 mMainForm.AddCmdLog(cmde, log);
             };
 
@@ -153,13 +171,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             switch (b)
             {
                 case 1:
-                    result = "【1、00点-11点59分 不能开】";
+                    result = GetLanguage("Msg_5");
                     break;
                 case 2:
-                    result = "【2、12点-24点59分 不能开】";
+                    result = GetLanguage("Msg_6");
                     break;
                 case 3:
-                    result = "【3、全天不能开】";
+                    result = GetLanguage("Msg_7");
                     break;
                 default:
                     break;
@@ -221,9 +239,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
             holidayDto.Selected = false;
             holidayDto.Index = bIndex;
+            holidayDto.HolidayType = (byte)(cbType.SelectedIndex + 1);
             holidayDto.Holiday = dtpDay.Value;
             holidayDto.HolidayTypeRender = ConvertHolidayType(Convert.ToByte(cbType.SelectedIndex + 1));
-            holidayDto.RepeatYear = cbYear.Checked ? "是" : "否";
+            holidayDto.RepeatYear = cbYear.Checked ? GetLanguage("Msg_1") : GetLanguage("Msg_2");
             if (!bExist)
             {
                 listHoliday.Add(holidayDto);
@@ -273,11 +292,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AddHoliday cmd = new AddHoliday(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             BtnAddList_Click(null, null);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-                
-            };
         }
 
         /// <summary>
@@ -292,13 +306,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             List<HolidayDetail> _list = new List<HolidayDetail>();
             _list.Add(new HolidayDetail() { Index = Convert.ToByte(cbIndex.SelectedIndex + 1) });
             DeleteHoliday_Parameter par = new DeleteHoliday_Parameter(_list);
-            DeleteHoliday cmd = new DeleteHoliday(cmdDtl,par);
+            DeleteHoliday cmd = new DeleteHoliday(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-            };
         }
 
         private void BtnAdd30_Click(object sender, EventArgs e)
@@ -306,8 +316,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             listHoliday.Clear();
             for (int i = 0; i < 30; i++)
             {
-                HolidayDetailDto holiday = new HolidayDetailDto() { Index = Convert.ToByte(i + 1), Holiday = dtpDay.Value.AddDays(i + 1)};
-                holiday.RepeatYear = cbYear.Checked ? "是" : "否";
+                HolidayDetailDto holiday = new HolidayDetailDto() { Index = Convert.ToByte(i + 1), Holiday = dtpDay.Value.AddDays(i + 1) };
+                holiday.RepeatYear = cbYear.Checked ? GetLanguage("Msg_1") : GetLanguage("Msg_2");
                 holiday.HolidayType = Convert.ToByte(cbType.SelectedIndex + 1);
                 holiday.HolidayTypeRender = ConvertHolidayType(holiday.HolidayType);
                 listHoliday.Add(holiday);
@@ -332,20 +342,20 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[1];
                     byte bIndex = Convert.ToByte(text.Value);
                     _list.Add(new HolidayDetail() { Index = bIndex });
-                    listHoliday.RemoveAt(listHoliday.FindIndex(t => t.Index == bIndex));
+                    
                 }
+            }
+            foreach (var item in _list)
+            {
+                listHoliday.RemoveAt(listHoliday.FindIndex(t => t.Index == item.Index));
             }
             dataGridView1.DataSource = new BindingList<HolidayDetailDto>(listHoliday);
 
             DeleteHoliday_Parameter par = new DeleteHoliday_Parameter(_list);
             DeleteHoliday cmd = new DeleteHoliday(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-            };
         }
+
 
         /// <summary>
         /// 添加列表节假日
@@ -359,39 +369,34 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             List<HolidayDetail> _list = new List<HolidayDetail>();
             for (int i = 0; i < listHoliday.Count; i++)
             {
-                HolidayDetail holiday = new HolidayDetail() { Index = listHoliday[i].Index, HolidayType = listHoliday[i].HolidayType };
+                HolidayDetail holiday = new HolidayDetail() { Index = listHoliday[i].Index, HolidayType = (byte)(listHoliday[i].HolidayType) };
                 holiday.Holiday = listHoliday[i].Holiday;
                 if (cbYear.Checked)
                 {
                     holiday.Holiday = new DateTime(2000, holiday.Holiday.Month, holiday.Holiday.Day);
                 }
-                
+
                 _list.Add(holiday);
             }
             AddHoliday_Parameter par = new AddHoliday_Parameter(_list);
             AddHoliday cmd = new AddHoliday(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-            };
         }
 
         private void DataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex == 0)
             {
-                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[e.RowIndex].Cells[0];
                 if ((bool)cell.FormattedValue)
                 {
                     cell.Value = false;
-                    cell.EditingCellFormattedValue = false;
+                  //  cell.EditingCellFormattedValue = false;
                 }
                 else
                 {
                     cell.Value = true;
-                    cell.EditingCellFormattedValue = true;
+                  //  cell.EditingCellFormattedValue = true;
                 }
             }
         }
@@ -405,14 +410,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 if ((bool)cell.FormattedValue)
                 {
                     cell.Value = false;
-                    cell.EditingCellFormattedValue = false;
                 }
                 else
                 {
                     cell.Value = true;
-                    cell.EditingCellFormattedValue = true;
                 }
             }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[e.RowIndex].Cells[0];
+            cell.Value = !Convert.ToBoolean(cell.Value);
         }
     }
 }

@@ -50,71 +50,38 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             InitializeComponent();
             mMainForm = main;
         }
-
-        string[] mCardStatusList = new string[] { "正常状态", "挂失", "黑名单", "已删除" };
-
-        string[] mEnterStatusList = new string[] { "出入有效", "入有效", "出有效" };
-
-        string[] mIdentityList = new string[] { "普通用户", "管理员" };
-
-        string[] mCardTypeList = new string[] { "普通卡", "常开" };
-
         private void InitControl()
         {
             TimeGroup();
-            CardStatus();
-            EnterStatus();
-            Identity();
+            // CardStatus();
+            // EnterStatus();
+            // Identity();
             OpenTimes();
         }
 
         public void OpenTimes()
         {
             cmbOpenTimes.Items.Clear();
-            cmbOpenTimes.Items.Add("(0)已失效");
-
+            cmbOpenTimes.Items.Add(GetLanguage("cmbOpenTimes0"));
+            string str = GetLanguage("cmbOpenTimes");
             string[] time = new string[300];
             for (int i = 1; i <= 300; i++)
             {
-                time[i - 1] = i + "次";
+                time[i - 1] = i + str;
             }
             cmbOpenTimes.Items.AddRange(time);
-            cmbOpenTimes.Items.Add("无限制(65535)");
+            cmbOpenTimes.Items.Add(GetLanguage("cmbOpenTimes65535"));
             cmbOpenTimes.SelectedIndex = cmbOpenTimes.Items.Count - 1;
         }
 
-        private void Identity()
-        {
-            cmbIdentity.Items.Clear();
-            cmbIdentity.Items.AddRange(mIdentityList);
-            cmbIdentity.SelectedIndex = 0;
-        }
-
-        private void EnterStatus()
-        {
-            cmbEnterStatus.Items.Clear();
-            cmbEnterStatus.Items.AddRange(mEnterStatusList);
-            cmbEnterStatus.SelectedIndex = 0;
-
-        }
-
-        private void CardStatus()
-        {
-            cmbCardStatus.Items.Clear();
-            cmbCardStatus.Items.AddRange(mCardStatusList);
-            cmbCardStatus.SelectedIndex = 0;
-
-            cmbCardType.Items.Clear();
-            cmbCardType.Items.AddRange(mCardTypeList);
-            cmbCardType.SelectedIndex = 0;
-        }
 
         public void TimeGroup()
         {
             string[] time = new string[64];
+            string str = GetLanguage("cmbTimeGroup");
             for (int i = 0; i < 64; i++)
             {
-                time[i] = "卡门时段" + (i + 1);
+                time[i] = str + (i + 1);
             }
             cmbTimeGroup.Items.Clear();
             cmbTimeGroup.Items.AddRange(time);
@@ -124,10 +91,75 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void FrmPerson_Load(object sender, EventArgs e)
         {
+
             dgPersonList.AutoGenerateColumns = false;
             PersonList = new BindingList<Person_UI>();
             CardHashTable = new HashSet<uint>();
             dgPersonList.DataSource = PersonList;
+            LoadUILanguage();
+            // InitControl();
+        }
+
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(Lbl_UserList);
+            GetLanguage(chkSelectAll);
+            GetLanguage(btnReadDatabaseDetail);
+            GetLanguage(btnReadAllPerson);
+            GetLanguage(btnClearDataBase);
+            GetLanguage(btnWriteAllPerson);
+            GetLanguage(btnClearList);
+            GetLanguage(tabPage1);
+            GetLanguage(gpUserIdentityDetail);
+            GetLanguage(Lbl_UserCode);
+            GetLanguage(Lbl_Password);
+            GetLanguage(Lbl_CardData);
+            GetLanguage(Lbl_ValidityTime);
+            GetLanguage(Lbl_CardDataHex);
+            GetLanguage(Lbl_OpenTimes);
+            GetLanguage(Lbl_CardStatus);
+            GetLanguage(Lbl_TimeGroup);
+            GetLanguage(Lbl_Identity);
+            GetLanguage(Lbl_CardType);
+            GetLanguage(Lbl_EnterStatus);
+            GetLanguage(Lbl_PName);
+            GetLanguage(Lbl_PCode);
+            GetLanguage(Lbl_Dept);
+            GetLanguage(Lbl_Job);
+            GetLanguage(Lbl_Holiday);
+            GetLanguage(tabPage2);
+            GetLanguage(Lbl_Count);
+            GetLanguage(butCreateCardNumByRandom);
+            GetLanguage(butCreateCardNumByOrder);
+            GetLanguage(tabPage3);
+            GetLanguage(Lbl_RegUserCode);
+            GetLanguage(Lbl_RegUserName);
+            GetLanguage(button2);
+            GetLanguage(tabPage4);
+            GetLanguage(Lbl_UploadCode);
+            GetLanguage(Lbl_UploadName);
+            GetLanguage(butSelectImage);
+            GetLanguage(btnAddPesonAndImage);
+            GetLanguage(button5);
+            GetLanguage(btnAddList);
+            GetLanguage(btnDelList);
+            GetLanguage(btnAddDevice);
+            GetLanguage(btnDelDevice);
+            GetLanguage(btnDelSelect);
+            GetLanguage(dgPersonList);
+            GetLanguage(button1);
+            GetLanguage(btnCheckUserCode);
+            GetLanguage(button3);
+            GetLanguage(button4);
+            LoadComboxItemsLanguage(cmbCardStatus, "CardStatusList");
+            cmbCardStatus.SelectedIndex = 0;
+            LoadComboxItemsLanguage(cmbEnterStatus, "EnterStatusList");
+            cmbEnterStatus.SelectedIndex = 0;
+            LoadComboxItemsLanguage(cmbIdentity, "IdentityList");
+            cmbIdentity.SelectedIndex = 0;
+            LoadComboxItemsLanguage(cmbCardType, "CardTypeList");
+            cmbCardType.SelectedIndex = 0;
             InitControl();
         }
 
@@ -139,9 +171,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadPersonDatabaseDetail_Result result = cmde.Command.getResult() as ReadPersonDatabaseDetail_Result;
-
-                mMainForm.AddCmdLog(cmde, $"人员档案最大容量：{result.SortDataBaseSize},已存储人员数量：{result.SortPersonSize},\r\n指纹特征码最大容量：{result.SortFingerprintDataBaseSize}" +
-                    $",已存储指纹数量：{result.SortFingerprintSize},\r\n人脸特征码最大容量：{result.SortFaceDataBaseSize},已存储人脸数量：{result.SortFaceSize}");
+                StringBuilder builder = new StringBuilder();
+                builder.AppendLine(GetLanguage("btnReadDatabaseDetail"));
+                builder.AppendLine(GetLanguage("Msg_1") + result.SortDataBaseSize);
+                builder.AppendLine(GetLanguage("Msg_2") + result.SortPersonSize);
+                builder.AppendLine(GetLanguage("Msg_3") + result.SortFingerprintDataBaseSize);
+                builder.AppendLine(GetLanguage("Msg_4") + result.SortFingerprintSize);
+                builder.AppendLine(GetLanguage("Msg_5") + result.SortFaceDataBaseSize);
+                builder.AppendLine(GetLanguage("Msg_6") + result.SortFaceSize);
+                mMainForm.AddCmdLog(cmde, builder.ToString());
             };
         }
 
@@ -171,11 +209,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
 
 
-                mMainForm.AddCmdLog(cmde, $"读取到的人员数:{result.DataBaseSize}");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_7") + result.DataBaseSize);
                 if (sLogs.Length > 0)
                 {
-                    string sFile = frmRecord.SaveFile(sLogs, $"读取所有卡片_{DateTime.Now:yyyyMMddHHmmss}.txt");
-                    mMainForm.AddCmdLog(cmde, $"卡片日志保存路径:{sFile}");
+                    string sFile = frmRecord.SaveFile(sLogs, GetLanguage("Msg_8") + $"{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg_9") + sFile);
                 }
             };
         }
@@ -185,10 +223,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             var cmd = new ClearPersonDataBase(cmdDtl);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
         }
 
         private void BtnWriteAllPerson_Click(object sender, EventArgs e)
@@ -233,9 +267,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (row < 0) return;
             var gdRow = dgPersonList.Rows[row];
             var PersonUI = gdRow.DataBoundItem as Person_UI;
-            StringBuilder strBuf = new StringBuilder();
+            // StringBuilder strBuf = new StringBuilder();
 
-            DebugPerson(PersonUI.Person, strBuf);
+            // DebugPerson(PersonUI.Person, strBuf);
             //txtDebug.Text = strBuf.ToString();
             PersonToControl(PersonUI.Person);
         }
@@ -254,19 +288,30 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private StringBuilder DebugPersonDetail(Data.Person person, StringBuilder strBuf)
         {
             Person_UI ui = new Person_UI(person);
-            strBuf.Append("用户号：").Append(ui.UserCode).Append("；姓名：").Append(ui.PName).Append("；部门：").Append(ui.Dept).Append("；职务：").Append(ui.Job).Append("；工号：").Append(ui.PCode);
-            strBuf.Append("卡号：").Append(ui.CardData).Append("；密码：").Append(ui.Password);
-            strBuf.Append("；有效期：").Append(ui.Expiry).Append("；有效次数：").Append(ui.OpenTimes).AppendLine("；");
-            strBuf.Append("；开门时段：").Append(ui.TimeGroup);
-            strBuf.Append("；状态：").Append(ui.CardStatus).Append("；用户身份：").AppendLine(ui.Identity);
-            strBuf.Append("；节假日：").Append(ui.Holiday).Append("(1->32)");
-            strBuf.Append("；出入标志：").Append(ui.EnterStatus);
-            strBuf.Append("；最近读卡时间：").AppendLine(ui.ReadCardDate);
-            strBuf.Append("；是否有人脸：").AppendLine(ui.IsFaceFeature);
-            strBuf.Append("；指纹数：").AppendLine(ui.FingerprintCount.ToString());
+            //strBuf.Append("用户号：").Append(ui.UserCode).Append("；姓名：").Append(ui.PName).Append("；部门：").Append(ui.Dept).Append("；职务：").Append(ui.Job).Append("；工号：").Append(ui.PCode);
+            //strBuf.Append("卡号：").Append(ui.CardData).Append("；密码：").Append(ui.Password);
+            //strBuf.Append("；有效期：").Append(ui.Expiry).Append("；有效次数：").Append(ui.OpenTimes).AppendLine("；");
+            //strBuf.Append("；开门时段：").Append(ui.TimeGroup);
+            //strBuf.Append("；状态：").Append(ui.CardStatus).Append("；用户身份：").AppendLine(ui.Identity);
+            //strBuf.Append("；节假日：").Append(ui.Holiday).Append("(1->32)");
+            //strBuf.Append("；出入标志：").Append(ui.EnterStatus);
+            //strBuf.Append("；最近读卡时间：").AppendLine(ui.ReadCardDate);
+            //strBuf.Append("；是否有人脸：").AppendLine(ui.IsFaceFeature);
+            //strBuf.Append("；指纹数：").AppendLine(ui.FingerprintCount.ToString());
+            // string.Empty
+            strBuf.AppendLine(GetLanguage("Msg_10", ui.UserCode, ui.PName, ui.Dept, ui.Job, ui.PCode));
+            strBuf.AppendLine(GetLanguage("Msg_11", ui.CardData, ui.Password));
+            strBuf.AppendLine(GetLanguage("Msg_12", ui.Expiry, ui.OpenTimes));
+            strBuf.AppendLine(GetLanguage("Msg_13", ui.TimeGroup, ui.CardStatus, ui.Identity));
+            strBuf.AppendLine(GetLanguage("Msg_14", ui.Holiday, ui.EnterStatus));
+            strBuf.AppendLine(GetLanguage("Msg_15", ui.ReadCardDate, ui.IsFaceFeature, ui.FingerprintCount));
+            strBuf.AppendLine("--------------------------------------------------------------------------------------");
             return strBuf;
         }
+        //private string IsEmpty(string value)
+        //{
 
+        //}
 
         /// <summary>
         /// 将卡片输出到控件中
@@ -567,7 +612,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             if (result != null)
             {
-                mMainForm.AddCmdLog(cmde, $"命令成功：写入失败的卡数量:{result.FailTotal}");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_16")+result.FailTotal);
                 if (result.FailTotal > 0)
                 {
                     StringBuilder strBuf = new StringBuilder();
@@ -576,7 +621,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         strBuf.Append(item.ToString("00000000000000000000")).Append("(0x").Append(item.ToString("X18")).Append(")");
                     }
                     //txtDebug.Text = strBuf.ToString();
-                    System.IO.File.WriteAllText(System.IO.Path.Combine(Application.StartupPath, "上传失败的卡号.txt"), strBuf.ToString(), Encoding.UTF8);
+                    System.IO.File.WriteAllText(System.IO.Path.Combine(Application.StartupPath, GetLanguage("Msg_17")+".txt"), strBuf.ToString(), Encoding.UTF8);
                 }
             }
         }
@@ -601,7 +646,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             uint usercode = 0;
             if (!uint.TryParse(txtUserCode.Text, out usercode))
             {
-                MessageBox.Show("用户号格式不正确");
+                MessageBox.Show(GetLanguage("Msg_18"));
                 return;
             }
             var par = new ReadPersonDetail_Parameter(usercode);
@@ -614,12 +659,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 if (!result.IsReady)
                 {
-                    mMainForm.AddCmdLog(cmde, $"人员不存在");
+                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg_19") );
                 }
                 else
                 {
                     PersonToControl(result.Person);
-                    mMainForm.AddCmdLog(cmde, $"人员存在");
+                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg_20") );
                 }
             };
         }
@@ -627,7 +672,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void butSelectImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "图片文件|*.jpg";
+            ofd.Filter = GetLanguage("Msg_21")+"|*.jpg";
             ofd.Multiselect = false;
             if (ofd.ShowDialog() != DialogResult.OK) return;
             picUpload.Image = null;
@@ -644,7 +689,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             if (string.IsNullOrEmpty(mPersonImagePath))
             {
-                MsgTip("请先选择照片！");
+                MsgTip(GetLanguage("Msg_22"));
                 return;
             }
             uint sCode = 0;
@@ -656,7 +701,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
             catch (Exception)
             {
-                MsgErr("输入的内容错误！");
+                MsgErr(GetLanguage("Msg_23"));
                 return;
             }
 
@@ -672,7 +717,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             byte[] datas = System.IO.File.ReadAllBytes(mPersonImagePath);
             datas = ImageTool.ConvertImage(datas, 480, 640, 122880);
             IdentificationData id = new IdentificationData(1, datas);
-            
+
             var par = new AddPersonAndImage_Parameter(person, id);
             par.WaitRepeatMessage = true;//固件版本v4.28以上才能用
             cmd = new AddPeosonAndImage(cmdDtl, par);
@@ -693,10 +738,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 var ids = result.IdDataUploadStatus;
 
-                mMainForm.AddCmdLog(cmde, $"命令成功：人员添加状态:{result.UserUploadStatus} 照片上传状态:{ids[0]}");
+                mMainForm.AddCmdLog(cmde,GetLanguage("Msg_24", result.UserUploadStatus, ids[0]));
                 if (ids[0] == 4)
                 {
-                    mMainForm.AddCmdLog(cmde, $"照片重复，重复的人员编号:{result.IdDataRepeatUser[0]}");
+                    mMainForm.AddCmdLog(cmde,GetLanguage("Msg_25")+result.IdDataRepeatUser[0]);
                 }
             }
         }
@@ -736,13 +781,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                             picReg.Image = img;
                         }
 
-                        MsgTip("注册成功！");
+                        MsgTip(GetLanguage("Msg_26"));
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show($"注册失败--{result.Status}");
+                    MessageBox.Show(GetLanguage("Msg_26") +$"--{result.Status}");
                 }
             };
         }
@@ -751,7 +796,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             if (string.IsNullOrEmpty(mPersonImagePath))
             {
-                MsgTip("请先选择照片！");
+                MsgTip(GetLanguage("Msg_22"));
                 return;
             }
             uint sCode = 0;
@@ -763,7 +808,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
             catch (Exception)
             {
-                MsgErr("输入的内容错误！");
+                MsgErr(GetLanguage("Msg_23"));
                 return;
             }
 
@@ -788,10 +833,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 mMainForm.AddCommand(cmd);
             }
-            MsgTip("完毕");
+            MsgTip(GetLanguage("Msg_28"));
         }
 
         private void btnDelSelect_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage4_Click(object sender, EventArgs e)
         {
 
         }

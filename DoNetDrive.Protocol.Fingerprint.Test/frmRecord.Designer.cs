@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gpTransactionDatabaseDetail = new System.Windows.Forms.GroupBox();
             this.txtIsCircle4 = new System.Windows.Forms.TextBox();
             this.txtReadIndex4 = new System.Windows.Forms.TextBox();
             this.txtQuantity4 = new System.Windows.Forms.TextBox();
             this.txtWriteIndex4 = new System.Windows.Forms.TextBox();
             this.txtNewRecord4 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.Lbl_BodyTemperature = new System.Windows.Forms.Label();
             this.butTransactionDatabaseDetail = new System.Windows.Forms.Button();
             this.txtIsCircle3 = new System.Windows.Forms.TextBox();
             this.txtIsCircle2 = new System.Windows.Forms.TextBox();
@@ -51,93 +51,93 @@
             this.txtNewRecord3 = new System.Windows.Forms.TextBox();
             this.txtNewRecord2 = new System.Windows.Forms.TextBox();
             this.txtNewRecord1 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.Lbl_NewRecord = new System.Windows.Forms.Label();
+            this.Lbl_WriteIndex = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Lbl_ReadIndex = new System.Windows.Forms.Label();
+            this.Lbl_Quantity = new System.Windows.Forms.Label();
+            this.Lbl_DoorMagneticRecord = new System.Windows.Forms.Label();
+            this.Lbl_SystemRecord = new System.Windows.Forms.Label();
+            this.Lbl_CardRecord = new System.Windows.Forms.Label();
+            this.Lbl_MemoryPointerOperation = new System.Windows.Forms.GroupBox();
             this.butTransactionDatabaseReadIndex = new System.Windows.Forms.Button();
             this.butTransactionDatabaseWriteIndex = new System.Windows.Forms.Button();
             this.cbIsCircle = new System.Windows.Forms.CheckBox();
             this.cboe_TransactionDatabaseType1 = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txtReadIndex = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.Lbl_ReadIndex1 = new System.Windows.Forms.Label();
             this.txtWriteIndex = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.Lbl_WriteIndex1 = new System.Windows.Forms.Label();
+            this.Lbl_TransactionDatabaseType1 = new System.Windows.Forms.Label();
+            this.gpRecordOperation = new System.Windows.Forms.GroupBox();
             this.butClearTransactionDatabase = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.cboe_TransactionDatabaseType2 = new System.Windows.Forms.ComboBox();
             this.txttxtQuantity0 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
+            this.Lbl_Quantity2 = new System.Windows.Forms.Label();
+            this.Lbl_TransactionDatabaseType2 = new System.Windows.Forms.Label();
             this.butTransactionDatabaseByIndex = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gpRecordOperation2 = new System.Windows.Forms.GroupBox();
             this.chkAutoRead = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.Lbl_ImageDire = new System.Windows.Forms.Label();
             this.txtImageDire = new System.Windows.Forms.TextBox();
             this.butSelectDire = new System.Windows.Forms.Button();
             this.btnReadImageTransactionDatabase = new System.Windows.Forms.Button();
             this.btnReadTransactionDatabase = new System.Windows.Forms.Button();
-            this.label23 = new System.Windows.Forms.Label();
+            this.Lbl_Quantity4 = new System.Windows.Forms.Label();
             this.txtReadTransactionDatabaseQuantity = new System.Windows.Forms.TextBox();
             this.cboe_TransactionDatabaseType3 = new System.Windows.Forms.ComboBox();
             this.txtReadIndex0 = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.Lbl_ReadIndex3 = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.Lbl_Quantity3 = new System.Windows.Forms.Label();
+            this.Lbl_TransactionDatabaseType3 = new System.Windows.Forms.Label();
             this.butClearAllTransactionDatabase = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.gpTransactionDatabaseDetail.SuspendLayout();
+            this.Lbl_MemoryPointerOperation.SuspendLayout();
+            this.gpRecordOperation.SuspendLayout();
+            this.gpRecordOperation2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gpTransactionDatabaseDetail
             // 
-            this.groupBox1.Controls.Add(this.txtIsCircle4);
-            this.groupBox1.Controls.Add(this.txtReadIndex4);
-            this.groupBox1.Controls.Add(this.txtQuantity4);
-            this.groupBox1.Controls.Add(this.txtWriteIndex4);
-            this.groupBox1.Controls.Add(this.txtNewRecord4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.butTransactionDatabaseDetail);
-            this.groupBox1.Controls.Add(this.txtIsCircle3);
-            this.groupBox1.Controls.Add(this.txtIsCircle2);
-            this.groupBox1.Controls.Add(this.txtIsCircle1);
-            this.groupBox1.Controls.Add(this.txtQuantity1);
-            this.groupBox1.Controls.Add(this.txtReadIndex3);
-            this.groupBox1.Controls.Add(this.txtQuantity2);
-            this.groupBox1.Controls.Add(this.txtQuantity3);
-            this.groupBox1.Controls.Add(this.txtReadIndex2);
-            this.groupBox1.Controls.Add(this.txtReadIndex1);
-            this.groupBox1.Controls.Add(this.txtWriteIndex3);
-            this.groupBox1.Controls.Add(this.txtWriteIndex2);
-            this.groupBox1.Controls.Add(this.txtWriteIndex1);
-            this.groupBox1.Controls.Add(this.txtNewRecord3);
-            this.groupBox1.Controls.Add(this.txtNewRecord2);
-            this.groupBox1.Controls.Add(this.txtNewRecord1);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(705, 202);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "存储器状况";
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtIsCircle4);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtReadIndex4);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtQuantity4);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtWriteIndex4);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtNewRecord4);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.Lbl_BodyTemperature);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.butTransactionDatabaseDetail);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtIsCircle3);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtIsCircle2);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtIsCircle1);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtQuantity1);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtReadIndex3);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtQuantity2);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtQuantity3);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtReadIndex2);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtReadIndex1);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtWriteIndex3);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtWriteIndex2);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtWriteIndex1);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtNewRecord3);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtNewRecord2);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.txtNewRecord1);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.Lbl_NewRecord);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.Lbl_WriteIndex);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.label9);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.Lbl_ReadIndex);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.Lbl_Quantity);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.Lbl_DoorMagneticRecord);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.Lbl_SystemRecord);
+            this.gpTransactionDatabaseDetail.Controls.Add(this.Lbl_CardRecord);
+            this.gpTransactionDatabaseDetail.Location = new System.Drawing.Point(13, 13);
+            this.gpTransactionDatabaseDetail.Name = "gpTransactionDatabaseDetail";
+            this.gpTransactionDatabaseDetail.Size = new System.Drawing.Size(705, 202);
+            this.gpTransactionDatabaseDetail.TabIndex = 0;
+            this.gpTransactionDatabaseDetail.TabStop = false;
+            this.gpTransactionDatabaseDetail.Text = "存储器状况";
             // 
             // txtIsCircle4
             // 
@@ -145,6 +145,7 @@
             this.txtIsCircle4.Name = "txtIsCircle4";
             this.txtIsCircle4.Size = new System.Drawing.Size(100, 21);
             this.txtIsCircle4.TabIndex = 47;
+            this.txtIsCircle4.Visible = false;
             // 
             // txtReadIndex4
             // 
@@ -174,14 +175,14 @@
             this.txtNewRecord4.Size = new System.Drawing.Size(100, 21);
             this.txtNewRecord4.TabIndex = 43;
             // 
-            // label3
+            // Lbl_BodyTemperature
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 153);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
-            this.label3.TabIndex = 42;
-            this.label3.Text = "体温记录";
+            this.Lbl_BodyTemperature.AutoSize = true;
+            this.Lbl_BodyTemperature.Location = new System.Drawing.Point(24, 153);
+            this.Lbl_BodyTemperature.Name = "Lbl_BodyTemperature";
+            this.Lbl_BodyTemperature.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_BodyTemperature.TabIndex = 42;
+            this.Lbl_BodyTemperature.Text = "体温记录";
             // 
             // butTransactionDatabaseDetail
             // 
@@ -199,6 +200,7 @@
             this.txtIsCircle3.Name = "txtIsCircle3";
             this.txtIsCircle3.Size = new System.Drawing.Size(100, 21);
             this.txtIsCircle3.TabIndex = 40;
+            this.txtIsCircle3.Visible = false;
             // 
             // txtIsCircle2
             // 
@@ -206,6 +208,7 @@
             this.txtIsCircle2.Name = "txtIsCircle2";
             this.txtIsCircle2.Size = new System.Drawing.Size(100, 21);
             this.txtIsCircle2.TabIndex = 37;
+            this.txtIsCircle2.Visible = false;
             // 
             // txtIsCircle1
             // 
@@ -213,6 +216,7 @@
             this.txtIsCircle1.Name = "txtIsCircle1";
             this.txtIsCircle1.Size = new System.Drawing.Size(100, 21);
             this.txtIsCircle1.TabIndex = 35;
+            this.txtIsCircle1.Visible = false;
             // 
             // txtQuantity1
             // 
@@ -298,23 +302,23 @@
             this.txtNewRecord1.Size = new System.Drawing.Size(100, 21);
             this.txtNewRecord1.TabIndex = 11;
             // 
-            // label11
+            // Lbl_NewRecord
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(215, 17);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(53, 12);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "新记录数";
+            this.Lbl_NewRecord.AutoSize = true;
+            this.Lbl_NewRecord.Location = new System.Drawing.Point(215, 17);
+            this.Lbl_NewRecord.Name = "Lbl_NewRecord";
+            this.Lbl_NewRecord.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_NewRecord.TabIndex = 10;
+            this.Lbl_NewRecord.Text = "新记录数";
             // 
-            // label10
+            // Lbl_WriteIndex
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(322, 17);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 12);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "记录尾号";
+            this.Lbl_WriteIndex.AutoSize = true;
+            this.Lbl_WriteIndex.Location = new System.Drawing.Point(322, 17);
+            this.Lbl_WriteIndex.Name = "Lbl_WriteIndex";
+            this.Lbl_WriteIndex.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_WriteIndex.TabIndex = 9;
+            this.Lbl_WriteIndex.Text = "记录尾号";
             // 
             // label9
             // 
@@ -324,70 +328,71 @@
             this.label9.Size = new System.Drawing.Size(53, 12);
             this.label9.TabIndex = 8;
             this.label9.Text = "循环标志";
+            this.label9.Visible = false;
             // 
-            // label8
+            // Lbl_ReadIndex
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(428, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 12);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "上传断点";
+            this.Lbl_ReadIndex.AutoSize = true;
+            this.Lbl_ReadIndex.Location = new System.Drawing.Point(428, 16);
+            this.Lbl_ReadIndex.Name = "Lbl_ReadIndex";
+            this.Lbl_ReadIndex.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_ReadIndex.TabIndex = 7;
+            this.Lbl_ReadIndex.Text = "上传断点";
             // 
-            // label7
+            // Lbl_Quantity
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(109, 17);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 12);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "记录容量";
+            this.Lbl_Quantity.AutoSize = true;
+            this.Lbl_Quantity.Location = new System.Drawing.Point(109, 17);
+            this.Lbl_Quantity.Name = "Lbl_Quantity";
+            this.Lbl_Quantity.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_Quantity.TabIndex = 6;
+            this.Lbl_Quantity.Text = "记录容量";
             // 
-            // label5
+            // Lbl_DoorMagneticRecord
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 79);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "门磁记录";
+            this.Lbl_DoorMagneticRecord.AutoSize = true;
+            this.Lbl_DoorMagneticRecord.Location = new System.Drawing.Point(24, 79);
+            this.Lbl_DoorMagneticRecord.Name = "Lbl_DoorMagneticRecord";
+            this.Lbl_DoorMagneticRecord.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_DoorMagneticRecord.TabIndex = 4;
+            this.Lbl_DoorMagneticRecord.Text = "门磁记录";
             // 
-            // label2
+            // Lbl_SystemRecord
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 116);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "系统记录";
+            this.Lbl_SystemRecord.AutoSize = true;
+            this.Lbl_SystemRecord.Location = new System.Drawing.Point(24, 116);
+            this.Lbl_SystemRecord.Name = "Lbl_SystemRecord";
+            this.Lbl_SystemRecord.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_SystemRecord.TabIndex = 1;
+            this.Lbl_SystemRecord.Text = "系统记录";
             // 
-            // label1
+            // Lbl_CardRecord
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "读卡记录";
+            this.Lbl_CardRecord.AutoSize = true;
+            this.Lbl_CardRecord.Location = new System.Drawing.Point(24, 41);
+            this.Lbl_CardRecord.Name = "Lbl_CardRecord";
+            this.Lbl_CardRecord.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_CardRecord.TabIndex = 0;
+            this.Lbl_CardRecord.Text = "读卡记录";
             // 
-            // groupBox2
+            // Lbl_MemoryPointerOperation
             // 
-            this.groupBox2.Controls.Add(this.butTransactionDatabaseReadIndex);
-            this.groupBox2.Controls.Add(this.butTransactionDatabaseWriteIndex);
-            this.groupBox2.Controls.Add(this.cbIsCircle);
-            this.groupBox2.Controls.Add(this.cboe_TransactionDatabaseType1);
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.txtReadIndex);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.txtWriteIndex);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Location = new System.Drawing.Point(12, 222);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(706, 71);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "存储指针操作";
+            this.Lbl_MemoryPointerOperation.Controls.Add(this.butTransactionDatabaseReadIndex);
+            this.Lbl_MemoryPointerOperation.Controls.Add(this.butTransactionDatabaseWriteIndex);
+            this.Lbl_MemoryPointerOperation.Controls.Add(this.cbIsCircle);
+            this.Lbl_MemoryPointerOperation.Controls.Add(this.cboe_TransactionDatabaseType1);
+            this.Lbl_MemoryPointerOperation.Controls.Add(this.label15);
+            this.Lbl_MemoryPointerOperation.Controls.Add(this.txtReadIndex);
+            this.Lbl_MemoryPointerOperation.Controls.Add(this.Lbl_ReadIndex1);
+            this.Lbl_MemoryPointerOperation.Controls.Add(this.txtWriteIndex);
+            this.Lbl_MemoryPointerOperation.Controls.Add(this.Lbl_WriteIndex1);
+            this.Lbl_MemoryPointerOperation.Controls.Add(this.Lbl_TransactionDatabaseType1);
+            this.Lbl_MemoryPointerOperation.Location = new System.Drawing.Point(12, 222);
+            this.Lbl_MemoryPointerOperation.Name = "Lbl_MemoryPointerOperation";
+            this.Lbl_MemoryPointerOperation.Size = new System.Drawing.Size(706, 71);
+            this.Lbl_MemoryPointerOperation.TabIndex = 1;
+            this.Lbl_MemoryPointerOperation.TabStop = false;
+            this.Lbl_MemoryPointerOperation.Text = "存储指针操作";
             // 
             // butTransactionDatabaseReadIndex
             // 
@@ -418,6 +423,7 @@
             this.cbIsCircle.TabIndex = 21;
             this.cbIsCircle.Text = "已存满";
             this.cbIsCircle.UseVisualStyleBackColor = true;
+            this.cbIsCircle.Visible = false;
             // 
             // cboe_TransactionDatabaseType1
             // 
@@ -436,6 +442,7 @@
             this.label15.Size = new System.Drawing.Size(53, 12);
             this.label15.TabIndex = 18;
             this.label15.Text = "循环标志";
+            this.label15.Visible = false;
             // 
             // txtReadIndex
             // 
@@ -445,14 +452,14 @@
             this.txtReadIndex.TabIndex = 17;
             this.txtReadIndex.Text = "0";
             // 
-            // label14
+            // Lbl_ReadIndex1
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(283, 19);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(53, 12);
-            this.label14.TabIndex = 16;
-            this.label14.Text = "上传断点";
+            this.Lbl_ReadIndex1.AutoSize = true;
+            this.Lbl_ReadIndex1.Location = new System.Drawing.Point(283, 19);
+            this.Lbl_ReadIndex1.Name = "Lbl_ReadIndex1";
+            this.Lbl_ReadIndex1.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_ReadIndex1.TabIndex = 16;
+            this.Lbl_ReadIndex1.Text = "上传断点";
             // 
             // txtWriteIndex
             // 
@@ -462,38 +469,38 @@
             this.txtWriteIndex.TabIndex = 15;
             this.txtWriteIndex.Text = "0";
             // 
-            // label13
+            // Lbl_WriteIndex1
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(165, 19);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(53, 12);
-            this.label13.TabIndex = 14;
-            this.label13.Text = "记录尾号";
+            this.Lbl_WriteIndex1.AutoSize = true;
+            this.Lbl_WriteIndex1.Location = new System.Drawing.Point(165, 19);
+            this.Lbl_WriteIndex1.Name = "Lbl_WriteIndex1";
+            this.Lbl_WriteIndex1.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_WriteIndex1.TabIndex = 14;
+            this.Lbl_WriteIndex1.Text = "记录尾号";
             // 
-            // label12
+            // Lbl_TransactionDatabaseType1
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(47, 19);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 12);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "记录类型";
+            this.Lbl_TransactionDatabaseType1.AutoSize = true;
+            this.Lbl_TransactionDatabaseType1.Location = new System.Drawing.Point(47, 19);
+            this.Lbl_TransactionDatabaseType1.Name = "Lbl_TransactionDatabaseType1";
+            this.Lbl_TransactionDatabaseType1.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_TransactionDatabaseType1.TabIndex = 12;
+            this.Lbl_TransactionDatabaseType1.Text = "记录类型";
             // 
-            // groupBox3
+            // gpRecordOperation
             // 
-            this.groupBox3.Controls.Add(this.butClearTransactionDatabase);
-            this.groupBox3.Controls.Add(this.button4);
-            this.groupBox3.Controls.Add(this.cboe_TransactionDatabaseType2);
-            this.groupBox3.Controls.Add(this.txttxtQuantity0);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Location = new System.Drawing.Point(13, 300);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(705, 93);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "记录操作";
+            this.gpRecordOperation.Controls.Add(this.butClearTransactionDatabase);
+            this.gpRecordOperation.Controls.Add(this.button4);
+            this.gpRecordOperation.Controls.Add(this.cboe_TransactionDatabaseType2);
+            this.gpRecordOperation.Controls.Add(this.txttxtQuantity0);
+            this.gpRecordOperation.Controls.Add(this.Lbl_Quantity2);
+            this.gpRecordOperation.Controls.Add(this.Lbl_TransactionDatabaseType2);
+            this.gpRecordOperation.Location = new System.Drawing.Point(13, 300);
+            this.gpRecordOperation.Name = "gpRecordOperation";
+            this.gpRecordOperation.Size = new System.Drawing.Size(705, 93);
+            this.gpRecordOperation.TabIndex = 2;
+            this.gpRecordOperation.TabStop = false;
+            this.gpRecordOperation.Text = "记录操作";
             // 
             // butClearTransactionDatabase
             // 
@@ -533,23 +540,23 @@
             this.txttxtQuantity0.TabIndex = 23;
             this.txttxtQuantity0.Text = "0";
             // 
-            // label16
+            // Lbl_Quantity2
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(215, 18);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(53, 12);
-            this.label16.TabIndex = 22;
-            this.label16.Text = "读取数量";
+            this.Lbl_Quantity2.AutoSize = true;
+            this.Lbl_Quantity2.Location = new System.Drawing.Point(215, 18);
+            this.Lbl_Quantity2.Name = "Lbl_Quantity2";
+            this.Lbl_Quantity2.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_Quantity2.TabIndex = 22;
+            this.Lbl_Quantity2.Text = "读取数量";
             // 
-            // label17
+            // Lbl_TransactionDatabaseType2
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(82, 18);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(53, 12);
-            this.label17.TabIndex = 21;
-            this.label17.Text = "记录类型";
+            this.Lbl_TransactionDatabaseType2.AutoSize = true;
+            this.Lbl_TransactionDatabaseType2.Location = new System.Drawing.Point(82, 18);
+            this.Lbl_TransactionDatabaseType2.Name = "Lbl_TransactionDatabaseType2";
+            this.Lbl_TransactionDatabaseType2.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_TransactionDatabaseType2.TabIndex = 21;
+            this.Lbl_TransactionDatabaseType2.Text = "记录类型";
             // 
             // butTransactionDatabaseByIndex
             // 
@@ -559,31 +566,32 @@
             this.butTransactionDatabaseByIndex.TabIndex = 25;
             this.butTransactionDatabaseByIndex.Text = "按序号采集记录";
             this.butTransactionDatabaseByIndex.UseVisualStyleBackColor = true;
+            this.butTransactionDatabaseByIndex.Visible = false;
             this.butTransactionDatabaseByIndex.Click += new System.EventHandler(this.butTransactionDatabaseByIndex_Click);
             // 
-            // groupBox4
+            // gpRecordOperation2
             // 
-            this.groupBox4.Controls.Add(this.chkAutoRead);
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.txtImageDire);
-            this.groupBox4.Controls.Add(this.butSelectDire);
-            this.groupBox4.Controls.Add(this.btnReadImageTransactionDatabase);
-            this.groupBox4.Controls.Add(this.btnReadTransactionDatabase);
-            this.groupBox4.Controls.Add(this.label23);
-            this.groupBox4.Controls.Add(this.txtReadTransactionDatabaseQuantity);
-            this.groupBox4.Controls.Add(this.cboe_TransactionDatabaseType3);
-            this.groupBox4.Controls.Add(this.butTransactionDatabaseByIndex);
-            this.groupBox4.Controls.Add(this.txtReadIndex0);
-            this.groupBox4.Controls.Add(this.label18);
-            this.groupBox4.Controls.Add(this.txtQuantity);
-            this.groupBox4.Controls.Add(this.label19);
-            this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Location = new System.Drawing.Point(13, 400);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(705, 170);
-            this.groupBox4.TabIndex = 3;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "记录操作";
+            this.gpRecordOperation2.Controls.Add(this.chkAutoRead);
+            this.gpRecordOperation2.Controls.Add(this.Lbl_ImageDire);
+            this.gpRecordOperation2.Controls.Add(this.txtImageDire);
+            this.gpRecordOperation2.Controls.Add(this.butSelectDire);
+            this.gpRecordOperation2.Controls.Add(this.btnReadImageTransactionDatabase);
+            this.gpRecordOperation2.Controls.Add(this.btnReadTransactionDatabase);
+            this.gpRecordOperation2.Controls.Add(this.Lbl_Quantity4);
+            this.gpRecordOperation2.Controls.Add(this.txtReadTransactionDatabaseQuantity);
+            this.gpRecordOperation2.Controls.Add(this.cboe_TransactionDatabaseType3);
+            this.gpRecordOperation2.Controls.Add(this.butTransactionDatabaseByIndex);
+            this.gpRecordOperation2.Controls.Add(this.txtReadIndex0);
+            this.gpRecordOperation2.Controls.Add(this.Lbl_ReadIndex3);
+            this.gpRecordOperation2.Controls.Add(this.txtQuantity);
+            this.gpRecordOperation2.Controls.Add(this.Lbl_Quantity3);
+            this.gpRecordOperation2.Controls.Add(this.Lbl_TransactionDatabaseType3);
+            this.gpRecordOperation2.Location = new System.Drawing.Point(13, 400);
+            this.gpRecordOperation2.Name = "gpRecordOperation2";
+            this.gpRecordOperation2.Size = new System.Drawing.Size(705, 170);
+            this.gpRecordOperation2.TabIndex = 3;
+            this.gpRecordOperation2.TabStop = false;
+            this.gpRecordOperation2.Text = "记录操作";
             // 
             // chkAutoRead
             // 
@@ -595,14 +603,14 @@
             this.chkAutoRead.Text = "连续读";
             this.chkAutoRead.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // Lbl_ImageDire
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 136);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 12);
-            this.label4.TabIndex = 37;
-            this.label4.Text = "照片保存路径";
+            this.Lbl_ImageDire.AutoSize = true;
+            this.Lbl_ImageDire.Location = new System.Drawing.Point(6, 136);
+            this.Lbl_ImageDire.Name = "Lbl_ImageDire";
+            this.Lbl_ImageDire.Size = new System.Drawing.Size(77, 12);
+            this.Lbl_ImageDire.TabIndex = 37;
+            this.Lbl_ImageDire.Text = "照片保存路径";
             // 
             // txtImageDire
             // 
@@ -642,14 +650,14 @@
             this.btnReadTransactionDatabase.UseVisualStyleBackColor = true;
             this.btnReadTransactionDatabase.Click += new System.EventHandler(this.BtnReadTransactionDatabase_Click);
             // 
-            // label23
+            // Lbl_Quantity4
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(325, 72);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(53, 12);
-            this.label23.TabIndex = 32;
-            this.label23.Text = "读取数量";
+            this.Lbl_Quantity4.AutoSize = true;
+            this.Lbl_Quantity4.Location = new System.Drawing.Point(325, 72);
+            this.Lbl_Quantity4.Name = "Lbl_Quantity4";
+            this.Lbl_Quantity4.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_Quantity4.TabIndex = 32;
+            this.Lbl_Quantity4.Text = "读取数量";
             // 
             // txtReadTransactionDatabaseQuantity
             // 
@@ -678,14 +686,14 @@
             this.txtReadIndex0.TabIndex = 27;
             this.txtReadIndex0.Text = "1";
             // 
-            // label18
+            // Lbl_ReadIndex3
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(325, 16);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(53, 12);
-            this.label18.TabIndex = 26;
-            this.label18.Text = "起始序号";
+            this.Lbl_ReadIndex3.AutoSize = true;
+            this.Lbl_ReadIndex3.Location = new System.Drawing.Point(325, 16);
+            this.Lbl_ReadIndex3.Name = "Lbl_ReadIndex3";
+            this.Lbl_ReadIndex3.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_ReadIndex3.TabIndex = 26;
+            this.Lbl_ReadIndex3.Text = "起始序号";
             // 
             // txtQuantity
             // 
@@ -696,23 +704,23 @@
             this.txtQuantity.TabIndex = 25;
             this.txtQuantity.Text = "1";
             // 
-            // label19
+            // Lbl_Quantity3
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(207, 16);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(53, 12);
-            this.label19.TabIndex = 24;
-            this.label19.Text = "读取数量";
+            this.Lbl_Quantity3.AutoSize = true;
+            this.Lbl_Quantity3.Location = new System.Drawing.Point(207, 16);
+            this.Lbl_Quantity3.Name = "Lbl_Quantity3";
+            this.Lbl_Quantity3.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_Quantity3.TabIndex = 24;
+            this.Lbl_Quantity3.Text = "读取数量";
             // 
-            // label20
+            // Lbl_TransactionDatabaseType3
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(89, 16);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(53, 12);
-            this.label20.TabIndex = 23;
-            this.label20.Text = "记录类型";
+            this.Lbl_TransactionDatabaseType3.AutoSize = true;
+            this.Lbl_TransactionDatabaseType3.Location = new System.Drawing.Point(89, 16);
+            this.Lbl_TransactionDatabaseType3.Name = "Lbl_TransactionDatabaseType3";
+            this.Lbl_TransactionDatabaseType3.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_TransactionDatabaseType3.TabIndex = 23;
+            this.Lbl_TransactionDatabaseType3.Text = "记录类型";
             // 
             // butClearAllTransactionDatabase
             // 
@@ -722,6 +730,7 @@
             this.butClearAllTransactionDatabase.TabIndex = 28;
             this.butClearAllTransactionDatabase.Text = "清空所有记录";
             this.butClearAllTransactionDatabase.UseVisualStyleBackColor = true;
+            this.butClearAllTransactionDatabase.Visible = false;
             this.butClearAllTransactionDatabase.Click += new System.EventHandler(this.butClearAllTransactionDatabase_Click);
             // 
             // frmRecord
@@ -730,28 +739,28 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(731, 607);
             this.Controls.Add(this.butClearAllTransactionDatabase);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gpRecordOperation2);
+            this.Controls.Add(this.gpRecordOperation);
+            this.Controls.Add(this.Lbl_MemoryPointerOperation);
+            this.Controls.Add(this.gpTransactionDatabaseDetail);
             this.Name = "frmRecord";
             this.Text = "frmRecord";
             this.Load += new System.EventHandler(this.frmRecord_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.gpTransactionDatabaseDetail.ResumeLayout(false);
+            this.gpTransactionDatabaseDetail.PerformLayout();
+            this.Lbl_MemoryPointerOperation.ResumeLayout(false);
+            this.Lbl_MemoryPointerOperation.PerformLayout();
+            this.gpRecordOperation.ResumeLayout(false);
+            this.gpRecordOperation.PerformLayout();
+            this.gpRecordOperation2.ResumeLayout(false);
+            this.gpRecordOperation2.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gpTransactionDatabaseDetail;
         private System.Windows.Forms.Button butTransactionDatabaseDetail;
         private System.Windows.Forms.TextBox txtIsCircle3;
         private System.Windows.Forms.TextBox txtIsCircle2;
@@ -768,53 +777,53 @@
         private System.Windows.Forms.TextBox txtNewRecord3;
         private System.Windows.Forms.TextBox txtNewRecord2;
         private System.Windows.Forms.TextBox txtNewRecord1;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label Lbl_NewRecord;
+        private System.Windows.Forms.Label Lbl_WriteIndex;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label Lbl_ReadIndex;
+        private System.Windows.Forms.Label Lbl_Quantity;
+        private System.Windows.Forms.Label Lbl_DoorMagneticRecord;
+        private System.Windows.Forms.Label Lbl_SystemRecord;
+        private System.Windows.Forms.Label Lbl_CardRecord;
+        private System.Windows.Forms.GroupBox Lbl_MemoryPointerOperation;
         private System.Windows.Forms.Button butTransactionDatabaseReadIndex;
         private System.Windows.Forms.Button butTransactionDatabaseWriteIndex;
         private System.Windows.Forms.CheckBox cbIsCircle;
         private System.Windows.Forms.ComboBox cboe_TransactionDatabaseType1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtReadIndex;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label Lbl_ReadIndex1;
         private System.Windows.Forms.TextBox txtWriteIndex;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label Lbl_WriteIndex1;
+        private System.Windows.Forms.Label Lbl_TransactionDatabaseType1;
+        private System.Windows.Forms.GroupBox gpRecordOperation;
         private System.Windows.Forms.Button butClearTransactionDatabase;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button butTransactionDatabaseByIndex;
         private System.Windows.Forms.ComboBox cboe_TransactionDatabaseType2;
         private System.Windows.Forms.TextBox txttxtQuantity0;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label Lbl_Quantity2;
+        private System.Windows.Forms.Label Lbl_TransactionDatabaseType2;
+        private System.Windows.Forms.GroupBox gpRecordOperation2;
         private System.Windows.Forms.ComboBox cboe_TransactionDatabaseType3;
         private System.Windows.Forms.TextBox txtReadIndex0;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label Lbl_ReadIndex3;
         private System.Windows.Forms.TextBox txtQuantity;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label Lbl_Quantity3;
+        private System.Windows.Forms.Label Lbl_TransactionDatabaseType3;
         private System.Windows.Forms.Button butClearAllTransactionDatabase;
         private System.Windows.Forms.Button btnReadTransactionDatabase;
-        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label Lbl_Quantity4;
         private System.Windows.Forms.TextBox txtReadTransactionDatabaseQuantity;
         private System.Windows.Forms.TextBox txtIsCircle4;
         private System.Windows.Forms.TextBox txtReadIndex4;
         private System.Windows.Forms.TextBox txtQuantity4;
         private System.Windows.Forms.TextBox txtWriteIndex4;
         private System.Windows.Forms.TextBox txtNewRecord4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label Lbl_BodyTemperature;
         private System.Windows.Forms.Button btnReadImageTransactionDatabase;
         private System.Windows.Forms.Button butSelectDire;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label Lbl_ImageDire;
         private System.Windows.Forms.TextBox txtImageDire;
         private System.Windows.Forms.CheckBox chkAutoRead;
     }

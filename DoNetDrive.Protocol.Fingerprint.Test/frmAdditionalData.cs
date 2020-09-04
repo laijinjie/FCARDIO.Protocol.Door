@@ -21,6 +21,26 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
     {
         #region 单例模式
 
+        private string Msg_1;
+        private string Msg_2;
+        private string Msg_3;
+        private string Msg_4;
+        private string Msg_5;
+        private string Msg_6;
+        private string Msg_7;
+        private string Msg_8;
+        private string Msg_9;
+        private string Msg_10;
+        private string Msg_11;
+        private string Msg_12;
+        private string Msg_13;
+        private string Msg_14;
+        private string Msg_15;
+        private string Msg_16;
+        private string Msg_17;
+        private string Msg_18;
+        private string Msg_19;
+        private string Msg_PersonDetail;
         private static object lockobj = new object();
         private static frmAdditionalData onlyObj;
 
@@ -46,16 +66,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             InitializeComponent();
             mMainForm = main;
-            InitControl();
+            //  InitControl();
         }
 
-        string[] mUploadTypeList = new string[] { "人员头像照片", "指纹特征码", "红外人脸特征码", "动态人脸特征码" };
-        string[] mDownloadTypeList = new string[] { "人员头像", "指纹特征码", "记录照片", "红外人脸特征码", "动态人脸特征码" };
+        // string[] mUploadTypeList = new string[] { "人员头像照片", "指纹特征码", "红外人脸特征码", "动态人脸特征码" };
+        // string[] mDownloadTypeList = new string[] { "人员头像", "指纹特征码", "记录照片", "红外人脸特征码", "动态人脸特征码" };
         /// <summary>
         /// 初始化控件
         /// </summary>
         private void InitControl()
         {
+            var mUploadTypeList = GetLanguage("UploadTypeList").Split(',');
+            var mDownloadTypeList = GetLanguage("DownloadTypeList").Split(',');
             cmbUploadType.Items.Clear();
             cmbUploadType.Items.AddRange(mUploadTypeList);
             cmbUploadType.SelectedIndex = 0;
@@ -85,18 +107,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 var result = cmd.getResult() as ReadPersonDetail_Result;
                 StringBuilder strBuf = new StringBuilder();
-                strBuf.Append($"人员ID：{result.UserCode}，照片存储情况：\r\n");
+                strBuf.Append(string.Format(Msg_PersonDetail + "\r\n", result.UserCode));
                 for (int i = 0; i < result.PhotoList.Length; i++)
                 {
-                    strBuf.Append($"照片{i + 1}:{(result.PhotoList[i] == 1 ? "有，" : "无，")}");
+                    strBuf.Append(Msg_3 + $"{i + 1}:{(result.PhotoList[i] == 1 ? Msg_1 + "，" : Msg_2 + "，")}");
                 }
                 strBuf.Append("\r\n");
                 for (int i = 0; i < result.FingerprintList.Length; i++)
                 {
-                    strBuf.Append($"指纹{i + 1}:{(result.FingerprintList[i] == 1 ? "有，" : "无，")}");
+                    strBuf.Append(Msg_4 + $"{i + 1}:{(result.FingerprintList[i] == 1 ? Msg_1 + "，" : Msg_2 + "，")}");
                 }
                 strBuf.Append("\r\n");
-                strBuf.Append($"人脸特征码存储情况：{(result.HasFace ? "有" : "无")}");
+                strBuf.Append(Msg_5 + (result.HasFace ? Msg_1 : Msg_2));
                 mMainForm.AddCmdLog(cmde, strBuf.ToString());
             };
         }
@@ -137,12 +159,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 var result = cmd.getResult() as ReadFeatureCode_Result;
                 if (result.FileHandle == 0)
                 {
-                    mMainForm.AddCmdLog(cmde, "待下载文件不存在");
+                    mMainForm.AddCmdLog(cmde, Msg_6);
                     return;
                 }
                 if (!result.Result)
                 {
-                    mMainForm.AddCmdLog(cmde, "文件CRC32校验失败！");
+                    mMainForm.AddCmdLog(cmde, Msg_7);
                     return;
                 }
                 Invoke(() =>
@@ -293,11 +315,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 var result = cmde.Command.getResult() as WriteFeatureCode_Result;
                 if (result.Result == 1)
                 {
-                    mMainForm.AddCmdLog(cmde, "写入成功");
+                    mMainForm.AddCmdLog(cmde, Msg_8);
                 }
                 else
                 {
-                    mMainForm.AddCmdLog(cmde, $"写入失败：code={result.Result}");
+                    mMainForm.AddCmdLog(cmde, Msg_9 + $"：code={result.Result}");
                 }
             };
         }
@@ -310,7 +332,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
             byte[] datas = Convert.FromBase64String(txtCodeData.Text);
             uint CRC32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(datas, 0, (uint)datas.Length);
-            MessageBox.Show("特征码的 CRC32：" + CRC32.ToString("x"));
+            MessageBox.Show(Msg_10 + "：" + CRC32.ToString("x"));
         }
 
 
@@ -414,7 +436,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void ButUploadImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "图片文件|*.jpg;*.jpeg;*.bmp;*.png";
+            ofd.Filter = Msg_11 + "|*.jpg;*.jpeg;*.bmp;*.png";
             ofd.Multiselect = false;
             if (ofd.ShowDialog() != DialogResult.OK) return;
 
@@ -446,16 +468,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 var result = cmde.Command.getResult() as WriteFeatureCode_Result;
                 if (result.Result == 1)
                 {
-                    mMainForm.AddCmdLog(cmde, "写入成功");
+                    mMainForm.AddCmdLog(cmde, Msg_12);
                 }
                 else
                 {
                     if (result.Result == 4)
                     {
-                        mMainForm.AddCmdLog(cmde, $"写入失败：照片重复，重复的人员编号：{result.RepeatUser}");
+                        mMainForm.AddCmdLog(cmde, Msg_13 + result.RepeatUser);
                     }
                     else
-                        mMainForm.AddCmdLog(cmde, $"写入失败：code={result.Result}");
+                        mMainForm.AddCmdLog(cmde, Msg_14 + $"：code={result.Result}");
                 }
             };
         }
@@ -484,17 +506,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void IniEquptType()
         {
+            var equptType = GetLanguage("EquptTypeList").Split(',');
             mAesKey = new Dictionary<string, EquptAESKey>();
-            var oKey = new EquptAESKey("A102 指纹机", "70c5287e4572bdd9", 1024);
+            var oKey = new EquptAESKey(equptType[0], "70c5287e4572bdd9", 1024);
             mAesKey.Add(oKey.Name, oKey);
 
-            oKey = new EquptAESKey("A103 指纹机", "0097d54f8d755a9b", 1024);
+            oKey = new EquptAESKey(equptType[1], "0097d54f8d755a9b", 1024);
             mAesKey.Add(oKey.Name, oKey);
 
-            oKey = new EquptAESKey("A108 指纹红外人脸机", "f89cabe34e5b9965", 1024);
+            oKey = new EquptAESKey(equptType[2], "f89cabe34e5b9965", 1024);
             mAesKey.Add(oKey.Name, oKey);
 
-            oKey = new EquptAESKey("FC8300 动态人脸机", "286eb84a8342627c", 1024);
+            oKey = new EquptAESKey(equptType[3], "286eb84a8342627c", 1024);
             mAesKey.Add(oKey.Name, oKey);
 
             cmbEquptType.Items.Clear();
@@ -506,7 +529,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void ButUploadSoftware_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "固件文件|*.RCBin";
+            ofd.Filter = Msg_15 + "|*.RCBin";
             ofd.Multiselect = false;
             if (ofd.ShowDialog() != DialogResult.OK) return;
 
@@ -521,7 +544,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var sKey = Encoding.ASCII.GetString(bSurFile, 0, 16);
             if (!sKey.Equals(oItem.Key))
             {
-                MsgErr("固件类型不正确！");
+                MsgErr(Msg_16);
                 return;
             }
             string sVer = $"{bSurFile[16]}.{bSurFile[17]}";
@@ -534,7 +557,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             uint itmpCRC32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(bSoftWareData, 0, (uint)iSoftwareSize);
             if (itmpCRC32 != iFileCRC32)
             {
-                MsgErr("固件CRC32不正确！");
+                MsgErr(Msg_17);
                 return;
             }
 
@@ -543,7 +566,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (cmdDtl == null) return;
             var par = new Software.UpdateSoftware_Parameter(bSoftWareData, iSoftwareCRC32);
             INCommand cmd = null;
-            if (oItem.Name.Equals("FC8300 动态人脸机"))
+            if (oItem.Key.Equals("286eb84a8342627c"))
             {
                 cmd = new Software.UpdateSoftware(cmdDtl, par);
             }
@@ -561,11 +584,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 var result = cmde.Command.getResult() as Software.UpdateSoftware_Result;
                 if (result.Success == 1)
                 {
-                    mMainForm.AddCmdLog(cmde, "固件上传完毕");
+                    mMainForm.AddCmdLog(cmde, Msg_18);
                 }
                 else
                 {
-                    mMainForm.AddCmdLog(cmde, $"固件上传失败：code={result.Success}");
+                    mMainForm.AddCmdLog(cmde, Msg_19 + $"：code={result.Success}");
                 }
             };
 
@@ -576,8 +599,60 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         }
 
+
         #endregion
 
+        private void frmAdditionalData_Load(object sender, EventArgs e)
+        {
+            LoadUILanguage();
 
+        }
+
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(gpUpload);
+            GetLanguage(Lbl_UploadUserCode);
+            GetLanguage(Lbl_UploadType);
+            GetLanguage(Lbl_UploadSerialNumber);
+            GetLanguage(tabPage2);
+            GetLanguage(tabPage1);
+            GetLanguage(butUploadImage);
+            GetLanguage(Lbl_CodeData);
+            GetLanguage(btnDeleteCode);
+            GetLanguage(btnCompute);
+            GetLanguage(btnUploadCode);
+            GetLanguage(gpDownload);
+            GetLanguage(Lbl_DownloadUserCode);
+            GetLanguage(Lbl_DownloadType);
+            GetLanguage(Lbl_DownloadSerialNumber);
+            GetLanguage(btnGetPerson);
+            GetLanguage(chkByBlock);
+            GetLanguage(btnDownload);
+            GetLanguage(gpUpdateSoftware);
+            GetLanguage(Lbl_EquptType);
+            GetLanguage(butUpdateSoftware);
+            Msg_1 = GetLanguage("Msg_1");
+            Msg_2 = GetLanguage("Msg_2");
+            Msg_3 = GetLanguage("Msg_3");
+            Msg_4 = GetLanguage("Msg_4");
+            Msg_5 = GetLanguage("Msg_5");
+            Msg_6 = GetLanguage("Msg_6");
+            Msg_7 = GetLanguage("Msg_7");
+            Msg_8 = GetLanguage("Msg_8");
+            Msg_9 = GetLanguage("Msg_9");
+            Msg_10 = GetLanguage("Msg_10");
+            Msg_11 = GetLanguage("Msg_11");
+            Msg_12 = GetLanguage("Msg_12");
+            Msg_13 = GetLanguage("Msg_13");
+            Msg_14 = GetLanguage("Msg_14");
+            Msg_15 = GetLanguage("Msg_15");
+            Msg_16 = GetLanguage("Msg_16");
+            Msg_17 = GetLanguage("Msg_17");
+            Msg_18 = GetLanguage("Msg_18");
+            Msg_19 = GetLanguage("Msg_19");
+            Msg_PersonDetail = GetLanguage("Msg_PersonDetail");
+            InitControl();
+        }
     }
 }

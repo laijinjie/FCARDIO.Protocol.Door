@@ -28,61 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gpUpload = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.butUploadImage = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtCodeData = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.Lbl_CodeData = new System.Windows.Forms.Label();
             this.btnUploadCode = new System.Windows.Forms.Button();
             this.btnDeleteCode = new System.Windows.Forms.Button();
             this.btnCompute = new System.Windows.Forms.Button();
             this.cmbUploadSerialNumber = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.Lbl_UploadSerialNumber = new System.Windows.Forms.Label();
             this.cmbUploadType = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.Lbl_UploadType = new System.Windows.Forms.Label();
             this.txtUploadUserCode = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Lbl_UploadUserCode = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gpDownload = new System.Windows.Forms.GroupBox();
             this.chkByBlock = new System.Windows.Forms.CheckBox();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnGetPerson = new System.Windows.Forms.Button();
             this.cmbDownloadSerialNumber = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.Lbl_DownloadSerialNumber = new System.Windows.Forms.Label();
             this.txtDownloadUserCode = new System.Windows.Forms.TextBox();
             this.cmbDownloadType = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.Lbl_DownloadUserCode = new System.Windows.Forms.Label();
+            this.Lbl_DownloadType = new System.Windows.Forms.Label();
+            this.gpUpdateSoftware = new System.Windows.Forms.GroupBox();
             this.butUpdateSoftware = new System.Windows.Forms.Button();
             this.cmbEquptType = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.Lbl_EquptType = new System.Windows.Forms.Label();
+            this.gpUpload.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gpDownload.SuspendLayout();
+            this.gpUpdateSoftware.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gpUpload
             // 
-            this.groupBox1.Controls.Add(this.tabControl1);
-            this.groupBox1.Controls.Add(this.cmbUploadSerialNumber);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cmbUploadType);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtUploadUserCode);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(632, 346);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "上传";
+            this.gpUpload.Controls.Add(this.tabControl1);
+            this.gpUpload.Controls.Add(this.cmbUploadSerialNumber);
+            this.gpUpload.Controls.Add(this.Lbl_UploadSerialNumber);
+            this.gpUpload.Controls.Add(this.cmbUploadType);
+            this.gpUpload.Controls.Add(this.Lbl_UploadType);
+            this.gpUpload.Controls.Add(this.txtUploadUserCode);
+            this.gpUpload.Controls.Add(this.Lbl_UploadUserCode);
+            this.gpUpload.Location = new System.Drawing.Point(13, 13);
+            this.gpUpload.Name = "gpUpload";
+            this.gpUpload.Size = new System.Drawing.Size(632, 346);
+            this.gpUpload.TabIndex = 0;
+            this.gpUpload.TabStop = false;
+            this.gpUpload.Text = "上传";
             // 
             // tabControl1
             // 
@@ -118,7 +118,7 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.txtCodeData);
-            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.Lbl_CodeData);
             this.tabPage1.Controls.Add(this.btnUploadCode);
             this.tabPage1.Controls.Add(this.btnDeleteCode);
             this.tabPage1.Controls.Add(this.btnCompute);
@@ -138,14 +138,14 @@
             this.txtCodeData.Size = new System.Drawing.Size(555, 188);
             this.txtCodeData.TabIndex = 16;
             // 
-            // label4
+            // Lbl_CodeData
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(33, 15);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(125, 12);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "特征码数据(base64)：";
+            this.Lbl_CodeData.AutoSize = true;
+            this.Lbl_CodeData.Location = new System.Drawing.Point(33, 15);
+            this.Lbl_CodeData.Name = "Lbl_CodeData";
+            this.Lbl_CodeData.Size = new System.Drawing.Size(125, 12);
+            this.Lbl_CodeData.TabIndex = 12;
+            this.Lbl_CodeData.Text = "特征码数据(base64)：";
             // 
             // btnUploadCode
             // 
@@ -186,14 +186,14 @@
             this.cmbUploadSerialNumber.Size = new System.Drawing.Size(105, 20);
             this.cmbUploadSerialNumber.TabIndex = 5;
             // 
-            // label3
+            // Lbl_UploadSerialNumber
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(429, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "序号：";
+            this.Lbl_UploadSerialNumber.AutoSize = true;
+            this.Lbl_UploadSerialNumber.Location = new System.Drawing.Point(429, 34);
+            this.Lbl_UploadSerialNumber.Name = "Lbl_UploadSerialNumber";
+            this.Lbl_UploadSerialNumber.Size = new System.Drawing.Size(41, 12);
+            this.Lbl_UploadSerialNumber.TabIndex = 4;
+            this.Lbl_UploadSerialNumber.Text = "序号：";
             // 
             // cmbUploadType
             // 
@@ -205,14 +205,14 @@
             this.cmbUploadType.TabIndex = 3;
             this.cmbUploadType.SelectedIndexChanged += new System.EventHandler(this.CmbUploadType_SelectedIndexChanged);
             // 
-            // label2
+            // Lbl_UploadType
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(227, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "类型：";
+            this.Lbl_UploadType.AutoSize = true;
+            this.Lbl_UploadType.Location = new System.Drawing.Point(227, 34);
+            this.Lbl_UploadType.Name = "Lbl_UploadType";
+            this.Lbl_UploadType.Size = new System.Drawing.Size(41, 12);
+            this.Lbl_UploadType.TabIndex = 2;
+            this.Lbl_UploadType.Text = "类型：";
             // 
             // txtUploadUserCode
             // 
@@ -221,14 +221,14 @@
             this.txtUploadUserCode.Size = new System.Drawing.Size(100, 21);
             this.txtUploadUserCode.TabIndex = 1;
             // 
-            // label1
+            // Lbl_UploadUserCode
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "用户号：";
+            this.Lbl_UploadUserCode.AutoSize = true;
+            this.Lbl_UploadUserCode.Location = new System.Drawing.Point(24, 34);
+            this.Lbl_UploadUserCode.Name = "Lbl_UploadUserCode";
+            this.Lbl_UploadUserCode.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_UploadUserCode.TabIndex = 0;
+            this.Lbl_UploadUserCode.Text = "用户号：";
             // 
             // pictureBox1
             // 
@@ -238,23 +238,23 @@
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
             // 
-            // groupBox2
+            // gpDownload
             // 
-            this.groupBox2.Controls.Add(this.chkByBlock);
-            this.groupBox2.Controls.Add(this.btnDownload);
-            this.groupBox2.Controls.Add(this.btnGetPerson);
-            this.groupBox2.Controls.Add(this.cmbDownloadSerialNumber);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.txtDownloadUserCode);
-            this.groupBox2.Controls.Add(this.cmbDownloadType);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Location = new System.Drawing.Point(13, 365);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(632, 97);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "下载";
+            this.gpDownload.Controls.Add(this.chkByBlock);
+            this.gpDownload.Controls.Add(this.btnDownload);
+            this.gpDownload.Controls.Add(this.btnGetPerson);
+            this.gpDownload.Controls.Add(this.cmbDownloadSerialNumber);
+            this.gpDownload.Controls.Add(this.Lbl_DownloadSerialNumber);
+            this.gpDownload.Controls.Add(this.txtDownloadUserCode);
+            this.gpDownload.Controls.Add(this.cmbDownloadType);
+            this.gpDownload.Controls.Add(this.Lbl_DownloadUserCode);
+            this.gpDownload.Controls.Add(this.Lbl_DownloadType);
+            this.gpDownload.Location = new System.Drawing.Point(13, 365);
+            this.gpDownload.Name = "gpDownload";
+            this.gpDownload.Size = new System.Drawing.Size(632, 97);
+            this.gpDownload.TabIndex = 1;
+            this.gpDownload.TabStop = false;
+            this.gpDownload.Text = "下载";
             // 
             // chkByBlock
             // 
@@ -295,14 +295,14 @@
             this.cmbDownloadSerialNumber.Size = new System.Drawing.Size(105, 20);
             this.cmbDownloadSerialNumber.TabIndex = 10;
             // 
-            // label6
+            // Lbl_DownloadSerialNumber
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(429, 24);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 12);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "序号：";
+            this.Lbl_DownloadSerialNumber.AutoSize = true;
+            this.Lbl_DownloadSerialNumber.Location = new System.Drawing.Point(429, 24);
+            this.Lbl_DownloadSerialNumber.Name = "Lbl_DownloadSerialNumber";
+            this.Lbl_DownloadSerialNumber.Size = new System.Drawing.Size(41, 12);
+            this.Lbl_DownloadSerialNumber.TabIndex = 9;
+            this.Lbl_DownloadSerialNumber.Text = "序号：";
             // 
             // txtDownloadUserCode
             // 
@@ -321,35 +321,35 @@
             this.cmbDownloadType.TabIndex = 8;
             this.cmbDownloadType.SelectedIndexChanged += new System.EventHandler(this.CmbDownloadType_SelectedIndexChanged);
             // 
-            // label5
+            // Lbl_DownloadUserCode
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 24);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "用户号：";
+            this.Lbl_DownloadUserCode.AutoSize = true;
+            this.Lbl_DownloadUserCode.Location = new System.Drawing.Point(24, 24);
+            this.Lbl_DownloadUserCode.Name = "Lbl_DownloadUserCode";
+            this.Lbl_DownloadUserCode.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_DownloadUserCode.TabIndex = 7;
+            this.Lbl_DownloadUserCode.Text = "用户号：";
             // 
-            // label7
+            // Lbl_DownloadType
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(212, 25);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 12);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "类型：";
+            this.Lbl_DownloadType.AutoSize = true;
+            this.Lbl_DownloadType.Location = new System.Drawing.Point(212, 25);
+            this.Lbl_DownloadType.Name = "Lbl_DownloadType";
+            this.Lbl_DownloadType.Size = new System.Drawing.Size(41, 12);
+            this.Lbl_DownloadType.TabIndex = 7;
+            this.Lbl_DownloadType.Text = "类型：";
             // 
-            // groupBox3
+            // gpUpdateSoftware
             // 
-            this.groupBox3.Controls.Add(this.butUpdateSoftware);
-            this.groupBox3.Controls.Add(this.cmbEquptType);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Location = new System.Drawing.Point(12, 468);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(632, 58);
-            this.groupBox3.TabIndex = 20;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "上传固件";
+            this.gpUpdateSoftware.Controls.Add(this.butUpdateSoftware);
+            this.gpUpdateSoftware.Controls.Add(this.cmbEquptType);
+            this.gpUpdateSoftware.Controls.Add(this.Lbl_EquptType);
+            this.gpUpdateSoftware.Location = new System.Drawing.Point(12, 468);
+            this.gpUpdateSoftware.Name = "gpUpdateSoftware";
+            this.gpUpdateSoftware.Size = new System.Drawing.Size(632, 58);
+            this.gpUpdateSoftware.TabIndex = 20;
+            this.gpUpdateSoftware.TabStop = false;
+            this.gpUpdateSoftware.Text = "上传固件";
             // 
             // butUpdateSoftware
             // 
@@ -370,63 +370,64 @@
             this.cmbEquptType.Size = new System.Drawing.Size(295, 20);
             this.cmbEquptType.TabIndex = 8;
             // 
-            // label10
+            // Lbl_EquptType
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(43, 24);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 12);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "设备类型：";
+            this.Lbl_EquptType.AutoSize = true;
+            this.Lbl_EquptType.Location = new System.Drawing.Point(43, 24);
+            this.Lbl_EquptType.Name = "Lbl_EquptType";
+            this.Lbl_EquptType.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_EquptType.TabIndex = 7;
+            this.Lbl_EquptType.Text = "设备类型：";
             // 
             // frmAdditionalData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1138, 666);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.gpUpdateSoftware);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gpUpload);
+            this.Controls.Add(this.gpDownload);
             this.Name = "frmAdditionalData";
             this.Text = "人员附加数据";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Load += new System.EventHandler(this.frmAdditionalData_Load);
+            this.gpUpload.ResumeLayout(false);
+            this.gpUpload.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gpDownload.ResumeLayout(false);
+            this.gpDownload.PerformLayout();
+            this.gpUpdateSoftware.ResumeLayout(false);
+            this.gpUpdateSoftware.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gpUpload;
         private System.Windows.Forms.ComboBox cmbUploadSerialNumber;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label Lbl_UploadSerialNumber;
         private System.Windows.Forms.ComboBox cmbUploadType;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Lbl_UploadType;
         private System.Windows.Forms.TextBox txtUploadUserCode;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label Lbl_UploadUserCode;
+        private System.Windows.Forms.GroupBox gpDownload;
         private System.Windows.Forms.TextBox txtDownloadUserCode;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label Lbl_DownloadUserCode;
         private System.Windows.Forms.ComboBox cmbDownloadSerialNumber;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label Lbl_DownloadSerialNumber;
         private System.Windows.Forms.ComboBox cmbDownloadType;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label Lbl_DownloadType;
         private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.Button btnGetPerson;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TextBox txtCodeData;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label Lbl_CodeData;
         private System.Windows.Forms.Button btnUploadCode;
         private System.Windows.Forms.Button btnDeleteCode;
         private System.Windows.Forms.Button btnCompute;
@@ -434,9 +435,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button butUploadImage;
         private System.Windows.Forms.CheckBox chkByBlock;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gpUpdateSoftware;
         private System.Windows.Forms.Button butUpdateSoftware;
         private System.Windows.Forms.ComboBox cmbEquptType;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label Lbl_EquptType;
     }
 }

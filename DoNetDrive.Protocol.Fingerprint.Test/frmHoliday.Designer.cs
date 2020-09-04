@@ -31,14 +31,14 @@
             this.butReadHolidayDetail = new DevComponents.DotNetBar.ButtonX();
             this.butReadAllHoliday = new DevComponents.DotNetBar.ButtonX();
             this.butClearHoliday = new DevComponents.DotNetBar.ButtonX();
-            this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.gpAllHoliday = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.Lbl_HolidayList = new DevComponents.DotNetBar.LabelX();
             this.checkBoxX1 = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.Lbl_Index = new DevComponents.DotNetBar.LabelX();
             this.cbIndex = new System.Windows.Forms.ComboBox();
             this.btnAddIndex = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Lbl_HolidayTime = new System.Windows.Forms.Label();
             this.dtpDay = new System.Windows.Forms.DateTimePicker();
             this.btnAddDay = new System.Windows.Forms.Button();
             this.cbType = new System.Windows.Forms.ComboBox();
@@ -50,13 +50,13 @@
             this.btnDelSelect = new System.Windows.Forms.Button();
             this.btnAdd30 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.butAddHoliday = new DevComponents.DotNetBar.ButtonX();
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Holiday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HolidayTypeRender = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RepeatYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupPanel1.SuspendLayout();
+            this.butAddHoliday = new DevComponents.DotNetBar.ButtonX();
+            this.gpAllHoliday.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,58 +96,58 @@
             this.butClearHoliday.Text = "删除所有节假日";
             this.butClearHoliday.Click += new System.EventHandler(this.ClearHoliday_Click);
             // 
-            // groupPanel1
+            // gpAllHoliday
             // 
-            this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel1.Controls.Add(this.butReadHolidayDetail);
-            this.groupPanel1.Controls.Add(this.butClearHoliday);
-            this.groupPanel1.Controls.Add(this.butReadAllHoliday);
-            this.groupPanel1.Location = new System.Drawing.Point(12, 12);
-            this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(558, 57);
-            // 
-            // 
-            // 
-            this.groupPanel1.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.groupPanel1.Style.BackColorGradientAngle = 90;
-            this.groupPanel1.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.groupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderBottomWidth = 1;
-            this.groupPanel1.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.groupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderLeftWidth = 1;
-            this.groupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderRightWidth = 1;
-            this.groupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderTopWidth = 1;
-            this.groupPanel1.Style.CornerDiameter = 4;
-            this.groupPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.groupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.groupPanel1.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.groupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            this.gpAllHoliday.CanvasColor = System.Drawing.SystemColors.Control;
+            this.gpAllHoliday.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.gpAllHoliday.Controls.Add(this.butReadHolidayDetail);
+            this.gpAllHoliday.Controls.Add(this.butClearHoliday);
+            this.gpAllHoliday.Controls.Add(this.butReadAllHoliday);
+            this.gpAllHoliday.Location = new System.Drawing.Point(12, 12);
+            this.gpAllHoliday.Name = "gpAllHoliday";
+            this.gpAllHoliday.Size = new System.Drawing.Size(558, 57);
             // 
             // 
             // 
-            this.groupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.gpAllHoliday.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.gpAllHoliday.Style.BackColorGradientAngle = 90;
+            this.gpAllHoliday.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.gpAllHoliday.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.gpAllHoliday.Style.BorderBottomWidth = 1;
+            this.gpAllHoliday.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.gpAllHoliday.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.gpAllHoliday.Style.BorderLeftWidth = 1;
+            this.gpAllHoliday.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.gpAllHoliday.Style.BorderRightWidth = 1;
+            this.gpAllHoliday.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.gpAllHoliday.Style.BorderTopWidth = 1;
+            this.gpAllHoliday.Style.CornerDiameter = 4;
+            this.gpAllHoliday.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.gpAllHoliday.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.gpAllHoliday.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.gpAllHoliday.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
             // 
             // 
             // 
-            this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel1.TabIndex = 4;
-            this.groupPanel1.Text = "控制板中的节假日";
-            // 
-            // labelX1
+            this.gpAllHoliday.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
+            this.gpAllHoliday.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.gpAllHoliday.TabIndex = 4;
+            this.gpAllHoliday.Text = "控制板中的节假日";
             // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(12, 73);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(90, 23);
-            this.labelX1.TabIndex = 5;
-            this.labelX1.Text = "节假日列表：";
+            // Lbl_HolidayList
+            // 
+            // 
+            // 
+            // 
+            this.Lbl_HolidayList.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.Lbl_HolidayList.Location = new System.Drawing.Point(12, 73);
+            this.Lbl_HolidayList.Name = "Lbl_HolidayList";
+            this.Lbl_HolidayList.Size = new System.Drawing.Size(90, 23);
+            this.Lbl_HolidayList.TabIndex = 5;
+            this.Lbl_HolidayList.Text = "节假日列表：";
             // 
             // checkBoxX1
             // 
@@ -163,17 +163,17 @@
             this.checkBoxX1.Text = "反选";
             this.checkBoxX1.CheckedChanged += new System.EventHandler(this.CheckBoxX1_CheckedChanged);
             // 
-            // labelX2
+            // Lbl_Index
             // 
             // 
             // 
             // 
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(12, 628);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(43, 23);
-            this.labelX2.TabIndex = 7;
-            this.labelX2.Text = "序号：";
+            this.Lbl_Index.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.Lbl_Index.Location = new System.Drawing.Point(12, 628);
+            this.Lbl_Index.Name = "Lbl_Index";
+            this.Lbl_Index.Size = new System.Drawing.Size(43, 23);
+            this.Lbl_Index.TabIndex = 7;
+            this.Lbl_Index.Text = "序号：";
             // 
             // cbIndex
             // 
@@ -193,14 +193,14 @@
             this.btnAddIndex.UseVisualStyleBackColor = true;
             this.btnAddIndex.Click += new System.EventHandler(this.BtnAddIndex_Click);
             // 
-            // label1
+            // Lbl_HolidayTime
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(112, 631);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 12);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "节假日时间：";
+            this.Lbl_HolidayTime.AutoSize = true;
+            this.Lbl_HolidayTime.Location = new System.Drawing.Point(112, 631);
+            this.Lbl_HolidayTime.Name = "Lbl_HolidayTime";
+            this.Lbl_HolidayTime.Size = new System.Drawing.Size(77, 12);
+            this.Lbl_HolidayTime.TabIndex = 10;
+            this.Lbl_HolidayTime.Text = "节假日时间：";
             // 
             // dtpDay
             // 
@@ -223,10 +223,6 @@
             // 
             this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbType.FormattingEnabled = true;
-            this.cbType.Items.AddRange(new object[] {
-            "00点-11点59分 不能开",
-            "12点-24点 不能开",
-            "全天不能开"});
             this.cbType.Location = new System.Drawing.Point(323, 629);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(147, 20);
@@ -315,11 +311,45 @@
             this.RepeatYear});
             this.dataGridView1.Location = new System.Drawing.Point(13, 102);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(557, 491);
             this.dataGridView1.TabIndex = 21;
-            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_CellMouseClick);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // Selected
+            // 
+            this.Selected.DataPropertyName = "Selected";
+            this.Selected.HeaderText = "选择";
+            this.Selected.Name = "Selected";
+            this.Selected.Width = 50;
+            // 
+            // Index
+            // 
+            this.Index.DataPropertyName = "Index";
+            this.Index.HeaderText = "序号";
+            this.Index.Name = "Index";
+            this.Index.Width = 60;
+            // 
+            // Holiday
+            // 
+            this.Holiday.DataPropertyName = "Holiday";
+            this.Holiday.HeaderText = "时间";
+            this.Holiday.Name = "Holiday";
+            this.Holiday.Width = 110;
+            // 
+            // HolidayTypeRender
+            // 
+            this.HolidayTypeRender.DataPropertyName = "HolidayTypeRender";
+            this.HolidayTypeRender.HeaderText = "长度";
+            this.HolidayTypeRender.Name = "HolidayTypeRender";
+            this.HolidayTypeRender.Width = 180;
+            // 
+            // RepeatYear
+            // 
+            this.RepeatYear.DataPropertyName = "RepeatYear";
+            this.RepeatYear.HeaderText = "每年循环";
+            this.RepeatYear.Name = "RepeatYear";
+            this.RepeatYear.Width = 80;
             // 
             // butAddHoliday
             // 
@@ -332,46 +362,6 @@
             this.butAddHoliday.TabIndex = 22;
             this.butAddHoliday.Text = "添加列表节假日";
             this.butAddHoliday.Click += new System.EventHandler(this.ButAddHoliday_Click);
-            // 
-            // Selected
-            // 
-            this.Selected.DataPropertyName = "Selected";
-            this.Selected.HeaderText = "选择";
-            this.Selected.Name = "Selected";
-            this.Selected.ReadOnly = true;
-            this.Selected.Width = 50;
-            // 
-            // Index
-            // 
-            this.Index.DataPropertyName = "Index";
-            this.Index.HeaderText = "序号";
-            this.Index.Name = "Index";
-            this.Index.ReadOnly = true;
-            this.Index.Width = 60;
-            // 
-            // Holiday
-            // 
-            this.Holiday.DataPropertyName = "Holiday";
-            this.Holiday.HeaderText = "时间";
-            this.Holiday.Name = "Holiday";
-            this.Holiday.ReadOnly = true;
-            this.Holiday.Width = 110;
-            // 
-            // HolidayTypeRender
-            // 
-            this.HolidayTypeRender.DataPropertyName = "HolidayTypeRender";
-            this.HolidayTypeRender.HeaderText = "长度";
-            this.HolidayTypeRender.Name = "HolidayTypeRender";
-            this.HolidayTypeRender.ReadOnly = true;
-            this.HolidayTypeRender.Width = 180;
-            // 
-            // RepeatYear
-            // 
-            this.RepeatYear.DataPropertyName = "RepeatYear";
-            this.RepeatYear.HeaderText = "每年循环";
-            this.RepeatYear.Name = "RepeatYear";
-            this.RepeatYear.ReadOnly = true;
-            this.RepeatYear.Width = 80;
             // 
             // frmHoliday
             // 
@@ -390,20 +380,20 @@
             this.Controls.Add(this.cbType);
             this.Controls.Add(this.btnAddDay);
             this.Controls.Add(this.dtpDay);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Lbl_HolidayTime);
             this.Controls.Add(this.btnAddIndex);
             this.Controls.Add(this.cbIndex);
-            this.Controls.Add(this.labelX2);
+            this.Controls.Add(this.Lbl_Index);
             this.Controls.Add(this.checkBoxX1);
-            this.Controls.Add(this.labelX1);
-            this.Controls.Add(this.groupPanel1);
+            this.Controls.Add(this.Lbl_HolidayList);
+            this.Controls.Add(this.gpAllHoliday);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MinimizeBox = false;
             this.Name = "frmHoliday";
             this.Text = "frmHoliday";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmHoliday_FormClosed);
             this.Load += new System.EventHandler(this.frmHoliday_Load);
-            this.groupPanel1.ResumeLayout(false);
+            this.gpAllHoliday.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -414,13 +404,13 @@
         private DevComponents.DotNetBar.ButtonX butReadHolidayDetail;
         private DevComponents.DotNetBar.ButtonX butReadAllHoliday;
         private DevComponents.DotNetBar.ButtonX butClearHoliday;
-        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
-        private DevComponents.DotNetBar.LabelX labelX1;
+        private DevComponents.DotNetBar.Controls.GroupPanel gpAllHoliday;
+        private DevComponents.DotNetBar.LabelX Lbl_HolidayList;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX Lbl_Index;
         private System.Windows.Forms.ComboBox cbIndex;
         private System.Windows.Forms.Button btnAddIndex;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Lbl_HolidayTime;
         private System.Windows.Forms.DateTimePicker dtpDay;
         private System.Windows.Forms.Button btnAddDay;
         private System.Windows.Forms.ComboBox cbType;

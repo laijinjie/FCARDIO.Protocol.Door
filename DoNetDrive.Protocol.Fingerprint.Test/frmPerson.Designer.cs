@@ -50,7 +50,7 @@
             this.btnClearDataBase = new System.Windows.Forms.Button();
             this.btnWriteAllPerson = new System.Windows.Forms.Button();
             this.btnClearList = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Lbl_UserList = new System.Windows.Forms.Label();
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -58,7 +58,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.btnCheckUserCode = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gpUserIdentityDetail = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.txtHoliday = new System.Windows.Forms.TextBox();
             this.txtJob = new System.Windows.Forms.TextBox();
@@ -77,41 +77,41 @@
             this.txtCardData = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUserCode = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.Lbl_Job = new System.Windows.Forms.Label();
+            this.Lbl_PCode = new System.Windows.Forms.Label();
+            this.Lbl_EnterStatus = new System.Windows.Forms.Label();
+            this.Lbl_Identity = new System.Windows.Forms.Label();
+            this.Lbl_CardStatus = new System.Windows.Forms.Label();
+            this.Lbl_ValidityTime = new System.Windows.Forms.Label();
+            this.Lbl_Password = new System.Windows.Forms.Label();
+            this.Lbl_Holiday = new System.Windows.Forms.Label();
+            this.Lbl_Dept = new System.Windows.Forms.Label();
+            this.Lbl_PName = new System.Windows.Forms.Label();
+            this.Lbl_CardType = new System.Windows.Forms.Label();
+            this.Lbl_TimeGroup = new System.Windows.Forms.Label();
+            this.Lbl_OpenTimes = new System.Windows.Forms.Label();
+            this.Lbl_CardDataHex = new System.Windows.Forms.Label();
+            this.Lbl_CardData = new System.Windows.Forms.Label();
+            this.Lbl_UserCode = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.butCreateCardNumByRandom = new System.Windows.Forms.Button();
             this.butCreateCardNumByOrder = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
+            this.Lbl_Count = new System.Windows.Forms.Label();
             this.txtCount = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.picReg = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.txtRegUserName = new System.Windows.Forms.TextBox();
             this.txtRegUserCode = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.Lbl_RegUserName = new System.Windows.Forms.Label();
+            this.Lbl_RegUserCode = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
             this.picUpload = new System.Windows.Forms.PictureBox();
             this.txtUploadName = new System.Windows.Forms.TextBox();
             this.txtUploadCode = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
+            this.Lbl_UploadName = new System.Windows.Forms.Label();
+            this.Lbl_UploadCode = new System.Windows.Forms.Label();
             this.butSelectImage = new System.Windows.Forms.Button();
             this.btnAddPesonAndImage = new System.Windows.Forms.Button();
             this.btnAddList = new System.Windows.Forms.Button();
@@ -122,7 +122,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgPersonList)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gpUserIdentityDetail.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picReg)).BeginInit();
@@ -277,7 +277,7 @@
             // 
             this.btnReadDatabaseDetail.Location = new System.Drawing.Point(296, 12);
             this.btnReadDatabaseDetail.Name = "btnReadDatabaseDetail";
-            this.btnReadDatabaseDetail.Size = new System.Drawing.Size(75, 23);
+            this.btnReadDatabaseDetail.Size = new System.Drawing.Size(87, 23);
             this.btnReadDatabaseDetail.TabIndex = 1;
             this.btnReadDatabaseDetail.Text = "用户存储信息";
             this.btnReadDatabaseDetail.UseVisualStyleBackColor = true;
@@ -323,14 +323,14 @@
             this.btnClearList.UseVisualStyleBackColor = true;
             this.btnClearList.Click += new System.EventHandler(this.BtnClearList_Click);
             // 
-            // label1
+            // Lbl_UserList
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "用户列表：";
+            this.Lbl_UserList.AutoSize = true;
+            this.Lbl_UserList.Location = new System.Drawing.Point(12, 17);
+            this.Lbl_UserList.Name = "Lbl_UserList";
+            this.Lbl_UserList.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_UserList.TabIndex = 6;
+            this.Lbl_UserList.Text = "用户列表：";
             // 
             // chkSelectAll
             // 
@@ -361,7 +361,7 @@
             this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.btnCheckUserCode);
             this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.gpUserIdentityDetail);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -407,48 +407,48 @@
             this.button1.Text = "查找用户号列表";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // gpUserIdentityDetail
             // 
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.txtHoliday);
-            this.groupBox1.Controls.Add(this.txtJob);
-            this.groupBox1.Controls.Add(this.txtDept);
-            this.groupBox1.Controls.Add(this.txtPCode);
-            this.groupBox1.Controls.Add(this.txtPName);
-            this.groupBox1.Controls.Add(this.cmbEnterStatus);
-            this.groupBox1.Controls.Add(this.cmbIdentity);
-            this.groupBox1.Controls.Add(this.cmbCardStatus);
-            this.groupBox1.Controls.Add(this.cmbCardType);
-            this.groupBox1.Controls.Add(this.cmbTimeGroup);
-            this.groupBox1.Controls.Add(this.cmbOpenTimes);
-            this.groupBox1.Controls.Add(this.txtCardDataHex);
-            this.groupBox1.Controls.Add(this.dtpTime);
-            this.groupBox1.Controls.Add(this.dtpDate);
-            this.groupBox1.Controls.Add(this.txtCardData);
-            this.groupBox1.Controls.Add(this.txtPassword);
-            this.groupBox1.Controls.Add(this.txtUserCode);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(7, 7);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(513, 274);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "用户身份详情";
+            this.gpUserIdentityDetail.Controls.Add(this.checkBox1);
+            this.gpUserIdentityDetail.Controls.Add(this.txtHoliday);
+            this.gpUserIdentityDetail.Controls.Add(this.txtJob);
+            this.gpUserIdentityDetail.Controls.Add(this.txtDept);
+            this.gpUserIdentityDetail.Controls.Add(this.txtPCode);
+            this.gpUserIdentityDetail.Controls.Add(this.txtPName);
+            this.gpUserIdentityDetail.Controls.Add(this.cmbEnterStatus);
+            this.gpUserIdentityDetail.Controls.Add(this.cmbIdentity);
+            this.gpUserIdentityDetail.Controls.Add(this.cmbCardStatus);
+            this.gpUserIdentityDetail.Controls.Add(this.cmbCardType);
+            this.gpUserIdentityDetail.Controls.Add(this.cmbTimeGroup);
+            this.gpUserIdentityDetail.Controls.Add(this.cmbOpenTimes);
+            this.gpUserIdentityDetail.Controls.Add(this.txtCardDataHex);
+            this.gpUserIdentityDetail.Controls.Add(this.dtpTime);
+            this.gpUserIdentityDetail.Controls.Add(this.dtpDate);
+            this.gpUserIdentityDetail.Controls.Add(this.txtCardData);
+            this.gpUserIdentityDetail.Controls.Add(this.txtPassword);
+            this.gpUserIdentityDetail.Controls.Add(this.txtUserCode);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_Job);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_PCode);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_EnterStatus);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_Identity);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_CardStatus);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_ValidityTime);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_Password);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_Holiday);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_Dept);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_PName);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_CardType);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_TimeGroup);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_OpenTimes);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_CardDataHex);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_CardData);
+            this.gpUserIdentityDetail.Controls.Add(this.Lbl_UserCode);
+            this.gpUserIdentityDetail.Location = new System.Drawing.Point(7, 7);
+            this.gpUserIdentityDetail.Name = "gpUserIdentityDetail";
+            this.gpUserIdentityDetail.Size = new System.Drawing.Size(513, 274);
+            this.gpUserIdentityDetail.TabIndex = 0;
+            this.gpUserIdentityDetail.TabStop = false;
+            this.gpUserIdentityDetail.Text = "用户身份详情";
             // 
             // checkBox1
             // 
@@ -596,155 +596,155 @@
             this.txtUserCode.Size = new System.Drawing.Size(141, 21);
             this.txtUserCode.TabIndex = 16;
             // 
-            // label17
+            // Lbl_Job
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(295, 222);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(41, 12);
-            this.label17.TabIndex = 15;
-            this.label17.Text = "职务：";
+            this.Lbl_Job.AutoSize = true;
+            this.Lbl_Job.Location = new System.Drawing.Point(295, 222);
+            this.Lbl_Job.Name = "Lbl_Job";
+            this.Lbl_Job.Size = new System.Drawing.Size(41, 12);
+            this.Lbl_Job.TabIndex = 15;
+            this.Lbl_Job.Text = "职务：";
             // 
-            // label16
+            // Lbl_PCode
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(271, 192);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(65, 12);
-            this.label16.TabIndex = 14;
-            this.label16.Text = "人员编号：";
+            this.Lbl_PCode.AutoSize = true;
+            this.Lbl_PCode.Location = new System.Drawing.Point(271, 192);
+            this.Lbl_PCode.Name = "Lbl_PCode";
+            this.Lbl_PCode.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_PCode.TabIndex = 14;
+            this.Lbl_PCode.Text = "人员编号：";
             // 
-            // label15
+            // Lbl_EnterStatus
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(271, 164);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(65, 12);
-            this.label15.TabIndex = 13;
-            this.label15.Text = "出入标志：";
+            this.Lbl_EnterStatus.AutoSize = true;
+            this.Lbl_EnterStatus.Location = new System.Drawing.Point(271, 164);
+            this.Lbl_EnterStatus.Name = "Lbl_EnterStatus";
+            this.Lbl_EnterStatus.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_EnterStatus.TabIndex = 13;
+            this.Lbl_EnterStatus.Text = "出入标志：";
             // 
-            // label14
+            // Lbl_Identity
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(271, 138);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(65, 12);
-            this.label14.TabIndex = 12;
-            this.label14.Text = "用户身份：";
+            this.Lbl_Identity.AutoSize = true;
+            this.Lbl_Identity.Location = new System.Drawing.Point(271, 138);
+            this.Lbl_Identity.Name = "Lbl_Identity";
+            this.Lbl_Identity.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_Identity.TabIndex = 12;
+            this.Lbl_Identity.Text = "用户身份：";
             // 
-            // label13
+            // Lbl_CardStatus
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(271, 112);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(65, 12);
-            this.label13.TabIndex = 11;
-            this.label13.Text = "卡片状态：";
+            this.Lbl_CardStatus.AutoSize = true;
+            this.Lbl_CardStatus.Location = new System.Drawing.Point(271, 112);
+            this.Lbl_CardStatus.Name = "Lbl_CardStatus";
+            this.Lbl_CardStatus.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_CardStatus.TabIndex = 11;
+            this.Lbl_CardStatus.Text = "卡片状态：";
             // 
-            // label12
+            // Lbl_ValidityTime
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(283, 57);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 12);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "有效期：";
+            this.Lbl_ValidityTime.AutoSize = true;
+            this.Lbl_ValidityTime.Location = new System.Drawing.Point(283, 57);
+            this.Lbl_ValidityTime.Name = "Lbl_ValidityTime";
+            this.Lbl_ValidityTime.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_ValidityTime.TabIndex = 10;
+            this.Lbl_ValidityTime.Text = "有效期：";
             // 
-            // label11
+            // Lbl_Password
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(295, 29);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(41, 12);
-            this.label11.TabIndex = 9;
-            this.label11.Text = "密码：";
+            this.Lbl_Password.AutoSize = true;
+            this.Lbl_Password.Location = new System.Drawing.Point(295, 29);
+            this.Lbl_Password.Name = "Lbl_Password";
+            this.Lbl_Password.Size = new System.Drawing.Size(41, 12);
+            this.Lbl_Password.TabIndex = 9;
+            this.Lbl_Password.Text = "密码：";
             // 
-            // label10
+            // Lbl_Holiday
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(58, 251);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 12);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "节假日：";
+            this.Lbl_Holiday.AutoSize = true;
+            this.Lbl_Holiday.Location = new System.Drawing.Point(58, 251);
+            this.Lbl_Holiday.Name = "Lbl_Holiday";
+            this.Lbl_Holiday.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_Holiday.TabIndex = 8;
+            this.Lbl_Holiday.Text = "节假日：";
             // 
-            // label9
+            // Lbl_Dept
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(46, 222);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 12);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "部门名称：";
+            this.Lbl_Dept.AutoSize = true;
+            this.Lbl_Dept.Location = new System.Drawing.Point(46, 222);
+            this.Lbl_Dept.Name = "Lbl_Dept";
+            this.Lbl_Dept.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_Dept.TabIndex = 7;
+            this.Lbl_Dept.Text = "部门名称：";
             // 
-            // label8
+            // Lbl_PName
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(46, 192);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(65, 12);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "人员姓名：";
+            this.Lbl_PName.AutoSize = true;
+            this.Lbl_PName.Location = new System.Drawing.Point(46, 192);
+            this.Lbl_PName.Name = "Lbl_PName";
+            this.Lbl_PName.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_PName.TabIndex = 6;
+            this.Lbl_PName.Text = "人员姓名：";
             // 
-            // label7
+            // Lbl_CardType
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(46, 164);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 12);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "常开特权：";
+            this.Lbl_CardType.AutoSize = true;
+            this.Lbl_CardType.Location = new System.Drawing.Point(46, 164);
+            this.Lbl_CardType.Name = "Lbl_CardType";
+            this.Lbl_CardType.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_CardType.TabIndex = 5;
+            this.Lbl_CardType.Text = "常开特权：";
             // 
-            // label6
+            // Lbl_TimeGroup
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 138);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "开门时段：";
+            this.Lbl_TimeGroup.AutoSize = true;
+            this.Lbl_TimeGroup.Location = new System.Drawing.Point(46, 138);
+            this.Lbl_TimeGroup.Name = "Lbl_TimeGroup";
+            this.Lbl_TimeGroup.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_TimeGroup.TabIndex = 4;
+            this.Lbl_TimeGroup.Text = "开门时段：";
             // 
-            // label5
+            // Lbl_OpenTimes
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 112);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "有效次数：";
+            this.Lbl_OpenTimes.AutoSize = true;
+            this.Lbl_OpenTimes.Location = new System.Drawing.Point(46, 112);
+            this.Lbl_OpenTimes.Name = "Lbl_OpenTimes";
+            this.Lbl_OpenTimes.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_OpenTimes.TabIndex = 3;
+            this.Lbl_OpenTimes.Text = "有效次数：";
             // 
-            // label4
+            // Lbl_CardDataHex
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 84);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 12);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "卡号(十六进制)：";
+            this.Lbl_CardDataHex.AutoSize = true;
+            this.Lbl_CardDataHex.Location = new System.Drawing.Point(10, 84);
+            this.Lbl_CardDataHex.Name = "Lbl_CardDataHex";
+            this.Lbl_CardDataHex.Size = new System.Drawing.Size(101, 12);
+            this.Lbl_CardDataHex.TabIndex = 2;
+            this.Lbl_CardDataHex.Text = "卡号(十六进制)：";
             // 
-            // label3
+            // Lbl_CardData
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 57);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 12);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "卡号(十进制)：";
+            this.Lbl_CardData.AutoSize = true;
+            this.Lbl_CardData.Location = new System.Drawing.Point(22, 57);
+            this.Lbl_CardData.Name = "Lbl_CardData";
+            this.Lbl_CardData.Size = new System.Drawing.Size(89, 12);
+            this.Lbl_CardData.TabIndex = 1;
+            this.Lbl_CardData.Text = "卡号(十进制)：";
             // 
-            // label2
+            // Lbl_UserCode
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(58, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "用户号：";
+            this.Lbl_UserCode.AutoSize = true;
+            this.Lbl_UserCode.Location = new System.Drawing.Point(58, 29);
+            this.Lbl_UserCode.Name = "Lbl_UserCode";
+            this.Lbl_UserCode.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_UserCode.TabIndex = 0;
+            this.Lbl_UserCode.Text = "用户号：";
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.butCreateCardNumByRandom);
             this.tabPage2.Controls.Add(this.butCreateCardNumByOrder);
-            this.tabPage2.Controls.Add(this.label18);
+            this.tabPage2.Controls.Add(this.Lbl_Count);
             this.tabPage2.Controls.Add(this.txtCount);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -773,14 +773,14 @@
             this.butCreateCardNumByOrder.Text = "生成顺序卡";
             this.butCreateCardNumByOrder.UseVisualStyleBackColor = true;
             // 
-            // label18
+            // Lbl_Count
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(30, 16);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(65, 12);
-            this.label18.TabIndex = 51;
-            this.label18.Text = "生成数量：";
+            this.Lbl_Count.AutoSize = true;
+            this.Lbl_Count.Location = new System.Drawing.Point(30, 16);
+            this.Lbl_Count.Name = "Lbl_Count";
+            this.Lbl_Count.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_Count.TabIndex = 51;
+            this.Lbl_Count.Text = "生成数量：";
             // 
             // txtCount
             // 
@@ -796,8 +796,8 @@
             this.tabPage3.Controls.Add(this.button2);
             this.tabPage3.Controls.Add(this.txtRegUserName);
             this.tabPage3.Controls.Add(this.txtRegUserCode);
-            this.tabPage3.Controls.Add(this.label19);
-            this.tabPage3.Controls.Add(this.label20);
+            this.tabPage3.Controls.Add(this.Lbl_RegUserName);
+            this.tabPage3.Controls.Add(this.Lbl_RegUserCode);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -843,23 +843,23 @@
             this.txtRegUserCode.TabIndex = 31;
             this.txtRegUserCode.Text = "10000";
             // 
-            // label19
+            // Lbl_RegUserName
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(238, 31);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(65, 12);
-            this.label19.TabIndex = 30;
-            this.label19.Text = "人员姓名：";
+            this.Lbl_RegUserName.AutoSize = true;
+            this.Lbl_RegUserName.Location = new System.Drawing.Point(238, 31);
+            this.Lbl_RegUserName.Name = "Lbl_RegUserName";
+            this.Lbl_RegUserName.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_RegUserName.TabIndex = 30;
+            this.Lbl_RegUserName.Text = "人员姓名：";
             // 
-            // label20
+            // Lbl_RegUserCode
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(24, 31);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(53, 12);
-            this.label20.TabIndex = 29;
-            this.label20.Text = "用户号：";
+            this.Lbl_RegUserCode.AutoSize = true;
+            this.Lbl_RegUserCode.Location = new System.Drawing.Point(24, 31);
+            this.Lbl_RegUserCode.Name = "Lbl_RegUserCode";
+            this.Lbl_RegUserCode.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_RegUserCode.TabIndex = 29;
+            this.Lbl_RegUserCode.Text = "用户号：";
             // 
             // tabPage4
             // 
@@ -867,8 +867,8 @@
             this.tabPage4.Controls.Add(this.picUpload);
             this.tabPage4.Controls.Add(this.txtUploadName);
             this.tabPage4.Controls.Add(this.txtUploadCode);
-            this.tabPage4.Controls.Add(this.label21);
-            this.tabPage4.Controls.Add(this.label22);
+            this.tabPage4.Controls.Add(this.Lbl_UploadName);
+            this.tabPage4.Controls.Add(this.Lbl_UploadCode);
             this.tabPage4.Controls.Add(this.butSelectImage);
             this.tabPage4.Controls.Add(this.btnAddPesonAndImage);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -878,6 +878,7 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "上传人员及照片";
             this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
             // button5
             // 
@@ -916,23 +917,23 @@
             this.txtUploadCode.TabIndex = 36;
             this.txtUploadCode.Text = "10000";
             // 
-            // label21
+            // Lbl_UploadName
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(225, 23);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(65, 12);
-            this.label21.TabIndex = 35;
-            this.label21.Text = "人员姓名：";
+            this.Lbl_UploadName.AutoSize = true;
+            this.Lbl_UploadName.Location = new System.Drawing.Point(225, 23);
+            this.Lbl_UploadName.Name = "Lbl_UploadName";
+            this.Lbl_UploadName.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_UploadName.TabIndex = 35;
+            this.Lbl_UploadName.Text = "人员姓名：";
             // 
-            // label22
+            // Lbl_UploadCode
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(11, 23);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(53, 12);
-            this.label22.TabIndex = 34;
-            this.label22.Text = "用户号：";
+            this.Lbl_UploadCode.AutoSize = true;
+            this.Lbl_UploadCode.Location = new System.Drawing.Point(11, 23);
+            this.Lbl_UploadCode.Name = "Lbl_UploadCode";
+            this.Lbl_UploadCode.Size = new System.Drawing.Size(53, 12);
+            this.Lbl_UploadCode.TabIndex = 34;
+            this.Lbl_UploadCode.Text = "用户号：";
             // 
             // butSelectImage
             // 
@@ -1016,7 +1017,7 @@
             this.Controls.Add(this.btnAddList);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.chkSelectAll);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Lbl_UserList);
             this.Controls.Add(this.btnClearList);
             this.Controls.Add(this.btnWriteAllPerson);
             this.Controls.Add(this.btnClearDataBase);
@@ -1029,8 +1030,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgPersonList)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gpUserIdentityDetail.ResumeLayout(false);
+            this.gpUserIdentityDetail.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -1052,7 +1053,7 @@
         private System.Windows.Forms.Button btnClearDataBase;
         private System.Windows.Forms.Button btnWriteAllPerson;
         private System.Windows.Forms.Button btnClearList;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Lbl_UserList;
         private System.Windows.Forms.CheckBox chkSelectAll;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -1060,23 +1061,23 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnCheckUserCode;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox gpUserIdentityDetail;
+        private System.Windows.Forms.Label Lbl_Job;
+        private System.Windows.Forms.Label Lbl_PCode;
+        private System.Windows.Forms.Label Lbl_EnterStatus;
+        private System.Windows.Forms.Label Lbl_Identity;
+        private System.Windows.Forms.Label Lbl_CardStatus;
+        private System.Windows.Forms.Label Lbl_ValidityTime;
+        private System.Windows.Forms.Label Lbl_Password;
+        private System.Windows.Forms.Label Lbl_Holiday;
+        private System.Windows.Forms.Label Lbl_Dept;
+        private System.Windows.Forms.Label Lbl_PName;
+        private System.Windows.Forms.Label Lbl_CardType;
+        private System.Windows.Forms.Label Lbl_TimeGroup;
+        private System.Windows.Forms.Label Lbl_OpenTimes;
+        private System.Windows.Forms.Label Lbl_CardDataHex;
+        private System.Windows.Forms.Label Lbl_CardData;
+        private System.Windows.Forms.Label Lbl_UserCode;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnAddList;
         private System.Windows.Forms.Button btnDelList;
@@ -1102,7 +1103,7 @@
         private System.Windows.Forms.TextBox txtUserCode;
         private System.Windows.Forms.Button butCreateCardNumByRandom;
         private System.Windows.Forms.Button butCreateCardNumByOrder;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label Lbl_Count;
         private System.Windows.Forms.TextBox txtCount;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -1126,14 +1127,14 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox txtRegUserName;
         private System.Windows.Forms.TextBox txtRegUserCode;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label Lbl_RegUserName;
+        private System.Windows.Forms.Label Lbl_RegUserCode;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.PictureBox picUpload;
         private System.Windows.Forms.TextBox txtUploadName;
         private System.Windows.Forms.TextBox txtUploadCode;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label Lbl_UploadName;
+        private System.Windows.Forms.Label Lbl_UploadCode;
         private System.Windows.Forms.Button butSelectImage;
         private System.Windows.Forms.Button btnAddPesonAndImage;
         private System.Windows.Forms.Button button5;

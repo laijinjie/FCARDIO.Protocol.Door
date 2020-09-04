@@ -60,7 +60,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 sb.Clear();
                 sb.Append("读卡器字节数 ");
-                sb.Append($"【{result.ReaderOption}】、"+ str[result.ReaderOption - 1]);
+                sb.Append($"【{result.ReaderOption}】、" + str[result.ReaderOption - 1]);
 
                 Invoke(() =>
                 {
@@ -76,7 +76,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            ReaderOption_Parameter par = new ReaderOption_Parameter( Convert.ToByte(cbxReaderOption.SelectedIndex + 1));
+            ReaderOption_Parameter par = new ReaderOption_Parameter(Convert.ToByte(cbxReaderOption.SelectedIndex + 1));
             WriteReaderOption write = new WriteReaderOption(cmdDtl, par);
             mMainForm.AddCommand(write);
         }
@@ -95,14 +95,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 RelayOption_Result result = cmde.Command.getResult() as RelayOption_Result;
 
                 sb.Clear();
-                sb.Append("继电器参数 ");
-                sb.Append(result.IsSupport ? "是否支持：【1、支持】，" : "是否支持：【2、不支持】，");
+                sb.Append(GetLanguage("Msg_11"));
+                sb.Append(result.IsSupport ? GetLanguage("Msg_7") : GetLanguage("Msg_3"));
                 Invoke(() =>
                 {
                     if (result.IsSupport)
-                        cbxReaderOption.SelectedIndex = 0;
+                        cbxRelayOption.SelectedIndex = 0;
                     else
-                        cbxReaderOption.SelectedIndex = 1;
+                        cbxRelayOption.SelectedIndex = 1;
                 });
 
                 mMainForm.AddCmdLog(cmde, sb.ToString());
@@ -119,28 +119,103 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mMainForm.AddCommand(write);
         }
 
-        string[] str = new string[5] { "三字节", "四字节", "二字节", "禁用", "八字节" };
+        string[] str;//= new string[5] { "三字节", "四字节", "二字节", "禁用", "八字节" };
         string[] doorTriggerModeList = new string[] { "合法认证通过后在指定时段内即可常开"
                 , "授权中标记为常开特权的在指定时段内认证通过即可常开", "自动开关，到时间自动开关门" };
         string[] modeList = new string[] { "记录读卡，不开门，有提示", "不记录读卡，不开门，有提示", "不做响应，无提示" };
         private void FrmDoor_Load(object sender, EventArgs e)
         {
+            LoadUILanguage();
 
+        }
+
+        public override void LoadUILanguage()
+        {
+            #region 界面多语言加载
+            base.LoadUILanguage();
+            GetLanguage(gpReaderOption);
+            GetLanguage(btnReadReaderOption);
+            GetLanguage(btnWriteReaderOption);
+            GetLanguage(gpReadRelayOption);
+            GetLanguage(btnReadRelayOption);
+            GetLanguage(btnWriteRelayOption);
+            GetLanguage(gpRelayReleaseTime);
+            GetLanguage(Lbl_RelayReleaseTime);
+            GetLanguage(Lbl_Seconds);
+            GetLanguage(btnReadRelayReleaseTime);
+            GetLanguage(btnWriteRelayReleaseTime);
+            GetLanguage(gpOpenDoor);
+            GetLanguage(Lbl_OpenDoor_CheckNum);
+            GetLanguage(btnOpenDoor_CheckNum);
+            GetLanguage(btnOpenDoor);
+            GetLanguage(btnCloseDoor);
+            GetLanguage(btnHoldOpenDoor);
+            GetLanguage(gpLockDoor);
+            GetLanguage(btnLockDoor);
+            GetLanguage(btnUnLockDoor);
+            GetLanguage(gpDoorWorkSetting);
+            GetLanguage(Lbl_DoorWorkSetting);
+            GetLanguage(rBtnNoDoorWorkSetting);
+            GetLanguage(rBtnDoorWorkSetting);
+            GetLanguage(Lbl_Week);
+            GetLanguage(Lbl_DoorTriggerMode);
+            GetLanguage(Lbl_StartTime1);
+            GetLanguage(Lbl_EndTime1);
+            GetLanguage(Lbl_StartTime2);
+            GetLanguage(Lbl_EndTime2);
+            GetLanguage(Lbl_StartTime3);
+            GetLanguage(Lbl_EndTime3);
+            GetLanguage(Lbl_StartTime4);
+            GetLanguage(Lbl_EndTime4);
+            GetLanguage(Lbl_StartTime5);
+            GetLanguage(Lbl_EndTime5);
+            GetLanguage(Lbl_StartTime6);
+            GetLanguage(Lbl_EndTime6);
+            GetLanguage(Lbl_StartTime7);
+            GetLanguage(Lbl_EndTime7);
+            GetLanguage(Lbl_StartTime8);
+            GetLanguage(Lbl_EndTime8);
+            GetLanguage(btnReadWorkSetting);
+            GetLanguage(btnWriteWorkSetting);
+            GetLanguage(gpExemptionVerificationUse);
+            GetLanguage(cbExemptionVerificationUse);
+            //GetLanguage(cbAutomaticRegistrationUse);
+            //GetLanguage(Lbl_PeriodNumber1);
+            //GetLanguage(Lbl_PeriodNumber2);
+            GetLanguage(btnReadExemptionVerificationOpen);
+            GetLanguage(btnWriteExemptionVerificationOpen);
+            GetLanguage(gpVoiceBroadcast);
+            GetLanguage(cbVoiceBroadcast);
+            GetLanguage(btnReadVoiceBroadcastSetting);
+            GetLanguage(btnWriteVoiceBroadcastSetting);
+            GetLanguage(gpReaderIntervalTimeUse);
+            GetLanguage(cbReaderIntervalTimeUse);
+            GetLanguage(Lbl_bIntervalTime);
+            GetLanguage(Lbl_Mode);
+            GetLanguage(btnReadReaderIntervalTime);
+            GetLanguage(btnWriteReaderIntervalTime);
+            GetLanguage(gpExpirationPromptUse);
+            GetLanguage(cbExpirationPromptUse);
+            GetLanguage(Lbl_ExpirationPromptTime);
+            GetLanguage(btnReadExpirationPrompt);
+            GetLanguage(btnWriteExpirationPrompt);
+            #endregion
+
+            str = GetLanguage("ReaderOptionList").Split(',');
             cbxReaderOption.Items.Clear();
             cbxReaderOption.Items.AddRange(str);
             cbxReaderOption.SelectedIndex = 0;
-
-            cbxReleaseTime.Items.Clear();
             string[] time = new string[255];
             string[] checknum = new string[254];
             string[] intervaTime = new string[255];
             string[] promptTime = new string[256];
             time[0] = "0.5";
+            var msg_1 = GetLanguage("Msg_1");
             for (int i = 1; i < 254; i++)
             {
                 time[i] = i.ToString();
                 checknum[i - 1] = i.ToString();
-                intervaTime[i - 1] = (i - 1).ToString() + "秒";
+                intervaTime[i - 1] = (i - 1).ToString() + msg_1;
                 promptTime[i - 1] = (i - 1).ToString();
             }
             promptTime[253] = "253";
@@ -149,27 +224,40 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             time[254] = "65535";
             checknum[253] = "254";
-            intervaTime[254] = "65535秒";
-            intervaTime[253] = "254秒";
+            intervaTime[254] = "65535" + msg_1;
+            intervaTime[253] = "254" + msg_1;
+            cbxReleaseTime.Items.Clear();
             cbxReleaseTime.Items.AddRange(time);
             cbxReleaseTime.SelectedIndex = 0;
 
+            cmbCheckNum.Items.Clear();
             cmbCheckNum.Items.AddRange(checknum);
             cmbCheckNum.SelectedIndex = 0;
 
-            cmbDoorTriggerMode.Items.AddRange(doorTriggerModeList);
+            cmbDoorTriggerMode.Items.Clear();
+            cmbDoorTriggerMode.Items.AddRange(GetLanguage("doorTriggerModeList").Split(','));
             cmbDoorTriggerMode.SelectedIndex = 0;
 
+            cmbIntervalTime.Items.Clear();
             cmbIntervalTime.Items.AddRange(intervaTime);
             cmbIntervalTime.SelectedIndex = 0;
 
+            cmbExpirationPromptTime.Items.Clear();
             cmbExpirationPromptTime.Items.AddRange(promptTime);
             cmbExpirationPromptTime.SelectedIndex = 0;
 
-            cmbMode.Items.AddRange(modeList);
+            cmbMode.Items.Clear();
+            cmbMode.Items.AddRange(GetLanguage("modeList").Split(','));
             cmbMode.SelectedIndex = 0;
-        }
 
+            cbxRelayOption.Items.Clear();
+            cbxRelayOption.Items.AddRange(GetLanguage("RelayOptionList").Split(','));
+            cbxRelayOption.SelectedIndex = 0;
+
+            cbxWeek.Items.Clear();
+            cbxWeek.Items.AddRange(GetLanguage("WeekList").Split(','));
+            cbxWeek.SelectedIndex = 0;
+        }
         private void FrmDoor_FormClosed(object sender, FormClosedEventArgs e)
         {
             onlyObj = null;
@@ -193,14 +281,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 ReleaseTime = result.ReleaseTime; //开锁时输出时长
                 sb.Clear();
-                sb.AppendLine("开锁时输出时长：");
+                sb.Append(GetLanguage("Msg_2"));
                 if (ReleaseTime == 0)
                 {
-                    tip = "0.5秒";
+                    tip = "0.5" + GetLanguage("Msg_1");
                 }
                 else
                 {
-                    tip = ReleaseTime + "秒";
+                    tip = ReleaseTime + GetLanguage("Msg_1");
                 }
 
                 Invoke(() =>
@@ -312,13 +400,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 string DoorTriggerModeStr = string.Empty;
                 if (!result.Use)
                 {
-                    sb.AppendLine("是否启用：【0、不启用】");
+                    sb.AppendLine(GetLanguage("Msg_3"));
                     mMainForm.AddCmdLog(cmde, sb.ToString());
                 }
                 else
                 {
 
-                    DoorTriggerModeStr = "门常开触发模式：" + "【" + result.DoorTriggerMode.ToString() + "、" + doorTriggerModeList[result.DoorTriggerMode - 1] + "】";
+                    DoorTriggerModeStr = GetLanguage("Msg_4") + "【" + result.DoorTriggerMode.ToString() + "、" + doorTriggerModeList[result.DoorTriggerMode - 1] + "】";
 
                     for (int i = 0; i < 7; i++)
                     {
@@ -326,7 +414,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         sb.Append(StringUtility.GetWeekStr(i));
                         for (int j = 0; j < 8; j++)
                         {
-                            sb.Append("  时段" + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));
+                            sb.Append(GetLanguage("Msg_5") + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));
                         }
                         // mMainForm.AddCmdLog(null, sb.ToString());
                     }
@@ -383,16 +471,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReadExemptionVerificationOpen_Result result = cmde.Command.getResult() as ReadExemptionVerificationOpen_Result;
 
                 sb.Clear();
-                sb.Append("免认证开门 ");
-                sb.Append(result.IsUseExemptionVerification ? "是否启用：【1、启用】，" : "是否启用：【0、不启用】，");
+                sb.Append(GetLanguage("Msg_6"));
+                sb.Append(result.IsUseExemptionVerification ? GetLanguage("Msg_7") : GetLanguage("Msg_3"));
 
                 Invoke(() =>
                 {
-                    cmbPeriodNumber.SelectedItem = result.PeriodNumber.ToString();
+                    //  cmbPeriodNumber.SelectedItem = result.PeriodNumber.ToString();
                     cbExemptionVerificationUse.Checked = result.IsUseExemptionVerification;
-                    cbAutomaticRegistrationUse.Checked = result.IsUseAutomaticRegistration;
+                    // cbAutomaticRegistrationUse.Checked = result.IsUseAutomaticRegistration;
                 });
-                
+
                 mMainForm.AddCmdLog(cmde, sb.ToString());
             };
         }
@@ -402,9 +490,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            byte periodNumber = Convert.ToByte(cmbPeriodNumber.SelectedIndex + 1);
+            byte periodNumber = Convert.ToByte(1);
             WriteExemptionVerificationOpen_Parameter par = new WriteExemptionVerificationOpen_Parameter(cbExemptionVerificationUse.Checked
-                ,cbAutomaticRegistrationUse.Checked,periodNumber);
+                , false, periodNumber);
             WriteExemptionVerificationOpen write = new WriteExemptionVerificationOpen(cmdDtl, par);
             mMainForm.AddCommand(write);
         }
@@ -423,8 +511,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 VoiceBroadcastSetting_Result result = cmde.Command.getResult() as VoiceBroadcastSetting_Result;
 
                 sb.Clear();
-                sb.Append("语音播报功能 ");
-                sb.Append(result.Use ? "是否启用：【1、启用】，" : "是否启用：【0、不启用】，");
+                sb.Append(GetLanguage("Msg_8"));
+                sb.Append(result.Use ? GetLanguage("Msg_7") : GetLanguage("Msg_3"));
 
                 Invoke(() =>
                 {
@@ -440,7 +528,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            byte periodNumber = Convert.ToByte(cmbPeriodNumber.SelectedIndex + 1);
+           // byte periodNumber = Convert.ToByte(1);
             WriteVoiceBroadcastSetting_Parameter par = new WriteVoiceBroadcastSetting_Parameter(cbVoiceBroadcast.Checked);
             WriteVoiceBroadcastSetting write = new WriteVoiceBroadcastSetting(cmdDtl, par);
             mMainForm.AddCommand(write);
@@ -460,8 +548,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReadReaderIntervalTime_Result result = cmde.Command.getResult() as ReadReaderIntervalTime_Result;
 
                 sb.Clear();
-                sb.Append("重复验证权限间隔 ");
-                sb.Append(result.IsUse ? "是否启用：【1、启用】，" : "是否启用：【0、不启用】，");
+                sb.Append(GetLanguage("Msg_9"));
+                sb.Append(result.IsUse ? GetLanguage("Msg_7") : GetLanguage("Msg_3"));
 
                 Invoke(() =>
                 {
@@ -486,7 +574,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            byte periodNumber = Convert.ToByte(cmbPeriodNumber.SelectedIndex + 1);
+           // byte periodNumber = Convert.ToByte(cmbPeriodNumber.SelectedIndex + 1);
             ushort time = 0;
             if (cmbIntervalTime.SelectedIndex == cmbIntervalTime.Items.Count - 1)
             {
@@ -496,7 +584,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 time = Convert.ToUInt16(cmbIntervalTime.SelectedIndex);
             }
-            WriteReaderIntervalTime_Parameter par = new WriteReaderIntervalTime_Parameter(cbReaderIntervalTimeUse.Checked , time,Convert.ToByte(cmbMode.SelectedIndex + 1));
+            WriteReaderIntervalTime_Parameter par = new WriteReaderIntervalTime_Parameter(cbReaderIntervalTimeUse.Checked, time, Convert.ToByte(cmbMode.SelectedIndex + 1));
             WriteReaderIntervalTime write = new WriteReaderIntervalTime(cmdDtl, par);
             mMainForm.AddCommand(write);
         }
@@ -515,8 +603,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReadExpirationPrompt_Result result = cmde.Command.getResult() as ReadExpirationPrompt_Result;
 
                 sb.Clear();
-                sb.Append("权限到期提示 ");
-                sb.Append(result.IsUse ?  "是否启用：【1、启用】，" : "是否启用：【0、不启用】，");
+                sb.Append(GetLanguage("Msg_10"));
+                sb.Append(result.IsUse ? GetLanguage("Msg_7") : GetLanguage("Msg_3"));
 
                 Invoke(() =>
                 {

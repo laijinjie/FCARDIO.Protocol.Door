@@ -14,10 +14,19 @@ namespace DoNetDrive.Protocol.Fingerprint.Test.Model
         public Person_UI(Data.Person person)
         {
             Person = person;
-        }
+            CardStatusList = ToolLanguage.GetLanguage("frmPerson", "Person_UI_3").Split(',');
+            CardTypeList= ToolLanguage.GetLanguage("frmPerson", "Person_UI_4").Split(',');
+            OpenTimes_Invalid = ToolLanguage.GetLanguage("frmPerson", "Person_UI_5");
+            OpenTimes_Off = ToolLanguage.GetLanguage("frmPerson", "Person_UI_6");
 
+        }
         private static StringBuilder mStrBuf = new StringBuilder(1024);
 
+        /// <summary>
+        /// 表示卡状态的列表
+        /// </summary>
+        public static string[] CardStatusList;//= new string[] { "正常", "挂失卡", "黑名单" };
+        public static string[] CardTypeList;//= new string[] { "普通卡", "常开" };
         /// <summary>
         /// 选择
         /// </summary>
@@ -66,7 +75,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test.Model
         /// </summary>
         public string IsFaceFeature
         {
-            get { return Person.IsFaceFeatureCode ? "有" : "无"; }
+            get { return Person.IsFaceFeatureCode ? ToolLanguage.GetLanguage("frmPerson", "Person_UI_1") : ToolLanguage.GetLanguage("frmPerson", "Person_UI_2"); }
         }
 
         /// <summary>
@@ -102,11 +111,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test.Model
         /// </summary>
         public string Expiry { get { return Person.Expiry.ToDateTimeStr(); } }
 
-        /// <summary>
-        /// 表示卡状态的列表
-        /// </summary>
-        public static string[] CardStatusList = new string[] { "正常", "挂失卡", "黑名单" };
-        public static string[] CardTypeList = new string[] { "普通卡", "常开" };
+     
 
         /// <summary>
         /// 卡片状态
@@ -133,12 +138,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test.Model
         /// <summary>
         /// 开门次数 (0)已失效
         /// </summary>
-        public const string OpenTimes_Invalid = "(0)已失效";
+        public static  string OpenTimes_Invalid ;
 
         /// <summary>
         /// 开门次数 无限制(65535)
         /// </summary>
-        public const string OpenTimes_Off = "无限制(65535)";
+        public static  string OpenTimes_Off;//= "无限制(65535)";
 
         /// <summary>
         /// 有效次数
@@ -150,7 +155,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test.Model
                 return Person.OpenTimes == 0 ?
                 OpenTimes_Invalid :
                 Person.OpenTimes == 65535 ?
-                OpenTimes_Off : Person.OpenTimes.ToString() + "次";
+                OpenTimes_Off : Person.OpenTimes.ToString() + ToolLanguage.GetLanguage("frmPerson", "cmbOpenTimes");
             }
         }
 
@@ -212,9 +217,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test.Model
                 switch (Person.Identity)
                 {
                     case 1:
-                        return "管理员";
+                        return ToolLanguage.GetLanguage("frmPerson", "Person_UI_7");
                     default:
-                        return "普通用户";
+                        return ToolLanguage.GetLanguage("frmPerson", "Person_UI_8");
                 }
             }
         }
@@ -227,11 +232,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test.Model
             switch (Person.EnterStatus)
             {
                 case 1:
-                    return "入有效";
+                    return ToolLanguage.GetLanguage("frmPerson", "Person_UI_9");
                 case 2:
-                    return "出有效";
+                    return ToolLanguage.GetLanguage("frmPerson", "Person_UI_10");
                 default:
-                    return "出入有效";
+                    return ToolLanguage.GetLanguage("frmPerson", "Person_UI_11");
             }
         }
 

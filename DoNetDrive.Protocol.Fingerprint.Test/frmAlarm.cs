@@ -50,28 +50,111 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         }
         #endregion
 
-        string[] modeList = new string[] { "不开门，报警输出", "开门，报警输出", "锁定门，报警，只能软件解锁" };
+        string[] modeList;//= new string[] { "不开门，报警输出", "开门，报警输出", "锁定门，报警，只能软件解锁" };
         private void FrmAlarm_Load(object sender, EventArgs e)
         {
+            LoadUILanguage();
+
+        }
+
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(gpFireAlarm);
+            GetLanguage(btnSendFireAlarm);
+            GetLanguage(gpBlacklistAlarmUse);
+            GetLanguage(cbBlacklistAlarmUse);
+            GetLanguage(btnReadBlacklistAlarm);
+            GetLanguage(btnWriteBlacklistAlarm);
+            GetLanguage(gpAntiDisassemblyUse);
+            GetLanguage(cbAntiDisassemblyUse);
+            GetLanguage(btnReadAntiDisassemblyAlarm);
+            GetLanguage(btnWriteAntiDisassemblyAlarm);
+            GetLanguage(gpIllegalVerificationAlarmUse);
+            GetLanguage(cbIllegalVerificationAlarmUse);
+            GetLanguage(Lbl_IllegalVerificationTimes1);
+            GetLanguage(Lbl_IllegalVerificationTimes2);
+            GetLanguage(btnReadIllegalVerification);
+            GetLanguage(btnWriteIllegalVerification);
+            GetLanguage(gpAlarmPasswordUse);
+            GetLanguage(cbAlarmPasswordUse);
+            GetLanguage(Lbl_AlarmPasswordMode);
+            GetLanguage(Lbl_AlarmPassword);
+            GetLanguage(btnReadAlarmPassword);
+            GetLanguage(btnWriteAlarmPassword);
+            GetLanguage(gpOpenDoorTimeoutAlarmUse);
+            GetLanguage(cbOpenDoorTimeoutAlarmUse);
+            GetLanguage(Lbl_OpenDoorTimeout);
+            GetLanguage(cbRelayOutput);
+            GetLanguage(btnReadOpenDoorTimeoutAlarm);
+            GetLanguage(btnWriteOpenDoorTimeoutAlarm);
+            GetLanguage(gpLegalVerificationCloseAlarmUse);
+            GetLanguage(cbLegalVerificationCloseAlarmUse);
+            GetLanguage(btnReadLegalVerificationCloseAlarm);
+            GetLanguage(btnWriteLegalVerificationCloseAlarm);
+            GetLanguage(gpCloseAlarm);
+            GetLanguage(checkBox1);
+            GetLanguage(checkBox2);
+            GetLanguage(checkBox3);
+            GetLanguage(checkBox4);
+            GetLanguage(checkBox5);
+            GetLanguage(checkBox6);
+            GetLanguage(checkBox7);
+            GetLanguage(btnWriteCloseAlarm);
+            GetLanguage(gpDoorWorkSetting);
+            GetLanguage(Lbl_DoorWorkSetting);
+            GetLanguage(rBtnNoDoorWorkSetting);
+            GetLanguage(rBtnDoorWorkSetting);
+            GetLanguage(btnReadGateMagneticAlarm);
+            GetLanguage(btnWriteGateMagneticAlarm);
+            GetLanguage(Lbl_GateMagneticAlarmWeek);
+            GetLanguage(Lbl_StartTime1);
+            GetLanguage(Lbl_EndTime1);
+            GetLanguage(Lbl_StartTime2);
+            GetLanguage(Lbl_EndTime2);
+            GetLanguage(Lbl_StartTime3);
+            GetLanguage(Lbl_EndTime3);
+            GetLanguage(Lbl_StartTime4);
+            GetLanguage(Lbl_EndTime4);
+            GetLanguage(Lbl_StartTime5);
+            GetLanguage(Lbl_EndTime5);
+            GetLanguage(Lbl_StartTime6);
+            GetLanguage(Lbl_EndTime6);
+            GetLanguage(Lbl_StartTime7);
+            GetLanguage(Lbl_EndTime7);
+            GetLanguage(Lbl_StartTime8);
+            GetLanguage(Lbl_EndTime8);
+            GetLanguage(btnFillNowTime);
+
+            modeList = GetLanguage("modeList").Split(',');
             string[] times = new string[256];
             string[] timeout = new string[257];
+            var msg_8 = GetLanguage("Msg_8");
             for (int i = 0; i < 256; i++)
             {
                 times[i] = i.ToString();
-                timeout[i] = i.ToString() + "秒";
+                timeout[i] = i.ToString() + msg_8;
             }
-            timeout[0] = "禁用";
-            timeout[256] = "65535秒";
+            timeout[0] = GetLanguage("Msg_9");
+            timeout[256] = "65535" + msg_8;
+            cmbIllegalVerificationTimes.Items.Clear();
             cmbIllegalVerificationTimes.Items.AddRange(times);
             cmbIllegalVerificationTimes.SelectedIndex = 0;
 
+            cmbAlarmPasswordMode.Items.Clear();
             cmbAlarmPasswordMode.Items.AddRange(modeList);
             cmbAlarmPasswordMode.SelectedIndex = 0;
 
+            cmbOpenDoorTimeout.Items.Clear();
             cmbOpenDoorTimeout.Items.AddRange(timeout);
             cmbOpenDoorTimeout.SelectedIndex = 0;
-        }
 
+
+            cbxWeek.Items.Clear();
+            cbxWeek.Items.AddRange(GetLanguage("WeekList").Split(','));
+            cbxWeek.SelectedIndex = 0;
+            
+        }
         private void FrmAlarm_FormClosed(object sender, FormClosedEventArgs e)
         {
             onlyObj = null;
@@ -100,8 +183,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReadBlacklistAlarm_Result result = cmde.Command.getResult() as ReadBlacklistAlarm_Result;
 
                 sb.Clear();
-                sb.Append("黑名单报警 ");
-                sb.Append(result.IsAlarm ? "是否启用：【1、启用】，" : "是否启用：【0、不启用】，");
+                sb.AppendLine(GetLanguage("Msg_3"));
+                sb.Append(result.IsAlarm ? GetLanguage("Msg_1") : GetLanguage("Msg_2"));
 
                 Invoke(() =>
                 {
@@ -136,8 +219,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReadAntiDisassemblyAlarm_Result result = cmde.Command.getResult() as ReadAntiDisassemblyAlarm_Result;
 
                 sb.Clear();
-                sb.Append("防拆报警开关 ");
-                sb.Append(result.IsUse ? "是否启用：【1、启用】，" : "是否启用：【0、不启用】，");
+                sb.AppendLine(GetLanguage("Msg_4"));
+                sb.Append(result.IsUse ? GetLanguage("Msg_1") : GetLanguage("Msg_2"));
 
                 Invoke(() =>
                 {
@@ -172,12 +255,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReadIllegalVerificationAlarm_Result result = cmde.Command.getResult() as ReadIllegalVerificationAlarm_Result;
 
                 sb.Clear();
-                sb.Append("非法验证报警 ");
-                sb.Append(result.IsUse ? "是否启用：【1、启用】，" : "是否启用：【0、不启用】，");
-
+                sb.AppendLine(GetLanguage("Msg_5"));
+                sb.AppendLine(result.IsUse ? GetLanguage("Msg_1") : GetLanguage("Msg_2"));
+                sb.AppendLine(GetLanguage("Msg_6") + result.Times);
                 Invoke(() =>
                 {
                     cbIllegalVerificationAlarmUse.Checked = result.IsUse;
+                    cmbIllegalVerificationTimes.Text = result.Times.ToString();
                 });
 
                 mMainForm.AddCmdLog(cmde, sb.ToString());
@@ -209,9 +293,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReadAlarmPassword_Result result = cmde.Command.getResult() as ReadAlarmPassword_Result;
 
                 sb.Clear();
-                sb.Append("胁迫报警密码 ");
-                sb.Append(result.Use ? "是否启用：【1、启用】，" : "是否启用：【0、不启用】，");
-
+                sb.AppendLine(GetLanguage("Msg_7"));
+                sb.AppendLine(result.Use ? GetLanguage("Msg_1") : GetLanguage("Msg_2"));
+                sb.AppendLine(GetLanguage("Msg_10") + modeList[result.AlarmOption - 1]);
+                sb.AppendLine(GetLanguage("Msg_11")+result.Password);
                 Invoke(() =>
                 {
                     cbAlarmPasswordUse.Checked = result.Use;
@@ -248,9 +333,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReadOpenDoorTimeoutAlarm_Result result = cmde.Command.getResult() as ReadOpenDoorTimeoutAlarm_Result;
 
                 sb.Clear();
-                sb.Append("开门超时提示参数 ");
-                sb.Append(result.IsUse ? "是否启用：【1、启用】，" : "是否启用：【0、不启用】，");
-
+                sb.AppendLine(GetLanguage("gpOpenDoorTimeoutAlarmUse"));
+                sb.AppendLine(result.IsUse ? GetLanguage("Msg_1") : GetLanguage("Msg_2"));
+                string str = GetLanguage("rBtnNoDoorWorkSetting");
+                if (result.AllowTime != 0)
+                {
+                    str = result.AllowTime + GetLanguage("Msg_8");
+                }
+                sb.AppendLine(GetLanguage("Lbl_OpenDoorTimeout") + str);
+                sb.AppendLine(GetLanguage("cbRelayOutput") + result.RelayOutput);
                 Invoke(() =>
                 {
                     cbOpenDoorTimeoutAlarmUse.Checked = result.IsUse;
@@ -317,18 +408,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 string DoorTriggerModeStr = string.Empty;
                 if (!result.IsUse)
                 {
-                    sb.AppendLine("门磁报警 是否启用：【0、不启用】");
+                    sb.AppendLine(GetLanguage("Msg_12"));
                     mMainForm.AddCmdLog(cmde, sb.ToString());
                 }
                 else
                 {
                     for (int i = 0; i < 7; i++)
                     {
-                        sb.Append("\r\n");
-                        sb.Append(StringUtility.GetWeekStr(i));
+                        sb.AppendLine();
+                        sb.AppendLine(StringUtility.GetWeekStr(i));
                         for (int j = 0; j < 8; j++)
                         {
-                            sb.Append("  时段" + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.WeekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.WeekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));
+                            sb.AppendLine(GetLanguage("Msg_13") + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.WeekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.WeekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));
                         }
                         // mMainForm.AddCmdLog(null, sb.ToString());
                     }
@@ -403,8 +494,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReadLegalVerificationCloseAlarm_Result result = cmde.Command.getResult() as ReadLegalVerificationCloseAlarm_Result;
 
                 sb.Clear();
-                sb.Append("合法验证解除报警开关 ");
-                sb.Append(result.IsUse ? "是否启用：【1、启用】，" : "是否启用：【0、不启用】，");
+                sb.AppendLine(GetLanguage("gpLegalVerificationCloseAlarmUse"));
+                sb.AppendLine(result.IsUse ? GetLanguage("Msg_1") : GetLanguage("Msg_2"));
 
                 Invoke(() =>
                 {
