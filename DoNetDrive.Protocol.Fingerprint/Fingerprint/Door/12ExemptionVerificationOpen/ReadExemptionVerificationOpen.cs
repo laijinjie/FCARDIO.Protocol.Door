@@ -29,7 +29,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Door.ExemptionVerificationOpen
         /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x03))
+            if (CheckResponse(oPck, 0x03, 0x11,0x01))
             {
                 var buf = oPck.CmdData;
                 ReadExemptionVerificationOpen_Result rst = new ReadExemptionVerificationOpen_Result();

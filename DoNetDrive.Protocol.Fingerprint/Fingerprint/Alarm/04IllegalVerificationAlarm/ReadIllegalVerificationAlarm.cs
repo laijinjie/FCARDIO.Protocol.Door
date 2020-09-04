@@ -29,7 +29,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Alarm.IllegalVerificationAlarm
         /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x01))
+            if (CheckResponse(oPck, 0x04, 0x04, 0x01))
             {
                 var buf = oPck.CmdData;
                 ReadIllegalVerificationAlarm_Result rst = new ReadIllegalVerificationAlarm_Result();
