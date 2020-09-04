@@ -33,7 +33,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Holiday
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x04, 3);
+            Packet(0x05, 3);
             mReadBuffers = new List<IByteBuffer>();
         }
 
@@ -44,7 +44,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Holiday
         /// <returns></returns>
         protected virtual bool CheckResponseOK(OnlineAccessPacket oPck)
         {
-            return (oPck.CmdType == 0x34 &&
+            return (oPck.CmdType == 0x35 &&
                 oPck.CmdIndex == 3 &&
                 oPck.CmdPar == 0);
         }
@@ -56,7 +56,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Holiday
         /// <returns></returns>
         protected virtual bool CheckResponseCompleted(OnlineAccessPacket oPck)
         {
-            return (oPck.CmdType == 0x34 &&
+            return (oPck.CmdType == 0x35 &&
                 oPck.CmdIndex == 3 &&
                 oPck.CmdPar == 0xff && oPck.DataLen == 4);
         }

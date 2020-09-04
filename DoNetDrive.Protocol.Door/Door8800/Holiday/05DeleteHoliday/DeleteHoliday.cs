@@ -46,7 +46,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Holiday
             DeleteHoliday_Parameter model = _Parameter as DeleteHoliday_Parameter;
             var acl = _Connector.GetByteBufAllocator();
             var buf = acl.Buffer(model.GetDataLen());
-            Packet(0x04, 0x04, 0x01, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
+            Packet(0x05, 0x05, 0x00, Convert.ToUInt32(model.GetDataLen()), model.GetBytes(buf));
         }
     }
 }
