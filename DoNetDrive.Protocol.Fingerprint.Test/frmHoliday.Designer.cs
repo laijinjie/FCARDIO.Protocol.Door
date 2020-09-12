@@ -50,12 +50,12 @@
             this.btnDelSelect = new System.Windows.Forms.Button();
             this.btnAdd30 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.butAddHoliday = new DevComponents.DotNetBar.ButtonX();
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Holiday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HolidayTypeRender = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RepeatYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.butAddHoliday = new DevComponents.DotNetBar.ButtonX();
             this.gpAllHoliday.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -155,9 +155,9 @@
             // 
             // 
             this.checkBoxX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.checkBoxX1.Location = new System.Drawing.Point(12, 599);
+            this.checkBoxX1.Location = new System.Drawing.Point(13, 478);
             this.checkBoxX1.Name = "checkBoxX1";
-            this.checkBoxX1.Size = new System.Drawing.Size(100, 23);
+            this.checkBoxX1.Size = new System.Drawing.Size(65, 23);
             this.checkBoxX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.checkBoxX1.TabIndex = 6;
             this.checkBoxX1.Text = "反选";
@@ -169,23 +169,23 @@
             // 
             // 
             this.Lbl_Index.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.Lbl_Index.Location = new System.Drawing.Point(12, 628);
+            this.Lbl_Index.Location = new System.Drawing.Point(103, 478);
             this.Lbl_Index.Name = "Lbl_Index";
-            this.Lbl_Index.Size = new System.Drawing.Size(43, 23);
+            this.Lbl_Index.Size = new System.Drawing.Size(55, 23);
             this.Lbl_Index.TabIndex = 7;
             this.Lbl_Index.Text = "序号：";
             // 
             // cbIndex
             // 
             this.cbIndex.FormattingEnabled = true;
-            this.cbIndex.Location = new System.Drawing.Point(51, 628);
+            this.cbIndex.Location = new System.Drawing.Point(103, 501);
             this.cbIndex.Name = "cbIndex";
             this.cbIndex.Size = new System.Drawing.Size(36, 20);
             this.cbIndex.TabIndex = 8;
             // 
             // btnAddIndex
             // 
-            this.btnAddIndex.Location = new System.Drawing.Point(87, 627);
+            this.btnAddIndex.Location = new System.Drawing.Point(139, 500);
             this.btnAddIndex.Name = "btnAddIndex";
             this.btnAddIndex.Size = new System.Drawing.Size(19, 22);
             this.btnAddIndex.TabIndex = 9;
@@ -196,7 +196,7 @@
             // Lbl_HolidayTime
             // 
             this.Lbl_HolidayTime.AutoSize = true;
-            this.Lbl_HolidayTime.Location = new System.Drawing.Point(112, 631);
+            this.Lbl_HolidayTime.Location = new System.Drawing.Point(246, 484);
             this.Lbl_HolidayTime.Name = "Lbl_HolidayTime";
             this.Lbl_HolidayTime.Size = new System.Drawing.Size(77, 12);
             this.Lbl_HolidayTime.TabIndex = 10;
@@ -204,14 +204,14 @@
             // 
             // dtpDay
             // 
-            this.dtpDay.Location = new System.Drawing.Point(183, 628);
+            this.dtpDay.Location = new System.Drawing.Point(243, 500);
             this.dtpDay.Name = "dtpDay";
             this.dtpDay.Size = new System.Drawing.Size(105, 21);
             this.dtpDay.TabIndex = 11;
             // 
             // btnAddDay
             // 
-            this.btnAddDay.Location = new System.Drawing.Point(288, 627);
+            this.btnAddDay.Location = new System.Drawing.Point(348, 499);
             this.btnAddDay.Name = "btnAddDay";
             this.btnAddDay.Size = new System.Drawing.Size(19, 23);
             this.btnAddDay.TabIndex = 12;
@@ -223,7 +223,7 @@
             // 
             this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbType.FormattingEnabled = true;
-            this.cbType.Location = new System.Drawing.Point(323, 629);
+            this.cbType.Location = new System.Drawing.Point(410, 501);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(147, 20);
             this.cbType.TabIndex = 13;
@@ -231,7 +231,7 @@
             // cbYear
             // 
             this.cbYear.AutoSize = true;
-            this.cbYear.Location = new System.Drawing.Point(492, 630);
+            this.cbYear.Location = new System.Drawing.Point(410, 478);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(72, 16);
             this.cbYear.TabIndex = 14;
@@ -240,9 +240,9 @@
             // 
             // btnAddList
             // 
-            this.btnAddList.Location = new System.Drawing.Point(12, 657);
+            this.btnAddList.Location = new System.Drawing.Point(2, 532);
             this.btnAddList.Name = "btnAddList";
-            this.btnAddList.Size = new System.Drawing.Size(75, 33);
+            this.btnAddList.Size = new System.Drawing.Size(187, 33);
             this.btnAddList.TabIndex = 15;
             this.btnAddList.Text = "增加至列表";
             this.btnAddList.UseVisualStyleBackColor = true;
@@ -250,9 +250,9 @@
             // 
             // btnDelList
             // 
-            this.btnDelList.Location = new System.Drawing.Point(112, 657);
+            this.btnDelList.Location = new System.Drawing.Point(3, 581);
             this.btnDelList.Name = "btnDelList";
-            this.btnDelList.Size = new System.Drawing.Size(75, 33);
+            this.btnDelList.Size = new System.Drawing.Size(187, 33);
             this.btnDelList.TabIndex = 16;
             this.btnDelList.Text = "从列表删除";
             this.btnDelList.UseVisualStyleBackColor = true;
@@ -260,9 +260,9 @@
             // 
             // btnAddDecive
             // 
-            this.btnAddDecive.Location = new System.Drawing.Point(278, 657);
+            this.btnAddDecive.Location = new System.Drawing.Point(198, 532);
             this.btnAddDecive.Name = "btnAddDecive";
-            this.btnAddDecive.Size = new System.Drawing.Size(75, 33);
+            this.btnAddDecive.Size = new System.Drawing.Size(187, 33);
             this.btnAddDecive.TabIndex = 17;
             this.btnAddDecive.Text = "增加至设备";
             this.btnAddDecive.UseVisualStyleBackColor = true;
@@ -270,9 +270,9 @@
             // 
             // btnDelDevice
             // 
-            this.btnDelDevice.Location = new System.Drawing.Point(372, 657);
+            this.btnDelDevice.Location = new System.Drawing.Point(394, 532);
             this.btnDelDevice.Name = "btnDelDevice";
-            this.btnDelDevice.Size = new System.Drawing.Size(75, 33);
+            this.btnDelDevice.Size = new System.Drawing.Size(187, 33);
             this.btnDelDevice.TabIndex = 18;
             this.btnDelDevice.Text = "从设备删除";
             this.btnDelDevice.UseVisualStyleBackColor = true;
@@ -280,9 +280,9 @@
             // 
             // btnDelSelect
             // 
-            this.btnDelSelect.Location = new System.Drawing.Point(464, 657);
+            this.btnDelSelect.Location = new System.Drawing.Point(198, 581);
             this.btnDelSelect.Name = "btnDelSelect";
-            this.btnDelSelect.Size = new System.Drawing.Size(106, 33);
+            this.btnDelSelect.Size = new System.Drawing.Size(187, 33);
             this.btnDelSelect.TabIndex = 19;
             this.btnDelSelect.Text = "从设备删除删除选中节假日";
             this.btnDelSelect.UseVisualStyleBackColor = true;
@@ -290,9 +290,9 @@
             // 
             // btnAdd30
             // 
-            this.btnAdd30.Location = new System.Drawing.Point(12, 696);
+            this.btnAdd30.Location = new System.Drawing.Point(393, 581);
             this.btnAdd30.Name = "btnAdd30";
-            this.btnAdd30.Size = new System.Drawing.Size(148, 33);
+            this.btnAdd30.Size = new System.Drawing.Size(187, 33);
             this.btnAdd30.TabIndex = 20;
             this.btnAdd30.Text = "生成30个节假日列表";
             this.btnAdd30.UseVisualStyleBackColor = true;
@@ -312,9 +312,21 @@
             this.dataGridView1.Location = new System.Drawing.Point(13, 102);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(557, 491);
+            this.dataGridView1.Size = new System.Drawing.Size(557, 361);
             this.dataGridView1.TabIndex = 21;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // butAddHoliday
+            // 
+            this.butAddHoliday.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.butAddHoliday.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.butAddHoliday.Location = new System.Drawing.Point(320, 36);
+            this.butAddHoliday.Name = "butAddHoliday";
+            this.butAddHoliday.Size = new System.Drawing.Size(109, 26);
+            this.butAddHoliday.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.butAddHoliday.TabIndex = 22;
+            this.butAddHoliday.Text = "添加列表节假日";
+            this.butAddHoliday.Click += new System.EventHandler(this.ButAddHoliday_Click);
             // 
             // Selected
             // 
@@ -349,25 +361,12 @@
             this.RepeatYear.DataPropertyName = "RepeatYear";
             this.RepeatYear.HeaderText = "每年循环";
             this.RepeatYear.Name = "RepeatYear";
-            this.RepeatYear.Width = 80;
-            // 
-            // butAddHoliday
-            // 
-            this.butAddHoliday.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.butAddHoliday.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.butAddHoliday.Location = new System.Drawing.Point(320, 36);
-            this.butAddHoliday.Name = "butAddHoliday";
-            this.butAddHoliday.Size = new System.Drawing.Size(109, 26);
-            this.butAddHoliday.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.butAddHoliday.TabIndex = 22;
-            this.butAddHoliday.Text = "添加列表节假日";
-            this.butAddHoliday.Click += new System.EventHandler(this.ButAddHoliday_Click);
             // 
             // frmHoliday
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 737);
+            this.ClientSize = new System.Drawing.Size(582, 621);
             this.Controls.Add(this.butAddHoliday);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnAdd30);

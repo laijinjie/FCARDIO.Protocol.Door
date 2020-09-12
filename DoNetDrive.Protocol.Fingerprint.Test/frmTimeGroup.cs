@@ -73,13 +73,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             GetLanguage(Lbl_StartTime8);
             GetLanguage(Lbl_EndTime8);
             LoadComboxItemsLanguage(cbWeekday, "WeekdayList");
+            cbWeekday.SelectedIndex = 0;
             InitTimeGroup();
         }
         private void InitWeekday()
         {
             // cbWeekday.Items.Clear();
             //cbWeekday.Items.AddRange(WeekdayList);
-            cbWeekday.SelectedIndex = 0;
+           
         }
 
         #region 开门时段

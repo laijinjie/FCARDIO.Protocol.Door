@@ -253,7 +253,7 @@
     <btnReadVersion          value="读取" />
     <gbTCP                   value="TCP/IP 连接参数" />
     <lblMAC                  value="MAC地址：" />
-    <txtIP                   value="IP地址：" />
+    <LblIP                   value="IP地址：" />
     <LblIPMask               value="子网掩码：" />
     <LblIPGateway            value="网关IP：" />
     <LblDNS                  value="DNS：" />
@@ -284,7 +284,7 @@
     <btnReadWatchState       value="状态" />
     <btnBeginWatch_Broadcast value="开启广播" />
     <btnCloseWatch_Broadcast value="关闭广播" />
-
+    <cmbInOut                value="进,出" />
     <tpNetwork                      value = "客户端网络参数" />
     <gbServerDetail                 value = "服务器参数" />
     <lblServerPort_1                value = "服务器端口号：" />
@@ -320,8 +320,8 @@
     <btnReadWiegandOutput           value = "读取"/>
     <btnWriteWiegandOutput          value = "写入"/>
     <gpFace_fingerprint_threshold   value = "人脸、指纹对比阈值"/>
-    <Lbl_p2_FoFReadCardByte         value = "读卡字节："/>
-    <Lbl_p2_FoFWgOut                value = "韦根输出："/>
+    <Lbl_p2_FoFReadCardByte         value = "人脸阈值："/>
+    <Lbl_p2_FoFWgOut                value = "指纹阈值："/>
     <btnReadComparisonThreshold     value = "读取"/>
     <btnWriteComparisonThreshold    value = "写入"/>
     <gpScreenContent                value = "屏幕显示内容"/>
@@ -376,8 +376,9 @@
     <ClientNetWorkMode                       value = "禁用,UDP Client,TCP Client,TCP Client + TLS1.2"/>
     <FaceBodyTemperatureList                 value = "禁止,摄氏度（默认值）,华氏度"/>
     <FaceLEDModeList                         value = "一直关,一直亮,检测到人员时开"/>
-    <ReadCardByteList                        value = "韦根26,韦根34,韦根26,韦根66,禁用"/>
+    <ReadCardByteList                        value = "韦根26(三字节),韦根34（四字节）,韦根26（二字节）,韦根66（八字节）,禁用"/>
     <IsUseList                               value = "启用,禁用"/>
+    <Cmb_FaceMouthmuffle                     value = "禁用,启用"/>    
     <WGByteSortList                          value = "高位在前低位在后,低位在前高位在后"/>
     <OutputTypeList                          value = "输出用户号,输出人员卡号"/>
     <DriveLanguageList                       value = "1--中文,2--英文,3--中文繁体"/>

@@ -137,9 +137,9 @@
             this.gpReadRelayOption.Controls.Add(this.cbxRelayOption);
             this.gpReadRelayOption.Controls.Add(this.btnWriteRelayOption);
             this.gpReadRelayOption.Controls.Add(this.btnReadRelayOption);
-            this.gpReadRelayOption.Location = new System.Drawing.Point(222, 12);
+            this.gpReadRelayOption.Location = new System.Drawing.Point(308, 434);
             this.gpReadRelayOption.Name = "gpReadRelayOption";
-            this.gpReadRelayOption.Size = new System.Drawing.Size(204, 52);
+            this.gpReadRelayOption.Size = new System.Drawing.Size(368, 52);
             this.gpReadRelayOption.TabIndex = 3;
             this.gpReadRelayOption.TabStop = false;
             this.gpReadRelayOption.Text = "继电器参数(双稳态功能)";
@@ -148,14 +148,14 @@
             // 
             this.cbxRelayOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxRelayOption.FormattingEnabled = true;
-            this.cbxRelayOption.Location = new System.Drawing.Point(5, 23);
+            this.cbxRelayOption.Location = new System.Drawing.Point(6, 21);
             this.cbxRelayOption.Name = "cbxRelayOption";
-            this.cbxRelayOption.Size = new System.Drawing.Size(74, 20);
+            this.cbxRelayOption.Size = new System.Drawing.Size(145, 20);
             this.cbxRelayOption.TabIndex = 37;
             // 
             // btnWriteRelayOption
             // 
-            this.btnWriteRelayOption.Location = new System.Drawing.Point(146, 22);
+            this.btnWriteRelayOption.Location = new System.Drawing.Point(314, 17);
             this.btnWriteRelayOption.Name = "btnWriteRelayOption";
             this.btnWriteRelayOption.Size = new System.Drawing.Size(48, 23);
             this.btnWriteRelayOption.TabIndex = 36;
@@ -165,7 +165,7 @@
             // 
             // btnReadRelayOption
             // 
-            this.btnReadRelayOption.Location = new System.Drawing.Point(92, 22);
+            this.btnReadRelayOption.Location = new System.Drawing.Point(260, 17);
             this.btnReadRelayOption.Name = "btnReadRelayOption";
             this.btnReadRelayOption.Size = new System.Drawing.Size(48, 23);
             this.btnReadRelayOption.TabIndex = 35;
@@ -221,9 +221,9 @@
             this.gpRelayReleaseTime.Controls.Add(this.btnWriteRelayReleaseTime);
             this.gpRelayReleaseTime.Controls.Add(this.btnReadRelayReleaseTime);
             this.gpRelayReleaseTime.Controls.Add(this.Lbl_RelayReleaseTime);
-            this.gpRelayReleaseTime.Location = new System.Drawing.Point(432, 12);
+            this.gpRelayReleaseTime.Location = new System.Drawing.Point(397, 12);
             this.gpRelayReleaseTime.Name = "gpRelayReleaseTime";
-            this.gpRelayReleaseTime.Size = new System.Drawing.Size(249, 52);
+            this.gpRelayReleaseTime.Size = new System.Drawing.Size(284, 52);
             this.gpRelayReleaseTime.TabIndex = 8;
             this.gpRelayReleaseTime.TabStop = false;
             this.gpRelayReleaseTime.Text = "开锁保持时间(秒)";
@@ -231,7 +231,7 @@
             // Lbl_Seconds
             // 
             this.Lbl_Seconds.AutoSize = true;
-            this.Lbl_Seconds.Location = new System.Drawing.Point(114, 25);
+            this.Lbl_Seconds.Location = new System.Drawing.Point(129, 25);
             this.Lbl_Seconds.Name = "Lbl_Seconds";
             this.Lbl_Seconds.Size = new System.Drawing.Size(23, 12);
             this.Lbl_Seconds.TabIndex = 51;
@@ -266,7 +266,7 @@
             "19",
             "20",
             "65535"});
-            this.cbxReleaseTime.Location = new System.Drawing.Point(39, 22);
+            this.cbxReleaseTime.Location = new System.Drawing.Point(48, 22);
             this.cbxReleaseTime.MaxLength = 5;
             this.cbxReleaseTime.Name = "cbxReleaseTime";
             this.cbxReleaseTime.Size = new System.Drawing.Size(69, 20);
@@ -274,7 +274,7 @@
             // 
             // btnWriteRelayReleaseTime
             // 
-            this.btnWriteRelayReleaseTime.Location = new System.Drawing.Point(195, 20);
+            this.btnWriteRelayReleaseTime.Location = new System.Drawing.Point(224, 19);
             this.btnWriteRelayReleaseTime.Name = "btnWriteRelayReleaseTime";
             this.btnWriteRelayReleaseTime.Size = new System.Drawing.Size(48, 23);
             this.btnWriteRelayReleaseTime.TabIndex = 49;
@@ -284,7 +284,7 @@
             // 
             // btnReadRelayReleaseTime
             // 
-            this.btnReadRelayReleaseTime.Location = new System.Drawing.Point(141, 20);
+            this.btnReadRelayReleaseTime.Location = new System.Drawing.Point(170, 19);
             this.btnReadRelayReleaseTime.Name = "btnReadRelayReleaseTime";
             this.btnReadRelayReleaseTime.Size = new System.Drawing.Size(48, 23);
             this.btnReadRelayReleaseTime.TabIndex = 48;
@@ -311,7 +311,7 @@
             this.gpOpenDoor.Controls.Add(this.btnHoldOpenDoor);
             this.gpOpenDoor.Location = new System.Drawing.Point(12, 70);
             this.gpOpenDoor.Name = "gpOpenDoor";
-            this.gpOpenDoor.Size = new System.Drawing.Size(488, 52);
+            this.gpOpenDoor.Size = new System.Drawing.Size(669, 52);
             this.gpOpenDoor.TabIndex = 9;
             this.gpOpenDoor.TabStop = false;
             this.gpOpenDoor.Text = "远程开门";
@@ -320,7 +320,7 @@
             // 
             this.cmbCheckNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCheckNum.FormattingEnabled = true;
-            this.cmbCheckNum.Location = new System.Drawing.Point(65, 18);
+            this.cmbCheckNum.Location = new System.Drawing.Point(59, 28);
             this.cmbCheckNum.Name = "cmbCheckNum";
             this.cmbCheckNum.Size = new System.Drawing.Size(50, 20);
             this.cmbCheckNum.TabIndex = 40;
@@ -328,7 +328,7 @@
             // Lbl_OpenDoor_CheckNum
             // 
             this.Lbl_OpenDoor_CheckNum.AutoSize = true;
-            this.Lbl_OpenDoor_CheckNum.Location = new System.Drawing.Point(7, 22);
+            this.Lbl_OpenDoor_CheckNum.Location = new System.Drawing.Point(62, 12);
             this.Lbl_OpenDoor_CheckNum.Name = "Lbl_OpenDoor_CheckNum";
             this.Lbl_OpenDoor_CheckNum.Size = new System.Drawing.Size(53, 12);
             this.Lbl_OpenDoor_CheckNum.TabIndex = 39;
@@ -336,9 +336,9 @@
             // 
             // btnOpenDoor_CheckNum
             // 
-            this.btnOpenDoor_CheckNum.Location = new System.Drawing.Point(122, 18);
+            this.btnOpenDoor_CheckNum.Location = new System.Drawing.Point(131, 23);
             this.btnOpenDoor_CheckNum.Name = "btnOpenDoor_CheckNum";
-            this.btnOpenDoor_CheckNum.Size = new System.Drawing.Size(100, 23);
+            this.btnOpenDoor_CheckNum.Size = new System.Drawing.Size(181, 23);
             this.btnOpenDoor_CheckNum.TabIndex = 38;
             this.btnOpenDoor_CheckNum.Text = "远程开门_验证";
             this.btnOpenDoor_CheckNum.UseVisualStyleBackColor = true;
@@ -346,9 +346,9 @@
             // 
             // btnCloseDoor
             // 
-            this.btnCloseDoor.Location = new System.Drawing.Point(326, 18);
+            this.btnCloseDoor.Location = new System.Drawing.Point(424, 23);
             this.btnCloseDoor.Name = "btnCloseDoor";
-            this.btnCloseDoor.Size = new System.Drawing.Size(68, 23);
+            this.btnCloseDoor.Size = new System.Drawing.Size(103, 23);
             this.btnCloseDoor.TabIndex = 37;
             this.btnCloseDoor.Text = "远程关门";
             this.btnCloseDoor.UseVisualStyleBackColor = true;
@@ -356,9 +356,9 @@
             // 
             // btnOpenDoor
             // 
-            this.btnOpenDoor.Location = new System.Drawing.Point(240, 18);
+            this.btnOpenDoor.Location = new System.Drawing.Point(318, 23);
             this.btnOpenDoor.Name = "btnOpenDoor";
-            this.btnOpenDoor.Size = new System.Drawing.Size(68, 23);
+            this.btnOpenDoor.Size = new System.Drawing.Size(100, 23);
             this.btnOpenDoor.TabIndex = 35;
             this.btnOpenDoor.Text = "远程开门";
             this.btnOpenDoor.UseVisualStyleBackColor = true;
@@ -366,9 +366,9 @@
             // 
             // btnHoldOpenDoor
             // 
-            this.btnHoldOpenDoor.Location = new System.Drawing.Point(412, 18);
+            this.btnHoldOpenDoor.Location = new System.Drawing.Point(533, 23);
             this.btnHoldOpenDoor.Name = "btnHoldOpenDoor";
-            this.btnHoldOpenDoor.Size = new System.Drawing.Size(68, 23);
+            this.btnHoldOpenDoor.Size = new System.Drawing.Size(123, 23);
             this.btnHoldOpenDoor.TabIndex = 36;
             this.btnHoldOpenDoor.Text = "门常开";
             this.btnHoldOpenDoor.UseVisualStyleBackColor = true;
@@ -378,9 +378,9 @@
             // 
             this.gpLockDoor.Controls.Add(this.btnUnLockDoor);
             this.gpLockDoor.Controls.Add(this.btnLockDoor);
-            this.gpLockDoor.Location = new System.Drawing.Point(506, 70);
+            this.gpLockDoor.Location = new System.Drawing.Point(231, 12);
             this.gpLockDoor.Name = "gpLockDoor";
-            this.gpLockDoor.Size = new System.Drawing.Size(175, 52);
+            this.gpLockDoor.Size = new System.Drawing.Size(160, 52);
             this.gpLockDoor.TabIndex = 10;
             this.gpLockDoor.TabStop = false;
             this.gpLockDoor.Text = "门禁锁定";
@@ -414,7 +414,7 @@
             this.gpDoorWorkSetting.Controls.Add(this.Lbl_DoorWorkSetting);
             this.gpDoorWorkSetting.Location = new System.Drawing.Point(12, 128);
             this.gpDoorWorkSetting.Name = "gpDoorWorkSetting";
-            this.gpDoorWorkSetting.Size = new System.Drawing.Size(669, 219);
+            this.gpDoorWorkSetting.Size = new System.Drawing.Size(669, 300);
             this.gpDoorWorkSetting.TabIndex = 11;
             this.gpDoorWorkSetting.TabStop = false;
             this.gpDoorWorkSetting.Text = "定时常开";
@@ -457,9 +457,9 @@
             this.DoorOpenTimePanel.Controls.Add(this.Lbl_Week);
             this.DoorOpenTimePanel.Controls.Add(this.beginTimePicker1);
             this.DoorOpenTimePanel.Controls.Add(this.cbxWeek);
-            this.DoorOpenTimePanel.Location = new System.Drawing.Point(6, 47);
+            this.DoorOpenTimePanel.Location = new System.Drawing.Point(8, 72);
             this.DoorOpenTimePanel.Name = "DoorOpenTimePanel";
-            this.DoorOpenTimePanel.Size = new System.Drawing.Size(657, 137);
+            this.DoorOpenTimePanel.Size = new System.Drawing.Size(657, 191);
             this.DoorOpenTimePanel.TabIndex = 87;
             this.DoorOpenTimePanel.Visible = false;
             // 
@@ -467,15 +467,15 @@
             // 
             this.cmbDoorTriggerMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDoorTriggerMode.FormattingEnabled = true;
-            this.cmbDoorTriggerMode.Location = new System.Drawing.Point(312, 28);
+            this.cmbDoorTriggerMode.Location = new System.Drawing.Point(3, 72);
             this.cmbDoorTriggerMode.Name = "cmbDoorTriggerMode";
-            this.cmbDoorTriggerMode.Size = new System.Drawing.Size(235, 20);
+            this.cmbDoorTriggerMode.Size = new System.Drawing.Size(639, 20);
             this.cmbDoorTriggerMode.TabIndex = 89;
             // 
             // Lbl_DoorTriggerMode
             // 
             this.Lbl_DoorTriggerMode.AutoSize = true;
-            this.Lbl_DoorTriggerMode.Location = new System.Drawing.Point(310, 7);
+            this.Lbl_DoorTriggerMode.Location = new System.Drawing.Point(3, 57);
             this.Lbl_DoorTriggerMode.Name = "Lbl_DoorTriggerMode";
             this.Lbl_DoorTriggerMode.Size = new System.Drawing.Size(89, 12);
             this.Lbl_DoorTriggerMode.TabIndex = 88;
@@ -484,7 +484,7 @@
             // Lbl_EndTime8
             // 
             this.Lbl_EndTime8.AutoSize = true;
-            this.Lbl_EndTime8.Location = new System.Drawing.Point(577, 95);
+            this.Lbl_EndTime8.Location = new System.Drawing.Point(583, 143);
             this.Lbl_EndTime8.Name = "Lbl_EndTime8";
             this.Lbl_EndTime8.Size = new System.Drawing.Size(59, 12);
             this.Lbl_EndTime8.TabIndex = 117;
@@ -494,7 +494,7 @@
             // 
             this.endTimePicker8.CustomFormat = "HH:mm";
             this.endTimePicker8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker8.Location = new System.Drawing.Point(579, 110);
+            this.endTimePicker8.Location = new System.Drawing.Point(585, 158);
             this.endTimePicker8.Name = "endTimePicker8";
             this.endTimePicker8.ShowUpDown = true;
             this.endTimePicker8.Size = new System.Drawing.Size(57, 21);
@@ -504,7 +504,7 @@
             // Lbl_StartTime8
             // 
             this.Lbl_StartTime8.AutoSize = true;
-            this.Lbl_StartTime8.Location = new System.Drawing.Point(495, 95);
+            this.Lbl_StartTime8.Location = new System.Drawing.Point(501, 143);
             this.Lbl_StartTime8.Name = "Lbl_StartTime8";
             this.Lbl_StartTime8.Size = new System.Drawing.Size(59, 12);
             this.Lbl_StartTime8.TabIndex = 115;
@@ -514,7 +514,7 @@
             // 
             this.beginTimePicker8.CustomFormat = "HH:mm";
             this.beginTimePicker8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker8.Location = new System.Drawing.Point(497, 110);
+            this.beginTimePicker8.Location = new System.Drawing.Point(503, 158);
             this.beginTimePicker8.Name = "beginTimePicker8";
             this.beginTimePicker8.ShowUpDown = true;
             this.beginTimePicker8.Size = new System.Drawing.Size(57, 21);
@@ -524,7 +524,7 @@
             // Lbl_EndTime4
             // 
             this.Lbl_EndTime4.AutoSize = true;
-            this.Lbl_EndTime4.Location = new System.Drawing.Point(577, 51);
+            this.Lbl_EndTime4.Location = new System.Drawing.Point(583, 99);
             this.Lbl_EndTime4.Name = "Lbl_EndTime4";
             this.Lbl_EndTime4.Size = new System.Drawing.Size(59, 12);
             this.Lbl_EndTime4.TabIndex = 113;
@@ -534,7 +534,7 @@
             // 
             this.endTimePicker4.CustomFormat = "HH:mm";
             this.endTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker4.Location = new System.Drawing.Point(579, 66);
+            this.endTimePicker4.Location = new System.Drawing.Point(585, 114);
             this.endTimePicker4.Name = "endTimePicker4";
             this.endTimePicker4.ShowUpDown = true;
             this.endTimePicker4.Size = new System.Drawing.Size(57, 21);
@@ -544,7 +544,7 @@
             // Lbl_StartTime4
             // 
             this.Lbl_StartTime4.AutoSize = true;
-            this.Lbl_StartTime4.Location = new System.Drawing.Point(495, 51);
+            this.Lbl_StartTime4.Location = new System.Drawing.Point(501, 99);
             this.Lbl_StartTime4.Name = "Lbl_StartTime4";
             this.Lbl_StartTime4.Size = new System.Drawing.Size(59, 12);
             this.Lbl_StartTime4.TabIndex = 111;
@@ -554,7 +554,7 @@
             // 
             this.beginTimePicker4.CustomFormat = "HH:mm";
             this.beginTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker4.Location = new System.Drawing.Point(497, 66);
+            this.beginTimePicker4.Location = new System.Drawing.Point(503, 114);
             this.beginTimePicker4.Name = "beginTimePicker4";
             this.beginTimePicker4.ShowUpDown = true;
             this.beginTimePicker4.Size = new System.Drawing.Size(57, 21);
@@ -564,7 +564,7 @@
             // Lbl_EndTime7
             // 
             this.Lbl_EndTime7.AutoSize = true;
-            this.Lbl_EndTime7.Location = new System.Drawing.Point(413, 95);
+            this.Lbl_EndTime7.Location = new System.Drawing.Point(419, 143);
             this.Lbl_EndTime7.Name = "Lbl_EndTime7";
             this.Lbl_EndTime7.Size = new System.Drawing.Size(59, 12);
             this.Lbl_EndTime7.TabIndex = 109;
@@ -574,7 +574,7 @@
             // 
             this.endTimePicker7.CustomFormat = "HH:mm";
             this.endTimePicker7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker7.Location = new System.Drawing.Point(415, 110);
+            this.endTimePicker7.Location = new System.Drawing.Point(421, 158);
             this.endTimePicker7.Name = "endTimePicker7";
             this.endTimePicker7.ShowUpDown = true;
             this.endTimePicker7.Size = new System.Drawing.Size(57, 21);
@@ -584,7 +584,7 @@
             // Lbl_StartTime7
             // 
             this.Lbl_StartTime7.AutoSize = true;
-            this.Lbl_StartTime7.Location = new System.Drawing.Point(331, 95);
+            this.Lbl_StartTime7.Location = new System.Drawing.Point(337, 143);
             this.Lbl_StartTime7.Name = "Lbl_StartTime7";
             this.Lbl_StartTime7.Size = new System.Drawing.Size(59, 12);
             this.Lbl_StartTime7.TabIndex = 107;
@@ -594,7 +594,7 @@
             // 
             this.beginTimePicker7.CustomFormat = "HH:mm";
             this.beginTimePicker7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker7.Location = new System.Drawing.Point(333, 110);
+            this.beginTimePicker7.Location = new System.Drawing.Point(339, 158);
             this.beginTimePicker7.Name = "beginTimePicker7";
             this.beginTimePicker7.ShowUpDown = true;
             this.beginTimePicker7.Size = new System.Drawing.Size(57, 21);
@@ -604,7 +604,7 @@
             // Lbl_EndTime3
             // 
             this.Lbl_EndTime3.AutoSize = true;
-            this.Lbl_EndTime3.Location = new System.Drawing.Point(413, 51);
+            this.Lbl_EndTime3.Location = new System.Drawing.Point(419, 99);
             this.Lbl_EndTime3.Name = "Lbl_EndTime3";
             this.Lbl_EndTime3.Size = new System.Drawing.Size(59, 12);
             this.Lbl_EndTime3.TabIndex = 105;
@@ -614,7 +614,7 @@
             // 
             this.endTimePicker3.CustomFormat = "HH:mm";
             this.endTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker3.Location = new System.Drawing.Point(415, 66);
+            this.endTimePicker3.Location = new System.Drawing.Point(421, 114);
             this.endTimePicker3.Name = "endTimePicker3";
             this.endTimePicker3.ShowUpDown = true;
             this.endTimePicker3.Size = new System.Drawing.Size(57, 21);
@@ -624,7 +624,7 @@
             // Lbl_StartTime3
             // 
             this.Lbl_StartTime3.AutoSize = true;
-            this.Lbl_StartTime3.Location = new System.Drawing.Point(331, 51);
+            this.Lbl_StartTime3.Location = new System.Drawing.Point(337, 99);
             this.Lbl_StartTime3.Name = "Lbl_StartTime3";
             this.Lbl_StartTime3.Size = new System.Drawing.Size(59, 12);
             this.Lbl_StartTime3.TabIndex = 103;
@@ -634,7 +634,7 @@
             // 
             this.beginTimePicker3.CustomFormat = "HH:mm";
             this.beginTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker3.Location = new System.Drawing.Point(333, 66);
+            this.beginTimePicker3.Location = new System.Drawing.Point(339, 114);
             this.beginTimePicker3.Name = "beginTimePicker3";
             this.beginTimePicker3.ShowUpDown = true;
             this.beginTimePicker3.Size = new System.Drawing.Size(57, 21);
@@ -644,7 +644,7 @@
             // Lbl_EndTime6
             // 
             this.Lbl_EndTime6.AutoSize = true;
-            this.Lbl_EndTime6.Location = new System.Drawing.Point(249, 95);
+            this.Lbl_EndTime6.Location = new System.Drawing.Point(255, 143);
             this.Lbl_EndTime6.Name = "Lbl_EndTime6";
             this.Lbl_EndTime6.Size = new System.Drawing.Size(59, 12);
             this.Lbl_EndTime6.TabIndex = 101;
@@ -654,7 +654,7 @@
             // 
             this.endTimePicker6.CustomFormat = "HH:mm";
             this.endTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker6.Location = new System.Drawing.Point(251, 110);
+            this.endTimePicker6.Location = new System.Drawing.Point(257, 158);
             this.endTimePicker6.Name = "endTimePicker6";
             this.endTimePicker6.ShowUpDown = true;
             this.endTimePicker6.Size = new System.Drawing.Size(57, 21);
@@ -664,7 +664,7 @@
             // Lbl_StartTime6
             // 
             this.Lbl_StartTime6.AutoSize = true;
-            this.Lbl_StartTime6.Location = new System.Drawing.Point(167, 95);
+            this.Lbl_StartTime6.Location = new System.Drawing.Point(173, 143);
             this.Lbl_StartTime6.Name = "Lbl_StartTime6";
             this.Lbl_StartTime6.Size = new System.Drawing.Size(59, 12);
             this.Lbl_StartTime6.TabIndex = 99;
@@ -674,7 +674,7 @@
             // 
             this.beginTimePicker6.CustomFormat = "HH:mm";
             this.beginTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker6.Location = new System.Drawing.Point(169, 110);
+            this.beginTimePicker6.Location = new System.Drawing.Point(175, 158);
             this.beginTimePicker6.Name = "beginTimePicker6";
             this.beginTimePicker6.ShowUpDown = true;
             this.beginTimePicker6.Size = new System.Drawing.Size(57, 21);
@@ -684,7 +684,7 @@
             // Lbl_EndTime2
             // 
             this.Lbl_EndTime2.AutoSize = true;
-            this.Lbl_EndTime2.Location = new System.Drawing.Point(249, 51);
+            this.Lbl_EndTime2.Location = new System.Drawing.Point(255, 99);
             this.Lbl_EndTime2.Name = "Lbl_EndTime2";
             this.Lbl_EndTime2.Size = new System.Drawing.Size(59, 12);
             this.Lbl_EndTime2.TabIndex = 97;
@@ -694,7 +694,7 @@
             // 
             this.endTimePicker2.CustomFormat = "HH:mm";
             this.endTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker2.Location = new System.Drawing.Point(251, 66);
+            this.endTimePicker2.Location = new System.Drawing.Point(257, 114);
             this.endTimePicker2.Name = "endTimePicker2";
             this.endTimePicker2.ShowUpDown = true;
             this.endTimePicker2.Size = new System.Drawing.Size(57, 21);
@@ -704,7 +704,7 @@
             // Lbl_StartTime2
             // 
             this.Lbl_StartTime2.AutoSize = true;
-            this.Lbl_StartTime2.Location = new System.Drawing.Point(167, 51);
+            this.Lbl_StartTime2.Location = new System.Drawing.Point(173, 99);
             this.Lbl_StartTime2.Name = "Lbl_StartTime2";
             this.Lbl_StartTime2.Size = new System.Drawing.Size(59, 12);
             this.Lbl_StartTime2.TabIndex = 95;
@@ -714,7 +714,7 @@
             // 
             this.beginTimePicker2.CustomFormat = "HH:mm";
             this.beginTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker2.Location = new System.Drawing.Point(169, 66);
+            this.beginTimePicker2.Location = new System.Drawing.Point(175, 114);
             this.beginTimePicker2.Name = "beginTimePicker2";
             this.beginTimePicker2.ShowUpDown = true;
             this.beginTimePicker2.Size = new System.Drawing.Size(57, 21);
@@ -724,7 +724,7 @@
             // Lbl_EndTime5
             // 
             this.Lbl_EndTime5.AutoSize = true;
-            this.Lbl_EndTime5.Location = new System.Drawing.Point(85, 95);
+            this.Lbl_EndTime5.Location = new System.Drawing.Point(91, 143);
             this.Lbl_EndTime5.Name = "Lbl_EndTime5";
             this.Lbl_EndTime5.Size = new System.Drawing.Size(59, 12);
             this.Lbl_EndTime5.TabIndex = 93;
@@ -734,7 +734,7 @@
             // 
             this.endTimePicker5.CustomFormat = "HH:mm";
             this.endTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker5.Location = new System.Drawing.Point(87, 110);
+            this.endTimePicker5.Location = new System.Drawing.Point(93, 158);
             this.endTimePicker5.Name = "endTimePicker5";
             this.endTimePicker5.ShowUpDown = true;
             this.endTimePicker5.Size = new System.Drawing.Size(57, 21);
@@ -744,7 +744,7 @@
             // Lbl_StartTime5
             // 
             this.Lbl_StartTime5.AutoSize = true;
-            this.Lbl_StartTime5.Location = new System.Drawing.Point(3, 95);
+            this.Lbl_StartTime5.Location = new System.Drawing.Point(9, 143);
             this.Lbl_StartTime5.Name = "Lbl_StartTime5";
             this.Lbl_StartTime5.Size = new System.Drawing.Size(59, 12);
             this.Lbl_StartTime5.TabIndex = 91;
@@ -754,7 +754,7 @@
             // 
             this.beginTimePicker5.CustomFormat = "HH:mm";
             this.beginTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker5.Location = new System.Drawing.Point(5, 110);
+            this.beginTimePicker5.Location = new System.Drawing.Point(11, 158);
             this.beginTimePicker5.Name = "beginTimePicker5";
             this.beginTimePicker5.ShowUpDown = true;
             this.beginTimePicker5.Size = new System.Drawing.Size(57, 21);
@@ -764,7 +764,7 @@
             // Lbl_EndTime1
             // 
             this.Lbl_EndTime1.AutoSize = true;
-            this.Lbl_EndTime1.Location = new System.Drawing.Point(85, 51);
+            this.Lbl_EndTime1.Location = new System.Drawing.Point(91, 99);
             this.Lbl_EndTime1.Name = "Lbl_EndTime1";
             this.Lbl_EndTime1.Size = new System.Drawing.Size(59, 12);
             this.Lbl_EndTime1.TabIndex = 89;
@@ -774,7 +774,7 @@
             // 
             this.endTimePicker1.CustomFormat = "HH:mm";
             this.endTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker1.Location = new System.Drawing.Point(87, 66);
+            this.endTimePicker1.Location = new System.Drawing.Point(93, 114);
             this.endTimePicker1.Name = "endTimePicker1";
             this.endTimePicker1.ShowUpDown = true;
             this.endTimePicker1.Size = new System.Drawing.Size(57, 21);
@@ -784,7 +784,7 @@
             // Lbl_StartTime1
             // 
             this.Lbl_StartTime1.AutoSize = true;
-            this.Lbl_StartTime1.Location = new System.Drawing.Point(3, 51);
+            this.Lbl_StartTime1.Location = new System.Drawing.Point(9, 99);
             this.Lbl_StartTime1.Name = "Lbl_StartTime1";
             this.Lbl_StartTime1.Size = new System.Drawing.Size(59, 12);
             this.Lbl_StartTime1.TabIndex = 87;
@@ -803,7 +803,7 @@
             // 
             this.beginTimePicker1.CustomFormat = "HH:mm";
             this.beginTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker1.Location = new System.Drawing.Point(5, 66);
+            this.beginTimePicker1.Location = new System.Drawing.Point(11, 114);
             this.beginTimePicker1.Name = "beginTimePicker1";
             this.beginTimePicker1.ShowUpDown = true;
             this.beginTimePicker1.Size = new System.Drawing.Size(57, 21);
@@ -816,7 +816,7 @@
             this.cbxWeek.FormattingEnabled = true;
             this.cbxWeek.Location = new System.Drawing.Point(5, 24);
             this.cbxWeek.Name = "cbxWeek";
-            this.cbxWeek.Size = new System.Drawing.Size(168, 20);
+            this.cbxWeek.Size = new System.Drawing.Size(127, 20);
             this.cbxWeek.TabIndex = 86;
             this.cbxWeek.SelectedIndexChanged += new System.EventHandler(this.CbxWeek_SelectedIndexChanged);
             // 
@@ -824,16 +824,16 @@
             // 
             this.panel6.Controls.Add(this.rBtnNoDoorWorkSetting);
             this.panel6.Controls.Add(this.rBtnDoorWorkSetting);
-            this.panel6.Location = new System.Drawing.Point(88, 20);
+            this.panel6.Location = new System.Drawing.Point(9, 48);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(125, 21);
+            this.panel6.Size = new System.Drawing.Size(136, 21);
             this.panel6.TabIndex = 80;
             // 
             // rBtnNoDoorWorkSetting
             // 
             this.rBtnNoDoorWorkSetting.AutoSize = true;
             this.rBtnNoDoorWorkSetting.Checked = true;
-            this.rBtnNoDoorWorkSetting.Location = new System.Drawing.Point(0, 3);
+            this.rBtnNoDoorWorkSetting.Location = new System.Drawing.Point(3, 3);
             this.rBtnNoDoorWorkSetting.Name = "rBtnNoDoorWorkSetting";
             this.rBtnNoDoorWorkSetting.Size = new System.Drawing.Size(59, 16);
             this.rBtnNoDoorWorkSetting.TabIndex = 51;
@@ -855,7 +855,7 @@
             // 
             // btnWriteWorkSetting
             // 
-            this.btnWriteWorkSetting.Location = new System.Drawing.Point(65, 190);
+            this.btnWriteWorkSetting.Location = new System.Drawing.Point(59, 270);
             this.btnWriteWorkSetting.Name = "btnWriteWorkSetting";
             this.btnWriteWorkSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteWorkSetting.TabIndex = 79;
@@ -865,7 +865,7 @@
             // 
             // btnReadWorkSetting
             // 
-            this.btnReadWorkSetting.Location = new System.Drawing.Point(11, 190);
+            this.btnReadWorkSetting.Location = new System.Drawing.Point(5, 270);
             this.btnReadWorkSetting.Name = "btnReadWorkSetting";
             this.btnReadWorkSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadWorkSetting.TabIndex = 78;
@@ -887,16 +887,16 @@
             this.gpExemptionVerificationUse.Controls.Add(this.btnWriteExemptionVerificationOpen);
             this.gpExemptionVerificationUse.Controls.Add(this.btnReadExemptionVerificationOpen);
             this.gpExemptionVerificationUse.Controls.Add(this.cbExemptionVerificationUse);
-            this.gpExemptionVerificationUse.Location = new System.Drawing.Point(12, 354);
+            this.gpExemptionVerificationUse.Location = new System.Drawing.Point(12, 434);
             this.gpExemptionVerificationUse.Name = "gpExemptionVerificationUse";
-            this.gpExemptionVerificationUse.Size = new System.Drawing.Size(669, 51);
+            this.gpExemptionVerificationUse.Size = new System.Drawing.Size(289, 51);
             this.gpExemptionVerificationUse.TabIndex = 12;
             this.gpExemptionVerificationUse.TabStop = false;
             this.gpExemptionVerificationUse.Text = "免认证开门";
             // 
             // btnWriteExemptionVerificationOpen
             // 
-            this.btnWriteExemptionVerificationOpen.Location = new System.Drawing.Point(615, 21);
+            this.btnWriteExemptionVerificationOpen.Location = new System.Drawing.Point(199, 20);
             this.btnWriteExemptionVerificationOpen.Name = "btnWriteExemptionVerificationOpen";
             this.btnWriteExemptionVerificationOpen.Size = new System.Drawing.Size(48, 23);
             this.btnWriteExemptionVerificationOpen.TabIndex = 53;
@@ -906,7 +906,7 @@
             // 
             // btnReadExemptionVerificationOpen
             // 
-            this.btnReadExemptionVerificationOpen.Location = new System.Drawing.Point(561, 21);
+            this.btnReadExemptionVerificationOpen.Location = new System.Drawing.Point(131, 20);
             this.btnReadExemptionVerificationOpen.Name = "btnReadExemptionVerificationOpen";
             this.btnReadExemptionVerificationOpen.Size = new System.Drawing.Size(48, 23);
             this.btnReadExemptionVerificationOpen.TabIndex = 52;
@@ -929,7 +929,7 @@
             this.gpVoiceBroadcast.Controls.Add(this.btnWriteVoiceBroadcastSetting);
             this.gpVoiceBroadcast.Controls.Add(this.btnReadVoiceBroadcastSetting);
             this.gpVoiceBroadcast.Controls.Add(this.cbVoiceBroadcast);
-            this.gpVoiceBroadcast.Location = new System.Drawing.Point(368, 483);
+            this.gpVoiceBroadcast.Location = new System.Drawing.Point(368, 561);
             this.gpVoiceBroadcast.Name = "gpVoiceBroadcast";
             this.gpVoiceBroadcast.Size = new System.Drawing.Size(307, 72);
             this.gpVoiceBroadcast.TabIndex = 38;
@@ -975,7 +975,7 @@
             this.gpReaderIntervalTimeUse.Controls.Add(this.cmbIntervalTime);
             this.gpReaderIntervalTimeUse.Controls.Add(this.Lbl_bIntervalTime);
             this.gpReaderIntervalTimeUse.Controls.Add(this.cbReaderIntervalTimeUse);
-            this.gpReaderIntervalTimeUse.Location = new System.Drawing.Point(12, 411);
+            this.gpReaderIntervalTimeUse.Location = new System.Drawing.Point(12, 491);
             this.gpReaderIntervalTimeUse.Name = "gpReaderIntervalTimeUse";
             this.gpReaderIntervalTimeUse.Size = new System.Drawing.Size(669, 64);
             this.gpReaderIntervalTimeUse.TabIndex = 55;
@@ -984,7 +984,7 @@
             // 
             // btnWriteReaderIntervalTime
             // 
-            this.btnWriteReaderIntervalTime.Location = new System.Drawing.Point(615, 25);
+            this.btnWriteReaderIntervalTime.Location = new System.Drawing.Point(609, 23);
             this.btnWriteReaderIntervalTime.Name = "btnWriteReaderIntervalTime";
             this.btnWriteReaderIntervalTime.Size = new System.Drawing.Size(48, 23);
             this.btnWriteReaderIntervalTime.TabIndex = 56;
@@ -1003,7 +1003,7 @@
             // 
             // btnReadReaderIntervalTime
             // 
-            this.btnReadReaderIntervalTime.Location = new System.Drawing.Point(561, 25);
+            this.btnReadReaderIntervalTime.Location = new System.Drawing.Point(555, 23);
             this.btnReadReaderIntervalTime.Name = "btnReadReaderIntervalTime";
             this.btnReadReaderIntervalTime.Size = new System.Drawing.Size(48, 23);
             this.btnReadReaderIntervalTime.TabIndex = 55;
@@ -1055,7 +1055,7 @@
             this.gpExpirationPromptUse.Controls.Add(this.cmbExpirationPromptTime);
             this.gpExpirationPromptUse.Controls.Add(this.cbExpirationPromptUse);
             this.gpExpirationPromptUse.Controls.Add(this.Lbl_ExpirationPromptTime);
-            this.gpExpirationPromptUse.Location = new System.Drawing.Point(12, 482);
+            this.gpExpirationPromptUse.Location = new System.Drawing.Point(12, 561);
             this.gpExpirationPromptUse.Name = "gpExpirationPromptUse";
             this.gpExpirationPromptUse.Size = new System.Drawing.Size(350, 72);
             this.gpExpirationPromptUse.TabIndex = 56;
@@ -1114,7 +1114,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(688, 563);
+            this.ClientSize = new System.Drawing.Size(688, 638);
             this.Controls.Add(this.gpExpirationPromptUse);
             this.Controls.Add(this.gpReaderIntervalTimeUse);
             this.Controls.Add(this.gpVoiceBroadcast);

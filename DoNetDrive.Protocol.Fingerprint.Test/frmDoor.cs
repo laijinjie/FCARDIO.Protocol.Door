@@ -59,7 +59,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReaderOption_Result result = cmde.Command.getResult() as ReaderOption_Result;
 
                 sb.Clear();
-                sb.Append("读卡器字节数 ");
+                sb.Append(GetLanguage("Msg_12"));
                 sb.Append($"【{result.ReaderOption}】、" + str[result.ReaderOption - 1]);
 
                 Invoke(() =>

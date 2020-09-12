@@ -385,6 +385,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void DataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (e.RowIndex is -1) return;
             if (e.ColumnIndex == 0)
             {
                 DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[e.RowIndex].Cells[0];
@@ -420,6 +421,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex is -1) return;
             DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridView1.Rows[e.RowIndex].Cells[0];
             cell.Value = !Convert.ToBoolean(cell.Value);
         }

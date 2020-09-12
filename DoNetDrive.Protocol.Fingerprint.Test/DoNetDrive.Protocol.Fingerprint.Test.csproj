@@ -161,6 +161,12 @@
     <Compile Include="Model\Person_UI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShowImgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowImgForm.Designer.cs">
+      <DependentUpon>ShowImgForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmAdditionalData.resx">
       <DependentUpon>frmAdditionalData.cs</DependentUpon>
     </EmbeddedResource>
@@ -204,6 +210,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ShowImgForm.resx">
+      <DependentUpon>ShowImgForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

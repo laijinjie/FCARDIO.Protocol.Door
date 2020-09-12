@@ -60,14 +60,14 @@
             this.gpDeviceTime.Controls.Add(this.btnReadSystemTime);
             this.gpDeviceTime.Location = new System.Drawing.Point(12, 12);
             this.gpDeviceTime.Name = "gpDeviceTime";
-            this.gpDeviceTime.Size = new System.Drawing.Size(607, 85);
+            this.gpDeviceTime.Size = new System.Drawing.Size(607, 119);
             this.gpDeviceTime.TabIndex = 0;
             this.gpDeviceTime.TabStop = false;
             this.gpDeviceTime.Text = "设备时间";
             // 
             // txtErrorTime
             // 
-            this.txtErrorTime.Location = new System.Drawing.Point(334, 53);
+            this.txtErrorTime.Location = new System.Drawing.Point(318, 92);
             this.txtErrorTime.MaxLength = 16;
             this.txtErrorTime.Name = "txtErrorTime";
             this.txtErrorTime.ReadOnly = true;
@@ -77,7 +77,7 @@
             // Lbl_DisparityTime
             // 
             this.Lbl_DisparityTime.AutoSize = true;
-            this.Lbl_DisparityTime.Location = new System.Drawing.Point(273, 56);
+            this.Lbl_DisparityTime.Location = new System.Drawing.Point(316, 77);
             this.Lbl_DisparityTime.Name = "Lbl_DisparityTime";
             this.Lbl_DisparityTime.Size = new System.Drawing.Size(65, 12);
             this.Lbl_DisparityTime.TabIndex = 24;
@@ -85,9 +85,9 @@
             // 
             // btnWriteBroadcastTime
             // 
-            this.btnWriteBroadcastTime.Location = new System.Drawing.Point(491, 21);
+            this.btnWriteBroadcastTime.Location = new System.Drawing.Point(318, 45);
             this.btnWriteBroadcastTime.Name = "btnWriteBroadcastTime";
-            this.btnWriteBroadcastTime.Size = new System.Drawing.Size(102, 23);
+            this.btnWriteBroadcastTime.Size = new System.Drawing.Size(133, 23);
             this.btnWriteBroadcastTime.TabIndex = 23;
             this.btnWriteBroadcastTime.Text = "校准时间_广播";
             this.btnWriteBroadcastTime.UseVisualStyleBackColor = true;
@@ -95,9 +95,9 @@
             // 
             // btnWriteSystemTime
             // 
-            this.btnWriteSystemTime.Location = new System.Drawing.Point(383, 21);
+            this.btnWriteSystemTime.Location = new System.Drawing.Point(457, 17);
             this.btnWriteSystemTime.Name = "btnWriteSystemTime";
-            this.btnWriteSystemTime.Size = new System.Drawing.Size(102, 23);
+            this.btnWriteSystemTime.Size = new System.Drawing.Size(144, 23);
             this.btnWriteSystemTime.TabIndex = 22;
             this.btnWriteSystemTime.Text = "更新设备时间";
             this.btnWriteSystemTime.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             // 
             // txtComputerTime
             // 
-            this.txtComputerTime.Location = new System.Drawing.Point(77, 53);
+            this.txtComputerTime.Location = new System.Drawing.Point(77, 88);
             this.txtComputerTime.MaxLength = 16;
             this.txtComputerTime.Name = "txtComputerTime";
             this.txtComputerTime.ReadOnly = true;
@@ -115,7 +115,7 @@
             // Lbl_ComputerTime
             // 
             this.Lbl_ComputerTime.AutoSize = true;
-            this.Lbl_ComputerTime.Location = new System.Drawing.Point(6, 56);
+            this.Lbl_ComputerTime.Location = new System.Drawing.Point(75, 73);
             this.Lbl_ComputerTime.Name = "Lbl_ComputerTime";
             this.Lbl_ComputerTime.Size = new System.Drawing.Size(77, 12);
             this.Lbl_ComputerTime.TabIndex = 20;
@@ -123,7 +123,7 @@
             // 
             // txtSystemTime
             // 
-            this.txtSystemTime.Location = new System.Drawing.Point(77, 23);
+            this.txtSystemTime.Location = new System.Drawing.Point(77, 37);
             this.txtSystemTime.MaxLength = 16;
             this.txtSystemTime.Name = "txtSystemTime";
             this.txtSystemTime.ReadOnly = true;
@@ -133,7 +133,7 @@
             // Lbl_DeviceTime
             // 
             this.Lbl_DeviceTime.AutoSize = true;
-            this.Lbl_DeviceTime.Location = new System.Drawing.Point(18, 26);
+            this.Lbl_DeviceTime.Location = new System.Drawing.Point(77, 17);
             this.Lbl_DeviceTime.Name = "Lbl_DeviceTime";
             this.Lbl_DeviceTime.Size = new System.Drawing.Size(65, 12);
             this.Lbl_DeviceTime.TabIndex = 18;
@@ -141,9 +141,9 @@
             // 
             // btnReadSystemTime
             // 
-            this.btnReadSystemTime.Location = new System.Drawing.Point(275, 21);
+            this.btnReadSystemTime.Location = new System.Drawing.Point(318, 16);
             this.btnReadSystemTime.Name = "btnReadSystemTime";
-            this.btnReadSystemTime.Size = new System.Drawing.Size(102, 23);
+            this.btnReadSystemTime.Size = new System.Drawing.Size(133, 23);
             this.btnReadSystemTime.TabIndex = 17;
             this.btnReadSystemTime.Text = "读设备时间";
             this.btnReadSystemTime.UseVisualStyleBackColor = true;
@@ -155,9 +155,9 @@
             this.gpDiyTime.Controls.Add(this.Lbl_DateTime);
             this.gpDiyTime.Controls.Add(this.label5);
             this.gpDiyTime.Controls.Add(this.btnWriteCustomDateTime);
-            this.gpDiyTime.Location = new System.Drawing.Point(12, 113);
+            this.gpDiyTime.Location = new System.Drawing.Point(12, 137);
             this.gpDiyTime.Name = "gpDiyTime";
-            this.gpDiyTime.Size = new System.Drawing.Size(607, 56);
+            this.gpDiyTime.Size = new System.Drawing.Size(607, 87);
             this.gpDiyTime.TabIndex = 97;
             this.gpDiyTime.TabStop = false;
             this.gpDiyTime.Text = "自定义时间";
@@ -166,7 +166,7 @@
             // 
             this.CustomDateTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.CustomDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.CustomDateTime.Location = new System.Drawing.Point(78, 24);
+            this.CustomDateTime.Location = new System.Drawing.Point(77, 45);
             this.CustomDateTime.Name = "CustomDateTime";
             this.CustomDateTime.Size = new System.Drawing.Size(172, 21);
             this.CustomDateTime.TabIndex = 90;
@@ -174,7 +174,7 @@
             // Lbl_DateTime
             // 
             this.Lbl_DateTime.AutoSize = true;
-            this.Lbl_DateTime.Location = new System.Drawing.Point(10, 30);
+            this.Lbl_DateTime.Location = new System.Drawing.Point(75, 25);
             this.Lbl_DateTime.Name = "Lbl_DateTime";
             this.Lbl_DateTime.Size = new System.Drawing.Size(65, 12);
             this.Lbl_DateTime.TabIndex = 89;
@@ -190,9 +190,9 @@
             // 
             // btnWriteCustomDateTime
             // 
-            this.btnWriteCustomDateTime.Location = new System.Drawing.Point(287, 23);
+            this.btnWriteCustomDateTime.Location = new System.Drawing.Point(318, 43);
             this.btnWriteCustomDateTime.Name = "btnWriteCustomDateTime";
-            this.btnWriteCustomDateTime.Size = new System.Drawing.Size(90, 23);
+            this.btnWriteCustomDateTime.Size = new System.Drawing.Size(133, 23);
             this.btnWriteCustomDateTime.TabIndex = 86;
             this.btnWriteCustomDateTime.Text = "更新设备时间";
             this.btnWriteCustomDateTime.UseVisualStyleBackColor = true;
@@ -202,7 +202,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 247);
+            this.ClientSize = new System.Drawing.Size(633, 227);
             this.Controls.Add(this.gpDiyTime);
             this.Controls.Add(this.gpDeviceTime);
             this.Name = "frmTime";

@@ -360,7 +360,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             Data.Person person;
             for (int i = 0; i < iCreateCount; i++)
             {
-                person = CreateNewPerson(0);
+                person = CreateNewPerson((uint)i+1);
                 AddPersonToList(person);
             }
             PersonList.RaiseListChangedEvents = true;
@@ -420,15 +420,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private Data.Person CreateNewPerson(uint iUserCode)
         {
-            UInt64 cardNum = 0, cardNum2 = 0;
-            uint userCode = 0;
             Data.Person person;
+            uint userCode;
             if (iUserCode == 0)
             {
-                cardNum = (UInt64)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
+               // ulong cardNum = (UInt64)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
 
-                cardNum2 = (UInt64)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
-                cardNum = (cardNum << 32) + cardNum2;
+               // ulong cardNum2 = (UInt64)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
+               // _ = (cardNum << 32) + cardNum2;
 
                 userCode = (uint)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
             }
@@ -450,6 +449,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             }
             person = new Data.Person();
+            person.UserCode = userCode;
             return person;
         }
 
@@ -459,20 +459,20 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// <returns></returns>
         private int CheckCreateCardCount()
         {
-            int iCreateCount = 0;
-            if (!int.TryParse(txtCount.Text, out iCreateCount))
+            int max = 20000;
+            if (!int.TryParse(txtCount.Text, out int iCreateCount))
             {
-                MessageBox.Show("输入的数字不正确，取值范围：1-0！");
+                MessageBox.Show("输入的数字不正确，取值范围：0-" + max);
                 return 0;
             }
-            if (iCreateCount > 0)
+            if (iCreateCount > max)
             {
-                MessageBox.Show("输入的数字不正确，取值范围：1-0！");
+                MessageBox.Show("输入的数字不正确，取值范围：0-"+ max);
                 return 0;
             }
-            if ((iCreateCount + PersonList.Count) > 0)
+            if ((iCreateCount + PersonList.Count) > max)
             {
-                iCreateCount = 0 - PersonList.Count;
+                iCreateCount = max - PersonList.Count;
 
             }
             if (iCreateCount <= 0) return 0;
@@ -842,6 +842,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         }
 
         private void tabPage4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gpUserIdentityDetail_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void butCreateCardNumByOrder_Click(object sender, EventArgs e)
         {
 
         }

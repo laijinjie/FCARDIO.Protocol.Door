@@ -199,12 +199,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             GetLanguage(butReadClientStatus_Result);//获取状态
             GetLanguage(LblClientNetWorkMode);//客户端网络模式：
             GetLanguage(LblServerStatus);//客户端网络状态：
-
+            LoadComboxItemsLanguage(cmbInOut, "cmbInOut");//;
             cmbDoor.Items.Clear();
             cmbDoor.Items.AddRange(DoorList);
             cmbDoor.SelectedIndex = 0;
             cmbInOut.SelectedIndex = 0;
 
+            Cmb_FaceMouthmuffle.Items.Clear();
+            cmb_FaceBodyTemperatureShow.Items.Clear();
             cmbReadCardByte.Items.Clear();
             cmbWGOutput.Items.Clear();
             cmbWGByteSort.Items.Clear();
@@ -217,6 +219,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var IsUseList = GetLanguage("IsUseList").Split(',');
             cmbWGOutput.Items.AddRange(IsUseList);
             cmbWGOutput.SelectedIndex = 0;
+
+            var faceIsUseList= GetLanguage("Cmb_FaceMouthmuffle").Split(','); 
+            Cmb_FaceMouthmuffle.Items.AddRange(faceIsUseList);
+            Cmb_FaceMouthmuffle.SelectedIndex = 0;
+
+            cmb_FaceBodyTemperatureShow.Items.AddRange(faceIsUseList);
+            cmb_FaceBodyTemperatureShow.SelectedIndex = 0;
 
             var WGByteSortList = GetLanguage("WGByteSortList").Split(',');
             cmbWGByteSort.Items.AddRange(WGByteSortList);
@@ -235,7 +244,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbFingerprint.Items.AddRange(ComparisonThresholdList);
             cmbFace.SelectedIndex = 0;
             cmbFingerprint.SelectedIndex = 0;
-
+            Cmb_FaceLEDMode.Items.Clear();
             var FaceLEDModeList = GetLanguage("FaceLEDModeList").Split(',');
             Cmb_FaceLEDMode.Items.AddRange(FaceLEDModeList);
             Cmb_FaceLEDMode.SelectedIndex = 0;
@@ -244,12 +253,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             cmb_FaceBodyTemperatureShow.SelectedIndex = 0;
 
+            Cmb_FaceBodyTemperature.Items.Clear();
             var FaceBodyTemperatureList = GetLanguage("FaceBodyTemperatureList").Split(',');
             Cmb_FaceBodyTemperature.Items.AddRange(FaceBodyTemperatureList);
             Cmb_FaceBodyTemperature.SelectedIndex = 0;
 
             cbxKeepAliveInterval.Text = "10";
-
+            cmbClientNetWorkMode.Items.Clear();
             ClientNetWorkMode = GetLanguage("ClientNetWorkMode").Split(',');
             cmbClientNetWorkMode.Items.AddRange(ClientNetWorkMode);
             cmbClientNetWorkMode.SelectedIndex = 1;
@@ -1564,8 +1574,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 mMainForm.AddCmdLog(cmde, strbuf.ToString());
             };
         }
-        #endregion
 
+        #endregion
 
     }
 }

@@ -246,7 +246,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(774, 551);
+            this.tabControl1.Size = new System.Drawing.Size(773, 573);
             this.tabControl1.TabIndex = 0;
             // 
             // tpPar1
@@ -261,7 +261,7 @@
             this.tpPar1.Location = new System.Drawing.Point(4, 22);
             this.tpPar1.Name = "tpPar1";
             this.tpPar1.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPar1.Size = new System.Drawing.Size(766, 525);
+            this.tpPar1.Size = new System.Drawing.Size(765, 547);
             this.tpPar1.TabIndex = 0;
             this.tpPar1.Text = "设备参数设置";
             this.tpPar1.UseVisualStyleBackColor = true;
@@ -938,7 +938,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(766, 525);
+            this.tabPage2.Size = new System.Drawing.Size(765, 547);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "参数2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -954,9 +954,9 @@
             this.gpOemInfo.Controls.Add(this.Lbl_p2_Url);
             this.gpOemInfo.Controls.Add(this.txtManufacturer);
             this.gpOemInfo.Controls.Add(this.Lbl_p2_Manufacturers);
-            this.gpOemInfo.Location = new System.Drawing.Point(9, 423);
+            this.gpOemInfo.Location = new System.Drawing.Point(9, 427);
             this.gpOemInfo.Name = "gpOemInfo";
-            this.gpOemInfo.Size = new System.Drawing.Size(733, 91);
+            this.gpOemInfo.Size = new System.Drawing.Size(733, 115);
             this.gpOemInfo.TabIndex = 5;
             this.gpOemInfo.TabStop = false;
             this.gpOemInfo.Text = "OEM信息";
@@ -985,7 +985,7 @@
             // 
             this.dtpTime.CustomFormat = "HH:mm:ss";
             this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTime.Location = new System.Drawing.Point(645, 64);
+            this.dtpTime.Location = new System.Drawing.Point(482, 37);
             this.dtpTime.Name = "dtpTime";
             this.dtpTime.ShowUpDown = true;
             this.dtpTime.Size = new System.Drawing.Size(71, 21);
@@ -995,7 +995,7 @@
             // 
             this.dtpDate.CustomFormat = "yyyy-MM-dd";
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(543, 64);
+            this.dtpDate.Location = new System.Drawing.Point(380, 37);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(100, 21);
             this.dtpDate.TabIndex = 64;
@@ -1003,7 +1003,7 @@
             // Lbl_p2_MakeDate
             // 
             this.Lbl_p2_MakeDate.AutoSize = true;
-            this.Lbl_p2_MakeDate.Location = new System.Drawing.Point(475, 69);
+            this.Lbl_p2_MakeDate.Location = new System.Drawing.Point(378, 22);
             this.Lbl_p2_MakeDate.Name = "Lbl_p2_MakeDate";
             this.Lbl_p2_MakeDate.Size = new System.Drawing.Size(65, 12);
             this.Lbl_p2_MakeDate.TabIndex = 63;
@@ -1011,7 +1011,7 @@
             // 
             // txtWebAddr
             // 
-            this.txtWebAddr.Location = new System.Drawing.Point(78, 64);
+            this.txtWebAddr.Location = new System.Drawing.Point(7, 88);
             this.txtWebAddr.Name = "txtWebAddr";
             this.txtWebAddr.Size = new System.Drawing.Size(327, 21);
             this.txtWebAddr.TabIndex = 62;
@@ -1019,7 +1019,7 @@
             // Lbl_p2_Url
             // 
             this.Lbl_p2_Url.AutoSize = true;
-            this.Lbl_p2_Url.Location = new System.Drawing.Point(18, 67);
+            this.Lbl_p2_Url.Location = new System.Drawing.Point(6, 70);
             this.Lbl_p2_Url.Name = "Lbl_p2_Url";
             this.Lbl_p2_Url.Size = new System.Drawing.Size(53, 12);
             this.Lbl_p2_Url.TabIndex = 61;
@@ -1027,7 +1027,7 @@
             // 
             // txtManufacturer
             // 
-            this.txtManufacturer.Location = new System.Drawing.Point(79, 28);
+            this.txtManufacturer.Location = new System.Drawing.Point(7, 37);
             this.txtManufacturer.Name = "txtManufacturer";
             this.txtManufacturer.Size = new System.Drawing.Size(327, 21);
             this.txtManufacturer.TabIndex = 60;
@@ -1035,7 +1035,7 @@
             // Lbl_p2_Manufacturers
             // 
             this.Lbl_p2_Manufacturers.AutoSize = true;
-            this.Lbl_p2_Manufacturers.Location = new System.Drawing.Point(19, 31);
+            this.Lbl_p2_Manufacturers.Location = new System.Drawing.Point(6, 17);
             this.Lbl_p2_Manufacturers.Name = "Lbl_p2_Manufacturers";
             this.Lbl_p2_Manufacturers.Size = new System.Drawing.Size(53, 12);
             this.Lbl_p2_Manufacturers.TabIndex = 59;
@@ -1047,9 +1047,9 @@
             this.gpMenuManagementPassword.Controls.Add(this.btnReadManageMenuPassword);
             this.gpMenuManagementPassword.Controls.Add(this.txtPassword);
             this.gpMenuManagementPassword.Controls.Add(this.Lbl_p2_pwd);
-            this.gpMenuManagementPassword.Location = new System.Drawing.Point(9, 353);
+            this.gpMenuManagementPassword.Location = new System.Drawing.Point(9, 351);
             this.gpMenuManagementPassword.Name = "gpMenuManagementPassword";
-            this.gpMenuManagementPassword.Size = new System.Drawing.Size(733, 63);
+            this.gpMenuManagementPassword.Size = new System.Drawing.Size(733, 70);
             this.gpMenuManagementPassword.TabIndex = 4;
             this.gpMenuManagementPassword.TabStop = false;
             this.gpMenuManagementPassword.Text = "菜单管理密码";
@@ -1076,7 +1076,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(79, 29);
+            this.txtPassword.Location = new System.Drawing.Point(9, 43);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(327, 21);
             this.txtPassword.TabIndex = 57;
@@ -1084,7 +1084,7 @@
             // Lbl_p2_pwd
             // 
             this.Lbl_p2_pwd.AutoSize = true;
-            this.Lbl_p2_pwd.Location = new System.Drawing.Point(31, 32);
+            this.Lbl_p2_pwd.Location = new System.Drawing.Point(8, 28);
             this.Lbl_p2_pwd.Name = "Lbl_p2_pwd";
             this.Lbl_p2_pwd.Size = new System.Drawing.Size(41, 12);
             this.Lbl_p2_pwd.TabIndex = 56;
@@ -1103,7 +1103,7 @@
             this.gpScreenContent.Controls.Add(this.cbDisplay3);
             this.gpScreenContent.Controls.Add(this.cbDisplay2);
             this.gpScreenContent.Controls.Add(this.cbDisplay1);
-            this.gpScreenContent.Location = new System.Drawing.Point(9, 268);
+            this.gpScreenContent.Location = new System.Drawing.Point(9, 267);
             this.gpScreenContent.Name = "gpScreenContent";
             this.gpScreenContent.Size = new System.Drawing.Size(733, 78);
             this.gpScreenContent.TabIndex = 3;
@@ -1133,7 +1133,7 @@
             // cbDisplay9
             // 
             this.cbDisplay9.AutoSize = true;
-            this.cbDisplay9.Location = new System.Drawing.Point(477, 50);
+            this.cbDisplay9.Location = new System.Drawing.Point(380, 56);
             this.cbDisplay9.Name = "cbDisplay9";
             this.cbDisplay9.Size = new System.Drawing.Size(60, 16);
             this.cbDisplay9.TabIndex = 8;
@@ -1143,7 +1143,7 @@
             // cbDisplay8
             // 
             this.cbDisplay8.AutoSize = true;
-            this.cbDisplay8.Location = new System.Drawing.Point(334, 50);
+            this.cbDisplay8.Location = new System.Drawing.Point(218, 56);
             this.cbDisplay8.Name = "cbDisplay8";
             this.cbDisplay8.Size = new System.Drawing.Size(72, 16);
             this.cbDisplay8.TabIndex = 7;
@@ -1153,7 +1153,7 @@
             // cbDisplay7
             // 
             this.cbDisplay7.AutoSize = true;
-            this.cbDisplay7.Location = new System.Drawing.Point(218, 50);
+            this.cbDisplay7.Location = new System.Drawing.Point(9, 56);
             this.cbDisplay7.Name = "cbDisplay7";
             this.cbDisplay7.Size = new System.Drawing.Size(72, 16);
             this.cbDisplay7.TabIndex = 6;
@@ -1259,7 +1259,7 @@
             // 
             this.cmbFingerprint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFingerprint.FormattingEnabled = true;
-            this.cmbFingerprint.Location = new System.Drawing.Point(376, 27);
+            this.cmbFingerprint.Location = new System.Drawing.Point(376, 36);
             this.cmbFingerprint.Name = "cmbFingerprint";
             this.cmbFingerprint.Size = new System.Drawing.Size(191, 20);
             this.cmbFingerprint.TabIndex = 55;
@@ -1267,7 +1267,7 @@
             // Lbl_p2_FoFReadCardByte
             // 
             this.Lbl_p2_FoFReadCardByte.AutoSize = true;
-            this.Lbl_p2_FoFReadCardByte.Location = new System.Drawing.Point(7, 30);
+            this.Lbl_p2_FoFReadCardByte.Location = new System.Drawing.Point(7, 17);
             this.Lbl_p2_FoFReadCardByte.Name = "Lbl_p2_FoFReadCardByte";
             this.Lbl_p2_FoFReadCardByte.Size = new System.Drawing.Size(65, 12);
             this.Lbl_p2_FoFReadCardByte.TabIndex = 53;
@@ -1276,7 +1276,7 @@
             // Lbl_p2_FoFWgOut
             // 
             this.Lbl_p2_FoFWgOut.AutoSize = true;
-            this.Lbl_p2_FoFWgOut.Location = new System.Drawing.Point(305, 30);
+            this.Lbl_p2_FoFWgOut.Location = new System.Drawing.Point(378, 17);
             this.Lbl_p2_FoFWgOut.Name = "Lbl_p2_FoFWgOut";
             this.Lbl_p2_FoFWgOut.Size = new System.Drawing.Size(65, 12);
             this.Lbl_p2_FoFWgOut.TabIndex = 54;
@@ -1286,7 +1286,7 @@
             // 
             this.cmbFace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFace.FormattingEnabled = true;
-            this.cmbFace.Location = new System.Drawing.Point(78, 27);
+            this.cmbFace.Location = new System.Drawing.Point(8, 36);
             this.cmbFace.Name = "cmbFace";
             this.cmbFace.Size = new System.Drawing.Size(175, 20);
             this.cmbFace.TabIndex = 52;
@@ -1334,7 +1334,7 @@
             // 
             this.cmbOutputType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOutputType.FormattingEnabled = true;
-            this.cmbOutputType.Location = new System.Drawing.Point(111, 62);
+            this.cmbOutputType.Location = new System.Drawing.Point(129, 62);
             this.cmbOutputType.Name = "cmbOutputType";
             this.cmbOutputType.Size = new System.Drawing.Size(134, 20);
             this.cmbOutputType.TabIndex = 51;
@@ -1342,7 +1342,7 @@
             // Lbl_p2_OutputDataType
             // 
             this.Lbl_p2_OutputDataType.AutoSize = true;
-            this.Lbl_p2_OutputDataType.Location = new System.Drawing.Point(19, 65);
+            this.Lbl_p2_OutputDataType.Location = new System.Drawing.Point(128, 29);
             this.Lbl_p2_OutputDataType.Name = "Lbl_p2_OutputDataType";
             this.Lbl_p2_OutputDataType.Size = new System.Drawing.Size(89, 12);
             this.Lbl_p2_OutputDataType.TabIndex = 50;
@@ -1352,7 +1352,7 @@
             // 
             this.cmbWGByteSort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWGByteSort.FormattingEnabled = true;
-            this.cmbWGByteSort.Location = new System.Drawing.Point(413, 27);
+            this.cmbWGByteSort.Location = new System.Drawing.Point(486, 62);
             this.cmbWGByteSort.Name = "cmbWGByteSort";
             this.cmbWGByteSort.Size = new System.Drawing.Size(113, 20);
             this.cmbWGByteSort.TabIndex = 49;
@@ -1360,7 +1360,7 @@
             // Lbl_p2_WgOrder
             // 
             this.Lbl_p2_WgOrder.AutoSize = true;
-            this.Lbl_p2_WgOrder.Location = new System.Drawing.Point(338, 30);
+            this.Lbl_p2_WgOrder.Location = new System.Drawing.Point(482, 29);
             this.Lbl_p2_WgOrder.Name = "Lbl_p2_WgOrder";
             this.Lbl_p2_WgOrder.Size = new System.Drawing.Size(77, 12);
             this.Lbl_p2_WgOrder.TabIndex = 48;
@@ -1370,15 +1370,15 @@
             // 
             this.cmbWGOutput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWGOutput.FormattingEnabled = true;
-            this.cmbWGOutput.Location = new System.Drawing.Point(270, 27);
+            this.cmbWGOutput.Location = new System.Drawing.Point(3, 62);
             this.cmbWGOutput.Name = "cmbWGOutput";
-            this.cmbWGOutput.Size = new System.Drawing.Size(53, 20);
+            this.cmbWGOutput.Size = new System.Drawing.Size(63, 20);
             this.cmbWGOutput.TabIndex = 47;
             // 
             // Lbl_p2_WgOut
             // 
             this.Lbl_p2_WgOut.AutoSize = true;
-            this.Lbl_p2_WgOut.Location = new System.Drawing.Point(199, 30);
+            this.Lbl_p2_WgOut.Location = new System.Drawing.Point(5, 33);
             this.Lbl_p2_WgOut.Name = "Lbl_p2_WgOut";
             this.Lbl_p2_WgOut.Size = new System.Drawing.Size(65, 12);
             this.Lbl_p2_WgOut.TabIndex = 46;
@@ -1388,15 +1388,15 @@
             // 
             this.cmbReadCardByte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReadCardByte.FormattingEnabled = true;
-            this.cmbReadCardByte.Location = new System.Drawing.Point(111, 27);
+            this.cmbReadCardByte.Location = new System.Drawing.Point(301, 62);
             this.cmbReadCardByte.Name = "cmbReadCardByte";
-            this.cmbReadCardByte.Size = new System.Drawing.Size(68, 20);
+            this.cmbReadCardByte.Size = new System.Drawing.Size(127, 20);
             this.cmbReadCardByte.TabIndex = 45;
             // 
             // Lbl_p2_ReadCardByte
             // 
             this.Lbl_p2_ReadCardByte.AutoSize = true;
-            this.Lbl_p2_ReadCardByte.Location = new System.Drawing.Point(43, 30);
+            this.Lbl_p2_ReadCardByte.Location = new System.Drawing.Point(304, 29);
             this.Lbl_p2_ReadCardByte.Name = "Lbl_p2_ReadCardByte";
             this.Lbl_p2_ReadCardByte.Size = new System.Drawing.Size(65, 12);
             this.Lbl_p2_ReadCardByte.TabIndex = 45;
@@ -1421,7 +1421,7 @@
             // 
             // btnWriteLocalIdentity
             // 
-            this.btnWriteLocalIdentity.Location = new System.Drawing.Point(543, 16);
+            this.btnWriteLocalIdentity.Location = new System.Drawing.Point(671, 41);
             this.btnWriteLocalIdentity.Name = "btnWriteLocalIdentity";
             this.btnWriteLocalIdentity.Size = new System.Drawing.Size(48, 23);
             this.btnWriteLocalIdentity.TabIndex = 44;
@@ -1431,14 +1431,14 @@
             // 
             // txtLocalName
             // 
-            this.txtLocalName.Location = new System.Drawing.Point(78, 49);
+            this.txtLocalName.Location = new System.Drawing.Point(3, 44);
             this.txtLocalName.Name = "txtLocalName";
-            this.txtLocalName.Size = new System.Drawing.Size(350, 21);
+            this.txtLocalName.Size = new System.Drawing.Size(260, 21);
             this.txtLocalName.TabIndex = 5;
             // 
             // btnReadLocalIdentity
             // 
-            this.btnReadLocalIdentity.Location = new System.Drawing.Point(487, 16);
+            this.btnReadLocalIdentity.Location = new System.Drawing.Point(615, 41);
             this.btnReadLocalIdentity.Name = "btnReadLocalIdentity";
             this.btnReadLocalIdentity.Size = new System.Drawing.Size(48, 23);
             this.btnReadLocalIdentity.TabIndex = 43;
@@ -1449,7 +1449,7 @@
             // Lbl_p2_LocalName
             // 
             this.Lbl_p2_LocalName.AutoSize = true;
-            this.Lbl_p2_LocalName.Location = new System.Drawing.Point(7, 52);
+            this.Lbl_p2_LocalName.Location = new System.Drawing.Point(4, 21);
             this.Lbl_p2_LocalName.Name = "Lbl_p2_LocalName";
             this.Lbl_p2_LocalName.Size = new System.Drawing.Size(65, 12);
             this.Lbl_p2_LocalName.TabIndex = 4;
@@ -1462,7 +1462,7 @@
             this.cmbInOut.Items.AddRange(new object[] {
             "进",
             "出"});
-            this.cmbInOut.Location = new System.Drawing.Point(307, 18);
+            this.cmbInOut.Location = new System.Drawing.Point(474, 45);
             this.cmbInOut.Name = "cmbInOut";
             this.cmbInOut.Size = new System.Drawing.Size(121, 20);
             this.cmbInOut.TabIndex = 3;
@@ -1470,7 +1470,7 @@
             // Lbl_p2_InOut
             // 
             this.Lbl_p2_InOut.AutoSize = true;
-            this.Lbl_p2_InOut.Location = new System.Drawing.Point(249, 21);
+            this.Lbl_p2_InOut.Location = new System.Drawing.Point(472, 21);
             this.Lbl_p2_InOut.Name = "Lbl_p2_InOut";
             this.Lbl_p2_InOut.Size = new System.Drawing.Size(41, 12);
             this.Lbl_p2_InOut.TabIndex = 2;
@@ -1480,7 +1480,7 @@
             // 
             this.cmbDoor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDoor.FormattingEnabled = true;
-            this.cmbDoor.Location = new System.Drawing.Point(78, 18);
+            this.cmbDoor.Location = new System.Drawing.Point(301, 44);
             this.cmbDoor.Name = "cmbDoor";
             this.cmbDoor.Size = new System.Drawing.Size(121, 20);
             this.cmbDoor.TabIndex = 1;
@@ -1488,7 +1488,7 @@
             // Lbl_p2_DoorNum
             // 
             this.Lbl_p2_DoorNum.AutoSize = true;
-            this.Lbl_p2_DoorNum.Location = new System.Drawing.Point(31, 21);
+            this.Lbl_p2_DoorNum.Location = new System.Drawing.Point(299, 21);
             this.Lbl_p2_DoorNum.Name = "Lbl_p2_DoorNum";
             this.Lbl_p2_DoorNum.Size = new System.Drawing.Size(41, 12);
             this.Lbl_p2_DoorNum.TabIndex = 0;
@@ -1525,7 +1525,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(766, 525);
+            this.tabPage3.Size = new System.Drawing.Size(747, 547);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "参数3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1533,7 +1533,7 @@
             // Cmb_FaceBodyTemperature
             // 
             this.Cmb_FaceBodyTemperature.FormattingEnabled = true;
-            this.Cmb_FaceBodyTemperature.Location = new System.Drawing.Point(222, 178);
+            this.Cmb_FaceBodyTemperature.Location = new System.Drawing.Point(53, 246);
             this.Cmb_FaceBodyTemperature.Name = "Cmb_FaceBodyTemperature";
             this.Cmb_FaceBodyTemperature.Size = new System.Drawing.Size(270, 20);
             this.Cmb_FaceBodyTemperature.TabIndex = 5;
@@ -1541,7 +1541,7 @@
             // Lbl_Filllightmode
             // 
             this.Lbl_Filllightmode.AutoSize = true;
-            this.Lbl_Filllightmode.Location = new System.Drawing.Point(140, 90);
+            this.Lbl_Filllightmode.Location = new System.Drawing.Point(51, 110);
             this.Lbl_Filllightmode.Name = "Lbl_Filllightmode";
             this.Lbl_Filllightmode.Size = new System.Drawing.Size(77, 12);
             this.Lbl_Filllightmode.TabIndex = 0;
@@ -1555,7 +1555,7 @@
             this.gpDeviceVolume.Controls.Add(this.Lbl_Volume);
             this.gpDeviceVolume.Location = new System.Drawing.Point(420, 6);
             this.gpDeviceVolume.Name = "gpDeviceVolume";
-            this.gpDeviceVolume.Size = new System.Drawing.Size(324, 63);
+            this.gpDeviceVolume.Size = new System.Drawing.Size(324, 79);
             this.gpDeviceVolume.TabIndex = 6;
             this.gpDeviceVolume.TabStop = false;
             this.gpDeviceVolume.Text = "设备音量";
@@ -1564,14 +1564,14 @@
             // 
             this.cmbDriveVolume.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDriveVolume.FormattingEnabled = true;
-            this.cmbDriveVolume.Location = new System.Drawing.Point(78, 29);
+            this.cmbDriveVolume.Location = new System.Drawing.Point(18, 40);
             this.cmbDriveVolume.Name = "cmbDriveVolume";
             this.cmbDriveVolume.Size = new System.Drawing.Size(107, 20);
             this.cmbDriveVolume.TabIndex = 59;
             // 
             // butWriteVolume
             // 
-            this.butWriteVolume.Location = new System.Drawing.Point(263, 27);
+            this.butWriteVolume.Location = new System.Drawing.Point(229, 37);
             this.butWriteVolume.Name = "butWriteVolume";
             this.butWriteVolume.Size = new System.Drawing.Size(48, 23);
             this.butWriteVolume.TabIndex = 57;
@@ -1581,7 +1581,7 @@
             // 
             // butReadVolume
             // 
-            this.butReadVolume.Location = new System.Drawing.Point(207, 27);
+            this.butReadVolume.Location = new System.Drawing.Point(173, 37);
             this.butReadVolume.Name = "butReadVolume";
             this.butReadVolume.Size = new System.Drawing.Size(48, 23);
             this.butReadVolume.TabIndex = 58;
@@ -1592,7 +1592,7 @@
             // Lbl_Volume
             // 
             this.Lbl_Volume.AutoSize = true;
-            this.Lbl_Volume.Location = new System.Drawing.Point(31, 32);
+            this.Lbl_Volume.Location = new System.Drawing.Point(16, 25);
             this.Lbl_Volume.Name = "Lbl_Volume";
             this.Lbl_Volume.Size = new System.Drawing.Size(41, 12);
             this.Lbl_Volume.TabIndex = 56;
@@ -1604,7 +1604,7 @@
             this.Cmb_FaceMouthmuffle.Items.AddRange(new object[] {
             "禁止",
             "启用"});
-            this.Cmb_FaceMouthmuffle.Location = new System.Drawing.Point(222, 132);
+            this.Cmb_FaceMouthmuffle.Location = new System.Drawing.Point(53, 190);
             this.Cmb_FaceMouthmuffle.Name = "Cmb_FaceMouthmuffle";
             this.Cmb_FaceMouthmuffle.Size = new System.Drawing.Size(270, 20);
             this.Cmb_FaceMouthmuffle.TabIndex = 5;
@@ -1617,7 +1617,7 @@
             this.gpDeviceLanguage.Controls.Add(this.Lbl_p3_Language);
             this.gpDeviceLanguage.Location = new System.Drawing.Point(53, 6);
             this.gpDeviceLanguage.Name = "gpDeviceLanguage";
-            this.gpDeviceLanguage.Size = new System.Drawing.Size(361, 63);
+            this.gpDeviceLanguage.Size = new System.Drawing.Size(361, 79);
             this.gpDeviceLanguage.TabIndex = 5;
             this.gpDeviceLanguage.TabStop = false;
             this.gpDeviceLanguage.Text = "设备语言";
@@ -1626,14 +1626,14 @@
             // 
             this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Location = new System.Drawing.Point(78, 29);
+            this.cmbLanguage.Location = new System.Drawing.Point(26, 41);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(154, 20);
             this.cmbLanguage.TabIndex = 59;
             // 
             // butWriteLanguage
             // 
-            this.butWriteLanguage.Location = new System.Drawing.Point(304, 29);
+            this.butWriteLanguage.Location = new System.Drawing.Point(258, 38);
             this.butWriteLanguage.Name = "butWriteLanguage";
             this.butWriteLanguage.Size = new System.Drawing.Size(48, 23);
             this.butWriteLanguage.TabIndex = 57;
@@ -1643,7 +1643,7 @@
             // 
             // butReadLanguage
             // 
-            this.butReadLanguage.Location = new System.Drawing.Point(248, 29);
+            this.butReadLanguage.Location = new System.Drawing.Point(202, 38);
             this.butReadLanguage.Name = "butReadLanguage";
             this.butReadLanguage.Size = new System.Drawing.Size(48, 23);
             this.butReadLanguage.TabIndex = 58;
@@ -1654,7 +1654,7 @@
             // Lbl_p3_Language
             // 
             this.Lbl_p3_Language.AutoSize = true;
-            this.Lbl_p3_Language.Location = new System.Drawing.Point(31, 32);
+            this.Lbl_p3_Language.Location = new System.Drawing.Point(24, 25);
             this.Lbl_p3_Language.Name = "Lbl_p3_Language";
             this.Lbl_p3_Language.Size = new System.Drawing.Size(41, 12);
             this.Lbl_p3_Language.TabIndex = 56;
@@ -1663,7 +1663,7 @@
             // Lbl_MaskRecognitionSwitch
             // 
             this.Lbl_MaskRecognitionSwitch.AutoSize = true;
-            this.Lbl_MaskRecognitionSwitch.Location = new System.Drawing.Point(128, 135);
+            this.Lbl_MaskRecognitionSwitch.Location = new System.Drawing.Point(51, 166);
             this.Lbl_MaskRecognitionSwitch.Name = "Lbl_MaskRecognitionSwitch";
             this.Lbl_MaskRecognitionSwitch.Size = new System.Drawing.Size(89, 12);
             this.Lbl_MaskRecognitionSwitch.TabIndex = 0;
@@ -1672,14 +1672,14 @@
             // Cmb_FaceLEDMode
             // 
             this.Cmb_FaceLEDMode.FormattingEnabled = true;
-            this.Cmb_FaceLEDMode.Location = new System.Drawing.Point(222, 88);
+            this.Cmb_FaceLEDMode.Location = new System.Drawing.Point(53, 134);
             this.Cmb_FaceLEDMode.Name = "Cmb_FaceLEDMode";
             this.Cmb_FaceLEDMode.Size = new System.Drawing.Size(270, 20);
             this.Cmb_FaceLEDMode.TabIndex = 5;
             // 
             // But_WriteFaceMouthmufflePar
             // 
-            this.But_WriteFaceMouthmufflePar.Location = new System.Drawing.Point(530, 130);
+            this.But_WriteFaceMouthmufflePar.Location = new System.Drawing.Point(347, 187);
             this.But_WriteFaceMouthmufflePar.Name = "But_WriteFaceMouthmufflePar";
             this.But_WriteFaceMouthmufflePar.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceMouthmufflePar.TabIndex = 4;
@@ -1690,7 +1690,7 @@
             // Lbl_TemperatureExaminationAndFormat
             // 
             this.Lbl_TemperatureExaminationAndFormat.AutoSize = true;
-            this.Lbl_TemperatureExaminationAndFormat.Location = new System.Drawing.Point(116, 180);
+            this.Lbl_TemperatureExaminationAndFormat.Location = new System.Drawing.Point(51, 222);
             this.Lbl_TemperatureExaminationAndFormat.Name = "Lbl_TemperatureExaminationAndFormat";
             this.Lbl_TemperatureExaminationAndFormat.Size = new System.Drawing.Size(101, 12);
             this.Lbl_TemperatureExaminationAndFormat.TabIndex = 0;
@@ -1698,7 +1698,7 @@
             // 
             // But_ReadFaceMouthmufflePar
             // 
-            this.But_ReadFaceMouthmufflePar.Location = new System.Drawing.Point(621, 130);
+            this.But_ReadFaceMouthmufflePar.Location = new System.Drawing.Point(438, 187);
             this.But_ReadFaceMouthmufflePar.Name = "But_ReadFaceMouthmufflePar";
             this.But_ReadFaceMouthmufflePar.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceMouthmufflePar.TabIndex = 4;
@@ -1708,7 +1708,7 @@
             // 
             // But_ReadShortMessage
             // 
-            this.But_ReadShortMessage.Location = new System.Drawing.Point(621, 305);
+            this.But_ReadShortMessage.Location = new System.Drawing.Point(438, 413);
             this.But_ReadShortMessage.Name = "But_ReadShortMessage";
             this.But_ReadShortMessage.Size = new System.Drawing.Size(75, 23);
             this.But_ReadShortMessage.TabIndex = 4;
@@ -1718,7 +1718,7 @@
             // 
             // But_ReadFaceLEDMode
             // 
-            this.But_ReadFaceLEDMode.Location = new System.Drawing.Point(621, 85);
+            this.But_ReadFaceLEDMode.Location = new System.Drawing.Point(438, 131);
             this.But_ReadFaceLEDMode.Name = "But_ReadFaceLEDMode";
             this.But_ReadFaceLEDMode.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceLEDMode.TabIndex = 4;
@@ -1729,7 +1729,7 @@
             // Lbl_TemperatureAlarmThreshold
             // 
             this.Lbl_TemperatureAlarmThreshold.AutoSize = true;
-            this.Lbl_TemperatureAlarmThreshold.Location = new System.Drawing.Point(128, 225);
+            this.Lbl_TemperatureAlarmThreshold.Location = new System.Drawing.Point(51, 278);
             this.Lbl_TemperatureAlarmThreshold.Name = "Lbl_TemperatureAlarmThreshold";
             this.Lbl_TemperatureAlarmThreshold.Size = new System.Drawing.Size(89, 12);
             this.Lbl_TemperatureAlarmThreshold.TabIndex = 0;
@@ -1737,7 +1737,7 @@
             // 
             // But_WriteFaceBodyTemperature
             // 
-            this.But_WriteFaceBodyTemperature.Location = new System.Drawing.Point(530, 176);
+            this.But_WriteFaceBodyTemperature.Location = new System.Drawing.Point(347, 243);
             this.But_WriteFaceBodyTemperature.Name = "But_WriteFaceBodyTemperature";
             this.But_WriteFaceBodyTemperature.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceBodyTemperature.TabIndex = 4;
@@ -1747,7 +1747,7 @@
             // 
             // But_WriteShortMessage
             // 
-            this.But_WriteShortMessage.Location = new System.Drawing.Point(530, 305);
+            this.But_WriteShortMessage.Location = new System.Drawing.Point(347, 413);
             this.But_WriteShortMessage.Name = "But_WriteShortMessage";
             this.But_WriteShortMessage.Size = new System.Drawing.Size(75, 23);
             this.But_WriteShortMessage.TabIndex = 4;
@@ -1757,7 +1757,7 @@
             // 
             // But_WriteFaceLEDMode
             // 
-            this.But_WriteFaceLEDMode.Location = new System.Drawing.Point(530, 85);
+            this.But_WriteFaceLEDMode.Location = new System.Drawing.Point(347, 131);
             this.But_WriteFaceLEDMode.Name = "But_WriteFaceLEDMode";
             this.But_WriteFaceLEDMode.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceLEDMode.TabIndex = 4;
@@ -1767,7 +1767,7 @@
             // 
             // Txt_BodyTemperatureAlarm
             // 
-            this.Txt_BodyTemperatureAlarm.Location = new System.Drawing.Point(222, 220);
+            this.Txt_BodyTemperatureAlarm.Location = new System.Drawing.Point(53, 302);
             this.Txt_BodyTemperatureAlarm.Name = "Txt_BodyTemperatureAlarm";
             this.Txt_BodyTemperatureAlarm.Size = new System.Drawing.Size(270, 21);
             this.Txt_BodyTemperatureAlarm.TabIndex = 1;
@@ -1775,7 +1775,7 @@
             // 
             // But_ReadFaceBodyTemperature
             // 
-            this.But_ReadFaceBodyTemperature.Location = new System.Drawing.Point(621, 176);
+            this.But_ReadFaceBodyTemperature.Location = new System.Drawing.Point(438, 243);
             this.But_ReadFaceBodyTemperature.Name = "But_ReadFaceBodyTemperature";
             this.But_ReadFaceBodyTemperature.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceBodyTemperature.TabIndex = 4;
@@ -1785,7 +1785,7 @@
             // 
             // But_ReadFaceBodyTemperatureShow
             // 
-            this.But_ReadFaceBodyTemperatureShow.Location = new System.Drawing.Point(621, 260);
+            this.But_ReadFaceBodyTemperatureShow.Location = new System.Drawing.Point(438, 356);
             this.But_ReadFaceBodyTemperatureShow.Name = "But_ReadFaceBodyTemperatureShow";
             this.But_ReadFaceBodyTemperatureShow.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceBodyTemperatureShow.TabIndex = 4;
@@ -1796,7 +1796,7 @@
             // Lbl_TemperatureIndicatorSwitch
             // 
             this.Lbl_TemperatureIndicatorSwitch.AutoSize = true;
-            this.Lbl_TemperatureIndicatorSwitch.Location = new System.Drawing.Point(104, 264);
+            this.Lbl_TemperatureIndicatorSwitch.Location = new System.Drawing.Point(51, 335);
             this.Lbl_TemperatureIndicatorSwitch.Name = "Lbl_TemperatureIndicatorSwitch";
             this.Lbl_TemperatureIndicatorSwitch.Size = new System.Drawing.Size(113, 12);
             this.Lbl_TemperatureIndicatorSwitch.TabIndex = 3;
@@ -1805,7 +1805,7 @@
             // Lbl_ShortMessage
             // 
             this.Lbl_ShortMessage.AutoSize = true;
-            this.Lbl_ShortMessage.Location = new System.Drawing.Point(164, 310);
+            this.Lbl_ShortMessage.Location = new System.Drawing.Point(51, 391);
             this.Lbl_ShortMessage.Name = "Lbl_ShortMessage";
             this.Lbl_ShortMessage.Size = new System.Drawing.Size(53, 12);
             this.Lbl_ShortMessage.TabIndex = 0;
@@ -1813,7 +1813,7 @@
             // 
             // But_WriteFaceBodyTemperatureAlarm
             // 
-            this.But_WriteFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(530, 218);
+            this.But_WriteFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(347, 300);
             this.But_WriteFaceBodyTemperatureAlarm.Name = "But_WriteFaceBodyTemperatureAlarm";
             this.But_WriteFaceBodyTemperatureAlarm.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceBodyTemperatureAlarm.TabIndex = 4;
@@ -1823,7 +1823,7 @@
             // 
             // But_WriteFaceBodyTemperatureShow
             // 
-            this.But_WriteFaceBodyTemperatureShow.Location = new System.Drawing.Point(530, 260);
+            this.But_WriteFaceBodyTemperatureShow.Location = new System.Drawing.Point(347, 356);
             this.But_WriteFaceBodyTemperatureShow.Name = "But_WriteFaceBodyTemperatureShow";
             this.But_WriteFaceBodyTemperatureShow.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceBodyTemperatureShow.TabIndex = 4;
@@ -1837,14 +1837,14 @@
             this.cmb_FaceBodyTemperatureShow.Items.AddRange(new object[] {
             "禁止显示体温",
             "显示体温信息"});
-            this.cmb_FaceBodyTemperatureShow.Location = new System.Drawing.Point(222, 262);
+            this.cmb_FaceBodyTemperatureShow.Location = new System.Drawing.Point(53, 359);
             this.cmb_FaceBodyTemperatureShow.Name = "cmb_FaceBodyTemperatureShow";
             this.cmb_FaceBodyTemperatureShow.Size = new System.Drawing.Size(270, 20);
             this.cmb_FaceBodyTemperatureShow.TabIndex = 2;
             // 
             // Txt_ShortMessage
             // 
-            this.Txt_ShortMessage.Location = new System.Drawing.Point(222, 305);
+            this.Txt_ShortMessage.Location = new System.Drawing.Point(53, 415);
             this.Txt_ShortMessage.Name = "Txt_ShortMessage";
             this.Txt_ShortMessage.Size = new System.Drawing.Size(270, 21);
             this.Txt_ShortMessage.TabIndex = 1;
@@ -1852,7 +1852,7 @@
             // 
             // But_ReadFaceBodyTemperatureAlarm
             // 
-            this.But_ReadFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(621, 218);
+            this.But_ReadFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(438, 300);
             this.But_ReadFaceBodyTemperatureAlarm.Name = "But_ReadFaceBodyTemperatureAlarm";
             this.But_ReadFaceBodyTemperatureAlarm.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceBodyTemperatureAlarm.TabIndex = 4;
@@ -1867,7 +1867,7 @@
             this.tpNetwork.Location = new System.Drawing.Point(4, 22);
             this.tpNetwork.Name = "tpNetwork";
             this.tpNetwork.Padding = new System.Windows.Forms.Padding(3);
-            this.tpNetwork.Size = new System.Drawing.Size(766, 525);
+            this.tpNetwork.Size = new System.Drawing.Size(759, 547);
             this.tpNetwork.TabIndex = 4;
             this.tpNetwork.Text = "客户端网络参数";
             this.tpNetwork.UseVisualStyleBackColor = true;
@@ -2146,7 +2146,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 551);
+            this.ClientSize = new System.Drawing.Size(773, 573);
             this.Controls.Add(this.tabControl1);
             this.Name = "frmSystem";
             this.Text = "基本参数";

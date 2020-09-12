@@ -176,7 +176,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         Directory.CreateDirectory(sNewFile);
                         sNewFile = System.IO.Path.Combine(sNewFile, $"tmpPhoto_{result.UserCode}.jpg");
                         File.WriteAllBytes(sNewFile, result.FileDatas);
-                        pictureBox1.Image = Image.FromStream(new System.IO.MemoryStream(result.FileDatas));
+                        ShowImgForm showImg = new ShowImgForm(Image.FromStream(new System.IO.MemoryStream(result.FileDatas)));
+                        showImg.Show();
+                        // pictureBox1.Image = Image.FromStream(new System.IO.MemoryStream(result.FileDatas));
                     }
                     else
                     {
@@ -453,7 +455,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             byte[] datas = System.IO.File.ReadAllBytes(ofd.FileName);
             Bitmap newImg;
             datas = ConvertImage(datas, out newImg);
-            pictureBox1.Image = newImg;
+            //pictureBox1.Image = newImg;
+            ShowImgForm showImg = new ShowImgForm(newImg);
+            showImg.Show();
             string sNewFile = System.IO.Path.Combine(Application.StartupPath, "tmpImage.jpg");
             File.WriteAllBytes(sNewFile, datas);
 
@@ -653,6 +657,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             Msg_19 = GetLanguage("Msg_19");
             Msg_PersonDetail = GetLanguage("Msg_PersonDetail");
             InitControl();
+        }
+
+        private void Lbl_DownloadType_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

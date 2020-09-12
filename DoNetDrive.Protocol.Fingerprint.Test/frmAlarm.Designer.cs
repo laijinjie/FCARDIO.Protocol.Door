@@ -61,7 +61,6 @@
             this.btnReadOpenDoorTimeoutAlarm = new System.Windows.Forms.Button();
             this.cbOpenDoorTimeoutAlarmUse = new System.Windows.Forms.CheckBox();
             this.gpLegalVerificationCloseAlarmUse = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnWriteLegalVerificationCloseAlarm = new System.Windows.Forms.Button();
             this.btnReadLegalVerificationCloseAlarm = new System.Windows.Forms.Button();
             this.cbLegalVerificationCloseAlarmUse = new System.Windows.Forms.CheckBox();
@@ -135,7 +134,7 @@
             this.gpFireAlarm.Controls.Add(this.btnSendFireAlarm);
             this.gpFireAlarm.Location = new System.Drawing.Point(13, 6);
             this.gpFireAlarm.Name = "gpFireAlarm";
-            this.gpFireAlarm.Size = new System.Drawing.Size(369, 59);
+            this.gpFireAlarm.Size = new System.Drawing.Size(164, 59);
             this.gpFireAlarm.TabIndex = 0;
             this.gpFireAlarm.TabStop = false;
             this.gpFireAlarm.Text = "消防报警";
@@ -144,7 +143,7 @@
             // 
             this.btnSendFireAlarm.Location = new System.Drawing.Point(6, 18);
             this.btnSendFireAlarm.Name = "btnSendFireAlarm";
-            this.btnSendFireAlarm.Size = new System.Drawing.Size(75, 23);
+            this.btnSendFireAlarm.Size = new System.Drawing.Size(152, 23);
             this.btnSendFireAlarm.TabIndex = 0;
             this.btnSendFireAlarm.Text = "手动触发";
             this.btnSendFireAlarm.UseVisualStyleBackColor = true;
@@ -155,16 +154,16 @@
             this.gpBlacklistAlarmUse.Controls.Add(this.btnWriteBlacklistAlarm);
             this.gpBlacklistAlarmUse.Controls.Add(this.btnReadBlacklistAlarm);
             this.gpBlacklistAlarmUse.Controls.Add(this.cbBlacklistAlarmUse);
-            this.gpBlacklistAlarmUse.Location = new System.Drawing.Point(388, 6);
+            this.gpBlacklistAlarmUse.Location = new System.Drawing.Point(379, 71);
             this.gpBlacklistAlarmUse.Name = "gpBlacklistAlarmUse";
-            this.gpBlacklistAlarmUse.Size = new System.Drawing.Size(400, 59);
+            this.gpBlacklistAlarmUse.Size = new System.Drawing.Size(409, 59);
             this.gpBlacklistAlarmUse.TabIndex = 1;
             this.gpBlacklistAlarmUse.TabStop = false;
             this.gpBlacklistAlarmUse.Text = "黑名单报警";
             // 
             // btnWriteBlacklistAlarm
             // 
-            this.btnWriteBlacklistAlarm.Location = new System.Drawing.Point(309, 23);
+            this.btnWriteBlacklistAlarm.Location = new System.Drawing.Point(319, 21);
             this.btnWriteBlacklistAlarm.Name = "btnWriteBlacklistAlarm";
             this.btnWriteBlacklistAlarm.Size = new System.Drawing.Size(75, 23);
             this.btnWriteBlacklistAlarm.TabIndex = 2;
@@ -174,7 +173,7 @@
             // 
             // btnReadBlacklistAlarm
             // 
-            this.btnReadBlacklistAlarm.Location = new System.Drawing.Point(198, 23);
+            this.btnReadBlacklistAlarm.Location = new System.Drawing.Point(208, 21);
             this.btnReadBlacklistAlarm.Name = "btnReadBlacklistAlarm";
             this.btnReadBlacklistAlarm.Size = new System.Drawing.Size(75, 23);
             this.btnReadBlacklistAlarm.TabIndex = 1;
@@ -199,14 +198,14 @@
             this.gpAntiDisassemblyUse.Controls.Add(this.cbAntiDisassemblyUse);
             this.gpAntiDisassemblyUse.Location = new System.Drawing.Point(13, 71);
             this.gpAntiDisassemblyUse.Name = "gpAntiDisassemblyUse";
-            this.gpAntiDisassemblyUse.Size = new System.Drawing.Size(305, 59);
+            this.gpAntiDisassemblyUse.Size = new System.Drawing.Size(341, 59);
             this.gpAntiDisassemblyUse.TabIndex = 3;
             this.gpAntiDisassemblyUse.TabStop = false;
             this.gpAntiDisassemblyUse.Text = "防拆报警开关";
             // 
             // btnWriteAntiDisassemblyAlarm
             // 
-            this.btnWriteAntiDisassemblyAlarm.Location = new System.Drawing.Point(220, 23);
+            this.btnWriteAntiDisassemblyAlarm.Location = new System.Drawing.Point(260, 20);
             this.btnWriteAntiDisassemblyAlarm.Name = "btnWriteAntiDisassemblyAlarm";
             this.btnWriteAntiDisassemblyAlarm.Size = new System.Drawing.Size(75, 23);
             this.btnWriteAntiDisassemblyAlarm.TabIndex = 2;
@@ -216,7 +215,7 @@
             // 
             // btnReadAntiDisassemblyAlarm
             // 
-            this.btnReadAntiDisassemblyAlarm.Location = new System.Drawing.Point(132, 23);
+            this.btnReadAntiDisassemblyAlarm.Location = new System.Drawing.Point(172, 20);
             this.btnReadAntiDisassemblyAlarm.Name = "btnReadAntiDisassemblyAlarm";
             this.btnReadAntiDisassemblyAlarm.Size = new System.Drawing.Size(75, 23);
             this.btnReadAntiDisassemblyAlarm.TabIndex = 1;
@@ -242,9 +241,9 @@
             this.gpIllegalVerificationAlarmUse.Controls.Add(this.btnWriteIllegalVerification);
             this.gpIllegalVerificationAlarmUse.Controls.Add(this.btnReadIllegalVerification);
             this.gpIllegalVerificationAlarmUse.Controls.Add(this.cbIllegalVerificationAlarmUse);
-            this.gpIllegalVerificationAlarmUse.Location = new System.Drawing.Point(324, 71);
+            this.gpIllegalVerificationAlarmUse.Location = new System.Drawing.Point(183, 6);
             this.gpIllegalVerificationAlarmUse.Name = "gpIllegalVerificationAlarmUse";
-            this.gpIllegalVerificationAlarmUse.Size = new System.Drawing.Size(464, 59);
+            this.gpIllegalVerificationAlarmUse.Size = new System.Drawing.Size(605, 59);
             this.gpIllegalVerificationAlarmUse.TabIndex = 4;
             this.gpIllegalVerificationAlarmUse.TabStop = false;
             this.gpIllegalVerificationAlarmUse.Text = "非法验证报警";
@@ -252,7 +251,7 @@
             // Lbl_IllegalVerificationTimes2
             // 
             this.Lbl_IllegalVerificationTimes2.AutoSize = true;
-            this.Lbl_IllegalVerificationTimes2.Location = new System.Drawing.Point(187, 28);
+            this.Lbl_IllegalVerificationTimes2.Location = new System.Drawing.Point(310, 29);
             this.Lbl_IllegalVerificationTimes2.Name = "Lbl_IllegalVerificationTimes2";
             this.Lbl_IllegalVerificationTimes2.Size = new System.Drawing.Size(41, 12);
             this.Lbl_IllegalVerificationTimes2.TabIndex = 5;
@@ -262,7 +261,7 @@
             // 
             this.cmbIllegalVerificationTimes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbIllegalVerificationTimes.FormattingEnabled = true;
-            this.cmbIllegalVerificationTimes.Location = new System.Drawing.Point(126, 25);
+            this.cmbIllegalVerificationTimes.Location = new System.Drawing.Point(240, 25);
             this.cmbIllegalVerificationTimes.Name = "cmbIllegalVerificationTimes";
             this.cmbIllegalVerificationTimes.Size = new System.Drawing.Size(55, 20);
             this.cmbIllegalVerificationTimes.TabIndex = 4;
@@ -270,7 +269,7 @@
             // Lbl_IllegalVerificationTimes1
             // 
             this.Lbl_IllegalVerificationTimes1.AutoSize = true;
-            this.Lbl_IllegalVerificationTimes1.Location = new System.Drawing.Point(93, 28);
+            this.Lbl_IllegalVerificationTimes1.Location = new System.Drawing.Point(183, 29);
             this.Lbl_IllegalVerificationTimes1.Name = "Lbl_IllegalVerificationTimes1";
             this.Lbl_IllegalVerificationTimes1.Size = new System.Drawing.Size(29, 12);
             this.Lbl_IllegalVerificationTimes1.TabIndex = 3;
@@ -278,7 +277,7 @@
             // 
             // btnWriteIllegalVerification
             // 
-            this.btnWriteIllegalVerification.Location = new System.Drawing.Point(373, 22);
+            this.btnWriteIllegalVerification.Location = new System.Drawing.Point(515, 20);
             this.btnWriteIllegalVerification.Name = "btnWriteIllegalVerification";
             this.btnWriteIllegalVerification.Size = new System.Drawing.Size(75, 23);
             this.btnWriteIllegalVerification.TabIndex = 2;
@@ -288,7 +287,7 @@
             // 
             // btnReadIllegalVerification
             // 
-            this.btnReadIllegalVerification.Location = new System.Drawing.Point(262, 22);
+            this.btnReadIllegalVerification.Location = new System.Drawing.Point(402, 20);
             this.btnReadIllegalVerification.Name = "btnReadIllegalVerification";
             this.btnReadIllegalVerification.Size = new System.Drawing.Size(75, 23);
             this.btnReadIllegalVerification.TabIndex = 1;
@@ -324,7 +323,7 @@
             // 
             // txtAlarmPassword
             // 
-            this.txtAlarmPassword.Location = new System.Drawing.Point(290, 28);
+            this.txtAlarmPassword.Location = new System.Drawing.Point(420, 27);
             this.txtAlarmPassword.Name = "txtAlarmPassword";
             this.txtAlarmPassword.Size = new System.Drawing.Size(124, 21);
             this.txtAlarmPassword.TabIndex = 6;
@@ -332,7 +331,7 @@
             // Lbl_AlarmPassword
             // 
             this.Lbl_AlarmPassword.AutoSize = true;
-            this.Lbl_AlarmPassword.Location = new System.Drawing.Point(288, 13);
+            this.Lbl_AlarmPassword.Location = new System.Drawing.Point(418, 12);
             this.Lbl_AlarmPassword.Name = "Lbl_AlarmPassword";
             this.Lbl_AlarmPassword.Size = new System.Drawing.Size(77, 12);
             this.Lbl_AlarmPassword.TabIndex = 5;
@@ -342,15 +341,15 @@
             // 
             this.cmbAlarmPasswordMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAlarmPasswordMode.FormattingEnabled = true;
-            this.cmbAlarmPasswordMode.Location = new System.Drawing.Point(104, 28);
+            this.cmbAlarmPasswordMode.Location = new System.Drawing.Point(154, 28);
             this.cmbAlarmPasswordMode.Name = "cmbAlarmPasswordMode";
-            this.cmbAlarmPasswordMode.Size = new System.Drawing.Size(146, 20);
+            this.cmbAlarmPasswordMode.Size = new System.Drawing.Size(239, 20);
             this.cmbAlarmPasswordMode.TabIndex = 4;
             // 
             // Lbl_AlarmPasswordMode
             // 
             this.Lbl_AlarmPasswordMode.AutoSize = true;
-            this.Lbl_AlarmPasswordMode.Location = new System.Drawing.Point(102, 13);
+            this.Lbl_AlarmPasswordMode.Location = new System.Drawing.Point(152, 13);
             this.Lbl_AlarmPasswordMode.Name = "Lbl_AlarmPasswordMode";
             this.Lbl_AlarmPasswordMode.Size = new System.Drawing.Size(65, 12);
             this.Lbl_AlarmPasswordMode.TabIndex = 3;
@@ -404,7 +403,7 @@
             // cbRelayOutput
             // 
             this.cbRelayOutput.AutoSize = true;
-            this.cbRelayOutput.Location = new System.Drawing.Point(402, 27);
+            this.cbRelayOutput.Location = new System.Drawing.Point(381, 34);
             this.cbRelayOutput.Name = "cbRelayOutput";
             this.cbRelayOutput.Size = new System.Drawing.Size(96, 16);
             this.cbRelayOutput.TabIndex = 6;
@@ -415,7 +414,7 @@
             // 
             this.cmbOpenDoorTimeout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOpenDoorTimeout.FormattingEnabled = true;
-            this.cmbOpenDoorTimeout.Location = new System.Drawing.Point(141, 32);
+            this.cmbOpenDoorTimeout.Location = new System.Drawing.Point(151, 32);
             this.cmbOpenDoorTimeout.Name = "cmbOpenDoorTimeout";
             this.cmbOpenDoorTimeout.Size = new System.Drawing.Size(136, 20);
             this.cmbOpenDoorTimeout.TabIndex = 4;
@@ -423,7 +422,7 @@
             // Lbl_OpenDoorTimeout
             // 
             this.Lbl_OpenDoorTimeout.AutoSize = true;
-            this.Lbl_OpenDoorTimeout.Location = new System.Drawing.Point(143, 17);
+            this.Lbl_OpenDoorTimeout.Location = new System.Drawing.Point(153, 17);
             this.Lbl_OpenDoorTimeout.Name = "Lbl_OpenDoorTimeout";
             this.Lbl_OpenDoorTimeout.Size = new System.Drawing.Size(89, 12);
             this.Lbl_OpenDoorTimeout.TabIndex = 3;
@@ -461,29 +460,19 @@
             // 
             // gpLegalVerificationCloseAlarmUse
             // 
-            this.gpLegalVerificationCloseAlarmUse.Controls.Add(this.textBox1);
             this.gpLegalVerificationCloseAlarmUse.Controls.Add(this.btnWriteLegalVerificationCloseAlarm);
             this.gpLegalVerificationCloseAlarmUse.Controls.Add(this.btnReadLegalVerificationCloseAlarm);
             this.gpLegalVerificationCloseAlarmUse.Controls.Add(this.cbLegalVerificationCloseAlarmUse);
             this.gpLegalVerificationCloseAlarmUse.Location = new System.Drawing.Point(13, 267);
             this.gpLegalVerificationCloseAlarmUse.Name = "gpLegalVerificationCloseAlarmUse";
-            this.gpLegalVerificationCloseAlarmUse.Size = new System.Drawing.Size(369, 108);
+            this.gpLegalVerificationCloseAlarmUse.Size = new System.Drawing.Size(775, 70);
             this.gpLegalVerificationCloseAlarmUse.TabIndex = 8;
             this.gpLegalVerificationCloseAlarmUse.TabStop = false;
             this.gpLegalVerificationCloseAlarmUse.Text = "合法验证解除报警开关";
             // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(6, 52);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(350, 47);
-            this.textBox1.TabIndex = 8;
-            // 
             // btnWriteLegalVerificationCloseAlarm
             // 
-            this.btnWriteLegalVerificationCloseAlarm.Location = new System.Drawing.Point(281, 25);
+            this.btnWriteLegalVerificationCloseAlarm.Location = new System.Drawing.Point(685, 25);
             this.btnWriteLegalVerificationCloseAlarm.Name = "btnWriteLegalVerificationCloseAlarm";
             this.btnWriteLegalVerificationCloseAlarm.Size = new System.Drawing.Size(75, 23);
             this.btnWriteLegalVerificationCloseAlarm.TabIndex = 4;
@@ -493,7 +482,7 @@
             // 
             // btnReadLegalVerificationCloseAlarm
             // 
-            this.btnReadLegalVerificationCloseAlarm.Location = new System.Drawing.Point(200, 25);
+            this.btnReadLegalVerificationCloseAlarm.Location = new System.Drawing.Point(574, 25);
             this.btnReadLegalVerificationCloseAlarm.Name = "btnReadLegalVerificationCloseAlarm";
             this.btnReadLegalVerificationCloseAlarm.Size = new System.Drawing.Size(75, 23);
             this.btnReadLegalVerificationCloseAlarm.TabIndex = 3;
@@ -521,18 +510,18 @@
             this.gpCloseAlarm.Controls.Add(this.checkBox3);
             this.gpCloseAlarm.Controls.Add(this.checkBox2);
             this.gpCloseAlarm.Controls.Add(this.checkBox1);
-            this.gpCloseAlarm.Location = new System.Drawing.Point(388, 267);
+            this.gpCloseAlarm.Location = new System.Drawing.Point(12, 342);
             this.gpCloseAlarm.Name = "gpCloseAlarm";
-            this.gpCloseAlarm.Size = new System.Drawing.Size(400, 108);
+            this.gpCloseAlarm.Size = new System.Drawing.Size(776, 70);
             this.gpCloseAlarm.TabIndex = 9;
             this.gpCloseAlarm.TabStop = false;
             this.gpCloseAlarm.Text = "解除报警";
             // 
             // btnWriteCloseAlarm
             // 
-            this.btnWriteCloseAlarm.Location = new System.Drawing.Point(270, 75);
+            this.btnWriteCloseAlarm.Location = new System.Drawing.Point(638, 41);
             this.btnWriteCloseAlarm.Name = "btnWriteCloseAlarm";
-            this.btnWriteCloseAlarm.Size = new System.Drawing.Size(114, 23);
+            this.btnWriteCloseAlarm.Size = new System.Drawing.Size(138, 23);
             this.btnWriteCloseAlarm.TabIndex = 89;
             this.btnWriteCloseAlarm.Text = "解除报警";
             this.btnWriteCloseAlarm.UseVisualStyleBackColor = true;
@@ -541,7 +530,7 @@
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(7, 82);
+            this.checkBox7.Location = new System.Drawing.Point(6, 50);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(72, 16);
             this.checkBox7.TabIndex = 6;
@@ -551,7 +540,7 @@
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(270, 52);
+            this.checkBox6.Location = new System.Drawing.Point(312, 45);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(72, 16);
             this.checkBox6.TabIndex = 5;
@@ -561,7 +550,7 @@
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(144, 54);
+            this.checkBox5.Location = new System.Drawing.Point(459, 20);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(84, 16);
             this.checkBox5.TabIndex = 4;
@@ -571,7 +560,7 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(6, 54);
+            this.checkBox4.Location = new System.Drawing.Point(165, 48);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(96, 16);
             this.checkBox4.TabIndex = 3;
@@ -581,7 +570,7 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(270, 20);
+            this.checkBox3.Location = new System.Drawing.Point(165, 20);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(72, 16);
             this.checkBox3.TabIndex = 2;
@@ -591,7 +580,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(144, 20);
+            this.checkBox2.Location = new System.Drawing.Point(312, 20);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(72, 16);
             this.checkBox2.TabIndex = 1;
@@ -625,9 +614,9 @@
             // 
             // btnFillNowTime
             // 
-            this.btnFillNowTime.Location = new System.Drawing.Point(671, 185);
+            this.btnFillNowTime.Location = new System.Drawing.Point(572, 185);
             this.btnFillNowTime.Name = "btnFillNowTime";
-            this.btnFillNowTime.Size = new System.Drawing.Size(95, 23);
+            this.btnFillNowTime.Size = new System.Drawing.Size(194, 23);
             this.btnFillNowTime.TabIndex = 88;
             this.btnFillNowTime.Text = "填充 现在时间";
             this.btnFillNowTime.UseVisualStyleBackColor = true;
@@ -1034,7 +1023,7 @@
             // 
             this.panel6.Controls.Add(this.rBtnNoDoorWorkSetting);
             this.panel6.Controls.Add(this.rBtnDoorWorkSetting);
-            this.panel6.Location = new System.Drawing.Point(88, 20);
+            this.panel6.Location = new System.Drawing.Point(113, 20);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(152, 21);
             this.panel6.TabIndex = 80;
@@ -1065,9 +1054,9 @@
             // 
             // btnWriteGateMagneticAlarm
             // 
-            this.btnWriteGateMagneticAlarm.Location = new System.Drawing.Point(657, 15);
+            this.btnWriteGateMagneticAlarm.Location = new System.Drawing.Point(685, 15);
             this.btnWriteGateMagneticAlarm.Name = "btnWriteGateMagneticAlarm";
-            this.btnWriteGateMagneticAlarm.Size = new System.Drawing.Size(69, 23);
+            this.btnWriteGateMagneticAlarm.Size = new System.Drawing.Size(75, 23);
             this.btnWriteGateMagneticAlarm.TabIndex = 79;
             this.btnWriteGateMagneticAlarm.Text = "写入";
             this.btnWriteGateMagneticAlarm.UseVisualStyleBackColor = true;
@@ -1075,9 +1064,9 @@
             // 
             // btnReadGateMagneticAlarm
             // 
-            this.btnReadGateMagneticAlarm.Location = new System.Drawing.Point(573, 15);
+            this.btnReadGateMagneticAlarm.Location = new System.Drawing.Point(572, 15);
             this.btnReadGateMagneticAlarm.Name = "btnReadGateMagneticAlarm";
-            this.btnReadGateMagneticAlarm.Size = new System.Drawing.Size(78, 23);
+            this.btnReadGateMagneticAlarm.Size = new System.Drawing.Size(77, 23);
             this.btnReadGateMagneticAlarm.TabIndex = 78;
             this.btnReadGateMagneticAlarm.Text = "读取";
             this.btnReadGateMagneticAlarm.UseVisualStyleBackColor = true;
@@ -1096,7 +1085,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 670);
+            this.ClientSize = new System.Drawing.Size(800, 637);
             this.Controls.Add(this.gpDoorWorkSetting);
             this.Controls.Add(this.gpCloseAlarm);
             this.Controls.Add(this.gpLegalVerificationCloseAlarmUse);
@@ -1170,7 +1159,6 @@
         private System.Windows.Forms.Button btnReadOpenDoorTimeoutAlarm;
         private System.Windows.Forms.CheckBox cbOpenDoorTimeoutAlarmUse;
         private System.Windows.Forms.GroupBox gpLegalVerificationCloseAlarmUse;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnWriteLegalVerificationCloseAlarm;
         private System.Windows.Forms.Button btnReadLegalVerificationCloseAlarm;
         private System.Windows.Forms.CheckBox cbLegalVerificationCloseAlarmUse;
