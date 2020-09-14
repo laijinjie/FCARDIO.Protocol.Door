@@ -74,6 +74,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             GetLanguage(butReadConnectPassword);//  读取
             GetLanguage(butWriteConnectPassword);//  写入
             GetLanguage(butResetConnectPassword);//  重置
+            GetLanguage(btnReadSystemStatus);//  读取
             GetLanguage(gbVersion);//  版本号
             GetLanguage(LblVersion);//  硬件版本号：
             GetLanguage(btnReadVersion);//  读取
@@ -216,9 +217,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbReadCardByte.Items.AddRange(ReadCardByteList);
             cmbReadCardByte.SelectedIndex = 0;
 
+
             var IsUseList = GetLanguage("IsUseList").Split(',');
             cmbWGOutput.Items.AddRange(IsUseList);
             cmbWGOutput.SelectedIndex = 0;
+
+            cbxAutoIP.Items.AddRange(IsUseList);
+            cbxAutoIP.SelectedIndex = 0;
 
             var faceIsUseList= GetLanguage("Cmb_FaceMouthmuffle").Split(','); 
             Cmb_FaceMouthmuffle.Items.AddRange(faceIsUseList);

@@ -18,7 +18,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Collections.Concurrent;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN;
 using System.Linq;
 using System.Configuration;
@@ -785,7 +784,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             if (_IsClosed) return null;
             var connectType = CommandDetailFactory.ConnectType.TCPClient;
-            var protocolType = CommandDetailFactory.ControllerType.Door88;
             string addr = string.Empty, sn, password;
             int port = 0;
 

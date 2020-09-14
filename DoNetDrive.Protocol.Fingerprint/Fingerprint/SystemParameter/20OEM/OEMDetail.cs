@@ -76,7 +76,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.OEM
             }
             Manufacturer = Util.StringUtil.GetString(databuf, 60, StringEncoding);
             WebAddr = Util.StringUtil.GetString(databuf, 60, StringEncoding);
-            DeliveryDate = Util.TimeUtil.BCDTimeToDate_yyMMddhhmmss(databuf);
+            DeliveryDate = Util.TimeUtil.BCDTimeToDate_yyyyMMddhhmmss(databuf);
         }
 
 

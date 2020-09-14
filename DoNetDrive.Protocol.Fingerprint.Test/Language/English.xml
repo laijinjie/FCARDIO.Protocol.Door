@@ -450,6 +450,7 @@
     <Msg_69                                   value = "Disabled"/>
     <Msg_70                                   value = "Connection Status"/>
     <Msg_71                                   value = "The latest keep-alive package sending time"/>
+    <btnReadSystemStatus value = "Read"/>
   </frmSystem>
   <frmTime>
     <FormCaption              value="Clock" />

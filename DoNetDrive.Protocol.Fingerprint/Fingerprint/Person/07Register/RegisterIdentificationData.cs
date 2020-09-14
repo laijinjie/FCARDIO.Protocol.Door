@@ -100,8 +100,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
                         {
                             _ProcessStep = 4;
                             fireCommandProcessEvent();
+                            _Connector.fireCommandCompleteEventNotRemoveCommand(_EventArgs);
                             //修改超时等待时间
-                            CommandDetail.Timeout = 30000;
+                            CommandDetail.Timeout = 15000;
                             mStep = 4;
                             CommandWaitResponse();
                         }

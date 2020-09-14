@@ -767,7 +767,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmd.getResult() as RegisterIdentificationData_Result;
+                var result = cmde.Result as RegisterIdentificationData_Result;
                 if (result.Status == 101)
                 {
                     if (result.ResultData != null)

@@ -453,6 +453,7 @@
     <Msg_69                                   value = "已禁用"/>
     <Msg_70                                   value = "连接状态"/>
     <Msg_71                                   value = "最近一次保活包发送时间"/>
+    <btnReadSystemStatus value = "读取"/>
   </frmSystem>
   <frmTime>
     <FormCaption              value="时钟" />

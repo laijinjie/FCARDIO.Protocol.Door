@@ -596,9 +596,6 @@
             // 
             this.cbxAutoIP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAutoIP.FormattingEnabled = true;
-            this.cbxAutoIP.Items.AddRange(new object[] {
-            "否",
-            "是"});
             this.cbxAutoIP.Location = new System.Drawing.Point(110, 44);
             this.cbxAutoIP.Name = "cbxAutoIP";
             this.cbxAutoIP.Size = new System.Drawing.Size(138, 20);
@@ -1525,13 +1522,14 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(747, 547);
+            this.tabPage3.Size = new System.Drawing.Size(765, 547);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "参数3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // Cmb_FaceBodyTemperature
             // 
+            this.Cmb_FaceBodyTemperature.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_FaceBodyTemperature.FormattingEnabled = true;
             this.Cmb_FaceBodyTemperature.Location = new System.Drawing.Point(53, 246);
             this.Cmb_FaceBodyTemperature.Name = "Cmb_FaceBodyTemperature";
@@ -1600,6 +1598,7 @@
             // 
             // Cmb_FaceMouthmuffle
             // 
+            this.Cmb_FaceMouthmuffle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_FaceMouthmuffle.FormattingEnabled = true;
             this.Cmb_FaceMouthmuffle.Items.AddRange(new object[] {
             "禁止",
@@ -1671,6 +1670,7 @@
             // 
             // Cmb_FaceLEDMode
             // 
+            this.Cmb_FaceLEDMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_FaceLEDMode.FormattingEnabled = true;
             this.Cmb_FaceLEDMode.Location = new System.Drawing.Point(53, 134);
             this.Cmb_FaceLEDMode.Name = "Cmb_FaceLEDMode";
@@ -1833,6 +1833,7 @@
             // 
             // cmb_FaceBodyTemperatureShow
             // 
+            this.cmb_FaceBodyTemperatureShow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_FaceBodyTemperatureShow.FormattingEnabled = true;
             this.cmb_FaceBodyTemperatureShow.Items.AddRange(new object[] {
             "禁止显示体温",
@@ -1867,7 +1868,7 @@
             this.tpNetwork.Location = new System.Drawing.Point(4, 22);
             this.tpNetwork.Name = "tpNetwork";
             this.tpNetwork.Padding = new System.Windows.Forms.Padding(3);
-            this.tpNetwork.Size = new System.Drawing.Size(759, 547);
+            this.tpNetwork.Size = new System.Drawing.Size(765, 547);
             this.tpNetwork.TabIndex = 4;
             this.tpNetwork.Text = "客户端网络参数";
             this.tpNetwork.UseVisualStyleBackColor = true;
@@ -1998,10 +1999,11 @@
             // 
             // cmbClientNetWorkMode
             // 
+            this.cmbClientNetWorkMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbClientNetWorkMode.FormattingEnabled = true;
             this.cmbClientNetWorkMode.Location = new System.Drawing.Point(183, 69);
             this.cmbClientNetWorkMode.Name = "cmbClientNetWorkMode";
-            this.cmbClientNetWorkMode.Size = new System.Drawing.Size(107, 20);
+            this.cmbClientNetWorkMode.Size = new System.Drawing.Size(217, 20);
             this.cmbClientNetWorkMode.TabIndex = 8;
             // 
             // btnReadKeepAliveInterval
