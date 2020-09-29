@@ -993,7 +993,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            WriteManageMenuPassword_Parameter par = new WriteManageMenuPassword_Parameter(txtPassword.Text);
+            string password = txtPassword.Text;
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                password = "FFFFFFFF";
+            }
+            WriteManageMenuPassword_Parameter par = new WriteManageMenuPassword_Parameter(password);
             WriteManageMenuPassword cmd = new WriteManageMenuPassword(cmdDtl, par);
             mMainForm.AddCommand(cmd);
         }
