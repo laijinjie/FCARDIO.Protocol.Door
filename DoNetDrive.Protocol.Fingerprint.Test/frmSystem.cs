@@ -1404,7 +1404,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            var cmdPar = new Door.WriteDoorOpenCheckMode_Parameter((byte)cmbDoorAccessMode.SelectedIndex);
+            var cmdPar = new Door.WriteDoorOpenCheckMode_Parameter((byte)(cmbDoorAccessMode.SelectedIndex + 1));
             var cmd = new Door.WriteDoorOpenCheckMode(cmdDtl, cmdPar);
             mMainForm.AddCommand(cmd);
         }
