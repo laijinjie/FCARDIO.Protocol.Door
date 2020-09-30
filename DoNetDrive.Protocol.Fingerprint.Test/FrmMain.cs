@@ -1321,6 +1321,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             AddCommandClassNameList(typeof(Software.UpdateSoftware));// "上传固件 
             AddCommandClassNameList(typeof(Software.UpdateSoftware_FP));// "上传固件 
+
+            AddCommandClassNameList(typeof(Door.ReadDoorOpenCheckMode));// "读取开门验证方式 
+            AddCommandClassNameList(typeof(Door.WriteDoorOpenCheckMode));// "设置开门验证方式
         }
 
 

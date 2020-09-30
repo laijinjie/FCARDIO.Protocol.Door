@@ -233,6 +233,8 @@
     <DoNetDrive_Protocol_Fingerprint_AdditionalData_ReadFile value= "读文件 "/>
     <DoNetDrive_Protocol_Fingerprint_Software_UpdateSoftware value= "上传固件 "/>
     <DoNetDrive_Protocol_Fingerprint_Software_UpdateSoftware_FP value= "上传固件 "/>
+    <DoNetDrive_Protocol_Fingerprint_Door_ReadDoorOpenCheckMode value= "读取开门验证方式 "/>
+    <DoNetDrive_Protocol_Fingerprint_Door_WriteDoorOpenCheckMode value= "设置开门验证方式 "/>
 
   </frmMain>
   <frmSystem>
@@ -372,6 +374,9 @@
     <Lbl_ShortMessage                        value = "短消息："/>
     <But_WriteShortMessage                   value = "写入"/>
     <But_ReadShortMessage                    value = "读取"/>
+    <LblDoorAccessMode                       value = "开门验证方式："/>
+    <butReadDoorOpenCheckMode                value = "读取"/>
+    <butWriteDoorOpenCheckMode               value = "写入"/>
 
     <ClientNetWorkMode                       value = "禁用,UDP Client,TCP Client,TCP Client + TLS1.2"/>
     <FaceBodyTemperatureList                 value = "禁止,摄氏度（默认值）,华氏度"/>
@@ -381,7 +386,8 @@
     <Cmb_FaceMouthmuffle                     value = "禁用,启用"/>    
     <WGByteSortList                          value = "高位在前低位在后,低位在前高位在后"/>
     <OutputTypeList                          value = "输出用户号,输出人员卡号"/>
-    <DriveLanguageList                       value = "1--中文,2--英文,3--中文繁体"/>
+    <DriveLanguageList                       value = "1--中文,2--英文,3--中文繁体,4-法语,5-俄语,6-葡萄牙语,7-西班牙语,8-意大利语,9-日语,10-韩语,11-泰语,12-阿拉伯语"/>
+    <DoorAccessModeList                      value = "1--人脸/密码/刷卡/指纹,2--人脸/刷卡/指纹  +  密码"/>
     <Msg_1                                   value = "通讯密码 是8位十六进制字符，请重新输入！"/>
     <Msg_2                                   value = "请输入正确MAC地址！"/>
     <Msg_3                                   value = "请输入正确IP地址！"/>
@@ -453,6 +459,7 @@
     <Msg_69                                   value = "已禁用"/>
     <Msg_70                                   value = "连接状态"/>
     <Msg_71                                   value = "最近一次保活包发送时间"/>
+    <DoorAccessModeResult value = "开门验证方式："/>
     <btnReadSystemStatus value = "读取"/>
   </frmSystem>
   <frmTime>

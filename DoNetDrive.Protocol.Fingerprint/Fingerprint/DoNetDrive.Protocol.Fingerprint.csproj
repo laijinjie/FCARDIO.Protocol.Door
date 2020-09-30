@@ -188,6 +188,10 @@
     <Compile Include="AdditionalData\01WriteFeatureCode\WriteFeatureCode_Result.cs" />
     <Compile Include="CombinedCommand\ICombinedCommand.cs" />
     <Compile Include="CombinedCommand\ISubCommand.cs" />
+    <Compile Include="Door\16DoorOpenCheckMode\ReadDoorOpenCheckMode.cs" />
+    <Compile Include="Door\16DoorOpenCheckMode\ReadDoorOpenCheckMode_Result.cs" />
+    <Compile Include="Door\16DoorOpenCheckMode\WriteDoorOpenCheckMode.cs" />
+    <Compile Include="Door\16DoorOpenCheckMode\WriteDoorOpenCheckMode_Parameter.cs" />
     <Compile Include="Holiday\01ReadHolidayDetail\ReadHolidayDetail.cs" />
     <Compile Include="Holiday\01ReadHolidayDetail\ReadHolidayDetail_Result.cs" />
     <Compile Include="Holiday\02ClearHoliday\ClearHoliday.cs" />

@@ -3503,6 +3503,105 @@
             </summary>
             <param name="databuf"></param>
         </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Door.ReadDoorOpenCheckMode">
+            <summary>
+            读取开门验证方式
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.ReadDoorOpenCheckMode.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建读取开门验证方式命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.ReadDoorOpenCheckMode.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.ReadDoorOpenCheckMode.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Door.ReadDoorOpenCheckMode_Result">
+            <summary>
+            读取 开门验证方式 返回结果
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode">
+            <summary>
+            写入 开门验证方式
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode_Parameter)">
+            <summary>
+            创建 设置开门验证方式 命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查命令参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode_Parameter.CheckMode">
+            <summary>
+            验证方式
+            1-人脸/密码/刷卡/指纹 （默认值） 
+            2-人脸/刷卡/指纹  +  密码（验证人脸后需要输入密码、指纹验证后需要输入密码，没有密码时直接开门）
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode_Parameter.#ctor">
+            <summary>
+            构建一个空的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode_Parameter.#ctor(System.Byte)">
+            <summary>
+            初始化实例
+            </summary>
+            <param name="iMode">验证方式</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            对主板蜂鸣器参数进行编码
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Door.WriteDoorOpenCheckMode_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            对主板蜂鸣器参数进行解码
+            </summary>
+            <param name="databuf"></param>
+        </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.ICombinedCommand">
             <summary>
             组合命令接口

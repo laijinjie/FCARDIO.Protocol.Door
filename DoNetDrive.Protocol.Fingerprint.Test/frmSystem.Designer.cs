@@ -152,6 +152,10 @@
             this.cmbDoor = new System.Windows.Forms.ComboBox();
             this.Lbl_p2_DoorNum = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.LblDoorAccessMode = new System.Windows.Forms.Label();
+            this.cmbDoorAccessMode = new System.Windows.Forms.ComboBox();
+            this.butReadDoorOpenCheckMode = new System.Windows.Forms.Button();
+            this.butWriteDoorOpenCheckMode = new System.Windows.Forms.Button();
             this.Cmb_FaceBodyTemperature = new System.Windows.Forms.ComboBox();
             this.Lbl_Filllightmode = new System.Windows.Forms.Label();
             this.gpDeviceVolume = new System.Windows.Forms.GroupBox();
@@ -1493,6 +1497,10 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.LblDoorAccessMode);
+            this.tabPage3.Controls.Add(this.cmbDoorAccessMode);
+            this.tabPage3.Controls.Add(this.butReadDoorOpenCheckMode);
+            this.tabPage3.Controls.Add(this.butWriteDoorOpenCheckMode);
             this.tabPage3.Controls.Add(this.Cmb_FaceBodyTemperature);
             this.tabPage3.Controls.Add(this.Lbl_Filllightmode);
             this.tabPage3.Controls.Add(this.gpDeviceVolume);
@@ -1527,11 +1535,49 @@
             this.tabPage3.Text = "参数3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // LblDoorAccessMode
+            // 
+            this.LblDoorAccessMode.AutoSize = true;
+            this.LblDoorAccessMode.Location = new System.Drawing.Point(51, 427);
+            this.LblDoorAccessMode.Name = "LblDoorAccessMode";
+            this.LblDoorAccessMode.Size = new System.Drawing.Size(89, 12);
+            this.LblDoorAccessMode.TabIndex = 7;
+            this.LblDoorAccessMode.Text = "开门验证方式：";
+            // 
+            // cmbDoorAccessMode
+            // 
+            this.cmbDoorAccessMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDoorAccessMode.FormattingEnabled = true;
+            this.cmbDoorAccessMode.Location = new System.Drawing.Point(53, 447);
+            this.cmbDoorAccessMode.Name = "cmbDoorAccessMode";
+            this.cmbDoorAccessMode.Size = new System.Drawing.Size(270, 20);
+            this.cmbDoorAccessMode.TabIndex = 10;
+            // 
+            // butReadDoorOpenCheckMode
+            // 
+            this.butReadDoorOpenCheckMode.Location = new System.Drawing.Point(438, 444);
+            this.butReadDoorOpenCheckMode.Name = "butReadDoorOpenCheckMode";
+            this.butReadDoorOpenCheckMode.Size = new System.Drawing.Size(75, 23);
+            this.butReadDoorOpenCheckMode.TabIndex = 8;
+            this.butReadDoorOpenCheckMode.Text = "读取";
+            this.butReadDoorOpenCheckMode.UseVisualStyleBackColor = true;
+            this.butReadDoorOpenCheckMode.Click += new System.EventHandler(this.butReadDoorOpenCheckMode_Click);
+            // 
+            // butWriteDoorOpenCheckMode
+            // 
+            this.butWriteDoorOpenCheckMode.Location = new System.Drawing.Point(347, 444);
+            this.butWriteDoorOpenCheckMode.Name = "butWriteDoorOpenCheckMode";
+            this.butWriteDoorOpenCheckMode.Size = new System.Drawing.Size(75, 23);
+            this.butWriteDoorOpenCheckMode.TabIndex = 9;
+            this.butWriteDoorOpenCheckMode.Text = "写入";
+            this.butWriteDoorOpenCheckMode.UseVisualStyleBackColor = true;
+            this.butWriteDoorOpenCheckMode.Click += new System.EventHandler(this.butWriteDoorOpenCheckMode_Click);
+            // 
             // Cmb_FaceBodyTemperature
             // 
             this.Cmb_FaceBodyTemperature.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_FaceBodyTemperature.FormattingEnabled = true;
-            this.Cmb_FaceBodyTemperature.Location = new System.Drawing.Point(53, 246);
+            this.Cmb_FaceBodyTemperature.Location = new System.Drawing.Point(53, 224);
             this.Cmb_FaceBodyTemperature.Name = "Cmb_FaceBodyTemperature";
             this.Cmb_FaceBodyTemperature.Size = new System.Drawing.Size(270, 20);
             this.Cmb_FaceBodyTemperature.TabIndex = 5;
@@ -1539,7 +1585,7 @@
             // Lbl_Filllightmode
             // 
             this.Lbl_Filllightmode.AutoSize = true;
-            this.Lbl_Filllightmode.Location = new System.Drawing.Point(51, 110);
+            this.Lbl_Filllightmode.Location = new System.Drawing.Point(51, 88);
             this.Lbl_Filllightmode.Name = "Lbl_Filllightmode";
             this.Lbl_Filllightmode.Size = new System.Drawing.Size(77, 12);
             this.Lbl_Filllightmode.TabIndex = 0;
@@ -1603,7 +1649,7 @@
             this.Cmb_FaceMouthmuffle.Items.AddRange(new object[] {
             "禁止",
             "启用"});
-            this.Cmb_FaceMouthmuffle.Location = new System.Drawing.Point(53, 190);
+            this.Cmb_FaceMouthmuffle.Location = new System.Drawing.Point(53, 168);
             this.Cmb_FaceMouthmuffle.Name = "Cmb_FaceMouthmuffle";
             this.Cmb_FaceMouthmuffle.Size = new System.Drawing.Size(270, 20);
             this.Cmb_FaceMouthmuffle.TabIndex = 5;
@@ -1662,7 +1708,7 @@
             // Lbl_MaskRecognitionSwitch
             // 
             this.Lbl_MaskRecognitionSwitch.AutoSize = true;
-            this.Lbl_MaskRecognitionSwitch.Location = new System.Drawing.Point(51, 166);
+            this.Lbl_MaskRecognitionSwitch.Location = new System.Drawing.Point(51, 144);
             this.Lbl_MaskRecognitionSwitch.Name = "Lbl_MaskRecognitionSwitch";
             this.Lbl_MaskRecognitionSwitch.Size = new System.Drawing.Size(89, 12);
             this.Lbl_MaskRecognitionSwitch.TabIndex = 0;
@@ -1672,14 +1718,14 @@
             // 
             this.Cmb_FaceLEDMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_FaceLEDMode.FormattingEnabled = true;
-            this.Cmb_FaceLEDMode.Location = new System.Drawing.Point(53, 134);
+            this.Cmb_FaceLEDMode.Location = new System.Drawing.Point(53, 112);
             this.Cmb_FaceLEDMode.Name = "Cmb_FaceLEDMode";
             this.Cmb_FaceLEDMode.Size = new System.Drawing.Size(270, 20);
             this.Cmb_FaceLEDMode.TabIndex = 5;
             // 
             // But_WriteFaceMouthmufflePar
             // 
-            this.But_WriteFaceMouthmufflePar.Location = new System.Drawing.Point(347, 187);
+            this.But_WriteFaceMouthmufflePar.Location = new System.Drawing.Point(347, 165);
             this.But_WriteFaceMouthmufflePar.Name = "But_WriteFaceMouthmufflePar";
             this.But_WriteFaceMouthmufflePar.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceMouthmufflePar.TabIndex = 4;
@@ -1690,7 +1736,7 @@
             // Lbl_TemperatureExaminationAndFormat
             // 
             this.Lbl_TemperatureExaminationAndFormat.AutoSize = true;
-            this.Lbl_TemperatureExaminationAndFormat.Location = new System.Drawing.Point(51, 222);
+            this.Lbl_TemperatureExaminationAndFormat.Location = new System.Drawing.Point(51, 200);
             this.Lbl_TemperatureExaminationAndFormat.Name = "Lbl_TemperatureExaminationAndFormat";
             this.Lbl_TemperatureExaminationAndFormat.Size = new System.Drawing.Size(101, 12);
             this.Lbl_TemperatureExaminationAndFormat.TabIndex = 0;
@@ -1698,7 +1744,7 @@
             // 
             // But_ReadFaceMouthmufflePar
             // 
-            this.But_ReadFaceMouthmufflePar.Location = new System.Drawing.Point(438, 187);
+            this.But_ReadFaceMouthmufflePar.Location = new System.Drawing.Point(438, 165);
             this.But_ReadFaceMouthmufflePar.Name = "But_ReadFaceMouthmufflePar";
             this.But_ReadFaceMouthmufflePar.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceMouthmufflePar.TabIndex = 4;
@@ -1708,7 +1754,7 @@
             // 
             // But_ReadShortMessage
             // 
-            this.But_ReadShortMessage.Location = new System.Drawing.Point(438, 413);
+            this.But_ReadShortMessage.Location = new System.Drawing.Point(438, 391);
             this.But_ReadShortMessage.Name = "But_ReadShortMessage";
             this.But_ReadShortMessage.Size = new System.Drawing.Size(75, 23);
             this.But_ReadShortMessage.TabIndex = 4;
@@ -1718,7 +1764,7 @@
             // 
             // But_ReadFaceLEDMode
             // 
-            this.But_ReadFaceLEDMode.Location = new System.Drawing.Point(438, 131);
+            this.But_ReadFaceLEDMode.Location = new System.Drawing.Point(438, 109);
             this.But_ReadFaceLEDMode.Name = "But_ReadFaceLEDMode";
             this.But_ReadFaceLEDMode.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceLEDMode.TabIndex = 4;
@@ -1729,7 +1775,7 @@
             // Lbl_TemperatureAlarmThreshold
             // 
             this.Lbl_TemperatureAlarmThreshold.AutoSize = true;
-            this.Lbl_TemperatureAlarmThreshold.Location = new System.Drawing.Point(51, 278);
+            this.Lbl_TemperatureAlarmThreshold.Location = new System.Drawing.Point(51, 256);
             this.Lbl_TemperatureAlarmThreshold.Name = "Lbl_TemperatureAlarmThreshold";
             this.Lbl_TemperatureAlarmThreshold.Size = new System.Drawing.Size(89, 12);
             this.Lbl_TemperatureAlarmThreshold.TabIndex = 0;
@@ -1737,7 +1783,7 @@
             // 
             // But_WriteFaceBodyTemperature
             // 
-            this.But_WriteFaceBodyTemperature.Location = new System.Drawing.Point(347, 243);
+            this.But_WriteFaceBodyTemperature.Location = new System.Drawing.Point(347, 221);
             this.But_WriteFaceBodyTemperature.Name = "But_WriteFaceBodyTemperature";
             this.But_WriteFaceBodyTemperature.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceBodyTemperature.TabIndex = 4;
@@ -1747,7 +1793,7 @@
             // 
             // But_WriteShortMessage
             // 
-            this.But_WriteShortMessage.Location = new System.Drawing.Point(347, 413);
+            this.But_WriteShortMessage.Location = new System.Drawing.Point(347, 391);
             this.But_WriteShortMessage.Name = "But_WriteShortMessage";
             this.But_WriteShortMessage.Size = new System.Drawing.Size(75, 23);
             this.But_WriteShortMessage.TabIndex = 4;
@@ -1757,7 +1803,7 @@
             // 
             // But_WriteFaceLEDMode
             // 
-            this.But_WriteFaceLEDMode.Location = new System.Drawing.Point(347, 131);
+            this.But_WriteFaceLEDMode.Location = new System.Drawing.Point(347, 109);
             this.But_WriteFaceLEDMode.Name = "But_WriteFaceLEDMode";
             this.But_WriteFaceLEDMode.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceLEDMode.TabIndex = 4;
@@ -1767,7 +1813,7 @@
             // 
             // Txt_BodyTemperatureAlarm
             // 
-            this.Txt_BodyTemperatureAlarm.Location = new System.Drawing.Point(53, 302);
+            this.Txt_BodyTemperatureAlarm.Location = new System.Drawing.Point(53, 280);
             this.Txt_BodyTemperatureAlarm.Name = "Txt_BodyTemperatureAlarm";
             this.Txt_BodyTemperatureAlarm.Size = new System.Drawing.Size(270, 21);
             this.Txt_BodyTemperatureAlarm.TabIndex = 1;
@@ -1775,7 +1821,7 @@
             // 
             // But_ReadFaceBodyTemperature
             // 
-            this.But_ReadFaceBodyTemperature.Location = new System.Drawing.Point(438, 243);
+            this.But_ReadFaceBodyTemperature.Location = new System.Drawing.Point(438, 221);
             this.But_ReadFaceBodyTemperature.Name = "But_ReadFaceBodyTemperature";
             this.But_ReadFaceBodyTemperature.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceBodyTemperature.TabIndex = 4;
@@ -1785,7 +1831,7 @@
             // 
             // But_ReadFaceBodyTemperatureShow
             // 
-            this.But_ReadFaceBodyTemperatureShow.Location = new System.Drawing.Point(438, 356);
+            this.But_ReadFaceBodyTemperatureShow.Location = new System.Drawing.Point(438, 334);
             this.But_ReadFaceBodyTemperatureShow.Name = "But_ReadFaceBodyTemperatureShow";
             this.But_ReadFaceBodyTemperatureShow.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceBodyTemperatureShow.TabIndex = 4;
@@ -1796,7 +1842,7 @@
             // Lbl_TemperatureIndicatorSwitch
             // 
             this.Lbl_TemperatureIndicatorSwitch.AutoSize = true;
-            this.Lbl_TemperatureIndicatorSwitch.Location = new System.Drawing.Point(51, 335);
+            this.Lbl_TemperatureIndicatorSwitch.Location = new System.Drawing.Point(51, 313);
             this.Lbl_TemperatureIndicatorSwitch.Name = "Lbl_TemperatureIndicatorSwitch";
             this.Lbl_TemperatureIndicatorSwitch.Size = new System.Drawing.Size(113, 12);
             this.Lbl_TemperatureIndicatorSwitch.TabIndex = 3;
@@ -1805,7 +1851,7 @@
             // Lbl_ShortMessage
             // 
             this.Lbl_ShortMessage.AutoSize = true;
-            this.Lbl_ShortMessage.Location = new System.Drawing.Point(51, 391);
+            this.Lbl_ShortMessage.Location = new System.Drawing.Point(51, 369);
             this.Lbl_ShortMessage.Name = "Lbl_ShortMessage";
             this.Lbl_ShortMessage.Size = new System.Drawing.Size(53, 12);
             this.Lbl_ShortMessage.TabIndex = 0;
@@ -1813,7 +1859,7 @@
             // 
             // But_WriteFaceBodyTemperatureAlarm
             // 
-            this.But_WriteFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(347, 300);
+            this.But_WriteFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(347, 278);
             this.But_WriteFaceBodyTemperatureAlarm.Name = "But_WriteFaceBodyTemperatureAlarm";
             this.But_WriteFaceBodyTemperatureAlarm.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceBodyTemperatureAlarm.TabIndex = 4;
@@ -1823,7 +1869,7 @@
             // 
             // But_WriteFaceBodyTemperatureShow
             // 
-            this.But_WriteFaceBodyTemperatureShow.Location = new System.Drawing.Point(347, 356);
+            this.But_WriteFaceBodyTemperatureShow.Location = new System.Drawing.Point(347, 334);
             this.But_WriteFaceBodyTemperatureShow.Name = "But_WriteFaceBodyTemperatureShow";
             this.But_WriteFaceBodyTemperatureShow.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceBodyTemperatureShow.TabIndex = 4;
@@ -1838,14 +1884,14 @@
             this.cmb_FaceBodyTemperatureShow.Items.AddRange(new object[] {
             "禁止显示体温",
             "显示体温信息"});
-            this.cmb_FaceBodyTemperatureShow.Location = new System.Drawing.Point(53, 359);
+            this.cmb_FaceBodyTemperatureShow.Location = new System.Drawing.Point(53, 337);
             this.cmb_FaceBodyTemperatureShow.Name = "cmb_FaceBodyTemperatureShow";
             this.cmb_FaceBodyTemperatureShow.Size = new System.Drawing.Size(270, 20);
             this.cmb_FaceBodyTemperatureShow.TabIndex = 2;
             // 
             // Txt_ShortMessage
             // 
-            this.Txt_ShortMessage.Location = new System.Drawing.Point(53, 415);
+            this.Txt_ShortMessage.Location = new System.Drawing.Point(53, 393);
             this.Txt_ShortMessage.Name = "Txt_ShortMessage";
             this.Txt_ShortMessage.Size = new System.Drawing.Size(270, 21);
             this.Txt_ShortMessage.TabIndex = 1;
@@ -1853,7 +1899,7 @@
             // 
             // But_ReadFaceBodyTemperatureAlarm
             // 
-            this.But_ReadFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(438, 300);
+            this.But_ReadFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(438, 278);
             this.But_ReadFaceBodyTemperatureAlarm.Name = "But_ReadFaceBodyTemperatureAlarm";
             this.But_ReadFaceBodyTemperatureAlarm.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceBodyTemperatureAlarm.TabIndex = 4;
@@ -2385,5 +2431,9 @@
         private System.Windows.Forms.TextBox txtServerStatus;
         private System.Windows.Forms.Button butReadClientStatus_Result;
         private System.Windows.Forms.Button butRequireConnectServer;
+        private System.Windows.Forms.Label LblDoorAccessMode;
+        private System.Windows.Forms.ComboBox cmbDoorAccessMode;
+        private System.Windows.Forms.Button butReadDoorOpenCheckMode;
+        private System.Windows.Forms.Button butWriteDoorOpenCheckMode;
     }
 }

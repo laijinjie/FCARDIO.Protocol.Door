@@ -25,7 +25,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         {
             foreach (var person in personList)
             {
-                if (person.UserCode == 0 || person.UserCode > int.MaxValue) return false;
+                if (person.UserCode == 0 || person.UserCode > uint.MaxValue) return false;
             }
 
             return true;

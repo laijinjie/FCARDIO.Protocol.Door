@@ -231,6 +231,8 @@
     <DoNetDrive_Protocol_Fingerprint_AdditionalData_ReadFile value= "Read file "/>
     <DoNetDrive_Protocol_Fingerprint_Software_UpdateSoftware value= "Upload firmware "/>
     <DoNetDrive_Protocol_Fingerprint_Software_UpdateSoftware_FP value= "Upload firmware "/>
+    <DoNetDrive_Protocol_Fingerprint_Door_ReadDoorOpenCheckMode value= "Read Door Access Mode"/>
+    <DoNetDrive_Protocol_Fingerprint_Door_WriteDoorOpenCheckMode value= "Write Door Access Mode"/>
   </frmMain>
   <frmSystem>
     <FormCaption value="Drive System Setting"/>
@@ -369,6 +371,9 @@
     <Lbl_ShortMessage                        value = "Short Message:"/>
     <But_WriteShortMessage                   value = "Write"/>
     <But_ReadShortMessage                    value = "Read"/>
+    <LblDoorAccessMode                       value = "Door Access Mode:"/>
+    <butReadDoorOpenCheckMode                value = "Read"/>
+    <butWriteDoorOpenCheckMode               value = "Write"/>
 
     <ClientNetWorkMode                       value = "Disable,UDP Client,TCP Client,TCP Client + TLS1.2"/>
     <FaceBodyTemperatureList                 value = "Disable,Celsius(default),Fahrenheit"/>
@@ -378,7 +383,8 @@
     <Cmb_FaceMouthmuffle                     value = "Disable,Enable"/>
     <WGByteSortList                          value = "big-endian,little-endian"/>
     <OutputTypeList                          value = "Output user ID ,Output card number"/>
-    <DriveLanguageList                       value = "1--Chinese,2--English,3--Traditional Chinese"/>
+    <DriveLanguageList                       value = "1--Chinese,2--English,3--Traditional Chinese,4-French,5-Russian,6-Portuguese,7-Spanish,8-Italian,9-Japanese,10-Korean,11-Thai,12-Arabic"/>
+    <DoorAccessModeList                      value = "1--Face/PIN/Card/FP,2--Face/Card/FP + PIN"/>
     <Msg_1                                   value = "Communication password is 8-bit hexadecimal character, please enter again!. Please re-enter."/>
     <Msg_2                                   value = "Please enter correct MAC address."/>
     <Msg_3                                   value = "Please enter correct IP address."/>
@@ -450,6 +456,7 @@
     <Msg_69                                   value = "Disabled"/>
     <Msg_70                                   value = "Connection Status"/>
     <Msg_71                                   value = "The latest keep-alive package sending time"/>
+    <DoorAccessModeResult value = "Door access mode:"/>
     <btnReadSystemStatus value = "Read"/>
   </frmSystem>
   <frmTime>

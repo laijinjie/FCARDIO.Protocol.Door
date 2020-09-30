@@ -65,46 +65,46 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             base.LoadUILanguage();
             GetLanguage(tpPar1);//  设备参数设置
             GetLanguage(gpSN);//  SN
-            GetLanguage(LblDriveSN);//  SN：
+            GetLanguage(LblDriveSN);//  SN:
             GetLanguage(butReadSN);//  读取
             GetLanguage(butWriteSN);//  写入
             GetLanguage(butWriteSN_Broadcast);//  广播写
             GetLanguage(gbPassword);//  通讯密码
-            GetLanguage(LblConnectPassword);//  密码：
+            GetLanguage(LblConnectPassword);//  密码:
             GetLanguage(butReadConnectPassword);//  读取
             GetLanguage(butWriteConnectPassword);//  写入
             GetLanguage(butResetConnectPassword);//  重置
             GetLanguage(btnReadSystemStatus);//  读取
             GetLanguage(gbVersion);//  版本号
-            GetLanguage(LblVersion);//  硬件版本号：
+            GetLanguage(LblVersion);//  硬件版本号:
             GetLanguage(btnReadVersion);//  读取
             GetLanguage(gbTCP);//  TCP/IP 连接参数
-            GetLanguage(lblMAC);//  MAC地址：
-            GetLanguage(LblIP);//  IP地址：
-            GetLanguage(LblIPMask);//  子网掩码：
-            GetLanguage(LblIPGateway);//  网关IP：
-            GetLanguage(LblDNS);//  DNS：
-            GetLanguage(LblDNSBackup);//  备用DNS：
-            GetLanguage(lblAutoIP);//  自动获得IP：
-            GetLanguage(LblUDPPort);//  本地UDP端口：
-            GetLanguage(LblServerPort);//  服务器端口：
-            GetLanguage(LblServerIP);//  服务器IP：
-            GetLanguage(LblServerAddr);//  服务器域名：
+            GetLanguage(lblMAC);//  MAC地址:
+            GetLanguage(LblIP);//  IP地址:
+            GetLanguage(LblIPMask);//  子网掩码:
+            GetLanguage(LblIPGateway);//  网关IP:
+            GetLanguage(LblDNS);//  DNS:
+            GetLanguage(LblDNSBackup);//  备用DNS:
+            GetLanguage(lblAutoIP);//  自动获得IP:
+            GetLanguage(LblUDPPort);//  本地UDP端口:
+            GetLanguage(LblServerPort);//  服务器端口:
+            GetLanguage(LblServerIP);//  服务器IP:
+            GetLanguage(LblServerAddr);//  服务器域名:
             GetLanguage(butRendTCPSetting);//  读取
             GetLanguage(butWriteTCPSetting);//  写入
             GetLanguage(gbRunStatus);//  设备运行信息
-            GetLanguage(lblRunDay);//  设备已运行天数：
-            GetLanguage(LblRestartCount);//  看门狗复位次数：
-            GetLanguage(lblFormatCount);//  格式化次数：
-            GetLanguage(LblStartTime);//  上电时间：
+            GetLanguage(lblRunDay);//  设备已运行天数:
+            GetLanguage(LblRestartCount);//  看门狗复位次数:
+            GetLanguage(lblFormatCount);//  格式化次数:
+            GetLanguage(LblStartTime);//  上电时间:
             GetLanguage(gbRecordMode);//  记录存储方式
-            GetLanguage(lblRecordMode);//  记录满盘后：
+            GetLanguage(lblRecordMode);//  记录满盘后:
             GetLanguage(rBtnCover);//  循环覆盖存储
             GetLanguage(rBtnNoCover);//  不再保存新纪录
             GetLanguage(btnReadRecordMode);//  读取
             GetLanguage(btnWriteRecordMode);//  写入
             GetLanguage(gbWatch);//  数据监控
-            GetLanguage(lbWatchStateTag);//  监控状态：
+            GetLanguage(lbWatchStateTag);//  监控状态:
             GetLanguage(lbWatchState);//  未开启
             GetLanguage(btnBeginWatch);//  实时监控开
             GetLanguage(btnCloseWatch);//  实时监控关
@@ -180,12 +180,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             GetLanguage(Lbl_ShortMessage);//                          短消息
             GetLanguage(But_WriteShortMessage);//                     写入
             GetLanguage(But_ReadShortMessage);//                      读取
+            GetLanguage(LblDoorAccessMode);//开门验证方式
+            GetLanguage(butReadDoorOpenCheckMode);//读取
+            GetLanguage(butWriteDoorOpenCheckMode);// 写入                     
+
 
             GetLanguage(tpNetwork);//客户端网络参数
             GetLanguage(gbServerDetail);//服务器参数
-            GetLanguage(lblServerPort_1);//服务器端口号：
-            GetLanguage(lblServerIP_1);//服务器IP：
-            GetLanguage(LblServerDomain);//服务器域名：
+            GetLanguage(lblServerPort_1);//服务器端口号:
+            GetLanguage(lblServerIP_1);//服务器IP:
+            GetLanguage(LblServerDomain);//服务器域名:
             GetLanguage(butReadNetworkServerDetail);//读取
             GetLanguage(butWriteNetworkServerDetail);//写入
             GetLanguage(gbClientDetail);//客户端参数
@@ -198,8 +202,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             GetLanguage(butWriteClientWorkMode);//写入
             GetLanguage(butRequireConnectServer);//立即重连服务器
             GetLanguage(butReadClientStatus_Result);//获取状态
-            GetLanguage(LblClientNetWorkMode);//客户端网络模式：
-            GetLanguage(LblServerStatus);//客户端网络状态：
+            GetLanguage(LblClientNetWorkMode);//客户端网络模式:
+            GetLanguage(LblServerStatus);//客户端网络状态:
             LoadComboxItemsLanguage(cmbInOut, "cmbInOut");//;
             cmbDoor.Items.Clear();
             cmbDoor.Items.AddRange(DoorList);
@@ -212,6 +216,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbWGOutput.Items.Clear();
             cmbWGByteSort.Items.Clear();
             cmbOutputType.Items.Clear();
+            cmbDoorAccessMode.Items.Clear();
 
             var ReadCardByteList = GetLanguage("ReadCardByteList").Split(',');
             cmbReadCardByte.Items.AddRange(ReadCardByteList);
@@ -225,7 +230,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cbxAutoIP.Items.AddRange(IsUseList);
             cbxAutoIP.SelectedIndex = 0;
 
-            var faceIsUseList= GetLanguage("Cmb_FaceMouthmuffle").Split(','); 
+            var faceIsUseList = GetLanguage("Cmb_FaceMouthmuffle").Split(',');
             Cmb_FaceMouthmuffle.Items.AddRange(faceIsUseList);
             Cmb_FaceMouthmuffle.SelectedIndex = 0;
 
@@ -239,6 +244,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var OutputTypeList = GetLanguage("OutputTypeList").Split(',');
             cmbOutputType.Items.AddRange(OutputTypeList);
             cmbOutputType.SelectedIndex = 0;
+
+            var sDoorAccessModeList = GetLanguage("DoorAccessModeList").Split(',');
+            cmbDoorAccessMode.Items.AddRange(sDoorAccessModeList);
+            cmbDoorAccessMode.SelectedIndex = 0;
 
             string[] ComparisonThresholdList = new string[100];
             for (int i = 1; i <= 100; i++)
@@ -494,18 +503,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             //newtcp.SetBytes(buf);
 
             //string TCPInfo = "MAC地址:" + newtcp.mMAC +
-            //                    "  IP：" + newtcp.mIP +
-            //                    "  子网掩码：" + newtcp.mIPMask +
-            //                    "  网关地址：" + newtcp.mIPGateway +
-            //                    "  DNS：" + newtcp.mDNS +
-            //                    "  备用DNS：" + newtcp.mDNSBackup +
-            //                    "  本地TCP端口：" + newtcp.mTCPPort +
-            //                    "  本地UDP端口：" + newtcp.mUDPPort +
-            //                    "  服务器IP：" + newtcp.mServerIP +
-            //                    "  服务器域名：" + newtcp.mServerAddr +
-            //                    "  TCP工作模式：" + newtcp.mProtocolType +
-            //                    "  自动获得IP：" + newtcp.mAutoIP +
-            //                    "  服务器端口：" + newtcp.mServerPort;
+            //                    "  IP:" + newtcp.mIP +
+            //                    "  子网掩码:" + newtcp.mIPMask +
+            //                    "  网关地址:" + newtcp.mIPGateway +
+            //                    "  DNS:" + newtcp.mDNS +
+            //                    "  备用DNS:" + newtcp.mDNSBackup +
+            //                    "  本地TCP端口:" + newtcp.mTCPPort +
+            //                    "  本地UDP端口:" + newtcp.mUDPPort +
+            //                    "  服务器IP:" + newtcp.mServerIP +
+            //                    "  服务器域名:" + newtcp.mServerAddr +
+            //                    "  TCP工作模式:" + newtcp.mProtocolType +
+            //                    "  自动获得IP:" + newtcp.mAutoIP +
+            //                    "  服务器端口:" + newtcp.mServerPort;
             //mMainForm.AddCmdLog(null, TCPInfo);
 
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -539,10 +548,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 });
                 var line = System.Environment.NewLine;
-                string TCPInfo = GetLanguage("Msg_15") + ":" + RunDay + line+
-                                 GetLanguage("Msg_16") + "：" + FormatCount + line+
-                                 GetLanguage("Msg_17") + "：" + RestartCount + line+
-                                 GetLanguage("Msg_18") + "：" + StartTime;
+                string TCPInfo = GetLanguage("Msg_15") + ":" + RunDay + line +
+                                 GetLanguage("Msg_16") + ":" + FormatCount + line +
+                                 GetLanguage("Msg_17") + ":" + RestartCount + line +
+                                 GetLanguage("Msg_18") + ":" + StartTime;
                 mMainForm.AddCmdLog(cmde, TCPInfo);
             };
         }
@@ -566,17 +575,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             bool AutoIP = tcp.mAutoIP; //是否自动获得IP
             var line = System.Environment.NewLine;
             //GetLanguage("Msg_18")
-            string TCPInfo = GetLanguage("Msg_19") + "：" + MAC + line +
-                             "IP：" + IP + line+
-                             GetLanguage("Msg_20") + "：" + IPMask + line +
-                             GetLanguage("Msg_21") + "：" + IPGateway + line +
-                             "DNS：" + DNS + line+
-                             GetLanguage("Msg_22") + "：" + DNSBackup + line +
-                             GetLanguage("Msg_23") + "：" + TCPPort + line +
-                             GetLanguage("Msg_24") + "：" + UDPPort + line +
-                             GetLanguage("Msg_25") + "：" + ServerIP + line +
-                             GetLanguage("Msg_26") + "：" + ServerAddr + line +
-                             GetLanguage("Msg_27") + "：" + ServerPort;
+            string TCPInfo = GetLanguage("Msg_19") + ":" + MAC + line +
+                             "IP:" + IP + line +
+                             GetLanguage("Msg_20") + ":" + IPMask + line +
+                             GetLanguage("Msg_21") + ":" + IPGateway + line +
+                             "DNS:" + DNS + line +
+                             GetLanguage("Msg_22") + ":" + DNSBackup + line +
+                             GetLanguage("Msg_23") + ":" + TCPPort + line +
+                             GetLanguage("Msg_24") + ":" + UDPPort + line +
+                             GetLanguage("Msg_25") + ":" + ServerIP + line +
+                             GetLanguage("Msg_26") + ":" + ServerAddr + line +
+                             GetLanguage("Msg_27") + ":" + ServerPort;
             return TCPInfo;
         }
 
@@ -638,7 +647,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 {
                     txtVersion.Text = "Ver " + version;
                 });
-                version = GetLanguage("Msg_29") + "：" + version;
+                version = GetLanguage("Msg_29") + ":" + version;
                 mMainForm.AddCmdLog(cmde, version);
             };
         }
@@ -666,7 +675,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         rBtnNoCover.Checked = true;
                     }
                 });
-                ModeStr = GetLanguage("Msg_32") + "：" + ModeStr;
+                ModeStr = GetLanguage("Msg_32") + ":" + ModeStr;
                 mMainForm.AddCmdLog(cmde, ModeStr);
             };
         }
@@ -731,7 +740,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         lbWatchState.ForeColor = Color.Red;
                     }
                 });
-                WatchStateStr = GetLanguage("Msg_37") + "：" + WatchStateStr;
+                WatchStateStr = GetLanguage("Msg_37") + ":" + WatchStateStr;
                 mMainForm.AddCmdLog(cmde, WatchStateStr);
             };
         }
@@ -821,15 +830,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 ReadLocalIdentity_Result result = cmde.Command.getResult() as ReadLocalIdentity_Result;
 
-                string Info = string.Format(GetLanguage("Msg_42"), DoorList[result.Door-1]);
+                string Info = string.Format(GetLanguage("Msg_42"), DoorList[result.Door - 1]);
 
-                Info += result.InOut == 0 ? GetLanguage("Msg_44") + "，" : GetLanguage("Msg_45") + "，" + GetLanguage("Msg_43") + "：" + result.LocalName;
+                Info += result.InOut == 0 ? GetLanguage("Msg_44") + "，" : GetLanguage("Msg_45") + "，" + GetLanguage("Msg_43") + ":" + result.LocalName;
 
                 Invoke(() =>
                 {
                     txtLocalName.Text = result.LocalName;
-                    cmbDoor.SelectedItem = result.Door-1;
-                    cmbInOut.SelectedIndex = result.InOut ;
+                    cmbDoor.SelectedItem = result.Door - 1;
+                    cmbInOut.SelectedIndex = result.InOut;
                 });
                 mMainForm.AddCmdLog(cmde, Info);
             };
@@ -866,9 +875,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 ReadWiegandOutput_Result result = cmde.Command.getResult() as ReadWiegandOutput_Result;
 
-                //string Info = $"本机身份：门号【{DoorList[result.Door]}】，";
+                //string Info = $"本机身份:门号【{DoorList[result.Door]}】，";
 
-                //Info += result.InOut == 0 ? "进，" : "出，" + "本机身份：" + result.LocalName;
+                //Info += result.InOut == 0 ? "进，" : "出，" + "本机身份:" + result.LocalName;
 
                 Invoke(() =>
                 {
@@ -877,7 +886,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     cmbWGByteSort.SelectedIndex = result.WGByteSort - 1;
                     cmbOutputType.SelectedIndex = result.OutputType - 1;
                 });
-              //  mMainForm.AddCmdLog(cmde, "");
+                //  mMainForm.AddCmdLog(cmde, "");
             };
 
         }
@@ -894,9 +903,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 ReadComparisonThreshold_Result result = cmde.Command.getResult() as ReadComparisonThreshold_Result;
 
-                //string Info = $"本机身份：门号【{DoorList[result.Door]}】，";
+                //string Info = $"本机身份:门号【{DoorList[result.Door]}】，";
 
-                //Info += result.InOut == 0 ? "进，" : "出，" + "本机身份：" + result.LocalName;
+                //Info += result.InOut == 0 ? "进，" : "出，" + "本机身份:" + result.LocalName;
 
                 Invoke(() =>
                 {
@@ -904,7 +913,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     cmbFingerprint.SelectedItem = result.FingerprintComparisonThreshold.ToString();
 
                 });
-               // mMainForm.AddCmdLog(cmde, "");
+                // mMainForm.AddCmdLog(cmde, "");
             };
         }
 
@@ -929,9 +938,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 ReadScreenDisplayContent_Result result = cmde.Command.getResult() as ReadScreenDisplayContent_Result;
 
-                //string Info = $"本机身份：门号【{DoorList[result.Door]}】，";
+                //string Info = $"本机身份:门号【{DoorList[result.Door]}】，";
 
-                //Info += result.InOut == 0 ? "进，" : "出，" + "本机身份：" + result.LocalName;
+                //Info += result.InOut == 0 ? "进，" : "出，" + "本机身份:" + result.LocalName;
 
                 Invoke(() =>
                 {
@@ -945,7 +954,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     cbDisplay8.Checked = result.DisplayList[7] == 1;
                     cbDisplay9.Checked = result.DisplayList[8] == 1;
                 });
-               // mMainForm.AddCmdLog(cmde, "");
+                // mMainForm.AddCmdLog(cmde, "");
             };
         }
 
@@ -985,7 +994,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 {
                     txtPassword.Text = result.Password;
                 });
-               // mMainForm.AddCmdLog(cmde, "");
+                // mMainForm.AddCmdLog(cmde, "");
             };
         }
 
@@ -1023,7 +1032,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     dtpDate.Value = result.Detail.DeliveryDate;
                     dtpTime.Value = result.Detail.DeliveryDate;
                 });
-              //  mMainForm.AddCmdLog(cmde, "");
+                //  mMainForm.AddCmdLog(cmde, "");
             };
         }
 
@@ -1067,14 +1076,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 Invoke(() =>
                 {
-                    if (result.Language < 3)
+                    if (result.Language < 13)
                     {
                         cmbLanguage.SelectedIndex = result.Language - 1;
-                        mMainForm.AddCmdLog(cmde, GetLanguage("Msg_46") + $"：{cmbLanguage.Text}");
+                        mMainForm.AddCmdLog(cmde, GetLanguage("Msg_46") + $":{cmbLanguage.Text}");
                     }
                     else
                     {
-                        mMainForm.AddCmdLog(cmde, GetLanguage("Msg_46") + $"：{result.Language}");
+                        mMainForm.AddCmdLog(cmde, GetLanguage("Msg_46") + $":{result.Language}");
                     }
 
                 });
@@ -1124,11 +1133,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     if (result.Volume <= 10)
                     {
                         cmbDriveVolume.SelectedIndex = result.Volume;
-                        mMainForm.AddCmdLog(cmde, GetLanguage("Msg_48") + $"：{cmbDriveVolume.Text}");
+                        mMainForm.AddCmdLog(cmde, GetLanguage("Msg_48") + $":{cmbDriveVolume.Text}");
                     }
                     else
                     {
-                        mMainForm.AddCmdLog(cmde, GetLanguage("Msg_46") + $"：{result.Volume}");
+                        mMainForm.AddCmdLog(cmde, GetLanguage("Msg_46") + $":{result.Volume}");
                     }
 
                 });
@@ -1374,7 +1383,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
 
                 var result = cmde.Command.getResult() as ReadShortMessage_Result;
-                mMainForm.AddCmdLog(cmde,GetLanguage("Msg_51") + $"：{ result.Message}");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_51") + $":{ result.Message}");
                 Invoke(() =>
                 {
                     Txt_ShortMessage.Text = result.Message;
@@ -1384,6 +1393,53 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             };
         }
         #endregion
+
+        #region 开门验证方式
+        /// <summary>
+        /// 写入开门验证方式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butWriteDoorOpenCheckMode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmdPar = new Door.WriteDoorOpenCheckMode_Parameter((byte)cmbDoorAccessMode.SelectedIndex);
+            var cmd = new Door.WriteDoorOpenCheckMode(cmdDtl, cmdPar);
+            mMainForm.AddCommand(cmd);
+        }
+        /// <summary>
+        /// 读取开门验证方式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butReadDoorOpenCheckMode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new Door.ReadDoorOpenCheckMode(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                var result = cmde.Command.getResult() as Door.ReadDoorOpenCheckMode_Result;
+                Invoke(() =>
+                {
+                    if (result.CheckMode < 3)
+                    {
+                        cmbDoorAccessMode.SelectedIndex = result.CheckMode - 1;
+                        mMainForm.AddCmdLog(cmde, GetLanguage("DoorAccessModeResult") + cmbDoorAccessMode.Text);
+                    }
+                    else
+                    {
+                        mMainForm.AddCmdLog(cmde, GetLanguage("DoorAccessModeResult") + $"{ result.CheckMode}");
+                    }
+
+                });
+
+            };
+        }
+        #endregion
+
 
         #region 服务器网络参数
 
@@ -1396,7 +1452,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmde.Command.getResult() as ReadNetworkServerDetail_Result;
-                mMainForm.AddCmdLog(cmde,string.Format(GetLanguage("Msg_52"), result.ServerPort, result.ServerIP, result.ServerDomain));
+                mMainForm.AddCmdLog(cmde, string.Format(GetLanguage("Msg_52"), result.ServerPort, result.ServerIP, result.ServerDomain));
                 Invoke(() =>
                 {
                     txtServerIP_1.Text = result.ServerIP;
@@ -1462,7 +1518,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 sCodeName[6] = GetLanguage("Msg_59");
                 sCodeName[7] = GetLanguage("Msg_60");
                 sCodeName[8] = GetLanguage("Msg_61");
-                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_62")+$":{sCodeName[iCode]} ");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_62") + $":{sCodeName[iCode]} ");
 
             };
         }
@@ -1510,17 +1566,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 var strbuf = new StringBuilder();
 
-                strbuf.Append(GetLanguage("Msg_64")+"：").Append(ClientNetWorkMode[iModel]);
-                strbuf.Append("，"+ GetLanguage("Msg_65") + "：").Append(result.ServerIP);
+                strbuf.Append(GetLanguage("Msg_64") + ":").Append(ClientNetWorkMode[iModel]);
+                strbuf.Append("，" + GetLanguage("Msg_65") + ":").Append(result.ServerIP);
                 string[] sConnectStatus = new string[256];
                 sConnectStatus[0] = GetLanguage("Msg_66");
                 sConnectStatus[2] = GetLanguage("Msg_67");
                 sConnectStatus[3] = GetLanguage("Msg_68");
                 sConnectStatus[255] = GetLanguage("Msg_69");
 
-                strbuf.Append(","+ GetLanguage("Msg_70") + "：").Append(sConnectStatus[result.ConnectStatus]);
+                strbuf.Append("," + GetLanguage("Msg_70") + ":").Append(sConnectStatus[result.ConnectStatus]);
 
-                strbuf.AppendLine().Append(GetLanguage("Msg_71")+"：");
+                strbuf.AppendLine().Append(GetLanguage("Msg_71") + ":");
                 if (result.LastKeepaliveTime != DateTime.MinValue)
                 {
                     strbuf.Append(result.LastKeepaliveTime);
@@ -1557,7 +1613,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 cmbClientNetWorkMode.SelectedIndex = result.ClientModel;
                 var strbuf = new StringBuilder();
 
-                strbuf.Append(GetLanguage("Msg_64") +"：").Append(ClientNetWorkMode[iModel]);
+                strbuf.Append(GetLanguage("Msg_64") + ":").Append(ClientNetWorkMode[iModel]);
 
                 mMainForm.AddCmdLog(cmde, strbuf.ToString());
                 Invoke(() =>
@@ -1579,7 +1635,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var strbuf = new StringBuilder();
-                strbuf.Append(GetLanguage("Msg_64") + "：").Append(ClientNetWorkMode[iModel]);
+                strbuf.Append(GetLanguage("Msg_64") + ":").Append(ClientNetWorkMode[iModel]);
 
                 mMainForm.AddCmdLog(cmde, strbuf.ToString());
             };
