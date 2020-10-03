@@ -69,7 +69,8 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
                         {
                             if (!ServerIP.Equals(sIP))
                             {
-                                return false;
+                                ServerIP = sIP;
+                                //return false;
                             }
                         }
 

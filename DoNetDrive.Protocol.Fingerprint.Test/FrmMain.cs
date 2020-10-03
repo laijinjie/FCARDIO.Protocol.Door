@@ -651,7 +651,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 case ConnectorType.SerialPort:
                     //$"通道类型：{cType} {Local}";
                     ret = GetLanguage("GetConnectorDetail2", cType, Local);
-                    
+
                     break;
                 default:
                     //"通道类型：{cType} {Local}";
@@ -1128,7 +1128,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             chi.Left = scrRc.Left + iLeft + this.Width;
             chi.Top = scrRc.Top + iTop;
             if (this.Left < 0) this.Left = 0;
-            if((chi.Left + chi.Width)> scrRc.Width)
+            if ((chi.Left + chi.Width) > scrRc.Width)
             {
                 chi.Left = scrRc.Width - chi.Width;
             }
@@ -1395,7 +1395,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 //关闭UDP服务器
                 mAllocator.CloseConnector(detail);
-                butUDPBind.Text = GetLanguage("butUDPBind_Click2") ;// "开启服务";
+                butUDPBind.Text = GetLanguage("butUDPBind_Click2");// "开启服务";
                 mUDPIsBind = false;
                 txtUDPLocalPort.Enabled = true;
                 cmbLocalIP.Enabled = true;
@@ -1899,8 +1899,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 TCPServerClientDetail cdt = new TCPServerClientDetail(key);
                 mAllocator.CloseConnector(cdt);
             }
-            //mTCPClients.Clear();
-            //cmbTCPClientList.Items.Clear();
+            mTCPClients.Clear();
+            cmbTCPClientList.Items.Clear();
 
         }
 
@@ -1953,7 +1953,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (bResult)
             {
                 //绑定成功
-                butTCPServerBind.Text =GetLanguage("butTCPServerBind_Close");//"关闭"
+                butTCPServerBind.Text = GetLanguage("butTCPServerBind_Close");//"关闭"
             }
             else
             {
@@ -1984,6 +1984,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     if (cmbTCPClientList.Items.Count == 1)
                     {
                         cmbTCPClientList.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        cmbTCPClientList.SelectedIndex = cmbTCPClientList.Items.Count - 1;
                     }
                     cmbTCPClientList.EndUpdate();
                 }));
