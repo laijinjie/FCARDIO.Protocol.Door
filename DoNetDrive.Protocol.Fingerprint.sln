@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoNetDrive.Protocol.Door", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoNetDrive.Protocol.Util", "DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util.csproj", "{E2174F51-6A95-410D-A33E-7B7BF4B18671}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DoNetDrive.Core", "..\DoNet版通讯动态库V2\FCARDIO.Core\FCARDIO.Core\DoNetDrive.Core.vbproj", "{A149C4D3-2209-408F-A0DE-D9EB8E0FA492}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,14 @@ Global
 		{E2174F51-6A95-410D-A33E-7B7BF4B18671}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E2174F51-6A95-410D-A33E-7B7BF4B18671}.Release|x86.ActiveCfg = Release|x86
 		{E2174F51-6A95-410D-A33E-7B7BF4B18671}.Release|x86.Build.0 = Release|x86
+		{A149C4D3-2209-408F-A0DE-D9EB8E0FA492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A149C4D3-2209-408F-A0DE-D9EB8E0FA492}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A149C4D3-2209-408F-A0DE-D9EB8E0FA492}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A149C4D3-2209-408F-A0DE-D9EB8E0FA492}.Debug|x86.Build.0 = Debug|Any CPU
+		{A149C4D3-2209-408F-A0DE-D9EB8E0FA492}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A149C4D3-2209-408F-A0DE-D9EB8E0FA492}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A149C4D3-2209-408F-A0DE-D9EB8E0FA492}.Release|x86.ActiveCfg = Release|Any CPU
+		{A149C4D3-2209-408F-A0DE-D9EB8E0FA492}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

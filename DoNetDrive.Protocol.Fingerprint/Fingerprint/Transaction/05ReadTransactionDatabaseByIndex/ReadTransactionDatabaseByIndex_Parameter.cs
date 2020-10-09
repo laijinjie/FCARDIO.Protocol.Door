@@ -30,11 +30,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         {
             if (TransactionType < 1 || TransactionType > 4)
                 throw new ArgumentException("DatabaseType Error!");
-            if (Quantity <= 0 || Quantity > 500)
+            if (Quantity <= 0 || Quantity > 60)
             {
                 throw new ArgumentException("Quantity Error!");
             }
-            if (ReadIndex <= 0 || ReadIndex > 1000000)
+            if (ReadIndex <= 0 )
             {
                 throw new ArgumentException("ReadIndex Error!");
             }

@@ -677,7 +677,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cType = string.Empty;
 
             var oConn = mAllocator.GetConnector(conn);
-            if (oConn == null) return;
+            if (oConn == null)
+            {
+                cType = conn.GetTypeName();
+                Local = conn.GetKey();
+                return;
+            }
 
             IPDetail local = oConn.LocalAddress();
             conn = oConn.GetConnectorDetail();
@@ -1738,12 +1743,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     PhotoNULL = GetLanguage("TransactionMessage5_0");//无
                     //"，照片："
                     strbuf.Append(GetLanguage("TransactionMessage5")).Append(cardtrn.Photo == 1 ? sPhotoUse : PhotoNULL);
-                }
-                if (fcTrn.CmdIndex == 2)
-                {
-                    AbstractDoorTransaction cardtrn = evn as AbstractDoorTransaction;
-                    //"门号："
-                    strbuf.Append(GetLanguage("TransactionMessage6")).Append(cardtrn.Door);
                 }
                 if (fcTrn.CmdIndex == 4)
                 {

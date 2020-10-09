@@ -24,15 +24,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// </summary>
         public static List<string[]> mTransactionCodeNameList;
 
-        /// <summary>
-        /// 初始化类型集合
-        /// </summary>
-        static frmRecord()
-        {
-
-
-        }
-
         #endregion
 
         #region 窗口单例模式
@@ -103,12 +94,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             GetLanguage(btnReadImageTransactionDatabase);
             GetLanguage(butClearAllTransactionDatabase);
             e_TransactionDatabaseType();
-            LoadCmb();
+
+        }
+        private static string GetLanguage_St(string sKey, params object[] args)
+        {
+            string str = ToolLanguage.GetLanguage("frmRecord", sKey);
+            return string.Format(str, args);
         }
 
-        private void LoadCmb()
+        static frmRecord()
         {
-            mWatchTypeNameList = GetLanguage("WatchTypeNameList").Split(',');//new string[] { "", "读卡信息", "门磁信息", "系统信息", "连接保活消息", "连接确认信息" };
+            mWatchTypeNameList = GetLanguage_St("WatchTypeNameList").Split(',');//new string[] { "", "读卡信息", "门磁信息", "系统信息", "连接保活消息", "连接确认信息" };
             mCardTransactionList = new string[256];
             mDoorSensorTransactionList = new string[256];
             mSystemTransactionList = new string[256];
@@ -119,84 +115,97 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mTransactionCodeNameList.Add(mDoorSensorTransactionList);
             mTransactionCodeNameList.Add(mSystemTransactionList);
 
-            mCardTransactionList[1] = "刷卡验证";//
-            mCardTransactionList[2] = "指纹验证";//------------卡号为密码
-            mCardTransactionList[3] = "人脸验证";//
-            mCardTransactionList[4] = "指纹 + 刷卡";//
-            mCardTransactionList[5] = "人脸 + 指纹";//
-            mCardTransactionList[6] = "人脸 + 刷卡";//   ---  常开工作方式中，刷卡进入常开状态
-            mCardTransactionList[7] = "刷卡 + 密码";//  --  多卡验证组合完毕后触发
-            mCardTransactionList[8] = "人脸 + 密码";//
-            mCardTransactionList[9] = "指纹 + 密码";//
-            mCardTransactionList[10] = "手动输入用户号加密码验证";//
-            mCardTransactionList[11] = "指纹+刷卡+密码";//
-            mCardTransactionList[12] = "人脸+刷卡+密码";//
-            mCardTransactionList[13] = "人脸+指纹+密码";//  --  不开门
-            mCardTransactionList[14] = "人脸+指纹+刷卡";//
-            mCardTransactionList[15] = "重复验证";//
-            mCardTransactionList[16] = "有效期过期";//
-            mCardTransactionList[17] = "开门时段过期";//------------卡号为错误密码
-            mCardTransactionList[18] = "节假日时不能开门";//----卡号为卡号。
-            mCardTransactionList[19] = "未注册用户";//
-            mCardTransactionList[20] = "探测锁定";//
-            mCardTransactionList[21] = "有效次数已用尽";//
-            mCardTransactionList[22] = "锁定时验证，禁止开门";//
-            mCardTransactionList[23] = "挂失卡";//
-            mCardTransactionList[24] = "黑名单卡";//
-            mCardTransactionList[25] = "免验证开门 -- 按指纹时用户号为0，刷卡时用户号是卡号";//
-            mCardTransactionList[26] = "禁止刷卡验证  --  【权限认证方式】中禁用刷卡时";//
-            mCardTransactionList[27] = "禁止指纹验证  --  【权限认证方式】中禁用指纹时";//
-            mCardTransactionList[28] = "控制器已过期";//
-            mCardTransactionList[29] = "验证通过—有效期即将过期";//
-            mCardTransactionList[30] = "体温异常，拒绝进入";//
+            //mCardTransactionList[1] = "刷卡验证";//
+            //mCardTransactionList[2] = "指纹验证";//------------卡号为密码
+            //mCardTransactionList[3] = "人脸验证";//
+            //mCardTransactionList[4] = "指纹 + 刷卡";//
+            //mCardTransactionList[5] = "人脸 + 指纹";//
+            //mCardTransactionList[6] = "人脸 + 刷卡";//   ---  常开工作方式中，刷卡进入常开状态
+            //mCardTransactionList[7] = "刷卡 + 密码";//  --  多卡验证组合完毕后触发
+            //mCardTransactionList[8] = "人脸 + 密码";//
+            //mCardTransactionList[9] = "指纹 + 密码";//
+            //mCardTransactionList[10] = "手动输入用户号加密码验证";//
+            //mCardTransactionList[11] = "指纹+刷卡+密码";//
+            //mCardTransactionList[12] = "人脸+刷卡+密码";//
+            //mCardTransactionList[13] = "人脸+指纹+密码";//  --  不开门
+            //mCardTransactionList[14] = "人脸+指纹+刷卡";//
+            //mCardTransactionList[15] = "重复验证";//
+            //mCardTransactionList[16] = "有效期过期";//
+            //mCardTransactionList[17] = "开门时段过期";//------------卡号为错误密码
+            //mCardTransactionList[18] = "节假日时不能开门";//----卡号为卡号。
+            //mCardTransactionList[19] = "未注册用户";//
+            //mCardTransactionList[20] = "探测锁定";//
+            //mCardTransactionList[21] = "有效次数已用尽";//
+            //mCardTransactionList[22] = "锁定时验证，禁止开门";//
+            //mCardTransactionList[23] = "挂失卡";//
+            //mCardTransactionList[24] = "黑名单卡";//
+            //mCardTransactionList[25] = "免验证开门 -- 按指纹时用户号为0，刷卡时用户号是卡号";//
+            //mCardTransactionList[26] = "禁止刷卡验证  --  【权限认证方式】中禁用刷卡时";//
+            //mCardTransactionList[27] = "禁止指纹验证  --  【权限认证方式】中禁用指纹时";//
+            //mCardTransactionList[28] = "控制器已过期";//
+            //mCardTransactionList[29] = "验证通过—有效期即将过期";//
+            //mCardTransactionList[30] = "体温异常，拒绝进入";//
+            for (int i = 1; i < 31; i++)
+            {
+                mCardTransactionList[i] = GetLanguage_St($"CardTransactionList{i}");
+            }
 
 
-            mDoorSensorTransactionList[1] = "开门";//
-            mDoorSensorTransactionList[2] = "关门";//
-            mDoorSensorTransactionList[3] = "进入门磁报警状态";//
-            mDoorSensorTransactionList[4] = "退出门磁报警状态";//
-            mDoorSensorTransactionList[5] = "门未关好";//
-            mDoorSensorTransactionList[6] = "使用按钮开门";//
-            mDoorSensorTransactionList[7] = "按钮开门时门已锁定";//
-            mDoorSensorTransactionList[8] = "按钮开门时控制器已过期";//
+            //mDoorSensorTransactionList[1] = "开门";//
+            //mDoorSensorTransactionList[2] = "关门";//
+            //mDoorSensorTransactionList[3] = "进入门磁报警状态";//
+            //mDoorSensorTransactionList[4] = "退出门磁报警状态";//
+            //mDoorSensorTransactionList[5] = "门未关好";//
+            //mDoorSensorTransactionList[6] = "使用按钮开门";//
+            //mDoorSensorTransactionList[7] = "按钮开门时门已锁定";//
+            //mDoorSensorTransactionList[8] = "按钮开门时控制器已过期";//
+            for (int i = 1; i < 9; i++)
+            {
+                mDoorSensorTransactionList[i] = GetLanguage_St($"DoorSensorTransactionList{i}");
+            }
 
-            mSystemTransactionList[1] = "软件开门";//
-            mSystemTransactionList[2] = "软件关门";//
-            mSystemTransactionList[3] = "软件常开";//
-            mSystemTransactionList[4] = "控制器自动进入常开";//
-            mSystemTransactionList[5] = "控制器自动关闭门";//
-            mSystemTransactionList[6] = "长按出门按钮常开";//
-            mSystemTransactionList[7] = "长按出门按钮常闭";//
-            mSystemTransactionList[8] = "软件锁定";//
-            mSystemTransactionList[9] = "软件解除锁定";//
-            mSystemTransactionList[10] = "控制器定时锁定--到时间自动锁定";//
-            mSystemTransactionList[11] = "控制器定时锁定--到时间自动解除锁定";//
-            mSystemTransactionList[12] = "报警--锁定";//
-            mSystemTransactionList[13] = "报警--解除锁定";//
-            mSystemTransactionList[14] = "非法认证报警";//
-            mSystemTransactionList[15] = "门磁报警";//
-            mSystemTransactionList[16] = "胁迫报警";//
-            mSystemTransactionList[17] = "开门超时报警";//
-            mSystemTransactionList[18] = "黑名单报警";//
-            mSystemTransactionList[19] = "消防报警";//
-            mSystemTransactionList[20] = "防拆报警";//
-            mSystemTransactionList[21] = "非法认证报警解除";//
-            mSystemTransactionList[22] = "门磁报警解除";//
-            mSystemTransactionList[23] = "胁迫报警解除";//
-            mSystemTransactionList[24] = "开门超时报警解除";//
-            mSystemTransactionList[25] = "黑名单报警解除";//
-            mSystemTransactionList[26] = "消防报警解除";//
-            mSystemTransactionList[27] = "防拆报警解除";//
-            mSystemTransactionList[28] = "系统加电";//
-            mSystemTransactionList[29] = "系统错误复位（看门狗）";//
-            mSystemTransactionList[30] = "设备格式化记录";//
-            mSystemTransactionList[31] = "读卡器接反";//
-            mSystemTransactionList[32] = "读卡器线路未接好";//
-            mSystemTransactionList[33] = "无法识别的读卡器";//
-            mSystemTransactionList[34] = "网线已断开";//
-            mSystemTransactionList[35] = "网线已插入";//
-            mSystemTransactionList[36] = "WIFI 已连接";//
-            mSystemTransactionList[37] = "WIFI 已断开";//
+            //mSystemTransactionList[1] = "软件开门";//
+            //mSystemTransactionList[2] = "软件关门";//
+            //mSystemTransactionList[3] = "软件常开";//
+            //mSystemTransactionList[4] = "控制器自动进入常开";//
+            //mSystemTransactionList[5] = "控制器自动关闭门";//
+            //mSystemTransactionList[6] = "长按出门按钮常开";//
+            //mSystemTransactionList[7] = "长按出门按钮常闭";//
+            //mSystemTransactionList[8] = "软件锁定";//
+            //mSystemTransactionList[9] = "软件解除锁定";//
+            //mSystemTransactionList[10] = "控制器定时锁定--到时间自动锁定";//
+            //mSystemTransactionList[11] = "控制器定时锁定--到时间自动解除锁定";//
+            //mSystemTransactionList[12] = "报警--锁定";//
+            //mSystemTransactionList[13] = "报警--解除锁定";//
+            //mSystemTransactionList[14] = "非法认证报警";//
+            //mSystemTransactionList[15] = "门磁报警";//
+            //mSystemTransactionList[16] = "胁迫报警";//
+            //mSystemTransactionList[17] = "开门超时报警";//
+            //mSystemTransactionList[18] = "黑名单报警";//
+            //mSystemTransactionList[19] = "消防报警";//
+            //mSystemTransactionList[20] = "防拆报警";//
+            //mSystemTransactionList[21] = "非法认证报警解除";//
+            //mSystemTransactionList[22] = "门磁报警解除";//
+            //mSystemTransactionList[23] = "胁迫报警解除";//
+            //mSystemTransactionList[24] = "开门超时报警解除";//
+            //mSystemTransactionList[25] = "黑名单报警解除";//
+            //mSystemTransactionList[26] = "消防报警解除";//
+            //mSystemTransactionList[27] = "防拆报警解除";//
+            //mSystemTransactionList[28] = "系统加电";//
+            //mSystemTransactionList[29] = "系统错误复位（看门狗）";//
+            //mSystemTransactionList[30] = "设备格式化记录";//
+            //mSystemTransactionList[31] = "读卡器接反";//
+            //mSystemTransactionList[32] = "读卡器线路未接好";//
+            //mSystemTransactionList[33] = "无法识别的读卡器";//
+            //mSystemTransactionList[34] = "网线已断开";//
+            //mSystemTransactionList[35] = "网线已插入";//
+            //mSystemTransactionList[36] = "WIFI 已连接";//
+            //mSystemTransactionList[37] = "WIFI 已断开";//
+
+            for (int i = 1; i < 38; i++)
+            {
+                mSystemTransactionList[i] = GetLanguage_St($"SystemTransactionList{i}");
+            }
         }
 
         #region 记录类型

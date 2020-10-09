@@ -1570,8 +1570,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 strbuf.Append("，" + GetLanguage("Msg_65") + ":").Append(result.ServerIP);
                 string[] sConnectStatus = new string[256];
                 sConnectStatus[0] = GetLanguage("Msg_66");
-                sConnectStatus[2] = GetLanguage("Msg_67");
-                sConnectStatus[3] = GetLanguage("Msg_68");
+                sConnectStatus[1] = GetLanguage("Msg_67");
+                sConnectStatus[2] = GetLanguage("Msg_68");
                 sConnectStatus[255] = GetLanguage("Msg_69");
 
                 strbuf.Append("," + GetLanguage("Msg_70") + ":").Append(sConnectStatus[result.ConnectStatus]);
@@ -1610,7 +1610,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 var result = cmde.Command.getResult() as ReadClientWorkMode_Result;
                 int iModel = result.ClientModel;
-                cmbClientNetWorkMode.SelectedIndex = result.ClientModel;
+                Invoke(() =>
+                {
+                    cmbClientNetWorkMode.SelectedIndex = result.ClientModel;
+                });
                 var strbuf = new StringBuilder();
 
                 strbuf.Append(GetLanguage("Msg_64") + ":").Append(ClientNetWorkMode[iModel]);
