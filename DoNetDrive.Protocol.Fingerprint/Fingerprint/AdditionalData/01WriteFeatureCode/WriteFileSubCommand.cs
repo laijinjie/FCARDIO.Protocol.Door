@@ -22,9 +22,10 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// 文件类型
         /// 1 - 人员头像
         /// 2 - 指纹
-        /// 3 - 记录照片
-        /// 4 - 红外人脸特征码
-        /// 5 - 动态人脸特征码
+        /// 3 - 红外人脸特征码
+        /// 4 - 动态人脸特征码
+        /// 10 - 开机图片
+        /// 11 - 待机图片
         /// </summary>
         public int FileType;
 
@@ -118,7 +119,8 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
             UserCode = userCode;
             FileType = iType;
 
-            if (iType != 2) iNum = 1;
+            if (FileType == 1 || FileType ==3 || FileType==4) iNum = 1;
+
             FileNum = iNum;
             ProcessMax = 3;
             ProcessStep = 1;

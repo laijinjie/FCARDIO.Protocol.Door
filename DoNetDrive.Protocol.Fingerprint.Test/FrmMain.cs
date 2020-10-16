@@ -777,7 +777,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public void AddCommand(INCommand cmd)
         {
             if (cmd.CommandDetail == null) return;
-            mAllocator.AddCommand(cmd);
+            try
+            {
+                mAllocator.AddCommand(cmd);
+            }
+            catch (Exception)
+            {
+
+                AddCmdLog(null,"连接无效");
+            }
+            
         }
 
 
@@ -1681,6 +1690,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             CommandResult commandResult = new CommandResult();
 
             if (_IsClosed) return;
+            //检查连接是否保持长连接
+            var conn = mAllocator.GetConnector(connector);
+            if (conn != null)
+            {
+                if (!conn.IsForciblyConnect())
+                {
+                    conn.OpenForciblyConnect();
+                }
+            }
 
             Door8800Transaction fcTrn = EventData as Door8800Transaction;
             StringBuilder strbuf = new StringBuilder();
