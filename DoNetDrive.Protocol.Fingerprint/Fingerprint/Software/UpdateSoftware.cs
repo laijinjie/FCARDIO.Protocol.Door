@@ -93,7 +93,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
                     if (CheckResponse(oPck, 0x0A, 0x13, 0, 1))
                     {
                         mResult.Success = oPck.CmdData.ReadByte();
-                        Trace.WriteLine($"{DateTime.Now:mm:ss.fff} 升级包完毕，返回值：{mResult.Success}！");
+                        
 
                         
                         CommandCompleted();

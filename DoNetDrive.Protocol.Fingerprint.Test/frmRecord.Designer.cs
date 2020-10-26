@@ -566,7 +566,6 @@
             this.butTransactionDatabaseByIndex.TabIndex = 25;
             this.butTransactionDatabaseByIndex.Text = "按序号采集记录";
             this.butTransactionDatabaseByIndex.UseVisualStyleBackColor = true;
-            this.butTransactionDatabaseByIndex.Visible = false;
             this.butTransactionDatabaseByIndex.Click += new System.EventHandler(this.butTransactionDatabaseByIndex_Click);
             // 
             // gpRecordOperation2

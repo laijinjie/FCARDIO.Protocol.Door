@@ -296,8 +296,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmdDtl.RestartCount = 200;
 
             var par = new ReadTransactionDatabase_Parameter((int)Get_TransactionDatabaseType(type), Quantity);
-            //par.RollbackWriteReadIndex = true;
-            //par.AutoWriteReadIndex = true;
+
 
             var cmd = new ReadTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
@@ -500,8 +499,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
 
             var par = new ReadTransactionAndImageDatabase_Parameter(Quantity, true, sDir);
-            par.AutoWriteReadIndex = false;
-            par.AutoDownloadImage = false;
+            par.AutoWriteReadIndex = true;
+            par.AutoDownloadImage = true;
             par.ImageDownloadCheckCallblack = (imgSerialNumber) =>
             {
                 /*int RandKey = ran.Next(1, 100);
