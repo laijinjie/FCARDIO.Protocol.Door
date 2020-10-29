@@ -387,9 +387,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             switch (inc.GetConnectorType())
             {
                 case ConnectorType.TCPServerClient://tcp 客户端已连接
-                    AbstractConnector connector = inc as AbstractConnector;
-                    connector.ChannelKeepaliveMaxTime = 60;
-                    TCPServerClientDetail clientDetail = connector.GetConnectorDetail() as TCPServerClientDetail;
+                    TCPServerClientDetail clientDetail = inc.GetConnectorDetail() as TCPServerClientDetail;
                     AddTCPClient(inc.GetKey(), clientDetail.Remote);
                     break;
 
@@ -1648,7 +1646,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 new Door8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
             cnt.RemoveRequestHandle(typeof(Door8800RequestHandle));//先删除，防止已存在就无法添加。
             cnt.AddRequestHandle(fC8800Request);
-
+           
 
 
         }
@@ -1688,9 +1686,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void MAllocator_TransactionMessage(INConnectorDetail connector, Core.Data.INData EventData)
         {
             CommandResult commandResult = new CommandResult();
-
-            if (_IsClosed) return;
-            //检查连接是否保持长连接
             var conn = mAllocator.GetConnector(connector);
             if (conn != null)
             {
@@ -1699,6 +1694,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     conn.OpenForciblyConnect();
                 }
             }
+            if (_IsClosed) return;
 
             Door8800Transaction fcTrn = EventData as Door8800Transaction;
             StringBuilder strbuf = new StringBuilder();

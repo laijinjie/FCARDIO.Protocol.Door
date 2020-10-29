@@ -374,7 +374,11 @@
     <LblDoorAccessMode                       value = "Door Access Mode:"/>
     <butReadDoorOpenCheckMode                value = "Read"/>
     <butWriteDoorOpenCheckMode               value = "Write"/>
-
+    <FaceBioassayCmb                         value = "Close,Infrared detection,Infrared and color"/>
+    <LabFaceBioassay                         value = "Bioassay mode："/>
+    <Btn_ReadFaceBioassay                    value = "Read"/>
+    <Btn_WriteFaceBioassay                   value = "Write"/>
+    
     <ClientNetWorkMode                       value = "Disable,UDP Client,TCP Client,TCP Client + TLS1.2"/>
     <FaceBodyTemperatureList                 value = "Disable,Celsius(default),Fahrenheit"/>
     <FaceLEDModeList                         value = "Alawys off,always on,on when user detected"/>

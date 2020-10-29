@@ -182,7 +182,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             GetLanguage(But_ReadShortMessage);//                      读取
             GetLanguage(LblDoorAccessMode);//开门验证方式
             GetLanguage(butReadDoorOpenCheckMode);//读取
-            GetLanguage(butWriteDoorOpenCheckMode);// 写入                     
+            GetLanguage(butWriteDoorOpenCheckMode);// 写入 
+            GetLanguage(LabFaceBioassay);//活体检测
+            GetLanguage(Btn_ReadFaceBioassay);//读取
+            GetLanguage(Btn_WriteFaceBioassay);// 写入 
 
 
             GetLanguage(tpNetwork);//客户端网络参数
@@ -277,7 +280,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             ClientNetWorkMode = GetLanguage("ClientNetWorkMode").Split(',');
             cmbClientNetWorkMode.Items.AddRange(ClientNetWorkMode);
             cmbClientNetWorkMode.SelectedIndex = 1;
-
+            var sFaceBioassay = GetLanguage("FaceBioassayCmb").Split(',');
+            CmbFaceBioassay.Items.Clear();
+            CmbFaceBioassay.Items.AddRange(sFaceBioassay);
+            CmbFaceBioassay.SelectedIndex = 0;
             IniDriveLanguage();
             IniDriveVolume();
         }
@@ -1646,5 +1652,34 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         #endregion
 
+        #region 活体检测
+        private void Btn_ReadFaceBioassay_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadFaceBioassay cmd = new ReadFaceBioassay(cmdDtl);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadFaceBioassay_Result result = cmde.Command.getResult() as ReadFaceBioassay_Result;
+
+                Invoke(() =>
+                {
+                    CmbFaceBioassay.SelectedIndex = result.BioassayType;
+                    mMainForm.AddCmdLog(cmde, GetLanguage("LabFaceBioassay") + CmbFaceBioassay.Text);
+                });
+            };
+        }
+
+        private void Btn_WriteFaceBioassay_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteFaceBioassay_Parameter parameter = new WriteFaceBioassay_Parameter(CmbFaceBioassay.SelectedIndex);
+            WriteFaceBioassay cmd = new WriteFaceBioassay(cmdDtl, parameter);
+            mMainForm.AddCommand(cmd);
+
+        } 
+        #endregion
     }
 }

@@ -215,6 +215,10 @@
             this.txtServerIP_1 = new System.Windows.Forms.TextBox();
             this.lblServerPort_1 = new System.Windows.Forms.Label();
             this.txtServerPort_1 = new System.Windows.Forms.TextBox();
+            this.CmbFaceBioassay = new System.Windows.Forms.ComboBox();
+            this.LabFaceBioassay = new System.Windows.Forms.Label();
+            this.Btn_WriteFaceBioassay = new System.Windows.Forms.Button();
+            this.Btn_ReadFaceBioassay = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpPar1.SuspendLayout();
             this.gbWatch.SuspendLayout();
@@ -1497,7 +1501,11 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.Btn_ReadFaceBioassay);
+            this.tabPage3.Controls.Add(this.Btn_WriteFaceBioassay);
+            this.tabPage3.Controls.Add(this.LabFaceBioassay);
             this.tabPage3.Controls.Add(this.LblDoorAccessMode);
+            this.tabPage3.Controls.Add(this.CmbFaceBioassay);
             this.tabPage3.Controls.Add(this.cmbDoorAccessMode);
             this.tabPage3.Controls.Add(this.butReadDoorOpenCheckMode);
             this.tabPage3.Controls.Add(this.butWriteDoorOpenCheckMode);
@@ -2190,6 +2198,44 @@
             this.txtServerPort_1.TabIndex = 0;
             this.txtServerPort_1.Text = "9000";
             // 
+            // CmbFaceBioassay
+            // 
+            this.CmbFaceBioassay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbFaceBioassay.FormattingEnabled = true;
+            this.CmbFaceBioassay.Location = new System.Drawing.Point(53, 497);
+            this.CmbFaceBioassay.Name = "CmbFaceBioassay";
+            this.CmbFaceBioassay.Size = new System.Drawing.Size(270, 20);
+            this.CmbFaceBioassay.TabIndex = 10;
+            // 
+            // LabFaceBioassay
+            // 
+            this.LabFaceBioassay.AutoSize = true;
+            this.LabFaceBioassay.Location = new System.Drawing.Point(51, 477);
+            this.LabFaceBioassay.Name = "LabFaceBioassay";
+            this.LabFaceBioassay.Size = new System.Drawing.Size(89, 12);
+            this.LabFaceBioassay.TabIndex = 7;
+            this.LabFaceBioassay.Text = "活体检测开关：";
+            // 
+            // Btn_WriteFaceBioassay
+            // 
+            this.Btn_WriteFaceBioassay.Location = new System.Drawing.Point(347, 496);
+            this.Btn_WriteFaceBioassay.Name = "Btn_WriteFaceBioassay";
+            this.Btn_WriteFaceBioassay.Size = new System.Drawing.Size(75, 23);
+            this.Btn_WriteFaceBioassay.TabIndex = 11;
+            this.Btn_WriteFaceBioassay.Text = "写入";
+            this.Btn_WriteFaceBioassay.UseVisualStyleBackColor = true;
+            this.Btn_WriteFaceBioassay.Click += new System.EventHandler(this.Btn_WriteFaceBioassay_Click);
+            // 
+            // Btn_ReadFaceBioassay
+            // 
+            this.Btn_ReadFaceBioassay.Location = new System.Drawing.Point(438, 496);
+            this.Btn_ReadFaceBioassay.Name = "Btn_ReadFaceBioassay";
+            this.Btn_ReadFaceBioassay.Size = new System.Drawing.Size(75, 23);
+            this.Btn_ReadFaceBioassay.TabIndex = 12;
+            this.Btn_ReadFaceBioassay.Text = "读取";
+            this.Btn_ReadFaceBioassay.UseVisualStyleBackColor = true;
+            this.Btn_ReadFaceBioassay.Click += new System.EventHandler(this.Btn_ReadFaceBioassay_Click);
+            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2435,5 +2481,9 @@
         private System.Windows.Forms.ComboBox cmbDoorAccessMode;
         private System.Windows.Forms.Button butReadDoorOpenCheckMode;
         private System.Windows.Forms.Button butWriteDoorOpenCheckMode;
+        private System.Windows.Forms.Label LabFaceBioassay;
+        private System.Windows.Forms.ComboBox CmbFaceBioassay;
+        private System.Windows.Forms.Button Btn_ReadFaceBioassay;
+        private System.Windows.Forms.Button Btn_WriteFaceBioassay;
     }
 }

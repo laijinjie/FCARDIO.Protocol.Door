@@ -377,7 +377,11 @@
     <LblDoorAccessMode                       value = "开门验证方式："/>
     <butReadDoorOpenCheckMode                value = "读取"/>
     <butWriteDoorOpenCheckMode               value = "写入"/>
-
+    <FaceBioassayCmb                         value = "关闭,红外探测,红外+彩色"/>
+    <LabFaceBioassay                         value = "活体检测方式："/>
+    <Btn_ReadFaceBioassay                    value = "读取"/>
+    <Btn_WriteFaceBioassay                   value = "写入"/>
+    
     <ClientNetWorkMode                       value = "禁用,UDP Client,TCP Client,TCP Client + TLS1.2"/>
     <FaceBodyTemperatureList                 value = "禁止,摄氏度（默认值）,华氏度"/>
     <FaceLEDModeList                         value = "一直关,一直亮,检测到人员时开"/>
