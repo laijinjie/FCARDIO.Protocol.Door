@@ -24,6 +24,7 @@ using System.Configuration;
 using DoNetDrive.Protocol.Fingerprint.Test.Properties;
 using System.Security.Cryptography.X509Certificates;
 using System.IO;
+using AutoUpdaterDotNET;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -85,13 +86,32 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             LoadUILanguage();
 
             tbEvent.SelectedIndex = 1;
+            IniConnTypeList();
+            #region 自动更新
+            AutoUpdater.UpdateMode = Mode.ForcedDownload;
+            AutoUpdater.ShowSkipButton = false;
+            AutoUpdater.ShowRemindLaterButton = false;
+            AutoUpdater.RunUpdateAsAdmin = true;
+            AutoUpdater.Mandatory = true;
+            AutoUpdater.Start("http://oss2.pc15.net/ToolDownload/Update/FaceDebugToolForNet/update.xml");
+            AutoUpdater.CheckForUpdateEvent += AutoUpdater_CheckForUpdateEvent;
+            #endregion
 
-            Task.Run(() =>
+
+
+        }
+
+        private void AutoUpdater_CheckForUpdateEvent(UpdateInfoEventArgs args)
+        {
+            if (!args.IsUpdateAvailable)
             {
-                System.Threading.Thread.Sleep(100);
-                Invoke(new Action(IniForm));
+                Task.Run(() =>
+                {
+                    System.Threading.Thread.Sleep(100);
+                    Invoke(new Action(IniForm));
 
-            });
+                });
+            }
 
         }
 
@@ -241,10 +261,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mObserver.DisposeRequestEvent += MObserver_DisposeRequestEvent;
             mObserver.DisposeResponseEvent += MObserver_DisposeResponseEvent;
 
-            IniConnTypeList();
+
+
             IniLstIO();
             InilstCommand();
-
             Task.Run((Action)ShowCommandProcesslog);
 
             butUDPBind_Click(null, null);
@@ -782,9 +802,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             catch (Exception)
             {
 
-                AddCmdLog(null,"连接无效");
+                AddCmdLog(null, "连接无效");
             }
-            
+
         }
 
 
@@ -1646,7 +1666,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 new Door8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
             cnt.RemoveRequestHandle(typeof(Door8800RequestHandle));//先删除，防止已存在就无法添加。
             cnt.AddRequestHandle(fC8800Request);
-           
+
 
 
         }

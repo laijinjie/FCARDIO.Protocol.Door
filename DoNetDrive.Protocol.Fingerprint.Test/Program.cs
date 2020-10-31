@@ -15,14 +15,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         [STAThread]
         static void Main()
         {
-            #region 自动更新
-            AutoUpdater.UpdateMode = Mode.ForcedDownload;
-            AutoUpdater.ShowSkipButton = false;
-            AutoUpdater.ShowRemindLaterButton = false;
-            AutoUpdater.RunUpdateAsAdmin = true;
-            AutoUpdater.Mandatory = true;
-            AutoUpdater.Start("http://fcardsoftware.oss-cn-zhangjiakou.aliyuncs.com/ToolDownload/Update/FaceDebugToolForNet/update.xml"); 
-            #endregion
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());
