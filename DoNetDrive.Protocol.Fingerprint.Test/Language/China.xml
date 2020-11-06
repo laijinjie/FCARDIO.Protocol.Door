@@ -286,6 +286,7 @@
     <btnReadWatchState       value="状态" />
     <btnBeginWatch_Broadcast value="开启广播" />
     <btnCloseWatch_Broadcast value="关闭广播" />
+    <BtnFormatController     value="初始化设备" />
     <cmbInOut                value="进,出" />
     <tpNetwork                      value = "客户端网络参数" />
     <gbServerDetail                 value = "服务器参数" />

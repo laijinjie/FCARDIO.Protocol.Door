@@ -22,6 +22,7 @@ using DoNetDrive.Protocol.Fingerprint.SystemParameter.ManageMenuPassword;
 using DoNetDrive.Protocol.Fingerprint.SystemParameter.OEM;
 using DoNetDrive.Protocol.Fingerprint.SystemParameter;
 using System.Text;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.Controller;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -111,6 +112,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             GetLanguage(btnReadWatchState);//  状态
             GetLanguage(btnBeginWatch_Broadcast);//  开启广播
             GetLanguage(btnCloseWatch_Broadcast);//  关闭广播
+            GetLanguage(BtnFormatController);//格式化
 
             GetLanguage(tabPage2);//参数2
             GetLanguage(gpLocalIdentity);//本机身份
@@ -220,16 +222,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbWGByteSort.Items.Clear();
             cmbOutputType.Items.Clear();
             cmbDoorAccessMode.Items.Clear();
+            cbxAutoIP.Items.Clear();
 
             var ReadCardByteList = GetLanguage("ReadCardByteList").Split(',');
             cmbReadCardByte.Items.AddRange(ReadCardByteList);
             cmbReadCardByte.SelectedIndex = 0;
 
-
+          
             var IsUseList = GetLanguage("IsUseList").Split(',');
             cmbWGOutput.Items.AddRange(IsUseList);
             cmbWGOutput.SelectedIndex = 0;
 
+           
             cbxAutoIP.Items.AddRange(IsUseList);
             cbxAutoIP.SelectedIndex = 0;
 
@@ -257,7 +261,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 ComparisonThresholdList[i - 1] = i.ToString();
             }
+            cmbFace.Items.Clear();
             cmbFace.Items.AddRange(ComparisonThresholdList);
+            cmbFingerprint.Items.Clear();
             cmbFingerprint.Items.AddRange(ComparisonThresholdList);
             cmbFace.SelectedIndex = 0;
             cmbFingerprint.SelectedIndex = 0;
@@ -1679,7 +1685,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             WriteFaceBioassay cmd = new WriteFaceBioassay(cmdDtl, parameter);
             mMainForm.AddCommand(cmd);
 
-        } 
+        }
         #endregion
+
+        private void BtnFormatController_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            FormatController cmd = new FormatController(cmdDtl);
+            mMainForm.AddCommand(cmd);
+        }
     }
 }

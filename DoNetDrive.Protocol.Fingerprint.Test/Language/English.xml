@@ -283,6 +283,7 @@
     <btnReadWatchState       value="Status" />
     <btnBeginWatch_Broadcast value="Broadcast Open" />
     <btnCloseWatch_Broadcast value="Broadcast Close" />
+    <BtnFormatController     value="Format" />
     <cmbInOut                value="in,out" />
     <tpNetwork                      value = "Client Network" />
     <gbServerDetail                 value = "Server Setting" />

@@ -152,7 +152,11 @@
             this.cmbDoor = new System.Windows.Forms.ComboBox();
             this.Lbl_p2_DoorNum = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.Btn_ReadFaceBioassay = new System.Windows.Forms.Button();
+            this.Btn_WriteFaceBioassay = new System.Windows.Forms.Button();
+            this.LabFaceBioassay = new System.Windows.Forms.Label();
             this.LblDoorAccessMode = new System.Windows.Forms.Label();
+            this.CmbFaceBioassay = new System.Windows.Forms.ComboBox();
             this.cmbDoorAccessMode = new System.Windows.Forms.ComboBox();
             this.butReadDoorOpenCheckMode = new System.Windows.Forms.Button();
             this.butWriteDoorOpenCheckMode = new System.Windows.Forms.Button();
@@ -215,10 +219,7 @@
             this.txtServerIP_1 = new System.Windows.Forms.TextBox();
             this.lblServerPort_1 = new System.Windows.Forms.Label();
             this.txtServerPort_1 = new System.Windows.Forms.TextBox();
-            this.CmbFaceBioassay = new System.Windows.Forms.ComboBox();
-            this.LabFaceBioassay = new System.Windows.Forms.Label();
-            this.Btn_WriteFaceBioassay = new System.Windows.Forms.Button();
-            this.Btn_ReadFaceBioassay = new System.Windows.Forms.Button();
+            this.BtnFormatController = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpPar1.SuspendLayout();
             this.gbWatch.SuspendLayout();
@@ -259,6 +260,7 @@
             // 
             // tpPar1
             // 
+            this.tpPar1.Controls.Add(this.BtnFormatController);
             this.tpPar1.Controls.Add(this.gbWatch);
             this.tpPar1.Controls.Add(this.gbRecordMode);
             this.tpPar1.Controls.Add(this.gbVersion);
@@ -1543,6 +1545,35 @@
             this.tabPage3.Text = "参数3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // Btn_ReadFaceBioassay
+            // 
+            this.Btn_ReadFaceBioassay.Location = new System.Drawing.Point(438, 496);
+            this.Btn_ReadFaceBioassay.Name = "Btn_ReadFaceBioassay";
+            this.Btn_ReadFaceBioassay.Size = new System.Drawing.Size(75, 23);
+            this.Btn_ReadFaceBioassay.TabIndex = 12;
+            this.Btn_ReadFaceBioassay.Text = "读取";
+            this.Btn_ReadFaceBioassay.UseVisualStyleBackColor = true;
+            this.Btn_ReadFaceBioassay.Click += new System.EventHandler(this.Btn_ReadFaceBioassay_Click);
+            // 
+            // Btn_WriteFaceBioassay
+            // 
+            this.Btn_WriteFaceBioassay.Location = new System.Drawing.Point(347, 496);
+            this.Btn_WriteFaceBioassay.Name = "Btn_WriteFaceBioassay";
+            this.Btn_WriteFaceBioassay.Size = new System.Drawing.Size(75, 23);
+            this.Btn_WriteFaceBioassay.TabIndex = 11;
+            this.Btn_WriteFaceBioassay.Text = "写入";
+            this.Btn_WriteFaceBioassay.UseVisualStyleBackColor = true;
+            this.Btn_WriteFaceBioassay.Click += new System.EventHandler(this.Btn_WriteFaceBioassay_Click);
+            // 
+            // LabFaceBioassay
+            // 
+            this.LabFaceBioassay.AutoSize = true;
+            this.LabFaceBioassay.Location = new System.Drawing.Point(51, 477);
+            this.LabFaceBioassay.Name = "LabFaceBioassay";
+            this.LabFaceBioassay.Size = new System.Drawing.Size(89, 12);
+            this.LabFaceBioassay.TabIndex = 7;
+            this.LabFaceBioassay.Text = "活体检测开关：";
+            // 
             // LblDoorAccessMode
             // 
             this.LblDoorAccessMode.AutoSize = true;
@@ -1551,6 +1582,15 @@
             this.LblDoorAccessMode.Size = new System.Drawing.Size(89, 12);
             this.LblDoorAccessMode.TabIndex = 7;
             this.LblDoorAccessMode.Text = "开门验证方式：";
+            // 
+            // CmbFaceBioassay
+            // 
+            this.CmbFaceBioassay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbFaceBioassay.FormattingEnabled = true;
+            this.CmbFaceBioassay.Location = new System.Drawing.Point(53, 497);
+            this.CmbFaceBioassay.Name = "CmbFaceBioassay";
+            this.CmbFaceBioassay.Size = new System.Drawing.Size(270, 20);
+            this.CmbFaceBioassay.TabIndex = 10;
             // 
             // cmbDoorAccessMode
             // 
@@ -2198,43 +2238,15 @@
             this.txtServerPort_1.TabIndex = 0;
             this.txtServerPort_1.Text = "9000";
             // 
-            // CmbFaceBioassay
+            // BtnFormatController
             // 
-            this.CmbFaceBioassay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbFaceBioassay.FormattingEnabled = true;
-            this.CmbFaceBioassay.Location = new System.Drawing.Point(53, 497);
-            this.CmbFaceBioassay.Name = "CmbFaceBioassay";
-            this.CmbFaceBioassay.Size = new System.Drawing.Size(270, 20);
-            this.CmbFaceBioassay.TabIndex = 10;
-            // 
-            // LabFaceBioassay
-            // 
-            this.LabFaceBioassay.AutoSize = true;
-            this.LabFaceBioassay.Location = new System.Drawing.Point(51, 477);
-            this.LabFaceBioassay.Name = "LabFaceBioassay";
-            this.LabFaceBioassay.Size = new System.Drawing.Size(89, 12);
-            this.LabFaceBioassay.TabIndex = 7;
-            this.LabFaceBioassay.Text = "活体检测开关：";
-            // 
-            // Btn_WriteFaceBioassay
-            // 
-            this.Btn_WriteFaceBioassay.Location = new System.Drawing.Point(347, 496);
-            this.Btn_WriteFaceBioassay.Name = "Btn_WriteFaceBioassay";
-            this.Btn_WriteFaceBioassay.Size = new System.Drawing.Size(75, 23);
-            this.Btn_WriteFaceBioassay.TabIndex = 11;
-            this.Btn_WriteFaceBioassay.Text = "写入";
-            this.Btn_WriteFaceBioassay.UseVisualStyleBackColor = true;
-            this.Btn_WriteFaceBioassay.Click += new System.EventHandler(this.Btn_WriteFaceBioassay_Click);
-            // 
-            // Btn_ReadFaceBioassay
-            // 
-            this.Btn_ReadFaceBioassay.Location = new System.Drawing.Point(438, 496);
-            this.Btn_ReadFaceBioassay.Name = "Btn_ReadFaceBioassay";
-            this.Btn_ReadFaceBioassay.Size = new System.Drawing.Size(75, 23);
-            this.Btn_ReadFaceBioassay.TabIndex = 12;
-            this.Btn_ReadFaceBioassay.Text = "读取";
-            this.Btn_ReadFaceBioassay.UseVisualStyleBackColor = true;
-            this.Btn_ReadFaceBioassay.Click += new System.EventHandler(this.Btn_ReadFaceBioassay_Click);
+            this.BtnFormatController.Location = new System.Drawing.Point(624, 319);
+            this.BtnFormatController.Name = "BtnFormatController";
+            this.BtnFormatController.Size = new System.Drawing.Size(107, 23);
+            this.BtnFormatController.TabIndex = 72;
+            this.BtnFormatController.Text = "初始化设备";
+            this.BtnFormatController.UseVisualStyleBackColor = true;
+            this.BtnFormatController.Click += new System.EventHandler(this.BtnFormatController_Click);
             // 
             // frmSystem
             // 
@@ -2485,5 +2497,6 @@
         private System.Windows.Forms.ComboBox CmbFaceBioassay;
         private System.Windows.Forms.Button Btn_ReadFaceBioassay;
         private System.Windows.Forms.Button Btn_WriteFaceBioassay;
+        private System.Windows.Forms.Button BtnFormatController;
     }
 }
