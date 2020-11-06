@@ -87,6 +87,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             tbEvent.SelectedIndex = 1;
             IniConnTypeList();
+
+            BeginAutoUpdate();
+
+
+        }
+        #region 自动更新
+        private void BeginAutoUpdate()
+        {
             #region 自动更新
             AutoUpdater.UpdateMode = Mode.ForcedDownload;
             AutoUpdater.ShowSkipButton = false;
@@ -96,10 +104,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AutoUpdater.Start("http://oss2.pc15.net/ToolDownload/Update/FaceDebugToolForNet/update.xml");
             AutoUpdater.CheckForUpdateEvent += AutoUpdater_CheckForUpdateEvent;
             #endregion
-
-
-
         }
+
 
         private void AutoUpdater_CheckForUpdateEvent(UpdateInfoEventArgs args)
         {
@@ -112,8 +118,25 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 });
             }
+            else
+            {
+
+                AutoUpdater.DownloadUpdate(args);
+
+                this.Invoke(() =>
+                {
+                    this.Close();
+                    this.Dispose();
+                    Application.Exit();
+                });
+            }
 
         }
+
+
+        #endregion
+
+
 
         #region 多语言
 
@@ -757,7 +780,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             //释放资源
-            mAllocator.Dispose();
+            mAllocator?.Dispose();
             Sleep(500);
             //Sleep(50000);
         }
