@@ -781,13 +781,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                             picReg.Image = img;
                         }
 
-                        MsgTip(GetLanguage("Msg_26"));
+                        mMainForm.AddLog(GetLanguage("Msg_26"));
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show(GetLanguage("Msg_26") +$"--{result.Status}");
+                    mMainForm.AddLog(GetLanguage("Msg_26") +$"--{result.Status}");
                 }
             };
         }

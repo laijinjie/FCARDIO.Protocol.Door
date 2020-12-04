@@ -404,7 +404,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     txtServerAddr.Text = result.TCP.mServerAddr;
                     txtServerPort.Text = result.TCP.mServerPort.ToString();
 
-                    cbxAutoIP.SelectedIndex = result.TCP.mAutoIP == true ? 1 : 0;
+                    cbxAutoIP.SelectedIndex = result.TCP.mAutoIP == true ? 0 : 1;
                 });
                 string TCPInfo = DebugTCPDetail(result.TCP);
                 mMainForm.AddCmdLog(cmde, TCPInfo);
@@ -474,7 +474,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 MsgErr(GetLanguage("Msg_11"));
                 return;
             }
-            txtServerAddr.Text = "www.pc15.net";
+            //txtServerAddr.Text = "www.pc15.net";
 
 
 
@@ -499,7 +499,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             tcp.mProtocolType = 1;
 
-            if (cbxAutoIP.SelectedIndex == 1)
+            if (cbxAutoIP.SelectedIndex == 0)
             {
                 tcp.mAutoIP = true;
             }
@@ -1041,8 +1041,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 {
                     txtManufacturer.Text = result.Detail.Manufacturer;
                     txtWebAddr.Text = result.Detail.WebAddr;
-                    dtpDate.Value = result.Detail.DeliveryDate;
-                    dtpTime.Value = result.Detail.DeliveryDate;
+                    if(result.Detail.DeliveryDate !=DateTime.MinValue)
+                    {
+                        dtpDate.Value = result.Detail.DeliveryDate;
+                        dtpTime.Value = result.Detail.DeliveryDate;
+                    }
+                    
                 });
                 //  mMainForm.AddCmdLog(cmde, "");
             };
@@ -1514,6 +1518,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
+            cmdDtl.Timeout = 3500;
             var cmd = new RequireSendKeepalivePacket(cmdDtl);
             mMainForm.AddCommand(cmd);
 
@@ -1540,7 +1545,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void butRequireConnectServer_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
+            
             if (cmdDtl == null) return;
+            cmdDtl.Timeout = 3500;
             var cmd = new RequireConnectServer(cmdDtl);
             mMainForm.AddCommand(cmd);
 

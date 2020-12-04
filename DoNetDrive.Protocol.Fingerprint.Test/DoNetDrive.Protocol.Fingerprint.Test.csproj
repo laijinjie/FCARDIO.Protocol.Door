@@ -39,6 +39,7 @@
   <ItemGroup>
     <Reference Include="AutoUpdater.NET, Version=1.6.3.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
       <HintPath>..\packages\Autoupdater.NET.Official.1.6.3\lib\net45\AutoUpdater.NET.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevComponents.DotNetBar.SuperGrid">
       <HintPath>..\DLL\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
@@ -57,12 +58,18 @@
       <HintPath>..\DLL\DoNetDrive.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol">
+    <Reference Include="DoNetDrive.Protocol, Version=1.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Door">
       <HintPath>..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Fingerprint, Version=1.19.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DoNetDrive.Protocol.Fingerprint.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -250,10 +257,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DoNetDrive.Protocol.Fingerprint\Fingerprint\DoNetDrive.Protocol.Fingerprint.csproj">
-      <Project>{4639e7f7-83aa-4511-8fa8-369a79226b72}</Project>
-      <Name>DoNetDrive.Protocol.Fingerprint</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

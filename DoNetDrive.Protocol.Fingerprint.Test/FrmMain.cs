@@ -25,6 +25,7 @@ using DoNetDrive.Protocol.Fingerprint.Test.Properties;
 using System.Security.Cryptography.X509Certificates;
 using System.IO;
 using AutoUpdaterDotNET;
+using DotNetty.Buffers;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -399,6 +400,33 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         }
 
 
+        private class MyRequestHandle : Door8800RequestHandle
+        {
+            private string ConnectKey;
+            private DateTime KeepaliveTime;
+            internal INConnectorDetail ConnDetail;
+
+            public MyRequestHandle(IByteBufferAllocator allocator,
+                Func<string, byte, byte, AbstractTransaction> factory, INConnectorDetail iDetail)
+                : base(allocator, factory)
+            {
+                ConnectKey = iDetail.GetKey();
+                KeepaliveTime = DateTime.Now;
+                ConnDetail = (INConnectorDetail)iDetail.Clone();
+            }
+            //接收
+            public override void DisposeRequest(INConnector connector, IByteBuffer msg)
+            {
+                base.DisposeRequest(connector, msg);
+                KeepaliveTime = DateTime.Now;
+            }
+            //超时
+            internal bool CheckTimeout()
+            {
+                var iSec = (DateTime.Now - KeepaliveTime).TotalSeconds;
+                return (iSec > 180);
+            }
+        }
 
         /// <summary>
         /// 客户端上线
@@ -409,14 +437,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             INConnector inc = sender as INConnector;
             inc.AddRequestHandle(mObserver);
+            MyRequestHandle fC8800Request = null;
             switch (inc.GetConnectorType())
             {
                 case ConnectorType.TCPServerClient://tcp 客户端已连接
                 case ConnectorType.UDPClient://UDP客户端已连接
 
                     //inc.OpenForciblyConnect();
-                    Door8800RequestHandle fC8800Request =
-                        new Door8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
+                    fC8800Request =
+                       new MyRequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default,
+                       RequestHandleFactory, inc.GetConnectorDetail());
                     inc.RemoveRequestHandle(typeof(Door8800RequestHandle));//先删除，防止已存在就无法添加。
                     inc.AddRequestHandle(fC8800Request);
 
@@ -432,6 +462,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 case ConnectorType.TCPServerClient://tcp 客户端已连接
                     TCPServerClientDetail clientDetail = inc.GetConnectorDetail() as TCPServerClientDetail;
                     AddTCPClient(inc.GetKey(), clientDetail.Remote);
+
+
+                    mTCPClients.TryGetValue(inc.GetKey(), out var mTcp);
+                    mTcp.Handle = fC8800Request;
+
                     break;
 
                 default:
@@ -487,6 +522,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     Invoke(() => TCPBindOver(false));
                     //"TCP Server 绑定已关闭"
                     AddIOLog(connector, GetLanguage("TCPBind"), GetLanguage("TCPConnectorClosed"));
+                    break;
+                case ConnectorType.TCPServerClient://tcp客户端断开连接
+                    RemoteTCPClient(connector.GetKey());
                     break;
                 default:
                     // "关闭", "连接通道已关闭"
@@ -795,7 +833,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public void AddLog(string s)
         {
             if (_IsClosed) return;
-
+            AddCmdLog(null, s);
         }
 
 
@@ -1814,19 +1852,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 //"保活包消息，远端信息：
                 strbuf.Append(fcTrn.SN).Append(GetLanguage("TransactionMessage8")).Append(Remote);
+                //发送一个回包
+                SendCallblack(bIsUDP, fcTrn, sRemoteIP, iRemotePort, connector.GetKey());
             }
 
             if (fcTrn.CmdIndex == 0xA0)
             {
+                SendCallblack(bIsUDP, fcTrn, sRemoteIP, iRemotePort, connector.GetKey());
 
-                //连接测试消息
-                INCommandDetail cmdDtl;
-                if (bIsUDP)
-                    cmdDtl = GetUDPCommandDetail(fcTrn.SN, "FFFFFFFF", sRemoteIP, iRemotePort);
-                else
-                    cmdDtl = GetTCPCommandDetail(fcTrn.SN, "FFFFFFFF", connector.GetKey());
-                var sndConntmsg = new SystemParameter.SendConnectTestResponse(cmdDtl);
-                AddCommand(sndConntmsg);
                 //"连接测试消息，远端信息："
                 strbuf.Append(fcTrn.SN).Append(GetLanguage("TransactionMessage9")).Append(Remote);
             }
@@ -1850,6 +1883,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AddCmdItem(commandResult);
         }
 
+
+        private void SendCallblack(bool bIsUDP, Door8800Transaction fcTrn, string sRemoteIP, int iRemotePort, string ConnKey)
+        {
+            //连接测试消息
+            INCommandDetail cmdDtl;
+            if (bIsUDP)
+                cmdDtl = GetUDPCommandDetail(fcTrn.SN, "FFFFFFFF", sRemoteIP, iRemotePort);
+            else
+                cmdDtl = GetTCPCommandDetail(fcTrn.SN, "FFFFFFFF", ConnKey);
+            var sndConntmsg = new SystemParameter.SendConnectTestResponse(cmdDtl);
+            AddCommand(sndConntmsg);
+        }
 
 
         #endregion
@@ -1896,6 +1941,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (cmdDtl == null) return;
             mAllocator.StopCommand(cmdDtl);
         }
+
         #region  TCP Server 服务绑定
         private bool mTCPServerBind = false;
         private string mTCPServer_IP;
@@ -1905,6 +1951,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private class MyTCPServerClientDetail : TCPServerClientDetail
         {
             public String SN;
+            internal MyRequestHandle Handle;
+
             public MyTCPServerClientDetail(string sKey, IPEndPoint remoteIP) : base(sKey, remoteIP, null)
             {
 
@@ -1944,6 +1992,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// </summary>
         private void StopTCPServer()
         {
+
             if (!mTCPServerBind) return;
             var tcp = new TCPServerDetail(mTCPServer_IP, mTCPServer_Port);
 
@@ -2010,6 +2059,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 //绑定成功
                 butTCPServerBind.Text = GetLanguage("butTCPServerBind_Close");//"关闭"
+                Task.Run(CheckTCPClient);
             }
             else
             {
@@ -2050,6 +2100,42 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             }
         }
+
+
+
+
+        /// <summary>
+        /// 检查TCP客户端
+        /// </summary>
+        private void CheckTCPClient()
+        {
+            do
+            {
+                var keys = mTCPClients.Keys.ToArray();
+                MyTCPServerClientDetail mTCP;
+                foreach (var key in keys)
+                {
+                    if (mTCPClients.TryGetValue(key, out mTCP))
+                    {
+                        if (mTCP.Handle != null)
+                        {
+                            if (mTCP.Handle.CheckTimeout())
+                            {
+                                RemoteTCPClient(key);
+                                AddLog($"TCP 连接超时，自动关闭连接通道:{key}");
+                                mAllocator.CloseConnector(mTCP.Handle.ConnDetail);
+                            }
+                        }
+
+                    }
+                }
+                System.Threading.Thread.Sleep(100);
+
+            } while (mTCPServerBind);
+
+
+        }
+
         /// <summary>
         /// 删除客户端
         /// </summary>

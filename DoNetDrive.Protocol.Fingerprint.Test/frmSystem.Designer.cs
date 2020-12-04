@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpPar1 = new System.Windows.Forms.TabPage();
+            this.BtnFormatController = new System.Windows.Forms.Button();
             this.gbWatch = new System.Windows.Forms.GroupBox();
             this.lbWatchState = new System.Windows.Forms.Label();
             this.btnCloseWatch_Broadcast = new System.Windows.Forms.Button();
@@ -219,7 +220,6 @@
             this.txtServerIP_1 = new System.Windows.Forms.TextBox();
             this.lblServerPort_1 = new System.Windows.Forms.Label();
             this.txtServerPort_1 = new System.Windows.Forms.TextBox();
-            this.BtnFormatController = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpPar1.SuspendLayout();
             this.gbWatch.SuspendLayout();
@@ -275,6 +275,16 @@
             this.tpPar1.TabIndex = 0;
             this.tpPar1.Text = "设备参数设置";
             this.tpPar1.UseVisualStyleBackColor = true;
+            // 
+            // BtnFormatController
+            // 
+            this.BtnFormatController.Location = new System.Drawing.Point(624, 319);
+            this.BtnFormatController.Name = "BtnFormatController";
+            this.BtnFormatController.Size = new System.Drawing.Size(107, 23);
+            this.BtnFormatController.TabIndex = 72;
+            this.BtnFormatController.Text = "初始化设备";
+            this.BtnFormatController.UseVisualStyleBackColor = true;
+            this.BtnFormatController.Click += new System.EventHandler(this.BtnFormatController_Click);
             // 
             // gbWatch
             // 
@@ -619,16 +629,14 @@
             this.LblServerAddr.TabIndex = 27;
             this.LblServerAddr.Text = "服务器域名：";
             this.LblServerAddr.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.LblServerAddr.Visible = false;
             // 
             // txtServerAddr
             // 
-            this.txtServerAddr.Location = new System.Drawing.Point(110, 278);
+            this.txtServerAddr.Location = new System.Drawing.Point(6, 297);
             this.txtServerAddr.MaxLength = 90;
             this.txtServerAddr.Name = "txtServerAddr";
-            this.txtServerAddr.Size = new System.Drawing.Size(138, 21);
+            this.txtServerAddr.Size = new System.Drawing.Size(253, 21);
             this.txtServerAddr.TabIndex = 26;
-            this.txtServerAddr.Visible = false;
             // 
             // lblAutoIP
             // 
@@ -777,7 +785,7 @@
             // 
             // butWriteTCPSetting
             // 
-            this.butWriteTCPSetting.Location = new System.Drawing.Point(152, 305);
+            this.butWriteTCPSetting.Location = new System.Drawing.Point(152, 350);
             this.butWriteTCPSetting.Name = "butWriteTCPSetting";
             this.butWriteTCPSetting.Size = new System.Drawing.Size(48, 23);
             this.butWriteTCPSetting.TabIndex = 3;
@@ -787,7 +795,7 @@
             // 
             // butRendTCPSetting
             // 
-            this.butRendTCPSetting.Location = new System.Drawing.Point(96, 305);
+            this.butRendTCPSetting.Location = new System.Drawing.Point(96, 350);
             this.butRendTCPSetting.Name = "butRendTCPSetting";
             this.butRendTCPSetting.Size = new System.Drawing.Size(48, 23);
             this.butRendTCPSetting.TabIndex = 2;
@@ -2237,16 +2245,6 @@
             this.txtServerPort_1.Size = new System.Drawing.Size(69, 21);
             this.txtServerPort_1.TabIndex = 0;
             this.txtServerPort_1.Text = "9000";
-            // 
-            // BtnFormatController
-            // 
-            this.BtnFormatController.Location = new System.Drawing.Point(624, 319);
-            this.BtnFormatController.Name = "BtnFormatController";
-            this.BtnFormatController.Size = new System.Drawing.Size(107, 23);
-            this.BtnFormatController.TabIndex = 72;
-            this.BtnFormatController.Text = "初始化设备";
-            this.BtnFormatController.UseVisualStyleBackColor = true;
-            this.BtnFormatController.Click += new System.EventHandler(this.BtnFormatController_Click);
             // 
             // frmSystem
             // 
