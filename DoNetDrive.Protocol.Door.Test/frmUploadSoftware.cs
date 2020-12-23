@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DoNetDrive.Protocol.Door.Test
 {
-    public partial class frmUploadSoftware : Form
+    public partial class frmUploadSoftware : frmNodeForm
     {
         private static object lockobj = new object();
         private static frmUploadSoftware onlyObj;

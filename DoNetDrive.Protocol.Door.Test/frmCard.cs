@@ -47,12 +47,58 @@ namespace DoNetDrive.Protocol.Door.Test
             InitializeComponent();
             mMainForm = main;
         }
-
-        private void frmCard_Load(object sender, EventArgs e)
+        public override void LoadUILanguage()
         {
+            base.LoadUILanguage();
+            GetLanguage(groupBox1);
+            GetLanguage(label1);
+            GetLanguage(butCardDatabaseDetail);
+            GetLanguage(button2);
+            GetLanguage(butClearCardDataBase);
+            GetLanguage(label2);
+            GetLanguage(butCardListBySort);
+            GetLanguage(butCardListBySequence);
+            GetLanguage(butClearGrid);
+            GetLanguage(dgCardList);
+            GetLanguage(chkSelectAll);
+            GetLanguage(checkBox7);
+            GetLanguage(tabPage1);
+            GetLanguage(label3);
+            GetLanguage(label4);
+            GetLanguage(label5);
+            GetLanguage(label6);
+            GetLanguage(label10);
+            GetLanguage(label11);
+            GetLanguage(label12);
+            GetLanguage(label13);
+            GetLanguage(label14);
+            GetLanguage(label7);
+            GetLanguage(label8);
+            GetLanguage(label9);
+            var door = GetLanguage("door");
+            chkDoor1.Text = door + 1;
+            chkDoor2.Text = door + 2;
+            chkDoor3.Text = door + 3;
+            chkDoor4.Text = door + 4;
+            GetLanguage(cbHolidayUse);
+            GetLanguage(button7);
+            GetLanguage(butInsertList);
+            GetLanguage(butDelList);
+            GetLanguage(btnAddDevice);
+            GetLanguage(butReadCardDetail);
+            GetLanguage(btnDelDevice);
+            GetLanguage(btnDelSelect);
+            GetLanguage(tabPage3);
+            GetLanguage(label15);
+            GetLanguage(butCreateCardNumByRandom);
+            GetLanguage(butCreateCardNumByOrder);
+            GetLanguage(button13);
+            GetLanguage(button14);
+            GetLanguage(tabPage4);
+
             //操作类型
             cmbcardType.Items.Clear();
-            cmbcardType.Items.AddRange(new string[] { "排序卡", "非排序卡", "所有卡" });
+            cmbcardType.Items.AddRange(GetLanguage("cardType").Split(','));
             cmbcardType.SelectedIndex = 0;
             dgCardList.AutoGenerateColumns = false;
             CardList = new BindingList<CardDetail_UI>();
@@ -60,7 +106,10 @@ namespace DoNetDrive.Protocol.Door.Test
             dgCardList.DataSource = CardList;
 
             IniControl();
-
+        }
+        private void frmCard_Load(object sender, EventArgs e)
+        {
+            LoadUILanguage();
         }
 
         #region 读取授权卡存储信息
@@ -76,8 +125,8 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmd.getResult() as Door8800.Card.ReadCardDatabaseDetail_Result;
-                mMainForm.AddCmdLog(cmde, $"命令成功：排序数据区：容量:{result.SortDataBaseSize.ToString()},已使用数量:{result.SortCardSize.ToString()}");
-                mMainForm.AddCmdLog(cmde, $"非排序存储区：容量:{result.SequenceDataBaseSize.ToString()},已使用数量:{result.SequenceCardSize.ToString()}");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("msg1")}{result.SortDataBaseSize.ToString()},{GetLanguage("msg2")}:{result.SortCardSize.ToString()}");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("msg3")}{result.SequenceDataBaseSize.ToString()},{GetLanguage("msg2")}:{result.SequenceCardSize.ToString()}");
             };
         }
         #endregion
@@ -116,7 +165,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             int iReadCount = 0;
             int iType = 0;
-            string[] DBTypes = new string[] { "", "排序区", "非排序区", "所有区域" };
+            string[] DBTypes = GetLanguage("cardType").Split(',');
 
 
             CardList.RaiseListChangedEvents = false;
@@ -130,7 +179,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 iReadCount = result.DataBaseSize;
                 if (iReadCount > 0)
                 {
-                    sLogs.AppendLine($"读取到的卡片数:{iReadCount},带读取的卡片数据类型:{DBTypes[iType]}");
+                    sLogs.AppendLine($"{GetLanguage("msg4")}:{iReadCount},{GetLanguage("msg5")}:{DBTypes[iType]}");
                     sLogs.Capacity = result.CardList.Count * 100;
                     //Door8800的卡号
                     foreach (var c in result.CardList)
@@ -148,7 +197,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 iReadCount = fc89Result.DataBaseSize;
                 if (iReadCount > 0)
                 {
-                    sLogs.AppendLine($"读取到的卡片数:{iReadCount},带读取的卡片数据类型:{DBTypes[iType]}");
+                    sLogs.AppendLine($"{GetLanguage("msg4")}:{iReadCount},{GetLanguage("msg5")}:{DBTypes[iType]}");
                     sLogs.Capacity = fc89Result.CardList.Count * 100;
                     //Door89H的卡号
                     foreach (var c in fc89Result.CardList)
@@ -163,13 +212,24 @@ namespace DoNetDrive.Protocol.Door.Test
             CardList.ResetBindings();
 
 
-            mMainForm.AddCmdLog(cmde, $"读取到的卡片数:{iReadCount},带读取的卡片数据类型:{DBTypes[iType]}");
+            mMainForm.AddCmdLog(cmde, $"{GetLanguage("msg4")}:{iReadCount},{GetLanguage("msg5")}:{DBTypes[iType]}");
             if (sLogs.Length > 0)
             {
-                string sFile = frmRecord.SaveFile(sLogs, $"读取所有卡片_{DateTime.Now:yyyyMMddHHmmss}.txt");
-                mMainForm.AddCmdLog(cmde, $"卡片日志保存路径:{sFile}");
+                string sFile = SaveFile(sLogs, $"{GetLanguage("msg6")}{DateTime.Now:yyyyMMddHHmmss}.txt");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("msg7")}:{sFile}");
             }
 
+        }
+        public string SaveFile(StringBuilder sLogs, string sFileName)
+        {
+            string sPath = System.IO.Path.Combine(Application.StartupPath, GetLanguage("msg34"));
+            if (!System.IO.Directory.Exists(sPath))
+                System.IO.Directory.CreateDirectory(sPath);
+
+            string sFile = System.IO.Path.Combine(sPath, $"{GetLanguage("msg9")}{DateTime.Now:yyyyMMddHHmmss}.txt");
+
+            System.IO.File.WriteAllText(sFile, sLogs.ToString(), Encoding.UTF8);
+            return sFile;
         }
 
         /// <summary>
@@ -224,10 +284,6 @@ namespace DoNetDrive.Protocol.Door.Test
             var par = new Door8800.Card.ClearCardDataBase_Parameter(cmbcardType.SelectedIndex + 1);
             var cmd = new Door8800.Card.ClearCardDataBase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
         }
         #endregion
 
@@ -338,7 +394,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (result != null)
             {
-                mMainForm.AddCmdLog(cmde, $"命令成功：写入失败的卡数量:{result.FailTotal}");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("msg8")}:{result.FailTotal}");
                 if (result.FailTotal > 0)
                 {
                     StringBuilder strBuf = new StringBuilder();
@@ -347,7 +403,7 @@ namespace DoNetDrive.Protocol.Door.Test
                         strBuf.Append(item.ToString("00000000000000000000")).Append("(0x").Append(item.ToString("X18")).Append(")");
                     }
                     txtDebug.Text = strBuf.ToString();
-                    System.IO.File.WriteAllText(System.IO.Path.Combine(Application.StartupPath, "上传失败的卡号.txt"), strBuf.ToString(), Encoding.UTF8);
+                    System.IO.File.WriteAllText(System.IO.Path.Combine(Application.StartupPath, $"{GetLanguage("msg9")}.txt"), strBuf.ToString(), Encoding.UTF8);
                 }
             }
         }
@@ -368,7 +424,7 @@ namespace DoNetDrive.Protocol.Door.Test
             UInt64 card = 0;
             if (!UInt64.TryParse(txtCardData.Text, out card))
             {
-                MsgErr("请输入正确的卡号");
+                MsgErr(GetLanguage("msg10"));
                 return;
             }
 
@@ -412,7 +468,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 if (!result.IsReady)
                 {
-                    mMainForm.AddCmdLog(cmde, $"此卡未注册！");
+                    mMainForm.AddCmdLog(cmde, GetLanguage("msg11")) ;
                     return;
                 }
                 else
@@ -426,7 +482,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 var fc89Result = cmde.Result as Door89H.Card.ReadCardDetail_Result;
                 if (!fc89Result.IsReady)
                 {
-                    mMainForm.AddCmdLog(cmde, $"此卡未注册！");
+                    mMainForm.AddCmdLog(cmde, GetLanguage("msg11"));
                     return;
                 }
                 else
@@ -438,7 +494,7 @@ namespace DoNetDrive.Protocol.Door.Test
             }
             txtDebug.Text = strBuf.ToString();
 
-            mMainForm.AddCmdLog(cmde, "卡片已注册，详情查看【卡详情描述】");
+            mMainForm.AddCmdLog(cmde, GetLanguage("msg11"));
         }
         /// <summary>
         /// 将卡片输出到buf中
@@ -447,13 +503,13 @@ namespace DoNetDrive.Protocol.Door.Test
         private StringBuilder DebugCardDetail(CardDetailBase card, StringBuilder strBuf)
         {
             CardDetail_UI ui = new CardDetail_UI(card);
-            strBuf.Append("卡号：").Append(ui.CardData).Append("；密码：").Append(ui.Password);
-            strBuf.Append("；有效期：").Append(ui.Expiry).Append("；有效次数：").Append(ui.OpenTimes).AppendLine("；");
-            strBuf.Append("权限：").Append(ui.doorAccess).Append("；开门时段：").Append(ui.TimeGroup);
-            strBuf.Append("；状态：").Append(ui.CardStatus).Append("；特权：").AppendLine(ui.Privilege);
-            strBuf.Append("节假日：").Append(ui.Holiday).Append("(1->32)");
-            strBuf.Append("；出入标志：").Append(ui.EnterStatus);
-            strBuf.Append("；最近读卡时间：").AppendLine(ui.ReadCardDate);
+            strBuf.Append(GetLanguage("msg13")).Append(ui.CardData).Append("；"+ GetLanguage("msg14")).Append(ui.Password);
+            strBuf.Append("；"+ GetLanguage("msg15")).Append(ui.Expiry).Append("；"+ GetLanguage("msg16")).Append(ui.OpenTimes).AppendLine("；");
+            strBuf.Append(GetLanguage("msg22")).Append(ui.doorAccess).Append("；"+GetLanguage("msg23")).Append(ui.TimeGroup);
+            strBuf.Append("；"+ GetLanguage("msg17")).Append(ui.CardStatus).Append("；"+ GetLanguage("msg18")).AppendLine(ui.Privilege);
+            strBuf.Append(GetLanguage("msg19")).Append(ui.Holiday).Append("(1->32)");
+            strBuf.Append("；"+ GetLanguage("msg20")).Append(ui.EnterStatus);
+            strBuf.Append("；"+ GetLanguage("msg21")).AppendLine(ui.ReadCardDate);
             return strBuf;
         }
 
@@ -518,7 +574,7 @@ namespace DoNetDrive.Protocol.Door.Test
         public void EnterStatus()
         {
             ComboBox[] EnterStatusList = { cmbEnterStatus1, cmbEnterStatus2, cmbEnterStatus3, cmbEnterStatus4 };
-            string[] arr = new string[] { "出入有效", "出有效", "入有效" };
+            string[] arr = GetLanguage("enterStatus").Split(',');
             foreach (var cmb in EnterStatusList)
             {
                 cmb.Items.Clear();
@@ -533,15 +589,15 @@ namespace DoNetDrive.Protocol.Door.Test
         public void OpenTimes()
         {
             cmbOpenTimes.Items.Clear();
-            cmbOpenTimes.Items.Add(CardDetail_UI.OpenTimes_Invalid);
-
+            cmbOpenTimes.Items.Add(GetLanguage("msg35"));
+            var temp = GetLanguage("msg24");
             string[] time = new string[100];
             for (int i = 1; i <= 100; i++)
             {
-                time[i - 1] = i + "次";
+                time[i - 1] = i + temp;
             }
             cmbOpenTimes.Items.AddRange(time);
-            cmbOpenTimes.Items.Add(CardDetail_UI.OpenTimes_Off);
+            cmbOpenTimes.Items.Add(GetLanguage("msg36"));
             cmbOpenTimes.SelectedIndex = cmbOpenTimes.Items.Count - 1;
         }
         #endregion
@@ -550,11 +606,11 @@ namespace DoNetDrive.Protocol.Door.Test
         public void CardStatus()
         {
             cmbCardStatus.Items.Clear();
-            cmbCardStatus.Items.AddRange(CardDetail_UI.CardStatusList);
+            cmbCardStatus.Items.AddRange(GetLanguage("cmbCardStatus").Split(','));
             cmbCardStatus.SelectedIndex = 0;
 
             cmbPrivilege.Items.Clear();
-            cmbPrivilege.Items.AddRange(CardDetail_UI.CardPrivilegeList);
+            cmbPrivilege.Items.AddRange(GetLanguage("cmbPrivilege").Split(','));
             cmbPrivilege.SelectedIndex = 0;
         }
         #endregion
@@ -564,10 +620,10 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             string[] time = new string[64];
             ComboBox[] TGList = { cmbTimeGroup1, cmbTimeGroup2, cmbTimeGroup3, cmbTimeGroup4 };
-
+            var temp = GetLanguage("msg25");
             for (int i = 0; i < 64; i++)
             {
-                time[i] = "卡门时段" + (i + 1);
+                time[i] = temp + (i + 1);
             }
 
             foreach (var tgb in TGList)
@@ -592,7 +648,7 @@ namespace DoNetDrive.Protocol.Door.Test
             card.BigCard.BigValue = decimal.Parse(CardStr);
             if (card.BigCard.BigValue == 0)
             {
-                MsgErr("卡号输入不正确！");
+                MsgErr(GetLanguage("msg26"));
                 return null;
             }
             string sPwd = txtPassword.Text;
@@ -600,12 +656,12 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 if (!sPwd.IsNum())
                 {
-                    MsgErr("个人密码必须输入数字！");
+                    MsgErr(GetLanguage("msg27"));
                     return null;
                 }
                 if (sPwd.Length < 4)
                 {
-                    MsgErr("个人密码请输入 4-8个数字！");
+                    MsgErr(GetLanguage("msg28"));
                     return null;
                 }
                 card.Password = sPwd.FillString(8, "F");
@@ -622,7 +678,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     card.OpenTimes = 65535;
                 else
                 {
-                    string sTimes = cmbOpenTimes.Text.Replace("次", string.Empty).Trim();
+                    string sTimes = cmbOpenTimes.Text.Replace(GetLanguage("msg24"), string.Empty).Trim();
                     if (sTimes.IsNum())
                     {
                         card.OpenTimes = sTimes.ToInt32();
@@ -785,12 +841,12 @@ namespace DoNetDrive.Protocol.Door.Test
             int iCreateCount = 0;
             if (!int.TryParse(txtCount.Text, out iCreateCount))
             {
-                MessageBox.Show("输入的数字不正确，取值范围：1-32000！");
+                MessageBox.Show(GetLanguage("msg29"));
                 return 0;
             }
             if (iCreateCount > 32000)
             {
-                MessageBox.Show("输入的数字不正确，取值范围：1-32000！");
+                MessageBox.Show(GetLanguage("msg29"));
                 return 0;
             }
             if ((iCreateCount + CardList.Count) > 32000)
@@ -837,7 +893,7 @@ namespace DoNetDrive.Protocol.Door.Test
             int iCreateCount = CheckCreateCardCount();
             if (iCreateCount <= 0) return;
 
-            string sBeginNum = frmInputBox.ShowBox("起始序号", "请输入卡号的起始序号，取值范围：1-4000000000", "1", 10);
+            string sBeginNum = frmInputBox.ShowBox(GetLanguage("msg31"), GetLanguage("msg32"), "1", 10);
             UInt64 iBeginNum = 0;
             if (!UInt64.TryParse(sBeginNum, out iBeginNum))
             {
@@ -1032,7 +1088,7 @@ namespace DoNetDrive.Protocol.Door.Test
             }
             if (cmd == null)
             {
-                MsgErr("没有需要删除的卡片！");
+                MsgErr(GetLanguage("msg33"));
                 return;
             }
 

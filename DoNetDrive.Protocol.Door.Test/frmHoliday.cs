@@ -42,9 +42,35 @@ namespace DoNetDrive.Protocol.Door.Test
             InitializeComponent();
             mMainForm = main;
         }
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(groupPanel1);
+            GetLanguage(butReadHolidayDetail);
+            GetLanguage(butReadAllHoliday);
+            GetLanguage(butAddHoliday);
+            GetLanguage(butClearHoliday);
+            GetLanguage(labelX1);
+            GetLanguage(dataGridView1);
+            GetLanguage(checkBoxX1);
+            GetLanguage(labelX2);
+            GetLanguage(label1);
+            GetLanguage(cbYear);
+            GetLanguage(btnAddList);
+            GetLanguage(btnDelList);
+            GetLanguage(btnAddDecive);
+            GetLanguage(btnDelDevice);
+            GetLanguage(btnDelSelect);
+            GetLanguage(btnAdd30);
 
+            var type = GetLanguage("cbType").Split(',');
+            cbType.Items.Clear();
+            cbType.Items.AddRange(type);
+            cbType.SelectedIndex = 0;
+        }
         private void frmHoliday_Load(object sender, EventArgs e)
         {
+            LoadUILanguage();
             cbIndex.Items.Clear();
             for (int i = 1; i < 31; i++)
             {
@@ -60,7 +86,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
         private void BindDataGrid()
         {
-            
+
         }
 
 
@@ -77,7 +103,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 ReadHolidayDetail_Result result = cmde.Command.getResult() as ReadHolidayDetail_Result;
                 var dtl = result.Detail;
-                string log = $"容量：{dtl.Capacity} ， 已用：{dtl.Count}";
+                string log = $"{GetLanguage("Msg1")}：{dtl.Capacity} ， {GetLanguage("Msg2")}：{dtl.Count}";
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
@@ -90,12 +116,6 @@ namespace DoNetDrive.Protocol.Door.Test
             if (cmdDtl == null) return;
             ClearHoliday cmd = new ClearHoliday(cmdDtl);
             mMainForm.AddCommand(cmd);
-
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-
-            };
         }
         #endregion
 
@@ -116,7 +136,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     HolidayDetailDto dto = new HolidayDetailDto();
 
                     dto.HolidayTypeRender = ConvertHolidayType(item.HolidayType);
-                    dto.RepeatYear = item.Holiday.Year == 2000 ? "是" : "否";
+                    dto.RepeatYear = item.Holiday.Year == 2000 ? GetLanguage("Msg3") : GetLanguage("Msg4");
                     if (item.Holiday.Year == 2000)
                     {
                         dto.Holiday = new DateTime(DateTime.Now.Year, item.Holiday.Month, item.Holiday.Day);
@@ -125,19 +145,20 @@ namespace DoNetDrive.Protocol.Door.Test
                     {
                         dto.Holiday = item.Holiday;
                     }
-                    
+
                     dto.Index = item.Index;
                     dto.Selected = false;
                     listHoliday.Add(dto);
                     //superGridControl1.PrimaryGrid.Rows.Add(new GridRow(new object[] { item.Index, item.Holiday, ConvertHolidayType(item.HolidayType),item.Year }));
                 }
-                Invoke(() => {
+                Invoke(() =>
+                {
                     dataGridView1.DataSource = new BindingList<HolidayDetailDto>(listHoliday);
 
                 });
-               
+
                 //dataGridView1
-                string log = $"已读取到数量：{result.Count} ";
+                string log = $"{GetLanguage("Msg5")}：{result.Count} ";
                 mMainForm.AddCmdLog(cmde, log);
             };
 
@@ -156,13 +177,13 @@ namespace DoNetDrive.Protocol.Door.Test
             switch (b)
             {
                 case 1:
-                    result = "【1、00点-11点59分 不能开】";
+                    result = GetLanguage("Msg6");
                     break;
                 case 2:
-                    result = "【2、12点-24点59分 不能开】";
+                    result = GetLanguage("Msg7");
                     break;
                 case 3:
-                    result = "【3、全天不能开】";
+                    result = GetLanguage("Msg8");
                     break;
                 default:
                     break;
@@ -226,7 +247,7 @@ namespace DoNetDrive.Protocol.Door.Test
             holidayDto.Index = bIndex;
             holidayDto.Holiday = dtpDay.Value;
             holidayDto.HolidayTypeRender = ConvertHolidayType(Convert.ToByte(cbType.SelectedIndex + 1));
-            holidayDto.RepeatYear = cbYear.Checked ? "是" : "否";
+            holidayDto.RepeatYear = cbYear.Checked ? GetLanguage("Msg3") : GetLanguage("Msg4");
             if (!bExist)
             {
                 listHoliday.Add(holidayDto);
@@ -276,11 +297,6 @@ namespace DoNetDrive.Protocol.Door.Test
             AddHoliday cmd = new AddHoliday(cmdDtl, par);
             mMainForm.AddCommand(cmd);
             BtnAddList_Click(null, null);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-                
-            };
         }
 
         /// <summary>
@@ -295,13 +311,8 @@ namespace DoNetDrive.Protocol.Door.Test
             List<HolidayDetail> _list = new List<HolidayDetail>();
             _list.Add(new HolidayDetail() { Index = Convert.ToByte(cbIndex.SelectedIndex + 1) });
             DeleteHoliday_Parameter par = new DeleteHoliday_Parameter(_list);
-            DeleteHoliday cmd = new DeleteHoliday(cmdDtl,par);
+            DeleteHoliday cmd = new DeleteHoliday(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-            };
         }
 
         private void BtnAdd30_Click(object sender, EventArgs e)
@@ -309,8 +320,8 @@ namespace DoNetDrive.Protocol.Door.Test
             listHoliday.Clear();
             for (int i = 0; i < 30; i++)
             {
-                HolidayDetailDto holiday = new HolidayDetailDto() { Index = Convert.ToByte(i + 1), Holiday = dtpDay.Value.AddDays(i + 1)};
-                holiday.RepeatYear = cbYear.Checked ? "是" : "否";
+                HolidayDetailDto holiday = new HolidayDetailDto() { Index = Convert.ToByte(i + 1), Holiday = dtpDay.Value.AddDays(i + 1) };
+                holiday.RepeatYear = cbYear.Checked ? GetLanguage("Msg3") : GetLanguage("Msg4");
                 holiday.HolidayType = Convert.ToByte(cbType.SelectedIndex + 1);
                 holiday.HolidayTypeRender = ConvertHolidayType(holiday.HolidayType);
                 listHoliday.Add(holiday);
@@ -343,11 +354,6 @@ namespace DoNetDrive.Protocol.Door.Test
             DeleteHoliday_Parameter par = new DeleteHoliday_Parameter(_list);
             DeleteHoliday cmd = new DeleteHoliday(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-            };
         }
 
         /// <summary>
@@ -368,17 +374,12 @@ namespace DoNetDrive.Protocol.Door.Test
                 {
                     holiday.Holiday = new DateTime(2000, holiday.Holiday.Month, holiday.Holiday.Day);
                 }
-                
+
                 _list.Add(holiday);
             }
             AddHoliday_Parameter par = new AddHoliday_Parameter(_list);
             AddHoliday cmd = new AddHoliday(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-            };
         }
 
         private void DataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)

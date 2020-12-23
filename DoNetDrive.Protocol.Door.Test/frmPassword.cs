@@ -41,7 +41,50 @@ namespace DoNetDrive.Protocol.Door.Test
             mMainForm = main;
             dataGridView1.AutoGenerateColumns = false;
         }
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(groupPanel1);
+            GetLanguage(butReadPasswordDetail);
+            GetLanguage(butReadAllPassword);
+            GetLanguage(butAddPassword);
+            GetLanguage(butClearPassword);
+            GetLanguage(labelX1);
+            GetLanguage(dataGridView1);
+            GetLanguage(cbReverse);
+            GetLanguage(btnClearList);
+            GetLanguage(label1);
+            GetLanguage(label3);
+           var door= GetLanguage("door");
+            GetLanguage(label2);
+            GetLanguage(label4);
+            GetLanguage(butInsertList);
+            GetLanguage(butDelList);
+            GetLanguage(btnAddDevice);
+            GetLanguage(btnDelDevice);
+            GetLanguage(btnDelSelect);
+            GetLanguage(groupBox1);
+            GetLanguage(label5);
+            GetLanguage(btnRandom);
+            GetLanguage(groupBox2);
+            GetLanguage(button8);
+            GetLanguage(label6);
+            GetLanguage(label7);
 
+            cbbit0.Text = door + 1;
+            cbbit1.Text = door + 2;
+            cbbit2.Text = door + 3;
+            cbbit3.Text = door + 4;
+            string[] times = new string[302];
+            times[0] = GetLanguage("msg1");
+            for (int i = 1; i <= 300; i++)
+            {
+                times[i] = i.ToString();
+            }
+            times[301] = GetLanguage("msg2")+"(65535)";
+            cmbOpenTimes.Items.AddRange(times);
+            cmbOpenTimes.SelectedIndex = 30;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -49,16 +92,8 @@ namespace DoNetDrive.Protocol.Door.Test
         /// <param name="e"></param>
         private void frmPassword_Load(object sender, EventArgs e)
         {
-
-            string[] times = new string[302];
-            times[0] = "失效";
-            for (int i = 1; i <= 300; i++)
-            {
-                times[i] = i.ToString();
-            }
-            times[301] = "无限制(65535)";
-            cmbOpenTimes.Items.AddRange(times);
-            cmbOpenTimes.SelectedIndex = 30;
+            LoadUILanguage();
+           
         }
 
         /// <summary>
@@ -89,7 +124,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 ReadPasswordDetail_Result result = cmde.Command.getResult() as ReadPasswordDetail_Result;
 
                 //dataGridView1
-                string log = $"密码容量：{result.DataSize}，已存数量：{result.PasswordSize}";
+                string log = $"{GetLanguage("msg3")}：{result.DataSize}，{GetLanguage("msg4")}：{result.PasswordSize}";
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
@@ -155,7 +190,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
                 });
                 //dataGridView1
-                string log = $"已读取到数量：{count} ";
+                string log = $"{GetLanguage("msg5")}：{count} ";
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
@@ -172,22 +207,22 @@ namespace DoNetDrive.Protocol.Door.Test
 
             if (ListPassword.Count == 0)
             {
-                MessageBox.Show("密码列表为空");
+                MessageBox.Show(GetLanguage("msg6"));
                 return;
             }
             if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door88)
             {
                 List<PasswordDetail> _list = new List<PasswordDetail>();
-               
+
                 for (int i = 0; i < ListPassword.Count; i++)
                 {
                     PasswordDetail password = new PasswordDetail();
-                        password.OpenTimes = ListPassword[i].OpenTimes;
-                        if (password.OpenTimes == cmbOpenTimes.Items.Count - 1)
-                        {
-                            password.OpenTimes = 65535;
-                        }
-                        password.Expiry = ListPassword[i].Expiry;
+                    password.OpenTimes = ListPassword[i].OpenTimes;
+                    if (password.OpenTimes == cmbOpenTimes.Items.Count - 1)
+                    {
+                        password.OpenTimes = 65535;
+                    }
+                    password.Expiry = ListPassword[i].Expiry;
                     password.Password = ListPassword[i].Password;
                     string strDoor1 = (ListPassword[i].Door1 ? "1" : "0") + (ListPassword[i].Door2 ? "1" : "0") + (ListPassword[i].Door3 ? "1" : "0") + (ListPassword[i].Door4 ? "1" : "0");
                     password.Door = Convert.ToInt32(strDoor1, 2);
@@ -199,7 +234,7 @@ namespace DoNetDrive.Protocol.Door.Test
             }
             else
             {
-                List<Door89H.Password. PasswordDetail> _list = new List<Door89H.Password.PasswordDetail>();
+                List<Door89H.Password.PasswordDetail> _list = new List<Door89H.Password.PasswordDetail>();
                 for (int i = 0; i < ListPassword.Count; i++)
                 {
                     Door89H.Password.PasswordDetail password = new Door89H.Password.PasswordDetail();
@@ -256,7 +291,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     dataGridView1.DataSource = new BindingList<PasswordDto>(ListPassword);
 
                 });
-                mMainForm.AddLog($"命令成功：");
+                mMainForm.AddLog(GetLanguage("msg7"));
             };
 
         }
@@ -275,7 +310,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddLog($"命令成功：");
+                mMainForm.AddLog(GetLanguage("msg7"));
 
             };
         }
@@ -305,7 +340,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (txtPassword.Text.Trim() == "")
             {
-                MessageBox.Show("请输入密码");
+                MessageBox.Show(GetLanguage("msg8"));
                 return;
             }
             PasswordDto dto = new PasswordDto();
@@ -366,7 +401,7 @@ namespace DoNetDrive.Protocol.Door.Test
             if (cmdDtl == null) return;
             if (txtPassword.Text.Trim() == "")
             {
-                MessageBox.Show("请输入密码");
+                MessageBox.Show(GetLanguage("msg8"));
                 return;
             }
             //Door89H.Password.
@@ -394,7 +429,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
                 cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
                 {
-                    mMainForm.AddLog($"命令成功：");
+                    mMainForm.AddLog(GetLanguage("msg7"));
                 };
             }
             else
@@ -421,10 +456,10 @@ namespace DoNetDrive.Protocol.Door.Test
 
                 cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
                 {
-                    mMainForm.AddLog($"命令成功：");
+                    mMainForm.AddLog(GetLanguage("msg7"));
                 };
             }
-            
+
         }
 
         /// <summary>
@@ -436,7 +471,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (txtPassword.Text.Trim() == "")
             {
-                MessageBox.Show("请输入密码");
+                MessageBox.Show(GetLanguage("msg8"));
                 return;
             }
 
@@ -468,7 +503,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddLog($"命令成功：");
+                mMainForm.AddLog(GetLanguage("msg7"));
 
             };
         }
@@ -511,7 +546,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     mMainForm.AddCommand(cmd);
                     cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
                     {
-                        mMainForm.AddLog($"命令成功：");
+                        mMainForm.AddLog(GetLanguage("msg7"));
 
                     };
                 }
@@ -552,7 +587,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     mMainForm.AddCommand(cmd);
                     cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
                     {
-                        mMainForm.AddLog($"命令成功：");
+                        mMainForm.AddLog(GetLanguage("msg7"));
 
                     };
                 }
@@ -587,7 +622,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     int door = rndDoor.Next(16);
                     string binary = Convert.ToString(door, 2).PadLeft(4, '0');
                     dto.SetDoors(binary);
-                   
+
                     {
                         dto.OpenTimes = rndTimes.Next(1, cmbOpenTimes.Items.Count);
                         dto.Expiry = new DateTime(dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day, dtpTime.Value.Hour, dtpTime.Value.Minute, 0);
@@ -595,7 +630,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
                     ListPassword.Add(dto);
                 }
-                ListPassword = ListPassword.OrderBy(t => t.Password).ToList() ;
+                ListPassword = ListPassword.OrderBy(t => t.Password).ToList();
                 dataGridView1.DataSource = new BindingList<PasswordDto>(ListPassword);
             }
             else
@@ -660,13 +695,13 @@ namespace DoNetDrive.Protocol.Door.Test
             if (txtPassword.Text.Length > 8)
             {
 
-                MessageBox.Show("密码长度太长");
+                MessageBox.Show(GetLanguage("msg9"));
                 txtPassword.Text = "";
             }
             int iOut = 0;
             if (!int.TryParse(txtPassword.Text, out iOut))
             {
-                MessageBox.Show("密码格式不正确");
+                MessageBox.Show(GetLanguage("msg10"));
                 txtPassword.Text = "";
             }
         }

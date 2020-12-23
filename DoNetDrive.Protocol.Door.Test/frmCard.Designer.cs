@@ -107,12 +107,14 @@
             this.cmbEnterStatus3 = new System.Windows.Forms.ComboBox();
             this.cmbEnterStatus4 = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCardList)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -125,10 +127,9 @@
             this.groupBox1.Controls.Add(this.butClearCardDataBase);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.butCardDatabaseDetail);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(707, 59);
+            this.groupBox1.Size = new System.Drawing.Size(707, 75);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "卡列表";
@@ -137,7 +138,7 @@
             // 
             this.butClearGrid.Location = new System.Drawing.Point(618, 20);
             this.butClearGrid.Name = "butClearGrid";
-            this.butClearGrid.Size = new System.Drawing.Size(74, 32);
+            this.butClearGrid.Size = new System.Drawing.Size(78, 49);
             this.butClearGrid.TabIndex = 8;
             this.butClearGrid.Text = "清空列表";
             this.butClearGrid.UseVisualStyleBackColor = true;
@@ -145,9 +146,9 @@
             // 
             // butCardListBySort
             // 
-            this.butCardListBySort.Location = new System.Drawing.Point(439, 20);
+            this.butCardListBySort.Location = new System.Drawing.Point(432, 20);
             this.butCardListBySort.Name = "butCardListBySort";
-            this.butCardListBySort.Size = new System.Drawing.Size(79, 32);
+            this.butCardListBySort.Size = new System.Drawing.Size(78, 49);
             this.butCardListBySort.TabIndex = 7;
             this.butCardListBySort.Text = "上传至排序区";
             this.butCardListBySort.UseVisualStyleBackColor = true;
@@ -155,9 +156,9 @@
             // 
             // butCardListBySequence
             // 
-            this.butCardListBySequence.Location = new System.Drawing.Point(526, 20);
+            this.butCardListBySequence.Location = new System.Drawing.Point(525, 20);
             this.butCardListBySequence.Name = "butCardListBySequence";
-            this.butCardListBySequence.Size = new System.Drawing.Size(86, 32);
+            this.butCardListBySequence.Size = new System.Drawing.Size(78, 49);
             this.butCardListBySequence.TabIndex = 6;
             this.butCardListBySequence.Text = "上传至非排序区";
             this.butCardListBySequence.UseVisualStyleBackColor = true;
@@ -167,15 +168,15 @@
             // 
             this.cmbcardType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbcardType.FormattingEnabled = true;
-            this.cmbcardType.Location = new System.Drawing.Point(351, 32);
+            this.cmbcardType.Location = new System.Drawing.Point(272, 46);
             this.cmbcardType.Name = "cmbcardType";
-            this.cmbcardType.Size = new System.Drawing.Size(70, 20);
+            this.cmbcardType.Size = new System.Drawing.Size(149, 20);
             this.cmbcardType.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(359, 17);
+            this.label2.Location = new System.Drawing.Point(281, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 4;
@@ -183,9 +184,9 @@
             // 
             // butClearCardDataBase
             // 
-            this.butClearCardDataBase.Location = new System.Drawing.Point(265, 20);
+            this.butClearCardDataBase.Location = new System.Drawing.Point(187, 20);
             this.butClearCardDataBase.Name = "butClearCardDataBase";
-            this.butClearCardDataBase.Size = new System.Drawing.Size(74, 32);
+            this.butClearCardDataBase.Size = new System.Drawing.Size(78, 49);
             this.butClearCardDataBase.TabIndex = 3;
             this.butClearCardDataBase.Text = "清空授权卡";
             this.butClearCardDataBase.UseVisualStyleBackColor = true;
@@ -193,9 +194,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(179, 20);
+            this.button2.Location = new System.Drawing.Point(95, 20);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(74, 32);
+            this.button2.Size = new System.Drawing.Size(78, 49);
             this.button2.TabIndex = 2;
             this.button2.Text = "采集授权卡";
             this.button2.UseVisualStyleBackColor = true;
@@ -203,9 +204,9 @@
             // 
             // butCardDatabaseDetail
             // 
-            this.butCardDatabaseDetail.Location = new System.Drawing.Point(93, 20);
+            this.butCardDatabaseDetail.Location = new System.Drawing.Point(3, 20);
             this.butCardDatabaseDetail.Name = "butCardDatabaseDetail";
-            this.butCardDatabaseDetail.Size = new System.Drawing.Size(74, 32);
+            this.butCardDatabaseDetail.Size = new System.Drawing.Size(78, 49);
             this.butCardDatabaseDetail.TabIndex = 1;
             this.butCardDatabaseDetail.Text = "采集卡信息";
             this.butCardDatabaseDetail.UseVisualStyleBackColor = true;
@@ -214,7 +215,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 40);
+            this.label1.Location = new System.Drawing.Point(7, 81);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 0;
@@ -242,14 +243,14 @@
             this.EnterStatus1,
             this.Holiday,
             this.ReadCardDate});
-            this.dgCardList.Location = new System.Drawing.Point(11, 78);
+            this.dgCardList.Location = new System.Drawing.Point(6, 98);
             this.dgCardList.MultiSelect = false;
             this.dgCardList.Name = "dgCardList";
             this.dgCardList.RowHeadersVisible = false;
             this.dgCardList.RowTemplate.Height = 23;
             this.dgCardList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCardList.ShowEditingIcon = false;
-            this.dgCardList.Size = new System.Drawing.Size(707, 392);
+            this.dgCardList.Size = new System.Drawing.Size(704, 244);
             this.dgCardList.TabIndex = 9;
             this.dgCardList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCardList_CellClick);
             // 
@@ -360,7 +361,7 @@
             // 
             this.chkSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkSelectAll.AutoSize = true;
-            this.chkSelectAll.Location = new System.Drawing.Point(11, 476);
+            this.chkSelectAll.Location = new System.Drawing.Point(7, 348);
             this.chkSelectAll.Name = "chkSelectAll";
             this.chkSelectAll.Size = new System.Drawing.Size(48, 16);
             this.chkSelectAll.TabIndex = 1;
@@ -372,7 +373,7 @@
             // 
             this.checkBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(75, 476);
+            this.checkBox7.Location = new System.Drawing.Point(340, 348);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(120, 16);
             this.checkBox7.TabIndex = 50;
@@ -385,7 +386,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(700, 249);
+            this.tabPage4.Size = new System.Drawing.Size(700, 389);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "卡详情描述";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -397,7 +398,7 @@
             this.txtDebug.Multiline = true;
             this.txtDebug.Name = "txtDebug";
             this.txtDebug.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDebug.Size = new System.Drawing.Size(694, 243);
+            this.txtDebug.Size = new System.Drawing.Size(694, 383);
             this.txtDebug.TabIndex = 0;
             this.txtDebug.WordWrap = false;
             // 
@@ -413,15 +414,15 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(700, 249);
+            this.tabPage3.Size = new System.Drawing.Size(700, 389);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "创建测试卡";
             // 
             // butCreateCardNumByRandom
             // 
-            this.butCreateCardNumByRandom.Location = new System.Drawing.Point(29, 79);
+            this.butCreateCardNumByRandom.Location = new System.Drawing.Point(29, 89);
             this.butCreateCardNumByRandom.Name = "butCreateCardNumByRandom";
-            this.butCreateCardNumByRandom.Size = new System.Drawing.Size(75, 23);
+            this.butCreateCardNumByRandom.Size = new System.Drawing.Size(132, 43);
             this.butCreateCardNumByRandom.TabIndex = 44;
             this.butCreateCardNumByRandom.Text = "生成随机卡";
             this.butCreateCardNumByRandom.UseVisualStyleBackColor = true;
@@ -429,9 +430,9 @@
             // 
             // butCreateCardNumByOrder
             // 
-            this.butCreateCardNumByOrder.Location = new System.Drawing.Point(121, 79);
+            this.butCreateCardNumByOrder.Location = new System.Drawing.Point(177, 89);
             this.butCreateCardNumByOrder.Name = "butCreateCardNumByOrder";
-            this.butCreateCardNumByOrder.Size = new System.Drawing.Size(75, 23);
+            this.butCreateCardNumByOrder.Size = new System.Drawing.Size(132, 43);
             this.butCreateCardNumByOrder.TabIndex = 45;
             this.butCreateCardNumByOrder.Text = "生成顺序卡";
             this.butCreateCardNumByOrder.UseVisualStyleBackColor = true;
@@ -439,9 +440,9 @@
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(121, 178);
+            this.button14.Location = new System.Drawing.Point(177, 178);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.Size = new System.Drawing.Size(132, 43);
             this.button14.TabIndex = 49;
             this.button14.Text = "导出";
             this.button14.UseVisualStyleBackColor = true;
@@ -459,7 +460,7 @@
             // 
             this.button13.Location = new System.Drawing.Point(29, 178);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
+            this.button13.Size = new System.Drawing.Size(132, 43);
             this.button13.TabIndex = 48;
             this.button13.Text = "导入";
             this.button13.UseVisualStyleBackColor = true;
@@ -520,7 +521,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(700, 249);
+            this.tabPage1.Size = new System.Drawing.Size(712, 388);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "卡详情";
             // 
@@ -528,16 +529,16 @@
             // 
             this.cmbPrivilege.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPrivilege.FormattingEnabled = true;
-            this.cmbPrivilege.Location = new System.Drawing.Point(88, 197);
+            this.cmbPrivilege.Location = new System.Drawing.Point(7, 313);
             this.cmbPrivilege.Name = "cmbPrivilege";
             this.cmbPrivilege.Size = new System.Drawing.Size(214, 20);
             this.cmbPrivilege.TabIndex = 57;
             // 
             // butReadCardDetail
             // 
-            this.butReadCardDetail.Location = new System.Drawing.Point(579, 100);
+            this.butReadCardDetail.Location = new System.Drawing.Point(561, 172);
             this.butReadCardDetail.Name = "butReadCardDetail";
-            this.butReadCardDetail.Size = new System.Drawing.Size(112, 23);
+            this.butReadCardDetail.Size = new System.Drawing.Size(123, 45);
             this.butReadCardDetail.TabIndex = 56;
             this.butReadCardDetail.Text = "从设备读取单张卡";
             this.butReadCardDetail.UseVisualStyleBackColor = true;
@@ -546,7 +547,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 14);
+            this.label3.Location = new System.Drawing.Point(7, 18);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 12);
             this.label3.TabIndex = 2;
@@ -556,7 +557,7 @@
             // 
             this.dtpTime.CustomFormat = "HH:mm";
             this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTime.Location = new System.Drawing.Point(467, 64);
+            this.dtpTime.Location = new System.Drawing.Point(338, 120);
             this.dtpTime.Name = "dtpTime";
             this.dtpTime.ShowUpDown = true;
             this.dtpTime.Size = new System.Drawing.Size(68, 21);
@@ -564,7 +565,7 @@
             // 
             // txtCardData16
             // 
-            this.txtCardData16.Location = new System.Drawing.Point(135, 10);
+            this.txtCardData16.Location = new System.Drawing.Point(7, 34);
             this.txtCardData16.MaxLength = 16;
             this.txtCardData16.Name = "txtCardData16";
             this.txtCardData16.Size = new System.Drawing.Size(400, 21);
@@ -573,7 +574,7 @@
             // 
             // txtCardData
             // 
-            this.txtCardData.Location = new System.Drawing.Point(88, 38);
+            this.txtCardData.Location = new System.Drawing.Point(7, 75);
             this.txtCardData.MaxLength = 20;
             this.txtCardData.Name = "txtCardData";
             this.txtCardData.Size = new System.Drawing.Size(192, 21);
@@ -583,7 +584,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(88, 64);
+            this.txtPassword.Location = new System.Drawing.Point(7, 116);
             this.txtPassword.MaxLength = 8;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(192, 21);
@@ -592,7 +593,7 @@
             // 
             // txtCardDataID
             // 
-            this.txtCardDataID.Location = new System.Drawing.Point(358, 38);
+            this.txtCardDataID.Location = new System.Drawing.Point(236, 75);
             this.txtCardDataID.MaxLength = 30;
             this.txtCardDataID.Name = "txtCardDataID";
             this.txtCardDataID.Size = new System.Drawing.Size(177, 21);
@@ -602,7 +603,7 @@
             // txtHoliday
             // 
             this.txtHoliday.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtHoliday.Location = new System.Drawing.Point(88, 225);
+            this.txtHoliday.Location = new System.Drawing.Point(7, 353);
             this.txtHoliday.MaxLength = 32;
             this.txtHoliday.Name = "txtHoliday";
             this.txtHoliday.Size = new System.Drawing.Size(354, 21);
@@ -613,7 +614,7 @@
             // 
             this.dtpDate.CustomFormat = "yyyy/MM/dd";
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(358, 64);
+            this.dtpDate.Location = new System.Drawing.Point(236, 120);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(100, 21);
             this.dtpDate.TabIndex = 54;
@@ -621,7 +622,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 42);
+            this.label4.Location = new System.Drawing.Point(7, 59);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 4;
@@ -630,7 +631,7 @@
             // cmbOpenTimes
             // 
             this.cmbOpenTimes.FormattingEnabled = true;
-            this.cmbOpenTimes.Location = new System.Drawing.Point(88, 92);
+            this.cmbOpenTimes.Location = new System.Drawing.Point(7, 157);
             this.cmbOpenTimes.MaxLength = 6;
             this.cmbOpenTimes.Name = "cmbOpenTimes";
             this.cmbOpenTimes.Size = new System.Drawing.Size(192, 20);
@@ -639,7 +640,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(33, 68);
+            this.label5.Location = new System.Drawing.Point(7, 100);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 5;
@@ -649,7 +650,7 @@
             // 
             this.cmbCardStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCardStatus.FormattingEnabled = true;
-            this.cmbCardStatus.Location = new System.Drawing.Point(358, 92);
+            this.cmbCardStatus.Location = new System.Drawing.Point(236, 162);
             this.cmbCardStatus.Name = "cmbCardStatus";
             this.cmbCardStatus.Size = new System.Drawing.Size(177, 20);
             this.cmbCardStatus.TabIndex = 51;
@@ -657,7 +658,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 96);
+            this.label6.Location = new System.Drawing.Point(7, 141);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 12);
             this.label6.TabIndex = 6;
@@ -666,7 +667,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(301, 42);
+            this.label7.Location = new System.Drawing.Point(234, 59);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 7;
@@ -676,7 +677,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(301, 68);
+            this.label8.Location = new System.Drawing.Point(235, 105);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 12);
             this.label8.TabIndex = 8;
@@ -685,7 +686,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(289, 96);
+            this.label9.Location = new System.Drawing.Point(234, 144);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(65, 12);
             this.label9.TabIndex = 9;
@@ -694,7 +695,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(21, 120);
+            this.label10.Location = new System.Drawing.Point(7, 181);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(65, 12);
             this.label10.TabIndex = 10;
@@ -702,9 +703,9 @@
             // 
             // btnDelSelect
             // 
-            this.btnDelSelect.Location = new System.Drawing.Point(579, 159);
+            this.btnDelSelect.Location = new System.Drawing.Point(561, 278);
             this.btnDelSelect.Name = "btnDelSelect";
-            this.btnDelSelect.Size = new System.Drawing.Size(112, 23);
+            this.btnDelSelect.Size = new System.Drawing.Size(123, 45);
             this.btnDelSelect.TabIndex = 45;
             this.btnDelSelect.Text = "从设备删除选中卡";
             this.btnDelSelect.UseVisualStyleBackColor = true;
@@ -712,9 +713,9 @@
             // 
             // btnDelDevice
             // 
-            this.btnDelDevice.Location = new System.Drawing.Point(579, 130);
+            this.btnDelDevice.Location = new System.Drawing.Point(561, 225);
             this.btnDelDevice.Name = "btnDelDevice";
-            this.btnDelDevice.Size = new System.Drawing.Size(112, 23);
+            this.btnDelDevice.Size = new System.Drawing.Size(123, 45);
             this.btnDelDevice.TabIndex = 44;
             this.btnDelDevice.Text = "从设备删除单张卡";
             this.btnDelDevice.UseVisualStyleBackColor = true;
@@ -722,9 +723,9 @@
             // 
             // btnAddDevice
             // 
-            this.btnAddDevice.Location = new System.Drawing.Point(601, 71);
+            this.btnAddDevice.Location = new System.Drawing.Point(561, 119);
             this.btnAddDevice.Name = "btnAddDevice";
-            this.btnAddDevice.Size = new System.Drawing.Size(75, 23);
+            this.btnAddDevice.Size = new System.Drawing.Size(123, 45);
             this.btnAddDevice.TabIndex = 43;
             this.btnAddDevice.Text = "新增至设备";
             this.btnAddDevice.UseVisualStyleBackColor = true;
@@ -735,7 +736,7 @@
             this.chkDoor1.AutoSize = true;
             this.chkDoor1.Checked = true;
             this.chkDoor1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDoor1.Location = new System.Drawing.Point(116, 118);
+            this.chkDoor1.Location = new System.Drawing.Point(7, 197);
             this.chkDoor1.Name = "chkDoor1";
             this.chkDoor1.Size = new System.Drawing.Size(42, 16);
             this.chkDoor1.TabIndex = 17;
@@ -744,9 +745,9 @@
             // 
             // butDelList
             // 
-            this.butDelList.Location = new System.Drawing.Point(601, 42);
+            this.butDelList.Location = new System.Drawing.Point(561, 66);
             this.butDelList.Name = "butDelList";
-            this.butDelList.Size = new System.Drawing.Size(75, 23);
+            this.butDelList.Size = new System.Drawing.Size(123, 45);
             this.butDelList.TabIndex = 42;
             this.butDelList.Text = "从列表删除";
             this.butDelList.UseVisualStyleBackColor = true;
@@ -757,7 +758,7 @@
             this.chkDoor2.AutoSize = true;
             this.chkDoor2.Checked = true;
             this.chkDoor2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDoor2.Location = new System.Drawing.Point(237, 118);
+            this.chkDoor2.Location = new System.Drawing.Point(130, 197);
             this.chkDoor2.Name = "chkDoor2";
             this.chkDoor2.Size = new System.Drawing.Size(42, 16);
             this.chkDoor2.TabIndex = 18;
@@ -766,9 +767,9 @@
             // 
             // butInsertList
             // 
-            this.butInsertList.Location = new System.Drawing.Point(601, 13);
+            this.butInsertList.Location = new System.Drawing.Point(561, 13);
             this.butInsertList.Name = "butInsertList";
-            this.butInsertList.Size = new System.Drawing.Size(75, 23);
+            this.butInsertList.Size = new System.Drawing.Size(123, 45);
             this.butInsertList.TabIndex = 41;
             this.butInsertList.Text = "新增至列表";
             this.butInsertList.UseVisualStyleBackColor = true;
@@ -779,7 +780,7 @@
             this.chkDoor3.AutoSize = true;
             this.chkDoor3.Checked = true;
             this.chkDoor3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDoor3.Location = new System.Drawing.Point(353, 118);
+            this.chkDoor3.Location = new System.Drawing.Point(245, 197);
             this.chkDoor3.Name = "chkDoor3";
             this.chkDoor3.Size = new System.Drawing.Size(42, 16);
             this.chkDoor3.TabIndex = 19;
@@ -788,9 +789,9 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(460, 224);
+            this.button7.Location = new System.Drawing.Point(376, 339);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.Size = new System.Drawing.Size(155, 35);
             this.button7.TabIndex = 40;
             this.button7.Text = "设置节假日开关";
             this.button7.UseVisualStyleBackColor = true;
@@ -800,7 +801,7 @@
             this.chkDoor4.AutoSize = true;
             this.chkDoor4.Checked = true;
             this.chkDoor4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDoor4.Location = new System.Drawing.Point(467, 118);
+            this.chkDoor4.Location = new System.Drawing.Point(364, 197);
             this.chkDoor4.Name = "chkDoor4";
             this.chkDoor4.Size = new System.Drawing.Size(42, 16);
             this.chkDoor4.TabIndex = 20;
@@ -810,7 +811,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(21, 144);
+            this.label11.Location = new System.Drawing.Point(7, 217);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(65, 12);
             this.label11.TabIndex = 21;
@@ -819,7 +820,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(3, 229);
+            this.label14.Location = new System.Drawing.Point(7, 337);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(77, 12);
             this.label14.TabIndex = 38;
@@ -828,7 +829,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(21, 170);
+            this.label12.Location = new System.Drawing.Point(7, 257);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 12);
             this.label12.TabIndex = 22;
@@ -839,7 +840,7 @@
             this.cbHolidayUse.AutoSize = true;
             this.cbHolidayUse.Checked = true;
             this.cbHolidayUse.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbHolidayUse.Location = new System.Drawing.Point(451, 199);
+            this.cbHolidayUse.Location = new System.Drawing.Point(366, 317);
             this.cbHolidayUse.Name = "cbHolidayUse";
             this.cbHolidayUse.Size = new System.Drawing.Size(84, 16);
             this.cbHolidayUse.TabIndex = 37;
@@ -850,60 +851,60 @@
             // 
             this.cmbTimeGroup1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTimeGroup1.FormattingEnabled = true;
-            this.cmbTimeGroup1.Location = new System.Drawing.Point(88, 140);
+            this.cmbTimeGroup1.Location = new System.Drawing.Point(7, 233);
             this.cmbTimeGroup1.Name = "cmbTimeGroup1";
-            this.cmbTimeGroup1.Size = new System.Drawing.Size(99, 20);
+            this.cmbTimeGroup1.Size = new System.Drawing.Size(132, 20);
             this.cmbTimeGroup1.TabIndex = 23;
             // 
             // cmbTimeGroup2
             // 
             this.cmbTimeGroup2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTimeGroup2.FormattingEnabled = true;
-            this.cmbTimeGroup2.Location = new System.Drawing.Point(206, 140);
+            this.cmbTimeGroup2.Location = new System.Drawing.Point(146, 233);
             this.cmbTimeGroup2.Name = "cmbTimeGroup2";
-            this.cmbTimeGroup2.Size = new System.Drawing.Size(99, 20);
+            this.cmbTimeGroup2.Size = new System.Drawing.Size(132, 20);
             this.cmbTimeGroup2.TabIndex = 24;
             // 
             // cmbTimeGroup3
             // 
             this.cmbTimeGroup3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTimeGroup3.FormattingEnabled = true;
-            this.cmbTimeGroup3.Location = new System.Drawing.Point(321, 140);
+            this.cmbTimeGroup3.Location = new System.Drawing.Point(285, 233);
             this.cmbTimeGroup3.Name = "cmbTimeGroup3";
-            this.cmbTimeGroup3.Size = new System.Drawing.Size(99, 20);
+            this.cmbTimeGroup3.Size = new System.Drawing.Size(132, 20);
             this.cmbTimeGroup3.TabIndex = 25;
             // 
             // cmbTimeGroup4
             // 
             this.cmbTimeGroup4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTimeGroup4.FormattingEnabled = true;
-            this.cmbTimeGroup4.Location = new System.Drawing.Point(436, 140);
+            this.cmbTimeGroup4.Location = new System.Drawing.Point(424, 233);
             this.cmbTimeGroup4.Name = "cmbTimeGroup4";
-            this.cmbTimeGroup4.Size = new System.Drawing.Size(99, 20);
+            this.cmbTimeGroup4.Size = new System.Drawing.Size(132, 20);
             this.cmbTimeGroup4.TabIndex = 26;
             // 
             // cmbEnterStatus1
             // 
             this.cmbEnterStatus1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEnterStatus1.FormattingEnabled = true;
-            this.cmbEnterStatus1.Location = new System.Drawing.Point(88, 166);
+            this.cmbEnterStatus1.Location = new System.Drawing.Point(7, 273);
             this.cmbEnterStatus1.Name = "cmbEnterStatus1";
-            this.cmbEnterStatus1.Size = new System.Drawing.Size(99, 20);
+            this.cmbEnterStatus1.Size = new System.Drawing.Size(132, 20);
             this.cmbEnterStatus1.TabIndex = 27;
             // 
             // cmbEnterStatus2
             // 
             this.cmbEnterStatus2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEnterStatus2.FormattingEnabled = true;
-            this.cmbEnterStatus2.Location = new System.Drawing.Point(206, 166);
+            this.cmbEnterStatus2.Location = new System.Drawing.Point(145, 273);
             this.cmbEnterStatus2.Name = "cmbEnterStatus2";
-            this.cmbEnterStatus2.Size = new System.Drawing.Size(99, 20);
+            this.cmbEnterStatus2.Size = new System.Drawing.Size(132, 20);
             this.cmbEnterStatus2.TabIndex = 28;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(21, 201);
+            this.label13.Location = new System.Drawing.Point(7, 297);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(65, 12);
             this.label13.TabIndex = 31;
@@ -913,18 +914,18 @@
             // 
             this.cmbEnterStatus3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEnterStatus3.FormattingEnabled = true;
-            this.cmbEnterStatus3.Location = new System.Drawing.Point(321, 166);
+            this.cmbEnterStatus3.Location = new System.Drawing.Point(283, 273);
             this.cmbEnterStatus3.Name = "cmbEnterStatus3";
-            this.cmbEnterStatus3.Size = new System.Drawing.Size(99, 20);
+            this.cmbEnterStatus3.Size = new System.Drawing.Size(132, 20);
             this.cmbEnterStatus3.TabIndex = 29;
             // 
             // cmbEnterStatus4
             // 
             this.cmbEnterStatus4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEnterStatus4.FormattingEnabled = true;
-            this.cmbEnterStatus4.Location = new System.Drawing.Point(436, 166);
+            this.cmbEnterStatus4.Location = new System.Drawing.Point(421, 273);
             this.cmbEnterStatus4.Name = "cmbEnterStatus4";
-            this.cmbEnterStatus4.Size = new System.Drawing.Size(99, 20);
+            this.cmbEnterStatus4.Size = new System.Drawing.Size(132, 20);
             this.cmbEnterStatus4.TabIndex = 30;
             // 
             // tabControl1
@@ -933,22 +934,32 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(10, 498);
+            this.tabControl1.Location = new System.Drawing.Point(6, 370);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(708, 275);
+            this.tabControl1.Size = new System.Drawing.Size(720, 414);
             this.tabControl1.TabIndex = 56;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.tabControl1);
+            this.panel1.Controls.Add(this.dgCardList);
+            this.panel1.Controls.Add(this.checkBox7);
+            this.panel1.Controls.Add(this.chkSelectAll);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(727, 784);
+            this.panel1.TabIndex = 57;
             // 
             // frmCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(727, 778);
-            this.Controls.Add(this.dgCardList);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.checkBox7);
-            this.Controls.Add(this.chkSelectAll);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(727, 784);
+            this.Controls.Add(this.panel1);
             this.Name = "frmCard";
             this.Text = "frmCard";
             this.Load += new System.EventHandler(this.frmCard_Load);
@@ -962,8 +973,9 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1048,5 +1060,6 @@
         private System.Windows.Forms.ComboBox cmbEnterStatus3;
         private System.Windows.Forms.ComboBox cmbEnterStatus4;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

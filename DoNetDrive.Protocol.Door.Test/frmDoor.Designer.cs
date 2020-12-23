@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -41,11 +41,6 @@
             this.label38 = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.EX2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsEx2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WeekDay2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.rBtnNoAutoLockedSetting = new System.Windows.Forms.RadioButton();
             this.rBtnAutoLockedSetting = new System.Windows.Forms.RadioButton();
@@ -391,6 +386,12 @@
             this.cBoxDoor2 = new System.Windows.Forms.CheckBox();
             this.cBoxDoor1 = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
+            this.EX2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsEx2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WeekDay2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -438,6 +439,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -446,14 +448,16 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 39);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(759, 841);
+            this.tabControl1.Size = new System.Drawing.Size(759, 485);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.AutoScroll = true;
             this.tabPage1.Controls.Add(this.groupBox11);
             this.tabPage1.Controls.Add(this.groupBox10);
             this.tabPage1.Controls.Add(this.groupBox9);
@@ -465,7 +469,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(751, 815);
+            this.tabPage1.Size = new System.Drawing.Size(751, 459);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "参数1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -477,9 +481,9 @@
             this.groupBox11.Controls.Add(this.btnWriteRelayReleaseTime);
             this.groupBox11.Controls.Add(this.btnReadRelayReleaseTime);
             this.groupBox11.Controls.Add(this.label38);
-            this.groupBox11.Location = new System.Drawing.Point(482, 122);
+            this.groupBox11.Location = new System.Drawing.Point(536, 120);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(249, 52);
+            this.groupBox11.Size = new System.Drawing.Size(195, 70);
             this.groupBox11.TabIndex = 7;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "开锁保持时间(秒)";
@@ -487,7 +491,7 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(114, 25);
+            this.label39.Location = new System.Drawing.Point(4, 51);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(23, 12);
             this.label39.TabIndex = 51;
@@ -521,7 +525,7 @@
             "19",
             "20",
             "65535"});
-            this.cbxReleaseTime.Location = new System.Drawing.Point(39, 22);
+            this.cbxReleaseTime.Location = new System.Drawing.Point(0, 31);
             this.cbxReleaseTime.MaxLength = 5;
             this.cbxReleaseTime.Name = "cbxReleaseTime";
             this.cbxReleaseTime.Size = new System.Drawing.Size(69, 20);
@@ -529,9 +533,9 @@
             // 
             // btnWriteRelayReleaseTime
             // 
-            this.btnWriteRelayReleaseTime.Location = new System.Drawing.Point(195, 20);
+            this.btnWriteRelayReleaseTime.Location = new System.Drawing.Point(99, 12);
             this.btnWriteRelayReleaseTime.Name = "btnWriteRelayReleaseTime";
-            this.btnWriteRelayReleaseTime.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteRelayReleaseTime.Size = new System.Drawing.Size(94, 23);
             this.btnWriteRelayReleaseTime.TabIndex = 49;
             this.btnWriteRelayReleaseTime.Text = "写入";
             this.btnWriteRelayReleaseTime.UseVisualStyleBackColor = true;
@@ -539,9 +543,9 @@
             // 
             // btnReadRelayReleaseTime
             // 
-            this.btnReadRelayReleaseTime.Location = new System.Drawing.Point(141, 20);
+            this.btnReadRelayReleaseTime.Location = new System.Drawing.Point(99, 41);
             this.btnReadRelayReleaseTime.Name = "btnReadRelayReleaseTime";
-            this.btnReadRelayReleaseTime.Size = new System.Drawing.Size(48, 23);
+            this.btnReadRelayReleaseTime.Size = new System.Drawing.Size(94, 23);
             this.btnReadRelayReleaseTime.TabIndex = 48;
             this.btnReadRelayReleaseTime.Text = "读取";
             this.btnReadRelayReleaseTime.UseVisualStyleBackColor = true;
@@ -550,7 +554,7 @@
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(4, 25);
+            this.label38.Location = new System.Drawing.Point(4, 16);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(41, 12);
             this.label38.TabIndex = 46;
@@ -563,9 +567,9 @@
             this.groupBox10.Controls.Add(this.txtAutoLockedSetting);
             this.groupBox10.Controls.Add(this.btnWriteAutoLockedSetting);
             this.groupBox10.Controls.Add(this.btnReadAutoLockedSetting);
-            this.groupBox10.Location = new System.Drawing.Point(6, 621);
+            this.groupBox10.Location = new System.Drawing.Point(6, 777);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(725, 184);
+            this.groupBox10.Size = new System.Drawing.Size(725, 216);
             this.groupBox10.TabIndex = 6;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "定时锁定门";
@@ -587,66 +591,17 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(639, 158);
+            this.dataGridView2.Size = new System.Drawing.Size(714, 158);
             this.dataGridView2.TabIndex = 40;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView2_CellClick);
-            // 
-            // EX2
-            // 
-            this.EX2.DataPropertyName = "EX";
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.EX2.DefaultCellStyle = dataGridViewCellStyle1;
-            this.EX2.HeaderText = "";
-            this.EX2.MinimumWidth = 6;
-            this.EX2.Name = "EX2";
-            this.EX2.ReadOnly = true;
-            this.EX2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.EX2.Width = 20;
-            // 
-            // IsEx2
-            // 
-            this.IsEx2.DataPropertyName = "IsEx";
-            this.IsEx2.HeaderText = "是否显示";
-            this.IsEx2.MinimumWidth = 6;
-            this.IsEx2.Name = "IsEx2";
-            this.IsEx2.ReadOnly = true;
-            this.IsEx2.Visible = false;
-            this.IsEx2.Width = 125;
-            // 
-            // WeekDay2
-            // 
-            this.WeekDay2.DataPropertyName = "WeekDay";
-            this.WeekDay2.HeaderText = "星期";
-            this.WeekDay2.MinimumWidth = 6;
-            this.WeekDay2.Name = "WeekDay2";
-            this.WeekDay2.ReadOnly = true;
-            this.WeekDay2.Width = 60;
-            // 
-            // StartTime2
-            // 
-            this.StartTime2.DataPropertyName = "StartTime";
-            this.StartTime2.HeaderText = "开始时间";
-            this.StartTime2.MinimumWidth = 6;
-            this.StartTime2.Name = "StartTime2";
-            this.StartTime2.ReadOnly = true;
-            this.StartTime2.Width = 80;
-            // 
-            // EndTime2
-            // 
-            this.EndTime2.DataPropertyName = "EndTime";
-            this.EndTime2.HeaderText = "结束时间";
-            this.EndTime2.MinimumWidth = 6;
-            this.EndTime2.Name = "EndTime2";
-            this.EndTime2.ReadOnly = true;
-            this.EndTime2.Width = 80;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.rBtnNoAutoLockedSetting);
             this.panel1.Controls.Add(this.rBtnAutoLockedSetting);
-            this.panel1.Location = new System.Drawing.Point(655, 22);
+            this.panel1.Location = new System.Drawing.Point(6, 185);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(70, 43);
+            this.panel1.Size = new System.Drawing.Size(167, 23);
             this.panel1.TabIndex = 81;
             // 
             // rBtnNoAutoLockedSetting
@@ -663,7 +618,7 @@
             // 
             this.rBtnAutoLockedSetting.AutoSize = true;
             this.rBtnAutoLockedSetting.Checked = true;
-            this.rBtnAutoLockedSetting.Location = new System.Drawing.Point(4, 25);
+            this.rBtnAutoLockedSetting.Location = new System.Drawing.Point(105, 5);
             this.rBtnAutoLockedSetting.Name = "rBtnAutoLockedSetting";
             this.rBtnAutoLockedSetting.Size = new System.Drawing.Size(47, 16);
             this.rBtnAutoLockedSetting.TabIndex = 52;
@@ -684,7 +639,7 @@
             // 
             // btnWriteAutoLockedSetting
             // 
-            this.btnWriteAutoLockedSetting.Location = new System.Drawing.Point(655, 151);
+            this.btnWriteAutoLockedSetting.Location = new System.Drawing.Point(672, 185);
             this.btnWriteAutoLockedSetting.Name = "btnWriteAutoLockedSetting";
             this.btnWriteAutoLockedSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteAutoLockedSetting.TabIndex = 37;
@@ -694,7 +649,7 @@
             // 
             // btnReadAutoLockedSetting
             // 
-            this.btnReadAutoLockedSetting.Location = new System.Drawing.Point(655, 108);
+            this.btnReadAutoLockedSetting.Location = new System.Drawing.Point(617, 187);
             this.btnReadAutoLockedSetting.Name = "btnReadAutoLockedSetting";
             this.btnReadAutoLockedSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadAutoLockedSetting.TabIndex = 36;
@@ -711,9 +666,9 @@
             this.groupBox9.Controls.Add(this.btnWriteWorkSetting);
             this.groupBox9.Controls.Add(this.btnReadWorkSetting);
             this.groupBox9.Controls.Add(this.label57);
-            this.groupBox9.Location = new System.Drawing.Point(6, 396);
+            this.groupBox9.Location = new System.Drawing.Point(6, 464);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(725, 219);
+            this.groupBox9.Size = new System.Drawing.Size(725, 307);
             this.groupBox9.TabIndex = 5;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "门工作方式";
@@ -754,16 +709,16 @@
             this.DoorOpenTimePanel.Controls.Add(this.label19);
             this.DoorOpenTimePanel.Controls.Add(this.beginTimePicker1);
             this.DoorOpenTimePanel.Controls.Add(this.cbxWeek);
-            this.DoorOpenTimePanel.Location = new System.Drawing.Point(6, 73);
+            this.DoorOpenTimePanel.Location = new System.Drawing.Point(7, 104);
             this.DoorOpenTimePanel.Name = "DoorOpenTimePanel";
-            this.DoorOpenTimePanel.Size = new System.Drawing.Size(713, 111);
+            this.DoorOpenTimePanel.Size = new System.Drawing.Size(713, 160);
             this.DoorOpenTimePanel.TabIndex = 87;
             this.DoorOpenTimePanel.Visible = false;
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(507, 72);
+            this.label34.Location = new System.Drawing.Point(641, 104);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(59, 12);
             this.label34.TabIndex = 117;
@@ -773,7 +728,7 @@
             // 
             this.endTimePicker8.CustomFormat = "HH:mm";
             this.endTimePicker8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker8.Location = new System.Drawing.Point(509, 87);
+            this.endTimePicker8.Location = new System.Drawing.Point(640, 119);
             this.endTimePicker8.Name = "endTimePicker8";
             this.endTimePicker8.ShowUpDown = true;
             this.endTimePicker8.Size = new System.Drawing.Size(57, 21);
@@ -783,7 +738,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(442, 72);
+            this.label35.Location = new System.Drawing.Point(551, 104);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(59, 12);
             this.label35.TabIndex = 115;
@@ -793,7 +748,7 @@
             // 
             this.beginTimePicker8.CustomFormat = "HH:mm";
             this.beginTimePicker8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker8.Location = new System.Drawing.Point(444, 87);
+            this.beginTimePicker8.Location = new System.Drawing.Point(550, 119);
             this.beginTimePicker8.Name = "beginTimePicker8";
             this.beginTimePicker8.ShowUpDown = true;
             this.beginTimePicker8.Size = new System.Drawing.Size(57, 21);
@@ -803,7 +758,7 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(507, 28);
+            this.label36.Location = new System.Drawing.Point(641, 52);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(59, 12);
             this.label36.TabIndex = 113;
@@ -813,7 +768,7 @@
             // 
             this.endTimePicker4.CustomFormat = "HH:mm";
             this.endTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker4.Location = new System.Drawing.Point(509, 43);
+            this.endTimePicker4.Location = new System.Drawing.Point(643, 67);
             this.endTimePicker4.Name = "endTimePicker4";
             this.endTimePicker4.ShowUpDown = true;
             this.endTimePicker4.Size = new System.Drawing.Size(57, 21);
@@ -823,7 +778,7 @@
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(442, 28);
+            this.label37.Location = new System.Drawing.Point(550, 52);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(59, 12);
             this.label37.TabIndex = 111;
@@ -833,7 +788,7 @@
             // 
             this.beginTimePicker4.CustomFormat = "HH:mm";
             this.beginTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker4.Location = new System.Drawing.Point(444, 43);
+            this.beginTimePicker4.Location = new System.Drawing.Point(552, 67);
             this.beginTimePicker4.Name = "beginTimePicker4";
             this.beginTimePicker4.ShowUpDown = true;
             this.beginTimePicker4.Size = new System.Drawing.Size(57, 21);
@@ -843,7 +798,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(361, 72);
+            this.label30.Location = new System.Drawing.Point(460, 104);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(59, 12);
             this.label30.TabIndex = 109;
@@ -853,7 +808,7 @@
             // 
             this.endTimePicker7.CustomFormat = "HH:mm";
             this.endTimePicker7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker7.Location = new System.Drawing.Point(363, 87);
+            this.endTimePicker7.Location = new System.Drawing.Point(460, 119);
             this.endTimePicker7.Name = "endTimePicker7";
             this.endTimePicker7.ShowUpDown = true;
             this.endTimePicker7.Size = new System.Drawing.Size(57, 21);
@@ -863,7 +818,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(296, 72);
+            this.label31.Location = new System.Drawing.Point(369, 104);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(59, 12);
             this.label31.TabIndex = 107;
@@ -873,7 +828,7 @@
             // 
             this.beginTimePicker7.CustomFormat = "HH:mm";
             this.beginTimePicker7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker7.Location = new System.Drawing.Point(298, 87);
+            this.beginTimePicker7.Location = new System.Drawing.Point(370, 119);
             this.beginTimePicker7.Name = "beginTimePicker7";
             this.beginTimePicker7.ShowUpDown = true;
             this.beginTimePicker7.Size = new System.Drawing.Size(57, 21);
@@ -883,7 +838,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(361, 28);
+            this.label32.Location = new System.Drawing.Point(459, 52);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(59, 12);
             this.label32.TabIndex = 105;
@@ -893,7 +848,7 @@
             // 
             this.endTimePicker3.CustomFormat = "HH:mm";
             this.endTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker3.Location = new System.Drawing.Point(363, 43);
+            this.endTimePicker3.Location = new System.Drawing.Point(461, 67);
             this.endTimePicker3.Name = "endTimePicker3";
             this.endTimePicker3.ShowUpDown = true;
             this.endTimePicker3.Size = new System.Drawing.Size(57, 21);
@@ -903,7 +858,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(296, 28);
+            this.label33.Location = new System.Drawing.Point(368, 52);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(59, 12);
             this.label33.TabIndex = 103;
@@ -913,7 +868,7 @@
             // 
             this.beginTimePicker3.CustomFormat = "HH:mm";
             this.beginTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker3.Location = new System.Drawing.Point(298, 43);
+            this.beginTimePicker3.Location = new System.Drawing.Point(370, 67);
             this.beginTimePicker3.Name = "beginTimePicker3";
             this.beginTimePicker3.ShowUpDown = true;
             this.beginTimePicker3.Size = new System.Drawing.Size(57, 21);
@@ -923,7 +878,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(212, 72);
+            this.label26.Location = new System.Drawing.Point(278, 104);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(59, 12);
             this.label26.TabIndex = 101;
@@ -933,7 +888,7 @@
             // 
             this.endTimePicker6.CustomFormat = "HH:mm";
             this.endTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker6.Location = new System.Drawing.Point(214, 87);
+            this.endTimePicker6.Location = new System.Drawing.Point(280, 119);
             this.endTimePicker6.Name = "endTimePicker6";
             this.endTimePicker6.ShowUpDown = true;
             this.endTimePicker6.Size = new System.Drawing.Size(57, 21);
@@ -943,7 +898,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(147, 72);
+            this.label27.Location = new System.Drawing.Point(187, 104);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(59, 12);
             this.label27.TabIndex = 99;
@@ -953,7 +908,7 @@
             // 
             this.beginTimePicker6.CustomFormat = "HH:mm";
             this.beginTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker6.Location = new System.Drawing.Point(149, 87);
+            this.beginTimePicker6.Location = new System.Drawing.Point(190, 119);
             this.beginTimePicker6.Name = "beginTimePicker6";
             this.beginTimePicker6.ShowUpDown = true;
             this.beginTimePicker6.Size = new System.Drawing.Size(57, 21);
@@ -963,7 +918,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(212, 28);
+            this.label28.Location = new System.Drawing.Point(277, 52);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(59, 12);
             this.label28.TabIndex = 97;
@@ -973,7 +928,7 @@
             // 
             this.endTimePicker2.CustomFormat = "HH:mm";
             this.endTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker2.Location = new System.Drawing.Point(214, 43);
+            this.endTimePicker2.Location = new System.Drawing.Point(279, 67);
             this.endTimePicker2.Name = "endTimePicker2";
             this.endTimePicker2.ShowUpDown = true;
             this.endTimePicker2.Size = new System.Drawing.Size(57, 21);
@@ -983,7 +938,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(147, 28);
+            this.label29.Location = new System.Drawing.Point(186, 52);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(59, 12);
             this.label29.TabIndex = 95;
@@ -993,7 +948,7 @@
             // 
             this.beginTimePicker2.CustomFormat = "HH:mm";
             this.beginTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker2.Location = new System.Drawing.Point(149, 43);
+            this.beginTimePicker2.Location = new System.Drawing.Point(188, 67);
             this.beginTimePicker2.Name = "beginTimePicker2";
             this.beginTimePicker2.ShowUpDown = true;
             this.beginTimePicker2.Size = new System.Drawing.Size(57, 21);
@@ -1003,7 +958,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(68, 72);
+            this.label23.Location = new System.Drawing.Point(96, 104);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(59, 12);
             this.label23.TabIndex = 93;
@@ -1013,7 +968,7 @@
             // 
             this.endTimePicker5.CustomFormat = "HH:mm";
             this.endTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker5.Location = new System.Drawing.Point(70, 87);
+            this.endTimePicker5.Location = new System.Drawing.Point(100, 119);
             this.endTimePicker5.Name = "endTimePicker5";
             this.endTimePicker5.ShowUpDown = true;
             this.endTimePicker5.Size = new System.Drawing.Size(57, 21);
@@ -1023,7 +978,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(3, 72);
+            this.label25.Location = new System.Drawing.Point(5, 104);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(59, 12);
             this.label25.TabIndex = 91;
@@ -1033,7 +988,7 @@
             // 
             this.beginTimePicker5.CustomFormat = "HH:mm";
             this.beginTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker5.Location = new System.Drawing.Point(5, 87);
+            this.beginTimePicker5.Location = new System.Drawing.Point(10, 119);
             this.beginTimePicker5.Name = "beginTimePicker5";
             this.beginTimePicker5.ShowUpDown = true;
             this.beginTimePicker5.Size = new System.Drawing.Size(57, 21);
@@ -1043,7 +998,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(68, 28);
+            this.label21.Location = new System.Drawing.Point(95, 52);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(59, 12);
             this.label21.TabIndex = 89;
@@ -1053,7 +1008,7 @@
             // 
             this.endTimePicker1.CustomFormat = "HH:mm";
             this.endTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker1.Location = new System.Drawing.Point(70, 43);
+            this.endTimePicker1.Location = new System.Drawing.Point(97, 67);
             this.endTimePicker1.Name = "endTimePicker1";
             this.endTimePicker1.ShowUpDown = true;
             this.endTimePicker1.Size = new System.Drawing.Size(57, 21);
@@ -1064,7 +1019,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(3, 28);
+            this.label20.Location = new System.Drawing.Point(4, 52);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(59, 12);
             this.label20.TabIndex = 87;
@@ -1083,7 +1038,7 @@
             // 
             this.beginTimePicker1.CustomFormat = "HH:mm";
             this.beginTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker1.Location = new System.Drawing.Point(5, 43);
+            this.beginTimePicker1.Location = new System.Drawing.Point(6, 67);
             this.beginTimePicker1.Name = "beginTimePicker1";
             this.beginTimePicker1.ShowUpDown = true;
             this.beginTimePicker1.Size = new System.Drawing.Size(57, 21);
@@ -1103,7 +1058,7 @@
             "星期五",
             "星期六",
             "星期日"});
-            this.cbxWeek.Location = new System.Drawing.Point(140, 4);
+            this.cbxWeek.Location = new System.Drawing.Point(5, 22);
             this.cbxWeek.Name = "cbxWeek";
             this.cbxWeek.Size = new System.Drawing.Size(104, 20);
             this.cbxWeek.TabIndex = 86;
@@ -1115,16 +1070,16 @@
             this.DoorTriggerModePanel.Controls.Add(this.rBtnDoorTriggerMode3);
             this.DoorTriggerModePanel.Controls.Add(this.rBtnDoorTriggerMode1);
             this.DoorTriggerModePanel.Controls.Add(this.rBtnDoorTriggerMode2);
-            this.DoorTriggerModePanel.Location = new System.Drawing.Point(6, 44);
+            this.DoorTriggerModePanel.Location = new System.Drawing.Point(405, 13);
             this.DoorTriggerModePanel.Name = "DoorTriggerModePanel";
-            this.DoorTriggerModePanel.Size = new System.Drawing.Size(291, 25);
+            this.DoorTriggerModePanel.Size = new System.Drawing.Size(310, 85);
             this.DoorTriggerModePanel.TabIndex = 83;
             this.DoorTriggerModePanel.Visible = false;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(-2, 7);
+            this.label18.Location = new System.Drawing.Point(3, 7);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(89, 12);
             this.label18.TabIndex = 81;
@@ -1134,7 +1089,7 @@
             // 
             this.rBtnDoorTriggerMode3.AutoSize = true;
             this.rBtnDoorTriggerMode3.Checked = true;
-            this.rBtnDoorTriggerMode3.Location = new System.Drawing.Point(217, 5);
+            this.rBtnDoorTriggerMode3.Location = new System.Drawing.Point(3, 66);
             this.rBtnDoorTriggerMode3.Name = "rBtnDoorTriggerMode3";
             this.rBtnDoorTriggerMode3.Size = new System.Drawing.Size(71, 16);
             this.rBtnDoorTriggerMode3.TabIndex = 53;
@@ -1145,7 +1100,7 @@
             // rBtnDoorTriggerMode1
             // 
             this.rBtnDoorTriggerMode1.AutoSize = true;
-            this.rBtnDoorTriggerMode1.Location = new System.Drawing.Point(87, 5);
+            this.rBtnDoorTriggerMode1.Location = new System.Drawing.Point(4, 22);
             this.rBtnDoorTriggerMode1.Name = "rBtnDoorTriggerMode1";
             this.rBtnDoorTriggerMode1.Size = new System.Drawing.Size(59, 16);
             this.rBtnDoorTriggerMode1.TabIndex = 51;
@@ -1155,7 +1110,7 @@
             // rBtnDoorTriggerMode2
             // 
             this.rBtnDoorTriggerMode2.AutoSize = true;
-            this.rBtnDoorTriggerMode2.Location = new System.Drawing.Point(154, 5);
+            this.rBtnDoorTriggerMode2.Location = new System.Drawing.Point(4, 44);
             this.rBtnDoorTriggerMode2.Name = "rBtnDoorTriggerMode2";
             this.rBtnDoorTriggerMode2.Size = new System.Drawing.Size(59, 16);
             this.rBtnDoorTriggerMode2.TabIndex = 52;
@@ -1169,15 +1124,15 @@
             this.OpenDoorWayPanel.Controls.Add(this.rBtnOpenDoorWay3);
             this.OpenDoorWayPanel.Controls.Add(this.rBtnOpenDoorWay1);
             this.OpenDoorWayPanel.Controls.Add(this.rBtnOpenDoorWay2);
-            this.OpenDoorWayPanel.Location = new System.Drawing.Point(295, 20);
+            this.OpenDoorWayPanel.Location = new System.Drawing.Point(151, 13);
             this.OpenDoorWayPanel.Name = "OpenDoorWayPanel";
-            this.OpenDoorWayPanel.Size = new System.Drawing.Size(424, 21);
+            this.OpenDoorWayPanel.Size = new System.Drawing.Size(248, 75);
             this.OpenDoorWayPanel.TabIndex = 82;
             // 
             // rBtnOpenDoorWay4
             // 
             this.rBtnOpenDoorWay4.AutoSize = true;
-            this.rBtnOpenDoorWay4.Location = new System.Drawing.Point(334, 3);
+            this.rBtnOpenDoorWay4.Location = new System.Drawing.Point(142, 49);
             this.rBtnOpenDoorWay4.Name = "rBtnOpenDoorWay4";
             this.rBtnOpenDoorWay4.Size = new System.Drawing.Size(47, 16);
             this.rBtnOpenDoorWay4.TabIndex = 54;
@@ -1188,7 +1143,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(51, 5);
+            this.label17.Location = new System.Drawing.Point(13, 5);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(65, 12);
             this.label17.TabIndex = 81;
@@ -1197,7 +1152,7 @@
             // rBtnOpenDoorWay3
             // 
             this.rBtnOpenDoorWay3.AutoSize = true;
-            this.rBtnOpenDoorWay3.Location = new System.Drawing.Point(263, 3);
+            this.rBtnOpenDoorWay3.Location = new System.Drawing.Point(15, 49);
             this.rBtnOpenDoorWay3.Name = "rBtnOpenDoorWay3";
             this.rBtnOpenDoorWay3.Size = new System.Drawing.Size(47, 16);
             this.rBtnOpenDoorWay3.TabIndex = 53;
@@ -1209,7 +1164,7 @@
             // 
             this.rBtnOpenDoorWay1.AutoSize = true;
             this.rBtnOpenDoorWay1.Checked = true;
-            this.rBtnOpenDoorWay1.Location = new System.Drawing.Point(122, 3);
+            this.rBtnOpenDoorWay1.Location = new System.Drawing.Point(15, 27);
             this.rBtnOpenDoorWay1.Name = "rBtnOpenDoorWay1";
             this.rBtnOpenDoorWay1.Size = new System.Drawing.Size(47, 16);
             this.rBtnOpenDoorWay1.TabIndex = 51;
@@ -1221,7 +1176,7 @@
             // rBtnOpenDoorWay2
             // 
             this.rBtnOpenDoorWay2.AutoSize = true;
-            this.rBtnOpenDoorWay2.Location = new System.Drawing.Point(194, 3);
+            this.rBtnOpenDoorWay2.Location = new System.Drawing.Point(142, 27);
             this.rBtnOpenDoorWay2.Name = "rBtnOpenDoorWay2";
             this.rBtnOpenDoorWay2.Size = new System.Drawing.Size(47, 16);
             this.rBtnOpenDoorWay2.TabIndex = 52;
@@ -1233,7 +1188,7 @@
             // 
             this.panel6.Controls.Add(this.rBtnNoDoorWorkSetting);
             this.panel6.Controls.Add(this.rBtnDoorWorkSetting);
-            this.panel6.Location = new System.Drawing.Point(88, 20);
+            this.panel6.Location = new System.Drawing.Point(6, 35);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(125, 21);
             this.panel6.TabIndex = 80;
@@ -1264,7 +1219,7 @@
             // 
             // btnWriteWorkSetting
             // 
-            this.btnWriteWorkSetting.Location = new System.Drawing.Point(65, 190);
+            this.btnWriteWorkSetting.Location = new System.Drawing.Point(672, 270);
             this.btnWriteWorkSetting.Name = "btnWriteWorkSetting";
             this.btnWriteWorkSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteWorkSetting.TabIndex = 79;
@@ -1274,7 +1229,7 @@
             // 
             // btnReadWorkSetting
             // 
-            this.btnReadWorkSetting.Location = new System.Drawing.Point(11, 190);
+            this.btnReadWorkSetting.Location = new System.Drawing.Point(618, 270);
             this.btnReadWorkSetting.Name = "btnReadWorkSetting";
             this.btnReadWorkSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadWorkSetting.TabIndex = 78;
@@ -1285,7 +1240,7 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(4, 26);
+            this.label57.Location = new System.Drawing.Point(5, 20);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(89, 12);
             this.label57.TabIndex = 77;
@@ -1297,9 +1252,9 @@
             this.groupBox16.Controls.Add(this.txtDoorWorkSetting);
             this.groupBox16.Controls.Add(this.btnWriteDoorWorkSetting);
             this.groupBox16.Controls.Add(this.btnReadDoorWorkSetting);
-            this.groupBox16.Location = new System.Drawing.Point(6, 208);
+            this.groupBox16.Location = new System.Drawing.Point(6, 196);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(725, 184);
+            this.groupBox16.Size = new System.Drawing.Size(725, 262);
             this.groupBox16.TabIndex = 4;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "门认证方式";
@@ -1325,15 +1280,15 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(659, 158);
+            this.dataGridView1.Size = new System.Drawing.Size(713, 207);
             this.dataGridView1.TabIndex = 39;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellClick);
             // 
             // EX
             // 
             this.EX.DataPropertyName = "EX";
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.EX.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.EX.DefaultCellStyle = dataGridViewCellStyle9;
             this.EX.HeaderText = "";
             this.EX.MinimumWidth = 6;
             this.EX.Name = "EX";
@@ -1429,7 +1384,7 @@
             // 
             // btnWriteDoorWorkSetting
             // 
-            this.btnWriteDoorWorkSetting.Location = new System.Drawing.Point(670, 51);
+            this.btnWriteDoorWorkSetting.Location = new System.Drawing.Point(659, 233);
             this.btnWriteDoorWorkSetting.Name = "btnWriteDoorWorkSetting";
             this.btnWriteDoorWorkSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteDoorWorkSetting.TabIndex = 37;
@@ -1439,7 +1394,7 @@
             // 
             // btnReadDoorWorkSetting
             // 
-            this.btnReadDoorWorkSetting.Location = new System.Drawing.Point(670, 22);
+            this.btnReadDoorWorkSetting.Location = new System.Drawing.Point(584, 233);
             this.btnReadDoorWorkSetting.Name = "btnReadDoorWorkSetting";
             this.btnReadDoorWorkSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadDoorWorkSetting.TabIndex = 36;
@@ -1451,18 +1406,18 @@
             // 
             this.groupBox8.Controls.Add(this.btnUnLockDoor);
             this.groupBox8.Controls.Add(this.btnLockDoor);
-            this.groupBox8.Location = new System.Drawing.Point(281, 122);
+            this.groupBox8.Location = new System.Drawing.Point(375, 120);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(175, 52);
+            this.groupBox8.Size = new System.Drawing.Size(155, 70);
             this.groupBox8.TabIndex = 3;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "门禁锁定";
             // 
             // btnUnLockDoor
             // 
-            this.btnUnLockDoor.Location = new System.Drawing.Point(82, 20);
+            this.btnUnLockDoor.Location = new System.Drawing.Point(7, 45);
             this.btnUnLockDoor.Name = "btnUnLockDoor";
-            this.btnUnLockDoor.Size = new System.Drawing.Size(68, 23);
+            this.btnUnLockDoor.Size = new System.Drawing.Size(139, 23);
             this.btnUnLockDoor.TabIndex = 37;
             this.btnUnLockDoor.Text = "解除锁定";
             this.btnUnLockDoor.UseVisualStyleBackColor = true;
@@ -1470,9 +1425,9 @@
             // 
             // btnLockDoor
             // 
-            this.btnLockDoor.Location = new System.Drawing.Point(8, 20);
+            this.btnLockDoor.Location = new System.Drawing.Point(8, 18);
             this.btnLockDoor.Name = "btnLockDoor";
-            this.btnLockDoor.Size = new System.Drawing.Size(68, 23);
+            this.btnLockDoor.Size = new System.Drawing.Size(138, 23);
             this.btnLockDoor.TabIndex = 35;
             this.btnLockDoor.Text = "锁定";
             this.btnLockDoor.UseVisualStyleBackColor = true;
@@ -1484,18 +1439,18 @@
             this.groupBox7.Controls.Add(this.btnCloseDoor);
             this.groupBox7.Controls.Add(this.btnHoldOpenDoor);
             this.groupBox7.Controls.Add(this.btnOpenDoor);
-            this.groupBox7.Location = new System.Drawing.Point(6, 122);
+            this.groupBox7.Location = new System.Drawing.Point(6, 111);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(250, 79);
+            this.groupBox7.Size = new System.Drawing.Size(361, 79);
             this.groupBox7.TabIndex = 2;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "远程开门";
             // 
             // btnOpenDoor_CheckNum
             // 
-            this.btnOpenDoor_CheckNum.Location = new System.Drawing.Point(9, 49);
+            this.btnOpenDoor_CheckNum.Location = new System.Drawing.Point(8, 49);
             this.btnOpenDoor_CheckNum.Name = "btnOpenDoor_CheckNum";
-            this.btnOpenDoor_CheckNum.Size = new System.Drawing.Size(100, 23);
+            this.btnOpenDoor_CheckNum.Size = new System.Drawing.Size(168, 23);
             this.btnOpenDoor_CheckNum.TabIndex = 38;
             this.btnOpenDoor_CheckNum.Text = "远程开门_验证";
             this.btnOpenDoor_CheckNum.UseVisualStyleBackColor = true;
@@ -1503,9 +1458,9 @@
             // 
             // btnCloseDoor
             // 
-            this.btnCloseDoor.Location = new System.Drawing.Point(82, 20);
+            this.btnCloseDoor.Location = new System.Drawing.Point(181, 21);
             this.btnCloseDoor.Name = "btnCloseDoor";
-            this.btnCloseDoor.Size = new System.Drawing.Size(68, 23);
+            this.btnCloseDoor.Size = new System.Drawing.Size(168, 23);
             this.btnCloseDoor.TabIndex = 37;
             this.btnCloseDoor.Text = "远程关门";
             this.btnCloseDoor.UseVisualStyleBackColor = true;
@@ -1513,9 +1468,9 @@
             // 
             // btnHoldOpenDoor
             // 
-            this.btnHoldOpenDoor.Location = new System.Drawing.Point(156, 20);
+            this.btnHoldOpenDoor.Location = new System.Drawing.Point(181, 50);
             this.btnHoldOpenDoor.Name = "btnHoldOpenDoor";
-            this.btnHoldOpenDoor.Size = new System.Drawing.Size(68, 23);
+            this.btnHoldOpenDoor.Size = new System.Drawing.Size(168, 23);
             this.btnHoldOpenDoor.TabIndex = 36;
             this.btnHoldOpenDoor.Text = "门常开";
             this.btnHoldOpenDoor.UseVisualStyleBackColor = true;
@@ -1525,7 +1480,7 @@
             // 
             this.btnOpenDoor.Location = new System.Drawing.Point(8, 20);
             this.btnOpenDoor.Name = "btnOpenDoor";
-            this.btnOpenDoor.Size = new System.Drawing.Size(68, 23);
+            this.btnOpenDoor.Size = new System.Drawing.Size(168, 23);
             this.btnOpenDoor.TabIndex = 35;
             this.btnOpenDoor.Text = "远程开门";
             this.btnOpenDoor.UseVisualStyleBackColor = true;
@@ -1543,9 +1498,9 @@
             this.groupBox6.Controls.Add(this.btnWriteRelayOption);
             this.groupBox6.Controls.Add(this.btnReadRelayOption);
             this.groupBox6.Controls.Add(this.label16);
-            this.groupBox6.Location = new System.Drawing.Point(6, 64);
+            this.groupBox6.Location = new System.Drawing.Point(373, 6);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(725, 52);
+            this.groupBox6.Size = new System.Drawing.Size(358, 99);
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "继电器参数";
@@ -1558,7 +1513,7 @@
             "COM & NC",
             "COM & NO",
             "双稳态"});
-            this.cbxDoor4RelayOption.Location = new System.Drawing.Point(395, 22);
+            this.cbxDoor4RelayOption.Location = new System.Drawing.Point(274, 35);
             this.cbxDoor4RelayOption.Name = "cbxDoor4RelayOption";
             this.cbxDoor4RelayOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor4RelayOption.TabIndex = 45;
@@ -1571,7 +1526,7 @@
             "COM & NC",
             "COM & NO",
             "双稳态"});
-            this.cbxDoor3RelayOption.Location = new System.Drawing.Point(275, 22);
+            this.cbxDoor3RelayOption.Location = new System.Drawing.Point(191, 35);
             this.cbxDoor3RelayOption.Name = "cbxDoor3RelayOption";
             this.cbxDoor3RelayOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor3RelayOption.TabIndex = 44;
@@ -1584,7 +1539,7 @@
             "COM & NC",
             "COM & NO",
             "双稳态"});
-            this.cbxDoor2RelayOption.Location = new System.Drawing.Point(155, 22);
+            this.cbxDoor2RelayOption.Location = new System.Drawing.Point(102, 35);
             this.cbxDoor2RelayOption.Name = "cbxDoor2RelayOption";
             this.cbxDoor2RelayOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor2RelayOption.TabIndex = 43;
@@ -1592,7 +1547,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(366, 25);
+            this.label13.Location = new System.Drawing.Point(275, 20);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(35, 12);
             this.label13.TabIndex = 42;
@@ -1601,7 +1556,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(246, 25);
+            this.label14.Location = new System.Drawing.Point(192, 20);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(35, 12);
             this.label14.TabIndex = 40;
@@ -1610,7 +1565,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(126, 25);
+            this.label15.Location = new System.Drawing.Point(104, 20);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(35, 12);
             this.label15.TabIndex = 38;
@@ -1624,16 +1579,16 @@
             "COM & NC",
             "COM & NO",
             "双稳态"});
-            this.cbxDoor1RelayOption.Location = new System.Drawing.Point(35, 22);
+            this.cbxDoor1RelayOption.Location = new System.Drawing.Point(9, 35);
             this.cbxDoor1RelayOption.Name = "cbxDoor1RelayOption";
             this.cbxDoor1RelayOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor1RelayOption.TabIndex = 37;
             // 
             // btnWriteRelayOption
             // 
-            this.btnWriteRelayOption.Location = new System.Drawing.Point(578, 20);
+            this.btnWriteRelayOption.Location = new System.Drawing.Point(274, 61);
             this.btnWriteRelayOption.Name = "btnWriteRelayOption";
-            this.btnWriteRelayOption.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteRelayOption.Size = new System.Drawing.Size(74, 20);
             this.btnWriteRelayOption.TabIndex = 36;
             this.btnWriteRelayOption.Text = "写入";
             this.btnWriteRelayOption.UseVisualStyleBackColor = true;
@@ -1641,9 +1596,9 @@
             // 
             // btnReadRelayOption
             // 
-            this.btnReadRelayOption.Location = new System.Drawing.Point(524, 20);
+            this.btnReadRelayOption.Location = new System.Drawing.Point(191, 61);
             this.btnReadRelayOption.Name = "btnReadRelayOption";
-            this.btnReadRelayOption.Size = new System.Drawing.Size(48, 23);
+            this.btnReadRelayOption.Size = new System.Drawing.Size(74, 20);
             this.btnReadRelayOption.TabIndex = 35;
             this.btnReadRelayOption.Text = "读取";
             this.btnReadRelayOption.UseVisualStyleBackColor = true;
@@ -1652,7 +1607,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 25);
+            this.label16.Location = new System.Drawing.Point(5, 20);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(35, 12);
             this.label16.TabIndex = 34;
@@ -1672,7 +1627,7 @@
             this.groupBox5.Controls.Add(this.label24);
             this.groupBox5.Location = new System.Drawing.Point(6, 6);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(725, 52);
+            this.groupBox5.Size = new System.Drawing.Size(361, 99);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "读卡器字节数";
@@ -1681,7 +1636,7 @@
             // 
             this.cbxDoor4ReaderOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDoor4ReaderOption.FormattingEnabled = true;
-            this.cbxDoor4ReaderOption.Location = new System.Drawing.Point(395, 22);
+            this.cbxDoor4ReaderOption.Location = new System.Drawing.Point(275, 37);
             this.cbxDoor4ReaderOption.Name = "cbxDoor4ReaderOption";
             this.cbxDoor4ReaderOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor4ReaderOption.TabIndex = 43;
@@ -1689,7 +1644,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(366, 25);
+            this.label11.Location = new System.Drawing.Point(273, 17);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 12);
             this.label11.TabIndex = 42;
@@ -1699,7 +1654,7 @@
             // 
             this.cbxDoor3ReaderOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDoor3ReaderOption.FormattingEnabled = true;
-            this.cbxDoor3ReaderOption.Location = new System.Drawing.Point(275, 22);
+            this.cbxDoor3ReaderOption.Location = new System.Drawing.Point(192, 37);
             this.cbxDoor3ReaderOption.Name = "cbxDoor3ReaderOption";
             this.cbxDoor3ReaderOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor3ReaderOption.TabIndex = 41;
@@ -1707,7 +1662,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(246, 25);
+            this.label12.Location = new System.Drawing.Point(193, 22);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(35, 12);
             this.label12.TabIndex = 40;
@@ -1717,7 +1672,7 @@
             // 
             this.cbxDoor2ReaderOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDoor2ReaderOption.FormattingEnabled = true;
-            this.cbxDoor2ReaderOption.Location = new System.Drawing.Point(155, 22);
+            this.cbxDoor2ReaderOption.Location = new System.Drawing.Point(103, 37);
             this.cbxDoor2ReaderOption.Name = "cbxDoor2ReaderOption";
             this.cbxDoor2ReaderOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor2ReaderOption.TabIndex = 39;
@@ -1725,7 +1680,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(126, 25);
+            this.label5.Location = new System.Drawing.Point(105, 20);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 12);
             this.label5.TabIndex = 38;
@@ -1735,16 +1690,16 @@
             // 
             this.cbxDoor1ReaderOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDoor1ReaderOption.FormattingEnabled = true;
-            this.cbxDoor1ReaderOption.Location = new System.Drawing.Point(35, 22);
+            this.cbxDoor1ReaderOption.Location = new System.Drawing.Point(11, 37);
             this.cbxDoor1ReaderOption.Name = "cbxDoor1ReaderOption";
             this.cbxDoor1ReaderOption.Size = new System.Drawing.Size(74, 20);
             this.cbxDoor1ReaderOption.TabIndex = 37;
             // 
             // btnWriteReaderOption
             // 
-            this.btnWriteReaderOption.Location = new System.Drawing.Point(578, 20);
+            this.btnWriteReaderOption.Location = new System.Drawing.Point(275, 70);
             this.btnWriteReaderOption.Name = "btnWriteReaderOption";
-            this.btnWriteReaderOption.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteReaderOption.Size = new System.Drawing.Size(74, 20);
             this.btnWriteReaderOption.TabIndex = 36;
             this.btnWriteReaderOption.Text = "写入";
             this.btnWriteReaderOption.UseVisualStyleBackColor = true;
@@ -1752,9 +1707,9 @@
             // 
             // btnReadReaderOption
             // 
-            this.btnReadReaderOption.Location = new System.Drawing.Point(524, 20);
+            this.btnReadReaderOption.Location = new System.Drawing.Point(190, 70);
             this.btnReadReaderOption.Name = "btnReadReaderOption";
-            this.btnReadReaderOption.Size = new System.Drawing.Size(48, 23);
+            this.btnReadReaderOption.Size = new System.Drawing.Size(74, 20);
             this.btnReadReaderOption.TabIndex = 35;
             this.btnReadReaderOption.Text = "读取";
             this.btnReadReaderOption.UseVisualStyleBackColor = true;
@@ -1763,7 +1718,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(6, 25);
+            this.label24.Location = new System.Drawing.Point(9, 22);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(35, 12);
             this.label24.TabIndex = 34;
@@ -1771,6 +1726,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.AutoScroll = true;
             this.tabPage3.Controls.Add(this.groupBox21);
             this.tabPage3.Controls.Add(this.groupBox20);
             this.tabPage3.Controls.Add(this.groupBox19);
@@ -1782,7 +1738,7 @@
             this.tabPage3.Controls.Add(this.groupBox12);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(751, 815);
+            this.tabPage3.Size = new System.Drawing.Size(751, 459);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "参数2";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1803,16 +1759,16 @@
             this.groupBox21.Controls.Add(this.cmbInterLockSettingAreaType);
             this.groupBox21.Controls.Add(this.lbAreaType2);
             this.groupBox21.Controls.Add(this.label70);
-            this.groupBox21.Location = new System.Drawing.Point(7, 577);
+            this.groupBox21.Location = new System.Drawing.Point(7, 698);
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(734, 90);
+            this.groupBox21.Size = new System.Drawing.Size(734, 116);
             this.groupBox21.TabIndex = 97;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "区域互锁";
             // 
             // btnWriteInterLockSetting
             // 
-            this.btnWriteInterLockSetting.Location = new System.Drawing.Point(633, 39);
+            this.btnWriteInterLockSetting.Location = new System.Drawing.Point(652, 87);
             this.btnWriteInterLockSetting.Name = "btnWriteInterLockSetting";
             this.btnWriteInterLockSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteInterLockSetting.TabIndex = 97;
@@ -1822,7 +1778,7 @@
             // 
             // btnReadInterLockSetting
             // 
-            this.btnReadInterLockSetting.Location = new System.Drawing.Point(579, 39);
+            this.btnReadInterLockSetting.Location = new System.Drawing.Point(598, 87);
             this.btnReadInterLockSetting.Name = "btnReadInterLockSetting";
             this.btnReadInterLockSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadInterLockSetting.TabIndex = 97;
@@ -1832,17 +1788,17 @@
             // 
             // txtInterLockSettingPort
             // 
-            this.txtInterLockSettingPort.Location = new System.Drawing.Point(458, 59);
+            this.txtInterLockSettingPort.Location = new System.Drawing.Point(396, 77);
             this.txtInterLockSettingPort.MaxLength = 5;
             this.txtInterLockSettingPort.Name = "txtInterLockSettingPort";
-            this.txtInterLockSettingPort.Size = new System.Drawing.Size(98, 21);
+            this.txtInterLockSettingPort.Size = new System.Drawing.Size(151, 21);
             this.txtInterLockSettingPort.TabIndex = 101;
             this.txtInterLockSettingPort.Visible = false;
             // 
             // lbPort2
             // 
             this.lbPort2.AutoSize = true;
-            this.lbPort2.Location = new System.Drawing.Point(396, 62);
+            this.lbPort2.Location = new System.Drawing.Point(394, 62);
             this.lbPort2.Name = "lbPort2";
             this.lbPort2.Size = new System.Drawing.Size(65, 12);
             this.lbPort2.TabIndex = 101;
@@ -1851,17 +1807,17 @@
             // 
             // txtInterLockSettingIP
             // 
-            this.txtInterLockSettingIP.Location = new System.Drawing.Point(267, 59);
+            this.txtInterLockSettingIP.Location = new System.Drawing.Point(193, 80);
             this.txtInterLockSettingIP.MaxLength = 15;
             this.txtInterLockSettingIP.Name = "txtInterLockSettingIP";
-            this.txtInterLockSettingIP.Size = new System.Drawing.Size(98, 21);
+            this.txtInterLockSettingIP.Size = new System.Drawing.Size(135, 21);
             this.txtInterLockSettingIP.TabIndex = 101;
             this.txtInterLockSettingIP.Visible = false;
             // 
             // lbIP2
             // 
             this.lbIP2.AutoSize = true;
-            this.lbIP2.Location = new System.Drawing.Point(220, 62);
+            this.lbIP2.Location = new System.Drawing.Point(191, 65);
             this.lbIP2.Name = "lbIP2";
             this.lbIP2.Size = new System.Drawing.Size(53, 12);
             this.lbIP2.TabIndex = 101;
@@ -1872,9 +1828,9 @@
             // 
             this.cmbNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNum.FormattingEnabled = true;
-            this.cmbNum.Location = new System.Drawing.Point(73, 59);
+            this.cmbNum.Location = new System.Drawing.Point(9, 77);
             this.cmbNum.Name = "cmbNum";
-            this.cmbNum.Size = new System.Drawing.Size(79, 20);
+            this.cmbNum.Size = new System.Drawing.Size(148, 20);
             this.cmbNum.TabIndex = 103;
             this.cmbNum.Visible = false;
             // 
@@ -1891,7 +1847,7 @@
             // cbInterLockSettingUse
             // 
             this.cbInterLockSettingUse.AutoSize = true;
-            this.cbInterLockSettingUse.Location = new System.Drawing.Point(73, 23);
+            this.cbInterLockSettingUse.Location = new System.Drawing.Point(11, 23);
             this.cbInterLockSettingUse.Name = "cbInterLockSettingUse";
             this.cbInterLockSettingUse.Size = new System.Drawing.Size(15, 14);
             this.cbInterLockSettingUse.TabIndex = 97;
@@ -1900,17 +1856,17 @@
             // 
             // txtAreaCode
             // 
-            this.txtAreaCode.Location = new System.Drawing.Point(458, 20);
+            this.txtAreaCode.Location = new System.Drawing.Point(396, 41);
             this.txtAreaCode.MaxLength = 5;
             this.txtAreaCode.Name = "txtAreaCode";
-            this.txtAreaCode.Size = new System.Drawing.Size(98, 21);
+            this.txtAreaCode.Size = new System.Drawing.Size(151, 21);
             this.txtAreaCode.TabIndex = 101;
             this.txtAreaCode.Visible = false;
             // 
             // lbAreaCode
             // 
             this.lbAreaCode.AutoSize = true;
-            this.lbAreaCode.Location = new System.Drawing.Point(396, 23);
+            this.lbAreaCode.Location = new System.Drawing.Point(394, 25);
             this.lbAreaCode.Name = "lbAreaCode";
             this.lbAreaCode.Size = new System.Drawing.Size(65, 12);
             this.lbAreaCode.TabIndex = 101;
@@ -1924,9 +1880,9 @@
             this.cmbInterLockSettingAreaType.Items.AddRange(new object[] {
             "主机",
             "从机"});
-            this.cmbInterLockSettingAreaType.Location = new System.Drawing.Point(267, 20);
+            this.cmbInterLockSettingAreaType.Location = new System.Drawing.Point(193, 41);
             this.cmbInterLockSettingAreaType.Name = "cmbInterLockSettingAreaType";
-            this.cmbInterLockSettingAreaType.Size = new System.Drawing.Size(98, 20);
+            this.cmbInterLockSettingAreaType.Size = new System.Drawing.Size(142, 20);
             this.cmbInterLockSettingAreaType.TabIndex = 101;
             this.cmbInterLockSettingAreaType.Visible = false;
             this.cmbInterLockSettingAreaType.SelectedIndexChanged += new System.EventHandler(this.CmbInterLockSettingAreaType_SelectedIndexChanged);
@@ -1934,7 +1890,7 @@
             // lbAreaType2
             // 
             this.lbAreaType2.AutoSize = true;
-            this.lbAreaType2.Location = new System.Drawing.Point(184, 23);
+            this.lbAreaType2.Location = new System.Drawing.Point(191, 26);
             this.lbAreaType2.Name = "lbAreaType2";
             this.lbAreaType2.Size = new System.Drawing.Size(89, 12);
             this.lbAreaType2.TabIndex = 101;
@@ -1944,7 +1900,7 @@
             // label70
             // 
             this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(6, 23);
+            this.label70.Location = new System.Drawing.Point(32, 25);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(65, 12);
             this.label70.TabIndex = 97;
@@ -1957,16 +1913,16 @@
             this.groupBox20.Controls.Add(this.plAreaAntiPassback);
             this.groupBox20.Controls.Add(this.cbAreaAntiPassbackUse);
             this.groupBox20.Controls.Add(this.label65);
-            this.groupBox20.Location = new System.Drawing.Point(7, 471);
+            this.groupBox20.Location = new System.Drawing.Point(254, 504);
             this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(734, 90);
+            this.groupBox20.Size = new System.Drawing.Size(473, 190);
             this.groupBox20.TabIndex = 15;
             this.groupBox20.TabStop = false;
             this.groupBox20.Text = "区域防潜回";
             // 
             // btnWriteAreaAntiPassback
             // 
-            this.btnWriteAreaAntiPassback.Location = new System.Drawing.Point(633, 35);
+            this.btnWriteAreaAntiPassback.Location = new System.Drawing.Point(405, 161);
             this.btnWriteAreaAntiPassback.Name = "btnWriteAreaAntiPassback";
             this.btnWriteAreaAntiPassback.Size = new System.Drawing.Size(48, 23);
             this.btnWriteAreaAntiPassback.TabIndex = 96;
@@ -1976,7 +1932,7 @@
             // 
             // btnReadAreaAntiPassback
             // 
-            this.btnReadAreaAntiPassback.Location = new System.Drawing.Point(579, 35);
+            this.btnReadAreaAntiPassback.Location = new System.Drawing.Point(351, 161);
             this.btnReadAreaAntiPassback.Name = "btnReadAreaAntiPassback";
             this.btnReadAreaAntiPassback.Size = new System.Drawing.Size(48, 23);
             this.btnReadAreaAntiPassback.TabIndex = 96;
@@ -1994,24 +1950,24 @@
             this.plAreaAntiPassback.Controls.Add(this.lbSN);
             this.plAreaAntiPassback.Controls.Add(this.cmbAreaType);
             this.plAreaAntiPassback.Controls.Add(this.label66);
-            this.plAreaAntiPassback.Location = new System.Drawing.Point(110, 20);
+            this.plAreaAntiPassback.Location = new System.Drawing.Point(4, 39);
             this.plAreaAntiPassback.Name = "plAreaAntiPassback";
-            this.plAreaAntiPassback.Size = new System.Drawing.Size(467, 64);
+            this.plAreaAntiPassback.Size = new System.Drawing.Size(463, 116);
             this.plAreaAntiPassback.TabIndex = 2;
             this.plAreaAntiPassback.Visible = false;
             // 
             // txtPort
             // 
-            this.txtPort.Location = new System.Drawing.Point(275, 37);
+            this.txtPort.Location = new System.Drawing.Point(280, 83);
             this.txtPort.MaxLength = 5;
             this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(98, 21);
+            this.txtPort.Size = new System.Drawing.Size(154, 21);
             this.txtPort.TabIndex = 100;
             // 
             // lbPort
             // 
             this.lbPort.AutoSize = true;
-            this.lbPort.Location = new System.Drawing.Point(216, 40);
+            this.lbPort.Location = new System.Drawing.Point(278, 68);
             this.lbPort.Name = "lbPort";
             this.lbPort.Size = new System.Drawing.Size(65, 12);
             this.lbPort.TabIndex = 99;
@@ -2019,16 +1975,16 @@
             // 
             // txtIP
             // 
-            this.txtIP.Location = new System.Drawing.Point(97, 37);
+            this.txtIP.Location = new System.Drawing.Point(16, 72);
             this.txtIP.MaxLength = 15;
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(98, 21);
+            this.txtIP.Size = new System.Drawing.Size(173, 21);
             this.txtIP.TabIndex = 98;
             // 
             // lbIP
             // 
             this.lbIP.AutoSize = true;
-            this.lbIP.Location = new System.Drawing.Point(50, 40);
+            this.lbIP.Location = new System.Drawing.Point(15, 54);
             this.lbIP.Name = "lbIP";
             this.lbIP.Size = new System.Drawing.Size(53, 12);
             this.lbIP.TabIndex = 97;
@@ -2036,16 +1992,16 @@
             // 
             // txtSN
             // 
-            this.txtSN.Location = new System.Drawing.Point(275, 7);
+            this.txtSN.Location = new System.Drawing.Point(280, 21);
             this.txtSN.MaxLength = 16;
             this.txtSN.Name = "txtSN";
-            this.txtSN.Size = new System.Drawing.Size(173, 21);
+            this.txtSN.Size = new System.Drawing.Size(154, 21);
             this.txtSN.TabIndex = 96;
             // 
             // lbSN
             // 
             this.lbSN.AutoSize = true;
-            this.lbSN.Location = new System.Drawing.Point(228, 10);
+            this.lbSN.Location = new System.Drawing.Point(278, 6);
             this.lbSN.Name = "lbSN";
             this.lbSN.Size = new System.Drawing.Size(53, 12);
             this.lbSN.TabIndex = 2;
@@ -2058,9 +2014,9 @@
             this.cmbAreaType.Items.AddRange(new object[] {
             "主机",
             "从机"});
-            this.cmbAreaType.Location = new System.Drawing.Point(97, 7);
+            this.cmbAreaType.Location = new System.Drawing.Point(17, 25);
             this.cmbAreaType.Name = "cmbAreaType";
-            this.cmbAreaType.Size = new System.Drawing.Size(98, 20);
+            this.cmbAreaType.Size = new System.Drawing.Size(173, 20);
             this.cmbAreaType.TabIndex = 1;
             this.cmbAreaType.SelectedIndexChanged += new System.EventHandler(this.CmbAreaType_SelectedIndexChanged);
             // 
@@ -2076,7 +2032,7 @@
             // cbAreaAntiPassbackUse
             // 
             this.cbAreaAntiPassbackUse.AutoSize = true;
-            this.cbAreaAntiPassbackUse.Location = new System.Drawing.Point(73, 30);
+            this.cbAreaAntiPassbackUse.Location = new System.Drawing.Point(7, 19);
             this.cbAreaAntiPassbackUse.Name = "cbAreaAntiPassbackUse";
             this.cbAreaAntiPassbackUse.Size = new System.Drawing.Size(15, 14);
             this.cbAreaAntiPassbackUse.TabIndex = 1;
@@ -2086,7 +2042,7 @@
             // label65
             // 
             this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(6, 30);
+            this.label65.Location = new System.Drawing.Point(23, 21);
             this.label65.Name = "label65";
             this.label65.Size = new System.Drawing.Size(65, 12);
             this.label65.TabIndex = 0;
@@ -2099,25 +2055,25 @@
             this.groupBox19.Controls.Add(this.btnWriteManageKeyboardSetting);
             this.groupBox19.Controls.Add(this.btnReadManageKeyboardSetting);
             this.groupBox19.Controls.Add(this.cbManageKeyboardSettingUse);
-            this.groupBox19.Location = new System.Drawing.Point(7, 417);
+            this.groupBox19.Location = new System.Drawing.Point(5, 504);
             this.groupBox19.Name = "groupBox19";
-            this.groupBox19.Size = new System.Drawing.Size(734, 47);
+            this.groupBox19.Size = new System.Drawing.Size(244, 184);
             this.groupBox19.TabIndex = 14;
             this.groupBox19.TabStop = false;
             this.groupBox19.Text = "键盘发卡功能";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(338, 17);
+            this.txtPassword.Location = new System.Drawing.Point(11, 84);
             this.txtPassword.MaxLength = 8;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(100, 21);
+            this.txtPassword.Size = new System.Drawing.Size(163, 21);
             this.txtPassword.TabIndex = 95;
             // 
             // label64
             // 
             this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(277, 21);
+            this.label64.Location = new System.Drawing.Point(12, 69);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(65, 12);
             this.label64.TabIndex = 94;
@@ -2125,7 +2081,7 @@
             // 
             // btnWriteManageKeyboardSetting
             // 
-            this.btnWriteManageKeyboardSetting.Location = new System.Drawing.Point(633, 15);
+            this.btnWriteManageKeyboardSetting.Location = new System.Drawing.Point(179, 155);
             this.btnWriteManageKeyboardSetting.Name = "btnWriteManageKeyboardSetting";
             this.btnWriteManageKeyboardSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteManageKeyboardSetting.TabIndex = 93;
@@ -2135,7 +2091,7 @@
             // 
             // btnReadManageKeyboardSetting
             // 
-            this.btnReadManageKeyboardSetting.Location = new System.Drawing.Point(579, 15);
+            this.btnReadManageKeyboardSetting.Location = new System.Drawing.Point(125, 155);
             this.btnReadManageKeyboardSetting.Name = "btnReadManageKeyboardSetting";
             this.btnReadManageKeyboardSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadManageKeyboardSetting.TabIndex = 93;
@@ -2158,16 +2114,16 @@
             this.groupBox18.Controls.Add(this.btnWriteInOutSideReadOpenSetting);
             this.groupBox18.Controls.Add(this.btnReadInOutSideReadOpenSetting);
             this.groupBox18.Controls.Add(this.cbInOutSideReadOpenSettingUse);
-            this.groupBox18.Location = new System.Drawing.Point(389, 363);
+            this.groupBox18.Location = new System.Drawing.Point(361, 400);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(352, 47);
+            this.groupBox18.Size = new System.Drawing.Size(366, 47);
             this.groupBox18.TabIndex = 13;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "门内外同时读卡开门";
             // 
             // btnWriteInOutSideReadOpenSetting
             // 
-            this.btnWriteInOutSideReadOpenSetting.Location = new System.Drawing.Point(251, 14);
+            this.btnWriteInOutSideReadOpenSetting.Location = new System.Drawing.Point(298, 16);
             this.btnWriteInOutSideReadOpenSetting.Name = "btnWriteInOutSideReadOpenSetting";
             this.btnWriteInOutSideReadOpenSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteInOutSideReadOpenSetting.TabIndex = 92;
@@ -2177,7 +2133,7 @@
             // 
             // btnReadInOutSideReadOpenSetting
             // 
-            this.btnReadInOutSideReadOpenSetting.Location = new System.Drawing.Point(197, 14);
+            this.btnReadInOutSideReadOpenSetting.Location = new System.Drawing.Point(233, 16);
             this.btnReadInOutSideReadOpenSetting.Name = "btnReadInOutSideReadOpenSetting";
             this.btnReadInOutSideReadOpenSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadInOutSideReadOpenSetting.TabIndex = 92;
@@ -2200,7 +2156,7 @@
             this.groupBox17.Controls.Add(this.btnWriteWriteVoiceBroadcastSetting);
             this.groupBox17.Controls.Add(this.btnReadVoiceBroadcastSetting);
             this.groupBox17.Controls.Add(this.cbVoiceBroadcastSettingUse);
-            this.groupBox17.Location = new System.Drawing.Point(7, 363);
+            this.groupBox17.Location = new System.Drawing.Point(361, 451);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(366, 47);
             this.groupBox17.TabIndex = 12;
@@ -2209,7 +2165,7 @@
             // 
             // btnWriteWriteVoiceBroadcastSetting
             // 
-            this.btnWriteWriteVoiceBroadcastSetting.Location = new System.Drawing.Point(273, 14);
+            this.btnWriteWriteVoiceBroadcastSetting.Location = new System.Drawing.Point(298, 14);
             this.btnWriteWriteVoiceBroadcastSetting.Name = "btnWriteWriteVoiceBroadcastSetting";
             this.btnWriteWriteVoiceBroadcastSetting.Size = new System.Drawing.Size(48, 23);
             this.btnWriteWriteVoiceBroadcastSetting.TabIndex = 91;
@@ -2219,7 +2175,7 @@
             // 
             // btnReadVoiceBroadcastSetting
             // 
-            this.btnReadVoiceBroadcastSetting.Location = new System.Drawing.Point(207, 14);
+            this.btnReadVoiceBroadcastSetting.Location = new System.Drawing.Point(232, 14);
             this.btnReadVoiceBroadcastSetting.Name = "btnReadVoiceBroadcastSetting";
             this.btnReadVoiceBroadcastSetting.Size = new System.Drawing.Size(48, 23);
             this.btnReadVoiceBroadcastSetting.TabIndex = 91;
@@ -2246,16 +2202,16 @@
             this.groupBox15.Controls.Add(this.label44);
             this.groupBox15.Controls.Add(this.cbAnyCardAuto);
             this.groupBox15.Controls.Add(this.cbAnyCardUse);
-            this.groupBox15.Location = new System.Drawing.Point(7, 309);
+            this.groupBox15.Location = new System.Drawing.Point(3, 400);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(734, 47);
+            this.groupBox15.Size = new System.Drawing.Size(346, 95);
             this.groupBox15.TabIndex = 11;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "全卡开门";
             // 
             // btnWriteAnyCard
             // 
-            this.btnWriteAnyCard.Location = new System.Drawing.Point(633, 16);
+            this.btnWriteAnyCard.Location = new System.Drawing.Point(267, 66);
             this.btnWriteAnyCard.Name = "btnWriteAnyCard";
             this.btnWriteAnyCard.Size = new System.Drawing.Size(48, 23);
             this.btnWriteAnyCard.TabIndex = 90;
@@ -2265,7 +2221,7 @@
             // 
             // btnReadAnyCard
             // 
-            this.btnReadAnyCard.Location = new System.Drawing.Point(579, 16);
+            this.btnReadAnyCard.Location = new System.Drawing.Point(213, 66);
             this.btnReadAnyCard.Name = "btnReadAnyCard";
             this.btnReadAnyCard.Size = new System.Drawing.Size(48, 23);
             this.btnReadAnyCard.TabIndex = 90;
@@ -2276,7 +2232,7 @@
             // label63
             // 
             this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(336, 23);
+            this.label63.Location = new System.Drawing.Point(114, 72);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(65, 12);
             this.label63.TabIndex = 4;
@@ -2286,7 +2242,7 @@
             // 
             this.cmbAnyCardTimeGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAnyCardTimeGroup.FormattingEnabled = true;
-            this.cmbAnyCardTimeGroup.Location = new System.Drawing.Point(235, 19);
+            this.cmbAnyCardTimeGroup.Location = new System.Drawing.Point(8, 69);
             this.cmbAnyCardTimeGroup.Name = "cmbAnyCardTimeGroup";
             this.cmbAnyCardTimeGroup.Size = new System.Drawing.Size(95, 20);
             this.cmbAnyCardTimeGroup.TabIndex = 3;
@@ -2294,7 +2250,7 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(180, 23);
+            this.label44.Location = new System.Drawing.Point(6, 52);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(53, 12);
             this.label44.TabIndex = 2;
@@ -2329,12 +2285,13 @@
             this.groupBox14.Controls.Add(this.lbNormallyOpen);
             this.groupBox14.Controls.Add(this.cbReadPushButton);
             this.groupBox14.Controls.Add(this.label43);
-            this.groupBox14.Location = new System.Drawing.Point(7, 112);
+            this.groupBox14.Location = new System.Drawing.Point(3, 154);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(734, 190);
+            this.groupBox14.Size = new System.Drawing.Size(734, 240);
             this.groupBox14.TabIndex = 10;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "出门开关参数";
+            this.groupBox14.Enter += new System.EventHandler(this.groupBox14_Enter);
             // 
             // plPushButton
             // 
@@ -2374,14 +2331,14 @@
             this.plPushButton.Controls.Add(this.cmbPushButtonWeekday);
             this.plPushButton.Location = new System.Drawing.Point(11, 40);
             this.plPushButton.Name = "plPushButton";
-            this.plPushButton.Size = new System.Drawing.Size(713, 111);
+            this.plPushButton.Size = new System.Drawing.Size(713, 159);
             this.plPushButton.TabIndex = 89;
             this.plPushButton.Visible = false;
             // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(507, 72);
+            this.label45.Location = new System.Drawing.Point(634, 101);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(59, 12);
             this.label45.TabIndex = 117;
@@ -2391,7 +2348,7 @@
             // 
             this.EndTP8.CustomFormat = "HH:mm";
             this.EndTP8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP8.Location = new System.Drawing.Point(509, 87);
+            this.EndTP8.Location = new System.Drawing.Point(636, 119);
             this.EndTP8.Name = "EndTP8";
             this.EndTP8.ShowUpDown = true;
             this.EndTP8.Size = new System.Drawing.Size(57, 21);
@@ -2402,7 +2359,7 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(442, 72);
+            this.label46.Location = new System.Drawing.Point(544, 101);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(59, 12);
             this.label46.TabIndex = 115;
@@ -2412,7 +2369,7 @@
             // 
             this.beginTP8.CustomFormat = "HH:mm";
             this.beginTP8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP8.Location = new System.Drawing.Point(444, 87);
+            this.beginTP8.Location = new System.Drawing.Point(546, 119);
             this.beginTP8.Name = "beginTP8";
             this.beginTP8.ShowUpDown = true;
             this.beginTP8.Size = new System.Drawing.Size(57, 21);
@@ -2423,7 +2380,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(507, 28);
+            this.label47.Location = new System.Drawing.Point(634, 53);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(59, 12);
             this.label47.TabIndex = 113;
@@ -2433,7 +2390,7 @@
             // 
             this.EndTP4.CustomFormat = "HH:mm";
             this.EndTP4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP4.Location = new System.Drawing.Point(509, 43);
+            this.EndTP4.Location = new System.Drawing.Point(636, 71);
             this.EndTP4.Name = "EndTP4";
             this.EndTP4.ShowUpDown = true;
             this.EndTP4.Size = new System.Drawing.Size(57, 21);
@@ -2444,7 +2401,7 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(442, 28);
+            this.label48.Location = new System.Drawing.Point(544, 53);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(59, 12);
             this.label48.TabIndex = 111;
@@ -2454,7 +2411,7 @@
             // 
             this.beginTP4.CustomFormat = "HH:mm";
             this.beginTP4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP4.Location = new System.Drawing.Point(444, 43);
+            this.beginTP4.Location = new System.Drawing.Point(546, 71);
             this.beginTP4.Name = "beginTP4";
             this.beginTP4.ShowUpDown = true;
             this.beginTP4.Size = new System.Drawing.Size(57, 21);
@@ -2465,7 +2422,7 @@
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(361, 72);
+            this.label49.Location = new System.Drawing.Point(454, 101);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(59, 12);
             this.label49.TabIndex = 109;
@@ -2475,7 +2432,7 @@
             // 
             this.EndTP7.CustomFormat = "HH:mm";
             this.EndTP7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP7.Location = new System.Drawing.Point(363, 87);
+            this.EndTP7.Location = new System.Drawing.Point(456, 119);
             this.EndTP7.Name = "EndTP7";
             this.EndTP7.ShowUpDown = true;
             this.EndTP7.Size = new System.Drawing.Size(57, 21);
@@ -2486,7 +2443,7 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(296, 72);
+            this.label50.Location = new System.Drawing.Point(364, 101);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(59, 12);
             this.label50.TabIndex = 107;
@@ -2496,7 +2453,7 @@
             // 
             this.beginTP7.CustomFormat = "HH:mm";
             this.beginTP7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP7.Location = new System.Drawing.Point(298, 87);
+            this.beginTP7.Location = new System.Drawing.Point(366, 119);
             this.beginTP7.Name = "beginTP7";
             this.beginTP7.ShowUpDown = true;
             this.beginTP7.Size = new System.Drawing.Size(57, 21);
@@ -2507,7 +2464,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(361, 28);
+            this.label51.Location = new System.Drawing.Point(454, 53);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(59, 12);
             this.label51.TabIndex = 105;
@@ -2517,7 +2474,7 @@
             // 
             this.EndTP3.CustomFormat = "HH:mm";
             this.EndTP3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP3.Location = new System.Drawing.Point(363, 43);
+            this.EndTP3.Location = new System.Drawing.Point(456, 71);
             this.EndTP3.Name = "EndTP3";
             this.EndTP3.ShowUpDown = true;
             this.EndTP3.Size = new System.Drawing.Size(57, 21);
@@ -2528,7 +2485,7 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(296, 28);
+            this.label52.Location = new System.Drawing.Point(364, 53);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(59, 12);
             this.label52.TabIndex = 103;
@@ -2538,7 +2495,7 @@
             // 
             this.beginTP3.CustomFormat = "HH:mm";
             this.beginTP3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP3.Location = new System.Drawing.Point(298, 43);
+            this.beginTP3.Location = new System.Drawing.Point(366, 71);
             this.beginTP3.Name = "beginTP3";
             this.beginTP3.ShowUpDown = true;
             this.beginTP3.Size = new System.Drawing.Size(57, 21);
@@ -2549,7 +2506,7 @@
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(212, 72);
+            this.label53.Location = new System.Drawing.Point(274, 101);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(59, 12);
             this.label53.TabIndex = 101;
@@ -2559,7 +2516,7 @@
             // 
             this.EndTP6.CustomFormat = "HH:mm";
             this.EndTP6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP6.Location = new System.Drawing.Point(214, 87);
+            this.EndTP6.Location = new System.Drawing.Point(276, 119);
             this.EndTP6.Name = "EndTP6";
             this.EndTP6.ShowUpDown = true;
             this.EndTP6.Size = new System.Drawing.Size(57, 21);
@@ -2570,7 +2527,7 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(147, 72);
+            this.label54.Location = new System.Drawing.Point(184, 101);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(59, 12);
             this.label54.TabIndex = 99;
@@ -2580,7 +2537,7 @@
             // 
             this.beginTP6.CustomFormat = "HH:mm";
             this.beginTP6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP6.Location = new System.Drawing.Point(149, 87);
+            this.beginTP6.Location = new System.Drawing.Point(186, 119);
             this.beginTP6.Name = "beginTP6";
             this.beginTP6.ShowUpDown = true;
             this.beginTP6.Size = new System.Drawing.Size(57, 21);
@@ -2591,7 +2548,7 @@
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(212, 28);
+            this.label55.Location = new System.Drawing.Point(274, 53);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(59, 12);
             this.label55.TabIndex = 97;
@@ -2601,7 +2558,7 @@
             // 
             this.EndTP2.CustomFormat = "HH:mm";
             this.EndTP2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP2.Location = new System.Drawing.Point(214, 43);
+            this.EndTP2.Location = new System.Drawing.Point(276, 71);
             this.EndTP2.Name = "EndTP2";
             this.EndTP2.ShowUpDown = true;
             this.EndTP2.Size = new System.Drawing.Size(57, 21);
@@ -2612,7 +2569,7 @@
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(147, 28);
+            this.label56.Location = new System.Drawing.Point(184, 53);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(59, 12);
             this.label56.TabIndex = 95;
@@ -2622,7 +2579,7 @@
             // 
             this.beginTP2.CustomFormat = "HH:mm";
             this.beginTP2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP2.Location = new System.Drawing.Point(149, 43);
+            this.beginTP2.Location = new System.Drawing.Point(186, 71);
             this.beginTP2.Name = "beginTP2";
             this.beginTP2.ShowUpDown = true;
             this.beginTP2.Size = new System.Drawing.Size(57, 21);
@@ -2633,7 +2590,7 @@
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(68, 72);
+            this.label58.Location = new System.Drawing.Point(94, 101);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(59, 12);
             this.label58.TabIndex = 93;
@@ -2643,7 +2600,7 @@
             // 
             this.EndTP5.CustomFormat = "HH:mm";
             this.EndTP5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP5.Location = new System.Drawing.Point(70, 87);
+            this.EndTP5.Location = new System.Drawing.Point(96, 119);
             this.EndTP5.Name = "EndTP5";
             this.EndTP5.ShowUpDown = true;
             this.EndTP5.Size = new System.Drawing.Size(57, 21);
@@ -2654,7 +2611,7 @@
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(3, 72);
+            this.label59.Location = new System.Drawing.Point(4, 101);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(59, 12);
             this.label59.TabIndex = 91;
@@ -2664,7 +2621,7 @@
             // 
             this.beginTP5.CustomFormat = "HH:mm";
             this.beginTP5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP5.Location = new System.Drawing.Point(5, 87);
+            this.beginTP5.Location = new System.Drawing.Point(6, 119);
             this.beginTP5.Name = "beginTP5";
             this.beginTP5.ShowUpDown = true;
             this.beginTP5.Size = new System.Drawing.Size(57, 21);
@@ -2675,7 +2632,7 @@
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(68, 28);
+            this.label60.Location = new System.Drawing.Point(94, 53);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(59, 12);
             this.label60.TabIndex = 89;
@@ -2685,7 +2642,7 @@
             // 
             this.EndTP1.CustomFormat = "HH:mm";
             this.EndTP1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndTP1.Location = new System.Drawing.Point(70, 43);
+            this.EndTP1.Location = new System.Drawing.Point(96, 71);
             this.EndTP1.Name = "EndTP1";
             this.EndTP1.ShowUpDown = true;
             this.EndTP1.Size = new System.Drawing.Size(57, 21);
@@ -2696,7 +2653,7 @@
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(3, 28);
+            this.label61.Location = new System.Drawing.Point(4, 53);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(59, 12);
             this.label61.TabIndex = 87;
@@ -2715,7 +2672,7 @@
             // 
             this.beginTP1.CustomFormat = "HH:mm";
             this.beginTP1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTP1.Location = new System.Drawing.Point(5, 43);
+            this.beginTP1.Location = new System.Drawing.Point(6, 71);
             this.beginTP1.Name = "beginTP1";
             this.beginTP1.ShowUpDown = true;
             this.beginTP1.Size = new System.Drawing.Size(57, 21);
@@ -2735,7 +2692,7 @@
             "星期五",
             "星期六",
             "星期日"});
-            this.cmbPushButtonWeekday.Location = new System.Drawing.Point(140, 4);
+            this.cmbPushButtonWeekday.Location = new System.Drawing.Point(6, 22);
             this.cmbPushButtonWeekday.Name = "cmbPushButtonWeekday";
             this.cmbPushButtonWeekday.Size = new System.Drawing.Size(104, 20);
             this.cmbPushButtonWeekday.TabIndex = 86;
@@ -2743,7 +2700,7 @@
             // 
             // btnWritePushButton
             // 
-            this.btnWritePushButton.Location = new System.Drawing.Point(633, 161);
+            this.btnWritePushButton.Location = new System.Drawing.Point(656, 205);
             this.btnWritePushButton.Name = "btnWritePushButton";
             this.btnWritePushButton.Size = new System.Drawing.Size(48, 23);
             this.btnWritePushButton.TabIndex = 88;
@@ -2753,7 +2710,7 @@
             // 
             // btnReadPushButton
             // 
-            this.btnReadPushButton.Location = new System.Drawing.Point(579, 161);
+            this.btnReadPushButton.Location = new System.Drawing.Point(590, 205);
             this.btnReadPushButton.Name = "btnReadPushButton";
             this.btnReadPushButton.Size = new System.Drawing.Size(48, 23);
             this.btnReadPushButton.TabIndex = 88;
@@ -2764,7 +2721,7 @@
             // cbNormallyOpen
             // 
             this.cbNormallyOpen.AutoSize = true;
-            this.cbNormallyOpen.Location = new System.Drawing.Point(441, 20);
+            this.cbNormallyOpen.Location = new System.Drawing.Point(317, 18);
             this.cbNormallyOpen.Name = "cbNormallyOpen";
             this.cbNormallyOpen.Size = new System.Drawing.Size(15, 14);
             this.cbNormallyOpen.TabIndex = 3;
@@ -2774,7 +2731,7 @@
             // lbNormallyOpen
             // 
             this.lbNormallyOpen.AutoSize = true;
-            this.lbNormallyOpen.Location = new System.Drawing.Point(380, 20);
+            this.lbNormallyOpen.Location = new System.Drawing.Point(336, 20);
             this.lbNormallyOpen.Name = "lbNormallyOpen";
             this.lbNormallyOpen.Size = new System.Drawing.Size(65, 12);
             this.lbNormallyOpen.TabIndex = 2;
@@ -2784,7 +2741,7 @@
             // cbReadPushButton
             // 
             this.cbReadPushButton.AutoSize = true;
-            this.cbReadPushButton.Location = new System.Drawing.Point(126, 20);
+            this.cbReadPushButton.Location = new System.Drawing.Point(21, 17);
             this.cbReadPushButton.Name = "cbReadPushButton";
             this.cbReadPushButton.Size = new System.Drawing.Size(15, 14);
             this.cbReadPushButton.TabIndex = 1;
@@ -2794,7 +2751,7 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(64, 20);
+            this.label43.Location = new System.Drawing.Point(40, 17);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(65, 12);
             this.label43.TabIndex = 0;
@@ -2807,16 +2764,16 @@
             this.groupBox13.Controls.Add(this.panel4);
             this.groupBox13.Controls.Add(this.label42);
             this.groupBox13.Controls.Add(this.panel3);
-            this.groupBox13.Location = new System.Drawing.Point(7, 58);
+            this.groupBox13.Location = new System.Drawing.Point(325, 4);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(734, 47);
+            this.groupBox13.Size = new System.Drawing.Size(365, 144);
             this.groupBox13.TabIndex = 9;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "防潜返参数";
             // 
             // btnWriteAntiPassback
             // 
-            this.btnWriteAntiPassback.Location = new System.Drawing.Point(679, 19);
+            this.btnWriteAntiPassback.Location = new System.Drawing.Point(290, 109);
             this.btnWriteAntiPassback.Name = "btnWriteAntiPassback";
             this.btnWriteAntiPassback.Size = new System.Drawing.Size(48, 23);
             this.btnWriteAntiPassback.TabIndex = 87;
@@ -2826,7 +2783,7 @@
             // 
             // btnReadAntiPassback
             // 
-            this.btnReadAntiPassback.Location = new System.Drawing.Point(625, 19);
+            this.btnReadAntiPassback.Location = new System.Drawing.Point(236, 109);
             this.btnReadAntiPassback.Name = "btnReadAntiPassback";
             this.btnReadAntiPassback.Size = new System.Drawing.Size(48, 23);
             this.btnReadAntiPassback.TabIndex = 87;
@@ -2838,15 +2795,15 @@
             // 
             this.panel4.Controls.Add(this.rBtnCheckInOut2);
             this.panel4.Controls.Add(this.rBtnCheckInOut1);
-            this.panel4.Location = new System.Drawing.Point(273, 21);
+            this.panel4.Location = new System.Drawing.Point(2, 60);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(336, 21);
+            this.panel4.Size = new System.Drawing.Size(336, 48);
             this.panel4.TabIndex = 2;
             // 
             // rBtnCheckInOut2
             // 
             this.rBtnCheckInOut2.AutoSize = true;
-            this.rBtnCheckInOut2.Location = new System.Drawing.Point(190, 2);
+            this.rBtnCheckInOut2.Location = new System.Drawing.Point(8, 24);
             this.rBtnCheckInOut2.Name = "rBtnCheckInOut2";
             this.rBtnCheckInOut2.Size = new System.Drawing.Size(143, 16);
             this.rBtnCheckInOut2.TabIndex = 1;
@@ -2857,7 +2814,7 @@
             // rBtnCheckInOut1
             // 
             this.rBtnCheckInOut1.AutoSize = true;
-            this.rBtnCheckInOut1.Location = new System.Drawing.Point(4, 2);
+            this.rBtnCheckInOut1.Location = new System.Drawing.Point(8, 2);
             this.rBtnCheckInOut1.Name = "rBtnCheckInOut1";
             this.rBtnCheckInOut1.Size = new System.Drawing.Size(143, 16);
             this.rBtnCheckInOut1.TabIndex = 0;
@@ -2868,7 +2825,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(211, 25);
+            this.label42.Location = new System.Drawing.Point(4, 45);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(65, 12);
             this.label42.TabIndex = 1;
@@ -2916,7 +2873,7 @@
             this.groupBox12.Controls.Add(this.btnReadReaderInterval);
             this.groupBox12.Location = new System.Drawing.Point(7, 4);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(734, 47);
+            this.groupBox12.Size = new System.Drawing.Size(307, 144);
             this.groupBox12.TabIndex = 8;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "重复读卡间隔";
@@ -2925,7 +2882,7 @@
             // 
             this.cmbInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbInterval.FormattingEnabled = true;
-            this.cmbInterval.Location = new System.Drawing.Point(194, 20);
+            this.cmbInterval.Location = new System.Drawing.Point(6, 62);
             this.cmbInterval.Name = "cmbInterval";
             this.cmbInterval.Size = new System.Drawing.Size(95, 20);
             this.cmbInterval.TabIndex = 86;
@@ -2933,7 +2890,7 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(137, 25);
+            this.label41.Location = new System.Drawing.Point(5, 47);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(65, 12);
             this.label41.TabIndex = 85;
@@ -2947,7 +2904,7 @@
             "读卡有记录",
             "读卡无记录",
             "读卡不做响应"});
-            this.cbxDetectionMode.Location = new System.Drawing.Point(452, 20);
+            this.cbxDetectionMode.Location = new System.Drawing.Point(6, 106);
             this.cbxDetectionMode.Name = "cbxDetectionMode";
             this.cbxDetectionMode.Size = new System.Drawing.Size(151, 20);
             this.cbxDetectionMode.TabIndex = 84;
@@ -2955,7 +2912,7 @@
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(295, 25);
+            this.label40.Location = new System.Drawing.Point(2, 85);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(161, 12);
             this.label40.TabIndex = 83;
@@ -2994,7 +2951,7 @@
             // 
             // btnWriteReaderInterval
             // 
-            this.btnWriteReaderInterval.Location = new System.Drawing.Point(679, 18);
+            this.btnWriteReaderInterval.Location = new System.Drawing.Point(231, 103);
             this.btnWriteReaderInterval.Name = "btnWriteReaderInterval";
             this.btnWriteReaderInterval.Size = new System.Drawing.Size(48, 23);
             this.btnWriteReaderInterval.TabIndex = 49;
@@ -3004,7 +2961,7 @@
             // 
             // btnReadReaderInterval
             // 
-            this.btnReadReaderInterval.Location = new System.Drawing.Point(625, 18);
+            this.btnReadReaderInterval.Location = new System.Drawing.Point(177, 103);
             this.btnReadReaderInterval.Name = "btnReadReaderInterval";
             this.btnReadReaderInterval.Size = new System.Drawing.Size(48, 23);
             this.btnReadReaderInterval.TabIndex = 48;
@@ -3014,12 +2971,14 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.AutoScroll = true;
+            this.tabPage4.Controls.Add(this.plMutiCard);
             this.tabPage4.Controls.Add(this.groupBox24);
             this.tabPage4.Controls.Add(this.groupBox23);
             this.tabPage4.Controls.Add(this.groupBox22);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(751, 815);
+            this.tabPage4.Size = new System.Drawing.Size(751, 459);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "多门参数";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -3044,16 +3003,16 @@
             this.groupBox24.Controls.Add(this.cbInDoorUse);
             this.groupBox24.Controls.Add(this.label74);
             this.groupBox24.Controls.Add(this.label73);
-            this.groupBox24.Location = new System.Drawing.Point(14, 598);
+            this.groupBox24.Location = new System.Drawing.Point(5, 677);
             this.groupBox24.Name = "groupBox24";
-            this.groupBox24.Size = new System.Drawing.Size(722, 214);
+            this.groupBox24.Size = new System.Drawing.Size(722, 268);
             this.groupBox24.TabIndex = 2;
             this.groupBox24.TabStop = false;
             this.groupBox24.Text = "读卡拍照联动消息";
             // 
             // btnWriteReadCardAndTakePictures
             // 
-            this.btnWriteReadCardAndTakePictures.Location = new System.Drawing.Point(655, 53);
+            this.btnWriteReadCardAndTakePictures.Location = new System.Drawing.Point(657, 235);
             this.btnWriteReadCardAndTakePictures.Name = "btnWriteReadCardAndTakePictures";
             this.btnWriteReadCardAndTakePictures.Size = new System.Drawing.Size(48, 23);
             this.btnWriteReadCardAndTakePictures.TabIndex = 111;
@@ -3063,7 +3022,7 @@
             // 
             // btnReadReadCardAndTakePictures
             // 
-            this.btnReadReadCardAndTakePictures.Location = new System.Drawing.Point(655, 23);
+            this.btnReadReadCardAndTakePictures.Location = new System.Drawing.Point(586, 235);
             this.btnReadReadCardAndTakePictures.Name = "btnReadReadCardAndTakePictures";
             this.btnReadReadCardAndTakePictures.Size = new System.Drawing.Size(48, 23);
             this.btnReadReadCardAndTakePictures.TabIndex = 111;
@@ -3073,24 +3032,24 @@
             // 
             // txtOutDoorProtocol
             // 
-            this.txtOutDoorProtocol.Location = new System.Drawing.Point(140, 148);
+            this.txtOutDoorProtocol.Location = new System.Drawing.Point(9, 198);
             this.txtOutDoorProtocol.Multiline = true;
             this.txtOutDoorProtocol.Name = "txtOutDoorProtocol";
-            this.txtOutDoorProtocol.Size = new System.Drawing.Size(487, 60);
+            this.txtOutDoorProtocol.Size = new System.Drawing.Size(534, 60);
             this.txtOutDoorProtocol.TabIndex = 15;
             // 
             // txtInDoorProtocol
             // 
-            this.txtInDoorProtocol.Location = new System.Drawing.Point(140, 50);
+            this.txtInDoorProtocol.Location = new System.Drawing.Point(9, 78);
             this.txtInDoorProtocol.Multiline = true;
             this.txtInDoorProtocol.Name = "txtInDoorProtocol";
-            this.txtInDoorProtocol.Size = new System.Drawing.Size(487, 60);
+            this.txtInDoorProtocol.Size = new System.Drawing.Size(534, 60);
             this.txtInDoorProtocol.TabIndex = 14;
             // 
             // label80
             // 
             this.label80.AutoSize = true;
-            this.label80.Location = new System.Drawing.Point(45, 145);
+            this.label80.Location = new System.Drawing.Point(9, 181);
             this.label80.Name = "label80";
             this.label80.Size = new System.Drawing.Size(89, 12);
             this.label80.TabIndex = 13;
@@ -3099,7 +3058,7 @@
             // label79
             // 
             this.label79.AutoSize = true;
-            this.label79.Location = new System.Drawing.Point(45, 53);
+            this.label79.Location = new System.Drawing.Point(9, 61);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(89, 12);
             this.label79.TabIndex = 12;
@@ -3107,28 +3066,28 @@
             // 
             // txtOutDoorPort
             // 
-            this.txtOutDoorPort.Location = new System.Drawing.Point(527, 122);
+            this.txtOutDoorPort.Location = new System.Drawing.Point(443, 159);
             this.txtOutDoorPort.Name = "txtOutDoorPort";
             this.txtOutDoorPort.Size = new System.Drawing.Size(100, 21);
             this.txtOutDoorPort.TabIndex = 11;
             // 
             // txtInDoorPort
             // 
-            this.txtInDoorPort.Location = new System.Drawing.Point(527, 25);
+            this.txtInDoorPort.Location = new System.Drawing.Point(443, 40);
             this.txtInDoorPort.Name = "txtInDoorPort";
             this.txtInDoorPort.Size = new System.Drawing.Size(100, 21);
             this.txtInDoorPort.TabIndex = 10;
             // 
             // txtOutDoorIP
             // 
-            this.txtOutDoorIP.Location = new System.Drawing.Point(341, 122);
+            this.txtOutDoorIP.Location = new System.Drawing.Point(228, 159);
             this.txtOutDoorIP.Name = "txtOutDoorIP";
             this.txtOutDoorIP.Size = new System.Drawing.Size(100, 21);
             this.txtOutDoorIP.TabIndex = 9;
             // 
             // txtInDoorIP
             // 
-            this.txtInDoorIP.Location = new System.Drawing.Point(341, 25);
+            this.txtInDoorIP.Location = new System.Drawing.Point(228, 40);
             this.txtInDoorIP.Name = "txtInDoorIP";
             this.txtInDoorIP.Size = new System.Drawing.Size(100, 21);
             this.txtInDoorIP.TabIndex = 8;
@@ -3136,7 +3095,7 @@
             // label78
             // 
             this.label78.AutoSize = true;
-            this.label78.Location = new System.Drawing.Point(462, 125);
+            this.label78.Location = new System.Drawing.Point(437, 144);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(59, 12);
             this.label78.TabIndex = 7;
@@ -3145,7 +3104,7 @@
             // label77
             // 
             this.label77.AutoSize = true;
-            this.label77.Location = new System.Drawing.Point(462, 28);
+            this.label77.Location = new System.Drawing.Point(441, 25);
             this.label77.Name = "label77";
             this.label77.Size = new System.Drawing.Size(59, 12);
             this.label77.TabIndex = 6;
@@ -3154,7 +3113,7 @@
             // label76
             // 
             this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(256, 125);
+            this.label76.Location = new System.Drawing.Point(226, 144);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(89, 12);
             this.label76.TabIndex = 5;
@@ -3163,7 +3122,7 @@
             // label75
             // 
             this.label75.AutoSize = true;
-            this.label75.Location = new System.Drawing.Point(256, 28);
+            this.label75.Location = new System.Drawing.Point(226, 25);
             this.label75.Name = "label75";
             this.label75.Size = new System.Drawing.Size(89, 12);
             this.label75.TabIndex = 4;
@@ -3172,7 +3131,7 @@
             // cbOutDoorUse
             // 
             this.cbOutDoorUse.AutoSize = true;
-            this.cbOutDoorUse.Location = new System.Drawing.Point(140, 124);
+            this.cbOutDoorUse.Location = new System.Drawing.Point(9, 160);
             this.cbOutDoorUse.Name = "cbOutDoorUse";
             this.cbOutDoorUse.Size = new System.Drawing.Size(72, 16);
             this.cbOutDoorUse.TabIndex = 3;
@@ -3182,7 +3141,7 @@
             // cbInDoorUse
             // 
             this.cbInDoorUse.AutoSize = true;
-            this.cbInDoorUse.Location = new System.Drawing.Point(140, 27);
+            this.cbInDoorUse.Location = new System.Drawing.Point(9, 40);
             this.cbInDoorUse.Name = "cbInDoorUse";
             this.cbInDoorUse.Size = new System.Drawing.Size(72, 16);
             this.cbInDoorUse.TabIndex = 2;
@@ -3192,7 +3151,7 @@
             // label74
             // 
             this.label74.AutoSize = true;
-            this.label74.Location = new System.Drawing.Point(21, 125);
+            this.label74.Location = new System.Drawing.Point(9, 143);
             this.label74.Name = "label74";
             this.label74.Size = new System.Drawing.Size(113, 12);
             this.label74.TabIndex = 1;
@@ -3201,7 +3160,7 @@
             // label73
             // 
             this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(21, 28);
+            this.label73.Location = new System.Drawing.Point(9, 23);
             this.label73.Name = "label73";
             this.label73.Size = new System.Drawing.Size(113, 12);
             this.label73.TabIndex = 0;
@@ -3212,7 +3171,7 @@
             this.groupBox23.Controls.Add(this.cbReaderAlarmUse);
             this.groupBox23.Controls.Add(this.btnReadReaderAlarm);
             this.groupBox23.Controls.Add(this.btnWriteReaderAlarm);
-            this.groupBox23.Location = new System.Drawing.Point(14, 527);
+            this.groupBox23.Location = new System.Drawing.Point(8, 617);
             this.groupBox23.Name = "groupBox23";
             this.groupBox23.Size = new System.Drawing.Size(722, 54);
             this.groupBox23.TabIndex = 1;
@@ -3222,7 +3181,7 @@
             // cbReaderAlarmUse
             // 
             this.cbReaderAlarmUse.AutoSize = true;
-            this.cbReaderAlarmUse.Location = new System.Drawing.Point(76, 26);
+            this.cbReaderAlarmUse.Location = new System.Drawing.Point(19, 24);
             this.cbReaderAlarmUse.Name = "cbReaderAlarmUse";
             this.cbReaderAlarmUse.Size = new System.Drawing.Size(72, 16);
             this.cbReaderAlarmUse.TabIndex = 110;
@@ -3231,7 +3190,7 @@
             // 
             // btnReadReaderAlarm
             // 
-            this.btnReadReaderAlarm.Location = new System.Drawing.Point(589, 20);
+            this.btnReadReaderAlarm.Location = new System.Drawing.Point(169, 20);
             this.btnReadReaderAlarm.Name = "btnReadReaderAlarm";
             this.btnReadReaderAlarm.Size = new System.Drawing.Size(48, 23);
             this.btnReadReaderAlarm.TabIndex = 108;
@@ -3241,7 +3200,7 @@
             // 
             // btnWriteReaderAlarm
             // 
-            this.btnWriteReaderAlarm.Location = new System.Drawing.Point(655, 20);
+            this.btnWriteReaderAlarm.Location = new System.Drawing.Point(235, 20);
             this.btnWriteReaderAlarm.Name = "btnWriteReaderAlarm";
             this.btnWriteReaderAlarm.Size = new System.Drawing.Size(48, 23);
             this.btnWriteReaderAlarm.TabIndex = 109;
@@ -3251,7 +3210,6 @@
             // 
             // groupBox22
             // 
-            this.groupBox22.Controls.Add(this.plMutiCard);
             this.groupBox22.Controls.Add(this.plManyCardOpenVerify);
             this.groupBox22.Controls.Add(this.cmbVerifyType);
             this.groupBox22.Controls.Add(this.label69);
@@ -3263,7 +3221,7 @@
             this.groupBox22.Controls.Add(this.label67);
             this.groupBox22.Location = new System.Drawing.Point(14, 4);
             this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Size = new System.Drawing.Size(722, 516);
+            this.groupBox22.Size = new System.Drawing.Size(722, 593);
             this.groupBox22.TabIndex = 0;
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "多卡开门";
@@ -3280,9 +3238,9 @@
             this.plMutiCard.Controls.Add(this.cmbGroupType);
             this.plMutiCard.Controls.Add(this.cmbGroupNum);
             this.plMutiCard.Controls.Add(this.lbgroupnum);
-            this.plMutiCard.Location = new System.Drawing.Point(0, 100);
+            this.plMutiCard.Location = new System.Drawing.Point(14, 175);
             this.plMutiCard.Name = "plMutiCard";
-            this.plMutiCard.Size = new System.Drawing.Size(722, 416);
+            this.plMutiCard.Size = new System.Drawing.Size(722, 436);
             this.plMutiCard.TabIndex = 107;
             this.plMutiCard.Visible = false;
             // 
@@ -3294,7 +3252,7 @@
             this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            this.dataGridView5.Location = new System.Drawing.Point(8, 32);
+            this.dataGridView5.Location = new System.Drawing.Point(6, 50);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.ReadOnly = true;
             this.dataGridView5.RowHeadersWidth = 51;
@@ -3332,7 +3290,7 @@
             this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.dataGridView4.Location = new System.Drawing.Point(8, 32);
+            this.dataGridView4.Location = new System.Drawing.Point(6, 50);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.ReadOnly = true;
             this.dataGridView4.RowHeadersWidth = 51;
@@ -3363,9 +3321,9 @@
             // 
             // btnAutoFill
             // 
-            this.btnAutoFill.Location = new System.Drawing.Point(562, 4);
+            this.btnAutoFill.Location = new System.Drawing.Point(464, 104);
             this.btnAutoFill.Name = "btnAutoFill";
-            this.btnAutoFill.Size = new System.Drawing.Size(75, 23);
+            this.btnAutoFill.Size = new System.Drawing.Size(98, 47);
             this.btnAutoFill.TabIndex = 104;
             this.btnAutoFill.Text = "自动填充";
             this.btnAutoFill.UseVisualStyleBackColor = true;
@@ -3373,9 +3331,9 @@
             // 
             // btnDeleteGroup
             // 
-            this.btnDeleteGroup.Location = new System.Drawing.Point(406, 4);
+            this.btnDeleteGroup.Location = new System.Drawing.Point(464, 50);
             this.btnDeleteGroup.Name = "btnDeleteGroup";
-            this.btnDeleteGroup.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteGroup.Size = new System.Drawing.Size(98, 47);
             this.btnDeleteGroup.TabIndex = 106;
             this.btnDeleteGroup.Text = "删除本组";
             this.btnDeleteGroup.UseVisualStyleBackColor = true;
@@ -3389,7 +3347,7 @@
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Num,
             this.Card});
-            this.dataGridView3.Location = new System.Drawing.Point(8, 32);
+            this.dataGridView3.Location = new System.Drawing.Point(6, 50);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowHeadersWidth = 51;
@@ -3430,7 +3388,7 @@
             // cbConvertHex
             // 
             this.cbConvertHex.AutoSize = true;
-            this.cbConvertHex.Location = new System.Drawing.Point(304, 8);
+            this.cbConvertHex.Location = new System.Drawing.Point(320, 24);
             this.cbConvertHex.Name = "cbConvertHex";
             this.cbConvertHex.Size = new System.Drawing.Size(96, 16);
             this.cbConvertHex.TabIndex = 102;
@@ -3445,9 +3403,9 @@
             this.cmbGroupType.Items.AddRange(new object[] {
             "A组",
             "B组"});
-            this.cmbGroupType.Location = new System.Drawing.Point(74, 6);
+            this.cmbGroupType.Location = new System.Drawing.Point(5, 24);
             this.cmbGroupType.Name = "cmbGroupType";
-            this.cmbGroupType.Size = new System.Drawing.Size(64, 20);
+            this.cmbGroupType.Size = new System.Drawing.Size(116, 20);
             this.cmbGroupType.TabIndex = 101;
             this.cmbGroupType.SelectedIndexChanged += new System.EventHandler(this.CmbGroupType_SelectedIndexChanged);
             // 
@@ -3455,9 +3413,9 @@
             // 
             this.cmbGroupNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGroupNum.FormattingEnabled = true;
-            this.cmbGroupNum.Location = new System.Drawing.Point(215, 6);
+            this.cmbGroupNum.Location = new System.Drawing.Point(175, 24);
             this.cmbGroupNum.Name = "cmbGroupNum";
-            this.cmbGroupNum.Size = new System.Drawing.Size(64, 20);
+            this.cmbGroupNum.Size = new System.Drawing.Size(116, 20);
             this.cmbGroupNum.TabIndex = 99;
             this.cmbGroupNum.SelectedIndexChanged += new System.EventHandler(this.CmbGroupNum_SelectedIndexChanged);
             // 
@@ -3476,15 +3434,15 @@
             this.plManyCardOpenVerify.Controls.Add(this.label71);
             this.plManyCardOpenVerify.Controls.Add(this.label72);
             this.plManyCardOpenVerify.Controls.Add(this.txtAGroupCount);
-            this.plManyCardOpenVerify.Location = new System.Drawing.Point(277, 60);
+            this.plManyCardOpenVerify.Location = new System.Drawing.Point(431, 10);
             this.plManyCardOpenVerify.Name = "plManyCardOpenVerify";
-            this.plManyCardOpenVerify.Size = new System.Drawing.Size(285, 34);
+            this.plManyCardOpenVerify.Size = new System.Drawing.Size(285, 94);
             this.plManyCardOpenVerify.TabIndex = 97;
             this.plManyCardOpenVerify.Visible = false;
             // 
             // txtBGroupCount
             // 
-            this.txtBGroupCount.Location = new System.Drawing.Point(237, 5);
+            this.txtBGroupCount.Location = new System.Drawing.Point(15, 69);
             this.txtBGroupCount.MaxLength = 3;
             this.txtBGroupCount.Name = "txtBGroupCount";
             this.txtBGroupCount.Size = new System.Drawing.Size(45, 21);
@@ -3502,7 +3460,7 @@
             // label72
             // 
             this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(152, 8);
+            this.label72.Location = new System.Drawing.Point(9, 54);
             this.label72.Name = "label72";
             this.label72.Size = new System.Drawing.Size(83, 12);
             this.label72.TabIndex = 92;
@@ -3510,7 +3468,7 @@
             // 
             // txtAGroupCount
             // 
-            this.txtAGroupCount.Location = new System.Drawing.Point(98, 5);
+            this.txtAGroupCount.Location = new System.Drawing.Point(15, 23);
             this.txtAGroupCount.MaxLength = 2;
             this.txtAGroupCount.Name = "txtAGroupCount";
             this.txtAGroupCount.Size = new System.Drawing.Size(45, 21);
@@ -3520,7 +3478,7 @@
             // 
             this.cmbVerifyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVerifyType.FormattingEnabled = true;
-            this.cmbVerifyType.Location = new System.Drawing.Point(125, 66);
+            this.cmbVerifyType.Location = new System.Drawing.Point(8, 84);
             this.cmbVerifyType.Name = "cmbVerifyType";
             this.cmbVerifyType.Size = new System.Drawing.Size(118, 20);
             this.cmbVerifyType.TabIndex = 90;
@@ -3529,7 +3487,7 @@
             // label69
             // 
             this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(6, 69);
+            this.label69.Location = new System.Drawing.Point(8, 66);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(113, 12);
             this.label69.TabIndex = 89;
@@ -3542,14 +3500,14 @@
             this.cmbAntiPassback.Items.AddRange(new object[] {
             "要进行",
             "不进行"});
-            this.cmbAntiPassback.Location = new System.Drawing.Point(471, 27);
+            this.cmbAntiPassback.Location = new System.Drawing.Point(8, 130);
             this.cmbAntiPassback.Name = "cmbAntiPassback";
-            this.cmbAntiPassback.Size = new System.Drawing.Size(80, 20);
+            this.cmbAntiPassback.Size = new System.Drawing.Size(118, 20);
             this.cmbAntiPassback.TabIndex = 88;
             // 
             // btnWriteManyCardOpenMode
             // 
-            this.btnWriteManyCardOpenMode.Location = new System.Drawing.Point(655, 27);
+            this.btnWriteManyCardOpenMode.Location = new System.Drawing.Point(668, 142);
             this.btnWriteManyCardOpenMode.Name = "btnWriteManyCardOpenMode";
             this.btnWriteManyCardOpenMode.Size = new System.Drawing.Size(48, 23);
             this.btnWriteManyCardOpenMode.TabIndex = 87;
@@ -3559,7 +3517,7 @@
             // 
             // btnReadManyCardOpenMode
             // 
-            this.btnReadManyCardOpenMode.Location = new System.Drawing.Point(589, 27);
+            this.btnReadManyCardOpenMode.Location = new System.Drawing.Point(614, 142);
             this.btnReadManyCardOpenMode.Name = "btnReadManyCardOpenMode";
             this.btnReadManyCardOpenMode.Size = new System.Drawing.Size(48, 23);
             this.btnReadManyCardOpenMode.TabIndex = 87;
@@ -3570,7 +3528,7 @@
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(397, 30);
+            this.label68.Location = new System.Drawing.Point(8, 116);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(77, 12);
             this.label68.TabIndex = 2;
@@ -3583,7 +3541,7 @@
             this.cmbManyCardOpenMode.Items.AddRange(new object[] {
             "继续等待",
             "立即退出"});
-            this.cmbManyCardOpenMode.Location = new System.Drawing.Point(161, 27);
+            this.cmbManyCardOpenMode.Location = new System.Drawing.Point(8, 32);
             this.cmbManyCardOpenMode.Name = "cmbManyCardOpenMode";
             this.cmbManyCardOpenMode.Size = new System.Drawing.Size(118, 20);
             this.cmbManyCardOpenMode.TabIndex = 1;
@@ -3591,7 +3549,7 @@
             // label67
             // 
             this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(6, 30);
+            this.label67.Location = new System.Drawing.Point(8, 15);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(149, 12);
             this.label67.TabIndex = 0;
@@ -3599,6 +3557,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.AutoScroll = true;
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Controls.Add(this.groupBox2);
@@ -3606,7 +3565,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(751, 815);
+            this.tabPage2.Size = new System.Drawing.Size(751, 459);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "门端口报警";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -3622,7 +3581,7 @@
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Location = new System.Drawing.Point(9, 252);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(664, 259);
+            this.groupBox4.Size = new System.Drawing.Size(664, 201);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "门磁报警参数";
@@ -3661,16 +3620,16 @@
             this.plSensorAlarm.Controls.Add(this.endSATP6);
             this.plSensorAlarm.Controls.Add(this.beginSATP3);
             this.plSensorAlarm.Controls.Add(this.label90);
-            this.plSensorAlarm.Location = new System.Drawing.Point(23, 60);
+            this.plSensorAlarm.Location = new System.Drawing.Point(0, 60);
             this.plSensorAlarm.Name = "plSensorAlarm";
-            this.plSensorAlarm.Size = new System.Drawing.Size(588, 100);
+            this.plSensorAlarm.Size = new System.Drawing.Size(658, 100);
             this.plSensorAlarm.TabIndex = 150;
             // 
             // beginSATP7
             // 
             this.beginSATP7.CustomFormat = "HH:mm";
             this.beginSATP7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginSATP7.Location = new System.Drawing.Point(307, 66);
+            this.beginSATP7.Location = new System.Drawing.Point(338, 66);
             this.beginSATP7.Name = "beginSATP7";
             this.beginSATP7.ShowUpDown = true;
             this.beginSATP7.Size = new System.Drawing.Size(57, 21);
@@ -3681,7 +3640,7 @@
             // label82
             // 
             this.label82.AutoSize = true;
-            this.label82.Location = new System.Drawing.Point(516, 51);
+            this.label82.Location = new System.Drawing.Point(579, 51);
             this.label82.Name = "label82";
             this.label82.Size = new System.Drawing.Size(59, 12);
             this.label82.TabIndex = 149;
@@ -3703,7 +3662,7 @@
             // 
             this.endSATP8.CustomFormat = "HH:mm";
             this.endSATP8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endSATP8.Location = new System.Drawing.Point(518, 66);
+            this.endSATP8.Location = new System.Drawing.Point(581, 66);
             this.endSATP8.Name = "endSATP8";
             this.endSATP8.ShowUpDown = true;
             this.endSATP8.Size = new System.Drawing.Size(57, 21);
@@ -3723,7 +3682,7 @@
             // label83
             // 
             this.label83.AutoSize = true;
-            this.label83.Location = new System.Drawing.Point(451, 51);
+            this.label83.Location = new System.Drawing.Point(498, 51);
             this.label83.Name = "label83";
             this.label83.Size = new System.Drawing.Size(59, 12);
             this.label83.TabIndex = 147;
@@ -3733,7 +3692,7 @@
             // 
             this.endSATP1.CustomFormat = "HH:mm";
             this.endSATP1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endSATP1.Location = new System.Drawing.Point(79, 22);
+            this.endSATP1.Location = new System.Drawing.Point(95, 22);
             this.endSATP1.Name = "endSATP1";
             this.endSATP1.ShowUpDown = true;
             this.endSATP1.Size = new System.Drawing.Size(57, 21);
@@ -3745,7 +3704,7 @@
             // 
             this.beginSATP8.CustomFormat = "HH:mm";
             this.beginSATP8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginSATP8.Location = new System.Drawing.Point(453, 66);
+            this.beginSATP8.Location = new System.Drawing.Point(500, 66);
             this.beginSATP8.Name = "beginSATP8";
             this.beginSATP8.ShowUpDown = true;
             this.beginSATP8.Size = new System.Drawing.Size(57, 21);
@@ -3756,7 +3715,7 @@
             // label96
             // 
             this.label96.AutoSize = true;
-            this.label96.Location = new System.Drawing.Point(77, 7);
+            this.label96.Location = new System.Drawing.Point(93, 7);
             this.label96.Name = "label96";
             this.label96.Size = new System.Drawing.Size(59, 12);
             this.label96.TabIndex = 121;
@@ -3765,7 +3724,7 @@
             // label84
             // 
             this.label84.AutoSize = true;
-            this.label84.Location = new System.Drawing.Point(516, 7);
+            this.label84.Location = new System.Drawing.Point(579, 7);
             this.label84.Name = "label84";
             this.label84.Size = new System.Drawing.Size(59, 12);
             this.label84.TabIndex = 145;
@@ -3787,7 +3746,7 @@
             // 
             this.endSATP4.CustomFormat = "HH:mm";
             this.endSATP4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endSATP4.Location = new System.Drawing.Point(518, 22);
+            this.endSATP4.Location = new System.Drawing.Point(581, 22);
             this.endSATP4.Name = "endSATP4";
             this.endSATP4.ShowUpDown = true;
             this.endSATP4.Size = new System.Drawing.Size(57, 21);
@@ -3807,7 +3766,7 @@
             // label85
             // 
             this.label85.AutoSize = true;
-            this.label85.Location = new System.Drawing.Point(451, 7);
+            this.label85.Location = new System.Drawing.Point(498, 7);
             this.label85.Name = "label85";
             this.label85.Size = new System.Drawing.Size(59, 12);
             this.label85.TabIndex = 143;
@@ -3817,7 +3776,7 @@
             // 
             this.endSATP5.CustomFormat = "HH:mm";
             this.endSATP5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endSATP5.Location = new System.Drawing.Point(79, 66);
+            this.endSATP5.Location = new System.Drawing.Point(95, 66);
             this.endSATP5.Name = "endSATP5";
             this.endSATP5.ShowUpDown = true;
             this.endSATP5.Size = new System.Drawing.Size(57, 21);
@@ -3829,7 +3788,7 @@
             // 
             this.beginSATP4.CustomFormat = "HH:mm";
             this.beginSATP4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginSATP4.Location = new System.Drawing.Point(453, 22);
+            this.beginSATP4.Location = new System.Drawing.Point(500, 22);
             this.beginSATP4.Name = "beginSATP4";
             this.beginSATP4.ShowUpDown = true;
             this.beginSATP4.Size = new System.Drawing.Size(57, 21);
@@ -3840,7 +3799,7 @@
             // label94
             // 
             this.label94.AutoSize = true;
-            this.label94.Location = new System.Drawing.Point(77, 51);
+            this.label94.Location = new System.Drawing.Point(93, 51);
             this.label94.Name = "label94";
             this.label94.Size = new System.Drawing.Size(59, 12);
             this.label94.TabIndex = 125;
@@ -3849,7 +3808,7 @@
             // label86
             // 
             this.label86.AutoSize = true;
-            this.label86.Location = new System.Drawing.Point(370, 51);
+            this.label86.Location = new System.Drawing.Point(417, 51);
             this.label86.Name = "label86";
             this.label86.Size = new System.Drawing.Size(59, 12);
             this.label86.TabIndex = 141;
@@ -3859,7 +3818,7 @@
             // 
             this.beginSATP2.CustomFormat = "HH:mm";
             this.beginSATP2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginSATP2.Location = new System.Drawing.Point(158, 22);
+            this.beginSATP2.Location = new System.Drawing.Point(176, 22);
             this.beginSATP2.Name = "beginSATP2";
             this.beginSATP2.ShowUpDown = true;
             this.beginSATP2.Size = new System.Drawing.Size(57, 21);
@@ -3871,7 +3830,7 @@
             // 
             this.endSATP7.CustomFormat = "HH:mm";
             this.endSATP7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endSATP7.Location = new System.Drawing.Point(372, 66);
+            this.endSATP7.Location = new System.Drawing.Point(419, 66);
             this.endSATP7.Name = "endSATP7";
             this.endSATP7.ShowUpDown = true;
             this.endSATP7.Size = new System.Drawing.Size(57, 21);
@@ -3882,7 +3841,7 @@
             // label93
             // 
             this.label93.AutoSize = true;
-            this.label93.Location = new System.Drawing.Point(156, 7);
+            this.label93.Location = new System.Drawing.Point(174, 7);
             this.label93.Name = "label93";
             this.label93.Size = new System.Drawing.Size(59, 12);
             this.label93.TabIndex = 127;
@@ -3891,7 +3850,7 @@
             // label87
             // 
             this.label87.AutoSize = true;
-            this.label87.Location = new System.Drawing.Point(305, 51);
+            this.label87.Location = new System.Drawing.Point(336, 51);
             this.label87.Name = "label87";
             this.label87.Size = new System.Drawing.Size(59, 12);
             this.label87.TabIndex = 139;
@@ -3901,7 +3860,7 @@
             // 
             this.endSATP2.CustomFormat = "HH:mm";
             this.endSATP2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endSATP2.Location = new System.Drawing.Point(223, 22);
+            this.endSATP2.Location = new System.Drawing.Point(257, 22);
             this.endSATP2.Name = "endSATP2";
             this.endSATP2.ShowUpDown = true;
             this.endSATP2.Size = new System.Drawing.Size(57, 21);
@@ -3912,7 +3871,7 @@
             // label92
             // 
             this.label92.AutoSize = true;
-            this.label92.Location = new System.Drawing.Point(221, 7);
+            this.label92.Location = new System.Drawing.Point(255, 7);
             this.label92.Name = "label92";
             this.label92.Size = new System.Drawing.Size(59, 12);
             this.label92.TabIndex = 129;
@@ -3921,7 +3880,7 @@
             // label88
             // 
             this.label88.AutoSize = true;
-            this.label88.Location = new System.Drawing.Point(370, 7);
+            this.label88.Location = new System.Drawing.Point(417, 7);
             this.label88.Name = "label88";
             this.label88.Size = new System.Drawing.Size(59, 12);
             this.label88.TabIndex = 137;
@@ -3931,7 +3890,7 @@
             // 
             this.beginSATP6.CustomFormat = "HH:mm";
             this.beginSATP6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginSATP6.Location = new System.Drawing.Point(158, 66);
+            this.beginSATP6.Location = new System.Drawing.Point(176, 66);
             this.beginSATP6.Name = "beginSATP6";
             this.beginSATP6.ShowUpDown = true;
             this.beginSATP6.Size = new System.Drawing.Size(57, 21);
@@ -3943,7 +3902,7 @@
             // 
             this.endSATP3.CustomFormat = "HH:mm";
             this.endSATP3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endSATP3.Location = new System.Drawing.Point(372, 22);
+            this.endSATP3.Location = new System.Drawing.Point(419, 22);
             this.endSATP3.Name = "endSATP3";
             this.endSATP3.ShowUpDown = true;
             this.endSATP3.Size = new System.Drawing.Size(57, 21);
@@ -3954,7 +3913,7 @@
             // label91
             // 
             this.label91.AutoSize = true;
-            this.label91.Location = new System.Drawing.Point(156, 51);
+            this.label91.Location = new System.Drawing.Point(174, 51);
             this.label91.Name = "label91";
             this.label91.Size = new System.Drawing.Size(59, 12);
             this.label91.TabIndex = 131;
@@ -3963,7 +3922,7 @@
             // label89
             // 
             this.label89.AutoSize = true;
-            this.label89.Location = new System.Drawing.Point(305, 7);
+            this.label89.Location = new System.Drawing.Point(336, 7);
             this.label89.Name = "label89";
             this.label89.Size = new System.Drawing.Size(59, 12);
             this.label89.TabIndex = 135;
@@ -3973,7 +3932,7 @@
             // 
             this.endSATP6.CustomFormat = "HH:mm";
             this.endSATP6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endSATP6.Location = new System.Drawing.Point(223, 66);
+            this.endSATP6.Location = new System.Drawing.Point(257, 66);
             this.endSATP6.Name = "endSATP6";
             this.endSATP6.ShowUpDown = true;
             this.endSATP6.Size = new System.Drawing.Size(57, 21);
@@ -3985,7 +3944,7 @@
             // 
             this.beginSATP3.CustomFormat = "HH:mm";
             this.beginSATP3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginSATP3.Location = new System.Drawing.Point(307, 22);
+            this.beginSATP3.Location = new System.Drawing.Point(338, 22);
             this.beginSATP3.Name = "beginSATP3";
             this.beginSATP3.ShowUpDown = true;
             this.beginSATP3.Size = new System.Drawing.Size(57, 21);
@@ -3996,7 +3955,7 @@
             // label90
             // 
             this.label90.AutoSize = true;
-            this.label90.Location = new System.Drawing.Point(221, 51);
+            this.label90.Location = new System.Drawing.Point(255, 51);
             this.label90.Name = "label90";
             this.label90.Size = new System.Drawing.Size(59, 12);
             this.label90.TabIndex = 133;
@@ -4006,16 +3965,16 @@
             // 
             this.cmbWeek.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWeek.FormattingEnabled = true;
-            this.cmbWeek.Location = new System.Drawing.Point(345, 20);
+            this.cmbWeek.Location = new System.Drawing.Point(217, 39);
             this.cmbWeek.Name = "cmbWeek";
-            this.cmbWeek.Size = new System.Drawing.Size(97, 20);
+            this.cmbWeek.Size = new System.Drawing.Size(139, 20);
             this.cmbWeek.TabIndex = 11;
             this.cmbWeek.SelectedIndexChanged += new System.EventHandler(this.CmbWeek_SelectedIndexChanged);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(220, 24);
+            this.label10.Location = new System.Drawing.Point(217, 20);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(119, 12);
             this.label10.TabIndex = 10;
@@ -4025,15 +3984,15 @@
             // 
             this.cmbSensorAlarmSetting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSensorAlarmSetting.FormattingEnabled = true;
-            this.cmbSensorAlarmSetting.Location = new System.Drawing.Point(95, 20);
+            this.cmbSensorAlarmSetting.Location = new System.Drawing.Point(13, 35);
             this.cmbSensorAlarmSetting.Name = "cmbSensorAlarmSetting";
-            this.cmbSensorAlarmSetting.Size = new System.Drawing.Size(97, 20);
+            this.cmbSensorAlarmSetting.Size = new System.Drawing.Size(139, 20);
             this.cmbSensorAlarmSetting.TabIndex = 9;
             this.cmbSensorAlarmSetting.SelectedIndexChanged += new System.EventHandler(this.cmbSensorAlarmSetting_SelectedIndexChanged);
             // 
             // butWriteSensorAlarmSetting
             // 
-            this.butWriteSensorAlarmSetting.Location = new System.Drawing.Point(549, 207);
+            this.butWriteSensorAlarmSetting.Location = new System.Drawing.Point(584, 166);
             this.butWriteSensorAlarmSetting.Name = "butWriteSensorAlarmSetting";
             this.butWriteSensorAlarmSetting.Size = new System.Drawing.Size(62, 23);
             this.butWriteSensorAlarmSetting.TabIndex = 15;
@@ -4043,7 +4002,7 @@
             // 
             // butReadSensorAlarmSetting
             // 
-            this.butReadSensorAlarmSetting.Location = new System.Drawing.Point(485, 207);
+            this.butReadSensorAlarmSetting.Location = new System.Drawing.Point(520, 166);
             this.butReadSensorAlarmSetting.Name = "butReadSensorAlarmSetting";
             this.butReadSensorAlarmSetting.Size = new System.Drawing.Size(62, 23);
             this.butReadSensorAlarmSetting.TabIndex = 16;
@@ -4054,7 +4013,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(30, 24);
+            this.label9.Location = new System.Drawing.Point(13, 20);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(59, 12);
             this.label9.TabIndex = 0;
@@ -4072,7 +4031,7 @@
             this.groupBox3.Controls.Add(this.cmbOvertimeAlarmSetting);
             this.groupBox3.Location = new System.Drawing.Point(9, 169);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(664, 65);
+            this.groupBox3.Size = new System.Drawing.Size(664, 77);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "开门超时提示参数";
@@ -4088,7 +4047,7 @@
             // 
             // butWriteOvertimeAlarmSetting
             // 
-            this.butWriteOvertimeAlarmSetting.Location = new System.Drawing.Point(584, 21);
+            this.butWriteOvertimeAlarmSetting.Location = new System.Drawing.Point(596, 41);
             this.butWriteOvertimeAlarmSetting.Name = "butWriteOvertimeAlarmSetting";
             this.butWriteOvertimeAlarmSetting.Size = new System.Drawing.Size(62, 23);
             this.butWriteOvertimeAlarmSetting.TabIndex = 13;
@@ -4098,7 +4057,7 @@
             // 
             // butReadOvertimeAlarmSetting
             // 
-            this.butReadOvertimeAlarmSetting.Location = new System.Drawing.Point(520, 21);
+            this.butReadOvertimeAlarmSetting.Location = new System.Drawing.Point(532, 41);
             this.butReadOvertimeAlarmSetting.Name = "butReadOvertimeAlarmSetting";
             this.butReadOvertimeAlarmSetting.Size = new System.Drawing.Size(62, 23);
             this.butReadOvertimeAlarmSetting.TabIndex = 14;
@@ -4110,7 +4069,7 @@
             // 
             this.cmbAlarm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAlarm.FormattingEnabled = true;
-            this.cmbAlarm.Location = new System.Drawing.Point(421, 22);
+            this.cmbAlarm.Location = new System.Drawing.Point(362, 41);
             this.cmbAlarm.Name = "cmbAlarm";
             this.cmbAlarm.Size = new System.Drawing.Size(97, 20);
             this.cmbAlarm.TabIndex = 12;
@@ -4128,7 +4087,7 @@
             // 
             this.cmbOverTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOverTime.FormattingEnabled = true;
-            this.cmbOverTime.Location = new System.Drawing.Point(261, 22);
+            this.cmbOverTime.Location = new System.Drawing.Point(176, 41);
             this.cmbOverTime.Name = "cmbOverTime";
             this.cmbOverTime.Size = new System.Drawing.Size(97, 20);
             this.cmbOverTime.TabIndex = 10;
@@ -4146,7 +4105,7 @@
             // 
             this.cmbOvertimeAlarmSetting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOvertimeAlarmSetting.FormattingEnabled = true;
-            this.cmbOvertimeAlarmSetting.Location = new System.Drawing.Point(77, 22);
+            this.cmbOvertimeAlarmSetting.Location = new System.Drawing.Point(18, 41);
             this.cmbOvertimeAlarmSetting.Name = "cmbOvertimeAlarmSetting";
             this.cmbOvertimeAlarmSetting.Size = new System.Drawing.Size(97, 20);
             this.cmbOvertimeAlarmSetting.TabIndex = 8;
@@ -4172,7 +4131,7 @@
             // 
             this.cmdAlarmPassword.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdAlarmPassword.FormattingEnabled = true;
-            this.cmdAlarmPassword.Location = new System.Drawing.Point(71, 28);
+            this.cmdAlarmPassword.Location = new System.Drawing.Point(13, 29);
             this.cmdAlarmPassword.Name = "cmdAlarmPassword";
             this.cmdAlarmPassword.Size = new System.Drawing.Size(121, 20);
             this.cmdAlarmPassword.TabIndex = 7;
@@ -4181,14 +4140,14 @@
             // 
             this.cmbAlarmOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAlarmOption.FormattingEnabled = true;
-            this.cmbAlarmOption.Location = new System.Drawing.Point(270, 28);
+            this.cmbAlarmOption.Location = new System.Drawing.Point(208, 32);
             this.cmbAlarmOption.Name = "cmbAlarmOption";
             this.cmbAlarmOption.Size = new System.Drawing.Size(312, 20);
             this.cmbAlarmOption.TabIndex = 6;
             // 
             // Password
             // 
-            this.Password.Location = new System.Drawing.Point(105, 59);
+            this.Password.Location = new System.Drawing.Point(13, 67);
             this.Password.Name = "Password";
             this.Password.Size = new System.Drawing.Size(87, 21);
             this.Password.TabIndex = 5;
@@ -4217,7 +4176,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 63);
+            this.label4.Location = new System.Drawing.Point(11, 52);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 12);
             this.label4.TabIndex = 2;
@@ -4226,7 +4185,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(211, 32);
+            this.label3.Location = new System.Drawing.Point(206, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 12);
             this.label3.TabIndex = 1;
@@ -4235,7 +4194,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 32);
+            this.label2.Location = new System.Drawing.Point(11, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 12);
             this.label2.TabIndex = 0;
@@ -4259,7 +4218,7 @@
             // label81
             // 
             this.label81.AutoSize = true;
-            this.label81.Location = new System.Drawing.Point(250, 27);
+            this.label81.Location = new System.Drawing.Point(255, 17);
             this.label81.Name = "label81";
             this.label81.Size = new System.Drawing.Size(35, 12);
             this.label81.TabIndex = 4;
@@ -4269,14 +4228,14 @@
             // 
             this.cmbReadInvalidCardTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReadInvalidCardTime.FormattingEnabled = true;
-            this.cmbReadInvalidCardTime.Location = new System.Drawing.Point(298, 23);
+            this.cmbReadInvalidCardTime.Location = new System.Drawing.Point(257, 32);
             this.cmbReadInvalidCardTime.Name = "cmbReadInvalidCardTime";
             this.cmbReadInvalidCardTime.Size = new System.Drawing.Size(121, 20);
             this.cmbReadInvalidCardTime.TabIndex = 3;
             // 
             // ButWriteInvalidCardAlarmOption
             // 
-            this.ButWriteInvalidCardAlarmOption.Location = new System.Drawing.Point(520, 21);
+            this.ButWriteInvalidCardAlarmOption.Location = new System.Drawing.Point(596, 29);
             this.ButWriteInvalidCardAlarmOption.Name = "ButWriteInvalidCardAlarmOption";
             this.ButWriteInvalidCardAlarmOption.Size = new System.Drawing.Size(62, 23);
             this.ButWriteInvalidCardAlarmOption.TabIndex = 2;
@@ -4286,7 +4245,7 @@
             // 
             // butReadInvalidCardAlarmOption
             // 
-            this.butReadInvalidCardAlarmOption.Location = new System.Drawing.Point(436, 21);
+            this.butReadInvalidCardAlarmOption.Location = new System.Drawing.Point(532, 29);
             this.butReadInvalidCardAlarmOption.Name = "butReadInvalidCardAlarmOption";
             this.butReadInvalidCardAlarmOption.Size = new System.Drawing.Size(62, 23);
             this.butReadInvalidCardAlarmOption.TabIndex = 2;
@@ -4298,7 +4257,7 @@
             // 
             this.cmdInvalidCardAlarmOptionUse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdInvalidCardAlarmOptionUse.FormattingEnabled = true;
-            this.cmdInvalidCardAlarmOptionUse.Location = new System.Drawing.Point(62, 23);
+            this.cmdInvalidCardAlarmOptionUse.Location = new System.Drawing.Point(15, 32);
             this.cmdInvalidCardAlarmOptionUse.Name = "cmdInvalidCardAlarmOptionUse";
             this.cmdInvalidCardAlarmOptionUse.Size = new System.Drawing.Size(121, 20);
             this.cmdInvalidCardAlarmOptionUse.TabIndex = 1;
@@ -4306,7 +4265,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 27);
+            this.label1.Location = new System.Drawing.Point(18, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 0;
@@ -4316,9 +4275,9 @@
             // 
             this.cmdDoorNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdDoorNum.FormattingEnabled = true;
-            this.cmdDoorNum.Location = new System.Drawing.Point(62, 10);
+            this.cmdDoorNum.Location = new System.Drawing.Point(123, 6);
             this.cmdDoorNum.Name = "cmdDoorNum";
-            this.cmdDoorNum.Size = new System.Drawing.Size(69, 20);
+            this.cmdDoorNum.Size = new System.Drawing.Size(112, 20);
             this.cmdDoorNum.TabIndex = 1;
             // 
             // cBoxDoor4
@@ -4326,7 +4285,7 @@
             this.cBoxDoor4.AutoSize = true;
             this.cBoxDoor4.Checked = true;
             this.cBoxDoor4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor4.Location = new System.Drawing.Point(729, 9);
+            this.cBoxDoor4.Location = new System.Drawing.Point(657, 10);
             this.cBoxDoor4.Name = "cBoxDoor4";
             this.cBoxDoor4.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor4.TabIndex = 30;
@@ -4338,7 +4297,7 @@
             this.cBoxDoor3.AutoSize = true;
             this.cBoxDoor3.Checked = true;
             this.cBoxDoor3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor3.Location = new System.Drawing.Point(657, 8);
+            this.cBoxDoor3.Location = new System.Drawing.Point(585, 9);
             this.cBoxDoor3.Name = "cBoxDoor3";
             this.cBoxDoor3.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor3.TabIndex = 29;
@@ -4350,7 +4309,7 @@
             this.cBoxDoor2.AutoSize = true;
             this.cBoxDoor2.Checked = true;
             this.cBoxDoor2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor2.Location = new System.Drawing.Point(585, 8);
+            this.cBoxDoor2.Location = new System.Drawing.Point(513, 9);
             this.cBoxDoor2.Name = "cBoxDoor2";
             this.cBoxDoor2.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor2.TabIndex = 28;
@@ -4362,7 +4321,7 @@
             this.cBoxDoor1.AutoSize = true;
             this.cBoxDoor1.Checked = true;
             this.cBoxDoor1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor1.Location = new System.Drawing.Point(513, 9);
+            this.cBoxDoor1.Location = new System.Drawing.Point(441, 10);
             this.cBoxDoor1.Name = "cBoxDoor1";
             this.cBoxDoor1.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor1.TabIndex = 27;
@@ -4372,23 +4331,81 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(14, 13);
+            this.label22.Location = new System.Drawing.Point(34, 11);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(41, 12);
             this.label22.TabIndex = 26;
             this.label22.Text = "门号：";
             // 
+            // EX2
+            // 
+            this.EX2.DataPropertyName = "EX";
+            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.EX2.DefaultCellStyle = dataGridViewCellStyle10;
+            this.EX2.HeaderText = "";
+            this.EX2.MinimumWidth = 6;
+            this.EX2.Name = "EX2";
+            this.EX2.ReadOnly = true;
+            this.EX2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.EX2.Width = 20;
+            // 
+            // IsEx2
+            // 
+            this.IsEx2.DataPropertyName = "IsEx";
+            this.IsEx2.HeaderText = "是否显示";
+            this.IsEx2.MinimumWidth = 6;
+            this.IsEx2.Name = "IsEx2";
+            this.IsEx2.ReadOnly = true;
+            this.IsEx2.Visible = false;
+            this.IsEx2.Width = 125;
+            // 
+            // WeekDay2
+            // 
+            this.WeekDay2.DataPropertyName = "WeekDay";
+            this.WeekDay2.HeaderText = "星期";
+            this.WeekDay2.MinimumWidth = 6;
+            this.WeekDay2.Name = "WeekDay2";
+            this.WeekDay2.ReadOnly = true;
+            this.WeekDay2.Width = 240;
+            // 
+            // StartTime2
+            // 
+            this.StartTime2.DataPropertyName = "StartTime";
+            this.StartTime2.HeaderText = "开始时间";
+            this.StartTime2.MinimumWidth = 6;
+            this.StartTime2.Name = "StartTime2";
+            this.StartTime2.ReadOnly = true;
+            this.StartTime2.Width = 160;
+            // 
+            // EndTime2
+            // 
+            this.EndTime2.DataPropertyName = "EndTime";
+            this.EndTime2.HeaderText = "结束时间";
+            this.EndTime2.MinimumWidth = 6;
+            this.EndTime2.Name = "EndTime2";
+            this.EndTime2.ReadOnly = true;
+            this.EndTime2.Width = 160;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.tabControl1);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(759, 485);
+            this.panel5.TabIndex = 31;
+            // 
             // frmDoor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(786, 893);
+            this.ClientSize = new System.Drawing.Size(759, 485);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.cBoxDoor4);
             this.Controls.Add(this.cBoxDoor3);
             this.Controls.Add(this.cBoxDoor2);
             this.Controls.Add(this.cBoxDoor1);
             this.Controls.Add(this.label22);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cmdDoorNum);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDoor";
@@ -4477,6 +4494,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4646,11 +4664,6 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.ComboBox cmbInterval;
         private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EX2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IsEx2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WeekDay2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StartTime2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EndTime2;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.RadioButton rBtnAnti;
@@ -4844,5 +4857,11 @@
         private System.Windows.Forms.Label label97;
         private System.Windows.Forms.DateTimePicker beginSATP1;
         private System.Windows.Forms.Panel plSensorAlarm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EX2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsEx2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WeekDay2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StartTime2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EndTime2;
+        private System.Windows.Forms.Panel panel5;
     }
 }

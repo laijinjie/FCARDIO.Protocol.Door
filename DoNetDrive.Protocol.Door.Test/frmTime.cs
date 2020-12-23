@@ -42,7 +42,37 @@ namespace DoNetDrive.Protocol.Door.Test
 
         private void frmTime_Load(object sender, EventArgs e)
         {
-            
+            LoadUILanguage();
+        }
+
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(groupBox1);
+            GetLanguage(label26);
+            GetLanguage(label1);
+            GetLanguage(label2);
+            GetLanguage(btnReadSystemTime);
+            GetLanguage(btnWriteSystemTime);
+            GetLanguage(btnWriteBroadcastTime);
+            GetLanguage(groupBox20);
+            GetLanguage(rBtnSpeedUp);
+            GetLanguage(rBtnSlowDown);
+            GetLanguage(label75);
+            GetLanguage(label72);
+            GetLanguage(btnReadTimeCorrectionParameter);
+            GetLanguage(btnWriteTimeCorrectionParameter);
+            GetLanguage(groupBox2);
+            GetLanguage(label4);
+            GetLanguage(btnWriteCustomDateTime);
+            var disable = GetLanguage("Disable");
+            cbxCorrectionSeconds.Items.Clear();
+            cbxCorrectionSeconds.Items.Add(disable);
+            for (int i = 1; i < 256; i++)
+            {
+                cbxCorrectionSeconds.Items.Add(i);
+            }
+            cbxCorrectionSeconds.SelectedIndex = 0;
         }
 
         #region 设备时间读写
@@ -68,16 +98,16 @@ namespace DoNetDrive.Protocol.Door.Test
                     Seconds = Math.Abs(Convert.ToInt32(ts.TotalSeconds));
                     if (Seconds < 4 && Seconds > -4)
                     {
-                        tip = "无误差";
+                        tip = GetLanguage("Msg1");
                     }
                     else
                     {
-                        tip = "误差" + Seconds + "秒";
+                        tip = GetLanguage("Msg2") + Seconds + GetLanguage("Msg3");
                     }
                     txtErrorTime.Text = tip;
                 });
-                string ControllerDateInfo = "电脑时间：" + txtComputerTime.Text +
-                                            "，控制板时间：" + ControllerDate + "，" + tip;
+                string ControllerDateInfo = GetLanguage("Msg4")+"：" + txtComputerTime.Text +
+                                            $"，{GetLanguage("Msg5")}：" + ControllerDate + "，" + tip;
                 mMainForm.AddCmdLog(cmde, ControllerDateInfo);
             };
         }
@@ -119,22 +149,22 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadTimeError_Result result = cmde.Command.getResult() as ReadTimeError_Result;
-                string CorrectionState = result.TimeErrorCorrection[0] == 0 ? "调慢" : "调快"; //误差修正状态
+                string CorrectionState = result.TimeErrorCorrection[0] == 0 ? GetLanguage("rBtnSlowDown") : GetLanguage("rBtnSpeedUp"); //误差修正状态
                 int CorrectionSeconds = result.TimeErrorCorrection[1]; //误差修正秒数
                 string tip = string.Empty;
                 if (CorrectionSeconds == 0)
                 {
-                    tip = "禁用";
+                    tip = GetLanguage("Disable");
                 }
                 else
                 {
-                    tip = "每天自动" + CorrectionState + CorrectionSeconds + "秒";
+                    tip = GetLanguage("Msg6") + CorrectionState + CorrectionSeconds + GetLanguage("Msg3");
                 }
 
                 Invoke(() =>
                 {
                     rBtnSlowDown.Checked = result.TimeErrorCorrection[0] == 0;
-                    cbxCorrectionSeconds.Text = CorrectionSeconds == 0 ? "禁用" : CorrectionSeconds.ToString();
+                    cbxCorrectionSeconds.Text = CorrectionSeconds == 0 ? GetLanguage("Disable") : CorrectionSeconds.ToString();
                 });
                 mMainForm.AddCmdLog(cmde, tip);
             };
@@ -145,9 +175,9 @@ namespace DoNetDrive.Protocol.Door.Test
             string reg = @"^\+?[0-9]*$";
             if (!Regex.IsMatch(cbxCorrectionSeconds.Text.Trim(), reg) || string.IsNullOrEmpty(cbxCorrectionSeconds.Text.Trim()))
             {
-                if (cbxCorrectionSeconds.Text != "禁用")
+                if (cbxCorrectionSeconds.Text != GetLanguage("Disable"))
                 {
-                    MsgErr("请输入正确修正秒数！");
+                    MsgErr(GetLanguage("Msg7"));
                     return;
                 }
             }
@@ -155,7 +185,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 if (Convert.ToUInt32(cbxCorrectionSeconds.Text) < 0 || Convert.ToUInt32(cbxCorrectionSeconds.Text) > 255)
                 {
-                    MsgErr("请输入正确修正秒数！");
+                    MsgErr(GetLanguage("Msg7"));
                     return;
                 }
             }
@@ -171,7 +201,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 TimeErrorCorrection[0] = 0;
             }
 
-            if (cbxCorrectionSeconds.Text == "禁用")
+            if (cbxCorrectionSeconds.Text == GetLanguage("Disable"))
             {
                 TimeErrorCorrection[1] = 0;
             }

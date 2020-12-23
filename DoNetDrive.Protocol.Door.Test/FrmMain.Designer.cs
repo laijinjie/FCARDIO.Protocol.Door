@@ -31,16 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.gbTCPClient = new System.Windows.Forms.GroupBox();
             this.txtTCPClientPort = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.Lab_TCPClientPort = new System.Windows.Forms.Label();
             this.txtTCPClientAddr = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Lba_ConnType = new System.Windows.Forms.Label();
             this.cmdConnType = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.Lba_ProtocolType = new System.Windows.Forms.Label();
             this.cmdProtocolType = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gp_controller = new System.Windows.Forms.GroupBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.Lab_Password = new System.Windows.Forms.Label();
             this.txtSN = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.butClear = new System.Windows.Forms.Button();
@@ -57,22 +57,22 @@
             this.gbSerialPort = new System.Windows.Forms.GroupBox();
             this.butReloadSerialPort = new System.Windows.Forms.Button();
             this.cmbSerialPort = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.Lba_SerialPort = new System.Windows.Forms.Label();
             this.gbServer = new System.Windows.Forms.GroupBox();
             this.butCloseTCPClient = new System.Windows.Forms.Button();
             this.butBeginTCPServer = new System.Windows.Forms.Button();
             this.txtServerPort = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.Lab_ServerPort = new System.Windows.Forms.Label();
             this.cmbTCPClient = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.Lab_TCPClient = new System.Windows.Forms.Label();
             this.lblLocalAddress = new System.Windows.Forms.Label();
             this.gbUDP = new System.Windows.Forms.GroupBox();
             this.chkUDPBroadcast = new System.Windows.Forms.CheckBox();
             this.butUDPBind = new System.Windows.Forms.Button();
             this.txtUDPLocalPort = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.Lba_UDPLocalPort = new System.Windows.Forms.Label();
             this.txtUDPPort = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.Lab_UDPPort = new System.Windows.Forms.Label();
             this.txtUDPAddr = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.cmbLocalIP = new System.Windows.Forms.ComboBox();
@@ -87,11 +87,13 @@
             this.butClearCommand = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.txtProcess = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.Lab_Process = new System.Windows.Forms.Label();
             this.butWatch = new System.Windows.Forms.Button();
             this.butSearch = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbToolLanguage = new System.Windows.Forms.ComboBox();
             this.gbTCPClient.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gp_controller.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.gbSerialPort.SuspendLayout();
             this.gbServer.SuspendLayout();
@@ -101,15 +103,16 @@
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbTCPClient
             // 
             this.gbTCPClient.Controls.Add(this.txtTCPClientPort);
-            this.gbTCPClient.Controls.Add(this.label3);
+            this.gbTCPClient.Controls.Add(this.Lab_TCPClientPort);
             this.gbTCPClient.Controls.Add(this.txtTCPClientAddr);
             this.gbTCPClient.Controls.Add(this.label2);
-            this.gbTCPClient.Location = new System.Drawing.Point(11, 59);
+            this.gbTCPClient.Location = new System.Drawing.Point(9, 85);
             this.gbTCPClient.Name = "gbTCPClient";
             this.gbTCPClient.Size = new System.Drawing.Size(321, 82);
             this.gbTCPClient.TabIndex = 0;
@@ -118,25 +121,25 @@
             // 
             // txtTCPClientPort
             // 
-            this.txtTCPClientPort.Location = new System.Drawing.Point(69, 50);
+            this.txtTCPClientPort.Location = new System.Drawing.Point(111, 50);
             this.txtTCPClientPort.MaxLength = 5;
             this.txtTCPClientPort.Name = "txtTCPClientPort";
             this.txtTCPClientPort.Size = new System.Drawing.Size(164, 21);
             this.txtTCPClientPort.TabIndex = 5;
             this.txtTCPClientPort.Text = "8000";
             // 
-            // label3
+            // Lab_TCPClientPort
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "端口：";
+            this.Lab_TCPClientPort.AutoSize = true;
+            this.Lab_TCPClientPort.Location = new System.Drawing.Point(44, 54);
+            this.Lab_TCPClientPort.Name = "Lab_TCPClientPort";
+            this.Lab_TCPClientPort.Size = new System.Drawing.Size(41, 12);
+            this.Lab_TCPClientPort.TabIndex = 4;
+            this.Lab_TCPClientPort.Text = "端口：";
             // 
             // txtTCPClientAddr
             // 
-            this.txtTCPClientAddr.Location = new System.Drawing.Point(69, 23);
+            this.txtTCPClientAddr.Location = new System.Drawing.Point(111, 23);
             this.txtTCPClientAddr.MaxLength = 30;
             this.txtTCPClientAddr.Name = "txtTCPClientAddr";
             this.txtTCPClientAddr.Size = new System.Drawing.Size(164, 21);
@@ -146,61 +149,61 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 26);
+            this.label2.Location = new System.Drawing.Point(56, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 0;
             this.label2.Text = "IP：";
             // 
-            // label1
+            // Lba_ConnType
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "通讯方式：";
+            this.Lba_ConnType.AutoSize = true;
+            this.Lba_ConnType.Location = new System.Drawing.Point(9, 36);
+            this.Lba_ConnType.Name = "Lba_ConnType";
+            this.Lba_ConnType.Size = new System.Drawing.Size(65, 12);
+            this.Lba_ConnType.TabIndex = 1;
+            this.Lba_ConnType.Text = "通讯方式：";
             // 
             // cmdConnType
             // 
             this.cmdConnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdConnType.FormattingEnabled = true;
-            this.cmdConnType.Location = new System.Drawing.Point(80, 33);
+            this.cmdConnType.Location = new System.Drawing.Point(120, 33);
             this.cmdConnType.Name = "cmdConnType";
-            this.cmdConnType.Size = new System.Drawing.Size(220, 20);
+            this.cmdConnType.Size = new System.Drawing.Size(210, 20);
             this.cmdConnType.TabIndex = 2;
             this.cmdConnType.SelectedIndexChanged += new System.EventHandler(this.cmdConnType_SelectedIndexChanged);
             // 
-            // label4
+            // Lba_ProtocolType
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(342, 36);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 12);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "协议类型：";
+            this.Lba_ProtocolType.AutoSize = true;
+            this.Lba_ProtocolType.Location = new System.Drawing.Point(9, 62);
+            this.Lba_ProtocolType.Name = "Lba_ProtocolType";
+            this.Lba_ProtocolType.Size = new System.Drawing.Size(65, 12);
+            this.Lba_ProtocolType.TabIndex = 3;
+            this.Lba_ProtocolType.Text = "协议类型：";
             // 
             // cmdProtocolType
             // 
             this.cmdProtocolType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdProtocolType.FormattingEnabled = true;
-            this.cmdProtocolType.Location = new System.Drawing.Point(413, 33);
+            this.cmdProtocolType.Location = new System.Drawing.Point(120, 59);
             this.cmdProtocolType.Name = "cmdProtocolType";
-            this.cmdProtocolType.Size = new System.Drawing.Size(209, 20);
+            this.cmdProtocolType.Size = new System.Drawing.Size(210, 20);
             this.cmdProtocolType.TabIndex = 4;
             // 
-            // groupBox1
+            // gp_controller
             // 
-            this.groupBox1.Controls.Add(this.txtPassword);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtSN);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(344, 59);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(287, 82);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "控制器身份";
+            this.gp_controller.Controls.Add(this.txtPassword);
+            this.gp_controller.Controls.Add(this.Lab_Password);
+            this.gp_controller.Controls.Add(this.txtSN);
+            this.gp_controller.Controls.Add(this.label6);
+            this.gp_controller.Location = new System.Drawing.Point(346, 86);
+            this.gp_controller.Name = "gp_controller";
+            this.gp_controller.Size = new System.Drawing.Size(287, 82);
+            this.gp_controller.TabIndex = 5;
+            this.gp_controller.TabStop = false;
+            this.gp_controller.Text = "控制器身份";
             // 
             // txtPassword
             // 
@@ -211,14 +214,14 @@
             this.txtPassword.TabIndex = 9;
             this.txtPassword.Text = "ffffffff";
             // 
-            // label5
+            // Lab_Password
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(36, 55);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "密码：";
+            this.Lab_Password.AutoSize = true;
+            this.Lab_Password.Location = new System.Drawing.Point(14, 55);
+            this.Lab_Password.Name = "Lab_Password";
+            this.Lab_Password.Size = new System.Drawing.Size(41, 12);
+            this.Lab_Password.TabIndex = 8;
+            this.Lab_Password.Text = "密码：";
             // 
             // txtSN
             // 
@@ -232,7 +235,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(48, 27);
+            this.label6.Location = new System.Drawing.Point(26, 27);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 12);
             this.label6.TabIndex = 6;
@@ -262,7 +265,7 @@
             this.butUploadSoftware});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(637, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(651, 25);
             this.toolStrip1.TabIndex = 8;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -360,8 +363,8 @@
             // 
             this.gbSerialPort.Controls.Add(this.butReloadSerialPort);
             this.gbSerialPort.Controls.Add(this.cmbSerialPort);
-            this.gbSerialPort.Controls.Add(this.label7);
-            this.gbSerialPort.Location = new System.Drawing.Point(11, 59);
+            this.gbSerialPort.Controls.Add(this.Lba_SerialPort);
+            this.gbSerialPort.Location = new System.Drawing.Point(9, 85);
             this.gbSerialPort.Name = "gbSerialPort";
             this.gbSerialPort.Size = new System.Drawing.Size(321, 82);
             this.gbSerialPort.TabIndex = 9;
@@ -370,7 +373,7 @@
             // 
             // butReloadSerialPort
             // 
-            this.butReloadSerialPort.Location = new System.Drawing.Point(92, 46);
+            this.butReloadSerialPort.Location = new System.Drawing.Point(125, 46);
             this.butReloadSerialPort.Name = "butReloadSerialPort";
             this.butReloadSerialPort.Size = new System.Drawing.Size(75, 23);
             this.butReloadSerialPort.TabIndex = 8;
@@ -382,29 +385,29 @@
             // 
             this.cmbSerialPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSerialPort.FormattingEnabled = true;
-            this.cmbSerialPort.Location = new System.Drawing.Point(92, 20);
+            this.cmbSerialPort.Location = new System.Drawing.Point(125, 20);
             this.cmbSerialPort.Name = "cmbSerialPort";
             this.cmbSerialPort.Size = new System.Drawing.Size(111, 20);
             this.cmbSerialPort.TabIndex = 4;
             // 
-            // label7
+            // Lba_SerialPort
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 23);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 12);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "通讯方式：";
+            this.Lba_SerialPort.AutoSize = true;
+            this.Lba_SerialPort.Location = new System.Drawing.Point(21, 23);
+            this.Lba_SerialPort.Name = "Lba_SerialPort";
+            this.Lba_SerialPort.Size = new System.Drawing.Size(65, 12);
+            this.Lba_SerialPort.TabIndex = 3;
+            this.Lba_SerialPort.Text = "通讯方式：";
             // 
             // gbServer
             // 
             this.gbServer.Controls.Add(this.butCloseTCPClient);
             this.gbServer.Controls.Add(this.butBeginTCPServer);
             this.gbServer.Controls.Add(this.txtServerPort);
-            this.gbServer.Controls.Add(this.label9);
+            this.gbServer.Controls.Add(this.Lab_ServerPort);
             this.gbServer.Controls.Add(this.cmbTCPClient);
-            this.gbServer.Controls.Add(this.label8);
-            this.gbServer.Location = new System.Drawing.Point(11, 59);
+            this.gbServer.Controls.Add(this.Lab_TCPClient);
+            this.gbServer.Location = new System.Drawing.Point(9, 85);
             this.gbServer.Name = "gbServer";
             this.gbServer.Size = new System.Drawing.Size(321, 82);
             this.gbServer.TabIndex = 10;
@@ -423,7 +426,7 @@
             // 
             // butBeginTCPServer
             // 
-            this.butBeginTCPServer.Location = new System.Drawing.Point(133, 19);
+            this.butBeginTCPServer.Location = new System.Drawing.Point(157, 19);
             this.butBeginTCPServer.Name = "butBeginTCPServer";
             this.butBeginTCPServer.Size = new System.Drawing.Size(75, 23);
             this.butBeginTCPServer.TabIndex = 9;
@@ -433,21 +436,21 @@
             // 
             // txtServerPort
             // 
-            this.txtServerPort.Location = new System.Drawing.Point(69, 20);
+            this.txtServerPort.Location = new System.Drawing.Point(93, 20);
             this.txtServerPort.MaxLength = 5;
             this.txtServerPort.Name = "txtServerPort";
             this.txtServerPort.Size = new System.Drawing.Size(58, 21);
             this.txtServerPort.TabIndex = 8;
             this.txtServerPort.Text = "8000";
             // 
-            // label9
+            // Lab_ServerPort
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 24);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 12);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "服务端口：";
+            this.Lab_ServerPort.AutoSize = true;
+            this.Lab_ServerPort.Location = new System.Drawing.Point(6, 24);
+            this.Lab_ServerPort.Name = "Lab_ServerPort";
+            this.Lab_ServerPort.Size = new System.Drawing.Size(65, 12);
+            this.Lab_ServerPort.TabIndex = 7;
+            this.Lab_ServerPort.Text = "服务端口：";
             // 
             // cmbTCPClient
             // 
@@ -458,19 +461,19 @@
             this.cmbTCPClient.Size = new System.Drawing.Size(311, 20);
             this.cmbTCPClient.TabIndex = 6;
             // 
-            // label8
+            // Lab_TCPClient
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 42);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 12);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "客户端：";
+            this.Lab_TCPClient.AutoSize = true;
+            this.Lab_TCPClient.Location = new System.Drawing.Point(6, 42);
+            this.Lab_TCPClient.Name = "Lab_TCPClient";
+            this.Lab_TCPClient.Size = new System.Drawing.Size(53, 12);
+            this.Lab_TCPClient.TabIndex = 5;
+            this.Lab_TCPClient.Text = "客户端：";
             // 
             // lblLocalAddress
             // 
             this.lblLocalAddress.AutoSize = true;
-            this.lblLocalAddress.Location = new System.Drawing.Point(12, 151);
+            this.lblLocalAddress.Location = new System.Drawing.Point(8, 180);
             this.lblLocalAddress.Name = "lblLocalAddress";
             this.lblLocalAddress.Size = new System.Drawing.Size(53, 12);
             this.lblLocalAddress.TabIndex = 11;
@@ -481,12 +484,12 @@
             this.gbUDP.Controls.Add(this.chkUDPBroadcast);
             this.gbUDP.Controls.Add(this.butUDPBind);
             this.gbUDP.Controls.Add(this.txtUDPLocalPort);
-            this.gbUDP.Controls.Add(this.label12);
+            this.gbUDP.Controls.Add(this.Lba_UDPLocalPort);
             this.gbUDP.Controls.Add(this.txtUDPPort);
-            this.gbUDP.Controls.Add(this.label10);
+            this.gbUDP.Controls.Add(this.Lab_UDPPort);
             this.gbUDP.Controls.Add(this.txtUDPAddr);
             this.gbUDP.Controls.Add(this.label11);
-            this.gbUDP.Location = new System.Drawing.Point(11, 59);
+            this.gbUDP.Location = new System.Drawing.Point(9, 85);
             this.gbUDP.Name = "gbUDP";
             this.gbUDP.Size = new System.Drawing.Size(321, 82);
             this.gbUDP.TabIndex = 12;
@@ -496,7 +499,7 @@
             // chkUDPBroadcast
             // 
             this.chkUDPBroadcast.AutoSize = true;
-            this.chkUDPBroadcast.Location = new System.Drawing.Point(237, 25);
+            this.chkUDPBroadcast.Location = new System.Drawing.Point(210, 23);
             this.chkUDPBroadcast.Name = "chkUDPBroadcast";
             this.chkUDPBroadcast.Size = new System.Drawing.Size(48, 16);
             this.chkUDPBroadcast.TabIndex = 11;
@@ -505,7 +508,7 @@
             // 
             // butUDPBind
             // 
-            this.butUDPBind.Location = new System.Drawing.Point(133, 19);
+            this.butUDPBind.Location = new System.Drawing.Point(134, 19);
             this.butUDPBind.Name = "butUDPBind";
             this.butUDPBind.Size = new System.Drawing.Size(70, 23);
             this.butUDPBind.TabIndex = 10;
@@ -515,39 +518,39 @@
             // 
             // txtUDPLocalPort
             // 
-            this.txtUDPLocalPort.Location = new System.Drawing.Point(81, 20);
+            this.txtUDPLocalPort.Location = new System.Drawing.Point(82, 20);
             this.txtUDPLocalPort.MaxLength = 5;
             this.txtUDPLocalPort.Name = "txtUDPLocalPort";
             this.txtUDPLocalPort.Size = new System.Drawing.Size(46, 21);
             this.txtUDPLocalPort.TabIndex = 7;
             this.txtUDPLocalPort.Text = "9001";
             // 
-            // label12
+            // Lba_UDPLocalPort
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(11, 24);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 12);
-            this.label12.TabIndex = 6;
-            this.label12.Text = "本地端口：";
+            this.Lba_UDPLocalPort.AutoSize = true;
+            this.Lba_UDPLocalPort.Location = new System.Drawing.Point(11, 24);
+            this.Lba_UDPLocalPort.Name = "Lba_UDPLocalPort";
+            this.Lba_UDPLocalPort.Size = new System.Drawing.Size(65, 12);
+            this.Lba_UDPLocalPort.TabIndex = 6;
+            this.Lba_UDPLocalPort.Text = "本地端口：";
             // 
             // txtUDPPort
             // 
-            this.txtUDPPort.Location = new System.Drawing.Point(237, 55);
+            this.txtUDPPort.Location = new System.Drawing.Point(254, 55);
             this.txtUDPPort.MaxLength = 5;
             this.txtUDPPort.Name = "txtUDPPort";
             this.txtUDPPort.Size = new System.Drawing.Size(46, 21);
             this.txtUDPPort.TabIndex = 5;
             this.txtUDPPort.Text = "8101";
             // 
-            // label10
+            // Lab_UDPPort
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(190, 59);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 12);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "端口：";
+            this.Lab_UDPPort.AutoSize = true;
+            this.Lab_UDPPort.Location = new System.Drawing.Point(207, 59);
+            this.Lab_UDPPort.Name = "Lab_UDPPort";
+            this.Lab_UDPPort.Size = new System.Drawing.Size(41, 12);
+            this.Lab_UDPPort.TabIndex = 4;
+            this.Lab_UDPPort.Text = "端口：";
             // 
             // txtUDPAddr
             // 
@@ -571,7 +574,7 @@
             // 
             this.cmbLocalIP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLocalIP.FormattingEnabled = true;
-            this.cmbLocalIP.Location = new System.Drawing.Point(69, 147);
+            this.cmbLocalIP.Location = new System.Drawing.Point(67, 176);
             this.cmbLocalIP.Name = "cmbLocalIP";
             this.cmbLocalIP.Size = new System.Drawing.Size(263, 20);
             this.cmbLocalIP.TabIndex = 13;
@@ -583,7 +586,7 @@
             this.lstIO.HideSelection = false;
             this.lstIO.Location = new System.Drawing.Point(3, 32);
             this.lstIO.Name = "lstIO";
-            this.lstIO.Size = new System.Drawing.Size(606, 462);
+            this.lstIO.Size = new System.Drawing.Size(620, 433);
             this.lstIO.TabIndex = 14;
             this.lstIO.UseCompatibleStateImageBehavior = false;
             this.lstIO.View = System.Windows.Forms.View.Details;
@@ -594,10 +597,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbEvent.Controls.Add(this.tabPage1);
             this.tbEvent.Controls.Add(this.tabPage2);
-            this.tbEvent.Location = new System.Drawing.Point(11, 202);
+            this.tbEvent.Location = new System.Drawing.Point(8, 230);
             this.tbEvent.Name = "tbEvent";
             this.tbEvent.SelectedIndex = 0;
-            this.tbEvent.Size = new System.Drawing.Size(620, 523);
+            this.tbEvent.Size = new System.Drawing.Size(634, 494);
             this.tbEvent.TabIndex = 15;
             // 
             // tabPage1
@@ -607,7 +610,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(612, 497);
+            this.tabPage1.Size = new System.Drawing.Size(626, 468);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "通讯IO";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -619,7 +622,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(606, 29);
+            this.panel1.Size = new System.Drawing.Size(620, 29);
             this.panel1.TabIndex = 15;
             // 
             // chkShowIO
@@ -642,7 +645,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(612, 497);
+            this.tabPage2.Size = new System.Drawing.Size(626, 468);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "命令结果";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -655,7 +658,7 @@
             this.lstCommand.HideSelection = false;
             this.lstCommand.Location = new System.Drawing.Point(3, 32);
             this.lstCommand.Name = "lstCommand";
-            this.lstCommand.Size = new System.Drawing.Size(606, 462);
+            this.lstCommand.Size = new System.Drawing.Size(620, 433);
             this.lstCommand.TabIndex = 16;
             this.lstCommand.UseCompatibleStateImageBehavior = false;
             this.lstCommand.View = System.Windows.Forms.View.Details;
@@ -666,7 +669,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(606, 29);
+            this.panel2.Size = new System.Drawing.Size(620, 29);
             this.panel2.TabIndex = 17;
             // 
             // butClearCommand
@@ -681,32 +684,33 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(344, 145);
+            this.button2.Location = new System.Drawing.Point(342, 174);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(99, 23);
             this.button2.TabIndex = 16;
             this.button2.Text = "停止所有通讯";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // txtProcess
             // 
-            this.txtProcess.Location = new System.Drawing.Point(69, 175);
+            this.txtProcess.Location = new System.Drawing.Point(67, 203);
             this.txtProcess.Name = "txtProcess";
             this.txtProcess.Size = new System.Drawing.Size(558, 21);
             this.txtProcess.TabIndex = 17;
             // 
-            // label13
+            // Lab_Process
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(22, 178);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(41, 12);
-            this.label13.TabIndex = 18;
-            this.label13.Text = "进度：";
+            this.Lab_Process.AutoSize = true;
+            this.Lab_Process.Location = new System.Drawing.Point(6, 206);
+            this.Lab_Process.Name = "Lab_Process";
+            this.Lab_Process.Size = new System.Drawing.Size(41, 12);
+            this.Lab_Process.TabIndex = 18;
+            this.Lab_Process.Text = "进度：";
             // 
             // butWatch
             // 
-            this.butWatch.Location = new System.Drawing.Point(523, 144);
+            this.butWatch.Location = new System.Drawing.Point(524, 173);
             this.butWatch.Name = "butWatch";
             this.butWatch.Size = new System.Drawing.Size(99, 23);
             this.butWatch.TabIndex = 19;
@@ -716,7 +720,7 @@
             // 
             // butSearch
             // 
-            this.butSearch.Location = new System.Drawing.Point(447, 144);
+            this.butSearch.Location = new System.Drawing.Point(443, 173);
             this.butSearch.Name = "butSearch";
             this.butSearch.Size = new System.Drawing.Size(70, 23);
             this.butSearch.TabIndex = 20;
@@ -724,28 +728,49 @@
             this.butSearch.UseVisualStyleBackColor = true;
             this.butSearch.Click += new System.EventHandler(this.ButSearch_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cmbToolLanguage);
+            this.groupBox2.Location = new System.Drawing.Point(346, 36);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(287, 43);
+            this.groupBox2.TabIndex = 21;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Language";
+            // 
+            // cmbToolLanguage
+            // 
+            this.cmbToolLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbToolLanguage.FormattingEnabled = true;
+            this.cmbToolLanguage.Location = new System.Drawing.Point(9, 16);
+            this.cmbToolLanguage.Name = "cmbToolLanguage";
+            this.cmbToolLanguage.Size = new System.Drawing.Size(265, 20);
+            this.cmbToolLanguage.TabIndex = 26;
+            this.cmbToolLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbToolLanguage_SelectedIndexChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 726);
+            this.ClientSize = new System.Drawing.Size(651, 726);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.butSearch);
             this.Controls.Add(this.butWatch);
-            this.Controls.Add(this.label13);
+            this.Controls.Add(this.gbTCPClient);
+            this.Controls.Add(this.gbUDP);
+            this.Controls.Add(this.gbSerialPort);
+            this.Controls.Add(this.Lab_Process);
             this.Controls.Add(this.txtProcess);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.tbEvent);
             this.Controls.Add(this.cmbLocalIP);
             this.Controls.Add(this.lblLocalAddress);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gp_controller);
             this.Controls.Add(this.cmdProtocolType);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.Lba_ProtocolType);
             this.Controls.Add(this.cmdConnType);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.gbTCPClient);
-            this.Controls.Add(this.gbSerialPort);
-            this.Controls.Add(this.gbUDP);
+            this.Controls.Add(this.Lba_ConnType);
             this.Controls.Add(this.gbServer);
             this.MaximizeBox = false;
             this.Name = "frmMain";
@@ -756,8 +781,8 @@
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.gbTCPClient.ResumeLayout(false);
             this.gbTCPClient.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gp_controller.ResumeLayout(false);
+            this.gp_controller.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.gbSerialPort.ResumeLayout(false);
@@ -772,6 +797,7 @@
             this.panel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -783,16 +809,16 @@
 
         private System.Windows.Forms.GroupBox gbTCPClient;
         private System.Windows.Forms.TextBox txtTCPClientPort;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label Lab_TCPClientPort;
         private System.Windows.Forms.TextBox txtTCPClientAddr;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Lba_ConnType;
         private System.Windows.Forms.ComboBox cmdConnType;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label Lba_ProtocolType;
         private System.Windows.Forms.ComboBox cmdProtocolType;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gp_controller;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label Lab_Password;
         private System.Windows.Forms.TextBox txtSN;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button butClear;
@@ -809,23 +835,23 @@
         private System.Windows.Forms.GroupBox gbSerialPort;
         private System.Windows.Forms.Button butReloadSerialPort;
         private System.Windows.Forms.ComboBox cmbSerialPort;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label Lba_SerialPort;
         private System.Windows.Forms.GroupBox gbServer;
         private System.Windows.Forms.Button butCloseTCPClient;
         private System.Windows.Forms.Button butBeginTCPServer;
         private System.Windows.Forms.TextBox txtServerPort;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label Lab_ServerPort;
         private System.Windows.Forms.ComboBox cmbTCPClient;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label Lab_TCPClient;
         private System.Windows.Forms.Label lblLocalAddress;
         private System.Windows.Forms.GroupBox gbUDP;
         private System.Windows.Forms.TextBox txtUDPPort;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label Lab_UDPPort;
         private System.Windows.Forms.TextBox txtUDPAddr;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button butUDPBind;
         private System.Windows.Forms.TextBox txtUDPLocalPort;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label Lba_UDPLocalPort;
         private System.Windows.Forms.ComboBox cmbLocalIP;
         private System.Windows.Forms.ListView lstIO;
         private System.Windows.Forms.TabControl tbEvent;
@@ -837,11 +863,13 @@
         private System.Windows.Forms.Button butClearCommand;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox txtProcess;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label Lab_Process;
         private System.Windows.Forms.CheckBox chkShowIO;
         private System.Windows.Forms.Button butWatch;
         private System.Windows.Forms.Button butSearch;
         private System.Windows.Forms.CheckBox chkUDPBroadcast;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox cmbToolLanguage;
     }
 }
 

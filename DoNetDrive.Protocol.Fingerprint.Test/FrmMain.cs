@@ -102,8 +102,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AutoUpdater.ShowRemindLaterButton = false;
             AutoUpdater.RunUpdateAsAdmin = true;
             AutoUpdater.Mandatory = true;
-            AutoUpdater.Start("http://oss2.pc15.net/ToolDownload/Update/FaceDebugToolForNet/update.xml");
+            AutoUpdater.Start("http://oss2.pc15.net/ToolDownload/Update/FaceDebugToolForNet/1update.xml");
             AutoUpdater.CheckForUpdateEvent += AutoUpdater_CheckForUpdateEvent;
+            IniForm();
+           // AutoUpdater.
             #endregion
         }
 

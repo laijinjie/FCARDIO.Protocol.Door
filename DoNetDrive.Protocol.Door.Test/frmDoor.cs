@@ -75,28 +75,11 @@ namespace DoNetDrive.Protocol.Door.Test
         List<List<decimal>> listGroupB = new List<List<decimal>>();
         List<MultiCard_GroupFix> listFix = new List<MultiCard_GroupFix>();
 
+
         private void frmDoor_Load(object sender, EventArgs e)
         {
-            string[] str = new string[5] { "三字节", "四字节", "二字节", "禁用", "八字节" };
-            cbxDoor1ReaderOption.Items.Clear();
-            cbxDoor1ReaderOption.Items.AddRange(str);
-            cbxDoor1ReaderOption.SelectedIndex = 0;
+            LoadUILanguage();
 
-            cbxDoor2ReaderOption.Items.Clear();
-            cbxDoor2ReaderOption.Items.AddRange(str);
-            cbxDoor2ReaderOption.SelectedIndex = 0;
-
-            cbxDoor3ReaderOption.Items.Clear();
-            cbxDoor3ReaderOption.Items.AddRange(str);
-            cbxDoor3ReaderOption.SelectedIndex = 0;
-
-            cbxDoor4ReaderOption.Items.Clear();
-            cbxDoor4ReaderOption.Items.AddRange(str);
-            cbxDoor4ReaderOption.SelectedIndex = 0;
-
-            cmdDoorNum.Items.Clear();
-            cmdDoorNum.Items.AddRange(new string[] { "1", "2", "3", "4" });
-            cmdDoorNum.SelectedIndex = 0;
             //非法读卡报警
             IniInvalidCardAlarmOptionUse();
 
@@ -135,17 +118,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             #region 重复读卡间隔_检测模式
             cbxDetectionMode.SelectedIndex = 0;
-            cmbInterval.Items.Clear();
-            string[] time = new string[256];
-            for (int i = 0; i < 256; i++)
-            {
-                time[i] = i.ToString() + "秒";
-                if (time[0] == "0秒")
-                    time[0] = "禁用";
-            }
-            cmbInterval.Items.AddRange(time);
-            cmbInterval.Items.Add("65535秒");
-            cmbInterval.SelectedIndex = cmbInterval.Items.Count - 1;
+
             #endregion
 
             WeekTimeGroupPushButtonDto.InitTimeGroup();
@@ -175,15 +148,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             cmbManyCardOpenMode.SelectedIndex = 0;
             cmbAntiPassback.SelectedIndex = 0;
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door58)
-            {
-                cmbVerifyType.Items.AddRange(new string[] { "禁用", "固定组合" });
-            }
-            else
-            {
-                cmbVerifyType.Items.AddRange(new string[] { "禁用", "AB组合", "固定组合", "自由" });
-            }
-            cmbVerifyType.SelectedIndex = 0;
+
             cmbGroupNum.Items.Clear();
             cmbGroupNum.Items.AddRange(new string[] { "1", "2", "3", "4", "5" });
             cmbGroupType.SelectedIndex = 0;
@@ -197,6 +162,388 @@ namespace DoNetDrive.Protocol.Door.Test
             InitCardDataList();
         }
 
+
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(label22);
+            var door1 = GetLanguage("cBoxDoor1");
+            var door2 = GetLanguage("cBoxDoor2");
+            var door3 = GetLanguage("cBoxDoor3");
+            var door4 = GetLanguage("cBoxDoor4");
+            cBoxDoor1.Text = door1;
+            cBoxDoor2.Text = door2;
+            cBoxDoor3.Text = door3;
+            cBoxDoor4.Text = door4;
+            label24.Text = door1 + ":";
+            label5.Text = door2 + ":";
+            label12.Text = door3 + ":";
+            label11.Text = door4 + ":";
+
+            label16.Text = door1 + ":";
+            label15.Text = door2 + ":";
+            label14.Text = door3 + ":";
+            label13.Text = door4 + ":";
+            GetLanguage(tabPage1);
+            GetLanguage(groupBox5);
+            GetLanguage(btnReadReaderOption);
+            GetLanguage(btnWriteReaderOption);
+            GetLanguage(groupBox6);
+            GetLanguage(btnReadRelayOption);
+            GetLanguage(btnWriteRelayOption);
+            GetLanguage(groupBox7);
+            GetLanguage(btnOpenDoor);
+            GetLanguage(btnCloseDoor);
+            GetLanguage(btnHoldOpenDoor);
+            GetLanguage(btnOpenDoor_CheckNum);
+            GetLanguage(groupBox8);
+            GetLanguage(btnLockDoor);
+            GetLanguage(btnUnLockDoor);
+            GetLanguage(groupBox11);
+            GetLanguage(label38);
+            GetLanguage(label39);
+            GetLanguage(btnReadRelayReleaseTime);
+            GetLanguage(btnWriteRelayReleaseTime);
+            GetLanguage(groupBox16);
+            GetLanguage(dataGridView1);
+            GetLanguage(btnReadDoorWorkSetting);
+            GetLanguage(btnWriteDoorWorkSetting);
+            GetLanguage(groupBox9);
+            GetLanguage(label57);
+            GetLanguage(rBtnNoDoorWorkSetting);
+            GetLanguage(rBtnDoorWorkSetting);
+            GetLanguage(label17);
+            GetLanguage(rBtnOpenDoorWay1);
+            GetLanguage(rBtnOpenDoorWay2);
+            GetLanguage(rBtnOpenDoorWay3);
+            GetLanguage(rBtnOpenDoorWay4);
+            GetLanguage(label18);
+            GetLanguage(rBtnDoorTriggerMode1);
+            GetLanguage(rBtnDoorTriggerMode2);
+            GetLanguage(rBtnDoorTriggerMode3);
+            GetLanguage(label19);
+            GetLanguage(label20);
+            GetLanguage(label21);
+            GetLanguage(label29);
+            GetLanguage(label28);
+            GetLanguage(label33);
+            GetLanguage(label32);
+            GetLanguage(label37);
+            GetLanguage(label36);
+            GetLanguage(label25);
+            GetLanguage(label23);
+            GetLanguage(label27);
+            GetLanguage(label26);
+            GetLanguage(label31);
+            GetLanguage(label30);
+            GetLanguage(label35);
+            GetLanguage(label34);
+            GetLanguage(btnReadWorkSetting);
+            GetLanguage(btnWriteWorkSetting);
+            GetLanguage(groupBox10);
+            GetLanguage(dataGridView2);
+            GetLanguage(rBtnNoAutoLockedSetting);
+            GetLanguage(rBtnAutoLockedSetting);
+            GetLanguage(btnReadAutoLockedSetting);
+            GetLanguage(btnWriteAutoLockedSetting);
+
+            GetLanguage(tabPage3);
+            GetLanguage(groupBox12);
+            GetLanguage(rBtnNoReaderInterval);
+            GetLanguage(rBtnReaderInterval);
+            GetLanguage(label41);
+            GetLanguage(label40);
+            GetLanguage(groupBox13);
+            GetLanguage(rBtnNotAnti);
+            GetLanguage(rBtnAnti);
+            GetLanguage(label42);
+            GetLanguage(rBtnCheckInOut1);
+            GetLanguage(rBtnCheckInOut2);
+            GetLanguage(groupBox14);
+            GetLanguage(label43);
+            GetLanguage(lbNormallyOpen);
+            GetLanguage(label62);
+            GetLanguage(groupBox15);
+            GetLanguage(cbAnyCardUse);
+            GetLanguage(cbAnyCardAuto);
+            GetLanguage(label44);
+            GetLanguage(label63);
+            GetLanguage(groupBox18);
+            GetLanguage(cbInOutSideReadOpenSettingUse);
+            GetLanguage(groupBox17);
+            GetLanguage(cbVoiceBroadcastSettingUse);
+            GetLanguage(groupBox19);
+            GetLanguage(cbManageKeyboardSettingUse);
+            GetLanguage(label64);
+            GetLanguage(groupBox20);
+            GetLanguage(label65);
+            GetLanguage(label66);
+            GetLanguage(lbSN);
+            GetLanguage(lbIP);
+            GetLanguage(lbPort);
+            GetLanguage(groupBox21);
+            GetLanguage(label70);
+            GetLanguage(lbAreaType2);
+            GetLanguage(lbAreaCode);
+            GetLanguage(lbNum2);
+            GetLanguage(lbIP2);
+            GetLanguage(lbPort2);
+            GetLanguage(tabPage4);
+            GetLanguage(groupBox22);
+            GetLanguage(label67);
+            GetLanguage(label69);
+            GetLanguage(label68);
+            GetLanguage(label71);
+            GetLanguage(label72);
+            GetLanguage(lbgrouptype);
+            GetLanguage(lbgroupnum);
+            GetLanguage(cbConvertHex);
+            GetLanguage(btnDeleteGroup);
+            GetLanguage(btnAutoFill);
+            GetLanguage(groupBox23);
+            GetLanguage(cbReaderAlarmUse);
+            GetLanguage(groupBox24);
+            GetLanguage(label73);
+            GetLanguage(cbInDoorUse);
+            GetLanguage(label75);
+            GetLanguage(label77);
+            GetLanguage(label79);
+            GetLanguage(label74);
+            GetLanguage(cbOutDoorUse);
+            GetLanguage(label76);
+            GetLanguage(label78);
+            GetLanguage(label80);
+            GetLanguage(dataGridView5);
+            GetLanguage(tabPage2);
+            GetLanguage(groupBox1);
+            GetLanguage(label1);
+            GetLanguage(label81);
+            GetLanguage(groupBox2);
+            GetLanguage(label2);
+            GetLanguage(label3);
+            GetLanguage(label4);
+            GetLanguage(groupBox3);
+            GetLanguage(label8);
+            GetLanguage(label6);
+            GetLanguage(label7);
+            GetLanguage(groupBox4);
+            GetLanguage(label9);
+            GetLanguage(label10);
+            GetLanguage(label97);
+            GetLanguage(label96);
+            GetLanguage(label93);
+            GetLanguage(label92);
+            GetLanguage(label89);
+            GetLanguage(label88);
+            GetLanguage(label85);
+            GetLanguage(label84);
+            GetLanguage(label95);
+            GetLanguage(label94);
+            GetLanguage(label91);
+            GetLanguage(label90);
+            GetLanguage(label87);
+            GetLanguage(label86);
+            GetLanguage(label83);
+            GetLanguage(label82);
+            GetLanguage(label61);
+            GetLanguage(label60);
+            GetLanguage(label56);
+            GetLanguage(label55);
+            GetLanguage(label52);
+            GetLanguage(label51);
+            GetLanguage(label48);
+            GetLanguage(label47);
+            GetLanguage(label59);
+            GetLanguage(label58);
+            GetLanguage(label54);
+            GetLanguage(label53);
+            GetLanguage(label50);
+            GetLanguage(label49);
+            GetLanguage(label46);
+            GetLanguage(label45);
+            var readBtn = GetLanguage("btnReadRelayOption");
+            var write = GetLanguage("btnWriteRelayOption");
+
+            btnReadReaderInterval.Text = readBtn;
+            btnReadAntiPassback.Text = readBtn;
+            btnReadPushButton.Text = readBtn;
+            btnReadInOutSideReadOpenSetting.Text = readBtn;
+            btnReadVoiceBroadcastSetting.Text = readBtn;
+            btnReadAnyCard.Text = readBtn;
+            btnReadManageKeyboardSetting.Text = readBtn;
+            btnReadAreaAntiPassback.Text = readBtn;
+            btnReadInterLockSetting.Text = readBtn;
+
+            btnReadManyCardOpenMode.Text = readBtn;
+            btnReadReaderAlarm.Text = readBtn;
+            btnReadReadCardAndTakePictures.Text = readBtn;
+
+            butReadInvalidCardAlarmOption.Text = readBtn;
+            butReadOvertimeAlarmSetting.Text = readBtn;
+            butReadSensorAlarmSetting.Text = readBtn;
+
+            btnWriteReadCardAndTakePictures.Text = write;
+            btnWriteReaderAlarm.Text = write;
+            btnWriteManyCardOpenMode.Text = write;
+
+            ButWriteInvalidCardAlarmOption.Text = write;
+            butWriteOvertimeAlarmSetting.Text = write;
+            butWriteSensorAlarmSetting.Text = write;
+
+            btnWriteInterLockSetting.Text = write;
+            btnWriteAreaAntiPassback.Text = write;
+            btnWriteManageKeyboardSetting.Text = write;
+            btnWriteAnyCard.Text = write;
+            btnWriteWriteVoiceBroadcastSetting.Text = write;
+            btnWriteInOutSideReadOpenSetting.Text = write;
+            btnWritePushButton.Text = write;
+            btnWriteAntiPassback.Text = write;
+            btnWriteReaderInterval.Text = write;
+
+
+            string[] relayOption = new string[] { "COM & NC", "COM & NO" };
+            var doorRelayOption = GetLanguage("DoorRelayOption");
+            cbxDoor1RelayOption.Items.Clear();
+            cbxDoor1RelayOption.Items.AddRange(relayOption);
+            cbxDoor1RelayOption.Items.Add(doorRelayOption);
+
+            cbxDoor2RelayOption.Items.Clear();
+            cbxDoor2RelayOption.Items.AddRange(relayOption);
+            cbxDoor2RelayOption.Items.Add(doorRelayOption);
+
+            cbxDoor3RelayOption.Items.Clear();
+            cbxDoor3RelayOption.Items.AddRange(relayOption);
+            cbxDoor3RelayOption.Items.Add(doorRelayOption);
+
+            cbxDoor4RelayOption.Items.Clear();
+            cbxDoor4RelayOption.Items.AddRange(relayOption);
+            cbxDoor4RelayOption.Items.Add(doorRelayOption);
+
+            var detectionMode = GetLanguage("cbxDetectionMode").Split(',');
+            cbxDetectionMode.Items.Clear();
+            cbxDetectionMode.Items.AddRange(detectionMode);
+            string[] str = GetLanguage("Door1ReaderOption").Split(',');
+            cbxDoor1ReaderOption.Items.Clear();
+            cbxDoor1ReaderOption.Items.AddRange(str);
+            cbxDoor1ReaderOption.SelectedIndex = 0;
+
+            var areaType = GetLanguage("cmbAreaType").Split(',');
+            cmbAreaType.Items.Clear();
+            cmbAreaType.Items.AddRange(areaType);
+            cmbAreaType.SelectedIndex = 0;
+
+
+            cmbInterLockSettingAreaType.Items.Clear();
+            cmbInterLockSettingAreaType.Items.AddRange(areaType);
+            cmbInterLockSettingAreaType.SelectedIndex = 0;
+
+            cbxDoor2ReaderOption.Items.Clear();
+            cbxDoor2ReaderOption.Items.AddRange(str);
+            cbxDoor2ReaderOption.SelectedIndex = 0;
+
+            cbxDoor3ReaderOption.Items.Clear();
+            cbxDoor3ReaderOption.Items.AddRange(str);
+            cbxDoor3ReaderOption.SelectedIndex = 0;
+
+            cbxDoor4ReaderOption.Items.Clear();
+            cbxDoor4ReaderOption.Items.AddRange(str);
+            cbxDoor4ReaderOption.SelectedIndex = 0;
+
+            cmdDoorNum.Items.Clear();
+            cmdDoorNum.Items.AddRange(new string[] { "1", "2", "3", "4" });
+            cmdDoorNum.SelectedIndex = 0;
+            cmbInterval.Items.Clear();
+            string[] time = new string[256];
+            string disable = GetLanguage("Msg2");
+            string seconds = GetLanguage("Msg1");
+            for (int i = 0; i < 256; i++)
+            {
+                time[i] = i.ToString() + seconds;
+                if (time[0] == ("0" + seconds))
+                    time[0] = disable;
+            }
+            cmbInterval.Items.AddRange(time);
+            cmbInterval.Items.Add("65535" + seconds);
+            cmbInterval.SelectedIndex = cmbInterval.Items.Count - 1;
+            string temp1 = GetLanguage("Msg3");
+            string temp2 = GetLanguage("Msg4");
+            string temp3 = GetLanguage("Msg5");
+            string use = GetLanguage("Msg6");
+            cmbVerifyType.Items.Clear();
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door58)
+            {
+                cmbVerifyType.Items.AddRange(new string[] { disable, temp1 });
+            }
+            else
+            {
+                cmbVerifyType.Items.AddRange(new string[] { disable, temp2, temp1, temp3 });
+            }
+            cmbVerifyType.SelectedIndex = 0;
+
+            cmdAlarmPassword.Items.Clear();
+            cmdAlarmPassword.Items.AddRange(new string[] { use, disable });
+            cmdAlarmPassword.SelectedIndex = 0;
+
+
+            cmbAlarmOption.Items.Clear();
+            cmbAlarmOption.Items.AddRange(GetLanguage("AlarmOption").Split(','));
+            cmbAlarmOption.SelectedIndex = 1;
+
+            cmbManyCardOpenMode.Items.Clear();
+            cmbManyCardOpenMode.Items.AddRange(GetLanguage("cmbManyCardOpenMode").Split(','));
+            cmbManyCardOpenMode.SelectedIndex = 0;
+
+            cmbAntiPassback.Items.Clear();
+            cmbAntiPassback.Items.AddRange(GetLanguage("cmbAntiPassback").Split(','));
+            cmbAntiPassback.SelectedIndex = 0;
+
+            cmbGroupType.Items.Clear();
+            cmbGroupType.Items.AddRange(GetLanguage("cmbGroupType").Split(','));
+            cmbGroupType.SelectedIndex = 0;
+
+            cmbOvertimeAlarmSetting.Items.Clear();
+            cmbOvertimeAlarmSetting.Items.AddRange(new string[] { disable, use });
+            cmbOvertimeAlarmSetting.SelectedIndex = 0;
+
+            cmbAlarm.Items.Clear();
+            cmbAlarm.Items.AddRange(new string[] { GetLanguage("Msg11"), GetLanguage("Msg12") });
+            cmbAlarm.SelectedIndex = 0;
+
+            cmbOverTime.Items.Clear();
+            string[] time1 = new string[100];
+
+            for (int i = 0; i < 100; i++)
+            {
+                time1[i] = i + 1 + seconds;
+            }
+            cmbOverTime.Items.AddRange(time1);
+            cmbOverTime.SelectedIndex = 0;
+
+            cmbSensorAlarmSetting.Items.Clear();
+            cmbSensorAlarmSetting.Items.AddRange(new string[] { use, disable });
+            cmbSensorAlarmSetting.SelectedIndex = 0;
+            var week = GetLanguage("WeekOption").Split(',');
+            cmbWeek.Items.Clear();
+            cmbWeek.Items.AddRange(week);
+            cmbWeek.SelectedIndex = 0;
+
+            cmbPushButtonWeekday.Items.Clear();
+            cmbPushButtonWeekday.Items.AddRange(week);
+            cmbPushButtonWeekday.SelectedIndex = 0;
+
+            cmdInvalidCardAlarmOptionUse.Items.Clear();
+            cmdInvalidCardAlarmOptionUse.Items.AddRange(new string[] { use, disable });
+            cmdInvalidCardAlarmOptionUse.SelectedIndex = 0;
+
+            cmbReadInvalidCardTime.Items.Clear();
+            string[] array = new string[256];
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = i.ToString();
+            }
+            cmbReadInvalidCardTime.Items.AddRange(array);
+            cmbReadInvalidCardTime.SelectedIndex = 0;
+        }
         private void InitGridReaderWork()
         {
             Random r = new Random();
@@ -254,16 +601,12 @@ namespace DoNetDrive.Protocol.Door.Test
         #region "胁迫报警密码"
         private void AlarmPassword()
         {
-            cmdAlarmPassword.Items.Clear();
-            cmdAlarmPassword.Items.AddRange(new string[] { "启用", "禁用" });
-            cmdAlarmPassword.SelectedIndex = 0;
+
         }
         //报警模式
         private void AlarmOption()
         {
-            cmbAlarmOption.Items.Clear();
-            cmbAlarmOption.Items.AddRange(new string[] { "不开门，报警输出", "开门，报警输出", "锁定门，报警，只能软件解锁" });
-            cmbAlarmOption.SelectedIndex = 1;
+
         }
         private void butReadAlarmPassword_Click(object sender, EventArgs e)
         {
@@ -282,7 +625,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
                 });
 
-                mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use},报警密码：{result.Password},报警选项：{result.AlarmOption}");
+                mMainForm.AddLog($"{GetLanguage("Msg7")}{result.DoorNum},{GetLanguage("Msg8")}:{result.Use},{GetLanguage("Msg9")}：{result.Password},{GetLanguage("Msg10")}：{result.AlarmOption}");
             };
         }
         private void butWriteAlarmPassword_Click(object sender, EventArgs e)
@@ -299,7 +642,8 @@ namespace DoNetDrive.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddLog($"命令成功：门号:{door},功能开关:{use},密码：{Password},报警选项：{alarmOption}");
+                // mMainForm.AddLog($"命令成功：门号:{door},功能开关:{use},密码：{Password},报警选项：{alarmOption}");
+                mMainForm.AddLog($"{GetLanguage("Msg7")}{door},{GetLanguage("Msg8")}:{use},{GetLanguage("Msg9")}：{Password},{GetLanguage("Msg10")}：{alarmOption}");
             };
 
         }
@@ -308,28 +652,17 @@ namespace DoNetDrive.Protocol.Door.Test
         #region "开门超时提示参数"
         private void OvertimeAlarmSetting()
         {
-            cmbOvertimeAlarmSetting.Items.Clear();
-            cmbOvertimeAlarmSetting.Items.AddRange(new string[] { "启用", "禁用" });
-            cmbOvertimeAlarmSetting.SelectedIndex = 0;
+
         }
 
         private void Alarm()
         {
-            cmbAlarm.Items.Clear();
-            cmbAlarm.Items.AddRange(new string[] { "输出", "不输出" });
-            cmbAlarm.SelectedIndex = 0;
+
         }
 
         private void Overtime()
         {
-            cmbOverTime.Items.Clear();
-            string[] time = new string[100];
-            for (int i = 0; i < 100; i++)
-            {
-                time[i] = i + 1 + "秒";
-            }
-            cmbOverTime.Items.AddRange(time);
-            cmbOverTime.SelectedIndex = 0;
+
         }
 
         /// <summary>
@@ -352,9 +685,9 @@ namespace DoNetDrive.Protocol.Door.Test
                     cmbOverTime.SelectedIndex = result.Overtime - 1;
                     cmdAlarmPassword.SelectedIndex = result.Alarm ? 0 : 1;
                 });
-                string usetip = result.Use ? "启用" : "禁用";
-                string Alarmtip = result.Alarm ? "输出" : "不输出";
-                mMainForm.AddCmdLog(cmde, $"命令成功：门号:{result.DoorNum},功能开关:{usetip}，超时时间：{result.Overtime},是否报警 ：{Alarmtip}");
+                string usetip = result.Use ? GetLanguage("Msg6") : GetLanguage("Msg2");
+                string Alarmtip = result.Alarm ? GetLanguage("Msg11") : GetLanguage("Msg12");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("Msg7")}{result.DoorNum},{GetLanguage("Msg8")}:{usetip}，{GetLanguage("Msg13")}：{result.Overtime},{GetLanguage("Msg14")} ：{Alarmtip}");
             };
         }
 
@@ -378,7 +711,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddCmdLog(cmde, $"命令成功：门号:{door},功能开关:{use}");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("Msg7")}{door},{GetLanguage("Msg8")}:{use}");
             };
         }
         #endregion
@@ -386,21 +719,17 @@ namespace DoNetDrive.Protocol.Door.Test
         #region "门磁报警参数"
         private void SensorAlarmSetting()
         {
-            cmbSensorAlarmSetting.Items.Clear();
-            cmbSensorAlarmSetting.Items.AddRange(new string[] { "启用", "禁用" });
-            cmbSensorAlarmSetting.SelectedIndex = 0;
+
         }
         //门磁报警不生效时段
         private void Week()
         {
-            cmbWeek.Items.Clear();
-            cmbWeek.Items.AddRange(new string[] { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天" });
-            cmbWeek.SelectedIndex = 0;
+
         }
         //改变下拉框
         private void cmbSensorAlarmSetting_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbSensorAlarmSetting.Text == "启用")
+            if (cmbSensorAlarmSetting.Text == GetLanguage("Msg6"))
             {
                 cmbWeek.Show();
                 label10.Show();
@@ -432,7 +761,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     WeekTimeGroupSensorAlarmDto = result.WeekTimeGroup;
                     SetAllTimePicker(plSensorAlarm, "beginSATP", "endSATP", WeekTimeGroupSensorAlarmDto.GetItem(0));
                 });
-                mMainForm.AddLog($"命令成功：门号:{result.DoorNum},功能开关:{result.Use}");
+                mMainForm.AddLog($"{GetLanguage("Msg7")}{result.DoorNum},{GetLanguage("Msg8")}:{result.Use}");
             };
         }
         private void butWriteSensorAlarmSetting_Click(object sender, EventArgs e)
@@ -446,7 +775,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddLog($"命令成功：门号:{door},功能开关:{use}");
+                mMainForm.AddLog($"{GetLanguage("Msg7")}{door},{GetLanguage("Msg8")}:{use}");
             };
         }
 
@@ -485,7 +814,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 ReaderOption_Result result = cmde.Command.getResult() as ReaderOption_Result;
                 StringBuilder sb = new StringBuilder();
-                string[] str = new string[5] { "三字节", "四字节", "二字节", "禁用", "八字节" };
+                string[] str = GetLanguage("Door1ReaderOption").Split(',');
                 //str[0] = "字节数：【1、韦根26(三字节)】";
                 //str[1] = "字节数：【2、韦根34(四字节)】";
                 //str[2] = "字节数：【3、韦根26(二字节)】";
@@ -498,6 +827,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     {
                         count = 4;
                     }
+                    string sDoor = GetLanguage("Msg15");
                     for (int i = 0; i < 4; i++)
                     {
                         if (i + 1 > count)
@@ -524,7 +854,7 @@ namespace DoNetDrive.Protocol.Door.Test
                         {
                             cbxDoor4ReaderOption.SelectedIndex = result.Door[i] - 1;
                         }
-                        sb.Append("门" + (i + 1) + str[result.Door[i] - 1]);
+                        sb.Append(sDoor + (i + 1) + str[result.Door[i] - 1]);
                     }
                 });
                 mMainForm.AddCmdLog(cmde, sb.ToString());
@@ -581,12 +911,13 @@ namespace DoNetDrive.Protocol.Door.Test
                 RelayOption_Result result = cmde.Command.getResult() as RelayOption_Result;
                 StringBuilder sb = new StringBuilder();
                 string[] str = new string[3];
-                str[0] = "继电器类型：【1、COM & NC】";
-                str[1] = "继电器类型：【2、COM & NO】";
-                str[2] = "继电器类型：【3、双稳态】";
+                str[0] = GetLanguage("Msg16");
+                str[1] = GetLanguage("Msg17");
+                str[2] = GetLanguage("Msg18");
 
                 Invoke(() =>
                 {
+                    var door = GetLanguage("Msg15");
                     for (int i = 0; i < 4; i++)
                     {
                         //门1继电器参数
@@ -595,17 +926,17 @@ namespace DoNetDrive.Protocol.Door.Test
                             if (result.Relay[i] == 1)
                             {
                                 cbxDoor1RelayOption.SelectedIndex = 0;
-                                sb.Append("门" + (i + 1) + str[0]);
+                                sb.Append(door + (i + 1) + str[0]);
                             }
                             else if (result.Relay[i] == 2)
                             {
                                 cbxDoor1RelayOption.SelectedIndex = 1;
-                                sb.Append("门" + (i + 1) + str[1]);
+                                sb.Append(door + (i + 1) + str[1]);
                             }
                             else if (result.Relay[i] == 3)
                             {
                                 cbxDoor1RelayOption.SelectedIndex = 2;
-                                sb.Append("门" + (i + 1) + str[2]);
+                                sb.Append(door + (i + 1) + str[2]);
                             }
                         }
                         //门2继电器参数
@@ -614,17 +945,17 @@ namespace DoNetDrive.Protocol.Door.Test
                             if (result.Relay[i] == 1)
                             {
                                 cbxDoor2RelayOption.SelectedIndex = 0;
-                                sb.Append("  门" + (i + 1) + str[0]);
+                                sb.Append(door + (i + 1) + str[0]);
                             }
                             else if (result.Relay[i] == 2)
                             {
                                 cbxDoor2RelayOption.SelectedIndex = 1;
-                                sb.Append("  门" + (i + 1) + str[1]);
+                                sb.Append(door + (i + 1) + str[1]);
                             }
                             else if (result.Relay[i] == 3)
                             {
                                 cbxDoor2RelayOption.SelectedIndex = 2;
-                                sb.Append("  门" + (i + 1) + str[2]);
+                                sb.Append(door + (i + 1) + str[2]);
                             }
                         }
                         //门3继电器参数
@@ -633,17 +964,17 @@ namespace DoNetDrive.Protocol.Door.Test
                             if (result.Relay[i] == 1)
                             {
                                 cbxDoor3RelayOption.SelectedIndex = 0;
-                                sb.Append("  门" + (i + 1) + str[0]);
+                                sb.Append(door + (i + 1) + str[0]);
                             }
                             else if (result.Relay[i] == 2)
                             {
                                 cbxDoor3RelayOption.SelectedIndex = 1;
-                                sb.Append("  门" + (i + 1) + str[1]);
+                                sb.Append(door + (i + 1) + str[1]);
                             }
                             else if (result.Relay[i] == 3)
                             {
                                 cbxDoor3RelayOption.SelectedIndex = 2;
-                                sb.Append("  门" + (i + 1) + str[2]);
+                                sb.Append(door + (i + 1) + str[2]);
                             }
                         }
                         //门4继电器参数
@@ -652,17 +983,17 @@ namespace DoNetDrive.Protocol.Door.Test
                             if (result.Relay[i] == 1)
                             {
                                 cbxDoor4RelayOption.SelectedIndex = 0;
-                                sb.Append("  门" + (i + 1) + str[0]);
+                                sb.Append(door + (i + 1) + str[0]);
                             }
                             else if (result.Relay[i] == 2)
                             {
                                 cbxDoor4RelayOption.SelectedIndex = 1;
-                                sb.Append("  门" + (i + 1) + str[1]);
+                                sb.Append(door + (i + 1) + str[1]);
                             }
                             else if (result.Relay[i] == 3)
                             {
                                 cbxDoor4RelayOption.SelectedIndex = 2;
-                                sb.Append("  门" + (i + 1) + str[2]);
+                                sb.Append(door + (i + 1) + str[2]);
                             }
                         }
                     }
@@ -691,7 +1022,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
 
@@ -711,7 +1042,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
 
@@ -731,7 +1062,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
 
@@ -751,7 +1082,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
 
@@ -776,7 +1107,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
 
@@ -796,7 +1127,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
 
@@ -818,7 +1149,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
             StringBuilder sb = new StringBuilder();
@@ -928,31 +1259,31 @@ namespace DoNetDrive.Protocol.Door.Test
             string weekStr = string.Empty;
             if (index == 0)
             {
-                return "星期一";
+                return GetLanguage("Msg20");
             }
             else if (index == 1)
             {
-                return "星期二";
+                return GetLanguage("Msg21");
             }
             else if (index == 2)
             {
-                return "星期三";
+                return GetLanguage("Msg22");
             }
             else if (index == 3)
             {
-                return "星期四";
+                return GetLanguage("Msg23");
             }
             else if (index == 4)
             {
-                return "星期五";
+                return GetLanguage("Msg24");
             }
             else if (index == 5)
             {
-                return "星期六";
+                return GetLanguage("Msg25");
             }
             else if (index == 6)
             {
-                return "星期日";
+                return GetLanguage("Msg26");
             }
             return weekStr;
         }
@@ -966,7 +1297,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             //if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             //{
-            //    MsgErr("请勾选需要操作的门！");
+            //    MsgErr(GetLanguage("Msg19"));
             //    return;
             //}
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -1043,7 +1374,7 @@ namespace DoNetDrive.Protocol.Door.Test
             /*
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
             */
@@ -1061,7 +1392,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 string DoorTriggerModeStr = string.Empty;
                 if (result.Use == 0)
                 {
-                    sb.AppendLine("门" + result.Door + "：是否启用：【0、不启用】");
+                    sb.AppendLine(GetLanguage("Msg15") + result.Door + "：" + GetLanguage("Msg27"));
                     mMainForm.AddCmdLog(cmde, sb.ToString());
                 }
                 else
@@ -1069,37 +1400,37 @@ namespace DoNetDrive.Protocol.Door.Test
                     //开门方式
                     if (result.OpenDoorWay == 1)
                     {
-                        OpenDoorWayStr = "【1、普通】";
+                        OpenDoorWayStr = GetLanguage("Msg28");
                     }
                     else if (result.OpenDoorWay == 2)
                     {
-                        OpenDoorWayStr = "【2、多卡】";
+                        OpenDoorWayStr = GetLanguage("Msg29");
                     }
                     else if (result.OpenDoorWay == 3)
                     {
-                        OpenDoorWayStr = "【3、首卡】";
+                        OpenDoorWayStr = GetLanguage("Msg30");
                     }
                     else if (result.OpenDoorWay == 4)
                     {
-                        OpenDoorWayStr = "【4、常开】";
+                        OpenDoorWayStr = GetLanguage("Msg31");
                     }
-                    sb.AppendLine("门" + result.Door + "：开门方式：" + OpenDoorWayStr);
+                    sb.AppendLine(GetLanguage("Msg15") + result.Door + $"：{GetLanguage("Msg32")}：" + OpenDoorWayStr);
                     //常开触发模式
                     if (result.DoorTriggerMode == 1)
                     {
-                        DoorTriggerModeStr = "【1、合法卡】";
+                        DoorTriggerModeStr = GetLanguage("Msg33");
                     }
                     else if (result.DoorTriggerMode == 2)
                     {
-                        DoorTriggerModeStr = "【2、常开卡】";
+                        DoorTriggerModeStr = GetLanguage("Msg34");
                     }
                     else if (result.DoorTriggerMode == 3)
                     {
-                        DoorTriggerModeStr = "【3、自动开关】";
+                        DoorTriggerModeStr = GetLanguage("Msg35");
                     }
                     if (result.OpenDoorWay == 4)
                     {
-                        sb.AppendLine("；常开触发模式：" + DoorTriggerModeStr);
+                        sb.AppendLine($"；{GetLanguage("Msg36")}：" + DoorTriggerModeStr);
                     }
                     mMainForm.AddCmdLog(cmde, sb.ToString());
                     //开门方式是首卡或者常开状态时
@@ -1111,7 +1442,7 @@ namespace DoNetDrive.Protocol.Door.Test
                             //sb.AppendLine(StringUtility.GetWeekStr(i));
                             for (int j = 0; j < 8; j++)
                             {
-                                sb.Append("  时段" + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));
+                                sb.Append($"  {GetLanguage("Msg37")}" + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));
                             }
                             mMainForm.AddCmdLog(null, sb.ToString());
                         }
@@ -1216,7 +1547,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -1420,7 +1751,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
             StringBuilder sb = new StringBuilder();
@@ -1459,15 +1790,16 @@ namespace DoNetDrive.Protocol.Door.Test
                     dataGridView2.DataSource = new BindingList<WeekTimeGroupDto>(ListAutoLockedDto);
                 });
 
-                string useStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】";
-                string tip = "定时锁定门_门" + result.Door.ToString() + "：是否启用：" + useStr + "，时段详情：";
+                string useStr = result.Use == 0 ? GetLanguage("Msg38") : GetLanguage("Msg39");
+                string tip = GetLanguage("Msg40") + result.Door.ToString() + $"：{GetLanguage("Msg41")}：" + useStr + $"，{GetLanguage("Msg42")}：";
                 sb.AppendLine(tip);
+                var Msg37 = GetLanguage("Msg37");
                 for (int i = 0; i < 7; i++)
                 {
                     //sb.AppendLine(StringUtility.GetWeekStr(i));
                     for (int j = 0; j < 8; j++)
                     {
-                        sb.AppendLine("  时段" + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));
+                        sb.AppendLine("  " + Msg37 + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));
                     }
                 }
                 sb.AppendLine("***************************************************************************************");
@@ -1486,7 +1818,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -1551,7 +1883,7 @@ namespace DoNetDrive.Protocol.Door.Test
             /*
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
             */
@@ -1596,19 +1928,20 @@ namespace DoNetDrive.Protocol.Door.Test
 
                 ReleaseTime = result.ReleaseTime; //开锁时输出时长
                 sb.Clear();
-                sb.AppendLine("门" + result.Door + "：开锁时输出时长：");
+                sb.AppendLine(GetLanguage("Msg15") + result.Door + $"：{GetLanguage("Msg43")}：");
+                var Msg1 = GetLanguage("Msg1");
                 if (ReleaseTime == 0)
                 {
-                    tip = "0.5秒";
+                    tip = "0.5" + Msg1;
                 }
                 else
                 {
-                    tip = ReleaseTime + "秒";
+                    tip = ReleaseTime + Msg1;
                 }
 
                 Invoke(() =>
                 {
-                    cbxReleaseTime.Text = tip.Replace("秒", "");
+                    cbxReleaseTime.Text = tip.Replace(Msg1, "");
                 });
                 sb.AppendLine(tip);
                 mMainForm.AddCmdLog(cmde, sb.ToString());
@@ -1620,7 +1953,7 @@ namespace DoNetDrive.Protocol.Door.Test
             /*
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
             */
@@ -1629,7 +1962,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 if (cbxReleaseTime.Text != "0.5")
                 {
-                    MsgErr("请输入正确时间！");
+                    MsgErr(GetLanguage("Msg44"));
                     return;
                 }
             }
@@ -1637,7 +1970,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 if (Convert.ToUInt32(cbxReleaseTime.Text) < 0 || Convert.ToUInt32(cbxReleaseTime.Text) > 65535)
                 {
-                    MsgErr("请输入正确时间！");
+                    MsgErr(GetLanguage("Msg44"));
                     return;
                 }
             }
@@ -1692,7 +2025,7 @@ namespace DoNetDrive.Protocol.Door.Test
             /*
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
             */
@@ -1742,25 +2075,25 @@ namespace DoNetDrive.Protocol.Door.Test
                 ReaderInterval_Result result = cmde.Command.getResult() as ReaderInterval_Result;
                 if (result != null)
                 {
-                    UseStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】";
+                    UseStr = result.Use == 0 ? GetLanguage("Msg38") : GetLanguage("Msg39");
                     if (result.DetectionMode == 1)
                     {
-                        DetectionModeStr = "【1、读卡有记录】";
+                        DetectionModeStr = GetLanguage("Msg45");
                     }
                     else if (result.DetectionMode == 2)
                     {
-                        DetectionModeStr = "【2、读卡无记录】";
+                        DetectionModeStr = GetLanguage("Msg46");
                     }
                     else if (result.DetectionMode == 3)
                     {
-                        DetectionModeStr = "【3、读卡不做响应】";
+                        DetectionModeStr = GetLanguage("Msg47");
                     }
 
                     sb.Clear();
-                    sb.AppendLine("门" + result.Door + "：功能状态：" + UseStr);
+                    sb.AppendLine(GetLanguage("Msg15") + result.Door + $"：{GetLanguage("Msg48")}：" + UseStr);
                     if (result.Use == 1)
                     {
-                        sb.AppendLine("；检测模式：" + DetectionModeStr);
+                        sb.AppendLine($"；{GetLanguage("Msg49")}：" + DetectionModeStr);
                     }
 
                     Invoke(() =>
@@ -1797,7 +2130,7 @@ namespace DoNetDrive.Protocol.Door.Test
             /*
             if (!cBoxDoor1.Checked && !cBoxDoor2.Checked && !cBoxDoor3.Checked && !cBoxDoor4.Checked)
             {
-                MsgErr("请勾选需要操作的门！");
+                MsgErr(GetLanguage("Msg19"));
                 return;
             }
             */
@@ -1864,18 +2197,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
         private void IniInvalidCardAlarmOptionUse()
         {
-            cmdInvalidCardAlarmOptionUse.Items.Clear();
-            cmdInvalidCardAlarmOptionUse.Items.AddRange(new string[] { "启用", "禁用" });
-            cmdInvalidCardAlarmOptionUse.SelectedIndex = 0;
 
-            cmbReadInvalidCardTime.Items.Clear();
-            string[] array = new string[256];
-            for (int i = 0; i < array.Length; i++)
-            {
-                array[i] = i.ToString();
-            }
-            cmbReadInvalidCardTime.Items.AddRange(array);
-            cmbReadInvalidCardTime.SelectedIndex = 0;
         }
 
         private void butReadInvalidCardAlarmOption_Click(object sender, EventArgs e)
@@ -1902,8 +2224,8 @@ namespace DoNetDrive.Protocol.Door.Test
                     cmdInvalidCardAlarmOptionUse.SelectedIndex = result.Use ? 0 : 1;
                     cmbReadInvalidCardTime.SelectedIndex = result.ReadInvalidCardTime;
                 });
-                string UseTip = result.Use ? "启用":"禁用";
-                mMainForm.AddCmdLog(cmde,$"命令成功：门号:{result.DoorNum},功能开关:{UseTip}");
+                string UseTip = result.Use ? GetLanguage("Msg6") : GetLanguage("Msg2");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("Msg7")}{result.DoorNum},{GetLanguage("Msg8")}:{UseTip}");
             };
         }
         private void ButWriteInvalidCardAlarmOption_Click(object sender, EventArgs e)
@@ -1928,7 +2250,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddLog($"命令成功：门号:{door},功能开关:{use}");
+                mMainForm.AddLog($"{GetLanguage("Msg7")}{door},{GetLanguage("Msg8")}:{use}");
             };
         }
         #endregion
@@ -2340,14 +2662,14 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (txtPassword.Text.Trim().Length < 4)
             {
-                MessageBox.Show("密码不能少于4位");
+                MessageBox.Show(GetLanguage("Msg50"));
                 return;
             }
             string pattern = @"\b(0[xX])?[A-Fa-f0-9]+\b";
             bool isHexNum = Regex.IsMatch(txtPassword.Text.Trim(), pattern);
             if (!isHexNum)
             {
-                MessageBox.Show("密码格式不正确");
+                MessageBox.Show(GetLanguage("Msg51"));
                 return;
             }
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
@@ -2403,13 +2725,13 @@ namespace DoNetDrive.Protocol.Door.Test
             bool isHexNum = Regex.IsMatch(txtIP.Text.Trim(), pattern);
             if (!isHexNum)
             {
-                MessageBox.Show("IP地址不正确");
+                MessageBox.Show(GetLanguage("Msg52"));
                 return;
             }
             ushort s = 0;
             if (!ushort.TryParse(txtPort.Text.Trim(), out s))
             {
-                MessageBox.Show("端口不正确");
+                MessageBox.Show(GetLanguage("Msg53"));
                 return;
             }
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
@@ -2480,19 +2802,19 @@ namespace DoNetDrive.Protocol.Door.Test
             bool isHexNum = Regex.IsMatch(txtInterLockSettingIP.Text.Trim(), pattern);
             if (!isHexNum)
             {
-                MessageBox.Show("IP地址不正确");
+                MessageBox.Show(GetLanguage("Msg52"));
                 return;
             }
             ushort s = 0;
             if (!ushort.TryParse(txtInterLockSettingPort.Text.Trim(), out s))
             {
-                MessageBox.Show("端口不正确");
+                MessageBox.Show(GetLanguage("Msg53"));
                 return;
             }
             int iOut = 0;
             if (!int.TryParse(txtAreaCode.Text.Trim(), out iOut))
             {
-                MessageBox.Show("区域代码不正确");
+                MessageBox.Show(GetLanguage("Msg54"));
                 return;
             }
             byte door = (byte)(cmdDoorNum.SelectedIndex + 1);
@@ -2562,12 +2884,12 @@ namespace DoNetDrive.Protocol.Door.Test
                     txtAGroupCount.Text = result.AGroupCount.ToString();
                     txtBGroupCount.Text = result.BGroupCount.ToString();
 
-                    if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
+                    if (cmbVerifyType.SelectedItem.ToString() == GetLanguage("Msg4"))
                     {
                         listGroupA = result.GroupA;
                         listGroupB = result.GroupB;
                     }
-                    else if (cmbVerifyType.SelectedItem.ToString() == "固定组合")
+                    else if (cmbVerifyType.SelectedItem.ToString() == GetLanguage("Msg3"))
                     {
                         listFix = result.GroupFix;
                     }
@@ -2613,16 +2935,16 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             byte bAcount = 0;
             byte bBcount = 0;
-            if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
+            if (cmbVerifyType.SelectedItem.ToString() == GetLanguage("Msg4"))
             {
                 if (!byte.TryParse(txtAGroupCount.Text, out bAcount))
                 {
-                    MessageBox.Show("A组数量不正确");
+                    MessageBox.Show(GetLanguage("Msg55"));
                     return;
                 }
                 if (!byte.TryParse(txtBGroupCount.Text, out bBcount))
                 {
-                    MessageBox.Show("B组数量不正确");
+                    MessageBox.Show(GetLanguage("Msg56"));
                     return;
                 }
             }
@@ -2667,9 +2989,10 @@ namespace DoNetDrive.Protocol.Door.Test
         #region 多卡开门验证方式
         private void CmbVerifyType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            plManyCardOpenVerify.Visible = cmbVerifyType.SelectedItem.ToString() == "AB组合";
-            plMutiCard.Visible = cmbVerifyType.SelectedItem.ToString() == "AB组合";
-            if (cmbVerifyType.SelectedItem.ToString() == "固定组合")
+            var ab = GetLanguage("Msg4");
+            plManyCardOpenVerify.Visible = cmbVerifyType.SelectedItem.ToString() == ab;
+            plMutiCard.Visible = cmbVerifyType.SelectedItem.ToString() == ab;
+            if (cmbVerifyType.SelectedItem.ToString() == GetLanguage("Msg3"))
             {
                 dataGridView5.Visible = true;
                 plMutiCard.Visible = true;
@@ -2692,7 +3015,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 dataGridView5.Visible = true;
             }
 
-            if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
+            if (cmbVerifyType.SelectedItem.ToString() == ab)
             {
                 dataGridView3.Visible = true;
                 dataGridView5.Visible = false;
@@ -2886,7 +3209,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //{
             //    return;
             //}
-            if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
+            if (cmbVerifyType.SelectedItem.ToString() == GetLanguage("Msg4"))
             {
                 if (cmbGroupType.SelectedIndex == 0)
                 {
@@ -2934,7 +3257,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 }
             }
 
-            if (cmbVerifyType.SelectedItem.ToString() == "固定组合")
+            if (cmbVerifyType.SelectedItem.ToString() == GetLanguage("Msg3"))
             {
                 dataGridView5.Rows.Clear();
                 //dataGridView3.DataSource = new BindingList<CardData>(listGroupA.Skip(cmbGroupNum.SelectedIndex * 50).Take(50).ToArray());
@@ -3032,7 +3355,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
         private void BtnDeleteGroup_Click(object sender, EventArgs e)
         {
-            if (cmbVerifyType.SelectedItem.ToString() == "AB组合")
+            if (cmbVerifyType.SelectedItem.ToString() == GetLanguage("Msg4"))
             {
                 if (cmbGroupType.SelectedIndex == 0)
                 {
@@ -3055,7 +3378,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     }
                 }
             }
-            else if (cmbVerifyType.SelectedItem.ToString() == "固定组合")
+            else if (cmbVerifyType.SelectedItem.ToString() == GetLanguage("Msg3"))
             {
                 for (int i = 0; i < listFix.Count; i++)
                 {
@@ -3127,8 +3450,8 @@ namespace DoNetDrive.Protocol.Door.Test
                 {
                     cbReaderAlarmUse.Checked = result.Use == 1;
                 });
-                string tip2 = result.Use == 1 ? "开" : "关";
-                mMainForm.AddCmdLog(cmde, $"命令成功：端口{door}，功能开关：{result.Use}、{tip2}");
+                string tip2 = result.Use == 1 ? GetLanguage("Msg57") : GetLanguage("Msg58");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("Msg59")}{door}，{GetLanguage("Msg8")}：{result.Use}、{tip2}");
             };
         }
 
@@ -3203,7 +3526,7 @@ namespace DoNetDrive.Protocol.Door.Test
             }
             else
             {
-                MsgErr("请输入IP地址！");
+                MsgErr(GetLanguage("Msg60"));
                 return;
             }
 
@@ -3220,7 +3543,7 @@ namespace DoNetDrive.Protocol.Door.Test
             }
             else
             {
-                MsgErr("请输入IP地址！");
+                MsgErr(GetLanguage("Msg60"));
                 return;
             }
 
@@ -3236,6 +3559,9 @@ namespace DoNetDrive.Protocol.Door.Test
             };
         }
 
+        private void groupBox14_Enter(object sender, EventArgs e)
+        {
 
+        }
     }
 }

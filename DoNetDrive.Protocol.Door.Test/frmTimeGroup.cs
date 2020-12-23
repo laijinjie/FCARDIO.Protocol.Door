@@ -44,17 +44,45 @@ namespace DoNetDrive.Protocol.Door.Test
             InitializeComponent();
             mMainForm = main;
         }
-
-        private void frmTimeGroup_Load(object sender, EventArgs e)
+        public override void LoadUILanguage()
         {
+            base.LoadUILanguage();
+            GetLanguage(btnReadTimeGroup);
+            GetLanguage(btnAddTimeGroup);
+            GetLanguage(btnClearTimeGroup);
+            GetLanguage(groupBox1);
+            GetLanguage(label1);
+            GetLanguage(label2);
+            GetLanguage(label5);
+            GetLanguage(label7);
+            GetLanguage(label9);
+            GetLanguage(label11);
+            GetLanguage(label13);
+            GetLanguage(label15);
+            GetLanguage(label17);
+            GetLanguage(label3);
+            GetLanguage(label4);
+            GetLanguage(label6);
+            GetLanguage(label8);
+            GetLanguage(label10);
+            GetLanguage(label12);
+            GetLanguage(label14);
+            GetLanguage(label16);
+            GetLanguage(label18);
+            GetLanguage(btnFillNowTime);
             InitTimeGroup();
             InitWeekday();
+        }
+        private void frmTimeGroup_Load(object sender, EventArgs e)
+        {
+           
+            LoadUILanguage();
         }
 
         private void InitWeekday()
         {
             cbWeekday.Items.Clear();
-            cbWeekday.Items.AddRange(WeekdayList);
+            cbWeekday.Items.AddRange(GetLanguage("Weekday").Split(','));
             cbWeekday.SelectedIndex = 0;
         }
 
@@ -62,9 +90,10 @@ namespace DoNetDrive.Protocol.Door.Test
         public void InitTimeGroup()
         {
             string[] time = new string[64];
+            var timeGroup = GetLanguage("timeGroup");
             for (int i = 0; i < 64; i++)
             {
-                time[i] = "开门时段" + (i + 1).ToString();
+                time[i] = timeGroup + (i + 1).ToString();
             }
             cbTimeGroup.Items.Clear();
             cbTimeGroup.Items.AddRange(time);
@@ -99,12 +128,12 @@ namespace DoNetDrive.Protocol.Door.Test
 
                 BindTimeSegment();
                 //dataGridView1
-                string log = $"已读取到数量：{result.Count} ";
+                string log = $"{GetLanguage("msg1")}：{result.Count} ";
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
 
-        
+
 
         /// <summary>
         /// 
@@ -112,7 +141,7 @@ namespace DoNetDrive.Protocol.Door.Test
         /// <param name="timeSegmentIndex"></param>
         /// <param name="type"></param>
         /// <param name="dateTime"></param>
-        private void SetWeekTimeGroupValue(int timeSegmentIndex,int type, DateTime dateTime)
+        private void SetWeekTimeGroupValue(int timeSegmentIndex, int type, DateTime dateTime)
         {
             if (ListWeekTimeGroup.Count > cbTimeGroup.SelectedIndex)
             {
@@ -126,7 +155,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     ts.SetEndTime(dateTime.Hour, dateTime.Minute);
                 }
             }
-            
+
         }
 
 
@@ -198,12 +227,6 @@ namespace DoNetDrive.Protocol.Door.Test
             AddTimeGroup_Parameter par = new AddTimeGroup_Parameter(ListWeekTimeGroup);
             AddTimeGroup cmd = new AddTimeGroup(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-
-            };
         }
 
         /// <summary>
@@ -217,12 +240,6 @@ namespace DoNetDrive.Protocol.Door.Test
             if (cmdDtl == null) return;
             ClearTimeGroup cmd = new ClearTimeGroup(cmdDtl);
             mMainForm.AddCommand(cmd);
-
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功：");
-
-            };
         }
 
         /// <summary>
@@ -238,7 +255,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 var day = tg.GetItem(0);
                 SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
             }
-            
+
         }
 
         private void CbWeekday_SelectedIndexChanged(object sender, EventArgs e)
@@ -249,7 +266,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 var day = tg.GetItem(cbWeekday.SelectedIndex);
                 SetAllTimePicker(groupBox1, "beginTimePicker", "endTimePicker", day);
             }
-            
+
         }
 
         private void BeginTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -335,7 +352,7 @@ namespace DoNetDrive.Protocol.Door.Test
         private void BtnFillNowTime_Click(object sender, EventArgs e)
         {
             ListWeekTimeGroup.Clear();
-            
+
             //开门时段
             for (int x = 0; x < 64; x++)
             {
@@ -350,7 +367,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     {
                         DateTime dt = DateTime.Now;
                         //dt = dt.AddMinutes(-1);
-                        TimeSegment  segment = dayTimeGroup.GetItem(i);
+                        TimeSegment segment = dayTimeGroup.GetItem(i);
                         dt = dt.AddMinutes(i + 1);
                         segment.SetBeginTime(dt.Hour, dt.Minute);
                         dt = dt.AddMinutes(i + 1);
@@ -361,10 +378,10 @@ namespace DoNetDrive.Protocol.Door.Test
                         endTimePicker.Value = segment.GetEndTime();
                     }
                 }
-                
+
                 ListWeekTimeGroup.Add(weekTimeGroup);
             }
-            
+
         }
     }
 }

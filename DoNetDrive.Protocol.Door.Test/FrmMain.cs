@@ -2,8 +2,10 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -19,6 +21,7 @@ using DoNetDrive.Core.Connector.UDP;
 using DoNetDrive.Core.Extension;
 using DoNetDrive.Protocol.Door.Door8800.Door.ReaderOption;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.Watch;
+using DoNetDrive.Protocol.Door.Test.Language;
 using DoNetDrive.Protocol.Door8800;
 
 namespace DoNetDrive.Protocol.Door.Test
@@ -27,7 +30,7 @@ namespace DoNetDrive.Protocol.Door.Test
     {
         ConnectorAllocator mAllocator;
         ConnectorObserverHandler mObserver;
-        private static HashSet<Form> NodeForms;
+        private static HashSet<frmNodeForm> NodeForms;
         private static HashSet<string> Door89HSNTable;
         private static string[] TransactionTypeName;
 
@@ -48,8 +51,8 @@ namespace DoNetDrive.Protocol.Door.Test
 
         static frmMain()
         {
-            NodeForms = new HashSet<Form>();
-            IniCommandClassNameList();
+            NodeForms = new HashSet<frmNodeForm>();
+           
 
             Door89HSNTable = new HashSet<string>();
             Door89HSNTable.Add("FC-8910H");
@@ -61,17 +64,11 @@ namespace DoNetDrive.Protocol.Door.Test
             Door89HSNTable.Add("MC-5948T");
             Door89HSNTable.Add("MC-5926T");
 
-            TransactionTypeName = new string[7];
-            TransactionTypeName[1] = "读卡记录";
-            TransactionTypeName[2] = "出门开关记录";
-            TransactionTypeName[3] = "门磁记录";
-            TransactionTypeName[4] = "软件操作记录";
-            TransactionTypeName[5] = "报警记录";
-            TransactionTypeName[6] = "系统记录";
+            
 
         }
 
-        public static void AddNodeForms(Form frm)
+        public static void AddNodeForms(frmNodeForm frm)
         {
             if (!NodeForms.Contains(frm))
             {
@@ -133,15 +130,11 @@ namespace DoNetDrive.Protocol.Door.Test
             mObserver.DisposeResponseEvent += MObserver_DisposeResponseEvent; ;
 
             IniConnTypeList();
-            IniLstIO();
-            InilstCommand();
+           // IniLstIO();
+         //   InilstCommand();
 
             Task.Run((Action)ShowCommandProcesslog);
         }
-
-
-
-
         #region 通道事件
         /// <summary>
         /// 客户端离线
@@ -192,14 +185,14 @@ namespace DoNetDrive.Protocol.Door.Test
         private void MObserver_DisposeResponseEvent(INConnector connector, string msg)
         {
             if (!mShowIOEvent) return;
-            AddIOLog(connector.GetConnectorDetail(), "发送数据", msg);
+            AddIOLog(connector.GetConnectorDetail(), GetLanguage("Msg1"), msg);
         }
 
 
         private void MObserver_DisposeRequestEvent(INConnector connector, string msg)
         {
             if (!mShowIOEvent) return;
-            AddIOLog(connector.GetConnectorDetail(), "接收数据", msg);
+            AddIOLog(connector.GetConnectorDetail(), GetLanguage("Msg2"), msg);
         }
 
         private void mAllocator_ConnectorErrorEvent(object sender, Core.Connector.INConnectorDetail connector)
@@ -208,14 +201,14 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 case ConnectorType.UDPServer://UDP服务器
                     Invoke(() => UDPBindOver(false));
-                    AddIOLog(connector, "UDP绑定", "UDP绑定失败");
+                    AddIOLog(connector, GetLanguage("Msg3"), GetLanguage("Msg4"));
                     break;
                 case ConnectorType.TCPServer://TCP Server 服务器
                     Invoke(() => TCPServerBindOver(false));
-                    AddIOLog(connector, "TCP服务", "TCP服务器开启失败");
+                    AddIOLog(connector, GetLanguage("Msg5"), GetLanguage("Msg6"));
                     break;
                 default:
-                    AddIOLog(connector, "错误", "连接失败");
+                    AddIOLog(connector, GetLanguage("Msg7"), GetLanguage("Msg8"));
                     break;
             }
         }
@@ -226,14 +219,14 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 case ConnectorType.UDPServer://UDP服务器
                     Invoke(() => UDPBindOver(false));
-                    AddIOLog(connector, "UDP绑定", "UDP绑定已关闭");
+                    AddIOLog(connector, GetLanguage("Msg3"), GetLanguage("Msg9"));
                     break;
                 case ConnectorType.TCPServer://TCP Server 服务器
                     Invoke(() => TCPServerBindOver(false));
-                    AddIOLog(connector, "TCP服务", "TCP服务已关闭");
+                    AddIOLog(connector, GetLanguage("Msg5"), GetLanguage("Msg10"));
                     break;
                 default:
-                    AddIOLog(connector, "关闭", "连接通道已关闭");
+                    AddIOLog(connector, GetLanguage("Msg11"), GetLanguage("Msg12"));
                     break;
             }
         }
@@ -244,16 +237,16 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 case ConnectorType.UDPServer://UDP服务器
                     Invoke(() => UDPBindOver(true));
-                    AddIOLog(connector, "UDP绑定", "UDP绑定成功");
+                    AddIOLog(connector, GetLanguage("Msg3"), GetLanguage("Msg13"));
                     break;
                 case ConnectorType.TCPServer://TCP Server 服务器
                     Invoke(() => TCPServerBindOver(true));
-                    AddIOLog(connector, "TCP服务", "TCP服务已启动");
+                    AddIOLog(connector, GetLanguage("Msg5"), GetLanguage("Msg14"));
                     break;
                 default:
                     mAllocator.GetConnector(connector).AddRequestHandle(mObserver);
 
-                    AddIOLog(connector, "成功", "通道连接成功");
+                    AddIOLog(connector, GetLanguage("Msg15"), GetLanguage("Msg16"));
                     break;
             }
         }
@@ -263,23 +256,23 @@ namespace DoNetDrive.Protocol.Door.Test
         #region 命令事件
         private void MAllocator_AuthenticationErrorEvent(object sender, CommandEventArgs e)
         {
-            AddCmdLog(e, "通讯密码错误");
+            AddCmdLog(e, GetLanguage("Msg17"));
         }
 
         private void mAllocator_CommandTimeout(object sender, CommandEventArgs e)
         {
             if (e.Command.GetType().FullName == typeof(Door8800.SystemParameter.SearchControltor.SearchControltor).FullName)
             {
-                AddCmdLog(e, "搜索完毕");
+                AddCmdLog(e, GetLanguage("Msg18"));
                 return;
             }
-            AddCmdLog(e, "命令超时");
+            AddCmdLog(e, GetLanguage("Msg19"));
         }
 
 
         private void mAllocator_CommandErrorEvent(object sender, CommandEventArgs e)
         {
-            AddCmdLog(e, "命令错误");
+            AddCmdLog(e, GetLanguage("Msg20"));
         }
 
 
@@ -297,7 +290,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 return;
             }
             mAllocator_CommandProcessEvent(sender, e);
-            AddCmdLog(e, "命令完成");
+            AddCmdLog(e, GetLanguage("Msg21"));
             string cName = e.Command.GetType().FullName;
 
             switch (cName)
@@ -378,7 +371,7 @@ namespace DoNetDrive.Protocol.Door.Test
             }
 
 
-            string sLog = $"{sName} 已耗时：{time:0},进度：{cmd.getProcessStep()} / {cmd.getProcessMax()}";
+            string sLog = $"{sName}{GetLanguage("Msg22")}{time:0},{GetLanguage("Msg23")}{cmd.getProcessStep()} / {cmd.getProcessMax()}";
             mCommandProcessLog = sLog;
         }
 
@@ -395,21 +388,21 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             string Local, Remote, cType;
             GetConnectorDetail(conn, out cType, out Local, out Remote);
-            string ret = $"通道类型：{cType} 本地IP：{Local} ,远端IP：{Remote}";
+            string ret = $"{GetLanguage("Msg24")}{cType} {GetLanguage("Msg25")}{Local} ,{GetLanguage("Msg26")}{Remote}";
 
             switch (conn.GetTypeName())
             {
                 case ConnectorType.UDPServer:
-                    ret = $"通道类型：{cType}  本地绑定IP：{Local}";
+                    ret = $"{GetLanguage("Msg24")}{cType} {GetLanguage("Msg27")}{Local}";
                     break;
                 case ConnectorType.TCPServer:
-                    ret = $"通道类型：{cType} 本地绑定IP：{Local}";
+                    ret = $"{GetLanguage("Msg24")}{cType} {GetLanguage("Msg27")}{Local}";
                     break;
                 case ConnectorType.SerialPort:
-                    ret = $"通道类型：{cType} {Local}";
+                    ret = $"{GetLanguage("Msg24")}{cType} {Local}";
                     break;
                 default:
-                    ret = $"通道类型：{cType} {Local}";
+                    ret = $"{GetLanguage("Msg24")}{cType} {Local}";
                     break;
             }
 
@@ -440,32 +433,32 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 case ConnectorType.TCPClient:
                     var tcpclient = conn as TCPClientDetail;
-                    cType = "TCP客户端";
+                    cType = GetLanguage("Msg28");
                     Local = $"{local.ToString()}";
                     Remote = $"{tcpclient.Addr}:{tcpclient.Port}";
                     break;
                 case ConnectorType.TCPServerClient:
-                    cType = "TCP客户端节点";
+                    cType = GetLanguage("Msg29");
                     var tcpclientOnly = conn as TCPServerClientDetail;
                     Local = $"{local.ToString()}";
                     Remote = $"{tcpclientOnly.Remote.ToString()}";
                     break;
                 case ConnectorType.UDPClient:
-                    cType = "UDP客户端";
+                    cType = GetLanguage("Msg30");
                     var udpOnly = conn as TCPClientDetail;
                     Local = $"{local.ToString()}";
                     Remote = $"{udpOnly.Addr}:{udpOnly.Port}";
                     break;
                 case ConnectorType.UDPServer:
-                    cType = "UDP服务器";
+                    cType = GetLanguage("Msg31");
                     Local = $"{local.ToString()}";
                     break;
                 case ConnectorType.TCPServer:
-                    cType = "TCP服务器";
+                    cType = GetLanguage("Msg32");
                     Local = $"{local.ToString()}";
                     break;
                 case ConnectorType.SerialPort:
-                    cType = "串口";
+                    cType = GetLanguage("Msg33");
                     var com = conn as Core.Connector.SerialPort.SerialPortDetail;
                     Local = $"COM{local.Port}:{com.Baudrate}";
                     break;
@@ -574,7 +567,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 case 0://串口
                     if (cmbSerialPort.SelectedIndex == -1)
                     {
-                        MsgTip("请先选择一个串口号！");
+                        MsgTip(GetLanguage("Msg35"));
                         return null;
                     }
                     connectType = CommandDetailFactory.ConnectType.SerialPort;
@@ -592,7 +585,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 case 2://UDP 
                     if (!mUDPIsBind)
                     {
-                        MsgErr("请先绑定UDP端口");
+                        MsgErr(GetLanguage("Msg36"));
                         return null;
                     }
                     connectType = CommandDetailFactory.ConnectType.UDPClient;
@@ -605,14 +598,14 @@ namespace DoNetDrive.Protocol.Door.Test
                 case 3://TCP服务器
                     if (!mTCPServerBind)
                     {
-                        MsgErr("请先开启TCP服务");
+                        MsgErr(GetLanguage("Msg37"));
                         return null;
                     }
 
                     connectType = CommandDetailFactory.ConnectType.TCPServerClient;
                     if (cmbTCPClient.SelectedItem == null)
                     {
-                        MsgErr("请选择一个TCP客户端！");
+                        MsgErr(GetLanguage("Msg38"));
                         return null;
                     }
                     TCPServerClientDetail_Item oItem = cmbTCPClient.SelectedItem as TCPServerClientDetail_Item;
@@ -692,7 +685,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             var cols = lstIO.Columns;
             cols.Clear();
-            var sCaptions = "标签,内容,类型,远程信息,本地信息,时间".SplitTrim(",");
+            var sCaptions = GetLanguage("lstIO").SplitTrim(",");
             var iWidths = new int[] { 60, 260, 90, 125, 125, 100 };
             for (int i = 0; i < sCaptions.Length; i++)
             {
@@ -922,7 +915,7 @@ namespace DoNetDrive.Protocol.Door.Test
         /// <summary>
         /// 保存命令类型的功能名称
         /// </summary>
-        private static Dictionary<string, string> mCommandClasss;
+        private  Dictionary<string, string> mCommandClasss;
 
         /// <summary>
         /// 协议类型
@@ -931,7 +924,7 @@ namespace DoNetDrive.Protocol.Door.Test
         /// <summary>
         /// 初始化命令类型的功能名称
         /// </summary>
-        private static void IniCommandClassNameList()
+        private  void IniCommandClassNameList()
         {
             mCommandClasss = new Dictionary<string, string>();
 
@@ -1171,11 +1164,15 @@ namespace DoNetDrive.Protocol.Door.Test
 
             mCommandClasss.Add(typeof(Door89H.Transaction.ReadTransactionDatabaseByIndex).FullName, "按指定序号读记录");
 
-
+            var newDic = new Dictionary<string, string>();
+            foreach (var item in mCommandClasss.Keys)
+            {
+                int index = item.LastIndexOf('.') + 1;
+                string name = item.Substring(index);
+                newDic.Add(item, GetLanguage(name));
+            }
+            mCommandClasss = newDic;
         }
-
-
-
         #region 串口管理
 
 
@@ -1213,14 +1210,14 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!txtUDPLocalPort.Text.IsNum())
             {
-                MsgErr("端口号不正确！");
+                MsgErr($"{GetLanguage("Msg38")}！");
                 return;
             }
             int port = txtUDPLocalPort.Text.ToInt32();
             string sLocalIP = cmbLocalIP.SelectedItem?.ToString();
             if (string.IsNullOrEmpty(sLocalIP))
             {
-                MsgErr("没有绑定本地IP！");
+                MsgErr($"{GetLanguage("Msg39")}！");
                 return;
             }
 
@@ -1230,7 +1227,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 //关闭UDP服务器
                 mAllocator.CloseConnector(detail);
-                butUDPBind.Text = "开启服务";
+                butUDPBind.Text = GetLanguage("Msg40");
                 mUDPIsBind = false;
                 txtUDPLocalPort.Enabled = true;
                 cmbLocalIP.Enabled = true;
@@ -1258,7 +1255,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (bind)
             {
-                butUDPBind.Text = "关闭服务";
+                butUDPBind.Text = GetLanguage("Msg41");
             }
             else
             {
@@ -1277,11 +1274,12 @@ namespace DoNetDrive.Protocol.Door.Test
         /// </summary>
         private void IniConnTypeList()
         {
-            cmdConnType.Items.AddRange("串口,TCP客户端,UDP,TCP服务器".SplitTrim(","));
-            cmdConnType.SelectedIndex = 1;
-            ShowConnTypePanel();
 
+         
 
+            string sLanguage = ConfigurationManager.AppSettings["Languages"];
+            cmbToolLanguage.Items.AddRange(sLanguage.SplitTrim(","));
+            cmbToolLanguage.SelectedIndex = 0;
 
             mProtocolTypeTable[0] = CommandDetailFactory.ControllerType.Door58;
             mProtocolTypeTable[1] = CommandDetailFactory.ControllerType.Door88;
@@ -1361,12 +1359,12 @@ namespace DoNetDrive.Protocol.Door.Test
         #region 提示框
         public void MsgTip(string sText)
         {
-            MessageBox.Show(sText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(sText, GetLanguage("Msg42"), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void MsgErr(string sText)
         {
-            MessageBox.Show(sText, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(sText, GetLanguage("Msg7"), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
 
@@ -1417,7 +1415,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 if (string.IsNullOrEmpty(SN))
                 {
-                    return $"远程:{Remote.Addr}:{Remote.Port}";
+                    return $"{Remote.Addr}:{Remote.Port}";
                 }
                 else
                 {
@@ -1431,14 +1429,14 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!txtServerPort.Text.IsNum())
             {
-                MsgErr("端口号不正确！");
+                MsgErr(GetLanguage("Msg38")+"！");
                 return;
             }
             int port = txtServerPort.Text.ToInt32();
             string sLocalIP = cmbLocalIP.SelectedItem?.ToString();
             if (string.IsNullOrEmpty(sLocalIP))
             {
-                MsgErr("没有绑定本地IP！");
+                MsgErr(GetLanguage("Msg39") + "！");
                 return;
             }
 
@@ -1447,7 +1445,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 //关闭UDP服务器
                 mAllocator.CloseConnector(detail);
-                butBeginTCPServer.Text = "开启服务";
+                butBeginTCPServer.Text = GetLanguage("Msg40");
                 mTCPServerBind = false;
                 txtServerPort.Enabled = true;
                 cmbLocalIP.Enabled = true;
@@ -1477,7 +1475,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (bind)
             {
-                butBeginTCPServer.Text = "关闭服务";
+                butBeginTCPServer.Text = GetLanguage("Msg41");
             }
             else
             {
@@ -1499,7 +1497,7 @@ namespace DoNetDrive.Protocol.Door.Test
             TCPServerClientDetail_Item oItem = cmbTCPClient.SelectedItem as TCPServerClientDetail_Item;
             if (oItem == null)
             {
-                MsgErr("请选择一个客户端！");
+                MsgErr($"{GetLanguage("Msg44")}！");
                 return;
             }
 
@@ -1526,7 +1524,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmbTCPClient.SelectedIndex = cmbTCPClient.Items.Count - 1;
             TCPServerClients.Add(oItem.Key, oItem);
 
-            AddIOLog(detail, "上线", "TCP 客户端已上线");
+            AddIOLog(detail, GetLanguage("Msg45"), GetLanguage("Msg46"));
         }
 
         /// <summary>
@@ -1548,7 +1546,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmbTCPClient.Items.Remove(oItem);
             cmbTCPClient.SelectedIndex = cmbTCPClient.Items.Count - 1;
             TCPServerClients.Remove(oItem.Key);
-            AddIOLog(detail, "离线", "TCP 客户端已离线");
+            AddIOLog(detail, GetLanguage("Msg47"), GetLanguage("Msg48"));
         }
 
         #endregion
@@ -1562,7 +1560,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             var cols = lstCommand.Columns;
             cols.Clear();
-            var sCaptions = "类型,内容,身份信息,远程信息,时间,耗时".SplitTrim(",");
+            var sCaptions = GetLanguage("lstCommand").SplitTrim(",");
             var iWidths = new int[] { 100, 300, 120, 125, 100, 80 };
             for (int i = 0; i < sCaptions.Length; i++)
             {
@@ -1682,7 +1680,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                AddCmdLog(cmde, "已开启监控");
+                AddCmdLog(cmde, GetLanguage("Msg49"));
             };
 
             //使通道保持连接不关闭
@@ -1747,8 +1745,8 @@ namespace DoNetDrive.Protocol.Door.Test
             Door8800Transaction fcTrn = EventData as Door8800Transaction;
             StringBuilder strbuf = new StringBuilder();
             var evn = fcTrn.EventData;
-            strbuf.Append("SN:").Append(fcTrn.SN).Append("；消息类型：").Append(TransactionTypeName[fcTrn.CmdIndex]).Append("；时间：").Append(fcTrn.EventData.TransactionDate.ToDateTimeStr());
-            strbuf.Append("；事件代码：").Append(evn.TransactionCode);
+            strbuf.Append("SN:").Append(fcTrn.SN).Append($"；{GetLanguage("Msg50")}：").Append(TransactionTypeName[fcTrn.CmdIndex]).Append($"；{GetLanguage("Msg51")}：").Append(fcTrn.EventData.TransactionDate.ToDateTimeStr());
+            strbuf.Append($"；{GetLanguage("Msg52")}：").Append(evn.TransactionCode);
             if (evn.TransactionType < 7)//1-6
             {
                 string[] codeNameList = frmRecord.mTransactionCodeNameList[evn.TransactionType];
@@ -1758,13 +1756,13 @@ namespace DoNetDrive.Protocol.Door.Test
             if (fcTrn.CmdIndex == 1)
             {
                 Door8800.Data.CardTransaction cardtrn = evn as Door8800.Data.CardTransaction;
-                strbuf.Append("；卡号：").Append(cardtrn.CardData).Append("；门号：").Append(cardtrn.DoorNum().ToString());
-                strbuf.Append(cardtrn.IsEnter() ? "(进门)" : "(出门)");
+                strbuf.Append($"；{GetLanguage("Msg53")}：").Append(cardtrn.CardData).Append($"；{GetLanguage("Msg54")}：").Append(cardtrn.DoorNum().ToString());
+                strbuf.Append(cardtrn.IsEnter() ? $"({GetLanguage("Msg55")})" : $"({GetLanguage("Msg56")})");
             }
             if (fcTrn.CmdIndex > 1 && fcTrn.CmdIndex < 6)
             {
                 Door8800.Data.AbstractDoorTransaction cardtrn = evn as Door8800.Data.AbstractDoorTransaction;
-                strbuf.Append("；门号：").Append(cardtrn.Door);
+                strbuf.Append($"；{GetLanguage("Msg54")}：").Append(cardtrn.Door);
             }
             AddCmdLog(null, strbuf.ToString());
         }
@@ -1778,10 +1776,10 @@ namespace DoNetDrive.Protocol.Door.Test
             var cmdDtl = GetCommandDetail();
             if (cmdDtl == null) return;
 
-           
 
 
-            var par = new DoNetDrive.Protocol.Door.Door8800.SystemParameter.SearchControltor.SearchControltor_Parameter((ushort)DoNetDrive.Protocol.Door.Door8800.Utility.StringUtility.GetRandomNum( 1,  65535));
+
+            var par = new DoNetDrive.Protocol.Door.Door8800.SystemParameter.SearchControltor.SearchControltor_Parameter((ushort)DoNetDrive.Protocol.Door.Door8800.Utility.StringUtility.GetRandomNum(1, 65535));
 
             if (cmdConnType.SelectedIndex == 2 && chkUDPBroadcast.Checked)//UDP 
             {
@@ -1797,8 +1795,150 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmde.Result as Door8800.SystemParameter.SearchControltor.SearchControltor_Result;
-                AddCmdLog(cmde, $"已搜索到设备,SN={result.SN},IP:{result.TCP.mIP}:{result.TCP.mTCPPort}");
+                AddCmdLog(cmde, $"{GetLanguage("Msg57")},SN={result.SN},IP:{result.TCP.mIP}:{result.TCP.mTCPPort}");
             };
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            mAllocator.StopCommand(GetCommandDetail());
+        }
+
+
+        #region 多语言
+
+        private string GetLanguage(string sKey)
+        {
+            return ToolLanguage.GetLanguage(Name, sKey);
+        }
+        private string GetLanguage(string sKey, params object[] args)
+        {
+            string str = ToolLanguage.GetLanguage(Name, sKey);
+            return string.Format(str, args);
+        }
+
+
+        private void GetLanguage(ToolStripItem ctr)
+        {
+            ctr.Text = ToolLanguage.GetLanguage(Name, ctr.Name);
+        }
+        private void GetLanguage(Control ctr)
+        {
+            ctr.Text = ToolLanguage.GetLanguage(Name, ctr.Name);
+        }
+        private void GetLanguage(DataGridView dg)
+        {
+            string sCols = GetLanguage($"{dg.Name}_Cols");
+            var sArr = sCols.SplitTrim(",");
+            var cols = dg.Columns;
+            for (int i = 0; i < cols.Count; i++)
+            {
+                var col = cols[i];
+                col.HeaderText = sArr[i];
+            }
+
+        }
+
+
+        private void LoadComboxItemsLanguage(ComboBox cbx, string sKey)
+        {
+            int iOldSelectIndex = cbx.SelectedIndex;
+            cbx.Items.Clear();
+            string sItems = GetLanguage(sKey);
+            if (string.IsNullOrEmpty(sItems))
+                return;
+
+            string[] sArr = sItems.SplitTrim(",");
+            cbx.Items.AddRange(sArr);
+            if (cbx.Items.Count > iOldSelectIndex)
+            {
+                cbx.SelectedIndex = iOldSelectIndex;
+            }
+            else
+            {
+                cbx.SelectedIndex = 0;
+            }
+        }
+
+        private void LoadUILanguage()
+        {
+            IniCommandClassNameList();
+            Text = GetLanguage("FormCaption") + "  Ver " + Application.ProductVersion;
+            GetLanguage(butSystem);
+            GetLanguage(butTime);
+            GetLanguage(butDoor);
+            GetLanguage(butHoliday);
+            GetLanguage(ButPassword);
+            GetLanguage(ButTimeGroup);
+            GetLanguage(butCard);
+            GetLanguage(butRecord);
+            GetLanguage(butUploadSoftware);
+            GetLanguage(Lba_ConnType);
+            GetLanguage(Lba_ProtocolType);
+            GetLanguage(gbTCPClient);
+            GetLanguage(gp_controller);
+            GetLanguage(Lab_TCPClientPort);
+            GetLanguage(Lab_Password);
+            GetLanguage(gbServer);
+            GetLanguage(Lab_ServerPort);
+            GetLanguage(butBeginTCPServer);
+            GetLanguage(butCloseTCPClient);
+            GetLanguage(Lab_TCPClient);
+            GetLanguage(gbSerialPort);
+            GetLanguage(Lba_SerialPort);
+            GetLanguage(butReloadSerialPort);
+            GetLanguage(Lba_UDPLocalPort);
+            GetLanguage(butUDPBind);
+            GetLanguage(chkUDPBroadcast);
+            GetLanguage(Lab_UDPPort);
+            GetLanguage(tabPage1);
+            GetLanguage(tabPage2);
+            GetLanguage(butClear);
+            GetLanguage(butClearCommand);
+            GetLanguage(chkShowIO);
+            GetLanguage(lblLocalAddress);
+            GetLanguage(button2);
+            GetLanguage(butSearch);
+            GetLanguage(butWatch);
+            GetLanguage(Lab_Process);
+            cmdConnType.Items.Clear();
+            cmdConnType.Items.AddRange(GetLanguage("cmdConnType").SplitTrim(","));
+            cmdConnType.SelectedIndex = 0;
+            ShowConnTypePanel();
+            var tTypeName = GetLanguage("TransactionTypeName").Split(',');
+            TransactionTypeName = new string[7];
+            for (int i = 0; i < tTypeName.Length; i++)
+            {
+                TransactionTypeName[i + 1] = tTypeName[i];
+            }
+            InilstCommand();
+            IniLstIO();
+            //TransactionTypeName[1] = "读卡记录";
+            //TransactionTypeName[2] = "出门开关记录";
+            //TransactionTypeName[3] = "门磁记录";
+            //TransactionTypeName[4] = "软件操作记录";
+            //TransactionTypeName[5] = "报警记录";
+            //TransactionTypeName[6] = "系统记录";
+
+            foreach (var frm in NodeForms)
+            {
+                frm.LoadUILanguage();
+            }
+        }
+        private void cmbToolLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadLanguage();
+        }
+
+        private void LoadLanguage()
+        {
+            var sFile = cmbToolLanguage.Text;
+            sFile = ConfigurationManager.AppSettings[$"Language_{sFile}"];
+            sFile = Path.Combine(Application.StartupPath, sFile);
+            if (File.Exists(sFile))
+                ToolLanguage.LoadLanguage(sFile);
+            LoadUILanguage();
+        }
+        #endregion
     }
 }

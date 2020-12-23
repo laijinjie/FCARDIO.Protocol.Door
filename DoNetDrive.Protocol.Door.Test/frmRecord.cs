@@ -195,16 +195,58 @@ namespace DoNetDrive.Protocol.Door.Test
             InitializeComponent();
             mMainForm = main;
         }
-
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(groupBox1);
+            GetLanguage(label7);
+            GetLanguage(label11);
+            GetLanguage(label10);
+            GetLanguage(label8);
+            GetLanguage(label9);
+            GetLanguage(label1);
+            GetLanguage(label6);
+            GetLanguage(label5);
+            GetLanguage(label4);
+            GetLanguage(label3);
+            GetLanguage(label2);
+            GetLanguage(butTransactionDatabaseDetail);
+            GetLanguage(groupBox2);
+            GetLanguage(label12);
+            GetLanguage(label13);
+            GetLanguage(label14);
+            GetLanguage(label15);
+            GetLanguage(cbIsCircle);
+            GetLanguage(butTransactionDatabaseWriteIndex);
+            GetLanguage(butTransactionDatabaseReadIndex);
+            GetLanguage(groupBox3);
+            GetLanguage(label17);
+            GetLanguage(label16);
+            GetLanguage(button4);
+            GetLanguage(butClearTransactionDatabase);
+            GetLanguage(groupBox4);
+            GetLanguage(label20);
+            GetLanguage(label19);
+            GetLanguage(label18);
+            GetLanguage(butTransactionDatabaseByIndex);
+            GetLanguage(label22);
+            GetLanguage(label23);
+            GetLanguage(btnReadTransactionDatabase);
+            GetLanguage(groupBox5);
+            GetLanguage(label21);
+            GetLanguage(button9);
+            GetLanguage(butClearAllTransactionDatabase);
+            e_TransactionDatabaseType();
+        }
         private void frmRecord_Load(object sender, EventArgs e)
         {
-            e_TransactionDatabaseType();
+            LoadUILanguage();
         }
 
         #region 记录类型
         public void e_TransactionDatabaseType()
         {
-            string[] array = new string[6] { "读卡记录", "按钮记录", "门磁记录", "远程记录", "报警记录", "系统记录" };
+            string[] array = GetLanguage("TransactionDatabaseType").Split(',');
             cboe_TransactionDatabaseType1.Items.Clear();
             cboe_TransactionDatabaseType1.Items.AddRange(array);
             cboe_TransactionDatabaseType1.SelectedIndex = 0;
@@ -227,10 +269,6 @@ namespace DoNetDrive.Protocol.Door.Test
             var par = new Door8800.Transaction.ClearTransactionDatabase_Parameter();
             var cmd = new Door8800.Transaction.ClearTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
         }
         #endregion
 
@@ -273,10 +311,7 @@ namespace DoNetDrive.Protocol.Door.Test
             var par = new Door8800.Transaction.WriteTransactionDatabaseWriteIndex_Parameter(Gete_TransactionDatabaseType(type), WriteIndex);
             var cmd = new Door8800.Transaction.WriteTransactionDatabaseWriteIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
+
         }
         #endregion
 
@@ -290,10 +325,7 @@ namespace DoNetDrive.Protocol.Door.Test
             var par = new Door8800.Transaction.WriteTransactionDatabaseReadIndex_Parameter(Gete_TransactionDatabaseType(type), ReadIndex, IsCircle);
             var cmd = new Door8800.Transaction.WriteTransactionDatabaseReadIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
+
         }
 
         private void BtnReadTransactionDatabase_Click(object sender, EventArgs e)
@@ -332,13 +364,13 @@ namespace DoNetDrive.Protocol.Door.Test
             {
 
                 var result = cmde.Command.getResult() as Door8800.Transaction.ReadTransactionDatabase_Result;
-                mMainForm.AddCmdLog(cmde, $"读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count},剩余新记录数：{result.readable}");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("msg1")}：{result.Quantity},{GetLanguage("msg2")}：{result.TransactionList.Count},{GetLanguage("msg3")}：{result.readable}");
 
                 if (result.TransactionList.Count > 0)
                 {
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
-                    sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
-                    sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
+                    sLogs.AppendLine($"{GetLanguage("msg4")}：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
+                    sLogs.Append(GetLanguage("msg5")+"：").Append(result.Quantity).Append($"；{GetLanguage("msg6")}：").Append(result.TransactionList.Count).Append($"；{GetLanguage("msg3")}：").Append(result.readable).AppendLine();
 
                     //按序号排序
                     result.TransactionList.Sort((x, y) => x.SerialNumber.CompareTo(y.SerialNumber));
@@ -346,8 +378,8 @@ namespace DoNetDrive.Protocol.Door.Test
                     {
                         PrintTransactionList(t, sLogs);
                     }
-                    string sFile = SaveFile(sLogs, $"读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
-                    mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
+                    string sFile = SaveFile(sLogs, $"{GetLanguage("msg7")}{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmde, $"{GetLanguage("msg8")}：{sFile}");
                 }
             };
         }
@@ -379,22 +411,22 @@ namespace DoNetDrive.Protocol.Door.Test
             {
 
                 var result = cmde.Command.getResult() as Door8800.Transaction.ReadTransactionDatabaseByIndex_Result;
-                mMainForm.AddCmdLog(cmde, $"按序号读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count}");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("msg1")}：{result.Quantity},{GetLanguage("msg2")}：{result.TransactionList.Count}");
 
                 if (result.TransactionList.Count > 0)
                 {
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
-                    sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
-                    sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).AppendLine();
+                    sLogs.AppendLine($"{GetLanguage("msg4")}：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
+                    sLogs.Append(GetLanguage("msg5")+"：").Append(result.Quantity).Append($"；{GetLanguage("msg6")}：").Append(result.TransactionList.Count).AppendLine();
 
                     foreach (var t in result.TransactionList)
                     {
 
                         PrintTransactionList(t, sLogs);
                     }
-                    string sFile = SaveFile(sLogs, $"按序号读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    string sFile = SaveFile(sLogs, $"{GetLanguage("msg9")}{DateTime.Now:yyyyMMddHHmmss}.txt");
 
-                    mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
+                    mMainForm.AddCmdLog(cmde, $"{GetLanguage("msg8")}：{sFile}");
 
                 }
             };
@@ -405,13 +437,13 @@ namespace DoNetDrive.Protocol.Door.Test
 
         }
 
-        public static string SaveFile(StringBuilder sLogs, string sFileName)
+        public  string SaveFile(StringBuilder sLogs, string sFileName)
         {
-            string sPath = System.IO.Path.Combine(Application.StartupPath, "记录日志");
+            string sPath = System.IO.Path.Combine(Application.StartupPath, GetLanguage("msg10"));
             if (!System.IO.Directory.Exists(sPath))
                 System.IO.Directory.CreateDirectory(sPath);
 
-            string sFile = System.IO.Path.Combine(sPath, $"按序号读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
+            string sFile = System.IO.Path.Combine(sPath, $"{GetLanguage("msg9")}{DateTime.Now:yyyyMMddHHmmss}.txt");
 
             System.IO.File.WriteAllText(sFile, sLogs.ToString(), Encoding.UTF8);
             return sFile;
@@ -420,14 +452,14 @@ namespace DoNetDrive.Protocol.Door.Test
         private void PrintTransactionList(AbstractTransaction tr, StringBuilder sLogs)
         {
 
-            sLogs.Append("序号：").Append(tr.SerialNumber.ToString());
-            if(tr.IsNull())
+            sLogs.Append(GetLanguage("msg11") +"：").Append(tr.SerialNumber.ToString());
+            if (tr.IsNull())
             {
-                sLogs.AppendLine(" --- 空记录");
+                sLogs.AppendLine(" --- "+ GetLanguage("msg12"));
                 return;
             }
-            sLogs.Append("，时间：").Append(tr.TransactionDate.ToDateTimeStr());
-            sLogs.Append("，事件代码：").Append(tr.TransactionCode);
+            sLogs.Append($"，{GetLanguage("msg13")}：").Append(tr.TransactionDate.ToDateTimeStr());
+            sLogs.Append($"，{GetLanguage("msg14")}：").Append(tr.TransactionCode);
             if (tr.TransactionType < 7)//1-6
             {
                 string[] codeNameList = mTransactionCodeNameList[tr.TransactionType];
@@ -436,14 +468,14 @@ namespace DoNetDrive.Protocol.Door.Test
             if (tr.TransactionType == 1)//读卡记录
             {
                 CardTransaction cardTrans = tr as CardTransaction;
-                sLogs.Append("卡号：").Append(cardTrans.CardData).Append("，门号：").Append(cardTrans.DoorNum()).Append("，出入：").AppendLine(cardTrans.IsEnter() ? "进门" : "出门");
+                sLogs.Append(GetLanguage("msg15")+"：").Append(cardTrans.CardData).Append($"，{GetLanguage("msg16")}：").Append(cardTrans.DoorNum()).Append($"，{GetLanguage("msg17")}：").AppendLine(cardTrans.IsEnter() ? GetLanguage("msg18") : GetLanguage("msg18"));
             }
             else
             {
                 if (tr.TransactionType >= 2 && tr.TransactionType <= 2)
                 {
                     AbstractDoorTransaction doorTr = tr as AbstractDoorTransaction;
-                    sLogs.Append("，门号：").Append(doorTr.Door).AppendLine();
+                    sLogs.Append($"，{GetLanguage("msg16")}：").Append(doorTr.Door).AppendLine();
                 }
                 else
                 {
@@ -474,7 +506,7 @@ namespace DoNetDrive.Protocol.Door.Test
                         txtWriteIndex.Text = result.DatabaseDetail.ListTransaction[i].WriteIndex.ToString();
                         txtNewRecord.Text = result.DatabaseDetail.ListTransaction[i].readable().ToString();
                         txtReadIndex.Text = result.DatabaseDetail.ListTransaction[i].ReadIndex.ToString();
-                        txtIsCircle.Text = result.DatabaseDetail.ListTransaction[i].IsCircle ? "【1、循环】" : "【0、未循环】";
+                        txtIsCircle.Text = result.DatabaseDetail.ListTransaction[i].IsCircle ? GetLanguage("msg20") : GetLanguage("msg21");
                     });
                 }
             };
@@ -504,10 +536,7 @@ namespace DoNetDrive.Protocol.Door.Test
             var par = new Door8800.Transaction.ClearTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type));
             var cmd = new Door8800.Transaction.ClearTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
+
         }
     }
 }

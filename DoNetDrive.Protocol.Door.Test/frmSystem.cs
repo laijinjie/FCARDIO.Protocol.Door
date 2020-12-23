@@ -70,27 +70,318 @@ namespace DoNetDrive.Protocol.Door.Test
 
         private void frmSystem_Load(object sender, EventArgs e)
         {
+            LoadUILanguage();
+
+        }
+
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            //设备参数设置
+            GetLanguage(tabSysParameterPage);
+            var read = GetLanguage("Read");
+            var write = GetLanguage("Write");
+            GetLanguage(butWriteSN_Broadcast);
+            GetLanguage(gbPassword);
+            GetLanguage(Lab_ConnectPassword);
+            GetLanguage(butResetConnectPassword);
+            GetLanguage(gbRunParameters);
+            GetLanguage(Lab_Deadline);
+            GetLanguage(Lab_DeanlineDay);
+            GetLanguage(Lab_Version);
+            GetLanguage(gbTCP);
+            GetLanguage(Lab_MAC);
+            GetLanguage(Lab_Ip);
+            GetLanguage(Lab_IPMask);
+            GetLanguage(Lab_IPGateway);
+            GetLanguage(Lab_DNSBackup);
+            GetLanguage(Lab_ProtocolType);
+            GetLanguage(Lab_TCPPort);
+            GetLanguage(Lab_UDPPort);
+            GetLanguage(Lab_ServerPort);
+            GetLanguage(Lab_ServerIP);
+            GetLanguage(Lab_AutoIP);
+            GetLanguage(Lab_ServerAddr);
+            GetLanguage(gpDeviceRunInfo);
+            GetLanguage(Lab_RunDay);
+            GetLanguage(Lab_RestartCount);
+            GetLanguage(Lab_Temperature);
+            GetLanguage(Lab_StartTime);
+            GetLanguage(Lab_FormatCount);
+            GetLanguage(Lab_UPS);
+            GetLanguage(Lab_Voltage);
+            GetLanguage(gpWatch);
+            GetLanguage(Lab_WatchStatus);
+            //   GetLanguage(lbWatchState_1);
+            // GetLanguage(lbWatchState_2);
+            lbWatchState.Text = GetLanguage("lbWatchState_1");
+            GetLanguage(btnBeginWatch);
+            GetLanguage(btnCloseWatch);
+            GetLanguage(btnReadWatchState);
+            GetLanguage(btnBeginWatchBroadcast);
+            GetLanguage(btnCloseWatchBroadcast);
+            GetLanguage(gp_Cache);
+            GetLanguage(Lab_CacheContent);
+            GetLanguage(gpTcpClientModel);
+            GetLanguage(Lab_KeepAliveInterval1);
+            GetLanguage(Lab_KeepAliveInterval2);
+            GetLanguage(btnInitalData);
+            GetLanguage(btnSearchEquptOnNetNum);
+            GetLanguage(btnCloseTypeAlarm);
+
+            butReadSN.Text = read;
+            butReadConnectPassword.Text = read;
+            btnReadVersion.Text = read;
+            btnReadDeadline.Text = read;
+            btnReadSystemStatus.Text = read;
+            butRendTCPSetting.Text = read;
+            btnReadCacheContent.Text = read;
+            btnReadKeepAliveInterval.Text = read;
+
+            butWriteSN.Text = write;
+            butWriteConnectPassword.Text = write;
+            btnWriteDeadline.Text = write;
+            butWriteTCPSetting.Text = write;
+            btnWriteCacheContent.Text = write;
+            btnWriteKeepAliveInterval.Text = write;
+            //扩展功能
+            GetLanguage(tabPage3);
+            GetLanguage(groupBox13);
+            GetLanguage(groupBox14);
+            GetLanguage(groupBox15);
+            GetLanguage(groupBox17);
+            GetLanguage(Lab_ardDeadlineTipDay);
+            GetLanguage(groupBox18);
+            GetLanguage(groupBox19);
+            GetLanguage(groupBox20);
+            var nonuse = GetLanguage("nonuse");
+            var use = GetLanguage("use");
+            label72.Text = GetLanguage("Lab_DeanlineDay");
+            rBtnNoBalcklistAlarm.Text = nonuse;
+            rBtnNoExploreLockMode.Text = nonuse;
+            rBtnNoCheck485Line.Text = nonuse;
+            rBtnNoControlPanelTamperAlarm.Text = nonuse;
+            rBtnNoHTTPPageLandingSwitch.Text = nonuse;
+            rBtnNoLawfulCardReleaseAlarmSwitch.Text = nonuse;
+
+            rBtnBalcklistAlarm.Text = use;
+            rBtnExploreLockMode.Text = use;
+            rBtnCheck485Line.Text = use;
+            rBtnControlPanelTamperAlarm.Text = use;
+            rBtnHTTPPageLandingSwitch.Text = use;
+            rBtnLawfulCardReleaseAlarmSwitch.Text = use;
+
+            btnReadBalcklistAlarmOption.Text = read;
+            btnReadExploreLockMode.Text = read;
+            btnReadCheck485Line.Text = read;
+            btnReadCardDeadlineTipDay.Text = read;
+            btnReadrBtnControlPanelTamperAlarm.Text = read;
+            btnReadHTTPPageLandingSwitch.Text = read;
+            btnReadLawfulCardReleaseAlarmSwitch.Text = read;
+
+            btnWriteBalcklistAlarmOption.Text = write;
+            btnWriteExploreLockMode.Text = write;
+            btnWriteCheck485Line.Text = write;
+            btnWriteCardDeadlineTipDay.Text = write;
+            btnWriterBtnControlPanelTamperAlarm.Text = write;
+            btnWriteHTTPPageLandingSwitch.Text = write;
+            btnWriteLawfulCardReleaseAlarmSwitch.Text = write;
+
+            //设备状态信息
+            GetLanguage(tabPage1);
+            GetLanguage(groupBox9);
+            GetLanguage(dgvEquipmentStatusInfo);
+            GetLanguage(label66);
+            GetLanguage(label65);
+            GetLanguage(btnWorkStatusInfo);
+            GetLanguage(groupBox16);
+            GetLanguage(dgvTCPClientList);
+            GetLanguage(btnReadTCPClientList);
+            GetLanguage(btnStopTCPClientConnection);
+            GetLanguage(btnStopAllTCPClientConnection);
+            lbSWatchState.Text = GetLanguage("lbWatchState_1");
+            //功能参数
+
+            GetLanguage(tabPage2);
+            GetLanguage(groupBox3);
+            GetLanguage(label20);
+            GetLanguage(rBtnCover);
+            GetLanguage(rBtnNoCover);
+            GetLanguage(label21);
+            GetLanguage(label22);
+            GetLanguage(label23);
+            GetLanguage(label24);
+            GetLanguage(label25);
+            GetLanguage(label34);
+            GetLanguage(label33);
+            GetLanguage(label35);
+            GetLanguage(label36);
+            //  GetLanguage(Alarm);
+            //  GetLanguage(CloseAlarm);
+            // GetLanguage(AlarmState);
+            GetLanguage(groupBox4);
+            GetLanguage(label42);
+            GetLanguage(label37);
+            //  GetLanguage(Enter);
+            //  GetLanguage(Limit);
+            GetLanguage(groupBox5);
+            GetLanguage(label47);
+            GetLanguage(label52);
+            //   GetLanguage(seconds);
+            GetLanguage(label51);
+            GetLanguage(label55);
+            GetLanguage(label50);
+            GetLanguage(label49);
+            GetLanguage(label64);
+            GetLanguage(btnSetTheftFortify);
+            GetLanguage(btnSetTheftDisarming);
+            GetLanguage(groupBox6);
+            GetLanguage(label56);
+            GetLanguage(rBtnOneCheck);
+            GetLanguage(rBtnAllCheck);
+            GetLanguage(label57);
+            GetLanguage(groupBox7);
+            GetLanguage(label58);
+            GetLanguage(label59);
+            GetLanguage(rBtnPayRent);
+            GetLanguage(rBtnPayManagementFee);
+            GetLanguage(label61);
+            GetLanguage(label60);
+            GetLanguage(btnAllRead);
+            GetLanguage(rBtnEnableValidation);
+
+            //读取
+            btnReadRecordMode.Text = read;
+            btnReadKeyboard.Text = read;
+            btnReadLockInteraction.Text = read;
+            btnReadFireAlarmOption.Text = read;
+            btnReadOpenAlarmOption.Text = read;
+            btnReadIntervalTime.Text = read;
+            btnReadBroadcast.Text = read;
+            btnReadReaderCheckMode.Text = read;
+            btnReadBuzzer.Text = read;
+            btnReadSmogAlarmOption.Text = read;
+            btnReadEnterDoorLimit.Text = read;
+            btnReadTheftAlarmSetting.Text = read;
+            btnReadCheckInOut.Text = read;
+            btnReadCardPeriodSpeak.Text = read;
+            btnReadReadCardSpeak.Text = read;
+            //写入
+            btnWriteRecordMode.Text = write;
+            btnWriteKeyboard.Text = write;
+            btnWirteLockInteraction.Text = write;
+            btnWriteFireAlarmOption.Text = write;
+            btnWriteOpenAlarmOption.Text = write;
+            btnWriteIntervalTime.Text = write;
+            btnWriteBroadcast.Text = write;
+            btnWriteReaderCheckMode.Text = write;
+            btnWriteBuzzer.Text = write;
+            btnWriteSmogAlarmOption.Text = write;
+            btnWriteEnterDoorLimit.Text = write;
+            btnWriteTheftAlarmSetting.Text = write;
+            btnWriteCheckInOut.Text = write;
+            btnWriteCardPeriodSpeak.Text = write;
+            btnWriteReadCardSpeak.Text = write;
+
+            var policeType = GetLanguage("cbxPoliceType").Split(',');
+
+            cbxPoliceType.Items.Clear();
+            cbxPoliceType.Items.AddRange(policeType);
+
+            var smogAlarmOption = GetLanguage("cbxSmogAlarmOption").Split(',');
+
+            cbxSmogAlarmOption.Items.Clear();
+            cbxSmogAlarmOption.Items.AddRange(smogAlarmOption);
+
+            var optionArr = GetLanguage("cbxOption").Split(',');
+
+            cbxOption.Items.Clear();
+            cbxOption.Items.AddRange(optionArr);
+
+
+
+            var protocolType = GetLanguage("cbxProtocolType").Split(',');
+
+            cbxProtocolType.Items.Clear();
+            cbxProtocolType.Items.AddRange(protocolType);
+
+            var autoIP = GetLanguage("cbxAutoIP").Split(',');
+            cbxAutoIP.Items.Clear();
+            cbxAutoIP.Items.AddRange(autoIP);
+
+            var door = GetLanguage("Door");
+            cBoxDoor1.Text = door + 1;
+            cBoxDoor2.Text = door + 2;
+            cBoxDoor3.Text = door + 3;
+            cBoxDoor4.Text = door + 4;
+
+            var alarm = GetLanguage("Alarm");
+            var closeAlarm = GetLanguage("CloseAlarm");
+            var alarmState = GetLanguage("AlarmState");
+            btnAlarm.Text = alarm;
+            btnSmogAlarm.Text = alarm;
+
+            btnCloseAlarm.Text = closeAlarm;
+            btnCloseSmogAlarm.Text = closeAlarm;
+
+            btnAlarmState.Text = alarmState;
+            btnSmogAlarmState.Text = alarmState;
+
+            rBtnNoEnable.Text = nonuse;
+            rBtnNoBuzzer.Text = nonuse;
+            rBtnNoTheft.Text = nonuse;
+            rBtnNoPeriodSpeak.Text = nonuse;
+            rBtnNoEnableReadCardSpeak.Text = nonuse;
+
+            rBtnEnable.Text = use;
+            rBtnBuzzer.Text = use;
+            rBtnTheft.Text = use;
+            rBtnPeriodSpeak.Text = use;
+            rBtnEnableReadCardSpeak.Text = use;
+
+            var seconds = GetLanguage("seconds");
+
+            label32.Text = seconds;
+            label53.Text = seconds;
+            label54.Text = seconds;
+            label48.Text = seconds;
+
+            var enter = GetLanguage("Enter");
+            var limit = GetLanguage("Limit");
+
+            label45.Text = 2 + enter;
+            label46.Text = 1 + enter;
+            label44.Text = 3 + enter;
+            label43.Text = 4 + enter;
+
+            label41.Text = 1 + limit;
+            label40.Text = 2 + limit;
+            label39.Text = 3 + limit;
+            label38.Text = 4 + limit;
+
+
+
             #region 解除报警
             DataGridViewCheckBoxColumn ck = new DataGridViewCheckBoxColumn();
             this.dgvAlarmType.Columns.Add(ck);
-            this.dgvAlarmType.Columns[0].HeaderText = "选择";
+            this.dgvAlarmType.Columns[0].HeaderText = GetLanguage("dgvAlarmType1");
             this.dgvAlarmType.Columns[0].Width = 38;
             this.dgvAlarmType.Rows.Add(13);
-            this.dgvAlarmType.Columns.Add("", "报警类型");
-            this.dgvAlarmType.Columns[1].Width = 130;
-            this.dgvAlarmType.Rows[0].Cells[1].Value = "非法卡报警";
-            this.dgvAlarmType.Rows[1].Cells[1].Value = "门磁报警";
-            this.dgvAlarmType.Rows[2].Cells[1].Value = "胁迫报警";
-            this.dgvAlarmType.Rows[3].Cells[1].Value = "开门超时报警";
-            this.dgvAlarmType.Rows[4].Cells[1].Value = "黑名单报警";
-            this.dgvAlarmType.Rows[5].Cells[1].Value = "匪警报警";
-            this.dgvAlarmType.Rows[6].Cells[1].Value = "防盗主机报警";
-            this.dgvAlarmType.Rows[7].Cells[1].Value = "消防报警";
-            this.dgvAlarmType.Rows[8].Cells[1].Value = "烟雾报警";
-            this.dgvAlarmType.Rows[9].Cells[1].Value = "关闭电锁出错报警";
-            this.dgvAlarmType.Rows[10].Cells[1].Value = "防拆报警";
-            this.dgvAlarmType.Rows[11].Cells[1].Value = "强制关锁报警";
-            this.dgvAlarmType.Rows[12].Cells[1].Value = "强制开锁报警";
+            this.dgvAlarmType.Columns.Add("", GetLanguage("dgvAlarmType2"));
+            this.dgvAlarmType.Columns[1].Width = 200;
+            this.dgvAlarmType.Rows[0].Cells[1].Value = GetLanguage("dgvAlarmType3");
+            this.dgvAlarmType.Rows[1].Cells[1].Value = GetLanguage("dgvAlarmType4");
+            this.dgvAlarmType.Rows[2].Cells[1].Value = GetLanguage("dgvAlarmType5");
+            this.dgvAlarmType.Rows[3].Cells[1].Value = GetLanguage("dgvAlarmType6");
+            this.dgvAlarmType.Rows[4].Cells[1].Value = GetLanguage("dgvAlarmType7");
+            this.dgvAlarmType.Rows[5].Cells[1].Value = GetLanguage("dgvAlarmType8");
+            this.dgvAlarmType.Rows[6].Cells[1].Value = GetLanguage("dgvAlarmType9");
+            this.dgvAlarmType.Rows[7].Cells[1].Value = GetLanguage("dgvAlarmType10");
+            this.dgvAlarmType.Rows[8].Cells[1].Value = GetLanguage("dgvAlarmType11");
+            this.dgvAlarmType.Rows[9].Cells[1].Value = GetLanguage("dgvAlarmType12");
+            this.dgvAlarmType.Rows[10].Cells[1].Value = GetLanguage("dgvAlarmType13");
+            this.dgvAlarmType.Rows[11].Cells[1].Value = GetLanguage("dgvAlarmType14");
+            this.dgvAlarmType.Rows[12].Cells[1].Value = GetLanguage("dgvAlarmType15");
 
             this.dgvAlarmType.AllowUserToAddRows = false;
             for (int i = 0; i < this.dgvAlarmType.Rows.Count; i++)
@@ -101,17 +392,25 @@ namespace DoNetDrive.Protocol.Door.Test
 
             #region 获取设备状态信息
             this.dgvEquipmentStatusInfo.Rows.Add(9);
-            this.dgvEquipmentStatusInfo.Rows[0].Cells[0].Value = "门1";
-            this.dgvEquipmentStatusInfo.Rows[1].Cells[0].Value = "门2";
-            this.dgvEquipmentStatusInfo.Rows[2].Cells[0].Value = "门3";
-            this.dgvEquipmentStatusInfo.Rows[3].Cells[0].Value = "门4";
-            this.dgvEquipmentStatusInfo.Rows[4].Cells[0].Value = "消防报警";
-            this.dgvEquipmentStatusInfo.Rows[5].Cells[0].Value = "匪警报警";
-            this.dgvEquipmentStatusInfo.Rows[6].Cells[0].Value = "烟雾报警";
-            this.dgvEquipmentStatusInfo.Rows[7].Cells[0].Value = "防盗主机";
-            this.dgvEquipmentStatusInfo.Rows[8].Cells[0].Value = "控制板防拆";
+            this.dgvEquipmentStatusInfo.Rows[0].Cells[0].Value = door + "1";
+            this.dgvEquipmentStatusInfo.Rows[1].Cells[0].Value = door + "2";
+            this.dgvEquipmentStatusInfo.Rows[2].Cells[0].Value = door + "3";
+            this.dgvEquipmentStatusInfo.Rows[3].Cells[0].Value = door + "4";
+            this.dgvEquipmentStatusInfo.Rows[4].Cells[0].Value = GetLanguage("dgvAlarmType10"); //"消防报警";
+            this.dgvEquipmentStatusInfo.Rows[5].Cells[0].Value = GetLanguage("dgvAlarmType8");// "匪警报警";
+            this.dgvEquipmentStatusInfo.Rows[6].Cells[0].Value = GetLanguage("dgvAlarmType11");// "烟雾报警";
+            this.dgvEquipmentStatusInfo.Rows[7].Cells[0].Value = GetLanguage("dgvAlarmType9");// "防盗主机";
+            this.dgvEquipmentStatusInfo.Rows[8].Cells[0].Value = GetLanguage("dgvAlarmType13"); //"防拆报警";
             this.dgvEquipmentStatusInfo.AllowUserToAddRows = false;
             #endregion
+
+            cbxCloseAlarmDoor.Items.Clear();
+            cbxCloseAlarmDoor.Items.Add(GetLanguage("CloseAlarmDoor"));
+            for (int i = 1; i < 4; i++)
+            {
+                cbxCloseAlarmDoor.Items.Add(door + i);
+            }
+            cbxCloseAlarmDoor.SelectedIndex = 0;
         }
 
         #region SN的读写操作
@@ -147,7 +446,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 SN_Result result = cmde.Command.getResult() as SN_Result;
                 string sn = result.SNBuf.GetString();
-               
+
                 mMainForm.AddCmdLog(cmde, sn);
             };
         }
@@ -157,13 +456,13 @@ namespace DoNetDrive.Protocol.Door.Test
             string sn = txtSN.Text;
             if (sn.Length != 16)
             {
-                MsgErr("SN 是16位字符，请重新输入！");
+                MsgErr($"{GetLanguage("Msg1")}！");
                 return false;
             }
             int len = System.Text.Encoding.ASCII.GetByteCount(sn);
             if (len != 16)
             {
-                MsgErr("SN 是16位字符，请重新输入！");
+                MsgErr($"{GetLanguage("Msg1")}！");
                 return false;
             }
             return true;
@@ -226,7 +525,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 Password_Result result = cmde.Command.getResult() as Password_Result;
                 string pwd = result.Password;
-                
+
                 mMainForm.AddCmdLog(cmde, pwd);
             };
         }
@@ -236,12 +535,12 @@ namespace DoNetDrive.Protocol.Door.Test
             string pwd = txtConnectPassword.Text;
             if (pwd.Length != 8)
             {
-                MsgErr("通讯密码 是8位十六进制字符，请重新输入！");
+                MsgErr($"{GetLanguage("Msg2")}！");
                 return;
             }
             if (!pwd.IsHex())
             {
-                MsgErr("通讯密码 是8位十六进制字符，请重新输入！");
+                MsgErr($"{GetLanguage("Msg2")}！");
                 return;
             }
 
@@ -317,17 +616,17 @@ namespace DoNetDrive.Protocol.Door.Test
             bool AutoIP = tcp.mAutoIP; //是否自动获得IP
 
 
-            string TCPInfo = "MAC地址：" + MAC +
+            string TCPInfo = GetLanguage("Lab_MAC") + MAC +
                              "  IP：" + IP +
-                             "  子网掩码：" + IPMask +
-                             "  网关地址：" + IPGateway +
+                             GetLanguage("Lab_IPMask") + IPMask +
+                             GetLanguage("Lab_IPGateway") + IPGateway +
                              "  DNS：" + DNS +
-                             "  备用DNS：" + DNSBackup +
-                             "  本地TCP端口：" + TCPPort +
-                             "  本地UDP端口：" + UDPPort +
-                             "  服务器IP：" + ServerIP +
-                             "  服务器域名：" + ServerAddr +
-                             "  服务器端口：" + ServerPort;
+                             GetLanguage("Lab_DNSBackup") + DNSBackup +
+                             GetLanguage("Lab_TCPPort") + TCPPort +
+                             GetLanguage("Lab_UDPPort") + UDPPort +
+                             GetLanguage("Lab_ServerIP") + ServerIP +
+                             GetLanguage("Lab_ServerAddr") + ServerAddr +
+                             GetLanguage("Lab_ServerPort") + ServerPort;
             return TCPInfo;
         }
 
@@ -340,68 +639,68 @@ namespace DoNetDrive.Protocol.Door.Test
 
             if (!Regex.IsMatch(txtMAC.Text.Trim(), reg))
             {
-                MsgErr("请输入正确MAC地址！");
+                MsgErr($"{GetLanguage("Msg3")}！");
                 return;
             }
 
             if (!Regex.IsMatch(txtIP.Text.Trim(), reg2))
             {
-                MsgErr("请输入正确IP地址！");
+                MsgErr($"{GetLanguage("Msg4")}！");
                 return;
             }
             if (!Regex.IsMatch(txtIPMask.Text.Trim(), reg2))
             {
-                MsgErr("请输入正确子网掩码！");
+                MsgErr($"{GetLanguage("Msg5")}！");
                 return;
             }
             if (!Regex.IsMatch(txtIPGateway.Text.Trim(), reg2))
             {
-                MsgErr("请输入正确网关IP！");
+                MsgErr($"{GetLanguage("Msg6")}！");
                 return;
             }
             if (!Regex.IsMatch(txtDNS.Text.Trim(), reg2))
             {
-                MsgErr("请输入正确DNS！");
+                MsgErr($"{GetLanguage("Msg7")}！");
                 return;
             }
             if (!Regex.IsMatch(txtDNSBackup.Text.Trim(), reg2))
             {
-                MsgErr("请输入正确备用DNS！");
+                MsgErr($"{GetLanguage("Msg8")}！");
                 return;
             }
             if (!Regex.IsMatch(txtServerIP.Text.Trim(), reg2))
             {
-                MsgErr("请输入正确服务器IP！");
+                MsgErr($"{GetLanguage("Msg9")}！");
                 return;
             }
             if (!Regex.IsMatch(txtTCPPort.Text.Trim(), reg3))
             {
-                MsgErr("请输入正确本地TCP端口！");
+                MsgErr($"{GetLanguage("Msg10")}！");
                 return;
             }
             if (Convert.ToInt32(txtTCPPort.Text.Trim()) > 65535)
             {
-                MsgErr("请输入正确本地TCP端口！");
+                MsgErr($"{GetLanguage("Msg10")}！");
                 return;
             }
             if (!Regex.IsMatch(txtUDPPort.Text.Trim(), reg3))
             {
-                MsgErr("请输入正确本地UDP端口！");
+                MsgErr($"{GetLanguage("Msg21")}！");
                 return;
             }
             if (Convert.ToInt32(txtUDPPort.Text.Trim()) > 65535)
             {
-                MsgErr("请输入正确本地TCP端口！");
+                MsgErr($"{GetLanguage("Msg21")}！");
                 return;
             }
             if (!Regex.IsMatch(txtServerPort.Text.Trim(), reg3))
             {
-                MsgErr("请输入正确服务器端口！");
+                MsgErr($"{GetLanguage("Msg22")}！");
                 return;
             }
             if (Convert.ToInt32(txtServerPort.Text.Trim()) > 65535)
             {
-                MsgErr("请输入正确服务器端口！");
+                MsgErr($"{GetLanguage("Msg22")}！");
                 return;
             }
             //if (!Regex.IsMatch(txtServerAddr.Text.Trim(), reg4))
@@ -411,12 +710,12 @@ namespace DoNetDrive.Protocol.Door.Test
             //}
             if (Convert.ToInt16(cbxProtocolType.SelectedIndex) == 0)
             {
-                MsgErr("请选择TCP工作模式！");
+                MsgErr($"{GetLanguage("Msg23")}！");
                 return;
             }
             if (Convert.ToInt16(cbxAutoIP.SelectedIndex) == -1)
             {
-                MsgErr("请选择是否自动获得IP！");
+                MsgErr($"{GetLanguage("Msg24")}！");
                 return;
             }
 
@@ -489,22 +788,22 @@ namespace DoNetDrive.Protocol.Door.Test
                 string DeadlineInfo = string.Empty;
                 if (Deadline == 0)
                 {
-                    DeadlineInfo = "失效";
+                    DeadlineInfo = GetLanguage("Msg25");
                 }
                 else if (Deadline == 65535)
                 {
-                    DeadlineInfo = "无限制(65535)";
+                    DeadlineInfo = GetLanguage("Msg26");
                 }
                 else
                 {
-                    DeadlineInfo = Deadline.ToString() + "天";
+                    DeadlineInfo = Deadline.ToString() + GetLanguage("Msg27"); ;
                 }
 
                 Invoke(() =>
                 {
-                    cbxDeadline.Text = DeadlineInfo.Replace("天", "");
+                    cbxDeadline.Text = DeadlineInfo.Replace(GetLanguage("Msg27"), "");
                 });
-                string DeadlineDay = "设备剩余有效天数:" + DeadlineInfo;
+                string DeadlineDay = GetLanguage("Msg28") + ":" + DeadlineInfo;
                 mMainForm.AddCmdLog(cmde, DeadlineDay);
             };
         }
@@ -514,9 +813,9 @@ namespace DoNetDrive.Protocol.Door.Test
             string reg = @"^\+?[0-9]*$";
             if (!Regex.IsMatch(cbxDeadline.Text.Trim(), reg))
             {
-                if (cbxDeadline.Text != "无限制(65535)" && cbxDeadline.Text != "失效")
+                if (cbxDeadline.Text != GetLanguage("Msg26") && cbxDeadline.Text != GetLanguage("Msg25"))
                 {
-                    MsgErr("请输入正确有效天数！");
+                    MsgErr(GetLanguage("Msg29") + "！");
                     return;
                 }
             }
@@ -524,18 +823,18 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 if (Convert.ToUInt32(cbxDeadline.Text) < 0 || Convert.ToUInt32(cbxDeadline.Text) > 65535)
                 {
-                    MsgErr("请输入正确有效天数！");
+                    MsgErr(GetLanguage("Msg29") + "！");
                     return;
                 }
             }
 
             ushort deadlineDay = 0;
             string deadlineInfo = cbxDeadline.Text;
-            if (deadlineInfo == "无限制(65535)")
+            if (deadlineInfo == GetLanguage("Msg26"))
             {
                 deadlineDay = 65535;
             }
-            else if (deadlineInfo == "失效")
+            else if (deadlineInfo == GetLanguage("Msg27"))
             {
                 deadlineDay = 0;
             }
@@ -579,7 +878,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 {
                     txtVersion.Text = "Ver " + version;
                 });
-                version = "版本号：" + version;
+                version = GetLanguage("Msg20") + version;
                 mMainForm.AddCmdLog(cmde, version);
             };
         }
@@ -597,10 +896,10 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadSystemStatus_Result result = cmde.Command.getResult() as ReadSystemStatus_Result;
-                string RunDay = result.RunDay.ToString() + "天"; //设备已运行天数
-                string FormatCount = result.FormatCount.ToString() + "次"; //格式化次数
-                string RestartCount = result.RestartCount.ToString() + "次"; //看门狗复位次数
-                string UPS = result.UPS == 0 ? "电源取电" : "UPS供电"; //UPS工作状态
+                string RunDay = result.RunDay.ToString() + GetLanguage("Msg27"); //设备已运行天数
+                string FormatCount = result.FormatCount.ToString() + GetLanguage("Msg30"); //格式化次数
+                string RestartCount = result.RestartCount.ToString() + GetLanguage("Msg30"); //看门狗复位次数
+                string UPS = result.UPS == 0 ? GetLanguage("Msg31") : GetLanguage("Msg32"); //UPS工作状态
                 string Temperature = result.Temperature; //设备温度
                 string Voltage = result.Voltage; //接入电压
                 string StartTime = result.StartTime; //上电时间
@@ -616,13 +915,13 @@ namespace DoNetDrive.Protocol.Door.Test
                     txtStartTime.Text = StartTime;
 
                 });
-                string TCPInfo = "设备已运行天数:" + RunDay +
-                                 "  格式化次数：" + FormatCount +
-                                 "  看门狗复位次数：" + RestartCount +
-                                 "  UPS工作状态：" + UPS +
-                                 "  设备温度：" + Temperature +
-                                 "  接入电压：" + Voltage +
-                                 "  上电时间：" + StartTime;
+                string TCPInfo = GetLanguage("Lab_RunDay") + RunDay +
+                                 GetLanguage("Lab_FormatCount") + FormatCount +
+                                 GetLanguage("Lab_RestartCount") + RestartCount +
+                                GetLanguage("Lab_UPS") + UPS +
+                                 GetLanguage("Lab_Temperature") + Temperature +
+                                 GetLanguage("Lab_Voltage") + Voltage +
+                                GetLanguage("Lab_StartTime") + StartTime;
                 mMainForm.AddCmdLog(cmde, TCPInfo);
             };
         }
@@ -640,7 +939,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadRecordMode_Result result = cmde.Command.getResult() as ReadRecordMode_Result;
-                string ModeStr = result.Mode == 0 ? "【0、记录存满后，循环覆盖存储】" : "【1、满后报警，不再保存新纪录】"; //记录存储方式
+                string ModeStr = result.Mode == 0 ? GetLanguage("Msg33") : GetLanguage("Msg34"); //记录存储方式
                 Invoke(() =>
                 {
                     if (result.Mode == 0)
@@ -652,7 +951,7 @@ namespace DoNetDrive.Protocol.Door.Test
                         rBtnNoCover.Checked = true;
                     }
                 });
-                ModeStr = "记录存储方式：" + ModeStr;
+                ModeStr = GetLanguage("Msg12") + ModeStr;
                 mMainForm.AddCmdLog(cmde, ModeStr);
             };
         }
@@ -735,11 +1034,11 @@ namespace DoNetDrive.Protocol.Door.Test
                                 cBox8.Checked = true;
                             }
 
-                            KeyboardInfo = KeyboardInfo + "  读卡器：" + (i + 1) + "，键盘开关：【1、接收键盘信号】";
+                            KeyboardInfo = KeyboardInfo + $"  { GetLanguage("Msg35") }：" + (i + 1) + "，" + GetLanguage("Msg36");
                         }
                         else
                         {
-                            KeyboardInfo = KeyboardInfo + "  读卡器：" + (i + 1) + "，键盘开关：【0、不接收键盘信号】";
+                            KeyboardInfo = KeyboardInfo + $"  { GetLanguage("Msg35") }：" + (i + 1) + "，" + GetLanguage("Msg37");
                         }
                     }
                 });
@@ -820,11 +1119,11 @@ namespace DoNetDrive.Protocol.Door.Test
                                 cBoxDoor4.Checked = true;
                             }
 
-                            DoorLockInfo = DoorLockInfo + "  门" + (i + 1) + " 互锁";
+                            DoorLockInfo = DoorLockInfo + "  " + GetLanguage("Door") + (i + 1) + " " + GetLanguage("Msg38");
                         }
                         if (string.IsNullOrWhiteSpace(DoorLockInfo))
                         {
-                            DoorLockInfo = "不需要互锁";
+                            DoorLockInfo = GetLanguage("Msg39");
                         }
                     }
                 });
@@ -905,29 +1204,29 @@ namespace DoNetDrive.Protocol.Door.Test
                 string OptionTypeStr = string.Empty;
                 if (OptionType == 0)
                 {
-                    OptionTypeStr = "【0、不启用】";
+                    OptionTypeStr = GetLanguage("Msg40");
                 }
                 else if (OptionType == 1)
                 {
-                    OptionTypeStr = "【1、报警输出，并开所有门，只能软件解除】";
+                    OptionTypeStr = GetLanguage("Msg41");
                 }
                 else if (OptionType == 2)
                 {
-                    OptionTypeStr = "【2、报警输出，不开所有门，只能软件解除】";
+                    OptionTypeStr = GetLanguage("Msg42");
                 }
                 else if (OptionType == 3)
                 {
-                    OptionTypeStr = "【3、有信号报警并开门，无信号解除报警并关门】";
+                    OptionTypeStr = GetLanguage("Msg43");
                 }
                 else if (OptionType == 4)
                 {
-                    OptionTypeStr = "【4、有报警信号时开一次门，就像按钮开门一样】";
+                    OptionTypeStr = GetLanguage("Msg44");
                 }
                 Invoke(() =>
                 {
                     cbxOption.SelectedIndex = OptionType;
                 });
-                string Info = "消防报警参数：" + OptionTypeStr;
+                string Info = GetLanguage("Msg45") + "：" + OptionTypeStr;
                 mMainForm.AddCmdLog(cmde, Info);
             };
         }
@@ -936,7 +1235,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (Convert.ToInt16(cbxOption.SelectedIndex) == -1)
             {
-                MsgErr("请选择消防报警模式！");
+                MsgErr(GetLanguage("Msg46"));
                 return;
             }
             byte Option = Convert.ToByte(cbxOption.SelectedIndex);
@@ -966,7 +1265,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddCmdLog(cmde, "开启消防报警");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg47"));
             };
         }
 
@@ -979,7 +1278,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddCmdLog(cmde, "解除消防报警");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg48"));
             };
         }
 
@@ -992,7 +1291,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                string ModeStr = cmd.FireAlarmState == 0 ? "【0、未开启报警】" : "【1、已开启报警】"; //消防报警状态
+                string ModeStr = cmd.FireAlarmState == 0 ? GetLanguage("Msg49") : GetLanguage("Msg50"); //消防报警状态
                 Invoke(() =>
                 {
                     mMainForm.AddCmdLog(cmde, ModeStr);
@@ -1017,25 +1316,25 @@ namespace DoNetDrive.Protocol.Door.Test
                 string OptionTypeStr = string.Empty;
                 if (OptionType == 0)
                 {
-                    OptionTypeStr = "【0、禁用】";
+                    OptionTypeStr = GetLanguage("Msg51");
                 }
                 else if (OptionType == 1)
                 {
-                    OptionTypeStr = "【1、报警并锁定所有门】";
+                    OptionTypeStr = GetLanguage("Msg52");
                 }
                 else if (OptionType == 2)
                 {
-                    OptionTypeStr = "【2、报警，不锁定门】";
+                    OptionTypeStr = GetLanguage("Msg53");
                 }
                 else if (OptionType == 3)
                 {
-                    OptionTypeStr = "【3、有信号报警，无信号解除】";
+                    OptionTypeStr = GetLanguage("Msg54");
                 }
                 Invoke(() =>
                 {
                     cbxPoliceType.SelectedIndex = OptionType;
                 });
-                string Info = "匪警报警参数：" + OptionTypeStr;
+                string Info = GetLanguage("Msg55") + "：" + OptionTypeStr;
                 mMainForm.AddCmdLog(cmde, Info);
             };
         }
@@ -1044,7 +1343,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (Convert.ToInt16(cbxPoliceType.SelectedIndex) == -1)
             {
-                MsgErr("请选择匪警报警模式！");
+                MsgErr(GetLanguage("Msg56"));
                 return;
             }
             byte Option = Convert.ToByte(cbxPoliceType.SelectedIndex);
@@ -1082,20 +1381,20 @@ namespace DoNetDrive.Protocol.Door.Test
 
                 ushort IntervalTime = result.IntervalTime; //读卡间隔时间
                 string IntervalTimeInfo = string.Empty;
+                string time = GetLanguage("Msg13");
                 if (IntervalTime == 0)
                 {
-                    IntervalTimeInfo = "无限制";
+                    IntervalTimeInfo = GetLanguage("Msg57");
                 }
                 else
                 {
-                    IntervalTimeInfo = IntervalTime.ToString() + "秒";
+                    IntervalTimeInfo = IntervalTime.ToString() + time;
                 }
-
                 Invoke(() =>
                 {
-                    cbxIntervalTime.Text = IntervalTimeInfo.Replace("秒", "");
+                    cbxIntervalTime.Text = IntervalTimeInfo.Replace(time, "");
                 });
-                string IntervalTimeStr = "读卡间隔时间：" + IntervalTimeInfo;
+                string IntervalTimeStr = GetLanguage("Msg58") + "：" + IntervalTimeInfo;
                 mMainForm.AddCmdLog(cmde, IntervalTimeStr);
             };
         }
@@ -1105,9 +1404,9 @@ namespace DoNetDrive.Protocol.Door.Test
             string reg = @"^\+?[0-9]*$";
             if (!Regex.IsMatch(cbxIntervalTime.Text.Trim(), reg))
             {
-                if (cbxIntervalTime.Text != "无限制")
+                if (cbxIntervalTime.Text != GetLanguage("Msg57"))
                 {
-                    MsgErr("请输入正确读卡间隔时间！");
+                    MsgErr(GetLanguage("Msg59") + "！");
                     return;
                 }
             }
@@ -1115,14 +1414,14 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 if (Convert.ToUInt32(cbxIntervalTime.Text) < 0 || Convert.ToUInt32(cbxIntervalTime.Text) > 65535)
                 {
-                    MsgErr("请输入正确读卡间隔时间！");
+                    MsgErr(GetLanguage("Msg59") + "！");
                     return;
                 }
             }
 
             ushort IntervalTime = 0;
             string deadlineInfo = cbxIntervalTime.Text;
-            if (deadlineInfo == "无限制")
+            if (deadlineInfo == GetLanguage("Msg57"))
             {
                 IntervalTime = 0;
             }
@@ -1176,7 +1475,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     }
 
                     txtBroadcast.Text = BroadcastInfo.ToString();
-                    string IntervalTimeStr = "语音段开关：" + txtBroadcast.Text + "  顺序 31←1";
+                    string IntervalTimeStr = GetLanguage("Msg60") + "：" + txtBroadcast.Text + $"  {GetLanguage("Msg61")} 31←1";
                     mMainForm.AddCmdLog(cmde, IntervalTimeStr);
                 });
 
@@ -1188,7 +1487,7 @@ namespace DoNetDrive.Protocol.Door.Test
             string reg = @"^\+?[0-1]*$";
             if (!Regex.IsMatch(txtBroadcast.Text.Trim(), reg) || txtBroadcast.Text.Trim().Length != 31)
             {
-                MsgErr("请输入正确格式语音开关段设置！");
+                MsgErr(GetLanguage("Msg62") + "！");
                 return;
             }
             byte[] bData = new byte[10];
@@ -1233,20 +1532,20 @@ namespace DoNetDrive.Protocol.Door.Test
                     if (result.ReaderCheckMode == 0)
                     {
                         rBtnNoEnable.Checked = true;
-                        ModeStr = "0、不启用";
+                        ModeStr = GetLanguage("Msg63");
                     }
                     else if (result.ReaderCheckMode == 1)
                     {
                         rBtnEnable.Checked = true;
-                        ModeStr = "1、启用";
+                        ModeStr = GetLanguage("Msg64");
                     }
                     else
                     {
                         rBtnEnableValidation.Checked = true;
-                        ModeStr = "2、启用校验";
+                        ModeStr = GetLanguage("Msg65");
                     }
                 });
-                ModeStr = "读卡器校验：" + ModeStr;
+                ModeStr = GetLanguage("Msg66") + "：" + ModeStr;
                 mMainForm.AddCmdLog(cmde, ModeStr);
             };
         }
@@ -1282,7 +1581,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadBuzzer_Result result = cmde.Command.getResult() as ReadBuzzer_Result;
-                string ModeStr = result.Buzzer == 0 ? "【0、不启用】" : "【1、启用】"; //记录存储方式
+                string ModeStr = result.Buzzer == 0 ? GetLanguage("Msg97") : GetLanguage("Msg98"); //记录存储方式
                 Invoke(() =>
                 {
                     if (result.Buzzer == 0)
@@ -1294,7 +1593,7 @@ namespace DoNetDrive.Protocol.Door.Test
                         rBtnBuzzer.Checked = true;
                     }
                 });
-                ModeStr = "主板蜂鸣器：" + ModeStr;
+                ModeStr = GetLanguage("Msg67") + "：" + ModeStr;
                 mMainForm.AddCmdLog(cmde, ModeStr);
             };
         }
@@ -1330,25 +1629,25 @@ namespace DoNetDrive.Protocol.Door.Test
                 string OptionTypeStr = string.Empty;
                 if (OptionType == 0)
                 {
-                    OptionTypeStr = "【0、禁用】";
+                    OptionTypeStr = GetLanguage("Msg68");
                 }
                 else if (OptionType == 1)
                 {
-                    OptionTypeStr = "【1、仅报警（有信号报警，无信号解除）】";
+                    OptionTypeStr = GetLanguage("Msg69");
                 }
                 else if (OptionType == 2)
                 {
-                    OptionTypeStr = "【2、报警并开所有门】";
+                    OptionTypeStr = GetLanguage("Msg70");
                 }
                 else if (OptionType == 3)
                 {
-                    OptionTypeStr = "【3、报警并锁定所有门】";
+                    OptionTypeStr = GetLanguage("Msg71");
                 }
                 Invoke(() =>
                 {
                     cbxSmogAlarmOption.SelectedIndex = OptionType;
                 });
-                string Info = "烟雾报警参数：" + OptionTypeStr;
+                string Info = GetLanguage("Msg72") + "：" + OptionTypeStr;
                 mMainForm.AddCmdLog(cmde, Info);
             };
         }
@@ -1357,7 +1656,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (Convert.ToInt16(cbxSmogAlarmOption.SelectedIndex) == -1)
             {
-                MsgErr("请选择烟雾报警模式！");
+                MsgErr(GetLanguage("Msg73") + "！");
                 return;
             }
             byte Option = Convert.ToByte(cbxSmogAlarmOption.SelectedIndex);
@@ -1376,7 +1675,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddCmdLog(cmde, "开启烟雾报警");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg74"));
             };
         }
 
@@ -1389,7 +1688,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddCmdLog(cmde, "解除烟雾报警");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg75"));
             };
         }
 
@@ -1402,7 +1701,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                string ModeStr = cmd.SmogAlarmState == 0 ? "【0、未开启报警】" : "【1、已开启报警】"; //烟雾报警状态
+                string ModeStr = cmd.SmogAlarmState == 0 ? GetLanguage("Msg76") : GetLanguage("Msg77"); //烟雾报警状态
                 Invoke(() =>
                 {
                     mMainForm.AddCmdLog(cmde, ModeStr);
@@ -1449,16 +1748,16 @@ namespace DoNetDrive.Protocol.Door.Test
                     txtDoor4Enter.Text = Door4Enter;
 
                 });
-                string EnterDoorLimitInfo = "全局上限:" + GlobalLimit +
-                                 "  1号门上限：" + Door1Limit +
-                                 "  2号门上限：" + Door2Limit +
-                                 "  3号门上限：" + Door3Limit +
-                                 "  4号门上限：" + Door4Limit +
-                                 "  全局人数：" + GlobalEnter +
-                                 "  1号门人数：" + Door1Enter +
-                                 "  2号门人数：" + Door2Enter +
-                                 "  3号门人数：" + Door3Enter +
-                                 "  4号门人数：" + Door4Enter;
+                string EnterDoorLimitInfo = GetLanguage("label42") + GlobalLimit +
+                                 $"  1{GetLanguage("Limit")}：" + Door1Limit +
+                                 $"  2{GetLanguage("Limit")}：" + Door2Limit +
+                                 $"  3{GetLanguage("Limit")}：" + Door3Limit +
+                                 $"  4{GetLanguage("Limit")}：" + Door4Limit +
+                                 GetLanguage("label37") + GlobalEnter +
+                                 $"  1{GetLanguage("Enter")}：" + Door1Enter +
+                                 $"  2{GetLanguage("Enter")}：" + Door2Enter +
+                                 $"  3{GetLanguage("Enter")}：" + Door3Enter +
+                                 $"  4{GetLanguage("Enter")}：" + Door4Enter;
                 mMainForm.AddCmdLog(cmde, EnterDoorLimitInfo);
             };
         }
@@ -1469,104 +1768,104 @@ namespace DoNetDrive.Protocol.Door.Test
             UInt32 ui32 = 0;
             if (!Regex.IsMatch(txtGlobalLimit.Text.Trim(), reg))
             {
-                MsgErr("请输入正确全局上限！");
+                MsgErr(GetLanguage("Msg78") + "！");
                 return;
             }
             if (!UInt32.TryParse(txtGlobalLimit.Text.Trim(), out ui32))
             {
-                MsgErr("全局上限 太大或太小！");
+                MsgErr(GetLanguage("Msg79") + "！");
                 return;
             }
-
+            var Msg80 = GetLanguage("Msg80");
             if (!Regex.IsMatch(txtDoor1Limit.Text.Trim(), reg))
             {
-                MsgErr("请输入正确1号门上限！");
+                MsgErr(string.Format(Msg80, 1));
                 return;
             }
             if (!UInt32.TryParse(txtDoor1Limit.Text.Trim(), out ui32))
             {
-                MsgErr("1号门上限 太大或太小！");
+                MsgErr($"1{GetLanguage("Msg80")}！");
                 return;
             }
 
             if (!Regex.IsMatch(txtDoor2Limit.Text.Trim(), reg))
             {
-                MsgErr("请输入正确2号门上限！");
+                MsgErr(string.Format(Msg80, 2));
                 return;
             }
             if (!UInt32.TryParse(txtDoor2Limit.Text.Trim(), out ui32))
             {
-                MsgErr("2号门上限 太大或太小！");
+                MsgErr($"2{GetLanguage("Msg80")}！");
                 return;
             }
 
             if (!Regex.IsMatch(txtDoor3Limit.Text.Trim(), reg))
             {
-                MsgErr("请输入正确3号门上限！");
+                MsgErr(string.Format(Msg80, 3));
                 return;
             }
             if (!UInt32.TryParse(txtDoor3Limit.Text.Trim(), out ui32))
             {
-                MsgErr("3号门上限 太大或太小！");
+                MsgErr($"3{GetLanguage("Msg80")}！");
                 return;
             }
 
             if (!Regex.IsMatch(txtDoor4Limit.Text.Trim(), reg))
             {
-                MsgErr("请输入正确4号门上限！");
+                MsgErr(string.Format(Msg80, 4));
                 return;
             }
             if (!UInt32.TryParse(txtDoor4Limit.Text.Trim(), out ui32))
             {
-                MsgErr("4号门上限 太大或太小！");
+                MsgErr($"4{GetLanguage("Msg80")}！");
                 return;
             }
-
+            var Msg82 = GetLanguage("Msg82");
             if (!Regex.IsMatch(txtDoor1Enter.Text.Trim(), reg))
             {
-                MsgErr("请输入正确1号门人数！");
+                MsgErr(string.Format(Msg82, 1));
                 return;
             }
             if (!UInt32.TryParse(txtDoor1Enter.Text.Trim(), out ui32))
             {
-                MsgErr("1号门人数 太大或太小！");
+                MsgErr($"1{GetLanguage("Msg83")}！");
                 return;
             }
 
             if (!Regex.IsMatch(txtDoor2Enter.Text.Trim(), reg))
             {
-                MsgErr("请输入正确2号门人数！");
+                MsgErr(string.Format(Msg82, 2));
                 return;
             }
             if (!UInt32.TryParse(txtDoor2Enter.Text.Trim(), out ui32))
             {
-                MsgErr("2号门人数 太大或太小！");
+                MsgErr($"2{GetLanguage("Msg83")}！");
                 return;
             }
 
             if (!Regex.IsMatch(txtDoor3Enter.Text.Trim(), reg))
             {
-                MsgErr("请输入正确3号门人数！");
+                MsgErr(string.Format(Msg82, 3));
                 return;
             }
             if (!UInt32.TryParse(txtDoor3Enter.Text.Trim(), out ui32))
             {
-                MsgErr("3号门人数 太大或太小！");
+                MsgErr($"3{GetLanguage("Msg83")}！");
                 return;
             }
 
             if (!Regex.IsMatch(txtDoor4Enter.Text.Trim(), reg))
             {
-                MsgErr("请输入正确4号门人数！");
+                MsgErr(string.Format(Msg82, 4));
                 return;
             }
             if (!UInt32.TryParse(txtDoor4Enter.Text.Trim(), out ui32))
             {
-                MsgErr("4号门人数 太大或太小！");
+                MsgErr($"4{GetLanguage("Msg83")}！");
                 return;
             }
-            
-            
+
+
             DoorLimit dl = new DoorLimit();
             dl.GlobalLimit = Convert.ToUInt32(txtGlobalLimit.Text.Trim());
             dl.DoorLimitArray[0] = Convert.ToUInt32(txtDoor1Limit.Text.Trim());
@@ -1598,7 +1897,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadTheftAlarmSetting_Result result = cmde.Command.getResult() as ReadTheftAlarmSetting_Result;
-                string UseStr = result.Setting.Use ? "【1、启用】" : "【0、禁用】"; //功能开关
+                string UseStr = result.Setting.Use ? GetLanguage("Msg84") : GetLanguage("Msg85"); //功能开关
                 string InTime = result.Setting.InTime.ToString(); //进入延迟
                 string OutTime = result.Setting.OutTime.ToString(); //退出延迟
                 string AlarmTime = result.Setting.AlarmTime.ToString(); //报警时长
@@ -1621,12 +1920,13 @@ namespace DoNetDrive.Protocol.Door.Test
                     txtBeginPassword.Text = BeginPassword;
                     txtClosePassword.Text = ClosePassword;
                 });
-                string TheftAlarmSettingInfo = "功能开关：" + UseStr +
-                                               "  进入延迟：" + InTime + "秒" +
-                                               "  退出延迟：" + OutTime + "秒" +
-                                               "  报警时长：" + AlarmTime + "秒" +
-                                               "  布防密码：" + BeginPassword +
-                                               "  撤防密码：" + ClosePassword;
+                var time = GetLanguage("Msg13");
+                string TheftAlarmSettingInfo = GetLanguage("label47") + UseStr +
+                                               GetLanguage("label52") + InTime + time +
+                                               GetLanguage("label51") + OutTime + time +
+                                               GetLanguage("label55") + AlarmTime + time +
+                                               GetLanguage("label50") + BeginPassword +
+                                               GetLanguage("label49") + ClosePassword;
                 mMainForm.AddCmdLog(cmde, TheftAlarmSettingInfo);
             };
         }
@@ -1636,78 +1936,78 @@ namespace DoNetDrive.Protocol.Door.Test
             string reg = @"^\+?[0-9]*$";
             if (!Regex.IsMatch(cbxInTime.Text.Trim(), reg) || cbxInTime.Text == "")
             {
-                MsgErr("请输入正确进入延迟秒数！");
+                MsgErr(GetLanguage("Msg86") + "！");
                 return;
             }
             UInt16 ui32 = 0;
             if (Regex.IsMatch(cbxInTime.Text.Trim(), reg))
             {
-                if (!UInt16.TryParse(cbxInTime.Text,out ui32))
+                if (!UInt16.TryParse(cbxInTime.Text, out ui32))
                 {
-                    MsgErr("请输入正确进入延迟秒数！");
+                    MsgErr(GetLanguage("Msg86") + "！");
                     return;
                 }
                 if (Convert.ToUInt32(cbxInTime.Text) < 0 || Convert.ToUInt32(cbxInTime.Text) > 255)
                 {
-                    MsgErr("请输入正确进入延迟秒数！");
+                    MsgErr(GetLanguage("Msg86") + "！");
                     return;
                 }
             }
             if (!Regex.IsMatch(cbxOutTime.Text.Trim(), reg) || cbxOutTime.Text == "")
             {
-                MsgErr("请输入正确退出延迟秒数！");
+                MsgErr(GetLanguage("Msg87") + "！");
                 return;
             }
             if (Regex.IsMatch(cbxOutTime.Text.Trim(), reg))
             {
                 if (!UInt16.TryParse(cbxOutTime.Text, out ui32))
                 {
-                    MsgErr("请输入正确进入延迟秒数！");
+                    MsgErr(GetLanguage("Msg87") + "！");
                     return;
                 }
                 if (Convert.ToUInt32(cbxOutTime.Text) < 0 || Convert.ToUInt32(cbxOutTime.Text) > 255)
                 {
-                    MsgErr("请输入正确退出延迟秒数！");
+                    MsgErr(GetLanguage("Msg87") + "！");
                     return;
                 }
             }
             if (!Regex.IsMatch(cbxAlarmTime.Text.Trim(), reg) || cbxAlarmTime.Text == "")
             {
-                MsgErr("请输入正确报警时长秒数！");
+                MsgErr(GetLanguage("Msg88") + "！");
                 return;
             }
             if (Regex.IsMatch(cbxAlarmTime.Text.Trim(), reg))
             {
                 if (!UInt16.TryParse(cbxAlarmTime.Text, out ui32))
                 {
-                    MsgErr("请输入正确进入延迟秒数！");
+                    MsgErr(GetLanguage("Msg86") + "！");
                     return;
                 }
                 if (Convert.ToUInt32(cbxAlarmTime.Text) < 0 || Convert.ToUInt32(cbxAlarmTime.Text) > 65535)
                 {
-                    MsgErr("请输入正确报警时长秒数！");
+                    MsgErr(GetLanguage("Msg88") + "！");
                     return;
                 }
             }
 
             if (!Regex.IsMatch(txtBeginPassword.Text.Trim(), reg))
             {
-                MsgErr("布防密码必须为数字！");
+                MsgErr(GetLanguage("Msg89") + "！");
                 return;
             }
             if (txtBeginPassword.Text.Trim().Length > 8)
             {
-                MsgErr("布防密码不能超过8位数字！");
+                MsgErr(GetLanguage("Msg90") + "！");
                 return;
             }
             if (!Regex.IsMatch(txtClosePassword.Text.Trim(), reg))
             {
-                MsgErr("撤防密码必须为数字！");
+                MsgErr(GetLanguage("Msg91") + "！");
                 return;
             }
             if (txtClosePassword.Text.Trim().Length > 8)
             {
-                MsgErr("撤防密码不能超过8位数字！");
+                MsgErr(GetLanguage("Msg92") + "！");
                 return;
             }
 
@@ -1750,7 +2050,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddCmdLog(cmde, "防盗报警布防");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg93"));
             };
         }
 
@@ -1763,7 +2063,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddCmdLog(cmde, "防盗报警撤防");
+                mMainForm.AddCmdLog(cmde, GetLanguage("SetTheftDisarming"));
             };
         }
         #endregion
@@ -1780,7 +2080,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadCheckInOut_Result result = cmde.Command.getResult() as ReadCheckInOut_Result;
-                string ModeStr = result.Mode == 1 ? "【1、单独每个门检测防潜回】" : "【2、整个控制器统一防潜回】"; //防潜回模式
+                string ModeStr = result.Mode == 1 ? GetLanguage("Msg94") : GetLanguage("Msg95"); //防潜回模式
                 Invoke(() =>
                 {
                     if (result.Mode == 1)
@@ -1792,7 +2092,7 @@ namespace DoNetDrive.Protocol.Door.Test
                         rBtnAllCheck.Checked = true;
                     }
                 });
-                ModeStr = "防潜回检测模式：" + ModeStr;
+                ModeStr = GetLanguage("Msg96") + "：" + ModeStr;
                 mMainForm.AddCmdLog(cmde, ModeStr);
             };
         }
@@ -1824,7 +2124,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadCardPeriodSpeak_Result result = cmde.Command.getResult() as ReadCardPeriodSpeak_Result;
-                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //卡片到期提示是否启用
+                string ModeStr = result.Use == 0 ? GetLanguage("Msg97") : GetLanguage("Msg98"); //卡片到期提示是否启用
                 Invoke(() =>
                 {
                     if (result.Use == 0)
@@ -1836,7 +2136,7 @@ namespace DoNetDrive.Protocol.Door.Test
                         rBtnPeriodSpeak.Checked = true;
                     }
                 });
-                ModeStr = "卡片到期提示：" + ModeStr;
+                ModeStr = GetLanguage("Msg99") + "：" + ModeStr;
                 mMainForm.AddCmdLog(cmde, ModeStr);
             };
         }
@@ -1868,10 +2168,10 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadReadCardSpeak_Result result = cmde.Command.getResult() as ReadReadCardSpeak_Result;
-                string UseStr = result.SpeakSetting.Use ? "【1、启用】" : "【0、不启用】"; //定时读卡播报语音消息功能是否启用
-                string MsgIndexStr = result.SpeakSetting.MsgIndex == 1 ? "【1、交房租】" : "【2、交管理费】"; //消息编号类型
-                string STime = result.SpeakSetting.BeginDate.ToString("yyyy-MM-dd HH时");
-                string ETime = result.SpeakSetting.EndDate.ToString("yyyy-MM-dd HH时");
+                string UseStr = result.SpeakSetting.Use ? GetLanguage("Msg98") : GetLanguage("Msg97"); //定时读卡播报语音消息功能是否启用
+                string MsgIndexStr = result.SpeakSetting.MsgIndex == 1 ? GetLanguage("Msg100") : GetLanguage("Msg101"); //消息编号类型
+                string STime = result.SpeakSetting.BeginDate.ToString("yyyy-MM-dd HH");
+                string ETime = result.SpeakSetting.EndDate.ToString("yyyy-MM-dd HH");
                 Invoke(() =>
                 {
                     if (result.SpeakSetting.Use)
@@ -1893,20 +2193,21 @@ namespace DoNetDrive.Protocol.Door.Test
                     txtSTime.Text = STime;
                     txtETime.Text = ETime;
                 });
-                UseStr = "功能开关：" + UseStr +
-                         "  消息编号类型：" + MsgIndexStr +
-                         "  起始时段：" + STime +
-                         "  功能开关：" + ETime;
+                var use = GetLanguage("label47");
+                UseStr = use + UseStr +
+                        " " + GetLanguage("label59") + "：" + MsgIndexStr +
+                         $"  {GetLanguage("label61")}：" + STime +
+                         use + ETime;
                 mMainForm.AddCmdLog(cmde, UseStr);
             };
         }
 
         private void BtnWriteReadCardSpeak_Click(object sender, EventArgs e)
         {
-            string reg = @"^\d{4}-\d{2}-\d{2} \d{2}时";
+            string reg = @"^\d{4}-\d{2}-\d{2} \d{2}" + GetLanguage("Msg105");
             if (!Regex.IsMatch(txtSTime.Text.Trim(), reg) || txtSTime.Text == "")
             {
-                MsgErr("请输入正确起始时段！");
+                MsgErr(GetLanguage("Msg102") + "！");
                 return;
             }
             if (Convert.ToInt16(txtSTime.Text.Substring(0, 4)) > 2099
@@ -1914,12 +2215,12 @@ namespace DoNetDrive.Protocol.Door.Test
                 || Convert.ToInt16(txtSTime.Text.Substring(8, 2)) > 31
                 || Convert.ToInt16(txtSTime.Text.Substring(11, 2)) > 23)
             {
-                MsgErr("请输入正确起始时段！");
+                MsgErr(GetLanguage("Msg102") + "！");
                 return;
             }
             if (!Regex.IsMatch(txtETime.Text.Trim(), reg) || txtETime.Text == "")
             {
-                MsgErr("请输入正确结束时段！");
+                MsgErr(GetLanguage("Msg103") + "！");
                 return;
             }
             if (Convert.ToInt16(txtETime.Text.Substring(0, 4)) > 2099
@@ -1927,33 +2228,33 @@ namespace DoNetDrive.Protocol.Door.Test
                 || Convert.ToInt16(txtETime.Text.Substring(8, 2)) > 31
                 || Convert.ToInt16(txtETime.Text.Substring(11, 2)) > 23)
             {
-                MsgErr("请输入正确结束时段！");
+                MsgErr(GetLanguage("Msg103") + "！");
                 return;
             }
             if (Convert.ToInt16(txtSTime.Text.Substring(0, 4)) > Convert.ToInt16(txtETime.Text.Substring(0, 4)))
             {
-                MsgErr("请输入正确时段范围！");
+                MsgErr(GetLanguage("Msg104") + "！");
                 return;
             }
             else if (Convert.ToInt16(txtSTime.Text.Substring(0, 4)) == Convert.ToInt16(txtETime.Text.Substring(0, 4)))
             {
                 if (Convert.ToInt16(txtSTime.Text.Substring(5, 2)) > Convert.ToInt16(txtETime.Text.Substring(5, 2)))
                 {
-                    MsgErr("请输入正确时段范围！");
+                    MsgErr(GetLanguage("Msg104") + "！");
                     return;
                 }
                 else if (Convert.ToInt16(txtSTime.Text.Substring(5, 2)) == Convert.ToInt16(txtETime.Text.Substring(5, 2)))
                 {
                     if (Convert.ToInt16(txtSTime.Text.Substring(8, 2)) > Convert.ToInt16(txtETime.Text.Substring(8, 2)))
                     {
-                        MsgErr("请输入正确时段范围！");
+                        MsgErr(GetLanguage("Msg104") + "！");
                         return;
                     }
                     else if (Convert.ToInt16(txtSTime.Text.Substring(8, 2)) == Convert.ToInt16(txtETime.Text.Substring(8, 2)))
                     {
                         if (Convert.ToInt16(txtSTime.Text.Substring(11, 2)) > Convert.ToInt16(txtETime.Text.Substring(11, 2)))
                         {
-                            MsgErr("请输入正确时段范围！");
+                            MsgErr(GetLanguage("Msg104") + "！");
                             return;
                         }
                     }
@@ -1969,8 +2270,9 @@ namespace DoNetDrive.Protocol.Door.Test
             ReadCardSpeak rcs = new ReadCardSpeak();
             rcs.Use = rBtnEnableReadCardSpeak.Checked;
             rcs.MsgIndex = MsgIndex;
-            rcs.BeginDate = Convert.ToDateTime(txtSTime.Text.Replace("时", "") + ":00:00");
-            rcs.EndDate = Convert.ToDateTime(txtETime.Text.Replace("时", "") + ":00:00");
+            var temp = GetLanguage("Msg105");
+            rcs.BeginDate = Convert.ToDateTime(txtSTime.Text.Replace(temp, "") + ":00:00");
+            rcs.EndDate = Convert.ToDateTime(txtETime.Text.Replace(temp, "") + ":00:00");
 
             //WriteReadCardSpeak_Parameter wp = new WriteReadCardSpeak_Parameter();
             //wp.SpeakSetting = rcs;
@@ -2024,7 +2326,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddCmdLog(cmde, "已开启监控");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg106"));
             };
         }
 
@@ -2037,7 +2339,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddCmdLog(cmde, "未开启监控");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg107"));
             };
         }
 
@@ -2050,17 +2352,17 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                string ModeStr = cmd.WatchState == 0 ? "【0、未开启监控】" : "【1、已开启监控】"; //监控状态
+                string ModeStr = cmd.WatchState == 0 ? GetLanguage("Msg108") : GetLanguage("Msg109"); //监控状态
                 Invoke(() =>
                 {
                     if (cmd.WatchState == 1)
                     {
-                        lbWatchState.Text = "开启";
+                        lbWatchState.Text = GetLanguage("lbWatchState_2");
                         lbWatchState.ForeColor = Color.Green;
                     }
                     else
                     {
-                        lbWatchState.Text = "未开启";
+                        lbWatchState.Text = GetLanguage("lbWatchState_1");
                         lbWatchState.ForeColor = Color.Red;
                     }
                 });
@@ -2104,7 +2406,7 @@ namespace DoNetDrive.Protocol.Door.Test
             ushort AlarmType = 0; //需要解除的报警类型
             if (Convert.ToInt16(cbxCloseAlarmDoor.SelectedIndex) == -1)
             {
-                MsgErr("请选择门号！");
+                MsgErr(GetLanguage("Msg110") + "！");
                 return;
             }
             if (Convert.ToInt16(cbxCloseAlarmDoor.SelectedIndex) == 0)
@@ -2145,22 +2447,22 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 ReadWorkStatus_Result result = cmde.Command.getResult() as ReadWorkStatus_Result;
                 StringBuilder DoorInfo = new StringBuilder();
-                string RelayState1Str = "【0、关闭】";
-                string RelayState2Str = "【1、开启】";
-                string RelayState3Str = "【2、继电器异常】";
-                string DoorLongOpenState1Str = "【0、常闭】";
-                string DoorLongOpenState2Str = "【1、常开】";
-                string DoorAlarmState1Str = "【无报警】";
+                string RelayState1Str = GetLanguage("Msg111");
+                string RelayState2Str = GetLanguage("Msg112");
+                string RelayState3Str = GetLanguage("Msg113");
+                string DoorLongOpenState1Str = GetLanguage("Msg114");
+                string DoorLongOpenState2Str = GetLanguage("Msg115");
+                string DoorAlarmState1Str = GetLanguage("Msg116");
                 string DoorAlarmState2Str = string.Empty;
-                string DoorState1Str = "【0、关】";
-                string DoorState2Str = "【1、开】";
-                string AlarmState1Str = "无报警";
-                string AlarmState2Str = "报警";
-                string LockState1Str = "【0、关闭】";
-                string LockState2Str = "【1、开启】";
-                string LockState3Str = "【2、双稳态】";
-                string PortLockState1Str = "【0、未锁定】";
-                string PortLockState2Str = "【1、锁定】";
+                string DoorState1Str = GetLanguage("Msg117");
+                string DoorState2Str = GetLanguage("Msg118");
+                string AlarmState1Str = GetLanguage("Msg119");
+                string AlarmState2Str = GetLanguage("Msg120");
+                string LockState1Str = GetLanguage("Msg121");
+                string LockState2Str = GetLanguage("Msg122");
+                string LockState3Str = GetLanguage("Msg123");
+                string PortLockState1Str = GetLanguage("Msg124");
+                string PortLockState2Str = GetLanguage("Msg125");
 
                 Invoke(() =>
                 {
@@ -2170,17 +2472,17 @@ namespace DoNetDrive.Protocol.Door.Test
                         if (result.RelayState.DoorPort[i] == 0)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[7].Value = RelayState1Str;
-                            DoorInfo.Append("  门" + (i + 1) + " 物理状态：" + RelayState1Str + "");
+                            DoorInfo.Append("  " + GetLanguage("Door") + (i + 1) + GetLanguage("Msg126") + " ：" + RelayState1Str + "");
                         }
                         else if (result.RelayState.DoorPort[i] == 1)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[7].Value = RelayState2Str;
-                            DoorInfo.Append("  门" + (i + 1) + " 物理状态：" + RelayState1Str + "");
+                            DoorInfo.Append("  " + GetLanguage("Door") + (i + 1) + GetLanguage("Msg126") + " ：" + RelayState1Str + "");
                         }
                         else if (result.RelayState.DoorPort[i] == 2)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[7].Value = RelayState3Str;
-                            DoorInfo.Append("  门" + (i + 1) + " 物理状态：" + RelayState1Str + "");
+                            DoorInfo.Append("  " + GetLanguage("Door") + (i + 1) + GetLanguage("Msg126") + " ：" + RelayState1Str + "");
                         }
                     }
                     mMainForm.AddCmdLog(cmde, DoorInfo.ToString());
@@ -2191,12 +2493,12 @@ namespace DoNetDrive.Protocol.Door.Test
                         if (result.DoorLongOpenState.DoorPort[i] == 0)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[1].Value = DoorLongOpenState1Str;
-                            DoorInfo.Append("  门" + (i + 1) + " 开锁模式：" + DoorLongOpenState1Str + "");
+                            DoorInfo.Append("  " + GetLanguage("Door") + (i + 1) + GetLanguage("Msg127") + " ：" + DoorLongOpenState1Str + "");
                         }
                         else if (result.DoorLongOpenState.DoorPort[i] == 1)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[1].Value = DoorLongOpenState2Str;
-                            DoorInfo.Append("  门" + (i + 1) + " 开锁模式：" + DoorLongOpenState2Str + "");
+                            DoorInfo.Append("  " + GetLanguage("Door") + (i + 1) + GetLanguage("Msg127") + " ：" + DoorLongOpenState2Str + "");
                         }
                     }
                     mMainForm.AddCmdLog(cmde, DoorInfo.ToString());
@@ -2207,12 +2509,12 @@ namespace DoNetDrive.Protocol.Door.Test
                         if (result.DoorState.DoorPort[i] == 0)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[2].Value = DoorState1Str;
-                            DoorInfo.Append("  门" + (i + 1) + " 门磁：" + DoorState1Str + "");
+                            DoorInfo.Append("  " + GetLanguage("Door") + (i + 1) + GetLanguage("Msg128") + " ：" + DoorState1Str + "");
                         }
                         else if (result.DoorState.DoorPort[i] == 1)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[2].Value = DoorState2Str;
-                            DoorInfo.Append("  门" + (i + 1) + " 门磁：" + DoorState2Str + "");
+                            DoorInfo.Append("  " + GetLanguage("Door") + (i + 1) + GetLanguage("Msg128") + "：" + DoorState2Str + "");
                         }
                     }
                     mMainForm.AddCmdLog(cmde, DoorInfo.ToString());
@@ -2223,7 +2525,7 @@ namespace DoNetDrive.Protocol.Door.Test
                         if (result.DoorAlarmState.DoorPort[i] == 0)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[6].Value = DoorAlarmState1Str;
-                            DoorInfo.Append("  门" + (i + 1) + " 报警状态：" + DoorAlarmState1Str + "");
+                            DoorInfo.Append("  " + GetLanguage("Door") + (i + 1) + GetLanguage("Msg129") + "：" + DoorAlarmState1Str + "");
                         }
                         else
                         {
@@ -2235,32 +2537,32 @@ namespace DoNetDrive.Protocol.Door.Test
                                 {
                                     if (j == 0)
                                     {
-                                        DoorAlarmState2Str = DoorAlarmState2Str + "  非法刷卡报警";
+                                        DoorAlarmState2Str = DoorAlarmState2Str + "  " + GetLanguage("Msg11");
                                     }
                                     else if (j == 1)
                                     {
-                                        DoorAlarmState2Str = DoorAlarmState2Str + "  门磁报警";
+                                        DoorAlarmState2Str = DoorAlarmState2Str + "  " + GetLanguage("Msg130");
                                     }
                                     else if (j == 2)
                                     {
-                                        DoorAlarmState2Str = DoorAlarmState2Str + "  胁迫报警";
+                                        DoorAlarmState2Str = DoorAlarmState2Str + "  " + GetLanguage("Msg131");
                                     }
                                     else if (j == 3)
                                     {
-                                        DoorAlarmState2Str = DoorAlarmState2Str + "  开门超时报警";
+                                        DoorAlarmState2Str = DoorAlarmState2Str + "  " + GetLanguage("Msg132");
                                     }
                                     else if (j == 4)
                                     {
-                                        DoorAlarmState2Str = DoorAlarmState2Str + "  黑名单报警";
+                                        DoorAlarmState2Str = DoorAlarmState2Str + "  " + GetLanguage("Msg133");
                                     }
                                     else if (j == 5)
                                     {
-                                        DoorAlarmState2Str = DoorAlarmState2Str + "  读卡器防拆报警";
+                                        DoorAlarmState2Str = DoorAlarmState2Str + "  " + GetLanguage("Msg134");
                                     }
                                 }
                             }
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[6].Value = DoorAlarmState2Str;
-                            DoorInfo.Append("  门" + (i + 1) + " 报警状态：" + DoorAlarmState2Str + "");
+                            DoorInfo.Append("  " + GetLanguage("Door") + (i + 1) + GetLanguage("Msg129") + "：" + DoorAlarmState2Str + "");
                         }
                     }
                     mMainForm.AddCmdLog(cmde, DoorInfo.ToString());
@@ -2275,12 +2577,12 @@ namespace DoNetDrive.Protocol.Door.Test
                             if (bit[i])
                             {
                                 this.dgvEquipmentStatusInfo.Rows[5].Cells[6].Value = AlarmState2Str;
-                                DoorInfo.Append("  匪警报警状态：" + AlarmState2Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Msg135")}：" + AlarmState2Str + "");
                             }
                             else
                             {
                                 this.dgvEquipmentStatusInfo.Rows[5].Cells[6].Value = AlarmState1Str;
-                                DoorInfo.Append("  匪警报警状态：" + AlarmState1Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Msg135")}：" + AlarmState1Str + "");
                             }
                         }
                         if (i == 1)
@@ -2288,12 +2590,12 @@ namespace DoNetDrive.Protocol.Door.Test
                             if (bit[i])
                             {
                                 this.dgvEquipmentStatusInfo.Rows[7].Cells[6].Value = AlarmState2Str;
-                                DoorInfo.Append("  防盗报警状态：" + AlarmState2Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Msg136")}：" + AlarmState2Str + "");
                             }
                             else
                             {
                                 this.dgvEquipmentStatusInfo.Rows[7].Cells[6].Value = AlarmState1Str;
-                                DoorInfo.Append("  防盗报警状态：" + AlarmState1Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Msg136")}：" + AlarmState1Str + "");
                             }
                         }
                         if (i == 2)
@@ -2301,12 +2603,12 @@ namespace DoNetDrive.Protocol.Door.Test
                             if (bit[i])
                             {
                                 this.dgvEquipmentStatusInfo.Rows[4].Cells[6].Value = AlarmState2Str;
-                                DoorInfo.Append("  消防报警状态：" + AlarmState2Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Msg137")}：" + AlarmState2Str + "");
                             }
                             else
                             {
                                 this.dgvEquipmentStatusInfo.Rows[4].Cells[6].Value = AlarmState1Str;
-                                DoorInfo.Append("  消防报警状态：" + AlarmState1Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Msg137")}：" + AlarmState1Str + "");
                             }
                         }
                         if (i == 3)
@@ -2314,12 +2616,12 @@ namespace DoNetDrive.Protocol.Door.Test
                             if (bit[i])
                             {
                                 this.dgvEquipmentStatusInfo.Rows[6].Cells[6].Value = AlarmState2Str;
-                                DoorInfo.Append("  烟雾报警状态：" + AlarmState2Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Msg138")}：" + AlarmState2Str + "");
                             }
                             else
                             {
                                 this.dgvEquipmentStatusInfo.Rows[6].Cells[6].Value = AlarmState1Str;
-                                DoorInfo.Append("  烟雾报警状态：" + AlarmState1Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Msg138")}：" + AlarmState1Str + "");
                             }
                         }
                         if (i == 5)
@@ -2327,12 +2629,12 @@ namespace DoNetDrive.Protocol.Door.Test
                             if (bit[i])
                             {
                                 this.dgvEquipmentStatusInfo.Rows[8].Cells[6].Value = AlarmState2Str;
-                                DoorInfo.Append("  控制板防拆报警状态：" + AlarmState2Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Msg139")}：" + AlarmState2Str + "");
                             }
                             else
                             {
                                 this.dgvEquipmentStatusInfo.Rows[8].Cells[6].Value = AlarmState1Str;
-                                DoorInfo.Append("  控制板防拆报警状态：" + AlarmState1Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Msg139")}：" + AlarmState1Str + "");
                             }
                         }
                     }
@@ -2346,38 +2648,38 @@ namespace DoNetDrive.Protocol.Door.Test
                             if (result.LockState.DoorPort[i] == 0)
                             {
                                 this.dgvEquipmentStatusInfo.Rows[i].Cells[3].Value = LockState1Str;
-                                DoorInfo.Append("  门" + (i + 1) + " 逻辑状态：" + LockState1Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Door")}" + (i + 1) + $"  {GetLanguage("Msg140")}：" + LockState1Str + "");
                             }
                             else if (result.LockState.DoorPort[i] == 1)
                             {
                                 this.dgvEquipmentStatusInfo.Rows[i].Cells[3].Value = LockState2Str;
-                                DoorInfo.Append("  门" + (i + 1) + " 逻辑状态：" + LockState2Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Door")}" + (i + 1) + $"  {GetLanguage("Msg140")}：" + LockState2Str + "");
                             }
                             else if (result.LockState.DoorPort[i] == 2)
                             {
                                 this.dgvEquipmentStatusInfo.Rows[i].Cells[3].Value = LockState3Str;
-                                DoorInfo.Append("  门" + (i + 1) + " 逻辑状态：" + LockState3Str + "");
+                                DoorInfo.Append($"  {GetLanguage("Door")}" + (i + 1) + $"  {GetLanguage("Msg140")}：" + LockState3Str + "");
                             }
                         }
                         else if (i == 4)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[3].Value = LockState1Str;
-                            DoorInfo.Append("  消防报警继电器：" + LockState1Str + "");
+                            DoorInfo.Append($"  {GetLanguage("Msg141")}：" + LockState1Str + "");
                         }
                         else if (i == 5)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[3].Value = LockState1Str;
-                            DoorInfo.Append("  匪警报警继电器：" + LockState1Str + "");
+                            DoorInfo.Append($"  {GetLanguage("Msg142")}：" + LockState1Str + "");
                         }
                         else if (i == 6)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[3].Value = LockState1Str;
-                            DoorInfo.Append("  烟雾报警继电器：" + LockState1Str + "");
+                            DoorInfo.Append($"  {GetLanguage("Msg143")}：" + LockState1Str + "");
                         }
                         else if (i == 7)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[3].Value = LockState1Str;
-                            DoorInfo.Append("  防盗主机报警继电器：" + LockState1Str + "");
+                            DoorInfo.Append($"  {GetLanguage("Msg144")}：" + LockState1Str + "");
                         }
                     }
                     mMainForm.AddCmdLog(cmde, DoorInfo.ToString());
@@ -2388,12 +2690,12 @@ namespace DoNetDrive.Protocol.Door.Test
                         if (result.PortLockState.DoorPort[i] == 0)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[4].Value = PortLockState1Str;
-                            DoorInfo.Append("  门" + (i + 1) + " 锁定状态：" + PortLockState1Str + "");
+                            DoorInfo.Append($"  {GetLanguage("Door")}" + (i + 1) + $"  {GetLanguage("Msg145")}：" + PortLockState1Str + "");
                         }
                         else if (result.PortLockState.DoorPort[i] == 1)
                         {
                             this.dgvEquipmentStatusInfo.Rows[i].Cells[4].Value = PortLockState2Str;
-                            DoorInfo.Append("  门" + (i + 1) + " 锁定状态：" + PortLockState2Str + "");
+                            DoorInfo.Append($"  {GetLanguage("Door")}" + (i + 1) + $"  {GetLanguage("Msg145")}：" + PortLockState2Str + "");
                         }
                     }
                     mMainForm.AddCmdLog(cmde, DoorInfo.ToString());
@@ -2402,59 +2704,60 @@ namespace DoNetDrive.Protocol.Door.Test
                     {
                         if (result.WatchState == 1)
                         {
-                            lbSWatchState.Text = "已开启监控";
+                            lbSWatchState.Text = GetLanguage("lbWatchState_2");
                             lbSWatchState.ForeColor = Color.Green;
-                            DoorInfo.Append("  监控状态：已开启监控");
+                            DoorInfo.Append($"  {GetLanguage("Lab_WatchStatus")}{GetLanguage("lbWatchState_2")}");
                         }
                         else
                         {
-                            lbSWatchState.Text = "未开启监控";
+                            lbSWatchState.Text = GetLanguage("lbWatchState_1");
                             lbSWatchState.ForeColor = Color.Red;
-                            DoorInfo.Append("  监控状态：未开启监控");
+                            DoorInfo.Append($"  {GetLanguage("Lab_WatchStatus")}{GetLanguage("lbWatchState_1")}");
                         }
                     });
                     mMainForm.AddCmdLog(cmde, DoorInfo.ToString());
                     DoorInfo.Clear();
                     //门内总人数
                     this.txtAllNum.Text = result.EnterTotal.GlobalEnter.ToString();
-                    DoorInfo.Append("  门内总人数：" + result.EnterTotal.DoorEnterArray[0].ToString());
+                    var doorenter = GetLanguage("Msg147");
+                    DoorInfo.Append($"  {GetLanguage("Msg146")}" + result.EnterTotal.DoorEnterArray[0].ToString());
                     this.dgvEquipmentStatusInfo.Rows[0].Cells[5].Value = result.EnterTotal.DoorEnterArray[0].ToString(); //门1人数
-                    DoorInfo.Append("  门1 门内人数：" + result.EnterTotal.DoorEnterArray[0].ToString());
+                    DoorInfo.Append($"  {string.Format(doorenter, 1)}：" + result.EnterTotal.DoorEnterArray[0].ToString());
                     this.dgvEquipmentStatusInfo.Rows[1].Cells[5].Value = result.EnterTotal.DoorEnterArray[1].ToString(); //门2人数
-                    DoorInfo.Append("  门2 门内人数：" + result.EnterTotal.DoorEnterArray[1].ToString());
+                    DoorInfo.Append($"  {string.Format(doorenter, 2)}：" + result.EnterTotal.DoorEnterArray[1].ToString());
                     this.dgvEquipmentStatusInfo.Rows[2].Cells[5].Value = result.EnterTotal.DoorEnterArray[2].ToString(); //门3人数
-                    DoorInfo.Append("  门3 门内人数：" + result.EnterTotal.DoorEnterArray[2].ToString());
+                    DoorInfo.Append($"  {string.Format(doorenter, 3)}：" + result.EnterTotal.DoorEnterArray[2].ToString());
                     this.dgvEquipmentStatusInfo.Rows[3].Cells[5].Value = result.EnterTotal.DoorEnterArray[3].ToString(); //门4人数
-                    DoorInfo.Append("  门4 门内人数：" + result.EnterTotal.DoorEnterArray[3].ToString());
+                    DoorInfo.Append($"  {string.Format(doorenter, 4)}：" + result.EnterTotal.DoorEnterArray[3].ToString());
                     mMainForm.AddCmdLog(cmde, DoorInfo.ToString());
                     DoorInfo.Clear();
                     //防盗主机布防状态
                     string TheftStateStr = string.Empty;
                     if (result.TheftState == 1)
                     {
-                        TheftStateStr = "延时布防";
+                        TheftStateStr = GetLanguage("Msg148");
                     }
                     else if (result.TheftState == 2)
                     {
-                        TheftStateStr = "已布防";
+                        TheftStateStr = GetLanguage("Msg149");
                     }
                     else if (result.TheftState == 3)
                     {
-                        TheftStateStr = "延时撤防";
+                        TheftStateStr = GetLanguage("Msg150");
                     }
                     else if (result.TheftState == 4)
                     {
-                        TheftStateStr = "未布防";
+                        TheftStateStr = GetLanguage("Msg151");
                     }
                     else if (result.TheftState == 5)
                     {
-                        TheftStateStr = "报警延时，准备启用报警";
+                        TheftStateStr = GetLanguage("Msg152");
                     }
                     else if (result.TheftState == 6)
                     {
-                        TheftStateStr = "防盗报警已启动";
+                        TheftStateStr = GetLanguage("Msg153");
                     }
-                    DoorInfo.Append("  防盗主机布防状态：" + TheftStateStr);
+                    DoorInfo.Append($"  {GetLanguage("Msg154")}：" + TheftStateStr);
                     mMainForm.AddCmdLog(cmde, DoorInfo.ToString());
                     DoorInfo.Clear();
                 });
@@ -2474,33 +2777,33 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 ReadTheftAlarmState_Result result = cmde.Command.getResult() as ReadTheftAlarmState_Result;
                 StringBuilder TheftStateInfo = new StringBuilder();
-                TheftStateInfo.Append("防盗主机布防状态：");
+                TheftStateInfo.Append(GetLanguage("Msg154") + "：");
                 string TheftStateStr = string.Empty;
                 Invoke(() =>
                 {
                     if (result.TheftState == 1)
                     {
-                        TheftStateStr = "延时布防";
+                        TheftStateStr = GetLanguage("Msg148");
                     }
                     else if (result.TheftState == 2)
                     {
-                        TheftStateStr = "已布防";
+                        TheftStateStr = GetLanguage("Msg149");
                     }
                     else if (result.TheftState == 3)
                     {
-                        TheftStateStr = "延时撤防";
+                        TheftStateStr = GetLanguage("Msg150");
                     }
                     else if (result.TheftState == 4)
                     {
-                        TheftStateStr = "未布防";
+                        TheftStateStr = GetLanguage("Msg151");
                     }
                     else if (result.TheftState == 5)
                     {
-                        TheftStateStr = "报警延时，准备启用报警";
+                        TheftStateStr = GetLanguage("Msg152");
                     }
                     else if (result.TheftState == 6)
                     {
-                        TheftStateStr = "防盗报警已启动";
+                        TheftStateStr = GetLanguage("Msg153");
                     }
                     txtBeginState.Text = TheftStateStr;
                     TheftStateInfo.Append(TheftStateStr);
@@ -2520,7 +2823,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddCmdLog(cmde, "初始化数据完成！");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg155") + "！");
             };
         }
         #endregion
@@ -2579,12 +2882,12 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandTimeout += (sdr1, cmde1) =>
              {
                  ReSend += 1;
-                 if(ReSend < 3)
+                 if (ReSend < 3)
                  {
                      SearchControltor recmd = new SearchControltor(cmde1.CommandDetail, par);
                      mMainForm.AddCommand(recmd);
                  }
-                 
+
              };
 
 
@@ -2609,7 +2912,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 {
                     txtCacheContent.Text = CacheContent;
                 });
-                CacheContent = "缓存区内容：" + CacheContent;
+                CacheContent = GetLanguage("Lab_CacheContent") + "：" + CacheContent;
                 mMainForm.AddCmdLog(cmde, CacheContent);
             };
         }
@@ -2619,7 +2922,7 @@ namespace DoNetDrive.Protocol.Door.Test
             string reg = @"^\+?[0-9]*$";
             if (!Regex.IsMatch(txtCacheContent.Text.Trim(), reg) || txtCacheContent.Text.Trim().Length > 30 || string.IsNullOrEmpty(txtCacheContent.Text.Trim()))
             {
-                MsgErr("请输入正确缓存区内容！");
+                MsgErr(GetLanguage("Msg156") + "！");
                 return;
             }
             string cacheContent = txtCacheContent.Text.Trim();
@@ -2657,20 +2960,21 @@ namespace DoNetDrive.Protocol.Door.Test
 
                 ushort IntervalTime = result.IntervalTime; //保活间隔时间
                 string IntervalTimeInfo = string.Empty;
+                var temp = GetLanguage("Msg13");
                 if (IntervalTime == 0)
                 {
-                    IntervalTimeInfo = "禁用";
+                    IntervalTimeInfo = GetLanguage("Msg157");
                 }
                 else
                 {
-                    IntervalTimeInfo = IntervalTime.ToString() + "秒";
+                    IntervalTimeInfo = IntervalTime.ToString();
                 }
 
                 Invoke(() =>
                 {
-                    cbxKeepAliveInterval.Text = IntervalTimeInfo.Replace("秒", "");
+                    cbxKeepAliveInterval.Text = IntervalTimeInfo.Replace(temp, "");
                 });
-                string IntervalTimeStr = "与服务器建立连接后，每隔：" + IntervalTimeInfo + "，发送一次保活包";
+                string IntervalTimeStr = GetLanguage("Lab_KeepAliveInterval1") + "：" + IntervalTimeInfo + GetLanguage("Lab_KeepAliveInterval2");
                 mMainForm.AddCmdLog(cmde, IntervalTimeStr);
             };
         }
@@ -2680,9 +2984,9 @@ namespace DoNetDrive.Protocol.Door.Test
             string reg = @"^\+?[0-9]*$";
             if (!Regex.IsMatch(cbxKeepAliveInterval.Text.Trim(), reg))
             {
-                if (cbxKeepAliveInterval.Text != "禁用")
+                if (cbxKeepAliveInterval.Text != GetLanguage("Msg157"))
                 {
-                    MsgErr("请输入正确保活间隔时间！");
+                    MsgErr(GetLanguage("Msg158") + "！");
                     return;
                 }
             }
@@ -2690,14 +2994,14 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 if (Convert.ToUInt32(cbxKeepAliveInterval.Text) < 0 || Convert.ToUInt32(cbxKeepAliveInterval.Text) > 65535)
                 {
-                    MsgErr("请输入正确保活间隔时间！");
+                    MsgErr(GetLanguage("Msg158") + "！");
                     return;
                 }
             }
 
             ushort IntervalTime = 0;
             string deadlineInfo = cbxKeepAliveInterval.Text;
-            if (deadlineInfo == "禁用")
+            if (deadlineInfo == GetLanguage("Msg157"))
             {
                 IntervalTime = 0;
             }
@@ -2725,7 +3029,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadBalcklistAlarmOption_Result result = cmde.Command.getResult() as ReadBalcklistAlarmOption_Result;
-                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //黑名单报警功能是否启用
+                string ModeStr = result.Use == 0 ? GetLanguage("Msg159") : GetLanguage("Msg160"); //黑名单报警功能是否启用
                 Invoke(() =>
                 {
                     if (result.Use == 0)
@@ -2737,7 +3041,7 @@ namespace DoNetDrive.Protocol.Door.Test
                         rBtnBalcklistAlarm.Checked = true;
                     }
                 });
-                ModeStr = "黑名单报警：" + ModeStr;
+                ModeStr = GetLanguage("Msg161") + "：" + ModeStr;
                 mMainForm.AddCmdLog(cmde, ModeStr);
             };
         }
@@ -2769,7 +3073,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadExploreLockMode_Result result = cmde.Command.getResult() as ReadExploreLockMode_Result;
-                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //防探测功能是否启用
+                string ModeStr = result.Use == 0 ? GetLanguage("Msg159") : GetLanguage("Msg160"); //防探测功能是否启用
                 Invoke(() =>
                 {
                     if (result.Use == 0)
@@ -2781,7 +3085,7 @@ namespace DoNetDrive.Protocol.Door.Test
                         rBtnExploreLockMode.Checked = true;
                     }
                 });
-                ModeStr = "防探测功能：" + ModeStr;
+                ModeStr = GetLanguage("Msg167") + "：" + ModeStr;
                 mMainForm.AddCmdLog(cmde, ModeStr);
             };
         }
@@ -2813,7 +3117,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadCheck485Line_Result result = cmde.Command.getResult() as ReadCheck485Line_Result;
-                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //485线路反接检测开关是否启用
+                string ModeStr = result.Use == 0 ? GetLanguage("Msg159") : GetLanguage("Msg160"); //485线路反接检测开关是否启用
                 Invoke(() =>
                 {
                     if (result.Use == 0)
@@ -2825,7 +3129,7 @@ namespace DoNetDrive.Protocol.Door.Test
                         rBtnCheck485Line.Checked = true;
                     }
                 });
-                ModeStr = "485线路反接检测开关：" + ModeStr;
+                ModeStr = GetLanguage("groupBox15") + "：" + ModeStr;
                 mMainForm.AddCmdLog(cmde, ModeStr);
             };
         }
@@ -2874,7 +3178,7 @@ namespace DoNetDrive.Protocol.Door.Test
                             this.dgvTCPClientList.Rows[i].Cells[4].Value = result.tCPClientDetail.ConnectTime[i];
                         }
                     }
-                    mMainForm.AddCmdLog(cmde, "已连接客户端数量：" + result.tCPClientDetail.TCPClientNum);
+                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg162") + "：" + result.tCPClientDetail.TCPClientNum);
                 });
             };
         }
@@ -2911,7 +3215,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 Invoke(() =>
                 {
                     string TCPClientInfo = "IP：" + tCPClientDetail.IP[0] +
-                                           " 端口：" + tCPClientDetail.TCPPort[0];
+                                           $" {GetLanguage("Msg163")}：" + tCPClientDetail.TCPPort[0];
                     mMainForm.AddCmdLog(cmde, TCPClientInfo);
                 });
             };
@@ -2927,7 +3231,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddCmdLog(cmde, "停止所有连接成功！");
+                mMainForm.AddCmdLog(cmde, GetLanguage("Msg164") + "！");
             };
         }
         #endregion
@@ -2947,15 +3251,15 @@ namespace DoNetDrive.Protocol.Door.Test
                 string TipDayInfo = string.Empty;
                 Invoke(() =>
                 {
-                    cbxCardDeadlineTipDay.Text = result.Day == 0 ? "禁用" : ""+ result.Day + "";
+                    cbxCardDeadlineTipDay.Text = result.Day == 0 ? GetLanguage("Msg157") : "" + result.Day + "";
                 });
                 if (result.Day == 0)
                 {
-                    TipDayInfo = "禁用提前提醒卡片即将过期";
+                    TipDayInfo = GetLanguage("Msg165");
                 }
                 else
                 {
-                    TipDayInfo = "卡片有效期即将过期时，刷卡时提前：" + result.Day + "天提醒";
+                    TipDayInfo = GetLanguage("Msg168") + "：" + result.Day + GetLanguage("Msg169");
                 }
                 mMainForm.AddCmdLog(cmde, TipDayInfo);
             };
@@ -2966,9 +3270,9 @@ namespace DoNetDrive.Protocol.Door.Test
             string reg = @"^\+?[0-9]*$";
             if (!Regex.IsMatch(cbxCardDeadlineTipDay.Text.Trim(), reg) || string.IsNullOrEmpty(cbxCardDeadlineTipDay.Text.Trim()))
             {
-                if (cbxCardDeadlineTipDay.Text != "禁用")
+                if (cbxCardDeadlineTipDay.Text != GetLanguage("Msg157"))
                 {
-                    MsgErr("请输入正确提前天数！");
+                    MsgErr(GetLanguage("Msg166") + "！");
                     return;
                 }
             }
@@ -2976,14 +3280,14 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 if (Convert.ToUInt32(cbxCardDeadlineTipDay.Text) < 0 || Convert.ToUInt32(cbxCardDeadlineTipDay.Text) > 255)
                 {
-                    MsgErr("请输入正确提前天数！");
+                    MsgErr(GetLanguage("Msg166") + "！");
                     return;
                 }
             }
 
             byte tipDay = 0;
             string tipDayInfo = cbxCardDeadlineTipDay.Text;
-            if (tipDayInfo == "禁用")
+            if (tipDayInfo == GetLanguage("Msg157"))
             {
                 tipDay = 0;
             }
@@ -3011,7 +3315,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadControlPanelTamperAlarm_Result result = cmde.Command.getResult() as ReadControlPanelTamperAlarm_Result;
-                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //控制板防拆报警开关是否启用
+                string ModeStr = result.Use == 0 ? GetLanguage("Msg159") : GetLanguage("Msg160"); //控制板防拆报警开关是否启用
                 Invoke(() =>
                 {
                     if (result.Use == 0)
@@ -3054,7 +3358,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadHTTPPageLandingSwitch_Result result = cmde.Command.getResult() as ReadHTTPPageLandingSwitch_Result;
-                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //HTTP网页登陆开关是否启用
+                string ModeStr = result.Use == 0 ? GetLanguage("Msg159") : GetLanguage("Msg160"); //HTTP网页登陆开关是否启用
                 Invoke(() =>
                 {
                     if (result.Use == 0)
@@ -3097,7 +3401,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadLawfulCardReleaseAlarmSwitch_Result result = cmde.Command.getResult() as ReadLawfulCardReleaseAlarmSwitch_Result;
-                string ModeStr = result.Use == 0 ? "【0、不启用】" : "【1、启用】"; //合法卡解除报警开关是否启用
+                string ModeStr = result.Use == 0 ? GetLanguage("Msg159") : GetLanguage("Msg160"); //合法卡解除报警开关是否启用
                 Invoke(() =>
                 {
                     if (result.Use == 0)
@@ -3127,5 +3431,15 @@ namespace DoNetDrive.Protocol.Door.Test
             mMainForm.AddCommand(cmd);
         }
         #endregion
+
+        private void Lab_KeepAliveInterval1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label59_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

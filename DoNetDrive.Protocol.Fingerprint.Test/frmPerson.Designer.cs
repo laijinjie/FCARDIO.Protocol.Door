@@ -119,6 +119,7 @@
             this.Lbl_UploadCode = new System.Windows.Forms.Label();
             this.butSelectImage = new System.Windows.Forms.Button();
             this.btnAddPesonAndImage = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgPersonList)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -128,6 +129,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picReg)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUpload)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgPersonList
@@ -152,7 +154,7 @@
             this.Column14,
             this.Column15,
             this.Column16});
-            this.dgPersonList.Location = new System.Drawing.Point(12, 52);
+            this.dgPersonList.Location = new System.Drawing.Point(12, 46);
             this.dgPersonList.Name = "dgPersonList";
             this.dgPersonList.ReadOnly = true;
             this.dgPersonList.RowHeadersVisible = false;
@@ -279,7 +281,7 @@
             // 
             // btnReadDatabaseDetail
             // 
-            this.btnReadDatabaseDetail.Location = new System.Drawing.Point(249, 12);
+            this.btnReadDatabaseDetail.Location = new System.Drawing.Point(249, 6);
             this.btnReadDatabaseDetail.Name = "btnReadDatabaseDetail";
             this.btnReadDatabaseDetail.Size = new System.Drawing.Size(102, 23);
             this.btnReadDatabaseDetail.TabIndex = 1;
@@ -289,7 +291,7 @@
             // 
             // btnReadAllPerson
             // 
-            this.btnReadAllPerson.Location = new System.Drawing.Point(357, 12);
+            this.btnReadAllPerson.Location = new System.Drawing.Point(357, 6);
             this.btnReadAllPerson.Name = "btnReadAllPerson";
             this.btnReadAllPerson.Size = new System.Drawing.Size(102, 23);
             this.btnReadAllPerson.TabIndex = 2;
@@ -299,7 +301,7 @@
             // 
             // btnClearDataBase
             // 
-            this.btnClearDataBase.Location = new System.Drawing.Point(465, 12);
+            this.btnClearDataBase.Location = new System.Drawing.Point(465, 6);
             this.btnClearDataBase.Name = "btnClearDataBase";
             this.btnClearDataBase.Size = new System.Drawing.Size(102, 23);
             this.btnClearDataBase.TabIndex = 3;
@@ -309,7 +311,7 @@
             // 
             // btnWriteAllPerson
             // 
-            this.btnWriteAllPerson.Location = new System.Drawing.Point(573, 12);
+            this.btnWriteAllPerson.Location = new System.Drawing.Point(573, 6);
             this.btnWriteAllPerson.Name = "btnWriteAllPerson";
             this.btnWriteAllPerson.Size = new System.Drawing.Size(102, 23);
             this.btnWriteAllPerson.TabIndex = 4;
@@ -319,7 +321,7 @@
             // 
             // btnClearList
             // 
-            this.btnClearList.Location = new System.Drawing.Point(681, 12);
+            this.btnClearList.Location = new System.Drawing.Point(681, 6);
             this.btnClearList.Name = "btnClearList";
             this.btnClearList.Size = new System.Drawing.Size(102, 23);
             this.btnClearList.TabIndex = 5;
@@ -330,7 +332,7 @@
             // Lbl_UserList
             // 
             this.Lbl_UserList.AutoSize = true;
-            this.Lbl_UserList.Location = new System.Drawing.Point(12, 17);
+            this.Lbl_UserList.Location = new System.Drawing.Point(12, 11);
             this.Lbl_UserList.Name = "Lbl_UserList";
             this.Lbl_UserList.Size = new System.Drawing.Size(65, 12);
             this.Lbl_UserList.TabIndex = 6;
@@ -339,7 +341,7 @@
             // chkSelectAll
             // 
             this.chkSelectAll.AutoSize = true;
-            this.chkSelectAll.Location = new System.Drawing.Point(83, 16);
+            this.chkSelectAll.Location = new System.Drawing.Point(83, 10);
             this.chkSelectAll.Name = "chkSelectAll";
             this.chkSelectAll.Size = new System.Drawing.Size(90, 16);
             this.chkSelectAll.TabIndex = 7;
@@ -353,7 +355,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(12, 301);
+            this.tabControl1.Location = new System.Drawing.Point(12, 295);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(776, 432);
@@ -1019,20 +1021,30 @@
             this.btnAddPesonAndImage.UseVisualStyleBackColor = true;
             this.btnAddPesonAndImage.Click += new System.EventHandler(this.btnAddPesonAndImage_Click);
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.dgPersonList);
+            this.panel1.Controls.Add(this.tabControl1);
+            this.panel1.Controls.Add(this.btnReadDatabaseDetail);
+            this.panel1.Controls.Add(this.chkSelectAll);
+            this.panel1.Controls.Add(this.btnReadAllPerson);
+            this.panel1.Controls.Add(this.Lbl_UserList);
+            this.panel1.Controls.Add(this.btnClearDataBase);
+            this.panel1.Controls.Add(this.btnClearList);
+            this.panel1.Controls.Add(this.btnWriteAllPerson);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(793, 727);
+            this.panel1.TabIndex = 9;
+            // 
             // frmPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 739);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.chkSelectAll);
-            this.Controls.Add(this.Lbl_UserList);
-            this.Controls.Add(this.btnClearList);
-            this.Controls.Add(this.btnWriteAllPerson);
-            this.Controls.Add(this.btnClearDataBase);
-            this.Controls.Add(this.btnReadAllPerson);
-            this.Controls.Add(this.btnReadDatabaseDetail);
-            this.Controls.Add(this.dgPersonList);
+            this.ClientSize = new System.Drawing.Size(793, 727);
+            this.Controls.Add(this.panel1);
             this.Name = "frmPerson";
             this.Text = "用户管理";
             this.Load += new System.EventHandler(this.FrmPerson_Load);
@@ -1049,8 +1061,9 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUpload)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1147,5 +1160,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
+        private System.Windows.Forms.Panel panel1;
     }
 }
