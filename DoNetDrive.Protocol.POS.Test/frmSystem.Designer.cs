@@ -30,6 +30,15 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.butWriteControlCards = new System.Windows.Forms.Button();
+            this.butReadControlCards = new System.Windows.Forms.Button();
+            this.txtCardPassword = new System.Windows.Forms.TextBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.txtSectorNumber = new System.Windows.Forms.NumericUpDown();
+            this.butWriteConsumerCards = new System.Windows.Forms.Button();
+            this.butReadConsumerCards = new System.Windows.Forms.Button();
+            this.label52 = new System.Windows.Forms.Label();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.cmbRecordStorageMode = new System.Windows.Forms.ComboBox();
             this.butWriteRecordStorageMode = new System.Windows.Forms.Button();
@@ -75,6 +84,8 @@
             this.butReadDeadline = new System.Windows.Forms.Button();
             this.dtDeadline = new System.Windows.Forms.DateTimePicker();
             this.gbTCP = new System.Windows.Forms.GroupBox();
+            this.cbxServerAddrType = new System.Windows.Forms.ComboBox();
+            this.label54 = new System.Windows.Forms.Label();
             this.cbxAutoIP = new System.Windows.Forms.ComboBox();
             this.cbxProtocolType = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -239,6 +250,8 @@
             this.butReadVoice = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSectorNumber)).BeginInit();
             this.groupBox15.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox12.SuspendLayout();
@@ -280,6 +293,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox19);
             this.tabPage1.Controls.Add(this.groupBox15);
             this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox12);
@@ -298,6 +312,96 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "设备参数设置";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox19
+            // 
+            this.groupBox19.Controls.Add(this.butWriteControlCards);
+            this.groupBox19.Controls.Add(this.butReadControlCards);
+            this.groupBox19.Controls.Add(this.txtCardPassword);
+            this.groupBox19.Controls.Add(this.label53);
+            this.groupBox19.Controls.Add(this.txtSectorNumber);
+            this.groupBox19.Controls.Add(this.butWriteConsumerCards);
+            this.groupBox19.Controls.Add(this.butReadConsumerCards);
+            this.groupBox19.Controls.Add(this.label52);
+            this.groupBox19.Location = new System.Drawing.Point(279, 522);
+            this.groupBox19.Name = "groupBox19";
+            this.groupBox19.Size = new System.Drawing.Size(520, 75);
+            this.groupBox19.TabIndex = 73;
+            this.groupBox19.TabStop = false;
+            this.groupBox19.Text = "IC卡参数";
+            // 
+            // butWriteControlCards
+            // 
+            this.butWriteControlCards.Location = new System.Drawing.Point(452, 46);
+            this.butWriteControlCards.Name = "butWriteControlCards";
+            this.butWriteControlCards.Size = new System.Drawing.Size(48, 23);
+            this.butWriteControlCards.TabIndex = 48;
+            this.butWriteControlCards.Text = "写入";
+            this.butWriteControlCards.UseVisualStyleBackColor = true;
+            this.butWriteControlCards.Click += new System.EventHandler(this.butWriteControlCards_Click);
+            // 
+            // butReadControlCards
+            // 
+            this.butReadControlCards.Location = new System.Drawing.Point(396, 46);
+            this.butReadControlCards.Name = "butReadControlCards";
+            this.butReadControlCards.Size = new System.Drawing.Size(48, 23);
+            this.butReadControlCards.TabIndex = 47;
+            this.butReadControlCards.Text = "读取";
+            this.butReadControlCards.UseVisualStyleBackColor = true;
+            this.butReadControlCards.Click += new System.EventHandler(this.butReadControlCards_Click);
+            // 
+            // txtCardPassword
+            // 
+            this.txtCardPassword.Location = new System.Drawing.Point(208, 18);
+            this.txtCardPassword.MaxLength = 30;
+            this.txtCardPassword.Name = "txtCardPassword";
+            this.txtCardPassword.Size = new System.Drawing.Size(89, 21);
+            this.txtCardPassword.TabIndex = 46;
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(161, 21);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(41, 12);
+            this.label53.TabIndex = 5;
+            this.label53.Text = "扇区：";
+            // 
+            // txtSectorNumber
+            // 
+            this.txtSectorNumber.Location = new System.Drawing.Point(52, 19);
+            this.txtSectorNumber.Name = "txtSectorNumber";
+            this.txtSectorNumber.Size = new System.Drawing.Size(96, 21);
+            this.txtSectorNumber.TabIndex = 4;
+            // 
+            // butWriteConsumerCards
+            // 
+            this.butWriteConsumerCards.Location = new System.Drawing.Point(135, 47);
+            this.butWriteConsumerCards.Name = "butWriteConsumerCards";
+            this.butWriteConsumerCards.Size = new System.Drawing.Size(48, 23);
+            this.butWriteConsumerCards.TabIndex = 3;
+            this.butWriteConsumerCards.Text = "写入";
+            this.butWriteConsumerCards.UseVisualStyleBackColor = true;
+            this.butWriteConsumerCards.Click += new System.EventHandler(this.butWriteConsumerCards_Click);
+            // 
+            // butReadConsumerCards
+            // 
+            this.butReadConsumerCards.Location = new System.Drawing.Point(79, 47);
+            this.butReadConsumerCards.Name = "butReadConsumerCards";
+            this.butReadConsumerCards.Size = new System.Drawing.Size(48, 23);
+            this.butReadConsumerCards.TabIndex = 2;
+            this.butReadConsumerCards.Text = "读取";
+            this.butReadConsumerCards.UseVisualStyleBackColor = true;
+            this.butReadConsumerCards.Click += new System.EventHandler(this.butReadConsumerCards_Click);
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(7, 21);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(41, 12);
+            this.label52.TabIndex = 0;
+            this.label52.Text = "扇区：";
             // 
             // groupBox15
             // 
@@ -347,7 +451,7 @@
             this.groupBox6.Controls.Add(this.txtSecretKey);
             this.groupBox6.Controls.Add(this.label17);
             this.groupBox6.Controls.Add(this.cbDataEncryptionSwitchIsUse);
-            this.groupBox6.Location = new System.Drawing.Point(277, 463);
+            this.groupBox6.Location = new System.Drawing.Point(277, 446);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(520, 70);
             this.groupBox6.TabIndex = 74;
@@ -408,7 +512,7 @@
             this.groupBox12.Controls.Add(this.label69);
             this.groupBox12.Location = new System.Drawing.Point(277, 385);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(520, 75);
+            this.groupBox12.Size = new System.Drawing.Size(520, 55);
             this.groupBox12.TabIndex = 73;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "TCP客户端模式";
@@ -764,6 +868,8 @@
             // 
             // gbTCP
             // 
+            this.gbTCP.Controls.Add(this.cbxServerAddrType);
+            this.gbTCP.Controls.Add(this.label54);
             this.gbTCP.Controls.Add(this.cbxAutoIP);
             this.gbTCP.Controls.Add(this.cbxProtocolType);
             this.gbTCP.Controls.Add(this.label15);
@@ -799,6 +905,28 @@
             this.gbTCP.TabStop = false;
             this.gbTCP.Text = "TCP/IP 连接参数";
             // 
+            // cbxServerAddrType
+            // 
+            this.cbxServerAddrType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxServerAddrType.FormattingEnabled = true;
+            this.cbxServerAddrType.Items.AddRange(new object[] {
+            "IP地址",
+            "域名"});
+            this.cbxServerAddrType.Location = new System.Drawing.Point(96, 181);
+            this.cbxServerAddrType.Name = "cbxServerAddrType";
+            this.cbxServerAddrType.Size = new System.Drawing.Size(121, 20);
+            this.cbxServerAddrType.TabIndex = 31;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(25, 184);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(65, 12);
+            this.label54.TabIndex = 30;
+            this.label54.Text = "地址类型：";
+            this.label54.Visible = false;
+            // 
             // cbxAutoIP
             // 
             this.cbxAutoIP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -806,7 +934,7 @@
             this.cbxAutoIP.Items.AddRange(new object[] {
             "否",
             "是"});
-            this.cbxAutoIP.Location = new System.Drawing.Point(96, 324);
+            this.cbxAutoIP.Location = new System.Drawing.Point(96, 363);
             this.cbxAutoIP.Name = "cbxAutoIP";
             this.cbxAutoIP.Size = new System.Drawing.Size(121, 20);
             this.cbxAutoIP.TabIndex = 29;
@@ -820,7 +948,7 @@
             "TCP Client",
             "TCP Server",
             "混合"});
-            this.cbxProtocolType.Location = new System.Drawing.Point(96, 184);
+            this.cbxProtocolType.Location = new System.Drawing.Point(96, 223);
             this.cbxProtocolType.Name = "cbxProtocolType";
             this.cbxProtocolType.Size = new System.Drawing.Size(121, 20);
             this.cbxProtocolType.TabIndex = 28;
@@ -829,7 +957,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(14, 354);
+            this.label15.Location = new System.Drawing.Point(14, 393);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(77, 12);
             this.label15.TabIndex = 27;
@@ -838,7 +966,7 @@
             // 
             // txtServerAddr
             // 
-            this.txtServerAddr.Location = new System.Drawing.Point(96, 351);
+            this.txtServerAddr.Location = new System.Drawing.Point(96, 390);
             this.txtServerAddr.MaxLength = 100;
             this.txtServerAddr.Name = "txtServerAddr";
             this.txtServerAddr.Size = new System.Drawing.Size(152, 21);
@@ -848,7 +976,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(14, 324);
+            this.label13.Location = new System.Drawing.Point(14, 363);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(77, 12);
             this.label13.TabIndex = 25;
@@ -856,7 +984,7 @@
             // 
             // txtServerIP
             // 
-            this.txtServerIP.Location = new System.Drawing.Point(96, 295);
+            this.txtServerIP.Location = new System.Drawing.Point(96, 334);
             this.txtServerIP.MaxLength = 16;
             this.txtServerIP.Name = "txtServerIP";
             this.txtServerIP.Size = new System.Drawing.Size(152, 21);
@@ -865,7 +993,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(25, 298);
+            this.label14.Location = new System.Drawing.Point(25, 337);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(65, 12);
             this.label14.TabIndex = 22;
@@ -874,7 +1002,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(13, 271);
+            this.label11.Location = new System.Drawing.Point(13, 310);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(77, 12);
             this.label11.TabIndex = 21;
@@ -882,7 +1010,7 @@
             // 
             // txtServerPort
             // 
-            this.txtServerPort.Location = new System.Drawing.Point(96, 268);
+            this.txtServerPort.Location = new System.Drawing.Point(96, 307);
             this.txtServerPort.MaxLength = 16;
             this.txtServerPort.Name = "txtServerPort";
             this.txtServerPort.Size = new System.Drawing.Size(152, 21);
@@ -890,7 +1018,7 @@
             // 
             // txtUDPPort
             // 
-            this.txtUDPPort.Location = new System.Drawing.Point(96, 241);
+            this.txtUDPPort.Location = new System.Drawing.Point(96, 280);
             this.txtUDPPort.MaxLength = 16;
             this.txtUDPPort.Name = "txtUDPPort";
             this.txtUDPPort.Size = new System.Drawing.Size(152, 21);
@@ -899,7 +1027,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(7, 244);
+            this.label12.Location = new System.Drawing.Point(7, 283);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(83, 12);
             this.label12.TabIndex = 18;
@@ -908,7 +1036,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 214);
+            this.label9.Location = new System.Drawing.Point(7, 253);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(83, 12);
             this.label9.TabIndex = 17;
@@ -917,7 +1045,7 @@
             // 
             // txtTCPPort
             // 
-            this.txtTCPPort.Location = new System.Drawing.Point(96, 210);
+            this.txtTCPPort.Location = new System.Drawing.Point(96, 249);
             this.txtTCPPort.MaxLength = 16;
             this.txtTCPPort.Name = "txtTCPPort";
             this.txtTCPPort.Size = new System.Drawing.Size(152, 21);
@@ -927,7 +1055,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 187);
+            this.label10.Location = new System.Drawing.Point(7, 226);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(83, 12);
             this.label10.TabIndex = 14;
@@ -1021,7 +1149,7 @@
             // 
             // butWriteTCPSetting
             // 
-            this.butWriteTCPSetting.Location = new System.Drawing.Point(152, 393);
+            this.butWriteTCPSetting.Location = new System.Drawing.Point(152, 417);
             this.butWriteTCPSetting.Name = "butWriteTCPSetting";
             this.butWriteTCPSetting.Size = new System.Drawing.Size(48, 23);
             this.butWriteTCPSetting.TabIndex = 3;
@@ -1031,7 +1159,7 @@
             // 
             // butRendTCPSetting
             // 
-            this.butRendTCPSetting.Location = new System.Drawing.Point(96, 393);
+            this.butRendTCPSetting.Location = new System.Drawing.Point(96, 417);
             this.butRendTCPSetting.Name = "butRendTCPSetting";
             this.butRendTCPSetting.Size = new System.Drawing.Size(48, 23);
             this.butRendTCPSetting.TabIndex = 2;
@@ -2442,6 +2570,9 @@
             this.Load += new System.EventHandler(this.frmSystem_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox19.ResumeLayout(false);
+            this.groupBox19.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSectorNumber)).EndInit();
             this.groupBox15.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -2700,5 +2831,16 @@
         private System.Windows.Forms.Button butReadLed;
         private System.Windows.Forms.ComboBox cmbLED;
         private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.GroupBox groupBox19;
+        private System.Windows.Forms.NumericUpDown txtSectorNumber;
+        private System.Windows.Forms.Button butWriteConsumerCards;
+        private System.Windows.Forms.Button butReadConsumerCards;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.TextBox txtCardPassword;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Button butWriteControlCards;
+        private System.Windows.Forms.Button butReadControlCards;
+        private System.Windows.Forms.ComboBox cbxServerAddrType;
+        private System.Windows.Forms.Label label54;
     }
 }

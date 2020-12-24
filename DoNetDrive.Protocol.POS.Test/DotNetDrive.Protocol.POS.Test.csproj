@@ -140,6 +140,7 @@
     </Compile>
     <Compile Include="INMain.cs" />
     <Compile Include="Model\CommandResult.cs" />
+    <Compile Include="Model\DeviceInfo.cs" />
     <Compile Include="Model\FixedFeeRuleDto.cs" />
     <Compile Include="Model\IOMessage.cs" />
     <Compile Include="Model\PrintContentDto.cs" />

@@ -5,6 +5,7 @@ using DoNetDrive.Protocol.POS.SystemParameter.ConnectPassword;
 using DoNetDrive.Protocol.POS.SystemParameter.ConsumeLogStatisticsTime;
 using DoNetDrive.Protocol.POS.SystemParameter.Deadline;
 using DoNetDrive.Protocol.POS.SystemParameter.ForbiddenMifareOne;
+using DoNetDrive.Protocol.POS.SystemParameter.ICSection;
 using DoNetDrive.Protocol.POS.SystemParameter.ReceiptPrint;
 using DoNetDrive.Protocol.POS.SystemParameter.RecordStorageMode;
 using DoNetDrive.Protocol.POS.SystemParameter.Relay;
@@ -177,6 +178,7 @@ namespace DotNetDrive.Protocol.POS.Test
                     txtIPGateway.Text = result.TCP.mIPGateway;
                     txtIPMask.Text = result.TCP.mIPMask;
                     cbxProtocolType.SelectedIndex = result.TCP.mProtocolType;
+                    cbxServerAddrType.SelectedIndex = result.TCP.mServerAddrType - 1;
                     cbxAutoIP.SelectedIndex = result.TCP.mAutoIP ? 1 : 0;
 
                 });
@@ -1134,6 +1136,59 @@ namespace DotNetDrive.Protocol.POS.Test
             WriteLed_Parameter par = new WriteLed_Parameter(mode);
             WriteLed cmd = new WriteLed(cmdDtl, par);
             mMainForm.AddCommand(cmd);
+        }
+
+        private void butReadConsumerCards_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadConsumerCards cmd = new ReadConsumerCards(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadConsumerCards_Result result = cmde.Command.getResult() as ReadConsumerCards_Result;
+
+                string tip = $"消费卡参数：";
+                Invoke(() =>
+                {
+                    txtSectorNumber.Value = result.SectorNumber;
+                    txtCardPassword.Text = result.Password;
+                });
+                mMainForm.AddCmdLog(cmde, tip);
+            };
+        }
+
+        private void butWriteConsumerCards_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void butReadControlCards_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            ReadControlCards cmd = new ReadControlCards(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadControlCards_Result result = cmde.Command.getResult() as ReadControlCards_Result;
+
+                string tip = $"控制卡参数：";
+                Invoke(() =>
+                {
+                    
+                });
+                mMainForm.AddCmdLog(cmde, tip);
+            };
+        }
+
+        private void butWriteControlCards_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

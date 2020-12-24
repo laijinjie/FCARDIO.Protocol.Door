@@ -7,12 +7,15 @@ using DoNetDrive.Core.Connector.UDP;
 using DoNetDrive.Core.Extension;
 using DoNetDrive.Protocol;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SearchControltor;
+using DoNetDrive.Protocol.OnlineAccess;
 using DoNetDrive.Protocol.POS.Protocol;
 using DoNetDrive.Protocol.POS.SystemParameter.SN;
 using DoNetDrive.Protocol.POS.SystemParameter.Watch;
 using DoNetDrive.Protocol.POS.Test.Model;
 using DoNetDrive.Protocol.POS.Transaction;
 using DoNetDrive.Protocol.Transaction;
+using DotNetDrive.Protocol.POS.Test.Model;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -67,6 +70,17 @@ namespace DotNetDrive.Protocol.POS.Test
 
         }
 
+        public void Invoke<T>(Action<T> act, T par)
+        {
+            try
+            {
+                this.Invoke((Delegate)act, par);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
 
         public static void AddNodeForms(Form frm)
         {
@@ -915,6 +929,23 @@ namespace DotNetDrive.Protocol.POS.Test
             return cmdDtl;
 
         }
+
+        private OnlineAccessCommandDetail SearchCommandDetail()
+        {
+            string sDestIP = "255.255.255.255";
+            string sSearchSN = "0000000000000000", sPassword = "FFFFFFFF";
+            int iDrivePort = mDrivePort;
+
+            string sLocalIP = cmbLocalIP.SelectedItem?.ToString();
+            var oUDPDtl = new UDPClientDetail(sDestIP, iDrivePort,
+                sLocalIP, int.Parse(txtUDPLocalPort.Text));
+
+            var dtl = new OnlineAccessCommandDetail(oUDPDtl, sSearchSN, sPassword);
+            dtl.Timeout = 2000;
+            dtl.RestartCount = 3;
+            dtl.UserData = null;
+            return dtl;
+        }
         #endregion
 
 
@@ -1330,5 +1361,172 @@ namespace DotNetDrive.Protocol.POS.Test
             return null;
         }
 
+        #region 产生随机数
+        /// <summary>
+        /// 随机数产生器
+        /// </summary>
+        public static Random CodeRandom = new Random();
+
+        /// <summary>
+        /// 获得一个随机数
+        /// </summary>
+        /// <returns></returns>
+        public static int GetRandomNum() => CodeRandom.Next(1, 65530);
+
+        #endregion
+
+        #region 设备搜索
+        private int mDrivePort = 8101;
+
+        /// <summary>
+        /// 准备退出
+        /// </summary>
+        private bool mStop;
+
+        List<string> mSNList;
+
+        /// <summary>
+        /// 自动搜索的随机数
+        /// </summary>
+        private int mSearchID;
+        private void butSearch_Click(object sender, EventArgs e)
+        {
+            mSearchID = GetRandomNum();
+            mStop = false;
+            mSNList = new List<string>();
+            dgDevice.Rows.Clear();
+            BeginSearchDrive();
+        }
+
+        private void BeginSearchDrive()
+        {
+            if (this.InvokeRequired)
+            {
+                Invoke(BeginSearchDrive);
+                return;
+            }
+            try
+            {
+                mDrivePort = int.Parse(txtUDPPort.Text);
+            }
+            catch (Exception)
+            {
+
+                mDrivePort = 8101;
+                txtUDPLocalPort.Text = "8101";
+            }
+            if (mDrivePort < 0 || mDrivePort > 65535)
+            {
+                mDrivePort = 8101;
+                txtUDPLocalPort.Text = "8101";
+            }
+
+            var cmdDtl = SearchCommandDetail();
+            cmdDtl.Timeout = 2000;
+            cmdDtl.RestartCount = 0;
+            cmdDtl.UserData = mSearchID;
+            var searchPar = new SearchControltor_Parameter((ushort)mSearchID);
+            searchPar.UDPBroadcast = true;
+
+            var searchCmd = new SearchControltor(cmdDtl, searchPar);
+            mAllocator.AddCommand(searchCmd);
+            cmdDtl.CommandCompleteEvent += search_CommandCompleteEvent;
+            cmdDtl.CommandTimeout += search_CommandTimeout;
+            cmdDtl.CommandErrorEvent += search_CommandErrorEvent;
+        }
+
+        private void search_CommandErrorEvent(object sender, CommandEventArgs e)
+        {
+            //MessageBox.Show("命令错误");
+            ushort iSearchID = (ushort)(int)e.CommandDetail.UserData;
+            if (iSearchID != mSearchID) return;
+            if (mStop) return;
+            Task.Run(BeginSearchDrive);
+        }
+
+        private void search_CommandTimeout(object sender, CommandEventArgs e)
+        {
+            ushort iSearchID = (ushort)(int)e.CommandDetail.UserData;
+            if (iSearchID != mSearchID) return;
+            //搜索结束;
+            if (mStop) return;
+            Task.Run(BeginSearchDrive);
+        }
+
+
+
+        private void search_CommandCompleteEvent(object sender, CommandEventArgs e)
+        {
+            ushort iSearchID = (ushort)(int)e.CommandDetail.UserData;
+            if (iSearchID != mSearchID) return;
+            if (mStop) return;
+
+            SearchControltor_Result rst = e.Result as SearchControltor_Result;
+
+            Task.Run(() =>
+            {
+                Invoke(AddSearchDrive, rst);
+            });
+        }
+
+        private void AddSearchDrive(SearchControltor_Result oDriveResult)
+        {
+            if (oDriveResult == null)
+                return;
+            if (this.InvokeRequired)
+            {
+                Invoke(AddSearchDrive, oDriveResult);
+                return;
+            }
+            if (oDriveResult == null)
+                return;
+            var oTCP = oDriveResult.TCP;
+            string sSearchSN = oDriveResult.SN;
+            if (sSearchSN.Length != 16) return;
+
+            string sSNFormat = sSearchSN.Substring(0, 8);
+
+
+            #region 将网络代码写入到设备
+            var cmdDtl = SearchCommandDetail();
+            var connDTL = cmdDtl.Connector as UDPClientDetail;
+            cmdDtl.SN = sSearchSN;
+            connDTL.Port = oTCP.mUDPPort;
+            var searchPar = new SearchControltor_Parameter((ushort)mSearchID);
+            searchPar.UDPBroadcast = true;
+
+            var searchCmd = new WriteControltorNetCode(cmdDtl, searchPar);
+            mAllocator.AddCommand(searchCmd);
+            #endregion
+
+            if (!mSNList.Contains(sSearchSN))
+            {
+                mSNList.Add(sSearchSN);
+                DeviceInfo deviceInfo = new DeviceInfo(sSearchSN, oTCP.mIP, "");
+
+                AddDeviceItem(deviceInfo);
+            }
+
+        }
+
+        private void AddDeviceItem(DeviceInfo deviceInfo)
+        {
+            if (dgDevice.InvokeRequired)
+            {
+                Invoke(() => AddDeviceItem(deviceInfo));
+                return;
+            }
+
+            dgDevice.Rows.Insert(0, dgDevice.Rows.Count + 1, deviceInfo.SN, deviceInfo.IP, deviceInfo.MAC);
+        }
+
+        private void dgDevice_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int col = e.ColumnIndex, row = e.RowIndex;
+            if (row < 0) return;
+            var gdRow = dgDevice.Rows[row];
+            txtSN.Text = gdRow.Cells[1].Value.ToString();
+        }
+        #endregion
     }
 }
