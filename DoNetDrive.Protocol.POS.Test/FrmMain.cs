@@ -1528,5 +1528,13 @@ namespace DotNetDrive.Protocol.POS.Test
             txtSN.Text = gdRow.Cells[1].Value.ToString();
         }
         #endregion
+
+        private void butStopCommand_Click(object sender, EventArgs e)
+        {
+            mStop = true;
+            var cmdDtl = GetCommandDetail();
+            if (cmdDtl == null) return;
+            mAllocator.StopCommand(cmdDtl);
+        }
     }
 }
