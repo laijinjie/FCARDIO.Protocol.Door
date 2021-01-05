@@ -59,7 +59,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReaderOption_Result result = cmde.Command.getResult() as ReaderOption_Result;
 
                 sb.Clear();
-                sb.Append(GetLanguage("Msg_12"));
+                sb.Append(Lng("Msg_12"));
                 sb.Append($"【{result.ReaderOption}】、" + str[result.ReaderOption - 1]);
 
                 Invoke(() =>
@@ -95,8 +95,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 RelayOption_Result result = cmde.Command.getResult() as RelayOption_Result;
 
                 sb.Clear();
-                sb.Append(GetLanguage("Msg_11"));
-                sb.Append(result.IsSupport ? GetLanguage("Msg_7") : GetLanguage("Msg_3"));
+                sb.Append(Lng("Msg_11"));
+                sb.Append(result.IsSupport ? Lng("Msg_7") : Lng("Msg_3"));
                 Invoke(() =>
                 {
                     if (result.IsSupport)
@@ -133,75 +133,75 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             #region 界面多语言加载
             base.LoadUILanguage();
-            GetLanguage(gpReaderOption);
-            GetLanguage(btnReadReaderOption);
-            GetLanguage(btnWriteReaderOption);
-            GetLanguage(gpReadRelayOption);
-            GetLanguage(btnReadRelayOption);
-            GetLanguage(btnWriteRelayOption);
-            GetLanguage(gpRelayReleaseTime);
-            GetLanguage(Lbl_RelayReleaseTime);
-            GetLanguage(Lbl_Seconds);
-            GetLanguage(btnReadRelayReleaseTime);
-            GetLanguage(btnWriteRelayReleaseTime);
-            GetLanguage(gpOpenDoor);
-            GetLanguage(Lbl_OpenDoor_CheckNum);
-            GetLanguage(btnOpenDoor_CheckNum);
-            GetLanguage(btnOpenDoor);
-            GetLanguage(btnCloseDoor);
-            GetLanguage(btnHoldOpenDoor);
-            GetLanguage(gpLockDoor);
-            GetLanguage(btnLockDoor);
-            GetLanguage(btnUnLockDoor);
-            GetLanguage(gpDoorWorkSetting);
-            GetLanguage(Lbl_DoorWorkSetting);
-            GetLanguage(rBtnNoDoorWorkSetting);
-            GetLanguage(rBtnDoorWorkSetting);
-            GetLanguage(Lbl_Week);
-            GetLanguage(Lbl_DoorTriggerMode);
-            GetLanguage(Lbl_StartTime1);
-            GetLanguage(Lbl_EndTime1);
-            GetLanguage(Lbl_StartTime2);
-            GetLanguage(Lbl_EndTime2);
-            GetLanguage(Lbl_StartTime3);
-            GetLanguage(Lbl_EndTime3);
-            GetLanguage(Lbl_StartTime4);
-            GetLanguage(Lbl_EndTime4);
-            GetLanguage(Lbl_StartTime5);
-            GetLanguage(Lbl_EndTime5);
-            GetLanguage(Lbl_StartTime6);
-            GetLanguage(Lbl_EndTime6);
-            GetLanguage(Lbl_StartTime7);
-            GetLanguage(Lbl_EndTime7);
-            GetLanguage(Lbl_StartTime8);
-            GetLanguage(Lbl_EndTime8);
-            GetLanguage(btnReadWorkSetting);
-            GetLanguage(btnWriteWorkSetting);
-            GetLanguage(gpExemptionVerificationUse);
-            GetLanguage(cbExemptionVerificationUse);
+            Lng(gpReaderOption);
+            Lng(btnReadReaderOption);
+            Lng(btnWriteReaderOption);
+            Lng(gpReadRelayOption);
+            Lng(btnReadRelayOption);
+            Lng(btnWriteRelayOption);
+            Lng(gpRelayReleaseTime);
+            Lng(Lbl_RelayReleaseTime);
+            Lng(Lbl_Seconds);
+            Lng(btnReadRelayReleaseTime);
+            Lng(btnWriteRelayReleaseTime);
+            Lng(gpOpenDoor);
+            Lng(Lbl_OpenDoor_CheckNum);
+            Lng(btnOpenDoor_CheckNum);
+            Lng(btnOpenDoor);
+            Lng(btnCloseDoor);
+            Lng(btnHoldOpenDoor);
+            Lng(gpLockDoor);
+            Lng(btnLockDoor);
+            Lng(btnUnLockDoor);
+            Lng(gpDoorWorkSetting);
+            Lng(Lbl_DoorWorkSetting);
+            Lng(rBtnNoDoorWorkSetting);
+            Lng(rBtnDoorWorkSetting);
+            Lng(Lbl_Week);
+            Lng(Lbl_DoorTriggerMode);
+            Lng(Lbl_StartTime1);
+            Lng(Lbl_EndTime1);
+            Lng(Lbl_StartTime2);
+            Lng(Lbl_EndTime2);
+            Lng(Lbl_StartTime3);
+            Lng(Lbl_EndTime3);
+            Lng(Lbl_StartTime4);
+            Lng(Lbl_EndTime4);
+            Lng(Lbl_StartTime5);
+            Lng(Lbl_EndTime5);
+            Lng(Lbl_StartTime6);
+            Lng(Lbl_EndTime6);
+            Lng(Lbl_StartTime7);
+            Lng(Lbl_EndTime7);
+            Lng(Lbl_StartTime8);
+            Lng(Lbl_EndTime8);
+            Lng(btnReadWorkSetting);
+            Lng(btnWriteWorkSetting);
+            Lng(gpExemptionVerificationUse);
+            Lng(cbExemptionVerificationUse);
             //GetLanguage(cbAutomaticRegistrationUse);
             //GetLanguage(Lbl_PeriodNumber1);
             //GetLanguage(Lbl_PeriodNumber2);
-            GetLanguage(btnReadExemptionVerificationOpen);
-            GetLanguage(btnWriteExemptionVerificationOpen);
-            GetLanguage(gpVoiceBroadcast);
-            GetLanguage(cbVoiceBroadcast);
-            GetLanguage(btnReadVoiceBroadcastSetting);
-            GetLanguage(btnWriteVoiceBroadcastSetting);
-            GetLanguage(gpReaderIntervalTimeUse);
-            GetLanguage(cbReaderIntervalTimeUse);
-            GetLanguage(Lbl_bIntervalTime);
-            GetLanguage(Lbl_Mode);
-            GetLanguage(btnReadReaderIntervalTime);
-            GetLanguage(btnWriteReaderIntervalTime);
-            GetLanguage(gpExpirationPromptUse);
-            GetLanguage(cbExpirationPromptUse);
-            GetLanguage(Lbl_ExpirationPromptTime);
-            GetLanguage(btnReadExpirationPrompt);
-            GetLanguage(btnWriteExpirationPrompt);
+            Lng(btnReadExemptionVerificationOpen);
+            Lng(btnWriteExemptionVerificationOpen);
+            Lng(gpVoiceBroadcast);
+            Lng(cbVoiceBroadcast);
+            Lng(btnReadVoiceBroadcastSetting);
+            Lng(btnWriteVoiceBroadcastSetting);
+            Lng(gpReaderIntervalTimeUse);
+            Lng(cbReaderIntervalTimeUse);
+            Lng(Lbl_bIntervalTime);
+            Lng(Lbl_Mode);
+            Lng(btnReadReaderIntervalTime);
+            Lng(btnWriteReaderIntervalTime);
+            Lng(gpExpirationPromptUse);
+            Lng(cbExpirationPromptUse);
+            Lng(Lbl_ExpirationPromptTime);
+            Lng(btnReadExpirationPrompt);
+            Lng(btnWriteExpirationPrompt);
             #endregion
 
-            str = GetLanguage("ReaderOptionList").Split(',');
+            str = Lng("ReaderOptionList").Split(',');
             cbxReaderOption.Items.Clear();
             cbxReaderOption.Items.AddRange(str);
             cbxReaderOption.SelectedIndex = 0;
@@ -210,7 +210,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             string[] intervaTime = new string[255];
             string[] promptTime = new string[256];
             time[0] = "0.5";
-            var msg_1 = GetLanguage("Msg_1");
+            var msg_1 = Lng("Msg_1");
             for (int i = 1; i < 254; i++)
             {
                 time[i] = i.ToString();
@@ -235,7 +235,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbCheckNum.SelectedIndex = 0;
 
             cmbDoorTriggerMode.Items.Clear();
-            cmbDoorTriggerMode.Items.AddRange(GetLanguage("doorTriggerModeList").Split(','));
+            cmbDoorTriggerMode.Items.AddRange(Lng("doorTriggerModeList").Split(','));
             cmbDoorTriggerMode.SelectedIndex = 0;
 
             cmbIntervalTime.Items.Clear();
@@ -247,15 +247,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbExpirationPromptTime.SelectedIndex = 0;
 
             cmbMode.Items.Clear();
-            cmbMode.Items.AddRange(GetLanguage("modeList").Split(','));
+            cmbMode.Items.AddRange(Lng("modeList").Split(','));
             cmbMode.SelectedIndex = 0;
 
             cbxRelayOption.Items.Clear();
-            cbxRelayOption.Items.AddRange(GetLanguage("RelayOptionList").Split(','));
+            cbxRelayOption.Items.AddRange(Lng("RelayOptionList").Split(','));
             cbxRelayOption.SelectedIndex = 0;
 
             cbxWeek.Items.Clear();
-            cbxWeek.Items.AddRange(GetLanguage("WeekList").Split(','));
+            cbxWeek.Items.AddRange(Lng("WeekList").Split(','));
             cbxWeek.SelectedIndex = 0;
         }
         private void FrmDoor_FormClosed(object sender, FormClosedEventArgs e)
@@ -281,14 +281,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 ReleaseTime = result.ReleaseTime; //开锁时输出时长
                 sb.Clear();
-                sb.Append(GetLanguage("Msg_2"));
+                sb.Append(Lng("Msg_2"));
                 if (ReleaseTime == 0)
                 {
-                    tip = "0.5" + GetLanguage("Msg_1");
+                    tip = "0.5" + Lng("Msg_1");
                 }
                 else
                 {
-                    tip = ReleaseTime + GetLanguage("Msg_1");
+                    tip = ReleaseTime + Lng("Msg_1");
                 }
 
                 Invoke(() =>
@@ -400,13 +400,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 string DoorTriggerModeStr = string.Empty;
                 if (!result.Use)
                 {
-                    sb.AppendLine(GetLanguage("Msg_3"));
+                    sb.AppendLine(Lng("Msg_3"));
                     mMainForm.AddCmdLog(cmde, sb.ToString());
                 }
                 else
                 {
 
-                    DoorTriggerModeStr = GetLanguage("Msg_4") + "【" + result.DoorTriggerMode.ToString() + "、" + doorTriggerModeList[result.DoorTriggerMode - 1] + "】";
+                    DoorTriggerModeStr = Lng("Msg_4") + "【" + result.DoorTriggerMode.ToString() + "、" + doorTriggerModeList[result.DoorTriggerMode - 1] + "】";
 
                     for (int i = 0; i < 7; i++)
                     {
@@ -414,7 +414,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         sb.Append(StringUtility.GetWeekStr(i));
                         for (int j = 0; j < 8; j++)
                         {
-                            sb.Append(GetLanguage("Msg_5") + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));
+                            sb.Append(Lng("Msg_5") + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));
                         }
                         // mMainForm.AddCmdLog(null, sb.ToString());
                     }
@@ -471,8 +471,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReadExemptionVerificationOpen_Result result = cmde.Command.getResult() as ReadExemptionVerificationOpen_Result;
 
                 sb.Clear();
-                sb.Append(GetLanguage("Msg_6"));
-                sb.Append(result.IsUseExemptionVerification ? GetLanguage("Msg_7") : GetLanguage("Msg_3"));
+                sb.Append(Lng("Msg_6"));
+                sb.Append(result.IsUseExemptionVerification ? Lng("Msg_7") : Lng("Msg_3"));
 
                 Invoke(() =>
                 {
@@ -511,8 +511,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 VoiceBroadcastSetting_Result result = cmde.Command.getResult() as VoiceBroadcastSetting_Result;
 
                 sb.Clear();
-                sb.Append(GetLanguage("Msg_8"));
-                sb.Append(result.Use ? GetLanguage("Msg_7") : GetLanguage("Msg_3"));
+                sb.Append(Lng("Msg_8"));
+                sb.Append(result.Use ? Lng("Msg_7") : Lng("Msg_3"));
 
                 Invoke(() =>
                 {
@@ -548,8 +548,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReadReaderIntervalTime_Result result = cmde.Command.getResult() as ReadReaderIntervalTime_Result;
 
                 sb.Clear();
-                sb.Append(GetLanguage("Msg_9"));
-                sb.Append(result.IsUse ? GetLanguage("Msg_7") : GetLanguage("Msg_3"));
+                sb.Append(Lng("Msg_9"));
+                sb.Append(result.IsUse ? Lng("Msg_7") : Lng("Msg_3"));
 
                 Invoke(() =>
                 {
@@ -603,8 +603,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 ReadExpirationPrompt_Result result = cmde.Command.getResult() as ReadExpirationPrompt_Result;
 
                 sb.Clear();
-                sb.Append(GetLanguage("Msg_10"));
-                sb.Append(result.IsUse ? GetLanguage("Msg_7") : GetLanguage("Msg_3"));
+                sb.Append(Lng("Msg_10"));
+                sb.Append(result.IsUse ? Lng("Msg_7") : Lng("Msg_3"));
 
                 Invoke(() =>
                 {

@@ -62,15 +62,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public void OpenTimes()
         {
             cmbOpenTimes.Items.Clear();
-            cmbOpenTimes.Items.Add(GetLanguage("cmbOpenTimes0"));
-            string str = GetLanguage("cmbOpenTimes");
+            cmbOpenTimes.Items.Add(Lng("cmbOpenTimes0"));
+            string str = Lng("cmbOpenTimes");
             string[] time = new string[300];
             for (int i = 1; i <= 300; i++)
             {
                 time[i - 1] = i + str;
             }
             cmbOpenTimes.Items.AddRange(time);
-            cmbOpenTimes.Items.Add(GetLanguage("cmbOpenTimes65535"));
+            cmbOpenTimes.Items.Add(Lng("cmbOpenTimes65535"));
             cmbOpenTimes.SelectedIndex = cmbOpenTimes.Items.Count - 1;
         }
 
@@ -78,7 +78,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public void TimeGroup()
         {
             string[] time = new string[64];
-            string str = GetLanguage("cmbTimeGroup");
+            string str = Lng("cmbTimeGroup");
             for (int i = 0; i < 64; i++)
             {
                 time[i] = str + (i + 1);
@@ -103,55 +103,54 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public override void LoadUILanguage()
         {
             base.LoadUILanguage();
-            GetLanguage(Lbl_UserList);
-            GetLanguage(chkSelectAll);
-            GetLanguage(btnReadDatabaseDetail);
-            GetLanguage(btnReadAllPerson);
-            GetLanguage(btnClearDataBase);
-            GetLanguage(btnWriteAllPerson);
-            GetLanguage(btnClearList);
-            GetLanguage(tabPage1);
-            GetLanguage(gpUserIdentityDetail);
-            GetLanguage(Lbl_UserCode);
-            GetLanguage(Lbl_Password);
-            GetLanguage(Lbl_CardData);
-            GetLanguage(Lbl_ValidityTime);
-            GetLanguage(Lbl_CardDataHex);
-            GetLanguage(Lbl_OpenTimes);
-            GetLanguage(Lbl_CardStatus);
-            GetLanguage(Lbl_TimeGroup);
-            GetLanguage(Lbl_Identity);
-            GetLanguage(Lbl_CardType);
-            GetLanguage(Lbl_EnterStatus);
-            GetLanguage(Lbl_PName);
-            GetLanguage(Lbl_PCode);
-            GetLanguage(Lbl_Dept);
-            GetLanguage(Lbl_Job);
-            GetLanguage(Lbl_Holiday);
-            GetLanguage(tabPage2);
-            GetLanguage(Lbl_Count);
-            GetLanguage(butCreateCardNumByRandom);
-            GetLanguage(butCreateCardNumByOrder);
-            GetLanguage(tabPage3);
-            GetLanguage(Lbl_RegUserCode);
-            GetLanguage(Lbl_RegUserName);
-            GetLanguage(button2);
-            GetLanguage(tabPage4);
-            GetLanguage(Lbl_UploadCode);
-            GetLanguage(Lbl_UploadName);
-            GetLanguage(butSelectImage);
-            GetLanguage(btnAddPesonAndImage);
-            GetLanguage(button5);
-            GetLanguage(btnAddList);
-            GetLanguage(btnDelList);
-            GetLanguage(btnAddDevice);
-            GetLanguage(btnDelDevice);
-            GetLanguage(btnDelSelect);
-            GetLanguage(dgPersonList);
-            GetLanguage(button1);
-            GetLanguage(btnCheckUserCode);
-            GetLanguage(button3);
-            GetLanguage(button4);
+            Lng(Lbl_UserList);
+            Lng(chkSelectAll);
+            Lng(btnReadDatabaseDetail);
+            Lng(btnReadAllPerson);
+            Lng(btnClearDataBase);
+            Lng(btnWriteAllPerson);
+            Lng(btnClearList);
+            Lng(tabPage1);
+            Lng(gpUserIdentityDetail);
+            Lng(Lbl_UserCode);
+            Lng(Lbl_Password);
+            Lng(Lbl_CardData);
+            Lng(Lbl_ValidityTime);
+            Lng(Lbl_CardDataHex);
+            Lng(Lbl_OpenTimes);
+            Lng(Lbl_CardStatus);
+            Lng(Lbl_TimeGroup);
+            Lng(Lbl_Identity);
+            Lng(Lbl_CardType);
+            Lng(Lbl_EnterStatus);
+            Lng(Lbl_PName);
+            Lng(Lbl_PCode);
+            Lng(Lbl_Dept);
+            Lng(Lbl_Job);
+            Lng(Lbl_Holiday);
+            Lng(tabPage2);
+            Lng(Lbl_Count);
+            Lng(butCreateCardNumByRandom);
+            Lng(butCreateCardNumByOrder);
+            Lng(tabPage3);
+            Lng(Lbl_RegUserCode);
+            Lng(Lbl_RegUserName);
+            Lng(button2);
+            Lng(tabPage4);
+            Lng(Lbl_UploadCode);
+            Lng(Lbl_UploadName);
+            Lng(butSelectImage);
+            Lng(btnAddPesonAndImage);
+            Lng(btnAddList);
+            Lng(btnDelList);
+            Lng(btnAddDevice);
+            Lng(btnDelDevice);
+            Lng(btnDelSelect);
+            Lng(dgPersonList);
+            Lng(button1);
+            Lng(btnCheckUserCode);
+            Lng(button3);
+            Lng(button4);
             LoadComboxItemsLanguage(cmbCardStatus, "CardStatusList");
             cmbCardStatus.SelectedIndex = 0;
             LoadComboxItemsLanguage(cmbEnterStatus, "EnterStatusList");
@@ -172,13 +171,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 ReadPersonDatabaseDetail_Result result = cmde.Command.getResult() as ReadPersonDatabaseDetail_Result;
                 StringBuilder builder = new StringBuilder();
-                builder.AppendLine(GetLanguage("btnReadDatabaseDetail"));
-                builder.AppendLine(GetLanguage("Msg_1") + result.SortDataBaseSize);
-                builder.AppendLine(GetLanguage("Msg_2") + result.SortPersonSize);
-                builder.AppendLine(GetLanguage("Msg_3") + result.SortFingerprintDataBaseSize);
-                builder.AppendLine(GetLanguage("Msg_4") + result.SortFingerprintSize);
-                builder.AppendLine(GetLanguage("Msg_5") + result.SortFaceDataBaseSize);
-                builder.AppendLine(GetLanguage("Msg_6") + result.SortFaceSize);
+                builder.AppendLine(Lng("btnReadDatabaseDetail"));
+                builder.AppendLine(Lng("Msg_1") + result.SortDataBaseSize);
+                builder.AppendLine(Lng("Msg_2") + result.SortPersonSize);
+                builder.AppendLine(Lng("Msg_3") + result.SortFingerprintDataBaseSize);
+                builder.AppendLine(Lng("Msg_4") + result.SortFingerprintSize);
+                builder.AppendLine(Lng("Msg_5") + result.SortFaceDataBaseSize);
+                builder.AppendLine(Lng("Msg_6") + result.SortFaceSize);
                 mMainForm.AddCmdLog(cmde, builder.ToString());
             };
         }
@@ -209,11 +208,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
 
 
-                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_7") + result.DataBaseSize);
+                mMainForm.AddCmdLog(cmde, Lng("Msg_7") + result.DataBaseSize);
                 if (sLogs.Length > 0)
                 {
-                    string sFile = frmRecord.SaveFile(sLogs, GetLanguage("Msg_8") + $"{DateTime.Now:yyyyMMddHHmmss}.txt");
-                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg_9") + sFile);
+                    string sFile = frmRecord.SaveFile(sLogs, Lng("Msg_8") + $"{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmde, Lng("Msg_9") + sFile);
                 }
             };
         }
@@ -299,12 +298,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             //strBuf.Append("；是否有人脸：").AppendLine(ui.IsFaceFeature);
             //strBuf.Append("；指纹数：").AppendLine(ui.FingerprintCount.ToString());
             // string.Empty
-            strBuf.AppendLine(GetLanguage("Msg_10", ui.UserCode, ui.PName, ui.Dept, ui.Job, ui.PCode));
-            strBuf.AppendLine(GetLanguage("Msg_11", ui.CardData, ui.Password));
-            strBuf.AppendLine(GetLanguage("Msg_12", ui.Expiry, ui.OpenTimes));
-            strBuf.AppendLine(GetLanguage("Msg_13", ui.TimeGroup, ui.CardStatus, ui.Identity));
-            strBuf.AppendLine(GetLanguage("Msg_14", ui.Holiday, ui.EnterStatus));
-            strBuf.AppendLine(GetLanguage("Msg_15", ui.ReadCardDate, ui.IsFaceFeature, ui.FingerprintCount));
+            strBuf.AppendLine(Lng("Msg_10", ui.UserCode, ui.PName, ui.Dept, ui.Job, ui.PCode));
+            strBuf.AppendLine(Lng("Msg_11", ui.CardData, ui.Password));
+            strBuf.AppendLine(Lng("Msg_12", ui.Expiry, ui.OpenTimes));
+            strBuf.AppendLine(Lng("Msg_13", ui.TimeGroup, ui.CardStatus, ui.Identity));
+            strBuf.AppendLine(Lng("Msg_14", ui.Holiday, ui.EnterStatus));
+            strBuf.AppendLine(Lng("Msg_15", ui.ReadCardDate, ui.IsFaceFeature, ui.FingerprintCount));
             strBuf.AppendLine("--------------------------------------------------------------------------------------");
             return strBuf;
         }
@@ -612,7 +611,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             if (result != null)
             {
-                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_16")+result.FailTotal);
+                mMainForm.AddCmdLog(cmde, Lng("Msg_16")+result.FailTotal);
                 if (result.FailTotal > 0)
                 {
                     StringBuilder strBuf = new StringBuilder();
@@ -621,7 +620,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         strBuf.Append(item.ToString("00000000000000000000")).Append("(0x").Append(item.ToString("X18")).Append(")");
                     }
                     //txtDebug.Text = strBuf.ToString();
-                    System.IO.File.WriteAllText(System.IO.Path.Combine(Application.StartupPath, GetLanguage("Msg_17")+".txt"), strBuf.ToString(), Encoding.UTF8);
+                    System.IO.File.WriteAllText(System.IO.Path.Combine(Application.StartupPath, Lng("Msg_17")+".txt"), strBuf.ToString(), Encoding.UTF8);
                 }
             }
         }
@@ -646,7 +645,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             uint usercode = 0;
             if (!uint.TryParse(txtUserCode.Text, out usercode))
             {
-                MessageBox.Show(GetLanguage("Msg_18"));
+                MessageBox.Show(Lng("Msg_18"));
                 return;
             }
             var par = new ReadPersonDetail_Parameter(usercode);
@@ -659,12 +658,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 if (!result.IsReady)
                 {
-                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg_19") );
+                    mMainForm.AddCmdLog(cmde, Lng("Msg_19") );
                 }
                 else
                 {
                     PersonToControl(result.Person);
-                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg_20") );
+                    mMainForm.AddCmdLog(cmde, Lng("Msg_20") );
                 }
             };
         }
@@ -672,7 +671,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void butSelectImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = GetLanguage("Msg_21")+"|*.jpg";
+            ofd.Filter = Lng("Msg_21")+"|*.jpg";
             ofd.Multiselect = false;
             if (ofd.ShowDialog() != DialogResult.OK) return;
             picUpload.Image = null;
@@ -689,7 +688,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             if (string.IsNullOrEmpty(mPersonImagePath))
             {
-                MsgTip(GetLanguage("Msg_22"));
+                MsgTip(Lng("Msg_22"));
                 return;
             }
             uint sCode = 0;
@@ -701,7 +700,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
             catch (Exception)
             {
-                MsgErr(GetLanguage("Msg_23"));
+                MsgErr(Lng("Msg_23"));
                 return;
             }
 
@@ -738,10 +737,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 var ids = result.IdDataUploadStatus;
 
-                mMainForm.AddCmdLog(cmde,GetLanguage("Msg_24", result.UserUploadStatus, ids[0]));
+                mMainForm.AddCmdLog(cmde,Lng("Msg_24", result.UserUploadStatus, ids[0]));
                 if (ids[0] == 4)
                 {
-                    mMainForm.AddCmdLog(cmde,GetLanguage("Msg_25")+result.IdDataRepeatUser[0]);
+                    mMainForm.AddCmdLog(cmde,Lng("Msg_25")+result.IdDataRepeatUser[0]);
                 }
             }
         }
@@ -781,60 +780,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                             picReg.Image = img;
                         }
 
-                        mMainForm.AddLog(GetLanguage("Msg_26"));
+                        mMainForm.AddLog(Lng("Msg_26"));
                     }
 
                 }
                 else
                 {
-                    mMainForm.AddLog(GetLanguage("Msg_26") +$"--{result.Status}");
+                    mMainForm.AddLog(Lng("Msg_26") +$"--{result.Status}");
                 }
             };
         }
 
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(mPersonImagePath))
-            {
-                MsgTip(GetLanguage("Msg_22"));
-                return;
-            }
-            uint sCode = 0;
-            string sName = string.Empty;
-            try
-            {
-                sCode = uint.Parse(txtUploadCode.Text);
-                sName = txtUploadName.Text;
-            }
-            catch (Exception)
-            {
-                MsgErr(GetLanguage("Msg_23"));
-                return;
-            }
-
-            int i;
-            for (i = 0; i < 5000; i++)
-            {
-                Data.Person person = new Data.Person(sCode, sName);
-                if (person == null) return;
-
-                var cmdDtl = mMainForm.GetCommandDetail();
-                if (cmdDtl == null) return;
-                //cmdDtl.Timeout = 10000;
-                INCommand cmd;
-
-                byte[] datas = System.IO.File.ReadAllBytes(mPersonImagePath);
-                datas = ImageTool.ConvertImage(datas, 480, 640, 122880);
-                IdentificationData id = new IdentificationData(1, datas);
-
-                var par = new AddPersonAndImage_Parameter(person, id);
-                par.WaitRepeatMessage = true;//固件版本v4.28以上才能用
-                cmd = new AddPeosonAndImage(cmdDtl, par);
-
-                mMainForm.AddCommand(cmd);
-            }
-            MsgTip(GetLanguage("Msg_28"));
-        }
 
         private void btnDelSelect_Click(object sender, EventArgs e)
         {

@@ -47,7 +47,7 @@
     <TransactionTypeName_3  value= "系统记录"/>
     <TransactionTypeName_4  value= "体温记录"/>
     <TransactionTypeName_0xA0 value= "连接测试"/>
-    <TransactionTypeName_0x22 value= "保活包"/>
+    <TransactionTypeName_0x22 value= "PING"/>
 
     <DisposeResponse value="发送数据"/>
     <DisposeRequest value="接收数据"/>
@@ -101,8 +101,8 @@
     <TransactionMessage5_0  value="无"/>
     <TransactionMessage6  value="门号："/>
     <TransactionMessage7  value="体温："/>
-    <TransactionMessage8  value="保活包消息，远端信息："/>
-    <TransactionMessage9  value="连接测试消息，远端信息："/>
+    <TransactionMessage8  value="，远端信息："/>
+    <TransactionMessage9  value=" ，远端信息："/>
     <butTCPServerBind_Close  value="关闭"/>
     <AddTCPClient0   value="重复添加客户端，Key:{0}"/>
 
@@ -235,6 +235,7 @@
     <DoNetDrive_Protocol_Fingerprint_Software_UpdateSoftware_FP value= "上传固件 "/>
     <DoNetDrive_Protocol_Fingerprint_Door_ReadDoorOpenCheckMode value= "读取开门验证方式 "/>
     <DoNetDrive_Protocol_Fingerprint_Door_WriteDoorOpenCheckMode value= "设置开门验证方式 "/>
+    <DoNetDrive_Protocol_Fingerprint_SystemParameter_SendConnectTestResponse value= "PONG"/>
 
   </frmMain>
   <frmSystem>
@@ -974,6 +975,7 @@
     <gpUpdateSoftware         value="上传固件" />
     <Lbl_EquptType            value="设备类型：" />
     <butUpdateSoftware        value="上传固件" />
+    <butUploadFolder          value="批量上传照片" />
     <UploadTypeList           value="人员头像照片,指纹特征码,红外人脸特征码,动态人脸特征码" />
     <DownloadTypeList         value="人员头像,指纹特征码,记录照片,红外人脸特征码,动态人脸特征码" />
     <EquptTypeList            value="A102 指纹机,A103 指纹机,A108 指纹红外人脸机,FC8300 动态人脸机" />
@@ -997,5 +999,23 @@
     <Msg_18                   value="固件上传完毕" />
     <Msg_19                   value="固件上传失败" />
     <Msg_PersonDetail         value="人员ID：{0}，照片存储情况：" />
+    <UF_Msg_1       value="用户号：{0}，人员注册结果：{1}；照片注册结果：{2}；" />
+    <UF_Msg_2       value="照片重复,已存在的编号：{0}" />
+    <UF_Msg_3       value="照片不可识别" />
+    <UF_Msg_4       value="成功" />
+    <UF_Msg_5       value="成功" />
+    <UF_Msg_6       value="失败" />
+    <UF_Msg_7       value="正在上传人员 {0}/{1}" />
+    <UF_Msg_9       value="上传完毕"/>
+    <UF_Msg_10       value="清空人事资料完毕"/>
+    <UF_Msg_11       value="上传失败"/>
+    <UF_Msg_12       value="开始批量上传"/>
+    <UF_Msg_13       value="正在清空人事资料"/>
+    <UF_Msg_14       value="提示"/>
+    <UF_Msg_15       value="是否清空人员资料？"/>
+    <UF_Msg_16       value="没有找到图片"/>
+    <UF_Msg_17       value="错误"/>
+    <UF_Msg_18       value="选择人员照片"/>
+    <UF_Msg_19       value="选择人员照片文件夹(*.JPG)|*.JPG"/>
   </frmAdditionalData>
 </Language>

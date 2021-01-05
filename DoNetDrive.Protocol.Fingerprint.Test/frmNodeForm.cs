@@ -124,28 +124,28 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         #region 多语言
 
-        protected string GetLanguage(string sKey)
+        protected string Lng(string sKey)
         {
             return ToolLanguage.GetLanguage(Name, sKey);
         }
-        protected string GetLanguage(string sKey, params object[] args)
+        protected string Lng(string sKey, params object[] args)
         {
             string str = ToolLanguage.GetLanguage(Name, sKey);
             return string.Format(str, args);
         }
 
 
-        protected void GetLanguage(ToolStripItem ctr)
+        protected void Lng(ToolStripItem ctr)
         {
             ctr.Text = ToolLanguage.GetLanguage(Name, ctr.Name);
         }
-        protected void GetLanguage(Control ctr)
+        protected void Lng(Control ctr)
         {
             ctr.Text = ToolLanguage.GetLanguage(Name, ctr.Name);
         }
-        protected void GetLanguage(DataGridView dg)
+        protected void Lng(DataGridView dg)
         {
-            string sCols = GetLanguage($"{dg.Name}_Cols");
+            string sCols = Lng($"{dg.Name}_Cols");
             var sArr = sCols.SplitTrim(",");
             var cols = dg.Columns;
             for (int i = 0; i < cols.Count; i++)
@@ -161,7 +161,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             int iOldSelectIndex = cbx.SelectedIndex;
             cbx.Items.Clear();
-            string sItems = GetLanguage(sKey);
+            string sItems = Lng(sKey);
             if (string.IsNullOrEmpty(sItems))
                 return;
 
@@ -180,7 +180,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public virtual void LoadUILanguage()
         {
             //指纹机、人脸机 调试程序
-            Text = GetLanguage("FormCaption");
+            Text = Lng("FormCaption");
            
         }
         #endregion

@@ -67,15 +67,8 @@
       <HintPath>..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Fingerprint, Version=1.19.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\DoNetDrive.Protocol.Fingerprint.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DoNetDrive.Protocol.Util">
       <HintPath>..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetTool.Common">
       <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>
@@ -259,6 +252,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DoNetDrive.Protocol.Fingerprint\Fingerprint\DoNetDrive.Protocol.Fingerprint.csproj">
+      <Project>{4639e7f7-83aa-4511-8fa8-369a79226b72}</Project>
+      <Name>DoNetDrive.Protocol.Fingerprint</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

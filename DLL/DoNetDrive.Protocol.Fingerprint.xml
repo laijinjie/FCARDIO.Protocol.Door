@@ -8593,6 +8593,11 @@
             </summary>
             <param name="oPck"></param>
         </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase.CreateResultNULL(System.Int64)">
+            <summary>
+            命令执行完毕
+            </summary>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase.SubCommandOver(DoNetDrive.Protocol.Fingerprint.ISubCommand)">
             <summary>
             命令执行完毕

@@ -14,6 +14,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DoNetDrive.Protocol.Fingerprint.Person;
+using System.Diagnostics;
+using ReadPersonDetail_Parameter = DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadPersonDetail_Parameter;
+using ReadPersonDetail = DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadPersonDetail;
+using ReadPersonDetail_Result = DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadPersonDetail_Result;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -76,8 +81,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// </summary>
         private void InitControl()
         {
-            var mUploadTypeList = GetLanguage("UploadTypeList").Split(',');
-            var mDownloadTypeList = GetLanguage("DownloadTypeList").Split(',');
+            var mUploadTypeList = Lng("UploadTypeList").Split(',');
+            var mDownloadTypeList = Lng("DownloadTypeList").Split(',');
             cmbUploadType.Items.Clear();
             cmbUploadType.Items.AddRange(mUploadTypeList);
             cmbUploadType.SelectedIndex = 0;
@@ -510,7 +515,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void IniEquptType()
         {
-            var equptType = GetLanguage("EquptTypeList").Split(',');
+            var equptType = Lng("EquptTypeList").Split(',');
             mAesKey = new Dictionary<string, EquptAESKey>();
             var oKey = new EquptAESKey(equptType[0], "70c5287e4572bdd9", 1024);
             mAesKey.Add(oKey.Name, oKey);
@@ -580,7 +585,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
 
             cmdDtl.Timeout = 500;
-            cmdDtl.RestartCount = 5;
+            cmdDtl.RestartCount = 10;
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -615,47 +620,48 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public override void LoadUILanguage()
         {
             base.LoadUILanguage();
-            GetLanguage(gpUpload);
-            GetLanguage(Lbl_UploadUserCode);
-            GetLanguage(Lbl_UploadType);
-            GetLanguage(Lbl_UploadSerialNumber);
-            GetLanguage(tabPage2);
-            GetLanguage(tabPage1);
-            GetLanguage(butUploadImage);
-            GetLanguage(Lbl_CodeData);
-            GetLanguage(btnDeleteCode);
-            GetLanguage(btnCompute);
-            GetLanguage(btnUploadCode);
-            GetLanguage(gpDownload);
-            GetLanguage(Lbl_DownloadUserCode);
-            GetLanguage(Lbl_DownloadType);
-            GetLanguage(Lbl_DownloadSerialNumber);
-            GetLanguage(btnGetPerson);
-            GetLanguage(chkByBlock);
-            GetLanguage(btnDownload);
-            GetLanguage(gpUpdateSoftware);
-            GetLanguage(Lbl_EquptType);
-            GetLanguage(butUpdateSoftware);
-            Msg_1 = GetLanguage("Msg_1");
-            Msg_2 = GetLanguage("Msg_2");
-            Msg_3 = GetLanguage("Msg_3");
-            Msg_4 = GetLanguage("Msg_4");
-            Msg_5 = GetLanguage("Msg_5");
-            Msg_6 = GetLanguage("Msg_6");
-            Msg_7 = GetLanguage("Msg_7");
-            Msg_8 = GetLanguage("Msg_8");
-            Msg_9 = GetLanguage("Msg_9");
-            Msg_10 = GetLanguage("Msg_10");
-            Msg_11 = GetLanguage("Msg_11");
-            Msg_12 = GetLanguage("Msg_12");
-            Msg_13 = GetLanguage("Msg_13");
-            Msg_14 = GetLanguage("Msg_14");
-            Msg_15 = GetLanguage("Msg_15");
-            Msg_16 = GetLanguage("Msg_16");
-            Msg_17 = GetLanguage("Msg_17");
-            Msg_18 = GetLanguage("Msg_18");
-            Msg_19 = GetLanguage("Msg_19");
-            Msg_PersonDetail = GetLanguage("Msg_PersonDetail");
+            Lng(gpUpload);
+            Lng(Lbl_UploadUserCode);
+            Lng(Lbl_UploadType);
+            Lng(Lbl_UploadSerialNumber);
+            Lng(tabPage2);
+            Lng(tabPage1);
+            Lng(butUploadImage);
+            Lng(Lbl_CodeData);
+            Lng(btnDeleteCode);
+            Lng(btnCompute);
+            Lng(btnUploadCode);
+            Lng(gpDownload);
+            Lng(Lbl_DownloadUserCode);
+            Lng(Lbl_DownloadType);
+            Lng(Lbl_DownloadSerialNumber);
+            Lng(btnGetPerson);
+            Lng(chkByBlock);
+            Lng(btnDownload);
+            Lng(gpUpdateSoftware);
+            Lng(Lbl_EquptType);
+            Lng(butUpdateSoftware);
+            Lng(butUploadFolder);
+            Msg_1 = Lng("Msg_1");
+            Msg_2 = Lng("Msg_2");
+            Msg_3 = Lng("Msg_3");
+            Msg_4 = Lng("Msg_4");
+            Msg_5 = Lng("Msg_5");
+            Msg_6 = Lng("Msg_6");
+            Msg_7 = Lng("Msg_7");
+            Msg_8 = Lng("Msg_8");
+            Msg_9 = Lng("Msg_9");
+            Msg_10 = Lng("Msg_10");
+            Msg_11 = Lng("Msg_11");
+            Msg_12 = Lng("Msg_12");
+            Msg_13 = Lng("Msg_13");
+            Msg_14 = Lng("Msg_14");
+            Msg_15 = Lng("Msg_15");
+            Msg_16 = Lng("Msg_16");
+            Msg_17 = Lng("Msg_17");
+            Msg_18 = Lng("Msg_18");
+            Msg_19 = Lng("Msg_19");
+            Msg_PersonDetail = Lng("Msg_PersonDetail");
             InitControl();
         }
 
@@ -663,5 +669,211 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
 
         }
+
+        #region 上传文件夹
+        private List<string> mFiles;
+        private int mFileCount;
+        private int mUploadFolderIndex;
+        private uint mUploadFolderUserCode;
+        private INCommandDetail mUploadCommandDtl;
+        private bool mUploading;
+        private bool mUploadIsRun;
+
+        private void butUploadFolder_Click(object sender, EventArgs e)
+        {
+            if(mUploading)
+            {
+                mUploadIsRun = false;
+            }
+            else
+            {
+                OpenFileDialog sfd = new OpenFileDialog();
+
+                sfd.Filter = Lng("UF_Msg_19");//"选择人员照片文件夹(*.JPG)|*.JPG";
+                sfd.AddExtension = true;
+                sfd.AutoUpgradeEnabled = true;
+                sfd.Title = Lng("UF_Msg_18");// "选择人员照片";
+                sfd.FilterIndex = 0;
+                sfd.RestoreDirectory = true;
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    var sDir = Path.GetDirectoryName(sfd.FileName);
+                    var oFiles = Directory.EnumerateFiles(sDir, "*.jpg");
+                    var oFileList = new List<string>(oFiles);
+                    if(oFileList.Count ==0)
+                    {
+                        //MessageBox.Show("没有找到图片", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Lng("UF_Msg_16"), Lng("UF_Msg_17"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    //bool bClear = MessageBox.Show("是否清空人员资料", "提示",
+                    //    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+                    bool bClear = MessageBox.Show(Lng("UF_Msg_15"), Lng("UF_Msg_14"),
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+                    UploadFolder(oFileList, bClear);
+
+                }
+            }
+           
+        }
+        private void SetRowTip(string sLog,Color color)
+        {
+            mMainForm.AddLog(sLog);
+        }
+        public void UploadFolder(List<string> sFiles, bool bClearPeople)
+        {
+
+            mFileCount = sFiles.Count;
+            if (mFileCount == 0) return;
+            mUploadIsRun = true;
+            mUploading = true;
+
+            mUploadFolderIndex = -1;
+            mUploadFolderUserCode = 800000 - 1;
+            mFiles = new List<string>(sFiles);
+            mUploadCommandDtl = mMainForm.GetCommandDetail();
+            mUploadCommandDtl.CommandTimeout += MUploadCommandDtl_CommandTimeout;
+            if (bClearPeople)
+            {
+
+                mUploadCommandDtl.Timeout = 15000;
+                var uploadcmd = new ClearPersonDataBase(mUploadCommandDtl);
+                mUploadCommandDtl.CommandCompleteEvent += UploadFolder_ClearPerson_CommandCompleteEvent;
+                mMainForm.AddCommand(uploadcmd);
+                //SetRowTip("正在清空人事资料", Color.Magenta);//正在清空人事资料
+                SetRowTip(Lng("UF_Msg_13"), Color.Magenta);
+
+            }
+            else
+            {
+                //SetRowTip("开始批量上传", Color.Magenta);//正在清空人事资料
+                SetRowTip(Lng("UF_Msg_12"), Color.Magenta);
+                UploadNext();
+            }
+
+        }
+
+        private void MUploadCommandDtl_CommandTimeout(object sender, CommandEventArgs e)
+        {
+            //SetRowTip("上传失败", Color.Red);
+            SetRowTip(Lng("UF_Msg_11"), Color.Red);
+            mUploadIsRun = false;
+            mUploading = false;
+        }
+
+        private void UploadFolder_ClearPerson_CommandCompleteEvent(object sender, CommandEventArgs e)
+        {
+            //SetRowTip("清空人事资料完毕", Color.Blue);
+            SetRowTip(Lng("UF_Msg_10"), Color.Blue);
+
+            UploadNext();
+        }
+
+        private void UploadNext()
+        {
+            mUploadFolderIndex++;
+            if (mUploadFolderIndex >= mFileCount)
+            {
+                //SetRowTip("上传完毕", Color.Blue);
+                SetRowTip(Lng("UF_Msg_9"), Color.Blue);
+                mUploadIsRun = false;
+                mUploading = false;
+
+                return;
+            }
+
+            if(!mUploadIsRun)
+            {
+                //SetRowTip("上传已被中止完毕", Color.Blue);
+                SetRowTip(Lng("UF_Msg_8"), Color.Red);
+                mUploadIsRun = false;
+                mUploading = false;
+
+                return;
+            }
+            string sTip = Lng("UF_Msg_7");//"正在上传人员 {0}/{1}";
+            sTip = string.Format(sTip, mUploadFolderIndex + 1, mFileCount);
+            SetRowTip(sTip, Color.Magenta);
+            int iOptStep = 1;
+            try
+            {
+                //上传人员
+                var cmdDtl = mUploadCommandDtl;
+                cmdDtl.CommandCompleteEvent -= UploadFolder_CommandCompleteEvent;
+                cmdDtl.CommandCompleteEvent -= UploadFolder_ClearPerson_CommandCompleteEvent;
+                cmdDtl.CommandCompleteEvent += UploadFolder_CommandCompleteEvent;
+
+                cmdDtl.Timeout = 600;
+                mUploadFolderUserCode++;
+
+                #region 生成人员资料
+                string sImageFile = mFiles[mUploadFolderIndex];
+                string sName = System.IO.Path.GetFileNameWithoutExtension(sImageFile);
+                var oUser = new DoNetDrive.Protocol.Fingerprint.Data.Person(mUploadFolderUserCode, sName);
+                byte[] datas = System.IO.File.ReadAllBytes(sImageFile);
+                int iMaxFileLen = 122880;
+                datas = ImageTool.ConvertImage(datas, 480, 640, iMaxFileLen);
+                iOptStep = 2;
+                var oIdt = new IdentificationData(1, datas);
+                #endregion
+
+                iOptStep = 3;
+                var PersonPar = new AddPersonAndImage_Parameter(oUser, oIdt);
+                PersonPar.WaitVerifyTime = 3000;
+                PersonPar.WaitRepeatMessage = true;
+                var uploadcmd = new AddPeosonAndImage(cmdDtl, PersonPar);
+                
+                iOptStep = 4;
+                mMainForm.AddCommand(uploadcmd);
+                iOptStep = 5;
+            }
+            catch (Exception ex)
+            {
+
+                //Trace.WriteLine($"上传文件夹时发生错误，错误步骤：{iOptStep} 错误信息：{ex.Message}");//进度报告;
+                UploadNext();
+            }
+
+
+        }
+
+        /// <summary>
+        /// 上传一个人员完毕
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UploadFolder_CommandCompleteEvent(object sender, CommandEventArgs e)
+        {
+            string sRegResult, sImgResult = string.Empty;
+            AddPersonAndImage_Result Result = e.Result as AddPersonAndImage_Result;
+            //sRegResult = Result.UserUploadStatus ? "成功" : "失败";
+            sRegResult = Result.UserUploadStatus ? Lng("UF_Msg_5") : Lng("UF_Msg_6");
+            int sStatus = Result.IdDataUploadStatus[0];
+            if (Result.UserUploadStatus)
+            {
+                switch (sStatus)
+                {
+                    case 1:
+                        sImgResult = Lng("UF_Msg_4");//"成功";
+                        break;
+                    case 3:
+                        sImgResult = Lng("UF_Msg_3");//"照片不可识别";
+                        break;
+                    case 4:
+                        sImgResult = Lng("UF_Msg_2");// "照片和编号：{0} 重复";
+                        sImgResult = string.Format(sImgResult, Result.IdDataRepeatUser[0]);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            string sTip = Lng("UF_Msg_1");//"用户号：{0}，人员注册结果：{1}；照片注册结果：{2}；";
+            sTip = string.Format(sTip, mUploadFolderUserCode, sRegResult, sImgResult);
+            SetRowTip(sTip, Color.Magenta);
+            UploadNext();
+        }
+        #endregion
     }
 }

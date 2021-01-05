@@ -64,151 +64,151 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public override void LoadUILanguage()
         {
             base.LoadUILanguage();
-            GetLanguage(tpPar1);//  设备参数设置
-            GetLanguage(gpSN);//  SN
-            GetLanguage(LblDriveSN);//  SN:
-            GetLanguage(butReadSN);//  读取
-            GetLanguage(butWriteSN);//  写入
-            GetLanguage(butWriteSN_Broadcast);//  广播写
-            GetLanguage(gbPassword);//  通讯密码
-            GetLanguage(LblConnectPassword);//  密码:
-            GetLanguage(butReadConnectPassword);//  读取
-            GetLanguage(butWriteConnectPassword);//  写入
-            GetLanguage(butResetConnectPassword);//  重置
-            GetLanguage(btnReadSystemStatus);//  读取
-            GetLanguage(gbVersion);//  版本号
-            GetLanguage(LblVersion);//  硬件版本号:
-            GetLanguage(btnReadVersion);//  读取
-            GetLanguage(gbTCP);//  TCP/IP 连接参数
-            GetLanguage(lblMAC);//  MAC地址:
-            GetLanguage(LblIP);//  IP地址:
-            GetLanguage(LblIPMask);//  子网掩码:
-            GetLanguage(LblIPGateway);//  网关IP:
-            GetLanguage(LblDNS);//  DNS:
-            GetLanguage(LblDNSBackup);//  备用DNS:
-            GetLanguage(lblAutoIP);//  自动获得IP:
-            GetLanguage(LblUDPPort);//  本地UDP端口:
-            GetLanguage(LblServerPort);//  服务器端口:
-            GetLanguage(LblServerIP);//  服务器IP:
-            GetLanguage(LblServerAddr);//  服务器域名:
-            GetLanguage(butRendTCPSetting);//  读取
-            GetLanguage(butWriteTCPSetting);//  写入
-            GetLanguage(gbRunStatus);//  设备运行信息
-            GetLanguage(lblRunDay);//  设备已运行天数:
-            GetLanguage(LblRestartCount);//  看门狗复位次数:
-            GetLanguage(lblFormatCount);//  格式化次数:
-            GetLanguage(LblStartTime);//  上电时间:
-            GetLanguage(gbRecordMode);//  记录存储方式
-            GetLanguage(lblRecordMode);//  记录满盘后:
-            GetLanguage(rBtnCover);//  循环覆盖存储
-            GetLanguage(rBtnNoCover);//  不再保存新纪录
-            GetLanguage(btnReadRecordMode);//  读取
-            GetLanguage(btnWriteRecordMode);//  写入
-            GetLanguage(gbWatch);//  数据监控
-            GetLanguage(lbWatchStateTag);//  监控状态:
-            GetLanguage(lbWatchState);//  未开启
-            GetLanguage(btnBeginWatch);//  实时监控开
-            GetLanguage(btnCloseWatch);//  实时监控关
-            GetLanguage(btnReadWatchState);//  状态
-            GetLanguage(btnBeginWatch_Broadcast);//  开启广播
-            GetLanguage(btnCloseWatch_Broadcast);//  关闭广播
-            GetLanguage(BtnFormatController);//格式化
+            Lng(tpPar1);//  设备参数设置
+            Lng(gpSN);//  SN
+            Lng(LblDriveSN);//  SN:
+            Lng(butReadSN);//  读取
+            Lng(butWriteSN);//  写入
+            Lng(butWriteSN_Broadcast);//  广播写
+            Lng(gbPassword);//  通讯密码
+            Lng(LblConnectPassword);//  密码:
+            Lng(butReadConnectPassword);//  读取
+            Lng(butWriteConnectPassword);//  写入
+            Lng(butResetConnectPassword);//  重置
+            Lng(btnReadSystemStatus);//  读取
+            Lng(gbVersion);//  版本号
+            Lng(LblVersion);//  硬件版本号:
+            Lng(btnReadVersion);//  读取
+            Lng(gbTCP);//  TCP/IP 连接参数
+            Lng(lblMAC);//  MAC地址:
+            Lng(LblIP);//  IP地址:
+            Lng(LblIPMask);//  子网掩码:
+            Lng(LblIPGateway);//  网关IP:
+            Lng(LblDNS);//  DNS:
+            Lng(LblDNSBackup);//  备用DNS:
+            Lng(lblAutoIP);//  自动获得IP:
+            Lng(LblUDPPort);//  本地UDP端口:
+            Lng(LblServerPort);//  服务器端口:
+            Lng(LblServerIP);//  服务器IP:
+            Lng(LblServerAddr);//  服务器域名:
+            Lng(butRendTCPSetting);//  读取
+            Lng(butWriteTCPSetting);//  写入
+            Lng(gbRunStatus);//  设备运行信息
+            Lng(lblRunDay);//  设备已运行天数:
+            Lng(LblRestartCount);//  看门狗复位次数:
+            Lng(lblFormatCount);//  格式化次数:
+            Lng(LblStartTime);//  上电时间:
+            Lng(gbRecordMode);//  记录存储方式
+            Lng(lblRecordMode);//  记录满盘后:
+            Lng(rBtnCover);//  循环覆盖存储
+            Lng(rBtnNoCover);//  不再保存新纪录
+            Lng(btnReadRecordMode);//  读取
+            Lng(btnWriteRecordMode);//  写入
+            Lng(gbWatch);//  数据监控
+            Lng(lbWatchStateTag);//  监控状态:
+            Lng(lbWatchState);//  未开启
+            Lng(btnBeginWatch);//  实时监控开
+            Lng(btnCloseWatch);//  实时监控关
+            Lng(btnReadWatchState);//  状态
+            Lng(btnBeginWatch_Broadcast);//  开启广播
+            Lng(btnCloseWatch_Broadcast);//  关闭广播
+            Lng(BtnFormatController);//格式化
 
-            GetLanguage(tabPage2);//参数2
-            GetLanguage(gpLocalIdentity);//本机身份
-            GetLanguage(Lbl_p2_DoorNum);//门号
-            GetLanguage(Lbl_p2_InOut);//进出
-            GetLanguage(btnReadLocalIdentity);//读取本机身份
-            GetLanguage(btnWriteLocalIdentity);//写入本机身份
-            GetLanguage(Lbl_p2_LocalName);//本机名称
-            GetLanguage(gpWgOut);//韦根输出
-            GetLanguage(Lbl_p2_ReadCardByte);//读卡字节
-            GetLanguage(Lbl_p2_WgOut);//韦根输出
-            GetLanguage(Lbl_p2_WgOrder);//WG字节顺序
-            GetLanguage(Lbl_p2_OutputDataType);//输出数据类型
-            GetLanguage(btnReadWiegandOutput);//读取韦根输出
-            GetLanguage(btnWriteWiegandOutput);//写入韦根输出
-            GetLanguage(gpFace_fingerprint_threshold);//人脸、指纹对比阈值
-            GetLanguage(Lbl_p2_FoFReadCardByte);//读卡字节
-            GetLanguage(Lbl_p2_FoFWgOut);//韦根输出
-            GetLanguage(btnReadComparisonThreshold);//读取人脸、指纹对比阈值
-            GetLanguage(btnWriteComparisonThreshold);//写入人脸、指纹对比阈值
-            GetLanguage(gpScreenContent);//屏幕显示内容
-            GetLanguage(cbDisplay1);//人名
-            GetLanguage(cbDisplay2);//人员编号
-            GetLanguage(cbDisplay3);//部门
-            GetLanguage(cbDisplay4);//职务
-            GetLanguage(cbDisplay5);//人员照片
-            GetLanguage(cbDisplay6);//卡号
-            GetLanguage(cbDisplay7);//记录照片
-            GetLanguage(cbDisplay8);//记录时间
-            GetLanguage(cbDisplay9);//用户号
-            GetLanguage(gpMenuManagementPassword);//菜单管理密码
-            GetLanguage(Lbl_p2_pwd);//密码
-            GetLanguage(btnReadManageMenuPassword);//读取菜单管理密码
-            GetLanguage(btnWriteManageMenuPassword);//写入菜单管理密码
-            GetLanguage(gpOemInfo);//OEM信息
-            GetLanguage(Lbl_p2_Manufacturers);//制造商
-            GetLanguage(Lbl_p2_Url);//网 址
-            GetLanguage(Lbl_p2_MakeDate);//生产日期
-            GetLanguage(btnReadOEM);//制造商读取
-            GetLanguage(btnWriteOEM);//制造商写入
-
-
-            GetLanguage(tabPage3);//                                  参数3
-            GetLanguage(gpDeviceLanguage);//                          设备语言
-            GetLanguage(Lbl_p3_Language);//                           语言
-            GetLanguage(butReadLanguage);//                           读取
-            GetLanguage(butWriteLanguage);//                          写入
-            GetLanguage(gpDeviceVolume);//                            设备音量
-            GetLanguage(Lbl_Volume);//                                音量
-            GetLanguage(butReadVolume);//                             读取
-            GetLanguage(butWriteVolume);//                            写入
-            GetLanguage(Lbl_Filllightmode);//                         补光灯模式
-            GetLanguage(But_WriteFaceLEDMode);//                      写入
-            GetLanguage(But_ReadFaceLEDMode);//                       读取
-            GetLanguage(Lbl_MaskRecognitionSwitch);//                 口罩识别开关
-            GetLanguage(But_WriteFaceMouthmufflePar);//               写入
-            GetLanguage(But_ReadFaceMouthmufflePar);//                读取
-            GetLanguage(Lbl_TemperatureExaminationAndFormat);//       体温检测及格式
-            GetLanguage(But_WriteFaceBodyTemperature);//              写入
-            GetLanguage(But_ReadFaceBodyTemperature);//               读取
-            GetLanguage(Lbl_TemperatureAlarmThreshold);//             体温报警阈值
-            GetLanguage(But_WriteFaceBodyTemperatureAlarm);//         写入
-            GetLanguage(But_ReadFaceBodyTemperatureAlarm);//          读取
-            GetLanguage(Lbl_TemperatureIndicatorSwitch);//            体温数值显示开关
-            GetLanguage(But_WriteFaceBodyTemperatureShow);//          写入
-            GetLanguage(But_ReadFaceBodyTemperatureShow);//           读取
-            GetLanguage(Lbl_ShortMessage);//                          短消息
-            GetLanguage(But_WriteShortMessage);//                     写入
-            GetLanguage(But_ReadShortMessage);//                      读取
-            GetLanguage(LblDoorAccessMode);//开门验证方式
-            GetLanguage(butReadDoorOpenCheckMode);//读取
-            GetLanguage(butWriteDoorOpenCheckMode);// 写入 
-            GetLanguage(LabFaceBioassay);//活体检测
-            GetLanguage(Btn_ReadFaceBioassay);//读取
-            GetLanguage(Btn_WriteFaceBioassay);// 写入 
+            Lng(tabPage2);//参数2
+            Lng(gpLocalIdentity);//本机身份
+            Lng(Lbl_p2_DoorNum);//门号
+            Lng(Lbl_p2_InOut);//进出
+            Lng(btnReadLocalIdentity);//读取本机身份
+            Lng(btnWriteLocalIdentity);//写入本机身份
+            Lng(Lbl_p2_LocalName);//本机名称
+            Lng(gpWgOut);//韦根输出
+            Lng(Lbl_p2_ReadCardByte);//读卡字节
+            Lng(Lbl_p2_WgOut);//韦根输出
+            Lng(Lbl_p2_WgOrder);//WG字节顺序
+            Lng(Lbl_p2_OutputDataType);//输出数据类型
+            Lng(btnReadWiegandOutput);//读取韦根输出
+            Lng(btnWriteWiegandOutput);//写入韦根输出
+            Lng(gpFace_fingerprint_threshold);//人脸、指纹对比阈值
+            Lng(Lbl_p2_FoFReadCardByte);//读卡字节
+            Lng(Lbl_p2_FoFWgOut);//韦根输出
+            Lng(btnReadComparisonThreshold);//读取人脸、指纹对比阈值
+            Lng(btnWriteComparisonThreshold);//写入人脸、指纹对比阈值
+            Lng(gpScreenContent);//屏幕显示内容
+            Lng(cbDisplay1);//人名
+            Lng(cbDisplay2);//人员编号
+            Lng(cbDisplay3);//部门
+            Lng(cbDisplay4);//职务
+            Lng(cbDisplay5);//人员照片
+            Lng(cbDisplay6);//卡号
+            Lng(cbDisplay7);//记录照片
+            Lng(cbDisplay8);//记录时间
+            Lng(cbDisplay9);//用户号
+            Lng(gpMenuManagementPassword);//菜单管理密码
+            Lng(Lbl_p2_pwd);//密码
+            Lng(btnReadManageMenuPassword);//读取菜单管理密码
+            Lng(btnWriteManageMenuPassword);//写入菜单管理密码
+            Lng(gpOemInfo);//OEM信息
+            Lng(Lbl_p2_Manufacturers);//制造商
+            Lng(Lbl_p2_Url);//网 址
+            Lng(Lbl_p2_MakeDate);//生产日期
+            Lng(btnReadOEM);//制造商读取
+            Lng(btnWriteOEM);//制造商写入
 
 
-            GetLanguage(tpNetwork);//客户端网络参数
-            GetLanguage(gbServerDetail);//服务器参数
-            GetLanguage(lblServerPort_1);//服务器端口号:
-            GetLanguage(lblServerIP_1);//服务器IP:
-            GetLanguage(LblServerDomain);//服务器域名:
-            GetLanguage(butReadNetworkServerDetail);//读取
-            GetLanguage(butWriteNetworkServerDetail);//写入
-            GetLanguage(gbClientDetail);//客户端参数
-            GetLanguage(LblKeepAliveInterval);//与服务器建立连接后，每隔
-            GetLanguage(LblKeepAliveInterval1);//秒，发送一次保活包
-            GetLanguage(btnReadKeepAliveInterval);//读取
-            GetLanguage(btnWriteKeepAliveInterval);//写入
-            GetLanguage(butRequireSendKeepalivePacket);//立即发送保活包
-            GetLanguage(butReadClientWorkMode);//读取
-            GetLanguage(butWriteClientWorkMode);//写入
-            GetLanguage(butRequireConnectServer);//立即重连服务器
-            GetLanguage(butReadClientStatus_Result);//获取状态
-            GetLanguage(LblClientNetWorkMode);//客户端网络模式:
-            GetLanguage(LblServerStatus);//客户端网络状态:
+            Lng(tabPage3);//                                  参数3
+            Lng(gpDeviceLanguage);//                          设备语言
+            Lng(Lbl_p3_Language);//                           语言
+            Lng(butReadLanguage);//                           读取
+            Lng(butWriteLanguage);//                          写入
+            Lng(gpDeviceVolume);//                            设备音量
+            Lng(Lbl_Volume);//                                音量
+            Lng(butReadVolume);//                             读取
+            Lng(butWriteVolume);//                            写入
+            Lng(Lbl_Filllightmode);//                         补光灯模式
+            Lng(But_WriteFaceLEDMode);//                      写入
+            Lng(But_ReadFaceLEDMode);//                       读取
+            Lng(Lbl_MaskRecognitionSwitch);//                 口罩识别开关
+            Lng(But_WriteFaceMouthmufflePar);//               写入
+            Lng(But_ReadFaceMouthmufflePar);//                读取
+            Lng(Lbl_TemperatureExaminationAndFormat);//       体温检测及格式
+            Lng(But_WriteFaceBodyTemperature);//              写入
+            Lng(But_ReadFaceBodyTemperature);//               读取
+            Lng(Lbl_TemperatureAlarmThreshold);//             体温报警阈值
+            Lng(But_WriteFaceBodyTemperatureAlarm);//         写入
+            Lng(But_ReadFaceBodyTemperatureAlarm);//          读取
+            Lng(Lbl_TemperatureIndicatorSwitch);//            体温数值显示开关
+            Lng(But_WriteFaceBodyTemperatureShow);//          写入
+            Lng(But_ReadFaceBodyTemperatureShow);//           读取
+            Lng(Lbl_ShortMessage);//                          短消息
+            Lng(But_WriteShortMessage);//                     写入
+            Lng(But_ReadShortMessage);//                      读取
+            Lng(LblDoorAccessMode);//开门验证方式
+            Lng(butReadDoorOpenCheckMode);//读取
+            Lng(butWriteDoorOpenCheckMode);// 写入 
+            Lng(LabFaceBioassay);//活体检测
+            Lng(Btn_ReadFaceBioassay);//读取
+            Lng(Btn_WriteFaceBioassay);// 写入 
+
+
+            Lng(tpNetwork);//客户端网络参数
+            Lng(gbServerDetail);//服务器参数
+            Lng(lblServerPort_1);//服务器端口号:
+            Lng(lblServerIP_1);//服务器IP:
+            Lng(LblServerDomain);//服务器域名:
+            Lng(butReadNetworkServerDetail);//读取
+            Lng(butWriteNetworkServerDetail);//写入
+            Lng(gbClientDetail);//客户端参数
+            Lng(LblKeepAliveInterval);//与服务器建立连接后，每隔
+            Lng(LblKeepAliveInterval1);//秒，发送一次保活包
+            Lng(btnReadKeepAliveInterval);//读取
+            Lng(btnWriteKeepAliveInterval);//写入
+            Lng(butRequireSendKeepalivePacket);//立即发送保活包
+            Lng(butReadClientWorkMode);//读取
+            Lng(butWriteClientWorkMode);//写入
+            Lng(butRequireConnectServer);//立即重连服务器
+            Lng(butReadClientStatus_Result);//获取状态
+            Lng(LblClientNetWorkMode);//客户端网络模式:
+            Lng(LblServerStatus);//客户端网络状态:
             LoadComboxItemsLanguage(cmbInOut, "cmbInOut");//;
             cmbDoor.Items.Clear();
             cmbDoor.Items.AddRange(DoorList);
@@ -224,12 +224,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbDoorAccessMode.Items.Clear();
             cbxAutoIP.Items.Clear();
 
-            var ReadCardByteList = GetLanguage("ReadCardByteList").Split(',');
+            var ReadCardByteList = Lng("ReadCardByteList").Split(',');
             cmbReadCardByte.Items.AddRange(ReadCardByteList);
             cmbReadCardByte.SelectedIndex = 0;
 
           
-            var IsUseList = GetLanguage("IsUseList").Split(',');
+            var IsUseList = Lng("IsUseList").Split(',');
             cmbWGOutput.Items.AddRange(IsUseList);
             cmbWGOutput.SelectedIndex = 0;
 
@@ -237,22 +237,22 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cbxAutoIP.Items.AddRange(IsUseList);
             cbxAutoIP.SelectedIndex = 0;
 
-            var faceIsUseList = GetLanguage("Cmb_FaceMouthmuffle").Split(',');
+            var faceIsUseList = Lng("Cmb_FaceMouthmuffle").Split(',');
             Cmb_FaceMouthmuffle.Items.AddRange(faceIsUseList);
             Cmb_FaceMouthmuffle.SelectedIndex = 0;
 
             cmb_FaceBodyTemperatureShow.Items.AddRange(faceIsUseList);
             cmb_FaceBodyTemperatureShow.SelectedIndex = 0;
 
-            var WGByteSortList = GetLanguage("WGByteSortList").Split(',');
+            var WGByteSortList = Lng("WGByteSortList").Split(',');
             cmbWGByteSort.Items.AddRange(WGByteSortList);
             cmbWGByteSort.SelectedIndex = 0;
 
-            var OutputTypeList = GetLanguage("OutputTypeList").Split(',');
+            var OutputTypeList = Lng("OutputTypeList").Split(',');
             cmbOutputType.Items.AddRange(OutputTypeList);
             cmbOutputType.SelectedIndex = 0;
 
-            var sDoorAccessModeList = GetLanguage("DoorAccessModeList").Split(',');
+            var sDoorAccessModeList = Lng("DoorAccessModeList").Split(',');
             cmbDoorAccessMode.Items.AddRange(sDoorAccessModeList);
             cmbDoorAccessMode.SelectedIndex = 0;
 
@@ -268,7 +268,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbFace.SelectedIndex = 0;
             cmbFingerprint.SelectedIndex = 0;
             Cmb_FaceLEDMode.Items.Clear();
-            var FaceLEDModeList = GetLanguage("FaceLEDModeList").Split(',');
+            var FaceLEDModeList = Lng("FaceLEDModeList").Split(',');
             Cmb_FaceLEDMode.Items.AddRange(FaceLEDModeList);
             Cmb_FaceLEDMode.SelectedIndex = 0;
 
@@ -277,16 +277,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmb_FaceBodyTemperatureShow.SelectedIndex = 0;
 
             Cmb_FaceBodyTemperature.Items.Clear();
-            var FaceBodyTemperatureList = GetLanguage("FaceBodyTemperatureList").Split(',');
+            var FaceBodyTemperatureList = Lng("FaceBodyTemperatureList").Split(',');
             Cmb_FaceBodyTemperature.Items.AddRange(FaceBodyTemperatureList);
             Cmb_FaceBodyTemperature.SelectedIndex = 0;
 
             cbxKeepAliveInterval.Text = "10";
             cmbClientNetWorkMode.Items.Clear();
-            ClientNetWorkMode = GetLanguage("ClientNetWorkMode").Split(',');
+            ClientNetWorkMode = Lng("ClientNetWorkMode").Split(',');
             cmbClientNetWorkMode.Items.AddRange(ClientNetWorkMode);
             cmbClientNetWorkMode.SelectedIndex = 1;
-            var sFaceBioassay = GetLanguage("FaceBioassayCmb").Split(',');
+            var sFaceBioassay = Lng("FaceBioassayCmb").Split(',');
             CmbFaceBioassay.Items.Clear();
             CmbFaceBioassay.Items.AddRange(sFaceBioassay);
             CmbFaceBioassay.SelectedIndex = 0;
@@ -355,12 +355,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             string pwd = txtConnectPassword.Text;
             if (pwd.Length != 8)
             {
-                MsgErr(GetLanguage("Msg_1"));
+                MsgErr(Lng("Msg_1"));
                 return;
             }
             if (!pwd.IsHex())
             {
-                MsgErr(GetLanguage("Msg_1"));
+                MsgErr(Lng("Msg_1"));
                 return;
             }
 
@@ -420,58 +420,58 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             if (!Regex.IsMatch(txtMAC.Text.Trim(), reg))
             {
-                MsgErr(GetLanguage("Msg_2"));
+                MsgErr(Lng("Msg_2"));
                 return;
             }
 
             if (!Regex.IsMatch(txtIP.Text.Trim(), reg2))
             {
-                MsgErr(GetLanguage("Msg_3"));
+                MsgErr(Lng("Msg_3"));
                 return;
             }
             if (!Regex.IsMatch(txtIPMask.Text.Trim(), reg2))
             {
-                MsgErr(GetLanguage("Msg_4"));
+                MsgErr(Lng("Msg_4"));
                 return;
             }
             if (!Regex.IsMatch(txtIPGateway.Text.Trim(), reg2))
             {
-                MsgErr(GetLanguage("Msg_5"));
+                MsgErr(Lng("Msg_5"));
                 return;
             }
             if (!Regex.IsMatch(txtDNS.Text.Trim(), reg2))
             {
-                MsgErr(GetLanguage("Msg_6"));
+                MsgErr(Lng("Msg_6"));
                 return;
             }
             if (!Regex.IsMatch(txtDNSBackup.Text.Trim(), reg2))
             {
-                MsgErr(GetLanguage("Msg_7"));
+                MsgErr(Lng("Msg_7"));
                 return;
             }
             if (!Regex.IsMatch(txtServerIP.Text.Trim(), reg2))
             {
-                MsgErr(GetLanguage("Msg_8"));
+                MsgErr(Lng("Msg_8"));
                 return;
             }
             if (!Regex.IsMatch(txtUDPPort.Text.Trim(), reg3))
             {
-                MsgErr(GetLanguage("Msg_9"));
+                MsgErr(Lng("Msg_9"));
                 return;
             }
             if (Convert.ToInt32(txtUDPPort.Text.Trim()) > 65535)
             {
-                MsgErr(GetLanguage("Msg_10"));
+                MsgErr(Lng("Msg_10"));
                 return;
             }
             if (!Regex.IsMatch(txtServerPort.Text.Trim(), reg3))
             {
-                MsgErr(GetLanguage("Msg_11"));
+                MsgErr(Lng("Msg_11"));
                 return;
             }
             if (Convert.ToInt32(txtServerPort.Text.Trim()) > 65535)
             {
-                MsgErr(GetLanguage("Msg_11"));
+                MsgErr(Lng("Msg_11"));
                 return;
             }
             //txtServerAddr.Text = "www.pc15.net";
@@ -480,7 +480,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             if (Convert.ToInt16(cbxAutoIP.SelectedIndex) == -1)
             {
-                MsgErr(GetLanguage("Msg_12"));
+                MsgErr(Lng("Msg_12"));
                 return;
             }
 
@@ -546,9 +546,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadSystemRunStatus_Result result = cmde.Command.getResult() as ReadSystemRunStatus_Result;
-                string RunDay = result.RunDay.ToString() + GetLanguage("Msg_13"); //设备已运行天数
-                string FormatCount = result.FormatCount.ToString() + GetLanguage("Msg_14"); //格式化次数
-                string RestartCount = result.RestartCount.ToString() + GetLanguage("Msg_14"); //看门狗复位次数
+                string RunDay = result.RunDay.ToString() + Lng("Msg_13"); //设备已运行天数
+                string FormatCount = result.FormatCount.ToString() + Lng("Msg_14"); //格式化次数
+                string RestartCount = result.RestartCount.ToString() + Lng("Msg_14"); //看门狗复位次数
                 string StartTime = result.StartTime; //上电时间
 
                 Invoke(() =>
@@ -560,10 +560,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 });
                 var line = System.Environment.NewLine;
-                string TCPInfo = GetLanguage("Msg_15") + ":" + RunDay + line +
-                                 GetLanguage("Msg_16") + ":" + FormatCount + line +
-                                 GetLanguage("Msg_17") + ":" + RestartCount + line +
-                                 GetLanguage("Msg_18") + ":" + StartTime;
+                string TCPInfo = Lng("Msg_15") + ":" + RunDay + line +
+                                 Lng("Msg_16") + ":" + FormatCount + line +
+                                 Lng("Msg_17") + ":" + RestartCount + line +
+                                 Lng("Msg_18") + ":" + StartTime;
                 mMainForm.AddCmdLog(cmde, TCPInfo);
             };
         }
@@ -587,17 +587,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             bool AutoIP = tcp.mAutoIP; //是否自动获得IP
             var line = System.Environment.NewLine;
             //GetLanguage("Msg_18")
-            string TCPInfo = GetLanguage("Msg_19") + ":" + MAC + line +
+            string TCPInfo = Lng("Msg_19") + ":" + MAC + line +
                              "IP:" + IP + line +
-                             GetLanguage("Msg_20") + ":" + IPMask + line +
-                             GetLanguage("Msg_21") + ":" + IPGateway + line +
+                             Lng("Msg_20") + ":" + IPMask + line +
+                             Lng("Msg_21") + ":" + IPGateway + line +
                              "DNS:" + DNS + line +
-                             GetLanguage("Msg_22") + ":" + DNSBackup + line +
-                             GetLanguage("Msg_23") + ":" + TCPPort + line +
-                             GetLanguage("Msg_24") + ":" + UDPPort + line +
-                             GetLanguage("Msg_25") + ":" + ServerIP + line +
-                             GetLanguage("Msg_26") + ":" + ServerAddr + line +
-                             GetLanguage("Msg_27") + ":" + ServerPort;
+                             Lng("Msg_22") + ":" + DNSBackup + line +
+                             Lng("Msg_23") + ":" + TCPPort + line +
+                             Lng("Msg_24") + ":" + UDPPort + line +
+                             Lng("Msg_25") + ":" + ServerIP + line +
+                             Lng("Msg_26") + ":" + ServerAddr + line +
+                             Lng("Msg_27") + ":" + ServerPort;
             return TCPInfo;
         }
 
@@ -631,13 +631,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             string sn = txtSN.Text;
             if (sn.Length != 16)
             {
-                MsgErr(GetLanguage("Msg_28"));
+                MsgErr(Lng("Msg_28"));
                 return false;
             }
             int len = System.Text.Encoding.ASCII.GetByteCount(sn);
             if (len != 16)
             {
-                MsgErr(GetLanguage("Msg_28"));
+                MsgErr(Lng("Msg_28"));
                 return false;
             }
             return true;
@@ -659,7 +659,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 {
                     txtVersion.Text = "Ver " + version;
                 });
-                version = GetLanguage("Msg_29") + ":" + version;
+                version = Lng("Msg_29") + ":" + version;
                 mMainForm.AddCmdLog(cmde, version);
             };
         }
@@ -675,7 +675,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadRecordMode_Result result = cmde.Command.getResult() as ReadRecordMode_Result;
-                string ModeStr = result.Mode == 0 ? GetLanguage("Msg_30") : GetLanguage("Msg_31"); //记录存储方式
+                string ModeStr = result.Mode == 0 ? Lng("Msg_30") : Lng("Msg_31"); //记录存储方式
                 Invoke(() =>
                 {
                     if (result.Mode == 0)
@@ -687,7 +687,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         rBtnNoCover.Checked = true;
                     }
                 });
-                ModeStr = GetLanguage("Msg_32") + ":" + ModeStr;
+                ModeStr = Lng("Msg_32") + ":" + ModeStr;
                 mMainForm.AddCmdLog(cmde, ModeStr);
             };
         }
@@ -713,7 +713,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             BeginWatch cmd = new BeginWatch(cmdDtl);
             mMainForm.AddCommand(cmd);
 
-            lbWatchState.Text = GetLanguage("Msg_33");
+            lbWatchState.Text = Lng("Msg_33");
             lbWatchState.ForeColor = Color.Green;
         }
 
@@ -724,7 +724,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             CloseWatch cmd = new CloseWatch(cmdDtl);
             mMainForm.AddCommand(cmd);
 
-            lbWatchState.Text = GetLanguage("Msg_34");
+            lbWatchState.Text = Lng("Msg_34");
             lbWatchState.ForeColor = Color.Red;
         }
 
@@ -738,21 +738,21 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                string WatchStateStr = cmd.WatchState == 0 ? GetLanguage("Msg_35") : GetLanguage("Msg_36");
+                string WatchStateStr = cmd.WatchState == 0 ? Lng("Msg_35") : Lng("Msg_36");
                 Invoke(() =>
                 {
                     if (cmd.WatchState == 1)
                     {
-                        lbWatchState.Text = GetLanguage("Msg_33");
+                        lbWatchState.Text = Lng("Msg_33");
                         lbWatchState.ForeColor = Color.Green;
                     }
                     else
                     {
-                        lbWatchState.Text = GetLanguage("Msg_34");
+                        lbWatchState.Text = Lng("Msg_34");
                         lbWatchState.ForeColor = Color.Red;
                     }
                 });
-                WatchStateStr = GetLanguage("Msg_37") + ":" + WatchStateStr;
+                WatchStateStr = Lng("Msg_37") + ":" + WatchStateStr;
                 mMainForm.AddCmdLog(cmde, WatchStateStr);
             };
         }
@@ -791,18 +791,18 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 string IntervalTimeInfo = string.Empty;
                 if (IntervalTime == 0)
                 {
-                    IntervalTimeInfo = GetLanguage("Msg_38");
+                    IntervalTimeInfo = Lng("Msg_38");
                 }
                 else
                 {
-                    IntervalTimeInfo = IntervalTime.ToString() + GetLanguage("Msg_39");
+                    IntervalTimeInfo = IntervalTime.ToString() + Lng("Msg_39");
                 }
 
                 Invoke(() =>
                 {
                     cbxKeepAliveInterval.Text = IntervalTime.ToString();
                 });
-                string IntervalTimeStr = string.Format(GetLanguage("Msg_40"), IntervalTimeInfo);
+                string IntervalTimeStr = string.Format(Lng("Msg_40"), IntervalTimeInfo);
                 mMainForm.AddCmdLog(cmde, IntervalTimeStr);
             };
         }
@@ -811,7 +811,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             ushort IntervalTime = 0;
             string sIntervalTime = cbxKeepAliveInterval.Text.Trim();
-            if (sIntervalTime == GetLanguage("Msg_38"))
+            if (sIntervalTime == Lng("Msg_38"))
             {
                 IntervalTime = 0;
             }
@@ -819,7 +819,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 if (!ushort.TryParse(sIntervalTime, out IntervalTime))
                 {
-                    MsgErr(GetLanguage("Msg_41"));
+                    MsgErr(Lng("Msg_41"));
                     return;
                 }
             }
@@ -842,9 +842,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 ReadLocalIdentity_Result result = cmde.Command.getResult() as ReadLocalIdentity_Result;
 
-                string Info = string.Format(GetLanguage("Msg_42"), DoorList[result.Door - 1]);
+                string Info = string.Format(Lng("Msg_42"), DoorList[result.Door - 1]);
 
-                Info += result.InOut == 0 ? GetLanguage("Msg_44") + "，" : GetLanguage("Msg_45") + "，" + GetLanguage("Msg_43") + ":" + result.LocalName;
+                Info += result.InOut == 0 ? Lng("Msg_44") + "，" : Lng("Msg_45") + "，" + Lng("Msg_43") + ":" + result.LocalName;
 
                 Invoke(() =>
                 {
@@ -1072,7 +1072,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         #region 设备语言
         private void IniDriveLanguage()
         {
-            string[] DriveLanguageList = GetLanguage("DriveLanguageList").SplitTrim(",");
+            string[] DriveLanguageList = Lng("DriveLanguageList").SplitTrim(",");
             cmbLanguage.Items.Clear();
             cmbLanguage.Items.AddRange(DriveLanguageList);
             cmbLanguage.SelectedIndex = 0;
@@ -1095,11 +1095,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     if (result.Language < 13)
                     {
                         cmbLanguage.SelectedIndex = result.Language - 1;
-                        mMainForm.AddCmdLog(cmde, GetLanguage("Msg_46") + $":{cmbLanguage.Text}");
+                        mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{cmbLanguage.Text}");
                     }
                     else
                     {
-                        mMainForm.AddCmdLog(cmde, GetLanguage("Msg_46") + $":{result.Language}");
+                        mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{result.Language}");
                     }
 
                 });
@@ -1124,7 +1124,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void IniDriveVolume()
         {
             cmbDriveVolume.Items.Clear();
-            cmbDriveVolume.Items.Add(GetLanguage("Msg_47"));
+            cmbDriveVolume.Items.Add(Lng("Msg_47"));
             for (int i = 1; i <= 10; i++)
             {
                 cmbDriveVolume.Items.Add(i.ToString());
@@ -1149,11 +1149,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     if (result.Volume <= 10)
                     {
                         cmbDriveVolume.SelectedIndex = result.Volume;
-                        mMainForm.AddCmdLog(cmde, GetLanguage("Msg_48") + $":{cmbDriveVolume.Text}");
+                        mMainForm.AddCmdLog(cmde, Lng("Msg_48") + $":{cmbDriveVolume.Text}");
                     }
                     else
                     {
-                        mMainForm.AddCmdLog(cmde, GetLanguage("Msg_46") + $":{result.Volume}");
+                        mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{result.Volume}");
                     }
 
                 });
@@ -1297,7 +1297,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (cmdDtl == null) return;
             if (!double.TryParse(Txt_BodyTemperatureAlarm.Text, out double alarmPar))
             {
-                MessageBox.Show(GetLanguage("Msg_49"));
+                MessageBox.Show(Lng("Msg_49"));
                 return;
             }
             var cmdPar = new Fingerprint.SystemParameter.WriteFaceBodyTemperatureAlarmPar_Parameter(((int)alarmPar * 10));
@@ -1377,7 +1377,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (cmdDtl == null) return;
             if (Txt_ShortMessage.TextLength > 30)
             {
-                MessageBox.Show(GetLanguage("Msg_50"));
+                MessageBox.Show(Lng("Msg_50"));
                 return;
             }
             var cmdPar = new Fingerprint.SystemParameter.WriteShortMessage_Parameter(Txt_ShortMessage.Text);
@@ -1399,7 +1399,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
 
                 var result = cmde.Command.getResult() as ReadShortMessage_Result;
-                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_51") + $":{ result.Message}");
+                mMainForm.AddCmdLog(cmde, Lng("Msg_51") + $":{ result.Message}");
                 Invoke(() =>
                 {
                     Txt_ShortMessage.Text = result.Message;
@@ -1443,11 +1443,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     if (result.CheckMode < 3)
                     {
                         cmbDoorAccessMode.SelectedIndex = result.CheckMode - 1;
-                        mMainForm.AddCmdLog(cmde, GetLanguage("DoorAccessModeResult") + cmbDoorAccessMode.Text);
+                        mMainForm.AddCmdLog(cmde, Lng("DoorAccessModeResult") + cmbDoorAccessMode.Text);
                     }
                     else
                     {
-                        mMainForm.AddCmdLog(cmde, GetLanguage("DoorAccessModeResult") + $"{ result.CheckMode}");
+                        mMainForm.AddCmdLog(cmde, Lng("DoorAccessModeResult") + $"{ result.CheckMode}");
                     }
 
                 });
@@ -1468,7 +1468,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var result = cmde.Command.getResult() as ReadNetworkServerDetail_Result;
-                mMainForm.AddCmdLog(cmde, string.Format(GetLanguage("Msg_52"), result.ServerPort, result.ServerIP, result.ServerDomain));
+                mMainForm.AddCmdLog(cmde, string.Format(Lng("Msg_52"), result.ServerPort, result.ServerIP, result.ServerDomain));
                 Invoke(() =>
                 {
                     txtServerIP_1.Text = result.ServerIP;
@@ -1488,7 +1488,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             int iPort = 0;
             if (!int.TryParse(txtServerPort_1.Text, out iPort))
             {
-                MsgErr(GetLanguage("Msg_11"));
+                MsgErr(Lng("Msg_11"));
                 return;
             }
             string sDomain = txtServerDomain.Text;
@@ -1497,7 +1497,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             par.ServerDomain = sDomain;
             if (!par.checkedParameter())
             {
-                MsgErr(GetLanguage("Msg_53"));
+                MsgErr(Lng("Msg_53"));
                 return;
             }
 
@@ -1506,7 +1506,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                mMainForm.AddCmdLog(cmde, string.Format(GetLanguage("Msg_52"), iPort, sIP, sDomain));
+                mMainForm.AddCmdLog(cmde, string.Format(Lng("Msg_52"), iPort, sIP, sDomain));
             };
         }
 
@@ -1527,15 +1527,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 var result = cmde.Command.getResult() as RequireSendKeepalivePacket_Result;
                 int iCode = result.ResultStatus;
                 string[] sCodeName = new string[10];
-                sCodeName[1] = GetLanguage("Msg_54");
-                sCodeName[2] = GetLanguage("Msg_55");
-                sCodeName[3] = GetLanguage("Msg_56");
-                sCodeName[4] = GetLanguage("Msg_57");
-                sCodeName[5] = GetLanguage("Msg_58");
-                sCodeName[6] = GetLanguage("Msg_59");
-                sCodeName[7] = GetLanguage("Msg_60");
-                sCodeName[8] = GetLanguage("Msg_61");
-                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_62") + $":{sCodeName[iCode]} ");
+                sCodeName[1] = Lng("Msg_54");
+                sCodeName[2] = Lng("Msg_55");
+                sCodeName[3] = Lng("Msg_56");
+                sCodeName[4] = Lng("Msg_57");
+                sCodeName[5] = Lng("Msg_58");
+                sCodeName[6] = Lng("Msg_59");
+                sCodeName[7] = Lng("Msg_60");
+                sCodeName[8] = Lng("Msg_61");
+                mMainForm.AddCmdLog(cmde, Lng("Msg_62") + $":{sCodeName[iCode]} ");
 
             };
         }
@@ -1556,14 +1556,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 var result = cmde.Command.getResult() as RequireConnectServer_Result;
                 int iCode = result.ResultStatus;
                 string[] sCodeName = new string[10];
-                sCodeName[1] = GetLanguage("Msg_63");
-                sCodeName[2] = GetLanguage("Msg_55");
-                sCodeName[3] = GetLanguage("Msg_56");
-                sCodeName[4] = GetLanguage("Msg_57");
-                sCodeName[5] = GetLanguage("Msg_58");
-                sCodeName[6] = GetLanguage("Msg_59");
-                sCodeName[7] = GetLanguage("Msg_60");
-                sCodeName[8] = GetLanguage("Msg_61");
+                sCodeName[1] = Lng("Msg_63");
+                sCodeName[2] = Lng("Msg_55");
+                sCodeName[3] = Lng("Msg_56");
+                sCodeName[4] = Lng("Msg_57");
+                sCodeName[5] = Lng("Msg_58");
+                sCodeName[6] = Lng("Msg_59");
+                sCodeName[7] = Lng("Msg_60");
+                sCodeName[8] = Lng("Msg_61");
                 mMainForm.AddCmdLog(cmde, $"Msg_62:{sCodeName[iCode]} ");
 
             };
@@ -1585,17 +1585,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 var strbuf = new StringBuilder();
 
-                strbuf.Append(GetLanguage("Msg_64") + ":").Append(ClientNetWorkMode[iModel]);
-                strbuf.Append("，" + GetLanguage("Msg_65") + ":").Append(result.ServerIP);
+                strbuf.Append(Lng("Msg_64") + ":").Append(ClientNetWorkMode[iModel]);
+                strbuf.Append("，" + Lng("Msg_65") + ":").Append(result.ServerIP);
                 string[] sConnectStatus = new string[256];
-                sConnectStatus[0] = GetLanguage("Msg_66");
-                sConnectStatus[1] = GetLanguage("Msg_67");
-                sConnectStatus[2] = GetLanguage("Msg_68");
-                sConnectStatus[255] = GetLanguage("Msg_69");
+                sConnectStatus[0] = Lng("Msg_66");
+                sConnectStatus[1] = Lng("Msg_67");
+                sConnectStatus[2] = Lng("Msg_68");
+                sConnectStatus[255] = Lng("Msg_69");
 
-                strbuf.Append("," + GetLanguage("Msg_70") + ":").Append(sConnectStatus[result.ConnectStatus]);
+                strbuf.Append("," + Lng("Msg_70") + ":").Append(sConnectStatus[result.ConnectStatus]);
 
-                strbuf.AppendLine().Append(GetLanguage("Msg_71") + ":");
+                strbuf.AppendLine().Append(Lng("Msg_71") + ":");
                 if (result.LastKeepaliveTime != DateTime.MinValue)
                 {
                     strbuf.Append(result.LastKeepaliveTime);
@@ -1635,7 +1635,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 });
                 var strbuf = new StringBuilder();
 
-                strbuf.Append(GetLanguage("Msg_64") + ":").Append(ClientNetWorkMode[iModel]);
+                strbuf.Append(Lng("Msg_64") + ":").Append(ClientNetWorkMode[iModel]);
 
                 mMainForm.AddCmdLog(cmde, strbuf.ToString());
                 Invoke(() =>
@@ -1657,7 +1657,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 var strbuf = new StringBuilder();
-                strbuf.Append(GetLanguage("Msg_64") + ":").Append(ClientNetWorkMode[iModel]);
+                strbuf.Append(Lng("Msg_64") + ":").Append(ClientNetWorkMode[iModel]);
 
                 mMainForm.AddCmdLog(cmde, strbuf.ToString());
             };
@@ -1679,7 +1679,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 Invoke(() =>
                 {
                     CmbFaceBioassay.SelectedIndex = result.BioassayType;
-                    mMainForm.AddCmdLog(cmde, GetLanguage("LabFaceBioassay") + CmbFaceBioassay.Text);
+                    mMainForm.AddCmdLog(cmde, Lng("LabFaceBioassay") + CmbFaceBioassay.Text);
                 });
             };
         }

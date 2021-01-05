@@ -39,16 +39,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public override void LoadUILanguage()
         {
             base.LoadUILanguage();
-            GetLanguage(gpDeviceTime);
-            GetLanguage(Lbl_DeviceTime);
-            GetLanguage(Lbl_ComputerTime);
-            GetLanguage(Lbl_DisparityTime);
-            GetLanguage(btnReadSystemTime);
-            GetLanguage(btnWriteSystemTime);
-            GetLanguage(btnWriteBroadcastTime);
-            GetLanguage(gpDiyTime);
-            GetLanguage(Lbl_DateTime);
-            GetLanguage(btnWriteCustomDateTime);
+            Lng(gpDeviceTime);
+            Lng(Lbl_DeviceTime);
+            Lng(Lbl_ComputerTime);
+            Lng(Lbl_DisparityTime);
+            Lng(btnReadSystemTime);
+            Lng(btnWriteSystemTime);
+            Lng(btnWriteBroadcastTime);
+            Lng(gpDiyTime);
+            Lng(Lbl_DateTime);
+            Lng(btnWriteCustomDateTime);
         }
         #region 设备时间读写
         private void BtnReadSystemTime_Click(object sender, EventArgs e)
@@ -73,17 +73,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     Seconds = Math.Abs(Convert.ToInt32(ts.TotalSeconds));
                     if (Seconds < 4 && Seconds > -4)
                     {
-                        tip = GetLanguage("Msg_1");
+                        tip = Lng("Msg_1");
                     }
                     else
                     {
-                        tip =string.Format(GetLanguage("Msg_2"), Seconds);
+                        tip =string.Format(Lng("Msg_2"), Seconds);
                     }
                     txtErrorTime.Text = tip;
                 });
-                string ControllerDateInfo = GetLanguage("Msg_3") + txtComputerTime.Text +System.Environment.NewLine+
-                                            GetLanguage("Msg_4") + ControllerDate + System.Environment.NewLine +
-                                            GetLanguage("Msg_5") + tip;
+                string ControllerDateInfo = Lng("Msg_3") + txtComputerTime.Text +System.Environment.NewLine+
+                                            Lng("Msg_4") + ControllerDate + System.Environment.NewLine +
+                                            Lng("Msg_5") + tip;
                 mMainForm.AddCmdLog(cmde, ControllerDateInfo);
             };
         }

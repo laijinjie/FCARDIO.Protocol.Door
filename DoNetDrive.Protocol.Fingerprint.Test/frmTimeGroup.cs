@@ -49,29 +49,29 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public override void LoadUILanguage()
         {
             base.LoadUILanguage();
-            GetLanguage(btnReadTimeGroup);
-            GetLanguage(btnAddTimeGroup);
-            GetLanguage(btnClearTimeGroup);
-            GetLanguage(gpTimeGroup);
-            GetLanguage(Lbl_Weekday);
-            GetLanguage(Lbl_Test);
-            GetLanguage(btnFillNowTime);
-            GetLanguage(Lbl_StartTime1);
-            GetLanguage(Lbl_EndTime1);
-            GetLanguage(Lbl_StartTime2);
-            GetLanguage(Lbl_EndTime2);
-            GetLanguage(Lbl_StartTime3);
-            GetLanguage(Lbl_EndTime3);
-            GetLanguage(Lbl_StartTime4);
-            GetLanguage(Lbl_EndTime4);
-            GetLanguage(Lbl_StartTime5);
-            GetLanguage(Lbl_EndTime5);
-            GetLanguage(Lbl_StartTime6);
-            GetLanguage(Lbl_EndTime6);
-            GetLanguage(Lbl_StartTime7);
-            GetLanguage(Lbl_EndTime7);
-            GetLanguage(Lbl_StartTime8);
-            GetLanguage(Lbl_EndTime8);
+            Lng(btnReadTimeGroup);
+            Lng(btnAddTimeGroup);
+            Lng(btnClearTimeGroup);
+            Lng(gpTimeGroup);
+            Lng(Lbl_Weekday);
+            Lng(Lbl_Test);
+            Lng(btnFillNowTime);
+            Lng(Lbl_StartTime1);
+            Lng(Lbl_EndTime1);
+            Lng(Lbl_StartTime2);
+            Lng(Lbl_EndTime2);
+            Lng(Lbl_StartTime3);
+            Lng(Lbl_EndTime3);
+            Lng(Lbl_StartTime4);
+            Lng(Lbl_EndTime4);
+            Lng(Lbl_StartTime5);
+            Lng(Lbl_EndTime5);
+            Lng(Lbl_StartTime6);
+            Lng(Lbl_EndTime6);
+            Lng(Lbl_StartTime7);
+            Lng(Lbl_EndTime7);
+            Lng(Lbl_StartTime8);
+            Lng(Lbl_EndTime8);
             LoadComboxItemsLanguage(cbWeekday, "WeekdayList");
             cbWeekday.SelectedIndex = 0;
             InitTimeGroup();
@@ -89,7 +89,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             string[] time = new string[64];
             for (int i = 0; i < 64; i++)
             {
-                time[i] = GetLanguage("cbTimeGroup") + (i + 1).ToString();
+                time[i] = Lng("cbTimeGroup") + (i + 1).ToString();
             }
             cbTimeGroup.Items.Clear();
             cbTimeGroup.Items.AddRange(time);
@@ -124,7 +124,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 BindTimeSegment();
                 //dataGridView1
-                string log = GetLanguage("Msg_1") + result.Count;
+                string log = Lng("Msg_1") + result.Count;
                 mMainForm.AddCmdLog(cmde, log);
             };
         }

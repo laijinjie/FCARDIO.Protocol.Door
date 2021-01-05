@@ -1459,6 +1459,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             AddCommandClassNameList(typeof(Door.ReadDoorOpenCheckMode));// "读取开门验证方式 
             AddCommandClassNameList(typeof(Door.WriteDoorOpenCheckMode));// "设置开门验证方式
+
+            AddCommandClassNameList(typeof(SystemParameter.SendConnectTestResponse));// 连接握手回包
+            
         }
 
 

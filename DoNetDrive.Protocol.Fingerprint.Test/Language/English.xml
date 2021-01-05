@@ -47,7 +47,7 @@
     <TransactionTypeName_3  value= "System"/>
     <TransactionTypeName_4  value= "Body Tmp"/>
     <TransactionTypeName_0xA0 value= "Connect Test"/>
-    <TransactionTypeName_0x22 value= "Keepalive"/>
+    <TransactionTypeName_0x22 value= "PING"/>
 
     <DisposeResponse value="Send"/>
     <DisposeRequest value="Receive"/>
@@ -101,8 +101,8 @@
     <TransactionMessage5_0  value="OFF"/>
     <TransactionMessage6  value="Door:"/>
     <TransactionMessage7  value="BodyTmp:"/>
-    <TransactionMessage8  value="Keepalive message,Remote:"/>
-    <TransactionMessage9  value="Connection test message,Remote:"/>
+    <TransactionMessage8  value=",Remote:"/>
+    <TransactionMessage9  value=",Remote:"/>
     <butTCPServerBind_Close  value="Close"/>
     <AddTCPClient0   value="Add the client repeatedly,Key:{0}"/>
 
@@ -233,6 +233,7 @@
     <DoNetDrive_Protocol_Fingerprint_Software_UpdateSoftware_FP value= "Upload firmware "/>
     <DoNetDrive_Protocol_Fingerprint_Door_ReadDoorOpenCheckMode value= "Read Door Access Mode"/>
     <DoNetDrive_Protocol_Fingerprint_Door_WriteDoorOpenCheckMode value= "Write Door Access Mode"/>
+    <DoNetDrive_Protocol_Fingerprint_SystemParameter_SendConnectTestResponse value= "PONG"/>
   </frmMain>
   <frmSystem>
     <FormCaption value="Drive System Setting"/>
@@ -924,7 +925,7 @@
     <SystemTransactionList36                  value="WIFI connected" />
     <SystemTransactionList37                  value="WIFI is disconnected" />
 
-    <Msg_1                                    value="Read successfully, read quantity:{0},actual parse quantity:{1}, remaining new records[2}" />
+    <Msg_1                                    value="Read successfully, read quantity:{0},actual parse quantity:{1}, remaining new records:{2}" />
     <Msg_2                                    value="Event type:" />
     <Msg_3                                    value="Read count:{0}:actual quantity:{1}:remaining new records:{2}" />
     <Msg_4                                    value="Read records" />
@@ -970,6 +971,7 @@
     <gpUpdateSoftware         value="Upload firmware" />
     <Lbl_EquptType            value="Device type:" />
     <butUpdateSoftware        value="Upload firmware" />
+    <butUploadFolder          value="Upload in batch" />
     <UploadTypeList           value="User photo,fingerprint feature code,infrared face feature code,dynamic face feature code" />
     <DownloadTypeList         value="User photo,fingerprint feature code,infrared face feature code,dynamic face feature code" />
     <EquptTypeList            value="A102 fingerprint access controller,A103 fingerprint access controller,A108 fingerprint infrared face access controller,FC8300 dynamic face recognition access controller" />
@@ -993,5 +995,23 @@
     <Msg_18                   value="Firmware upload completed" />
     <Msg_19                   value="Firmware upload failed" />
     <Msg_PersonDetail         value="User ID:{0}, photo storage details" />
+    <UF_Msg_1        value="User ID:{0}，User Registration Results:{1};Photo Registration Results:{2};" />
+    <UF_Msg_2        value="Photo repeat, Old user:{0}" />
+    <UF_Msg_3        value="Photo cannot recognized" />
+    <UF_Msg_4        value="Success" />
+    <UF_Msg_5        value="Success" />
+    <UF_Msg_6        value="Failure" />
+    <UF_Msg_7        value="Uploading: {0}/{1}" />
+    <UF_Msg_9        value="Image upload completed!"/>
+    <UF_Msg_10       value="Clearing success!"/>
+    <UF_Msg_11       value="Upload Failure!"/>
+    <UF_Msg_12       value="Uploading...."/>
+    <UF_Msg_13       value="Clearing..."/>
+    <UF_Msg_14       value="Message"/>
+    <UF_Msg_15       value="Are you sure to clear all user data in the device before uploading user?"/>
+    <UF_Msg_16       value="No pictures found!"/>
+    <UF_Msg_17       value="Error"/>
+    <UF_Msg_18       value="Please select the user photo folder"/>
+    <UF_Msg_19       value="User Image(*.JPG)|*.JPG"/>
   </frmAdditionalData>
 </Language>

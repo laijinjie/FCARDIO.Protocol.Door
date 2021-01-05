@@ -128,6 +128,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
                 return;
             }
 
+            if (transactionDetail.readable() == 0)
+            {
+                //没有记录
+                CreateResultNULL(transactionDetail.ReadIndex);
+                return;
+
+            }
+
             switch (iType)
             {
                 case 1://读卡记录
@@ -146,13 +154,32 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
                     _SubCommand = new ReadTransactionDatabaseSubCommand<CardTransaction>(this);
                     break;
             }
-
+            
             _SubCommand.PacketSize = model.PacketSize;
             _SubCommand.RollbackWriteReadIndex = model.RollbackWriteReadIndex;
             _SubCommand.BeginRead(iType, transactionDetail, model.Quantity);
             _Step = 2;
             CommandReady();
         }
+
+        /// <summary>
+        /// 命令执行完毕
+        /// </summary>
+        protected void CreateResultNULL(long ReadIndex)
+        {
+            var rst = new Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Result();
+            _Result = rst;
+            var model = _Parameter as ReadTransactionDatabase_Parameter;
+            rst.DatabaseType = model.DatabaseType;
+            rst.Quantity =0;
+            rst.TransactionList = new List<AbstractTransaction>();
+            rst.readable = 0;
+            rst.TransactionReadIndex = (int)ReadIndex;
+
+            CommandCompleted();
+        }
+
+
 
 
         /// <summary>

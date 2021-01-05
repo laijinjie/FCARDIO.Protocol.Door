@@ -32,6 +32,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.butUploadImage = new System.Windows.Forms.Button();
+            this.btnGetPerson = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtCodeData = new System.Windows.Forms.TextBox();
             this.Lbl_CodeData = new System.Windows.Forms.Label();
@@ -47,7 +48,6 @@
             this.gpDownload = new System.Windows.Forms.GroupBox();
             this.chkByBlock = new System.Windows.Forms.CheckBox();
             this.btnDownload = new System.Windows.Forms.Button();
-            this.btnGetPerson = new System.Windows.Forms.Button();
             this.cmbDownloadSerialNumber = new System.Windows.Forms.ComboBox();
             this.Lbl_DownloadSerialNumber = new System.Windows.Forms.Label();
             this.txtDownloadUserCode = new System.Windows.Forms.TextBox();
@@ -58,6 +58,7 @@
             this.butUpdateSoftware = new System.Windows.Forms.Button();
             this.cmbEquptType = new System.Windows.Forms.ComboBox();
             this.Lbl_EquptType = new System.Windows.Forms.Label();
+            this.butUploadFolder = new System.Windows.Forms.Button();
             this.gpUpload.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -94,6 +95,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.butUploadFolder);
             this.tabPage2.Controls.Add(this.butUploadImage);
             this.tabPage2.Controls.Add(this.btnGetPerson);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -113,6 +115,16 @@
             this.butUploadImage.Text = "上传照片";
             this.butUploadImage.UseVisualStyleBackColor = true;
             this.butUploadImage.Click += new System.EventHandler(this.ButUploadImage_Click);
+            // 
+            // btnGetPerson
+            // 
+            this.btnGetPerson.Location = new System.Drawing.Point(6, 156);
+            this.btnGetPerson.Name = "btnGetPerson";
+            this.btnGetPerson.Size = new System.Drawing.Size(222, 23);
+            this.btnGetPerson.TabIndex = 11;
+            this.btnGetPerson.Text = "获取人员数据库详情";
+            this.btnGetPerson.UseVisualStyleBackColor = true;
+            this.btnGetPerson.Click += new System.EventHandler(this.BtnGetPerson_Click);
             // 
             // tabPage1
             // 
@@ -266,16 +278,6 @@
             this.btnDownload.UseVisualStyleBackColor = true;
             this.btnDownload.Click += new System.EventHandler(this.BtnDownload_Click);
             // 
-            // btnGetPerson
-            // 
-            this.btnGetPerson.Location = new System.Drawing.Point(6, 156);
-            this.btnGetPerson.Name = "btnGetPerson";
-            this.btnGetPerson.Size = new System.Drawing.Size(222, 23);
-            this.btnGetPerson.TabIndex = 11;
-            this.btnGetPerson.Text = "获取人员数据库详情";
-            this.btnGetPerson.UseVisualStyleBackColor = true;
-            this.btnGetPerson.Click += new System.EventHandler(this.BtnGetPerson_Click);
-            // 
             // cmbDownloadSerialNumber
             // 
             this.cmbDownloadSerialNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -370,6 +372,16 @@
             this.Lbl_EquptType.TabIndex = 7;
             this.Lbl_EquptType.Text = "设备类型：";
             // 
+            // butUploadFolder
+            // 
+            this.butUploadFolder.Location = new System.Drawing.Point(6, 104);
+            this.butUploadFolder.Name = "butUploadFolder";
+            this.butUploadFolder.Size = new System.Drawing.Size(222, 23);
+            this.butUploadFolder.TabIndex = 19;
+            this.butUploadFolder.Text = "上传文件夹";
+            this.butUploadFolder.UseVisualStyleBackColor = true;
+            this.butUploadFolder.Click += new System.EventHandler(this.butUploadFolder_Click);
+            // 
             // frmAdditionalData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -427,5 +439,6 @@
         private System.Windows.Forms.Button butUpdateSoftware;
         private System.Windows.Forms.ComboBox cmbEquptType;
         private System.Windows.Forms.Label Lbl_EquptType;
+        private System.Windows.Forms.Button butUploadFolder;
     }
 }

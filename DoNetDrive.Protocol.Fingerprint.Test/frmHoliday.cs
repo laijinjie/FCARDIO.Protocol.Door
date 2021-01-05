@@ -58,23 +58,23 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public override void LoadUILanguage()
         {
             base.LoadUILanguage();
-            GetLanguage(gpAllHoliday);
-            GetLanguage(butReadHolidayDetail);
-            GetLanguage(butReadAllHoliday);
-            GetLanguage(butAddHoliday);
-            GetLanguage(butClearHoliday);
-            GetLanguage(Lbl_HolidayList);
-            GetLanguage(checkBoxX1);
-            GetLanguage(Lbl_Index);
-            GetLanguage(Lbl_HolidayTime);
-            GetLanguage(cbYear);
-            GetLanguage(btnAddList);
-            GetLanguage(btnDelList);
-            GetLanguage(btnAddDecive);
-            GetLanguage(btnDelDevice);
-            GetLanguage(btnDelSelect);
-            GetLanguage(btnAdd30);
-            GetLanguage(dataGridView1);
+            Lng(gpAllHoliday);
+            Lng(butReadHolidayDetail);
+            Lng(butReadAllHoliday);
+            Lng(butAddHoliday);
+            Lng(butClearHoliday);
+            Lng(Lbl_HolidayList);
+            Lng(checkBoxX1);
+            Lng(Lbl_Index);
+            Lng(Lbl_HolidayTime);
+            Lng(cbYear);
+            Lng(btnAddList);
+            Lng(btnDelList);
+            Lng(btnAddDecive);
+            Lng(btnDelDevice);
+            Lng(btnDelSelect);
+            Lng(btnAdd30);
+            Lng(dataGridView1);
             LoadComboxItemsLanguage(cbType, "cbType");
         }
 
@@ -97,7 +97,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 ReadHolidayDetail_Result result = cmde.Command.getResult() as ReadHolidayDetail_Result;
                 var dtl = result.Detail;
-                string log = GetLanguage("Msg_8") + "\r\n" + string.Format(GetLanguage("Msg_4"), dtl.Capacity, dtl.Count);
+                string log = Lng("Msg_8") + "\r\n" + string.Format(Lng("Msg_4"), dtl.Capacity, dtl.Count);
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
@@ -130,7 +130,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     HolidayDetailDto dto = new HolidayDetailDto();
 
                     dto.HolidayTypeRender = ConvertHolidayType(item.HolidayType);
-                    dto.RepeatYear = item.Holiday.Year == 2000 ? GetLanguage("Msg_1") : GetLanguage("Msg_2");
+                    dto.RepeatYear = item.Holiday.Year == 2000 ? Lng("Msg_1") : Lng("Msg_2");
                     if (item.Holiday.Year == 2000)
                     {
                         dto.Holiday = new DateTime(DateTime.Now.Year, item.Holiday.Month, item.Holiday.Day);
@@ -152,7 +152,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 });
 
                 //dataGridView1
-                string log = GetLanguage("Msg_3") + result.Count;
+                string log = Lng("Msg_3") + result.Count;
                 mMainForm.AddCmdLog(cmde, log);
             };
 
@@ -171,13 +171,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             switch (b)
             {
                 case 1:
-                    result = GetLanguage("Msg_5");
+                    result = Lng("Msg_5");
                     break;
                 case 2:
-                    result = GetLanguage("Msg_6");
+                    result = Lng("Msg_6");
                     break;
                 case 3:
-                    result = GetLanguage("Msg_7");
+                    result = Lng("Msg_7");
                     break;
                 default:
                     break;
@@ -242,7 +242,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             holidayDto.HolidayType = (byte)(cbType.SelectedIndex + 1);
             holidayDto.Holiday = dtpDay.Value;
             holidayDto.HolidayTypeRender = ConvertHolidayType(Convert.ToByte(cbType.SelectedIndex + 1));
-            holidayDto.RepeatYear = cbYear.Checked ? GetLanguage("Msg_1") : GetLanguage("Msg_2");
+            holidayDto.RepeatYear = cbYear.Checked ? Lng("Msg_1") : Lng("Msg_2");
             if (!bExist)
             {
                 listHoliday.Add(holidayDto);
@@ -317,7 +317,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             for (int i = 0; i < 30; i++)
             {
                 HolidayDetailDto holiday = new HolidayDetailDto() { Index = Convert.ToByte(i + 1), Holiday = dtpDay.Value.AddDays(i + 1) };
-                holiday.RepeatYear = cbYear.Checked ? GetLanguage("Msg_1") : GetLanguage("Msg_2");
+                holiday.RepeatYear = cbYear.Checked ? Lng("Msg_1") : Lng("Msg_2");
                 holiday.HolidayType = Convert.ToByte(cbType.SelectedIndex + 1);
                 holiday.HolidayTypeRender = ConvertHolidayType(holiday.HolidayType);
                 listHoliday.Add(holiday);

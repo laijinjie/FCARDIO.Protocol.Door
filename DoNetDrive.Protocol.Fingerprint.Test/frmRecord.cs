@@ -60,39 +60,39 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public override void LoadUILanguage()
         {
             base.LoadUILanguage();
-            GetLanguage(gpTransactionDatabaseDetail);
-            GetLanguage(Lbl_Quantity);
-            GetLanguage(Lbl_NewRecord);
-            GetLanguage(Lbl_WriteIndex);
-            GetLanguage(Lbl_ReadIndex);
-            GetLanguage(Lbl_CardRecord);
-            GetLanguage(Lbl_DoorMagneticRecord);
-            GetLanguage(Lbl_SystemRecord);
-            GetLanguage(Lbl_BodyTemperature);
-            GetLanguage(butTransactionDatabaseDetail);
-            GetLanguage(Lbl_MemoryPointerOperation);
-            GetLanguage(Lbl_TransactionDatabaseType1);
-            GetLanguage(Lbl_WriteIndex1);
-            GetLanguage(Lbl_ReadIndex1);
-            GetLanguage(butTransactionDatabaseWriteIndex);
-            GetLanguage(butTransactionDatabaseReadIndex);
-            GetLanguage(gpRecordOperation);
-            GetLanguage(Lbl_TransactionDatabaseType2);
-            GetLanguage(Lbl_Quantity2);
-            GetLanguage(button4);
-            GetLanguage(butClearTransactionDatabase);
-            GetLanguage(gpRecordOperation2);
-            GetLanguage(Lbl_TransactionDatabaseType3);
-            GetLanguage(Lbl_Quantity3);
-            GetLanguage(Lbl_ReadIndex3);
-            GetLanguage(butTransactionDatabaseByIndex);
-            GetLanguage(Lbl_Quantity4);
-            GetLanguage(chkAutoRead);
-            GetLanguage(btnReadTransactionDatabase);
-            GetLanguage(Lbl_ImageDire);
-            GetLanguage(butSelectDire);
-            GetLanguage(btnReadImageTransactionDatabase);
-            GetLanguage(butClearAllTransactionDatabase);
+            Lng(gpTransactionDatabaseDetail);
+            Lng(Lbl_Quantity);
+            Lng(Lbl_NewRecord);
+            Lng(Lbl_WriteIndex);
+            Lng(Lbl_ReadIndex);
+            Lng(Lbl_CardRecord);
+            Lng(Lbl_DoorMagneticRecord);
+            Lng(Lbl_SystemRecord);
+            Lng(Lbl_BodyTemperature);
+            Lng(butTransactionDatabaseDetail);
+            Lng(Lbl_MemoryPointerOperation);
+            Lng(Lbl_TransactionDatabaseType1);
+            Lng(Lbl_WriteIndex1);
+            Lng(Lbl_ReadIndex1);
+            Lng(butTransactionDatabaseWriteIndex);
+            Lng(butTransactionDatabaseReadIndex);
+            Lng(gpRecordOperation);
+            Lng(Lbl_TransactionDatabaseType2);
+            Lng(Lbl_Quantity2);
+            Lng(button4);
+            Lng(butClearTransactionDatabase);
+            Lng(gpRecordOperation2);
+            Lng(Lbl_TransactionDatabaseType3);
+            Lng(Lbl_Quantity3);
+            Lng(Lbl_ReadIndex3);
+            Lng(butTransactionDatabaseByIndex);
+            Lng(Lbl_Quantity4);
+            Lng(chkAutoRead);
+            Lng(btnReadTransactionDatabase);
+            Lng(Lbl_ImageDire);
+            Lng(butSelectDire);
+            Lng(btnReadImageTransactionDatabase);
+            Lng(butClearAllTransactionDatabase);
             e_TransactionDatabaseType();
 
         }
@@ -211,7 +211,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         #region 记录类型
         public void e_TransactionDatabaseType()
         {
-            string[] array = GetLanguage("TransactionDatabaseType").Split(','); //new string[] { "读卡记录", "门磁记录", "系统记录", "体温记录" };
+            string[] array = Lng("TransactionDatabaseType").Split(','); //new string[] { "读卡记录", "门磁记录", "系统记录", "体温记录" };
             cboe_TransactionDatabaseType1.Items.Clear();
             cboe_TransactionDatabaseType1.Items.AddRange(array);
             cboe_TransactionDatabaseType1.SelectedIndex = 0;
@@ -305,13 +305,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
 
                 var result = cmde.Command.getResult() as Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Result;
-                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_1", result.Quantity, result.TransactionList.Count, result.readable));
+                mMainForm.AddCmdLog(cmde, Lng("Msg_1", result.Quantity, result.TransactionList.Count, result.readable));
 
                 if (result.TransactionList.Count > 0)
                 {
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
-                    sLogs.AppendLine(GetLanguage("Msg_2") + mWatchTypeNameList[result.TransactionList[0].TransactionType]);
-                    sLogs.AppendLine(GetLanguage("Msg_3", result.Quantity, result.TransactionList.Count, result.readable));
+                    sLogs.AppendLine(Lng("Msg_2") + mWatchTypeNameList[result.TransactionList[0].TransactionType]);
+                    sLogs.AppendLine(Lng("Msg_3", result.Quantity, result.TransactionList.Count, result.readable));
                     // sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
 
                     //按序号排序
@@ -320,8 +320,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     {
                         PrintTransactionList(t, sLogs);
                     }
-                    string sFile = SaveFile(sLogs, GetLanguage("Msg_4") + $"_{DateTime.Now:yyyyMMddHHmmss}.txt");
-                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg_5") + sFile);
+                    string sFile = SaveFile(sLogs, Lng("Msg_4") + $"_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmde, Lng("Msg_5") + sFile);
                     if (result.readable > 0) AutoReadTransaction();
                 }
             };
@@ -359,22 +359,22 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
 
                 var result = cmde.Command.getResult() as Protocol.Door.Door8800.Transaction.ReadTransactionDatabaseByIndex_Result;
-                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_6", result.Quantity, result.TransactionList.Count));//$"按序号读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count}");
+                mMainForm.AddCmdLog(cmde, Lng("Msg_6", result.Quantity, result.TransactionList.Count));//$"按序号读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count}");
 
                 if (result.Quantity > 0)
                 {
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
-                    sLogs.AppendLine(GetLanguage("Msg_2") + mWatchTypeNameList[result.TransactionList[0].TransactionType]);
+                    sLogs.AppendLine(Lng("Msg_2") + mWatchTypeNameList[result.TransactionList[0].TransactionType]);
                     //sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).AppendLine();sLogs
-                    sLogs.AppendLine(GetLanguage("Msg_7", result.Quantity, result.TransactionList.Count));
+                    sLogs.AppendLine(Lng("Msg_7", result.Quantity, result.TransactionList.Count));
                     foreach (var t in result.TransactionList)
                     {
 
                         PrintTransactionList(t, sLogs);
                     }
-                    string sFile = SaveFile(sLogs, GetLanguage("Msg_8") + $"_{result.TransactionType}_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    string sFile = SaveFile(sLogs, Lng("Msg_8") + $"_{result.TransactionType}_{DateTime.Now:yyyyMMddHHmmss}.txt");
 
-                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg_5") + sFile);
+                    mMainForm.AddCmdLog(cmde, Lng("Msg_5") + sFile);
 
                 }
             };
@@ -395,29 +395,29 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void PrintTransactionList(AbstractTransaction tr, StringBuilder sLogs)
         {
 
-            sLogs.Append(GetLanguage("Msg_10")).Append(tr.SerialNumber.ToString());
+            sLogs.Append(Lng("Msg_10")).Append(tr.SerialNumber.ToString());
             if (tr.IsNull())
             {
-                sLogs.AppendLine(" --- " + GetLanguage("Msg_11"));
+                sLogs.AppendLine(" --- " + Lng("Msg_11"));
                 return;
             }
             if (tr.TransactionType == 4)
             {
                 Fingerprint.Data.Transaction.BodyTemperatureTransaction btr = (Data.Transaction.BodyTemperatureTransaction)tr;
                 float btmp = (float)btr.BodyTemperature / (float)10;
-                sLogs.Append(GetLanguage("Msg_12")).Append(btmp).AppendLine(" ℃");
+                sLogs.Append(Lng("Msg_12")).Append(btmp).AppendLine(" ℃");
                 return;
             }
-            sLogs.Append("，" + GetLanguage("Msg_13")).Append(tr.TransactionDate.ToDateTimeStr());
+            sLogs.Append("，" + Lng("Msg_13")).Append(tr.TransactionDate.ToDateTimeStr());
             string[] codeNameList = mTransactionCodeNameList[tr.TransactionType];
 
-            sLogs.Append("，" + GetLanguage("Msg_14")).Append(tr.TransactionCode);
+            sLogs.Append("，" + Lng("Msg_14")).Append(tr.TransactionCode);
             sLogs.Append("(").Append(codeNameList[tr.TransactionCode]).Append(")");
             if (tr.TransactionType == 1)//读卡记录
             {
                 Data.Transaction.CardTransaction cardTrans = tr as Data.Transaction.CardTransaction;
-                sLogs.Append(GetLanguage("Msg_15")).Append(cardTrans.UserCode).Append("，" + GetLanguage("Msg_16"))
-                    .Append(cardTrans.Accesstype).Append("，" + GetLanguage("Msg_17")).AppendLine(cardTrans.Photo == 1 ? GetLanguage("Msg_18") : GetLanguage("Msg_19"));
+                sLogs.Append(Lng("Msg_15")).Append(cardTrans.UserCode).Append("，" + Lng("Msg_16"))
+                    .Append(cardTrans.Accesstype).Append("，" + Lng("Msg_17")).AppendLine(cardTrans.Photo == 1 ? Lng("Msg_18") : Lng("Msg_19"));
             }
 
         }
@@ -425,22 +425,22 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void PrintCardAndImageTransactionList(AbstractTransaction tr, StringBuilder sLogs)
         {
 
-            sLogs.Append(GetLanguage("Msg_10")).Append(tr.SerialNumber.ToString());
+            sLogs.Append(Lng("Msg_10")).Append(tr.SerialNumber.ToString());
             if (tr.IsNull())
             {
-                sLogs.AppendLine(" --- " + GetLanguage("Msg_11"));
+                sLogs.AppendLine(" --- " + Lng("Msg_11"));
                 return;
             }
             Data.Transaction.CardAndImageTransaction cardTrans = (Data.Transaction.CardAndImageTransaction)tr;
             float btmp = (float)cardTrans.BodyTemperature / (float)10;
-            sLogs.Append("，" + GetLanguage("Msg_12")).Append(btmp).Append(" ℃");
-            sLogs.Append("，" + GetLanguage("Msg_13")).Append(tr.TransactionDate.ToDateTimeStr());
+            sLogs.Append("，" + Lng("Msg_12")).Append(btmp).Append(" ℃");
+            sLogs.Append("，" + Lng("Msg_13")).Append(tr.TransactionDate.ToDateTimeStr());
             string[] codeNameList = mTransactionCodeNameList[tr.TransactionType];
 
-            sLogs.Append("，" + GetLanguage("Msg_14")).Append(tr.TransactionCode);
+            sLogs.Append("，" + Lng("Msg_14")).Append(tr.TransactionCode);
             sLogs.Append("(").Append(codeNameList[tr.TransactionCode]).Append(")");
-            sLogs.Append("，" + GetLanguage("Msg_15")).Append(cardTrans.UserCode).Append("，" + GetLanguage("Msg_16"))
-                .Append(cardTrans.Accesstype).Append("，" + GetLanguage("Msg_17")).AppendLine(cardTrans.Photo == 1 ? GetLanguage("Msg_18") : GetLanguage("Msg_19"));
+            sLogs.Append("，" + Lng("Msg_15")).Append(cardTrans.UserCode).Append("，" + Lng("Msg_16"))
+                .Append(cardTrans.Accesstype).Append("，" + Lng("Msg_17")).AppendLine(cardTrans.Photo == 1 ? Lng("Msg_18") : Lng("Msg_19"));
 
         }
         #endregion
@@ -478,7 +478,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             int Quantity = int.Parse(txtReadTransactionDatabaseQuantity.Text.ToString());
 
             var cmdDtl = mMainForm.GetCommandDetail();
-            cmdDtl.Timeout = 600;
+            cmdDtl.Timeout = 400;
             cmdDtl.RestartCount = 5;
             string sDir = txtImageDire.Text;
             if (string.IsNullOrWhiteSpace(sDir))
@@ -493,7 +493,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, GetLanguage("Msg_20"));
+                    MessageBox.Show(ex.Message, Lng("Msg_20"));
                     return;
                 }
             }
@@ -517,24 +517,25 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-
+                
                 var result = cmde.Command.getResult() as ReadTransactionAndImageDatabase_Result;
-                mMainForm.AddCmdLog(cmde, GetLanguage("Msg_1", result.Quantity, result.TransactionList.Count, result.readable));
+
+                mMainForm.AddCmdLog(cmde, Lng("Msg_1", result.Quantity, result.TransactionList.Count, result.readable));
                 Console.WriteLine("BodyTemperatureReadIndex =" + result.BodyTemperatureReadIndex);
                 if (result.TransactionList.Count > 0)
                 {
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
-                    sLogs.AppendLine(GetLanguage("Msg_2") + mWatchTypeNameList[result.TransactionList[0].TransactionType]);
+                    sLogs.AppendLine(Lng("Msg_2") + mWatchTypeNameList[result.TransactionList[0].TransactionType]);
                     //sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
-                    sLogs.Append(GetLanguage("Msg_3", result.Quantity, result.TransactionList.Count, result.readable));
+                    sLogs.Append(Lng("Msg_3", result.Quantity, result.TransactionList.Count, result.readable));
                     //按序号排序
                     result.TransactionList.Sort((x, y) => x.SerialNumber.CompareTo(y.SerialNumber));
                     foreach (var t in result.TransactionList)
                     {
                         PrintCardAndImageTransactionList(t, sLogs);
                     }
-                    string sFile = SaveFile(sLogs, GetLanguage("Msg_4") + $"_{DateTime.Now:yyyyMMddHHmmss}.txt");
-                    mMainForm.AddCmdLog(cmde, GetLanguage("Msg_5") + sFile);
+                    string sFile = SaveFile(sLogs, Lng("Msg_4") + $"_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmde, Lng("Msg_5") + sFile);
                     if (result.readable > 0) AutoReadTransactionAndImage();
                 }
             };
@@ -557,13 +558,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void butSelectDire_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            dialog.Description = GetLanguage("Msg_21");
+            dialog.Description = Lng("Msg_21");
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 if (string.IsNullOrEmpty(dialog.SelectedPath))
                 {
                     //System.Windows.MessageBox.Show(this, "文件夹路径不能为空", "提示");
-                    MessageBox.Show(GetLanguage("Msg_22"));
+                    MessageBox.Show(Lng("Msg_22"));
                     return;
                 }
                 txtImageDire.Text = dialog.SelectedPath;

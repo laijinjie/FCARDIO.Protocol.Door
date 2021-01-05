@@ -111,7 +111,6 @@
             this.Lbl_RegUserName = new System.Windows.Forms.Label();
             this.Lbl_RegUserCode = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
             this.picUpload = new System.Windows.Forms.PictureBox();
             this.txtUploadName = new System.Windows.Forms.TextBox();
             this.txtUploadCode = new System.Windows.Forms.TextBox();
@@ -928,7 +927,6 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.button5);
             this.tabPage4.Controls.Add(this.picUpload);
             this.tabPage4.Controls.Add(this.txtUploadName);
             this.tabPage4.Controls.Add(this.txtUploadCode);
@@ -944,16 +942,6 @@
             this.tabPage4.Text = "上传人员及照片";
             this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(179, 84);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(141, 23);
-            this.button5.TabIndex = 39;
-            this.button5.Text = "2、上传到设备";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // picUpload
             // 
@@ -1143,7 +1131,6 @@
         private System.Windows.Forms.Label Lbl_UploadCode;
         private System.Windows.Forms.Button butSelectImage;
         private System.Windows.Forms.Button btnAddPesonAndImage;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
