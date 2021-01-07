@@ -2244,12 +2244,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// 自动搜索的随机数
         /// </summary>
         private int mSearchID;
+
+        private int mSearchCount;
         private void butSearch_Click(object sender, EventArgs e)
         {
             mSearchID = GetRandomNum();
             mStop = false;
             mSNList = new List<string>();
             dgDevice.Rows.Clear();
+            mSearchCount = 0;
             BeginSearchDrive();
         }
 
@@ -2268,14 +2271,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
 
                 mDrivePort = 8101;
-                txtUDPLocalPort.Text = "8101";
+                //txtUDPLocalPort.Text = "8101";
             }
             if (mDrivePort < 0 || mDrivePort > 65535)
             {
                 mDrivePort = 8101;
-                txtUDPLocalPort.Text = "8101";
+                //txtUDPLocalPort.Text = "8101";
             }
-
+            mSearchCount++;
+            if (mSearchCount > 10)
+                return;
             var cmdDtl = SearchCommandDetail();
             cmdDtl.Timeout = 2000;
             cmdDtl.RestartCount = 0;

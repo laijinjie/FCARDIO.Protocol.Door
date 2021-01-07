@@ -164,7 +164,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
                     //Trace.WriteLine($"{DateTime.Now:mm:ss.fff} 发送包索引：{_WriteIndex}");
 
                     buf.WriteInt(_WriteIndex);
-                    buf.WriteBytes(data, _WriteIndex, iDataLen);
+                    buf.WriteBytes(data, _WriteIndex, iDataLen);// this is 1024+ payloa?
                     DoorPacket.DataLen = buf.ReadableBytes;
                 }
                 CommandReady();
