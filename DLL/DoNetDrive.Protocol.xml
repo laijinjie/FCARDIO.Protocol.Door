@@ -482,212 +482,96 @@ DoNetDrive.Protocol
  <param name="DataLen">返回值的长度要求</param>
  <returns></returns>
 </member>
-<member name="T:DoNetDrive.Protocol.Packet.BaseDecompile`1">
+<member name="T:DoNetDrive.Protocol.OnlineAccess.OnlineAccessDecompileStep_PC">
  <summary>
- 抽象的命令包解析类。
+ 适用于 OnlineAccess 数据包格式的命令包解析步骤
  </summary>
 </member>
-<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1.DecompileTimeout">
+<member name="F:DoNetDrive.Protocol.OnlineAccess.OnlineAccessDecompileStep_PC.SN">
  <summary>
- 解码器中缓存数据超时时间
+ 解析信息SN
  </summary>
 </member>
-<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1.ActivityTime">
+<member name="F:DoNetDrive.Protocol.OnlineAccess.OnlineAccessDecompileStep_PC.Password">
  <summary>
- 解码器活跃时间
+ 解析密码
  </summary>
 </member>
-<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1.DecompileStep">
+<member name="F:DoNetDrive.Protocol.OnlineAccess.OnlineAccessDecompileStep_PC.Code">
  <summary>
- 接收数据的步骤
+ 解析信息代码
  </summary>
 </member>
-<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1._Buf">
+<member name="F:DoNetDrive.Protocol.OnlineAccess.OnlineAccessDecompileStep_PC.Command">
  <summary>
- 存储临时数据的缓冲区
+ 解析命令部分
  </summary>
 </member>
-<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1._Translate">
+<member name="F:DoNetDrive.Protocol.OnlineAccess.OnlineAccessDecompileStep_PC.DataLen">
  <summary>
- 接收到转移码
+ 解析命令长度 
  </summary>
 </member>
-<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1._Packet">
+<member name="F:DoNetDrive.Protocol.OnlineAccess.OnlineAccessDecompileStep_PC.CmdData">
  <summary>
- 命令包
+ 解析数据部分
  </summary>
 </member>
-<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1._Allocator">
+<member name="F:DoNetDrive.Protocol.OnlineAccess.OnlineAccessDecompileStep_PC.CheckSum">
  <summary>
- 存储数据包的缓冲区分配器
+ 判断检验和
  </summary>
 </member>
-<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.#ctor(DotNetty.Buffers.IByteBufferAllocator)">
+<member name="T:DoNetDrive.Protocol.OnlineAccess.DecompileStep_SN_PC">
  <summary>
- 创建一个解析器
+ 解析SN
+ </summary>
+</member>
+<member name="T:DoNetDrive.Protocol.OnlineAccess.DecompileStep_Password_PC">
+ <summary>
+ 解析密码
+ </summary>
+</member>
+<member name="T:DoNetDrive.Protocol.OnlineAccess.DecompileStep_CommandCode_PC">
+ <summary>
+ 解析信息代码
+ </summary>
+</member>
+<member name="T:DoNetDrive.Protocol.OnlineAccess.DecompileStep_Command_PC">
+ <summary>
+ 解析命令
+ </summary>
+</member>
+<member name="T:DoNetDrive.Protocol.OnlineAccess.DecompileStep_DataLen_PC">
+ <summary>
+ 解析命令长度
+ </summary>
+</member>
+<member name="T:DoNetDrive.Protocol.OnlineAccess.DecompileStep_CmdData_PC">
+ <summary>
+ 解析命令数据
+ </summary>
+</member>
+<member name="T:DoNetDrive.Protocol.OnlineAccess.DecompileStep_CheckSum_PC">
+ <summary>
+ 解析命令校验和
+ </summary>
+</member>
+<member name="T:DoNetDrive.Protocol.OnlineAccess.OnlineAccessDecompile_PC">
+ <summary>
+ 数据包 解析类；<para/>
+ 适用于在线门禁、在线电梯、指纹机、人脸机等设备通讯
+ </summary>
+</member>
+<member name="M:DoNetDrive.Protocol.OnlineAccess.OnlineAccessDecompile_PC.#ctor(DotNetty.Buffers.IByteBufferAllocator)">
+ <summary>
+ 创建一个解析 OnlineAccess 类型数据包的解析器
  </summary>
  <param name="acr"></param>
 </member>
-<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.GetPacket">
- <summary>
- 获取解析器包含的命令包
- </summary>
- <returns></returns>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.GetFirstDecompileStep">
+<member name="M:DoNetDrive.Protocol.OnlineAccess.OnlineAccessDecompile_PC.GetFirstDecompileStep">
  <summary>
  获取用于解析命令的第一个步骤
- </summary>
- <returns></returns>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.GetNewByteBuffer(System.Int32)">
- <summary>
- 获取一个新的数据缓冲区
- </summary>
- <param name="iLen"></param>
- <returns></returns>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.ClearBuf">
- <summary>
- 清空缓冲区内容
- </summary>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.Decompile(DotNetty.Buffers.IByteBuffer,System.Collections.Generic.List{DoNetDrive.Core.Packet.INPacket})">
- <summary>
- 将数据解析成特定的数据包，并返回结果
- </summary>
- <param name="bDataBuf">待解析数据缓冲区</param>
- <param name="retPacketList">已解析的包会放在这个列表中</param>
- <returns>解析出完整包则返回True</returns>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.DecompileByte(System.Byte)">
- <summary>
- 对字节进行转译
- </summary>
- <param name="value"></param>
- <returns></returns>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.AddBuf(System.Byte)">
- <summary>
- 加入到缓冲
- </summary>
- <param name="value"></param>
-</member>
-<member name="T:DoNetDrive.Protocol.Packet.BaseDecompileStep`1">
- <summary>
- 抽象的命令包解析步骤
- </summary>
-</member>
-<member name="P:DoNetDrive.Protocol.Packet.BaseDecompileStep`1.ReadBufLen">
- <summary>
- buf需要存储的长度
- </summary>
- <returns></returns>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BaseDecompileStep`1.DecompileStep(DoNetDrive.Protocol.Packet.BaseDecompile{`0},System.Byte)">
- <summary>
- 开始逐字节解析缓冲区中的数据
- </summary>
- <param name="decompile"></param>
- <param name="value"></param>
- <returns></returns>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BaseDecompileStep`1.DecompileNext(DoNetDrive.Protocol.Packet.BaseDecompile{`0},DotNetty.Buffers.IByteBuffer,`0)">
- <summary>
- 解析缓冲区，并接入下一个步骤
- </summary>
- <param name="decompile"></param>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BaseDecompileStep`1.AddSumCheck(DotNetty.Buffers.IByteBuffer,`0)">
- <summary>
- 累加和校验
- </summary>
-</member>
-<member name="T:DoNetDrive.Protocol.Packet.BasePacket">
- <summary>
- 抽象的数据包，仅包含必要内容
- </summary>
-</member>
-<member name="F:DoNetDrive.Protocol.Packet.BasePacket.DataLen">
- <summary>
- 数据长度
- </summary>
-</member>
-<member name="F:DoNetDrive.Protocol.Packet.BasePacket.CmdData">
- <summary>
- 命令数据
- </summary>
-</member>
-<member name="F:DoNetDrive.Protocol.Packet.BasePacket.Check">
- <summary>
- 校验和
- </summary>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BasePacket.VerifyError(System.String)">
- <summary>
- 验证参数错误时，抛出错误
- </summary>
- <param name="sText"></param>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BasePacket.SetPacketCmdData(System.Int32,DotNetty.Buffers.IByteBuffer)">
- <summary>
- 设置包裹数据
- </summary>
- <param name="dl">数据长度</param>
- <param name="cd">命令数据</param>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BasePacket.ReleaseDataBuf">
- <summary>
- 释放数据包中的缓冲区
- </summary>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BasePacket.GetPacketData(DotNetty.Buffers.IByteBufferAllocator)">
- <summary>
- 获取数据包的打包后的ByteBuf，用于发送数据 -- 子类必须实现
- </summary>
- <param name="Allocator">用于分配ByteBuf的分配器</param>
- <returns></returns>
-</member>
-<member name="F:DoNetDrive.Protocol.Packet.BasePacket.CodeRand">
- <summary>
- 随机数生成器
- </summary>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BasePacket.GetRandomCode(System.UInt32@,System.UInt32@)">
- <summary>
- 获取一个随机的信息代码
- </summary>
- <returns></returns>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BasePacket.CreatePacket(DotNetty.Buffers.IByteBufferAllocator,DotNetty.Buffers.IByteBuffer)">
- <summary>
- 生成最终指令和校验和，并对命令进行转义码转义
- </summary>
- <param name="Allocator">缓冲区分配器</param>
- <param name="buf">已存在原始指令的缓冲区</param>
- <returns></returns>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BasePacket.WriteByteToBuf(System.Byte,DotNetty.Buffers.IByteBuffer)">
- <summary>
- 将一个字节写入到缓冲区，并进行转义码转换
- </summary>
- <param name="bValue"></param>
- <param name="buf"></param>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.BasePacket.Release">
- <summary>
- 释放使用的资源
- </summary>
-</member>
-<member name="T:DoNetDrive.Protocol.Packet.INDecompileStep`1">
- <summary>
- 定义命令包解析的步骤的统一接口形式
- </summary>
- <typeparam name="T"></typeparam>
-</member>
-<member name="M:DoNetDrive.Protocol.Packet.INDecompileStep`1.DecompileStep(DoNetDrive.Protocol.Packet.BaseDecompile{`0},System.Byte)">
- <summary>
- 解析步骤，命令包完整解析后返回true
  </summary>
  <returns></returns>
 </member>
@@ -1086,6 +970,215 @@ DoNetDrive.Protocol
  <summary>
  释放使用的资源
  </summary>
+</member>
+<member name="T:DoNetDrive.Protocol.Packet.BaseDecompile`1">
+ <summary>
+ 抽象的命令包解析类。
+ </summary>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1.DecompileTimeout">
+ <summary>
+ 解码器中缓存数据超时时间
+ </summary>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1.ActivityTime">
+ <summary>
+ 解码器活跃时间
+ </summary>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1.DecompileStep">
+ <summary>
+ 接收数据的步骤
+ </summary>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1._Buf">
+ <summary>
+ 存储临时数据的缓冲区
+ </summary>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1._Translate">
+ <summary>
+ 接收到转移码
+ </summary>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1._Packet">
+ <summary>
+ 命令包
+ </summary>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BaseDecompile`1._Allocator">
+ <summary>
+ 存储数据包的缓冲区分配器
+ </summary>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.#ctor(DotNetty.Buffers.IByteBufferAllocator)">
+ <summary>
+ 创建一个解析器
+ </summary>
+ <param name="acr"></param>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.GetPacket">
+ <summary>
+ 获取解析器包含的命令包
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.GetFirstDecompileStep">
+ <summary>
+ 获取用于解析命令的第一个步骤
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.GetNewByteBuffer(System.Int32)">
+ <summary>
+ 获取一个新的数据缓冲区
+ </summary>
+ <param name="iLen"></param>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.ClearBuf">
+ <summary>
+ 清空缓冲区内容
+ </summary>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.Decompile(DotNetty.Buffers.IByteBuffer,System.Collections.Generic.List{DoNetDrive.Core.Packet.INPacket})">
+ <summary>
+ 将数据解析成特定的数据包，并返回结果
+ </summary>
+ <param name="bDataBuf">待解析数据缓冲区</param>
+ <param name="retPacketList">已解析的包会放在这个列表中</param>
+ <returns>解析出完整包则返回True</returns>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.DecompileByte(System.Byte)">
+ <summary>
+ 对字节进行转译
+ </summary>
+ <param name="value"></param>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BaseDecompile`1.AddBuf(System.Byte)">
+ <summary>
+ 加入到缓冲
+ </summary>
+ <param name="value"></param>
+</member>
+<member name="T:DoNetDrive.Protocol.Packet.BaseDecompileStep`1">
+ <summary>
+ 抽象的命令包解析步骤
+ </summary>
+</member>
+<member name="P:DoNetDrive.Protocol.Packet.BaseDecompileStep`1.ReadBufLen">
+ <summary>
+ buf需要存储的长度
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BaseDecompileStep`1.DecompileStep(DoNetDrive.Protocol.Packet.BaseDecompile{`0},System.Byte)">
+ <summary>
+ 开始逐字节解析缓冲区中的数据
+ </summary>
+ <param name="decompile"></param>
+ <param name="value"></param>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BaseDecompileStep`1.DecompileNext(DoNetDrive.Protocol.Packet.BaseDecompile{`0},DotNetty.Buffers.IByteBuffer,`0)">
+ <summary>
+ 解析缓冲区，并接入下一个步骤
+ </summary>
+ <param name="decompile"></param>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BaseDecompileStep`1.AddSumCheck(DotNetty.Buffers.IByteBuffer,`0)">
+ <summary>
+ 累加和校验
+ </summary>
+</member>
+<member name="T:DoNetDrive.Protocol.Packet.BasePacket">
+ <summary>
+ 抽象的数据包，仅包含必要内容
+ </summary>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BasePacket.DataLen">
+ <summary>
+ 数据长度
+ </summary>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BasePacket.CmdData">
+ <summary>
+ 命令数据
+ </summary>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BasePacket.Check">
+ <summary>
+ 校验和
+ </summary>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BasePacket.VerifyError(System.String)">
+ <summary>
+ 验证参数错误时，抛出错误
+ </summary>
+ <param name="sText"></param>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BasePacket.SetPacketCmdData(System.Int32,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 设置包裹数据
+ </summary>
+ <param name="dl">数据长度</param>
+ <param name="cd">命令数据</param>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BasePacket.ReleaseDataBuf">
+ <summary>
+ 释放数据包中的缓冲区
+ </summary>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BasePacket.GetPacketData(DotNetty.Buffers.IByteBufferAllocator)">
+ <summary>
+ 获取数据包的打包后的ByteBuf，用于发送数据 -- 子类必须实现
+ </summary>
+ <param name="Allocator">用于分配ByteBuf的分配器</param>
+ <returns></returns>
+</member>
+<member name="F:DoNetDrive.Protocol.Packet.BasePacket.CodeRand">
+ <summary>
+ 随机数生成器
+ </summary>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BasePacket.GetRandomCode(System.UInt32@,System.UInt32@)">
+ <summary>
+ 获取一个随机的信息代码
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BasePacket.CreatePacket(DotNetty.Buffers.IByteBufferAllocator,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 生成最终指令和校验和，并对命令进行转义码转义
+ </summary>
+ <param name="Allocator">缓冲区分配器</param>
+ <param name="buf">已存在原始指令的缓冲区</param>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BasePacket.WriteByteToBuf(System.Byte,DotNetty.Buffers.IByteBuffer)">
+ <summary>
+ 将一个字节写入到缓冲区，并进行转义码转换
+ </summary>
+ <param name="bValue"></param>
+ <param name="buf"></param>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.BasePacket.Release">
+ <summary>
+ 释放使用的资源
+ </summary>
+</member>
+<member name="T:DoNetDrive.Protocol.Packet.INDecompileStep`1">
+ <summary>
+ 定义命令包解析的步骤的统一接口形式
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="M:DoNetDrive.Protocol.Packet.INDecompileStep`1.DecompileStep(DoNetDrive.Protocol.Packet.BaseDecompile{`0},System.Byte)">
+ <summary>
+ 解析步骤，命令包完整解析后返回true
+ </summary>
+ <returns></returns>
 </member>
 <member name="T:DoNetDrive.Protocol.Transaction.AbstractTransaction">
  <summary>

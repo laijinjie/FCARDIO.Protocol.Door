@@ -150,7 +150,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
                 if (iDataLen > iPackSize) iDataLen = iPackSize;
                 if (iDataLen <= 0)
                 {
-                    
                     _ProcessStep = _ProcessMax;
                     var crc32 = mPar.SoftwareCRC32;
                     CommandDetail.Timeout = mPar.WaitVerifyTime;
@@ -164,7 +163,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
                     //Trace.WriteLine($"{DateTime.Now:mm:ss.fff} 发送包索引：{_WriteIndex}");
 
                     buf.WriteInt(_WriteIndex);
-                    buf.WriteBytes(data, _WriteIndex, iDataLen);// this is 1024+ payloa?
+                    buf.WriteBytes(data, _WriteIndex, iDataLen);
                     DoorPacket.DataLen = buf.ReadableBytes;
                 }
                 CommandReady();

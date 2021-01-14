@@ -1065,6 +1065,16 @@ DoNetDrive.Core
  连接通道的抽象类，定义了一组连接通道的基本运行逻辑
  </summary>
 </member>
+<member name="F:DoNetDrive.Core.Connector.AbstractConnector.DefaultChannelKeepaliveMaxTime">
+ <summary>
+ 默认的通道连接保持时间
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.AbstractConnector.Lockobject">
+ <summary>
+ 用来进行通道锁操作的对象
+ </summary>
+</member>
 <member name="F:DoNetDrive.Core.Connector.AbstractConnector._CommandList">
  <summary>
  连接通道中存在于队列中的命令列表，先进先出集合
@@ -1113,6 +1123,11 @@ DoNetDrive.Core
 <member name="F:DoNetDrive.Core.Connector.AbstractConnector._IsActivity">
  <summary>
  检查通道是否为活动的状态（已连接的）
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.AbstractConnector._IsCloseing">
+ <summary>
+ 指示是否需要关闭通道
  </summary>
 </member>
 <member name="E:DoNetDrive.Core.Connector.AbstractConnector.CommandCompleteEvent">
@@ -1474,11 +1489,6 @@ DoNetDrive.Core
  通讯连接器详情基类基本定义
  </summary>
 </member>
-<member name="M:DoNetDrive.Core.Connector.AbstractConnectorDetail.#ctor">
- <summary>
- 初始化默认的连接等待时间和重试次数
- </summary>
-</member>
 <member name="P:DoNetDrive.Core.Connector.AbstractConnectorDetail.Timeout">
  <summary>
  连接器连接到对端时最大等待时间，单位毫秒
@@ -1523,6 +1533,11 @@ DoNetDrive.Core
  获取一个用于界定此通道的唯一Key值
  </summary>
  <returns></returns>
+</member>
+<member name="F:DoNetDrive.Core.Connector.AbstractConnectorDetail._Exception">
+ <summary>
+ 一个异常报告
+ </summary>
 </member>
 <member name="T:DoNetDrive.Core.Connector.Client.AbstractNettyClientConnector`1">
  <summary>
@@ -1626,11 +1641,6 @@ DoNetDrive.Core
  关闭连接
  </summary>
 </member>
-<member name="M:DoNetDrive.Core.Connector.Client.AbstractNettyClientConnector`1.CloseConnector0">
- <summary>
- 连接关闭后的后续处理
- </summary>
-</member>
 <member name="M:DoNetDrive.Core.Connector.Client.AbstractNettyClientConnector`1.channelRead0(DotNetty.Transport.Channels.IChannelHandlerContext,`0)">
  <summary>
  接收到数据
@@ -1698,7 +1708,7 @@ DoNetDrive.Core
  表示此通道的事件参数，当发生通道事件时传输给事件订阅者
  </summary>
 </member>
-<member name="M:DoNetDrive.Core.Connector.Client.AbstractNettyServerClientConnector`1.#ctor(System.String,DotNetty.Transport.Channels.IChannel)">
+<member name="M:DoNetDrive.Core.Connector.Client.AbstractNettyServerClientConnector`1.#ctor(System.String,DotNetty.Transport.Channels.IChannel,System.Int64)">
  <summary>
  创建一个客户端
  </summary>
@@ -1726,11 +1736,6 @@ DoNetDrive.Core
 <member name="M:DoNetDrive.Core.Connector.Client.AbstractNettyServerClientConnector`1.ConnectFail0">
  <summary>
  当连接通道连接已失效时调用
- </summary>
-</member>
-<member name="M:DoNetDrive.Core.Connector.Client.AbstractNettyServerClientConnector`1.CloseConnector0">
- <summary>
- 连接关闭后的后续处理
  </summary>
 </member>
 <member name="M:DoNetDrive.Core.Connector.Client.AbstractNettyServerClientConnector`1.ConnectSuccess0">
@@ -2336,6 +2341,16 @@ DoNetDrive.Core
  </summary>
  <returns></returns>
 </member>
+<member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientAllocator.CONNECT_TIMEOUT_Default">
+ <summary>
+ 默认连接超时，单位毫秒
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientAllocator.CONNECT_RECONNECT_Default">
+ <summary>
+ 默认重新连接次数
+ </summary>
+</member>
 <member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientAllocator.CONNECT_TIMEOUT_MILLIS_MAX">
  <summary>
  最大40秒连接超时，单位毫秒
@@ -2428,11 +2443,6 @@ DoNetDrive.Core
  连接开始时间
  </summary>
 </member>
-<member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientConnector._ConnectFuture">
- <summary>
- 连接的异步操作类
- </summary>
-</member>
 <member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientConnector._ConnectTimeoutMSEL">
  <summary>
  最大连接等待时间
@@ -2517,14 +2527,14 @@ DoNetDrive.Core
  </summary>
  <returns></returns>
 </member>
-<member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientConnector.CloseConnector0">
- <summary>
- 连接关闭后的后续处理
- </summary>
-</member>
 <member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientConnector.Release1">
  <summary>
  释放资源
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail_Readonly._ConnectAlias">
+ <summary>
+ 别名
  </summary>
 </member>
 <member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail_Readonly._Addr">
@@ -2547,42 +2557,11 @@ DoNetDrive.Core
  连接远程服务器的本地端口
  </summary>
 </member>
-<member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail_Readonly.#ctor(System.String,System.Int32,System.String,System.Int32)">
- <summary>
- 初始化连接器详细
- </summary>
- <param name="sAddr">远程服务器的IP或域名</param>
- <param name="iPort">远程服务器的监听端口</param>
- <param name="slocal">指定本地IP</param>
- <param name="ilocalPort">指定本地端口</param>
-</member>
 <member name="M:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail_Readonly.#ctor(DoNetDrive.Core.Connector.TCPClient.TCPClientDetail)">
  <summary>
  初始化连接器详细
  </summary>
  <param name="oTCP">远程服务器的详情</param>
-</member>
-<member name="P:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail_Readonly.Addr">
- <summary>
- 远程服务器的IP或域名
- </summary>
- <returns></returns>
-</member>
-<member name="P:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail_Readonly.Port">
- <summary>
- 远程服务器的监听端口
- </summary>
- <returns></returns>
-</member>
-<member name="P:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail_Readonly.LocalAddr">
- <summary>
- 连接远程服务器的本地IP
- </summary>
-</member>
-<member name="P:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail_Readonly.LocalPort">
- <summary>
- 连接远程服务器的本地端口
- </summary>
 </member>
 <member name="F:DoNetDrive.Core.Connector.TCPClient.TCPClientConnectorStatus.Free">
  <summary>
@@ -2612,6 +2591,11 @@ DoNetDrive.Core
 <member name="T:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail">
  <summary>
  表示一个 TCP Client 通道的详情
+ </summary>
+</member>
+<member name="P:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail.ConnectAlias">
+ <summary>
+ 通道的别名 自定义通道Key
  </summary>
 </member>
 <member name="P:DoNetDrive.Core.Connector.TCPClient.TCPClientDetail.Addr">
@@ -2735,7 +2719,7 @@ DoNetDrive.Core
  </summary>
  <param name="channel"></param>
 </member>
-<member name="M:DoNetDrive.Core.Connector.TCPServer.Client.TCPClientConnector.#ctor(System.String,DotNetty.Transport.Channels.IChannel)">
+<member name="M:DoNetDrive.Core.Connector.TCPServer.Client.TCPClientConnector.#ctor(System.String,DotNetty.Transport.Channels.IChannel,System.Int64)">
  <summary>
  创建一个客户端
  </summary>
@@ -2779,13 +2763,18 @@ DoNetDrive.Core
  本地端点
  </summary>
 </member>
+<member name="F:DoNetDrive.Core.Connector.TCPServer.Client.TCPServerClientDetail.ClientID">
+ <summary>
+ 客户端唯一号
+ </summary>
+</member>
 <member name="M:DoNetDrive.Core.Connector.TCPServer.Client.TCPServerClientDetail.#ctor(System.String)">
  <summary>
  指定一个唯一Key值，用于表示一个服务器下的节点客户端
  </summary>
  <param name="skey"></param>
 </member>
-<member name="M:DoNetDrive.Core.Connector.TCPServer.Client.TCPServerClientDetail.#ctor(System.String,System.Net.IPEndPoint,System.Net.IPEndPoint)">
+<member name="M:DoNetDrive.Core.Connector.TCPServer.Client.TCPServerClientDetail.#ctor(System.String,System.Net.IPEndPoint,System.Net.IPEndPoint,System.Int64)">
  <summary>
  指定一个唯一Key值，用于表示一个服务器下的节点客户端
  </summary>
@@ -2844,7 +2833,7 @@ DoNetDrive.Core
  所有客户端的ID
  </summary>
 </member>
-<member name="M:DoNetDrive.Core.Connector.TCPServer.TCPServerAllocator.GetClientKey(DotNetty.Transport.Channels.IChannel)">
+<member name="M:DoNetDrive.Core.Connector.TCPServer.TCPServerAllocator.GetClientKey(DotNetty.Transport.Channels.IChannel,System.Int64@)">
  <summary>
  获取客户端的Key值
  </summary>
@@ -3233,14 +3222,10 @@ DoNetDrive.Core
  只读的UDP连接器客户端详情
  </summary>
 </member>
-<member name="M:DoNetDrive.Core.Connector.UDP.UDPClientDetail_ReadOnly.#ctor(System.String,System.Int32,System.String,System.Int32)">
+<member name="M:DoNetDrive.Core.Connector.UDP.UDPClientDetail_ReadOnly.#ctor(DoNetDrive.Core.Connector.TCPClient.TCPClientDetail)">
  <summary>
  初始化连接器详细
  </summary>
- <param name="sAddr">远程服务器的IP或域名</param>
- <param name="iPort">远程服务器的监听端口</param>
- <param name="slocal">指定本地IP</param>
- <param name="ilocalPort">指定本地端口</param>
 </member>
 <member name="M:DoNetDrive.Core.Connector.UDP.UDPClientDetail_ReadOnly.GetTypeName">
  <summary>
@@ -3356,11 +3341,6 @@ DoNetDrive.Core
 <member name="M:DoNetDrive.Core.Connector.UDP.UDPServerClientConnector.CloseConnector">
  <summary>
  关闭连接
- </summary>
-</member>
-<member name="M:DoNetDrive.Core.Connector.UDP.UDPServerClientConnector.CloseConnector0">
- <summary>
- 连接关闭后的后续处理
  </summary>
 </member>
 <member name="M:DoNetDrive.Core.Connector.UDP.UDPServerClientConnector.Release1">
@@ -3781,7 +3761,12 @@ DoNetDrive.Core
  检查握手是否成功
  </summary>
 </member>
-<member name="M:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientConnector.#ctor(System.String,DotNetty.Transport.Channels.IChannel)">
+<member name="F:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientConnector.RequestURL">
+ <summary>
+ 本次请求的URL地址参数
+ </summary>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientConnector.#ctor(System.String,DotNetty.Transport.Channels.IChannel,System.Int64)">
  <summary>
  创建一个客户端
  </summary>
@@ -3866,13 +3851,18 @@ DoNetDrive.Core
  指示一个WebSocket Server的客户端节点
  </summary>
 </member>
+<member name="F:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientDetail.RequestURL">
+ <summary>
+ 请求的URL地址信息
+ </summary>
+</member>
 <member name="M:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientDetail.#ctor(System.String)">
  <summary>
  指定一个唯一Key值，用于表示一个服务器下的节点客户端
  </summary>
  <param name="skey"></param>
 </member>
-<member name="M:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientDetail.#ctor(System.String,System.Net.IPEndPoint,System.Net.IPEndPoint)">
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Server.Client.WebSocketServerClientDetail.#ctor(System.String,System.Net.IPEndPoint,System.Net.IPEndPoint,System.Int64)">
  <summary>
  指定一个唯一Key值，用于表示一个服务器下的节点客户端
  </summary>
@@ -3911,7 +3901,7 @@ DoNetDrive.Core
  所有客户端的ID
  </summary>
 </member>
-<member name="M:DoNetDrive.Core.Connector.WebSocket.Server.WebSocketServerAllocator.GetClientKey(DotNetty.Transport.Channels.IChannel)">
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Server.WebSocketServerAllocator.GetClientKey(DotNetty.Transport.Channels.IChannel,System.Int64@)">
  <summary>
  获取客户端的Key值
  </summary>
@@ -3986,6 +3976,13 @@ DoNetDrive.Core
  <param name="Port">本地监听端口</param>
 </member>
 <member name="M:DoNetDrive.Core.Connector.WebSocket.Server.WebSocketServerDetail.#ctor(System.String,System.Int32)">
+ <summary>
+ 初始化详情
+ </summary>
+ <param name="Addr">本地监听地址</param>
+ <param name="Port">本地监听端口</param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.WebSocket.Server.WebSocketServerDetail.#ctor(System.String,System.Int32,System.String)">
  <summary>
  初始化详情
  </summary>
@@ -4129,6 +4126,11 @@ DoNetDrive.Core
  </summary>
  <returns></returns>
 </member>
+<member name="M:DoNetDrive.Core.Connector.INConnector.Close">
+ <summary>
+ 关闭链接
+ </summary>
+</member>
 <member name="T:DoNetDrive.Core.Connector.INConnectorDetail">
  <summary>
  连接指示接口，用来告诉连接工厂应该使用哪种连接器连接对端。
@@ -4163,6 +4165,24 @@ DoNetDrive.Core
 <member name="M:DoNetDrive.Core.Connector.INConnectorDetail.GetKey">
  <summary>
  获取一个用于界定此通道的唯一Key值
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Core.Connector.INConnectorDetail.SetError(System.Exception)">
+ <summary>
+ 可以设置一个错误信息，当错误发生时，保存在此处
+ </summary>
+ <param name="err"></param>
+</member>
+<member name="M:DoNetDrive.Core.Connector.INConnectorDetail.GetError">
+ <summary>
+ 当错误发生时，获取一个错误信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:DoNetDrive.Core.Connector.INConnectorDetail.IsFaulted">
+ <summary>
+ 表示是否包含错误信息
  </summary>
  <returns></returns>
 </member>
@@ -4457,6 +4477,13 @@ DoNetDrive.Core
  <param name="connectDtl">表示连接通道的信息</param>
  <returns></returns>
 </member>
+<member name="M:DoNetDrive.Core.ConnectorAllocator.OpenForciblyConnect(DoNetDrive.Core.Connector.INConnectorDetail)">
+ <summary>
+ 强制打开一个连接通道
+ </summary>
+ <param name="connectDtl">表示连接通道的信息</param>
+ <returns></returns>
+</member>
 <member name="M:DoNetDrive.Core.ConnectorAllocator.CloseConnector(DoNetDrive.Core.Connector.INConnectorDetail)">
  <summary>
  强制关闭通道连接
@@ -4481,6 +4508,12 @@ DoNetDrive.Core
 <member name="M:DoNetDrive.Core.ConnectorAllocator.AddConnector(System.String,DoNetDrive.Core.Connector.INConnector)">
  <summary>
  添加一个连接通道
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Core.ConnectorAllocator.GetAllConnectorKeys">
+ <summary>
+ 获取所有在线的连接通道的Key
  </summary>
  <returns></returns>
 </member>
@@ -4862,6 +4895,11 @@ DoNetDrive.Core
 <member name="F:DoNetDrive.Core.TaskManage.AbstractTaskManage`1._ThreadID">
  <summary>
  管理器绑定的线程ID
+ </summary>
+</member>
+<member name="F:DoNetDrive.Core.TaskManage.AbstractTaskManage`1.DefaultTaskSleepTime">
+ <summary>
+ 默认的任务休眠时间，单位毫秒
  </summary>
 </member>
 <member name="M:DoNetDrive.Core.TaskManage.AbstractTaskManage`1.#ctor(DotNetty.Transport.Channels.IEventLoop)">
