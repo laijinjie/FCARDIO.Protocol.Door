@@ -798,6 +798,14 @@
     <Msg_26                        value="Registration successful" />
     <Msg_27                        value="Registration failed" />
     <Msg_28                        value="Finish" />
+    <Msg_29                        value="registered successfully,but read image error." />
+    <Register_Status1   value="Register:start" />
+    <Register_Status2   value="Register:user error" />
+    <Register_Status3   value="Register:type error" />
+    <Register_Status4   value="Register:file num error" />
+    <Register_Status5   value="Register:Storage space is full" />
+    <Register_Status102 value="Register:User cancel" />
+    <Register_Status103 value="Register:User repetition，User ID:{0}" />
     <Person_UI_1                        value="Yes" />
     <Person_UI_2                        value="No" />
     <Person_UI_3                        value="Normal, lost card, blacklist" />

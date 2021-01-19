@@ -1999,7 +1999,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             public String SN;
             internal MyRequestHandle Handle;
 
-            public MyTCPServerClientDetail(string sKey, IPEndPoint remoteIP) : base(sKey, remoteIP, null)
+            public MyTCPServerClientDetail(string sKey, IPEndPoint remoteIP,int iClientID) : base(sKey, remoteIP, null,iClientID)
             {
 
             }
@@ -2120,7 +2120,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void AddTCPClient(string sKey, IPDetail remoteIP)
         {
             MyTCPServerClientDetail myTCP = new MyTCPServerClientDetail(
-                sKey, new IPEndPoint(IPAddress.Parse(remoteIP.Addr), remoteIP.Port));
+                sKey, new IPEndPoint(IPAddress.Parse(remoteIP.Addr), remoteIP.Port),0);
             if (!mTCPClients.TryAdd(sKey, myTCP))
             {
                 //重复添加客户端，Key:{sKey}

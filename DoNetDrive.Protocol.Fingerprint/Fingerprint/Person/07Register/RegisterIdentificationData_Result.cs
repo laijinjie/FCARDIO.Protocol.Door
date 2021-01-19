@@ -10,7 +10,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         /// <summary>
         /// 状态代码：
         /// 1、已开始注册；2、用户号不存在；3、类型错误或不支持；4、序号已超出范围。5、设备存储空间已满
-        /// 101、注册成功；102、用户取消操作
+        /// 101、注册成功；102、用户取消操作 103、注册信息重复
         /// </summary>
         public int Status;
 
@@ -19,6 +19,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         /// 注册类型为 刷卡、密码，时，返回值存储在 PersonDetail 字段中
         /// </summary>
         public IdentificationData ResultData;
+
+        /// <summary>
+        /// 当状态为103时，此处指示，注册信息重复的用户号。
+        /// </summary>
+        public uint UserID ;
 
         /// <summary>
         /// 创建返回值

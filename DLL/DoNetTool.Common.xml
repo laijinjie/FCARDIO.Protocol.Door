@@ -39,37 +39,119 @@
             <returns>true--匹配；false--不匹配</returns>
             <remarks></remarks>
         </member>
-        <member name="T:DoNetTool.Common.ClientLoginUser_LoginTmp">
+        <member name="M:DoNetTool.Common.Cryptography.RSA.RSACryptoService.Encrypt(System.String)">
             <summary>
-            
+            RSA 公钥加密
             </summary>
-        </member>
-        <member name="T:DoNetTool.Common.ClientLoginUser">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:DoNetTool.Common.ClientLoginUser.Key">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:DoNetTool.Common.ClientLoginUser.Role">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:DoNetTool.Common.ClientLoginUser.Identity">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:DoNetTool.Common.ClientLoginUser.IsInRole(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="role"></param>
+            <param name="text"></param>
             <returns></returns>
+        </member>
+        <member name="M:DoNetTool.Common.Cryptography.RSA.RSACryptoService.SignData(System.String)">
+            <summary>
+            使用私钥加密
+            </summary>
+            <param name="contentText"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetTool.Common.Cryptography.RSA.RSACryptoService.VerifyData(System.String,System.String)">
+            <summary>
+            使用公钥验证签名
+            </summary>
+            <param name="contentText"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetTool.Common.Cryptography.RSA.RSACryptoService.Decrypt(System.String)">
+            <summary>
+            RSA 私钥解密
+            </summary>
+            <param name="cipherText"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DoNetTool.Common.Cryptography.RSA.RSA_BouncyCastle.RSAKEY">
+            <summary>
+            KEY 结构体
+            </summary>
+        </member>
+        <member name="P:DoNetTool.Common.Cryptography.RSA.RSA_BouncyCastle.RSAKEY.PublicKey">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="P:DoNetTool.Common.Cryptography.RSA.RSA_BouncyCastle.RSAKEY.PrivateKey">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="M:DoNetTool.Common.Cryptography.RSA.RSA_BouncyCastle.EncryptByPrivateKey(System.String,System.String)">
+            <summary>
+            私钥加密
+            </summary>
+            <param name="s"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetTool.Common.Cryptography.RSA.RSA_BouncyCastle.DecryptByPublicKey(System.String,System.String)">
+            <summary>
+            公钥解密
+            </summary>
+            <param name="s"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetTool.Common.Cryptography.RSA.SM2Utils.GenerateKeyPair(System.String@,System.String@)">
+            <summary>
+            创建密钥对
+            </summary>
+            <param name="sPublicKey_Hex">公钥</param>
+            <param name="sPrivateKey_Hex">私钥</param>
+        </member>
+        <member name="M:DoNetTool.Common.Cryptography.RSA.SM2Utils.Encrypt(System.Byte[],System.Byte[])">
+            <summary>
+            使用公钥进行加密
+            </summary>
+            <param name="publicKey">公钥</param>
+            <param name="data">需要加密的数据块</param>
+            <returns>Hex密文字符串</returns>
+        </member>
+        <member name="M:DoNetTool.Common.Cryptography.RSA.SM2Utils.Decrypt(System.Byte[],System.Byte[])">
+            <summary>
+            使用私钥进行解密
+            </summary>
+            <param name="privateKey">私钥</param>
+            <param name="encryptedData">待解密的密文</param>
+            <returns>字节数组存储的明文</returns>
+        </member>
+        <member name="M:DoNetTool.Common.Cryptography.RSA.SupportClass.URShift(System.Int32,System.Int32)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
+        </member>
+        <member name="M:DoNetTool.Common.Cryptography.RSA.SupportClass.URShift(System.Int32,System.Int64)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
+        </member>
+        <member name="M:DoNetTool.Common.Cryptography.RSA.SupportClass.URShift(System.Int64,System.Int32)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
+        </member>
+        <member name="M:DoNetTool.Common.Cryptography.RSA.SupportClass.URShift(System.Int64,System.Int64)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
         </member>
         <member name="M:DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(System.Byte[],System.UInt32,System.UInt32)">
             <summary>计算并获取CRC数据。</summary>
@@ -499,6 +581,43 @@
             RC4 加密，使用已初始化的密钥进行数据加密
             </summary>
         </member>
+        <member name="M:DoNetTool.Common.Cryptography.RC4.RC4_Encrypt(System.Byte[]@,System.Int32)">
+            <summary>
+            RC4 加密，使用已初始化的密钥进行数据加密
+            </summary>
+        </member>
+        <member name="T:DoNetTool.Common.ClientLoginUser_LoginTmp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DoNetTool.Common.ClientLoginUser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DoNetTool.Common.ClientLoginUser.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DoNetTool.Common.ClientLoginUser.Role">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DoNetTool.Common.ClientLoginUser.Identity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DoNetTool.Common.ClientLoginUser.IsInRole(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
         <member name="T:DoNetTool.Common.DataUtil">
             <summary>
             数据转换工具类
@@ -737,6 +856,13 @@
             <summary>
             输出格式化为 UserDateTimeFormat 的日期字符串
             默认格式 yyyy-MM-dd HH:mm:ss
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetTool.Common.Extensions.DateExtensions.ToTimeffff(System.DateTime)">
+            <summary>
+            输出格式化为 HH:mm:ss.ffff 的时间字符串
             </summary>
             <param name="d"></param>
             <returns></returns>
@@ -2992,6 +3118,14 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="M:DoNetTool.Common.ValidateTool.IsBase64(System.String,System.Byte[]@)">
+            <summary>
+            
+            </summary>
+            <param name="base64String"></param>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
         <member name="M:DoNetTool.Common.ValidateTool.ValidateNumByDef(System.String,System.Int32,System.Int32,System.Int32)">
             <summary>
             验证参数并返回正确值
@@ -3058,12 +3192,13 @@
             TLS1.2
             </summary>
         </member>
-        <member name="M:DoNetTool.Common.WebRequestTool.HttpFileDownload(System.String,System.String)">
+        <member name="M:DoNetTool.Common.WebRequestTool.HttpFileDownload(System.String,System.String,System.Int32)">
             <summary>
             HTTP文件下载
             </summary>
             <param name="fileURL"></param>
             <param name="targetPath"></param>
+            <param name="timeout">超时时间，单位毫秒</param>
             <returns></returns>
         </member>
         <member name="M:DoNetTool.Common.WebRequestTool.CreateGetHttpResponse(System.String,System.Int32,System.String,System.Net.CookieCollection)">

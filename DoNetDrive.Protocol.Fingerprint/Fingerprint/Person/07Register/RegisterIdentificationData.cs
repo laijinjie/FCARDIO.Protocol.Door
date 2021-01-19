@@ -1,6 +1,7 @@
 ﻿using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.Door.Door8800;
 using DoNetDrive.Protocol.OnlineAccess;
+using System;
 
 namespace DoNetDrive.Protocol.Fingerprint.Person
 {
@@ -114,17 +115,29 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
                     }
                     break;
                 case 4://等待注册结果返回
-                    if (oPck.CmdType == 0x19 && oPck.CmdIndex == 0xF0)
+                    if (oPck.CmdType == 0x19 && oPck.CmdIndex == 0xF0 && oPck.CmdPar == 0)
                     {
                         var iStatus = oPck.CmdData.ReadByte();
                         var res = _Result as RegisterIdentificationData_Result;
                         res.Status = 100 + iStatus;
                         if (iStatus == 1)
                         {
-                            ReadIdentificationData();
+                            _Connector.GetEventLoop().Schedule(() =>
+                            {
+                                ReadIdentificationData();
+                            },  TimeSpan.FromMilliseconds(500));
+
+                            
                         }
                         else
                         {
+                            if (iStatus == 3)
+                            {
+                                mStep = 7;//等待返回重复用户号
+                                CommandWaitResponse();
+                                return;
+                            }
+
                             //注册失败
                             CommandCompleted();
                         }
@@ -135,6 +148,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
                     break;
                 case 6://读取文件
                     ReadFile(oPck);
+                    break;
+                case 7://等待重复用户号
+                    if (oPck.CmdType == 0x19 && oPck.CmdIndex == 0xF0 && oPck.CmdPar == 1)
+                    {
+                        uint iUser = oPck.CmdData.ReadUnsignedInt();
+                        var res = _Result as RegisterIdentificationData_Result;
+                        res.UserID = iUser;
+                       
+                        //注册失败
+                        CommandCompleted();
+                    }
                     break;
                 default:
                     break;
@@ -158,7 +182,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
             for (int i = 0; i < 10; i++)
             {
                 int iValue = 0;
-                if(par.DataType == 1)
+                if (par.DataType == 1)
                 {
                     iValue = par.DataNum == i ? 1 : 0;
                 }

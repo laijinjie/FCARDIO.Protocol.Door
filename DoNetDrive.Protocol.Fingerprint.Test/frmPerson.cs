@@ -745,6 +745,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
         }
 
+        Dictionary<int, string> sStatusTipDic = new Dictionary<int, string>();
 
         private void Button2_Click(object sender, EventArgs e)
         {
@@ -760,7 +761,19 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             var par = new RegisterIdentificationData_Parameter(person, 3);
             cmd = new RegisterIdentificationData(cmdDtl, par);
+            picReg.Image = null;
 
+            if(sStatusTipDic.Count==0)
+            {
+                //1、已开始注册；2、用户号不存在；3、类型错误或不支持；4、序号已超出范围。5、设备存储空间已满 101、注册成功；102、用户取消操作
+                sStatusTipDic.Add(1, Lng("Register_Status1"));//已开始注册
+                sStatusTipDic.Add(2, Lng("Register_Status2"));//用户号不存在
+                sStatusTipDic.Add(3, Lng("Register_Status3"));//类型错误或不支持
+                sStatusTipDic.Add(4, Lng("Register_Status4"));//序号已超出范围
+                sStatusTipDic.Add(5, Lng("Register_Status5"));//设备存储空间已满
+                sStatusTipDic.Add(102, Lng("Register_Status102"));//用户取消操作
+                sStatusTipDic.Add(103, Lng("Register_Status103"));//注册信息重复
+            }
 
             mMainForm.AddCommand(cmd);
 
@@ -769,6 +782,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 var result = cmde.Result as RegisterIdentificationData_Result;
                 if (result.Status == 101)
                 {
+
                     if (result.ResultData != null)
                     {
                         string sFile = System.IO.Path.Combine(Application.StartupPath, $"Photo_{sCode}.jpg");
@@ -782,11 +796,22 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                         mMainForm.AddLog(Lng("Msg_26"));
                     }
+                    else
+                    {
+                        mMainForm.AddLog(Lng("Msg_29"));//注册成功，但是读取文件时发生错误。
+                        
+                    }
 
                 }
                 else
                 {
-                    mMainForm.AddLog(Lng("Msg_26") +$"--{result.Status}");
+                    string sTip = sStatusTipDic[result.Status];
+                    
+                    if (result.Status == 103)
+                    {
+                        sTip = string.Format(sTip, result.UserID);
+                    }
+                    mMainForm.AddLog(sTip);
                 }
             };
         }

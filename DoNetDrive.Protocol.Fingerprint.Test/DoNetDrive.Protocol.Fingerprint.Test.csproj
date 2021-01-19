@@ -39,7 +39,7 @@
   <ItemGroup>
     <Reference Include="AutoUpdater.NET, Version=1.6.3.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
       <HintPath>..\packages\Autoupdater.NET.Official.1.6.3\lib\net45\AutoUpdater.NET.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevComponents.DotNetBar.SuperGrid">
       <HintPath>..\DLL\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
@@ -69,6 +69,7 @@
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Util">
       <HintPath>..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetTool.Common">
       <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>

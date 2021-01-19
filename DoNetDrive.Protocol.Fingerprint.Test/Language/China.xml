@@ -802,6 +802,14 @@
     <Msg_26                        value="注册成功！" />
     <Msg_27                        value="注册失败" />
     <Msg_28                        value="完毕" />
+    <Msg_29                        value="注册成功，但是读取文件时发生错误。" />
+    <Register_Status1   value="已开始注册" />
+    <Register_Status2   value="用户号不存在" />
+    <Register_Status3   value="类型错误或不支持" />
+    <Register_Status4   value="序号已超出范围" />
+    <Register_Status5   value="设备存储空间已满" />
+    <Register_Status102 value="用户取消操作" />
+    <Register_Status103 value="注册信息重复，重复的用户号：{0}" />
     <Person_UI_1                        value="有" />
     <Person_UI_2                        value="无" />
     <Person_UI_3                        value="正常,挂失卡,黑名单" />
