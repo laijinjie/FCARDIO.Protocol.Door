@@ -1,14 +1,7 @@
-﻿using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
+﻿using DoNetDrive.Common.Extensions;
+using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
 using DoNetDrive.Protocol.Door.Test.Language;
-using DoNetTool.Common.Extensions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DoNetDrive.Protocol.Door.Test

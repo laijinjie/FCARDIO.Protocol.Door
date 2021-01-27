@@ -18,7 +18,7 @@ using DoNetDrive.Core.Connector.TCPClient;
 using DoNetDrive.Core.Connector.TCPServer;
 using DoNetDrive.Core.Connector.TCPServer.Client;
 using DoNetDrive.Core.Connector.UDP;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Door.Door8800.Door.ReaderOption;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.Watch;
 using DoNetDrive.Protocol.Door.Test.Language;

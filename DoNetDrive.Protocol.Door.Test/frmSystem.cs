@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.TCPSetting;
 using System.Text.RegularExpressions;

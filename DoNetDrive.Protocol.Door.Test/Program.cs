@@ -14,6 +14,8 @@ namespace DoNetDrive.Protocol.Door.Test
         [STAThread]
         static void Main()
         {
+            DoNetDrive.Core.Connector.DotNettyAllocator.UseLibuv = true;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());

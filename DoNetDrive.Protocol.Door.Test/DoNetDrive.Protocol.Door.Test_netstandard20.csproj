@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{57AF3F61-0A46-4BEB-A474-D21A0A07F4D1}</ProjectGuid>
+    <ProjectGuid>{633A64B2-9235-4E8D-AC83-FEA4B0BB7A1A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DoNetDrive.Protocol.Fingerprint.Test</RootNamespace>
-    <AssemblyName>Fingerprint.Test</AssemblyName>
+    <RootNamespace>DoNetDrive.Protocol.Door.Test</RootNamespace>
+    <AssemblyName>DoNetDrive.Protocol.Door.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -31,62 +31,51 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>default</LangVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoUpdater.NET, Version=1.6.3.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autoupdater.NET.Official.1.6.3\lib\net45\AutoUpdater.NET.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevComponents.DotNetBar.SuperGrid">
-      <HintPath>..\DLL\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevComponents.DotNetBar2">
-      <HintPath>..\DLL\DevComponents.DotNetBar2.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevComponents.Instrumentation">
-      <HintPath>..\DLL\DevComponents.Instrumentation.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=10.9.0.4, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar2, Version=10.9.0.4, Culture=neutral, PublicKeyToken=c39c3242a43eee2b" />
+    <Reference Include="DevComponents.Instrumentation, Version=10.9.0.4, Culture=neutral, PublicKeyToken=bc4a9d761ea44ef0" />
     <Reference Include="DoNetDrive.Core">
       <HintPath>..\DLL\DoNetDrive.Core.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol, Version=1.11.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DoNetDrive.Protocol">
       <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol.Door">
-      <HintPath>..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol.Util">
-      <HintPath>..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetTool.Common">
       <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="DotNetty.Buffers">
+    <Reference Include="DotNetty.Buffers, Version=0.6.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Common">
       <HintPath>..\DLL\DotNetty.Common.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xaml" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -98,17 +87,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAdditionalData.cs">
+    <Compile Include="frmCard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAdditionalData.Designer.cs">
-      <DependentUpon>frmAdditionalData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAlarm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAlarm.Designer.cs">
-      <DependentUpon>frmAlarm.cs</DependentUpon>
+    <Compile Include="frmCard.Designer.cs">
+      <DependentUpon>frmCard.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDoor.cs">
       <SubType>Form</SubType>
@@ -122,6 +105,12 @@
     <Compile Include="frmHoliday.Designer.cs">
       <DependentUpon>frmHoliday.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInputBox.Designer.cs">
+      <DependentUpon>frmInputBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,14 +120,14 @@
     <Compile Include="frmNodeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmNodeForm.designer.cs">
+    <Compile Include="frmNodeForm.Designer.cs">
       <DependentUpon>frmNodeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPerson.cs">
+    <Compile Include="frmPassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPerson.Designer.cs">
-      <DependentUpon>frmPerson.cs</DependentUpon>
+    <Compile Include="frmPassword.Designer.cs">
+      <DependentUpon>frmPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRecord.cs">
       <SubType>Form</SubType>
@@ -164,27 +153,23 @@
     <Compile Include="frmTimeGroup.Designer.cs">
       <DependentUpon>frmTimeGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="INMain.cs" />
-    <Compile Include="Language\ToolLanguage.cs" />
-    <Compile Include="Model\CommandResult.cs" />
-    <Compile Include="Model\DeviceInfo.cs" />
-    <Compile Include="Model\HolidayDetailDto.cs" />
-    <Compile Include="Model\ImageTool.cs" />
-    <Compile Include="Model\IOMessage.cs" />
-    <Compile Include="Model\Person_UI.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShowImgForm.cs">
+    <Compile Include="frmUploadSoftware.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShowImgForm.Designer.cs">
-      <DependentUpon>ShowImgForm.cs</DependentUpon>
+    <Compile Include="frmUploadSoftware.Designer.cs">
+      <DependentUpon>frmUploadSoftware.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmAdditionalData.resx">
-      <DependentUpon>frmAdditionalData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAlarm.resx">
-      <DependentUpon>frmAlarm.cs</DependentUpon>
+    <Compile Include="INMain.cs" />
+    <Compile Include="Language\ToolLanguage.cs" />
+    <Compile Include="Model\CardData.cs" />
+    <Compile Include="Model\CardDetail_UI.cs" />
+    <Compile Include="Model\HolidayDetailDto.cs" />
+    <Compile Include="Model\PasswordDto.cs" />
+    <Compile Include="Model\WeekTimeGroupDto.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmCard.resx">
+      <DependentUpon>frmCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDoor.resx">
       <DependentUpon>frmDoor.cs</DependentUpon>
@@ -192,14 +177,17 @@
     <EmbeddedResource Include="frmHoliday.resx">
       <DependentUpon>frmHoliday.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmInputBox.resx">
+      <DependentUpon>frmInputBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNodeForm.resx">
       <DependentUpon>frmNodeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPerson.resx">
-      <DependentUpon>frmPerson.cs</DependentUpon>
+    <EmbeddedResource Include="frmPassword.resx">
+      <DependentUpon>frmPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRecord.resx">
       <DependentUpon>frmRecord.cs</DependentUpon>
@@ -213,6 +201,9 @@
     <EmbeddedResource Include="frmTimeGroup.resx">
       <DependentUpon>frmTimeGroup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmUploadSoftware.resx">
+      <DependentUpon>frmUploadSoftware.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -223,11 +214,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ShowImgForm.resx">
-      <DependentUpon>ShowImgForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="app.manifest" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -237,10 +223,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\SSLX509.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door.csproj">
+      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
+      <Name>DoNetDrive.Protocol.Door</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Language\China.xml">
@@ -249,9 +243,6 @@
     <Content Include="Language\English.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

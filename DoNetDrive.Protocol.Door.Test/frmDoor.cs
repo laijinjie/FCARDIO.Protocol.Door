@@ -34,6 +34,7 @@ using DoNetDrive.Protocol.Door.Door8800.Door.InterLockSetting;
 using DoNetDrive.Protocol.Door.Door8800.Door.MultiCard;
 using DoNetDrive.Protocol.Door.Door8800.Door.ReaderAlarm;
 using DoNetDrive.Protocol.Door.Door89H.Door.ReadCardAndTakePictures;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.TCPSetting;
 
 namespace DoNetDrive.Protocol.Door.Test
 {
@@ -3516,7 +3517,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             byte[] bIndoorIP = new byte[4];
             string sIP = txtInDoorIP.Text;
-            if (DoNetTool.Common.ValidateTool.IsIPAddress(sIP))
+            if (TCPDetail.CheckIP(sIP))
             {
                 string[] listip = sIP.Trim().Split('.');
                 for (int i = 0; i < listip.Length; i++)
@@ -3533,7 +3534,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             byte[] bOutdoorIP = new byte[4];
             sIP = txtOutDoorIP.Text;
-            if (DoNetTool.Common.ValidateTool.IsIPAddress(sIP))
+            if (TCPDetail.CheckIP(sIP))
             {
                 string[] listip = sIP.Trim().Split('.');
                 for (int i = 0; i < listip.Length; i++)

@@ -32,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\Output\Release\Net45\DoNetDrive.Protocol.Door.xml</DocumentationFile>
+    <RegisterForComInterop>true</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -55,21 +56,27 @@
   <ItemGroup>
     <Reference Include="DoNetDrive.Common">
       <HintPath>..\Output\Release\net45\DoNetDrive.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Core">
       <HintPath>..\Output\Release\net45\DoNetDrive.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol">
       <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Util">
       <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Util.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\Output\Release\net45\DotNetty.Buffers.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Common">
       <HintPath>..\Output\Release\net45\DotNetty.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
