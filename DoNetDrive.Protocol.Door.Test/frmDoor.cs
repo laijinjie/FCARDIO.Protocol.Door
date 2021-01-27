@@ -79,7 +79,7 @@ namespace DoNetDrive.Protocol.Door.Test
         private void frmDoor_Load(object sender, EventArgs e)
         {
             LoadUILanguage();
-
+            cbxReleaseTime.SelectedIndex = 0;
             //非法读卡报警
             IniInvalidCardAlarmOptionUse();
 

@@ -2818,6 +2818,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
+            cmdDtl.Timeout = 100000;
             FormatController cmd = new FormatController(cmdDtl);
             mMainForm.AddCommand(cmd);
             //处理返回值

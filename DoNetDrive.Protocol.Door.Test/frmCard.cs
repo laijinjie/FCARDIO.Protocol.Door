@@ -179,7 +179,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 iReadCount = result.DataBaseSize;
                 if (iReadCount > 0)
                 {
-                    sLogs.AppendLine($"{GetLanguage("msg4")}:{iReadCount},{GetLanguage("msg5")}:{DBTypes[iType]}");
+                    sLogs.AppendLine($"{GetLanguage("msg4")}:{iReadCount},{GetLanguage("msg5")}:{DBTypes[iType - 1]}");
                     sLogs.Capacity = result.CardList.Count * 100;
                     //Door8800的卡号
                     foreach (var c in result.CardList)
@@ -197,7 +197,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 iReadCount = fc89Result.DataBaseSize;
                 if (iReadCount > 0)
                 {
-                    sLogs.AppendLine($"{GetLanguage("msg4")}:{iReadCount},{GetLanguage("msg5")}:{DBTypes[iType]}");
+                    sLogs.AppendLine($"{GetLanguage("msg4")}:{iReadCount},{GetLanguage("msg5")}:{DBTypes[iType - 1]}");
                     sLogs.Capacity = fc89Result.CardList.Count * 100;
                     //Door89H的卡号
                     foreach (var c in fc89Result.CardList)
@@ -212,7 +212,7 @@ namespace DoNetDrive.Protocol.Door.Test
             CardList.ResetBindings();
 
 
-            mMainForm.AddCmdLog(cmde, $"{GetLanguage("msg4")}:{iReadCount},{GetLanguage("msg5")}:{DBTypes[iType]}");
+            mMainForm.AddCmdLog(cmde, $"{GetLanguage("msg4")}:{iReadCount},{GetLanguage("msg5")}:{DBTypes[iType - 1]}");
             if (sLogs.Length > 0)
             {
                 string sFile = SaveFile(sLogs, $"{GetLanguage("msg6")}{DateTime.Now:yyyyMMddHHmmss}.txt");
@@ -468,7 +468,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 if (!result.IsReady)
                 {
-                    mMainForm.AddCmdLog(cmde, GetLanguage("msg11")) ;
+                    mMainForm.AddCmdLog(cmde, GetLanguage("msg11"));
                     return;
                 }
                 else
@@ -503,13 +503,13 @@ namespace DoNetDrive.Protocol.Door.Test
         private StringBuilder DebugCardDetail(CardDetailBase card, StringBuilder strBuf)
         {
             CardDetail_UI ui = new CardDetail_UI(card);
-            strBuf.Append(GetLanguage("msg13")).Append(ui.CardData).Append("；"+ GetLanguage("msg14")).Append(ui.Password);
-            strBuf.Append("；"+ GetLanguage("msg15")).Append(ui.Expiry).Append("；"+ GetLanguage("msg16")).Append(ui.OpenTimes).AppendLine("；");
-            strBuf.Append(GetLanguage("msg22")).Append(ui.doorAccess).Append("；"+GetLanguage("msg23")).Append(ui.TimeGroup);
-            strBuf.Append("；"+ GetLanguage("msg17")).Append(ui.CardStatus).Append("；"+ GetLanguage("msg18")).AppendLine(ui.Privilege);
+            strBuf.Append(GetLanguage("msg13")).Append(ui.CardData).Append("；" + GetLanguage("msg14")).Append(ui.Password);
+            strBuf.Append("；" + GetLanguage("msg15")).Append(ui.Expiry).Append("；" + GetLanguage("msg16")).Append(ui.OpenTimes).AppendLine("；");
+            strBuf.Append(GetLanguage("msg22")).Append(ui.doorAccess).Append("；" + GetLanguage("msg23")).Append(ui.TimeGroup);
+            strBuf.Append("；" + GetLanguage("msg17")).Append(ui.CardStatus).Append("；" + GetLanguage("msg18")).AppendLine(ui.Privilege);
             strBuf.Append(GetLanguage("msg19")).Append(ui.Holiday).Append("(1->32)");
-            strBuf.Append("；"+ GetLanguage("msg20")).Append(ui.EnterStatus);
-            strBuf.Append("；"+ GetLanguage("msg21")).AppendLine(ui.ReadCardDate);
+            strBuf.Append("；" + GetLanguage("msg20")).Append(ui.EnterStatus);
+            strBuf.Append("；" + GetLanguage("msg21")).AppendLine(ui.ReadCardDate);
             return strBuf;
         }
 

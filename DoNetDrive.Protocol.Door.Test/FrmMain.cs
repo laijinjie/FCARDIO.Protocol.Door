@@ -920,7 +920,7 @@ namespace DoNetDrive.Protocol.Door.Test
         /// <summary>
         /// 协议类型
         /// </summary>
-        CommandDetailFactory.ControllerType[] mProtocolTypeTable = new CommandDetailFactory.ControllerType[3];
+        CommandDetailFactory.ControllerType[] mProtocolTypeTable = new CommandDetailFactory.ControllerType[4];
         /// <summary>
         /// 初始化命令类型的功能名称
         /// </summary>
@@ -1284,13 +1284,13 @@ namespace DoNetDrive.Protocol.Door.Test
             mProtocolTypeTable[0] = CommandDetailFactory.ControllerType.Door58;
             mProtocolTypeTable[1] = CommandDetailFactory.ControllerType.Door88;
             mProtocolTypeTable[2] = CommandDetailFactory.ControllerType.Door89H;
-
+            mProtocolTypeTable[3] = CommandDetailFactory.ControllerType.Door59;
             cmdProtocolType.Items.Clear();
             for (int i = 0; i < mProtocolTypeTable.Length; i++)
             {
                 cmdProtocolType.Items.Add(mProtocolTypeTable[i]);
             }
-            cmdProtocolType.SelectedIndex = 2;
+            cmdProtocolType.SelectedIndex = 3;
             _IsClosed = false;
 
             int iTop = gbTCPClient.Top, iLeft = gbTCPClient.Left;

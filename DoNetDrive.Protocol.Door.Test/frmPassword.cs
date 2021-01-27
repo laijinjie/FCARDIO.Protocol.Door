@@ -139,7 +139,7 @@ namespace DoNetDrive.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H|| mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door59)
             {
                 Door89H.Password.ReadAllPassword cmd
                     = new Door89H.Password.ReadAllPassword(cmdDtl);
@@ -349,7 +349,7 @@ namespace DoNetDrive.Protocol.Door.Test
             dto.Door3 = cbbit2.Checked;
             dto.Door4 = cbbit3.Checked;
             dto.Password = txtPassword.Text;
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H || mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door59)
             {
                 if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
                 {
@@ -405,11 +405,11 @@ namespace DoNetDrive.Protocol.Door.Test
                 return;
             }
             //Door89H.Password.
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H || mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door59)
             {
                 List<Door89H.Password.PasswordDetail> _list = new List<Door89H.Password.PasswordDetail>();
                 Door89H.Password.PasswordDetail password = new Door89H.Password.PasswordDetail();
-                if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+             //   if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H || mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door59) 
                 {
                     password.OpenTimes = cmbOpenTimes.SelectedIndex;
                     if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
@@ -436,7 +436,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 List<PasswordDetail> _list = new List<PasswordDetail>();
                 PasswordDetail password = new PasswordDetail();
-                if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+                if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H || mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door59)
                 {
                     password.OpenTimes = cmbOpenTimes.SelectedIndex;
                     if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
@@ -480,7 +480,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
 
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H|| mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door59)
             {
                 List<Door89H.Password.PasswordDetail> _list = new List<Door89H.Password.PasswordDetail>();
                 Door89H.Password.PasswordDetail detail = new Door89H.Password.PasswordDetail();
