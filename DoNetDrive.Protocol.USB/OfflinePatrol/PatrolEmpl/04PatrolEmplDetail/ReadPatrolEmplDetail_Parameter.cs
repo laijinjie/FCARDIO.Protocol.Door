@@ -62,7 +62,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.PatrolEmpl.PatrolEmplDetail
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
             databuf.WriteByte(Mode);
-            byte[] b = DoNetTool.Common.NumUtil.Int24ToByte(Param);
+            byte[] b = DoNetDrive.Common.NumUtil.Int24ToByte(Param);
             databuf.WriteBytes(b);
             return databuf;
         }

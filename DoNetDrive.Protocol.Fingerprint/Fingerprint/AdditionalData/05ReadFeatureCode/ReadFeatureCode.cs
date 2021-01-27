@@ -115,7 +115,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
             {
                 var buf = oPck.CmdData;
                 uint ReadCRC32 = buf.ReadUnsignedInt();
-                var crc32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(_FileDatas, 0, (uint)_FileDatas.Length);
+                var crc32 = DoNetDrive.Common.Cryptography.CRC32_C.CalculateDigest(_FileDatas, 0, (uint)_FileDatas.Length);
                 mResult.FileCRC = ReadCRC32;
                 _ProcessStep = _ProcessMax;
 

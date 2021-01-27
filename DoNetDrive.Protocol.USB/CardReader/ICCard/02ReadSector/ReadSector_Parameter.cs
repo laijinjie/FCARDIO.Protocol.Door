@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Protocol.Util;
 using System;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 
 namespace DoNetDrive.Protocol.USB.CardReader.ICCard.Sector
 {

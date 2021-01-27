@@ -2,7 +2,7 @@
 using DoNetDrive.Core.Command;
 using System;
 using System.Collections.Generic;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Door.Door8800.Data;
 using DoNetDrive.Protocol.Transaction;
 

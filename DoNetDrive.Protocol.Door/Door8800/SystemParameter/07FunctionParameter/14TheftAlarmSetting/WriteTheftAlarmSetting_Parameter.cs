@@ -1,12 +1,10 @@
 ﻿using DotNetty.Buffers;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DoNetDrive.Core.Util;
-
 namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.FunctionParameter
 {
     /// <summary>
@@ -73,8 +71,8 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.FunctionParameter
             databuf.WriteByte(Setting.OutTime);
             Setting.BeginPassword = Utility.StringUtility.FillString(Setting.BeginPassword, 8, "F", false);
             Setting.ClosePassword = Utility.StringUtility.FillString(Setting.ClosePassword, 8, "F", false);
-            databuf.WriteBytes(Conversion.HexToByte(Setting.BeginPassword));
-            databuf.WriteBytes(Conversion.HexToByte(Setting.ClosePassword));
+            databuf.WriteBytes(Setting.BeginPassword.HexToByte());
+            databuf.WriteBytes(Setting.ClosePassword.HexToByte());
             databuf.WriteUnsignedShort(Setting.AlarmTime);
             return databuf;
         }

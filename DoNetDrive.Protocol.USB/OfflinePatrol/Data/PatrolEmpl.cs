@@ -61,7 +61,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Data
             buf.WriteUnsignedShort(PCode);
 
             buf.WriteMedium((int)CardData);
-            //byte[] b = DoNetTool.Common.NumUtil.Int24ToByte((int)CardData);
+            //byte[] b = DoNetDrive.Common.NumUtil.Int24ToByte((int)CardData);
             //buf.WriteBytes(b);
 
             Util.StringUtil.WriteString(buf, Name, 10, Encoding.GetEncoding("GBK"));

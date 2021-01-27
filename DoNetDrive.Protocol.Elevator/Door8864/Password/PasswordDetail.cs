@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Core.Data;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Util;
 using System;
 
@@ -73,7 +73,7 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.Password
                     list[j] = DoorNumList[i * 8 + j];
                 }
 
-                byte type = DoNetTool.Common.NumUtil.BitToByte(list);
+                byte type = DoNetDrive.Common.NumUtil.BitToByte(list);
                 data.WriteByte(type);
             }
             data.WriteByte(DoorNumList[64]);
@@ -129,7 +129,7 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.Password
             for (int i = 0; i < 8; i++)
             {
                 byte type = data.ReadByte();
-                var bytelist = DoNetTool.Common.NumUtil.ByteToBit(type);
+                var bytelist = DoNetDrive.Common.NumUtil.ByteToBit(type);
                 for (int j = 0; j < 8; j++)
                 {
                     DoorNumList[i * 8 + j] = bytelist[j];

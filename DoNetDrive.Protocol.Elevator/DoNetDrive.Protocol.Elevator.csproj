@@ -9,78 +9,61 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DoNetDrive.Protocol.Elevator</RootNamespace>
     <AssemblyName>DoNetDrive.Protocol.Elevator</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Output\Debug\Net45\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Output\Debug\Net45\DoNetDrive.Protocol.Elevator.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\DLL\</OutputPath>
+    <OutputPath>..\Output\Release\Net45\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Output\Release\Net45\DoNetDrive.Protocol.Elevator.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DoNetDrive.Core">
-      <HintPath>..\DLL\DoNetDrive.Core.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="DoNetDrive.Common, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\net45\DoNetDrive.Common.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol">
-      <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="DoNetDrive.Core, Version=1.16.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\net45\DoNetDrive.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Door">
-      <HintPath>..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol, Version=1.12.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Util">
-      <HintPath>..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="DoNetDrive.Protocol.Door, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Door.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetTool.Common">
-      <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol.Util, Version=1.16.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Util.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetty.Buffers">
-      <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="DotNetty.Buffers, Version=0.6.1.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\net45\DotNetty.Buffers.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetty.Codecs">
-      <HintPath>..\DLL\DotNetty.Codecs.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DotNetty.Common">
-      <HintPath>..\DLL\DotNetty.Common.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DotNetty.Handlers">
-      <HintPath>..\DLL\DotNetty.Handlers.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DotNetty.Transport">
-      <HintPath>..\DLL\DotNetty.Transport.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DotNetty.Transport.Libuv">
-      <HintPath>..\DLL\DotNetty.Transport.Libuv.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="DotNetty.Common, Version=0.6.1.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\net45\DotNetty.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractParameter.cs" />

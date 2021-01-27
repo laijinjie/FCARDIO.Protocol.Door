@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DoNetDrive.Common;
 using DotNetty.Buffers;
-using DoNetDrive.Core.Util;
+
 
 namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.TCPClient
 {
@@ -104,7 +105,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.TCPClient
                 //接入时间
                 byte[] btData = new byte[6];
                 databuf.ReadBytes(btData, 0, 6);
-                tCPClientDetail.ConnectTime[i] = Conversion.ByteToDateTime(btData);
+                tCPClientDetail.ConnectTime[i] = DataUtil.ByteToDateTime(btData);
             }
         }
     }

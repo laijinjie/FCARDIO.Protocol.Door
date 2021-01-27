@@ -2,7 +2,7 @@
 using DoNetDrive.Protocol.Transaction;
 using DoNetDrive.Protocol.Util;
 using System;
-using DoNetTool.Common.Extensions;
+using DoNetDrive.Common.Extensions;
 
 namespace DoNetDrive.Protocol.POS.Data
 {

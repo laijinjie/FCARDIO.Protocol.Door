@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DoNetDrive.Protocol.OnlineAccess;
 using DoNetDrive.Protocol.Door8800;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.Door.Door8800;
 

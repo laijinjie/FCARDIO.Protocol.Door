@@ -2,7 +2,7 @@
 using DoNetDrive.Protocol.Util;
 using DoNetDrive.Core.Data;
 using System;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 
 namespace DoNetDrive.Protocol.Door.Door8800.Password
 {

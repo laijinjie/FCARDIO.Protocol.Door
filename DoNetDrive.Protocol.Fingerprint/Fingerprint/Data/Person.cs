@@ -2,7 +2,7 @@
 using DoNetDrive.Protocol.Util;
 using System;
 using System.Text;
-using System.Data;
+
 
 namespace DoNetDrive.Protocol.Fingerprint.Data
 {
@@ -286,7 +286,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
             //for (int i = 0; i < 2; i++)
             //{
             //    byte type = data.ReadByte();
-            //    var bytelist = DoNetTool.Common.NumUtil.ByteToBit(type);
+            //    var bytelist = DoNetDrive.Common.NumUtil.ByteToBit(type);
             //    for (int j = 0; j < bytelist.Length; j++)
             //    {
             //        if (i * 8 + j > 9)
@@ -341,7 +341,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Data
             //        list[j] = FingerprintFeatureCodeList[i * 8 + j];
             //    }
 
-            //    byte type = DoNetTool.Common.NumUtil.BitToByte(list);
+            //    byte type = DoNetDrive.Common.NumUtil.BitToByte(list);
             //    data.WriteByte(type);
             //}
 

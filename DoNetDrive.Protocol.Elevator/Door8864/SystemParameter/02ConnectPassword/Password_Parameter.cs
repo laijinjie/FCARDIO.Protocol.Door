@@ -1,5 +1,5 @@
 ﻿using DotNetty.Buffers;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using System;
 
 namespace DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.ConnectPassword

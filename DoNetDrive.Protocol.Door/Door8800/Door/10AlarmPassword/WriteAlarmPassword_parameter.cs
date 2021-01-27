@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Util;
 
 namespace DoNetDrive.Protocol.Door.Door8800.Door.AlarmPassword

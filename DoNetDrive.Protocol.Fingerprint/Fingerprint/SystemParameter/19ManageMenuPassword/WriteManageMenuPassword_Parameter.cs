@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Protocol.Door.Door8800;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using System;
 
 namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.ManageMenuPassword

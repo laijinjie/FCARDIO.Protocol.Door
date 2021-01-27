@@ -8,31 +8,34 @@
     <OutputType>Library</OutputType>
     <RootNamespace>DoNetDrive.Protocol.POS</RootNamespace>
     <AssemblyName>DoNetDrive.Protocol.POS</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\Output\Debug\Net45\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\Output\Debug\Net45\DoNetDrive.Protocol.POS.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\Output\Release\Net45\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\Output\Release\Net45\DoNetDrive.Protocol.POS.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -41,43 +44,26 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DoNetDrive.Core, Version=1.11.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
+    <Reference Include="DoNetDrive.Common">
+      <HintPath>..\..\Output\Release\net45\DoNetDrive.Common.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
+    <Reference Include="DoNetDrive.Core">
+      <HintPath>..\..\Output\Release\net45\DoNetDrive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol">
+      <HintPath>..\..\Output\Release\net45\DoNetDrive.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Door">
+      <HintPath>..\..\Output\Release\net45\DoNetDrive.Protocol.Door.dll</HintPath>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Util">
-      <HintPath>..\..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
-    </Reference>
-    <Reference Include="DoNetTool.Common">
-      <HintPath>..\..\DLL\DoNetTool.Common.dll</HintPath>
+      <HintPath>..\..\Output\Release\net45\DoNetDrive.Protocol.Util.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Buffers">
-      <HintPath>..\..\DLL\DotNetty.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetty.Codecs">
-      <HintPath>..\..\DLL\DotNetty.Codecs.dll</HintPath>
+      <HintPath>..\..\Output\Release\net45\DotNetty.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Common">
-      <HintPath>..\..\DLL\DotNetty.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetty.Handlers">
-      <HintPath>..\..\DLL\DotNetty.Handlers.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetty.Transport">
-      <HintPath>..\..\DLL\DotNetty.Transport.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
-      <HintPath>..\..\DLL\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Logging">
-      <HintPath>..\..\DLL\Microsoft.Extensions.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
-      <HintPath>..\..\DLL\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <HintPath>..\..\Output\Release\net45\DotNetty.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -361,12 +347,6 @@
   <ItemGroup>
     <Folder Include="SystemParameter\ICCardParameter\" />
     <Folder Include="SystemParameter\SystemMenuPassword\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door.csproj">
-      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
-      <Name>DoNetDrive.Protocol.Door</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

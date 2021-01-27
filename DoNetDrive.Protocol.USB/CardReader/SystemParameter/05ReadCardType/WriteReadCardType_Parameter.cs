@@ -68,7 +68,7 @@ namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType
                 list[i] = BitList[i];
             }
             list[7] = 0;
-            byte type = DoNetTool.Common.NumUtil.BitToByte(list);
+            byte type = DoNetDrive.Common.NumUtil.BitToByte(list);
             databuf.WriteUnsignedShort(type);
             return databuf;
         }
@@ -89,7 +89,7 @@ namespace DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType
         public override void SetBytes(IByteBuffer databuf)
         {
             ushort type = databuf.ReadUnsignedShort();
-            BitList = DoNetTool.Common.NumUtil.ByteToBit((byte)type);
+            BitList = DoNetDrive.Common.NumUtil.ByteToBit((byte)type);
 
         }
 

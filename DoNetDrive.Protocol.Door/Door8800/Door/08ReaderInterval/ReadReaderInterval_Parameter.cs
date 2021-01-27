@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DoNetDrive.Protocol.Door.Door8800;
 
 namespace FCARDIO.Protocol.Door.FC8800.Door.ReaderInterval
 {

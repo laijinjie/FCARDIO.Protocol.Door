@@ -190,7 +190,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                     CommandOver();
                     return;
                 }
-                if(iFileSize == 0)
+                if (iFileSize == 0)
                 {
                     FileResult = false;
                     CommandOver();
@@ -204,7 +204,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                     {
                         BeginRead();
                         CommandReady();
-                    }, new TimeSpan(0, 0, 2));
+                    }, TimeSpan.FromSeconds(2));
                     return;
                 }
                 else
@@ -263,7 +263,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
 
                 buf.ReadBytes(FileDatas, iDataIndex, iSize);
 
-                var mycrc = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(FileDatas, (uint)iDataIndex, (uint)iSize);
+                var mycrc = DoNetDrive.Common.Cryptography.CRC32_C.CalculateDigest(FileDatas, (uint)iDataIndex, (uint)iSize);
 
                 if (crc == mycrc)
                 {
@@ -317,7 +317,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
             if (CheckResponse(oPck, 0x0B, 0x15, 3))
             {
 
-                var crc32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(FileDatas, 0, (uint)FileDatas.Length);
+                var crc32 = DoNetDrive.Common.Cryptography.CRC32_C.CalculateDigest(FileDatas, 0, (uint)FileDatas.Length);
                 FileResult = (FileCRC == crc32);
 
                 if (!FileResult)

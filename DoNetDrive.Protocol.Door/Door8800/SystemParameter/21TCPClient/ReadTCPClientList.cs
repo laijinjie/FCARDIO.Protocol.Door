@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.OnlineAccess;
-using DoNetDrive.Core.Util;
 
 namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.TCPClient
 {

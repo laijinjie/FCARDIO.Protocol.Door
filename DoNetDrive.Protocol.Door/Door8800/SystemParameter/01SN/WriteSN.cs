@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Core.Command;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Door8800;
 using DoNetDrive.Protocol.OnlineAccess;
 using System;

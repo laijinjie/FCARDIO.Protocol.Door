@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 
 namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.Version
 {

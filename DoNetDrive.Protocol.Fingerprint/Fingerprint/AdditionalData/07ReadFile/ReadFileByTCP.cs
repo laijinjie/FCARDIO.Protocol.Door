@@ -1,7 +1,7 @@
 ﻿using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.Door.Door8800;
 using DoNetDrive.Protocol.OnlineAccess;
-using DoNetTool.Common.Cryptography;
+using DoNetDrive.Common.Cryptography;
 
 namespace DoNetDrive.Protocol.Fingerprint.AdditionalData 
 {

@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 using DoNetDrive.Protocol.Util;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using System;
 using System.Text.RegularExpressions;
 

@@ -63,7 +63,7 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.CloseAlarm
             list[5] = 0;
             list[6] = 0;
             list[7] = BitList[3];
-            byte type = DoNetTool.Common.NumUtil.BitToByte(list);
+            byte type = DoNetDrive.Common.NumUtil.BitToByte(list);
             databuf.WriteUnsignedShort(type);
             return databuf;
         }

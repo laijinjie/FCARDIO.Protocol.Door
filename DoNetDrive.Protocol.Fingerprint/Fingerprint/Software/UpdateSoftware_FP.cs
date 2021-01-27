@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DoNetDrive.Protocol.OnlineAccess;
 using DoNetDrive.Protocol.Door8800;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.Door.Door8800;
 namespace DoNetDrive.Protocol.Fingerprint.Software
@@ -146,7 +146,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
                 if (iDataLen <= 0)
                 {
                     _ProcessStep = _ProcessMax;
-                    var crc32 = mPar.SoftwareCRC32; //DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(data, 0, (uint)data.Length);
+                    var crc32 = mPar.SoftwareCRC32; //DoNetDrive.Common.Cryptography.CRC32_C.CalculateDigest(data, 0, (uint)data.Length);
                     CommandDetail.Timeout = mPar.WaitVerifyTime;
                     buf.WriteInt((int)crc32);
                     DoorPacket.CmdIndex = 0x3;

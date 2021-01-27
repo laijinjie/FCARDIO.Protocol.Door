@@ -3,7 +3,7 @@ using DotNetty.Buffers;
 using System;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.TCPSetting;
 using System.Net;
-using DoNetTool.Common.Extensions;
+using DoNetDrive.Common.Extensions;
 using System.Text;
 
 namespace DoNetDrive.Protocol.Fingerprint.SystemParameter 

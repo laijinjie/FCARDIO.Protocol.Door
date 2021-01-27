@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
-using DoNetDrive.Core.Util;
 
 namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.FunctionParameter
 {

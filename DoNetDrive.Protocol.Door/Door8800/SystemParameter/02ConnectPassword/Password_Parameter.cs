@@ -1,5 +1,5 @@
 ﻿using DotNetty.Buffers;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

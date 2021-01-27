@@ -65,7 +65,7 @@ namespace DoNetDrive.Protocol.Elevator.FC8864.Door.UnLockDoor
                     list[j] = DoorNumList[i * 8 + j];
                 }
                
-                byte type = DoNetTool.Common.NumUtil.BitToByte(list);
+                byte type = DoNetDrive.Common.NumUtil.BitToByte(list);
                 databuf.WriteByte(type);
             }
             

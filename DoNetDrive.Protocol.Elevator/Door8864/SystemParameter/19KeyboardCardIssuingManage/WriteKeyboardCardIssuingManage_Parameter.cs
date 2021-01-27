@@ -1,6 +1,6 @@
 ﻿using DotNetty.Buffers;
 using System;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Util;
 
 namespace DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.KeyboardCardIssuingManage

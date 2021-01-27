@@ -217,7 +217,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                     {
                         BeginWrite();
                         CommandReady();
-                    }, new TimeSpan(0, 0, 3));
+                    },  TimeSpan.FromSeconds(3));
                     return;
                 }
                 else
@@ -266,7 +266,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                     ProcessStep = ProcessMax;
                     mCommand.GetCommandDetail().Timeout = WaitVerifyTime;
 
-                    var crc32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(data, 0, (uint)data.Length);
+                    var crc32 = DoNetDrive.Common.Cryptography.CRC32_C.CalculateDigest(data, 0, (uint)data.Length);
 
                     buf.WriteInt((int)crc32);
                     DoorPacket.CmdIndex = 0x03;

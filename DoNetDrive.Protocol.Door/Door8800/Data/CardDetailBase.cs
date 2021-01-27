@@ -1,5 +1,5 @@
 ﻿using DotNetty.Buffers;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Door.Door8800.Utility;
 using DoNetDrive.Protocol.Util;
 using System;
