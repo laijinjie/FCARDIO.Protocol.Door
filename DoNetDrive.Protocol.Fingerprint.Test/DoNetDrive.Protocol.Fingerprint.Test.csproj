@@ -53,8 +53,7 @@
       <HintPath>..\DLL\DevComponents.Instrumentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Core, Version=1.13.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DoNetDrive.Core">
       <HintPath>..\DLL\DoNetDrive.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>

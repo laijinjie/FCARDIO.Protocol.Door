@@ -106,11 +106,6 @@ DoNetDrive.Core
  用于指示此命令是否已释放
  </summary>
 </member>
-<member name="F:DoNetDrive.Core.Command.AbstractCommand._PacketInitialize">
- <summary>
- 指示数据包是否已经初始化（已经创建完毕）
- </summary>
-</member>
 <member name="M:DoNetDrive.Core.Command.AbstractCommand.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Core.Command.INCommandParameter)">
  <summary>
  初始化两个重要参数，并进行参数检查
@@ -783,6 +778,12 @@ DoNetDrive.Core
 <member name="P:DoNetDrive.Core.Command.INCommandStatus.IsCanceled">
  <summary>
  是否已取消执行
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:DoNetDrive.Core.Command.INCommandStatus.IsNONE">
+ <summary>
+ 是否为未执行状态
  </summary>
  <returns></returns>
 </member>
@@ -1925,7 +1926,7 @@ DoNetDrive.Core
  客户端事件循环组 TCP/Client, UDP Client
  </summary>
 </member>
-<member name="P:DoNetDrive.Core.Connector.DotNettyAllocator.UseLibuv">
+<member name="F:DoNetDrive.Core.Connector.DotNettyAllocator.UseLibuv">
  <summary>
  使用 Libuv 库
  </summary>
@@ -2812,6 +2813,11 @@ DoNetDrive.Core
  </summary>
  <returns></returns>
 </member>
+<member name="P:DoNetDrive.Core.Connector.TCPServer.IDoNetTCPServerChannel.ServerConnector">
+ <summary>
+ 和通道相关联的连接器处理类
+ </summary>
+</member>
 <member name="F:DoNetDrive.Core.Connector.TCPServer.TCPServerAllocator.lockobj">
  <summary>
  用于单例模式加锁的
@@ -2876,11 +2882,6 @@ DoNetDrive.Core
 <member name="T:DoNetDrive.Core.Connector.TCPServer.TcpServerSocketChannelEx">
  <summary>
  处理服务器连接的通道类
- </summary>
-</member>
-<member name="F:DoNetDrive.Core.Connector.TCPServer.TcpServerSocketChannelEx.ServerConnector">
- <summary>
- 和通道相关联的连接器处理类
  </summary>
 </member>
 <member name="T:DoNetDrive.Core.Connector.TCPServer.TCPServerConnector">
@@ -3060,6 +3061,11 @@ DoNetDrive.Core
  打印此详情所指示的连接信息
  </summary>
  <returns></returns>
+</member>
+<member name="T:DoNetDrive.Core.Connector.TCPServer.TcpServerSocketChannelLibuv">
+ <summary>
+ 处理服务器连接的通道类
+ </summary>
 </member>
 <member name="T:DoNetDrive.Core.Connector.ConnectorStatus_Invalid">
  <summary>
