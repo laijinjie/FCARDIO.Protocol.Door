@@ -16,6 +16,11 @@ DoNetDrive.Core
  命令计数器
  </summary>
 </member>
+<member name="F:DoNetDrive.Core.Command.AbstractCommand.CommandException">
+ <summary>
+ 命令发生错误时，错误的详情
+ </summary>
+</member>
 <member name="F:DoNetDrive.Core.Command.AbstractCommand._Parameter">
  <summary>
  保存用于命令的各种参数
@@ -3447,11 +3452,6 @@ DoNetDrive.Core
  <returns></returns>
 </member>
 <member name="T:DoNetDrive.Core.Connector.TCPServer.TcpServerSocketChannelEx">
- <summary>
- 处理服务器连接的通道类
- </summary>
-</member>
-<member name="T:DoNetDrive.Core.Connector.TCPServer.TcpServerSocketChannelLibuv">
  <summary>
  处理服务器连接的通道类
  </summary>

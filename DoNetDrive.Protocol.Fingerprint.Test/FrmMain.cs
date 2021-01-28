@@ -4,7 +4,7 @@ using DoNetDrive.Core.Connector;
 using DoNetDrive.Core.Connector.TCPServer.Client;
 using DoNetDrive.Core.Connector.UDP;
 using DoNetDrive.Core.Connector.TCPServer;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Door.Door8800.Data;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword;
 using DoNetDrive.Protocol.Door8800;

@@ -1,6 +1,6 @@
 ﻿using DoNetDrive.Core.Command;
-using DoNetTool.Common.Extensions;
-using DoNetTool.Common;
+using DoNetDrive.Common.Extensions;
+using DoNetDrive.Common;
 using DoNetDrive.Protocol.Fingerprint.AdditionalData;
 using System;
 using System.Collections.Generic;
@@ -338,7 +338,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 return;
             }
             byte[] datas = Convert.FromBase64String(txtCodeData.Text);
-            uint CRC32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(datas, 0, (uint)datas.Length);
+            uint CRC32 = DoNetDrive.Common.Cryptography.CRC32_C.CalculateDigest(datas, 0, (uint)datas.Length);
             MessageBox.Show(Msg_10 + "：" + CRC32.ToString("x"));
         }
 
@@ -563,7 +563,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             int iSoftwareSize = iFileLen - 26;
             uint iFileCRC32 = bSurFile.Copy(iFileLen - 4, 4).ToInt32();
             byte[] bSoftWareData = bSurFile.Copy(22, iSoftwareSize);
-            uint itmpCRC32 = DoNetTool.Common.Cryptography.CRC32_C.CalculateDigest(bSoftWareData, 0, (uint)iSoftwareSize);
+            uint itmpCRC32 = DoNetDrive.Common.Cryptography.CRC32_C.CalculateDigest(bSoftWareData, 0, (uint)iSoftwareSize);
             if (itmpCRC32 != iFileCRC32)
             {
                 MsgErr(Msg_17);

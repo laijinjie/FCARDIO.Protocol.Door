@@ -20,7 +20,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
         /// <summary>
         /// 读取到的卡数据缓冲
         /// </summary>
-        protected Queue<IByteBuffer> mReadBuffers;
+        protected List<T> mCardBuffers;
 
         /// <summary>
         /// 
@@ -112,6 +112,9 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
             }
         }
 
+
+
+
         /// <summary>
         /// 读取卡片详情的回调
         /// </summary>
@@ -145,7 +148,6 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
                 _ProcessMax = (int)iCard;
                 Packet(CmdType, 0x03, 0x00, 0x01, GetCmdData());
                 mStep = 2;//准备接受返回的卡数据
-                mReadBuffers = new Queue<IByteBuffer>();
                 CommandReady();
 
             }
@@ -163,10 +165,22 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
         /// </summary>
         protected virtual void ReadCardDatabaseCallBlack(IByteBuffer buf)
         {
-            int iCount = buf.GetInt(0);//获取本次传输的卡数量
+            int iCount = buf.ReadInt();//获取本次传输的卡数量
             _ProcessStep += iCount;
-            buf.Retain();
-            mReadBuffers.Enqueue(buf);
+
+            if (mCardBuffers == null)
+            {
+                mCardBuffers = new List<T>();
+            }
+
+            for (int i = 0; i < iCount; i++)
+            {
+                T card = new T();
+                card.SetBytes(buf);
+                mCardBuffers.Add(card);
+            }
+
+
             fireCommandProcessEvent();
             CommandWaitResponse();
         }
@@ -182,19 +196,8 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
                 _ProcessStep = iCount;
             fireCommandProcessEvent();
             //开始解析卡数据
-            List<T> cardList = new List<T>();
-            while (mReadBuffers.Count > 0)
-            {
-                buf = mReadBuffers.Dequeue();
-                iCount = buf.ReadInt();//返回缓冲区中包含的卡数量
-                for (int i = 0; i < iCount; i++)
-                {
-                    T card = new T();
-                    card.SetBytes(buf);
-                    cardList.Add(card);
-                }
-                buf.Release();
-            }
+            List<T> cardList = mCardBuffers;
+            mCardBuffers = null;
             ReadCardDataBase_Base_Result<T> result = CreateResult(cardList, cardList.Count, model.CardType);
             _Result = result;
 
@@ -218,7 +221,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
         {
 
             ClearBuf();
-            mReadBuffers = null;
+            mCardBuffers = null;
         }
 
         /// <summary>
@@ -227,7 +230,11 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
         /// </summary>
         protected override void CommandReSend()
         {
-            ClearBuf();
+            if (mStep == 2)
+            {
+                ClearBuf();
+            }
+            return;
         }
 
         /// <summary>
@@ -235,15 +242,11 @@ namespace DoNetDrive.Protocol.Door.Door8800.Card
         /// </summary>
         protected void ClearBuf()
         {
-            if (mReadBuffers != null)
+            if (mCardBuffers != null)
             {
-                foreach (IByteBuffer buf in mReadBuffers)
-                {
-                    buf.Release();
-                }
-                mReadBuffers.Clear();
+                mCardBuffers.Clear();
             }
-
+            mCardBuffers = null;
         }
 
     }

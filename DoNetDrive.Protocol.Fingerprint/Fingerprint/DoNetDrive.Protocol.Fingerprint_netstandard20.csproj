@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.16.0</Version>
+    <Version>1.21.0</Version>
     <RootNamespace>DoNetDrive.Protocol.Fingerprint</RootNamespace>
     <AssemblyName>DoNetDrive.Protocol.Fingerprint</AssemblyName>
   </PropertyGroup>

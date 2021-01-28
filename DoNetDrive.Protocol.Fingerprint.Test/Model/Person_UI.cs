@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test.Model
 {

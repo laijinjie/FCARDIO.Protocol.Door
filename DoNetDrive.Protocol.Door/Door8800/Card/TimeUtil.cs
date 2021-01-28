@@ -10,7 +10,7 @@ namespace FCARDIO.Protocol.Door.FC8800.Card
 {
    public class TimeUtil
     {
-        public static Calendar BCDTimeToDate_ssmmhhddMMyy(byte btTime[])
+        public static Calendar BCDTimeToDate_ssmmhhddMMyy(byte[] btTime)
         {
             btTime = ByteUtil.BCDToByte(btTime);
             int year = ByteUtil.uByte(btTime);

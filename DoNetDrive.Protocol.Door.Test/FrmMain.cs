@@ -52,7 +52,7 @@ namespace DoNetDrive.Protocol.Door.Test
         static frmMain()
         {
             NodeForms = new HashSet<frmNodeForm>();
-           
+
 
             Door89HSNTable = new HashSet<string>();
             Door89HSNTable.Add("FC-8910H");
@@ -64,7 +64,7 @@ namespace DoNetDrive.Protocol.Door.Test
             Door89HSNTable.Add("MC-5948T");
             Door89HSNTable.Add("MC-5926T");
 
-            
+
 
         }
 
@@ -130,8 +130,8 @@ namespace DoNetDrive.Protocol.Door.Test
             mObserver.DisposeResponseEvent += MObserver_DisposeResponseEvent; ;
 
             IniConnTypeList();
-           // IniLstIO();
-         //   InilstCommand();
+            // IniLstIO();
+            //   InilstCommand();
 
             Task.Run((Action)ShowCommandProcesslog);
         }
@@ -208,6 +208,11 @@ namespace DoNetDrive.Protocol.Door.Test
                     AddIOLog(connector, GetLanguage("Msg5"), GetLanguage("Msg6"));
                     break;
                 default:
+                    if (connector.IsFaulted)
+                    {
+                        //AddLog(connector.GetError().Message);
+                        Console.WriteLine(connector.GetError().Message);
+                    }
                     AddIOLog(connector, GetLanguage("Msg7"), GetLanguage("Msg8"));
                     break;
             }
@@ -272,6 +277,15 @@ namespace DoNetDrive.Protocol.Door.Test
 
         private void mAllocator_CommandErrorEvent(object sender, CommandEventArgs e)
         {
+            if (e.Command is AbstractCommand)
+            {
+                AbstractCommand abscmd = e.Command as AbstractCommand;
+                if (abscmd.CommandException != null)
+                {
+                    Console.WriteLine(abscmd.CommandException.Message);
+                }
+                
+            }
             AddCmdLog(e, GetLanguage("Msg20"));
         }
 
@@ -505,6 +519,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 lstCommand.BeginInvoke((Action<string>)AddLog, s);
                 return;
             }
+            AddCmdLog(null, s);
             //string log = txtLog.Text;
             //if (log.Length > 20000)
             //{
@@ -915,7 +930,7 @@ namespace DoNetDrive.Protocol.Door.Test
         /// <summary>
         /// 保存命令类型的功能名称
         /// </summary>
-        private  Dictionary<string, string> mCommandClasss;
+        private Dictionary<string, string> mCommandClasss;
 
         /// <summary>
         /// 协议类型
@@ -924,7 +939,7 @@ namespace DoNetDrive.Protocol.Door.Test
         /// <summary>
         /// 初始化命令类型的功能名称
         /// </summary>
-        private  void IniCommandClassNameList()
+        private void IniCommandClassNameList()
         {
             mCommandClasss = new Dictionary<string, string>();
 
@@ -1275,7 +1290,7 @@ namespace DoNetDrive.Protocol.Door.Test
         private void IniConnTypeList()
         {
 
-         
+
 
             string sLanguage = ConfigurationManager.AppSettings["Languages"];
             cmbToolLanguage.Items.AddRange(sLanguage.SplitTrim(","));
@@ -1429,7 +1444,7 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             if (!txtServerPort.Text.IsNum())
             {
-                MsgErr(GetLanguage("Msg38")+"！");
+                MsgErr(GetLanguage("Msg38") + "！");
                 return;
             }
             int port = txtServerPort.Text.ToInt32();

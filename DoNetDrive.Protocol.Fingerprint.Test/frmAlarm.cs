@@ -391,7 +391,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 cbxWeek.SelectedIndex = 0;
             }
         }
-
+        
         private void BtnReadGateMagneticAlarm_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -416,7 +416,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     for (int i = 0; i < 7; i++)
                     {
                         sb.AppendLine();
-                        sb.AppendLine(StringUtility.GetWeekStr(i));
+                        sb.AppendLine(ToolLanguage.GetWeekStr(i));
                         for (int j = 0; j < 8; j++)
                         {
                             sb.AppendLine(Lng("Msg_13") + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.WeekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.WeekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));

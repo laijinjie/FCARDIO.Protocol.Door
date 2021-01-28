@@ -207,7 +207,7 @@
             成功返回结果参考 @link ReadCardDataBase_Base_Result
             </summary>
         </member>
-        <member name="F:DoNetDrive.Protocol.Door.Door8800.Card.ReadCardDataBase_Base`1.mReadBuffers">
+        <member name="F:DoNetDrive.Protocol.Door.Door8800.Card.ReadCardDataBase_Base`1.mCardBuffers">
             <summary>
             读取到的卡数据缓冲
             </summary>

@@ -71,7 +71,7 @@ namespace DoNetDrive.Protocol.Door.Door89H.Data
         {
             CardDetail other = o as CardDetail;
             if (other == null) return 1;
-            return BigCard.BigValue.CompareTo(other.BigCard);
+            return BigCard.BigValue.CompareTo(other.BigCard.BigValue);
         }
     }
 }

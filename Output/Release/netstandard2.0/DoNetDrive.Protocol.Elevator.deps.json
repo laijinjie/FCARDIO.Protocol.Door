@@ -13,7 +13,7 @@
           "DoNetDrive.Common": "1.16.0.0",
           "DoNetDrive.Core": "1.16.0.0",
           "DoNetDrive.Protocol": "1.0.0.0",
-          "DoNetDrive.Protocol.Door": "1.16.0.0",
+          "DoNetDrive.Protocol.Door": "1.9.0.0",
           "DoNetDrive.Protocol.Util": "1.16.0.0",
           "DotNetty.Buffers": "0.6.1.0",
           "DotNetty.Common": "0.6.1.0"
@@ -52,11 +52,11 @@
           }
         }
       },
-      "DoNetDrive.Protocol.Door/1.16.0.0": {
+      "DoNetDrive.Protocol.Door/1.9.0.0": {
         "runtime": {
           "DoNetDrive.Protocol.Door.dll": {
-            "assemblyVersion": "1.16.0.0",
-            "fileVersion": "1.16.0.0"
+            "assemblyVersion": "1.9.0.0",
+            "fileVersion": "1.9.0.0"
           }
         }
       },
@@ -95,14 +95,6 @@
       "DotNetty.Handlers/0.6.1.0": {
         "runtime": {
           "DotNetty.Handlers.dll": {
-            "assemblyVersion": "0.6.1.0",
-            "fileVersion": "0.6.1.0"
-          }
-        }
-      },
-      "DotNetty.Transport.Libuv/0.6.1.0": {
-        "runtime": {
-          "DotNetty.Transport.Libuv.dll": {
             "assemblyVersion": "0.6.1.0",
             "fileVersion": "0.6.1.0"
           }
@@ -161,7 +153,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "DoNetDrive.Protocol.Door/1.16.0.0": {
+    "DoNetDrive.Protocol.Door/1.9.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -187,11 +179,6 @@
       "sha512": ""
     },
     "DotNetty.Handlers/0.6.1.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "DotNetty.Transport.Libuv/0.6.1.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

@@ -18,6 +18,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         /// <param name="parameter"></param>
         public AddPerson(INCommandDetail cd, WritePerson_ParameterBase parameter) : base(cd, parameter)
         {
+            _ProcessMax = parameter.PersonList.Count;
             mPacketMax = 1;
             MaxBufSize = mPacketMax * 0xA1 + 1;
             

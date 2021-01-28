@@ -32,54 +32,40 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\Output\Release\Net45\DoNetDrive.Protocol.Door.xml</DocumentationFile>
-    <RegisterForComInterop>true</RegisterForComInterop>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile>bin\Debug\FCARDIO.Protocol.Door.xml</DocumentationFile>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DoNetDrive.Common">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Output\Release\net45\DoNetDrive.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Core">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Output\Release\net45\DoNetDrive.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Util">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Util.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Buffers">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Output\Release\net45\DotNetty.Buffers.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Common">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Output\Release\net45\DotNetty.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Door8800\AbstractParameter.cs" />

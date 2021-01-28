@@ -45,21 +45,26 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Windows\assembly\GAC_MSIL\DevComponents.Instrumentation\10.9.0.4__bc4a9d761ea44ef0\DevComponents.Instrumentation.dll</HintPath>
     </Reference>
+    <Reference Include="DoNetDrive.Common">
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Common.dll</HintPath>
+    </Reference>
     <Reference Include="DoNetDrive.Core">
-      <HintPath>..\DLL\DoNetDrive.Core.dll</HintPath>
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Core.dll</HintPath>
     </Reference>
     <Reference Include="DoNetDrive.Protocol">
-      <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Protocol.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Door">
-      <HintPath>..\DoNetDrive.Protocol.Door\bin\Debug\DoNetDrive.Protocol.Door.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol.Fingerprint">
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Protocol.Fingerprint.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Util">
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Protocol.Util.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Buffers">
-      <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
+      <HintPath>..\Output\Release\netstandard2.0\DotNetty.Buffers.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetty.Common, Version=0.6.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\DotNetty.Common.dll</HintPath>
+    <Reference Include="DotNetty.Common">
+      <HintPath>..\Output\Release\netstandard2.0\DotNetty.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -204,12 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DoNetDrive.Protocol.Elevator\DoNetDrive.Protocol.Elevator.csproj">
-      <Project>{ff0cb605-1697-4cde-ac68-a982d92ed53a}</Project>
-      <Name>DoNetDrive.Protocol.Elevator</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

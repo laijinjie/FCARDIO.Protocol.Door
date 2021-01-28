@@ -7,18 +7,19 @@
     <ProjectGuid>{633A64B2-9235-4E8D-AC83-FEA4B0BB7A1A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>DoNetDrive.Protocol.Door.Test</RootNamespace>
-    <AssemblyName>DoNetDrive.Protocol.Door.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <AssemblyName>Door.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\NetStandard20\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +28,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\NetStandard20\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -53,24 +54,43 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=10.9.0.4, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
-    <Reference Include="DevComponents.DotNetBar2, Version=10.9.0.4, Culture=neutral, PublicKeyToken=c39c3242a43eee2b" />
-    <Reference Include="DevComponents.Instrumentation, Version=10.9.0.4, Culture=neutral, PublicKeyToken=bc4a9d761ea44ef0" />
-    <Reference Include="DoNetDrive.Core">
-      <HintPath>..\DLL\DoNetDrive.Core.dll</HintPath>
+    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=10.9.0.4, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=10.9.0.4, Culture=neutral, PublicKeyToken=c39c3242a43eee2b">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevComponents.Instrumentation, Version=10.9.0.4, Culture=neutral, PublicKeyToken=bc4a9d761ea44ef0">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DoNetDrive.Common">
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DoNetDrive.Core, Version=1.16.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol">
-      <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Protocol.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetTool.Common">
-      <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol.Door">
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Protocol.Door.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DotNetty.Buffers, Version=0.6.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol.Util">
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Protocol.Util.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetty.Buffers">
+      <HintPath>..\Output\Release\netstandard2.0\DotNetty.Buffers.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Common">
-      <HintPath>..\DLL\DotNetty.Common.dll</HintPath>
+      <HintPath>..\Output\Release\netstandard2.0\DotNetty.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -229,12 +249,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door.csproj">
-      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
-      <Name>DoNetDrive.Protocol.Door</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Language\China.xml">

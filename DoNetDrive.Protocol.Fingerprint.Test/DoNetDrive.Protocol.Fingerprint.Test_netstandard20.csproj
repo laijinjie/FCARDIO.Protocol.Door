@@ -8,17 +8,18 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>DoNetDrive.Protocol.Fingerprint.Test</RootNamespace>
     <AssemblyName>Fingerprint.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\netstandard20\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +28,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\netstandard20\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -53,33 +54,44 @@
       <HintPath>..\DLL\DevComponents.Instrumentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Core">
-      <HintPath>..\DLL\DoNetDrive.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol, Version=1.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DoNetDrive.Common, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\DoNetDrive.Protocol.dll</HintPath>
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Door">
-      <HintPath>..\DLL\DoNetDrive.Protocol.Door.dll</HintPath>
+    <Reference Include="DoNetDrive.Core, Version=1.17.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Util">
-      <HintPath>..\DLL\DoNetDrive.Protocol.Util.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol, Version=1.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Protocol.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetTool.Common">
-      <HintPath>..\DLL\DoNetTool.Common.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol.Door, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Protocol.Door.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DotNetty.Buffers">
-      <HintPath>..\DLL\DotNetty.Buffers.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol.Fingerprint, Version=1.20.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Protocol.Fingerprint.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DotNetty.Common">
-      <HintPath>..\DLL\DotNetty.Common.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol.Util, Version=1.16.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Protocol.Util.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetty.Buffers, Version=0.6.1.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\netstandard2.0\DotNetty.Buffers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetty.Common, Version=0.6.1.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Release\netstandard2.0\DotNetty.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -252,12 +264,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DoNetDrive.Protocol.Fingerprint\Fingerprint\DoNetDrive.Protocol.Fingerprint.csproj">
-      <Project>{4639e7f7-83aa-4511-8fa8-369a79226b72}</Project>
-      <Name>DoNetDrive.Protocol.Fingerprint</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

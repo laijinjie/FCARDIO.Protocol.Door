@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Fingerprint.Person;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
@@ -359,8 +359,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             Data.Person person;
             for (int i = 0; i < iCreateCount; i++)
             {
-                person = CreateNewPerson((uint)i+1);
-                AddPersonToList(person);
+                person = CreateNewPerson(0);
+                if(person != null)
+                    AddPersonToList(person);
             }
             PersonList.RaiseListChangedEvents = true;
             PersonList.ResetBindings();
@@ -423,10 +424,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             uint userCode;
             if (iUserCode == 0)
             {
-               // ulong cardNum = (UInt64)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
+                // ulong cardNum = (UInt64)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
 
-               // ulong cardNum2 = (UInt64)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
-               // _ = (cardNum << 32) + cardNum2;
+                // ulong cardNum2 = (UInt64)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
+                // _ = (cardNum << 32) + cardNum2;
 
                 userCode = (uint)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
             }
@@ -449,6 +450,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
             person = new Data.Person();
             person.UserCode = userCode;
+            person.CardData = userCode;
+            person.PName = $"人员{userCode}";
+            person.EnterStatus = 3;
+            person.Expiry = new DateTime(2089, 12, 31);
+            person.OpenTimes = 65535;
+            person.TimeGroup = 1;
             return person;
         }
 
@@ -466,7 +473,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
             if (iCreateCount > max)
             {
-                MessageBox.Show("输入的数字不正确，取值范围：0-"+ max);
+                MessageBox.Show("输入的数字不正确，取值范围：0-" + max);
                 return 0;
             }
             if ((iCreateCount + PersonList.Count) > max)
@@ -541,7 +548,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     MsgErr("个人密码请输入 4-8个数字！");
                     return null;
                 }
-                person.Password = sPwd.FillString(8, "F");
+                person.Password = sPwd.FillString(8, 'F');
             }
             //有效期
             var dtpD = dtpDate.Value; var dtpT = dtpTime.Value;
@@ -572,7 +579,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             }
 
             string sHol = txtHoliday.Text.Trim();
-            sHol.FillString(32, "0");
+            sHol.FillString(32, '0');
             var chars = sHol.ToCharArray();
             for (int i = 0; i < 32; i++)
             {
@@ -611,7 +618,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             if (result != null)
             {
-                mMainForm.AddCmdLog(cmde, Lng("Msg_16")+result.FailTotal);
+                mMainForm.AddCmdLog(cmde, Lng("Msg_16") + result.FailTotal);
                 if (result.FailTotal > 0)
                 {
                     StringBuilder strBuf = new StringBuilder();
@@ -620,7 +627,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         strBuf.Append(item.ToString("00000000000000000000")).Append("(0x").Append(item.ToString("X18")).Append(")");
                     }
                     //txtDebug.Text = strBuf.ToString();
-                    System.IO.File.WriteAllText(System.IO.Path.Combine(Application.StartupPath, Lng("Msg_17")+".txt"), strBuf.ToString(), Encoding.UTF8);
+                    System.IO.File.WriteAllText(System.IO.Path.Combine(Application.StartupPath, Lng("Msg_17") + ".txt"), strBuf.ToString(), Encoding.UTF8);
                 }
             }
         }
@@ -658,12 +665,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 if (!result.IsReady)
                 {
-                    mMainForm.AddCmdLog(cmde, Lng("Msg_19") );
+                    mMainForm.AddCmdLog(cmde, Lng("Msg_19"));
                 }
                 else
                 {
                     PersonToControl(result.Person);
-                    mMainForm.AddCmdLog(cmde, Lng("Msg_20") );
+                    mMainForm.AddCmdLog(cmde, Lng("Msg_20"));
                 }
             };
         }
@@ -671,7 +678,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void butSelectImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = Lng("Msg_21")+"|*.jpg";
+            ofd.Filter = Lng("Msg_21") + "|*.jpg";
             ofd.Multiselect = false;
             if (ofd.ShowDialog() != DialogResult.OK) return;
             picUpload.Image = null;
@@ -737,10 +744,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 var ids = result.IdDataUploadStatus;
 
-                mMainForm.AddCmdLog(cmde,Lng("Msg_24", result.UserUploadStatus, ids[0]));
+                mMainForm.AddCmdLog(cmde, Lng("Msg_24", result.UserUploadStatus, ids[0]));
                 if (ids[0] == 4)
                 {
-                    mMainForm.AddCmdLog(cmde,Lng("Msg_25")+result.IdDataRepeatUser[0]);
+                    mMainForm.AddCmdLog(cmde, Lng("Msg_25") + result.IdDataRepeatUser[0]);
                 }
             }
         }
@@ -763,7 +770,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmd = new RegisterIdentificationData(cmdDtl, par);
             picReg.Image = null;
 
-            if(sStatusTipDic.Count==0)
+            if (sStatusTipDic.Count == 0)
             {
                 //1、已开始注册；2、用户号不存在；3、类型错误或不支持；4、序号已超出范围。5、设备存储空间已满 101、注册成功；102、用户取消操作
                 sStatusTipDic.Add(1, Lng("Register_Status1"));//已开始注册
@@ -799,14 +806,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     else
                     {
                         mMainForm.AddLog(Lng("Msg_29"));//注册成功，但是读取文件时发生错误。
-                        
+
                     }
 
                 }
                 else
                 {
                     string sTip = sStatusTipDic[result.Status];
-                    
+
                     if (result.Status == 103)
                     {
                         sTip = string.Format(sTip, result.UserID);

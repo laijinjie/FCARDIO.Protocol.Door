@@ -1,6 +1,6 @@
 ﻿using DoNetDrive.Protocol.Door.Door8800.Data;
 using DoNetDrive.Protocol.Transaction;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

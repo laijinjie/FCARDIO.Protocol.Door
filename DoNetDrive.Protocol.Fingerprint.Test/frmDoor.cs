@@ -411,7 +411,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     for (int i = 0; i < 7; i++)
                     {
                         sb.Append("\r\n");
-                        sb.Append(StringUtility.GetWeekStr(i));
+                        sb.Append(ToolLanguage.GetWeekStr(i));
                         for (int j = 0; j < 8; j++)
                         {
                             sb.Append(Lng("Msg_5") + (j + 1) + "：" + StringUtility.TimeHourAndMinuteStr(result.weekTimeGroup.GetItem(i).GetItem(j).GetBeginTime(), result.weekTimeGroup.GetItem(i).GetItem(j).GetEndTime()));
