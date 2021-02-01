@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DoNetDrive.Core.Extension;
+using DoNetDrive.Common.Extensions;
 using System.Collections.Concurrent;
 using DoNetDrive.Protocol.USBDrive;
 using DoNetDrive.Protocol.Door8800;

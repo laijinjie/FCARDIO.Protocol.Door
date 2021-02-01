@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DoNetTool.Common.Extensions;
+using DoNetDrive.Common.Extensions;
 
 namespace DoNetDrive.Protocol.USB.CardReader.Test
 {

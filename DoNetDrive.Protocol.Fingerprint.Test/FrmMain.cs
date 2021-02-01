@@ -1461,7 +1461,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AddCommandClassNameList(typeof(Door.WriteDoorOpenCheckMode));// "设置开门验证方式
 
             AddCommandClassNameList(typeof(SystemParameter.SendConnectTestResponse));// 连接握手回包
-            
+
         }
 
 
@@ -1636,6 +1636,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void ShowConnTypePanel()
         {
             bool[] pnlShow = new bool[3];
+            if (cmbConnType.SelectedIndex == -1) cmbConnType.SelectedIndex= 0;
             pnlShow[cmbConnType.SelectedIndex] = true;
 
             GroupBox[] pnls = new GroupBox[] { gbSerialPort, gbUDP, gpTCPServer };
@@ -1999,7 +2000,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             public String SN;
             internal MyRequestHandle Handle;
 
-            public MyTCPServerClientDetail(string sKey, IPEndPoint remoteIP,int iClientID) : base(sKey, remoteIP, null,iClientID)
+            public MyTCPServerClientDetail(string sKey, IPEndPoint remoteIP, int iClientID) : base(sKey, remoteIP, null, iClientID)
             {
 
             }
@@ -2120,7 +2121,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void AddTCPClient(string sKey, IPDetail remoteIP)
         {
             MyTCPServerClientDetail myTCP = new MyTCPServerClientDetail(
-                sKey, new IPEndPoint(IPAddress.Parse(remoteIP.Addr), remoteIP.Port),0);
+                sKey, new IPEndPoint(IPAddress.Parse(remoteIP.Addr), remoteIP.Port), 0);
             if (!mTCPClients.TryAdd(sKey, myTCP))
             {
                 //重复添加客户端，Key:{sKey}
@@ -2366,7 +2367,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 AddDeviceItem(deviceInfo);
             }
-           
+
         }
 
         private void AddDeviceItem(DeviceInfo deviceInfo)
@@ -2376,7 +2377,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 Invoke(() => AddDeviceItem(deviceInfo));
                 return;
             }
-           
+
             dgDevice.Rows.Insert(0, dgDevice.Rows.Count + 1, deviceInfo.SN, deviceInfo.IP, deviceInfo.MAC);
         }
 
