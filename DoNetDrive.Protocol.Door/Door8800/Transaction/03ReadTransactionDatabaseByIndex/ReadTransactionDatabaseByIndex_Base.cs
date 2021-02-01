@@ -131,11 +131,14 @@ namespace DoNetDrive.Protocol.Door.Door8800.Transaction
         /// </summary>
         protected virtual  void ClearBuf()
         {
-            while(mBufs.Count>0)
+            if (mBufs != null)
             {
-                var buf = mBufs.Dequeue();
-                buf.Release();
-                buf = null;
+                while (mBufs.Count > 0)
+                {
+                    var buf = mBufs.Dequeue();
+                    buf.Release();
+                    buf = null;
+                }
             }
         }
 
