@@ -90,7 +90,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                         CommandCompleted();
                         return;
                     }
-                    
+
                     CommandWaitResponse();
                     return;
                 }
@@ -106,13 +106,27 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
                 FileHandle = buf.ReadInt();
                 iDataIndex = buf.ReadMedium();
                 _ProcessStep = iDataIndex + iSize;
-
+                if (_FileDatas == null || mResult.FileSize == 0)
+                {
+                    //_FileDatas = new byte[mResult.FileSize];
+                    //可能有丢包，命令需要重发
+                    //CommandCompleted();
+                    CommandDetail.Timeout += 2000;
+                    //延迟三秒后再试
+                    _Connector.GetEventLoop().Schedule(() =>
+                    {
+                        CommandReady();
+                    }, TimeSpan.FromSeconds(1));
+                    return;
+                }
                 buf.ReadBytes(_FileDatas, iDataIndex, iSize);
                 CommandWaitResponse();
                 return;
             }
             if (CheckResponse(oPck, 0x0B, 5, 3, 4))
             {
+                if (_FileDatas == null || mResult.FileSize == 0) return;
+
                 var buf = oPck.CmdData;
                 uint ReadCRC32 = buf.ReadUnsignedInt();
                 var crc32 = DoNetDrive.Common.Cryptography.CRC32_C.CalculateDigest(_FileDatas, 0, (uint)_FileDatas.Length);

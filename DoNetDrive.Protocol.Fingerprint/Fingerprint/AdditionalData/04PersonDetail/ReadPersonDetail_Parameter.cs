@@ -11,7 +11,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// <summary>
         /// 用户号
         /// </summary>
-        public int UserCode;
+        public uint UserCode;
 
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace DoNetDrive.Protocol.Fingerprint.AdditionalData
         /// <param name="userCode">用户号</param>
         /// <param name="type">文件类型</param>
         /// <param name="serialNumber">序号</param>
-        public ReadPersonDetail_Parameter(int userCode)
+        public ReadPersonDetail_Parameter(uint userCode)
         {
             UserCode = userCode;
         }

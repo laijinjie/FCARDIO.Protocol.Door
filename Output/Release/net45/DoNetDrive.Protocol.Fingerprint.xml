@@ -220,7 +220,7 @@
             用户号
             </summary>
         </member>
-        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadPersonDetail_Parameter.#ctor(System.Int32)">
+        <member name="M:DoNetDrive.Protocol.Fingerprint.AdditionalData.ReadPersonDetail_Parameter.#ctor(System.UInt32)">
             <summary>
             初始化参数
             </summary>
