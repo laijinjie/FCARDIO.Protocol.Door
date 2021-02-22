@@ -35,17 +35,29 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DoNetDrive.Core">
-      <HintPath>..\..\DLL\DoNetDrive.Core.dll</HintPath>
+    <Reference Include="DoNetDrive.Common">
+      <HintPath>..\..\Output\Release\net45\DoNetDrive.Common.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol">
-      <HintPath>..\..\DLL\DoNetDrive.Protocol.dll</HintPath>
+    <Reference Include="DoNetDrive.Core, Version=1.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\Release\net45\DoNetDrive.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetty.Buffers">
-      <HintPath>..\..\DLL\DotNetty.Buffers.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol, Version=1.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\Release\net45\DoNetDrive.Protocol.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetty.Common">
-      <HintPath>..\..\DLL\DotNetty.Common.dll</HintPath>
+    <Reference Include="DoNetTool.Common">
+      <HintPath>..\..\Output\Release\net45\DoNetTool.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Buffers, Version=0.6.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\Release\net45\DotNetty.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetty.Common, Version=0.6.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\Release\net45\DotNetty.Common.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -121,7 +133,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FCARDIO.Protocol.USB\OfflinePatrol\DoNetDrive.Protocol.USB.OfflinePatrol.csproj">
+    <ProjectReference Include="..\..\DoNetDrive.Protocol.USB\OfflinePatrol\DoNetDrive.Protocol.USB.OfflinePatrol.csproj">
       <Project>{69b0709d-f370-41d8-be55-c115fef3730e}</Project>
       <Name>DoNetDrive.Protocol.USB.OfflinePatrol</Name>
     </ProjectReference>

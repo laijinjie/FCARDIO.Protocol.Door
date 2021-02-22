@@ -7,13 +7,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DoNetDrive.Core.Extension;
 using System.Collections.Concurrent;
 using DoNetDrive.Protocol.USBDrive;
 using DoNetDrive.Core.Connector.SerialPort;
 using DoNetDrive.Protocol.Transaction;
 using DotNetty.Buffers;
 using DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.ReadFlag;
+using DoNetDrive.Common.Extensions;
 
 namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 {

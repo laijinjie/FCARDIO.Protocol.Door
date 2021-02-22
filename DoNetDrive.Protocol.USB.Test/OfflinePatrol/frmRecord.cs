@@ -1,6 +1,6 @@
-﻿using DoNetDrive.Protocol.Transaction;
+﻿using DoNetDrive.Common.Extensions;
+using DoNetDrive.Protocol.Transaction;
 using DoNetDrive.Protocol.USB.OfflinePatrol.Data.Transaction;
-using DoNetDrive.Core.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
