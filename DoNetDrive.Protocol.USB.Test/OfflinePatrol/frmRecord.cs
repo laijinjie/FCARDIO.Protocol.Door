@@ -324,7 +324,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             GetLanguage(groupBox3);
             GetLanguage(label17);
             GetLanguage(label16);
-            GetLanguage(button4);
+            GetLanguage(butFixRecord);
             GetLanguage(butClearTransactionDatabase);
             GetLanguage(groupBox4);
             GetLanguage(label20);
@@ -372,14 +372,25 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             //mSystemTransactionList[14] = "清空读卡记录";
             //mSystemTransactionList[15] = "清空系统记录";
         }
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button9_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void butFixRecord_Click(object sender, EventArgs e)
+        {
+            int type = cboe_TransactionDatabaseType1.SelectedIndex;
+            int ReadIndex = int.Parse(txtReadIndex.Text.ToString());
+            bool IsCircle = cbIsCircle.Checked ? true : false;
+            var cmdDtl = mMainForm.GetCommandDetail();
+            var par = new Transaction.WriteTransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex_Parameter(Gete_TransactionDatabaseType(type), 0, true);
+            var cmd = new Transaction.WriteTransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                mMainForm.AddLog($"命令成功");
+            };
         }
 
         private void FrmRecord_FormClosed(object sender, FormClosedEventArgs e)

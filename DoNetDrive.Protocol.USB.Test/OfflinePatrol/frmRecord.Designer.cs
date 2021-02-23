@@ -67,7 +67,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.butClearTransactionDatabase = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.butFixRecord = new System.Windows.Forms.Button();
             this.cboe_TransactionDatabaseType2 = new System.Windows.Forms.ComboBox();
             this.txttxtQuantity0 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -440,7 +440,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.butClearTransactionDatabase);
-            this.groupBox3.Controls.Add(this.button4);
+            this.groupBox3.Controls.Add(this.butFixRecord);
             this.groupBox3.Controls.Add(this.cboe_TransactionDatabaseType2);
             this.groupBox3.Controls.Add(this.txttxtQuantity0);
             this.groupBox3.Controls.Add(this.label16);
@@ -462,16 +462,15 @@
             this.butClearTransactionDatabase.UseVisualStyleBackColor = true;
             this.butClearTransactionDatabase.Click += new System.EventHandler(this.ButClearTransactionDatabase_Click);
             // 
-            // button4
+            // butFixRecord
             // 
-            this.button4.Location = new System.Drawing.Point(197, 64);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(89, 23);
-            this.button4.TabIndex = 26;
-            this.button4.Text = "修复记录";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Visible = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.butFixRecord.Location = new System.Drawing.Point(197, 64);
+            this.butFixRecord.Name = "butFixRecord";
+            this.butFixRecord.Size = new System.Drawing.Size(89, 23);
+            this.butFixRecord.TabIndex = 26;
+            this.butFixRecord.Text = "修复记录";
+            this.butFixRecord.UseVisualStyleBackColor = true;
+            this.butFixRecord.Click += new System.EventHandler(this.butFixRecord_Click);
             // 
             // cboe_TransactionDatabaseType2
             // 
@@ -688,7 +687,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button butClearTransactionDatabase;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button butFixRecord;
         private System.Windows.Forms.ComboBox cboe_TransactionDatabaseType2;
         private System.Windows.Forms.TextBox txttxtQuantity0;
         private System.Windows.Forms.Label label16;
