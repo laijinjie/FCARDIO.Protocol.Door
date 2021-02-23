@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 {
-    public partial class frmTime :  frmNodeForm
+    public partial class frmTime : frmNodeForm
     {
         #region 单例模式
         private static object lockobj = new object();
@@ -42,6 +42,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
+            cmdDtl.Timeout = 5000;
             ReadTime cmd = new ReadTime(cmdDtl);
             mMainForm.AddCommand(cmd);
 
@@ -59,16 +60,16 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                     int seconds = Convert.ToInt32((dtNow - dtDeviceTime).TotalSeconds);
                     if (seconds >= 0)
                     {
-                        txtTimeSpan.Text = $"设备比电脑慢 {seconds.ToString()} 秒！";
+                        txtTimeSpan.Text = $"{GetLanguage("Txt1")} {seconds.ToString()} {GetLanguage("Txt4")}！";
                     }
                     else
                     {
-                        txtTimeSpan.Text = $"设备比电脑快 {seconds.ToString().Substring(1)} 秒！";
+                        txtTimeSpan.Text = $"{GetLanguage("Txt2")} {seconds.ToString().Substring(1)} {GetLanguage("Txt4")}！";
                     }
                 });
-                
-                
-                mMainForm.AddCmdLog(cmde, $"设备时间：{txtDeviceTime.Text}");
+
+
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("Txt3")}：{txtDeviceTime.Text}");
             };
         }
 
@@ -76,15 +77,9 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            
+
             WriteTime cmd = new WriteTime(cmdDtl);
             mMainForm.AddCommand(cmd);
-
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, $"写入电脑时间成功");
-            };
         }
 
         private void BtnWriteCustomTime_Click(object sender, EventArgs e)
@@ -96,11 +91,25 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             WriteCustomTime cmd = new WriteCustomTime(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, $"写入自定义时间成功{time.ToString()}");
-            };
+
+        }
+
+        private void frmTime_Load(object sender, EventArgs e)
+        {
+            LoadUILanguage();
+        }
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(groupBox1);
+            GetLanguage(label1);
+            GetLanguage(label2);
+            GetLanguage(label3);
+            GetLanguage(btnReadTime);
+            GetLanguage(btnWriteTime);
+            GetLanguage(groupBox2);
+            GetLanguage(label4);
+            GetLanguage(btnWriteCustomTime);
         }
     }
 }

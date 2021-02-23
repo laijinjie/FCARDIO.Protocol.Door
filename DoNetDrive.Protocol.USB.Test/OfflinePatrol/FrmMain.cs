@@ -14,6 +14,9 @@ using DoNetDrive.Protocol.Transaction;
 using DotNetty.Buffers;
 using DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.ReadFlag;
 using DoNetDrive.Common.Extensions;
+using System.Configuration;
+using System.IO;
+using System.Linq;
 
 namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 {
@@ -30,8 +33,62 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
         /// 保存命令类型的功能名称
         /// </summary>
         private static Dictionary<string, string> mCommandClasss;
+        #region 多语言
 
-        private static void IniCommandClassNameList()
+        private string GetLanguage(string sKey)
+        {
+            return ToolLanguage.GetLanguage(Name, sKey);
+        }
+        private string GetLanguage(string sKey, params object[] args)
+        {
+            string str = ToolLanguage.GetLanguage(Name, sKey);
+            return string.Format(str, args);
+        }
+
+
+        private void GetLanguage(ToolStripItem ctr)
+        {
+            ctr.Text = ToolLanguage.GetLanguage(Name, ctr.Name);
+        }
+        private void GetLanguage(Control ctr)
+        {
+            ctr.Text = ToolLanguage.GetLanguage(Name, ctr.Name);
+        }
+        private void GetLanguage(DataGridView dg)
+        {
+            string sCols = GetLanguage($"{dg.Name}_Cols");
+            var sArr = sCols.SplitTrim(",");
+            var cols = dg.Columns;
+            for (int i = 0; i < cols.Count; i++)
+            {
+                var col = cols[i];
+                col.HeaderText = sArr[i];
+            }
+
+        }
+
+
+        private void LoadComboxItemsLanguage(ComboBox cbx, string sKey)
+        {
+            int iOldSelectIndex = cbx.SelectedIndex;
+            cbx.Items.Clear();
+            string sItems = GetLanguage(sKey);
+            if (string.IsNullOrEmpty(sItems))
+                return;
+
+            string[] sArr = sItems.SplitTrim(",");
+            cbx.Items.AddRange(sArr);
+            if (cbx.Items.Count > iOldSelectIndex)
+            {
+                cbx.SelectedIndex = iOldSelectIndex;
+            }
+            else
+            {
+                cbx.SelectedIndex = 0;
+            }
+        }
+        #endregion
+        private  void IniCommandClassNameList()
         {
             mCommandClasss = new Dictionary<string, string>();
             mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SN.ReadSN).FullName, "读取SN");
@@ -40,8 +97,8 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.ExpireTime.ReadExpireTime).FullName, "读取设备有效期");
             mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.Version.ReadVersion).FullName, "获取设备版本号");
             mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SystemStatus.ReadSystemStatus).FullName, "获取设备运行信息");
-            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode.ReadRecordStorageMode).FullName, "获取设备运行信息");
-            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode.WriteRecordStorageMode).FullName, "获取设备运行信息");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode.ReadRecordStorageMode).FullName, "获取记录存储方式");
+            mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.RecordStorageMode.WriteRecordStorageMode).FullName, "写入记录存储方式");
             mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime.ReadCreateTime).FullName, "读取生产日期");
             mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.CreateTime.WriteCreateTime).FullName, "设置生产日期");
             mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.StartupHoldTime.ReadStartupHoldTime).FullName, "获取开机保持时间");
@@ -68,6 +125,18 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex).FullName, "修改指定记录数据库的写索引");
             mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.ClearTransactionDatabase.ClearTransactionDatabase).FullName, "清空指定类型的记录数据库");
             mCommandClasss.Add(typeof(DoNetDrive.Protocol.USB.OfflinePatrol.Transaction.ClearTransactionDatabase.TransactionDatabaseEmpty).FullName, "清空所有类型的记录数据库");
+
+           
+            var keys = mCommandClasss.Keys.ToList();
+            foreach (var item in keys)
+            {
+                var index = item.LastIndexOf('.');
+                var key = item.Substring(index + 1);
+                if (mCommandClasss.ContainsKey(item))
+                {
+                    mCommandClasss[item] = GetLanguage(key);
+                }
+            }
         }
         private void Invoke(Action p)
         {
@@ -85,7 +154,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 
         static FrmMain()
         {
-            IniCommandClassNameList();
+          
             NodeForms = new HashSet<Form>();
         }
 
@@ -110,7 +179,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 
             mAllocator = ConnectorAllocator.GetAllocator();
             mObserver = new ConnectorObserverHandler();
-            
+
             mAllocator.CommandCompleteEvent += mAllocator_CommandCompleteEvent;
             mAllocator.CommandErrorEvent += mAllocator_CommandErrorEvent;
             mAllocator.CommandProcessEvent += mAllocator_CommandProcessEvent;
@@ -127,12 +196,10 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             //mAllocator.ClientOffline += mAllocator_ClientOffline;
 
             mObserver.DisposeRequestEvent += mObserver_DisposeRequestEvent;
-            mObserver.DisposeResponseEvent += mObserver_DisposeResponseEvent; ;
-
+            mObserver.DisposeResponseEvent += mObserver_DisposeResponseEvent;
 
             InitSerialPort();
-            IniLstIO();
-            InilstCommand();
+            LoadSetting();
             Task.Run((Action)ShowCommandProcesslog);
         }
 
@@ -197,25 +264,25 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
         private void mObserver_DisposeResponseEvent(INConnector connector, string msg)
         {
             if (!mShowIOEvent) return;
-            AddIOLog(connector.GetConnectorDetail(), "发送数据", msg);
+            AddIOLog(connector.GetConnectorDetail(), GetLanguage("Txt1"), msg);
         }
 
         private void mObserver_DisposeRequestEvent(INConnector connector, string msg)
         {
             if (!mShowIOEvent) return;
-            AddIOLog(connector.GetConnectorDetail(), "接收数据", msg);
+            AddIOLog(connector.GetConnectorDetail(), GetLanguage("Txt2"), msg);
         }
 
 
 
         private void mAllocator_ConnectorErrorEvent(object sender, INConnectorDetail connector)
         {
-            AddIOLog(connector, "错误", "连接失败");
+            AddIOLog(connector, GetLanguage("Txt3"), GetLanguage("Txt4"));
         }
 
         private void mAllocator_ConnectorClosedEvent(object sender, INConnectorDetail connector)
         {
-            AddIOLog(connector, "关闭", "连接通道已关闭");
+            AddIOLog(connector, GetLanguage("Txt5"), GetLanguage("Txt6"));
         }
 
         private void mAllocator_ConnectorConnectedEvent(object sender, INConnectorDetail connector)
@@ -223,7 +290,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             string typeName = connector.GetTypeName();
             mAllocator.GetConnector(connector).AddRequestHandle(mObserver);
 
-            AddIOLog(connector, "成功", "通道连接成功");
+            AddIOLog(connector, GetLanguage("Txt7"),  GetLanguage("Txt8"));
         }
 
         /// <summary>
@@ -239,9 +306,9 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                 WatchReadCardTransaction cardTr = USBtr.EventData as WatchReadCardTransaction;
 
                 ListViewItem oItem = new ListViewItem();
-                string sLog = $"卡号：{cardTr.Card}(0x{cardTr.Card:X16})";
+                string sLog = $"{ GetLanguage("Txt9")}：{cardTr.Card}(0x{cardTr.Card:X16})";
 
-                oItem.Text = "读卡消息";
+                oItem.Text = GetLanguage("Txt10");
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, sLog));
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, string.Empty));
@@ -256,7 +323,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 
         private void MAllocator_AuthenticationErrorEvent(object sender, CommandEventArgs e)
         {
-            AddCmdLog(e, "通讯密码错误");
+            AddCmdLog(e, GetLanguage("Txt11"));
         }
 
         private void mAllocator_CommandTimeout(object sender, CommandEventArgs e)
@@ -266,7 +333,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             //    AddCmdLog(e, "搜索完毕");
             //    return;
             //}
-            AddCmdLog(e, "命令超时");
+            AddCmdLog(e, GetLanguage("Txt12"));
         }
 
         private void mAllocator_CommandProcessEvent(object sender, CommandEventArgs e)
@@ -288,13 +355,13 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             }
 
 
-            string sLog = $"{sName} 已耗时：{time:0},进度：{cmd.getProcessStep()} / {cmd.getProcessMax()}";
+            string sLog = $"{sName} { GetLanguage("Txt13")}：{time:0},{ GetLanguage("Txt14")}：{cmd.getProcessStep()} / {cmd.getProcessMax()}";
             mCommandProcessLog = sLog;
         }
 
         private void mAllocator_CommandErrorEvent(object sender, CommandEventArgs e)
         {
-            AddCmdLog(e, "命令错误");
+            AddCmdLog(e, GetLanguage("Txt15"));
         }
 
         private const string Command_ReadSN = "DoNetDrive.Protocol.USB.OfflinePatrol.SystemParameter.SN.ReadSN";
@@ -303,7 +370,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
         private void mAllocator_CommandCompleteEvent(object sender, CommandEventArgs e)
         {
             mAllocator_CommandProcessEvent(sender, e);
-            AddCmdLog(e, "命令完成");
+            AddCmdLog(e, GetLanguage("Txt16"));
             string cName = e.Command.GetType().FullName;
 
             switch (cName)
@@ -328,6 +395,69 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 
         }
 
+        private void LoadSetting()
+        {
+            var languages = ConfigurationManager.AppSettings[$"Languages"].Split(',');
+            cmbToolLanguage.Items.AddRange(languages);
+            cmbToolLanguage.Text = ConfigurationManager.AppSettings[$"DefaultLanguage"];
+            if (int.TryParse(ConfigurationManager.AppSettings[$"SerialPort"], out int serialPort))
+            {
+                if (cmbSerialPort.Items.Count >= serialPort)
+                    cmbSerialPort.SelectedIndex = serialPort;
+            }
+            txtAddress.Text = ConfigurationManager.AppSettings[$"Address"];
+        }
+        private void SaveSetting()
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            SetConfigKey(config, "DefaultLanguage", cmbToolLanguage.Text);
+            SetConfigKey(config, "SerialPort", cmbSerialPort.SelectedIndex.ToString());
+            SetConfigKey(config, "Address", txtAddress.Text);
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+        private void SetConfigKey(Configuration config, string key, string sValue)
+        {
+            var kv = config.AppSettings.Settings;
+            if (kv[key] == null)
+                kv.Add(key, sValue);
+            else
+                kv[key].Value = sValue;
+        }
+        private void LoadLanguage()
+        {
+            var sFile = cmbToolLanguage.Text;
+            sFile = ConfigurationManager.AppSettings[$"Language_{sFile}"];
+            sFile = Path.Combine(Application.StartupPath, sFile);
+            if (File.Exists(sFile))
+                ToolLanguage.LoadLanguage(sFile);
+            LoadUILanguage();
+        }
+        /// <summary>
+        /// 多语言设置
+        /// </summary>
+        private void LoadUILanguage()
+        {
+            Text = GetLanguage("FormCaption") + "  Ver " + Application.ProductVersion;
+            GetLanguage(butSystem);//  系统参数     
+            GetLanguage(butTime);
+            GetLanguage(butPatrol);
+            GetLanguage(butRecord);
+            GetLanguage(btnWatch);
+            GetLanguage(groupBox1);
+            GetLanguage(label1);
+            GetLanguage(lblReLoadCOMList);
+            GetLanguage(label2);
+            GetLanguage(tabPage5);
+            GetLanguage(tabPage6);
+            GetLanguage(butClear);
+            GetLanguage(chkShowIO);
+            GetLanguage(butClearCommand);
+            //   GetLanguage(lstIO);
+            InilstCommand();
+            IniLstIO();
+            IniCommandClassNameList();
+        }
         private void AddCmdItem(ListViewItem oItem)
         {
             if (lstCommand.InvokeRequired)
@@ -400,7 +530,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 
             var cols = lstCommand.Columns;
             cols.Clear();
-            var sCaptions = "类型,内容,身份信息,串口信息,时间,耗时".SplitTrim(",");
+            var sCaptions = GetLanguage("lstCommand").SplitTrim(",");//"类型,内容,身份信息,串口信息,时间,耗时"
             var iWidths = new int[] { 100, 300, 120, 125, 100, 80 };
             for (int i = 0; i < sCaptions.Length; i++)
             {
@@ -453,7 +583,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                 }
 
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, txt));
-                string Local,  cType;
+                string Local, cType;
                 GetConnectorDetail(cmdDtl.Connector, out cType, out Local);
                 USBDriveCommandDetail fcDtl = cmdDtl as USBDriveCommandDetail;
                 oItem.SubItems.Add(new ListViewItem.ListViewSubItem(oItem, fcDtl.Addr));
@@ -483,23 +613,23 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
         }
         private string GetConnectorDetail(INConnectorDetail conn)
         {
-            string Local,  cType;
+            string Local, cType;
             GetConnectorDetail(conn, out cType, out Local);
-            string ret = $"通道类型：{cType} 本地IP：{Local}";
+            string ret = $"{GetLanguage("Txt17")}：{cType} {GetLanguage("Txt18")}：{Local}";
 
             switch (conn.GetTypeName())
             {
                 case ConnectorType.UDPServer:
-                    ret = $"通道类型：{cType}  本地绑定IP：{Local}";
+                    ret = $"{GetLanguage("Txt17")}：{cType}  {GetLanguage("Txt19")}：{Local}";
                     break;
                 case ConnectorType.TCPServer:
-                    ret = $"通道类型：{cType} 本地绑定IP：{Local}";
+                    ret = $"{GetLanguage("Txt17")}：{cType} {GetLanguage("Txt19")}：{Local}";
                     break;
                 case ConnectorType.SerialPort:
-                    ret = $"通道类型：{cType} {Local}";
+                    ret = $"{GetLanguage("Txt17")}：{cType} {Local}";
                     break;
                 default:
-                    ret = $"通道类型：{cType} {Local}";
+                    ret = $"{GetLanguage("Txt17")}：{cType} {Local}";
                     break;
             }
 
@@ -527,7 +657,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             switch (conn.GetTypeName())
             {
                 case ConnectorType.SerialPort:
-                    cType = "串口";
+                    cType = GetLanguage("Txt20");
                     var com = conn as Core.Connector.SerialPort.SerialPortDetail;
                     Local = $"COM{local.Port}:{com.Baudrate}";
                     break;
@@ -558,7 +688,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                 CommandDetailFactory.ControllerType.USBDrive_OfflinePatrol, txtAddress.Text, string.Empty) as USBDriveCommandDetail;
             DoNetDrive.Core.Connector.SerialPort.SerialPortDetail spd = cmdDtl.Connector as DoNetDrive.Core.Connector.SerialPort.SerialPortDetail;
             spd.Baudrate = 115200;
-           
+
             return cmdDtl;
         }
         #endregion
@@ -581,7 +711,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
         {
             if (!mShowIOEvent) return;
 
-            string Local,  cType;
+            string Local, cType;
             GetConnectorDetail(connDetail, out cType, out Local);
 
             ListViewItem oItem = new ListViewItem();
@@ -602,7 +732,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 
             var cols = lstIO.Columns;
             cols.Clear();
-            var sCaptions = "标签,内容,串口信息,时间".SplitTrim(",");
+            var sCaptions = GetLanguage("lstIO").SplitTrim(",");//"标签,内容,串口信息,时间"
             var iWidths = new int[] { 60, 260, 90, 125, 125, 100 };
             for (int i = 0; i < sCaptions.Length; i++)
             {
@@ -735,8 +865,8 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
         {
             var cmdDtl = GetCommandDetail();
             if (cmdDtl == null) return;
-            
-       
+
+
 
             cmdDtl.Timeout = 15000;
             cmdDtl.RestartCount = 0;
@@ -771,5 +901,14 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             return new WatchReadCardTransaction();
         }
 
+        private void cmbToolLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadLanguage();
+        }
+
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveSetting();
+        }
     }
 }

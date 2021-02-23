@@ -52,6 +52,8 @@
             this.butPatrol = new System.Windows.Forms.ToolStripButton();
             this.butRecord = new System.Windows.Forms.ToolStripButton();
             this.btnWatch = new System.Windows.Forms.Button();
+            this.cmbToolLanguage = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tbEvent.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -71,7 +73,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 41);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(569, 62);
+            this.groupBox1.Size = new System.Drawing.Size(569, 119);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "通讯参数";
@@ -80,7 +82,7 @@
             // 
             this.lblReLoadCOMList.AutoSize = true;
             this.lblReLoadCOMList.ForeColor = System.Drawing.Color.Blue;
-            this.lblReLoadCOMList.Location = new System.Drawing.Point(154, 31);
+            this.lblReLoadCOMList.Location = new System.Drawing.Point(93, 40);
             this.lblReLoadCOMList.Name = "lblReLoadCOMList";
             this.lblReLoadCOMList.Size = new System.Drawing.Size(29, 12);
             this.lblReLoadCOMList.TabIndex = 19;
@@ -89,14 +91,14 @@
             // 
             // txtProcess
             // 
-            this.txtProcess.Location = new System.Drawing.Point(330, 27);
+            this.txtProcess.Location = new System.Drawing.Point(54, 81);
             this.txtProcess.Name = "txtProcess";
-            this.txtProcess.Size = new System.Drawing.Size(235, 21);
+            this.txtProcess.Size = new System.Drawing.Size(509, 21);
             this.txtProcess.TabIndex = 18;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(267, 27);
+            this.txtAddress.Location = new System.Drawing.Point(7, 81);
             this.txtAddress.MaxLength = 3;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(41, 21);
@@ -106,7 +108,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(208, 30);
+            this.label2.Location = new System.Drawing.Point(5, 66);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 2;
@@ -116,7 +118,7 @@
             // 
             this.cmbSerialPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSerialPort.FormattingEnabled = true;
-            this.cmbSerialPort.Location = new System.Drawing.Point(66, 27);
+            this.cmbSerialPort.Location = new System.Drawing.Point(6, 37);
             this.cmbSerialPort.Name = "cmbSerialPort";
             this.cmbSerialPort.Size = new System.Drawing.Size(81, 20);
             this.cmbSerialPort.TabIndex = 1;
@@ -124,7 +126,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 31);
+            this.label1.Location = new System.Drawing.Point(7, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 0;
@@ -136,10 +138,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbEvent.Controls.Add(this.tabPage5);
             this.tbEvent.Controls.Add(this.tabPage6);
-            this.tbEvent.Location = new System.Drawing.Point(13, 109);
+            this.tbEvent.Location = new System.Drawing.Point(13, 166);
             this.tbEvent.Name = "tbEvent";
             this.tbEvent.SelectedIndex = 0;
-            this.tbEvent.Size = new System.Drawing.Size(572, 506);
+            this.tbEvent.Size = new System.Drawing.Size(572, 490);
             this.tbEvent.TabIndex = 16;
             // 
             // tabPage5
@@ -149,7 +151,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(564, 480);
+            this.tabPage5.Size = new System.Drawing.Size(564, 423);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "通讯IO";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -161,7 +163,7 @@
             this.lstIO.HideSelection = false;
             this.lstIO.Location = new System.Drawing.Point(3, 32);
             this.lstIO.Name = "lstIO";
-            this.lstIO.Size = new System.Drawing.Size(558, 445);
+            this.lstIO.Size = new System.Drawing.Size(558, 388);
             this.lstIO.TabIndex = 14;
             this.lstIO.UseCompatibleStateImageBehavior = false;
             this.lstIO.View = System.Windows.Forms.View.Details;
@@ -206,7 +208,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(564, 480);
+            this.tabPage6.Size = new System.Drawing.Size(564, 464);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "命令结果";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -219,7 +221,7 @@
             this.lstCommand.HideSelection = false;
             this.lstCommand.Location = new System.Drawing.Point(3, 32);
             this.lstCommand.Name = "lstCommand";
-            this.lstCommand.Size = new System.Drawing.Size(558, 445);
+            this.lstCommand.Size = new System.Drawing.Size(558, 429);
             this.lstCommand.TabIndex = 16;
             this.lstCommand.UseCompatibleStateImageBehavior = false;
             this.lstCommand.View = System.Windows.Forms.View.Details;
@@ -298,25 +300,48 @@
             // 
             // btnWatch
             // 
-            this.btnWatch.Location = new System.Drawing.Point(507, 12);
+            this.btnWatch.Location = new System.Drawing.Point(463, 22);
             this.btnWatch.Name = "btnWatch";
-            this.btnWatch.Size = new System.Drawing.Size(75, 23);
+            this.btnWatch.Size = new System.Drawing.Size(119, 23);
             this.btnWatch.TabIndex = 19;
             this.btnWatch.Text = "监控读卡";
             this.btnWatch.UseVisualStyleBackColor = true;
             this.btnWatch.Click += new System.EventHandler(this.BtnWatch_Click);
+            // 
+            // cmbToolLanguage
+            // 
+            this.cmbToolLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbToolLanguage.FormattingEnabled = true;
+            this.cmbToolLanguage.Location = new System.Drawing.Point(192, 24);
+            this.cmbToolLanguage.Name = "cmbToolLanguage";
+            this.cmbToolLanguage.Size = new System.Drawing.Size(265, 20);
+            this.cmbToolLanguage.TabIndex = 27;
+            this.cmbToolLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbToolLanguage_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(134, 28);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "Language";
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 668);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cmbToolLanguage);
             this.Controls.Add(this.btnWatch);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tbEvent);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "巡更棒调试程序";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -358,5 +383,7 @@
         private System.Windows.Forms.ToolStripButton butRecord;
         private System.Windows.Forms.Label lblReLoadCOMList;
         private System.Windows.Forms.Button btnWatch;
+        private System.Windows.Forms.ComboBox cmbToolLanguage;
+        private System.Windows.Forms.Label label3;
     }
 }

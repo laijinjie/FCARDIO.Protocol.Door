@@ -55,7 +55,31 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             CardHashTable = new HashSet<uint>();
             CodeHashTable = new HashSet<ushort>();
             PatrolEmplList = new List<PatrolEmplUI>();
+            LoadUILanguage();
+        }
 
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(butReadDatabaseDetail);
+            GetLanguage(butCreateCardNumByOrder);
+            GetLanguage(butClearDataBase);
+            GetLanguage(btnWriteEmpl);
+            GetLanguage(butClearGrid);
+            GetLanguage(label1);
+            GetLanguage(dataGridView1);
+            GetLanguage(chkSelectAll);
+            GetLanguage(label2);
+            GetLanguage(label3);
+            GetLanguage(label4);
+            GetLanguage(btnAddDevice);
+            GetLanguage(btnCheckCardData);
+            GetLanguage(btnCheckPCode);
+            GetLanguage(btnDeleteDevice);
+            GetLanguage(groupBox1);
+            GetLanguage(label5);
+            GetLanguage(butCreateCardNumByRandom);
+            GetLanguage(butCreateCardNumByOrder);
         }
 
         public frmPatrolEmpl(INMain main) : base(main)
@@ -74,9 +98,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 PatrolEmplDatabaseDetail_Result result = cmde.Command.getResult() as PatrolEmplDatabaseDetail_Result;
-
-
-                mMainForm.AddCmdLog(cmde, $"巡更人员总容量：{result.DataBaseSize.ToString()}，已用巡更人员容量：{result.PatrolEmplSize.ToString()}");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("Txt1")}：{result.DataBaseSize}，{GetLanguage("Txt2")}：{result.PatrolEmplSize}");
             };
         }
 
@@ -96,7 +118,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                 int index = 1;
                 foreach (var item in list)
                 {
-                    
+
                     PatrolEmplUI model = new PatrolEmplUI(item);
                     model.PCode = item.PCode;
                     model.Name = item.Name;
@@ -110,7 +132,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 
                 });
                 //dataGridView1
-                string log = $"已读取到数量：{list.Count} ";
+                string log = $"{GetLanguage("Txt3")}：{list.Count} ";
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
@@ -121,12 +143,6 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             if (cmdDtl == null) return;
             ClearPatrolEmplDataBase cmd = new ClearPatrolEmplDataBase(cmdDtl);
             mMainForm.AddCommand(cmd);
-
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"巡更人员已清空：");
-            };
         }
 
         /// <summary>
@@ -161,7 +177,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                     dataGridView1.DataSource = new BindingList<PatrolEmplUI>(PatrolEmplList);
 
                 });
-                mMainForm.AddLog($"命令成功：");
+                mMainForm.AddLog(GetLanguage("Txt4"));
             };
 
         }
@@ -195,35 +211,29 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                 }
             }
         }
-
-        private void BtnIncrease_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnAddDevice_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             uint uCardData = 0;
             ushort uPcode = 0;
-            if (!uint.TryParse(txtCardData.Text,out uCardData))
+            if (!uint.TryParse(txtCardData.Text, out uCardData))
             {
-                MessageBox.Show("卡号格式不正确");
+                MessageBox.Show(GetLanguage("Txt5"));
                 return;
             }
             if (!ushort.TryParse(txtPCode.Text, out uPcode))
             {
-                MessageBox.Show("工号格式不正确");
+                MessageBox.Show(GetLanguage("Txt6"));
                 return;
             }
             List<Data.PatrolEmpl> _list = new List<Data.PatrolEmpl>();
-            
-                Data.PatrolEmpl patrolEmpl = new Data.PatrolEmpl();
+
+            Data.PatrolEmpl patrolEmpl = new Data.PatrolEmpl();
             patrolEmpl.CardData = uCardData;
             patrolEmpl.PCode = uPcode;
             patrolEmpl.Name = txtName.Text;
-                _list.Add(patrolEmpl);
+            _list.Add(patrolEmpl);
             WritePatrolEmpl_Parameter par = new WritePatrolEmpl_Parameter(_list);
             WritePatrolEmpl cmd = new WritePatrolEmpl(cmdDtl, par);
             mMainForm.AddCommand(cmd);
@@ -235,7 +245,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                     dataGridView1.DataSource = new BindingList<PatrolEmplUI>(PatrolEmplList);
 
                 });
-                mMainForm.AddLog($"命令成功：");
+                mMainForm.AddLog(GetLanguage("Txt4"));
             };
         }
 
@@ -249,7 +259,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                 {
                     DataGridViewTextBoxCell text = (DataGridViewTextBoxCell)dataGridView1.Rows[i].Cells[1];
                     var item = PatrolEmplList.FirstOrDefault(t => t.Index == text.Value.ToString());
-                   
+
                     _list.Add(item.PCode);
                     //ListPassword.Remove(item);
                 }
@@ -265,7 +275,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                 mMainForm.AddCommand(cmd);
                 cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
                 {
-                    mMainForm.AddLog($"命令成功：");
+                    mMainForm.AddLog(GetLanguage("Txt4"));
 
                 };
             }
@@ -299,7 +309,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             {
                 var ui = new PatrolEmplUI(empl);
                 ui.Index = (PatrolEmplList.Count + 1).ToString();
-                ui.Name = "工号" + empl.PCode;
+                ui.Name = GetLanguage("Txt7") + empl.PCode;
                 ui.PCode = empl.PCode;
                 PatrolEmplList.Add(ui);
                 CardHashTable.Add(empl.CardData);
@@ -327,7 +337,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             if (iCardNum == 0)
             {
                 cardNum = (uint)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
-                code = (ushort)mCodeRnd.Next(1,999);
+                code = (ushort)mCodeRnd.Next(1, 999);
             }
             else
             {
@@ -349,7 +359,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                 }
 
             }
-        
+
 
             empl = new Data.PatrolEmpl();
 
@@ -366,12 +376,12 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             int iCreateCount = 0;
             if (!int.TryParse(txtCount.Text, out iCreateCount))
             {
-                MessageBox.Show("输入的数字不正确，取值范围：1-32000！");
+                MessageBox.Show($"{GetLanguage("Txt8")}：1-32000！");
                 return 0;
             }
             if (iCreateCount > 32000)
             {
-                MessageBox.Show("输入的数字不正确，取值范围：1-32000！");
+                MessageBox.Show($"{GetLanguage("Txt8")}：1-32000！");
                 return 0;
             }
             if ((iCreateCount + PatrolEmplList.Count) > 32000)
@@ -431,9 +441,9 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             int carddata = 0;
-            if (!int.TryParse(txtCardData.Text,out carddata))
+            if (!int.TryParse(txtCardData.Text, out carddata))
             {
-                MessageBox.Show("卡号格式不正确");
+                MessageBox.Show(GetLanguage("Txt5"));
                 return;
             }
             ReadPatrolEmplDetail_Parameter par = new ReadPatrolEmplDetail_Parameter(2, carddata);
@@ -444,10 +454,10 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadPatrolEmplDetail_Result result = cmde.Command.getResult() as ReadPatrolEmplDetail_Result;
-                string log = $"该卡未授权 ";
+                string log = GetLanguage("Txt10");
                 if (result.PatrolEmpl.PCode != 0)
                 {
-                    log = $"工号：{ result.PatrolEmpl.PCode.ToString() }，卡号：{ result.PatrolEmpl.CardData.ToString() }，姓名：{result.PatrolEmpl.Name}";
+                    log = $"{GetLanguage("Txt7")}：{ result.PatrolEmpl.PCode.ToString() }，{GetLanguage("Txt9")}：{ result.PatrolEmpl.CardData.ToString() }，姓名：{result.PatrolEmpl.Name}";
                     Invoke(() =>
                     {
                         txtCardData.Text = result.PatrolEmpl.CardData.ToString();
@@ -455,7 +465,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                         txtPCode.Text = result.PatrolEmpl.PCode.ToString();
                     });
                 }
-                
+
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
@@ -467,7 +477,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             int code = 0;
             if (!int.TryParse(txtPCode.Text, out code))
             {
-                MessageBox.Show("工号号格式不正确");
+                MessageBox.Show(GetLanguage("Txt6"));
                 return;
             }
             ReadPatrolEmplDetail_Parameter par = new ReadPatrolEmplDetail_Parameter(1, code);
@@ -478,10 +488,10 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadPatrolEmplDetail_Result result = cmde.Command.getResult() as ReadPatrolEmplDetail_Result;
-                string log = $"该卡未授权 ";
+                string log = GetLanguage("Txt10");
                 if (result.PatrolEmpl.PCode != 0)
                 {
-                    log = $"工号：{ result.PatrolEmpl.PCode.ToString() }，卡号：{ result.PatrolEmpl.CardData.ToString() }，姓名：{result.PatrolEmpl.Name}";
+                    log = $"{GetLanguage("Txt7")}：{ result.PatrolEmpl.PCode.ToString() }，{GetLanguage("Txt9")}：{ result.PatrolEmpl.CardData.ToString() }，姓名：{result.PatrolEmpl.Name}";
                     txtCardData.Text = result.PatrolEmpl.CardData.ToString();
                     txtName.Text = result.PatrolEmpl.Name;
                     txtPCode.Text = result.PatrolEmpl.PCode.ToString();

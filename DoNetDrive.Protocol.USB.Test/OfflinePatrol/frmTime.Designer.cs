@@ -58,14 +58,14 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(544, 96);
+            this.groupBox1.Size = new System.Drawing.Size(544, 149);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设备时间";
             // 
             // txtTimeSpan
             // 
-            this.txtTimeSpan.Location = new System.Drawing.Point(370, 66);
+            this.txtTimeSpan.Location = new System.Drawing.Point(272, 122);
             this.txtTimeSpan.Name = "txtTimeSpan";
             this.txtTimeSpan.ReadOnly = true;
             this.txtTimeSpan.Size = new System.Drawing.Size(158, 21);
@@ -74,7 +74,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(299, 69);
+            this.label3.Location = new System.Drawing.Point(270, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 6;
@@ -82,9 +82,9 @@
             // 
             // btnWriteTime
             // 
-            this.btnWriteTime.Location = new System.Drawing.Point(384, 26);
+            this.btnWriteTime.Location = new System.Drawing.Point(421, 26);
             this.btnWriteTime.Name = "btnWriteTime";
-            this.btnWriteTime.Size = new System.Drawing.Size(94, 23);
+            this.btnWriteTime.Size = new System.Drawing.Size(113, 23);
             this.btnWriteTime.TabIndex = 5;
             this.btnWriteTime.Text = "更新设备时间";
             this.btnWriteTime.UseVisualStyleBackColor = true;
@@ -92,9 +92,9 @@
             // 
             // btnReadTime
             // 
-            this.btnReadTime.Location = new System.Drawing.Point(301, 26);
+            this.btnReadTime.Location = new System.Drawing.Point(255, 26);
             this.btnReadTime.Name = "btnReadTime";
-            this.btnReadTime.Size = new System.Drawing.Size(75, 23);
+            this.btnReadTime.Size = new System.Drawing.Size(113, 23);
             this.btnReadTime.TabIndex = 4;
             this.btnReadTime.Text = "读设备时间";
             this.btnReadTime.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
             // 
             // txtPCTime
             // 
-            this.txtPCTime.Location = new System.Drawing.Point(100, 66);
+            this.txtPCTime.Location = new System.Drawing.Point(17, 122);
             this.txtPCTime.Name = "txtPCTime";
             this.txtPCTime.ReadOnly = true;
             this.txtPCTime.Size = new System.Drawing.Size(183, 21);
@@ -110,7 +110,7 @@
             // 
             // txtDeviceTime
             // 
-            this.txtDeviceTime.Location = new System.Drawing.Point(100, 27);
+            this.txtDeviceTime.Location = new System.Drawing.Point(17, 55);
             this.txtDeviceTime.Name = "txtDeviceTime";
             this.txtDeviceTime.ReadOnly = true;
             this.txtDeviceTime.Size = new System.Drawing.Size(183, 21);
@@ -119,7 +119,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 69);
+            this.label2.Location = new System.Drawing.Point(17, 93);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 1;
@@ -128,7 +128,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 30);
+            this.label1.Location = new System.Drawing.Point(17, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 0;
@@ -140,7 +140,7 @@
             this.groupBox2.Controls.Add(this.dtpTime);
             this.groupBox2.Controls.Add(this.dtpDate);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(12, 124);
+            this.groupBox2.Location = new System.Drawing.Point(12, 179);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(545, 96);
             this.groupBox2.TabIndex = 1;
@@ -149,7 +149,7 @@
             // 
             // btnWriteCustomTime
             // 
-            this.btnWriteCustomTime.Location = new System.Drawing.Point(302, 45);
+            this.btnWriteCustomTime.Location = new System.Drawing.Point(207, 45);
             this.btnWriteCustomTime.Name = "btnWriteCustomTime";
             this.btnWriteCustomTime.Size = new System.Drawing.Size(94, 23);
             this.btnWriteCustomTime.TabIndex = 8;
@@ -161,7 +161,7 @@
             // 
             this.dtpTime.CustomFormat = "HH:mm:ss";
             this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTime.Location = new System.Drawing.Point(204, 46);
+            this.dtpTime.Location = new System.Drawing.Point(121, 46);
             this.dtpTime.Name = "dtpTime";
             this.dtpTime.ShowUpDown = true;
             this.dtpTime.Size = new System.Drawing.Size(80, 21);
@@ -171,7 +171,7 @@
             // 
             this.dtpDate.CustomFormat = "yyyy-MM-dd";
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(101, 46);
+            this.dtpDate.Location = new System.Drawing.Point(21, 46);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(97, 21);
             this.dtpDate.TabIndex = 9;
@@ -179,7 +179,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(30, 50);
+            this.label4.Location = new System.Drawing.Point(19, 28);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 8;
@@ -189,11 +189,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(569, 450);
+            this.ClientSize = new System.Drawing.Size(569, 287);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmTime";
             this.Text = "frmTime";
+            this.Load += new System.EventHandler(this.frmTime_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

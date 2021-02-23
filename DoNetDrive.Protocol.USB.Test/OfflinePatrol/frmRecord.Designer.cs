@@ -112,16 +112,16 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(750, 96);
+            this.groupBox1.Size = new System.Drawing.Size(750, 184);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "存储器状况";
             // 
             // butTransactionDatabaseDetail
             // 
-            this.butTransactionDatabaseDetail.Location = new System.Drawing.Point(645, 64);
+            this.butTransactionDatabaseDetail.Location = new System.Drawing.Point(576, 143);
             this.butTransactionDatabaseDetail.Name = "butTransactionDatabaseDetail";
-            this.butTransactionDatabaseDetail.Size = new System.Drawing.Size(89, 23);
+            this.butTransactionDatabaseDetail.Size = new System.Drawing.Size(168, 35);
             this.butTransactionDatabaseDetail.TabIndex = 41;
             this.butTransactionDatabaseDetail.Text = "采集记录信息";
             this.butTransactionDatabaseDetail.UseVisualStyleBackColor = true;
@@ -129,70 +129,70 @@
             // 
             // txtIsCircle2
             // 
-            this.txtIsCircle2.Location = new System.Drawing.Point(535, 65);
+            this.txtIsCircle2.Location = new System.Drawing.Point(646, 116);
             this.txtIsCircle2.Name = "txtIsCircle2";
             this.txtIsCircle2.Size = new System.Drawing.Size(100, 21);
             this.txtIsCircle2.TabIndex = 36;
             // 
             // txtIsCircle1
             // 
-            this.txtIsCircle1.Location = new System.Drawing.Point(535, 38);
+            this.txtIsCircle1.Location = new System.Drawing.Point(646, 64);
             this.txtIsCircle1.Name = "txtIsCircle1";
             this.txtIsCircle1.Size = new System.Drawing.Size(100, 21);
             this.txtIsCircle1.TabIndex = 35;
             // 
             // txtQuantity1
             // 
-            this.txtQuantity1.Location = new System.Drawing.Point(80, 37);
+            this.txtQuantity1.Location = new System.Drawing.Point(102, 64);
             this.txtQuantity1.Name = "txtQuantity1";
             this.txtQuantity1.Size = new System.Drawing.Size(100, 21);
             this.txtQuantity1.TabIndex = 17;
             // 
             // txtQuantity2
             // 
-            this.txtQuantity2.Location = new System.Drawing.Point(80, 64);
+            this.txtQuantity2.Location = new System.Drawing.Point(102, 116);
             this.txtQuantity2.Name = "txtQuantity2";
             this.txtQuantity2.Size = new System.Drawing.Size(100, 21);
             this.txtQuantity2.TabIndex = 18;
             // 
             // txtReadIndex2
             // 
-            this.txtReadIndex2.Location = new System.Drawing.Point(419, 65);
+            this.txtReadIndex2.Location = new System.Drawing.Point(510, 116);
             this.txtReadIndex2.Name = "txtReadIndex2";
             this.txtReadIndex2.Size = new System.Drawing.Size(100, 21);
             this.txtReadIndex2.TabIndex = 30;
             // 
             // txtReadIndex1
             // 
-            this.txtReadIndex1.Location = new System.Drawing.Point(419, 38);
+            this.txtReadIndex1.Location = new System.Drawing.Point(510, 64);
             this.txtReadIndex1.Name = "txtReadIndex1";
             this.txtReadIndex1.Size = new System.Drawing.Size(100, 21);
             this.txtReadIndex1.TabIndex = 29;
             // 
             // txtWriteIndex2
             // 
-            this.txtWriteIndex2.Location = new System.Drawing.Point(305, 64);
+            this.txtWriteIndex2.Location = new System.Drawing.Point(374, 116);
             this.txtWriteIndex2.Name = "txtWriteIndex2";
             this.txtWriteIndex2.Size = new System.Drawing.Size(100, 21);
             this.txtWriteIndex2.TabIndex = 24;
             // 
             // txtWriteIndex1
             // 
-            this.txtWriteIndex1.Location = new System.Drawing.Point(305, 37);
+            this.txtWriteIndex1.Location = new System.Drawing.Point(374, 64);
             this.txtWriteIndex1.Name = "txtWriteIndex1";
             this.txtWriteIndex1.Size = new System.Drawing.Size(100, 21);
             this.txtWriteIndex1.TabIndex = 23;
             // 
             // txtNewRecord2
             // 
-            this.txtNewRecord2.Location = new System.Drawing.Point(190, 64);
+            this.txtNewRecord2.Location = new System.Drawing.Point(238, 116);
             this.txtNewRecord2.Name = "txtNewRecord2";
             this.txtNewRecord2.Size = new System.Drawing.Size(100, 21);
             this.txtNewRecord2.TabIndex = 12;
             // 
             // txtNewRecord1
             // 
-            this.txtNewRecord1.Location = new System.Drawing.Point(190, 37);
+            this.txtNewRecord1.Location = new System.Drawing.Point(238, 64);
             this.txtNewRecord1.Name = "txtNewRecord1";
             this.txtNewRecord1.Size = new System.Drawing.Size(100, 21);
             this.txtNewRecord1.TabIndex = 11;
@@ -200,7 +200,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(215, 17);
+            this.label11.Location = new System.Drawing.Point(236, 17);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(53, 12);
             this.label11.TabIndex = 10;
@@ -209,7 +209,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(329, 17);
+            this.label10.Location = new System.Drawing.Point(372, 17);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 12);
             this.label10.TabIndex = 9;
@@ -218,7 +218,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(559, 17);
+            this.label9.Location = new System.Drawing.Point(644, 17);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 12);
             this.label9.TabIndex = 8;
@@ -227,7 +227,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(443, 17);
+            this.label8.Location = new System.Drawing.Point(508, 17);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 12);
             this.label8.TabIndex = 7;
@@ -236,7 +236,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(109, 17);
+            this.label7.Location = new System.Drawing.Point(100, 17);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 6;
@@ -245,7 +245,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 68);
+            this.label6.Location = new System.Drawing.Point(15, 91);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 5;
@@ -254,7 +254,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 41);
+            this.label1.Location = new System.Drawing.Point(15, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 0;
@@ -265,25 +265,27 @@
             this.groupBox5.Controls.Add(this.button9);
             this.groupBox5.Controls.Add(this.textBox36);
             this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Location = new System.Drawing.Point(12, 447);
+            this.groupBox5.Location = new System.Drawing.Point(12, 526);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(515, 42);
+            this.groupBox5.Size = new System.Drawing.Size(515, 63);
             this.groupBox5.TabIndex = 34;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "监控统计";
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(287, 12);
+            this.button9.Location = new System.Drawing.Point(277, 34);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 29;
             this.button9.Text = "清空";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Visible = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // textBox36
             // 
-            this.textBox36.Location = new System.Drawing.Point(148, 14);
+            this.textBox36.Location = new System.Drawing.Point(48, 36);
             this.textBox36.Name = "textBox36";
             this.textBox36.Size = new System.Drawing.Size(100, 21);
             this.textBox36.TabIndex = 25;
@@ -300,7 +302,7 @@
             // 
             // butClearAllTransactionDatabase
             // 
-            this.butClearAllTransactionDatabase.Location = new System.Drawing.Point(602, 453);
+            this.butClearAllTransactionDatabase.Location = new System.Drawing.Point(556, 554);
             this.butClearAllTransactionDatabase.Name = "butClearAllTransactionDatabase";
             this.butClearAllTransactionDatabase.Size = new System.Drawing.Size(109, 29);
             this.butClearAllTransactionDatabase.TabIndex = 33;
@@ -322,7 +324,7 @@
             this.groupBox4.Controls.Add(this.txtQuantity);
             this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Location = new System.Drawing.Point(12, 292);
+            this.groupBox4.Location = new System.Drawing.Point(8, 387);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(750, 133);
             this.groupBox4.TabIndex = 32;
@@ -443,7 +445,7 @@
             this.groupBox3.Controls.Add(this.txttxtQuantity0);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Location = new System.Drawing.Point(12, 192);
+            this.groupBox3.Location = new System.Drawing.Point(8, 288);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(750, 93);
             this.groupBox3.TabIndex = 31;
@@ -468,6 +470,8 @@
             this.button4.TabIndex = 26;
             this.button4.Text = "修复记录";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // cboe_TransactionDatabaseType2
             // 
@@ -516,7 +520,7 @@
             this.groupBox2.Controls.Add(this.txtWriteIndex);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Location = new System.Drawing.Point(11, 114);
+            this.groupBox2.Location = new System.Drawing.Point(11, 211);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(751, 71);
             this.groupBox2.TabIndex = 30;
@@ -525,9 +529,9 @@
             // 
             // butTransactionDatabaseReadIndex
             // 
-            this.butTransactionDatabaseReadIndex.Location = new System.Drawing.Point(611, 41);
+            this.butTransactionDatabaseReadIndex.Location = new System.Drawing.Point(610, 41);
             this.butTransactionDatabaseReadIndex.Name = "butTransactionDatabaseReadIndex";
-            this.butTransactionDatabaseReadIndex.Size = new System.Drawing.Size(89, 23);
+            this.butTransactionDatabaseReadIndex.Size = new System.Drawing.Size(135, 23);
             this.butTransactionDatabaseReadIndex.TabIndex = 23;
             this.butTransactionDatabaseReadIndex.Text = "更新上传断点";
             this.butTransactionDatabaseReadIndex.UseVisualStyleBackColor = true;
@@ -535,9 +539,9 @@
             // 
             // butTransactionDatabaseWriteIndex
             // 
-            this.butTransactionDatabaseWriteIndex.Location = new System.Drawing.Point(518, 41);
+            this.butTransactionDatabaseWriteIndex.Location = new System.Drawing.Point(610, 14);
             this.butTransactionDatabaseWriteIndex.Name = "butTransactionDatabaseWriteIndex";
-            this.butTransactionDatabaseWriteIndex.Size = new System.Drawing.Size(87, 23);
+            this.butTransactionDatabaseWriteIndex.Size = new System.Drawing.Size(135, 23);
             this.butTransactionDatabaseWriteIndex.TabIndex = 22;
             this.butTransactionDatabaseWriteIndex.Text = "上传记录尾号";
             this.butTransactionDatabaseWriteIndex.UseVisualStyleBackColor = true;
@@ -546,7 +550,7 @@
             // cbIsCircle
             // 
             this.cbIsCircle.AutoSize = true;
-            this.cbIsCircle.Location = new System.Drawing.Point(384, 41);
+            this.cbIsCircle.Location = new System.Drawing.Point(456, 39);
             this.cbIsCircle.Name = "cbIsCircle";
             this.cbIsCircle.Size = new System.Drawing.Size(60, 16);
             this.cbIsCircle.TabIndex = 21;
@@ -565,7 +569,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(382, 19);
+            this.label15.Location = new System.Drawing.Point(454, 17);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(53, 12);
             this.label15.TabIndex = 18;
@@ -573,7 +577,7 @@
             // 
             // txtReadIndex
             // 
-            this.txtReadIndex.Location = new System.Drawing.Point(263, 39);
+            this.txtReadIndex.Location = new System.Drawing.Point(302, 39);
             this.txtReadIndex.Name = "txtReadIndex";
             this.txtReadIndex.Size = new System.Drawing.Size(100, 21);
             this.txtReadIndex.TabIndex = 17;
@@ -582,7 +586,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(283, 19);
+            this.label14.Location = new System.Drawing.Point(300, 19);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(53, 12);
             this.label14.TabIndex = 16;
@@ -590,7 +594,7 @@
             // 
             // txtWriteIndex
             // 
-            this.txtWriteIndex.Location = new System.Drawing.Point(149, 39);
+            this.txtWriteIndex.Location = new System.Drawing.Point(165, 34);
             this.txtWriteIndex.Name = "txtWriteIndex";
             this.txtWriteIndex.Size = new System.Drawing.Size(100, 21);
             this.txtWriteIndex.TabIndex = 15;
@@ -599,7 +603,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(165, 19);
+            this.label13.Location = new System.Drawing.Point(166, 14);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(53, 12);
             this.label13.TabIndex = 14;
@@ -608,7 +612,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(47, 19);
+            this.label12.Location = new System.Drawing.Point(16, 17);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(53, 12);
             this.label12.TabIndex = 12;
@@ -618,7 +622,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 505);
+            this.ClientSize = new System.Drawing.Size(770, 601);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.butClearAllTransactionDatabase);
             this.Controls.Add(this.groupBox4);

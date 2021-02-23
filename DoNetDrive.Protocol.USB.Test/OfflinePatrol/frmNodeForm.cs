@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoNetDrive.Common.Extensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -70,6 +71,67 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
         {
 
         }
+        #region 多语言
 
+        protected string GetLanguage(string sKey)
+        {
+            return ToolLanguage.GetLanguage(Name, sKey);
+        }
+        protected string GetLanguage(string sKey, params object[] args)
+        {
+            string str = ToolLanguage.GetLanguage(Name, sKey);
+            return string.Format(str, args);
+        }
+
+
+        protected void GetLanguage(ToolStripItem ctr)
+        {
+            ctr.Text = ToolLanguage.GetLanguage(Name, ctr.Name);
+        }
+        protected void GetLanguage(Control ctr)
+        {
+            ctr.Text = ToolLanguage.GetLanguage(Name, ctr.Name);
+        }
+        protected void GetLanguage(DataGridView dg)
+        {
+            string sCols = GetLanguage($"{dg.Name}_Cols");
+            var sArr = sCols.SplitTrim(",");
+            var cols = dg.Columns;
+            for (int i = 0; i < cols.Count; i++)
+            {
+                var col = cols[i];
+                col.HeaderText = sArr[i];
+            }
+
+        }
+
+
+        protected void LoadComboxItemsLanguage(ComboBox cbx, string sKey)
+        {
+            int iOldSelectIndex = cbx.SelectedIndex;
+            cbx.Items.Clear();
+            string sItems = GetLanguage(sKey);
+            if (string.IsNullOrEmpty(sItems))
+                return;
+
+            string[] sArr = sItems.SplitTrim(",");
+            cbx.Items.AddRange(sArr);
+            if (cbx.Items.Count > iOldSelectIndex)
+            {
+                cbx.SelectedIndex = iOldSelectIndex;
+            }
+            else
+            {
+                cbx.SelectedIndex = 0;
+            }
+        }
+
+        public virtual void LoadUILanguage()
+        {
+            //指纹机、人脸机 调试程序
+            Text = GetLanguage("FormCaption");
+
+        }
+        #endregion
     }
 }

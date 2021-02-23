@@ -72,13 +72,13 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             byte sn = 0;
-            if (!byte.TryParse(txtAddress.Text,out sn))
+            if (!byte.TryParse(txtAddress.Text, out sn))
             {
                 MessageBox.Show("SN格式不正确！");
                 return;
             }
             SN_Parameter par = new SN_Parameter(sn);
-            WriteSN cmd = new WriteSN(cmdDtl,par);
+            WriteSN cmd = new WriteSN(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
             //处理返回值
@@ -105,7 +105,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
                 ReadVersion_Result result = cmde.Command.getResult() as ReadVersion_Result;
-                
+
                 Invoke(() =>
                 {
                     txtVersion.Text = result.Version;
@@ -152,12 +152,6 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             ExpireTime_Parameter par = new ExpireTime_Parameter(dtpExpireTime.Value);
             WriteExpireTime cmd = new WriteExpireTime(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
         }
 
         /// <summary>
@@ -233,11 +227,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             WriteStartupHoldTime cmd = new WriteStartupHoldTime(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+           
         }
 
         #endregion
@@ -272,11 +262,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             WriteCreateTime cmd = new WriteCreateTime(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+          
         }
         #endregion
 
@@ -311,11 +297,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             WriteLEDOpenHoldTime cmd = new WriteLEDOpenHoldTime(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+          
         }
         #endregion
 
@@ -349,14 +331,68 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             WriteRecordStorageMode cmd = new WriteRecordStorageMode(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                //string text = rbStorageMode0.Checked ? rbStorageMode0.Text : rbStorageMode1.Text;
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+          
         }
+        public override void LoadUILanguage()
+        {
+            base.LoadUILanguage();
+            GetLanguage(groupBox2);
+            GetLanguage(label3);
+            GetLanguage(groupBox3);
+            GetLanguage(label4);
+            GetLanguage(label5);
+            GetLanguage(groupBox1);
+            GetLanguage(label2);
+            GetLanguage(rbStorageMode0);
+            GetLanguage(rbStorageMode1);
+            GetLanguage(groupBox4);
+            GetLanguage(label6);
+            GetLanguage(label13);
+            GetLanguage(label18);
+            GetLanguage(label7);
+            GetLanguage(label12);
+            GetLanguage(label8);
+            GetLanguage(label11);
+            GetLanguage(label9);
+            GetLanguage(label10);
+            GetLanguage(groupBox5);
+            GetLanguage(label14);
+            GetLanguage(label16);
+            GetLanguage(label15);
+            GetLanguage(groupBox6);
+            GetLanguage(groupBox7);
+            GetLanguage(btnTestBuzzer);
+            GetLanguage(groupBox8);
+            GetLanguage(btnOpenFlash);
+            GetLanguage(btnCloseFlash);
+            GetLanguage(groupBox9);
+            GetLanguage(btnOpenLed);
+            GetLanguage(btnCloseLed);
+            GetLanguage(groupBox10);
+            GetLanguage(btnCloseLamp);
+            GetLanguage(btnOpenGreen);
+            GetLanguage(btnOpenRed);
+            GetLanguage(groupBox11);
+            GetLanguage(label23);
+            GetLanguage(btnTestVibrate);
+            GetLanguage(btnInitialize);
+            var btnRead = GetLanguage("btnRead");
+            var btnWrite = GetLanguage("btnWrite");
+            btnReadSN.Text = btnRead;
+            btnWriteSN.Text = btnWrite;
+            btnReadExpireTime.Text = btnRead;
+            btnWriteExpireTime.Text = btnWrite;
+            btnReadVersion.Text = btnRead;
+            btnReadRecordStorageMode.Text = btnRead;
+            btnWriteRecordStorageMode.Text = btnWrite;
+            ReadCreateTime.Text = btnRead;
+            WriteCreateTime.Text = btnWrite;
+            btnReadStartupHoldTime.Text = btnRead;
+            btnWriteStartupHoldTime.Text = btnWrite;
+            ReadLEDOpenTime.Text = btnRead;
+            WriteLEDOpenTime.Text = btnWrite;
 
+        }
         private void FrmSystem_Load(object sender, EventArgs e)
         {
             cmbStartupHoldTime.Items.Clear();
@@ -381,10 +417,11 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             string[] listVibrateTime = new string[650];
             for (int i = 0; i < listVibrateTime.Length; i++)
             {
-                listVibrateTime[i] = ((i+1) * 100).ToString();
+                listVibrateTime[i] = ((i + 1) * 100).ToString();
             }
             cmbVibrateTime.Items.AddRange(listVibrateTime);
             cmbVibrateTime.SelectedIndex = 5;
+            LoadUILanguage();
         }
 
         private void BtnTestBuzzer_Click(object sender, EventArgs e)
@@ -395,12 +432,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             TriggerBuzzer cmd = new TriggerBuzzer(cmdDtl);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                //string text = rbStorageMode0.Checked ? rbStorageMode0.Text : rbStorageMode1.Text;
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+          
         }
 
         private void BtnOpenLed_Click(object sender, EventArgs e)
@@ -412,12 +444,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             TriggerLED cmd = new TriggerLED(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                //string text = rbStorageMode0.Checked ? rbStorageMode0.Text : rbStorageMode1.Text;
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+          
         }
 
         private void BtnCloseLed_Click(object sender, EventArgs e)
@@ -429,12 +456,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             TriggerLED cmd = new TriggerLED(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                //string text = rbStorageMode0.Checked ? rbStorageMode0.Text : rbStorageMode1.Text;
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+           
         }
 
         private void BtnTestVibrate_Click(object sender, EventArgs e)
@@ -446,12 +468,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             TriggerVibrate cmd = new TriggerVibrate(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                //string text = rbStorageMode0.Checked ? rbStorageMode0.Text : rbStorageMode1.Text;
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+           
         }
 
         private void BtnOpenFlash_Click(object sender, EventArgs e)
@@ -463,12 +480,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             LCDFlash cmd = new LCDFlash(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                //string text = rbStorageMode0.Checked ? rbStorageMode0.Text : rbStorageMode1.Text;
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+           
         }
 
         private void BtnCloseFlash_Click(object sender, EventArgs e)
@@ -480,12 +492,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             LCDFlash cmd = new LCDFlash(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                //string text = rbStorageMode0.Checked ? rbStorageMode0.Text : rbStorageMode1.Text;
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+          
         }
 
         private void BtnCloseLamp_Click(object sender, EventArgs e)
@@ -497,12 +504,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             TriggerDoubleLamp cmd = new TriggerDoubleLamp(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                //string text = rbStorageMode0.Checked ? rbStorageMode0.Text : rbStorageMode1.Text;
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+          
         }
 
         private void BtnOpenGreen_Click(object sender, EventArgs e)
@@ -514,12 +516,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             TriggerDoubleLamp cmd = new TriggerDoubleLamp(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                //string text = rbStorageMode0.Checked ? rbStorageMode0.Text : rbStorageMode1.Text;
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+           
         }
 
         private void BtnOpenRed_Click(object sender, EventArgs e)
@@ -531,12 +528,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             TriggerDoubleLamp cmd = new TriggerDoubleLamp(cmdDtl, par);
             mMainForm.AddCommand(cmd);
 
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                //string text = rbStorageMode0.Checked ? rbStorageMode0.Text : rbStorageMode1.Text;
-                mMainForm.AddCmdLog(cmde, $"命令成功");
-            };
+           
         }
 
         private void BtnInitialize_Click(object sender, EventArgs e)
@@ -545,12 +537,8 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             if (cmdDtl == null) return;
             Initialize cmd = new Initialize(cmdDtl);
             mMainForm.AddCommand(cmd);
-
-            //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-
-            };
         }
+
+
     }
 }
