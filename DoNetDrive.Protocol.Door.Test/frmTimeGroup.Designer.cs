@@ -69,6 +69,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbWeekday = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnAddGroup = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,6 +105,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnAddGroup);
             this.groupBox1.Controls.Add(this.btnFillNowTime);
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.cbTimeGroup);
@@ -150,7 +152,7 @@
             // 
             // btnFillNowTime
             // 
-            this.btnFillNowTime.Location = new System.Drawing.Point(543, 236);
+            this.btnFillNowTime.Location = new System.Drawing.Point(9, 236);
             this.btnFillNowTime.Name = "btnFillNowTime";
             this.btnFillNowTime.Size = new System.Drawing.Size(123, 47);
             this.btnFillNowTime.TabIndex = 36;
@@ -161,7 +163,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(545, 221);
+            this.label18.Location = new System.Drawing.Point(11, 221);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(65, 12);
             this.label18.TabIndex = 35;
@@ -190,7 +192,7 @@
             // 
             this.endTimePicker8.CustomFormat = "HH:mm";
             this.endTimePicker8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker8.Location = new System.Drawing.Point(520, 161);
+            this.endTimePicker8.Location = new System.Drawing.Point(608, 161);
             this.endTimePicker8.Name = "endTimePicker8";
             this.endTimePicker8.ShowUpDown = true;
             this.endTimePicker8.Size = new System.Drawing.Size(57, 21);
@@ -201,7 +203,7 @@
             // 
             this.beginTimePicker8.CustomFormat = "HH:mm";
             this.beginTimePicker8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker8.Location = new System.Drawing.Point(606, 161);
+            this.beginTimePicker8.Location = new System.Drawing.Point(522, 161);
             this.beginTimePicker8.Name = "beginTimePicker8";
             this.beginTimePicker8.ShowUpDown = true;
             this.beginTimePicker8.Size = new System.Drawing.Size(57, 21);
@@ -212,7 +214,7 @@
             // 
             this.endTimePicker7.CustomFormat = "HH:mm";
             this.endTimePicker7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker7.Location = new System.Drawing.Point(348, 161);
+            this.endTimePicker7.Location = new System.Drawing.Point(430, 161);
             this.endTimePicker7.Name = "endTimePicker7";
             this.endTimePicker7.ShowUpDown = true;
             this.endTimePicker7.Size = new System.Drawing.Size(57, 21);
@@ -223,7 +225,7 @@
             // 
             this.beginTimePicker7.CustomFormat = "HH:mm";
             this.beginTimePicker7.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker7.Location = new System.Drawing.Point(434, 161);
+            this.beginTimePicker7.Location = new System.Drawing.Point(348, 161);
             this.beginTimePicker7.Name = "beginTimePicker7";
             this.beginTimePicker7.ShowUpDown = true;
             this.beginTimePicker7.Size = new System.Drawing.Size(57, 21);
@@ -234,7 +236,7 @@
             // 
             this.endTimePicker6.CustomFormat = "HH:mm";
             this.endTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker6.Location = new System.Drawing.Point(176, 161);
+            this.endTimePicker6.Location = new System.Drawing.Point(261, 161);
             this.endTimePicker6.Name = "endTimePicker6";
             this.endTimePicker6.ShowUpDown = true;
             this.endTimePicker6.Size = new System.Drawing.Size(57, 21);
@@ -245,7 +247,7 @@
             // 
             this.beginTimePicker6.CustomFormat = "HH:mm";
             this.beginTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker6.Location = new System.Drawing.Point(262, 161);
+            this.beginTimePicker6.Location = new System.Drawing.Point(174, 161);
             this.beginTimePicker6.Name = "beginTimePicker6";
             this.beginTimePicker6.ShowUpDown = true;
             this.beginTimePicker6.Size = new System.Drawing.Size(57, 21);
@@ -256,7 +258,7 @@
             // 
             this.endTimePicker5.CustomFormat = "HH:mm";
             this.endTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker5.Location = new System.Drawing.Point(4, 161);
+            this.endTimePicker5.Location = new System.Drawing.Point(84, 161);
             this.endTimePicker5.Name = "endTimePicker5";
             this.endTimePicker5.ShowUpDown = true;
             this.endTimePicker5.Size = new System.Drawing.Size(57, 21);
@@ -267,7 +269,7 @@
             // 
             this.beginTimePicker5.CustomFormat = "HH:mm";
             this.beginTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker5.Location = new System.Drawing.Point(90, 161);
+            this.beginTimePicker5.Location = new System.Drawing.Point(6, 161);
             this.beginTimePicker5.Name = "beginTimePicker5";
             this.beginTimePicker5.ShowUpDown = true;
             this.beginTimePicker5.Size = new System.Drawing.Size(57, 21);
@@ -300,7 +302,7 @@
             // 
             this.endTimePicker3.CustomFormat = "HH:mm";
             this.endTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker3.Location = new System.Drawing.Point(348, 95);
+            this.endTimePicker3.Location = new System.Drawing.Point(430, 95);
             this.endTimePicker3.Name = "endTimePicker3";
             this.endTimePicker3.ShowUpDown = true;
             this.endTimePicker3.Size = new System.Drawing.Size(57, 21);
@@ -311,7 +313,7 @@
             // 
             this.beginTimePicker3.CustomFormat = "HH:mm";
             this.beginTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker3.Location = new System.Drawing.Point(435, 95);
+            this.beginTimePicker3.Location = new System.Drawing.Point(349, 95);
             this.beginTimePicker3.Name = "beginTimePicker3";
             this.beginTimePicker3.ShowUpDown = true;
             this.beginTimePicker3.Size = new System.Drawing.Size(57, 21);
@@ -322,7 +324,7 @@
             // 
             this.endTimePicker2.CustomFormat = "HH:mm";
             this.endTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker2.Location = new System.Drawing.Point(174, 95);
+            this.endTimePicker2.Location = new System.Drawing.Point(261, 95);
             this.endTimePicker2.Name = "endTimePicker2";
             this.endTimePicker2.ShowUpDown = true;
             this.endTimePicker2.Size = new System.Drawing.Size(57, 21);
@@ -333,7 +335,7 @@
             // 
             this.beginTimePicker2.CustomFormat = "HH:mm";
             this.beginTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker2.Location = new System.Drawing.Point(261, 95);
+            this.beginTimePicker2.Location = new System.Drawing.Point(181, 95);
             this.beginTimePicker2.Name = "beginTimePicker2";
             this.beginTimePicker2.ShowUpDown = true;
             this.beginTimePicker2.Size = new System.Drawing.Size(57, 21);
@@ -344,7 +346,7 @@
             // 
             this.endTimePicker1.CustomFormat = "HH:mm";
             this.endTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker1.Location = new System.Drawing.Point(0, 95);
+            this.endTimePicker1.Location = new System.Drawing.Point(90, 95);
             this.endTimePicker1.Name = "endTimePicker1";
             this.endTimePicker1.ShowUpDown = true;
             this.endTimePicker1.Size = new System.Drawing.Size(57, 21);
@@ -355,7 +357,7 @@
             // 
             this.beginTimePicker1.CustomFormat = "HH:mm";
             this.beginTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.beginTimePicker1.Location = new System.Drawing.Point(87, 95);
+            this.beginTimePicker1.Location = new System.Drawing.Point(4, 95);
             this.beginTimePicker1.Name = "beginTimePicker1";
             this.beginTimePicker1.ShowUpDown = true;
             this.beginTimePicker1.Size = new System.Drawing.Size(57, 21);
@@ -365,7 +367,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(518, 140);
+            this.label16.Location = new System.Drawing.Point(606, 140);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(59, 12);
             this.label16.TabIndex = 18;
@@ -374,7 +376,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(603, 140);
+            this.label17.Location = new System.Drawing.Point(519, 140);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(59, 12);
             this.label17.TabIndex = 17;
@@ -383,7 +385,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(348, 140);
+            this.label14.Location = new System.Drawing.Point(430, 140);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(59, 12);
             this.label14.TabIndex = 16;
@@ -392,7 +394,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(433, 140);
+            this.label15.Location = new System.Drawing.Point(347, 140);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 12);
             this.label15.TabIndex = 15;
@@ -401,7 +403,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(178, 140);
+            this.label12.Location = new System.Drawing.Point(263, 140);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(59, 12);
             this.label12.TabIndex = 14;
@@ -410,7 +412,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(263, 140);
+            this.label13.Location = new System.Drawing.Point(175, 140);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(59, 12);
             this.label13.TabIndex = 13;
@@ -419,7 +421,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 140);
+            this.label10.Location = new System.Drawing.Point(88, 140);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 12);
             this.label10.TabIndex = 12;
@@ -428,7 +430,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(93, 140);
+            this.label11.Location = new System.Drawing.Point(9, 140);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 12);
             this.label11.TabIndex = 11;
@@ -455,7 +457,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(348, 70);
+            this.label6.Location = new System.Drawing.Point(430, 70);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 12);
             this.label6.TabIndex = 8;
@@ -464,7 +466,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(434, 70);
+            this.label7.Location = new System.Drawing.Point(348, 70);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 12);
             this.label7.TabIndex = 7;
@@ -473,7 +475,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(176, 70);
+            this.label4.Location = new System.Drawing.Point(263, 70);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 12);
             this.label4.TabIndex = 6;
@@ -482,7 +484,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(262, 70);
+            this.label5.Location = new System.Drawing.Point(182, 70);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 12);
             this.label5.TabIndex = 5;
@@ -491,7 +493,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 70);
+            this.label3.Location = new System.Drawing.Point(94, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 12);
             this.label3.TabIndex = 4;
@@ -500,7 +502,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(90, 70);
+            this.label2.Location = new System.Drawing.Point(7, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 12);
             this.label2.TabIndex = 3;
@@ -532,6 +534,16 @@
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "星期：";
+            // 
+            // btnAddGroup
+            // 
+            this.btnAddGroup.Location = new System.Drawing.Point(498, 242);
+            this.btnAddGroup.Name = "btnAddGroup";
+            this.btnAddGroup.Size = new System.Drawing.Size(168, 34);
+            this.btnAddGroup.TabIndex = 37;
+            this.btnAddGroup.Text = "上传本开门时段";
+            this.btnAddGroup.UseVisualStyleBackColor = true;
+            this.btnAddGroup.Click += new System.EventHandler(this.btnAddGroup_Click);
             // 
             // frmTimeGroup
             // 
@@ -595,5 +607,6 @@
         private System.Windows.Forms.ComboBox cbTimeGroup;
         private System.Windows.Forms.Button btnFillNowTime;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button btnAddGroup;
     }
 }

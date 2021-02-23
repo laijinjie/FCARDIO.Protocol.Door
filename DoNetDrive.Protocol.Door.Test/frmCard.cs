@@ -1141,8 +1141,12 @@ namespace DoNetDrive.Protocol.Door.Test
             mCardChanging = false;
         }
 
+
         #endregion
 
+        private void button7_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

@@ -75,7 +75,7 @@ namespace DoNetDrive.Protocol.Door.Test
         }
         private void frmTimeGroup_Load(object sender, EventArgs e)
         {
-           
+
             LoadUILanguage();
         }
 
@@ -223,7 +223,6 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-
             AddTimeGroup_Parameter par = new AddTimeGroup_Parameter(ListWeekTimeGroup);
             AddTimeGroup cmd = new AddTimeGroup(cmdDtl, par);
             mMainForm.AddCommand(cmd);
@@ -382,6 +381,21 @@ namespace DoNetDrive.Protocol.Door.Test
                 ListWeekTimeGroup.Add(weekTimeGroup);
             }
 
+        }
+        /// <summary>
+        /// 上传本开门时段
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddGroup_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var timeGroup = ListWeekTimeGroup[cbTimeGroup.SelectedIndex];
+            var list = new List<WeekTimeGroup>() { timeGroup };
+            AddTimeGroup_Parameter par = new AddTimeGroup_Parameter(list);
+            AddTimeGroup cmd = new AddTimeGroup(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
         }
     }
 }

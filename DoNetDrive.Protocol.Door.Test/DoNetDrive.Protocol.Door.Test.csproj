@@ -46,24 +46,31 @@
     </Reference>
     <Reference Include="DoNetDrive.Common">
       <HintPath>..\Output\Release\net45\DoNetDrive.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Core">
       <HintPath>..\Output\Release\net45\DoNetDrive.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol">
       <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Door">
       <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Door.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Util">
       <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Util.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\Output\Release\net45\DotNetty.Buffers.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Common">
       <HintPath>..\Output\Release\net45\DotNetty.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

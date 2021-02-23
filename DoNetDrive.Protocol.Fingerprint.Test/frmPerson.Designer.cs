@@ -135,6 +135,7 @@
             // 
             this.dgPersonList.AllowUserToAddRows = false;
             this.dgPersonList.AllowUserToDeleteRows = false;
+            this.dgPersonList.AllowUserToOrderColumns = true;
             this.dgPersonList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPersonList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,

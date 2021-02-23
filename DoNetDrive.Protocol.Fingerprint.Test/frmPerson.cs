@@ -192,14 +192,20 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 ReadPersonDataBase_Result result = cmde.Command.getResult() as ReadPersonDataBase_Result;
                 StringBuilder sLogs = new StringBuilder();
+                StringBuilder sLogs2 = new StringBuilder();
                 Invoke(() =>
                 {
                     if (result.DataBaseSize > 0)
                     {
+                        result.PersonList = result.PersonList.OrderBy(o => o.IsFaceFeatureCode).ToList();
                         foreach (Data.Person person in result.PersonList)
                         {
                             AddPersonToList(person);
                             DebugPersonDetail(person, sLogs);
+                            if (!person.IsFaceFeatureCode)
+                            {
+                                sLogs2.Append(person.UserCode + ",");
+                            }
                         }
                     }
                     PersonList.RaiseListChangedEvents = true;
@@ -209,6 +215,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
 
                 mMainForm.AddCmdLog(cmde, Lng("Msg_7") + result.DataBaseSize);
+                if (sLogs2.Length > 0)
+                {
+                    sLogs2.Length += 1;
+                    frmRecord.SaveFile(sLogs2,"没有图片人员编号" + $"{DateTime.Now:yyyyMMddHHmmss}.txt");
+                }
                 if (sLogs.Length > 0)
                 {
                     string sFile = frmRecord.SaveFile(sLogs, Lng("Msg_8") + $"{DateTime.Now:yyyyMMddHHmmss}.txt");

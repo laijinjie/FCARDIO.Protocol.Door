@@ -386,7 +386,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(700, 389);
+            this.tabPage4.Size = new System.Drawing.Size(712, 388);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "卡详情描述";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -398,7 +398,7 @@
             this.txtDebug.Multiline = true;
             this.txtDebug.Name = "txtDebug";
             this.txtDebug.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDebug.Size = new System.Drawing.Size(694, 383);
+            this.txtDebug.Size = new System.Drawing.Size(706, 382);
             this.txtDebug.TabIndex = 0;
             this.txtDebug.WordWrap = false;
             // 
@@ -414,7 +414,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(700, 389);
+            this.tabPage3.Size = new System.Drawing.Size(712, 388);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "创建测试卡";
             // 
@@ -795,6 +795,7 @@
             this.button7.TabIndex = 40;
             this.button7.Text = "设置节假日开关";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // chkDoor4
             // 
