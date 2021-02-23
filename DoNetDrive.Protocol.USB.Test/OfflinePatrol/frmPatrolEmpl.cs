@@ -62,7 +62,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
         {
             base.LoadUILanguage();
             GetLanguage(butReadDatabaseDetail);
-            GetLanguage(butCreateCardNumByOrder);
+            GetLanguage(butReadDatabase);
             GetLanguage(butClearDataBase);
             GetLanguage(btnWriteEmpl);
             GetLanguage(butClearGrid);
