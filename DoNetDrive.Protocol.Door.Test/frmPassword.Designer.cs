@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.butAddPassword = new DevComponents.DotNetBar.ButtonX();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.butReadPasswordDetail = new DevComponents.DotNetBar.ButtonX();
-            this.butClearPassword = new DevComponents.DotNetBar.ButtonX();
-            this.butReadAllPassword = new DevComponents.DotNetBar.ButtonX();
+            this.butAddPassword = new System.Windows.Forms.Button();
+            this.labelX1 = new System.Windows.Forms.Label();
+            this.groupPanel1 = new System.Windows.Forms.GroupBox();
+            this.butReadPasswordDetail = new System.Windows.Forms.Button();
+            this.butClearPassword = new System.Windows.Forms.Button();
+            this.butReadAllPassword = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,11 +78,9 @@
             // butAddPassword
             // 
             this.butAddPassword.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.butAddPassword.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.butAddPassword.Location = new System.Drawing.Point(320, 36);
             this.butAddPassword.Name = "butAddPassword";
             this.butAddPassword.Size = new System.Drawing.Size(109, 52);
-            this.butAddPassword.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.butAddPassword.TabIndex = 25;
             this.butAddPassword.Text = "添加列表密码";
             this.butAddPassword.Click += new System.EventHandler(this.ButAddPassword_Click);
@@ -91,8 +89,6 @@
             // 
             // 
             // 
-            // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Location = new System.Drawing.Point(12, 100);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(263, 23);
@@ -100,54 +96,22 @@
             this.labelX1.Text = "密码列表：";
             // 
             // groupPanel1
-            // 
-            this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel1.Controls.Add(this.butReadPasswordDetail);
             this.groupPanel1.Controls.Add(this.butClearPassword);
             this.groupPanel1.Controls.Add(this.butReadAllPassword);
             this.groupPanel1.Location = new System.Drawing.Point(12, 12);
             this.groupPanel1.Name = "groupPanel1";
             this.groupPanel1.Size = new System.Drawing.Size(558, 82);
-            // 
-            // 
-            // 
-            this.groupPanel1.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.groupPanel1.Style.BackColorGradientAngle = 90;
-            this.groupPanel1.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.groupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderBottomWidth = 1;
-            this.groupPanel1.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.groupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderLeftWidth = 1;
-            this.groupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderRightWidth = 1;
-            this.groupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderTopWidth = 1;
-            this.groupPanel1.Style.CornerDiameter = 4;
-            this.groupPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.groupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.groupPanel1.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.groupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
-            // 
-            // 
-            // 
-            this.groupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+
             this.groupPanel1.TabIndex = 23;
             this.groupPanel1.Text = "控制板中的密码表";
             // 
             // butReadPasswordDetail
             // 
             this.butReadPasswordDetail.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.butReadPasswordDetail.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.butReadPasswordDetail.Location = new System.Drawing.Point(12, 3);
             this.butReadPasswordDetail.Name = "butReadPasswordDetail";
             this.butReadPasswordDetail.Size = new System.Drawing.Size(121, 52);
-            this.butReadPasswordDetail.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.butReadPasswordDetail.TabIndex = 1;
             this.butReadPasswordDetail.Text = "读取密码库存储详情";
             this.butReadPasswordDetail.Click += new System.EventHandler(this.ButReadPasswordDetail_Click);
@@ -155,11 +119,9 @@
             // butClearPassword
             // 
             this.butClearPassword.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.butClearPassword.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.butClearPassword.Location = new System.Drawing.Point(428, 3);
             this.butClearPassword.Name = "butClearPassword";
             this.butClearPassword.Size = new System.Drawing.Size(109, 52);
-            this.butClearPassword.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.butClearPassword.TabIndex = 3;
             this.butClearPassword.Text = "删除所有密码表";
             this.butClearPassword.Click += new System.EventHandler(this.ButClearPassword_Click);
@@ -167,11 +129,9 @@
             // butReadAllPassword
             // 
             this.butReadAllPassword.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.butReadAllPassword.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.butReadAllPassword.Location = new System.Drawing.Point(148, 3);
             this.butReadAllPassword.Name = "butReadAllPassword";
             this.butReadAllPassword.Size = new System.Drawing.Size(142, 52);
-            this.butReadAllPassword.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.butReadAllPassword.TabIndex = 2;
             this.butReadAllPassword.Text = "从控制板读取所有密码表";
             this.butReadAllPassword.Click += new System.EventHandler(this.ButReadAllPassword_Click);
@@ -561,12 +521,12 @@
         }
 
         #endregion
-        private DevComponents.DotNetBar.ButtonX butAddPassword;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
-        private DevComponents.DotNetBar.ButtonX butReadPasswordDetail;
-        private DevComponents.DotNetBar.ButtonX butClearPassword;
-        private DevComponents.DotNetBar.ButtonX butReadAllPassword;
+        private System.Windows.Forms.Button butAddPassword;
+        private System.Windows.Forms.Label labelX1;
+        private System.Windows.Forms.GroupBox groupPanel1;
+        private System.Windows.Forms.Button butReadPasswordDetail;
+        private System.Windows.Forms.Button butClearPassword;
+        private System.Windows.Forms.Button butReadAllPassword;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.CheckBox cbReverse;
         private System.Windows.Forms.Button btnClearList;

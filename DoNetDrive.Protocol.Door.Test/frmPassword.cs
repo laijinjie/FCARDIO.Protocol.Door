@@ -128,6 +128,10 @@ namespace DoNetDrive.Protocol.Door.Test
                 mMainForm.AddCmdLog(cmde, log);
             };
         }
+        public bool CheckProtocolTypeIs89H()
+        {
+            return mMainForm.CheckProtocolTypeIs89H();
+        }
 
         /// <summary>
         /// 从控制板读取所有密码表 事件
@@ -139,7 +143,7 @@ namespace DoNetDrive.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H|| mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door59)
+            if (CheckProtocolTypeIs89H())
             {
                 Door89H.Password.ReadAllPassword cmd
                     = new Door89H.Password.ReadAllPassword(cmdDtl);
@@ -210,7 +214,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 MessageBox.Show(GetLanguage("msg6"));
                 return;
             }
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door88)
+            if (!CheckProtocolTypeIs89H())
             {
                 List<PasswordDetail> _list = new List<PasswordDetail>();
 
@@ -349,7 +353,7 @@ namespace DoNetDrive.Protocol.Door.Test
             dto.Door3 = cbbit2.Checked;
             dto.Door4 = cbbit3.Checked;
             dto.Password = txtPassword.Text;
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H || mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door59)
+            if (CheckProtocolTypeIs89H())
             {
                 if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
                 {
@@ -405,11 +409,11 @@ namespace DoNetDrive.Protocol.Door.Test
                 return;
             }
             //Door89H.Password.
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H || mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door59)
+            if (CheckProtocolTypeIs89H())
             {
                 List<Door89H.Password.PasswordDetail> _list = new List<Door89H.Password.PasswordDetail>();
                 Door89H.Password.PasswordDetail password = new Door89H.Password.PasswordDetail();
-             //   if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H || mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door59) 
+                //   if (CheckProtocolTypeIs89H()) 
                 {
                     password.OpenTimes = cmbOpenTimes.SelectedIndex;
                     if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
@@ -436,7 +440,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 List<PasswordDetail> _list = new List<PasswordDetail>();
                 PasswordDetail password = new PasswordDetail();
-                if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H || mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door59)
+                if (CheckProtocolTypeIs89H())
                 {
                     password.OpenTimes = cmbOpenTimes.SelectedIndex;
                     if (cmbOpenTimes.SelectedIndex == cmbOpenTimes.Items.Count - 1)
@@ -480,7 +484,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
 
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H|| mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door59)
+            if (CheckProtocolTypeIs89H())
             {
                 List<Door89H.Password.PasswordDetail> _list = new List<Door89H.Password.PasswordDetail>();
                 Door89H.Password.PasswordDetail detail = new Door89H.Password.PasswordDetail();
@@ -515,7 +519,7 @@ namespace DoNetDrive.Protocol.Door.Test
         /// <param name="e"></param>
         private void BtnDelSelect_Click(object sender, EventArgs e)
         {
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door88)
+            if (!CheckProtocolTypeIs89H())
             {
                 List<PasswordDetail> _list = new List<PasswordDetail>();
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)

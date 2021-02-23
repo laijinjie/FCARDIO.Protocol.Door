@@ -242,6 +242,10 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             LoadUILanguage();
         }
+        public bool CheckProtocolTypeIs89H()
+        {
+            return mMainForm.CheckProtocolTypeIs89H();
+        }
 
         #region 记录类型
         public void e_TransactionDatabaseType()
@@ -347,7 +351,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 par.PacketSize = PacketSize;
             }
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door88)
+            if (!CheckProtocolTypeIs89H())
             {
                 //var cmd = new Door8800.Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex(cmdDtl, par);
                 var cmd = new Door8800.Transaction.ReadTransactionDatabase(cmdDtl, par);
@@ -395,7 +399,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.Timeout = 2000;
             var par = new Door8800.Transaction.ReadTransactionDatabaseByIndex_Parameter((cboe_TransactionDatabaseType3.SelectedIndex + 1), ReadIndex, Quantity);
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door88)
+            if (!CheckProtocolTypeIs89H())
             {
                 var cmd = new Door8800.Transaction.ReadTransactionDatabaseByIndex(cmdDtl, par);
 

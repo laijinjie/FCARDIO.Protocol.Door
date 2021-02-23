@@ -58,6 +58,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             LoadUILanguage();
 
+            butReadRecordQRCode.Click += ButReadRecordQRCode_Click;
+            butWriteRecordQRCode.Click += ButWriteRecordQRCode_Click;
+            cmbRecordQRCode.SelectedIndexChanged += CmbRecordQRCode_SelectedIndexChanged;
+            butReadLightPattern.Click += ButReadLightPattern_Click;
+            butWriteLightPattern.Click += ButWriteLightPattern_Click;
+            butReadSaveRecordImage.Click += ButReadSaveRecordImage_Click;
+            butWriteSaveRecordImage.Click += ButWriteSaveRecordImage_Click;
+            butReadAuthenticationMode.Click += ButReadAuthenticationMode_Click;
+            butWriteAuthenticationMode.Click += ButWriteAuthenticationMode_Click;
+
         }
 
         #region 多语言
@@ -228,12 +238,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbReadCardByte.Items.AddRange(ReadCardByteList);
             cmbReadCardByte.SelectedIndex = 0;
 
-          
+
             var IsUseList = Lng("IsUseList").Split(',');
             cmbWGOutput.Items.AddRange(IsUseList);
             cmbWGOutput.SelectedIndex = 0;
 
-           
+
             cbxAutoIP.Items.AddRange(IsUseList);
             cbxAutoIP.SelectedIndex = 0;
 
@@ -292,6 +302,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             CmbFaceBioassay.SelectedIndex = 0;
             IniDriveLanguage();
             IniDriveVolume();
+
+            IniAuthenticationMode();
+            IniSaveRecordImage();
+            IniLightPattern();
+            IniRecordQRCode();
         }
         #endregion
 
@@ -1041,12 +1056,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 {
                     txtManufacturer.Text = result.Detail.Manufacturer;
                     txtWebAddr.Text = result.Detail.WebAddr;
-                    if(result.Detail.DeliveryDate !=DateTime.MinValue)
+                    if (result.Detail.DeliveryDate != DateTime.MinValue)
                     {
                         dtpDate.Value = result.Detail.DeliveryDate;
                         dtpTime.Value = result.Detail.DeliveryDate;
                     }
-                    
+
                 });
                 //  mMainForm.AddCmdLog(cmde, "");
             };
@@ -1545,7 +1560,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void butRequireConnectServer_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
-            
+
             if (cmdDtl == null) return;
             cmdDtl.Timeout = 3500;
             var cmd = new RequireConnectServer(cmdDtl);
@@ -1702,5 +1717,252 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             FormatController cmd = new FormatController(cmdDtl);
             mMainForm.AddCommand(cmd);
         }
+
+        #region 认证模式
+        /// <summary>
+        /// 初始化认证模式
+        /// </summary>
+        private void IniAuthenticationMode()
+        {
+            string[] AuthenticationModeList = Lng("AuthenticationModeList").SplitTrim(",");
+            cmbAuthenticationMode.Items.Clear();
+            cmbAuthenticationMode.Items.AddRange(AuthenticationModeList);
+            cmbAuthenticationMode.SelectedIndex = 0;
+
+            
+        }
+
+        private void ButReadAuthenticationMode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            ReadAuthenticationMode cmd = new ReadAuthenticationMode(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadAuthenticationMode_Result result = cmde.Result as ReadAuthenticationMode_Result;
+
+                Invoke(() =>
+                {
+                    if (result.AuthenticationMode < 6)
+                    {
+                        cmbAuthenticationMode.SelectedIndex = result.AuthenticationMode - 1;
+                        mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{cmbAuthenticationMode.Text}");
+                    }
+                    else
+                    {
+                        mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{result.AuthenticationMode}");
+                    }
+
+                });
+
+            };
+
+        }
+
+
+        private void ButWriteAuthenticationMode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            int Lang = cmbAuthenticationMode.SelectedIndex + 1;
+            WriteAuthenticationMode_Parameter par = new WriteAuthenticationMode_Parameter(Lang);
+            WriteAuthenticationMode cmd = new WriteAuthenticationMode(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 认证记录保存现场照片开关
+        /// <summary>
+        /// 初始认证记录保存现场照片开关
+        /// </summary>
+        private void IniSaveRecordImage()
+        {
+            string[] SaveRecordImageList = Lng("SaveRecordImageList").SplitTrim(",");
+            cmbSaveRecordImage.Items.Clear();
+            cmbSaveRecordImage.Items.AddRange(SaveRecordImageList);
+            cmbSaveRecordImage.SelectedIndex = 0;
+
+            
+        }
+
+        private void ButReadSaveRecordImage_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            ReadSaveRecordImage cmd = new ReadSaveRecordImage(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadSaveRecordImage_Result result = cmde.Result as ReadSaveRecordImage_Result;
+
+                Invoke(() =>
+                {
+                    if (result.SaveImageSwitch)
+                        cmbSaveRecordImage.SelectedIndex = 0;
+                    else
+                        cmbSaveRecordImage.SelectedIndex = 1;
+                    mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{cmbSaveRecordImage.Text}");
+
+                });
+
+            };
+
+        }
+
+
+        private void ButWriteSaveRecordImage_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            bool use = cmbSaveRecordImage.SelectedIndex == 0;
+            WriteSaveRecordImage_Parameter par = new WriteSaveRecordImage_Parameter(use);
+            WriteSaveRecordImage cmd = new WriteSaveRecordImage(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 感光模式
+        /// <summary>
+        /// 初始感光模式
+        /// </summary>
+        private void IniLightPattern()
+        {
+            string[] LightPatternList = Lng("LightPatternList").SplitTrim(",");
+            cmbLightPattern.Items.Clear();
+            cmbLightPattern.Items.AddRange(LightPatternList);
+            cmbLightPattern.SelectedIndex = 0;
+
+           
+        }
+
+        private void ButReadLightPattern_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            ReadLightPattern cmd = new ReadLightPattern(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadLightPattern_Result result = cmde.Result as ReadLightPattern_Result;
+
+                Invoke(() =>
+                {
+                    if (result.LightPattern <= 2)
+                    {
+                        cmbLightPattern.SelectedIndex = result.LightPattern - 1;
+                        mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{cmbLightPattern.Text}");
+                    }
+
+                    else
+                        mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{result.LightPattern }");
+
+                });
+
+            };
+
+        }
+
+
+        private void ButWriteLightPattern_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            int light = cmbLightPattern.SelectedIndex + 1;
+            WriteLightPattern_Parameter par = new WriteLightPattern_Parameter(light);
+            WriteLightPattern cmd = new WriteLightPattern(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+        #region 识别结果查询二维码生成开关
+        /// <summary>
+        /// 初始化识别结果查询二维码生成开关
+        /// </summary>
+        private void IniRecordQRCode()
+        {
+            string[] RecordQRCodeList = Lng("RecordQRCodeList").SplitTrim(",");
+            cmbRecordQRCode.Items.Clear();
+            cmbRecordQRCode.Items.AddRange(RecordQRCodeList);
+            cmbRecordQRCode.SelectedIndex = 0;
+
+            
+        }
+
+        private void CmbRecordQRCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cmbRecordQRCode.SelectedIndex ==1)
+            {
+                txtRecordQRCodeURL.Visible = false;
+                lblRecordQRCodeURL.Visible = false;
+            }
+            else
+            {
+                txtRecordQRCodeURL.Visible = true;
+                lblRecordQRCodeURL.Visible = true;
+            }
+        }
+
+        private void ButReadRecordQRCode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+
+            ReadRecordQRCode cmd = new ReadRecordQRCode(cmdDtl);
+            mMainForm.AddCommand(cmd);
+
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                ReadRecordQRCode_Result result = cmde.Result as ReadRecordQRCode_Result;
+
+                Invoke(() =>
+                {
+                    if (result.QRCodeSwitch)
+                    {
+                        cmbRecordQRCode.SelectedIndex = 0;
+                        txtRecordQRCodeURL.Text = result.ServerURL;
+
+                        mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{cmbRecordQRCode.Text} URL:{result.ServerURL}");
+                    }
+                        
+                    else
+                    {
+                        cmbRecordQRCode.SelectedIndex = 1;
+                        txtRecordQRCodeURL.Text = string.Empty;
+
+                        mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{cmbRecordQRCode.Text}");
+                    }
+                        
+
+                    
+                });
+
+            };
+
+        }
+
+
+        private void ButWriteRecordQRCode_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            bool use = cmbRecordQRCode.SelectedIndex ==0 ;
+            string url = txtRecordQRCodeURL.Text;
+            WriteRecordQRCode_Parameter par = new WriteRecordQRCode_Parameter(use, url);
+            if(!par.checkedParameter())
+            {
+
+                return;
+            }
+            WriteRecordQRCode cmd = new WriteRecordQRCode(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
     }
 }

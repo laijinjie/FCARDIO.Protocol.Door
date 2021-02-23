@@ -195,6 +195,26 @@
             this.cmb_FaceBodyTemperatureShow = new System.Windows.Forms.ComboBox();
             this.Txt_ShortMessage = new System.Windows.Forms.TextBox();
             this.But_ReadFaceBodyTemperatureAlarm = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.gbRecordQRCode = new System.Windows.Forms.GroupBox();
+            this.txtRecordQRCodeURL = new System.Windows.Forms.TextBox();
+            this.lblRecordQRCodeURL = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbRecordQRCode = new System.Windows.Forms.ComboBox();
+            this.butWriteRecordQRCode = new System.Windows.Forms.Button();
+            this.butReadRecordQRCode = new System.Windows.Forms.Button();
+            this.gbLightPattern = new System.Windows.Forms.GroupBox();
+            this.cmbLightPattern = new System.Windows.Forms.ComboBox();
+            this.butWriteLightPattern = new System.Windows.Forms.Button();
+            this.butReadLightPattern = new System.Windows.Forms.Button();
+            this.gbSaveRecordImage = new System.Windows.Forms.GroupBox();
+            this.cmbSaveRecordImage = new System.Windows.Forms.ComboBox();
+            this.butWriteSaveRecordImage = new System.Windows.Forms.Button();
+            this.butReadSaveRecordImage = new System.Windows.Forms.Button();
+            this.gbAuthenticationMode = new System.Windows.Forms.GroupBox();
+            this.cmbAuthenticationMode = new System.Windows.Forms.ComboBox();
+            this.butWriteAuthenticationMode = new System.Windows.Forms.Button();
+            this.butReadAuthenticationMode = new System.Windows.Forms.Button();
             this.tpNetwork = new System.Windows.Forms.TabPage();
             this.gbClientDetail = new System.Windows.Forms.GroupBox();
             this.LblServerStatus = new System.Windows.Forms.Label();
@@ -240,6 +260,11 @@
             this.tabPage3.SuspendLayout();
             this.gpDeviceVolume.SuspendLayout();
             this.gpDeviceLanguage.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.gbRecordQRCode.SuspendLayout();
+            this.gbLightPattern.SuspendLayout();
+            this.gbSaveRecordImage.SuspendLayout();
+            this.gbAuthenticationMode.SuspendLayout();
             this.tpNetwork.SuspendLayout();
             this.gbClientDetail.SuspendLayout();
             this.gbServerDetail.SuspendLayout();
@@ -250,6 +275,7 @@
             this.tabControl1.Controls.Add(this.tpPar1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tpNetwork);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -1734,7 +1760,7 @@
             // 
             // butWriteLanguage
             // 
-            this.butWriteLanguage.Location = new System.Drawing.Point(258, 38);
+            this.butWriteLanguage.Location = new System.Drawing.Point(258, 40);
             this.butWriteLanguage.Name = "butWriteLanguage";
             this.butWriteLanguage.Size = new System.Drawing.Size(48, 23);
             this.butWriteLanguage.TabIndex = 57;
@@ -1744,7 +1770,7 @@
             // 
             // butReadLanguage
             // 
-            this.butReadLanguage.Location = new System.Drawing.Point(202, 38);
+            this.butReadLanguage.Location = new System.Drawing.Point(202, 40);
             this.butReadLanguage.Name = "butReadLanguage";
             this.butReadLanguage.Size = new System.Drawing.Size(48, 23);
             this.butReadLanguage.TabIndex = 58;
@@ -1962,6 +1988,205 @@
             this.But_ReadFaceBodyTemperatureAlarm.Text = "读取";
             this.But_ReadFaceBodyTemperatureAlarm.UseVisualStyleBackColor = true;
             this.But_ReadFaceBodyTemperatureAlarm.Click += new System.EventHandler(this.But_ReadFaceBodyTemperatureAlarm_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.gbRecordQRCode);
+            this.tabPage1.Controls.Add(this.gbLightPattern);
+            this.tabPage1.Controls.Add(this.gbSaveRecordImage);
+            this.tabPage1.Controls.Add(this.gbAuthenticationMode);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(765, 547);
+            this.tabPage1.TabIndex = 5;
+            this.tabPage1.Text = "参数4";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // gbRecordQRCode
+            // 
+            this.gbRecordQRCode.Controls.Add(this.txtRecordQRCodeURL);
+            this.gbRecordQRCode.Controls.Add(this.lblRecordQRCodeURL);
+            this.gbRecordQRCode.Controls.Add(this.label1);
+            this.gbRecordQRCode.Controls.Add(this.cmbRecordQRCode);
+            this.gbRecordQRCode.Controls.Add(this.butWriteRecordQRCode);
+            this.gbRecordQRCode.Controls.Add(this.butReadRecordQRCode);
+            this.gbRecordQRCode.Location = new System.Drawing.Point(43, 185);
+            this.gbRecordQRCode.Name = "gbRecordQRCode";
+            this.gbRecordQRCode.Size = new System.Drawing.Size(659, 79);
+            this.gbRecordQRCode.TabIndex = 9;
+            this.gbRecordQRCode.TabStop = false;
+            this.gbRecordQRCode.Text = "识别结果查询二维码生成开关";
+            // 
+            // txtRecordQRCodeURL
+            // 
+            this.txtRecordQRCodeURL.Location = new System.Drawing.Point(74, 51);
+            this.txtRecordQRCodeURL.MaxLength = 120;
+            this.txtRecordQRCodeURL.Name = "txtRecordQRCodeURL";
+            this.txtRecordQRCodeURL.Size = new System.Drawing.Size(579, 21);
+            this.txtRecordQRCodeURL.TabIndex = 62;
+            // 
+            // lblRecordQRCodeURL
+            // 
+            this.lblRecordQRCodeURL.Location = new System.Drawing.Point(7, 50);
+            this.lblRecordQRCodeURL.Name = "lblRecordQRCodeURL";
+            this.lblRecordQRCodeURL.Size = new System.Drawing.Size(61, 23);
+            this.lblRecordQRCodeURL.TabIndex = 61;
+            this.lblRecordQRCodeURL.Text = "URL：";
+            this.lblRecordQRCodeURL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(7, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 23);
+            this.label1.TabIndex = 60;
+            this.label1.Text = "开关：";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbRecordQRCode
+            // 
+            this.cmbRecordQRCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRecordQRCode.FormattingEnabled = true;
+            this.cmbRecordQRCode.Location = new System.Drawing.Point(74, 23);
+            this.cmbRecordQRCode.Name = "cmbRecordQRCode";
+            this.cmbRecordQRCode.Size = new System.Drawing.Size(94, 20);
+            this.cmbRecordQRCode.TabIndex = 59;
+            // 
+            // butWriteRecordQRCode
+            // 
+            this.butWriteRecordQRCode.Location = new System.Drawing.Point(605, 20);
+            this.butWriteRecordQRCode.Name = "butWriteRecordQRCode";
+            this.butWriteRecordQRCode.Size = new System.Drawing.Size(48, 23);
+            this.butWriteRecordQRCode.TabIndex = 57;
+            this.butWriteRecordQRCode.Text = "写入";
+            this.butWriteRecordQRCode.UseVisualStyleBackColor = true;
+            // 
+            // butReadRecordQRCode
+            // 
+            this.butReadRecordQRCode.Location = new System.Drawing.Point(549, 20);
+            this.butReadRecordQRCode.Name = "butReadRecordQRCode";
+            this.butReadRecordQRCode.Size = new System.Drawing.Size(48, 23);
+            this.butReadRecordQRCode.TabIndex = 58;
+            this.butReadRecordQRCode.Text = "读取";
+            this.butReadRecordQRCode.UseVisualStyleBackColor = true;
+            // 
+            // gbLightPattern
+            // 
+            this.gbLightPattern.Controls.Add(this.cmbLightPattern);
+            this.gbLightPattern.Controls.Add(this.butWriteLightPattern);
+            this.gbLightPattern.Controls.Add(this.butReadLightPattern);
+            this.gbLightPattern.Location = new System.Drawing.Point(43, 100);
+            this.gbLightPattern.Name = "gbLightPattern";
+            this.gbLightPattern.Size = new System.Drawing.Size(320, 79);
+            this.gbLightPattern.TabIndex = 8;
+            this.gbLightPattern.TabStop = false;
+            this.gbLightPattern.Text = "感光模式";
+            // 
+            // cmbLightPattern
+            // 
+            this.cmbLightPattern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLightPattern.FormattingEnabled = true;
+            this.cmbLightPattern.Location = new System.Drawing.Point(6, 23);
+            this.cmbLightPattern.Name = "cmbLightPattern";
+            this.cmbLightPattern.Size = new System.Drawing.Size(308, 20);
+            this.cmbLightPattern.TabIndex = 59;
+            // 
+            // butWriteLightPattern
+            // 
+            this.butWriteLightPattern.Location = new System.Drawing.Point(266, 50);
+            this.butWriteLightPattern.Name = "butWriteLightPattern";
+            this.butWriteLightPattern.Size = new System.Drawing.Size(48, 23);
+            this.butWriteLightPattern.TabIndex = 57;
+            this.butWriteLightPattern.Text = "写入";
+            this.butWriteLightPattern.UseVisualStyleBackColor = true;
+            // 
+            // butReadLightPattern
+            // 
+            this.butReadLightPattern.Location = new System.Drawing.Point(210, 50);
+            this.butReadLightPattern.Name = "butReadLightPattern";
+            this.butReadLightPattern.Size = new System.Drawing.Size(48, 23);
+            this.butReadLightPattern.TabIndex = 58;
+            this.butReadLightPattern.Text = "读取";
+            this.butReadLightPattern.UseVisualStyleBackColor = true;
+            // 
+            // gbSaveRecordImage
+            // 
+            this.gbSaveRecordImage.Controls.Add(this.cmbSaveRecordImage);
+            this.gbSaveRecordImage.Controls.Add(this.butWriteSaveRecordImage);
+            this.gbSaveRecordImage.Controls.Add(this.butReadSaveRecordImage);
+            this.gbSaveRecordImage.Location = new System.Drawing.Point(382, 15);
+            this.gbSaveRecordImage.Name = "gbSaveRecordImage";
+            this.gbSaveRecordImage.Size = new System.Drawing.Size(320, 79);
+            this.gbSaveRecordImage.TabIndex = 7;
+            this.gbSaveRecordImage.TabStop = false;
+            this.gbSaveRecordImage.Text = "照片保存开关";
+            // 
+            // cmbSaveRecordImage
+            // 
+            this.cmbSaveRecordImage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSaveRecordImage.FormattingEnabled = true;
+            this.cmbSaveRecordImage.Location = new System.Drawing.Point(6, 23);
+            this.cmbSaveRecordImage.Name = "cmbSaveRecordImage";
+            this.cmbSaveRecordImage.Size = new System.Drawing.Size(308, 20);
+            this.cmbSaveRecordImage.TabIndex = 59;
+            // 
+            // butWriteSaveRecordImage
+            // 
+            this.butWriteSaveRecordImage.Location = new System.Drawing.Point(266, 50);
+            this.butWriteSaveRecordImage.Name = "butWriteSaveRecordImage";
+            this.butWriteSaveRecordImage.Size = new System.Drawing.Size(48, 23);
+            this.butWriteSaveRecordImage.TabIndex = 57;
+            this.butWriteSaveRecordImage.Text = "写入";
+            this.butWriteSaveRecordImage.UseVisualStyleBackColor = true;
+            // 
+            // butReadSaveRecordImage
+            // 
+            this.butReadSaveRecordImage.Location = new System.Drawing.Point(210, 50);
+            this.butReadSaveRecordImage.Name = "butReadSaveRecordImage";
+            this.butReadSaveRecordImage.Size = new System.Drawing.Size(48, 23);
+            this.butReadSaveRecordImage.TabIndex = 58;
+            this.butReadSaveRecordImage.Text = "读取";
+            this.butReadSaveRecordImage.UseVisualStyleBackColor = true;
+            // 
+            // gbAuthenticationMode
+            // 
+            this.gbAuthenticationMode.Controls.Add(this.cmbAuthenticationMode);
+            this.gbAuthenticationMode.Controls.Add(this.butWriteAuthenticationMode);
+            this.gbAuthenticationMode.Controls.Add(this.butReadAuthenticationMode);
+            this.gbAuthenticationMode.Location = new System.Drawing.Point(43, 15);
+            this.gbAuthenticationMode.Name = "gbAuthenticationMode";
+            this.gbAuthenticationMode.Size = new System.Drawing.Size(320, 79);
+            this.gbAuthenticationMode.TabIndex = 6;
+            this.gbAuthenticationMode.TabStop = false;
+            this.gbAuthenticationMode.Text = "认证模式";
+            // 
+            // cmbAuthenticationMode
+            // 
+            this.cmbAuthenticationMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAuthenticationMode.FormattingEnabled = true;
+            this.cmbAuthenticationMode.Location = new System.Drawing.Point(6, 23);
+            this.cmbAuthenticationMode.Name = "cmbAuthenticationMode";
+            this.cmbAuthenticationMode.Size = new System.Drawing.Size(308, 20);
+            this.cmbAuthenticationMode.TabIndex = 59;
+            // 
+            // butWriteAuthenticationMode
+            // 
+            this.butWriteAuthenticationMode.Location = new System.Drawing.Point(266, 50);
+            this.butWriteAuthenticationMode.Name = "butWriteAuthenticationMode";
+            this.butWriteAuthenticationMode.Size = new System.Drawing.Size(48, 23);
+            this.butWriteAuthenticationMode.TabIndex = 57;
+            this.butWriteAuthenticationMode.Text = "写入";
+            this.butWriteAuthenticationMode.UseVisualStyleBackColor = true;
+            // 
+            // butReadAuthenticationMode
+            // 
+            this.butReadAuthenticationMode.Location = new System.Drawing.Point(210, 50);
+            this.butReadAuthenticationMode.Name = "butReadAuthenticationMode";
+            this.butReadAuthenticationMode.Size = new System.Drawing.Size(48, 23);
+            this.butReadAuthenticationMode.TabIndex = 58;
+            this.butReadAuthenticationMode.Text = "读取";
+            this.butReadAuthenticationMode.UseVisualStyleBackColor = true;
             // 
             // tpNetwork
             // 
@@ -2293,6 +2518,12 @@
             this.gpDeviceVolume.PerformLayout();
             this.gpDeviceLanguage.ResumeLayout(false);
             this.gpDeviceLanguage.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.gbRecordQRCode.ResumeLayout(false);
+            this.gbRecordQRCode.PerformLayout();
+            this.gbLightPattern.ResumeLayout(false);
+            this.gbSaveRecordImage.ResumeLayout(false);
+            this.gbAuthenticationMode.ResumeLayout(false);
             this.tpNetwork.ResumeLayout(false);
             this.gbClientDetail.ResumeLayout(false);
             this.gbClientDetail.PerformLayout();
@@ -2496,5 +2727,25 @@
         private System.Windows.Forms.Button Btn_ReadFaceBioassay;
         private System.Windows.Forms.Button Btn_WriteFaceBioassay;
         private System.Windows.Forms.Button BtnFormatController;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox gbRecordQRCode;
+        private System.Windows.Forms.TextBox txtRecordQRCodeURL;
+        private System.Windows.Forms.Label lblRecordQRCodeURL;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbRecordQRCode;
+        private System.Windows.Forms.Button butWriteRecordQRCode;
+        private System.Windows.Forms.Button butReadRecordQRCode;
+        private System.Windows.Forms.GroupBox gbLightPattern;
+        private System.Windows.Forms.ComboBox cmbLightPattern;
+        private System.Windows.Forms.Button butWriteLightPattern;
+        private System.Windows.Forms.Button butReadLightPattern;
+        private System.Windows.Forms.GroupBox gbSaveRecordImage;
+        private System.Windows.Forms.ComboBox cmbSaveRecordImage;
+        private System.Windows.Forms.Button butWriteSaveRecordImage;
+        private System.Windows.Forms.Button butReadSaveRecordImage;
+        private System.Windows.Forms.GroupBox gbAuthenticationMode;
+        private System.Windows.Forms.ComboBox cmbAuthenticationMode;
+        private System.Windows.Forms.Button butWriteAuthenticationMode;
+        private System.Windows.Forms.Button butReadAuthenticationMode;
     }
 }

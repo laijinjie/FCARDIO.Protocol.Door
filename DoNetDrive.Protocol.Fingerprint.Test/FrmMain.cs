@@ -21,10 +21,8 @@ using System.Windows.Forms;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN;
 using System.Linq;
 using System.Configuration;
-using DoNetDrive.Protocol.Fingerprint.Test.Properties;
 using System.Security.Cryptography.X509Certificates;
 using System.IO;
-using AutoUpdaterDotNET;
 using DotNetty.Buffers;
 using DoNetDrive.Protocol.OnlineAccess;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SearchControltor;
@@ -111,56 +109,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             tbEvent.SelectedIndex = 1;
             IniConnTypeList();
 
-            BeginAutoUpdate();
-
-
-        }
-        #region 自动更新
-        private void BeginAutoUpdate()
-        {
-            #region 自动更新
-            AutoUpdater.UpdateMode = Mode.ForcedDownload;
-            AutoUpdater.ShowSkipButton = false;
-            AutoUpdater.ShowRemindLaterButton = false;
-            AutoUpdater.RunUpdateAsAdmin = true;
-            AutoUpdater.Mandatory = true;
-            AutoUpdater.Start("http://oss2.pc15.net/ToolDownload/Update/FaceDebugToolForNet/1update.xml");
-            AutoUpdater.CheckForUpdateEvent += AutoUpdater_CheckForUpdateEvent;
-            IniForm();
-            // AutoUpdater.
-            #endregion
-        }
-
-
-        private void AutoUpdater_CheckForUpdateEvent(UpdateInfoEventArgs args)
-        {
-            if (!args.IsUpdateAvailable)
+            Task.Run(() =>
             {
-                Task.Run(() =>
-                {
-                    System.Threading.Thread.Sleep(100);
-                    Invoke(new Action(IniForm));
+                System.Threading.Thread.Sleep(100);
+                Invoke(new Action(IniForm));
 
-                });
-            }
-            else
-            {
-
-                AutoUpdater.DownloadUpdate(args);
-
-                this.Invoke(() =>
-                {
-                    this.Close();
-                    this.Dispose();
-                    Application.Exit();
-                });
-            }
+            });
 
         }
-
-
-        #endregion
-
 
 
         #region 多语言
@@ -1462,6 +1418,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             AddCommandClassNameList(typeof(SystemParameter.SendConnectTestResponse));// 连接握手回包
 
+
+
+            AddCommandClassNameList(typeof(SystemParameter.ReadAuthenticationMode));//读取人脸机认证模式
+            AddCommandClassNameList(typeof(SystemParameter.WriteAuthenticationMode));//设置人脸机认证模式
+            AddCommandClassNameList(typeof(SystemParameter.ReadSaveRecordImage));//读取认证记录保存现场照片开关
+            AddCommandClassNameList(typeof(SystemParameter.WriteSaveRecordImage));//设置认证记录保存现场照片开关
+            AddCommandClassNameList(typeof(SystemParameter.ReadRecordQRCode));//读取识别结果查询二维码生成开关
+            AddCommandClassNameList(typeof(SystemParameter.WriteRecordQRCode));//设置识别结果查询二维码生成开关
+            AddCommandClassNameList(typeof(SystemParameter.ReadLightPattern));//读取感光模式
+            AddCommandClassNameList(typeof(SystemParameter.WriteLightPattern));//设置感光模式
         }
 
 
@@ -1608,7 +1574,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             foreach (IPAddress oItem in localentry.AddressList)
             {
                 IPAddress ip = oItem;
-
+                
                 if (ip.IsIPv4MappedToIPv6)
                 {
                     ip = ip.MapToIPv4();
@@ -2068,12 +2034,20 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 mTCPServer_Port = int.Parse(txtTCPServerPort.Text);
                 if (ChkTLS12.Checked)
                 {
+                    string sSSLFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SSLX509.pfx");
+                    if(File.Exists(sSSLFile))
+                    {
+                        byte[] x509Data = File.ReadAllBytes(sSSLFile);
+                        var x509 = new X509Certificate2(x509Data, "BRUsqOWH");
+                        var tcp = new TCPServerDetail(mTCPServer_IP, mTCPServer_Port, true, x509);
 
-                    var x509Data = Resources.SSLX509;
-                    var x509 = new X509Certificate2(x509Data, "BRUsqOWH");
-                    var tcp = new TCPServerDetail(mTCPServer_IP, mTCPServer_Port, true, x509);
-
-                    mAllocator.OpenConnector(tcp);
+                        mAllocator.OpenConnector(tcp);
+                    }
+                    else
+                    {
+                        MessageBox.Show("没有找到SSL证书");
+                    }
+                    
                 }
                 else
                 {

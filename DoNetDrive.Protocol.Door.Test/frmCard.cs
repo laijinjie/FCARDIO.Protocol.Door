@@ -131,13 +131,18 @@ namespace DoNetDrive.Protocol.Door.Test
         #endregion
 
         #region 读取所有授权卡
+        public bool CheckProtocolTypeIs89H()
+        {
+            return mMainForm.CheckProtocolTypeIs89H();
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             INCommand cmd;
             var par = new Door8800.Card.ReadCardDataBase_Parameter(cmbcardType.SelectedIndex + 1);
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+            if (CheckProtocolTypeIs89H())
             {
                 cmd = new Door89H.Card.ReadCardDataBase(cmdDtl, par);
             }
@@ -296,7 +301,7 @@ namespace DoNetDrive.Protocol.Door.Test
             INCommand cmd = null;
 
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+            if (CheckProtocolTypeIs89H())
             {
 
                 List<Door89H.Data.CardDetail> cards = new List<Door89H.Data.CardDetail>();
@@ -345,7 +350,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.Timeout = 5000;
             INCommand cmd = null;
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+            if (CheckProtocolTypeIs89H())
             {
 
                 List<Door89H.Data.CardDetail> cards = new List<Door89H.Data.CardDetail>();
@@ -430,7 +435,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             try
             {
-                if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+                if (CheckProtocolTypeIs89H())
                 {
                     var par = new Door89H.Card.ReadCardDetail_Parameter(card);
                     cmd = new Door89H.Card.ReadCardDetail(cmdDtl, par);
@@ -778,7 +783,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.Timeout = 10000;
             INCommand cmd;
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+            if (CheckProtocolTypeIs89H())
             {
 
                 List<Door89H.Data.CardDetail> cards = new List<Door89H.Data.CardDetail>();
@@ -937,7 +942,7 @@ namespace DoNetDrive.Protocol.Door.Test
             if (iCardNum == 0)
             {
                 cardNum = (UInt64)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
-                if (iType == CommandDetailFactory.ControllerType.Door89H)
+                if (CheckProtocolTypeIs89H())
                 {
                     cardNum2 = (UInt64)(mCardRnd.Next(mCardMax) % (mCardMax - mCardMin + 1) + mCardMin);
                     cardNum = (cardNum << 32) + cardNum2;
@@ -967,7 +972,7 @@ namespace DoNetDrive.Protocol.Door.Test
             }
 
 
-            if (iType == CommandDetailFactory.ControllerType.Door89H)
+            if (CheckProtocolTypeIs89H())
             {
                 var fc89HCard = new Door89H.Data.CardDetail();
                 card = fc89HCard;
@@ -1019,7 +1024,7 @@ namespace DoNetDrive.Protocol.Door.Test
             INCommand cmd = null;
             CardDetailBase card = ContorlToCardDetail();
             if (card == null) return;
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+            if (CheckProtocolTypeIs89H())
             {
 
                 List<Door89H.Data.CardDetail> cards = new List<Door89H.Data.CardDetail>();
@@ -1050,7 +1055,7 @@ namespace DoNetDrive.Protocol.Door.Test
             cmdDtl.RestartCount = 0;
             INCommand cmd = null;
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+            if (CheckProtocolTypeIs89H())
             {
 
                 List<Door89H.Data.CardDetail> cards = new List<Door89H.Data.CardDetail>();

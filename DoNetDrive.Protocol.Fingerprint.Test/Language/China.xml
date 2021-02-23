@@ -237,6 +237,14 @@
     <DoNetDrive_Protocol_Fingerprint_Door_WriteDoorOpenCheckMode value= "设置开门验证方式 "/>
     <DoNetDrive_Protocol_Fingerprint_SystemParameter_SendConnectTestResponse value= "PONG"/>
 
+    <DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadAuthenticationMode    value ="读取人脸机认证模式"         />
+    <DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteAuthenticationMode    value ="设置人脸机认证模式"        />
+    <DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadSaveRecordImage    value ="读取认证记录保存现场照片开关"  />
+    <DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteSaveRecordImage    value ="设置认证记录保存现场照片开关" />
+    <DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadRecordQRCode    value ="读取识别结果查询二维码生成开关"   />
+    <DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteRecordQRCode    value ="设置识别结果查询二维码生成开关"  />
+    <DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadLightPattern    value ="读取感光模式"                     />
+    <DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteLightPattern    value ="设置感光模式"                    />
   </frmMain>
   <frmSystem>
     <FormCaption value="设备系统参数"/>
@@ -467,6 +475,10 @@
     <Msg_71                                   value = "最近一次保活包发送时间"/>
     <DoorAccessModeResult value = "开门验证方式："/>
     <btnReadSystemStatus value = "读取"/>
+    <AuthenticationModeList value = "1、标准模式,2、人脸+密码,3、卡+人脸,4、多人考勤,5、人证比对"/>
+    <SaveRecordImageList value = "启用,禁用"/>
+    <LightPatternList value = "1、增亮,2、减暗"/>
+    <RecordQRCodeList value = "启用,禁用"/>
   </frmSystem>
   <frmTime>
     <FormCaption              value="时钟" />

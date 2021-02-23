@@ -30,10 +30,16 @@ namespace DoNetDrive.Protocol.Door.Test
         INCommandDetail GetCommandDetail();
 
         /// <summary>
-        /// 
+        /// 获取协议类型
         /// </summary>
         /// <returns></returns>
         CommandDetailFactory.ControllerType GetProtocolType();
+
+        /// <summary>
+        /// 检查协议版本是否为89H
+        /// </summary>
+        /// <returns></returns>
+        bool CheckProtocolTypeIs89H();
 
         /// <summary>
         /// 将命令加入到分配器开始执行

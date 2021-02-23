@@ -471,7 +471,7 @@ namespace DoNetDrive.Protocol.Door.Test
             string temp3 = GetLanguage("Msg5");
             string use = GetLanguage("Msg6");
             cmbVerifyType.Items.Clear();
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door58)
+            if (!CheckProtocolTypeIs89H())
             {
                 cmbVerifyType.Items.AddRange(new string[] { disable, temp1 });
             }
@@ -803,6 +803,11 @@ namespace DoNetDrive.Protocol.Door.Test
         #endregion
 
         #region 读卡器参数读写
+        public bool CheckProtocolTypeIs89H()
+        {
+            return mMainForm.CheckProtocolTypeIs89H();
+        }
+
         private void BtnReadReaderOption_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -824,7 +829,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 Invoke(() =>
                 {
                     int count = 2;
-                    if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+                    if (CheckProtocolTypeIs89H())
                     {
                         count = 4;
                     }
@@ -870,7 +875,7 @@ namespace DoNetDrive.Protocol.Door.Test
             //门1读卡器字节数
             Door[0] = (byte)(cbxDoor1ReaderOption.SelectedIndex + 1);
             Door[1] = (byte)(cbxDoor2ReaderOption.SelectedIndex + 1);
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+            if (CheckProtocolTypeIs89H())
             {
                 Door[2] = (byte)(cbxDoor3ReaderOption.SelectedIndex + 1);
                 Door[3] = (byte)(cbxDoor4ReaderOption.SelectedIndex + 1);
@@ -883,13 +888,13 @@ namespace DoNetDrive.Protocol.Door.Test
 
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door88)
+            if (CheckProtocolTypeIs89H())
             {
                 ReaderOption_Parameter par = new ReaderOption_Parameter(Door);
                 WriteReaderOption<ReaderOption_Parameter> cmd = new WriteReaderOption<ReaderOption_Parameter>(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
-            else if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door89H)
+            else if (CheckProtocolTypeIs89H())
             {
                 Door89H.Door.ReaderOption.ReaderOption_Parameter par = new Door89H.Door.ReaderOption.ReaderOption_Parameter(Door);
                 WriteReaderOption<Door89H.Door.ReaderOption.ReaderOption_Parameter> cmd = new WriteReaderOption<Door89H.Door.ReaderOption.ReaderOption_Parameter>(cmdDtl, par);
@@ -2206,7 +2211,7 @@ namespace DoNetDrive.Protocol.Door.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             var par = new Door8800.Door.DoorPort_Parameter(int.Parse(cmdDoorNum.Text));
 
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door88)
+            if (!CheckProtocolTypeIs89H())
             {
                 var cmd = new Door8800.Door.InvalidCardAlarmOption.ReadInvalidCardAlarmOption(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
@@ -2237,7 +2242,7 @@ namespace DoNetDrive.Protocol.Door.Test
             byte door = byte.Parse(cmdDoorNum.Text);
 
             var par = new Door8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption_Parameter(door, use, (byte)(cmbReadInvalidCardTime.SelectedIndex));
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door88)
+            if (!CheckProtocolTypeIs89H())
             {
                 var cmd = new Door8800.Door.InvalidCardAlarmOption.WriteInvalidCardAlarmOption(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
@@ -2861,7 +2866,7 @@ namespace DoNetDrive.Protocol.Door.Test
             {
                 cmd = new ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, false));
             }
-            else if (protocolType == CommandDetailFactory.ControllerType.Door89H)
+            else if (CheckProtocolTypeIs89H())
             {
                 cmd = new Door89H.Door.MultiCard.ReadMultiCard(cmdDtl, new ReadMultiCard_Parameter(cmdDoorNum.SelectedIndex + 1, false));
             }
@@ -2966,7 +2971,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 WriteMultiCard cmd = new WriteMultiCard(cmdDtl, par);
                 mMainForm.AddCommand(cmd);
             }
-            else if (protocolType == CommandDetailFactory.ControllerType.Door89H)
+            else if (CheckProtocolTypeIs89H())
             {
                 Door89H.Door.MultiCard.WriteMultiCard_Parameter par = new Door89H.Door.MultiCard.WriteMultiCard_Parameter(door, (byte)cmbManyCardOpenMode.SelectedIndex, (byte)cmbAntiPassback.SelectedIndex, (byte)cmbVerifyType.SelectedIndex
                         , bAcount, bBcount
@@ -3041,7 +3046,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
         private void CmbGroupType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mMainForm.GetProtocolType() == CommandDetailFactory.ControllerType.Door58)
+            if (!CheckProtocolTypeIs89H())
             {
                 return;
             }

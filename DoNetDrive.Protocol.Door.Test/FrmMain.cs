@@ -23,6 +23,7 @@ using DoNetDrive.Protocol.Door.Door8800.Door.ReaderOption;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.Watch;
 using DoNetDrive.Protocol.Door.Test.Language;
 using DoNetDrive.Protocol.Door8800;
+using System.Reflection;
 
 namespace DoNetDrive.Protocol.Door.Test
 {
@@ -91,7 +92,9 @@ namespace DoNetDrive.Protocol.Door.Test
         /// <param name="e"></param>
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            _IsClosed = false;
+            
+
+               _IsClosed = false;
             Task.Run(() =>
             {
                 System.Threading.Thread.Sleep(100);
@@ -99,6 +102,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             });
         }
+
 
 
         /// <summary>
@@ -682,6 +686,15 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             return (CommandDetailFactory.ControllerType)cmdProtocolType.SelectedItem;
         }
+
+        public bool CheckProtocolTypeIs89H()
+        {
+            var eType = GetProtocolType();
+            return eType == CommandDetailFactory.ControllerType.Door89H ||
+                 eType == CommandDetailFactory.ControllerType.Door59 ||
+                 eType == CommandDetailFactory.ControllerType.Door5926T;
+        }
+
 
         #region 通讯日志
         private bool mShowIOEvent = true;

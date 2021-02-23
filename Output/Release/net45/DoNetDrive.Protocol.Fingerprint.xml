@@ -7944,6 +7944,401 @@
             将命令打包成一个Packet，准备发送
             </summary>
         </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadAuthenticationMode">
+            <summary>
+            读取人脸机认证模式
+            2021年2月22日 添加 人脸机固件 5.36以上版本支持
+            1、标准模式 默认值；2、人脸+密码；3、卡+人脸；4、多人考勤；5、人证比对
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadAuthenticationMode.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建读取人脸机认证模式的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadAuthenticationMode.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadAuthenticationMode.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode_Parameter">
+            <summary>
+            设置认证模式的参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode_Parameter.AuthenticationMode">
+            <summary>
+            认证模式,取值范围：1-5；
+            1、标准模式 默认值；2、人脸+密码；3、卡+人脸；4、多人考勤；5、人证比对
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode_Parameter.#ctor">
+            <summary>
+            构建一个空的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode_Parameter.#ctor(System.Int32)">
+            <summary>
+            创建设置认证模式的参数
+            </summary>
+            <param name="iAuthenticationMode">认证模式,取值范围：1-5；</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            编码参数
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadAuthenticationMode_Result">
+            <summary>
+            认证模式 返回值
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode">
+            <summary>
+            设置人脸机认证模式
+            2021年2月22日 添加 人脸机固件 5.36以上版本支持
+            1、标准模式 默认值；2、人脸+密码；3、卡+人脸；4、多人考勤；5、人证比对
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode_Parameter)">
+            <summary>
+            创建设置人脸机认证模式的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadSaveRecordImage">
+            <summary>
+            读取认证记录保存现场照片开关
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadSaveRecordImage.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建读取认证记录保存现场照片开关的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadSaveRecordImage.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadSaveRecordImage.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadSaveRecordImage_Result">
+            <summary>
+            读取认证记录保存现场照片开关的返回值
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage">
+            <summary>
+            设置认证记录保存现场照片开关
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage_Parameter)">
+            <summary>
+            创建设置人脸机认证模式的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage_Parameter">
+            <summary>
+            设置认证记录保存现场照片开关的参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage_Parameter.SaveImageSwitch">
+            <summary>
+            保存现场照片开关
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage_Parameter.#ctor">
+            <summary>
+            构建一个空的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage_Parameter.#ctor(System.Boolean)">
+            <summary>
+            创建设置认证记录保存现场照片开关的参数
+            </summary>
+            <param name="bSwitch">保存现场照片开关</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            编码参数
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteSaveRecordImage_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadRecordQRCode">
+            <summary>
+            读取识别结果查询二维码生成开关
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadRecordQRCode.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建读取认证记录保存现场照片开关的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadRecordQRCode.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadRecordQRCode.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadRecordQRCode_Result">
+            <summary>
+            读取识别结果查询二维码生成开关的返回值
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode">
+            <summary>
+            设置识别结果查询二维码生成开关
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode_Parameter)">
+            <summary>
+            创建设置识别结果查询二维码生成开关的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode_Parameter">
+            <summary>
+            设置识别结果查询二维码生成开关的参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode_Parameter.QRCodeSwitch">
+            <summary>
+            二维码生成开关
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode_Parameter.ServerURL">
+            <summary>
+            二维码中包含的网址；
+            示例： http://www.abc.com/FaceRecord/QueryQRcode.html；
+            最大120个字符。
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode_Parameter.#ctor">
+            <summary>
+            构建一个空的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode_Parameter.#ctor(System.Boolean,System.String)">
+            <summary>
+            创建设置识别结果查询二维码生成开关的参数
+            </summary>
+            <param name="bSwitch">识别结果查询二维码生成开关</param>
+            <param name="sURL">二维码中包含的网址</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            编码参数
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteRecordQRCode_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadLightPattern">
+            <summary>
+            读取感光模式；
+            1、增亮；2、减暗；
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadLightPattern.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            创建读取认证记录保存现场照片开关的命令;
+            1、增亮；2、减暗；
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadLightPattern.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadLightPattern.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.ReadLightPattern_Result">
+            <summary>
+            读取感光模式的返回值
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern">
+            <summary>
+            设置感光模式
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern_Parameter)">
+            <summary>
+            创建设置感光模式的命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern_Parameter">
+            <summary>
+            设置感光模式的参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern_Parameter.LightPattern">
+            <summary>
+            感光模式；1、增亮；2、减暗；
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern_Parameter.#ctor">
+            <summary>
+            构建一个空的实例
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern_Parameter.#ctor(System.Int32)">
+            <summary>
+            创建设置认证记录保存现场照片开关的参数
+            </summary>
+            <param name="iMode">感光模式</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern_Parameter.GetDataLen">
+            <summary>
+            获取数据长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern_Parameter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            编码参数
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            解码参数
+            </summary>
+            <param name="databuf"></param>
+        </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.SendConnectTestResponse">
             <summary>
             连接测试响应消息

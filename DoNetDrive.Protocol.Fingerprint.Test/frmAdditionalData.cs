@@ -98,8 +98,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            int iUsercode = 0;
-            if (!int.TryParse(txtDownloadUserCode.Text, out iUsercode) || iUsercode < 0)
+            uint iUsercode = 0;
+            if (!uint.TryParse(txtDownloadUserCode.Text, out iUsercode) || iUsercode < 0)
             {
                 return;
             }
