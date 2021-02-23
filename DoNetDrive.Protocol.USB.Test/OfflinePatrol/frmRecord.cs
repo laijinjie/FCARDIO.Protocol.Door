@@ -85,13 +85,14 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                     TextBox txtWriteIndex = FindControl(groupBox1, "txtWriteIndex" + (i + 1).ToString()) as TextBox;
                     TextBox txtReadIndex = FindControl(groupBox1, "txtReadIndex" + (i + 1).ToString()) as TextBox;
                     TextBox txtIsCircle = FindControl(groupBox1, "txtIsCircle" + (i + 1).ToString()) as TextBox;
+                    var isCircle = GetLanguage("IsCircle").Split(',');
                     Invoke(() =>
                     {
                         txtQuantity.Text = result.DatabaseDetail.ListTransaction[i].DataBaseMaxSize.ToString();
                         txtWriteIndex.Text = result.DatabaseDetail.ListTransaction[i].WriteIndex.ToString();
                         txtNewRecord.Text = result.DatabaseDetail.ListTransaction[i].readable().ToString();
                         txtReadIndex.Text = result.DatabaseDetail.ListTransaction[i].ReadIndex.ToString();
-                        txtIsCircle.Text = result.DatabaseDetail.ListTransaction[i].IsCircle ? "【1、循环】" : "【0、未循环】";
+                        txtIsCircle.Text = result.DatabaseDetail.ListTransaction[i].IsCircle ? isCircle[0] : isCircle[1];
                     });
                 }
             };
@@ -123,10 +124,6 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             var par = new Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex_Parameter(Gete_TransactionDatabaseType(type), WriteIndex);
             var cmd = new Transaction.WriteTransactionDatabaseWriteIndex.WriteTransactionDatabaseWriteIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
         }
 
         private void ButTransactionDatabaseReadIndex_Click(object sender, EventArgs e)
@@ -138,10 +135,6 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             var par = new Transaction.WriteTransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex_Parameter(Gete_TransactionDatabaseType(type), ReadIndex, IsCircle);
             var cmd = new Transaction.WriteTransactionDatabaseReadIndex.WriteTransactionDatabaseReadIndex(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
         }
 
         private void ButClearTransactionDatabase_Click(object sender, EventArgs e)
@@ -151,10 +144,6 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             var par = new Transaction.ClearTransactionDatabase.ClearTransactionDatabase_Parameter(Gete_TransactionDatabaseType(type));
             var cmd = new Transaction.ClearTransactionDatabase.ClearTransactionDatabase(cmdDtl, par);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
         }
 
         private void ButTransactionDatabaseByIndex_Click(object sender, EventArgs e)
@@ -293,10 +282,6 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             var cmd = new Transaction.ClearTransactionDatabase.TransactionDatabaseEmpty(cmdDtl);
             mMainForm.AddCommand(cmd);
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
-            {
-                mMainForm.AddLog($"命令成功");
-            };
         }
         #endregion
 

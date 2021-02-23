@@ -210,5 +210,28 @@
     <SystemTransactionList                            value=",开机,初始化记录,开始充电,结束充电,电压过低  2.9V,电压过高  4.5V,电压恢复正常 3.2V,清空巡更人员,添加巡更人员,删除巡更人员,修改巡更人员,读取读卡记录,读取系统记录,清空读卡记录,清空系统记录" />
     <TransactionDatabaseType                            value="读卡记录,系统记录" />
     <IsCircle                                   value="1.循环,2.未循环" />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
+    <Txt                                    value=""    />
   </FrmRecord>
 </Language>
