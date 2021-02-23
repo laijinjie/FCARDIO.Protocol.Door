@@ -190,7 +190,7 @@
     <groupBox3                            value="记录操作" />
     <label17                            value="记录类型" />
     <label16                            value="读取数量" />
-    <button4                            value="修复记录" />
+    <butFixRecord                            value="修复记录" />
     <butClearTransactionDatabase                            value="清空记录" />
     <groupBox4                            value="记录采集" />
     <label20                            value="记录类型" />

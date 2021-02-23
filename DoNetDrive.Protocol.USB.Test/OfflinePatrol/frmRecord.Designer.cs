@@ -271,6 +271,7 @@
             this.groupBox5.TabIndex = 34;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "监控统计";
+            this.groupBox5.Visible = false;
             // 
             // button9
             // 
