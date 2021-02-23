@@ -3,14 +3,8 @@ using DoNetDrive.Protocol.Transaction;
 using DoNetDrive.Protocol.USB.OfflinePatrol.Data.Transaction;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DoNetDrive.Common.Extensions;
 
 namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 {
@@ -166,23 +160,23 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             {
 
                 var result = cmde.Command.getResult() as Transaction.ReadTransactionDatabaseByIndex.ReadTransactionDatabaseByIndex_Result;
-                mMainForm.AddCmdLog(cmde, $"按序号读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count}");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("Txt1")}：{result.Quantity},{GetLanguage("Txt2")}：{result.TransactionList.Count}");
 
                 if (result.TransactionList.Count > 0)
                 {
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
 
-                    sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
-                    sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).AppendLine();
+                    sLogs.AppendLine($"{GetLanguage("Txt3")}：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
+                    sLogs.Append($"{GetLanguage("Txt4")}：").Append(result.Quantity).Append($"；{GetLanguage("Txt5")}：").Append(result.TransactionList.Count).AppendLine();
 
                     foreach (var t in result.TransactionList)
                     {
 
                         PrintTransactionList(t, sLogs);
                     }
-                    string sFile = SaveFile(sLogs, $"按序号读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    string sFile = SaveFile(sLogs, $"{GetLanguage("Txt6")}_{DateTime.Now:yyyyMMddHHmmss}.txt");
 
-                    mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
+                    mMainForm.AddCmdLog(cmde, $"{GetLanguage("Txt7")}：{sFile}");
 
                 }
             };
@@ -191,11 +185,11 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
 
         public static string SaveFile(StringBuilder sLogs, string sFileName)
         {
-            string sPath = System.IO.Path.Combine(Application.StartupPath, "记录日志");
+            string sPath = System.IO.Path.Combine(Application.StartupPath, "Log");
             if (!System.IO.Directory.Exists(sPath))
                 System.IO.Directory.CreateDirectory(sPath);
 
-            string sFile = System.IO.Path.Combine(sPath, $"按序号读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
+            string sFile = System.IO.Path.Combine(sPath, sFileName);
 
             System.IO.File.WriteAllText(sFile, sLogs.ToString(), Encoding.UTF8);
             return sFile;
@@ -204,14 +198,14 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
         private void PrintTransactionList(AbstractTransaction tr, StringBuilder sLogs)
         {
 
-            sLogs.Append("序号：").Append(tr.SerialNumber.ToString());
+            sLogs.Append($"{GetLanguage("Txt9")}：").Append(tr.SerialNumber.ToString());
             if (tr.IsNull())
             {
-                sLogs.AppendLine(" --- 空记录");
+                sLogs.AppendLine($" --- {GetLanguage("Txt10")}");
                 return;
             }
-            sLogs.Append("，时间：").Append(tr.TransactionDate.ToDateTimeStr());
-            sLogs.Append("，事件代码：").Append(tr.TransactionCode);
+            sLogs.Append($"，{GetLanguage("Txt11")}：").Append(tr.TransactionDate.ToDateTimeStr());
+            sLogs.Append($"，{GetLanguage("Txt12")}：").Append(tr.TransactionCode);
             if (tr.TransactionType == 2)//
             {
                 string[] codeNameList = mTransactionCodeNameList[tr.TransactionType];
@@ -220,7 +214,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             if (tr.TransactionType == 1)//读卡记录
             {
                 CardTransaction cardTrans = tr as CardTransaction;
-                sLogs.Append("卡号：").Append(cardTrans.CardData).Append("，工号：").Append(cardTrans.PCode).Append("，状态：").AppendLine(cardTrans.State == 0 ? "普通卡" : "巡更人员卡");
+                sLogs.Append(GetLanguage("Txt13")+"：").Append(cardTrans.CardData).Append($"，{GetLanguage("Txt14")}：").Append(cardTrans.PCode).Append($"，{GetLanguage("Txt15")}：").AppendLine(cardTrans.State == 0 ? GetLanguage("Txt16") : GetLanguage("Txt17"));
             }
             else
             {
@@ -255,13 +249,13 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             {
 
                 var result = cmde.Command.getResult() as Transaction.ReadTransactionDatabase.ReadTransactionDatabase_Result;
-                mMainForm.AddCmdLog(cmde, $"读取成功，读取数量：{result.Quantity},实际解析数量：{result.TransactionList.Count},剩余新记录数：{result.readable}");
+                mMainForm.AddCmdLog(cmde, $"{GetLanguage("Txt18")}：{result.Quantity},{GetLanguage("Txt2")}：{result.TransactionList.Count},{GetLanguage("Txt19")}：{result.readable}");
 
                 if (result.TransactionList.Count > 0)
                 {
                     StringBuilder sLogs = new StringBuilder(result.TransactionList.Count * 100);
-                    sLogs.AppendLine($"事件类型：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
-                    sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
+                    sLogs.AppendLine($"{GetLanguage("Txt3")}：{mWatchTypeNameList[result.TransactionList[0].TransactionType]}");
+                    sLogs.Append(GetLanguage("Txt4") +"：").Append(result.Quantity).Append($"；{GetLanguage("Txt5")}：").Append(result.TransactionList.Count).Append($"；{GetLanguage("Txt19")}：").Append(result.readable).AppendLine();
 
                     //按序号排序
                     result.TransactionList.Sort((x, y) => x.SerialNumber.CompareTo(y.SerialNumber));
@@ -269,8 +263,8 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
                     {
                         PrintTransactionList(t, sLogs);
                     }
-                    string sFile = SaveFile(sLogs, $"读取记录_{DateTime.Now:yyyyMMddHHmmss}.txt");
-                    mMainForm.AddCmdLog(cmde, $"记录在保存文件：{sFile}");
+                    string sFile = SaveFile(sLogs, $"{GetLanguage("Txt20")}_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmde, $"{GetLanguage("Txt7")}：{sFile}");
                 }
             };
         }
@@ -356,7 +350,7 @@ namespace DoNetDrive.Protocol.USB.OfflinePatrol.Test
             var SystemTransactionArray = GetLanguage("SystemTransactionList").Split(',');
             mCardTransactionList[1] = "";//
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < SystemTransactionArray.Length; i++)
             {
                 mSystemTransactionList[i + 1] = SystemTransactionArray[i];
             }

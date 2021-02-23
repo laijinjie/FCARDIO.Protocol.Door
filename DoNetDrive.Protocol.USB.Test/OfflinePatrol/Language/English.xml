@@ -168,4 +168,65 @@
     <Txt9                            value="卡号" />
     <Txt10                           value="该卡未授权" />
   </frmPatrolEmpl>
+  <frmRecord>
+    <FormCaption                            value="记录操作" />
+    <groupBox1                            value="存储器状况" />
+    <label1                            value="读卡记录" />
+    <label6                            value="系统记录" />
+    <label7                            value="记录容量" />
+    <label11                            value="新纪录数" />
+    <label10                            value="记录尾号" />
+    <label8                            value="上传断点" />
+    <label9                            value="循环标志" />
+    <butTransactionDatabaseDetail                            value="采集记录信息" />
+    <groupBox2                            value="存储指针操作" />
+    <label12                            value="记录类型" />
+    <label13                            value="记录尾号" />
+    <label14                            value="上传断点" />
+    <label15                            value="循环标志" />
+    <cbIsCircle                            value="已存满" />
+    <butTransactionDatabaseWriteIndex                            value="上传记录尾号" />
+    <butTransactionDatabaseReadIndex                            value="更新上传断点" />
+    <groupBox3                            value="记录操作" />
+    <label17                            value="记录类型" />
+    <label16                            value="读取数量" />
+    <button4                            value="修复记录" />
+    <butClearTransactionDatabase                            value="清空记录" />
+    <groupBox4                            value="记录采集" />
+    <label20                            value="记录类型" />
+    <label19                            value="读取数量" />
+    <label18                            value="起始序号" />
+    <label22                            value="单次读取数量" />
+    <label23                            value="读取数量" />
+    <butTransactionDatabaseByIndex                            value="按序号采集记录" />
+    <btnReadTransactionDatabase                            value="读新记录" />
+    <groupBox5                            value="监控统计" />
+    <label21                            value="监控到记录总数" />
+    <butClearAllTransactionDatabase                            value="清空所有记录" />
+
+    <WatchTypeNameList                            value=",读卡信息,系统信息" />
+    <SystemTransactionList                            value=",开机,初始化记录,开始充电,结束充电,电压过低  2.9V,电压过高  4.5V,电压恢复正常 3.2V,清空巡更人员,添加巡更人员,删除巡更人员,修改巡更人员,读取读卡记录,读取系统记录,清空读卡记录,清空系统记录" />
+    <TransactionDatabaseType                            value="读卡记录,系统记录" />
+    <IsCircle                                   value="1、循环,2、未循环" />
+    <Txt1                                    value="按序号读取成功，读取数量"    />
+    <Txt2                                    value="实际解析数量"    />
+    <Txt3                                    value="事件类型"    />
+    <Txt4                                    value="读取计数"    />
+    <Txt5                                    value="实际数量"    />
+    <Txt6                                    value="按序号读取记录"    />
+    <Txt7                                    value="记录在保存文件"    />
+    <Txt8                                    value="记录日志"    />
+    <Txt9                                    value="序号"    />
+    <Txt10                                    value="空记录"    />
+    <Txt11                                    value="时间"    />
+    <Txt12                                    value="事件代码"    />
+    <Txt13                                    value="卡号"    />
+    <Txt14                                    value="工号"    />
+    <Txt15                                    value="状态"    />
+    <Txt16                                    value="普通卡"    />
+    <Txt17                                    value="巡更人员卡"    />
+    <Txt18                                    value="读取成功，读取数量"    />
+    <Txt19                                    value="剩余新记录数"    />
+    <Txt20                                    value="读取记录"    />
+  </frmRecord>
 </Language>
