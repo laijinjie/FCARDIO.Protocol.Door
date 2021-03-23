@@ -65,11 +65,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Buffers">
-      <HintPath>..\Output\Release\net45\DotNetty.Buffers.dll</HintPath>
+      <HintPath>..\Output\Release\net45\DoNetty\DotNetty.Buffers.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Common">
-      <HintPath>..\Output\Release\net45\DotNetty.Common.dll</HintPath>
+      <HintPath>..\Output\Release\net45\DoNetty\DotNetty.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
