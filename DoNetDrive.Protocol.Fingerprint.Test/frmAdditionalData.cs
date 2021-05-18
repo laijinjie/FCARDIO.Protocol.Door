@@ -188,6 +188,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     else
                     {
                         txtCodeData.Text = Convert.ToBase64String(result.FileDatas);
+                        string sNewFile = System.IO.Path.Combine(Application.StartupPath, "Code");
+                        Directory.CreateDirectory(sNewFile);
+                        sNewFile = System.IO.Path.Combine(sNewFile, $"Code_{result.UserCode}.bin");
+                        File.WriteAllBytes(sNewFile, result.FileDatas);
                     }
                     if (result.FileType == 2) cmbUploadType.SelectedIndex = 1;
                     if (result.FileType == 4) cmbUploadType.SelectedIndex = 2;
@@ -221,7 +225,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 cmbDownloadSerialNumber.Items.AddRange(serialNumberList);
                 cmbDownloadSerialNumber.SelectedIndex = 0;
             }
-            if (cmbDownloadType.SelectedIndex == 3 || cmbDownloadType.SelectedIndex == 2)
+            if (cmbDownloadType.SelectedIndex > 1)
             {
                 cmbDownloadSerialNumber.Items.Add("1");
                 cmbDownloadSerialNumber.SelectedIndex = 0;

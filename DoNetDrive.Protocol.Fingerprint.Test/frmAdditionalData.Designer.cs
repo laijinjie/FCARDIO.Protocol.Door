@@ -31,6 +31,7 @@
             this.gpUpload = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.butUploadFolder = new System.Windows.Forms.Button();
             this.butUploadImage = new System.Windows.Forms.Button();
             this.btnGetPerson = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -58,7 +59,6 @@
             this.butUpdateSoftware = new System.Windows.Forms.Button();
             this.cmbEquptType = new System.Windows.Forms.ComboBox();
             this.Lbl_EquptType = new System.Windows.Forms.Label();
-            this.butUploadFolder = new System.Windows.Forms.Button();
             this.gpUpload.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -106,6 +106,16 @@
             this.tabPage2.Text = "照片";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // butUploadFolder
+            // 
+            this.butUploadFolder.Location = new System.Drawing.Point(6, 104);
+            this.butUploadFolder.Name = "butUploadFolder";
+            this.butUploadFolder.Size = new System.Drawing.Size(222, 23);
+            this.butUploadFolder.TabIndex = 19;
+            this.butUploadFolder.Text = "上传文件夹";
+            this.butUploadFolder.UseVisualStyleBackColor = true;
+            this.butUploadFolder.Click += new System.EventHandler(this.butUploadFolder_Click);
+            // 
             // butUploadImage
             // 
             this.butUploadImage.Location = new System.Drawing.Point(354, 156);
@@ -144,6 +154,7 @@
             // txtCodeData
             // 
             this.txtCodeData.Location = new System.Drawing.Point(16, 31);
+            this.txtCodeData.MaxLength = 0;
             this.txtCodeData.Multiline = true;
             this.txtCodeData.Name = "txtCodeData";
             this.txtCodeData.Size = new System.Drawing.Size(555, 106);
@@ -371,16 +382,6 @@
             this.Lbl_EquptType.Size = new System.Drawing.Size(65, 12);
             this.Lbl_EquptType.TabIndex = 7;
             this.Lbl_EquptType.Text = "设备类型：";
-            // 
-            // butUploadFolder
-            // 
-            this.butUploadFolder.Location = new System.Drawing.Point(6, 104);
-            this.butUploadFolder.Name = "butUploadFolder";
-            this.butUploadFolder.Size = new System.Drawing.Size(222, 23);
-            this.butUploadFolder.TabIndex = 19;
-            this.butUploadFolder.Text = "上传文件夹";
-            this.butUploadFolder.UseVisualStyleBackColor = true;
-            this.butUploadFolder.Click += new System.EventHandler(this.butUploadFolder_Click);
             // 
             // frmAdditionalData
             // 

@@ -52,10 +52,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.Alarm
             {
                 throw new ArgumentException("Door Error");
             }
-            if (Alarm < 0 || Alarm > 12)
-            {
-                throw new ArgumentException("Alarm Error");
-            }
+
             return true;
         }
 
