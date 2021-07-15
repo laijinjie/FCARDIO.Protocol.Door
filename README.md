@@ -1,15 +1,14 @@
 # FCARDIO.Protocol.Door
 
 #### 介绍
-依附于Dotnetty的新版本通讯库，这个项目是其中关于门禁的协议命令实现
+依附于Dotnetty的新版本通讯库，这个项目是其中关于门禁板、人脸机、指纹机、巡更棒、消费机、水控机、电控机等多种设备的协议命令实现
 
-#### 软件架构
-软件架构说明
 
 
 #### 使用说明
 - 人脸机通讯步骤
 - 1、 初始化通讯分配器
+~~~
             mAllocator = ConnectorAllocator.GetAllocator();
 
             mAllocator.AuthenticationErrorEvent += MAllocator_AuthenticationErrorEvent;
@@ -22,7 +21,7 @@
 
             mAllocator.ClientOnline += MAllocator_ClientOnline;
             mAllocator.ClientOffline += MAllocator_ClientOffline;
-
+~~~
 - 2、监听UDP
 ~~~
 UDPServerDetail detail = new UDPServerDetail(sLocalIP, port);
