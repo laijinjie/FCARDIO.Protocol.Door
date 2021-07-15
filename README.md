@@ -7,31 +7,51 @@
 软件架构说明
 
 
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
-
 #### 使用说明
+- 人脸机通讯步骤
+- 1、 初始化通讯分配器
+            mAllocator = ConnectorAllocator.GetAllocator();
 
-1. xxxx
-2. xxxx
-3. xxxx
+            mAllocator.AuthenticationErrorEvent += MAllocator_AuthenticationErrorEvent;
 
-#### 参与贡献
+            mAllocator.TransactionMessage += MAllocator_TransactionMessage;
 
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+            mAllocator.ConnectorConnectedEvent += mAllocator_ConnectorConnectedEvent;
+            mAllocator.ConnectorClosedEvent += mAllocator_ConnectorClosedEvent;
+            mAllocator.ConnectorErrorEvent += mAllocator_ConnectorErrorEvent;
 
+            mAllocator.ClientOnline += MAllocator_ClientOnline;
+            mAllocator.ClientOffline += MAllocator_ClientOffline;
 
-#### 码云特技
+- 2、监听UDP
+~~~
+UDPServerDetail detail = new UDPServerDetail(sLocalIP, port);
+mAllocator.OpenConnector(detail);
+~~~
 
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+- 3、配置远程设备ip和SN信息获得 INCommandDetail 对象
+~~~
+            var cmdDtl = CommandDetailFactory.CreateDetail(CommandDetailFactory.ConnectType.UDPClient, '设备IP', 设备端口号,
+                CommandDetailFactory.ControllerType.Door89H, '设备SN', '设备通讯密码');
+
+            if (connectType == CommandDetailFactory.ConnectType.UDPClient)
+            {
+                var dtl = cmdDtl.Connector as Core.Connector.TCPClient.TCPClientDetail;
+                dtl.LocalAddr = mServerIP;//本机电脑IP
+                dtl.LocalPort = mServerPort;//本地电脑监听端口
+            }
+~~~
+- 4、 创建操作命令
+~~~
+     ReadSN cmd = new ReadSN(cmdDtl);
+     并增加处理命令执行完毕后的委托
+     cmdDtl.CommandTimeout += CmdDtl_CommandTimeout;
+     cmdDtl.CommandCompleteEvent += CmdDtl_CommandCompleteEvent;
+     cmdDtl.CommandErrorEvent += CmdDtl_CommandErrorEvent;
+~~~
+
+- 5、将命令加入通讯分配器队列
+
+~~~
+     mAllocator.AddCommand(cmd);
+~~~
