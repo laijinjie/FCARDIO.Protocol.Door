@@ -26,6 +26,7 @@ using System.IO;
 using DotNetty.Buffers;
 using DoNetDrive.Protocol.OnlineAccess;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SearchControltor;
+using log4net;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -35,7 +36,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         ConnectorObserverHandler mObserver;
         private static HashSet<frmNodeForm> NodeForms;
         private static string[] TransactionTypeName;
-
+        private static ILog _Log;
 
         private void Invoke(Action p)
         {
@@ -68,6 +69,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         static frmMain()
         {
             NodeForms = new HashSet<frmNodeForm>();
+            //初始化log4net
+            string sLogXml = Path.Combine(Directory.GetCurrentDirectory(), "log4net.Config");
+            log4net.Config.XmlConfigurator.Configure(new FileInfo(sLogXml));
+            _Log = LogManager.GetLogger(typeof(frmMain));
+            _Log.Debug("App Start");
         }
 
         public static void AddNodeForms(frmNodeForm frm)
@@ -1574,7 +1580,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             foreach (IPAddress oItem in localentry.AddressList)
             {
                 IPAddress ip = oItem;
-                
+
                 if (ip.IsIPv4MappedToIPv6)
                 {
                     ip = ip.MapToIPv4();
@@ -1602,7 +1608,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void ShowConnTypePanel()
         {
             bool[] pnlShow = new bool[3];
-            if (cmbConnType.SelectedIndex == -1) cmbConnType.SelectedIndex= 0;
+            if (cmbConnType.SelectedIndex == -1) cmbConnType.SelectedIndex = 0;
             pnlShow[cmbConnType.SelectedIndex] = true;
 
             GroupBox[] pnls = new GroupBox[] { gbSerialPort, gbUDP, gpTCPServer };
@@ -1889,8 +1895,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 });
             }
-
-            commandResult.Content = strbuf.ToString();
+            var log = strbuf.ToString();
+            _Log.Debug(log.Replace("\r\n"," "));
+            commandResult.Content = log;
 
             AddCmdItem(commandResult);
         }
@@ -2035,7 +2042,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 if (ChkTLS12.Checked)
                 {
                     string sSSLFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SSLX509.pfx");
-                    if(File.Exists(sSSLFile))
+                    if (File.Exists(sSSLFile))
                     {
                         byte[] x509Data = File.ReadAllBytes(sSSLFile);
                         var x509 = new X509Certificate2(x509Data, "BRUsqOWH");
@@ -2047,7 +2054,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     {
                         MessageBox.Show("没有找到SSL证书");
                     }
-                    
+
                 }
                 else
                 {

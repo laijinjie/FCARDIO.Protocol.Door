@@ -101,8 +101,8 @@
     <TransactionMessage5_0  value="无"/>
     <TransactionMessage6  value="门号："/>
     <TransactionMessage7  value="体温："/>
-    <TransactionMessage8  value="，远端信息："/>
-    <TransactionMessage9  value=" ，远端信息："/>
+    <TransactionMessage8  value=" 保活包消息，远端信息："/>
+    <TransactionMessage9  value=" 连接测试消息，远端信息："/>
     <butTCPServerBind_Close  value="关闭"/>
     <AddTCPClient0   value="重复添加客户端，Key:{0}"/>
 
