@@ -101,6 +101,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 Invoke(new Action(IniForm));
 
             });
+            tbEvent.SelectedIndex = 1;
         }
 
 
@@ -1931,7 +1932,8 @@ namespace DoNetDrive.Protocol.Door.Test
             GetLanguage(Lab_Process);
             cmdConnType.Items.Clear();
             cmdConnType.Items.AddRange(GetLanguage("cmdConnType").SplitTrim(","));
-            cmdConnType.SelectedIndex = 0;
+            cmdConnType.SelectedIndex = 2;
+            chkUDPBroadcast.Checked = true;
             ShowConnTypePanel();
             var tTypeName = GetLanguage("TransactionTypeName").Split(',');
             TransactionTypeName = new string[7];

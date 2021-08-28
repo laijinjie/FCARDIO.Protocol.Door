@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -41,6 +41,11 @@
             this.label38 = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.EX2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsEx2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WeekDay2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.rBtnNoAutoLockedSetting = new System.Windows.Forms.RadioButton();
             this.rBtnAutoLockedSetting = new System.Windows.Forms.RadioButton();
@@ -259,6 +264,23 @@
             this.btnWriteReaderInterval = new System.Windows.Forms.Button();
             this.btnReadReaderInterval = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.plMutiCard = new System.Windows.Forms.Panel();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAutoFill = new System.Windows.Forms.Button();
+            this.btnDeleteGroup = new System.Windows.Forms.Button();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Card = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbgrouptype = new System.Windows.Forms.Label();
+            this.cbConvertHex = new System.Windows.Forms.CheckBox();
+            this.cmbGroupType = new System.Windows.Forms.ComboBox();
+            this.cmbGroupNum = new System.Windows.Forms.ComboBox();
+            this.lbgroupnum = new System.Windows.Forms.Label();
             this.groupBox24 = new System.Windows.Forms.GroupBox();
             this.btnWriteReadCardAndTakePictures = new System.Windows.Forms.Button();
             this.btnReadReadCardAndTakePictures = new System.Windows.Forms.Button();
@@ -283,23 +305,6 @@
             this.btnReadReaderAlarm = new System.Windows.Forms.Button();
             this.btnWriteReaderAlarm = new System.Windows.Forms.Button();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
-            this.plMutiCard = new System.Windows.Forms.Panel();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAutoFill = new System.Windows.Forms.Button();
-            this.btnDeleteGroup = new System.Windows.Forms.Button();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Card = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbgrouptype = new System.Windows.Forms.Label();
-            this.cbConvertHex = new System.Windows.Forms.CheckBox();
-            this.cmbGroupType = new System.Windows.Forms.ComboBox();
-            this.cmbGroupNum = new System.Windows.Forms.ComboBox();
-            this.lbgroupnum = new System.Windows.Forms.Label();
             this.plManyCardOpenVerify = new System.Windows.Forms.Panel();
             this.txtBGroupCount = new System.Windows.Forms.TextBox();
             this.label71 = new System.Windows.Forms.Label();
@@ -386,11 +391,6 @@
             this.cBoxDoor2 = new System.Windows.Forms.CheckBox();
             this.cBoxDoor1 = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.EX2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsEx2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WeekDay2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -425,13 +425,13 @@
             this.groupBox12.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.groupBox24.SuspendLayout();
-            this.groupBox23.SuspendLayout();
-            this.groupBox22.SuspendLayout();
             this.plMutiCard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.groupBox24.SuspendLayout();
+            this.groupBox23.SuspendLayout();
+            this.groupBox22.SuspendLayout();
             this.plManyCardOpenVerify.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -448,11 +448,10 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Location = new System.Drawing.Point(0, 33);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(759, 485);
+            this.tabControl1.Size = new System.Drawing.Size(759, 1028);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -469,7 +468,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(751, 459);
+            this.tabPage1.Size = new System.Drawing.Size(751, 1002);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "参数1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -594,6 +593,55 @@
             this.dataGridView2.Size = new System.Drawing.Size(714, 158);
             this.dataGridView2.TabIndex = 40;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView2_CellClick);
+            // 
+            // EX2
+            // 
+            this.EX2.DataPropertyName = "EX";
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.EX2.DefaultCellStyle = dataGridViewCellStyle3;
+            this.EX2.HeaderText = "";
+            this.EX2.MinimumWidth = 6;
+            this.EX2.Name = "EX2";
+            this.EX2.ReadOnly = true;
+            this.EX2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.EX2.Width = 20;
+            // 
+            // IsEx2
+            // 
+            this.IsEx2.DataPropertyName = "IsEx";
+            this.IsEx2.HeaderText = "是否显示";
+            this.IsEx2.MinimumWidth = 6;
+            this.IsEx2.Name = "IsEx2";
+            this.IsEx2.ReadOnly = true;
+            this.IsEx2.Visible = false;
+            this.IsEx2.Width = 125;
+            // 
+            // WeekDay2
+            // 
+            this.WeekDay2.DataPropertyName = "WeekDay";
+            this.WeekDay2.HeaderText = "星期";
+            this.WeekDay2.MinimumWidth = 6;
+            this.WeekDay2.Name = "WeekDay2";
+            this.WeekDay2.ReadOnly = true;
+            this.WeekDay2.Width = 240;
+            // 
+            // StartTime2
+            // 
+            this.StartTime2.DataPropertyName = "StartTime";
+            this.StartTime2.HeaderText = "开始时间";
+            this.StartTime2.MinimumWidth = 6;
+            this.StartTime2.Name = "StartTime2";
+            this.StartTime2.ReadOnly = true;
+            this.StartTime2.Width = 160;
+            // 
+            // EndTime2
+            // 
+            this.EndTime2.DataPropertyName = "EndTime";
+            this.EndTime2.HeaderText = "结束时间";
+            this.EndTime2.MinimumWidth = 6;
+            this.EndTime2.Name = "EndTime2";
+            this.EndTime2.ReadOnly = true;
+            this.EndTime2.Width = 160;
             // 
             // panel1
             // 
@@ -1287,8 +1335,8 @@
             // EX
             // 
             this.EX.DataPropertyName = "EX";
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.EX.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.EX.DefaultCellStyle = dataGridViewCellStyle4;
             this.EX.HeaderText = "";
             this.EX.MinimumWidth = 6;
             this.EX.Name = "EX";
@@ -1738,7 +1786,7 @@
             this.tabPage3.Controls.Add(this.groupBox12);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(751, 459);
+            this.tabPage3.Size = new System.Drawing.Size(751, 465);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "参数2";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -2978,10 +3026,212 @@
             this.tabPage4.Controls.Add(this.groupBox22);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(751, 459);
+            this.tabPage4.Size = new System.Drawing.Size(751, 465);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "多门参数";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // plMutiCard
+            // 
+            this.plMutiCard.Controls.Add(this.dataGridView5);
+            this.plMutiCard.Controls.Add(this.dataGridView4);
+            this.plMutiCard.Controls.Add(this.btnAutoFill);
+            this.plMutiCard.Controls.Add(this.btnDeleteGroup);
+            this.plMutiCard.Controls.Add(this.dataGridView3);
+            this.plMutiCard.Controls.Add(this.lbgrouptype);
+            this.plMutiCard.Controls.Add(this.cbConvertHex);
+            this.plMutiCard.Controls.Add(this.cmbGroupType);
+            this.plMutiCard.Controls.Add(this.cmbGroupNum);
+            this.plMutiCard.Controls.Add(this.lbgroupnum);
+            this.plMutiCard.Location = new System.Drawing.Point(14, 175);
+            this.plMutiCard.Name = "plMutiCard";
+            this.plMutiCard.Size = new System.Drawing.Size(722, 436);
+            this.plMutiCard.TabIndex = 107;
+            this.plMutiCard.Visible = false;
+            // 
+            // dataGridView5
+            // 
+            this.dataGridView5.AllowUserToAddRows = false;
+            this.dataGridView5.AllowUserToDeleteRows = false;
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.dataGridView5.Location = new System.Drawing.Point(6, 50);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.ReadOnly = true;
+            this.dataGridView5.RowHeadersWidth = 51;
+            this.dataGridView5.RowTemplate.Height = 23;
+            this.dataGridView5.Size = new System.Drawing.Size(452, 376);
+            this.dataGridView5.TabIndex = 107;
+            this.dataGridView5.Visible = false;
+            this.dataGridView5.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView5_CellClick);
+            this.dataGridView5.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView5_EditingControlShowing);
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Num";
+            this.dataGridViewTextBoxColumn3.HeaderText = "序号";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Card";
+            this.dataGridViewTextBoxColumn4.HeaderText = "卡号";
+            this.dataGridViewTextBoxColumn4.MaxInputLength = 16;
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.AllowUserToDeleteRows = false;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.dataGridView4.Location = new System.Drawing.Point(6, 50);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.ReadOnly = true;
+            this.dataGridView4.RowHeadersWidth = 51;
+            this.dataGridView4.RowTemplate.Height = 23;
+            this.dataGridView4.Size = new System.Drawing.Size(452, 376);
+            this.dataGridView4.TabIndex = 105;
+            this.dataGridView4.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView4_CellClick);
+            this.dataGridView4.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView4_EditingControlShowing);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Num";
+            this.dataGridViewTextBoxColumn1.HeaderText = "序号";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Card";
+            this.dataGridViewTextBoxColumn2.HeaderText = "卡号";
+            this.dataGridViewTextBoxColumn2.MaxInputLength = 16;
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 200;
+            // 
+            // btnAutoFill
+            // 
+            this.btnAutoFill.Location = new System.Drawing.Point(464, 104);
+            this.btnAutoFill.Name = "btnAutoFill";
+            this.btnAutoFill.Size = new System.Drawing.Size(98, 47);
+            this.btnAutoFill.TabIndex = 104;
+            this.btnAutoFill.Text = "自动填充";
+            this.btnAutoFill.UseVisualStyleBackColor = true;
+            this.btnAutoFill.Click += new System.EventHandler(this.BtnAutoFill_Click);
+            // 
+            // btnDeleteGroup
+            // 
+            this.btnDeleteGroup.Location = new System.Drawing.Point(464, 50);
+            this.btnDeleteGroup.Name = "btnDeleteGroup";
+            this.btnDeleteGroup.Size = new System.Drawing.Size(98, 47);
+            this.btnDeleteGroup.TabIndex = 106;
+            this.btnDeleteGroup.Text = "删除本组";
+            this.btnDeleteGroup.UseVisualStyleBackColor = true;
+            this.btnDeleteGroup.Click += new System.EventHandler(this.BtnDeleteGroup_Click);
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Num,
+            this.Card});
+            this.dataGridView3.Location = new System.Drawing.Point(6, 50);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.RowTemplate.Height = 23;
+            this.dataGridView3.Size = new System.Drawing.Size(452, 376);
+            this.dataGridView3.TabIndex = 103;
+            this.dataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView3_CellClick);
+            this.dataGridView3.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView3_EditingControlShowing);
+            // 
+            // Num
+            // 
+            this.Num.DataPropertyName = "Num";
+            this.Num.HeaderText = "序号";
+            this.Num.MinimumWidth = 6;
+            this.Num.Name = "Num";
+            this.Num.ReadOnly = true;
+            this.Num.Width = 80;
+            // 
+            // Card
+            // 
+            this.Card.DataPropertyName = "Card";
+            this.Card.HeaderText = "卡号";
+            this.Card.MaxInputLength = 16;
+            this.Card.MinimumWidth = 6;
+            this.Card.Name = "Card";
+            this.Card.ReadOnly = true;
+            this.Card.Width = 200;
+            // 
+            // lbgrouptype
+            // 
+            this.lbgrouptype.AutoSize = true;
+            this.lbgrouptype.Location = new System.Drawing.Point(3, 9);
+            this.lbgrouptype.Name = "lbgrouptype";
+            this.lbgrouptype.Size = new System.Drawing.Size(65, 12);
+            this.lbgrouptype.TabIndex = 100;
+            this.lbgrouptype.Text = "分组类型：";
+            // 
+            // cbConvertHex
+            // 
+            this.cbConvertHex.AutoSize = true;
+            this.cbConvertHex.Location = new System.Drawing.Point(320, 24);
+            this.cbConvertHex.Name = "cbConvertHex";
+            this.cbConvertHex.Size = new System.Drawing.Size(96, 16);
+            this.cbConvertHex.TabIndex = 102;
+            this.cbConvertHex.Text = "十六进制卡号";
+            this.cbConvertHex.UseVisualStyleBackColor = true;
+            this.cbConvertHex.CheckedChanged += new System.EventHandler(this.CbConvertHex_CheckedChanged);
+            // 
+            // cmbGroupType
+            // 
+            this.cmbGroupType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroupType.FormattingEnabled = true;
+            this.cmbGroupType.Items.AddRange(new object[] {
+            "A组",
+            "B组"});
+            this.cmbGroupType.Location = new System.Drawing.Point(5, 24);
+            this.cmbGroupType.Name = "cmbGroupType";
+            this.cmbGroupType.Size = new System.Drawing.Size(116, 20);
+            this.cmbGroupType.TabIndex = 101;
+            this.cmbGroupType.SelectedIndexChanged += new System.EventHandler(this.CmbGroupType_SelectedIndexChanged);
+            // 
+            // cmbGroupNum
+            // 
+            this.cmbGroupNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroupNum.FormattingEnabled = true;
+            this.cmbGroupNum.Location = new System.Drawing.Point(175, 24);
+            this.cmbGroupNum.Name = "cmbGroupNum";
+            this.cmbGroupNum.Size = new System.Drawing.Size(116, 20);
+            this.cmbGroupNum.TabIndex = 99;
+            this.cmbGroupNum.SelectedIndexChanged += new System.EventHandler(this.CmbGroupNum_SelectedIndexChanged);
+            // 
+            // lbgroupnum
+            // 
+            this.lbgroupnum.AutoSize = true;
+            this.lbgroupnum.Location = new System.Drawing.Point(173, 9);
+            this.lbgroupnum.Name = "lbgroupnum";
+            this.lbgroupnum.Size = new System.Drawing.Size(41, 12);
+            this.lbgroupnum.TabIndex = 98;
+            this.lbgroupnum.Text = "组号：";
             // 
             // groupBox24
             // 
@@ -3226,208 +3476,6 @@
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "多卡开门";
             // 
-            // plMutiCard
-            // 
-            this.plMutiCard.Controls.Add(this.dataGridView5);
-            this.plMutiCard.Controls.Add(this.dataGridView4);
-            this.plMutiCard.Controls.Add(this.btnAutoFill);
-            this.plMutiCard.Controls.Add(this.btnDeleteGroup);
-            this.plMutiCard.Controls.Add(this.dataGridView3);
-            this.plMutiCard.Controls.Add(this.lbgrouptype);
-            this.plMutiCard.Controls.Add(this.cbConvertHex);
-            this.plMutiCard.Controls.Add(this.cmbGroupType);
-            this.plMutiCard.Controls.Add(this.cmbGroupNum);
-            this.plMutiCard.Controls.Add(this.lbgroupnum);
-            this.plMutiCard.Location = new System.Drawing.Point(14, 175);
-            this.plMutiCard.Name = "plMutiCard";
-            this.plMutiCard.Size = new System.Drawing.Size(722, 436);
-            this.plMutiCard.TabIndex = 107;
-            this.plMutiCard.Visible = false;
-            // 
-            // dataGridView5
-            // 
-            this.dataGridView5.AllowUserToAddRows = false;
-            this.dataGridView5.AllowUserToDeleteRows = false;
-            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
-            this.dataGridView5.Location = new System.Drawing.Point(6, 50);
-            this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.ReadOnly = true;
-            this.dataGridView5.RowHeadersWidth = 51;
-            this.dataGridView5.RowTemplate.Height = 23;
-            this.dataGridView5.Size = new System.Drawing.Size(452, 376);
-            this.dataGridView5.TabIndex = 107;
-            this.dataGridView5.Visible = false;
-            this.dataGridView5.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView5_CellClick);
-            this.dataGridView5.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView5_EditingControlShowing);
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Num";
-            this.dataGridViewTextBoxColumn3.HeaderText = "序号";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Card";
-            this.dataGridViewTextBoxColumn4.HeaderText = "卡号";
-            this.dataGridViewTextBoxColumn4.MaxInputLength = 16;
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 200;
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.AllowUserToAddRows = false;
-            this.dataGridView4.AllowUserToDeleteRows = false;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            this.dataGridView4.Location = new System.Drawing.Point(6, 50);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.ReadOnly = true;
-            this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.RowTemplate.Height = 23;
-            this.dataGridView4.Size = new System.Drawing.Size(452, 376);
-            this.dataGridView4.TabIndex = 105;
-            this.dataGridView4.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView4_CellClick);
-            this.dataGridView4.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView4_EditingControlShowing);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Num";
-            this.dataGridViewTextBoxColumn1.HeaderText = "序号";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Card";
-            this.dataGridViewTextBoxColumn2.HeaderText = "卡号";
-            this.dataGridViewTextBoxColumn2.MaxInputLength = 16;
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 200;
-            // 
-            // btnAutoFill
-            // 
-            this.btnAutoFill.Location = new System.Drawing.Point(464, 104);
-            this.btnAutoFill.Name = "btnAutoFill";
-            this.btnAutoFill.Size = new System.Drawing.Size(98, 47);
-            this.btnAutoFill.TabIndex = 104;
-            this.btnAutoFill.Text = "自动填充";
-            this.btnAutoFill.UseVisualStyleBackColor = true;
-            this.btnAutoFill.Click += new System.EventHandler(this.BtnAutoFill_Click);
-            // 
-            // btnDeleteGroup
-            // 
-            this.btnDeleteGroup.Location = new System.Drawing.Point(464, 50);
-            this.btnDeleteGroup.Name = "btnDeleteGroup";
-            this.btnDeleteGroup.Size = new System.Drawing.Size(98, 47);
-            this.btnDeleteGroup.TabIndex = 106;
-            this.btnDeleteGroup.Text = "删除本组";
-            this.btnDeleteGroup.UseVisualStyleBackColor = true;
-            this.btnDeleteGroup.Click += new System.EventHandler(this.BtnDeleteGroup_Click);
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.AllowUserToDeleteRows = false;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Num,
-            this.Card});
-            this.dataGridView3.Location = new System.Drawing.Point(6, 50);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.ReadOnly = true;
-            this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.RowTemplate.Height = 23;
-            this.dataGridView3.Size = new System.Drawing.Size(452, 376);
-            this.dataGridView3.TabIndex = 103;
-            this.dataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView3_CellClick);
-            this.dataGridView3.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView3_EditingControlShowing);
-            // 
-            // Num
-            // 
-            this.Num.DataPropertyName = "Num";
-            this.Num.HeaderText = "序号";
-            this.Num.MinimumWidth = 6;
-            this.Num.Name = "Num";
-            this.Num.ReadOnly = true;
-            this.Num.Width = 80;
-            // 
-            // Card
-            // 
-            this.Card.DataPropertyName = "Card";
-            this.Card.HeaderText = "卡号";
-            this.Card.MaxInputLength = 16;
-            this.Card.MinimumWidth = 6;
-            this.Card.Name = "Card";
-            this.Card.ReadOnly = true;
-            this.Card.Width = 200;
-            // 
-            // lbgrouptype
-            // 
-            this.lbgrouptype.AutoSize = true;
-            this.lbgrouptype.Location = new System.Drawing.Point(3, 9);
-            this.lbgrouptype.Name = "lbgrouptype";
-            this.lbgrouptype.Size = new System.Drawing.Size(65, 12);
-            this.lbgrouptype.TabIndex = 100;
-            this.lbgrouptype.Text = "分组类型：";
-            // 
-            // cbConvertHex
-            // 
-            this.cbConvertHex.AutoSize = true;
-            this.cbConvertHex.Location = new System.Drawing.Point(320, 24);
-            this.cbConvertHex.Name = "cbConvertHex";
-            this.cbConvertHex.Size = new System.Drawing.Size(96, 16);
-            this.cbConvertHex.TabIndex = 102;
-            this.cbConvertHex.Text = "十六进制卡号";
-            this.cbConvertHex.UseVisualStyleBackColor = true;
-            this.cbConvertHex.CheckedChanged += new System.EventHandler(this.CbConvertHex_CheckedChanged);
-            // 
-            // cmbGroupType
-            // 
-            this.cmbGroupType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGroupType.FormattingEnabled = true;
-            this.cmbGroupType.Items.AddRange(new object[] {
-            "A组",
-            "B组"});
-            this.cmbGroupType.Location = new System.Drawing.Point(5, 24);
-            this.cmbGroupType.Name = "cmbGroupType";
-            this.cmbGroupType.Size = new System.Drawing.Size(116, 20);
-            this.cmbGroupType.TabIndex = 101;
-            this.cmbGroupType.SelectedIndexChanged += new System.EventHandler(this.CmbGroupType_SelectedIndexChanged);
-            // 
-            // cmbGroupNum
-            // 
-            this.cmbGroupNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGroupNum.FormattingEnabled = true;
-            this.cmbGroupNum.Location = new System.Drawing.Point(175, 24);
-            this.cmbGroupNum.Name = "cmbGroupNum";
-            this.cmbGroupNum.Size = new System.Drawing.Size(116, 20);
-            this.cmbGroupNum.TabIndex = 99;
-            this.cmbGroupNum.SelectedIndexChanged += new System.EventHandler(this.CmbGroupNum_SelectedIndexChanged);
-            // 
-            // lbgroupnum
-            // 
-            this.lbgroupnum.AutoSize = true;
-            this.lbgroupnum.Location = new System.Drawing.Point(173, 9);
-            this.lbgroupnum.Name = "lbgroupnum";
-            this.lbgroupnum.Size = new System.Drawing.Size(41, 12);
-            this.lbgroupnum.TabIndex = 98;
-            this.lbgroupnum.Text = "组号：";
-            // 
             // plManyCardOpenVerify
             // 
             this.plManyCardOpenVerify.Controls.Add(this.txtBGroupCount);
@@ -3565,7 +3613,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(751, 459);
+            this.tabPage2.Size = new System.Drawing.Size(751, 465);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "门端口报警";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -4275,7 +4323,7 @@
             // 
             this.cmdDoorNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdDoorNum.FormattingEnabled = true;
-            this.cmdDoorNum.Location = new System.Drawing.Point(123, 6);
+            this.cmdDoorNum.Location = new System.Drawing.Point(113, 7);
             this.cmdDoorNum.Name = "cmdDoorNum";
             this.cmdDoorNum.Size = new System.Drawing.Size(112, 20);
             this.cmdDoorNum.TabIndex = 1;
@@ -4285,7 +4333,7 @@
             this.cBoxDoor4.AutoSize = true;
             this.cBoxDoor4.Checked = true;
             this.cBoxDoor4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor4.Location = new System.Drawing.Point(657, 10);
+            this.cBoxDoor4.Location = new System.Drawing.Point(647, 11);
             this.cBoxDoor4.Name = "cBoxDoor4";
             this.cBoxDoor4.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor4.TabIndex = 30;
@@ -4297,7 +4345,7 @@
             this.cBoxDoor3.AutoSize = true;
             this.cBoxDoor3.Checked = true;
             this.cBoxDoor3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor3.Location = new System.Drawing.Point(585, 9);
+            this.cBoxDoor3.Location = new System.Drawing.Point(575, 10);
             this.cBoxDoor3.Name = "cBoxDoor3";
             this.cBoxDoor3.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor3.TabIndex = 29;
@@ -4309,7 +4357,7 @@
             this.cBoxDoor2.AutoSize = true;
             this.cBoxDoor2.Checked = true;
             this.cBoxDoor2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor2.Location = new System.Drawing.Point(513, 9);
+            this.cBoxDoor2.Location = new System.Drawing.Point(503, 10);
             this.cBoxDoor2.Name = "cBoxDoor2";
             this.cBoxDoor2.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor2.TabIndex = 28;
@@ -4321,7 +4369,7 @@
             this.cBoxDoor1.AutoSize = true;
             this.cBoxDoor1.Checked = true;
             this.cBoxDoor1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBoxDoor1.Location = new System.Drawing.Point(441, 10);
+            this.cBoxDoor1.Location = new System.Drawing.Point(431, 11);
             this.cBoxDoor1.Name = "cBoxDoor1";
             this.cBoxDoor1.Size = new System.Drawing.Size(42, 16);
             this.cBoxDoor1.TabIndex = 27;
@@ -4331,82 +4379,34 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(34, 11);
+            this.label22.Location = new System.Drawing.Point(24, 12);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(41, 12);
             this.label22.TabIndex = 26;
             this.label22.Text = "门号：";
             // 
-            // EX2
-            // 
-            this.EX2.DataPropertyName = "EX";
-            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.EX2.DefaultCellStyle = dataGridViewCellStyle10;
-            this.EX2.HeaderText = "";
-            this.EX2.MinimumWidth = 6;
-            this.EX2.Name = "EX2";
-            this.EX2.ReadOnly = true;
-            this.EX2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.EX2.Width = 20;
-            // 
-            // IsEx2
-            // 
-            this.IsEx2.DataPropertyName = "IsEx";
-            this.IsEx2.HeaderText = "是否显示";
-            this.IsEx2.MinimumWidth = 6;
-            this.IsEx2.Name = "IsEx2";
-            this.IsEx2.ReadOnly = true;
-            this.IsEx2.Visible = false;
-            this.IsEx2.Width = 125;
-            // 
-            // WeekDay2
-            // 
-            this.WeekDay2.DataPropertyName = "WeekDay";
-            this.WeekDay2.HeaderText = "星期";
-            this.WeekDay2.MinimumWidth = 6;
-            this.WeekDay2.Name = "WeekDay2";
-            this.WeekDay2.ReadOnly = true;
-            this.WeekDay2.Width = 240;
-            // 
-            // StartTime2
-            // 
-            this.StartTime2.DataPropertyName = "StartTime";
-            this.StartTime2.HeaderText = "开始时间";
-            this.StartTime2.MinimumWidth = 6;
-            this.StartTime2.Name = "StartTime2";
-            this.StartTime2.ReadOnly = true;
-            this.StartTime2.Width = 160;
-            // 
-            // EndTime2
-            // 
-            this.EndTime2.DataPropertyName = "EndTime";
-            this.EndTime2.HeaderText = "结束时间";
-            this.EndTime2.MinimumWidth = 6;
-            this.EndTime2.Name = "EndTime2";
-            this.EndTime2.ReadOnly = true;
-            this.EndTime2.Width = 160;
-            // 
             // panel5
             // 
+            this.panel5.AutoScroll = true;
+            this.panel5.Controls.Add(this.cBoxDoor3);
             this.panel5.Controls.Add(this.tabControl1);
+            this.panel5.Controls.Add(this.cmdDoorNum);
+            this.panel5.Controls.Add(this.cBoxDoor4);
+            this.panel5.Controls.Add(this.label22);
+            this.panel5.Controls.Add(this.cBoxDoor1);
+            this.panel5.Controls.Add(this.cBoxDoor2);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(759, 485);
+            this.panel5.Size = new System.Drawing.Size(776, 515);
             this.panel5.TabIndex = 31;
             // 
             // frmDoor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(759, 485);
+            this.ClientSize = new System.Drawing.Size(776, 515);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.cBoxDoor4);
-            this.Controls.Add(this.cBoxDoor3);
-            this.Controls.Add(this.cBoxDoor2);
-            this.Controls.Add(this.cBoxDoor1);
-            this.Controls.Add(this.label22);
-            this.Controls.Add(this.cmdDoorNum);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDoor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -4470,17 +4470,17 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.plMutiCard.ResumeLayout(false);
+            this.plMutiCard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.groupBox24.ResumeLayout(false);
             this.groupBox24.PerformLayout();
             this.groupBox23.ResumeLayout(false);
             this.groupBox23.PerformLayout();
             this.groupBox22.ResumeLayout(false);
             this.groupBox22.PerformLayout();
-            this.plMutiCard.ResumeLayout(false);
-            this.plMutiCard.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.plManyCardOpenVerify.ResumeLayout(false);
             this.plManyCardOpenVerify.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -4495,8 +4495,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
