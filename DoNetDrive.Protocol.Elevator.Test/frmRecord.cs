@@ -1,4 +1,4 @@
-﻿using DoNetDrive.Core.Extension;
+﻿using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Door.Door8800.Data;
 using DoNetDrive.Protocol.Door.Door8800.Transaction;
 using DoNetDrive.Protocol.Transaction;

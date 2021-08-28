@@ -69,7 +69,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
         public override bool checkedParameter()
         {
             if (PersonDetail == null) return false;
-            if (PersonDetail.UserCode == 0 || PersonDetail.UserCode > int.MaxValue) return false;
+            if (PersonDetail.UserCode == 0 || PersonDetail.UserCode > uint.MaxValue) return false;
             if (PersonDetail.TimeGroup > 64 || PersonDetail.TimeGroup < 1) return false;
             if (PersonDetail.EnterStatus > 3 || PersonDetail.EnterStatus < 0) return false;
             if (PersonDetail.Expiry.Year > 2099 || PersonDetail.Expiry.Year < 2000) return false;

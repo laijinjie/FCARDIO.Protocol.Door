@@ -1,5 +1,4 @@
 ﻿using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.SN;
-using DoNetDrive.Core.Extension;
 using System;
 using System.Windows.Forms;
 using DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.ConnectPassword;
@@ -29,6 +28,7 @@ using System.Collections.Generic;
 using DoNetDrive.Protocol.Door.Door8800.Data.TimeGroup;
 using System.ComponentModel;
 using System.Linq;
+using DoNetDrive.Common.Extensions;
 
 namespace DoNetDrive.Protocol.Elevator.Test
 {

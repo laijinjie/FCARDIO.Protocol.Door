@@ -16,9 +16,9 @@ using DoNetDrive.Core.Connector.TCPClient;
 using DoNetDrive.Core.Connector.TCPServer;
 using DoNetDrive.Core.Connector.TCPServer.Client;
 using DoNetDrive.Core.Connector.UDP;
-using DoNetDrive.Core.Extension;
 using DoNetDrive.Protocol.Elevator.Test.Model;
 using DoNetDrive.Protocol.Door8800;
+using DoNetDrive.Common.Extensions;
 
 namespace DoNetDrive.Protocol.Elevator.Test
 {

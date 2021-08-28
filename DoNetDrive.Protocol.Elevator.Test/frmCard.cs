@@ -1,5 +1,5 @@
-﻿using DoNetDrive.Core.Command;
-using DoNetDrive.Core.Extension;
+﻿using DoNetDrive.Common.Extensions;
+using DoNetDrive.Core.Command;
 using DoNetDrive.Protocol.Elevator.FC8864.Card.CardDataBase;
 using DoNetDrive.Protocol.Elevator.FC8864.Card.CardDatabaseDetail;
 using DoNetDrive.Protocol.Elevator.FC8864.Card.ClearCardDataBase;
@@ -626,7 +626,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
                     MsgErr("个人密码请输入 4-8个数字！");
                     return null;
                 }
-                card.Password = sPwd.FillString(8, "F");
+                card.Password = sPwd.FillString(8, 'F');
             }
             //有效期
             var dtpD = dtpDate.Value; var dtpT = dtpTime.Value;
@@ -682,7 +682,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
             if (card.HolidayUse)
             {
                 string sHol = txtHoliday.Text.Trim();
-                sHol.FillString(32, "0");
+                sHol.FillString(32, '0');
                 var chars = sHol.ToCharArray();
                 for (i = 0; i < 32; i++)
                 {

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Fingerprint.Person;
+using System.IO;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -218,7 +219,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 if (sLogs2.Length > 0)
                 {
                     sLogs2.Length += 1;
-                    frmRecord.SaveFile(sLogs2,"没有图片人员编号" + $"{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    frmRecord.SaveFile(sLogs2, "没有图片人员编号" + $"{DateTime.Now:yyyyMMddHHmmss}.txt");
                 }
                 if (sLogs.Length > 0)
                 {
@@ -371,7 +372,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             for (int i = 0; i < iCreateCount; i++)
             {
                 person = CreateNewPerson(0);
-                if(person != null)
+                if (person != null)
                     AddPersonToList(person);
             }
             PersonList.RaiseListChangedEvents = true;
@@ -744,6 +745,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
+
                 var result = cmd.getResult() as AddPersonAndImage_Result;
                 AddPersonAndImageCallBlack(cmde, result);
             };
@@ -853,6 +855,50 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void butCreateCardNumByOrder_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnPersonExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            // var path = string.Empty;
+            saveFileDialog.Filter = "Excel|*.csv;";
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            if (dgPersonList.Rows.Count == 0)
+            {
+                MessageBox.Show("请先读取所有用户");
+                return;
+            }
+            StringBuilder csv = new StringBuilder();
+            csv.AppendLine("用户号,人员姓名,人员编号,人员部门,人员职务,卡号,密码");
+            foreach (DataGridViewRow item in dgPersonList.Rows)
+            {
+                // var cell = 1;
+                for (int i = 1; i < 8; i++)
+                {
+                    if (i == 6)
+                    {
+                        var card = item.Cells[i].Value.ToString().Substring(0, 20);
+                        if(long.TryParse(card,out var cardData))
+                        {
+                            csv.Append(cardData + "\t,");
+                        }
+                        else
+                        {
+                            csv.Append("\t,");
+                        }
+                    }
+                    else
+                    {
+                        csv.Append(item.Cells[i].Value + "\t,");
+                    }
+                }
+                csv.Length -= 1;
+                csv.AppendLine();
+            }
+            File.WriteAllText(saveFileDialog.FileName, csv.ToString());
         }
     }
 }
