@@ -39,8 +39,6 @@ namespace DoNetDrive.Protocol.Door.Test
             return onlyObj;
         }
 
-        INMain mMainForm;
-
         private frmCard(INMain main)
         {
             InitializeComponent();

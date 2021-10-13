@@ -519,19 +519,26 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void IniEquptType()
         {
-            var equptType = Lng("EquptTypeList").Split(',');
             mAesKey = new Dictionary<string, EquptAESKey>();
-            var oKey = new EquptAESKey(equptType[0], "70c5287e4572bdd9", 1024);
-            mAesKey.Add(oKey.Name, oKey);
 
-            oKey = new EquptAESKey(equptType[1], "0097d54f8d755a9b", 1024);
-            mAesKey.Add(oKey.Name, oKey);
+            var typeFile = Lng("EquptTypeList");
+            typeFile = Path.Combine(Directory.GetCurrentDirectory(), typeFile);
+            if(!File.Exists(typeFile))
+            {
+                return;
+            }
+            var sTypes = File.ReadAllText(typeFile, Encoding.UTF8).Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            
+            foreach(var sTypeLine in sTypes)
+            {
+                var sTypeDetails = sTypeLine.Split(',');
+                var oKey = new EquptAESKey(sTypeDetails[0], sTypeDetails[1], sTypeDetails[2].ToInt32());
+                mAesKey.Add(oKey.Name, oKey);
 
-            oKey = new EquptAESKey(equptType[2], "f89cabe34e5b9965", 1024);
-            mAesKey.Add(oKey.Name, oKey);
+            }
 
-            oKey = new EquptAESKey(equptType[3], "286eb84a8342627c", 1024);
-            mAesKey.Add(oKey.Name, oKey);
+            
+            
 
             cmbEquptType.Items.Clear();
             cmbEquptType.Items.AddRange(mAesKey.Keys.ToArray());

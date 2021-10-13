@@ -35,26 +35,6 @@
     <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DoNetDrive.Common">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Output\Release\net45\DoNetDrive.Common.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Core, Version=1.19.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Output\Release\net45\DoNetDrive.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol, Version=1.13.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol.Util">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Util.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\Output\Release\net45\DoNetty\DotNetty.Buffers.dll</HintPath>
       <Private>False</Private>
@@ -463,6 +443,24 @@
     <Compile Include="Door89H\Transaction\ReadTransactionDatabase\ReadTransactionDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Door8800\SystemParameter\01SN\ReadSN.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DoNet版通讯动态库V2\DoNetDrive.Common\DoNetDrive.Common\DoNetDrive.Common_Net45.csproj">
+      <Project>{61ea1859-ee39-4e26-a919-f3d8193b9934}</Project>
+      <Name>DoNetDrive.Common_Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DoNet版通讯动态库V2\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util_Net45.csproj">
+      <Project>{774faec9-9b9f-4ad5-a3f7-c5bdd86963d3}</Project>
+      <Name>DoNetDrive.Protocol.Util_Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DoNet版通讯动态库V2\FCARDIO.Core\FCARDIO.Core\DoNetDrive.Core_Net45.vbproj">
+      <Project>{a149c4d3-2209-408f-a0de-d9eb8e0fa492}</Project>
+      <Name>DoNetDrive.Core_Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DoNet版通讯动态库V2\FCARDIO.Protocol\FCARDIO.Protocol\DoNetDrive.Protocol_Net45.vbproj">
+      <Project>{4c9b06e5-da6b-49af-8e4d-a0d75046c044}</Project>
+      <Name>DoNetDrive.Protocol_Net45</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

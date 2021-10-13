@@ -25,6 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\DoNet版通讯动态库V2\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util_Net5.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="DoNetDrive.Common">
       <HintPath>..\..\Output\Release\net5.0\DoNetDrive.Common.dll</HintPath>
     </Reference>
@@ -36,9 +40,6 @@
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Door">
       <HintPath>..\..\Output\Release\net5.0\DoNetDrive.Protocol.Door.dll</HintPath>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol.Util">
-      <HintPath>..\..\Output\Release\net5.0\DoNetDrive.Protocol.Util.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\..\Output\Release\net5.0\DotNetty.Buffers.dll</HintPath>

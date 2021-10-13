@@ -37,9 +37,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoUpdater.NET, Version=1.6.3.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autoupdater.NET.Official.1.6.3\lib\net45\AutoUpdater.NET.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="AutoUpdater.NET, Version=1.7.0.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autoupdater.NET.Official.1.7.0\lib\net45\AutoUpdater.NET.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar.SuperGrid">
       <HintPath>..\DLL\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
@@ -53,31 +52,6 @@
       <HintPath>..\DLL\DevComponents.Instrumentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Common">
-      <HintPath>..\Output\Release\net45\DoNetDrive.Common.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Core">
-      <HintPath>..\Output\Release\net45\DoNetDrive.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol">
-      <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol.Door">
-      <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Door.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol.Fingerprint, Version=1.20.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Fingerprint.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol.Util">
-      <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Util.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\Output\Release\net45\DoNetty\DotNetty.Buffers.dll</HintPath>
       <Private>False</Private>
@@ -89,6 +63,7 @@
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -104,6 +79,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="frmAdditionalData.cs">
@@ -193,6 +169,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAlarm.resx">
       <DependentUpon>frmAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDoor.resx">
       <DependentUpon>frmDoor.cs</DependentUpon>
@@ -263,6 +240,32 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DoNet版通讯动态库V2\DoNetDrive.Common\DoNetDrive.Common\DoNetDrive.Common_Net45.csproj">
+      <Project>{61ea1859-ee39-4e26-a919-f3d8193b9934}</Project>
+      <Name>DoNetDrive.Common_Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DoNet版通讯动态库V2\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util_Net45.csproj">
+      <Project>{774faec9-9b9f-4ad5-a3f7-c5bdd86963d3}</Project>
+      <Name>DoNetDrive.Protocol.Util_Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DoNet版通讯动态库V2\FCARDIO.Core\FCARDIO.Core\DoNetDrive.Core_Net45.vbproj">
+      <Project>{a149c4d3-2209-408f-a0de-d9eb8e0fa492}</Project>
+      <Name>DoNetDrive.Core_Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DoNet版通讯动态库V2\FCARDIO.Protocol\FCARDIO.Protocol\DoNetDrive.Protocol_Net45.vbproj">
+      <Project>{4c9b06e5-da6b-49af-8e4d-a0d75046c044}</Project>
+      <Name>DoNetDrive.Protocol_Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door.csproj">
+      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
+      <Name>DoNetDrive.Protocol.Door</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoNetDrive.Protocol.Fingerprint\Fingerprint\DoNetDrive.Protocol.Fingerprint.csproj">
+      <Project>{4639e7f7-83aa-4511-8fa8-369a79226b72}</Project>
+      <Name>DoNetDrive.Protocol.Fingerprint</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

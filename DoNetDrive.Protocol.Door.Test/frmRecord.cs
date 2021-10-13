@@ -516,7 +516,7 @@ namespace DoNetDrive.Protocol.Door.Test
             };
         }
 
-        public Control FindControl(Control parentControl, string findCtrlName)
+        public new Control FindControl(Control parentControl, string findCtrlName)
         {
             Control _findedControl = null;
             if (!string.IsNullOrEmpty(findCtrlName) && parentControl != null)

@@ -756,7 +756,6 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.butSearch);
             this.Controls.Add(this.butWatch);
-            this.Controls.Add(this.gbTCPClient);
             this.Controls.Add(this.gbUDP);
             this.Controls.Add(this.gbSerialPort);
             this.Controls.Add(this.Lab_Process);
@@ -772,6 +771,7 @@
             this.Controls.Add(this.cmdConnType);
             this.Controls.Add(this.Lba_ConnType);
             this.Controls.Add(this.gbServer);
+            this.Controls.Add(this.gbTCPClient);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

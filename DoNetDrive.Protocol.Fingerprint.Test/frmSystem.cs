@@ -123,6 +123,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             Lng(btnBeginWatch_Broadcast);//  开启广播
             Lng(btnCloseWatch_Broadcast);//  关闭广播
             Lng(BtnFormatController);//格式化
+            Lng(butRestart);//重启设备
 
             Lng(tabPage2);//参数2
             Lng(gpLocalIdentity);//本机身份
@@ -1964,5 +1965,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mMainForm.AddCommand(cmd);
         }
         #endregion
+
+        private void butRestart_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            RequireRestart cmd = new RequireRestart(cmdDtl);
+            mMainForm.AddCommand(cmd);
+        }
     }
 }

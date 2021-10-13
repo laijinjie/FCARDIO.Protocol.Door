@@ -240,6 +240,7 @@
             this.txtServerIP_1 = new System.Windows.Forms.TextBox();
             this.lblServerPort_1 = new System.Windows.Forms.Label();
             this.txtServerPort_1 = new System.Windows.Forms.TextBox();
+            this.butRestart = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpPar1.SuspendLayout();
             this.gbWatch.SuspendLayout();
@@ -286,6 +287,7 @@
             // 
             // tpPar1
             // 
+            this.tpPar1.Controls.Add(this.butRestart);
             this.tpPar1.Controls.Add(this.BtnFormatController);
             this.tpPar1.Controls.Add(this.gbWatch);
             this.tpPar1.Controls.Add(this.gbRecordMode);
@@ -2471,6 +2473,16 @@
             this.txtServerPort_1.TabIndex = 0;
             this.txtServerPort_1.Text = "9000";
             // 
+            // butRestart
+            // 
+            this.butRestart.Location = new System.Drawing.Point(511, 319);
+            this.butRestart.Name = "butRestart";
+            this.butRestart.Size = new System.Drawing.Size(107, 23);
+            this.butRestart.TabIndex = 73;
+            this.butRestart.Text = "重启机器";
+            this.butRestart.UseVisualStyleBackColor = true;
+            this.butRestart.Click += new System.EventHandler(this.butRestart_Click);
+            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2747,5 +2759,6 @@
         private System.Windows.Forms.ComboBox cmbAuthenticationMode;
         private System.Windows.Forms.Button butWriteAuthenticationMode;
         private System.Windows.Forms.Button butReadAuthenticationMode;
+        private System.Windows.Forms.Button butRestart;
     }
 }

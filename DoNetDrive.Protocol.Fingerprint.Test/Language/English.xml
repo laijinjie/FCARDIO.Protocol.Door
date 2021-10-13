@@ -147,7 +147,8 @@
     <DoNetDrive_Protocol_Fingerprint_SystemParameter_Watch_CloseWatch value= "Close Watch "/>
     <DoNetDrive_Protocol_Fingerprint_SystemParameter_Watch_ReadWatchState value= "Read Watch State "/>
     <DoNetDrive_Protocol_Fingerprint_SystemParameter_SystemStatus_ReadSystemStatus value= "Read System Status "/>
-    <DoNetDrive_Protocol_Door_Door8800_SystemParameter_Controller_FormatController value= "Format "/>
+    <DoNetDrive_Protocol_Door_Door8800_SystemParameter_Controller_FormatController value= "Format"/>
+    <DoNetDrive_Protocol_Fingerprint_SystemParameter_RequireRestart value= "Restart "/>
     <DoNetDrive_Protocol_Door_Door8800_SystemParameter_SearchControltor_SearchControltor value= "Search Controltor "/>
     <DoNetDrive_Protocol_Door_Door8800_SystemParameter_SearchControltor_WriteControltorNetCode value= "Write Controltor Net Code "/>
     <DoNetDrive_Protocol_Fingerprint_SystemParameter_DataEncryptionSwitch_ReadDataEncryptionSwitch value= "Read Packet Encryption Switch "/>
@@ -293,6 +294,7 @@
     <btnBeginWatch_Broadcast value="Broadcast Open" />
     <btnCloseWatch_Broadcast value="Broadcast Close" />
     <BtnFormatController     value="Format" />
+    <butRestart     value="Restart" />
     <cmbInOut                value="in,out" />
     <tpNetwork                      value = "Client Network" />
     <gbServerDetail                 value = "Server Setting" />
@@ -994,7 +996,7 @@
     <butUploadFolder          value="Upload in batch" />
     <UploadTypeList           value="User photo,fingerprint feature code,infrared face feature code,dynamic face feature code" />
     <DownloadTypeList         value="User photo,fingerprint feature code,infrared face feature code,dynamic face feature code" />
-    <EquptTypeList            value="A102 fingerprint access controller,A103 fingerprint access controller,A108 fingerprint infrared face access controller,FC8300 dynamic face recognition access controller" />
+    <EquptTypeList            value="softwarekey_EN.txt" />
     <Msg_1                    value="Have" />
     <Msg_2                    value="None" />
     <Msg_3                    value="Photo" />

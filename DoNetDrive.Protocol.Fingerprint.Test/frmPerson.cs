@@ -681,8 +681,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 }
                 else
                 {
-                    PersonToControl(result.Person);
-                    mMainForm.AddCmdLog(cmde, Lng("Msg_20"));
+                    Invoke(() => {
+                        PersonToControl(result.Person);
+                        mMainForm.AddCmdLog(cmde, Lng("Msg_20"));
+                    });
+                    
                 }
             };
         }

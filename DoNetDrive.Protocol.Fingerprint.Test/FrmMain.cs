@@ -5,28 +5,28 @@ using DoNetDrive.Core.Connector.TCPServer.Client;
 using DoNetDrive.Core.Connector.UDP;
 using DoNetDrive.Core.Connector.TCPServer;
 using DoNetDrive.Common.Extensions;
-using DoNetDrive.Protocol.Door.Door8800.Data;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SearchControltor;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN;
 using DoNetDrive.Protocol.Door8800;
 using DoNetDrive.Protocol.Fingerprint.SystemParameter.Watch;
 using DoNetDrive.Protocol.Fingerprint.Test.Model;
+using DoNetDrive.Protocol.OnlineAccess;
 using DoNetDrive.Protocol.Transaction;
+using DotNetty.Buffers;
+using log4net;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN;
-using System.Linq;
-using System.Configuration;
-using System.Security.Cryptography.X509Certificates;
-using System.IO;
-using DotNetty.Buffers;
-using DoNetDrive.Protocol.OnlineAccess;
-using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SearchControltor;
-using log4net;
+using AutoUpdaterDotNET;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -74,6 +74,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             log4net.Config.XmlConfigurator.Configure(new FileInfo(sLogXml));
             _Log = LogManager.GetLogger(typeof(frmMain));
             _Log.Debug("App Start");
+
+
+
         }
 
         public static void AddNodeForms(frmNodeForm frm)
@@ -115,13 +118,38 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             tbEvent.SelectedIndex = 1;
             IniConnTypeList();
 
-            Task.Run(() =>
+
+            AutoUpdater.CheckForUpdateEvent += AutoUpdater_CheckForUpdateEvent;
+            AutoUpdater.Start("http://oss2.pc15.net/ToolDownload/Update/FaceDebugToolForNet/update.xml");
+
+
+
+        }
+
+        private void AutoUpdater_CheckForUpdateEvent(UpdateInfoEventArgs args)
+        {
+
+            if (args.Error == null)
             {
-                System.Threading.Thread.Sleep(100);
-                Invoke(new Action(IniForm));
+                if (args.IsUpdateAvailable)//需要更新
+                {
+                    try
+                    {
+                        if (AutoUpdater.DownloadUpdate(args))
+                        {
+                            Application.Exit();
+                            return;
+                        }
+                    }
+                    catch (Exception exception)
+                    {//更新下载失败
 
-            });
+                    }
 
+                }
+            }
+
+            Invoke(new Action(IniForm));
         }
 
 
@@ -1323,6 +1351,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AddCommandClassNameList(typeof(SystemParameter.Watch.ReadWatchState));// "读取实时监控状态 
             AddCommandClassNameList(typeof(SystemParameter.SystemStatus.ReadSystemStatus));// "读取设备状态信息 
             AddCommandClassNameList(typeof(DoNetDrive.Protocol.Door.Door8800.SystemParameter.Controller.FormatController));// "初始化设备 
+            AddCommandClassNameList(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.RequireRestart));// "重启 
             AddCommandClassNameList(typeof(Protocol.Door.Door8800.SystemParameter.SearchControltor.SearchControltor));// "搜索控制器 
             AddCommandClassNameList(typeof(Protocol.Door.Door8800.SystemParameter.SearchControltor.WriteControltorNetCode));// "根据SN设置网络标识 
             AddCommandClassNameList(typeof(SystemParameter.DataEncryptionSwitch.ReadDataEncryptionSwitch));// "读取数据包加密开关 
@@ -1896,7 +1925,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 });
             }
             var log = strbuf.ToString();
-            _Log.Debug(log.Replace("\r\n"," "));
+            _Log.Debug(log.Replace("\r\n", " "));
             commandResult.Content = log;
 
             AddCmdItem(commandResult);

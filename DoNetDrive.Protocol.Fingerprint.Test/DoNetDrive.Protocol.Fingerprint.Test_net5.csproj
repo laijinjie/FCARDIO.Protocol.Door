@@ -16,7 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.12" />
     <PackageReference Include="System.IO.Ports" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DoNetDrive.Protocol.Fingerprint\Fingerprint\DoNetDrive.Protocol.Fingerprint_net5.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,10 +40,6 @@
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Door">
       <HintPath>..\Output\Release\net5.0\DoNetDrive.Protocol.Door.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-	<Reference Include="DoNetDrive.Protocol.Fingerprint">
-      <HintPath>..\Output\Release\net5.0\DoNetDrive.Protocol.Fingerprint.dll</HintPath>
       <Private>true</Private>
     </Reference>
     <Reference Include="DotNetty.Buffers">

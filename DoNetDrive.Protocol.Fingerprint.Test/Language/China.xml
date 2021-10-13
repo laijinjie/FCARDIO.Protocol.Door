@@ -150,6 +150,7 @@
     <DoNetDrive_Protocol_Fingerprint_SystemParameter_Watch_ReadWatchState value= "读取实时监控状态 "/>
     <DoNetDrive_Protocol_Fingerprint_SystemParameter_SystemStatus_ReadSystemStatus value= "读取设备状态信息 "/>
     <DoNetDrive_Protocol_Door_Door8800_SystemParameter_Controller_FormatController value= "初始化设备 "/>
+    <DoNetDrive_Protocol_Fingerprint_SystemParameter_RequireRestart value= "重启 "/>
     <DoNetDrive_Protocol_Door_Door8800_SystemParameter_SearchControltor_SearchControltor value= "搜索控制器 "/>
     <DoNetDrive_Protocol_Door_Door8800_SystemParameter_SearchControltor_WriteControltorNetCode value= "根据SN设置网络标识 "/>
     <DoNetDrive_Protocol_Fingerprint_SystemParameter_DataEncryptionSwitch_ReadDataEncryptionSwitch value= "读取数据包加密开关 "/>
@@ -296,6 +297,7 @@
     <btnBeginWatch_Broadcast value="开启广播" />
     <btnCloseWatch_Broadcast value="关闭广播" />
     <BtnFormatController     value="初始化设备" />
+    <butRestart     value="重启" />
     <cmbInOut                value="进,出" />
     <tpNetwork                      value = "客户端网络参数" />
     <gbServerDetail                 value = "服务器参数" />
@@ -998,7 +1000,7 @@
     <butUploadFolder          value="批量上传照片" />
     <UploadTypeList           value="人员头像照片,指纹特征码,红外人脸特征码,动态人脸特征码" />
     <DownloadTypeList         value="人员头像,指纹特征码,记录照片,红外人脸特征码,动态人脸特征码" />
-    <EquptTypeList            value="A102 指纹机,A103 指纹机,A108 指纹红外人脸机,FC8300 动态人脸机" />
+    <EquptTypeList            value="softwarekey.txt" />
     <Msg_1                    value="有" />
     <Msg_2                    value="无" />
     <Msg_3                    value="照片" />

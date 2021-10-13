@@ -34,7 +34,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.SystemStatus
         /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x12))
+            if (CheckResponse(oPck, 0x01, 0x09, 0))
             {
                 var buf = oPck.CmdData;
                 ReadSystemStatus_Result rst = new ReadSystemStatus_Result();

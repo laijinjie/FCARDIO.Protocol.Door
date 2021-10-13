@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DoNetDrive.Core;
-using DoNetDrive.Core.Command;
-using DoNetDrive.Core.Connector;
-using DoNetDrive.Core.Connector.TCPClient;
-using DoNetDrive.Core.Connector.TCPServer;
-using DoNetDrive.Core.Connector.TCPServer.Client;
-using DoNetDrive.Core.Connector.UDP;
-using DoNetDrive.Common.Extensions;
+﻿using DoNetDrive.Common.Extensions;
 using DoNetDrive.Protocol.Door.Door8800.Door.ReaderOption;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.Watch;
 using DoNetDrive.Protocol.Door.Test.Language;
 using DoNetDrive.Protocol.Door8800;
-using System.Reflection;
+using DoNetDrive.Core.Command;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DoNetDrive.Core.Connector;
+using DoNetDrive.Core;
+using DoNetDrive.Core.Connector.TCPClient;
+using DoNetDrive.Core.Connector.TCPServer.Client;
+using DoNetDrive.Core.Connector.UDP;
+using DoNetDrive.Core.Connector.TCPServer;
 
 namespace DoNetDrive.Protocol.Door.Test
 {
@@ -92,9 +87,9 @@ namespace DoNetDrive.Protocol.Door.Test
         /// <param name="e"></param>
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            
 
-               _IsClosed = false;
+
+            _IsClosed = false;
             Task.Run(() =>
             {
                 System.Threading.Thread.Sleep(100);
@@ -289,7 +284,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 {
                     Console.WriteLine(abscmd.CommandException.Message);
                 }
-                
+
             }
             AddCmdLog(e, GetLanguage("Msg20"));
         }
@@ -571,6 +566,31 @@ namespace DoNetDrive.Protocol.Door.Test
 
         }
 
+        private class OnlineAccessCommandDetailEx : OnlineAccess.OnlineAccessCommandDetail
+        {
+
+            private static byte[] EmptySN_FF = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                                            0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+            public const string SNTitle = "ffffffffffffffff";
+
+            public OnlineAccessCommandDetailEx(INConnectorDetail cnt, string s, string p) : base(cnt, s, p)
+            {
+
+            }
+
+            public override byte[] SNByte
+            {
+                get
+                {
+                    if (base.mSN.Equals("ffffffffffffffff"))
+                    {
+                        return EmptySN_FF;
+                    }
+                    return base.SNByte;
+                }
+            }
+        }
+
         /// <summary>
         /// 获取一个命令详情，已经装配好通讯目标的所有信息
         /// </summary>
@@ -662,8 +682,15 @@ namespace DoNetDrive.Protocol.Door.Test
 
 
 
-            var cmdDtl = CommandDetailFactory.CreateDetail(connectType, addr, port,
+            INCommandDetail cmdDtl = CommandDetailFactory.CreateDetail(connectType, addr, port,
                 protocolType, sn, password);
+
+            if (sn.Equals(OnlineAccessCommandDetailEx.SNTitle))
+            {
+                cmdDtl = new OnlineAccessCommandDetailEx(cmdDtl.Connector,sn,password);
+            }
+
+
 
             if (connectType == CommandDetailFactory.ConnectType.UDPClient)
             {

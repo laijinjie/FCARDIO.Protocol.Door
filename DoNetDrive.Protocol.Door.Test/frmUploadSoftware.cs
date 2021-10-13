@@ -30,7 +30,6 @@ namespace DoNetDrive.Protocol.Door.Test
             return onlyObj;
         }
 
-        INMain mMainForm;
 
         private frmUploadSoftware(INMain main)
         {
