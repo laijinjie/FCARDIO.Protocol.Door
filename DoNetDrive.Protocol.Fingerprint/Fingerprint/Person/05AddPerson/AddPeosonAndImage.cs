@@ -57,15 +57,53 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
             mResult = new AddPersonAndImage_Result(mPar.PersonDetail, mPar.IdentificationDatas);
 
             UserCode = mPar.PersonDetail.UserCode;
-            var dataBuf = GetNewCmdDataBuf(0xA2);
-
-            dataBuf.WriteByte(1);
-            mPar.PersonDetail.GetBytes(dataBuf);
-            Packet(0x07, 0x04, 0x00, 0xA2, dataBuf);
-            _Step = 0;
             _Result = mResult;
+            DeletePerson(null);
         }
-
+        /// <summary>
+        /// 删除人员
+        /// </summary>
+        private void DeletePerson(OnlineAccessPacket oPck)
+        {
+            if (oPck == null)
+            {
+                var MaxBufSize = 4 + 1;
+                var buf = GetNewCmdDataBuf(MaxBufSize);
+                buf.WriteByte(1);
+                buf.WriteInt((int)UserCode);
+                Packet(0x07, 0x05, 0x00, (uint)buf.ReadableBytes, buf);
+                _Step = 5;
+            }
+            else
+            {
+                    AddPerson(null);
+            }
+        }
+        private void AddPerson(OnlineAccessPacket oPck)
+        {
+            if (oPck == null)
+            {
+                var dataBuf = GetNewCmdDataBuf(0xA2);
+                dataBuf.WriteByte(1);
+                mPar.PersonDetail.GetBytes(dataBuf);
+                Packet(0x07, 0x04, 0x00, 0xA2, dataBuf);
+                _Step = 0;
+                CommandReady();
+            }
+            else
+            {
+                if (CheckResponse_OK(oPck))
+                {
+                    mResult.UserUploadStatus = true;
+                    WriteImage();
+                }
+                else if (CheckResponse(oPck, 0x07, 0x04, 0xFF))
+                {  //检查是否不是错误返回值
+                    mResult.UserUploadStatus = false;
+                    CommandCompleted();
+                }
+            }
+        }
         /// <summary>
         /// 检查命令参数
         /// </summary>
@@ -86,16 +124,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
             switch (_Step)
             {
                 case 0://添加人员
-                    if (CheckResponse_OK(oPck))
-                    {
-                        mResult.UserUploadStatus = true;
-                        WriteImage();
-                    }
-                    else if (CheckResponse(oPck, 0x07, 0x04, 0xFF))
-                    {//检查是否不是错误返回值
-                        mResult.UserUploadStatus = false;
-                        CommandCompleted();
-                    }
+                    AddPerson(oPck);
                     break;
                 case 1:
                     //开始写文件
@@ -103,6 +132,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
                     break;
                 case 3://上传完毕
                     CheckWriteOver(oPck);
+                    break;
+                case 5:
+                    DeletePerson(oPck);
                     break;
                 default:
                     break;
@@ -126,7 +158,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
                 CommandCompleted0();
                 return;
             }
-            if(_WriteSubCommand == null)
+            if (_WriteSubCommand == null)
             {
                 _WriteSubCommand = new AdditionalData.WriteFileSubCommand(this);
                 _WriteSubCommand.WaitRepeatMessage = mPar.WaitRepeatMessage;
@@ -134,7 +166,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Person
             }
             var id = mPar.IdentificationDatas[_FileIndex];
 
-            _WriteSubCommand.BeginWrite((int)UserCode, id.DataType, id.DataNum,id.DataBuf);
+            _WriteSubCommand.BeginWrite((int)UserCode, id.DataType, id.DataNum, id.DataBuf);
 
             CommandReady();
             _Step = 1;
