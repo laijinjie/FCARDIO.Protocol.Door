@@ -64,7 +64,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
             InitializeComponent();
         }
 
-        string[] ReaderByteTypeList = new string[] { "三字节","四字节","二字节","禁用"};
+        string[] ReaderByteTypeList = new string[] { "三字节", "四字节", "二字节", "禁用" };
         string[] InputTerminalFunctionList = new string[] { "开锁按钮", "门磁检查" };
         string[] AlarmOptionList = new string[] { "不开门，报警输出", "开门，报警输出", "锁定门，报警，只能软件解锁" };
         List<WeekTimeGroupDto> ListWeekTimeGroupDto = new List<WeekTimeGroupDto>();
@@ -97,7 +97,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Door.Door8800.SystemParameter.SN. SN_Result;
+                var result = cmde.Command.getResult() as Door.Door8800.SystemParameter.SN.SN_Result;
                 string sn = result.SNBuf.GetString();
                 Invoke(() =>
                 {
@@ -158,7 +158,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Door.Door8800.SystemParameter.ConnectPassword. Password_Result;
+                var result = cmde.Command.getResult() as Door.Door8800.SystemParameter.ConnectPassword.Password_Result;
                 string pwd = result.Password;
 
                 mMainForm.AddCmdLog(cmde, pwd);
@@ -650,7 +650,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
                 return;
             }
             byte Option = Convert.ToByte(cbxOption.SelectedIndex);
-          
+
 
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
@@ -711,7 +711,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.Door8800.SystemParameter.FunctionParameter. ReadBroadcast_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.SystemParameter.FunctionParameter.ReadBroadcast_Result;
 
                 Invoke(() =>
                 {
@@ -833,7 +833,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
 
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            WriteReaderIntervalTime cmd = new WriteReaderIntervalTime(cmdDtl, new WriteReaderIntervalTime_Parameter(cbIsUseInterval.Checked, IntervalTime,(byte)(cmbIntervalMode.SelectedIndex + 1)));
+            WriteReaderIntervalTime cmd = new WriteReaderIntervalTime(cmdDtl, new WriteReaderIntervalTime_Parameter(cbIsUseInterval.Checked, IntervalTime, (byte)(cmbIntervalMode.SelectedIndex + 1)));
             mMainForm.AddCommand(cmd);
         }
 
@@ -852,7 +852,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
-                var result = cmde.Command.getResult() as Protocol.Door.Door8800.SystemParameter.FunctionParameter. ReadReaderCheckMode_Result;
+                var result = cmde.Command.getResult() as Protocol.Door.Door8800.SystemParameter.FunctionParameter.ReadReaderCheckMode_Result;
                 string ModeStr = string.Empty; //读卡器数据校验
                 Invoke(() =>
                 {
@@ -952,7 +952,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
                 {
                     cmbReaderByteType.SelectedIndex = result.Type - 1;
                 });
-               string  ModeStr = "读卡器字节数：【"+ result.Type.ToString() + "、" + ReaderByteTypeList[result.Type - 1] + "】";
+                string ModeStr = "读卡器字节数：【" + result.Type.ToString() + "、" + ReaderByteTypeList[result.Type - 1] + "】";
                 mMainForm.AddCmdLog(cmde, ModeStr);
             };
         }
@@ -995,7 +995,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
 
         private void BtnWriteInvalidCardAlarmOption_Click(object sender, EventArgs e)
         {
-         
+
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             byte use = (byte)(rbInvalidCardAlarmOption1.Checked ? 1 : 0);
@@ -1019,7 +1019,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
 
                 });
 
-                mMainForm.AddCmdLog(cmde, $"命令成功：功能开关:{(result.Use ? "启用":"不启用")},报警密码：{result.Password},报警选项：{AlarmOptionList[result.AlarmOption - 1]}");
+                mMainForm.AddCmdLog(cmde, $"命令成功：功能开关:{(result.Use ? "启用" : "不启用")},报警密码：{result.Password},报警选项：{AlarmOptionList[result.AlarmOption - 1]}");
             };
         }
 
@@ -1324,7 +1324,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
             {
                 ReadInputTerminalFunction_Result result = cmde.Command.getResult() as ReadInputTerminalFunction_Result;
                 int Function = result.Function; //消防报警参数
-                
+
                 Invoke(() =>
                 {
                     cmbInputTerminalFunction.SelectedIndex = Function - 1;
@@ -1387,7 +1387,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
 
         private void BtnReadDoorWorkSetting_Click(object sender, EventArgs e)
         {
-           
+
             StringBuilder sb = new StringBuilder();
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
@@ -1478,7 +1478,7 @@ namespace DoNetDrive.Protocol.Elevator.Test
 
         private void BtnWriteDoorWorkSetting_Click(object sender, EventArgs e)
         {
-           
+
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             WeekTimeGroup_ReaderWork tg = new WeekTimeGroup_ReaderWork(8);
@@ -1514,6 +1514,19 @@ namespace DoNetDrive.Protocol.Elevator.Test
                 }
             }
 
+        }
+
+        private void BtnWriteSn_Click(object sender, EventArgs e)
+        {
+            if (txtSN.Text.Length != 16)
+            {
+                MessageBox.Show("sn错误，请输入16位数字字符");
+                return;
+            }
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            WriteSN cmd = new WriteSN(cmdDtl, new Door.Door8800.SystemParameter.SN.SN_Parameter(txtSN.Text.Trim()));
+            mMainForm.AddCommand(cmd);
         }
     }
 }

@@ -411,6 +411,10 @@ namespace DoNetDrive.Protocol.Door.Test
                 cbxCloseAlarmDoor.Items.Add(door + i);
             }
             cbxCloseAlarmDoor.SelectedIndex = 0;
+
+            Cmb_FireAlarmOption.Items.Clear();
+            var fireAlarmOption = "禁用,报警输出，并开所有门，只能软件解除,报警输出，不开所有门，只能软件解除,有信号报警并开门，无信号解除报警并关门,有报警信号时开一次门，就像按钮开门一样";
+            Cmb_FireAlarmOption.Items.AddRange(fireAlarmOption.Split(','));
         }
 
         #region SN的读写操作
@@ -3441,6 +3445,30 @@ namespace DoNetDrive.Protocol.Door.Test
         private void label59_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Btn_ReadFireAlarmOption_Click(object sender, EventArgs ev)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            cmdDtl.CommandCompleteEvent += (s, e) =>
+            {
+                var result = e.Result as ReadFireAlarmOption_Result;
+                Invoke(() =>
+                {
+                    Cmb_FireAlarmOption.SelectedIndex = result.Option;
+                });
+            };
+            var cmd = new ReadFireAlarmOption(cmdDtl);
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void Btn_WriteFireAlarmOption_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new WriteFireAlarmOption(cmdDtl, new WriteFireAlarmOption_Parameter((byte)Cmb_FireAlarmOption.SelectedIndex));
+            mMainForm.AddCommand(cmd);
         }
     }
 }

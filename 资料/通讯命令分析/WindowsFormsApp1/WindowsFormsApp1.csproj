@@ -35,17 +35,23 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DoNetDrive.Common">
+      <HintPath>..\..\..\Output\Release\net45\DoNetDrive.Common.dll</HintPath>
+    </Reference>
     <Reference Include="DoNetDrive.Core">
-      <HintPath>..\..\..\DLL\DoNetDrive.Core.dll</HintPath>
+      <HintPath>..\..\..\Output\Release\net45\DoNetDrive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol">
+      <HintPath>..\..\..\Output\Release\net45\DoNetDrive.Protocol.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Buffers">
-      <HintPath>..\..\..\DLL\DotNetty.Buffers.dll</HintPath>
+      <HintPath>..\..\..\Output\Release\net45\DoNetty\DotNetty.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Codecs">
-      <HintPath>..\..\..\DLL\DotNetty.Codecs.dll</HintPath>
+      <HintPath>..\..\..\Output\Release\net45\DoNetty\DotNetty.Codecs.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Common">
-      <HintPath>..\..\..\DLL\DotNetty.Common.dll</HintPath>
+      <HintPath>..\..\..\Output\Release\net45\DoNetty\DotNetty.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -90,12 +96,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\DoNet版通讯动态库V2\FCARDIO.Protocol\FCARDIO.Protocol\DoNetDrive.Protocol.vbproj">
-      <Project>{4c9b06e5-da6b-49af-8e4d-a0d75046c044}</Project>
-      <Name>DoNetDrive.Protocol</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

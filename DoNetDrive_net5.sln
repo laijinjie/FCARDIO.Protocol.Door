@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoNetDrive.Protocol.Fingerp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoNetDrive.Protocol.USB.OfflinePatrol.Test_net5", "DoNetDrive.Protocol.USB.Test\OfflinePatrol\DoNetDrive.Protocol.USB.OfflinePatrol.Test_net5.csproj", "{767B466D-AC18-47D8-A492-A4578C872361}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoNetDrive.Protocol.Util_Net5", "..\DoNet版通讯动态库V2\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util_Net5.csproj", "{D0CFA6C6-C43A-40FA-8EAF-D2AF50AED28C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoNetDrive.Protocol.Util_Net5", "..\DoNetDrive.Core\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util_Net5.csproj", "{CE5F540D-5DF8-4F20-8CD3-B351D394274A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoNetDrive.Common_Net5", "..\DoNetDrive.Core\DoNetDrive.Common\DoNetDrive.Common\DoNetDrive.Common_Net5.csproj", "{98F3521C-4A49-4263-BE55-1FF3933CCC69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,10 +87,14 @@ Global
 		{767B466D-AC18-47D8-A492-A4578C872361}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{767B466D-AC18-47D8-A492-A4578C872361}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{767B466D-AC18-47D8-A492-A4578C872361}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D0CFA6C6-C43A-40FA-8EAF-D2AF50AED28C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0CFA6C6-C43A-40FA-8EAF-D2AF50AED28C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0CFA6C6-C43A-40FA-8EAF-D2AF50AED28C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0CFA6C6-C43A-40FA-8EAF-D2AF50AED28C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE5F540D-5DF8-4F20-8CD3-B351D394274A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE5F540D-5DF8-4F20-8CD3-B351D394274A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE5F540D-5DF8-4F20-8CD3-B351D394274A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE5F540D-5DF8-4F20-8CD3-B351D394274A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98F3521C-4A49-4263-BE55-1FF3933CCC69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98F3521C-4A49-4263-BE55-1FF3933CCC69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98F3521C-4A49-4263-BE55-1FF3933CCC69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98F3521C-4A49-4263-BE55-1FF3933CCC69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,7 +110,8 @@ Global
 		{B45A4CCE-7ED6-40E7-942B-68F175146791} = {256E9152-1E21-4A0A-A8BB-AD301ED88394}
 		{57AF3F61-0A46-4BEB-A474-D21A0A07F4D1} = {42ED4DEA-B75F-4621-B8DC-1296D0E354A0}
 		{767B466D-AC18-47D8-A492-A4578C872361} = {72EA2D02-593C-4D27-BD0D-B11D7F1E1B3F}
-		{D0CFA6C6-C43A-40FA-8EAF-D2AF50AED28C} = {256E9152-1E21-4A0A-A8BB-AD301ED88394}
+		{CE5F540D-5DF8-4F20-8CD3-B351D394274A} = {256E9152-1E21-4A0A-A8BB-AD301ED88394}
+		{98F3521C-4A49-4263-BE55-1FF3933CCC69} = {256E9152-1E21-4A0A-A8BB-AD301ED88394}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2597CD71-1BA9-47D1-B932-EF7A60A242EF}

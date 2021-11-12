@@ -271,12 +271,12 @@ namespace DoNetDrive.Protocol.Elevator.Test
         }
 
 
-        private const string Command_ReadSN = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN.ReadSN";
-        private const string Command_WriteSN = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN.WriteSN";
-        private const string Command_WriteSN_Broadcast = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN.WriteSN_Broadcast";
-        private const string Command_ReadConnectPassword = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword.ReadConnectPassword";
-        private const string Command_WriteConnectPassword = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword.WriteConnectPassword";
-        private const string Command_ResetConnectPassword = "DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword.ResetConnectPassword";
+        private const string Command_ReadSN = "DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.SN.ReadSN";
+        private const string Command_WriteSN = "DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.SN.WriteSN";
+        private const string Command_WriteSN_Broadcast = "DoNetDrive.Protocol.Door.FC8864.SystemParameter.SN.WriteSN_Broadcast";
+        private const string Command_ReadConnectPassword = " DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.ConnectPassword.ReadConnectPassword";
+        private const string Command_WriteConnectPassword = "DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.ConnectPassword.WriteConnectPassword";
+        private const string Command_ResetConnectPassword = "DoNetDrive.Protocol.Elevator.FC8864.SystemParameter.ConnectPassword.ResetConnectPassword";
 
         private void mAllocator_CommandCompleteEvent(object sender, CommandEventArgs e)
         {

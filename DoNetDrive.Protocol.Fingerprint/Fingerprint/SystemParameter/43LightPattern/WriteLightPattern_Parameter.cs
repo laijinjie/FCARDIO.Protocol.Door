@@ -9,7 +9,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
     public class WriteLightPattern_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 感光模式；1、增亮；2、减暗；
+        /// 感光模式；1、标准  默认值；2、增亮;3、减暗；
         /// </summary>
         public int LightPattern;
 
@@ -33,7 +33,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (LightPattern <= 0 || LightPattern >= 3)
+            if (LightPattern <= 0 || LightPattern >= 4)
             {
                 return false;
             }

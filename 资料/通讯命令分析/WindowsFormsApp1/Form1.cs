@@ -6,11 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using DoNetDrive.Core.Extension;
 using DotNetty.Buffers;
 using DoNetDrive.Protocol.OnlineAccess;
 using DoNetDrive.Core.Packet;
-
+using DoNetDrive.Common.Extensions;
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form

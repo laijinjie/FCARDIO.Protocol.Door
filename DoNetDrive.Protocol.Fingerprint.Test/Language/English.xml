@@ -476,7 +476,7 @@
     <btnReadSystemStatus value = "Read"/>
     <AuthenticationModeList value = "1、标准模式,2、人脸+密码,3、卡+人脸,4、多人考勤,5、人证比对"/>
     <SaveRecordImageList value = "启用,禁用"/>
-    <LightPatternList value = "1、增亮,2、减暗"/>
+    <LightPatternList value = "1、标准,2、增亮,3、减暗"/>
     <RecordQRCodeList value = "启用,禁用"/>
   </frmSystem>
   <frmTime>

@@ -682,7 +682,7 @@ namespace DoNetDrive.Protocol.Door.Test
                 var result = cmd.getResult() as Door8800.Door.OvertimeAlarmSetting.OvertimeAlarmSetting_Result;
                 Invoke(() =>
                 {
-                    cmbOvertimeAlarmSetting.SelectedIndex = result.Use ? 0 : 1;
+                    cmbOvertimeAlarmSetting.SelectedIndex = result.Use ? 1 : 0;
                     cmbOverTime.SelectedIndex = result.Overtime - 1;
                     cmdAlarmPassword.SelectedIndex = result.Alarm ? 0 : 1;
                 });

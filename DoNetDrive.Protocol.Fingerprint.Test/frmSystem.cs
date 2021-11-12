@@ -1855,7 +1855,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 Invoke(() =>
                 {
-                    if (result.LightPattern <= 2)
+                    if (result.LightPattern <= 3)
                     {
                         cmbLightPattern.SelectedIndex = result.LightPattern - 1;
                         mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{cmbLightPattern.Text}");

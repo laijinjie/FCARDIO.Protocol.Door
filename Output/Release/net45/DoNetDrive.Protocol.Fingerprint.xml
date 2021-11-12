@@ -4135,6 +4135,11 @@
             将命令打包成一个Packet，准备发送
             </summary>
         </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.DeletePerson(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            删除人员
+            </summary>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Person.AddPeosonAndImage.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
             <summary>
             检查命令参数
@@ -8302,7 +8307,7 @@
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern_Parameter.LightPattern">
             <summary>
-            感光模式；1、增亮；2、减暗；
+            感光模式；1、标准  默认值；2、增亮;3、减暗；
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteLightPattern_Parameter.#ctor">

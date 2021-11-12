@@ -28,9 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSysParameterPage = new System.Windows.Forms.TabPage();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.EX = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsEx = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WeekDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id0 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.id1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.id2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.id3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnWriteDoorWorkSetting = new System.Windows.Forms.Button();
+            this.btnReadDoorWorkSetting = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cb485IsUse = new System.Windows.Forms.CheckBox();
             this.btnWrite485LineConnection = new System.Windows.Forms.Button();
@@ -209,21 +222,11 @@
             this.btnReadRecordMode = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.EX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsEx = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WeekDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id0 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.id1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.id2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.id3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnWriteDoorWorkSetting = new System.Windows.Forms.Button();
-            this.btnReadDoorWorkSetting = new System.Windows.Forms.Button();
+            this.BtnWriteSn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabSysParameterPage.SuspendLayout();
+            this.groupBox16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.goupBox4.SuspendLayout();
             this.groupBox19.SuspendLayout();
@@ -245,8 +248,6 @@
             this.panel1.SuspendLayout();
             this.plInterval.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.groupBox16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -279,6 +280,150 @@
             this.tabSysParameterPage.TabIndex = 0;
             this.tabSysParameterPage.Text = "设备参数设置";
             this.tabSysParameterPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.dataGridView1);
+            this.groupBox16.Controls.Add(this.btnWriteDoorWorkSetting);
+            this.groupBox16.Controls.Add(this.btnReadDoorWorkSetting);
+            this.groupBox16.Location = new System.Drawing.Point(289, 366);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(599, 221);
+            this.groupBox16.TabIndex = 114;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "门认证方式";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.EX,
+            this.IsEx,
+            this.WeekDay,
+            this.StartTime,
+            this.EndTime,
+            this.id0,
+            this.id1,
+            this.id2,
+            this.id3});
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 57);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(587, 158);
+            this.dataGridView1.TabIndex = 39;
+            // 
+            // EX
+            // 
+            this.EX.DataPropertyName = "EX";
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.EX.DefaultCellStyle = dataGridViewCellStyle2;
+            this.EX.HeaderText = "";
+            this.EX.MinimumWidth = 6;
+            this.EX.Name = "EX";
+            this.EX.ReadOnly = true;
+            this.EX.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.EX.Width = 20;
+            // 
+            // IsEx
+            // 
+            this.IsEx.DataPropertyName = "IsEx";
+            this.IsEx.HeaderText = "是否显示";
+            this.IsEx.MinimumWidth = 6;
+            this.IsEx.Name = "IsEx";
+            this.IsEx.ReadOnly = true;
+            this.IsEx.Visible = false;
+            this.IsEx.Width = 125;
+            // 
+            // WeekDay
+            // 
+            this.WeekDay.DataPropertyName = "WeekDay";
+            this.WeekDay.HeaderText = "星期";
+            this.WeekDay.MinimumWidth = 6;
+            this.WeekDay.Name = "WeekDay";
+            this.WeekDay.ReadOnly = true;
+            this.WeekDay.Width = 60;
+            // 
+            // StartTime
+            // 
+            this.StartTime.DataPropertyName = "StartTime";
+            this.StartTime.HeaderText = "开始时间";
+            this.StartTime.MinimumWidth = 6;
+            this.StartTime.Name = "StartTime";
+            this.StartTime.ReadOnly = true;
+            this.StartTime.Width = 80;
+            // 
+            // EndTime
+            // 
+            this.EndTime.DataPropertyName = "EndTime";
+            this.EndTime.HeaderText = "结束时间";
+            this.EndTime.MinimumWidth = 6;
+            this.EndTime.Name = "EndTime";
+            this.EndTime.ReadOnly = true;
+            this.EndTime.Width = 80;
+            // 
+            // id0
+            // 
+            this.id0.DataPropertyName = "id0";
+            this.id0.HeaderText = "只读卡";
+            this.id0.MinimumWidth = 6;
+            this.id0.Name = "id0";
+            this.id0.ReadOnly = true;
+            this.id0.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.id0.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.id0.Width = 70;
+            // 
+            // id1
+            // 
+            this.id1.DataPropertyName = "id1";
+            this.id1.HeaderText = "只密码";
+            this.id1.MinimumWidth = 6;
+            this.id1.Name = "id1";
+            this.id1.ReadOnly = true;
+            this.id1.Width = 70;
+            // 
+            // id2
+            // 
+            this.id2.DataPropertyName = "id2";
+            this.id2.HeaderText = "读卡加密码";
+            this.id2.MinimumWidth = 6;
+            this.id2.Name = "id2";
+            this.id2.ReadOnly = true;
+            this.id2.Width = 80;
+            // 
+            // id3
+            // 
+            this.id3.DataPropertyName = "id3";
+            this.id3.HeaderText = "手动输入卡号加密码";
+            this.id3.MinimumWidth = 6;
+            this.id3.Name = "id3";
+            this.id3.ReadOnly = true;
+            this.id3.Width = 120;
+            // 
+            // btnWriteDoorWorkSetting
+            // 
+            this.btnWriteDoorWorkSetting.Location = new System.Drawing.Point(64, 21);
+            this.btnWriteDoorWorkSetting.Name = "btnWriteDoorWorkSetting";
+            this.btnWriteDoorWorkSetting.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteDoorWorkSetting.TabIndex = 37;
+            this.btnWriteDoorWorkSetting.Text = "写入";
+            this.btnWriteDoorWorkSetting.UseVisualStyleBackColor = true;
+            this.btnWriteDoorWorkSetting.Click += new System.EventHandler(this.BtnWriteDoorWorkSetting_Click);
+            // 
+            // btnReadDoorWorkSetting
+            // 
+            this.btnReadDoorWorkSetting.Location = new System.Drawing.Point(7, 21);
+            this.btnReadDoorWorkSetting.Name = "btnReadDoorWorkSetting";
+            this.btnReadDoorWorkSetting.Size = new System.Drawing.Size(48, 23);
+            this.btnReadDoorWorkSetting.TabIndex = 36;
+            this.btnReadDoorWorkSetting.Text = "读取";
+            this.btnReadDoorWorkSetting.UseVisualStyleBackColor = true;
+            this.btnReadDoorWorkSetting.Click += new System.EventHandler(this.BtnReadDoorWorkSetting_Click);
             // 
             // groupBox4
             // 
@@ -694,6 +839,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.BtnWriteSn);
             this.groupBox1.Controls.Add(this.butReadSN);
             this.groupBox1.Controls.Add(this.txtSN);
             this.groupBox1.Controls.Add(this.label1);
@@ -2168,149 +2314,15 @@
             this.tabPage2.Text = "扩展功能";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // groupBox16
+            // BtnWriteSn
             // 
-            this.groupBox16.Controls.Add(this.dataGridView1);
-            this.groupBox16.Controls.Add(this.btnWriteDoorWorkSetting);
-            this.groupBox16.Controls.Add(this.btnReadDoorWorkSetting);
-            this.groupBox16.Location = new System.Drawing.Point(289, 366);
-            this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(599, 221);
-            this.groupBox16.TabIndex = 114;
-            this.groupBox16.TabStop = false;
-            this.groupBox16.Text = "门认证方式";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.EX,
-            this.IsEx,
-            this.WeekDay,
-            this.StartTime,
-            this.EndTime,
-            this.id0,
-            this.id1,
-            this.id2,
-            this.id3});
-            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 57);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(587, 158);
-            this.dataGridView1.TabIndex = 39;
-            // 
-            // EX
-            // 
-            this.EX.DataPropertyName = "EX";
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.EX.DefaultCellStyle = dataGridViewCellStyle3;
-            this.EX.HeaderText = "";
-            this.EX.MinimumWidth = 6;
-            this.EX.Name = "EX";
-            this.EX.ReadOnly = true;
-            this.EX.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.EX.Width = 20;
-            // 
-            // IsEx
-            // 
-            this.IsEx.DataPropertyName = "IsEx";
-            this.IsEx.HeaderText = "是否显示";
-            this.IsEx.MinimumWidth = 6;
-            this.IsEx.Name = "IsEx";
-            this.IsEx.ReadOnly = true;
-            this.IsEx.Visible = false;
-            this.IsEx.Width = 125;
-            // 
-            // WeekDay
-            // 
-            this.WeekDay.DataPropertyName = "WeekDay";
-            this.WeekDay.HeaderText = "星期";
-            this.WeekDay.MinimumWidth = 6;
-            this.WeekDay.Name = "WeekDay";
-            this.WeekDay.ReadOnly = true;
-            this.WeekDay.Width = 60;
-            // 
-            // StartTime
-            // 
-            this.StartTime.DataPropertyName = "StartTime";
-            this.StartTime.HeaderText = "开始时间";
-            this.StartTime.MinimumWidth = 6;
-            this.StartTime.Name = "StartTime";
-            this.StartTime.ReadOnly = true;
-            this.StartTime.Width = 80;
-            // 
-            // EndTime
-            // 
-            this.EndTime.DataPropertyName = "EndTime";
-            this.EndTime.HeaderText = "结束时间";
-            this.EndTime.MinimumWidth = 6;
-            this.EndTime.Name = "EndTime";
-            this.EndTime.ReadOnly = true;
-            this.EndTime.Width = 80;
-            // 
-            // id0
-            // 
-            this.id0.DataPropertyName = "id0";
-            this.id0.HeaderText = "只读卡";
-            this.id0.MinimumWidth = 6;
-            this.id0.Name = "id0";
-            this.id0.ReadOnly = true;
-            this.id0.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.id0.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.id0.Width = 70;
-            // 
-            // id1
-            // 
-            this.id1.DataPropertyName = "id1";
-            this.id1.HeaderText = "只密码";
-            this.id1.MinimumWidth = 6;
-            this.id1.Name = "id1";
-            this.id1.ReadOnly = true;
-            this.id1.Width = 70;
-            // 
-            // id2
-            // 
-            this.id2.DataPropertyName = "id2";
-            this.id2.HeaderText = "读卡加密码";
-            this.id2.MinimumWidth = 6;
-            this.id2.Name = "id2";
-            this.id2.ReadOnly = true;
-            this.id2.Width = 80;
-            // 
-            // id3
-            // 
-            this.id3.DataPropertyName = "id3";
-            this.id3.HeaderText = "手动输入卡号加密码";
-            this.id3.MinimumWidth = 6;
-            this.id3.Name = "id3";
-            this.id3.ReadOnly = true;
-            this.id3.Width = 120;
-            // 
-            // btnWriteDoorWorkSetting
-            // 
-            this.btnWriteDoorWorkSetting.Location = new System.Drawing.Point(64, 21);
-            this.btnWriteDoorWorkSetting.Name = "btnWriteDoorWorkSetting";
-            this.btnWriteDoorWorkSetting.Size = new System.Drawing.Size(48, 23);
-            this.btnWriteDoorWorkSetting.TabIndex = 37;
-            this.btnWriteDoorWorkSetting.Text = "写入";
-            this.btnWriteDoorWorkSetting.UseVisualStyleBackColor = true;
-            this.btnWriteDoorWorkSetting.Click += new System.EventHandler(this.BtnWriteDoorWorkSetting_Click);
-            // 
-            // btnReadDoorWorkSetting
-            // 
-            this.btnReadDoorWorkSetting.Location = new System.Drawing.Point(7, 21);
-            this.btnReadDoorWorkSetting.Name = "btnReadDoorWorkSetting";
-            this.btnReadDoorWorkSetting.Size = new System.Drawing.Size(48, 23);
-            this.btnReadDoorWorkSetting.TabIndex = 36;
-            this.btnReadDoorWorkSetting.Text = "读取";
-            this.btnReadDoorWorkSetting.UseVisualStyleBackColor = true;
-            this.btnReadDoorWorkSetting.Click += new System.EventHandler(this.BtnReadDoorWorkSetting_Click);
+            this.BtnWriteSn.Location = new System.Drawing.Point(125, 44);
+            this.BtnWriteSn.Name = "BtnWriteSn";
+            this.BtnWriteSn.Size = new System.Drawing.Size(48, 23);
+            this.BtnWriteSn.TabIndex = 3;
+            this.BtnWriteSn.Text = "写入";
+            this.BtnWriteSn.UseVisualStyleBackColor = true;
+            this.BtnWriteSn.Click += new System.EventHandler(this.BtnWriteSn_Click);
             // 
             // frmSystem
             // 
@@ -2324,6 +2336,8 @@
             this.Load += new System.EventHandler(this.FrmSystem_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabSysParameterPage.ResumeLayout(false);
+            this.groupBox16.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.goupBox4.ResumeLayout(false);
@@ -2365,8 +2379,6 @@
             this.plInterval.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.groupBox16.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2566,5 +2578,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn id3;
         private System.Windows.Forms.Button btnWriteDoorWorkSetting;
         private System.Windows.Forms.Button btnReadDoorWorkSetting;
+        private System.Windows.Forms.Button BtnWriteSn;
     }
 }

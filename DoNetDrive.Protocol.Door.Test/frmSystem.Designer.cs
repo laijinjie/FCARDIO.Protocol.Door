@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSN = new System.Windows.Forms.TextBox();
             this.butReadSN = new System.Windows.Forms.Button();
@@ -342,6 +342,10 @@
             this.label41 = new System.Windows.Forms.Label();
             this.txtGlobalLimit = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Cmb_FireAlarmOption = new System.Windows.Forms.ComboBox();
+            this.Btn_WriteFireAlarmOption = new System.Windows.Forms.Button();
+            this.Btn_ReadFireAlarmOption = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gbPassword.SuspendLayout();
             this.gbTCP.SuspendLayout();
@@ -398,6 +402,7 @@
             this.groupBox5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -1358,6 +1363,7 @@
             // tabPage3
             // 
             this.tabPage3.AutoScroll = true;
+            this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Controls.Add(this.groupBox20);
             this.tabPage3.Controls.Add(this.groupBox10);
             this.tabPage3.Controls.Add(this.groupBox19);
@@ -2014,10 +2020,10 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.NullValue = false;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.NullValue = false;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn1.HeaderText = "选择";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -2116,8 +2122,8 @@
             // 
             // Column1
             // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column1.HeaderText = "门号";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -3801,6 +3807,46 @@
             this.label42.TabIndex = 19;
             this.label42.Text = "全局上限：";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.Cmb_FireAlarmOption);
+            this.groupBox2.Controls.Add(this.Btn_WriteFireAlarmOption);
+            this.groupBox2.Controls.Add(this.Btn_ReadFireAlarmOption);
+            this.groupBox2.Location = new System.Drawing.Point(420, 231);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(369, 68);
+            this.groupBox2.TabIndex = 96;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "消防报警参数设置";
+            // 
+            // Cmb_FireAlarmOption
+            // 
+            this.Cmb_FireAlarmOption.FormattingEnabled = true;
+            this.Cmb_FireAlarmOption.Location = new System.Drawing.Point(9, 25);
+            this.Cmb_FireAlarmOption.Name = "Cmb_FireAlarmOption";
+            this.Cmb_FireAlarmOption.Size = new System.Drawing.Size(211, 20);
+            this.Cmb_FireAlarmOption.TabIndex = 0;
+            // 
+            // Btn_WriteFireAlarmOption
+            // 
+            this.Btn_WriteFireAlarmOption.Location = new System.Drawing.Point(289, 22);
+            this.Btn_WriteFireAlarmOption.Name = "Btn_WriteFireAlarmOption";
+            this.Btn_WriteFireAlarmOption.Size = new System.Drawing.Size(48, 23);
+            this.Btn_WriteFireAlarmOption.TabIndex = 87;
+            this.Btn_WriteFireAlarmOption.Text = "写入";
+            this.Btn_WriteFireAlarmOption.UseVisualStyleBackColor = true;
+            this.Btn_WriteFireAlarmOption.Click += new System.EventHandler(this.Btn_WriteFireAlarmOption_Click);
+            // 
+            // Btn_ReadFireAlarmOption
+            // 
+            this.Btn_ReadFireAlarmOption.Location = new System.Drawing.Point(235, 22);
+            this.Btn_ReadFireAlarmOption.Name = "Btn_ReadFireAlarmOption";
+            this.Btn_ReadFireAlarmOption.Size = new System.Drawing.Size(48, 23);
+            this.Btn_ReadFireAlarmOption.TabIndex = 86;
+            this.Btn_ReadFireAlarmOption.Text = "读取";
+            this.Btn_ReadFireAlarmOption.UseVisualStyleBackColor = true;
+            this.Btn_ReadFireAlarmOption.Click += new System.EventHandler(this.Btn_ReadFireAlarmOption_Click);
+            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3906,6 +3952,7 @@
             this.panel4.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -4223,5 +4270,9 @@
         private System.Windows.Forms.GroupBox label24;
         private System.Windows.Forms.GroupBox label23;
         private System.Windows.Forms.GroupBox label57;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox Cmb_FireAlarmOption;
+        private System.Windows.Forms.Button Btn_WriteFireAlarmOption;
+        private System.Windows.Forms.Button Btn_ReadFireAlarmOption;
     }
 }
