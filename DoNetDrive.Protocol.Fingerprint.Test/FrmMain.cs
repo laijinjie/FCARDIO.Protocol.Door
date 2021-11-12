@@ -2399,5 +2399,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             txtSN.Text = gdRow.Cells[1].Value.ToString();
         }
         #endregion
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            frmElevator frm = frmElevator.GetForm(this);
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+            frm.Activate();
+            ShowFrm(frm);
+        }
     }
 }

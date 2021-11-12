@@ -4,6 +4,9 @@ using DoNetDrive.Protocol.Door.Door8800;
 
 namespace DoNetDrive.Protocol.Fingerprint.Door
 {
+    /// <summary>
+    /// 设置开门验证方式
+    /// </summary>
     public class WriteDoorOpenCheckMode_Parameter : AbstractParameter
     {
         /// <summary>

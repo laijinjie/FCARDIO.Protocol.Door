@@ -393,13 +393,13 @@
     <LabFaceBioassay                         value = "活体检测方式："/>
     <Btn_ReadFaceBioassay                    value = "读取"/>
     <Btn_WriteFaceBioassay                   value = "写入"/>
-    
+
     <ClientNetWorkMode                       value = "禁用,UDP Client,TCP Client,TCP Client + TLS1.2"/>
     <FaceBodyTemperatureList                 value = "禁止,摄氏度（默认值）,华氏度"/>
     <FaceLEDModeList                         value = "一直关,一直亮,检测到人员时开"/>
     <ReadCardByteList                        value = "韦根26(三字节),韦根34（四字节）,韦根26（二字节）,韦根66（八字节）,禁用"/>
     <IsUseList                               value = "启用,禁用"/>
-    <Cmb_FaceMouthmuffle                     value = "禁用,启用"/>    
+    <Cmb_FaceMouthmuffle                     value = "禁用,启用"/>
     <WGByteSortList                          value = "高位在前低位在后,低位在前高位在后"/>
     <OutputTypeList                          value = "输出用户号,输出人员卡号"/>
     <DriveLanguageList                       value = "1--中文,2--英文,3--中文繁体,4-法语,5-俄语,6-葡萄牙语,7-西班牙语,8-意大利语,9-日语,10-韩语,11-泰语,12-阿拉伯语"/>
@@ -1039,5 +1039,6 @@
     <UF_Msg_17       value="错误"/>
     <UF_Msg_18       value="选择人员照片"/>
     <UF_Msg_19       value="选择人员照片文件夹(*.JPG)|*.JPG"/>
+    <FaceSoftware value ="人脸机"/>
   </frmAdditionalData>
 </Language>

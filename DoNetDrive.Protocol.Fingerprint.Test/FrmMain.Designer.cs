@@ -111,6 +111,7 @@
             this.cmbToolLanguage = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.butSearch = new System.Windows.Forms.Button();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.gbDriveSN.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.gbSerialPort.SuspendLayout();
@@ -217,7 +218,8 @@
             this.butCard,
             this.butRecord,
             this.butUploadSoftware,
-            this.butAdditionalData});
+            this.butAdditionalData,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(758, 25);
@@ -897,6 +899,16 @@
             this.butSearch.UseVisualStyleBackColor = true;
             this.butSearch.Click += new System.EventHandler(this.butSearch_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(60, 22);
+            this.toolStripButton1.Text = "电梯扩展";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1030,6 +1042,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 

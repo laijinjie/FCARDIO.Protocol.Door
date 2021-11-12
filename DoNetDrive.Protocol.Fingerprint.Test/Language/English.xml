@@ -1035,5 +1035,6 @@
     <UF_Msg_17       value="Error"/>
     <UF_Msg_18       value="Please select the user photo folder"/>
     <UF_Msg_19       value="User Image(*.JPG)|*.JPG"/>
+    <FaceSoftware value ="Face"/>
   </frmAdditionalData>
 </Language>

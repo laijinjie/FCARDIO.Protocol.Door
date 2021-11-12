@@ -91,6 +91,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbDownloadType.Items.AddRange(mDownloadTypeList);
             cmbDownloadType.SelectedIndex = 0;
 
+            chkFaceSoftware.Text = Lng("FaceSoftware");
+
             IniEquptType();
         }
 
@@ -586,7 +588,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (cmdDtl == null) return;
             var par = new Software.UpdateSoftware_Parameter(bSoftWareData, iSoftwareCRC32);
             INCommand cmd = null;
-            if (oItem.Key.Equals("286eb84a8342627c"))
+            if (chkFaceSoftware.Checked)
             {
                 cmd = new Software.UpdateSoftware(cmdDtl, par);
             }

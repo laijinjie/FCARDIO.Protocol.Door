@@ -68,6 +68,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoNetDrive.Protocol.USB.Car
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoNetDrive.Protocol.Elevator.Test", "DoNetDrive.Protocol.Elevator.Test\DoNetDrive.Protocol.Elevator.Test.csproj", "{AD060935-1855-4AA3-BFFC-626C52D00402}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoNetDrive.Protocol.Fingerprint.Elevator", "DoNetDrive.Protocol.Fingerprint.Elevator\DoNetDrive.Protocol.Fingerprint.Elevator.csproj", "{7373308F-08CE-4EE9-BF7F-F6D26E2B748A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -138,6 +140,10 @@ Global
 		{AD060935-1855-4AA3-BFFC-626C52D00402}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD060935-1855-4AA3-BFFC-626C52D00402}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD060935-1855-4AA3-BFFC-626C52D00402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7373308F-08CE-4EE9-BF7F-F6D26E2B748A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7373308F-08CE-4EE9-BF7F-F6D26E2B748A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7373308F-08CE-4EE9-BF7F-F6D26E2B748A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7373308F-08CE-4EE9-BF7F-F6D26E2B748A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,6 +170,7 @@ Global
 		{E60BFE3E-09E6-4FA7-BB5E-BE6C94FF5A6B} = {8A00FD43-5DE5-4276-A2FF-46166AB58061}
 		{3FD3A948-896F-42FC-B151-BB1ACD26BDF1} = {FC51B816-B637-45EC-8D05-FA610ED3A435}
 		{AD060935-1855-4AA3-BFFC-626C52D00402} = {9F9F69CC-E17F-449D-82E8-D6957062D6CC}
+		{7373308F-08CE-4EE9-BF7F-F6D26E2B748A} = {C209B572-F7A4-4BE2-B0C8-582F076B5903}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2597CD71-1BA9-47D1-B932-EF7A60A242EF}

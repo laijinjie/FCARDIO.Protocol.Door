@@ -26,7 +26,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Door.ReaderOption
         /// <summary>
         /// 控制器4个门的读卡器字节数初始化实例
         /// </summary>
-        /// <param name="_Door">门字节数组</param>
+        /// <param name="readerOption">门字节数组</param>
         public ReaderOption_Parameter(byte readerOption)
         {
             ReaderOption = readerOption;

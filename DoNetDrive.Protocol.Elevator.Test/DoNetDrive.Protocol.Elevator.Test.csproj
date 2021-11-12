@@ -47,32 +47,30 @@
     </Reference>
     <Reference Include="DoNetDrive.Common">
       <HintPath>..\Output\Release\net45\DoNetDrive.Common.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Core">
       <HintPath>..\Output\Release\net45\DoNetDrive.Core.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol">
       <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Door">
       <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Door.dll</HintPath>
-      <Private>False</Private>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Elevator">
+      <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Elevator.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Util">
+      <HintPath>..\Output\Release\net45\DoNetDrive.Protocol.Util.dll</HintPath>
     </Reference>
     <Reference Include="DoNetTool.Common">
       <HintPath>..\Output\Release\net45\DoNetTool.Common.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetty.Buffers">
       <HintPath>..\Output\Release\net45\DoNetty\DotNetty.Buffers.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="DotNetty.Common, Version=0.6.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DotNetty.Common">
       <HintPath>..\Output\Release\net45\DoNetty\DotNetty.Common.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -217,13 +215,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DoNetDrive.Protocol.Elevator\DoNetDrive.Protocol.Elevator.csproj">
-      <Project>{ff0cb605-1697-4cde-ac68-a982d92ed53a}</Project>
-      <Name>DoNetDrive.Protocol.Elevator</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -59,6 +59,7 @@
             this.butUpdateSoftware = new System.Windows.Forms.Button();
             this.cmbEquptType = new System.Windows.Forms.ComboBox();
             this.Lbl_EquptType = new System.Windows.Forms.Label();
+            this.chkFaceSoftware = new System.Windows.Forms.CheckBox();
             this.gpUpload.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -345,6 +346,7 @@
             // 
             // gpUpdateSoftware
             // 
+            this.gpUpdateSoftware.Controls.Add(this.chkFaceSoftware);
             this.gpUpdateSoftware.Controls.Add(this.butUpdateSoftware);
             this.gpUpdateSoftware.Controls.Add(this.cmbEquptType);
             this.gpUpdateSoftware.Controls.Add(this.Lbl_EquptType);
@@ -382,6 +384,18 @@
             this.Lbl_EquptType.Size = new System.Drawing.Size(65, 12);
             this.Lbl_EquptType.TabIndex = 7;
             this.Lbl_EquptType.Text = "设备类型：";
+            // 
+            // chkFaceSoftware
+            // 
+            this.chkFaceSoftware.AutoSize = true;
+            this.chkFaceSoftware.Checked = true;
+            this.chkFaceSoftware.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFaceSoftware.Location = new System.Drawing.Point(318, 13);
+            this.chkFaceSoftware.Name = "chkFaceSoftware";
+            this.chkFaceSoftware.Size = new System.Drawing.Size(60, 16);
+            this.chkFaceSoftware.TabIndex = 13;
+            this.chkFaceSoftware.Text = "人脸机";
+            this.chkFaceSoftware.UseVisualStyleBackColor = true;
             // 
             // frmAdditionalData
             // 
@@ -441,5 +455,6 @@
         private System.Windows.Forms.ComboBox cmbEquptType;
         private System.Windows.Forms.Label Lbl_EquptType;
         private System.Windows.Forms.Button butUploadFolder;
+        private System.Windows.Forms.CheckBox chkFaceSoftware;
     }
 }

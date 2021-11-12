@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>DoNetDrive.Protocol.Door.Test</RootNamespace>
     <AssemblyName>Door.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -59,13 +59,26 @@
     <Reference Include="DevComponents.Instrumentation, Version=10.9.0.4, Culture=neutral, PublicKeyToken=bc4a9d761ea44ef0">
       <Private>False</Private>
     </Reference>
+    <Reference Include="DoNetDrive.Common">
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Core">
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol">
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Util">
+      <HintPath>..\Output\Release\netstandard2.0\DoNetDrive.Protocol.Util.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetty.Buffers">
-      <HintPath>..\Output\Release\net45\DoNetty\DotNetty.Buffers.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Output\Release\netstandard2.0\DotNetty.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Common">
-      <HintPath>..\Output\Release\net45\DoNetty\DotNetty.Common.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Output\Release\netstandard2.0\DotNetty.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -229,33 +242,17 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DoNet版通讯动态库V2\DoNetDrive.Common\DoNetDrive.Common\DoNetDrive.Common_Net45.csproj">
-      <Project>{61ea1859-ee39-4e26-a919-f3d8193b9934}</Project>
-      <Name>DoNetDrive.Common_Net45</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DoNet版通讯动态库V2\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util_Net45.csproj">
-      <Project>{774faec9-9b9f-4ad5-a3f7-c5bdd86963d3}</Project>
-      <Name>DoNetDrive.Protocol.Util_Net45</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DoNet版通讯动态库V2\FCARDIO.Core\FCARDIO.Core\DoNetDrive.Core_Net45.vbproj">
-      <Project>{a149c4d3-2209-408f-a0de-d9eb8e0fa492}</Project>
-      <Name>DoNetDrive.Core_Net45</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DoNet版通讯动态库V2\FCARDIO.Protocol\FCARDIO.Protocol\DoNetDrive.Protocol_Net45.vbproj">
-      <Project>{4c9b06e5-da6b-49af-8e4d-a0d75046c044}</Project>
-      <Name>DoNetDrive.Protocol_Net45</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door.csproj">
-      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
-      <Name>DoNetDrive.Protocol.Door</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door_netstandard20.csproj">
+      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
+      <Name>DoNetDrive.Protocol.Door_netstandard20</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
