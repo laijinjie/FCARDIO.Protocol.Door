@@ -1301,6 +1301,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void IniCommandClassNameList()
         {
             mCommandClasss = new Dictionary<string, string>();
+
             AddCommandClassNameList(typeof(SystemParameter.WriteClientWorkMode));// "写入客户端网络模式 
             AddCommandClassNameList(typeof(SystemParameter.ReadClientWorkMode));// "读取客户端网络模式 
             AddCommandClassNameList(typeof(SystemParameter.ReadClientStatus));// "获取设备客户端连接状态 
@@ -1463,6 +1464,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AddCommandClassNameList(typeof(SystemParameter.WriteRecordQRCode));//设置识别结果查询二维码生成开关
             AddCommandClassNameList(typeof(SystemParameter.ReadLightPattern));//读取感光模式
             AddCommandClassNameList(typeof(SystemParameter.WriteLightPattern));//设置感光模式
+
+            mCommandClasss = mCommandClasss
+                .Concat(frmElevator.IniCommandClassNameList())
+                .ToDictionary(kv => kv.Key, kv => kv.Value);
         }
 
 

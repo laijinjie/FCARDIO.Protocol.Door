@@ -108,6 +108,12 @@
             将命令打包成一个Packet，准备发送
             </summary>
         </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Elevator.WritePersonElevatorAccess.CommandNext1(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Elevator.WritePersonElevatorAccess_Parameter">
             <summary>
             写入人员电梯扩展权限的参数
@@ -166,12 +172,12 @@
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Elevator.ReadRelayType">
             <summary>
-            读取电梯继电器板的继电器类型的命令
+            读取电梯继电器板的继电器输出类型的命令
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Elevator.ReadRelayType.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
-            创建读取电梯继电器板的继电器类型的命令
+            创建读取电梯继电器板的继电器输出类型的命令
             </summary>
             <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         </member>
@@ -794,6 +800,43 @@
             对电梯工作模式进行解码
             </summary>
             <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.WritePersonElevatorAccess_Result">
+            <summary>
+            写入人员电梯扩展权限的返回值
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.WritePersonElevatorAccess_Result.UserCode">
+            <summary>
+            用户号
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.WritePersonElevatorAccess_Result.Status">
+            <summary>
+            状态  1--表示成功；0--表示用户号未登记；2--表示不支持此功能
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.WritePersonElevatorAccess_Result.#ctor">
+            <summary>
+            创建写入人员电梯扩展权限的返回值
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.WritePersonElevatorAccess_Result.GetDataLen">
+            <summary>
+            返回实体二进制序列化后的长度
+            </summary>
+            <returns>长度</returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.WritePersonElevatorAccess_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            对定时常开参数命令的返回值进行解码
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.WritePersonElevatorAccess_Result.Dispose">
+            <summary>
+            释放资源
+            </summary>
         </member>
     </members>
 </doc>

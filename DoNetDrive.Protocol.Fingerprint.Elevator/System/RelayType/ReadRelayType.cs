@@ -8,12 +8,12 @@ using DoNetDrive.Protocol.OnlineAccess;
 namespace DoNetDrive.Protocol.Fingerprint.Elevator
 {
     /// <summary>
-    /// 读取电梯继电器板的继电器类型的命令
+    /// 读取电梯继电器板的继电器输出类型的命令
     /// </summary>
     public class ReadRelayType : Door8800Command_ReadParameter
     {
         /// <summary>
-        /// 创建读取电梯继电器板的继电器类型的命令
+        /// 创建读取电梯继电器板的继电器输出类型的命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         public ReadRelayType(INCommandDetail cd) : base(cd) { }
@@ -32,7 +32,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Elevator
         /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 128))
+            if (CheckResponse(oPck, 64))
             {
                 var buf = oPck.CmdData;
                 ReadRelayType_Result rst = new ReadRelayType_Result();
