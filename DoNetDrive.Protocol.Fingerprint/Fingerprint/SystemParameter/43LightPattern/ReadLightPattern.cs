@@ -6,7 +6,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 {
     /// <summary>
     /// 读取感光模式；
-    /// 1、增亮；2、减暗；
+    /// 1--标准;2--增亮 ;3--减暗
     /// </summary>
     public class ReadLightPattern : Door8800Command_ReadParameter
     {

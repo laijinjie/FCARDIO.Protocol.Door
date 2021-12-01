@@ -21,7 +21,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <summary>
         /// 创建设置认证记录保存现场照片开关的参数
         /// </summary>
-        /// <param name="iMode">感光模式</param>
+        /// <param name="iMode">感光模式 1--标准;2--增亮 ;3--减暗</param>
         public WriteLightPattern_Parameter(int iMode)
         {
             LightPattern = iMode;
