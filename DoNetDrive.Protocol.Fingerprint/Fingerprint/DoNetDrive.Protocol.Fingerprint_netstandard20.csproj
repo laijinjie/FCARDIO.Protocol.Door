@@ -3,19 +3,29 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<Version>1.21.0</Version>
+		<Version>2.01.0</Version>
 		<RootNamespace>DoNetDrive.Protocol.Fingerprint</RootNamespace>
 		<AssemblyName>DoNetDrive.Protocol.Fingerprint</AssemblyName>
+
+
+		<PackageId>DoNetDrive.Protocol.Fingerprint</PackageId>
+		<Authors>xiaolong</Authors>
+		<Company>FCARD</Company>
+		<Description>用于定义指纹机、人脸机 FCA103、FC8300及相关产品族的设备命令</Description>
+		<PackageProjectUrl>https://gitee.com/GZFCARD/FCARDIO.Protocol.Door</PackageProjectUrl>
+		<SignAssembly>false</SignAssembly>
+		<AssemblyOriginatorKeyFile>DoNetDrive.pfx</AssemblyOriginatorKeyFile>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<OutputPath>..\..\Output\Release\</OutputPath>
-		<DocumentationFile>..\..\Output\Release\netstandard2.0\DoNetDrive.Common.xml</DocumentationFile>
+		<DocumentationFile>..\..\Output\Release\netstandard2.0\DoNetDrive.Protocol.Fingerprint.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<OutputPath>..\..\Output\Debug\</OutputPath>
-		<DocumentationFile>..\..\Output\Debug\netstandard2.0\DoNetDrive.Common.xml</DocumentationFile>
+		<DocumentationFile>..\..\Output\Debug\netstandard2.0\DoNetDrive.Protocol.Fingerprint.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -24,32 +34,20 @@
 		<None Remove="Properties\**" />
 	</ItemGroup>
 
+	
 	<ItemGroup>
-		<Reference Include="DoNetDrive.Common">
-			<HintPath>..\..\Output\Release\netstandard2.0\DoNetDrive.Common.dll</HintPath>
-		</Reference>
-		<Reference Include="DoNetDrive.Core">
-			<HintPath>..\..\Output\Release\netstandard2.0\DoNetDrive.Core.dll</HintPath>
-		</Reference>
-		<Reference Include="DoNetDrive.Protocol">
-			<HintPath>..\..\Output\Release\netstandard2.0\DoNetDrive.Protocol.dll</HintPath>
-		</Reference>
-		<Reference Include="DoNetDrive.Protocol.Door">
-			<HintPath>..\..\Output\Release\netstandard2.0\DoNetDrive.Protocol.Door.dll</HintPath>
-		</Reference>
-		<Reference Include="DoNetDrive.Protocol.Util">
-			<HintPath>..\..\Output\Release\netstandard2.0\DoNetDrive.Protocol.Util.dll</HintPath>
-		</Reference>
-		<Reference Include="DotNetty.Buffers">
-			<HintPath>..\..\Output\Release\netstandard2.0\DotNetty.Buffers.dll</HintPath>
-		</Reference>
-		<Reference Include="DotNetty.Common">
-			<HintPath>..\..\Output\Release\netstandard2.0\DotNetty.Common.dll</HintPath>
-		</Reference>
-		<Reference Include="DotNetty.Transport">
-			<HintPath>..\..\Output\Release\netstandard2.0\DotNetty.Transport.dll</HintPath>
-		</Reference>
+		<PackageReference Include="DotNetty.Transport" Version="0.7.0" />
+		<PackageReference Include="DotNetty.Buffers" Version="0.7.0" />
+		<PackageReference Include="DotNetty.Common" Version="0.7.0" />
 	</ItemGroup>
 
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\DoNetDrive.Core\DoNetDrive.Common\DoNetDrive.Common\DoNetDrive.Common_NetStandard20.csproj" />
+	  <ProjectReference Include="..\..\..\DoNetDrive.Core\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util_NetStandard20.csproj" />
+	  <ProjectReference Include="..\..\..\DoNetDrive.Core\FCARDIO.Core\FCARDIO.Core\DoNetDrive.Core_netstandard20.vbproj" />
+	  <ProjectReference Include="..\..\..\DoNetDrive.Core\FCARDIO.Protocol\FCARDIO.Protocol\DoNetDrive.Protocol_NetStandard20.vbproj" />
+	  <ProjectReference Include="..\..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door_netstandard20.csproj" />
+	</ItemGroup>
 
 </Project>

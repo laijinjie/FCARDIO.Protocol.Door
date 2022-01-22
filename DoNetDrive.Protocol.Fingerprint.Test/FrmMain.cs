@@ -953,7 +953,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         return null;
                     }
                     var myClient = cmbTCPClientList.SelectedItem as MyTCPServerClientDetail;
-                    addr = myClient.Key;
+                    addr = myClient.GetKey();
                     port = 0;
                     break;
                 default:
@@ -2007,7 +2007,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             public String SN;
             internal MyRequestHandle Handle;
 
-            public MyTCPServerClientDetail(string sKey, IPEndPoint remoteIP, int iClientID) : base(sKey, remoteIP, null, iClientID)
+            public MyTCPServerClientDetail(string sKey, IPDetail remoteIP, int iClientID) :
+                base(sKey, remoteIP, new IPDetail("any", 0), iClientID)
             {
 
             }
@@ -2136,7 +2137,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void AddTCPClient(string sKey, IPDetail remoteIP)
         {
             MyTCPServerClientDetail myTCP = new MyTCPServerClientDetail(
-                sKey, new IPEndPoint(IPAddress.Parse(remoteIP.Addr), remoteIP.Port), 0);
+                sKey, remoteIP, 0);
             if (!mTCPClients.TryAdd(sKey, myTCP))
             {
                 //重复添加客户端，Key:{sKey}

@@ -92,6 +92,7 @@
             this.butSearch = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbToolLanguage = new System.Windows.Forms.ComboBox();
+            this.btnSN = new System.Windows.Forms.Button();
             this.gbTCPClient.SuspendLayout();
             this.gp_controller.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -710,9 +711,9 @@
             // 
             // butWatch
             // 
-            this.butWatch.Location = new System.Drawing.Point(524, 173);
+            this.butWatch.Location = new System.Drawing.Point(505, 175);
             this.butWatch.Name = "butWatch";
-            this.butWatch.Size = new System.Drawing.Size(99, 23);
+            this.butWatch.Size = new System.Drawing.Size(74, 23);
             this.butWatch.TabIndex = 19;
             this.butWatch.Text = "开启监控";
             this.butWatch.UseVisualStyleBackColor = true;
@@ -720,9 +721,9 @@
             // 
             // butSearch
             // 
-            this.butSearch.Location = new System.Drawing.Point(443, 173);
+            this.butSearch.Location = new System.Drawing.Point(443, 174);
             this.butSearch.Name = "butSearch";
-            this.butSearch.Size = new System.Drawing.Size(70, 23);
+            this.butSearch.Size = new System.Drawing.Size(56, 23);
             this.butSearch.TabIndex = 20;
             this.butSearch.Text = "搜索";
             this.butSearch.UseVisualStyleBackColor = true;
@@ -748,11 +749,22 @@
             this.cmbToolLanguage.TabIndex = 26;
             this.cmbToolLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbToolLanguage_SelectedIndexChanged);
             // 
+            // btnSN
+            // 
+            this.btnSN.Location = new System.Drawing.Point(585, 176);
+            this.btnSN.Name = "btnSN";
+            this.btnSN.Size = new System.Drawing.Size(57, 23);
+            this.btnSN.TabIndex = 22;
+            this.btnSN.Text = "读取SN";
+            this.btnSN.UseVisualStyleBackColor = true;
+            this.btnSN.Click += new System.EventHandler(this.btnSN_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 726);
+            this.Controls.Add(this.btnSN);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.butSearch);
             this.Controls.Add(this.butWatch);
@@ -870,6 +882,7 @@
         private System.Windows.Forms.CheckBox chkUDPBroadcast;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cmbToolLanguage;
+        private System.Windows.Forms.Button btnSN;
     }
 }
 

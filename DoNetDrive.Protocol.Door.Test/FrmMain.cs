@@ -19,6 +19,7 @@ using DoNetDrive.Core.Connector.TCPClient;
 using DoNetDrive.Core.Connector.TCPServer.Client;
 using DoNetDrive.Core.Connector.UDP;
 using DoNetDrive.Core.Connector.TCPServer;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN;
 
 namespace DoNetDrive.Protocol.Door.Test
 {
@@ -277,16 +278,32 @@ namespace DoNetDrive.Protocol.Door.Test
 
         private void mAllocator_CommandErrorEvent(object sender, CommandEventArgs e)
         {
+            StringBuilder sLogBuf = new StringBuilder();
             if (e.Command is AbstractCommand)
             {
+                
                 AbstractCommand abscmd = e.Command as AbstractCommand;
+                if(abscmd.GetStatus().IsCanceled)
+                {
+                    sLogBuf.Append("，已被用户取消");
+                }
                 if (abscmd.CommandException != null)
                 {
-                    Console.WriteLine(abscmd.CommandException.Message);
+                    ShowException(sLogBuf, abscmd.CommandException);
+
+                    Console.WriteLine(sLogBuf.ToString());
                 }
 
             }
-            AddCmdLog(e, GetLanguage("Msg20"));
+            AddCmdLog(e, GetLanguage("Msg20") + sLogBuf.ToString());
+        }
+
+        private void ShowException(StringBuilder sLogBuf,Exception exception)
+        {
+            sLogBuf.Append("Error:").Append(exception.Message);
+            if (exception.InnerException == null) return;
+            sLogBuf.Append("InnerException:").AppendLine();
+            ShowException(sLogBuf, exception.InnerException);
         }
 
 
@@ -455,7 +472,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     cType = GetLanguage("Msg29");
                     var tcpclientOnly = conn as TCPServerClientDetail;
                     Local = $"{local.ToString()}";
-                    Remote = $"{tcpclientOnly.Remote.ToString()}";
+                    Remote = $"{oConn.RemoteAddress().ToString()}";
                     break;
                 case ConnectorType.UDPClient:
                     cType = GetLanguage("Msg30");
@@ -1462,9 +1479,9 @@ namespace DoNetDrive.Protocol.Door.Test
             public TCPServerClientDetail_Item(TCPServerClientDetail detail)
             {
                 SN = "";
-                Key = detail.Key;
-                Remote = new IPDetail(detail.Remote.Addr, detail.Remote.Port);
-                Local = new IPDetail(detail.Local.Addr, detail.Local.Port);
+                Key = detail.GetKey();
+                Remote = new IPDetail(detail.Addr, detail.Port);
+                Local = new IPDetail(detail.LocalAddr, detail.LocalPort);
             }
 
             public override string ToString()
@@ -1596,9 +1613,9 @@ namespace DoNetDrive.Protocol.Door.Test
             }
             TCPServerClientDetail oClient = detail as TCPServerClientDetail;
 
-            if (!TCPServerClients.ContainsKey(oClient.Key)) return;
+            if (!TCPServerClients.ContainsKey(oClient.GetKey())) return;
 
-            var oItem = TCPServerClients[oClient.Key];
+            var oItem = TCPServerClients[oClient.GetKey()];
             cmbTCPClient.Items.Remove(oItem);
             cmbTCPClient.SelectedIndex = cmbTCPClient.Items.Count - 1;
             TCPServerClients.Remove(oItem.Key);
@@ -1832,9 +1849,6 @@ namespace DoNetDrive.Protocol.Door.Test
             var cmdDtl = GetCommandDetail();
             if (cmdDtl == null) return;
 
-
-
-
             var par = new DoNetDrive.Protocol.Door.Door8800.SystemParameter.SearchControltor.SearchControltor_Parameter((ushort)DoNetDrive.Protocol.Door.Door8800.Utility.StringUtility.GetRandomNum(1, 65535));
 
             if (cmdConnType.SelectedIndex == 2 && chkUDPBroadcast.Checked)//UDP 
@@ -1857,7 +1871,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mAllocator.StopCommand(GetCommandDetail());
+            mAllocator.StopCommand(GetCommandDetail().Connector);
         }
 
 
@@ -1997,5 +2011,29 @@ namespace DoNetDrive.Protocol.Door.Test
             LoadUILanguage();
         }
         #endregion
+
+        private void btnSN_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = GetCommandDetail();
+            if (cmdDtl == null) return;
+            for (int i = 0; i < 10000; i++)
+            {
+                ReadSN cmd = new ReadSN(cmdDtl);
+                AddCommand(cmd);
+            }
+            
+
+            //处理返回值
+            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            {
+                SN_Result result = cmde.Command.getResult() as SN_Result;
+                string sn = result.SNBuf.GetString();
+                Invoke(() =>
+                {
+                    txtSN.Text = sn;
+                });
+                AddCmdLog(cmde, sn);
+            };
+        }
     }
 }
