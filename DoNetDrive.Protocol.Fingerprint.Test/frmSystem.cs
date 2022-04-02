@@ -1,6 +1,7 @@
 ﻿using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN;
 using System;
 using DoNetDrive.Common.Extensions;
+using DoNetDrive.Core.Command;
 using System.Windows.Forms;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.ConnectPassword;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.TCPSetting;
@@ -23,6 +24,8 @@ using DoNetDrive.Protocol.Fingerprint.SystemParameter.OEM;
 using DoNetDrive.Protocol.Fingerprint.SystemParameter;
 using System.Text;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.Controller;
+using DoNetDrive.Protocol.Fingerprint.Alarm.SendFireAlarm;
+using System.Collections.Generic;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -221,6 +224,19 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             Lng(LblClientNetWorkMode);//客户端网络模式:
             Lng(LblServerStatus);//客户端网络状态:
             LoadComboxItemsLanguage(cmbInOut, "cmbInOut");//;
+
+            Lng(tabPar4);//参数4
+            Lng(gbFireUse);//消防报警功能开关
+            Lng(cmdWriteSendFireAlarm);//写入
+            Lng(gbFaceBioassaySimilarity);//活体检测阈值
+            Lng(cmdReadFaceBioassaySimilarity);//读取
+            Lng(cmdWriteFaceBioassaySimilarity);//写入
+            Lng(gbYZW);//云筑网功能开关
+            Lng(cmdSendReloadYZW_People);//重新拉取人员
+            Lng(cmdReadYZW_Push);//读取
+            Lng(cmdWriteYZW_Push);//写入
+
+
             cmbDoor.Items.Clear();
             cmbDoor.Items.AddRange(DoorList);
             cmbDoor.SelectedIndex = 0;
@@ -308,6 +324,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             IniSaveRecordImage();
             IniLightPattern();
             IniRecordQRCode();
+
+            IniFireUse();
+            IniFaceBioassaySimilarity();
+            IniYZW();
         }
         #endregion
 
@@ -659,24 +679,23 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             return true;
         }
 
-        private void BtnReadVersion_Click(object sender, EventArgs e)
+        private async void BtnReadVersion_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             ReadVersion cmd = new ReadVersion(cmdDtl);
-            mMainForm.AddCommand(cmd);
+            await mMainForm.AddCommandAsync(cmd);
 
             //处理返回值
-            cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
+            if (cmd.GetStatus().IsCommandSuccessful())
             {
-                ReadVersion_Result result = cmde.Command.getResult() as ReadVersion_Result;
+                ReadVersion_Result result = cmd.getResult() as ReadVersion_Result;
                 string version = result.Version.ToString();
-                Invoke(() =>
-                {
-                    txtVersion.Text = "Ver " + version;
-                });
+
+                txtVersion.Text = "Ver " + version;
+                txtFPVer.Text = result.FingerprintVersion;
                 version = Lng("Msg_29") + ":" + version;
-                mMainForm.AddCmdLog(cmde, version);
+                mMainForm.AddCmdLog(cmd.GetEventArgs(), version);
             };
         }
 
@@ -1730,7 +1749,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbAuthenticationMode.Items.AddRange(AuthenticationModeList);
             cmbAuthenticationMode.SelectedIndex = 0;
 
-            
+
         }
 
         private void ButReadAuthenticationMode_Click(object sender, EventArgs e)
@@ -1786,7 +1805,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbSaveRecordImage.Items.AddRange(SaveRecordImageList);
             cmbSaveRecordImage.SelectedIndex = 0;
 
-            
+
         }
 
         private void ButReadSaveRecordImage_Click(object sender, EventArgs e)
@@ -1838,7 +1857,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbLightPattern.Items.AddRange(LightPatternList);
             cmbLightPattern.SelectedIndex = 0;
 
-           
+
         }
 
         private void ButReadLightPattern_Click(object sender, EventArgs e)
@@ -1893,12 +1912,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbRecordQRCode.Items.AddRange(RecordQRCodeList);
             cmbRecordQRCode.SelectedIndex = 0;
 
-            
+
         }
 
         private void CmbRecordQRCode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cmbRecordQRCode.SelectedIndex ==1)
+            if (cmbRecordQRCode.SelectedIndex == 1)
             {
                 txtRecordQRCodeURL.Visible = false;
                 lblRecordQRCodeURL.Visible = false;
@@ -1931,7 +1950,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                         mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{cmbRecordQRCode.Text} URL:{result.ServerURL}");
                     }
-                        
+
                     else
                     {
                         cmbRecordQRCode.SelectedIndex = 1;
@@ -1939,9 +1958,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                         mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{cmbRecordQRCode.Text}");
                     }
-                        
 
-                    
+
+
                 });
 
             };
@@ -1953,10 +1972,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         {
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
-            bool use = cmbRecordQRCode.SelectedIndex ==0 ;
+            bool use = cmbRecordQRCode.SelectedIndex == 0;
             string url = txtRecordQRCodeURL.Text;
             WriteRecordQRCode_Parameter par = new WriteRecordQRCode_Parameter(use, url);
-            if(!par.checkedParameter())
+            if (!par.checkedParameter())
             {
 
                 return;
@@ -1973,5 +1992,106 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             RequireRestart cmd = new RequireRestart(cmdDtl);
             mMainForm.AddCommand(cmd);
         }
+
+
+        #region 消防报警功能开关
+        private void IniFireUse()
+        {
+            //"禁用,启用"
+            string[] FireUseList = Lng("cmbFireUse").SplitTrim(",");
+            cmdFireUse.Items.Clear();
+            cmdFireUse.Items.AddRange(FireUseList);
+            cmdFireUse.SelectedIndex = 0;
+        }
+        private void cmdWriteSendFireAlarm_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new SetFireAlarm(cmdDtl, cmdFireUse.SelectedIndex == 1);
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+
+        #region 活体阈值
+        private void IniFaceBioassaySimilarity()
+        {
+            List<string> Nums = new List<string>(100);
+            for (int i = 1; i < 100; i++)
+            {
+                Nums.Add(i.ToString());
+            }
+
+            cmbFaceBioassaySimilarity.Items.Clear();
+
+            cmbFaceBioassaySimilarity.Items.AddRange(Nums.ToArray());
+            cmbFaceBioassaySimilarity.SelectedIndex = 60 - 1;
+        }
+        private async void cmdReadFaceBioassaySimilarity_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new ReadFaceBioassaySimilarity(cmdDtl);
+            await mMainForm.AddCommandAsync(cmd);
+            if (!cmd.GetStatus().IsCommandSuccessful()) return;
+            var result = cmd.getResult() as ReadFaceBioassaySimilarity_Result;
+            cmbFaceBioassaySimilarity.SelectedIndex = result.Similarity - 1;
+            string sTip = Lng("FaceBioassaySimilarityMsg"); //活体识别阈值：{0}
+            sTip=string.Format(sTip, cmbFaceBioassaySimilarity.Text);
+            mMainForm.AddCmdLog(cmd.GetEventArgs(), sTip);
+        }
+        private void cmdWriteFaceBioassaySimilarity_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new WriteFaceBioassaySimilarity(cmdDtl, new WriteFaceBioassaySimilarity_Parameter(cmbFaceBioassaySimilarity.SelectedIndex + 1));
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+
+        #region 云筑网功能
+        private void IniYZW()
+        {
+            //禁用,启用
+            string[] yzw =Lng("cmbYZW").SplitTrim(",");
+            cmbYZW.Items.Clear();
+            cmbYZW.Items.AddRange(yzw);
+            cmbYZW.SelectedIndex = 0;
+        }
+
+        private void cmdSendReloadYZW_People_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new SendReloadYZW_People(cmdDtl);
+            mMainForm.AddCommand(cmd);
+        }
+
+        private async void cmdReadYZW_Push_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new ReadYZW_Push(cmdDtl);
+            await mMainForm.AddCommandAsync(cmd);
+            if (!cmd.GetStatus().IsCommandSuccessful()) return;
+            var result = cmd.getResult() as ReadYZW_Push_Result;
+            cmbYZW.SelectedIndex = result.IsOpen ? 1 : 0;
+            string sTip = Lng("YZWMsg"); // 云筑网功能开关：{0}
+            sTip = string.Format(sTip, cmbYZW.Text);
+            mMainForm.AddCmdLog(cmd.GetEventArgs(), sTip);
+        }
+
+        private void cmdWriteYZW_Push_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new WriteYZW_Push(cmdDtl, cmbYZW.SelectedIndex == 1);
+            mMainForm.AddCommand(cmd);
+        }
+
+
+        #endregion
+
     }
 }

@@ -11,7 +11,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
     public class ReadLightPattern : Door8800Command_ReadParameter
     {
         /// <summary>
-        /// 创建读取认证记录保存现场照片开关的命令;
+        /// 创建读取感光模式的命令;
         /// 1、增亮；2、减暗；
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>

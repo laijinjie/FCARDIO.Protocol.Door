@@ -27,6 +27,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AutoUpdaterDotNET;
+using DoNetDrive.Core.Factory;
+using DoNetDrive.Connector.COM;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -99,6 +101,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public frmMain()
         {
             InitializeComponent();
+
+
         }
 
         /// <summary>
@@ -251,6 +255,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             GetLanguage(LblSN);//   SN：
             GetLanguage(dgvIO);//标签,内容,类型,时间,远程信息,本地信息
             GetLanguage(dgvResult);//类型,内容,身份信息,远程信息,时间,耗时
+            GetLanguage(btlToolLift);//电梯模块
+            GetLanguage(butSearch);//搜索设备
+            GetLanguage(tabDevice);//设备列表
+            GetLanguage(dgDevice);//设备列表表格
             IniCommandClassNameList();
 
             TransactionTypeName = new string[255];
@@ -279,6 +287,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (_IsClosed) return;
 
             mAllocator = ConnectorAllocator.GetAllocator();
+
+
+            //导入 串口通讯库
+            var defFactory = mAllocator.ConnectorFactory as DefaultConnectorFactory;
+            defFactory.ConnectorFactoryDictionary.Add(ConnectorType.SerialPort, DoNetDrive.Connector.COM.SerialPortFactory.GetInstance());
+
             mObserver = new ConnectorObserverHandler();
 
             mAllocator.CommandCompleteEvent += mAllocator_CommandCompleteEvent;
@@ -560,6 +574,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     Invoke(() => UDPBindOver(true));
                     //"UDP绑定", "UDP绑定成功"
                     AddIOLog(connector, GetLanguage("UDPBind"), GetLanguage("UDPConnectorConnected"));
+
                     break;
                 default:
                     mAllocator.GetConnector(connector).AddRequestHandle(mObserver);
@@ -805,7 +820,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     break;
                 case ConnectorType.SerialPort:
                     cType = GetLanguage("GetConnectorDetail_SerialPort");//串口";
-                    var com = conn as Core.Connector.SerialPort.SerialPortDetail;
+                    var com = conn as SerialPortDetail;
                     Local = $"COM{local.Port}:{com.Baudrate}";
                     break;
                 default:
@@ -882,6 +897,22 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         }
 
+        public async Task AddCommandAsync(INCommand cmd)
+        {
+            if (cmd.CommandDetail == null) return;
+            try
+            {
+                await mAllocator.AddCommandAsync(cmd);
+            }
+            catch (Exception)
+            {
+
+                
+            }
+            
+
+        }
+
 
         /// <summary>
         /// 获取一个命令详情，已经装配好通讯目标的所有信息
@@ -922,10 +953,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         MsgTip(GetLanguage("GetCommandDetail0"));//"请先选择一个串口号！");
                         return null;
                     }
-                    connectType = CommandDetailFactory.ConnectType.SerialPort;
                     addr = string.Empty;
                     port = cmbSerialPort.Text.Substring(3).ToInt32();
-                    break;
+                    return GetCommandDetail(new SerialPortDetail((byte)port), sn, password);
 
                 case 1://UDP 
                     if (!mUDPIsBind)
@@ -977,7 +1007,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             string sSN, string sPassword, string sRemoteIP, int iRemotePort)
         {
             if (_IsClosed) return null;
-            var protocolType = CommandDetailFactory.ControllerType.Door89H;
+            var protocolType = CommandDetailFactory.ControllerType.A33_Face;
 
 
             var cmdDtl = CommandDetailFactory.CreateDetail(connectType, sRemoteIP, iRemotePort,
@@ -996,6 +1026,24 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             return cmdDtl;
 
         }
+
+        public INCommandDetail GetCommandDetail(INConnectorDetail connect,
+    string sSN, string sPassword)
+        {
+            if (_IsClosed) return null;
+            var protocolType = CommandDetailFactory.ControllerType.A33_Face;
+
+
+            var cmdDtl = CommandDetailFactory.CreateDetail(connect, 
+                protocolType, sSN, sPassword);
+
+            cmdDtl.Timeout = 1500;
+            cmdDtl.RestartCount = 3;
+            return cmdDtl;
+
+        }
+
+
 
         private OnlineAccessCommandDetail SearchCommandDetail()
         {
@@ -1462,8 +1510,16 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AddCommandClassNameList(typeof(SystemParameter.WriteSaveRecordImage));//设置认证记录保存现场照片开关
             AddCommandClassNameList(typeof(SystemParameter.ReadRecordQRCode));//读取识别结果查询二维码生成开关
             AddCommandClassNameList(typeof(SystemParameter.WriteRecordQRCode));//设置识别结果查询二维码生成开关
-            AddCommandClassNameList(typeof(SystemParameter.ReadLightPattern));//读取感光模式
+            AddCommandClassNameList(typeof(SystemParameter.ReadOfflineRecordPush));//读取感光模式
             AddCommandClassNameList(typeof(SystemParameter.WriteLightPattern));//设置感光模式
+
+
+            AddCommandClassNameList(typeof(Alarm.SetFireAlarm));//设置消防报警功能开关
+            AddCommandClassNameList(typeof(SystemParameter.ReadYZW_Push));//读取云筑网推送功能
+            AddCommandClassNameList(typeof(SystemParameter.SendReloadYZW_People));//重新拉取云筑网人员
+            AddCommandClassNameList(typeof(SystemParameter.WriteYZW_Push));//设置云筑网推送功能
+            AddCommandClassNameList(typeof(SystemParameter.ReadFaceBioassaySimilarity));//读取活体检测阈值
+            AddCommandClassNameList(typeof(SystemParameter.WriteFaceBioassaySimilarity));//设置活体检测阈值
 
             mCommandClasss = mCommandClasss
                 .Concat(frmElevator.IniCommandClassNameList())
@@ -1551,7 +1607,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 txtUDPLocalPort.Enabled = false;
                 cmbLocalIP.Enabled = false;
                 //打开UDP服务器
-                mAllocator.OpenConnector(detail);
+                mAllocator.OpenForciblyConnect(detail);
                 mServerIP = sLocalIP;
                 mServerPort = port;
                 //等待后续事件，事件触发 mAllocator_ConnectorConnectedEvent 表示绑定成功
@@ -2379,7 +2435,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (!mSNList.Contains(sSearchSN))
             {
                 mSNList.Add(sSearchSN);
-                DeviceInfo deviceInfo = new DeviceInfo(sSearchSN, oTCP.mIP, "");
+                DeviceInfo deviceInfo = new DeviceInfo(sSearchSN, $"{oTCP.mIP}:{oTCP.mUDPPort}", oTCP.mMAC);
 
                 AddDeviceItem(deviceInfo);
             }
@@ -2394,7 +2450,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 return;
             }
 
-            dgDevice.Rows.Insert(0, dgDevice.Rows.Count + 1, deviceInfo.SN, deviceInfo.IP, deviceInfo.MAC);
+            dgDevice.Rows.Insert(0, dgDevice.Rows.Count + 1, deviceInfo.SN, deviceInfo.MAC,deviceInfo.IP );
         }
 
         private void dgDevice_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)

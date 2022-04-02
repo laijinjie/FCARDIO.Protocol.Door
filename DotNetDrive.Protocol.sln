@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29215.179
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoNetDrive.Protocol.Door_netstandard20", "DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door_netstandard20.csproj", "{14F89726-B7E7-4222-BFCF-C63148B5B34D}"
 EndProject
@@ -42,6 +42,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoNetDrive.Common_NetStandard20", "..\DoNetDrive.Core\DoNetDrive.Common\DoNetDrive.Common\DoNetDrive.Common_NetStandard20.csproj", "{55E2EC5F-2485-46F0-8CCD-3AB049F54669}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoNetDrive.Protocol.Util_NetStandard20", "..\DoNetDrive.Core\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util_NetStandard20.csproj", "{631FE725-203B-4A0A-A0F9-3C78E616E312}"
+EndProject
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "DoNetDrive.Connector.SerialPort", "..\DoNetDrive.Core\DoNetDrive.Connector.COM\DoNetDrive.Connector.SerialPort.vbproj", "{153421D8-346C-4EA3-B50F-7C8882CEF907}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +103,10 @@ Global
 		{631FE725-203B-4A0A-A0F9-3C78E616E312}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{631FE725-203B-4A0A-A0F9-3C78E616E312}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{631FE725-203B-4A0A-A0F9-3C78E616E312}.Release|Any CPU.Build.0 = Release|Any CPU
+		{153421D8-346C-4EA3-B50F-7C8882CEF907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{153421D8-346C-4EA3-B50F-7C8882CEF907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{153421D8-346C-4EA3-B50F-7C8882CEF907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{153421D8-346C-4EA3-B50F-7C8882CEF907}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +125,7 @@ Global
 		{22F3E8C3-A608-470F-8404-D94426842A4F} = {11C36120-D1F8-4AEB-A571-FB5EC400EE36}
 		{55E2EC5F-2485-46F0-8CCD-3AB049F54669} = {11C36120-D1F8-4AEB-A571-FB5EC400EE36}
 		{631FE725-203B-4A0A-A0F9-3C78E616E312} = {11C36120-D1F8-4AEB-A571-FB5EC400EE36}
+		{153421D8-346C-4EA3-B50F-7C8882CEF907} = {11C36120-D1F8-4AEB-A571-FB5EC400EE36}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2597CD71-1BA9-47D1-B932-EF7A60A242EF}

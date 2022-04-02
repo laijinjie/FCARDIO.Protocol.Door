@@ -111,7 +111,6 @@
             this.Lbl_Mode = new System.Windows.Forms.Label();
             this.cmbIntervalTime = new System.Windows.Forms.ComboBox();
             this.Lbl_bIntervalTime = new System.Windows.Forms.Label();
-            this.cbReaderIntervalTimeUse = new System.Windows.Forms.CheckBox();
             this.gpExpirationPromptUse = new System.Windows.Forms.GroupBox();
             this.btnWriteExpirationPrompt = new System.Windows.Forms.Button();
             this.btnReadExpirationPrompt = new System.Windows.Forms.Button();
@@ -974,7 +973,6 @@
             this.gpReaderIntervalTimeUse.Controls.Add(this.Lbl_Mode);
             this.gpReaderIntervalTimeUse.Controls.Add(this.cmbIntervalTime);
             this.gpReaderIntervalTimeUse.Controls.Add(this.Lbl_bIntervalTime);
-            this.gpReaderIntervalTimeUse.Controls.Add(this.cbReaderIntervalTimeUse);
             this.gpReaderIntervalTimeUse.Location = new System.Drawing.Point(12, 491);
             this.gpReaderIntervalTimeUse.Name = "gpReaderIntervalTimeUse";
             this.gpReaderIntervalTimeUse.Size = new System.Drawing.Size(669, 64);
@@ -998,7 +996,7 @@
             this.cmbMode.FormattingEnabled = true;
             this.cmbMode.Location = new System.Drawing.Point(233, 38);
             this.cmbMode.Name = "cmbMode";
-            this.cmbMode.Size = new System.Drawing.Size(161, 20);
+            this.cmbMode.Size = new System.Drawing.Size(284, 20);
             this.cmbMode.TabIndex = 56;
             // 
             // btnReadReaderIntervalTime
@@ -1037,16 +1035,6 @@
             this.Lbl_bIntervalTime.Size = new System.Drawing.Size(65, 12);
             this.Lbl_bIntervalTime.TabIndex = 54;
             this.Lbl_bIntervalTime.Text = "间隔时间：";
-            // 
-            // cbReaderIntervalTimeUse
-            // 
-            this.cbReaderIntervalTimeUse.AutoSize = true;
-            this.cbReaderIntervalTimeUse.Location = new System.Drawing.Point(11, 30);
-            this.cbReaderIntervalTimeUse.Name = "cbReaderIntervalTimeUse";
-            this.cbReaderIntervalTimeUse.Size = new System.Drawing.Size(48, 16);
-            this.cbReaderIntervalTimeUse.TabIndex = 54;
-            this.cbReaderIntervalTimeUse.Text = "启用";
-            this.cbReaderIntervalTimeUse.UseVisualStyleBackColor = true;
             // 
             // gpExpirationPromptUse
             // 
@@ -1239,7 +1227,6 @@
         private System.Windows.Forms.Label Lbl_Mode;
         private System.Windows.Forms.ComboBox cmbIntervalTime;
         private System.Windows.Forms.Label Lbl_bIntervalTime;
-        private System.Windows.Forms.CheckBox cbReaderIntervalTimeUse;
         private System.Windows.Forms.GroupBox gpExpirationPromptUse;
         private System.Windows.Forms.Button btnWriteExpirationPrompt;
         private System.Windows.Forms.Button btnReadExpirationPrompt;

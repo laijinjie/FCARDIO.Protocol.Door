@@ -99,6 +99,9 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.5.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Ports, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Ports.5.0.0\lib\net461\System.IO.Ports.dll</HintPath>
+    </Reference>
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -302,6 +305,10 @@
     <ProjectReference Include="..\..\DoNetDrive.Core\DoNetDrive.Common\DoNetDrive.Common\DoNetDrive.Common_NetStandard20.csproj">
       <Project>{55e2ec5f-2485-46f0-8ccd-3ab049f54669}</Project>
       <Name>DoNetDrive.Common_NetStandard20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DoNetDrive.Core\DoNetDrive.Connector.COM\DoNetDrive.Connector.SerialPort.vbproj">
+      <Project>{153421d8-346c-4ea3-b50f-7c8882cef907}</Project>
+      <Name>DoNetDrive.Connector.SerialPort</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\DoNetDrive.Core\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util_NetStandard20.csproj">
       <Project>{631fe725-203b-4a0a-a0f9-3c78e616e312}</Project>

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gpTransactionDatabaseDetail = new System.Windows.Forms.GroupBox();
+            this.butClearAllTransactionDatabase = new System.Windows.Forms.Button();
             this.txtIsCircle4 = new System.Windows.Forms.TextBox();
             this.txtReadIndex4 = new System.Windows.Forms.TextBox();
             this.txtQuantity4 = new System.Windows.Forms.TextBox();
@@ -79,29 +80,33 @@
             this.Lbl_TransactionDatabaseType2 = new System.Windows.Forms.Label();
             this.butTransactionDatabaseByIndex = new System.Windows.Forms.Button();
             this.gpRecordOperation2 = new System.Windows.Forms.GroupBox();
-            this.chkAutoRead = new System.Windows.Forms.CheckBox();
-            this.Lbl_ImageDire = new System.Windows.Forms.Label();
-            this.txtImageDire = new System.Windows.Forms.TextBox();
-            this.butSelectDire = new System.Windows.Forms.Button();
-            this.btnReadImageTransactionDatabase = new System.Windows.Forms.Button();
+            this.gpAutoRead = new System.Windows.Forms.GroupBox();
             this.btnReadTransactionDatabase = new System.Windows.Forms.Button();
-            this.Lbl_Quantity4 = new System.Windows.Forms.Label();
+            this.chkAutoReadImage = new System.Windows.Forms.CheckBox();
             this.txtReadTransactionDatabaseQuantity = new System.Windows.Forms.TextBox();
+            this.chkAutoWriteIndex = new System.Windows.Forms.CheckBox();
+            this.Lbl_Quantity4 = new System.Windows.Forms.Label();
+            this.chkAutoRead = new System.Windows.Forms.CheckBox();
+            this.btnReadImageTransactionDatabase = new System.Windows.Forms.Button();
+            this.Lbl_ImageDire = new System.Windows.Forms.Label();
+            this.butSelectDire = new System.Windows.Forms.Button();
+            this.txtImageDire = new System.Windows.Forms.TextBox();
             this.cboe_TransactionDatabaseType3 = new System.Windows.Forms.ComboBox();
             this.txtReadIndex0 = new System.Windows.Forms.TextBox();
             this.Lbl_ReadIndex3 = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.Lbl_Quantity3 = new System.Windows.Forms.Label();
             this.Lbl_TransactionDatabaseType3 = new System.Windows.Forms.Label();
-            this.butClearAllTransactionDatabase = new System.Windows.Forms.Button();
             this.gpTransactionDatabaseDetail.SuspendLayout();
             this.Lbl_MemoryPointerOperation.SuspendLayout();
             this.gpRecordOperation.SuspendLayout();
             this.gpRecordOperation2.SuspendLayout();
+            this.gpAutoRead.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpTransactionDatabaseDetail
             // 
+            this.gpTransactionDatabaseDetail.Controls.Add(this.butClearAllTransactionDatabase);
             this.gpTransactionDatabaseDetail.Controls.Add(this.txtIsCircle4);
             this.gpTransactionDatabaseDetail.Controls.Add(this.txtReadIndex4);
             this.gpTransactionDatabaseDetail.Controls.Add(this.txtQuantity4);
@@ -139,9 +144,20 @@
             this.gpTransactionDatabaseDetail.TabStop = false;
             this.gpTransactionDatabaseDetail.Text = "存储器状况";
             // 
+            // butClearAllTransactionDatabase
+            // 
+            this.butClearAllTransactionDatabase.Location = new System.Drawing.Point(484, 172);
+            this.butClearAllTransactionDatabase.Name = "butClearAllTransactionDatabase";
+            this.butClearAllTransactionDatabase.Size = new System.Drawing.Size(103, 23);
+            this.butClearAllTransactionDatabase.TabIndex = 28;
+            this.butClearAllTransactionDatabase.Text = "清空所有记录";
+            this.butClearAllTransactionDatabase.UseVisualStyleBackColor = true;
+            this.butClearAllTransactionDatabase.Visible = false;
+            this.butClearAllTransactionDatabase.Click += new System.EventHandler(this.butClearAllTransactionDatabase_Click);
+            // 
             // txtIsCircle4
             // 
-            this.txtIsCircle4.Location = new System.Drawing.Point(667, 150);
+            this.txtIsCircle4.Location = new System.Drawing.Point(667, 145);
             this.txtIsCircle4.Name = "txtIsCircle4";
             this.txtIsCircle4.Size = new System.Drawing.Size(29, 21);
             this.txtIsCircle4.TabIndex = 47;
@@ -149,28 +165,28 @@
             // 
             // txtReadIndex4
             // 
-            this.txtReadIndex4.Location = new System.Drawing.Point(559, 150);
+            this.txtReadIndex4.Location = new System.Drawing.Point(559, 145);
             this.txtReadIndex4.Name = "txtReadIndex4";
             this.txtReadIndex4.Size = new System.Drawing.Size(100, 21);
             this.txtReadIndex4.TabIndex = 46;
             // 
             // txtQuantity4
             // 
-            this.txtQuantity4.Location = new System.Drawing.Point(148, 150);
+            this.txtQuantity4.Location = new System.Drawing.Point(148, 145);
             this.txtQuantity4.Name = "txtQuantity4";
             this.txtQuantity4.Size = new System.Drawing.Size(100, 21);
             this.txtQuantity4.TabIndex = 44;
             // 
             // txtWriteIndex4
             // 
-            this.txtWriteIndex4.Location = new System.Drawing.Point(422, 150);
+            this.txtWriteIndex4.Location = new System.Drawing.Point(422, 145);
             this.txtWriteIndex4.Name = "txtWriteIndex4";
             this.txtWriteIndex4.Size = new System.Drawing.Size(100, 21);
             this.txtWriteIndex4.TabIndex = 45;
             // 
             // txtNewRecord4
             // 
-            this.txtNewRecord4.Location = new System.Drawing.Point(285, 150);
+            this.txtNewRecord4.Location = new System.Drawing.Point(285, 145);
             this.txtNewRecord4.Name = "txtNewRecord4";
             this.txtNewRecord4.Size = new System.Drawing.Size(100, 21);
             this.txtNewRecord4.TabIndex = 43;
@@ -178,7 +194,7 @@
             // Lbl_BodyTemperature
             // 
             this.Lbl_BodyTemperature.AutoSize = true;
-            this.Lbl_BodyTemperature.Location = new System.Drawing.Point(11, 153);
+            this.Lbl_BodyTemperature.Location = new System.Drawing.Point(11, 148);
             this.Lbl_BodyTemperature.Name = "Lbl_BodyTemperature";
             this.Lbl_BodyTemperature.Size = new System.Drawing.Size(53, 12);
             this.Lbl_BodyTemperature.TabIndex = 42;
@@ -186,7 +202,7 @@
             // 
             // butTransactionDatabaseDetail
             // 
-            this.butTransactionDatabaseDetail.Location = new System.Drawing.Point(561, 173);
+            this.butTransactionDatabaseDetail.Location = new System.Drawing.Point(593, 173);
             this.butTransactionDatabaseDetail.Name = "butTransactionDatabaseDetail";
             this.butTransactionDatabaseDetail.Size = new System.Drawing.Size(103, 23);
             this.butTransactionDatabaseDetail.TabIndex = 41;
@@ -396,7 +412,7 @@
             // 
             // butTransactionDatabaseReadIndex
             // 
-            this.butTransactionDatabaseReadIndex.Location = new System.Drawing.Point(569, 41);
+            this.butTransactionDatabaseReadIndex.Location = new System.Drawing.Point(557, 43);
             this.butTransactionDatabaseReadIndex.Name = "butTransactionDatabaseReadIndex";
             this.butTransactionDatabaseReadIndex.Size = new System.Drawing.Size(131, 23);
             this.butTransactionDatabaseReadIndex.TabIndex = 23;
@@ -406,7 +422,7 @@
             // 
             // butTransactionDatabaseWriteIndex
             // 
-            this.butTransactionDatabaseWriteIndex.Location = new System.Drawing.Point(569, 12);
+            this.butTransactionDatabaseWriteIndex.Location = new System.Drawing.Point(557, 14);
             this.butTransactionDatabaseWriteIndex.Name = "butTransactionDatabaseWriteIndex";
             this.butTransactionDatabaseWriteIndex.Size = new System.Drawing.Size(131, 23);
             this.butTransactionDatabaseWriteIndex.TabIndex = 22;
@@ -504,7 +520,7 @@
             // 
             // butClearTransactionDatabase
             // 
-            this.butClearTransactionDatabase.Location = new System.Drawing.Point(568, 64);
+            this.butClearTransactionDatabase.Location = new System.Drawing.Point(556, 64);
             this.butClearTransactionDatabase.Name = "butClearTransactionDatabase";
             this.butClearTransactionDatabase.Size = new System.Drawing.Size(131, 23);
             this.butClearTransactionDatabase.TabIndex = 27;
@@ -514,13 +530,12 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(568, 35);
+            this.button4.Location = new System.Drawing.Point(556, 35);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(131, 23);
             this.button4.TabIndex = 26;
             this.button4.Text = "修复记录";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // cboe_TransactionDatabaseType2
             // 
@@ -560,7 +575,7 @@
             // 
             // butTransactionDatabaseByIndex
             // 
-            this.butTransactionDatabaseByIndex.Location = new System.Drawing.Point(568, 33);
+            this.butTransactionDatabaseByIndex.Location = new System.Drawing.Point(556, 46);
             this.butTransactionDatabaseByIndex.Name = "butTransactionDatabaseByIndex";
             this.butTransactionDatabaseByIndex.Size = new System.Drawing.Size(131, 23);
             this.butTransactionDatabaseByIndex.TabIndex = 25;
@@ -570,14 +585,7 @@
             // 
             // gpRecordOperation2
             // 
-            this.gpRecordOperation2.Controls.Add(this.chkAutoRead);
-            this.gpRecordOperation2.Controls.Add(this.Lbl_ImageDire);
-            this.gpRecordOperation2.Controls.Add(this.txtImageDire);
-            this.gpRecordOperation2.Controls.Add(this.butSelectDire);
-            this.gpRecordOperation2.Controls.Add(this.btnReadImageTransactionDatabase);
-            this.gpRecordOperation2.Controls.Add(this.btnReadTransactionDatabase);
-            this.gpRecordOperation2.Controls.Add(this.Lbl_Quantity4);
-            this.gpRecordOperation2.Controls.Add(this.txtReadTransactionDatabaseQuantity);
+            this.gpRecordOperation2.Controls.Add(this.gpAutoRead);
             this.gpRecordOperation2.Controls.Add(this.cboe_TransactionDatabaseType3);
             this.gpRecordOperation2.Controls.Add(this.butTransactionDatabaseByIndex);
             this.gpRecordOperation2.Controls.Add(this.txtReadIndex0);
@@ -587,41 +595,116 @@
             this.gpRecordOperation2.Controls.Add(this.Lbl_TransactionDatabaseType3);
             this.gpRecordOperation2.Location = new System.Drawing.Point(13, 400);
             this.gpRecordOperation2.Name = "gpRecordOperation2";
-            this.gpRecordOperation2.Size = new System.Drawing.Size(705, 170);
+            this.gpRecordOperation2.Size = new System.Drawing.Size(705, 235);
             this.gpRecordOperation2.TabIndex = 3;
             this.gpRecordOperation2.TabStop = false;
             this.gpRecordOperation2.Text = "记录操作";
             // 
+            // gpAutoRead
+            // 
+            this.gpAutoRead.Controls.Add(this.btnReadTransactionDatabase);
+            this.gpAutoRead.Controls.Add(this.chkAutoReadImage);
+            this.gpAutoRead.Controls.Add(this.txtReadTransactionDatabaseQuantity);
+            this.gpAutoRead.Controls.Add(this.chkAutoWriteIndex);
+            this.gpAutoRead.Controls.Add(this.Lbl_Quantity4);
+            this.gpAutoRead.Controls.Add(this.chkAutoRead);
+            this.gpAutoRead.Controls.Add(this.btnReadImageTransactionDatabase);
+            this.gpAutoRead.Controls.Add(this.Lbl_ImageDire);
+            this.gpAutoRead.Controls.Add(this.butSelectDire);
+            this.gpAutoRead.Controls.Add(this.txtImageDire);
+            this.gpAutoRead.Location = new System.Drawing.Point(7, 86);
+            this.gpAutoRead.Name = "gpAutoRead";
+            this.gpAutoRead.Size = new System.Drawing.Size(686, 143);
+            this.gpAutoRead.TabIndex = 42;
+            this.gpAutoRead.TabStop = false;
+            this.gpAutoRead.Text = "读取新记录";
+            // 
+            // btnReadTransactionDatabase
+            // 
+            this.btnReadTransactionDatabase.Location = new System.Drawing.Point(494, 41);
+            this.btnReadTransactionDatabase.Name = "btnReadTransactionDatabase";
+            this.btnReadTransactionDatabase.Size = new System.Drawing.Size(186, 23);
+            this.btnReadTransactionDatabase.TabIndex = 33;
+            this.btnReadTransactionDatabase.Text = "读新记录";
+            this.btnReadTransactionDatabase.UseVisualStyleBackColor = true;
+            this.btnReadTransactionDatabase.Click += new System.EventHandler(this.BtnReadTransactionDatabase_Click);
+            // 
+            // chkAutoReadImage
+            // 
+            this.chkAutoReadImage.AutoSize = true;
+            this.chkAutoReadImage.Checked = true;
+            this.chkAutoReadImage.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutoReadImage.Location = new System.Drawing.Point(21, 113);
+            this.chkAutoReadImage.Name = "chkAutoReadImage";
+            this.chkAutoReadImage.Size = new System.Drawing.Size(72, 16);
+            this.chkAutoReadImage.TabIndex = 41;
+            this.chkAutoReadImage.Text = "读取照片";
+            this.chkAutoReadImage.UseVisualStyleBackColor = true;
+            // 
+            // txtReadTransactionDatabaseQuantity
+            // 
+            this.txtReadTransactionDatabaseQuantity.Location = new System.Drawing.Point(21, 39);
+            this.txtReadTransactionDatabaseQuantity.MaxLength = 6;
+            this.txtReadTransactionDatabaseQuantity.Name = "txtReadTransactionDatabaseQuantity";
+            this.txtReadTransactionDatabaseQuantity.Size = new System.Drawing.Size(100, 21);
+            this.txtReadTransactionDatabaseQuantity.TabIndex = 30;
+            this.txtReadTransactionDatabaseQuantity.Text = "0";
+            // 
+            // chkAutoWriteIndex
+            // 
+            this.chkAutoWriteIndex.AutoSize = true;
+            this.chkAutoWriteIndex.Checked = true;
+            this.chkAutoWriteIndex.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutoWriteIndex.Location = new System.Drawing.Point(137, 32);
+            this.chkAutoWriteIndex.Name = "chkAutoWriteIndex";
+            this.chkAutoWriteIndex.Size = new System.Drawing.Size(120, 16);
+            this.chkAutoWriteIndex.TabIndex = 39;
+            this.chkAutoWriteIndex.Text = "自动更新上传断点";
+            this.chkAutoWriteIndex.UseVisualStyleBackColor = true;
+            // 
+            // Lbl_Quantity4
+            // 
+            this.Lbl_Quantity4.AutoSize = true;
+            this.Lbl_Quantity4.Location = new System.Drawing.Point(19, 22);
+            this.Lbl_Quantity4.Name = "Lbl_Quantity4";
+            this.Lbl_Quantity4.Size = new System.Drawing.Size(77, 12);
+            this.Lbl_Quantity4.TabIndex = 32;
+            this.Lbl_Quantity4.Text = "每次读取数量";
+            // 
             // chkAutoRead
             // 
             this.chkAutoRead.AutoSize = true;
-            this.chkAutoRead.Location = new System.Drawing.Point(432, 105);
+            this.chkAutoRead.Checked = true;
+            this.chkAutoRead.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutoRead.Location = new System.Drawing.Point(137, 54);
             this.chkAutoRead.Name = "chkAutoRead";
-            this.chkAutoRead.Size = new System.Drawing.Size(60, 16);
+            this.chkAutoRead.Size = new System.Drawing.Size(132, 16);
             this.chkAutoRead.TabIndex = 38;
-            this.chkAutoRead.Text = "连续读";
+            this.chkAutoRead.Text = "连续读直到采集完毕";
             this.chkAutoRead.UseVisualStyleBackColor = true;
+            // 
+            // btnReadImageTransactionDatabase
+            // 
+            this.btnReadImageTransactionDatabase.Location = new System.Drawing.Point(494, 88);
+            this.btnReadImageTransactionDatabase.Name = "btnReadImageTransactionDatabase";
+            this.btnReadImageTransactionDatabase.Size = new System.Drawing.Size(186, 23);
+            this.btnReadImageTransactionDatabase.TabIndex = 34;
+            this.btnReadImageTransactionDatabase.Text = "读打卡记录及体温/照片";
+            this.btnReadImageTransactionDatabase.UseVisualStyleBackColor = true;
+            this.btnReadImageTransactionDatabase.Click += new System.EventHandler(this.btnReadImageTransactionDatabase_Click);
             // 
             // Lbl_ImageDire
             // 
             this.Lbl_ImageDire.AutoSize = true;
-            this.Lbl_ImageDire.Location = new System.Drawing.Point(11, 86);
+            this.Lbl_ImageDire.Location = new System.Drawing.Point(26, 69);
             this.Lbl_ImageDire.Name = "Lbl_ImageDire";
             this.Lbl_ImageDire.Size = new System.Drawing.Size(77, 12);
             this.Lbl_ImageDire.TabIndex = 37;
             this.Lbl_ImageDire.Text = "照片保存路径";
             // 
-            // txtImageDire
-            // 
-            this.txtImageDire.Location = new System.Drawing.Point(6, 103);
-            this.txtImageDire.Name = "txtImageDire";
-            this.txtImageDire.Size = new System.Drawing.Size(314, 21);
-            this.txtImageDire.TabIndex = 36;
-            this.txtImageDire.Text = "d:\\RecordImage\\";
-            // 
             // butSelectDire
             // 
-            this.butSelectDire.Location = new System.Drawing.Point(208, 130);
+            this.butSelectDire.Location = new System.Drawing.Point(341, 86);
             this.butSelectDire.Name = "butSelectDire";
             this.butSelectDire.Size = new System.Drawing.Size(112, 23);
             this.butSelectDire.TabIndex = 35;
@@ -629,44 +712,13 @@
             this.butSelectDire.UseVisualStyleBackColor = true;
             this.butSelectDire.Click += new System.EventHandler(this.butSelectDire_Click);
             // 
-            // btnReadImageTransactionDatabase
+            // txtImageDire
             // 
-            this.btnReadImageTransactionDatabase.Location = new System.Drawing.Point(432, 130);
-            this.btnReadImageTransactionDatabase.Name = "btnReadImageTransactionDatabase";
-            this.btnReadImageTransactionDatabase.Size = new System.Drawing.Size(267, 23);
-            this.btnReadImageTransactionDatabase.TabIndex = 34;
-            this.btnReadImageTransactionDatabase.Text = "读人脸体温新记录";
-            this.btnReadImageTransactionDatabase.UseVisualStyleBackColor = true;
-            this.btnReadImageTransactionDatabase.Click += new System.EventHandler(this.btnReadImageTransactionDatabase_Click);
-            // 
-            // btnReadTransactionDatabase
-            // 
-            this.btnReadTransactionDatabase.Location = new System.Drawing.Point(568, 101);
-            this.btnReadTransactionDatabase.Name = "btnReadTransactionDatabase";
-            this.btnReadTransactionDatabase.Size = new System.Drawing.Size(128, 23);
-            this.btnReadTransactionDatabase.TabIndex = 33;
-            this.btnReadTransactionDatabase.Text = "读新记录";
-            this.btnReadTransactionDatabase.UseVisualStyleBackColor = true;
-            this.btnReadTransactionDatabase.Click += new System.EventHandler(this.BtnReadTransactionDatabase_Click);
-            // 
-            // Lbl_Quantity4
-            // 
-            this.Lbl_Quantity4.AutoSize = true;
-            this.Lbl_Quantity4.Location = new System.Drawing.Point(324, 86);
-            this.Lbl_Quantity4.Name = "Lbl_Quantity4";
-            this.Lbl_Quantity4.Size = new System.Drawing.Size(53, 12);
-            this.Lbl_Quantity4.TabIndex = 32;
-            this.Lbl_Quantity4.Text = "读取数量";
-            this.Lbl_Quantity4.Click += new System.EventHandler(this.Lbl_Quantity4_Click);
-            // 
-            // txtReadTransactionDatabaseQuantity
-            // 
-            this.txtReadTransactionDatabaseQuantity.Location = new System.Drawing.Point(326, 103);
-            this.txtReadTransactionDatabaseQuantity.MaxLength = 6;
-            this.txtReadTransactionDatabaseQuantity.Name = "txtReadTransactionDatabaseQuantity";
-            this.txtReadTransactionDatabaseQuantity.Size = new System.Drawing.Size(100, 21);
-            this.txtReadTransactionDatabaseQuantity.TabIndex = 30;
-            this.txtReadTransactionDatabaseQuantity.Text = "20";
+            this.txtImageDire.Location = new System.Drawing.Point(21, 86);
+            this.txtImageDire.Name = "txtImageDire";
+            this.txtImageDire.Size = new System.Drawing.Size(314, 21);
+            this.txtImageDire.TabIndex = 36;
+            this.txtImageDire.Text = "d:\\RecordImage\\";
             // 
             // cboe_TransactionDatabaseType3
             // 
@@ -722,23 +774,11 @@
             this.Lbl_TransactionDatabaseType3.TabIndex = 23;
             this.Lbl_TransactionDatabaseType3.Text = "记录类型";
             // 
-            // butClearAllTransactionDatabase
-            // 
-            this.butClearAllTransactionDatabase.Location = new System.Drawing.Point(581, 576);
-            this.butClearAllTransactionDatabase.Name = "butClearAllTransactionDatabase";
-            this.butClearAllTransactionDatabase.Size = new System.Drawing.Size(131, 29);
-            this.butClearAllTransactionDatabase.TabIndex = 28;
-            this.butClearAllTransactionDatabase.Text = "清空所有记录";
-            this.butClearAllTransactionDatabase.UseVisualStyleBackColor = true;
-            this.butClearAllTransactionDatabase.Visible = false;
-            this.butClearAllTransactionDatabase.Click += new System.EventHandler(this.butClearAllTransactionDatabase_Click);
-            // 
             // frmRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 607);
-            this.Controls.Add(this.butClearAllTransactionDatabase);
+            this.ClientSize = new System.Drawing.Size(731, 712);
             this.Controls.Add(this.gpRecordOperation2);
             this.Controls.Add(this.gpRecordOperation);
             this.Controls.Add(this.Lbl_MemoryPointerOperation);
@@ -754,6 +794,8 @@
             this.gpRecordOperation.PerformLayout();
             this.gpRecordOperation2.ResumeLayout(false);
             this.gpRecordOperation2.PerformLayout();
+            this.gpAutoRead.ResumeLayout(false);
+            this.gpAutoRead.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -826,5 +868,8 @@
         private System.Windows.Forms.Label Lbl_ImageDire;
         private System.Windows.Forms.TextBox txtImageDire;
         private System.Windows.Forms.CheckBox chkAutoRead;
+        private System.Windows.Forms.CheckBox chkAutoWriteIndex;
+        private System.Windows.Forms.CheckBox chkAutoReadImage;
+        private System.Windows.Forms.GroupBox gpAutoRead;
     }
 }

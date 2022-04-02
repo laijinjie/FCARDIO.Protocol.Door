@@ -189,7 +189,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             Lng(btnReadVoiceBroadcastSetting);
             Lng(btnWriteVoiceBroadcastSetting);
             Lng(gpReaderIntervalTimeUse);
-            Lng(cbReaderIntervalTimeUse);
             Lng(Lbl_bIntervalTime);
             Lng(Lbl_Mode);
             Lng(btnReadReaderIntervalTime);
@@ -553,7 +552,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 Invoke(() =>
                 {
-                    cbReaderIntervalTimeUse.Checked = result.IsUse;
+                    
                     if (result.IntervalTime > 255)
                     {
                         cmbIntervalTime.SelectedIndex = cmbIntervalTime.Items.Count - 1;
@@ -584,7 +583,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 time = Convert.ToUInt16(cmbIntervalTime.SelectedIndex);
             }
-            WriteReaderIntervalTime_Parameter par = new WriteReaderIntervalTime_Parameter(cbReaderIntervalTimeUse.Checked, time, Convert.ToByte(cmbMode.SelectedIndex + 1));
+            WriteReaderIntervalTime_Parameter par = new WriteReaderIntervalTime_Parameter(true, time, Convert.ToByte(cmbMode.SelectedIndex + 1));
             WriteReaderIntervalTime write = new WriteReaderIntervalTime(cmdDtl, par);
             mMainForm.AddCommand(write);
         }

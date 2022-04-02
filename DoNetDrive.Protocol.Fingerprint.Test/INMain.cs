@@ -1,5 +1,7 @@
 ﻿using DoNetDrive.Core.Command;
 using System.Text;
+using System.Threading.Tasks;
+
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
     public interface INMain
@@ -31,5 +33,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// </summary>
         /// <param name="cmd"></param>
         void AddCommand(INCommand cmd);
+
+        Task AddCommandAsync(INCommand cmd);
     }
 }

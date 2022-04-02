@@ -23,21 +23,8 @@
 		<OutputPath>..\Output\Debug\</OutputPath>
 		<DocumentationFile>..\Output\Debug\netstandard2.0\DoNetDrive.Protocol.Fingerprint.Elevator.xml</DocumentationFile>
 	</PropertyGroup>
-	
-	
+
 	<ItemGroup>
-		<PackageReference Include="DotNetty.Transport" Version="0.7.0" />
-		<PackageReference Include="DotNetty.Buffers" Version="0.7.0" />
-		<PackageReference Include="DotNetty.Common" Version="0.7.0" />
-	</ItemGroup>
-	
-	
-	<ItemGroup>
-	  <ProjectReference Include="..\..\DoNetDrive.Core\DoNetDrive.Common\DoNetDrive.Common\DoNetDrive.Common_NetStandard20.csproj" />
-	  <ProjectReference Include="..\..\DoNetDrive.Core\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util\DoNetDrive.Protocol.Util_NetStandard20.csproj" />
-	  <ProjectReference Include="..\..\DoNetDrive.Core\FCARDIO.Core\FCARDIO.Core\DoNetDrive.Core_netstandard20.vbproj" />
-	  <ProjectReference Include="..\..\DoNetDrive.Core\FCARDIO.Protocol\FCARDIO.Protocol\DoNetDrive.Protocol_NetStandard20.vbproj" />
-	  <ProjectReference Include="..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door_netstandard20.csproj" />
-	  <ProjectReference Include="..\DoNetDrive.Protocol.Fingerprint\Fingerprint\DoNetDrive.Protocol.Fingerprint_netstandard20.csproj" />
+	  <PackageReference Include="DoNetDrive.Protocol.Fingerprint" Version="2.1.0" />
 	</ItemGroup>
 </Project>
