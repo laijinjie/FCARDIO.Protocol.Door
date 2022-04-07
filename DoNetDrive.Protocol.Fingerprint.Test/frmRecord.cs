@@ -97,6 +97,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             Lng(chkAutoReadImage);
             Lng(chkAutoWriteIndex);
             Lng(gpAutoRead);
+            Lng(btnReadOld);
             e_TransactionDatabaseType();
 
         }
@@ -206,7 +207,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             //mSystemTransactionList[36] = "WIFI 已连接";//
             //mSystemTransactionList[37] = "WIFI 已断开";//
 
-            for (int i = 1; i < 38; i++)
+            for (int i = 1; i <= 39; i++)
             {
                 mSystemTransactionList[i] = GetLanguage_St($"SystemTransactionList{i}");
             }
@@ -598,6 +599,51 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     return;
                 }
                 txtImageDire.Text = dialog.SelectedPath;
+            }
+        }
+
+        private async void btnReadOld_Click(object sender, EventArgs e)
+        {
+            int type = cboe_TransactionDatabaseType3.SelectedIndex;
+
+            var cmdDtl = mMainForm.GetCommandDetail();
+            cmdDtl.Timeout = 1300;
+            cmdDtl.RestartCount = 2;
+
+            var par = new ReadTransactionDatabase_Parameter((int)Transaction.e_TransactionDatabaseType.OnCardTransaction, 0);
+
+            var cmd = new ReadTransactionDatabaseByAll(cmdDtl, par);
+            try
+            {
+                await mMainForm.AddCommandAsync(cmd);
+                var result = cmd.getResult() as Protocol.Door.Door8800.Transaction.ReadTransactionDatabase_Result;
+                mMainForm.AddCmdLog(cmd.GetEventArgs(), Lng("Msg_1", result.Quantity, result.TransactionList.Count, result.readable));
+
+                if (result.TransactionList.Count > 0)
+                {
+                    StringBuilder sLogs = new StringBuilder(500 + (result.TransactionList.Count * 140));
+                    sLogs.AppendLine(((OnlineAccess.OnlineAccessCommandDetail)cmdDtl).SN);
+                    //事件类型:
+                    sLogs.AppendLine(Lng("Msg_2") + mWatchTypeNameList[result.TransactionList[0].TransactionType]);
+                    //读取计数：{0}；实际数量：{1}；剩余新记录数：{2}
+                    sLogs.AppendLine(Lng("Msg_3", result.Quantity, result.TransactionList.Count, result.readable));
+
+
+                    //按序号排序
+                    result.TransactionList.Sort((x, y) => x.SerialNumber.CompareTo(y.SerialNumber));
+                    foreach (var t in result.TransactionList)
+                    {
+                        PrintTransactionList(t, sLogs);
+                    }
+                    string sFile = SaveFile(sLogs, Lng("Msg_4") + $"_{DateTime.Now:yyyyMMddHHmmss}.txt");
+                    mMainForm.AddCmdLog(cmd.GetEventArgs(), Lng("Msg_5") + sFile);
+                    if (result.readable > 0) AutoReadTransaction();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                mMainForm.AddLog($"{cmd.GetType().Name}：\r\n{ex.Message}");
             }
         }
 

@@ -255,6 +255,8 @@
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_BeginAttendance    value ="Begin Attendance"                    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_BroadcastVoice    value ="Broadcast Voice"                    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_EnterSleep    value ="Enter Sleep"                    />
+
+		<DoNetDrive_Protocol_Fingerprint_Transaction_ReadTransactionDatabaseByAll    value ="Read old records"    />
 		
 		<btlToolLift                        value="Lift" />
 		<butSearch value ="Search"/>
@@ -983,6 +985,8 @@
 		<SystemTransactionList35                  value="Network cable is connected" />
 		<SystemTransactionList36                  value="WIFI connected" />
 		<SystemTransactionList37                  value="WIFI is disconnected" />
+		<SystemTransactionList38                  value="Bluetooth Open" />
+		<SystemTransactionList39                  value="Attendance Timeout" />
 
 		<Msg_1                                    value="Read successfully, read quantity:{0},actual parse quantity:{1}, remaining new records:{2}" />
 		<Msg_2                                    value="Event type:" />
@@ -1009,8 +1013,8 @@
 
 		<chkAutoWriteIndex value ="Auto Write Upload Index"/>
 		<chkAutoReadImage value ="Auto Read Record Photo"/>
-		<gpAutoRead value ="Read New Record"/>
-
+		<gpAutoRead value ="Read New"/>
+		<btnReadOld value ="Read Old"/>
 	</frmRecord>
 	<frmAdditionalData>
 		<FormCaption              value="User additional data" />

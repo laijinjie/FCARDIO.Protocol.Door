@@ -1526,7 +1526,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AddCommandClassNameList(typeof(SystemParameter.SendCMD_BroadcastVoice));//播报语音
             AddCommandClassNameList(typeof(SystemParameter.SendCMD_EnterSleep));//进入休眠
 
-
+            AddCommandClassNameList(typeof(Transaction.ReadTransactionDatabaseByAll));//读取所有历史记录
 
             mCommandClasss = mCommandClasss
                 .Concat(frmElevator.IniCommandClassNameList())

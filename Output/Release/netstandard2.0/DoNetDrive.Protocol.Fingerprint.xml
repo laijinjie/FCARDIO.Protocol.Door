@@ -9945,6 +9945,65 @@
             释放资源
             </summary>
         </member>
+        <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseByAll">
+            <summary>
+             读取新记录
+             读指定类型的记录数据库最新记录，并读取指定数量。
+             成功返回结果参考 link ReadTransactionDatabase_Result 
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseByAll._SubCommand">
+            <summary>
+            读取记录事务的封装算法
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseByAll.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabase_Parameter)">
+            <summary>
+            初始化命令结构
+            </summary>
+            <param name="cd"></param>
+            <param name="parameter"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseByAll.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseByAll.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查命令参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseByAll.CommandNext0(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseByAll.CheckDataDetail(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
+            <summary>
+            检查记录详情返回值
+            </summary>
+            <param name="oPck"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseByAll.CreateResultNULL(System.Int64)">
+            <summary>
+            命令执行完毕
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseByAll.SubCommandOver(DoNetDrive.Protocol.Fingerprint.ISubCommand)">
+            <summary>
+            命令执行完毕
+            </summary>
+            <param name="subCmd"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseByAll.Release1">
+            <summary>
+            释放资源
+            </summary>
+        </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseSubCommand`1">
             <summary>
             读取记录算法，封装读取记录的步骤

@@ -97,6 +97,7 @@
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.Lbl_Quantity3 = new System.Windows.Forms.Label();
             this.Lbl_TransactionDatabaseType3 = new System.Windows.Forms.Label();
+            this.btnReadOld = new System.Windows.Forms.Button();
             this.gpTransactionDatabaseDetail.SuspendLayout();
             this.Lbl_MemoryPointerOperation.SuspendLayout();
             this.gpRecordOperation.SuspendLayout();
@@ -602,6 +603,7 @@
             // 
             // gpAutoRead
             // 
+            this.gpAutoRead.Controls.Add(this.btnReadOld);
             this.gpAutoRead.Controls.Add(this.btnReadTransactionDatabase);
             this.gpAutoRead.Controls.Add(this.chkAutoReadImage);
             this.gpAutoRead.Controls.Add(this.txtReadTransactionDatabaseQuantity);
@@ -621,7 +623,7 @@
             // 
             // btnReadTransactionDatabase
             // 
-            this.btnReadTransactionDatabase.Location = new System.Drawing.Point(494, 41);
+            this.btnReadTransactionDatabase.Location = new System.Drawing.Point(494, 58);
             this.btnReadTransactionDatabase.Name = "btnReadTransactionDatabase";
             this.btnReadTransactionDatabase.Size = new System.Drawing.Size(186, 23);
             this.btnReadTransactionDatabase.TabIndex = 33;
@@ -689,7 +691,7 @@
             this.btnReadImageTransactionDatabase.Name = "btnReadImageTransactionDatabase";
             this.btnReadImageTransactionDatabase.Size = new System.Drawing.Size(186, 23);
             this.btnReadImageTransactionDatabase.TabIndex = 34;
-            this.btnReadImageTransactionDatabase.Text = "读打卡记录及体温/照片";
+            this.btnReadImageTransactionDatabase.Text = "读新打卡记录及体温/照片";
             this.btnReadImageTransactionDatabase.UseVisualStyleBackColor = true;
             this.btnReadImageTransactionDatabase.Click += new System.EventHandler(this.btnReadImageTransactionDatabase_Click);
             // 
@@ -773,6 +775,16 @@
             this.Lbl_TransactionDatabaseType3.Size = new System.Drawing.Size(53, 12);
             this.Lbl_TransactionDatabaseType3.TabIndex = 23;
             this.Lbl_TransactionDatabaseType3.Text = "记录类型";
+            // 
+            // btnReadOld
+            // 
+            this.btnReadOld.Location = new System.Drawing.Point(494, 28);
+            this.btnReadOld.Name = "btnReadOld";
+            this.btnReadOld.Size = new System.Drawing.Size(186, 23);
+            this.btnReadOld.TabIndex = 42;
+            this.btnReadOld.Text = "读历史记录";
+            this.btnReadOld.UseVisualStyleBackColor = true;
+            this.btnReadOld.Click += new System.EventHandler(this.btnReadOld_Click);
             // 
             // frmRecord
             // 
@@ -871,5 +883,6 @@
         private System.Windows.Forms.CheckBox chkAutoWriteIndex;
         private System.Windows.Forms.CheckBox chkAutoReadImage;
         private System.Windows.Forms.GroupBox gpAutoRead;
+        private System.Windows.Forms.Button btnReadOld;
     }
 }

@@ -257,6 +257,8 @@
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_BeginAttendance    value ="开始点名"                    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_BroadcastVoice    value ="语音播报"                    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_EnterSleep    value ="进入休眠"                    />
+
+		<DoNetDrive_Protocol_Fingerprint_Transaction_ReadTransactionDatabaseByAll    value ="读取所有历史记录"    />
 		
 		<btlToolLift                        value="电梯模块" />
 		<butSearch value ="搜索设备"/>
@@ -987,6 +989,8 @@
 		<SystemTransactionList35                  value="网线已插入" />
 		<SystemTransactionList36                  value="WIFI 已连接" />
 		<SystemTransactionList37                  value="WIFI 已断开" />
+		<SystemTransactionList38                  value="蓝牙开门" />
+		<SystemTransactionList39                  value="点名超时" />
 
 		<Msg_1                                    value="读取成功，读取数量：{0},实际解析数量:{1},剩余新记录数{2}" />
 		<Msg_2                                    value="事件类型:" />
@@ -1014,6 +1018,7 @@
 		<chkAutoWriteIndex value ="自动更新上传断点"/>
 		<chkAutoReadImage value ="自动读取现场照片"/>
 		<gpAutoRead value ="读取新记录"/>
+		<btnReadOld value ="读历史记录"/>
 	</frmRecord>
 	<frmAdditionalData>
 		<FormCaption              value="人员附加数据" />
