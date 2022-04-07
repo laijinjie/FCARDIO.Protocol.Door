@@ -253,6 +253,10 @@
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceBioassaySimilarity    value ="读取活体检测阈值"                    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceBioassaySimilarity    value ="设置活体检测阈值"                    />
 		<DoNetDrive_Protocol_Fingerprint_Alarm_SetFireAlarm    value ="设置消防报警功能开关"                    />
+
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_BeginAttendance    value ="开始点名"                    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_BroadcastVoice    value ="语音播报"                    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_EnterSleep    value ="进入休眠"                    />
 		
 		<btlToolLift                        value="电梯模块" />
 		<butSearch value ="搜索设备"/>
@@ -508,7 +512,12 @@
 		<cmbFireUse value = "禁用,启用"/>
 		<FaceBioassaySimilarityMsg value = "活体识别阈值：{0}"/>
 		<tabPar4 value = "参数4"/>
-
+		<gbAttendanceDevice value = "点名机功能"/>
+		<btnSendCMD_BeginAttendance value = "开始点名"/>
+		<lblBeginAttendanceTime value = "点名时长(秒):"/>
+		<lblBroadcastVoiceNum value = "语音编号:"/>
+		<btnSendCMD_BroadcastVoice value = "播报语音"/>
+		<btnSendCMD_EnterSleep value = "立刻休眠"/>
 	</frmSystem>
 	<frmTime>
 		<FormCaption              value="时钟" />

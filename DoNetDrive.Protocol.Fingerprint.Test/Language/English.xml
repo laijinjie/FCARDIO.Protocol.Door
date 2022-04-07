@@ -235,14 +235,14 @@
 		<DoNetDrive_Protocol_Fingerprint_Door_ReadDoorOpenCheckMode value= "Read Door Access Mode"/>
 		<DoNetDrive_Protocol_Fingerprint_Door_WriteDoorOpenCheckMode value= "Write Door Access Mode"/>
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendConnectTestResponse value= "PONG"/>
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadAuthenticationMode    value ="读取人脸机认证模式"         />
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteAuthenticationMode    value ="设置人脸机认证模式"        />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadAuthenticationMode    value ="Read Authentication Mode"         />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteAuthenticationMode    value ="Write Authentication Mode"        />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadSaveRecordImage    value ="读取认证记录保存现场照片开关"  />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteSaveRecordImage    value ="设置认证记录保存现场照片开关" />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadRecordQRCode    value ="读取识别结果查询二维码生成开关"   />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteRecordQRcode    value ="设置识别结果查询二维码生成开关"  />
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadLightPattern    value ="读取感光模式"                     />
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteLightPattern    value ="设置感光模式"                    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadLightPattern    value ="Read Light Pattern"                     />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteLightPattern    value ="Write Light Pattern"                    />
 		
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadYZW_Push    value ="Read YZW Use"                    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendReloadYZW_People    value ="YZW Reload People"                    />
@@ -250,6 +250,12 @@
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceBioassaySimilarity    value ="Read IR Threshold"                    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceBioassaySimilarity    value ="Set IR Threshold"                    />
 		<DoNetDrive_Protocol_Fingerprint_Alarm_SetFireAlarm    value ="Set Frie Use"                    />
+
+
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_BeginAttendance    value ="Begin Attendance"                    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_BroadcastVoice    value ="Broadcast Voice"                    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_EnterSleep    value ="Enter Sleep"                    />
+		
 		<btlToolLift                        value="Lift" />
 		<butSearch value ="Search"/>
 		<tabDevice value ="Devices"/>
@@ -503,6 +509,12 @@
 		<cmbFireUse value = "OFF,ON"/>
 		<FaceBioassaySimilarityMsg value = "IR Threshold：{0}"/>
 		<tabPar4 value = "Par 4"/>
+		<gbAttendanceDevice value = "Attendance Device"/>
+		<btnSendCMD_BeginAttendance value = "Begin Attendance"/>
+		<lblBeginAttendanceTime value = "Attendance Time(s):"/>
+		<lblBroadcastVoiceNum value = "Voice Num:"/>
+		<btnSendCMD_BroadcastVoice value = "Broadcast Voice"/>
+		<btnSendCMD_EnterSleep value = "Enter Sleep"/>
 	</frmSystem>
 	<frmTime>
 		<FormCaption              value="Clock" />

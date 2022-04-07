@@ -56,10 +56,10 @@
             this.Lbl_DownloadUserCode = new System.Windows.Forms.Label();
             this.Lbl_DownloadType = new System.Windows.Forms.Label();
             this.gpUpdateSoftware = new System.Windows.Forms.GroupBox();
+            this.chkFaceSoftware = new System.Windows.Forms.CheckBox();
             this.butUpdateSoftware = new System.Windows.Forms.Button();
             this.cmbEquptType = new System.Windows.Forms.ComboBox();
             this.Lbl_EquptType = new System.Windows.Forms.Label();
-            this.chkFaceSoftware = new System.Windows.Forms.CheckBox();
             this.gpUpload.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -98,7 +98,6 @@
             // 
             this.tabPage2.Controls.Add(this.butUploadFolder);
             this.tabPage2.Controls.Add(this.butUploadImage);
-            this.tabPage2.Controls.Add(this.btnGetPerson);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -129,9 +128,9 @@
             // 
             // btnGetPerson
             // 
-            this.btnGetPerson.Location = new System.Drawing.Point(6, 156);
+            this.btnGetPerson.Location = new System.Drawing.Point(26, 65);
             this.btnGetPerson.Name = "btnGetPerson";
-            this.btnGetPerson.Size = new System.Drawing.Size(222, 23);
+            this.btnGetPerson.Size = new System.Drawing.Size(142, 23);
             this.btnGetPerson.TabIndex = 11;
             this.btnGetPerson.Text = "获取人员数据库详情";
             this.btnGetPerson.UseVisualStyleBackColor = true;
@@ -257,6 +256,7 @@
             // 
             this.gpDownload.Controls.Add(this.chkByBlock);
             this.gpDownload.Controls.Add(this.btnDownload);
+            this.gpDownload.Controls.Add(this.btnGetPerson);
             this.gpDownload.Controls.Add(this.cmbDownloadSerialNumber);
             this.gpDownload.Controls.Add(this.Lbl_DownloadSerialNumber);
             this.gpDownload.Controls.Add(this.txtDownloadUserCode);
@@ -357,6 +357,18 @@
             this.gpUpdateSoftware.TabStop = false;
             this.gpUpdateSoftware.Text = "上传固件";
             // 
+            // chkFaceSoftware
+            // 
+            this.chkFaceSoftware.AutoSize = true;
+            this.chkFaceSoftware.Checked = true;
+            this.chkFaceSoftware.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFaceSoftware.Location = new System.Drawing.Point(318, 13);
+            this.chkFaceSoftware.Name = "chkFaceSoftware";
+            this.chkFaceSoftware.Size = new System.Drawing.Size(60, 16);
+            this.chkFaceSoftware.TabIndex = 13;
+            this.chkFaceSoftware.Text = "人脸机";
+            this.chkFaceSoftware.UseVisualStyleBackColor = true;
+            // 
             // butUpdateSoftware
             // 
             this.butUpdateSoftware.Location = new System.Drawing.Point(488, 29);
@@ -384,18 +396,6 @@
             this.Lbl_EquptType.Size = new System.Drawing.Size(65, 12);
             this.Lbl_EquptType.TabIndex = 7;
             this.Lbl_EquptType.Text = "设备类型：";
-            // 
-            // chkFaceSoftware
-            // 
-            this.chkFaceSoftware.AutoSize = true;
-            this.chkFaceSoftware.Checked = true;
-            this.chkFaceSoftware.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFaceSoftware.Location = new System.Drawing.Point(318, 13);
-            this.chkFaceSoftware.Name = "chkFaceSoftware";
-            this.chkFaceSoftware.Size = new System.Drawing.Size(60, 16);
-            this.chkFaceSoftware.TabIndex = 13;
-            this.chkFaceSoftware.Text = "人脸机";
-            this.chkFaceSoftware.UseVisualStyleBackColor = true;
             // 
             // frmAdditionalData
             // 

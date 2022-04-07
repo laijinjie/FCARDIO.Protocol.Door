@@ -550,6 +550,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void ButUploadSoftware_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cmbEquptType.Text)) return;
+
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = Msg_15 + "|*.RCBin";
             ofd.Multiselect = false;

@@ -199,6 +199,14 @@
             this.Txt_ShortMessage = new System.Windows.Forms.TextBox();
             this.But_ReadFaceBodyTemperatureAlarm = new System.Windows.Forms.Button();
             this.tabPar4 = new System.Windows.Forms.TabPage();
+            this.gbAttendanceDevice = new System.Windows.Forms.GroupBox();
+            this.txtBroadcastVoiceNum = new System.Windows.Forms.NumericUpDown();
+            this.lblBroadcastVoiceNum = new System.Windows.Forms.Label();
+            this.txtBeginAttendanceTime = new System.Windows.Forms.NumericUpDown();
+            this.lblBeginAttendanceTime = new System.Windows.Forms.Label();
+            this.btnSendCMD_EnterSleep = new System.Windows.Forms.Button();
+            this.btnSendCMD_BeginAttendance = new System.Windows.Forms.Button();
+            this.btnSendCMD_BroadcastVoice = new System.Windows.Forms.Button();
             this.gbYZW = new System.Windows.Forms.GroupBox();
             this.cmdSendReloadYZW_People = new System.Windows.Forms.Button();
             this.cmdReadYZW_Push = new System.Windows.Forms.Button();
@@ -276,6 +284,9 @@
             this.gpDeviceVolume.SuspendLayout();
             this.gpDeviceLanguage.SuspendLayout();
             this.tabPar4.SuspendLayout();
+            this.gbAttendanceDevice.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBroadcastVoiceNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBeginAttendanceTime)).BeginInit();
             this.gbYZW.SuspendLayout();
             this.gbFaceBioassaySimilarity.SuspendLayout();
             this.gbFireUse.SuspendLayout();
@@ -2040,6 +2051,7 @@
             // 
             // tabPar4
             // 
+            this.tabPar4.Controls.Add(this.gbAttendanceDevice);
             this.tabPar4.Controls.Add(this.gbYZW);
             this.tabPar4.Controls.Add(this.gbFaceBioassaySimilarity);
             this.tabPar4.Controls.Add(this.gbFireUse);
@@ -2055,6 +2067,114 @@
             this.tabPar4.Text = "参数4";
             this.tabPar4.UseVisualStyleBackColor = true;
             // 
+            // gbAttendanceDevice
+            // 
+            this.gbAttendanceDevice.Controls.Add(this.txtBroadcastVoiceNum);
+            this.gbAttendanceDevice.Controls.Add(this.lblBroadcastVoiceNum);
+            this.gbAttendanceDevice.Controls.Add(this.txtBeginAttendanceTime);
+            this.gbAttendanceDevice.Controls.Add(this.lblBeginAttendanceTime);
+            this.gbAttendanceDevice.Controls.Add(this.btnSendCMD_EnterSleep);
+            this.gbAttendanceDevice.Controls.Add(this.btnSendCMD_BeginAttendance);
+            this.gbAttendanceDevice.Controls.Add(this.btnSendCMD_BroadcastVoice);
+            this.gbAttendanceDevice.Location = new System.Drawing.Point(382, 379);
+            this.gbAttendanceDevice.Name = "gbAttendanceDevice";
+            this.gbAttendanceDevice.Size = new System.Drawing.Size(351, 119);
+            this.gbAttendanceDevice.TabIndex = 13;
+            this.gbAttendanceDevice.TabStop = false;
+            this.gbAttendanceDevice.Text = "点名机功能";
+            // 
+            // txtBroadcastVoiceNum
+            // 
+            this.txtBroadcastVoiceNum.Location = new System.Drawing.Point(156, 59);
+            this.txtBroadcastVoiceNum.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.txtBroadcastVoiceNum.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtBroadcastVoiceNum.Name = "txtBroadcastVoiceNum";
+            this.txtBroadcastVoiceNum.Size = new System.Drawing.Size(48, 21);
+            this.txtBroadcastVoiceNum.TabIndex = 65;
+            this.txtBroadcastVoiceNum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblBroadcastVoiceNum
+            // 
+            this.lblBroadcastVoiceNum.Location = new System.Drawing.Point(15, 59);
+            this.lblBroadcastVoiceNum.Name = "lblBroadcastVoiceNum";
+            this.lblBroadcastVoiceNum.Size = new System.Drawing.Size(135, 21);
+            this.lblBroadcastVoiceNum.TabIndex = 64;
+            this.lblBroadcastVoiceNum.Text = "语音编号:";
+            this.lblBroadcastVoiceNum.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtBeginAttendanceTime
+            // 
+            this.txtBeginAttendanceTime.Location = new System.Drawing.Point(156, 25);
+            this.txtBeginAttendanceTime.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.txtBeginAttendanceTime.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.txtBeginAttendanceTime.Name = "txtBeginAttendanceTime";
+            this.txtBeginAttendanceTime.Size = new System.Drawing.Size(48, 21);
+            this.txtBeginAttendanceTime.TabIndex = 63;
+            this.txtBeginAttendanceTime.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // lblBeginAttendanceTime
+            // 
+            this.lblBeginAttendanceTime.Location = new System.Drawing.Point(15, 25);
+            this.lblBeginAttendanceTime.Name = "lblBeginAttendanceTime";
+            this.lblBeginAttendanceTime.Size = new System.Drawing.Size(135, 21);
+            this.lblBeginAttendanceTime.TabIndex = 62;
+            this.lblBeginAttendanceTime.Text = "Attendance Time(s):";
+            this.lblBeginAttendanceTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnSendCMD_EnterSleep
+            // 
+            this.btnSendCMD_EnterSleep.Location = new System.Drawing.Point(208, 85);
+            this.btnSendCMD_EnterSleep.Name = "btnSendCMD_EnterSleep";
+            this.btnSendCMD_EnterSleep.Size = new System.Drawing.Size(130, 23);
+            this.btnSendCMD_EnterSleep.TabIndex = 61;
+            this.btnSendCMD_EnterSleep.Text = "立刻休眠";
+            this.btnSendCMD_EnterSleep.UseVisualStyleBackColor = true;
+            this.btnSendCMD_EnterSleep.Click += new System.EventHandler(this.btnSendCMD_EnterSleep_Click);
+            // 
+            // btnSendCMD_BeginAttendance
+            // 
+            this.btnSendCMD_BeginAttendance.Location = new System.Drawing.Point(208, 24);
+            this.btnSendCMD_BeginAttendance.Name = "btnSendCMD_BeginAttendance";
+            this.btnSendCMD_BeginAttendance.Size = new System.Drawing.Size(130, 23);
+            this.btnSendCMD_BeginAttendance.TabIndex = 60;
+            this.btnSendCMD_BeginAttendance.Text = "开始点名";
+            this.btnSendCMD_BeginAttendance.UseVisualStyleBackColor = true;
+            this.btnSendCMD_BeginAttendance.Click += new System.EventHandler(this.btnSendCMD_BeginAttendance_Click);
+            // 
+            // btnSendCMD_BroadcastVoice
+            // 
+            this.btnSendCMD_BroadcastVoice.Location = new System.Drawing.Point(208, 58);
+            this.btnSendCMD_BroadcastVoice.Name = "btnSendCMD_BroadcastVoice";
+            this.btnSendCMD_BroadcastVoice.Size = new System.Drawing.Size(130, 23);
+            this.btnSendCMD_BroadcastVoice.TabIndex = 57;
+            this.btnSendCMD_BroadcastVoice.Text = "播报语音";
+            this.btnSendCMD_BroadcastVoice.UseVisualStyleBackColor = true;
+            this.btnSendCMD_BroadcastVoice.Click += new System.EventHandler(this.btnSendCMD_BroadcastVoice_Click);
+            // 
             // gbYZW
             // 
             this.gbYZW.Controls.Add(this.cmdSendReloadYZW_People);
@@ -2063,14 +2183,14 @@
             this.gbYZW.Controls.Add(this.cmdWriteYZW_Push);
             this.gbYZW.Location = new System.Drawing.Point(37, 379);
             this.gbYZW.Name = "gbYZW";
-            this.gbYZW.Size = new System.Drawing.Size(320, 79);
+            this.gbYZW.Size = new System.Drawing.Size(320, 119);
             this.gbYZW.TabIndex = 12;
             this.gbYZW.TabStop = false;
             this.gbYZW.Text = "云筑网功能开关";
             // 
             // cmdSendReloadYZW_People
             // 
-            this.cmdSendReloadYZW_People.Location = new System.Drawing.Point(6, 50);
+            this.cmdSendReloadYZW_People.Location = new System.Drawing.Point(6, 63);
             this.cmdSendReloadYZW_People.Name = "cmdSendReloadYZW_People";
             this.cmdSendReloadYZW_People.Size = new System.Drawing.Size(112, 23);
             this.cmdSendReloadYZW_People.TabIndex = 61;
@@ -2080,7 +2200,7 @@
             // 
             // cmdReadYZW_Push
             // 
-            this.cmdReadYZW_Push.Location = new System.Drawing.Point(212, 50);
+            this.cmdReadYZW_Push.Location = new System.Drawing.Point(212, 63);
             this.cmdReadYZW_Push.Name = "cmdReadYZW_Push";
             this.cmdReadYZW_Push.Size = new System.Drawing.Size(48, 23);
             this.cmdReadYZW_Push.TabIndex = 60;
@@ -2092,14 +2212,14 @@
             // 
             this.cmbYZW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbYZW.FormattingEnabled = true;
-            this.cmbYZW.Location = new System.Drawing.Point(6, 23);
+            this.cmbYZW.Location = new System.Drawing.Point(6, 36);
             this.cmbYZW.Name = "cmbYZW";
             this.cmbYZW.Size = new System.Drawing.Size(308, 20);
             this.cmbYZW.TabIndex = 59;
             // 
             // cmdWriteYZW_Push
             // 
-            this.cmdWriteYZW_Push.Location = new System.Drawing.Point(266, 50);
+            this.cmdWriteYZW_Push.Location = new System.Drawing.Point(266, 63);
             this.cmdWriteYZW_Push.Name = "cmdWriteYZW_Push";
             this.cmdWriteYZW_Push.Size = new System.Drawing.Size(48, 23);
             this.cmdWriteYZW_Push.TabIndex = 57;
@@ -2694,6 +2814,9 @@
             this.gpDeviceLanguage.ResumeLayout(false);
             this.gpDeviceLanguage.PerformLayout();
             this.tabPar4.ResumeLayout(false);
+            this.gbAttendanceDevice.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtBroadcastVoiceNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBeginAttendanceTime)).EndInit();
             this.gbYZW.ResumeLayout(false);
             this.gbFaceBioassaySimilarity.ResumeLayout(false);
             this.gbFireUse.ResumeLayout(false);
@@ -2940,5 +3063,13 @@
         private System.Windows.Forms.Button cmdReadYZW_Push;
         private System.Windows.Forms.ComboBox cmbYZW;
         private System.Windows.Forms.Button cmdWriteYZW_Push;
+        private System.Windows.Forms.GroupBox gbAttendanceDevice;
+        private System.Windows.Forms.NumericUpDown txtBroadcastVoiceNum;
+        private System.Windows.Forms.Label lblBroadcastVoiceNum;
+        private System.Windows.Forms.NumericUpDown txtBeginAttendanceTime;
+        private System.Windows.Forms.Label lblBeginAttendanceTime;
+        private System.Windows.Forms.Button btnSendCMD_EnterSleep;
+        private System.Windows.Forms.Button btnSendCMD_BeginAttendance;
+        private System.Windows.Forms.Button btnSendCMD_BroadcastVoice;
     }
 }

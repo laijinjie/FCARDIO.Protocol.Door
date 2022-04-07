@@ -237,6 +237,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             Lng(cmdWriteYZW_Push);//写入
 
 
+            Lng(gbAttendanceDevice);//点名机功能
+            Lng(btnSendCMD_BeginAttendance);//开始点名
+            Lng(lblBeginAttendanceTime);//点名时长(秒):
+            Lng(lblBroadcastVoiceNum);//语音编号:
+            Lng(btnSendCMD_BroadcastVoice);//播报语音
+            Lng(btnSendCMD_EnterSleep);//立刻休眠
+
             cmbDoor.Items.Clear();
             cmbDoor.Items.AddRange(DoorList);
             cmbDoor.SelectedIndex = 0;
@@ -2093,5 +2100,34 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         #endregion
 
+        #region 点名机功能
+
+
+
+        private void btnSendCMD_BeginAttendance_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new SendCMD_BeginAttendance(cmdDtl, new SendCMD_BeginAttendance_Parameter((ushort)txtBeginAttendanceTime.Value));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void btnSendCMD_BroadcastVoice_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new SendCMD_BroadcastVoice(cmdDtl, new SendCMD_BroadcastVoice_Parameter((byte)txtBroadcastVoiceNum.Value));
+            mMainForm.AddCommand(cmd);
+        }
+
+        private void btnSendCMD_EnterSleep_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new SendCMD_EnterSleep(cmdDtl);
+            mMainForm.AddCommand(cmd);
+        }
+
+        #endregion
     }
 }

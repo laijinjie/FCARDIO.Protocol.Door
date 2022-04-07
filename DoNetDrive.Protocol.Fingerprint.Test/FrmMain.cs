@@ -1521,6 +1521,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AddCommandClassNameList(typeof(SystemParameter.ReadFaceBioassaySimilarity));//读取活体检测阈值
             AddCommandClassNameList(typeof(SystemParameter.WriteFaceBioassaySimilarity));//设置活体检测阈值
 
+
+            AddCommandClassNameList(typeof(SystemParameter.SendCMD_BeginAttendance));//开始点名
+            AddCommandClassNameList(typeof(SystemParameter.SendCMD_BroadcastVoice));//播报语音
+            AddCommandClassNameList(typeof(SystemParameter.SendCMD_EnterSleep));//进入休眠
+
+
+
             mCommandClasss = mCommandClasss
                 .Concat(frmElevator.IniCommandClassNameList())
                 .ToDictionary(kv => kv.Key, kv => kv.Value);
