@@ -33,7 +33,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.butUploadFolder = new System.Windows.Forms.Button();
             this.butUploadImage = new System.Windows.Forms.Button();
-            this.btnGetPerson = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtCodeData = new System.Windows.Forms.TextBox();
             this.Lbl_CodeData = new System.Windows.Forms.Label();
@@ -46,6 +45,7 @@
             this.Lbl_UploadType = new System.Windows.Forms.Label();
             this.txtUploadUserCode = new System.Windows.Forms.TextBox();
             this.Lbl_UploadUserCode = new System.Windows.Forms.Label();
+            this.btnGetPerson = new System.Windows.Forms.Button();
             this.gpDownload = new System.Windows.Forms.GroupBox();
             this.chkByBlock = new System.Windows.Forms.CheckBox();
             this.btnDownload = new System.Windows.Forms.Button();
@@ -60,6 +60,7 @@
             this.butUpdateSoftware = new System.Windows.Forms.Button();
             this.cmbEquptType = new System.Windows.Forms.ComboBox();
             this.Lbl_EquptType = new System.Windows.Forms.Label();
+            this.btnSaveBase64ToBin = new System.Windows.Forms.Button();
             this.gpUpload.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -91,7 +92,7 @@
             this.tabControl1.Location = new System.Drawing.Point(6, 58);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(587, 211);
+            this.tabControl1.Size = new System.Drawing.Size(587, 223);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage2
@@ -126,18 +127,9 @@
             this.butUploadImage.UseVisualStyleBackColor = true;
             this.butUploadImage.Click += new System.EventHandler(this.ButUploadImage_Click);
             // 
-            // btnGetPerson
-            // 
-            this.btnGetPerson.Location = new System.Drawing.Point(26, 65);
-            this.btnGetPerson.Name = "btnGetPerson";
-            this.btnGetPerson.Size = new System.Drawing.Size(142, 23);
-            this.btnGetPerson.TabIndex = 11;
-            this.btnGetPerson.Text = "获取人员数据库详情";
-            this.btnGetPerson.UseVisualStyleBackColor = true;
-            this.btnGetPerson.Click += new System.EventHandler(this.BtnGetPerson_Click);
-            // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnSaveBase64ToBin);
             this.tabPage1.Controls.Add(this.txtCodeData);
             this.tabPage1.Controls.Add(this.Lbl_CodeData);
             this.tabPage1.Controls.Add(this.btnUploadCode);
@@ -146,7 +138,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(579, 185);
+            this.tabPage1.Size = new System.Drawing.Size(579, 197);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "特征码";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -251,6 +243,16 @@
             this.Lbl_UploadUserCode.Size = new System.Drawing.Size(53, 12);
             this.Lbl_UploadUserCode.TabIndex = 0;
             this.Lbl_UploadUserCode.Text = "用户号：";
+            // 
+            // btnGetPerson
+            // 
+            this.btnGetPerson.Location = new System.Drawing.Point(26, 65);
+            this.btnGetPerson.Name = "btnGetPerson";
+            this.btnGetPerson.Size = new System.Drawing.Size(142, 23);
+            this.btnGetPerson.TabIndex = 11;
+            this.btnGetPerson.Text = "获取人员数据库详情";
+            this.btnGetPerson.UseVisualStyleBackColor = true;
+            this.btnGetPerson.Click += new System.EventHandler(this.BtnGetPerson_Click);
             // 
             // gpDownload
             // 
@@ -397,6 +399,16 @@
             this.Lbl_EquptType.TabIndex = 7;
             this.Lbl_EquptType.Text = "设备类型：";
             // 
+            // btnSaveBase64ToBin
+            // 
+            this.btnSaveBase64ToBin.Location = new System.Drawing.Point(15, 172);
+            this.btnSaveBase64ToBin.Name = "btnSaveBase64ToBin";
+            this.btnSaveBase64ToBin.Size = new System.Drawing.Size(142, 23);
+            this.btnSaveBase64ToBin.TabIndex = 17;
+            this.btnSaveBase64ToBin.Text = "保存到bin文件";
+            this.btnSaveBase64ToBin.UseVisualStyleBackColor = true;
+            this.btnSaveBase64ToBin.Click += new System.EventHandler(this.btnSaveBase64ToBin_Click);
+            // 
             // frmAdditionalData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -456,5 +468,6 @@
         private System.Windows.Forms.Label Lbl_EquptType;
         private System.Windows.Forms.Button butUploadFolder;
         private System.Windows.Forms.CheckBox chkFaceSoftware;
+        private System.Windows.Forms.Button btnSaveBase64ToBin;
     }
 }

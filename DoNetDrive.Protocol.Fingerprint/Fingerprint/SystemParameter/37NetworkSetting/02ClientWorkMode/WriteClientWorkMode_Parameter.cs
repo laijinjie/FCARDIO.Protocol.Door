@@ -32,7 +32,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <summary>
         /// 创建网络服务器参数
         /// </summary>
-        /// <param name="iMode">客户端模式通讯方式</param>
+        /// <param name="iMode">客户端模式通讯方式；0--禁用;1--UDP;2--TCP Client;</param>
         public WriteClientWorkMode_Parameter(int iMode)
         {
             ClientModel = iMode;

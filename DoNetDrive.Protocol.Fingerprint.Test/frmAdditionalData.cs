@@ -93,6 +93,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             chkFaceSoftware.Text = Lng("FaceSoftware");
 
+
             IniEquptType();
         }
 
@@ -677,6 +678,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             Msg_18 = Lng("Msg_18");
             Msg_19 = Lng("Msg_19");
             Msg_PersonDetail = Lng("Msg_PersonDetail");
+
+            Lng(btnSaveBase64ToBin);
             InitControl();
         }
 
@@ -890,5 +893,35 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             UploadNext();
         }
         #endregion
+
+        private void btnSaveBase64ToBin_Click(object sender, EventArgs e)
+        {
+            string sBase64 = txtCodeData.Text;
+            if (string.IsNullOrEmpty(sBase64))
+                return;
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = Lng("btnSaveBase64ToBin");
+            saveFileDialog.Filter = "(*.bin)|*.bin";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var sFileName = saveFileDialog.FileName;
+                if(File.Exists(sFileName))
+                {
+                    File.Delete(sFileName);
+                }
+
+                try
+                {
+                    File.WriteAllBytes(sFileName, Convert.FromBase64String(sBase64));
+                }
+                catch (Exception ex)
+                {
+
+                    MsgErr(ex.Message);
+                }
+
+            }
+        }
     }
 }

@@ -1086,5 +1086,6 @@
 		<UF_Msg_18       value="选择人员照片"/>
 		<UF_Msg_19       value="选择人员照片文件夹(*.JPG)|*.JPG"/>
 		<FaceSoftware value ="人脸机"/>
+		<btnSaveBase64ToBin value="保存到.bin文件"/>
 	</frmAdditionalData>
 </Language>

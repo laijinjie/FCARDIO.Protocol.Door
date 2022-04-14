@@ -26,7 +26,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// <summary>
         /// 创建设置认证模式的参数
         /// </summary>
-        /// <param name="iAuthenticationMode">认证模式,取值范围：1-5；</param>
+        /// <param name="iAuthenticationMode">认证模式,取值范围：1-5；1、标准模式 默认值；2、人脸+密码；3、卡+人脸；4、多人考勤；5、人证比对</param>
         public WriteAuthenticationMode_Parameter(int iAuthenticationMode)
         {
             AuthenticationMode = iAuthenticationMode;

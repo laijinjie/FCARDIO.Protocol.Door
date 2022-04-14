@@ -68,8 +68,11 @@
     <Reference Include="DoNetDrive.Protocol.Door, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DoNetDrive.Protocol.Door.2.3.0\lib\netstandard2.0\DoNetDrive.Protocol.Door.dll</HintPath>
     </Reference>
-    <Reference Include="DoNetDrive.Protocol.Fingerprint.Elevator, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DoNetDrive.Protocol.Fingerprint.Elevator.2.1.0\lib\netstandard2.0\DoNetDrive.Protocol.Fingerprint.Elevator.dll</HintPath>
+    <Reference Include="DoNetDrive.Protocol.Fingerprint, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DoNetDrive.Protocol.Fingerprint.2.3.0\lib\netstandard2.0\DoNetDrive.Protocol.Fingerprint.dll</HintPath>
+    </Reference>
+    <Reference Include="DoNetDrive.Protocol.Fingerprint.Elevator, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DoNetDrive.Protocol.Fingerprint.Elevator.2.2.0\lib\netstandard2.0\DoNetDrive.Protocol.Fingerprint.Elevator.dll</HintPath>
     </Reference>
     <Reference Include="DoNetDrive.Protocol.Util, Version=1.16.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DoNetDrive.Protocol.Util.1.16.0\lib\netstandard2.0\DoNetDrive.Protocol.Util.dll</HintPath>
@@ -324,12 +327,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DoNetDrive.Protocol.Fingerprint\Fingerprint\DoNetDrive.Protocol.Fingerprint_netstandard20.csproj">
-      <Project>{4639e7f7-83aa-4511-8fa8-369a79226b72}</Project>
-      <Name>DoNetDrive.Protocol.Fingerprint_netstandard20</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

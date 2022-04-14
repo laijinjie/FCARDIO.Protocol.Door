@@ -22,7 +22,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Door.RelayReleaseTime
         /// <summary>
         /// 初始化实例
         /// </summary>
-        /// <param name="releaseTime">开锁时输出时长</param>
+        /// <param name="releaseTime">开锁时输出时长,单位秒，最大65535秒。0表示0.5秒</param>
         public WriteUnlockingTime_Parameter(ushort releaseTime)
         {
             ReleaseTime = releaseTime;

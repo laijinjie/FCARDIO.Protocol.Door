@@ -9,7 +9,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Door.ReaderIntervalTime
     public class WriteReaderIntervalTime_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 读卡间隔时间，最大65535秒，0表示无限制
+        /// 读卡间隔时间,单位秒，最大65535秒，0表示无限制
         /// </summary>
         public ushort IntervalTime;
 
@@ -35,8 +35,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Door.ReaderIntervalTime
         /// 使用读卡间隔时间参数初始化实例
         /// </summary>
         /// <param name="isUse">是否有效</param>
-        /// <param name="_IntervalTime">读卡间隔时间</param>
-        /// <param name="mode">检测模式</param>
+        /// <param name="_IntervalTime">读卡间隔时间,单位秒，最大65535秒，0表示无限制</param>
+        /// <param name="mode">检测模式:1 - 记录读卡，不开门，有提示;2 - 不记录读卡，不开门，有提示;3 - 不做响应，无提示</param>
         public WriteReaderIntervalTime_Parameter(bool isUse,ushort _IntervalTime, byte mode)
         {
             IsUse = isUse;
