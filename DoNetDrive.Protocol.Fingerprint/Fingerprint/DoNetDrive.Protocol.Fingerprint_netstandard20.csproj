@@ -36,10 +36,15 @@
 
 	<ItemGroup>
 		<PackageReference Include="DoNetDrive.Protocol.Door" Version="2.3.0" />
+
+
 		<PackageReference Include="DoNetDrive.Common" Version="1.16.0" />
 		<PackageReference Include="DoNetDrive.Core" Version="2.5.0" />
 		<PackageReference Include="DoNetDrive.Protocol" Version="2.2.0" />
 		<PackageReference Include="DoNetDrive.Protocol.Util" Version="1.16.0" />
+		<PackageReference Include="DotNetty.Common" Version="0.7.0" />
+		<PackageReference Include="DotNetty.Buffers" Version="0.7.0" />
+		<PackageReference Include="DotNetty.Transport" Version="0.7.0" />
 	</ItemGroup>
 
 </Project>
