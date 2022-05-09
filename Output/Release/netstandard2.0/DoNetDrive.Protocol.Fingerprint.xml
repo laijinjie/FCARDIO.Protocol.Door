@@ -3189,7 +3189,7 @@
             <summary>
             初始化实例
             </summary>
-            <param name="releaseTime">开锁时输出时长</param>
+            <param name="releaseTime">开锁时输出时长,单位秒，最大65535秒。0表示0.5秒</param>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Door.RelayReleaseTime.WriteUnlockingTime_Parameter.checkedParameter">
             <summary>
@@ -3496,7 +3496,7 @@
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Door.ReaderIntervalTime.WriteReaderIntervalTime_Parameter.IntervalTime">
             <summary>
-            读卡间隔时间，最大65535秒，0表示无限制
+            读卡间隔时间,单位秒，最大65535秒，0表示无限制
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Door.ReaderIntervalTime.WriteReaderIntervalTime_Parameter.IsUse">
@@ -3522,8 +3522,8 @@
             使用读卡间隔时间参数初始化实例
             </summary>
             <param name="isUse">是否有效</param>
-            <param name="_IntervalTime">读卡间隔时间</param>
-            <param name="mode">检测模式</param>
+            <param name="_IntervalTime">读卡间隔时间,单位秒，最大65535秒，0表示无限制</param>
+            <param name="mode">检测模式:1 - 记录读卡，不开门，有提示;2 - 不记录读卡，不开门，有提示;3 - 不做响应，无提示</param>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Door.ReaderIntervalTime.WriteReaderIntervalTime_Parameter.checkedParameter">
             <summary>
@@ -7645,7 +7645,7 @@
             <summary>
             创建网络服务器参数
             </summary>
-            <param name="iMode">客户端模式通讯方式</param>
+            <param name="iMode">客户端模式通讯方式；0--禁用;1--UDP;2--TCP Client;</param>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteClientWorkMode_Parameter.checkedParameter">
             <summary>
@@ -8201,7 +8201,7 @@
             <summary>
             创建设置认证模式的参数
             </summary>
-            <param name="iAuthenticationMode">认证模式,取值范围：1-5；</param>
+            <param name="iAuthenticationMode">认证模式,取值范围：1-5；1、标准模式 默认值；2、人脸+密码；3、卡+人脸；4、多人考勤；5、人证比对</param>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteAuthenticationMode_Parameter.checkedParameter">
             <summary>
@@ -8870,12 +8870,12 @@
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.SendReloadYZW_People">
             <summary>
-            重启拉取云筑网人员命令
+            重新拉取云筑网人员命令
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.SendReloadYZW_People.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
-            创建重启拉取云筑网人员命令的命令
+            创建重新拉取云筑网人员命令的命令
             </summary>
             <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
             <param name="par"></param>

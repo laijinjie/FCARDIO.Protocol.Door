@@ -418,7 +418,7 @@
 		<Cmb_FaceMouthmuffle                     value = "Disable,Enable"/>
 		<WGByteSortList                          value = "big-endian,little-endian"/>
 		<OutputTypeList                          value = "Output user ID ,Output card number"/>
-		<DriveLanguageList                       value = "1--Chinese,2--English,3--Traditional Chinese,4-French,5-Russian,6-Portuguese,7-Spanish,8-Italian,9-Japanese,10-Korean,11-Thai,12-Arabic"/>
+		<DriveLanguageList                       value = "1--Chinese,2--English,3--Traditional Chinese,4-French,5-Russian,6-Brazil,7-Spanish,8-Italian,9-Japanese,10-Korean,11-Thai,12-Arabic,13-Portugal,14-Turkey,15-Indonesia,16-Ukraine"/>
 		<DoorAccessModeList                      value = "1--Face/PIN/Card/FP,2--Face/Card/FP + PIN"/>
 		<Msg_1                                   value = "Communication password is 8-bit hexadecimal character, please enter again!. Please re-enter."/>
 		<Msg_2                                   value = "Please enter correct MAC address."/>

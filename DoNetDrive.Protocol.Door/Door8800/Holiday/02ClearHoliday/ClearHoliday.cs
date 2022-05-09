@@ -21,7 +21,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Holiday
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x05, 0x02);
+            Packet(0x04, 0x02);
         }
 
         /// <summary>

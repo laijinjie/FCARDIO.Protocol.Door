@@ -4,12 +4,12 @@ using DoNetDrive.Protocol.Door.Door8800;
 namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
 {
     /// <summary>
-    /// 重启拉取云筑网人员命令
+    /// 重新拉取云筑网人员命令
     /// </summary>
     public class SendReloadYZW_People : Door8800Command_WriteParameter
     {
         /// <summary>
-        /// 创建重启拉取云筑网人员命令的命令
+        /// 创建重新拉取云筑网人员命令的命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par"></param>

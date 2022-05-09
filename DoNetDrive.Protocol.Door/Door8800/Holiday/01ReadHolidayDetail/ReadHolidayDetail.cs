@@ -26,7 +26,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Holiday
         /// </summary>
         protected override void CreatePacket0()
         {
-            Packet(0x05, 1);
+            Packet(0x04, 1);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.Holiday
         /// <param name="oPck">包含返回指令的Packet</param>
         protected override void CommandNext1(OnlineAccessPacket oPck)
         {
-            if (CheckResponse(oPck, 0x05,0x01,0x00))
+            if (CheckResponse(oPck, 0x04,0x01,0x00))
             {
                 var buf = oPck.CmdData;
                 ReadHolidayDetail_Result rst = new ReadHolidayDetail_Result();
