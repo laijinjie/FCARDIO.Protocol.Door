@@ -281,9 +281,9 @@ namespace DoNetDrive.Protocol.Door.Test
             StringBuilder sLogBuf = new StringBuilder();
             if (e.Command is AbstractCommand)
             {
-                
+
                 AbstractCommand abscmd = e.Command as AbstractCommand;
-                if(abscmd.GetStatus().IsCanceled)
+                if (abscmd.GetStatus().IsCanceled)
                 {
                     sLogBuf.Append("，已被用户取消");
                 }
@@ -298,7 +298,7 @@ namespace DoNetDrive.Protocol.Door.Test
             AddCmdLog(e, GetLanguage("Msg20") + sLogBuf.ToString());
         }
 
-        private void ShowException(StringBuilder sLogBuf,Exception exception)
+        private void ShowException(StringBuilder sLogBuf, Exception exception)
         {
             sLogBuf.Append("Error:").Append(exception.Message);
             if (exception.InnerException == null) return;
@@ -704,7 +704,7 @@ namespace DoNetDrive.Protocol.Door.Test
 
             if (sn.Equals(OnlineAccessCommandDetailEx.SNTitle))
             {
-                cmdDtl = new OnlineAccessCommandDetailEx(cmdDtl.Connector,sn,password);
+                cmdDtl = new OnlineAccessCommandDetailEx(cmdDtl.Connector, sn, password);
             }
 
 
@@ -2016,13 +2016,8 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             var cmdDtl = GetCommandDetail();
             if (cmdDtl == null) return;
-            for (int i = 0; i < 10000; i++)
-            {
-                ReadSN cmd = new ReadSN(cmdDtl);
-                AddCommand(cmd);
-            }
-            
-
+            ReadSN cmd = new ReadSN(cmdDtl);
+            AddCommand(cmd);
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {
