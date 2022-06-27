@@ -13,7 +13,7 @@
     <butUploadSoftware    value="远程升级" />
     <Lba_ConnType         value="通讯方式：" />
     <Lba_ProtocolType     value="协议类型" />
-    <gbTCPClient          value="TCP客户端" />
+    <gbTCPClient          value="远程地址" />
     <gp_controller        value="控制器身份" />
     <Lab_TCPClientPort    value="端口" />
     <Lab_Password         value="密码" />

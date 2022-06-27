@@ -11,7 +11,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
     public class WriteFaceBodyTemperatureAlarmPar_Parameter : AbstractParameter
     {
         /// <summary>
-        /// 体温报警阈值 0--禁止；1--摄氏度（默认值）；2--华氏度
+        /// 体温报警阈值  350-500  稳定用整形存储，显示时除10，例如37.5，存储为375
         /// </summary>
         public int AlarmPar;
 

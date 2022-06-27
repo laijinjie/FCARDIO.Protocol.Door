@@ -34,6 +34,7 @@
 		<LblUDPLocalPort value="本地端口："/>
 		<butUDPBind value="绑定"/>
 		<lblSerialPort value="串口号："/>
+		<lblBaudrate value="波特率："/>
 		<butReloadSerialPort value="刷新"/>
 		<gbSerialPort value="串口"/>
 		<lblUDPPort value="端口："/>

@@ -53,38 +53,11 @@
       <HintPath>..\DLL\DevComponents.Instrumentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DoNetDrive.Common, Version=1.16.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DoNetDrive.Common.1.16.0\lib\netstandard2.0\DoNetDrive.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="DoNetDrive.Connector.SerialPort, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DoNetDrive.Connector.SerialPort.1.0.0\lib\netstandard2.0\DoNetDrive.Connector.SerialPort.dll</HintPath>
-    </Reference>
-    <Reference Include="DoNetDrive.Core, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DoNetDrive.Core.2.5.0\lib\netstandard2.0\DoNetDrive.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DoNetDrive.Protocol.2.2.0\lib\netstandard2.0\DoNetDrive.Protocol.dll</HintPath>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol.Door, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DoNetDrive.Protocol.Door.2.3.0\lib\netstandard2.0\DoNetDrive.Protocol.Door.dll</HintPath>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol.Fingerprint, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DoNetDrive.Protocol.Fingerprint.2.3.0\lib\netstandard2.0\DoNetDrive.Protocol.Fingerprint.dll</HintPath>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol.Fingerprint.Elevator, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DoNetDrive.Protocol.Fingerprint.Elevator.2.2.0\lib\netstandard2.0\DoNetDrive.Protocol.Fingerprint.Elevator.dll</HintPath>
-    </Reference>
-    <Reference Include="DoNetDrive.Protocol.Util, Version=1.16.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DoNetDrive.Protocol.Util.1.16.0\lib\netstandard2.0\DoNetDrive.Protocol.Util.dll</HintPath>
-    </Reference>
     <Reference Include="DotNetty.Buffers, Version=0.7.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetty.Buffers.0.7.0\lib\net472\DotNetty.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="DotNetty.Common, Version=0.7.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetty.Common.0.7.0\lib\net472\DotNetty.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetty.Transport, Version=0.7.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNetty.Transport.0.7.0\lib\net472\DotNetty.Transport.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
@@ -327,6 +300,36 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DoNetDrive.Core\DoNetDrive.Common\DoNetDrive.Common\DoNetDrive.Common_NetStandard20.csproj">
+      <Project>{55e2ec5f-2485-46f0-8ccd-3ab049f54669}</Project>
+      <Name>DoNetDrive.Common_NetStandard20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DoNetDrive.Core\DoNetDrive.Connector.COM\DoNetDrive.Connector.SerialPort.vbproj">
+      <Project>{153421d8-346c-4ea3-b50f-7c8882cef907}</Project>
+      <Name>DoNetDrive.Connector.SerialPort</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DoNetDrive.Core\FCARDIO.Core\FCARDIO.Core\DoNetDrive.Core_netstandard20.vbproj">
+      <Project>{4a2c9e9f-a48b-4fc2-9774-dfeba63fd4ef}</Project>
+      <Name>DoNetDrive.Core_netstandard20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DoNetDrive.Core\FCARDIO.Protocol\FCARDIO.Protocol\DoNetDrive.Protocol_NetStandard20.vbproj">
+      <Project>{22f3e8c3-a608-470f-8404-d94426842a4f}</Project>
+      <Name>DoNetDrive.Protocol_NetStandard20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door_netstandard20.csproj">
+      <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
+      <Name>DoNetDrive.Protocol.Door_netstandard20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoNetDrive.Protocol.Fingerprint.Elevator\DoNetDrive.Protocol.Fingerprint.Elevator.csproj">
+      <Project>{0c2ebd82-a6cc-4d63-aec5-1db771bae2b9}</Project>
+      <Name>DoNetDrive.Protocol.Fingerprint.Elevator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoNetDrive.Protocol.Fingerprint\Fingerprint\DoNetDrive.Protocol.Fingerprint_netstandard20.csproj">
+      <Project>{4639e7f7-83aa-4511-8fa8-369a79226b72}</Project>
+      <Name>DoNetDrive.Protocol.Fingerprint_netstandard20</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

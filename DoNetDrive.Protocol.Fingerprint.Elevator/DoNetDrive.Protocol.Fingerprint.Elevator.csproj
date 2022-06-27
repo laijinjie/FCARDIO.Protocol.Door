@@ -29,7 +29,7 @@
 		<PackageReference Include="DoNetDrive.Core" Version="2.5.0" />
 		<PackageReference Include="DoNetDrive.Protocol" Version="2.2.0" />
 		<PackageReference Include="DoNetDrive.Protocol.Util" Version="1.16.0" />
-		<PackageReference Include="DoNetDrive.Protocol.Fingerprint" Version="2.4.0" />
+		<PackageReference Include="DoNetDrive.Protocol.Fingerprint" Version="2.3.0" />
 		<PackageReference Include="DoNetDrive.Protocol.Door" Version="2.5.0" />
 		<PackageReference Include="DotNetty.Common" Version="0.7.0" />
 		<PackageReference Include="DotNetty.Buffers" Version="0.7.0" />

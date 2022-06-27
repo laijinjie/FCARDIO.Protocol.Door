@@ -34,6 +34,7 @@
 		<LblUDPLocalPort value="LocalPort:"/>
 		<butUDPBind value="Bind"/>
 		<lblSerialPort value="Serial Port:"/>
+		<lblBaudrate value="Baudrate:"/>
 		<butReloadSerialPort value="Reload"/>
 		<gbSerialPort value="Serial Port"/>
 		<lblUDPPort value="Port:"/>

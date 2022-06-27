@@ -11,6 +11,9 @@
     <Compile Update="frmDoor.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmElevator.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmHoliday.cs">
       <SubType>Form</SubType>
     </Compile>

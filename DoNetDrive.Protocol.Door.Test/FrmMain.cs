@@ -20,6 +20,8 @@ using DoNetDrive.Core.Connector.TCPServer.Client;
 using DoNetDrive.Core.Connector.UDP;
 using DoNetDrive.Core.Connector.TCPServer;
 using DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN;
+using DoNetDrive.Core.Factory;
+using DoNetDrive.Connector.COM;
 
 namespace DoNetDrive.Protocol.Door.Test
 {
@@ -111,6 +113,13 @@ namespace DoNetDrive.Protocol.Door.Test
 
             mAllocator = ConnectorAllocator.GetAllocator();
             mObserver = new ConnectorObserverHandler();
+
+
+            //导入 串口通讯库
+            var defFactory = mAllocator.ConnectorFactory as DefaultConnectorFactory;
+            defFactory.ConnectorFactoryDictionary.Add(ConnectorType.SerialPort, DoNetDrive.Connector.COM.SerialPortFactory.GetInstance());
+
+
 
             mAllocator.CommandCompleteEvent += mAllocator_CommandCompleteEvent;
             mAllocator.CommandErrorEvent += mAllocator_CommandErrorEvent;
@@ -281,9 +290,9 @@ namespace DoNetDrive.Protocol.Door.Test
             StringBuilder sLogBuf = new StringBuilder();
             if (e.Command is AbstractCommand)
             {
-
+                
                 AbstractCommand abscmd = e.Command as AbstractCommand;
-                if (abscmd.GetStatus().IsCanceled)
+                if(abscmd.GetStatus().IsCanceled)
                 {
                     sLogBuf.Append("，已被用户取消");
                 }
@@ -298,7 +307,7 @@ namespace DoNetDrive.Protocol.Door.Test
             AddCmdLog(e, GetLanguage("Msg20") + sLogBuf.ToString());
         }
 
-        private void ShowException(StringBuilder sLogBuf, Exception exception)
+        private void ShowException(StringBuilder sLogBuf,Exception exception)
         {
             sLogBuf.Append("Error:").Append(exception.Message);
             if (exception.InnerException == null) return;
@@ -490,7 +499,7 @@ namespace DoNetDrive.Protocol.Door.Test
                     break;
                 case ConnectorType.SerialPort:
                     cType = GetLanguage("Msg33");
-                    var com = conn as Core.Connector.SerialPort.SerialPortDetail;
+                    var com = conn as DoNetDrive.Connector.COM.SerialPortDetail;
                     Local = $"COM{local.Port}:{com.Baudrate}";
                     break;
                 default:
@@ -618,64 +627,9 @@ namespace DoNetDrive.Protocol.Door.Test
             CommandDetailFactory.ConnectType connectType = CommandDetailFactory.ConnectType.TCPClient;
             CommandDetailFactory.ControllerType protocolType = CommandDetailFactory.ControllerType.Door88;
             string addr = string.Empty, sn, password;
-            int port = 0;
-            switch (cmdConnType.SelectedIndex)//串口,TCP客户端,UDP,TCP服务器
-            {
-                case 0://串口
-                    if (cmbSerialPort.SelectedIndex == -1)
-                    {
-                        MsgTip(GetLanguage("Msg35"));
-                        return null;
-                    }
-                    connectType = CommandDetailFactory.ConnectType.SerialPort;
-                    addr = string.Empty;
-                    port = cmbSerialPort.Text.Substring(3).ToInt32();
-                    break;
-                case 1://TCP 客户端方式通讯
-                    connectType = CommandDetailFactory.ConnectType.TCPClient;
-                    addr = IPAddr;// txtTCPClientAddr.Text;
-                    if (!int.TryParse(txtTCPClientPort.Text, out port))
-                    {
-                        port = 8000;
-                    }
-                    break;
-                case 2://UDP 
-                    if (!mUDPIsBind)
-                    {
-                        MsgErr(GetLanguage("Msg36"));
-                        return null;
-                    }
-                    connectType = CommandDetailFactory.ConnectType.UDPClient;
-                    addr = IPAddr;// txtUDPAddr.Text;
-                    if (!int.TryParse(txtUDPPort.Text, out port))
-                    {
-                        port = 8000;
-                    }
-                    break;
-                case 3://TCP服务器
-                    if (!mTCPServerBind)
-                    {
-                        MsgErr(GetLanguage("Msg37"));
-                        return null;
-                    }
+            int iRemotePort = 0;
 
-                    connectType = CommandDetailFactory.ConnectType.TCPServerClient;
-                    if (cmbTCPClient.SelectedItem == null)
-                    {
-                        MsgErr(GetLanguage("Msg38"));
-                        return null;
-                    }
-                    TCPServerClientDetail_Item oItem = cmbTCPClient.SelectedItem as TCPServerClientDetail_Item;
-
-                    addr = oItem.Key;
-                    break;
-                default:
-                    break;
-            }
             protocolType = mProtocolTypeTable[cmdProtocolType.SelectedIndex];
-
-
-            if (port > 65535) port = 8000;
 
             sn = txtSN.Text;
             if (string.IsNullOrEmpty(sn))
@@ -698,8 +652,74 @@ namespace DoNetDrive.Protocol.Door.Test
             }
 
 
+            switch (cmdConnType.SelectedIndex)//串口,TCP客户端,UDP,TCP服务器
+            {
+                case 0://串口
+                    if (cmbSerialPort.SelectedIndex == -1)
+                    {
+                        MsgTip(GetLanguage("Msg35"));
+                        return null;
+                    }
+                    
+                    addr = string.Empty;
+                    iRemotePort = cmbSerialPort.Text.Substring(3).ToInt32();
+                    
+                    return GetCommandDetail(new SerialPortDetail((byte)iRemotePort), protocolType, sn, password);
+                case 1://TCP 客户端方式通讯
+                    connectType = CommandDetailFactory.ConnectType.TCPClient;
+                    addr = IPAddr;// txtTCPClientAddr.Text;
+                    if (!int.TryParse(txtTCPClientPort.Text, out iRemotePort))
+                    {
+                        iRemotePort = 8000;
+                    }
+                    break;
+                case 2://UDP 
+                    if (!mUDPIsBind)
+                    {
+                        MsgErr(GetLanguage("Msg36"));
+                        return null;
+                    }
+                    connectType = CommandDetailFactory.ConnectType.UDPClient;
+                    addr = IPAddr;// txtUDPAddr.Text;
+                    if (!int.TryParse(txtUDPPort.Text, out iRemotePort))
+                    {
+                        iRemotePort = 8000;
+                    }
+                    break;
+                case 3://TCP服务器
+                    if (!mTCPServerBind)
+                    {
+                        MsgErr(GetLanguage("Msg37"));
+                        return null;
+                    }
 
-            INCommandDetail cmdDtl = CommandDetailFactory.CreateDetail(connectType, addr, port,
+                    connectType = CommandDetailFactory.ConnectType.TCPServerClient;
+                    if (cmbTCPClient.SelectedItem == null)
+                    {
+                        MsgErr(GetLanguage("Msg38"));
+                        return null;
+                    }
+                    TCPServerClientDetail_Item oItem = cmbTCPClient.SelectedItem as TCPServerClientDetail_Item;
+
+                    addr = oItem.Key;
+                    break;
+                default:
+                    break;
+            }
+            
+
+
+            
+            return GetCommandDetail(connectType,protocolType,addr,iRemotePort,sn,password);
+
+        }
+
+        public INCommandDetail GetCommandDetail(CommandDetailFactory.ConnectType connectType, 
+            CommandDetailFactory.ControllerType protocolType, string sRemoteIP, int iRemotePort, 
+            string sn,string password)
+        {
+
+            INCommandDetail cmdDtl = CommandDetailFactory.CreateDetail(connectType, sRemoteIP, iRemotePort,
                 protocolType, sn, password);
 
             if (sn.Equals(OnlineAccessCommandDetailEx.SNTitle))
@@ -717,8 +737,22 @@ namespace DoNetDrive.Protocol.Door.Test
             }
             cmdDtl.Timeout = 600;
             cmdDtl.RestartCount = 3;
-            return cmdDtl;
 
+            return cmdDtl;
+        }
+
+        public INCommandDetail GetCommandDetail(INConnectorDetail connectdtl,
+           CommandDetailFactory.ControllerType protocolType, 
+           string sn, string password)
+        {
+
+            INCommandDetail cmdDtl = CommandDetailFactory.CreateDetail(connectdtl,
+                protocolType, sn, password);
+
+            cmdDtl.Timeout = 1500;
+            cmdDtl.RestartCount = 3;
+
+            return cmdDtl;
         }
         #endregion
 
@@ -2016,8 +2050,13 @@ namespace DoNetDrive.Protocol.Door.Test
         {
             var cmdDtl = GetCommandDetail();
             if (cmdDtl == null) return;
-            ReadSN cmd = new ReadSN(cmdDtl);
-            AddCommand(cmd);
+            //for (int i = 0; i < 10000; i++)
+            //{
+                ReadSN cmd = new ReadSN(cmdDtl);
+                AddCommand(cmd);
+            //}
+            
+
             //处理返回值
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
             {

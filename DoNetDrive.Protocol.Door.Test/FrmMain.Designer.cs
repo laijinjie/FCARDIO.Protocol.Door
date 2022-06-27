@@ -113,55 +113,62 @@
             this.gbTCPClient.Controls.Add(this.Lab_TCPClientPort);
             this.gbTCPClient.Controls.Add(this.txtTCPClientAddr);
             this.gbTCPClient.Controls.Add(this.label2);
-            this.gbTCPClient.Location = new System.Drawing.Point(9, 85);
+            this.gbTCPClient.Location = new System.Drawing.Point(10, 120);
+            this.gbTCPClient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbTCPClient.Name = "gbTCPClient";
-            this.gbTCPClient.Size = new System.Drawing.Size(321, 82);
+            this.gbTCPClient.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbTCPClient.Size = new System.Drawing.Size(374, 116);
             this.gbTCPClient.TabIndex = 0;
             this.gbTCPClient.TabStop = false;
             this.gbTCPClient.Text = "TCP客户端";
             // 
             // txtTCPClientPort
             // 
-            this.txtTCPClientPort.Location = new System.Drawing.Point(111, 50);
+            this.txtTCPClientPort.Location = new System.Drawing.Point(130, 71);
+            this.txtTCPClientPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTCPClientPort.MaxLength = 5;
             this.txtTCPClientPort.Name = "txtTCPClientPort";
-            this.txtTCPClientPort.Size = new System.Drawing.Size(164, 21);
+            this.txtTCPClientPort.Size = new System.Drawing.Size(191, 23);
             this.txtTCPClientPort.TabIndex = 5;
             this.txtTCPClientPort.Text = "8000";
             // 
             // Lab_TCPClientPort
             // 
             this.Lab_TCPClientPort.AutoSize = true;
-            this.Lab_TCPClientPort.Location = new System.Drawing.Point(44, 54);
+            this.Lab_TCPClientPort.Location = new System.Drawing.Point(51, 76);
+            this.Lab_TCPClientPort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lab_TCPClientPort.Name = "Lab_TCPClientPort";
-            this.Lab_TCPClientPort.Size = new System.Drawing.Size(41, 12);
+            this.Lab_TCPClientPort.Size = new System.Drawing.Size(44, 17);
             this.Lab_TCPClientPort.TabIndex = 4;
             this.Lab_TCPClientPort.Text = "端口：";
             // 
             // txtTCPClientAddr
             // 
-            this.txtTCPClientAddr.Location = new System.Drawing.Point(111, 23);
+            this.txtTCPClientAddr.Location = new System.Drawing.Point(130, 33);
+            this.txtTCPClientAddr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTCPClientAddr.MaxLength = 30;
             this.txtTCPClientAddr.Name = "txtTCPClientAddr";
-            this.txtTCPClientAddr.Size = new System.Drawing.Size(164, 21);
+            this.txtTCPClientAddr.Size = new System.Drawing.Size(191, 23);
             this.txtTCPClientAddr.TabIndex = 3;
             this.txtTCPClientAddr.Text = "192.168.1.216";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(56, 26);
+            this.label2.Location = new System.Drawing.Point(65, 37);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.Size = new System.Drawing.Size(31, 17);
             this.label2.TabIndex = 0;
             this.label2.Text = "IP：";
             // 
             // Lba_ConnType
             // 
             this.Lba_ConnType.AutoSize = true;
-            this.Lba_ConnType.Location = new System.Drawing.Point(9, 36);
+            this.Lba_ConnType.Location = new System.Drawing.Point(10, 51);
+            this.Lba_ConnType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lba_ConnType.Name = "Lba_ConnType";
-            this.Lba_ConnType.Size = new System.Drawing.Size(65, 12);
+            this.Lba_ConnType.Size = new System.Drawing.Size(68, 17);
             this.Lba_ConnType.TabIndex = 1;
             this.Lba_ConnType.Text = "通讯方式：";
             // 
@@ -169,18 +176,20 @@
             // 
             this.cmdConnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdConnType.FormattingEnabled = true;
-            this.cmdConnType.Location = new System.Drawing.Point(120, 33);
+            this.cmdConnType.Location = new System.Drawing.Point(140, 47);
+            this.cmdConnType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmdConnType.Name = "cmdConnType";
-            this.cmdConnType.Size = new System.Drawing.Size(210, 20);
+            this.cmdConnType.Size = new System.Drawing.Size(244, 25);
             this.cmdConnType.TabIndex = 2;
             this.cmdConnType.SelectedIndexChanged += new System.EventHandler(this.cmdConnType_SelectedIndexChanged);
             // 
             // Lba_ProtocolType
             // 
             this.Lba_ProtocolType.AutoSize = true;
-            this.Lba_ProtocolType.Location = new System.Drawing.Point(9, 62);
+            this.Lba_ProtocolType.Location = new System.Drawing.Point(10, 88);
+            this.Lba_ProtocolType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lba_ProtocolType.Name = "Lba_ProtocolType";
-            this.Lba_ProtocolType.Size = new System.Drawing.Size(65, 12);
+            this.Lba_ProtocolType.Size = new System.Drawing.Size(68, 17);
             this.Lba_ProtocolType.TabIndex = 3;
             this.Lba_ProtocolType.Text = "协议类型：";
             // 
@@ -188,9 +197,10 @@
             // 
             this.cmdProtocolType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdProtocolType.FormattingEnabled = true;
-            this.cmdProtocolType.Location = new System.Drawing.Point(120, 59);
+            this.cmdProtocolType.Location = new System.Drawing.Point(140, 84);
+            this.cmdProtocolType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmdProtocolType.Name = "cmdProtocolType";
-            this.cmdProtocolType.Size = new System.Drawing.Size(210, 20);
+            this.cmdProtocolType.Size = new System.Drawing.Size(244, 25);
             this.cmdProtocolType.TabIndex = 4;
             // 
             // gp_controller
@@ -199,54 +209,61 @@
             this.gp_controller.Controls.Add(this.Lab_Password);
             this.gp_controller.Controls.Add(this.txtSN);
             this.gp_controller.Controls.Add(this.label6);
-            this.gp_controller.Location = new System.Drawing.Point(346, 86);
+            this.gp_controller.Location = new System.Drawing.Point(404, 122);
+            this.gp_controller.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gp_controller.Name = "gp_controller";
-            this.gp_controller.Size = new System.Drawing.Size(287, 82);
+            this.gp_controller.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gp_controller.Size = new System.Drawing.Size(335, 116);
             this.gp_controller.TabIndex = 5;
             this.gp_controller.TabStop = false;
             this.gp_controller.Text = "控制器身份";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(83, 51);
+            this.txtPassword.Location = new System.Drawing.Point(97, 72);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPassword.MaxLength = 8;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(164, 21);
+            this.txtPassword.Size = new System.Drawing.Size(191, 23);
             this.txtPassword.TabIndex = 9;
             this.txtPassword.Text = "ffffffff";
             // 
             // Lab_Password
             // 
             this.Lab_Password.AutoSize = true;
-            this.Lab_Password.Location = new System.Drawing.Point(14, 55);
+            this.Lab_Password.Location = new System.Drawing.Point(16, 78);
+            this.Lab_Password.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lab_Password.Name = "Lab_Password";
-            this.Lab_Password.Size = new System.Drawing.Size(41, 12);
+            this.Lab_Password.Size = new System.Drawing.Size(44, 17);
             this.Lab_Password.TabIndex = 8;
             this.Lab_Password.Text = "密码：";
             // 
             // txtSN
             // 
-            this.txtSN.Location = new System.Drawing.Point(83, 24);
+            this.txtSN.Location = new System.Drawing.Point(97, 34);
+            this.txtSN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSN.MaxLength = 16;
             this.txtSN.Name = "txtSN";
-            this.txtSN.Size = new System.Drawing.Size(164, 21);
+            this.txtSN.Size = new System.Drawing.Size(191, 23);
             this.txtSN.TabIndex = 7;
             this.txtSN.Text = "FC-8940H47124309";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(26, 27);
+            this.label6.Location = new System.Drawing.Point(30, 38);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 12);
+            this.label6.Size = new System.Drawing.Size(37, 17);
             this.label6.TabIndex = 6;
             this.label6.Text = "SN：";
             // 
             // butClear
             // 
-            this.butClear.Location = new System.Drawing.Point(6, 3);
+            this.butClear.Location = new System.Drawing.Point(7, 4);
+            this.butClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.butClear.Name = "butClear";
-            this.butClear.Size = new System.Drawing.Size(75, 23);
+            this.butClear.Size = new System.Drawing.Size(88, 33);
             this.butClear.TabIndex = 7;
             this.butClear.Text = "清空";
             this.butClear.UseVisualStyleBackColor = true;
@@ -266,7 +283,7 @@
             this.butUploadSoftware});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(651, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(760, 25);
             this.toolStrip1.TabIndex = 8;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -365,18 +382,21 @@
             this.gbSerialPort.Controls.Add(this.butReloadSerialPort);
             this.gbSerialPort.Controls.Add(this.cmbSerialPort);
             this.gbSerialPort.Controls.Add(this.Lba_SerialPort);
-            this.gbSerialPort.Location = new System.Drawing.Point(9, 85);
+            this.gbSerialPort.Location = new System.Drawing.Point(10, 120);
+            this.gbSerialPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbSerialPort.Name = "gbSerialPort";
-            this.gbSerialPort.Size = new System.Drawing.Size(321, 82);
+            this.gbSerialPort.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbSerialPort.Size = new System.Drawing.Size(374, 116);
             this.gbSerialPort.TabIndex = 9;
             this.gbSerialPort.TabStop = false;
             this.gbSerialPort.Text = "串口";
             // 
             // butReloadSerialPort
             // 
-            this.butReloadSerialPort.Location = new System.Drawing.Point(125, 46);
+            this.butReloadSerialPort.Location = new System.Drawing.Point(146, 65);
+            this.butReloadSerialPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.butReloadSerialPort.Name = "butReloadSerialPort";
-            this.butReloadSerialPort.Size = new System.Drawing.Size(75, 23);
+            this.butReloadSerialPort.Size = new System.Drawing.Size(88, 33);
             this.butReloadSerialPort.TabIndex = 8;
             this.butReloadSerialPort.Text = "刷新";
             this.butReloadSerialPort.UseVisualStyleBackColor = true;
@@ -386,17 +406,19 @@
             // 
             this.cmbSerialPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSerialPort.FormattingEnabled = true;
-            this.cmbSerialPort.Location = new System.Drawing.Point(125, 20);
+            this.cmbSerialPort.Location = new System.Drawing.Point(146, 28);
+            this.cmbSerialPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbSerialPort.Name = "cmbSerialPort";
-            this.cmbSerialPort.Size = new System.Drawing.Size(111, 20);
+            this.cmbSerialPort.Size = new System.Drawing.Size(129, 25);
             this.cmbSerialPort.TabIndex = 4;
             // 
             // Lba_SerialPort
             // 
             this.Lba_SerialPort.AutoSize = true;
-            this.Lba_SerialPort.Location = new System.Drawing.Point(21, 23);
+            this.Lba_SerialPort.Location = new System.Drawing.Point(24, 33);
+            this.Lba_SerialPort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lba_SerialPort.Name = "Lba_SerialPort";
-            this.Lba_SerialPort.Size = new System.Drawing.Size(65, 12);
+            this.Lba_SerialPort.Size = new System.Drawing.Size(68, 17);
             this.Lba_SerialPort.TabIndex = 3;
             this.Lba_SerialPort.Text = "通讯方式：";
             // 
@@ -408,18 +430,21 @@
             this.gbServer.Controls.Add(this.Lab_ServerPort);
             this.gbServer.Controls.Add(this.cmbTCPClient);
             this.gbServer.Controls.Add(this.Lab_TCPClient);
-            this.gbServer.Location = new System.Drawing.Point(9, 85);
+            this.gbServer.Location = new System.Drawing.Point(10, 120);
+            this.gbServer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbServer.Name = "gbServer";
-            this.gbServer.Size = new System.Drawing.Size(321, 82);
+            this.gbServer.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbServer.Size = new System.Drawing.Size(374, 116);
             this.gbServer.TabIndex = 10;
             this.gbServer.TabStop = false;
             this.gbServer.Text = "TCP客户端";
             // 
             // butCloseTCPClient
             // 
-            this.butCloseTCPClient.Location = new System.Drawing.Point(238, 19);
+            this.butCloseTCPClient.Location = new System.Drawing.Point(278, 27);
+            this.butCloseTCPClient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.butCloseTCPClient.Name = "butCloseTCPClient";
-            this.butCloseTCPClient.Size = new System.Drawing.Size(75, 23);
+            this.butCloseTCPClient.Size = new System.Drawing.Size(88, 33);
             this.butCloseTCPClient.TabIndex = 10;
             this.butCloseTCPClient.Text = "关闭客户端";
             this.butCloseTCPClient.UseVisualStyleBackColor = true;
@@ -427,9 +452,10 @@
             // 
             // butBeginTCPServer
             // 
-            this.butBeginTCPServer.Location = new System.Drawing.Point(157, 19);
+            this.butBeginTCPServer.Location = new System.Drawing.Point(183, 27);
+            this.butBeginTCPServer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.butBeginTCPServer.Name = "butBeginTCPServer";
-            this.butBeginTCPServer.Size = new System.Drawing.Size(75, 23);
+            this.butBeginTCPServer.Size = new System.Drawing.Size(88, 33);
             this.butBeginTCPServer.TabIndex = 9;
             this.butBeginTCPServer.Text = "开始监听";
             this.butBeginTCPServer.UseVisualStyleBackColor = true;
@@ -437,19 +463,21 @@
             // 
             // txtServerPort
             // 
-            this.txtServerPort.Location = new System.Drawing.Point(93, 20);
+            this.txtServerPort.Location = new System.Drawing.Point(108, 28);
+            this.txtServerPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtServerPort.MaxLength = 5;
             this.txtServerPort.Name = "txtServerPort";
-            this.txtServerPort.Size = new System.Drawing.Size(58, 21);
+            this.txtServerPort.Size = new System.Drawing.Size(67, 23);
             this.txtServerPort.TabIndex = 8;
             this.txtServerPort.Text = "8000";
             // 
             // Lab_ServerPort
             // 
             this.Lab_ServerPort.AutoSize = true;
-            this.Lab_ServerPort.Location = new System.Drawing.Point(6, 24);
+            this.Lab_ServerPort.Location = new System.Drawing.Point(7, 34);
+            this.Lab_ServerPort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lab_ServerPort.Name = "Lab_ServerPort";
-            this.Lab_ServerPort.Size = new System.Drawing.Size(65, 12);
+            this.Lab_ServerPort.Size = new System.Drawing.Size(68, 17);
             this.Lab_ServerPort.TabIndex = 7;
             this.Lab_ServerPort.Text = "服务端口：";
             // 
@@ -457,26 +485,29 @@
             // 
             this.cmbTCPClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTCPClient.FormattingEnabled = true;
-            this.cmbTCPClient.Location = new System.Drawing.Point(4, 58);
+            this.cmbTCPClient.Location = new System.Drawing.Point(5, 82);
+            this.cmbTCPClient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbTCPClient.Name = "cmbTCPClient";
-            this.cmbTCPClient.Size = new System.Drawing.Size(311, 20);
+            this.cmbTCPClient.Size = new System.Drawing.Size(362, 25);
             this.cmbTCPClient.TabIndex = 6;
             // 
             // Lab_TCPClient
             // 
             this.Lab_TCPClient.AutoSize = true;
-            this.Lab_TCPClient.Location = new System.Drawing.Point(6, 42);
+            this.Lab_TCPClient.Location = new System.Drawing.Point(7, 60);
+            this.Lab_TCPClient.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lab_TCPClient.Name = "Lab_TCPClient";
-            this.Lab_TCPClient.Size = new System.Drawing.Size(53, 12);
+            this.Lab_TCPClient.Size = new System.Drawing.Size(56, 17);
             this.Lab_TCPClient.TabIndex = 5;
             this.Lab_TCPClient.Text = "客户端：";
             // 
             // lblLocalAddress
             // 
             this.lblLocalAddress.AutoSize = true;
-            this.lblLocalAddress.Location = new System.Drawing.Point(8, 180);
+            this.lblLocalAddress.Location = new System.Drawing.Point(9, 255);
+            this.lblLocalAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLocalAddress.Name = "lblLocalAddress";
-            this.lblLocalAddress.Size = new System.Drawing.Size(53, 12);
+            this.lblLocalAddress.Size = new System.Drawing.Size(55, 17);
             this.lblLocalAddress.TabIndex = 11;
             this.lblLocalAddress.Text = "本机IP：";
             // 
@@ -490,9 +521,11 @@
             this.gbUDP.Controls.Add(this.Lab_UDPPort);
             this.gbUDP.Controls.Add(this.txtUDPAddr);
             this.gbUDP.Controls.Add(this.label11);
-            this.gbUDP.Location = new System.Drawing.Point(9, 85);
+            this.gbUDP.Location = new System.Drawing.Point(10, 120);
+            this.gbUDP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbUDP.Name = "gbUDP";
-            this.gbUDP.Size = new System.Drawing.Size(321, 82);
+            this.gbUDP.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbUDP.Size = new System.Drawing.Size(374, 116);
             this.gbUDP.TabIndex = 12;
             this.gbUDP.TabStop = false;
             this.gbUDP.Text = "UDP";
@@ -500,18 +533,20 @@
             // chkUDPBroadcast
             // 
             this.chkUDPBroadcast.AutoSize = true;
-            this.chkUDPBroadcast.Location = new System.Drawing.Point(210, 23);
+            this.chkUDPBroadcast.Location = new System.Drawing.Point(245, 33);
+            this.chkUDPBroadcast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkUDPBroadcast.Name = "chkUDPBroadcast";
-            this.chkUDPBroadcast.Size = new System.Drawing.Size(48, 16);
+            this.chkUDPBroadcast.Size = new System.Drawing.Size(51, 21);
             this.chkUDPBroadcast.TabIndex = 11;
             this.chkUDPBroadcast.Text = "广播";
             this.chkUDPBroadcast.UseVisualStyleBackColor = true;
             // 
             // butUDPBind
             // 
-            this.butUDPBind.Location = new System.Drawing.Point(134, 19);
+            this.butUDPBind.Location = new System.Drawing.Point(156, 27);
+            this.butUDPBind.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.butUDPBind.Name = "butUDPBind";
-            this.butUDPBind.Size = new System.Drawing.Size(70, 23);
+            this.butUDPBind.Size = new System.Drawing.Size(82, 33);
             this.butUDPBind.TabIndex = 10;
             this.butUDPBind.Text = "绑定";
             this.butUDPBind.UseVisualStyleBackColor = true;
@@ -519,55 +554,61 @@
             // 
             // txtUDPLocalPort
             // 
-            this.txtUDPLocalPort.Location = new System.Drawing.Point(82, 20);
+            this.txtUDPLocalPort.Location = new System.Drawing.Point(96, 28);
+            this.txtUDPLocalPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUDPLocalPort.MaxLength = 5;
             this.txtUDPLocalPort.Name = "txtUDPLocalPort";
-            this.txtUDPLocalPort.Size = new System.Drawing.Size(46, 21);
+            this.txtUDPLocalPort.Size = new System.Drawing.Size(53, 23);
             this.txtUDPLocalPort.TabIndex = 7;
             this.txtUDPLocalPort.Text = "9001";
             // 
             // Lba_UDPLocalPort
             // 
             this.Lba_UDPLocalPort.AutoSize = true;
-            this.Lba_UDPLocalPort.Location = new System.Drawing.Point(11, 24);
+            this.Lba_UDPLocalPort.Location = new System.Drawing.Point(13, 34);
+            this.Lba_UDPLocalPort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lba_UDPLocalPort.Name = "Lba_UDPLocalPort";
-            this.Lba_UDPLocalPort.Size = new System.Drawing.Size(65, 12);
+            this.Lba_UDPLocalPort.Size = new System.Drawing.Size(68, 17);
             this.Lba_UDPLocalPort.TabIndex = 6;
             this.Lba_UDPLocalPort.Text = "本地端口：";
             // 
             // txtUDPPort
             // 
-            this.txtUDPPort.Location = new System.Drawing.Point(254, 55);
+            this.txtUDPPort.Location = new System.Drawing.Point(296, 78);
+            this.txtUDPPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUDPPort.MaxLength = 5;
             this.txtUDPPort.Name = "txtUDPPort";
-            this.txtUDPPort.Size = new System.Drawing.Size(46, 21);
+            this.txtUDPPort.Size = new System.Drawing.Size(53, 23);
             this.txtUDPPort.TabIndex = 5;
             this.txtUDPPort.Text = "8101";
             // 
             // Lab_UDPPort
             // 
             this.Lab_UDPPort.AutoSize = true;
-            this.Lab_UDPPort.Location = new System.Drawing.Point(207, 59);
+            this.Lab_UDPPort.Location = new System.Drawing.Point(241, 84);
+            this.Lab_UDPPort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lab_UDPPort.Name = "Lab_UDPPort";
-            this.Lab_UDPPort.Size = new System.Drawing.Size(41, 12);
+            this.Lab_UDPPort.Size = new System.Drawing.Size(44, 17);
             this.Lab_UDPPort.TabIndex = 4;
             this.Lab_UDPPort.Text = "端口：";
             // 
             // txtUDPAddr
             // 
-            this.txtUDPAddr.Location = new System.Drawing.Point(46, 55);
+            this.txtUDPAddr.Location = new System.Drawing.Point(54, 78);
+            this.txtUDPAddr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUDPAddr.MaxLength = 30;
             this.txtUDPAddr.Name = "txtUDPAddr";
-            this.txtUDPAddr.Size = new System.Drawing.Size(138, 21);
+            this.txtUDPAddr.Size = new System.Drawing.Size(160, 23);
             this.txtUDPAddr.TabIndex = 3;
             this.txtUDPAddr.Text = "192.168.1.66";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(11, 59);
+            this.label11.Location = new System.Drawing.Point(13, 84);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(29, 12);
+            this.label11.Size = new System.Drawing.Size(31, 17);
             this.label11.TabIndex = 0;
             this.label11.Text = "IP：";
             // 
@@ -575,9 +616,10 @@
             // 
             this.cmbLocalIP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLocalIP.FormattingEnabled = true;
-            this.cmbLocalIP.Location = new System.Drawing.Point(67, 176);
+            this.cmbLocalIP.Location = new System.Drawing.Point(78, 249);
+            this.cmbLocalIP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbLocalIP.Name = "cmbLocalIP";
-            this.cmbLocalIP.Size = new System.Drawing.Size(263, 20);
+            this.cmbLocalIP.Size = new System.Drawing.Size(306, 25);
             this.cmbLocalIP.TabIndex = 13;
             // 
             // lstIO
@@ -585,9 +627,10 @@
             this.lstIO.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstIO.GridLines = true;
             this.lstIO.HideSelection = false;
-            this.lstIO.Location = new System.Drawing.Point(3, 32);
+            this.lstIO.Location = new System.Drawing.Point(4, 45);
+            this.lstIO.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lstIO.Name = "lstIO";
-            this.lstIO.Size = new System.Drawing.Size(620, 433);
+            this.lstIO.Size = new System.Drawing.Size(724, 621);
             this.lstIO.TabIndex = 14;
             this.lstIO.UseCompatibleStateImageBehavior = false;
             this.lstIO.View = System.Windows.Forms.View.Details;
@@ -598,20 +641,22 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbEvent.Controls.Add(this.tabPage1);
             this.tbEvent.Controls.Add(this.tabPage2);
-            this.tbEvent.Location = new System.Drawing.Point(8, 230);
+            this.tbEvent.Location = new System.Drawing.Point(9, 326);
+            this.tbEvent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbEvent.Name = "tbEvent";
             this.tbEvent.SelectedIndex = 0;
-            this.tbEvent.Size = new System.Drawing.Size(634, 494);
+            this.tbEvent.Size = new System.Drawing.Size(740, 700);
             this.tbEvent.TabIndex = 15;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.lstIO);
             this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(626, 468);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Size = new System.Drawing.Size(732, 670);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "通讯IO";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -621,9 +666,10 @@
             this.panel1.Controls.Add(this.chkShowIO);
             this.panel1.Controls.Add(this.butClear);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Location = new System.Drawing.Point(4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(620, 29);
+            this.panel1.Size = new System.Drawing.Size(724, 41);
             this.panel1.TabIndex = 15;
             // 
             // chkShowIO
@@ -631,9 +677,10 @@
             this.chkShowIO.AutoSize = true;
             this.chkShowIO.Checked = true;
             this.chkShowIO.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowIO.Location = new System.Drawing.Point(87, 7);
+            this.chkShowIO.Location = new System.Drawing.Point(102, 10);
+            this.chkShowIO.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkShowIO.Name = "chkShowIO";
-            this.chkShowIO.Size = new System.Drawing.Size(84, 16);
+            this.chkShowIO.Size = new System.Drawing.Size(89, 21);
             this.chkShowIO.TabIndex = 8;
             this.chkShowIO.Text = "显示IO日志";
             this.chkShowIO.UseVisualStyleBackColor = true;
@@ -643,10 +690,11 @@
             // 
             this.tabPage2.Controls.Add(this.lstCommand);
             this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(626, 468);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Size = new System.Drawing.Size(732, 670);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "命令结果";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -657,9 +705,10 @@
             this.lstCommand.FullRowSelect = true;
             this.lstCommand.GridLines = true;
             this.lstCommand.HideSelection = false;
-            this.lstCommand.Location = new System.Drawing.Point(3, 32);
+            this.lstCommand.Location = new System.Drawing.Point(4, 45);
+            this.lstCommand.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lstCommand.Name = "lstCommand";
-            this.lstCommand.Size = new System.Drawing.Size(620, 433);
+            this.lstCommand.Size = new System.Drawing.Size(724, 621);
             this.lstCommand.TabIndex = 16;
             this.lstCommand.UseCompatibleStateImageBehavior = false;
             this.lstCommand.View = System.Windows.Forms.View.Details;
@@ -668,16 +717,18 @@
             // 
             this.panel2.Controls.Add(this.butClearCommand);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Location = new System.Drawing.Point(4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(620, 29);
+            this.panel2.Size = new System.Drawing.Size(724, 41);
             this.panel2.TabIndex = 17;
             // 
             // butClearCommand
             // 
-            this.butClearCommand.Location = new System.Drawing.Point(28, 3);
+            this.butClearCommand.Location = new System.Drawing.Point(33, 4);
+            this.butClearCommand.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.butClearCommand.Name = "butClearCommand";
-            this.butClearCommand.Size = new System.Drawing.Size(75, 23);
+            this.butClearCommand.Size = new System.Drawing.Size(88, 33);
             this.butClearCommand.TabIndex = 7;
             this.butClearCommand.Text = "清空";
             this.butClearCommand.UseVisualStyleBackColor = true;
@@ -685,9 +736,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(342, 174);
+            this.button2.Location = new System.Drawing.Point(399, 246);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 23);
+            this.button2.Size = new System.Drawing.Size(115, 33);
             this.button2.TabIndex = 16;
             this.button2.Text = "停止所有通讯";
             this.button2.UseVisualStyleBackColor = true;
@@ -695,25 +747,28 @@
             // 
             // txtProcess
             // 
-            this.txtProcess.Location = new System.Drawing.Point(67, 203);
+            this.txtProcess.Location = new System.Drawing.Point(78, 288);
+            this.txtProcess.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtProcess.Name = "txtProcess";
-            this.txtProcess.Size = new System.Drawing.Size(558, 21);
+            this.txtProcess.Size = new System.Drawing.Size(650, 23);
             this.txtProcess.TabIndex = 17;
             // 
             // Lab_Process
             // 
             this.Lab_Process.AutoSize = true;
-            this.Lab_Process.Location = new System.Drawing.Point(6, 206);
+            this.Lab_Process.Location = new System.Drawing.Point(7, 292);
+            this.Lab_Process.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lab_Process.Name = "Lab_Process";
-            this.Lab_Process.Size = new System.Drawing.Size(41, 12);
+            this.Lab_Process.Size = new System.Drawing.Size(44, 17);
             this.Lab_Process.TabIndex = 18;
             this.Lab_Process.Text = "进度：";
             // 
             // butWatch
             // 
-            this.butWatch.Location = new System.Drawing.Point(505, 175);
+            this.butWatch.Location = new System.Drawing.Point(589, 248);
+            this.butWatch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.butWatch.Name = "butWatch";
-            this.butWatch.Size = new System.Drawing.Size(74, 23);
+            this.butWatch.Size = new System.Drawing.Size(86, 33);
             this.butWatch.TabIndex = 19;
             this.butWatch.Text = "开启监控";
             this.butWatch.UseVisualStyleBackColor = true;
@@ -721,9 +776,10 @@
             // 
             // butSearch
             // 
-            this.butSearch.Location = new System.Drawing.Point(443, 174);
+            this.butSearch.Location = new System.Drawing.Point(517, 246);
+            this.butSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.butSearch.Name = "butSearch";
-            this.butSearch.Size = new System.Drawing.Size(56, 23);
+            this.butSearch.Size = new System.Drawing.Size(65, 33);
             this.butSearch.TabIndex = 20;
             this.butSearch.Text = "搜索";
             this.butSearch.UseVisualStyleBackColor = true;
@@ -732,9 +788,11 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.cmbToolLanguage);
-            this.groupBox2.Location = new System.Drawing.Point(346, 36);
+            this.groupBox2.Location = new System.Drawing.Point(404, 51);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(287, 43);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(335, 61);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Language";
@@ -743,17 +801,19 @@
             // 
             this.cmbToolLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbToolLanguage.FormattingEnabled = true;
-            this.cmbToolLanguage.Location = new System.Drawing.Point(9, 16);
+            this.cmbToolLanguage.Location = new System.Drawing.Point(10, 23);
+            this.cmbToolLanguage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbToolLanguage.Name = "cmbToolLanguage";
-            this.cmbToolLanguage.Size = new System.Drawing.Size(265, 20);
+            this.cmbToolLanguage.Size = new System.Drawing.Size(308, 25);
             this.cmbToolLanguage.TabIndex = 26;
             this.cmbToolLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbToolLanguage_SelectedIndexChanged);
             // 
             // btnSN
             // 
-            this.btnSN.Location = new System.Drawing.Point(585, 176);
+            this.btnSN.Location = new System.Drawing.Point(682, 249);
+            this.btnSN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSN.Name = "btnSN";
-            this.btnSN.Size = new System.Drawing.Size(57, 23);
+            this.btnSN.Size = new System.Drawing.Size(66, 33);
             this.btnSN.TabIndex = 22;
             this.btnSN.Text = "读取SN";
             this.btnSN.UseVisualStyleBackColor = true;
@@ -761,14 +821,13 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 726);
+            this.ClientSize = new System.Drawing.Size(760, 1028);
             this.Controls.Add(this.btnSN);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.butSearch);
             this.Controls.Add(this.butWatch);
-            this.Controls.Add(this.gbUDP);
             this.Controls.Add(this.gbSerialPort);
             this.Controls.Add(this.Lab_Process);
             this.Controls.Add(this.txtProcess);
@@ -784,6 +843,8 @@
             this.Controls.Add(this.Lba_ConnType);
             this.Controls.Add(this.gbServer);
             this.Controls.Add(this.gbTCPClient);
+            this.Controls.Add(this.gbUDP);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

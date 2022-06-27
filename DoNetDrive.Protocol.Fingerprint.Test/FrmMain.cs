@@ -248,6 +248,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             GetLanguage(LblUDPLocalPort);//  本地端口：
             GetLanguage(butUDPBind);//  绑定
             GetLanguage(lblSerialPort);//  串口号：
+            GetLanguage(lblBaudrate);//  波特率：
             GetLanguage(butReloadSerialPort);//   刷新
             GetLanguage(gbSerialPort);//   串口
             GetLanguage(lblUDPPort);//   端口：
@@ -292,6 +293,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             //导入 串口通讯库
             var defFactory = mAllocator.ConnectorFactory as DefaultConnectorFactory;
             defFactory.ConnectorFactoryDictionary.Add(ConnectorType.SerialPort, DoNetDrive.Connector.COM.SerialPortFactory.GetInstance());
+
+
+
 
             mObserver = new ConnectorObserverHandler();
 
@@ -347,6 +351,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             sValue = ConfigurationManager.AppSettings["SerialPort"];
             if (!string.IsNullOrEmpty(sValue)) SelectComboxItem(cmbSerialPort, sValue);
 
+            sValue = ConfigurationManager.AppSettings["SerialPortBaudrate"];
+            if (!string.IsNullOrEmpty(sValue)) SelectComboxItem(cmbBaudrate, sValue);
+
+
             sValue = ConfigurationManager.AppSettings["LocalIP"];
             if (!string.IsNullOrEmpty(sValue)) SelectComboxItem(cmbLocalIP, sValue);
 
@@ -374,6 +382,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             SetConfigKey(config, "DrivePassword", txtPassword.Text);
             SetConfigKey(config, "ConnType", cmbConnType.SelectedIndex.ToString());
             SetConfigKey(config, "SerialPort", cmbSerialPort.Text);
+            SetConfigKey(config, "SerialPortBaudrate", cmbBaudrate.Text);
             SetConfigKey(config, "LocalIP", cmbLocalIP.Text);
             SetConfigKey(config, "TCPServerPort", txtTCPServerPort.Text);
             SetConfigKey(config, "UseSSL", ChkTLS12.Checked.ToString());
@@ -907,9 +916,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             catch (Exception)
             {
 
-                
+
             }
-            
+
 
         }
 
@@ -955,7 +964,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     }
                     addr = string.Empty;
                     port = cmbSerialPort.Text.Substring(3).ToInt32();
-                    return GetCommandDetail(new SerialPortDetail((byte)port), sn, password);
+                    int iBaudrate = int.Parse(cmbBaudrate.Text);
+                    return GetCommandDetail(new SerialPortDetail((byte)port, iBaudrate), sn, password);
 
                 case 1://UDP 
                     if (!mUDPIsBind)
@@ -1034,10 +1044,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var protocolType = CommandDetailFactory.ControllerType.A33_Face;
 
 
-            var cmdDtl = CommandDetailFactory.CreateDetail(connect, 
+            var cmdDtl = CommandDetailFactory.CreateDetail(connect,
                 protocolType, sSN, sPassword);
 
-            cmdDtl.Timeout = 1500;
+            cmdDtl.Timeout = 2000;
             cmdDtl.RestartCount = 3;
             return cmdDtl;
 
@@ -1561,7 +1571,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 cmbSerialPort.SelectedIndex = 0;
             }
 
-
+            cmbBaudrate.Items.Clear();
+            cmbBaudrate.Items.AddRange("9600,19200,57600,115200,256000".Split(','));
+            cmbBaudrate.SelectedIndex = 1;
 
         }
 
@@ -1877,12 +1889,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// <summary>
         /// 监控消息
         /// </summary>
-        /// <param name="connector"></param>
+        /// <param name="connectorDTL"></param>
         /// <param name="EventData"></param>
-        private void MAllocator_TransactionMessage(INConnectorDetail connector, Core.Data.INData EventData)
+        private void MAllocator_TransactionMessage(INConnectorDetail connectorDTL, Core.Data.INData EventData)
         {
             CommandResult commandResult = new CommandResult();
-            var conn = mAllocator.GetConnector(connector);
+            var conn = mAllocator.GetConnector(connectorDTL);
             if (conn != null)
             {
                 if (!conn.IsForciblyConnect())
@@ -1895,20 +1907,30 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             Door8800Transaction fcTrn = EventData as Door8800Transaction;
             StringBuilder strbuf = new StringBuilder();
             var evn = fcTrn.EventData;
-            string sRemoteIP; int iRemotePort;
+            string sRemoteIP = String.Empty; int iRemotePort = 0;
             bool bIsUDP = false;
-            if (connector is TCPServerClientDetail)
+            bool bIsCOM = false;
+            if (connectorDTL is TCPServerClientDetail)
             {
-                var tcp = connector as TCPServerClientDetail;
+                var tcp = connectorDTL as TCPServerClientDetail;
                 sRemoteIP = tcp.Remote.Addr;
                 iRemotePort = tcp.Remote.Port;
             }
-            else
+            else if (connectorDTL is Core.Connector.TCPClient.TCPClientDetail)
             {
                 bIsUDP = true;
-                var UDP = connector as Core.Connector.TCPClient.TCPClientDetail; ;
+                var UDP = connectorDTL as Core.Connector.TCPClient.TCPClientDetail;
                 sRemoteIP = UDP.Addr;
                 iRemotePort = UDP.Port;
+            }
+
+            else if (connectorDTL is SerialPortDetail)
+            {
+                //bIsUDP = true;
+                //var comDTL = connectorDTL as SerialPortDetail;
+                bIsCOM = true;
+                sRemoteIP = String.Empty;
+                iRemotePort = 0;
             }
 
             //消息类型
@@ -1917,7 +1939,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             //客户端信息
             string Local, Remote, cType;
-            GetConnectorDetail(connector, out cType, out Local, out Remote);
+            GetConnectorDetail(connectorDTL, out cType, out Local, out Remote);
 
             commandResult.Remote = Remote;
 
@@ -1968,12 +1990,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 //"保活包消息，远端信息：
                 strbuf.Append(fcTrn.SN).Append(GetLanguage("TransactionMessage8")).Append(Remote);
                 //发送一个回包
-                SendCallblack(bIsUDP, fcTrn, sRemoteIP, iRemotePort, connector.GetKey());
+                if (!bIsCOM)
+                    SendCallblack(bIsUDP, fcTrn, sRemoteIP, iRemotePort, connectorDTL.GetKey());
             }
 
             if (fcTrn.CmdIndex == 0xA0)
             {
-                SendCallblack(bIsUDP, fcTrn, sRemoteIP, iRemotePort, connector.GetKey());
+                if (!bIsCOM)
+                    SendCallblack(bIsUDP, fcTrn, sRemoteIP, iRemotePort, connectorDTL.GetKey());
 
                 //"连接测试消息，远端信息："
                 strbuf.Append(fcTrn.SN).Append(GetLanguage("TransactionMessage9")).Append(Remote);
@@ -2008,6 +2032,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 cmdDtl = GetUDPCommandDetail(fcTrn.SN, "FFFFFFFF", sRemoteIP, iRemotePort);
             else
                 cmdDtl = GetTCPCommandDetail(fcTrn.SN, "FFFFFFFF", ConnKey);
+
+
             var sndConntmsg = new SystemParameter.SendConnectTestResponse(cmdDtl);
             AddCommand(sndConntmsg);
         }
@@ -2457,7 +2483,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 return;
             }
 
-            dgDevice.Rows.Insert(0, dgDevice.Rows.Count + 1, deviceInfo.SN, deviceInfo.MAC,deviceInfo.IP );
+            dgDevice.Rows.Insert(0, dgDevice.Rows.Count + 1, deviceInfo.SN, deviceInfo.MAC, deviceInfo.IP);
         }
 
         private void dgDevice_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
