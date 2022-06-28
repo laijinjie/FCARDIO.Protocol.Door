@@ -222,6 +222,7 @@
 		<DoNetDrive_Protocol_Fingerprint_Door_ExpirationPrompt_ReadExpirationPrompt value= "Read permission expiration prompt parameter"/>
 		<DoNetDrive_Protocol_Fingerprint_Door_ExpirationPrompt_WriteExpirationPrompt value= "Set the permission expiration prompt parameter "/>
 		<DoNetDrive_Protocol_Fingerprint_Person_ReadPersonDatabaseDetail value= "Read users storage details "/>
+		<DoNetDrive_Protocol_Fingerprint_Person_ReadPersonDataBase value= "Read users storage details "/>
 		<DoNetDrive_Protocol_Fingerprint_Person_ClearPersonDataBase value= "Clear all users "/>
 		<DoNetDrive_Protocol_Fingerprint_Person_ReadPersonDetail value= "Read single user "/>
 		<DoNetDrive_Protocol_Fingerprint_Person_DeletePerson value= "Delete user "/>

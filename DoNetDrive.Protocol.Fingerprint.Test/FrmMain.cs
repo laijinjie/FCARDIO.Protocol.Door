@@ -586,12 +586,23 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                     break;
                 default:
-                    mAllocator.GetConnector(connector).AddRequestHandle(mObserver);
-                    //加入消息事件处理器
-                    INConnector cnt = mAllocator.GetConnector(connector);
-                    Door8800RequestHandle fC8800Request =
-                    new Door8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
-                    cnt.RemoveRequestHandle(typeof(Door8800RequestHandle));//先删除，防止已存在就无法添加。
+                    var AbstractConnector = (sender as AbstractConnector);
+                    if(AbstractConnector != null)
+                    {
+                        AbstractConnector.CommandSendIntervalTimeMS = 30;
+
+                        AbstractConnector.AddRequestHandle(mObserver);
+
+                        //加入消息事件处理器
+
+                        //Door8800RequestHandle fC8800Request =
+                        //new Door8800RequestHandle(DotNetty.Buffers.UnpooledByteBufferAllocator.Default, RequestHandleFactory);
+                        //AbstractConnector.RemoveRequestHandle(typeof(Door8800RequestHandle));//先删除，防止已存在就无法添加。
+                        //AbstractConnector.AddRequestHandle(fC8800Request);
+
+                    }
+
+
 
                     // "成功", "通道连接成功"
                     AddIOLog(connector, GetLanguage("Connected"), GetLanguage("ConnectorConnected"));
@@ -965,7 +976,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     addr = string.Empty;
                     port = cmbSerialPort.Text.Substring(3).ToInt32();
                     int iBaudrate = int.Parse(cmbBaudrate.Text);
-                    return GetCommandDetail(new SerialPortDetail((byte)port, iBaudrate), sn, password);
+                    return GetCommandDetail(new SerialPortDetail((byte)port, iBaudrate)
+                        , sn, password);
 
                 case 1://UDP 
                     if (!mUDPIsBind)
@@ -1047,7 +1059,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var cmdDtl = CommandDetailFactory.CreateDetail(connect,
                 protocolType, sSN, sPassword);
 
-            cmdDtl.Timeout = 2000;
+            cmdDtl.Timeout = 1000;
             cmdDtl.RestartCount = 3;
             return cmdDtl;
 
@@ -1491,6 +1503,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AddCommandClassNameList(typeof(Door.ExpirationPrompt.ReadExpirationPrompt));// "读取权限到期提示参数 
             AddCommandClassNameList(typeof(Door.ExpirationPrompt.WriteExpirationPrompt));// "设置权限到期提示参数 
 
+            AddCommandClassNameList(typeof(Person.ReadPersonDataBase));// "读取人员存储详情 
             AddCommandClassNameList(typeof(Person.ReadPersonDatabaseDetail));// "读取人员存储详情 
             AddCommandClassNameList(typeof(Person.ClearPersonDataBase));// "清空所有人员 
             AddCommandClassNameList(typeof(Person.ReadPersonDetail));// "读取单个人员 
@@ -1836,7 +1849,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (cnt == null)
             {
                 //未开启监控
-                mAllocator.OpenConnector(cmdDtl.Connector);
+                mAllocator.OpenForciblyConnect(cmdDtl.Connector);
                 cnt = mAllocator.GetConnector(cmdDtl.Connector);
 
             }
@@ -2082,7 +2095,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mStop = true;
             var cmdDtl = GetCommandDetail();
             if (cmdDtl == null) return;
-            mAllocator.StopCommand(cmdDtl);
+            mAllocator.StopCommand(cmdDtl.Connector);
         }
 
         #region  TCP Server 服务绑定

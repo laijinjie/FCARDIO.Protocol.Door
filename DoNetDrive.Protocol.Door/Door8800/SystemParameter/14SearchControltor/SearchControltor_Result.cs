@@ -84,6 +84,7 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.SearchControltor
 
                 if (!(
                     (b >= 0x41 && b <= 0x5A) || //A-Z
+                    (b >= 0x61 && b <= 0x7A) || //a-z
                     (b >= 0x30 && b <= 0x39) || //0-9
                     b == 0x2D//-
                     )

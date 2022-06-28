@@ -224,6 +224,7 @@
 		<DoNetDrive_Protocol_Fingerprint_Door_ExpirationPrompt_ReadExpirationPrompt value= "读取权限到期提示参数 "/>
 		<DoNetDrive_Protocol_Fingerprint_Door_ExpirationPrompt_WriteExpirationPrompt value= "设置权限到期提示参数 "/>
 		<DoNetDrive_Protocol_Fingerprint_Person_ReadPersonDatabaseDetail value= "读取人员存储详情 "/>
+		<DoNetDrive_Protocol_Fingerprint_Person_ReadPersonDataBase value= "读取人员存储详情 "/>
 		<DoNetDrive_Protocol_Fingerprint_Person_ClearPersonDataBase value= "清空所有人员 "/>
 		<DoNetDrive_Protocol_Fingerprint_Person_ReadPersonDetail value= "读取单个人员 "/>
 		<DoNetDrive_Protocol_Fingerprint_Person_DeletePerson value= "删除人员 "/>
