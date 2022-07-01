@@ -1,4 +1,5 @@
 ﻿using DoNetDrive.Protocol.Door.Door8800;
+using DoNetDrive.Protocol.Fingerprint.Data.Transaction;
 using DotNetty.Buffers;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// 图片下载检测器，用来判断是否需要下载此图片
         /// </summary>
         /// <returns>true--需要下载照片；false--不需要下载照片</returns>
-        public Func<int, bool> ImageDownloadCheckCallblack;
+        public Func<int, CardAndImageTransaction, bool> ImageDownloadCheckCallblack;
 
         /// <summary>
         /// 读取数量 1-500

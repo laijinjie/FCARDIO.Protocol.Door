@@ -524,26 +524,30 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         private int GetDownloadImageIndex(int iCurrentIndex)
         {
             var par = _Parameter as ReadTransactionAndImageDatabase_Parameter;
-            if (par.ImageDownloadCheckCallblack == null)
-            {
-                return iCurrentIndex;
-            }
-            else
-            {
-                do
-                {
-                    if (par.ImageDownloadCheckCallblack(iCurrentIndex))
-                    {
-                        return iCurrentIndex;
-                    }
-                    iCurrentIndex++;
-                    if (iCurrentIndex > mCardRecord_ReadIndex)
-                    {
-                        return -1;
-                    }
-                } while (true);
 
-            }
+            do
+            {
+                if (_TransactionList[iCurrentIndex].Photo > 0)
+                {
+                    if (par.ImageDownloadCheckCallblack != null)
+                    {
+                        if (par.ImageDownloadCheckCallblack(iCurrentIndex, _TransactionList[iCurrentIndex]))
+                        {
+                            return iCurrentIndex;
+                        }
+                    }
+                    else
+                        return iCurrentIndex;
+                }
+
+                iCurrentIndex++;
+                if (iCurrentIndex > mCardRecord_ReadIndex)
+                {
+                    return -1;
+                }
+            } while (true);
+
+
         }
 
         /// <summary>

@@ -530,7 +530,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var par = new ReadTransactionAndImageDatabase_Parameter(Quantity, true, sDir);
             par.AutoWriteReadIndex = chkAutoWriteIndex.Checked;
             par.AutoDownloadImage = chkAutoReadImage.Checked;
-            par.ImageDownloadCheckCallblack = (imgSerialNumber) =>
+            par.ImageDownloadCheckCallblack = (imgSerialNumber,record) =>
             {
             /*int RandKey = ran.Next(1, 100);
             if (RandKey > 60)
