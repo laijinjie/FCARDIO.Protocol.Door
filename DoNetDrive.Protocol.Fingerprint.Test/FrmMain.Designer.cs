@@ -56,6 +56,8 @@
             this.butAdditionalData = new System.Windows.Forms.ToolStripButton();
             this.btlToolLift = new System.Windows.Forms.ToolStripButton();
             this.gbSerialPort = new System.Windows.Forms.GroupBox();
+            this.cmbBaudrate = new System.Windows.Forms.ComboBox();
+            this.lblBaudrate = new System.Windows.Forms.Label();
             this.butReloadSerialPort = new System.Windows.Forms.Button();
             this.cmbSerialPort = new System.Windows.Forms.ComboBox();
             this.lblSerialPort = new System.Windows.Forms.Label();
@@ -112,8 +114,6 @@
             this.cmbToolLanguage = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.butSearch = new System.Windows.Forms.Button();
-            this.cmbBaudrate = new System.Windows.Forms.ComboBox();
-            this.lblBaudrate = new System.Windows.Forms.Label();
             this.gbDriveSN.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.gbSerialPort.SuspendLayout();
@@ -353,6 +353,24 @@
             this.gbSerialPort.TabIndex = 9;
             this.gbSerialPort.TabStop = false;
             this.gbSerialPort.Text = "串口";
+            // 
+            // cmbBaudrate
+            // 
+            this.cmbBaudrate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBaudrate.FormattingEnabled = true;
+            this.cmbBaudrate.Location = new System.Drawing.Point(138, 38);
+            this.cmbBaudrate.Name = "cmbBaudrate";
+            this.cmbBaudrate.Size = new System.Drawing.Size(111, 20);
+            this.cmbBaudrate.TabIndex = 10;
+            // 
+            // lblBaudrate
+            // 
+            this.lblBaudrate.Location = new System.Drawing.Point(31, 42);
+            this.lblBaudrate.Name = "lblBaudrate";
+            this.lblBaudrate.Size = new System.Drawing.Size(101, 12);
+            this.lblBaudrate.TabIndex = 9;
+            this.lblBaudrate.Text = "波特率：";
+            this.lblBaudrate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // butReloadSerialPort
             // 
@@ -910,24 +928,6 @@
             this.butSearch.UseVisualStyleBackColor = true;
             this.butSearch.Click += new System.EventHandler(this.butSearch_Click);
             // 
-            // cmbBaudrate
-            // 
-            this.cmbBaudrate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBaudrate.FormattingEnabled = true;
-            this.cmbBaudrate.Location = new System.Drawing.Point(138, 38);
-            this.cmbBaudrate.Name = "cmbBaudrate";
-            this.cmbBaudrate.Size = new System.Drawing.Size(111, 20);
-            this.cmbBaudrate.TabIndex = 10;
-            // 
-            // lblBaudrate
-            // 
-            this.lblBaudrate.Location = new System.Drawing.Point(31, 42);
-            this.lblBaudrate.Name = "lblBaudrate";
-            this.lblBaudrate.Size = new System.Drawing.Size(101, 12);
-            this.lblBaudrate.TabIndex = 9;
-            this.lblBaudrate.Text = "波特率：";
-            this.lblBaudrate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -948,9 +948,9 @@
             this.Controls.Add(this.gbDriveSN);
             this.Controls.Add(this.cmbConnType);
             this.Controls.Add(this.LblConnType);
+            this.Controls.Add(this.gbUDP);
             this.Controls.Add(this.gbSerialPort);
             this.Controls.Add(this.gpTCPServer);
-            this.Controls.Add(this.gbUDP);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -239,10 +239,10 @@
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendConnectTestResponse value= "PONG"/>
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadAuthenticationMode    value ="Read Authentication Mode"         />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteAuthenticationMode    value ="Write Authentication Mode"        />
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadSaveRecordImage    value ="读取认证记录保存现场照片开关"  />
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteSaveRecordImage    value ="设置认证记录保存现场照片开关" />
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadRecordQRCode    value ="读取识别结果查询二维码生成开关"   />
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteRecordQRcode    value ="设置识别结果查询二维码生成开关"  />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadSaveRecordImage    value ="Read Save Record Image Flag"  />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteSaveRecordImage    value ="Set Save Record Image Flag" />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadRecordQRCode    value ="Read Create QRCode Flag"   />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteRecordQRcode    value ="Set Create QRCode Flag"  />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadLightPattern    value ="Read Light Pattern"                     />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteLightPattern    value ="Write Light Pattern"                    />
 		
@@ -259,6 +259,9 @@
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_EnterSleep    value ="Enter Sleep"                    />
 
 		<DoNetDrive_Protocol_Fingerprint_Transaction_ReadTransactionDatabaseByAll    value ="Read old records"    />
+
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceDevice4GModuleStatus    value ="Read 4G Module Status"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceDevice4GModuleStatus    value ="Set 4G Module Status"    />
 		
 		<btlToolLift                        value="Lift" />
 		<butSearch value ="Search"/>
@@ -495,9 +498,9 @@
 		<Msg_71                                   value = "The latest keep-alive package sending time"/>
 		<DoorAccessModeResult value = "Door access mode:"/>
 		<btnReadSystemStatus value = "Read"/>
-		<AuthenticationModeList value = "1、标准模式,2、人脸+密码,3、卡+人脸,4、多人考勤,5、人证比对"/>
+		<AuthenticationModeList value = "1.Normal ,2.Face + PIN,3.Card + Face,4.Multiplayer,5.Identity Card"/>
 		<SaveRecordImageList value = "ON,OFF"/>
-		<LightPatternList value = "1、标准,2、增亮,3、减暗"/>
+		<LightPatternList value = "1.Normal,2.Lighten,3.Darken"/>
 		<RecordQRCodeList value = "ON,OFF"/>
 		<gbFireUse value = "Fire Use"/>
 		<cmdWriteSendFireAlarm value = "Write"/>
@@ -519,6 +522,13 @@
 		<lblBroadcastVoiceNum value = "Voice Num:"/>
 		<btnSendCMD_BroadcastVoice value = "Broadcast Voice"/>
 		<btnSendCMD_EnterSleep value = "Enter Sleep"/>
+
+		<btnRead4GModuleStatus value = "Read"/>
+		<btnWrite4GModuleStatus value = "Write"/>
+		<lbl4GModuleStatus value = "Status:"/>
+		<gb4GModule value = "4G Module Status"/>
+		<Items_4GModule value = "OFF,ON"/>
+		<Tips_4GModule value = "4G Module Status:{0}"/>
 	</frmSystem>
 	<frmTime>
 		<FormCaption              value="Clock" />

@@ -261,6 +261,9 @@
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_EnterSleep    value ="进入休眠"                    />
 
 		<DoNetDrive_Protocol_Fingerprint_Transaction_ReadTransactionDatabaseByAll    value ="读取所有历史记录"    />
+
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceDevice4GModuleStatus    value ="读取4G网络模块开关"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceDevice4GModuleStatus    value ="设置4G网络模块开关"    />
 		
 		<btlToolLift                        value="电梯模块" />
 		<butSearch value ="搜索设备"/>
@@ -522,6 +525,13 @@
 		<lblBroadcastVoiceNum value = "语音编号:"/>
 		<btnSendCMD_BroadcastVoice value = "播报语音"/>
 		<btnSendCMD_EnterSleep value = "立刻休眠"/>
+
+		<btnRead4GModuleStatus value = "读取"/>
+		<btnWrite4GModuleStatus value = "写入"/>
+		<lbl4GModuleStatus value = "状态："/>
+		<gb4GModule value = "4G模块状态"/>
+		<Items_4GModule value = "禁用,启用"/>
+		<Tips_4GModule value = "4G模块状态:{0}"/>
 	</frmSystem>
 	<frmTime>
 		<FormCaption              value="时钟" />

@@ -53,3 +53,20 @@ mAllocator.Dispose();
 ### ver 2.05.0
 
 修改命令ReadTransactionAndImageDatabase，修改此命令的参数 ImageDownloadCheckCallblack，回调时增加当前记录详情，另外修改读取记录照片的检测逻辑，增加检测命令详情中的photo字段。此字段为0则不读取照片。
+
+
+### ver 2.06.0
+
+修改命令 ReadTransactionAndImageDatabase，减少写索引的次数，防止读索引由于某些原因被覆盖为旧索引。
+
+
+
+### ver 2.07.0
+
+增加命令 人脸机4G模块状态设置 WriteFaceDevice4GModuleStatus/ReadFaceDevice4GModuleStatus
+用于配置人脸机是否启用4G模块。
+
+
+### ver 2.08.0
+
+修复命令 WriteFaceDevice4GModuleStatus 执行会报错的bug

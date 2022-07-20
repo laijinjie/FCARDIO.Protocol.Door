@@ -60,6 +60,10 @@ namespace DoNetDrive.Protocol.USB.CardReader.ICCard.Sector
 
         /// <summary>
         /// 写入结果
+        /// 1--成功
+        /// 2--密码不正确
+        /// 3--卡片已离开感应区
+        /// 4--块数据长度不正确
         /// </summary>
         public byte Result;
 

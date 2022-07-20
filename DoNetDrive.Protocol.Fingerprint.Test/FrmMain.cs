@@ -587,7 +587,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     break;
                 default:
                     var AbstractConnector = (sender as AbstractConnector);
-                    if(AbstractConnector != null)
+                    if (AbstractConnector != null)
                     {
                         AbstractConnector.CommandSendIntervalTimeMS = 30;
 
@@ -924,9 +924,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
                 await mAllocator.AddCommandAsync(cmd);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                var runtimeCmd = cmd as INCommandRuntime;
+                AddCmdLog(runtimeCmd.GetEventArgs(), ex.Message);
 
             }
 
@@ -1550,6 +1551,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AddCommandClassNameList(typeof(SystemParameter.SendCMD_EnterSleep));//进入休眠
 
             AddCommandClassNameList(typeof(Transaction.ReadTransactionDatabaseByAll));//读取所有历史记录
+
+            AddCommandClassNameList(typeof(SystemParameter.WriteFaceDevice4GModuleStatus));//设置4G网络模块开关
+            AddCommandClassNameList(typeof(SystemParameter.ReadFaceDevice4GModuleStatus));//读取4G网络模块开关
 
             mCommandClasss = mCommandClasss
                 .Concat(frmElevator.IniCommandClassNameList())

@@ -335,6 +335,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             IniFireUse();
             IniFaceBioassaySimilarity();
             IniYZW();
+
+            //4G网络模式
+            Lng(btnRead4GModuleStatus);//读取
+            Lng(btnWrite4GModuleStatus);//写入
+            Lng(lbl4GModuleStatus);//状态
+            Lng(gb4GModule);//4G模块状态
+            cmb4GModule.Items.Clear();
+            cmb4GModule.Items.AddRange(Lng("Items_4GModule").Split(','));
         }
         #endregion
 
@@ -912,7 +920,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var cmdDtl = mMainForm.GetCommandDetail();
             if (cmdDtl == null) return;
             WriteWiegandOutput_Parameter par = new WriteWiegandOutput_Parameter(Convert.ToByte(cmbReadCardByte.SelectedIndex + 1), Convert.ToByte(cmbWGOutput.SelectedIndex + 1)
-                , Convert.ToByte(cmbWGByteSort.SelectedIndex), Convert.ToByte(cmbOutputType.SelectedIndex + 1));
+                , Convert.ToByte(cmbWGByteSort.SelectedIndex + 1), Convert.ToByte(cmbOutputType.SelectedIndex + 1));
             WriteWiegandOutput cmd = new WriteWiegandOutput(cmdDtl, par);
             mMainForm.AddCommand(cmd);
         }
@@ -1441,7 +1449,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             {
 
                 var result = cmde.Command.getResult() as ReadShortMessage_Result;
-                mMainForm.AddCmdLog(cmde, Lng("Msg_51") + $":{ result.Message}");
+                mMainForm.AddCmdLog(cmde, Lng("Msg_51") + $":{result.Message}");
                 Invoke(() =>
                 {
                     Txt_ShortMessage.Text = result.Message;
@@ -1489,7 +1497,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     }
                     else
                     {
-                        mMainForm.AddCmdLog(cmde, Lng("DoorAccessModeResult") + $"{ result.CheckMode}");
+                        mMainForm.AddCmdLog(cmde, Lng("DoorAccessModeResult") + $"{result.CheckMode}");
                     }
 
                 });
@@ -1888,7 +1896,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     }
 
                     else
-                        mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{result.LightPattern }");
+                        mMainForm.AddCmdLog(cmde, Lng("Msg_46") + $":{result.LightPattern}");
 
                 });
 
@@ -2044,7 +2052,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var result = cmd.getResult() as ReadFaceBioassaySimilarity_Result;
             cmbFaceBioassaySimilarity.SelectedIndex = result.Similarity - 1;
             string sTip = Lng("FaceBioassaySimilarityMsg"); //活体识别阈值：{0}
-            sTip=string.Format(sTip, cmbFaceBioassaySimilarity.Text);
+            sTip = string.Format(sTip, cmbFaceBioassaySimilarity.Text);
             mMainForm.AddCmdLog(cmd.GetEventArgs(), sTip);
         }
         private void cmdWriteFaceBioassaySimilarity_Click(object sender, EventArgs e)
@@ -2061,7 +2069,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void IniYZW()
         {
             //禁用,启用
-            string[] yzw =Lng("cmbYZW").SplitTrim(",");
+            string[] yzw = Lng("cmbYZW").SplitTrim(",");
             cmbYZW.Items.Clear();
             cmbYZW.Items.AddRange(yzw);
             cmbYZW.SelectedIndex = 0;
@@ -2126,6 +2134,43 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (cmdDtl == null) return;
             var cmd = new SendCMD_EnterSleep(cmdDtl);
             mMainForm.AddCommand(cmd);
+        }
+
+        #endregion
+
+        #region 4G网络模块
+
+
+
+        private async void btnRead4GModuleStatus_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            using (var cmd = new ReadFaceDevice4GModuleStatus(cmdDtl))
+            {
+                await mMainForm.AddCommandAsync(cmd);
+                if (!cmd.GetStatus().IsCommandSuccessful()) return;
+                var result = cmd.getResult() as ReadFaceDevice4GModuleStatus_Result;
+                cmb4GModule.SelectedIndex = result.IsOpen ? 1 : 0;
+                string sTip = Lng("Tips_4GModule"); // 4G模块状态:{0}
+                sTip = string.Format(sTip, cmb4GModule.Text);
+                mMainForm.AddCmdLog(cmd.GetEventArgs(), sTip);
+            }
+
+
+        }
+
+        private async void btnWrite4GModuleStatus_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var bUse = cmb4GModule.SelectedIndex == 1;
+            using (var cmd = new WriteFaceDevice4GModuleStatus(cmdDtl, new WriteFaceDevice4GModuleStatus_Parameter(bUse)))
+            {
+                await mMainForm.AddCommandAsync(cmd);
+            }
+
+
         }
 
         #endregion

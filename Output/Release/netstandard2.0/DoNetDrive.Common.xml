@@ -1,1782 +1,1647 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>DoNetDrive.Common</name>
+        <name>DoNetDrive.Protocol.USB.CardReader</name>
     </assembly>
     <members>
-        <member name="T:DoNetDrive.Common.Arrays`1">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.AbstractParameter">
             <summary>
-            集合工具类
+            所有参数的基类，规定了一个基本数据检查流程
             </summary>
-            <typeparam name="T"></typeparam>
         </member>
-        <member name="M:DoNetDrive.Common.Arrays`1.CheckBuf(System.Array,System.Int32,System.Int32@,System.Int32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.AbstractParameter.checkedParameter">
             <summary>
-            检查缓冲区
+            检查参数的统一接口
             </summary>
-            <param name="bBuf">缓冲区</param>
-            <param name="iBeginIndex">起始索引号</param>
-            <param name="iLen">长度</param>
-            <param name="iMax">最大长度</param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Arrays`1.copyOfRange(`0[],System.Int32,System.Int32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.AbstractParameter.Dispose">
             <summary>
-            拷贝数组
+            释放资源
             </summary>
-            <param name="src">源数组，从此数组中取数据</param>
-            <param name="iBegin">开始截取数组的起始索引，从0开始。</param>
-            <param name="lLen">截取数组元素的长度。</param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Arrays`1.BytesEquals(`0[],`0[])">
-            <summary>
-            检查两个数组是否匹配
-            </summary>
-            <param name="src"></param>
-            <param name="sDec"></param>
-            <returns>true--匹配；false--不匹配</returns>
-            <remarks></remarks>
-        </member>
-        <member name="T:DoNetDrive.Common.DataUtil">
-            <summary>
-            数据转换工具类
-            </summary>
-        </member>
-        <member name="M:DoNetDrive.Common.DataUtil.ByteToDateTime(System.Byte[])">
-            <summary>
-            BCD格式日期字节数组转换为日期类型   需要传入6字节
-            格式 yyMMddHHmmss
-            </summary>
-            <param name="bData"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.DataUtil.ByteToDate(System.Byte[])">
-            <summary>
-            字节数组转换为日期类型  BCD日期 需要传入3字节
-            </summary>
-            <param name="bData"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.DataUtil.GetBCDTime">
-            <summary>
-            返回BCD 格式yyMMddHHmmss
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.DataUtil.GetBCDTime(System.DateTime)">
-            <summary>
-            返回BCD 格式yyMMddHHmmss
-            </summary>
-            <param name="oDate"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.DataUtil.BCDToDateMMdd(System.Byte[])">
-            <summary>
-            将BCD数组转换为日期，BCD数据格式为 MMDD，只有 月和日
-            </summary>
-            <param name="bData"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.DataUtil.DateToBCDYYMMdd(System.DateTime)">
-            <summary>
-            将日期转换为BCD码，格式为 YYMMDD
-            </summary>
-            <param name="oDate"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.DataUtil.DateToBCDMMdd(System.DateTime)">
-            <summary>
-            将日期转换为BCD码，格式为 MMDD,只有 月和日
-            </summary>
-            <param name="oDate"></param>
-            <returns></returns>
-        </member>
-        <member name="T:DoNetDrive.Common.NumUtil">
-            <summary>
-            数值类型的格式转换
-            </summary>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.ByteToInt64(System.Byte[])">
-            <summary>
-            字节数组转长整形
-            </summary>
-            <param name="b">字节数组 1-8个元素</param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.ByteToInt64(System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            字节数组转长整形
-            </summary>
-            <param name="b">需要计算的数组</param>
-            <param name="iBeginIndex">数组起始索引号</param>
-            <param name="iLen">数据长度 最大8字节</param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.ByteToInt32(System.Byte[])">
-            <summary>
-            字节数组转 Int32 整形 高位在前
-            </summary>
-            <param name="bData"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.ByteToInt32(System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            字节数组转 Int32 整形 高位在前
-            </summary>
-            <param name="bData">需要计算的数组</param>
-            <param name="iBeginIndex">数组起始索引号</param>
-            <param name="iLen">数据长度 最大4字节</param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.ByteToInt16(System.Byte[])">
-            <summary>
-            字节数组转短整型 Int16 高位在前
-            </summary>
-            <param name="bData"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.ByteToInt16(System.Byte[],System.Int32)">
-            <summary>
-            字节数组转短整型 Int16 高位在前
-            </summary>
-            <param name="bData">需要计算的数组</param>
-            <param name="iBeginIndex">数组起始索引号</param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.ByteToBit(System.Byte)">
-            <summary>
-            1字节转8Bit
-            </summary>
-            <param name="iNum"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.BytesToDecimal(System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            字节数组转十进制数
-            </summary>
-            <param name="b">字节数组</param>
-            <param name="iBegin">数组起始索引号</param>
-            <param name="iLen">数据长度 最大8字节</param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.ByteToBCD(System.Byte)">
-            <summary>
-            字节转BCD码
-            </summary>
-            <param name="iNum"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.ByteToBCD(System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            字节转BCD码
-            </summary>
-            <param name="bBufs"></param>
-            <param name="iBegin"></param>
-            <param name="ilen"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.ByteToBCD(System.Byte[])">
-            <summary>
-            字节转BCD码
-            </summary>
-            <param name="bBufs"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.Int64ToByte(System.UInt64)">
-            <summary>
-            将长整形转为8字节数组
-            </summary>
-            <param name="lValue"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:DoNetDrive.Common.NumUtil.Int64ToByte(System.UInt64,System.Byte[],System.Int32,System.Int32)" -->
-        <member name="M:DoNetDrive.Common.NumUtil.UInt64ToByte(System.UInt64,System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            将一个UInt64数值转换为字节数组
-            </summary>
-            <param name="lValue"></param>
-            <param name="bBuf"></param>
-            <param name="iBeginIndex"></param>
-            <param name="iLen"></param>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:DoNetDrive.Common.NumUtil.Int24ToByte(System.Int32,System.Byte[],System.Int32,System.Int32)" -->
-        <member name="M:DoNetDrive.Common.NumUtil.Int24ToByte(System.Int32)">
-            <summary>
-            Int32 整形 转 3字节数组 高位在前
-            </summary>
-            <param name="iValue"></param>
-            <returns></returns>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:DoNetDrive.Common.NumUtil.Int32ToByte(System.UInt32,System.Byte[],System.Int32,System.Int32)" -->
-        <member name="M:DoNetDrive.Common.NumUtil.Int32ToByte(System.UInt32)">
-            <summary>
-            Int32 整形 转 4字节数组 高位在前
-            </summary>
-            <param name="iValue"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.Int16ToByte(System.UInt16,System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            Int16 整形 转 字节数组  高位在前
-            </summary>
-            <param name="iValue"></param>
-            <param name="bBuf"></param>
-            <param name="iBeginIndex"></param>
-            <param name="iLen"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.Int16ToByte(System.UInt16)">
-            <summary>
-            Int16 整形 转 字节数组  高位在前
-            </summary>
-            <param name="iValue"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.BCDToByte(System.Byte)">
-            <summary>
-            BCD转字节值
-            </summary>
-            <param name="iNum"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.BCDToByte(System.Byte[])">
-            <summary>
-            BCD转字节值
-            </summary>
-            <param name="bBufs"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.BCDToByte(System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            BCD转字节值
-            </summary>
-            <param name="bBufs"></param>
-            <param name="iBegin"></param>
-            <param name="ilen"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.BitToByte(System.Byte[])">
-            <summary>
-            8Bit转1字节
-            </summary>
-            <param name="iBits">存储位数据的8元素数组</param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.DecimalToBytes(System.Decimal)">
-             <summary>
-            十进制数 转 字节数组
-             </summary>
-             <param name="lValue"></param>
-             <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.UInt64ToInt64(System.UInt64)">
-            <summary>
-            无符号Int64  转 有符号Int64
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.UInt32ToInt32(System.UInt32)">
-            <summary>
-            无符号Int32  转 有符号Int32
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.UInt16ToInt16(System.UInt16)">
-            <summary>
-            无符号Int16  转 有符号Int16
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.ByteToSByte(System.Byte)">
-            <summary>
-            无符号8位整形，转换为有符号8位整形。
-            </summary>
-            <param name="bValue"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.Int64ToUInt64(System.Int64)">
-            <summary>
-            有符号Int64  转 无符号Int64
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.UInt32ToInt32(System.Int32)">
-            <summary>
-            有符号Int32  转 无符号Int32
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.Int16ToUInt16(System.Int16)">
-            <summary>
-            有符号Int16  转 无符号Int16
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.NumUtil.SBytetobyte(System.SByte)">
-            <summary>
-            有符号8位整形，转换为无符号8位整形。
-            </summary>
-            <param name="b"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="T:DoNetDrive.Common.StringUtil">
-            <summary>
-            string 转换工具类
-            </summary>
-        </member>
-        <member name="F:DoNetDrive.Common.StringUtil.StringCrLf">
-            <summary>
-            回车换行符
-            </summary>
-        </member>
-        <member name="F:DoNetDrive.Common.StringUtil.StringNewLine">
-            <summary>
-            回车换行符
-            </summary>
-        </member>
-        <member name="F:DoNetDrive.Common.StringUtil.ASCII">
-            <summary>
-            ASCII编码
-            </summary>
-        </member>
-        <member name="F:DoNetDrive.Common.StringUtil.mHexDigits">
-            <summary>
-            字节转十六进制时十六进制字符串代码表
-            </summary>
-        </member>
-        <member name="F:DoNetDrive.Common.StringUtil.mByteDigits">
-            <summary>
-            十六进制转字节，十六进制每个字符对应的码值表
-            </summary>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.#cctor">
-            <summary>
-            初始化十六进制转换字典
-            </summary>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.ByteToHex(System.Byte[])">
-            <summary>
-            字节转十六进制
-            </summary>
-            <param name="bData"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.HexToByte(System.String)">
-            <summary>
-            十六进制转字节
-            </summary>
-            <param name="sHex">十六进制字符串</param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.IsAscii(System.String)">
-            <summary>
-            检查字符串是否为Ascii字符
-            </summary>
-            <param name="asciiString">待检查的字符串</param>
-            <returns>true 表示都是ascii组成，false 表示有包含不是ascii的字符串</returns>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.IsHex(System.String)">
-            <summary>
-            检查字符串是否为十六进制
-            </summary>
-            <param name="sValue"></param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.IsNum(System.String)">
-            <summary>
-            检查是否数值类型
-            </summary>
-            <param name="sValue"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.CheckHexLen(System.String,System.Int32)">
-            <summary>
-             检查十六进制字符串格式及长度
-             </summary>
-             <returns></returns>
-             <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.CheckStringLen(System.String,System.Int32,System.Char)">
-            <summary>
-             检查字符串是否为指定长度
-             </summary>
-             <param name="sValue">待检查字符串</param>
-             <param name="iLength">需要的长度</param>
-             <param name="sNullString"></param>
-             <returns></returns>
-             <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.CheckStringList(System.String,System.Int32,System.Boolean)">
-            <summary>
-             检查字符串列表
-             </summary>
-             <param name="strList">需要检查的字符串列表，包含已逗号分隔的字符串</param>
-             <param name="iStrLen">单个字符串的最大长度</param>
-             <param name="strIsNum">单个字符串是否必须为数字</param>
-             <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.CheckIDList(System.String)">
-            <summary>
-            检查ID列表，删除表中的id为1的段落
-            </summary>
-            <param name="IDList"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.CheckIDListNoDelete(System.String)">
-            <summary>
-            检查ID列表
-            </summary>
-            <param name="IDList"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.CheckStrListNoDelete(System.String)">
-            <summary>
-            检查ID列表
-            </summary>
-            <param name="IDList"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.StringUtil.EncodeBase64(System.String)">
-            <summary>
-            Base64字符串  
-            </summary>
-            <param name="source">原字符串</param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.CRC32_C.CalculateDigest(System.Byte[],System.UInt32,System.UInt32)">
-            <summary>计算并获取CRC数据。</summary>
-            <param name="data">需要计算的数据组。</param>
-            <param name="offset">偏移，一般设为0。</param>
-            <param name="size">大小，一般设为数据组的Length。</param>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.#ctor(System.Byte[])">
-            <summary>
-            设置初始化密钥
-            </summary>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.#ctor(System.String)">
-            <summary>
-            设置初始化密钥
-            </summary>
-            <param name="sKey"></param>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.EncryptAnyLength(System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            加密任意长度字符串
-            结果:函数将加密后结果存放于缓存,用户通过属性CiphertextAnyLength得到
-            </summary>
-            <param name="srcBytes">任意长度字节数组</param>
-            <param name="srcLength">长度</param>
-            <param name="keyN">使用Key的序号0-1</param>
-            <remarks></remarks>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.DecryptAnyLength(System.Byte[],System.Int32,System.Int32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.CommandEx.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Core.Command.INCommandParameter)">
             <summary>
-            解密任意长度字节数组
-            函数将加密后结果存放于缓存，通过属性PlaintextAnyLength得到
+            初始化命令
             </summary>
-            <param name="srcBytes">任意长度字节数组</param>
-            <param name="srcLength">长度</param>
-            <param name="keyN">使用Key的序号0-1</param>
-            <remarks></remarks>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par">包含命令所需要的其他参数</param>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.Bytes2Bits(System.Byte[],System.Byte[],System.Int32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.CommandEx.CheckResponse(DoNetDrive.Protocol.USBDrive.USBDrivePacket,System.Byte,System.Byte)">
             <summary>
-            Byte 到 Bits 的转换
+            检查指令返回值
             </summary>
-            <param name="srcBytes">待变换数据</param>
-            <param name="dstBits">处理后结果存放缓冲区</param>
-            <param name="sizeBits">Bits缓冲区大小</param>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.Bits2Bytes(System.Byte[],System.Byte[],System.Int32)">
-            <summary>
-            Bits到Byte的转换,
-            </summary>
-            <param name="dstBytes">存储转换后的Byte数组</param>
-            <param name="srcBits">准备转换为byte的bit数组</param>
-            <param name="sizeBits">Bits缓冲区大小</param>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.Int2Bits(System.Byte,System.Byte[])">
-            <summary>
-            Int到Bits的转换,取低4bit
-            </summary>
-            <param name="src">待变换数值</param>
-            <param name="dstBits">处理后结果存放缓冲区</param>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.GetCiphertextInHex">
-            <summary>
-            返回加密后的数据十六进制形式
-            </summary>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.GetCiphertextInBytes">
-            <summary>
-            返回加密后的数据 -- 8字节
-            </summary>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.GetCiphertextAnyLength">
-            <summary>
-            返回加密后的所有数据
-            </summary>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.GetPlaintext">
-            <summary>
-            返回解密后的数据,明文字符串
-            </summary>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.GetPlaintextInBytes">
-            <summary>
-            返回解密后的数据 -- 8字节
-            </summary>
+            <param name="oPck"></param>
+            <param name="CmdType">命令类型</param>
+            <param name="CmdIndex">命令索引</param>
             <returns></returns>
-            <remarks></remarks>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.GetPlaintextInHex">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.CommandEx.CommandReSend">
             <summary>
-            返回解密后的数据--十六进制形式
+            命令重发时，对命令中一些缓冲做清空或参数重置<br/>
+            此命令一般情况下不需要实现！
             </summary>
-            <returns></returns>
-            <remarks></remarks>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.GetPlaintextAnyLength">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.CommandEx.Release1">
             <summary>
-            返回明文数据,自动省略末尾的 byte(0)
+            释放命令占用的内存<br/>
+            此命令一般情况下不需要实现！
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.GetPlaintextAll">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.CommandEx.GetCmdBuf">
             <summary>
-            返回所有解密后的数据
+            获取当前命令所使用的缓冲区
             </summary>
             <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.InitializeKey(System.Byte[],System.Int32)">
-            <summary>
-            初始化加密密钥
-            </summary>
-            <param name="bKeys">8字节数组</param>
-            <param name="keyN">密钥的索引号0-1</param>
-            <remarks>函数将调用private CreateSubKey将结果存于char SubKeys(keyN)(16)(48)</remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.CreateSubKey(System.Byte[],System.Int32)">
-            <summary>
-            生成子密钥
-            </summary>
-            <param name="sz_56key">经过PC1变换的56位数组</param>
-            <param name="keyN">密钥编号0-1</param>
-            <remarks>将保存于char szSubKeys(16)(48)</remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.EncryptData(System.Byte[],System.Int32)">
-            <summary>
-            加密8字节数组
-            </summary>
-            <param name="bDatas">8字节数组</param>
-            <param name="keyN">Key的序号0-1</param>
-            <remarks>函数将加密后结果存放于private szCiphertext(16) 用户通过属性Ciphertext得到</remarks>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.DecryptData(System.Byte[],System.Int32)">
-            <summary>
-            解密8字节数组
-            </summary>
-            <param name="bDatas">8字节数组</param>
-            <param name="keyN">Key的序号0-1</param>
-            <remarks>函数将解密候结果存放于private szPlaintext(8) 用户通过属性Plaintext得到</remarks>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.InitialPermuteData(System.Byte[],System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.CommandEx.RewritePacket(System.Byte,System.Int32)">
             <summary>
-            IP变换
+            重置命令内容
             </summary>
-            <param name="src">待处理数组</param>
-            <param name="dst">处理后结果</param>
-            <remarks>函数改变第二个参数的内容</remarks>
+            <param name="ci">命令索引</param>
+            <param name="cp">命令参数</param>
+            <param name="dl">数据长度</param>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.FunctionF(System.Byte[],System.Byte[],System.Int32,System.Int32)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard">
             <summary>
-            DES中的F函数
+            寻卡
             </summary>
-            <param name="sz_Li">左32位</param>
-            <param name="sz_Ri">右32位</param>
-            <param name="iKey">key序号(0-15)</param>
-            <param name="keyN">密钥序号0-1</param>
-            <remarks>均在变换左右32位</remarks>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.ExpansionR(System.Byte[],System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
-            将右32位进行扩展位48位
+            获取控制器SN 初始化命令
             </summary>
-            <param name="src">原32位数组</param>
-            <param name="dst">扩展后48位数组</param>
-            <remarks>函数改变第二个参数的内容</remarks>
+            <param name="cd"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.XORArr(System.Byte[],System.Byte[],System.Int32,System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard.CreatePacket0">
             <summary>
-            异或函数,函数改变第四个参数的内容
+            将命令打包成一个Packet，准备发送
             </summary>
-            <param name="szParam1">待异或的数组1</param>
-            <param name="szParam2">待异或的数组2</param>
-            <param name="uiParamLength">数据长度</param>
-            <param name="szReturnValueBuffer">结果返回数组</param>
-            <remarks>函数改变第四个参数的内容</remarks>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.CompressFuncS(System.Byte[],System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
             <summary>
-            S-BOX , 数据压缩, 返回32位二进制数组
+            命令返回值的判断
             </summary>
-            <param name="src48">48位二进制数组</param>
-            <param name="dst32">压缩后的32位二进制数组</param>
-            <remarks></remarks>
+            <param name="oPck">包含返回指令的Packet</param>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.PermutationP(System.Byte[],System.Byte[])">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard_Result">
             <summary>
-            IP逆变换,函数改变第二个参数的内容
+            寻卡 返回结果
             </summary>
-            <param name="src"></param>
-            <param name="dst"></param>
-            <remarks></remarks>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.GetDecryptFile(System.String,System.String)">
-             <summary>
-            将一个加密文件，解密后返回文件内容
-            </summary>
-            <param name="sFile"></param>
-            <param name="sKey"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.EncryptText3Des(System.String,System.String,System.String)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard_Result.IsSuccess">
             <summary>
-            3DES加密
+            寻卡是否成功
             </summary>
-            <param name="sTest"></param>
-            <param name="sKey1"></param>
-            <param name="sKey2"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.DES_C.DecryptText3Des(System.String,System.String,System.String)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard_Result.Type">
             <summary>
-            3DES解密
+            卡片类型
+            1 - MF1 IC卡 S50
+            2 - NFC标签卡
+            3 - NFC手机
+            4 - 身份证
+            5 - CPU IC卡 S50
+            6 - CPU卡
+            7 - MF1 IC卡 S70
+            8 - CPU IC卡 S70
+            9 - ID卡
             </summary>
-            <param name="sTest"></param>
-            <param name="sKey1"></param>
-            <param name="sKey2"></param>
-            <returns></returns>
         </member>
-        <member name="T:DoNetDrive.Common.Cryptography.MyAES">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard_Result.Length">
             <summary>
-            加密工具类
+            卡号长度
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyAES.Encryptor(System.Byte[],System.Byte[],System.Byte[],System.Security.Cryptography.PaddingMode)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard_Result.CardData">
             <summary>
-            使用AES加密数据
+            卡号
             </summary>
-            <param name="bKey"></param>
-            <param name="bIV"></param>
-            <param name="bData"></param>
-            <param name="pad">PaddingMode</param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyAES.Encryptor(System.Byte[],System.Byte[],System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            使用AES加密数据
+            将字节缓冲解码为类结构
             </summary>
-            <param name="bKey"></param>
-            <param name="bIV"></param>
-            <param name="bData"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyAES.Encryptor(System.String,System.String,System.String)">
-            <summary>
-             AES加密UTF8字符串 并返回bas64编码的密文
-             </summary>
-             <param name="plainStr">要加密的字符串</param>
-             <param name="base64_Key">密钥 32字节</param>
-             <param name="base64_IV">向量 16字节</param>
-             <returns></returns>
+            <param name="databuf"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyAES.Encryptor(System.Byte[],System.String,System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.SearchCard.SearchCard_Result.Dispose">
             <summary>
-            AES加密字节
+            释放资源
             </summary>
-            <param name="key"></param>
-            <param name="iv"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyAES.Encryptor(System.String,System.Byte[],System.Byte[])">
-            <summary>
-             AES加密UTF8字符串，并返回base64
-             </summary>
-             <param name="plainStr">要加密的字符串</param>
-             <param name="bKey">密钥 32字节</param>
-             <param name="bIV">向量 16字节</param>
-             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyAES.Decryptor(System.Byte[],System.Byte[],System.Byte[])">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadAllSector">
             <summary>
-            使用AES解密数据
+            读取扇区全部内容
             </summary>
-            <param name="bKey"></param>
-            <param name="bIV"></param>
-            <param name="bData"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyAES.Decryptor(System.Byte[],System.Byte[],System.Byte[],System.Security.Cryptography.PaddingMode)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadAllSector.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter)">
             <summary>
-            使用AES解密数据
+            获取控制器SN 初始化命令
             </summary>
-            <param name="bKey"></param>
-            <param name="bIV"></param>
-            <param name="bData"></param>
-            <param name="pad">PaddingMode</param>
-            <returns></returns>
+            <param name="cd"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyAES.Decryptor(System.String,System.String,System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadAllSector.CreatePacket0">
             <summary>
-             AES 解密,并返回 UTF8字符串
-             </summary>
-             <param name="encryptStr">要解密字符串</param>
-             <param name="base64_Key">密钥 32字节</param>
-             <param name="base64_IV">向量 16字节</param>
-             <returns></returns>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyAES.Decryptor(System.String,System.Byte[],System.Byte[])">
-            <summary>
-             AES 解密,并返回 UTF8字符串
-             </summary>
-             <param name="encryptStr">要解密字符串</param>
-             <param name="bKey">密钥 32字节</param>
-             <param name="bIV">向量 16字节</param>
-             <returns></returns>
-        </member>
-        <member name="T:DoNetDrive.Common.Cryptography.MyDES">
-            <summary>
-            使用DES密码算法加解密
+            将命令打包成一个Packet，准备发送
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyDES.#ctor">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadAllSector.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
             <summary>
-            构造函数
-            </summary>
-        </member>
-        <member name="P:DoNetDrive.Common.Cryptography.MyDES.IV">
-            <summary> 
-            DES加密偏移量，必须是>=8位长的字符串  
-            </summary>
-        </member>
-        <member name="P:DoNetDrive.Common.Cryptography.MyDES.Key">
-            <summary> 
-            DES加密的私钥，必须是8位长的字符串  
+            命令返回值的判断
             </summary>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyDES.Encrypt(System.Byte[])">
-            <summary> 
-            对字节数组进行DES加密  
-            </summary> 
-            <param name="btData">待加密的字节数组</param> 
-            <returns>加密后的字节数组</returns>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyDES.Encrypt(System.String)">
-            <summary> 
-            对字符串进行DES加密  
-            </summary> 
-            <param name="sourceString">待加密的字符串</param> 
-            <returns>加密后的BASE64编码的字符串</returns>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyDES.Decrypt(System.Byte[])">
-            <summary> 
-            对DES加密后的字节数组进行解密  
-            </summary> 
-            <param name="btData">待解密的字节数组</param> 
-            <returns>解密后的字节数组</returns>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyDES.Decrypt(System.String)">
-            <summary> 
-            对DES加密后的Base64字符串进行解密  
-            </summary> 
-            <param name="encryptedString">待解密的字符串</param> 
-            <returns>解密后的字符串</returns>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyDES.EncryptFile(System.String,System.String)">
-            <summary> 
-            对文件内容进行DES加密  
-            </summary> 
-            <param name="sourceFile">待加密的文件绝对路径</param> 
-            <param name="destFile">加密后的文件保存的绝对路径</param>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyDES.EncryptFile(System.String)">
-            <summary> 
-            对文件内容进行DES加密，加密后覆盖掉原来的文件  
-            </summary> 
-            <param name="sourceFile">待加密的文件的绝对路径</param>
+            <param name="oPck">包含返回指令的Packet</param>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyDES.DecryptFile(System.String,System.String)">
-            <summary> 
-            对文件内容进行DES解密  
-            </summary> 
-            <param name="sourceFile">待解密的文件绝对路径</param> 
-            <param name="destFile">解密后的文件保存的绝对路径</param>
-        </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MyDES.DecryptFile(System.String)">
-            <summary> 
-            对文件内容进行DES解密，加密后覆盖掉原来的文件  
-            </summary> 
-            <param name="sourceFile">待解密的文件的绝对路径</param>
-        </member>
-        <member name="T:DoNetDrive.Common.Cryptography.MySha1">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector">
             <summary>
-            SHA1加密工具类
+            读扇区内容
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MySha1.CreateSha1(System.String,System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter)">
             <summary>
-            使用SHA1加密
+            获取控制器SN 初始化命令
             </summary>
-            <param name="sValue"></param>
-            <param name="sGUID"></param>
-            <returns></returns>
+            <param name="cd"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.MySha1.CreateSha1(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector.CreatePacket0">
             <summary>
-            使用SHA1加密
+            将命令打包成一个Packet，准备发送
             </summary>
-            <param name="sValue"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.RC4.RC4_Encrypt(System.Byte[]@,System.Int32,System.Byte[]@,System.Int32,System.Byte[]@,System.Int32@)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
             <summary>
-            RC4 加密，使用指定的密钥 key，加密数据 data，并将加密后的数据放到 result 中
+            命令返回值的判断
             </summary>
+            <param name="oPck">包含返回指令的Packet</param>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.RC4.IniRC4Key(System.Byte[]@,System.Int32,System.Int32)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter">
             <summary>
-            初始化RC4密钥
+            读扇区内容 参数
             </summary>
-            <param name="Key"></param>
-            <param name="key_len"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.RC4.RC4_Encrypt(System.Byte[]@)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter.Type">
             <summary>
-            RC4 加密，使用已初始化的密钥进行数据加密
+            卡片类型
+            1 - MF1 IC卡 S50
+            2 - NFC标签卡
+            3 - NFC手机
+            4 - 身份证
+            5 - CPU IC卡 S50
+            6 - CPU卡
+            7 - MF1 IC卡 S70
+            8 - CPU IC卡 S70
+            9 - ID卡
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.RC4.RC4_Encrypt(System.Byte[]@,System.Int32)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter.Number">
             <summary>
-            RC4 加密，使用已初始化的密钥进行数据加密
+            扇区号
+            S50卡的取值范围是0-15
+            S70卡的取值范围是0-39
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.RSA.RSACryptoService.Encrypt(System.String)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter.StartBlock">
             <summary>
-            RSA 公钥加密
+            起始数据块
+            S50卡每个扇区的块号都是0-3，其中块3是密码块
+            S70卡0-31块扇区的块号是0-3，其中块3是密码块
+            32-39块扇区的块号是0-15，其中块15是密码块
             </summary>
-            <param name="text"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.RSA.RSACryptoService.SignData(System.String)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter.ReadCount">
             <summary>
-            使用私钥加密
+            读取字节数
             </summary>
-            <param name="contentText"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.RSA.RSACryptoService.VerifyData(System.String,System.String)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter.VerifyMode">
             <summary>
-            使用公钥验证签名
+            密钥验证类型
+            1--A密钥
+            2--B密钥
             </summary>
-            <param name="contentText"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Cryptography.RSA.RSACryptoService.Decrypt(System.String)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter.Password">
             <summary>
-            RSA 私钥解密
+            扇区密码
             </summary>
-            <param name="cipherText"></param>
-            <returns></returns>
         </member>
-        <member name="T:DoNetDrive.Common.EncryptTool">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String)">
             <summary>
-            加密工具类
+            初始化参数
             </summary>
+            <param name="type">卡片类型</param>
+            <param name="number">扇区号</param>
+            <param name="startBlock">起始数据块</param>
+            <param name="readCount">读取字节数</param>
+            <param name="authenticationType">密钥验证类型</param>
+            <param name="password">扇区密码</param>
         </member>
-        <member name="M:DoNetDrive.Common.EncryptTool.GetRandomBase64IV">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter.checkedParameter">
             <summary>
-            获取随机IV（base64格式）
+            检查参数
             </summary>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.EncryptTool.MD5StrToStr(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            字符串MD5加密
+            将结构编码为字节缓冲
             </summary>
-            <param name="str"></param>
+            <param name="databuf"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.EncryptTool.MD5ByteToByte(System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter.GetDataLen">
             <summary>
-            字节MD5加密
+            获取长度
             </summary>
-            <param name="str"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.EncryptTool.MD5StrToBty(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            字符串MD5加密返回字节流
+            将字节缓冲解码为类结构
             </summary>
-            <param name="str"></param>
-            <returns></returns>
+            <param name="databuf"></param>
         </member>
-        <member name="T:DoNetDrive.Common.DoNetDriveException">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Result">
             <summary>
-            类库异常封装
+            读扇区内容 返回结果
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.DoNetDriveException.#ctor">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Result.IsSuccess">
             <summary>
-            
+            寻卡是否成功
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.DoNetDriveException.#ctor(System.String)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Result.Number">
             <summary>
-            
+            扇区号
+            S50卡的取值范围是0-15
+            S70卡的取值范围是0-39
             </summary>
-            <param name="message"></param>
         </member>
-        <member name="M:DoNetDrive.Common.DoNetDriveException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Result.StartBlock">
             <summary>
-            
+            起始数据块
+            S50卡每个扇区的块号都是0-3，其中块3是密码块
+            S70卡0-31块扇区的块号是0-3，其中块3是密码块
+            32-39块扇区的块号是0-15，其中块15是密码块
             </summary>
-            <param name="info"></param>
-            <param name="context"></param>
         </member>
-        <member name="M:DoNetDrive.Common.DoNetDriveException.#ctor(System.String,System.Exception)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Result.ReadCount">
             <summary>
-            
+            读取字节数
             </summary>
-            <param name="message"></param>
-            <param name="innerException"></param>
         </member>
-        <member name="M:DoNetDrive.Common.DoNetDriveException.#ctor(System.String,System.String)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Result.ByteContent">
             <summary>
-            
+            数据内容
             </summary>
-            <param name="errorCode"></param>
-            <param name="errorMsg"></param>
         </member>
-        <member name="P:DoNetDrive.Common.DoNetDriveException.ErrorCode">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.ReadSector_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            错误代码
+            将字节缓冲解码为类结构
             </summary>
+            <param name="buf"></param>
         </member>
-        <member name="P:DoNetDrive.Common.DoNetDriveException.ErrorMsg">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector">
             <summary>
-            错误信息
+            写扇区内容
             </summary>
         </member>
-        <member name="T:DoNetDrive.Common.Extensions.ArrayExtensions">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter)">
             <summary>
-            数组扩展方法类
+            初始化命令
             </summary>
+            <param name="cd"></param>
+            <param name="par"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.ArrayExtensions.Copy(System.Byte[],System.Int32,System.Int32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector.CreatePacket0">
             <summary>
-            拷贝数组中的一个片段到一个新的数组
+            将命令打包成一个Packet，准备发送
             </summary>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.ArrayExtensions.FindTextIndex(System.String[],System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
             <summary>
-            搜索与指定谓词定义的条件匹配的元素，然后返回整个 System.Array 中第一个匹配项的从零开始的索引
+            检查参数
             </summary>
-            <param name="array"></param>
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.ArrayExtensions.FindTextIndex(System.Collections.Generic.List{System.String},System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector.CommandNext0(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
             <summary>
-            搜索与指定谓词定义的条件匹配的元素，然后返回整个 System.Array 中第一个匹配项的从零开始的索引
+            命令返回值的判断
             </summary>
-            <param name="list"></param>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter">
+            <summary>
+            写扇区内容
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.Type">
+            <summary>
+            卡片类型
+            1 - MF1 IC卡 S50
+            2 - NFC标签卡
+            3 - NFC手机
+            4 - 身份证
+            5 - CPU IC卡 S50
+            6 - CPU卡
+            7 - MF1 IC卡 S70
+            8 - CPU IC卡 S70
+            9 - ID卡
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.SectorNumber">
+            <summary>
+            扇区号
+            S50卡的取值范围是0-15
+            S70卡的取值范围是0-39
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.StartBlock">
+            <summary>
+            起始数据块
+            S50卡每个扇区的块号都是0-3，其中块3是密码块
+            S70卡0-31块扇区的块号是0-3，其中块3是密码块
+            32-39块扇区的块号是0-15，其中块15是密码块
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.VerifyMode">
+            <summary>
+            密钥验证类型
+            1--A密钥
+            2--B密钥
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.Password">
+            <summary>
+            扇区密码
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.Content">
+            <summary>
+            待写入数据内容
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.Result">
+            <summary>
+            写入结果
+            1--成功
+            2--密码不正确
+            3--卡片已离开感应区
+            4--块数据长度不正确
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.BlockCount">
+            <summary>
+            写入块数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Byte[])">
+            <summary>
+            初始化参数
+            </summary>
+            <param name="type">卡片类型</param>
+            <param name="number">扇区号</param>
+            <param name="startBlock">起始数据块</param>
+            <param name="writeCount">写入块数</param>
+            <param name="verifyMode">密钥验证类型</param>
+            <param name="password">扇区密码</param>
+            <param name="content">待写入数据内容</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            将结构编码为字节缓冲
+            </summary>
+            <param name="databuf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.GetDataLen">
+            <summary>
+            获取长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.ICCard.Sector.WriteSector_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            将字节缓冲解码为类结构
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.Read_Command">
+            <summary>
+            针对命令中的写参数命令进行抽象封装
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.Read_Command.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            初始化命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par">包含命令所需要的其他参数</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.Read_Command.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查参数
+            </summary>
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="T:DoNetDrive.Common.Extensions.BytesExtensions">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.ReadSN">
             <summary>
-            字节扩展类
+            获取控制器SN
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.GetString(System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.ReadSN.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
-            转换字节编码为字符串
+            获取控制器SN 初始化命令
             </summary>
-            <param name="b"></param>
-            <returns></returns>
+            <param name="cd"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.ToBase64(System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.ReadSN.CreatePacket0">
             <summary>
-            将数组转换为Base64字符串
+            将命令打包成一个Packet，准备发送
             </summary>
-            <param name="Databuf"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.ToHex(System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.ReadSN.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
             <summary>
-            转换字节数组为十六进制字符串
+            命令返回值的判断
             </summary>
-            <param name="b"></param>
-            <returns></returns>
+            <param name="oPck">包含返回指令的Packet</param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.ToInt32(System.Byte[])">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.SN_Parameter">
             <summary>
-            ByteToInt32 扩展方法
+            写入巡更棒SN_参数
             </summary>
-            <param name="b"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.ToInt32(System.Byte[],System.Int32,System.Int32)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.SN_Parameter.SN">
             <summary>
-            ByteToInt32 扩展方法
+            机器号
             </summary>
-            <param name="b"></param>
-            <param name="iBeginIndex"></param>
-            <param name="iLen"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.ToInt24(System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.SN_Parameter.#ctor(System.Int32)">
             <summary>
-            ByteToInt32 扩展方法
+            初始化参数
             </summary>
-            <param name="b"></param>
-            <returns></returns>
+            <param name="sn"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.ToInt24(System.Byte[],System.Int32,System.Int32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.SN_Parameter.checkedParameter">
             <summary>
-            ByteToInt32 扩展方法
+            检查参数
             </summary>
-            <param name="b"></param>
-            <param name="iBeginIndex"></param>
-            <param name="iLen"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.ToInt64(System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.SN_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            ByteToInt64 扩展方法
+            将结构编码为字节缓冲
             </summary>
-            <param name="b"></param>
+            <param name="databuf"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.ToInt64(System.Byte[],System.Int32,System.Int32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.SN_Parameter.GetDataLen">
             <summary>
-            ByteToInt64 扩展方法
+            获取长度
             </summary>
-            <param name="b"></param>
-            <param name="iBeginIndex"></param>
-            <param name="iLen"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.ToInt32Rev(System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.SN_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            反转后 ByteToInt32 扩展方法
+            将字节缓冲解码为类结构
             </summary>
-            <param name="b"></param>
-            <returns></returns>
+            <param name="databuf"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.ToInt32Rev(System.Byte[],System.Int32,System.Int32)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.SN_Result">
             <summary>
-            反转后 ByteToInt32 扩展方法
+            获取控制器SN_结果
             </summary>
-            <param name="b"></param>
-            <param name="iBeginIndex"></param>
-            <param name="iLen"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.ToInt16(System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.SN_Result.#ctor">
             <summary>
-            ByteToInt16 扩展方法
+            初始化参数
             </summary>
-            <param name="b"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.ToInt16(System.Byte[],System.Int32)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.WriteSN">
             <summary>
-            ByteToInt16 扩展方法
+            写入机器号
             </summary>
-            <param name="b"></param>
-            <param name="iBeginIndex"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.BytesEquals(System.Byte[],System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.WriteSN.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.SN_Parameter)">
             <summary>
-            检查2个byte数组 是否相同
+            初始化命令
             </summary>
-            <param name="b"></param>
-            <param name="eb"></param>
-            <returns></returns>
+            <param name="cd"></param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.WriteSN.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.BytesExtensions.GetBuffLen(System.Byte[],System.Int32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.SN.WriteSN.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
             <summary>
-            检查缓冲区是否达到指定长度，长度不够则补充，长度超过则截断
+            检查参数
             </summary>
+            <param name="value"></param>
             <returns></returns>
-            <remarks></remarks>
         </member>
-        <member name="T:DoNetDrive.Common.Extensions.DateExtensions">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion">
             <summary>
-            日期扩展方法类
+            获取设备版本号
             </summary>
         </member>
-        <member name="F:DoNetDrive.Common.Extensions.DateExtensions.UserDateTimeFormat">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
-            yyyy-MM-dd HH:mm:ss
+            初始化命令
             </summary>
+            <param name="cd"></param>
         </member>
-        <member name="F:DoNetDrive.Common.Extensions.DateExtensions.UserDateFormat">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
             <summary>
-            yyyy-MM-dd
+            命令返回值的判断
             </summary>
+            <param name="oPck">包含返回指令的Packet</param>
         </member>
-        <member name="F:DoNetDrive.Common.Extensions.DateExtensions.UserTimeFormat">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion.CreatePacket0">
             <summary>
-            HH:mm:ss
+            将命令打包成一个Packet，准备发送
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.ToDateTimeStr(System.DateTime)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion_Result">
             <summary>
-            输出格式化为 UserDateTimeFormat 的日期字符串
-            默认格式 yyyy-MM-dd HH:mm:ss
+            获取设备运行信息 返回结果
             </summary>
-            <param name="d"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.ToTimeffff(System.DateTime)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion_Result.VerNum">
             <summary>
-            输出格式化为 HH:mm:ss.ffff 的时间字符串
+            版本号
             </summary>
-            <param name="d"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.ToDateStr(System.DateTime)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion_Result.Revise">
             <summary>
-            输出格式化为 UserDateFormat 的日期字符串
-            默认格式 yyyy-MM-dd
+            修正号
             </summary>
-            <param name="d"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.ToTimeStr(System.DateTime)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion_Result.Dispose">
             <summary>
-            输出格式化为 UserDateFormat 的时间字符串
-            默认格式 HH:mm:ss
+            释放资源
             </summary>
-            <param name="d"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.ToDate(System.Double)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion_Result.SetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            返回OADate
+            将字节缓冲解码为类结构
             </summary>
-            <param name="b"></param>
-            <returns></returns>
+            <param name="databuf"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.ToDateStr(System.Double)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Version.ReadVersion_Result.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            返回OADate yyyy-MM-dd 格式
+            将结构编码为字节缓冲
             </summary>
-            <param name="b"></param>
+            <param name="databuf"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.ToDateTimeStr(System.Double)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.ReadCreateTime">
             <summary>
-            返回返回OADate yyyy-MM-dd HH:mm:ss 格式
+            读取生产日期
             </summary>
-            <param name="b"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.IsDate(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.ReadCreateTime.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
-            判断符合日期格式
+            获取控制器SN 初始化命令
             </summary>
-            <param name="dt"></param>
-            <returns></returns>
+            <param name="cd"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.toDate(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.ReadCreateTime.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
             <summary>
-            将字符串转换为日期格式
+            命令返回值的判断
             </summary>
-            <param name="dt"></param>
-            <returns></returns>
+            <param name="oPck">包含返回指令的Packet</param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.ToBCDYYMMDD(System.DateTime)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.ReadCreateTime.CreatePacket0">
             <summary>
-            将日期转换为BCD码中的 YYMMDD 格式，返回3个字节
+            将命令打包成一个Packet，准备发送
             </summary>
-            <param name="b"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.ToBCDYYYYMMDD(System.DateTime)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.ReadCreateTime_Result">
             <summary>
-            将日期转换为BCD码中的 YYMMDD 格式，返回3个字节
+            读取生成日期 返回结果
             </summary>
-            <param name="b"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.DateToBCDYYMMdd(System.DateTime)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime">
             <summary>
-            将日期转换为BCD码中的 YYMMDD 格式，返回3个字节
+            设置 生产日期
             </summary>
-            <param name="b"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.DateToBCDYYYYMMdd(System.DateTime)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime_Parameter)">
             <summary>
-            将日期转换为BCD码中的 YYMMDD 格式，返回3个字节
+            初始化命令
             </summary>
-            <param name="b"></param>
-            <returns></returns>
+            <param name="cd"></param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.DateExtensions.BCDYYYYMMddToDate(System.Byte[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
             <summary>
-            
+            检查参数
             </summary>
-            <param name="blist"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="T:DoNetDrive.Common.Extensions.ListExtensions">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime_Parameter">
             <summary>
-            集合扩展类
+            设置生产日期
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.ListExtensions.Join``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime_Parameter.Time">
             <summary>
-            集合扩展，把集合转字符串拼接 参数 分割
+            生产日期
             </summary>
-            <typeparam name="TOuter"></typeparam>
-            <param name="outer"></param>
-            <param name="sSplit"></param>
-            <returns></returns>
         </member>
-        <member name="T:DoNetDrive.Common.Extensions.NumExtensions">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime_Parameter.#ctor">
             <summary>
-            数字扩展方法类
+            提供给继承类
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.ToBytes(System.Int64)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime_Parameter.#ctor(System.DateTime)">
             <summary>
-                ''' 返回8个字节
-                ''' </summary>
-                ''' <param name="l"></param>
-                ''' <returns></returns>
+            初始化参数
+            </summary>
+            <param name="time">生产日期</param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To4Bytes(System.Int64)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime_Parameter.checkedParameter">
             <summary>
-            Int32ToByte 扩展方法
+            检查参数
             </summary>
-            <param name="l"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To3Bytes(System.Int64)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            Int24ToByte 扩展方法
+            将结构编码为字节缓冲
             </summary>
-            <param name="l"></param>
+            <param name="databuf"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To2Bytes(System.Int64)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime_Parameter.GetDataLen">
             <summary>
-            Int16ToByte 扩展方法
+            获取长度
             </summary>
-            <param name="l"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To8Bytes(System.UInt64)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.CreateTime.WriteCreateTime_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-                ''' 返回8个字节
-                ''' </summary>
-                ''' <param name="l"></param>
-                ''' <returns></returns>
+            将字节缓冲解码为类结构
+            </summary>
+            <param name="databuf"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To4Bytes(System.UInt64)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.ReadReadCardType">
             <summary>
-            To4Bytes 扩展方法
+            记录存储方式
             </summary>
-            <param name="l"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To3Bytes(System.UInt64)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.ReadReadCardType.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
-            扩展方法
+            读取记录存储方式 初始化命令
             </summary>
-            <param name="l"></param>
-            <returns></returns>
+            <param name="cd"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To2Bytes(System.UInt64)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.ReadReadCardType.CreatePacket0">
             <summary>
-            Int16ToByte 扩展方法
+            将命令打包成一个Packet，准备发送
             </summary>
-            <param name="l"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To4Bytes(System.Int32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.ReadReadCardType.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
             <summary>
-            Int32ToByte 扩展方法
+            命令返回值的判断
             </summary>
-            <param name="l"></param>
-            <returns></returns>
+            <param name="oPck">包含返回指令的Packet</param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To3Bytes(System.Int32)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.ReadReadCardType_Result">
             <summary>
-            Int24ToByte 扩展方法
+            读取记录存储方式 返回结果
             </summary>
-            <param name="l"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To2Bytes(System.Int32)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType">
             <summary>
-            Int16ToByte 扩展方法
+            写入记录存储方式
             </summary>
-            <param name="l"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To2Bytes(System.UInt16)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType_Parameter)">
             <summary>
-            Int16ToByte 扩展方法
+            初始化命令
             </summary>
-            <param name="l"></param>
-            <returns></returns>
+            <param name="cd"></param>
+            <param name="par"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To2Bytes(System.Int16)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType.CreatePacket0">
             <summary>
-            Int16ToByte 扩展方法
+            将命令打包成一个Packet，准备发送
             </summary>
-            <param name="l"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查参数
+            </summary>
+            <param name="value"></param>
             <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType_Parameter">
+            <summary>
+            写入记录存储方式 参数
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType_Parameter.BitList" -->
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType_Parameter.#ctor">
+            <summary>
+            提供给继承类
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To4Bytes(System.UInt32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType_Parameter.#ctor(System.Byte[])">
             <summary>
-            Int32ToByte 扩展方法
+            初始化参数
             </summary>
-            <param name="l"></param>
+            <param name="mode">读卡类型</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType_Parameter.checkedParameter">
+            <summary>
+            检查参数 0或1
+            </summary>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To3Bytes(System.UInt32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            Int24ToByte 扩展方法
+            将结构编码为字节缓冲
             </summary>
-            <param name="l"></param>
+            <param name="databuf"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.NumExtensions.To2Bytes(System.UInt32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType_Parameter.GetDataLen">
             <summary>
-            Int16ToByte 扩展方法
+            获取长度
             </summary>
-            <param name="l"></param>
             <returns></returns>
         </member>
-        <member name="T:DoNetDrive.Common.Extensions.StringExtensions">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ReadCardType.WriteReadCardType_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            字符串扩展
+            将字节缓冲解码为类结构
             </summary>
+            <param name="databuf"></param>
         </member>
-        <member name="F:DoNetDrive.Common.Extensions.StringExtensions.UserEncoding">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.ReadOutputFormat">
             <summary>
-            编码
+            读取输出格式
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.ToJSON(System.Object)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.ReadOutputFormat.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
-            从对象序列化到字符串
+            获取控制器SN 初始化命令
             </summary>
-            <param name="o"></param>
-            <returns></returns>
+            <param name="cd"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.FromJson``1(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.ReadOutputFormat.CreatePacket0">
             <summary>
-            从JSON字符串反序列化到对象
+            将命令打包成一个Packet，准备发送
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="jsonTexts"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.IsBase64(System.String,System.Byte[]@)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.ReadOutputFormat.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
             <summary>
-            
+            命令返回值的判断
             </summary>
-            <param name="base64String"></param>
-            <param name="bytes"></param>
-            <returns></returns>
+            <param name="oPck">包含返回指令的Packet</param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.FromBase64(System.String)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.ReadOutputFormat_Result">
             <summary>
-            将base64字符串转换为字节数组
+            输出格式 返回结果
             </summary>
-            <param name="base64str"></param>
-            <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat">
+            <summary>
+            设置输出格式
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.Print(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat_Parameter)">
             <summary>
-            
+            初始化命令
             </summary>
-            <param name="aString"></param>
+            <param name="cd"></param>
+            <param name="par"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.ToInt32(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat.CreatePacket0">
             <summary>
-            扩展方法 安全转int类型
+            将命令打包成一个Packet，准备发送
             </summary>
-            <param name="aString"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查参数
+            </summary>
+            <param name="value"></param>
             <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat_Parameter">
+            <summary>
+            设置输出格式参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat_Parameter.Format">
+            <summary>
+            输出协议格式
+            0 - 禁止输出
+            1 - WG26（三字节）+WG34（4字节需短路key1按键）
+            2 - WG26（三字节）+WG66（八字节需短路key1按键）
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat_Parameter.Sort">
+            <summary>
+            卡号字节顺序
+            1 - 高位在前，低位在后
+            2 - 低位在前，高位在后
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat_Parameter.#ctor">
+            <summary>
+            提供给继承类
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.ToUInt32(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat_Parameter.#ctor(System.Int32,System.Int32)">
             <summary>
-            扩展方法 安全转UInt32类型
+            初始化参数
             </summary>
-            <param name="aString"></param>
+            <param name="type">输出协议格式</param>
+            <param name="sort"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.HexToUInt32(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            String 安全转 UInt32
+            将结构编码为字节缓冲
             </summary>
-            <param name="aString"></param>
+            <param name="databuf"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.ToDouble(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat_Parameter.GetDataLen">
             <summary>
-            String 安全转 Double
+            获取长度
             </summary>
-            <param name="aString"></param>
             <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.OutputFormat.WriteOutputFormat_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            将字节缓冲解码为类结构
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.ReadICCardControl">
+            <summary>
+            读取扇区验证
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.ReadICCardControl.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            获取控制器SN 初始化命令
+            </summary>
+            <param name="cd"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.ReadICCardControl.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.ReadICCardControl.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.ReadICCardControl_Result">
+            <summary>
+            读取扇区验证 返回结果
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl">
+            <summary>
+            设置扇区验证
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.ToLong(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter)">
             <summary>
-            String 安全转 Long
+            初始化命令
             </summary>
-            <param name="aString"></param>
+            <param name="cd"></param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查参数
+            </summary>
+            <param name="value"></param>
             <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter">
+            <summary>
+            设置扇区验证 参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.IsOpen">
+            <summary>
+            开关
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.Num">
+            <summary>
+            扇区号 
+            1-15
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.Password">
+            <summary>
+            扇区密码 长度6
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.VerifyMode">
+            <summary>
+            密码验证方式
+            1 - A密钥
+            2 - B密钥
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.ComputingMode">
+            <summary>
+            密码验证方式
+            1 - 直接验证
+            2 - 使用动态加密（RC4加密）
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.IsOpenVerifySector">
+            <summary>
+            验证扇区内容开关
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.SectorContentLength">
+            <summary>
+            扇区内容长度
+            0 - 16
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.VerifyDataStartIndex">
+            <summary>
+            扇区内的需要验证的数据块起始位
+            0 - 0-15
+            1 - 16-31
+            2 - 32-47
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.VerifyContent">
+            <summary>
+            验证内容 长度16
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.#ctor">
+            <summary>
+            提供给继承类
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.ToUInt64(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.#ctor(System.Boolean,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Int32,System.Int32,System.String)">
             <summary>
-            扩展方法 安全转 UInt64
+            初始化参数
             </summary>
-            <param name="aString"></param>
+            <param name="isOpen">开关</param>
+            <param name="num">扇区号</param>
+            <param name="password">扇区密码</param>
+            <param name="verifyMode">密码验证方式</param>
+            <param name="computingMode">密码计算方式</param>
+            <param name="isOpenVerifySector">验证扇区内容开关</param>
+            <param name="sectorContentLength">扇区内容长度</param>
+            <param name="verifyDataStartIndex">验证数据起始位</param>
+            <param name="verifyContent">验证内容</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.HexToUInt64(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            扩展方法 安全转16进制 转 UInt64
+            将结构编码为字节缓冲
             </summary>
-            <param name="aString"></param>
+            <param name="databuf"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.IsTryLong(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.GetDataLen">
             <summary>
-            扩展方法 检查是否为数字
+            获取长度
             </summary>
-            <param name="aString"></param>
             <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardControl.WriteICCardControl_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            将字节缓冲解码为类结构
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.ReadICCardCustomNum">
+            <summary>
+            读取卡号参数
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.ReadICCardCustomNum.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            获取控制器SN 初始化命令
+            </summary>
+            <param name="cd"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.ReadICCardCustomNum.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.IsNum(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.ReadICCardCustomNum.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
             <summary>
-            检查是否有纯数字组成
+            命令返回值的判断
             </summary>
-            <param name="numString">需要检查的字符串</param>
-            <returns>true 表示是纯数字字符串；false 包含非法字符</returns>
+            <param name="oPck">包含返回指令的Packet</param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.IsNullOrEmpty(System.String)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.ReadICCardCustomNum_Result">
             <summary>
-            检查字符串是否为空字符串或者为null
+            读取卡号参数 返回结果
             </summary>
-            <param name="str">需要检查的字符串</param>
-            <returns>true表示为空或null</returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.IsHex(System.String)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum">
             <summary>
-                ''' 扩展方法 检查字符串是否为十六进制
-                ''' </summary>
-                ''' <param name="s"></param>
-                ''' <returns></returns>
+            设置卡号参数
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.HexToByte(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter)">
             <summary>
-                ''' 扩展方法 十六进制转为字节数字
-                ''' </summary>
-                ''' <param name="s"></param>
-                ''' <returns></returns>
+            初始化命令
+            </summary>
+            <param name="cd"></param>
+            <param name="par"></param>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.GetBytes(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum.CreatePacket0">
             <summary>
-                ''' 扩展方法 获取字符串的字节编码
-                ''' </summary>
-                ''' <param name="s"></param>
-                ''' <returns></returns>
+            将命令打包成一个Packet，准备发送
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.SF(System.String,System.Object[])">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
             <summary>
-            Format 扩展方法
+            检查参数
             </summary>
-            <param name="s"></param>
-            <param name="args"></param>
+            <param name="value"></param>
             <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter">
+            <summary>
+            IC卡自定义卡号 参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.IsOpen">
+            <summary>
+            开关
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.Num">
+            <summary>
+            扇区号 
+            1-15
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.Password">
+            <summary>
+            扇区密码 长度6
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.VerifyMode">
+            <summary>
+            密码验证方式
+            1 - A密钥
+            2 - B密钥
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.ComputingMode">
+            <summary>
+            密码验证方式
+            1 - 直接验证
+            2 - 使用动态加密（RC4加密）
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.CardLength">
+            <summary>
+            卡号长度
+            2 - 8
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.SplitTrim(System.String,System.String)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.CardDataStartIndex">
             <summary>
-            Split 扩展方法，过滤空值
+            卡号数据起始位
+            0 - 0-15
+            1 - 16-31
+            2 - 32-47
             </summary>
-            <param name="s"></param>
-            <param name="sSplit"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.#ctor">
+            <summary>
+            提供给继承类
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.#ctor(System.Boolean,System.Int32,System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            初始化参数
+            </summary>
+            <param name="isOpen">开关</param>
+            <param name="num">扇区号</param>
+            <param name="password">扇区密码</param>
+            <param name="verifyMode">密码验证方式</param>
+            <param name="computingMode">密码计算方式</param>
+            <param name="cardLength">卡号长度</param>
+            <param name="cardDataStartIndex">卡号数据起始位</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.IsSame(System.String,System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            返回是否相同
+            将结构编码为字节缓冲
             </summary>
-            <param name="s"></param>
-            <param name="d"></param>
+            <param name="databuf"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.Extensions.StringExtensions.FillString(System.String,System.Int32,System.Char)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.GetDataLen">
             <summary>
-            填充字符串
+            获取长度
             </summary>
-            <param name="s"></param>
-            <param name="iLen"></param>
-            <param name="sFillStr"></param>
             <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.ICCardCustomNum.WriteICCardCustomNum_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            将字节缓冲解码为类结构
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.ReadTTLOutput">
+            <summary>
+            读取TTL输出参数
+            </summary>
         </member>
-        <member name="T:DoNetDrive.Common.MyXML">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.ReadTTLOutput.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
-            Xml 工具类
+            获取控制器SN 初始化命令
             </summary>
+            <param name="cd"></param>
         </member>
-        <member name="F:DoNetDrive.Common.MyXML.mXMLDoc">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.ReadTTLOutput.CreatePacket0">
             <summary>
-            XML文档
+            将命令打包成一个Packet，准备发送
             </summary>
         </member>
-        <member name="F:DoNetDrive.Common.MyXML.mElement">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.ReadTTLOutput.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
             <summary>
-            XML根节点
+            命令返回值的判断
             </summary>
+            <param name="oPck">包含返回指令的Packet</param>
         </member>
-        <member name="F:DoNetDrive.Common.MyXML.mMajorNode">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.ReadTTLOutput_Result">
             <summary>
-            XML主节点
+            读取TTL输出参数 返回结果
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.#ctor">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput">
             <summary>
-            构造函数
+            设置TTL输出参数
             </summary>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.#ctor(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter)">
             <summary>
-            构造函数
+            初始化命令
             </summary>
-            <param name="sFileName"></param>
+            <param name="cd"></param>
+            <param name="par"></param>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.IsOpen">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput.CreatePacket0">
             <summary>
-            返回xml 是否已打开
+            将命令打包成一个Packet，准备发送
             </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查参数
+            </summary>
+            <param name="value"></param>
             <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter">
+            <summary>
+            设置TTL输出参数 参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter.IsOpen">
+            <summary>
+            开关
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter.BaudRate">
+            <summary>
+            波特率 
+            0 - 1200
+            1 - 2400
+            2 - 4800
+            3 - 9600
+            4 - 11400
+            5 - 19200
+            6 - 38400
+            7 - 43000
+            8 - 56000
+            9 - 57600
+            10 - 115200
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter.Parity">
+            <summary>
+            奇偶校验
+            0 - N(无)
+            1 - E(偶数)
+            2 - O(奇数)
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter.DataBits">
+            <summary>
+            数据位数
+            4-8
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter.StopBits">
+            <summary>
+            停止位数
+            0 - 1
+            1 - 1.5
+            2 - 2
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter.#ctor">
+            <summary>
+            提供给继承类
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.LoadXMLOnFile(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter.#ctor(System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            从文件中中提取XML对象
+            初始化参数
             </summary>
-            <param name="sFileName"></param>
+            <param name="isOpen">开关</param>
+            <param name="baudRate">波特率</param>
+            <param name="parity">奇偶校验</param>
+            <param name="dataBits">数据位数</param>
+            <param name="stopBits">停止位数</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.LoadXMLOnString(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            从字符串中提取XML对象
+            将结构编码为字节缓冲
             </summary>
-            <param name="strXML"></param>
+            <param name="databuf"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.SelectDocumentElement(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter.GetDataLen">
             <summary>
-            选择根节点
+            获取长度
             </summary>
-            <param name="sNodes"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.setDocumentElementAttribute(System.String,System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.TTLOutput.WriteTTLOutput_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            设置根节点属性值
+            将字节缓冲解码为类结构
             </summary>
-            <param name="sName"></param>
-            <param name="sValue"></param>
+            <param name="databuf"></param>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.GetDocumentElementAttribute(System.String,System.String)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Initialize.Initialize">
             <summary>
-            读取根节点属性值
+            初始化设备
             </summary>
-            <param name="sName"></param>
-            <param name="sDefault_value"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.DeleteDocumentElementAttribute(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Initialize.Initialize.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
-            删除根节点属性
+            初始化命令
             </summary>
-            <param name="sName"></param>
+            <param name="cd"></param>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.SelectElement(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Initialize.Initialize.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
             <summary>
-            选择主节点
+            检查参数
             </summary>
-            <param name="sNodes"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.setElementAttribute(System.String,System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Initialize.Initialize.CreatePacket0">
             <summary>
-            设置主节点属性值
+            将命令打包成一个Packet，准备发送
             </summary>
-            <param name="sName"></param>
-            <param name="sValue"></param>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.GetElementAttribute(System.String,System.String)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer">
             <summary>
-            读取主节点属性值
+            控制蜂鸣器
             </summary>
-            <param name="sName"></param>
-            <param name="sDefault_value"></param>
-            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.DeleteElementAttribute(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer_Parameter)">
             <summary>
-            删除主节点属性
+            初始化命令
             </summary>
-            <param name="sName"></param>
+            <param name="cd"></param>
+            <param name="par"></param>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.SetElementValue(System.String,System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer.CreatePacket0">
             <summary>
-            主节点赋值
+            将命令打包成一个Packet，准备发送
             </summary>
-            <param name="sKey"></param>
-            <param name="sVaues"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查参数
+            </summary>
+            <param name="value"></param>
             <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer_Parameter">
+            <summary>
+            控制蜂鸣器 参数
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer_Parameter.Times">
+            <summary>
+            蜂鸣器鸣叫次数
+            1-10
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer_Parameter.#ctor(System.Int32)">
+            <summary>
+            初始化参数
+            </summary>
+            <param name="times">蜂鸣器鸣叫次数</param>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.GetElementValue(System.String,System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer_Parameter.checkedParameter">
             <summary>
-            主节点取值
+            检查参数
             </summary>
-            <param name="sKey"></param>
-            <param name="sDefault_value"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.SetValue(System.String,System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            子节点赋值
+            将结构编码为字节缓冲
             </summary>
-            <param name="sKey"></param>
-            <param name="sVaues"></param>
+            <param name="databuf"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.Space(System.Int32)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer_Parameter.GetDataLen">
             <summary>
-            返回指定空格字符串
+            获取长度
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.Buzzer.WriteBuzzer_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            将字节缓冲解码为类结构
+            </summary>
+            <param name="databuf"></param>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.GetValue(System.String,System.String)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED">
             <summary>
-            子节点取值
+            控制LED灯
             </summary>
-            <param name="sKey"></param>
-            <param name="sDefault_value"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED_Parameter)">
+            <summary>
+            初始化命令
+            </summary>
+            <param name="cd"></param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            检查参数
+            </summary>
+            <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.DeleteValue(System.String)">
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED_Parameter">
             <summary>
-            删除子节点
+            控制LED灯
             </summary>
-            <param name="sName"></param>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.SetNodeAttribute(System.String,System.String,System.String)">
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED_Parameter.Code">
             <summary>
-            设置子节点属性值
+            1表示红灯亮
+            2表示绿灯亮
             </summary>
-            <param name="sNodeKey"></param>
-            <param name="sName"></param>
-            <param name="sValue"></param>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.GetNodeAttribute(System.String,System.String,System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED_Parameter.#ctor(System.Byte)">
             <summary>
-            读取子节点属性值
+            初始化参数
             </summary>
-            <param name="sName"></param>
-            <param name="sDefault_value"></param>
+            <param name="code"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.DeleteNodeAttribute(System.String,System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            删除子节点属性
+            将结构编码为字节缓冲
             </summary>
-            <param name="sName"></param>
+            <param name="databuf"></param>
+            <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.Save(System.String)">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED_Parameter.GetDataLen">
             <summary>
-            保存XML
+            获取长度
             </summary>
-            <param name="sPath"></param>
             <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.LED.WriteLED_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            将字节缓冲解码为类结构
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.ReadAgencyCode">
+            <summary>
+            读取经销商代码
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.ReadAgencyCode.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
+            <summary>
+            获取控制器SN 初始化命令
+            </summary>
+            <param name="cd"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.ReadAgencyCode.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.ReadAgencyCode.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
+            <summary>
+            命令返回值的判断
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.ReadAgencyCode_Result">
+            <summary>
+            读取经销商代码 返回结果
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode">
+            <summary>
+            设置经销商代码
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode_Parameter)">
+            <summary>
+            初始化命令
+            </summary>
+            <param name="cd"></param>
+            <param name="par"></param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode.CreatePacket0">
+            <summary>
+            将命令打包成一个Packet，准备发送
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.Document">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode.CheckCommandParameter(DoNetDrive.Core.Command.INCommandParameter)">
             <summary>
-            返回 XML 对象
+            检查参数
             </summary>
+            <param name="value"></param>
             <returns></returns>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode_Parameter">
+            <summary>
+            设置经销商代码
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode_Parameter.Code">
+            <summary>
+            脱机门禁开门卡用的经销商代码
+            长度8
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode_Parameter.#ctor">
+            <summary>
+            提供给继承类
+            </summary>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.GetElement">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode_Parameter.#ctor(System.String)">
             <summary>
-            返回 XML根节点
+            初始化参数
             </summary>
+            <param name="code">脱机门禁开门卡用的经销商代码</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode_Parameter.checkedParameter">
+            <summary>
+            检查参数
+            </summary>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.GetNode">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode_Parameter.GetBytes(DotNetty.Buffers.IByteBuffer)">
             <summary>
-            返回 XML根节点
+            将结构编码为字节缓冲
             </summary>
+            <param name="databuf"></param>
             <returns></returns>
         </member>
-        <member name="M:DoNetDrive.Common.MyXML.ToString">
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode_Parameter.GetDataLen">
             <summary>
-            返回xml InnerXml
+            获取长度
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.SystemParameter.AgencyCode.WriteAgencyCode_Parameter.SetBytes(DotNetty.Buffers.IByteBuffer)">
+            <summary>
+            将字节缓冲解码为类结构
+            </summary>
+            <param name="databuf"></param>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.Watch.WatchReadCardTransaction">
+            <summary>
+            读卡消息
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.Watch.WatchReadCardTransaction.CardType">
+            <summary>
+            卡类 <para/>
+            1--MF1 IC卡 S50 <para/>
+            2--NFC标签卡 <para/>
+            3--NFC手机 <para/>
+            4--身份证 <para/>
+            5--CPU IC卡 S50 <para/>
+            6--CPU卡 <para/>
+            7--MF1 IC卡 S70 <para/>
+            8--CPU IC卡 S70 <para/>
+            9--EM ID卡<para/>
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.Watch.WatchReadCardTransaction.CardDataLen">
+            <summary>
+            卡字节长度
+            </summary>
+        </member>
+        <member name="F:DoNetDrive.Protocol.USB.CardReader.Watch.WatchReadCardTransaction.Card">
+            <summary>
+            卡号
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.Watch.WatchReadCardTransaction.#ctor">
+            <summary>
+            创建一个读卡消息
+            </summary>
+        </member>
+        <member name="T:DoNetDrive.Protocol.USB.CardReader.Write_Command">
+            <summary>
+            针对命令中的写参数命令进行抽象封装
+            </summary>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.Write_Command.#ctor(DoNetDrive.Core.Command.INCommandDetail,DoNetDrive.Core.Command.INCommandParameter)">
+            <summary>
+            初始化命令
+            </summary>
+            <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
+            <param name="par">包含命令所需要的其他参数</param>
+        </member>
+        <member name="M:DoNetDrive.Protocol.USB.CardReader.Write_Command.CommandNext1(DoNetDrive.Protocol.USBDrive.USBDrivePacket)">
+            <summary>
+            命令返回值的判断<br/>
+            【应答：OK】 => 父类已处理
+            </summary>
+            <param name="oPck">包含返回指令的Packet</param>
         </member>
     </members>
 </doc>

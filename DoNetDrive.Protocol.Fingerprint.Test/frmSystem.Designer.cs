@@ -263,6 +263,11 @@
             this.txtServerIP_1 = new System.Windows.Forms.TextBox();
             this.lblServerPort_1 = new System.Windows.Forms.Label();
             this.txtServerPort_1 = new System.Windows.Forms.TextBox();
+            this.gb4GModule = new System.Windows.Forms.GroupBox();
+            this.btnWrite4GModuleStatus = new System.Windows.Forms.Button();
+            this.btnRead4GModuleStatus = new System.Windows.Forms.Button();
+            this.lbl4GModuleStatus = new System.Windows.Forms.Label();
+            this.cmb4GModule = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tpPar1.SuspendLayout();
             this.gbWatch.SuspendLayout();
@@ -297,6 +302,7 @@
             this.tpNetwork.SuspendLayout();
             this.gbClientDetail.SuspendLayout();
             this.gbServerDetail.SuspendLayout();
+            this.gb4GModule.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -315,6 +321,7 @@
             // 
             // tpPar1
             // 
+            this.tpPar1.Controls.Add(this.gb4GModule);
             this.tpPar1.Controls.Add(this.butRestart);
             this.tpPar1.Controls.Add(this.BtnFormatController);
             this.tpPar1.Controls.Add(this.gbWatch);
@@ -693,7 +700,7 @@
             this.gbTCP.Controls.Add(this.lblMAC);
             this.gbTCP.Location = new System.Drawing.Point(6, 87);
             this.gbTCP.Name = "gbTCP";
-            this.gbTCP.Size = new System.Drawing.Size(265, 408);
+            this.gbTCP.Size = new System.Drawing.Size(265, 359);
             this.gbTCP.TabIndex = 4;
             this.gbTCP.TabStop = false;
             this.gbTCP.Text = "TCP/IP 连接参数";
@@ -871,7 +878,7 @@
             // 
             // butWriteTCPSetting
             // 
-            this.butWriteTCPSetting.Location = new System.Drawing.Point(152, 350);
+            this.butWriteTCPSetting.Location = new System.Drawing.Point(136, 324);
             this.butWriteTCPSetting.Name = "butWriteTCPSetting";
             this.butWriteTCPSetting.Size = new System.Drawing.Size(48, 23);
             this.butWriteTCPSetting.TabIndex = 3;
@@ -881,7 +888,7 @@
             // 
             // butRendTCPSetting
             // 
-            this.butRendTCPSetting.Location = new System.Drawing.Point(96, 350);
+            this.butRendTCPSetting.Location = new System.Drawing.Point(80, 324);
             this.butRendTCPSetting.Name = "butRendTCPSetting";
             this.butRendTCPSetting.Size = new System.Drawing.Size(48, 23);
             this.butRendTCPSetting.TabIndex = 2;
@@ -2766,6 +2773,57 @@
             this.txtServerPort_1.TabIndex = 0;
             this.txtServerPort_1.Text = "9000";
             // 
+            // gb4GModule
+            // 
+            this.gb4GModule.Controls.Add(this.cmb4GModule);
+            this.gb4GModule.Controls.Add(this.btnWrite4GModuleStatus);
+            this.gb4GModule.Controls.Add(this.btnRead4GModuleStatus);
+            this.gb4GModule.Controls.Add(this.lbl4GModuleStatus);
+            this.gb4GModule.Location = new System.Drawing.Point(3, 452);
+            this.gb4GModule.Name = "gb4GModule";
+            this.gb4GModule.Size = new System.Drawing.Size(268, 75);
+            this.gb4GModule.TabIndex = 74;
+            this.gb4GModule.TabStop = false;
+            this.gb4GModule.Text = "4G模块状态";
+            // 
+            // btnWrite4GModuleStatus
+            // 
+            this.btnWrite4GModuleStatus.Location = new System.Drawing.Point(137, 44);
+            this.btnWrite4GModuleStatus.Name = "btnWrite4GModuleStatus";
+            this.btnWrite4GModuleStatus.Size = new System.Drawing.Size(48, 23);
+            this.btnWrite4GModuleStatus.TabIndex = 3;
+            this.btnWrite4GModuleStatus.Text = "写入";
+            this.btnWrite4GModuleStatus.UseVisualStyleBackColor = true;
+            this.btnWrite4GModuleStatus.Click += new System.EventHandler(this.btnWrite4GModuleStatus_Click);
+            // 
+            // btnRead4GModuleStatus
+            // 
+            this.btnRead4GModuleStatus.Location = new System.Drawing.Point(83, 44);
+            this.btnRead4GModuleStatus.Name = "btnRead4GModuleStatus";
+            this.btnRead4GModuleStatus.Size = new System.Drawing.Size(48, 23);
+            this.btnRead4GModuleStatus.TabIndex = 2;
+            this.btnRead4GModuleStatus.Text = "读取";
+            this.btnRead4GModuleStatus.UseVisualStyleBackColor = true;
+            this.btnRead4GModuleStatus.Click += new System.EventHandler(this.btnRead4GModuleStatus_Click);
+            // 
+            // lbl4GModuleStatus
+            // 
+            this.lbl4GModuleStatus.Location = new System.Drawing.Point(0, 22);
+            this.lbl4GModuleStatus.Name = "lbl4GModuleStatus";
+            this.lbl4GModuleStatus.Size = new System.Drawing.Size(57, 12);
+            this.lbl4GModuleStatus.TabIndex = 0;
+            this.lbl4GModuleStatus.Text = "状态：";
+            this.lbl4GModuleStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmb4GModule
+            // 
+            this.cmb4GModule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb4GModule.FormattingEnabled = true;
+            this.cmb4GModule.Location = new System.Drawing.Point(63, 18);
+            this.cmb4GModule.Name = "cmb4GModule";
+            this.cmb4GModule.Size = new System.Drawing.Size(172, 20);
+            this.cmb4GModule.TabIndex = 30;
+            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2830,6 +2888,7 @@
             this.gbClientDetail.PerformLayout();
             this.gbServerDetail.ResumeLayout(false);
             this.gbServerDetail.PerformLayout();
+            this.gb4GModule.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -3071,5 +3130,10 @@
         private System.Windows.Forms.Button btnSendCMD_EnterSleep;
         private System.Windows.Forms.Button btnSendCMD_BeginAttendance;
         private System.Windows.Forms.Button btnSendCMD_BroadcastVoice;
+        private System.Windows.Forms.GroupBox gb4GModule;
+        private System.Windows.Forms.ComboBox cmb4GModule;
+        private System.Windows.Forms.Button btnWrite4GModuleStatus;
+        private System.Windows.Forms.Button btnRead4GModuleStatus;
+        private System.Windows.Forms.Label lbl4GModuleStatus;
     }
 }

@@ -23,6 +23,7 @@ namespace DoNetDrive.Protocol.USB.CardReader.Watch
         /// 6--CPU卡 <para/>
         /// 7--MF1 IC卡 S70 <para/>
         /// 8--CPU IC卡 S70 <para/>
+        /// 9--EM ID卡<para/>
         /// </summary>
         public int CardType;
 

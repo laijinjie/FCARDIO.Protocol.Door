@@ -16,7 +16,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Elevator
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">远程操作的继电器端口列表</param>
-        public OpenRelay(INCommandDetail cd, RemoteRelay_Patameter par) : base(cd, par) { }
+        public OpenRelay(INCommandDetail cd, RemoteRelay_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 检查命令参数
@@ -25,7 +25,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Elevator
         /// <returns></returns>
         protected override bool CheckCommandParameter(INCommandParameter value)
         {
-            var model = value as RemoteRelay_Patameter;
+            var model = value as RemoteRelay_Parameter;
             if (model == null)
             {
                 return false;
@@ -50,7 +50,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Elevator
         /// </summary>
         protected override void CreatePacket0()
         {
-            var model = _Parameter as RemoteRelay_Patameter;
+            var model = _Parameter as RemoteRelay_Parameter;
 
             Packet(3, RemoteCommandCode(), RemoteCommandPar(), (uint)model.GetDataLen(), model.GetBytes(GetNewCmdDataBuf(model.GetDataLen())));
         }

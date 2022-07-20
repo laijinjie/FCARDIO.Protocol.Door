@@ -181,7 +181,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             mMarkReadIndex = (int)transactionDetail.ReadIndex;
 
             _ReadTransactionCommand.PacketSize = model.PacketSize;
-            _ReadTransactionCommand.RollbackWriteReadIndex = true;
+            _ReadTransactionCommand.RollbackWriteReadIndex = model.RollbackWriteReadIndex;
             if (transactionDetail.readable() > 0)
             {
                 _ReadTransactionCommand.BeginRead(1, transactionDetail, model.Quantity);
@@ -238,7 +238,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             if (RecordDTL != mTransactionDetailList[0])
                 mTransactionDetailList[0].ReadIndex = RecordDTL.ReadIndex;
             mCardRecord_ReadIndex = (int)RecordDTL.ReadIndex;
-            WriteTransactionReadIndex(1, mMarkReadIndex);//还原上传断点为备份断点
+            var model = _Parameter as ReadTransactionAndImageDatabase_Parameter;
+            if(model.RollbackWriteReadIndex)
+                WriteTransactionReadIndex(1, mMarkReadIndex);//还原上传断点为备份断点
+            else
+                BeginReadBodyTemperature();
         }
 
         #region 读取体温记录
@@ -265,7 +269,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
                     var model = _Parameter as ReadTransactionAndImageDatabase_Parameter;
                     _ReadTransactionCommand = new ReadTransactionDatabaseSubCommand<BodyTemperatureTransaction>(this);
                     _ReadTransactionCommand.PacketSize = model.PacketSize;
-                    _ReadTransactionCommand.RollbackWriteReadIndex = true;
+                    _ReadTransactionCommand.RollbackWriteReadIndex = model.RollbackWriteReadIndex;
                     //开始读取体温记录
                     _ReadTransactionCommand.BeginRead(4,
                         tr as TransactionDetail, _TransactionList.Count);
@@ -335,7 +339,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             {
                 if (iBTMaxNum != mCardRecord_ReadIndex)
                 {
-                    _ReadTransactionCommand.RollbackWriteReadIndex = false;
+                    var model = _Parameter as ReadTransactionAndImageDatabase_Parameter;
+                    _ReadTransactionCommand.RollbackWriteReadIndex = model.RollbackWriteReadIndex;
                     //体温记录中的序号，没有超过或等于记录序号，需要继续读取
                     _ReadTransactionCommand.BeginRead(4, BT_Dtl, _TransactionList.Count);
                     CommandReady();
@@ -358,8 +363,12 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
             _ReadTransactionCommand = null;
 
             mStep = 5;
-            WriteTransactionReadIndex(4, mMarkReadIndex);
-            CommandReady();
+
+            var model = _Parameter as ReadTransactionAndImageDatabase_Parameter;
+            if (model.RollbackWriteReadIndex)
+                WriteTransactionReadIndex(4, mMarkReadIndex);
+            else
+                BeginReadImageFile();
         }
         #endregion
 

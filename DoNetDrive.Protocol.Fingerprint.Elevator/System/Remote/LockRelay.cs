@@ -20,7 +20,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Elevator
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
         /// <param name="par">远程操作的继电器端口列表</param>
-        public LockRelay(INCommandDetail cd, RemoteRelay_Patameter par) : base(cd, par) { }
+        public LockRelay(INCommandDetail cd, RemoteRelay_Parameter par) : base(cd, par) { }
 
         /// <summary>
         /// 远程操作的命令代码

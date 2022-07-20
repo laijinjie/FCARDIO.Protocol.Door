@@ -10,7 +10,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Elevator
     /// <summary>
     /// 远程操作时的继电器列表参数
     /// </summary>
-    public class RemoteRelay_Patameter : AbstractParameter
+    public class RemoteRelay_Parameter : AbstractParameter
     {
         /// <summary>
         /// 继电器列表，固定64个元素，每个元素代表一个继电器类型
@@ -24,7 +24,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Elevator
         /// <summary>
         /// 创建远程操作时的继电器列表参数
         /// </summary>
-        public RemoteRelay_Patameter()
+        public RemoteRelay_Parameter()
         {
             Relays = new List<byte>(64);
         }

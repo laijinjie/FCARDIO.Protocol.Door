@@ -16,6 +16,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
     public class ReadTransactionAndImageDatabase_Parameter : AbstractParameter
     {
         /// <summary>
+        /// 自动回滚读索引（适用于人脸机固件版本小于V4.41）
+        /// </summary>
+        public bool RollbackWriteReadIndex;
+
+        /// <summary>
         /// 自动更新读索引（上传断点）
         /// </summary>
         public bool AutoWriteReadIndex;
@@ -56,8 +61,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// </summary>
         /// <param name="type">取值范围 1-6</param>
         /// <param name="_Quantity">读取数量 1 - 50</param>
-        public ReadTransactionAndImageDatabase_Parameter(int _Quantity,bool savetoFile, string _SaveImageDirectory)
+        public ReadTransactionAndImageDatabase_Parameter(int _Quantity, bool savetoFile, string _SaveImageDirectory)
         {
+            RollbackWriteReadIndex = false;
             AutoWriteReadIndex = true;
             AutoDownloadImage = true;
             PacketSize = 60;
@@ -73,7 +79,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if(PhotoSaveToFile)
+            if (PhotoSaveToFile)
             {
                 if (string.IsNullOrEmpty(SaveImageDirectory))
                 {
@@ -84,7 +90,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
                     throw new ArgumentException("SaveImagePath Error!");
                 }
             }
-            
+
             if (PacketSize < 1 || PacketSize > 60)
             {
                 PacketSize = 60;

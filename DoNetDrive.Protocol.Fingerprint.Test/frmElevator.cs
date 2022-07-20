@@ -334,9 +334,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         #region 远程操作
 
-        private RemoteRelay_Patameter GetRelayList()
+        private RemoteRelay_Parameter GetRelayList()
         {
-            RemoteRelay_Patameter par = new RemoteRelay_Patameter();
+            RemoteRelay_Parameter par = new RemoteRelay_Parameter();
             var Relays = par.Relays;
             for (int i = 0; i < 64; i++)
             {
@@ -351,7 +351,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         }
 
 
-        private void RemoteCommand<T>(Func<INCommandDetail, RemoteRelay_Patameter,T> createObject) where T :  OpenRelay
+        private void RemoteCommand<T>(Func<INCommandDetail, RemoteRelay_Parameter,T> createObject) where T :  OpenRelay
         {
 
             var cmdDtl = mMainForm.GetCommandDetail();
