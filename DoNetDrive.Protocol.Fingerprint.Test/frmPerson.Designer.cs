@@ -119,8 +119,6 @@
             this.butSelectImage = new System.Windows.Forms.Button();
             this.btnAddPesonAndImage = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.BtnPersonExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgPersonList)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -131,7 +129,6 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUpload)).BeginInit();
             this.panel1.SuspendLayout();
-            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgPersonList
@@ -358,7 +355,6 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(12, 295);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -403,6 +399,7 @@
             this.button4.TabIndex = 4;
             this.button4.Text = "导入";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // btnDelDevice
             // 
@@ -422,6 +419,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "导出";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // btnAddDevice
             // 
@@ -1032,27 +1030,6 @@
             this.panel1.Size = new System.Drawing.Size(793, 727);
             this.panel1.TabIndex = 9;
             // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.BtnPersonExport);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(768, 406);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "导出表格人事资料";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // BtnPersonExport
-            // 
-            this.BtnPersonExport.Location = new System.Drawing.Point(38, 27);
-            this.BtnPersonExport.Name = "BtnPersonExport";
-            this.BtnPersonExport.Size = new System.Drawing.Size(75, 23);
-            this.BtnPersonExport.TabIndex = 0;
-            this.BtnPersonExport.Text = "导出";
-            this.BtnPersonExport.UseVisualStyleBackColor = true;
-            this.BtnPersonExport.Click += new System.EventHandler(this.BtnPersonExport_Click);
-            // 
             // frmPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1077,7 +1054,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picUpload)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1175,7 +1151,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Button BtnPersonExport;
     }
 }

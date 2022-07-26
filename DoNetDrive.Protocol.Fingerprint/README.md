@@ -70,3 +70,9 @@ mAllocator.Dispose();
 ### ver 2.08.0
 
 修复命令 WriteFaceDevice4GModuleStatus 执行会报错的bug
+
+
+
+### ver 2.09.0
+
+修复命令参数 WriteLocalIdentity_Parameter 使用了错误的字符集导致报错的bug

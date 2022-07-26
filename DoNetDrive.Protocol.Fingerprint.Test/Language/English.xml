@@ -882,6 +882,7 @@
 		<Person_UI_9                        value="Valid entry" />
 		<Person_UI_10                        value="Valid exit" />
 		<Person_UI_11                        value="Valid access" />
+		<Export_TitleCol value="User ID\t,User No.\t,User Name\t,Dept\t,Position\t,Card No.\t,Password\t,Face Number\t,Fingerprint Number"/>
 	</frmPerson>
 	<frmRecord>
 		<FormCaption                        value="Record operation" />

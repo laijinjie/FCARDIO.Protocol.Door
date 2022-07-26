@@ -20,6 +20,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "USB发卡器", "USB发卡器", "{7924553C-B3A7-491C-AD0F-53C4D1A2DEA4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "人脸机指纹机", "人脸机指纹机", "{42ED4DEA-B75F-4621-B8DC-1296D0E354A0}"
+	ProjectSection(SolutionItems) = preProject
+		DoNetDrive.Protocol.Fingerprint\README.md = DoNetDrive.Protocol.Fingerprint\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "消费机", "消费机", "{C84B0DCC-9E18-4081-AA50-89974692B09C}"
 EndProject

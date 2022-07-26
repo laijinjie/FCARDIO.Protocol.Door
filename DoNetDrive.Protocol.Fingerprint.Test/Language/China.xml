@@ -264,7 +264,7 @@
 
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceDevice4GModuleStatus    value ="读取4G网络模块开关"    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceDevice4GModuleStatus    value ="设置4G网络模块开关"    />
-		
+
 		<btlToolLift                        value="电梯模块" />
 		<butSearch value ="搜索设备"/>
 		<tabDevice value ="设备列表"/>
@@ -886,6 +886,7 @@
 		<Person_UI_9                        value="入有效" />
 		<Person_UI_10                        value="出有效" />
 		<Person_UI_11                        value="出入有效" />
+		<Export_TitleCol  value="用户号\t,人员编号\t,人员姓名\t,人员部门\t,人员职务\t,卡号\t,密码\t,人脸\t,指纹"/>
 	</frmPerson>
 	<frmRecord>
 		<FormCaption                        value="记录操作" />

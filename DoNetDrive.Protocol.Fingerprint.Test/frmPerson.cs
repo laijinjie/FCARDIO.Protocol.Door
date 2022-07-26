@@ -860,48 +860,53 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         }
 
-        private void BtnPersonExport_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            // var path = string.Empty;
-            saveFileDialog.Filter = "Excel|*.csv;";
-            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+            var outFileDialog = new SaveFileDialog();
+            outFileDialog.Filter = "Excel|*.csv;";
+            if (outFileDialog.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
-            if (dgPersonList.Rows.Count == 0)
+            var filePath = outFileDialog.FileName;
+            StringBuilder sBuf = new StringBuilder(1024);
+            string sTitleCol = Lng("Export_TitleCol");
+            sTitleCol = sTitleCol.Replace("\\t", "\t");
+            sBuf.AppendLine(sTitleCol);//用户号\t,人员编号\t,人员姓名\t,人员部门\t,人员职务\t,卡号\t,密码\t,人脸\t,指纹
+            foreach (var item in PersonList)
             {
-                MessageBox.Show("请先读取所有用户");
+                sBuf.Append(item.UserCode).Append("\t,");
+                sBuf.Append(item.PCode).Append("\t,");
+                sBuf.Append(item.PName).Append("\t,");
+                sBuf.Append(item.Dept).Append("\t,");
+                sBuf.Append(item.Job).Append("\t,");
+                sBuf.Append(item.CardData).Append("\t,");
+                sBuf.Append(item.Password).Append("\t,");
+                sBuf.Append(item.IsFaceFeature).Append("\t,");
+                sBuf.Append(item.FingerprintCount).Append("\t");
+                sBuf.AppendLine();
+
+                //sBuf.AppendLine(item.UserCode + "," + item.PCode + "," + item.PName + ","
+                //    + item.Dept + "," + item.Job + "," + item.CardData + ","
+                //    + item.Password + "," + item.IsFaceFeature + "," + item.FingerprintCount);
+                
+            }
+            try
+            {
+                File.WriteAllText(filePath, sBuf.ToString());
+            }
+            catch (Exception ex)
+            {
+
+                MsgErr(ex.Message);
                 return;
             }
-            StringBuilder csv = new StringBuilder();
-            csv.AppendLine("用户号,人员姓名,人员编号,人员部门,人员职务,卡号,密码");
-            foreach (DataGridViewRow item in dgPersonList.Rows)
-            {
-                // var cell = 1;
-                for (int i = 1; i < 8; i++)
-                {
-                    if (i == 6)
-                    {
-                        var card = item.Cells[i].Value.ToString().Substring(0, 20);
-                        if(long.TryParse(card,out var cardData))
-                        {
-                            csv.Append(cardData + "\t,");
-                        }
-                        else
-                        {
-                            csv.Append("\t,");
-                        }
-                    }
-                    else
-                    {
-                        csv.Append(item.Cells[i].Value + "\t,");
-                    }
-                }
-                csv.Length -= 1;
-                csv.AppendLine();
-            }
-            File.WriteAllText(saveFileDialog.FileName, csv.ToString());
+            
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

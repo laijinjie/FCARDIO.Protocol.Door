@@ -64,7 +64,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
             {
                 return false;
             }
-            if (!string.IsNullOrEmpty(LocalName) && Encoding.GetEncoding("GBK").GetBytes(LocalName).Length > 60)
+            if (!string.IsNullOrEmpty(LocalName) && StringEncoding.GetBytes(LocalName).Length > 60)
             {
                 return false;
             }
