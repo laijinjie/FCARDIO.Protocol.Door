@@ -57,7 +57,7 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter.OEM
             }
             Util.StringUtil.WriteString(databuf, Manufacturer, 60, StringEncoding);
             Util.StringUtil.WriteString(databuf, WebAddr, 60, StringEncoding);
-            DoNetDrive.Protocol.Util.StringUtil.HextoByteBuf(DeliveryDate.ToString("yyyyMMddhhmmss"), databuf);
+            DoNetDrive.Protocol.Util.StringUtil.HextoByteBuf(DeliveryDate.ToString("yyyyMMddHHmmss"), databuf);
             return databuf;
         }
 

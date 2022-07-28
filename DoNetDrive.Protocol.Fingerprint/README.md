@@ -76,3 +76,7 @@ mAllocator.Dispose();
 ### ver 2.09.0
 
 修复命令参数 WriteLocalIdentity_Parameter 使用了错误的字符集导致报错的bug
+
+### ver 2.10.0
+
+修复WriteOEM命令将设备生产日期错误设置为12H制的问题
