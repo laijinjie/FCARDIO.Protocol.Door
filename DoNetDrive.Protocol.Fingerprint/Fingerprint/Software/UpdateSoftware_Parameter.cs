@@ -28,11 +28,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
         /// </summary>
         public int WaitVerifyTime;
 
+
+        /// <summary>
+        /// 跳过超时的数据包
+        /// </summary>
+        public bool SkipTimeoutPacket = false;
+
         /// <summary>
         /// 初始化参数
         /// </summary>
         /// <param name="datas">固件文件</param>
-        public UpdateSoftware_Parameter( byte[] datas,uint crc)
+        public UpdateSoftware_Parameter(byte[] datas, uint crc)
         {
 
             WaitVerifyTime = 8000;
@@ -46,7 +52,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (Datas == null || Datas.Length == 0 )
+            if (Datas == null || Datas.Length == 0)
             {
                 return false;
             }

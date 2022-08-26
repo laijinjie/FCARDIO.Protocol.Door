@@ -73,6 +73,17 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
             return p.checkedParameter();
         }
 
+        /// <summary>
+        /// 命令重发时，如果参数允许跳过重发帧，则直接跳过
+        /// </summary>
+        protected override void CommandReSend()
+        {
+            if(_Step == 1 && mPar.SkipTimeoutPacket)
+            {
+                BeginWriteSoftware();
+                mResult.SkipPacketCount++;
+            }
+        }
 
         /// <summary>
         /// 检查返回值
@@ -114,6 +125,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
         {
             if (CheckResponse_OK(oPck))
             {
+                mResult.SkipPacketCount = 0;
+
                 var data = mPar.Datas;
                 var iPackSize = 1024;
                 if (iPackSize > data.Length) iPackSize = data.Length;
@@ -138,34 +151,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
         {
             if (CheckResponse(oPck, 0x0A, 0x12, 0))
             {
-                var data = mPar.Datas;
-                var iPackSize = 1024;
-
-                _WriteIndex += iPackSize;
-                _ProcessStep += iPackSize;
-
-                var iFileLen = data.Length;
-                var iDataLen = iFileLen - _WriteIndex;
-                var buf = GetCmdBuf();
-                if (iDataLen > iPackSize) iDataLen = iPackSize;
-                if (iDataLen <= 0)
-                {
-                    _ProcessStep = _ProcessMax;
-                    var crc32 = mPar.SoftwareCRC32;
-                    CommandDetail.Timeout = mPar.WaitVerifyTime;
-                    buf.WriteInt((int)crc32);
-                    DoorPacket.CmdIndex = 0x13;
-                    DoorPacket.DataLen = 4;
-                    _Step = 2;
-                }
-                else
-                {
-                    //Trace.WriteLine($"{DateTime.Now:mm:ss.fff} 发送包索引：{_WriteIndex}");
-
-                    buf.WriteInt(_WriteIndex);
-                    buf.WriteBytes(data, _WriteIndex, iDataLen);
-                    DoorPacket.DataLen = buf.ReadableBytes;
-                }
+                BeginWriteSoftware();
                 CommandReady();
             }
             else if (CheckResponse(oPck, 0x0A, 0x12, 2))
@@ -173,6 +159,39 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
                 mResult.Success = 255;
                 CommandCompleted();
             }
+        }
+
+        private void BeginWriteSoftware()
+        {
+            var data = mPar.Datas;
+            var iPackSize = 1024;
+
+            _WriteIndex += iPackSize;
+            _ProcessStep += iPackSize;
+
+            var iFileLen = data.Length;
+            var iDataLen = iFileLen - _WriteIndex;
+            var buf = GetCmdBuf();
+            if (iDataLen > iPackSize) iDataLen = iPackSize;
+            if (iDataLen <= 0)
+            {
+                _ProcessStep = _ProcessMax;
+                var crc32 = mPar.SoftwareCRC32;
+                CommandDetail.Timeout = mPar.WaitVerifyTime;
+                buf.WriteInt((int)crc32);
+                DoorPacket.CmdIndex = 0x13;
+                DoorPacket.DataLen = 4;
+                _Step = 2;
+            }
+            else
+            {
+                //Trace.WriteLine($"{DateTime.Now:mm:ss.fff} 发送包索引：{_WriteIndex}");
+
+                buf.WriteInt(_WriteIndex);
+                buf.WriteBytes(data, _WriteIndex, iDataLen);
+                DoorPacket.DataLen = buf.ReadableBytes;
+            }
+            
         }
     }
 }

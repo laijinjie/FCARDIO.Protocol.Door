@@ -21,6 +21,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Software
         /// </summary>
         public byte Success;
 
+        /// <summary>
+        /// 跳过的数据包数量
+        /// </summary>
+        public int SkipPacketCount { get; internal set; }
+
         public void Dispose()
         {
 

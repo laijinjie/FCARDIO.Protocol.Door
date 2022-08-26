@@ -16,3 +16,10 @@
 ### Ver 2.04
 修改 RemoteRelay_Patameter 类的类名单词拼写错误，改为 RemoteRelay_Parameter；
 
+
+### ver 2.05.0
+
+> 更新依赖关系  
+- DoNetDrive.Protocol.Door Version="2.7.0"
+- DoNetDrive.Core Version="2.9.0
+

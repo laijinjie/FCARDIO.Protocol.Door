@@ -3,7 +3,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<Version>2.06.0</Version>
+		<Version>2.07.0</Version>
 		<RootNamespace>DoNetDrive.Protocol.Door</RootNamespace>
 		<AssemblyName>DoNetDrive.Protocol.Door</AssemblyName>
 
@@ -44,7 +44,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="DoNetDrive.Common" Version="1.16.0" />
-		<PackageReference Include="DoNetDrive.Core" Version="2.7.0" />
+		<PackageReference Include="DoNetDrive.Core" Version="2.9.0" />
 		<PackageReference Include="DoNetDrive.Protocol" Version="2.3.0" />
 		<PackageReference Include="DoNetDrive.Protocol.Util" Version="1.16.0" />
 		<PackageReference Include="DotNetty.Common" Version="0.7.0" />

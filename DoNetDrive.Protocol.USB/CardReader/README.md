@@ -51,3 +51,10 @@ mAllocator.Dispose();
 ### Ver 1.17
 
 增加EMID卡类型
+
+
+
+### Ver 1.18
+
+> 更新依赖关系  
+- DoNetDrive.Core Version="2.9.0"

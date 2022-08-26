@@ -80,3 +80,14 @@ mAllocator.Dispose();
 ### ver 2.10.0
 
 修复WriteOEM命令将设备生产日期错误设置为12H制的问题
+
+### ver 2.11.0
+
+> 更新依赖关系  
+- DoNetDrive.Protocol.Door Version="2.7.0"
+- DoNetDrive.Core Version="2.9.0"
+
+### ver 2.12.0
+
+> 为解决<6.0的人脸机老版本固件升级丢包重发后会导致固件升级失败问题，
+UpdateSoftware_Parameter 增加了 SkipTimeoutPacket 可以设置命令不重发数据包。

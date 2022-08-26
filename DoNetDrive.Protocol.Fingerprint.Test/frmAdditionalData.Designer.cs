@@ -34,6 +34,7 @@
             this.butUploadFolder = new System.Windows.Forms.Button();
             this.butUploadImage = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnSaveBase64ToBin = new System.Windows.Forms.Button();
             this.txtCodeData = new System.Windows.Forms.TextBox();
             this.Lbl_CodeData = new System.Windows.Forms.Label();
             this.btnUploadCode = new System.Windows.Forms.Button();
@@ -60,7 +61,7 @@
             this.butUpdateSoftware = new System.Windows.Forms.Button();
             this.cmbEquptType = new System.Windows.Forms.ComboBox();
             this.Lbl_EquptType = new System.Windows.Forms.Label();
-            this.btnSaveBase64ToBin = new System.Windows.Forms.Button();
+            this.chkSkipTimeoutPacket = new System.Windows.Forms.CheckBox();
             this.gpUpload.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -102,7 +103,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(579, 185);
+            this.tabPage2.Size = new System.Drawing.Size(579, 197);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "照片";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -142,6 +143,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "特征码";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveBase64ToBin
+            // 
+            this.btnSaveBase64ToBin.Location = new System.Drawing.Point(15, 172);
+            this.btnSaveBase64ToBin.Name = "btnSaveBase64ToBin";
+            this.btnSaveBase64ToBin.Size = new System.Drawing.Size(142, 23);
+            this.btnSaveBase64ToBin.TabIndex = 17;
+            this.btnSaveBase64ToBin.Text = "保存到bin文件";
+            this.btnSaveBase64ToBin.UseVisualStyleBackColor = true;
+            this.btnSaveBase64ToBin.Click += new System.EventHandler(this.btnSaveBase64ToBin_Click);
             // 
             // txtCodeData
             // 
@@ -348,6 +359,7 @@
             // 
             // gpUpdateSoftware
             // 
+            this.gpUpdateSoftware.Controls.Add(this.chkSkipTimeoutPacket);
             this.gpUpdateSoftware.Controls.Add(this.chkFaceSoftware);
             this.gpUpdateSoftware.Controls.Add(this.butUpdateSoftware);
             this.gpUpdateSoftware.Controls.Add(this.cmbEquptType);
@@ -399,15 +411,17 @@
             this.Lbl_EquptType.TabIndex = 7;
             this.Lbl_EquptType.Text = "设备类型：";
             // 
-            // btnSaveBase64ToBin
+            // chkSkipTimeoutPacket
             // 
-            this.btnSaveBase64ToBin.Location = new System.Drawing.Point(15, 172);
-            this.btnSaveBase64ToBin.Name = "btnSaveBase64ToBin";
-            this.btnSaveBase64ToBin.Size = new System.Drawing.Size(142, 23);
-            this.btnSaveBase64ToBin.TabIndex = 17;
-            this.btnSaveBase64ToBin.Text = "保存到bin文件";
-            this.btnSaveBase64ToBin.UseVisualStyleBackColor = true;
-            this.btnSaveBase64ToBin.Click += new System.EventHandler(this.btnSaveBase64ToBin_Click);
+            this.chkSkipTimeoutPacket.AutoSize = true;
+            this.chkSkipTimeoutPacket.Checked = true;
+            this.chkSkipTimeoutPacket.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSkipTimeoutPacket.Location = new System.Drawing.Point(402, 13);
+            this.chkSkipTimeoutPacket.Name = "chkSkipTimeoutPacket";
+            this.chkSkipTimeoutPacket.Size = new System.Drawing.Size(72, 16);
+            this.chkSkipTimeoutPacket.TabIndex = 14;
+            this.chkSkipTimeoutPacket.Text = "忽略超时";
+            this.chkSkipTimeoutPacket.UseVisualStyleBackColor = true;
             // 
             // frmAdditionalData
             // 
@@ -469,5 +483,6 @@
         private System.Windows.Forms.Button butUploadFolder;
         private System.Windows.Forms.CheckBox chkFaceSoftware;
         private System.Windows.Forms.Button btnSaveBase64ToBin;
+        private System.Windows.Forms.CheckBox chkSkipTimeoutPacket;
     }
 }

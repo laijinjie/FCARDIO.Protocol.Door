@@ -7,10 +7,10 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "DoNetDrive.Protocol.Elevator/1.16.0": {
+      "DoNetDrive.Protocol.Elevator/1.17.0": {
         "dependencies": {
-          "DoNetDrive.Core": "2.7.0",
-          "DoNetDrive.Protocol.Door": "2.6.0",
+          "DoNetDrive.Core": "2.9.0",
+          "DoNetDrive.Protocol.Door": "2.7.0",
           "NETStandard.Library": "2.0.3"
         },
         "runtime": {
@@ -28,7 +28,7 @@
           }
         }
       },
-      "DoNetDrive.Core/2.7.0": {
+      "DoNetDrive.Core/2.9.0": {
         "dependencies": {
           "DotNetty.Buffers": "0.7.0",
           "DotNetty.Common": "0.7.0",
@@ -36,31 +36,31 @@
         },
         "runtime": {
           "lib/netstandard2.0/DoNetDrive.Core.dll": {
-            "assemblyVersion": "2.7.0.0",
-            "fileVersion": "2.7.0.0"
+            "assemblyVersion": "2.9.0.0",
+            "fileVersion": "2.9.0.0"
           }
         }
       },
-      "DoNetDrive.Protocol/2.2.0": {
+      "DoNetDrive.Protocol/2.3.0": {
         "dependencies": {
           "DoNetDrive.Common": "1.16.0",
-          "DoNetDrive.Core": "2.7.0",
+          "DoNetDrive.Core": "2.9.0",
           "DoNetDrive.Protocol.Util": "1.16.0",
           "DotNetty.Buffers": "0.7.0",
           "DotNetty.Common": "0.7.0"
         },
         "runtime": {
           "lib/netstandard2.0/DoNetDrive.Protocol.dll": {
-            "assemblyVersion": "2.2.0.0",
-            "fileVersion": "2.2.0.0"
+            "assemblyVersion": "2.3.0.0",
+            "fileVersion": "2.3.0.0"
           }
         }
       },
-      "DoNetDrive.Protocol.Door/2.6.0": {
+      "DoNetDrive.Protocol.Door/2.7.0": {
         "dependencies": {
           "DoNetDrive.Common": "1.16.0",
-          "DoNetDrive.Core": "2.7.0",
-          "DoNetDrive.Protocol": "2.2.0",
+          "DoNetDrive.Core": "2.9.0",
+          "DoNetDrive.Protocol": "2.3.0",
           "DoNetDrive.Protocol.Util": "1.16.0",
           "DotNetty.Buffers": "0.7.0",
           "DotNetty.Common": "0.7.0",
@@ -68,8 +68,8 @@
         },
         "runtime": {
           "lib/netstandard2.0/DoNetDrive.Protocol.Door.dll": {
-            "assemblyVersion": "2.6.0.0",
-            "fileVersion": "2.6.0.0"
+            "assemblyVersion": "2.7.0.0",
+            "fileVersion": "2.7.0.0"
           }
         }
       },
@@ -278,7 +278,7 @@
     }
   },
   "libraries": {
-    "DoNetDrive.Protocol.Elevator/1.16.0": {
+    "DoNetDrive.Protocol.Elevator/1.17.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -290,26 +290,26 @@
       "path": "donetdrive.common/1.16.0",
       "hashPath": "donetdrive.common.1.16.0.nupkg.sha512"
     },
-    "DoNetDrive.Core/2.7.0": {
+    "DoNetDrive.Core/2.9.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pNNVQEBJTDqj1FaXU7EKtFH99b+9uapTl1FkwZoXCsTTJncTgviQWQc9BNZtDztsF5LGcmdMAhYaU9C/OWBiAQ==",
-      "path": "donetdrive.core/2.7.0",
-      "hashPath": "donetdrive.core.2.7.0.nupkg.sha512"
+      "sha512": "sha512-r9XPVXeTQ56QsfPeiEGYCwXSrzFk+wnjjGz4F0QsAkDjCHbT282QwUW2MMbJSduHF8HsUegrwVb4b3SFJjQk1g==",
+      "path": "donetdrive.core/2.9.0",
+      "hashPath": "donetdrive.core.2.9.0.nupkg.sha512"
     },
-    "DoNetDrive.Protocol/2.2.0": {
+    "DoNetDrive.Protocol/2.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CY4RuzFWw2DibI4xaBBADscKglwt4CBLih6PHk/PiWxTRdWcJ7/CiWqhOMSAGhPvk2/IV8alqRFg4k2sN9RD3g==",
-      "path": "donetdrive.protocol/2.2.0",
-      "hashPath": "donetdrive.protocol.2.2.0.nupkg.sha512"
+      "sha512": "sha512-riFQZgdzOFrkDzsJZZvmVrUCJHYwpZFpSFvCwDO2lW0Zv2fuCKkSBS3+vi1C/YRuWqfLWUfGK/tuaMzFZizHlg==",
+      "path": "donetdrive.protocol/2.3.0",
+      "hashPath": "donetdrive.protocol.2.3.0.nupkg.sha512"
     },
-    "DoNetDrive.Protocol.Door/2.6.0": {
+    "DoNetDrive.Protocol.Door/2.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-yUNxS0yUclvuvnty4IJLJmJ8USuYEgrVEHEY2/fJJnpayUXv5wEGtAGIvRf9jVRygFLiCI1SdrSCudEY+M6zkA==",
-      "path": "donetdrive.protocol.door/2.6.0",
-      "hashPath": "donetdrive.protocol.door.2.6.0.nupkg.sha512"
+      "sha512": "sha512-wWGjC2j0N74j2fVype8Zl3xJtHS/byBqz83/68ZYPYfg/XBxq9eoJGb8XEEiWx4pdRqnRAlWJmcOfNUvLvR1yA==",
+      "path": "donetdrive.protocol.door/2.7.0",
+      "hashPath": "donetdrive.protocol.door.2.7.0.nupkg.sha512"
     },
     "DoNetDrive.Protocol.Util/1.16.0": {
       "type": "package",

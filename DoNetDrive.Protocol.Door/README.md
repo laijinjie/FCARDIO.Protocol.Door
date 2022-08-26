@@ -61,3 +61,7 @@ mAllocator.Dispose();
 
 ###  ver 2.06.0
 修改设备SN检查函数，增加支持SN中带有小写字母
+
+
+###  ver 2.07.0
+更新 DoNetDrive.Core 的依赖版本到 v2.09

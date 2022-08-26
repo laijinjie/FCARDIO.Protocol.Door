@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.16.0</Version>
+    <Version>1.17.0</Version>
     <RootNamespace>DoNetDrive.Protocol.Elevator</RootNamespace>
     <AssemblyName>DoNetDrive.Protocol.Elevator</AssemblyName>
 
@@ -60,8 +60,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DoNetDrive.Core" Version="2.7.0" />
-    <PackageReference Include="DoNetDrive.Protocol.Door" Version="2.6.0" />
+    <PackageReference Include="DoNetDrive.Core" Version="2.9.0" />
+    <PackageReference Include="DoNetDrive.Protocol.Door" Version="2.7.0" />
   </ItemGroup>
 
 

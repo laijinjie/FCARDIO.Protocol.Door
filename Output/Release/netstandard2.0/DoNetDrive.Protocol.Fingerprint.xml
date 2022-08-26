@@ -4960,6 +4960,11 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="M:DoNetDrive.Protocol.Fingerprint.Software.UpdateSoftware.CommandReSend">
+            <summary>
+            命令重发时，如果参数允许跳过重发帧，则直接跳过
+            </summary>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Software.UpdateSoftware.CommandNext0(DoNetDrive.Protocol.OnlineAccess.OnlineAccessPacket)">
             <summary>
             检查返回值
@@ -5051,6 +5056,11 @@
             等待校验的时间，单位毫秒
             </summary>
         </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.Software.UpdateSoftware_Parameter.SkipTimeoutPacket">
+            <summary>
+            跳过超时的数据包
+            </summary>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Software.UpdateSoftware_Parameter.#ctor(System.Byte[],System.UInt32)">
             <summary>
             初始化参数
@@ -5093,6 +5103,11 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "F:DoNetDrive.Protocol.Fingerprint.Software.UpdateSoftware_Result.Success" -->
+        <member name="P:DoNetDrive.Protocol.Fingerprint.Software.UpdateSoftware_Result.SkipPacketCount">
+            <summary>
+            跳过的数据包数量
+            </summary>
+        </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.SystemParameter.Version.ReadVersion">
             <summary>
             获取设备版本号

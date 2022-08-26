@@ -526,13 +526,13 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             var typeFile = Lng("EquptTypeList");
             typeFile = Path.Combine(Directory.GetCurrentDirectory(), typeFile);
-            if(!File.Exists(typeFile))
+            if (!File.Exists(typeFile))
             {
                 return;
             }
             var sTypes = File.ReadAllText(typeFile, Encoding.UTF8).Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-            
-            foreach(var sTypeLine in sTypes)
+
+            foreach (var sTypeLine in sTypes)
             {
                 var sTypeDetails = sTypeLine.Split(',');
                 var oKey = new EquptAESKey(sTypeDetails[0], sTypeDetails[1], sTypeDetails[2].ToInt32());
@@ -540,8 +540,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             }
 
-            
-            
+
+
 
             cmbEquptType.Items.Clear();
             cmbEquptType.Items.AddRange(mAesKey.Keys.ToArray());
@@ -602,6 +602,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             cmdDtl.Timeout = 500;
             cmdDtl.RestartCount = 10;
+            par.SkipTimeoutPacket = chkSkipTimeoutPacket.Checked;
+
             mMainForm.AddCommand(cmd);
 
             cmdDtl.CommandCompleteEvent += (sdr, cmde) =>
@@ -610,6 +612,10 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 if (result.Success == 1)
                 {
                     mMainForm.AddCmdLog(cmde, Msg_18);
+                    if (result.SkipPacketCount > 0)
+                    {
+                        mMainForm.AddCmdLog(cmde, $"SkipPacketCount={result.SkipPacketCount}");
+                    }
                 }
                 else
                 {
@@ -699,7 +705,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         private void butUploadFolder_Click(object sender, EventArgs e)
         {
-            if(mUploading)
+            if (mUploading)
             {
                 mUploadIsRun = false;
             }
@@ -719,7 +725,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     var sDir = Path.GetDirectoryName(sfd.FileName);
                     var oFiles = Directory.EnumerateFiles(sDir, "*.jpg");
                     var oFileList = new List<string>(oFiles);
-                    if(oFileList.Count ==0)
+                    if (oFileList.Count == 0)
                     {
                         //MessageBox.Show("没有找到图片", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         MessageBox.Show(Lng("UF_Msg_16"), Lng("UF_Msg_17"),
@@ -734,9 +740,9 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
                 }
             }
-           
+
         }
-        private void SetRowTip(string sLog,Color color)
+        private void SetRowTip(string sLog, Color color)
         {
             mMainForm.AddLog(sLog);
         }
@@ -802,7 +808,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 return;
             }
 
-            if(!mUploadIsRun)
+            if (!mUploadIsRun)
             {
                 //SetRowTip("上传已被中止完毕", Color.Blue);
                 SetRowTip(Lng("UF_Msg_8"), Color.Red);
@@ -842,7 +848,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 PersonPar.WaitVerifyTime = 3000;
                 PersonPar.WaitRepeatMessage = true;
                 var uploadcmd = new AddPeosonAndImage(cmdDtl, PersonPar);
-                
+
                 iOptStep = 4;
                 mMainForm.AddCommand(uploadcmd);
                 iOptStep = 5;
@@ -906,7 +912,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 var sFileName = saveFileDialog.FileName;
-                if(File.Exists(sFileName))
+                if (File.Exists(sFileName))
                 {
                     File.Delete(sFileName);
                 }
