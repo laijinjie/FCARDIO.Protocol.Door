@@ -78,8 +78,11 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         {
             StringBuilder builder = new StringBuilder(1024);
             builder.Append("PlatformType: ").Append(PlatformType).Append(NewLine);
+
             if (PlatformDictionary != null)
             {
+                if (PlatformDictionary.ContainsKey("PlatformType")) PlatformDictionary.Remove("PlatformType");
+
                 foreach (KeyValuePair<string, string> pair in PlatformDictionary)
                 {
                     builder.Append(pair.Key).Append(": ").Append(pair.Value).Append(NewLine);
@@ -99,24 +102,30 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
             {
                 try
                 {
-                    string[] cells = line.Split(':');
-                    string key = cells[0];
-                    string value = cells[1].Trim();
-                    if (key.ToLower() == "")
+                    int iSplitCharIndex = line.IndexOf(':');
+                    if(iSplitCharIndex> 0)
                     {
-                        PlatformType = int.Parse(value);
-                    }
-                    else
-                    {
-                        if (PlatformDictionary.ContainsKey(key))
+
+                        string key = line.Substring(0, iSplitCharIndex);
+                        string value = line.Substring(iSplitCharIndex+1);
+                        if (value.StartsWith(" ")) value = value.Substring(1);
+                        if (key.ToLower() == "platformtype")
                         {
-                            PlatformDictionary[key] = value;
+                            PlatformType = int.Parse(value.Trim());
                         }
                         else
                         {
-                            PlatformDictionary.Add(key, value);
+                            if (PlatformDictionary.ContainsKey(key))
+                            {
+                                PlatformDictionary[key] = value;
+                            }
+                            else
+                            {
+                                PlatformDictionary.Add(key, value);
+                            }
                         }
                     }
+                   
 
                 }
                 catch (System.Exception ex)

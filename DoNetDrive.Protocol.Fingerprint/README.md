@@ -95,3 +95,8 @@ UpdateSoftware_Parameter 增加了 SkipTimeoutPacket 可以设置命令不重发
 ### ver 2.13.0
 
 > 增加人脸机第三方平台对接参数配置命令 ReadThirdpartyAPI 和 WriteThirdpartyAPI。
+
+
+### ver 2.14.0
+
+> 修复人脸机第三方平台对接参数的解析函数对于冒号的错误处理导致解析不了url的bug。
