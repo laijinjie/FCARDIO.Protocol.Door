@@ -2073,6 +2073,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmbYZW.Items.Clear();
             cmbYZW.Items.AddRange(yzw);
             cmbYZW.SelectedIndex = 0;
+
+            IniThirdpartyAPI();
         }
 
         private void cmdSendReloadYZW_People_Click(object sender, EventArgs e)
@@ -2174,5 +2176,62 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         }
 
         #endregion
+
+        #region 第三方平台功能
+
+        private void IniThirdpartyAPI()
+        {
+            string[] yzw = Lng("cmbPlatformType").SplitTrim(",");
+            cmbPlatformType.Items.Clear();
+            cmbPlatformType.Items.AddRange(yzw);
+            cmbPlatformType.SelectedIndex = 0;
+            lblPlatformType.Text = Lng("lblPlatformType");
+            lblPlatformTypePar.Text = Lng("lblPlatformTypePar");
+            gbThirdpartyAPI.Text = Lng("gbThirdpartyAPI");
+            btnReadThirdpartyAPI.Text = Lng("btnReadThirdpartyAPI");
+            btnWriteThirdpartyAPI.Text = Lng("btnWriteThirdpartyAPI");
+
+        }
+        private async void btnReadThirdpartyAPI_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new ReadThirdpartyAPI(cmdDtl);
+            await mMainForm.AddCommandAsync(cmd);
+            if (!cmd.GetStatus().IsCommandSuccessful()) return;
+            var result = cmd.getResult() as ReadThirdpartyAPI_Result;
+            cmbPlatformType.SelectedIndex = (result.PlatformType < 0 || result.PlatformType > 3) ? 0 : result.PlatformType;
+            string sTip = Lng("ThirdpartyAPIMsg"); //第三方平台类型：{0}
+            sTip = string.Format(sTip, cmbPlatformType.Text);
+            mMainForm.AddCmdLog(cmd.GetEventArgs(), sTip);
+            txtPlatformConfig.Text = result.GetConfigString();
+        }
+
+        private void btnWriteThirdpartyAPI_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var par = new WriteThirdpartyAPI_Parameter();
+            par.PlatformType = cmbPlatformType.SelectedIndex;
+            try
+            {
+                if (txtPlatformConfig.TextLength > 0)
+                {
+                    par.SetConfigString(txtPlatformConfig.Text);
+                }
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+            
+            
+            var cmd = new WriteThirdpartyAPI(cmdDtl, par);
+            mMainForm.AddCommand(cmd);
+        }
+        #endregion
+
+
     }
 }

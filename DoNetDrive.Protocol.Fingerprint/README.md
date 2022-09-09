@@ -91,3 +91,7 @@ mAllocator.Dispose();
 
 > 为解决<6.0的人脸机老版本固件升级丢包重发后会导致固件升级失败问题，
 UpdateSoftware_Parameter 增加了 SkipTimeoutPacket 可以设置命令不重发数据包。
+
+### ver 2.13.0
+
+> 增加人脸机第三方平台对接参数配置命令 ReadThirdpartyAPI 和 WriteThirdpartyAPI。

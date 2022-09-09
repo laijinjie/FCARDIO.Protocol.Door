@@ -265,6 +265,9 @@
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceDevice4GModuleStatus    value ="读取4G网络模块开关"    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceDevice4GModuleStatus    value ="设置4G网络模块开关"    />
 
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadThirdpartyAPI    value ="读取第三方平台功能"                    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteThirdpartyAPI    value ="设置第三方平台功能"                    />
+
 		<btlToolLift                        value="电梯模块" />
 		<butSearch value ="搜索设备"/>
 		<tabDevice value ="设备列表"/>
@@ -532,6 +535,17 @@
 		<gb4GModule value = "4G模块状态"/>
 		<Items_4GModule value = "禁用,启用"/>
 		<Tips_4GModule value = "4G模块状态:{0}"/>
+		
+		
+		<cmbPlatformType value = "禁用,云筑网,阜阳实名制,湖南实名制"/>
+		<lblPlatformType value = "平台类型："/>
+		<lblPlatformTypePar value = "工作参数："/>
+		<gbThirdpartyAPI value = "第三方平台功能"/>
+		<btnReadThirdpartyAPI value = "读取"/>
+		<btnWriteThirdpartyAPI value = "写入"/>
+		<ThirdpartyAPIMsg value = "第三方平台类型：{0}"/>
+
+
 	</frmSystem>
 	<frmTime>
 		<FormCaption              value="时钟" />

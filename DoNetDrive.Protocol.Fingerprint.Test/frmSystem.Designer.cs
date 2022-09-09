@@ -30,6 +30,11 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpPar1 = new System.Windows.Forms.TabPage();
+            this.gb4GModule = new System.Windows.Forms.GroupBox();
+            this.cmb4GModule = new System.Windows.Forms.ComboBox();
+            this.btnWrite4GModuleStatus = new System.Windows.Forms.Button();
+            this.btnRead4GModuleStatus = new System.Windows.Forms.Button();
+            this.lbl4GModuleStatus = new System.Windows.Forms.Label();
             this.butRestart = new System.Windows.Forms.Button();
             this.BtnFormatController = new System.Windows.Forms.Button();
             this.gbWatch = new System.Windows.Forms.GroupBox();
@@ -199,6 +204,13 @@
             this.Txt_ShortMessage = new System.Windows.Forms.TextBox();
             this.But_ReadFaceBodyTemperatureAlarm = new System.Windows.Forms.Button();
             this.tabPar4 = new System.Windows.Forms.TabPage();
+            this.gbThirdpartyAPI = new System.Windows.Forms.GroupBox();
+            this.txtPlatformConfig = new System.Windows.Forms.TextBox();
+            this.lblPlatformTypePar = new System.Windows.Forms.Label();
+            this.lblPlatformType = new System.Windows.Forms.Label();
+            this.cmbPlatformType = new System.Windows.Forms.ComboBox();
+            this.btnReadThirdpartyAPI = new System.Windows.Forms.Button();
+            this.btnWriteThirdpartyAPI = new System.Windows.Forms.Button();
             this.gbAttendanceDevice = new System.Windows.Forms.GroupBox();
             this.txtBroadcastVoiceNum = new System.Windows.Forms.NumericUpDown();
             this.lblBroadcastVoiceNum = new System.Windows.Forms.Label();
@@ -263,13 +275,9 @@
             this.txtServerIP_1 = new System.Windows.Forms.TextBox();
             this.lblServerPort_1 = new System.Windows.Forms.Label();
             this.txtServerPort_1 = new System.Windows.Forms.TextBox();
-            this.gb4GModule = new System.Windows.Forms.GroupBox();
-            this.btnWrite4GModuleStatus = new System.Windows.Forms.Button();
-            this.btnRead4GModuleStatus = new System.Windows.Forms.Button();
-            this.lbl4GModuleStatus = new System.Windows.Forms.Label();
-            this.cmb4GModule = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tpPar1.SuspendLayout();
+            this.gb4GModule.SuspendLayout();
             this.gbWatch.SuspendLayout();
             this.gbRecordMode.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -289,6 +297,7 @@
             this.gpDeviceVolume.SuspendLayout();
             this.gpDeviceLanguage.SuspendLayout();
             this.tabPar4.SuspendLayout();
+            this.gbThirdpartyAPI.SuspendLayout();
             this.gbAttendanceDevice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBroadcastVoiceNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBeginAttendanceTime)).BeginInit();
@@ -302,7 +311,6 @@
             this.tpNetwork.SuspendLayout();
             this.gbClientDetail.SuspendLayout();
             this.gbServerDetail.SuspendLayout();
-            this.gb4GModule.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -338,6 +346,57 @@
             this.tpPar1.TabIndex = 0;
             this.tpPar1.Text = "设备参数设置";
             this.tpPar1.UseVisualStyleBackColor = true;
+            // 
+            // gb4GModule
+            // 
+            this.gb4GModule.Controls.Add(this.cmb4GModule);
+            this.gb4GModule.Controls.Add(this.btnWrite4GModuleStatus);
+            this.gb4GModule.Controls.Add(this.btnRead4GModuleStatus);
+            this.gb4GModule.Controls.Add(this.lbl4GModuleStatus);
+            this.gb4GModule.Location = new System.Drawing.Point(3, 452);
+            this.gb4GModule.Name = "gb4GModule";
+            this.gb4GModule.Size = new System.Drawing.Size(268, 75);
+            this.gb4GModule.TabIndex = 74;
+            this.gb4GModule.TabStop = false;
+            this.gb4GModule.Text = "4G模块状态";
+            // 
+            // cmb4GModule
+            // 
+            this.cmb4GModule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb4GModule.FormattingEnabled = true;
+            this.cmb4GModule.Location = new System.Drawing.Point(63, 18);
+            this.cmb4GModule.Name = "cmb4GModule";
+            this.cmb4GModule.Size = new System.Drawing.Size(172, 20);
+            this.cmb4GModule.TabIndex = 30;
+            // 
+            // btnWrite4GModuleStatus
+            // 
+            this.btnWrite4GModuleStatus.Location = new System.Drawing.Point(137, 44);
+            this.btnWrite4GModuleStatus.Name = "btnWrite4GModuleStatus";
+            this.btnWrite4GModuleStatus.Size = new System.Drawing.Size(48, 23);
+            this.btnWrite4GModuleStatus.TabIndex = 3;
+            this.btnWrite4GModuleStatus.Text = "写入";
+            this.btnWrite4GModuleStatus.UseVisualStyleBackColor = true;
+            this.btnWrite4GModuleStatus.Click += new System.EventHandler(this.btnWrite4GModuleStatus_Click);
+            // 
+            // btnRead4GModuleStatus
+            // 
+            this.btnRead4GModuleStatus.Location = new System.Drawing.Point(83, 44);
+            this.btnRead4GModuleStatus.Name = "btnRead4GModuleStatus";
+            this.btnRead4GModuleStatus.Size = new System.Drawing.Size(48, 23);
+            this.btnRead4GModuleStatus.TabIndex = 2;
+            this.btnRead4GModuleStatus.Text = "读取";
+            this.btnRead4GModuleStatus.UseVisualStyleBackColor = true;
+            this.btnRead4GModuleStatus.Click += new System.EventHandler(this.btnRead4GModuleStatus_Click);
+            // 
+            // lbl4GModuleStatus
+            // 
+            this.lbl4GModuleStatus.Location = new System.Drawing.Point(0, 22);
+            this.lbl4GModuleStatus.Name = "lbl4GModuleStatus";
+            this.lbl4GModuleStatus.Size = new System.Drawing.Size(57, 12);
+            this.lbl4GModuleStatus.TabIndex = 0;
+            this.lbl4GModuleStatus.Text = "状态：";
+            this.lbl4GModuleStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // butRestart
             // 
@@ -2058,6 +2117,7 @@
             // 
             // tabPar4
             // 
+            this.tabPar4.Controls.Add(this.gbThirdpartyAPI);
             this.tabPar4.Controls.Add(this.gbAttendanceDevice);
             this.tabPar4.Controls.Add(this.gbYZW);
             this.tabPar4.Controls.Add(this.gbFaceBioassaySimilarity);
@@ -2073,6 +2133,81 @@
             this.tabPar4.TabIndex = 5;
             this.tabPar4.Text = "参数4";
             this.tabPar4.UseVisualStyleBackColor = true;
+            // 
+            // gbThirdpartyAPI
+            // 
+            this.gbThirdpartyAPI.Controls.Add(this.txtPlatformConfig);
+            this.gbThirdpartyAPI.Controls.Add(this.lblPlatformTypePar);
+            this.gbThirdpartyAPI.Controls.Add(this.lblPlatformType);
+            this.gbThirdpartyAPI.Controls.Add(this.cmbPlatformType);
+            this.gbThirdpartyAPI.Controls.Add(this.btnReadThirdpartyAPI);
+            this.gbThirdpartyAPI.Controls.Add(this.btnWriteThirdpartyAPI);
+            this.gbThirdpartyAPI.Location = new System.Drawing.Point(37, 518);
+            this.gbThirdpartyAPI.Name = "gbThirdpartyAPI";
+            this.gbThirdpartyAPI.Size = new System.Drawing.Size(696, 182);
+            this.gbThirdpartyAPI.TabIndex = 14;
+            this.gbThirdpartyAPI.TabStop = false;
+            this.gbThirdpartyAPI.Text = "第三方平台功能开关";
+            // 
+            // txtPlatformConfig
+            // 
+            this.txtPlatformConfig.Location = new System.Drawing.Point(104, 55);
+            this.txtPlatformConfig.MaxLength = 2000;
+            this.txtPlatformConfig.Multiline = true;
+            this.txtPlatformConfig.Name = "txtPlatformConfig";
+            this.txtPlatformConfig.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtPlatformConfig.Size = new System.Drawing.Size(586, 121);
+            this.txtPlatformConfig.TabIndex = 66;
+            this.txtPlatformConfig.Text = "fy_ipaddr: 192.168.1.55\r\nfy_aeskey: 123123123123123123123\r\nfy_udp_port: 1111\r\nfy_" +
+    "tcp_port: 2222\r\nfy_ankang: 0";
+            this.txtPlatformConfig.WordWrap = false;
+            // 
+            // lblPlatformTypePar
+            // 
+            this.lblPlatformTypePar.Location = new System.Drawing.Point(12, 52);
+            this.lblPlatformTypePar.Name = "lblPlatformTypePar";
+            this.lblPlatformTypePar.Size = new System.Drawing.Size(86, 23);
+            this.lblPlatformTypePar.TabIndex = 65;
+            this.lblPlatformTypePar.Text = "参数：";
+            this.lblPlatformTypePar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblPlatformType
+            // 
+            this.lblPlatformType.Location = new System.Drawing.Point(13, 29);
+            this.lblPlatformType.Name = "lblPlatformType";
+            this.lblPlatformType.Size = new System.Drawing.Size(85, 23);
+            this.lblPlatformType.TabIndex = 64;
+            this.lblPlatformType.Text = "平台类型：";
+            this.lblPlatformType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbPlatformType
+            // 
+            this.cmbPlatformType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlatformType.FormattingEnabled = true;
+            this.cmbPlatformType.Location = new System.Drawing.Point(104, 29);
+            this.cmbPlatformType.Name = "cmbPlatformType";
+            this.cmbPlatformType.Size = new System.Drawing.Size(463, 20);
+            this.cmbPlatformType.TabIndex = 63;
+            // 
+            // btnReadThirdpartyAPI
+            // 
+            this.btnReadThirdpartyAPI.Location = new System.Drawing.Point(588, 29);
+            this.btnReadThirdpartyAPI.Name = "btnReadThirdpartyAPI";
+            this.btnReadThirdpartyAPI.Size = new System.Drawing.Size(48, 23);
+            this.btnReadThirdpartyAPI.TabIndex = 60;
+            this.btnReadThirdpartyAPI.Text = "读取";
+            this.btnReadThirdpartyAPI.UseVisualStyleBackColor = true;
+            this.btnReadThirdpartyAPI.Click += new System.EventHandler(this.btnReadThirdpartyAPI_Click);
+            // 
+            // btnWriteThirdpartyAPI
+            // 
+            this.btnWriteThirdpartyAPI.Location = new System.Drawing.Point(642, 29);
+            this.btnWriteThirdpartyAPI.Name = "btnWriteThirdpartyAPI";
+            this.btnWriteThirdpartyAPI.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteThirdpartyAPI.TabIndex = 57;
+            this.btnWriteThirdpartyAPI.Text = "写入";
+            this.btnWriteThirdpartyAPI.UseVisualStyleBackColor = true;
+            this.btnWriteThirdpartyAPI.Click += new System.EventHandler(this.btnWriteThirdpartyAPI_Click);
             // 
             // gbAttendanceDevice
             // 
@@ -2773,57 +2908,6 @@
             this.txtServerPort_1.TabIndex = 0;
             this.txtServerPort_1.Text = "9000";
             // 
-            // gb4GModule
-            // 
-            this.gb4GModule.Controls.Add(this.cmb4GModule);
-            this.gb4GModule.Controls.Add(this.btnWrite4GModuleStatus);
-            this.gb4GModule.Controls.Add(this.btnRead4GModuleStatus);
-            this.gb4GModule.Controls.Add(this.lbl4GModuleStatus);
-            this.gb4GModule.Location = new System.Drawing.Point(3, 452);
-            this.gb4GModule.Name = "gb4GModule";
-            this.gb4GModule.Size = new System.Drawing.Size(268, 75);
-            this.gb4GModule.TabIndex = 74;
-            this.gb4GModule.TabStop = false;
-            this.gb4GModule.Text = "4G模块状态";
-            // 
-            // btnWrite4GModuleStatus
-            // 
-            this.btnWrite4GModuleStatus.Location = new System.Drawing.Point(137, 44);
-            this.btnWrite4GModuleStatus.Name = "btnWrite4GModuleStatus";
-            this.btnWrite4GModuleStatus.Size = new System.Drawing.Size(48, 23);
-            this.btnWrite4GModuleStatus.TabIndex = 3;
-            this.btnWrite4GModuleStatus.Text = "写入";
-            this.btnWrite4GModuleStatus.UseVisualStyleBackColor = true;
-            this.btnWrite4GModuleStatus.Click += new System.EventHandler(this.btnWrite4GModuleStatus_Click);
-            // 
-            // btnRead4GModuleStatus
-            // 
-            this.btnRead4GModuleStatus.Location = new System.Drawing.Point(83, 44);
-            this.btnRead4GModuleStatus.Name = "btnRead4GModuleStatus";
-            this.btnRead4GModuleStatus.Size = new System.Drawing.Size(48, 23);
-            this.btnRead4GModuleStatus.TabIndex = 2;
-            this.btnRead4GModuleStatus.Text = "读取";
-            this.btnRead4GModuleStatus.UseVisualStyleBackColor = true;
-            this.btnRead4GModuleStatus.Click += new System.EventHandler(this.btnRead4GModuleStatus_Click);
-            // 
-            // lbl4GModuleStatus
-            // 
-            this.lbl4GModuleStatus.Location = new System.Drawing.Point(0, 22);
-            this.lbl4GModuleStatus.Name = "lbl4GModuleStatus";
-            this.lbl4GModuleStatus.Size = new System.Drawing.Size(57, 12);
-            this.lbl4GModuleStatus.TabIndex = 0;
-            this.lbl4GModuleStatus.Text = "状态：";
-            this.lbl4GModuleStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cmb4GModule
-            // 
-            this.cmb4GModule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb4GModule.FormattingEnabled = true;
-            this.cmb4GModule.Location = new System.Drawing.Point(63, 18);
-            this.cmb4GModule.Name = "cmb4GModule";
-            this.cmb4GModule.Size = new System.Drawing.Size(172, 20);
-            this.cmb4GModule.TabIndex = 30;
-            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2836,6 +2920,7 @@
             this.Load += new System.EventHandler(this.FrmSystem_Load);
             this.tabControl1.ResumeLayout(false);
             this.tpPar1.ResumeLayout(false);
+            this.gb4GModule.ResumeLayout(false);
             this.gbWatch.ResumeLayout(false);
             this.gbWatch.PerformLayout();
             this.gbRecordMode.ResumeLayout(false);
@@ -2872,6 +2957,8 @@
             this.gpDeviceLanguage.ResumeLayout(false);
             this.gpDeviceLanguage.PerformLayout();
             this.tabPar4.ResumeLayout(false);
+            this.gbThirdpartyAPI.ResumeLayout(false);
+            this.gbThirdpartyAPI.PerformLayout();
             this.gbAttendanceDevice.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtBroadcastVoiceNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBeginAttendanceTime)).EndInit();
@@ -2888,7 +2975,6 @@
             this.gbClientDetail.PerformLayout();
             this.gbServerDetail.ResumeLayout(false);
             this.gbServerDetail.PerformLayout();
-            this.gb4GModule.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -3135,5 +3221,12 @@
         private System.Windows.Forms.Button btnWrite4GModuleStatus;
         private System.Windows.Forms.Button btnRead4GModuleStatus;
         private System.Windows.Forms.Label lbl4GModuleStatus;
+        private System.Windows.Forms.GroupBox gbThirdpartyAPI;
+        private System.Windows.Forms.TextBox txtPlatformConfig;
+        private System.Windows.Forms.Label lblPlatformTypePar;
+        private System.Windows.Forms.Label lblPlatformType;
+        private System.Windows.Forms.ComboBox cmbPlatformType;
+        private System.Windows.Forms.Button btnReadThirdpartyAPI;
+        private System.Windows.Forms.Button btnWriteThirdpartyAPI;
     }
 }

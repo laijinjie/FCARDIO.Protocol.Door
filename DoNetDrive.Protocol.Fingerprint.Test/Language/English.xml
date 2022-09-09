@@ -253,6 +253,9 @@
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceBioassaySimilarity    value ="Set IR Threshold"                    />
 		<DoNetDrive_Protocol_Fingerprint_Alarm_SetFireAlarm    value ="Set Frie Use"                    />
 
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadThirdpartyAPI    value ="Read Thirdparty Config"                    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteThirdpartyAPI    value ="Write Thirdparty Config"                    />
+		
 
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_BeginAttendance    value ="Begin Attendance"                    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_BroadcastVoice    value ="Broadcast Voice"                    />
@@ -529,6 +532,15 @@
 		<gb4GModule value = "4G Module Status"/>
 		<Items_4GModule value = "OFF,ON"/>
 		<Tips_4GModule value = "4G Module Status:{0}"/>
+
+		<cmbPlatformType value = "OFF,YuZhuWang,FuYang,HuAn"/>
+		<lblPlatformType value = "Platform:"/>
+		<lblPlatformTypePar value = "Config:"/>
+		<gbThirdpartyAPI value = "Thirdparty API"/>
+		<btnReadThirdpartyAPI value = "Read"/>
+		<btnWriteThirdpartyAPI value = "Write"/>
+		<ThirdpartyAPIMsg value = "Platform:{0}"/>
+		
 	</frmSystem>
 	<frmTime>
 		<FormCaption              value="Clock" />

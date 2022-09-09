@@ -1540,8 +1540,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             AddCommandClassNameList(typeof(Alarm.SetFireAlarm));//设置消防报警功能开关
             AddCommandClassNameList(typeof(SystemParameter.ReadYZW_Push));//读取云筑网推送功能
-            AddCommandClassNameList(typeof(SystemParameter.SendReloadYZW_People));//重新拉取云筑网人员
             AddCommandClassNameList(typeof(SystemParameter.WriteYZW_Push));//设置云筑网推送功能
+            AddCommandClassNameList(typeof(SystemParameter.ReadThirdpartyAPI));//读取第三方推送功能
+            AddCommandClassNameList(typeof(SystemParameter.WriteThirdpartyAPI));//设置第三方推送功能
+            AddCommandClassNameList(typeof(SystemParameter.SendReloadYZW_People));//重新拉取云筑网人员
+            
             AddCommandClassNameList(typeof(SystemParameter.ReadFaceBioassaySimilarity));//读取活体检测阈值
             AddCommandClassNameList(typeof(SystemParameter.WriteFaceBioassaySimilarity));//设置活体检测阈值
 
