@@ -29,6 +29,7 @@ using System.Windows.Forms;
 using AutoUpdaterDotNET;
 using DoNetDrive.Core.Factory;
 using DoNetDrive.Connector.COM;
+using DoNetDrive.Protocol.Door.Door8800.SystemParameter.CacheContent;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -126,7 +127,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AutoUpdater.CheckForUpdateEvent += AutoUpdater_CheckForUpdateEvent;
             AutoUpdater.Start("http://oss2.pc15.net/ToolDownload/Update/FaceDebugToolForNet/update.xml");
 
-
+            this.Enabled = false;
 
         }
 
@@ -286,7 +287,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         public void IniForm()
         {
             if (_IsClosed) return;
-
+            this.Enabled = true;
             mAllocator = ConnectorAllocator.GetAllocator();
 
 
@@ -939,7 +940,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// 获取一个命令详情，已经装配好通讯目标的所有信息
         /// </summary>
         /// <returns>命令详情</returns>
-        public INCommandDetail GetCommandDetail()
+        public INCommandDetail GetCommandDetail(bool showErr=true)
         {
             if (_IsClosed) return null;
             var connectType = CommandDetailFactory.ConnectType.TCPClient;
@@ -1067,23 +1068,6 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         }
 
 
-
-        private OnlineAccessCommandDetail SearchCommandDetail()
-        {
-            string sDestIP = "255.255.255.255";
-            string sSearchSN = "0000000000000000", sPassword = "FFFFFFFF";
-            int iDrivePort = mDrivePort;
-
-            string sLocalIP = cmbLocalIP.SelectedItem?.ToString();
-            var oUDPDtl = new UDPClientDetail(sDestIP, iDrivePort,
-                sLocalIP, int.Parse(txtUDPLocalPort.Text));
-
-            var dtl = new OnlineAccessCommandDetail(oUDPDtl, sSearchSN, sPassword);
-            dtl.Timeout = 2000;
-            dtl.RestartCount = 3;
-            dtl.UserData = null;
-            return dtl;
-        }
 
 
 
@@ -1534,7 +1518,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AddCommandClassNameList(typeof(SystemParameter.WriteSaveRecordImage));//设置认证记录保存现场照片开关
             AddCommandClassNameList(typeof(SystemParameter.ReadRecordQRCode));//读取识别结果查询二维码生成开关
             AddCommandClassNameList(typeof(SystemParameter.WriteRecordQRCode));//设置识别结果查询二维码生成开关
-            AddCommandClassNameList(typeof(SystemParameter.ReadOfflineRecordPush));//读取感光模式
+            AddCommandClassNameList(typeof(SystemParameter.ReadLightPattern));//读取感光模式
             AddCommandClassNameList(typeof(SystemParameter.WriteLightPattern));//设置感光模式
 
 
@@ -1544,7 +1528,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             AddCommandClassNameList(typeof(SystemParameter.ReadThirdpartyAPI));//读取第三方推送功能
             AddCommandClassNameList(typeof(SystemParameter.WriteThirdpartyAPI));//设置第三方推送功能
             AddCommandClassNameList(typeof(SystemParameter.SendReloadYZW_People));//重新拉取云筑网人员
-            
+
             AddCommandClassNameList(typeof(SystemParameter.ReadFaceBioassaySimilarity));//读取活体检测阈值
             AddCommandClassNameList(typeof(SystemParameter.WriteFaceBioassaySimilarity));//设置活体检测阈值
 
@@ -1557,6 +1541,33 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
             AddCommandClassNameList(typeof(SystemParameter.WriteFaceDevice4GModuleStatus));//设置4G网络模块开关
             AddCommandClassNameList(typeof(SystemParameter.ReadFaceDevice4GModuleStatus));//读取4G网络模块开关
+
+            AddCommandClassNameList(typeof(SystemParameter.ReadOfflineRecordPush));//读取离线推送记录开关
+            AddCommandClassNameList(typeof(SystemParameter.WriteOfflineRecordPush));//设置离线推送记录开关
+
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.SystemParameter.CacheContent.ReadCacheContent));//读取自定义字符串
+            AddCommandClassNameList(typeof(Protocol.Door.Door8800.SystemParameter.CacheContent.WriteCacheContent));//设置自定义字符串
+
+            AddCommandClassNameList(typeof(SystemParameter.ReadFaceIdentifyRange));//读取识别距离
+            AddCommandClassNameList(typeof(SystemParameter.WriteFaceIdentifyRange));//设置识别距离
+
+
+            AddCommandClassNameList(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.Watch.BeginWatch_Broadcast));//广播开启监控
+            AddCommandClassNameList(typeof(DoNetDrive.Protocol.Fingerprint.SystemParameter.Watch.CloseWatch_Broadcast));//广播关闭监控
+
+            AddCommandClassNameList(typeof(SystemParameter.ReadFaceBioassay));//读取活体检测开关
+            AddCommandClassNameList(typeof(SystemParameter.WriteFaceBioassay));//设置活体检测开关
+
+            AddCommandClassNameList(typeof(SystemParameter.ReadDriveVolume));//读取音量
+            AddCommandClassNameList(typeof(SystemParameter.WriteDriveVolume));//设置音量
+
+            AddCommandClassNameList(typeof(SystemParameter.ReadDriveLanguage));//读取语言
+            AddCommandClassNameList(typeof(SystemParameter.WriteDriveLanguage));//设置语言
+
+
+            AddCommandClassNameList(typeof(SystemParameter.ReadHelmetDetection));//读取安全帽检测
+            AddCommandClassNameList(typeof(SystemParameter.WriteHelmetDetection));//设置安全帽检测
+
 
             mCommandClasss = mCommandClasss
                 .Concat(frmElevator.IniCommandClassNameList())
@@ -2364,7 +2375,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         #endregion
 
         #region 设备搜索
-        private int mDrivePort = 8101;
+        private int mSerarchUDPNetPort = 8101;
+        private int mSerarchCOMPort = 1;
+        private int mSerarchCOMBaudrate = 115200;
+        private string mSerarchTCPClientKey = string.Empty;
+        private int mSerarchConnectType = 1;//1 udp;2--tcp;0--com
 
         /// <summary>
         /// 自动搜索的随机数
@@ -2389,21 +2404,49 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                 Invoke(BeginSearchDrive);
                 return;
             }
-            try
-            {
-                mDrivePort = int.Parse(txtUDPPort.Text);
-            }
-            catch (Exception)
-            {
+            mSerarchConnectType = cmbConnType.SelectedIndex;//通讯模式
 
-                mDrivePort = 8101;
-                //txtUDPLocalPort.Text = "8101";
-            }
-            if (mDrivePort < 0 || mDrivePort > 65535)
+
+            switch (mSerarchConnectType)//串口,TCP客户端,UDP,TCP服务器
             {
-                mDrivePort = 8101;
-                //txtUDPLocalPort.Text = "8101";
+                case 0://串口
+                    if (cmbSerialPort.SelectedIndex == -1)
+                    {
+                        MsgTip(GetLanguage("GetCommandDetail0"));//"请先选择一个串口号！");
+                        return;
+                    }
+                    mSerarchCOMPort = cmbSerialPort.Text.Substring(3).ToInt32();
+                    mSerarchCOMBaudrate = int.Parse(cmbBaudrate.Text);
+                    break;
+                case 1://UDP 
+                    if (!mUDPIsBind)
+                    {
+                        MsgErr(GetLanguage("GetCommandDetail1"));//"请先绑定UDP端口");
+                        return;
+                    }
+                    if (!int.TryParse(txtUDPPort.Text, out mSerarchUDPNetPort))
+                    {
+                        mSerarchUDPNetPort = 8000;
+                    }
+                    break;
+                case 2://tcp server 模式，需要寻找客户端
+                    if (!mTCPServerBind)
+                    {
+                        MsgErr(GetLanguage("GetCommandDetail2"));//"请先绑定 TCP Server 端口");
+                        return;
+                    }
+                    if (cmbTCPClientList.SelectedIndex == -1)
+                    {
+                        MsgErr(GetLanguage("GetCommandDetail3"));//"请先选择一个 TCP 客户端!");
+                        return;
+                    }
+                    var myClient = cmbTCPClientList.SelectedItem as MyTCPServerClientDetail;
+                    mSerarchTCPClientKey = myClient.GetKey();
+                    break;
+                default:
+                    return;
             }
+
             mSearchCount++;
             if (mSearchCount > 10)
                 return;
@@ -2420,6 +2463,44 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cmdDtl.CommandTimeout += search_CommandTimeout;
             cmdDtl.CommandErrorEvent += search_CommandErrorEvent;
         }
+
+
+        private OnlineAccessCommandDetail SearchCommandDetail()
+        {
+            string sSearchSN = "0000000000000000", sPassword = "FFFFFFFF";
+            
+            var connectType = CommandDetailFactory.ConnectType.UDPClient;
+            INCommandDetail returnDtl = null;
+            switch (mSerarchConnectType)//串口,TCP客户端,UDP,TCP服务器
+            {
+                case 0://串口
+
+                    returnDtl= GetCommandDetail(new SerialPortDetail((byte)mSerarchCOMPort, mSerarchCOMBaudrate)
+                        , sSearchSN, sPassword);
+                    break;
+                case 1://UDP 
+
+                    connectType = CommandDetailFactory.ConnectType.UDPClient;
+                    string sDestIP = "255.255.255.255";
+                    returnDtl = GetCommandDetail(connectType, sSearchSN, sPassword, sDestIP, mSerarchUDPNetPort);
+                    break;
+                case 2://tcp server 模式，需要寻找客户端
+
+                    connectType = CommandDetailFactory.ConnectType.TCPServerClient;
+                    returnDtl = GetCommandDetail(connectType, sSearchSN, sPassword, mSerarchTCPClientKey, mSerarchUDPNetPort);
+                    break;
+                default:
+                    return null;
+            }
+
+            returnDtl.Timeout = 2000;
+            returnDtl.RestartCount = 3;
+            returnDtl.UserData = null;
+
+            return returnDtl as OnlineAccessCommandDetail;
+
+        }
+
 
         private void search_CommandErrorEvent(object sender, CommandEventArgs e)
         {
@@ -2515,7 +2596,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         }
         #endregion
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void btlToolLift_Click(object sender, EventArgs e)
         {
             frmElevator frm = frmElevator.GetForm(this);
             frm.Show();

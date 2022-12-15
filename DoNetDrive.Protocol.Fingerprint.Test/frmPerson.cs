@@ -232,6 +232,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         private void BtnClearDataBase_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
+            cmdDtl.Timeout = 5000;
             var cmd = new ClearPersonDataBase(cmdDtl);
             mMainForm.AddCommand(cmd);
         }

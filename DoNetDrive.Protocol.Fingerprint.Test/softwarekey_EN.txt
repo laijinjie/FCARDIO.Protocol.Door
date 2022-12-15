@@ -3,6 +3,7 @@ D102 Fingerprint,dcb42b4f5c7e496f,1024
 A103 Fingerprint,0097d54f8d755a9b,1024
 D103 Fingerprint,916780307e335635,1024
 A104 Fingerprint,f3c1390b0cdb4d86,1024
+B104 Fingerprint,B104MSoftwareNE0,1024
 A108 Infrared Face & FP,f89cabe34e5b9965,1024
 FC8300 Dynamic Face,286eb84a8342627c,1024
 FC8400 Dynamic Face,2BA5929DC38B5F23,1024

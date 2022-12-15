@@ -335,6 +335,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DoNetDrive.Core\FCARDIO.Core\FCARDIO.Core\DoNetDrive.Core_netstandard20.vbproj">
+      <Project>{4a2c9e9f-a48b-4fc2-9774-dfeba63fd4ef}</Project>
+      <Name>DoNetDrive.Core_netstandard20</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DoNetDrive.Protocol.Door\DoNetDrive.Protocol.Door_netstandard20.csproj">
       <Project>{14f89726-b7e7-4222-bfcf-c63148b5b34d}</Project>
       <Name>DoNetDrive.Protocol.Door_netstandard20</Name>

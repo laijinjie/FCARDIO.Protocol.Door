@@ -28,6 +28,9 @@ namespace DoNetDrive.Protocol.Fingerprint.SystemParameter
         /// </summary>
         public int PlatformType;
 
+        /// <summary>
+        /// 平台配置参数
+        /// </summary>
         public readonly Dictionary<string, string> PlatformDictionary;
 
 

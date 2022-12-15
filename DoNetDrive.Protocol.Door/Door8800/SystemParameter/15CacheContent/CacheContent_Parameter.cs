@@ -15,7 +15,12 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.CacheContent
         /// <summary>
         /// 缓存区内容
         /// </summary>
-        public string CacheContent;
+        public string CacheContent { get; private set; }
+
+        /// <summary>
+        /// 自定义数据
+        /// </summary>
+        public byte[] ContentBytes { get; private set; }
 
         /// <summary>
         /// 构建一个空的实例
@@ -29,11 +34,41 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.CacheContent
         public CacheContent_Parameter(string sCacheContent)
         {
             CacheContent = sCacheContent;
-            if (!checkedParameter())
-            {
-                throw new ArgumentException("CacheContent Error");
-            }
+            var bbuf = System.Text.ASCIIEncoding.ASCII.GetBytes(CacheContent);
+            SetContentBytes(bbuf);
         }
+
+        /// <summary>
+        /// 使用缓存区内容初始化实例
+        /// </summary>
+        /// <param name="bData">缓存区内容</param>
+        public CacheContent_Parameter(byte[] bData)
+        {
+            
+            CacheContent = string.Empty;
+            SetContentBytes(bData);
+
+        }
+
+        private void SetContentBytes(byte[] bData)
+        {
+            int iMax = GetDataLen();
+            ContentBytes = new byte[iMax];
+
+            if (bData == null)
+            {
+                return;
+            }
+            if (bData.Length == 0)
+                return;
+
+            if (bData.Length < iMax)
+            {
+                iMax = bData.Length;
+            }
+            Array.Copy(bData, ContentBytes, iMax);
+        }
+
 
         /// <summary>
         /// 检查参数
@@ -41,7 +76,12 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.CacheContent
         /// <returns></returns>
         public override bool checkedParameter()
         {
-            if (CacheContent == null)
+            if (ContentBytes == null)
+            {
+                return false;
+            }
+            int iMax = GetDataLen();
+            if (ContentBytes.Length != iMax)
             {
                 return false;
             }
@@ -72,8 +112,8 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.CacheContent
         /// <returns></returns>
         public override IByteBuffer GetBytes(IByteBuffer databuf)
         {
-            var bbuf = System.Text.ASCIIEncoding.ASCII.GetBytes(CacheContent);
-            int iLen = 0x1E;
+            var bbuf = ContentBytes;
+            int iLen = GetDataLen();
             if (bbuf.Length < iLen) iLen = bbuf.Length;
             databuf.WriteBytes(bbuf, 0, iLen);
 
@@ -92,7 +132,11 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.CacheContent
         /// <param name="databuf"></param>
         public override void SetBytes(IByteBuffer databuf)
         {
-            int iLen = 0x1E;
+            int iIndex = databuf.ReaderIndex;
+            int iLen = GetDataLen();
+            ContentBytes = new byte[iLen];
+            databuf.GetBytes(iIndex, ContentBytes);
+
             for (int i = 0; i < 0x1E; i++)
             {
                 if (databuf.GetByte(i) == 0)

@@ -30,6 +30,9 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpPar1 = new System.Windows.Forms.TabPage();
+            this.gpSysatemStatus = new System.Windows.Forms.GroupBox();
+            this.txtReadSystemStatus = new System.Windows.Forms.TextBox();
+            this.btnReadSystemStatus = new System.Windows.Forms.Button();
             this.gb4GModule = new System.Windows.Forms.GroupBox();
             this.cmb4GModule = new System.Windows.Forms.ComboBox();
             this.btnWrite4GModuleStatus = new System.Windows.Forms.Button();
@@ -53,6 +56,8 @@
             this.lblRecordMode = new System.Windows.Forms.Label();
             this.btnReadRecordMode = new System.Windows.Forms.Button();
             this.gbVersion = new System.Windows.Forms.GroupBox();
+            this.txtFaceVer = new System.Windows.Forms.TextBox();
+            this.lblFaceVer = new System.Windows.Forms.Label();
             this.txtFPVer = new System.Windows.Forms.TextBox();
             this.lblFPVer = new System.Windows.Forms.Label();
             this.txtVersion = new System.Windows.Forms.TextBox();
@@ -65,7 +70,7 @@
             this.txtRestartCount = new System.Windows.Forms.TextBox();
             this.LblRestartCount = new System.Windows.Forms.Label();
             this.lblFormatCount = new System.Windows.Forms.Label();
-            this.btnReadSystemStatus = new System.Windows.Forms.Button();
+            this.btnReadSystemRunStatus = new System.Windows.Forms.Button();
             this.txtRunDay = new System.Windows.Forms.TextBox();
             this.lblRunDay = new System.Windows.Forms.Label();
             this.gbTCP = new System.Windows.Forms.GroupBox();
@@ -106,6 +111,10 @@
             this.txtConnectPassword = new System.Windows.Forms.TextBox();
             this.LblConnectPassword = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.gpShortMessage = new System.Windows.Forms.GroupBox();
+            this.Txt_ShortMessage = new System.Windows.Forms.TextBox();
+            this.But_ReadShortMessage = new System.Windows.Forms.Button();
+            this.But_WriteShortMessage = new System.Windows.Forms.Button();
             this.gpOemInfo = new System.Windows.Forms.GroupBox();
             this.btnWriteOEM = new System.Windows.Forms.Button();
             this.btnReadOEM = new System.Windows.Forms.Button();
@@ -116,29 +125,24 @@
             this.Lbl_p2_Url = new System.Windows.Forms.Label();
             this.txtManufacturer = new System.Windows.Forms.TextBox();
             this.Lbl_p2_Manufacturers = new System.Windows.Forms.Label();
+            this.gpDeviceLanguage = new System.Windows.Forms.GroupBox();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.butWriteLanguage = new System.Windows.Forms.Button();
+            this.butReadLanguage = new System.Windows.Forms.Button();
             this.gpMenuManagementPassword = new System.Windows.Forms.GroupBox();
             this.btnWriteManageMenuPassword = new System.Windows.Forms.Button();
             this.btnReadManageMenuPassword = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.Lbl_p2_pwd = new System.Windows.Forms.Label();
-            this.gpScreenContent = new System.Windows.Forms.GroupBox();
-            this.btnWriteScreenDisplayContent = new System.Windows.Forms.Button();
-            this.btnReadScreenDisplayContent = new System.Windows.Forms.Button();
-            this.cbDisplay9 = new System.Windows.Forms.CheckBox();
-            this.cbDisplay8 = new System.Windows.Forms.CheckBox();
-            this.cbDisplay7 = new System.Windows.Forms.CheckBox();
-            this.cbDisplay6 = new System.Windows.Forms.CheckBox();
-            this.cbDisplay5 = new System.Windows.Forms.CheckBox();
-            this.cbDisplay4 = new System.Windows.Forms.CheckBox();
-            this.cbDisplay3 = new System.Windows.Forms.CheckBox();
-            this.cbDisplay2 = new System.Windows.Forms.CheckBox();
-            this.cbDisplay1 = new System.Windows.Forms.CheckBox();
+            this.gpDeviceVolume = new System.Windows.Forms.GroupBox();
+            this.cmbDriveVolume = new System.Windows.Forms.ComboBox();
+            this.butWriteVolume = new System.Windows.Forms.Button();
+            this.butReadVolume = new System.Windows.Forms.Button();
             this.gpFace_fingerprint_threshold = new System.Windows.Forms.GroupBox();
             this.btnWriteComparisonThreshold = new System.Windows.Forms.Button();
             this.btnReadComparisonThreshold = new System.Windows.Forms.Button();
             this.cmbFingerprint = new System.Windows.Forms.ComboBox();
-            this.Lbl_p2_FoFReadCardByte = new System.Windows.Forms.Label();
-            this.Lbl_p2_FoFWgOut = new System.Windows.Forms.Label();
+            this.Lbl_face_threshold = new System.Windows.Forms.Label();
+            this.Lbl_fp_threshold = new System.Windows.Forms.Label();
             this.cmbFace = new System.Windows.Forms.ComboBox();
             this.gpWgOut = new System.Windows.Forms.GroupBox();
             this.btnWriteWiegandOutput = new System.Windows.Forms.Button();
@@ -147,10 +151,8 @@
             this.Lbl_p2_OutputDataType = new System.Windows.Forms.Label();
             this.cmbWGByteSort = new System.Windows.Forms.ComboBox();
             this.Lbl_p2_WgOrder = new System.Windows.Forms.Label();
-            this.cmbWGOutput = new System.Windows.Forms.ComboBox();
-            this.Lbl_p2_WgOut = new System.Windows.Forms.Label();
-            this.cmbReadCardByte = new System.Windows.Forms.ComboBox();
-            this.Lbl_p2_ReadCardByte = new System.Windows.Forms.Label();
+            this.cmbWGOutputCardByte = new System.Windows.Forms.ComboBox();
+            this.Lbl_p2_WGOutputCardByte = new System.Windows.Forms.Label();
             this.gpLocalIdentity = new System.Windows.Forms.GroupBox();
             this.btnWriteLocalIdentity = new System.Windows.Forms.Button();
             this.txtLocalName = new System.Windows.Forms.TextBox();
@@ -161,96 +163,64 @@
             this.cmbDoor = new System.Windows.Forms.ComboBox();
             this.Lbl_p2_DoorNum = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.cmbHelmetDetection = new System.Windows.Forms.ComboBox();
+            this.btnWriteHelmetDetection = new System.Windows.Forms.Button();
+            this.lblHelmetDetection = new System.Windows.Forms.Label();
+            this.btnReadHelmetDetection = new System.Windows.Forms.Button();
+            this.cmbSaveRecordImage = new System.Windows.Forms.ComboBox();
+            this.butWriteSaveRecordImage = new System.Windows.Forms.Button();
+            this.lblSaveRecordImage = new System.Windows.Forms.Label();
+            this.butReadSaveRecordImage = new System.Windows.Forms.Button();
+            this.cmbAuthenticationMode = new System.Windows.Forms.ComboBox();
+            this.butWriteAuthenticationMode = new System.Windows.Forms.Button();
+            this.lblAuthenticationMode = new System.Windows.Forms.Label();
+            this.butReadAuthenticationMode = new System.Windows.Forms.Button();
+            this.btnReadFaceIdentifyRange = new System.Windows.Forms.Button();
+            this.cmbFaceIdentifyRange = new System.Windows.Forms.ComboBox();
+            this.btnWriteFaceIdentifyRange = new System.Windows.Forms.Button();
+            this.lblFaceIdentifyRange = new System.Windows.Forms.Label();
+            this.cmdReadFaceBioassaySimilarity = new System.Windows.Forms.Button();
+            this.lblFaceBioassaySimilarity = new System.Windows.Forms.Label();
+            this.cmbFaceBioassaySimilarity = new System.Windows.Forms.ComboBox();
+            this.cmdWriteFaceBioassaySimilarity = new System.Windows.Forms.Button();
+            this.cmbLightPattern = new System.Windows.Forms.ComboBox();
+            this.butWriteLightPattern = new System.Windows.Forms.Button();
+            this.lblLightPattern = new System.Windows.Forms.Label();
+            this.butReadLightPattern = new System.Windows.Forms.Button();
             this.Btn_ReadFaceBioassay = new System.Windows.Forms.Button();
             this.Btn_WriteFaceBioassay = new System.Windows.Forms.Button();
             this.LabFaceBioassay = new System.Windows.Forms.Label();
-            this.LblDoorAccessMode = new System.Windows.Forms.Label();
             this.CmbFaceBioassay = new System.Windows.Forms.ComboBox();
-            this.cmbDoorAccessMode = new System.Windows.Forms.ComboBox();
-            this.butReadDoorOpenCheckMode = new System.Windows.Forms.Button();
-            this.butWriteDoorOpenCheckMode = new System.Windows.Forms.Button();
             this.Cmb_FaceBodyTemperature = new System.Windows.Forms.ComboBox();
             this.Lbl_Filllightmode = new System.Windows.Forms.Label();
-            this.gpDeviceVolume = new System.Windows.Forms.GroupBox();
-            this.cmbDriveVolume = new System.Windows.Forms.ComboBox();
-            this.butWriteVolume = new System.Windows.Forms.Button();
-            this.butReadVolume = new System.Windows.Forms.Button();
-            this.Lbl_Volume = new System.Windows.Forms.Label();
             this.Cmb_FaceMouthmuffle = new System.Windows.Forms.ComboBox();
-            this.gpDeviceLanguage = new System.Windows.Forms.GroupBox();
-            this.cmbLanguage = new System.Windows.Forms.ComboBox();
-            this.butWriteLanguage = new System.Windows.Forms.Button();
-            this.butReadLanguage = new System.Windows.Forms.Button();
-            this.Lbl_p3_Language = new System.Windows.Forms.Label();
             this.Lbl_MaskRecognitionSwitch = new System.Windows.Forms.Label();
             this.Cmb_FaceLEDMode = new System.Windows.Forms.ComboBox();
             this.But_WriteFaceMouthmufflePar = new System.Windows.Forms.Button();
             this.Lbl_TemperatureExaminationAndFormat = new System.Windows.Forms.Label();
             this.But_ReadFaceMouthmufflePar = new System.Windows.Forms.Button();
-            this.But_ReadShortMessage = new System.Windows.Forms.Button();
             this.But_ReadFaceLEDMode = new System.Windows.Forms.Button();
             this.Lbl_TemperatureAlarmThreshold = new System.Windows.Forms.Label();
             this.But_WriteFaceBodyTemperature = new System.Windows.Forms.Button();
-            this.But_WriteShortMessage = new System.Windows.Forms.Button();
             this.But_WriteFaceLEDMode = new System.Windows.Forms.Button();
             this.Txt_BodyTemperatureAlarm = new System.Windows.Forms.TextBox();
             this.But_ReadFaceBodyTemperature = new System.Windows.Forms.Button();
             this.But_ReadFaceBodyTemperatureShow = new System.Windows.Forms.Button();
             this.Lbl_TemperatureIndicatorSwitch = new System.Windows.Forms.Label();
-            this.Lbl_ShortMessage = new System.Windows.Forms.Label();
             this.But_WriteFaceBodyTemperatureAlarm = new System.Windows.Forms.Button();
             this.But_WriteFaceBodyTemperatureShow = new System.Windows.Forms.Button();
             this.cmb_FaceBodyTemperatureShow = new System.Windows.Forms.ComboBox();
-            this.Txt_ShortMessage = new System.Windows.Forms.TextBox();
             this.But_ReadFaceBodyTemperatureAlarm = new System.Windows.Forms.Button();
-            this.tabPar4 = new System.Windows.Forms.TabPage();
-            this.gbThirdpartyAPI = new System.Windows.Forms.GroupBox();
-            this.txtPlatformConfig = new System.Windows.Forms.TextBox();
-            this.lblPlatformTypePar = new System.Windows.Forms.Label();
-            this.lblPlatformType = new System.Windows.Forms.Label();
-            this.cmbPlatformType = new System.Windows.Forms.ComboBox();
-            this.btnReadThirdpartyAPI = new System.Windows.Forms.Button();
-            this.btnWriteThirdpartyAPI = new System.Windows.Forms.Button();
-            this.gbAttendanceDevice = new System.Windows.Forms.GroupBox();
-            this.txtBroadcastVoiceNum = new System.Windows.Forms.NumericUpDown();
-            this.lblBroadcastVoiceNum = new System.Windows.Forms.Label();
-            this.txtBeginAttendanceTime = new System.Windows.Forms.NumericUpDown();
-            this.lblBeginAttendanceTime = new System.Windows.Forms.Label();
-            this.btnSendCMD_EnterSleep = new System.Windows.Forms.Button();
-            this.btnSendCMD_BeginAttendance = new System.Windows.Forms.Button();
-            this.btnSendCMD_BroadcastVoice = new System.Windows.Forms.Button();
+            this.tpNetwork = new System.Windows.Forms.TabPage();
+            this.gbOfflineRecordPush = new System.Windows.Forms.GroupBox();
+            this.cmbOfflineRecordPush = new System.Windows.Forms.ComboBox();
+            this.btnWriteOfflineRecordPush = new System.Windows.Forms.Button();
+            this.btnReadOfflineRecordPush = new System.Windows.Forms.Button();
             this.gbYZW = new System.Windows.Forms.GroupBox();
             this.cmdSendReloadYZW_People = new System.Windows.Forms.Button();
             this.cmdReadYZW_Push = new System.Windows.Forms.Button();
             this.cmbYZW = new System.Windows.Forms.ComboBox();
             this.cmdWriteYZW_Push = new System.Windows.Forms.Button();
-            this.gbFaceBioassaySimilarity = new System.Windows.Forms.GroupBox();
-            this.cmdReadFaceBioassaySimilarity = new System.Windows.Forms.Button();
-            this.cmbFaceBioassaySimilarity = new System.Windows.Forms.ComboBox();
-            this.cmdWriteFaceBioassaySimilarity = new System.Windows.Forms.Button();
-            this.gbFireUse = new System.Windows.Forms.GroupBox();
-            this.cmdFireUse = new System.Windows.Forms.ComboBox();
-            this.cmdWriteSendFireAlarm = new System.Windows.Forms.Button();
-            this.gbRecordQRCode = new System.Windows.Forms.GroupBox();
-            this.txtRecordQRCodeURL = new System.Windows.Forms.TextBox();
-            this.lblRecordQRCodeURL = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbRecordQRCode = new System.Windows.Forms.ComboBox();
-            this.butWriteRecordQRCode = new System.Windows.Forms.Button();
-            this.butReadRecordQRCode = new System.Windows.Forms.Button();
-            this.gbLightPattern = new System.Windows.Forms.GroupBox();
-            this.cmbLightPattern = new System.Windows.Forms.ComboBox();
-            this.butWriteLightPattern = new System.Windows.Forms.Button();
-            this.butReadLightPattern = new System.Windows.Forms.Button();
-            this.gbSaveRecordImage = new System.Windows.Forms.GroupBox();
-            this.cmbSaveRecordImage = new System.Windows.Forms.ComboBox();
-            this.butWriteSaveRecordImage = new System.Windows.Forms.Button();
-            this.butReadSaveRecordImage = new System.Windows.Forms.Button();
-            this.gbAuthenticationMode = new System.Windows.Forms.GroupBox();
-            this.cmbAuthenticationMode = new System.Windows.Forms.ComboBox();
-            this.butWriteAuthenticationMode = new System.Windows.Forms.Button();
-            this.butReadAuthenticationMode = new System.Windows.Forms.Button();
-            this.tpNetwork = new System.Windows.Forms.TabPage();
             this.gbClientDetail = new System.Windows.Forms.GroupBox();
             this.LblServerStatus = new System.Windows.Forms.Label();
             this.txtServerStatus = new System.Windows.Forms.TextBox();
@@ -275,8 +245,36 @@
             this.txtServerIP_1 = new System.Windows.Forms.TextBox();
             this.lblServerPort_1 = new System.Windows.Forms.Label();
             this.txtServerPort_1 = new System.Windows.Forms.TextBox();
+            this.tpthirdparty = new System.Windows.Forms.TabPage();
+            this.txtPlatformConfig = new System.Windows.Forms.TextBox();
+            this.lblPlatformTypePar = new System.Windows.Forms.Label();
+            this.lblPlatformType = new System.Windows.Forms.Label();
+            this.cmbPlatformType = new System.Windows.Forms.ComboBox();
+            this.btnReadThirdpartyAPI = new System.Windows.Forms.Button();
+            this.btnWriteThirdpartyAPI = new System.Windows.Forms.Button();
+            this.tabPar4 = new System.Windows.Forms.TabPage();
+            this.gpCacheContent = new System.Windows.Forms.GroupBox();
+            this.txtCacheContent = new System.Windows.Forms.TextBox();
+            this.btnReadCacheContent = new System.Windows.Forms.Button();
+            this.btnWriteCacheContent = new System.Windows.Forms.Button();
+            this.gbAttendanceDevice = new System.Windows.Forms.GroupBox();
+            this.txtBroadcastVoiceNum = new System.Windows.Forms.NumericUpDown();
+            this.lblBroadcastVoiceNum = new System.Windows.Forms.Label();
+            this.txtBeginAttendanceTime = new System.Windows.Forms.NumericUpDown();
+            this.lblBeginAttendanceTime = new System.Windows.Forms.Label();
+            this.btnSendCMD_EnterSleep = new System.Windows.Forms.Button();
+            this.btnSendCMD_BeginAttendance = new System.Windows.Forms.Button();
+            this.btnSendCMD_BroadcastVoice = new System.Windows.Forms.Button();
+            this.gbRecordQRCode = new System.Windows.Forms.GroupBox();
+            this.txtRecordQRCodeURL = new System.Windows.Forms.TextBox();
+            this.lblRecordQRCodeURL = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbRecordQRCode = new System.Windows.Forms.ComboBox();
+            this.butWriteRecordQRCode = new System.Windows.Forms.Button();
+            this.butReadRecordQRCode = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpPar1.SuspendLayout();
+            this.gpSysatemStatus.SuspendLayout();
             this.gb4GModule.SuspendLayout();
             this.gbWatch.SuspendLayout();
             this.gbRecordMode.SuspendLayout();
@@ -287,30 +285,27 @@
             this.gpSN.SuspendLayout();
             this.gbPassword.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.gpShortMessage.SuspendLayout();
             this.gpOemInfo.SuspendLayout();
+            this.gpDeviceLanguage.SuspendLayout();
             this.gpMenuManagementPassword.SuspendLayout();
-            this.gpScreenContent.SuspendLayout();
+            this.gpDeviceVolume.SuspendLayout();
             this.gpFace_fingerprint_threshold.SuspendLayout();
             this.gpWgOut.SuspendLayout();
             this.gpLocalIdentity.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.gpDeviceVolume.SuspendLayout();
-            this.gpDeviceLanguage.SuspendLayout();
+            this.tpNetwork.SuspendLayout();
+            this.gbOfflineRecordPush.SuspendLayout();
+            this.gbYZW.SuspendLayout();
+            this.gbClientDetail.SuspendLayout();
+            this.gbServerDetail.SuspendLayout();
+            this.tpthirdparty.SuspendLayout();
             this.tabPar4.SuspendLayout();
-            this.gbThirdpartyAPI.SuspendLayout();
+            this.gpCacheContent.SuspendLayout();
             this.gbAttendanceDevice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBroadcastVoiceNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBeginAttendanceTime)).BeginInit();
-            this.gbYZW.SuspendLayout();
-            this.gbFaceBioassaySimilarity.SuspendLayout();
-            this.gbFireUse.SuspendLayout();
             this.gbRecordQRCode.SuspendLayout();
-            this.gbLightPattern.SuspendLayout();
-            this.gbSaveRecordImage.SuspendLayout();
-            this.gbAuthenticationMode.SuspendLayout();
-            this.tpNetwork.SuspendLayout();
-            this.gbClientDetail.SuspendLayout();
-            this.gbServerDetail.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -318,17 +313,19 @@
             this.tabControl1.Controls.Add(this.tpPar1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPar4);
             this.tabControl1.Controls.Add(this.tpNetwork);
+            this.tabControl1.Controls.Add(this.tpthirdparty);
+            this.tabControl1.Controls.Add(this.tabPar4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(766, 734);
+            this.tabControl1.Size = new System.Drawing.Size(773, 732);
             this.tabControl1.TabIndex = 0;
             // 
             // tpPar1
             // 
+            this.tpPar1.Controls.Add(this.gpSysatemStatus);
             this.tpPar1.Controls.Add(this.gb4GModule);
             this.tpPar1.Controls.Add(this.butRestart);
             this.tpPar1.Controls.Add(this.BtnFormatController);
@@ -342,10 +339,39 @@
             this.tpPar1.Location = new System.Drawing.Point(4, 22);
             this.tpPar1.Name = "tpPar1";
             this.tpPar1.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPar1.Size = new System.Drawing.Size(758, 708);
+            this.tpPar1.Size = new System.Drawing.Size(765, 706);
             this.tpPar1.TabIndex = 0;
-            this.tpPar1.Text = "设备参数设置";
+            this.tpPar1.Text = "设备信息";
             this.tpPar1.UseVisualStyleBackColor = true;
+            // 
+            // gpSysatemStatus
+            // 
+            this.gpSysatemStatus.Controls.Add(this.txtReadSystemStatus);
+            this.gpSysatemStatus.Controls.Add(this.btnReadSystemStatus);
+            this.gpSysatemStatus.Location = new System.Drawing.Point(277, 319);
+            this.gpSysatemStatus.Name = "gpSysatemStatus";
+            this.gpSysatemStatus.Size = new System.Drawing.Size(482, 135);
+            this.gpSysatemStatus.TabIndex = 75;
+            this.gpSysatemStatus.TabStop = false;
+            this.gpSysatemStatus.Text = "设备状态";
+            // 
+            // txtReadSystemStatus
+            // 
+            this.txtReadSystemStatus.Location = new System.Drawing.Point(11, 18);
+            this.txtReadSystemStatus.Multiline = true;
+            this.txtReadSystemStatus.Name = "txtReadSystemStatus";
+            this.txtReadSystemStatus.Size = new System.Drawing.Size(462, 80);
+            this.txtReadSystemStatus.TabIndex = 71;
+            // 
+            // btnReadSystemStatus
+            // 
+            this.btnReadSystemStatus.Location = new System.Drawing.Point(400, 104);
+            this.btnReadSystemStatus.Name = "btnReadSystemStatus";
+            this.btnReadSystemStatus.Size = new System.Drawing.Size(73, 23);
+            this.btnReadSystemStatus.TabIndex = 70;
+            this.btnReadSystemStatus.Text = "读取";
+            this.btnReadSystemStatus.UseVisualStyleBackColor = true;
+            this.btnReadSystemStatus.Click += new System.EventHandler(this.btnReadSystemStatus_Click);
             // 
             // gb4GModule
             // 
@@ -400,7 +426,7 @@
             // 
             // butRestart
             // 
-            this.butRestart.Location = new System.Drawing.Point(511, 319);
+            this.butRestart.Location = new System.Drawing.Point(511, 534);
             this.butRestart.Name = "butRestart";
             this.butRestart.Size = new System.Drawing.Size(107, 23);
             this.butRestart.TabIndex = 73;
@@ -410,7 +436,7 @@
             // 
             // BtnFormatController
             // 
-            this.BtnFormatController.Location = new System.Drawing.Point(624, 319);
+            this.BtnFormatController.Location = new System.Drawing.Point(624, 534);
             this.BtnFormatController.Name = "BtnFormatController";
             this.BtnFormatController.Size = new System.Drawing.Size(107, 23);
             this.BtnFormatController.TabIndex = 72;
@@ -429,7 +455,7 @@
             this.gbWatch.Controls.Add(this.lbWatchStateTag);
             this.gbWatch.Location = new System.Drawing.Point(277, 226);
             this.gbWatch.Name = "gbWatch";
-            this.gbWatch.Size = new System.Drawing.Size(482, 87);
+            this.gbWatch.Size = new System.Drawing.Size(481, 87);
             this.gbWatch.TabIndex = 71;
             this.gbWatch.TabStop = false;
             this.gbWatch.Text = "数据监控";
@@ -578,6 +604,8 @@
             // 
             // gbVersion
             // 
+            this.gbVersion.Controls.Add(this.txtFaceVer);
+            this.gbVersion.Controls.Add(this.lblFaceVer);
             this.gbVersion.Controls.Add(this.txtFPVer);
             this.gbVersion.Controls.Add(this.lblFPVer);
             this.gbVersion.Controls.Add(this.txtVersion);
@@ -590,22 +618,38 @@
             this.gbVersion.TabStop = false;
             this.gbVersion.Text = "版本号";
             // 
+            // txtFaceVer
+            // 
+            this.txtFaceVer.Location = new System.Drawing.Point(243, 46);
+            this.txtFaceVer.MaxLength = 8;
+            this.txtFaceVer.Name = "txtFaceVer";
+            this.txtFaceVer.Size = new System.Drawing.Size(50, 21);
+            this.txtFaceVer.TabIndex = 15;
+            // 
+            // lblFaceVer
+            // 
+            this.lblFaceVer.Location = new System.Drawing.Point(156, 47);
+            this.lblFaceVer.Name = "lblFaceVer";
+            this.lblFaceVer.Size = new System.Drawing.Size(81, 19);
+            this.lblFaceVer.TabIndex = 14;
+            this.lblFaceVer.Text = "人脸：";
+            this.lblFaceVer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // txtFPVer
             // 
-            this.txtFPVer.Location = new System.Drawing.Point(114, 44);
+            this.txtFPVer.Location = new System.Drawing.Point(93, 47);
             this.txtFPVer.MaxLength = 8;
             this.txtFPVer.Name = "txtFPVer";
-            this.txtFPVer.Size = new System.Drawing.Size(96, 21);
+            this.txtFPVer.Size = new System.Drawing.Size(50, 21);
             this.txtFPVer.TabIndex = 13;
             // 
             // lblFPVer
             // 
-            this.lblFPVer.AutoSize = true;
-            this.lblFPVer.Location = new System.Drawing.Point(22, 48);
+            this.lblFPVer.Location = new System.Drawing.Point(6, 48);
             this.lblFPVer.Name = "lblFPVer";
-            this.lblFPVer.Size = new System.Drawing.Size(89, 12);
+            this.lblFPVer.Size = new System.Drawing.Size(81, 19);
             this.lblFPVer.TabIndex = 12;
-            this.lblFPVer.Text = "指纹算法版本：";
+            this.lblFPVer.Text = "指纹：";
             this.lblFPVer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtVersion
@@ -643,7 +687,7 @@
             this.gbRunStatus.Controls.Add(this.txtRestartCount);
             this.gbRunStatus.Controls.Add(this.LblRestartCount);
             this.gbRunStatus.Controls.Add(this.lblFormatCount);
-            this.gbRunStatus.Controls.Add(this.btnReadSystemStatus);
+            this.gbRunStatus.Controls.Add(this.btnReadSystemRunStatus);
             this.gbRunStatus.Controls.Add(this.txtRunDay);
             this.gbRunStatus.Controls.Add(this.lblRunDay);
             this.gbRunStatus.Location = new System.Drawing.Point(277, 87);
@@ -704,15 +748,15 @@
             this.lblFormatCount.Text = "格式化次数：";
             this.lblFormatCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnReadSystemStatus
+            // btnReadSystemRunStatus
             // 
-            this.btnReadSystemStatus.Location = new System.Drawing.Point(425, 16);
-            this.btnReadSystemStatus.Name = "btnReadSystemStatus";
-            this.btnReadSystemStatus.Size = new System.Drawing.Size(48, 23);
-            this.btnReadSystemStatus.TabIndex = 2;
-            this.btnReadSystemStatus.Text = "读取";
-            this.btnReadSystemStatus.UseVisualStyleBackColor = true;
-            this.btnReadSystemStatus.Click += new System.EventHandler(this.BtnReadSystemStatus_Click);
+            this.btnReadSystemRunStatus.Location = new System.Drawing.Point(425, 16);
+            this.btnReadSystemRunStatus.Name = "btnReadSystemRunStatus";
+            this.btnReadSystemRunStatus.Size = new System.Drawing.Size(48, 23);
+            this.btnReadSystemRunStatus.TabIndex = 2;
+            this.btnReadSystemRunStatus.Text = "读取";
+            this.btnReadSystemRunStatus.UseVisualStyleBackColor = true;
+            this.btnReadSystemRunStatus.Click += new System.EventHandler(this.ReadSystemRunStatus_Click);
             // 
             // txtRunDay
             // 
@@ -937,7 +981,7 @@
             // 
             // butWriteTCPSetting
             // 
-            this.butWriteTCPSetting.Location = new System.Drawing.Point(136, 324);
+            this.butWriteTCPSetting.Location = new System.Drawing.Point(211, 324);
             this.butWriteTCPSetting.Name = "butWriteTCPSetting";
             this.butWriteTCPSetting.Size = new System.Drawing.Size(48, 23);
             this.butWriteTCPSetting.TabIndex = 3;
@@ -947,7 +991,7 @@
             // 
             // butRendTCPSetting
             // 
-            this.butRendTCPSetting.Location = new System.Drawing.Point(80, 324);
+            this.butRendTCPSetting.Location = new System.Drawing.Point(155, 324);
             this.butRendTCPSetting.Name = "butRendTCPSetting";
             this.butRendTCPSetting.Size = new System.Drawing.Size(48, 23);
             this.butRendTCPSetting.TabIndex = 2;
@@ -1096,19 +1140,61 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.gpShortMessage);
             this.tabPage2.Controls.Add(this.gpOemInfo);
+            this.tabPage2.Controls.Add(this.gpDeviceLanguage);
             this.tabPage2.Controls.Add(this.gpMenuManagementPassword);
-            this.tabPage2.Controls.Add(this.gpScreenContent);
+            this.tabPage2.Controls.Add(this.gpDeviceVolume);
             this.tabPage2.Controls.Add(this.gpFace_fingerprint_threshold);
             this.tabPage2.Controls.Add(this.gpWgOut);
             this.tabPage2.Controls.Add(this.gpLocalIdentity);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(758, 708);
+            this.tabPage2.Size = new System.Drawing.Size(765, 706);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "参数2";
+            this.tabPage2.Text = "工作参数";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // gpShortMessage
+            // 
+            this.gpShortMessage.Controls.Add(this.Txt_ShortMessage);
+            this.gpShortMessage.Controls.Add(this.But_ReadShortMessage);
+            this.gpShortMessage.Controls.Add(this.But_WriteShortMessage);
+            this.gpShortMessage.Location = new System.Drawing.Point(8, 452);
+            this.gpShortMessage.Name = "gpShortMessage";
+            this.gpShortMessage.Size = new System.Drawing.Size(733, 50);
+            this.gpShortMessage.TabIndex = 7;
+            this.gpShortMessage.TabStop = false;
+            this.gpShortMessage.Text = "短消息";
+            // 
+            // Txt_ShortMessage
+            // 
+            this.Txt_ShortMessage.Location = new System.Drawing.Point(7, 20);
+            this.Txt_ShortMessage.Name = "Txt_ShortMessage";
+            this.Txt_ShortMessage.Size = new System.Drawing.Size(561, 21);
+            this.Txt_ShortMessage.TabIndex = 1;
+            this.Txt_ShortMessage.Text = "abcd";
+            // 
+            // But_ReadShortMessage
+            // 
+            this.But_ReadShortMessage.Location = new System.Drawing.Point(615, 18);
+            this.But_ReadShortMessage.Name = "But_ReadShortMessage";
+            this.But_ReadShortMessage.Size = new System.Drawing.Size(48, 23);
+            this.But_ReadShortMessage.TabIndex = 4;
+            this.But_ReadShortMessage.Text = "读取";
+            this.But_ReadShortMessage.UseVisualStyleBackColor = true;
+            this.But_ReadShortMessage.Click += new System.EventHandler(this.But_ReadShortMessage_Click);
+            // 
+            // But_WriteShortMessage
+            // 
+            this.But_WriteShortMessage.Location = new System.Drawing.Point(672, 18);
+            this.But_WriteShortMessage.Name = "But_WriteShortMessage";
+            this.But_WriteShortMessage.Size = new System.Drawing.Size(47, 23);
+            this.But_WriteShortMessage.TabIndex = 4;
+            this.But_WriteShortMessage.Text = "写入";
+            this.But_WriteShortMessage.UseVisualStyleBackColor = true;
+            this.But_WriteShortMessage.Click += new System.EventHandler(this.But_WriteShortMessage_Click);
             // 
             // gpOemInfo
             // 
@@ -1121,16 +1207,16 @@
             this.gpOemInfo.Controls.Add(this.Lbl_p2_Url);
             this.gpOemInfo.Controls.Add(this.txtManufacturer);
             this.gpOemInfo.Controls.Add(this.Lbl_p2_Manufacturers);
-            this.gpOemInfo.Location = new System.Drawing.Point(9, 427);
+            this.gpOemInfo.Location = new System.Drawing.Point(8, 348);
             this.gpOemInfo.Name = "gpOemInfo";
-            this.gpOemInfo.Size = new System.Drawing.Size(733, 115);
+            this.gpOemInfo.Size = new System.Drawing.Size(733, 98);
             this.gpOemInfo.TabIndex = 5;
             this.gpOemInfo.TabStop = false;
             this.gpOemInfo.Text = "OEM信息";
             // 
             // btnWriteOEM
             // 
-            this.btnWriteOEM.Location = new System.Drawing.Point(671, 20);
+            this.btnWriteOEM.Location = new System.Drawing.Point(671, 36);
             this.btnWriteOEM.Name = "btnWriteOEM";
             this.btnWriteOEM.Size = new System.Drawing.Size(48, 23);
             this.btnWriteOEM.TabIndex = 59;
@@ -1140,7 +1226,7 @@
             // 
             // btnReadOEM
             // 
-            this.btnReadOEM.Location = new System.Drawing.Point(615, 20);
+            this.btnReadOEM.Location = new System.Drawing.Point(615, 36);
             this.btnReadOEM.Name = "btnReadOEM";
             this.btnReadOEM.Size = new System.Drawing.Size(48, 23);
             this.btnReadOEM.TabIndex = 60;
@@ -1178,15 +1264,15 @@
             // 
             // txtWebAddr
             // 
-            this.txtWebAddr.Location = new System.Drawing.Point(7, 88);
+            this.txtWebAddr.Location = new System.Drawing.Point(65, 70);
             this.txtWebAddr.Name = "txtWebAddr";
-            this.txtWebAddr.Size = new System.Drawing.Size(327, 21);
+            this.txtWebAddr.Size = new System.Drawing.Size(654, 21);
             this.txtWebAddr.TabIndex = 62;
             // 
             // Lbl_p2_Url
             // 
             this.Lbl_p2_Url.AutoSize = true;
-            this.Lbl_p2_Url.Location = new System.Drawing.Point(6, 70);
+            this.Lbl_p2_Url.Location = new System.Drawing.Point(6, 74);
             this.Lbl_p2_Url.Name = "Lbl_p2_Url";
             this.Lbl_p2_Url.Size = new System.Drawing.Size(53, 12);
             this.Lbl_p2_Url.TabIndex = 61;
@@ -1208,22 +1294,62 @@
             this.Lbl_p2_Manufacturers.TabIndex = 59;
             this.Lbl_p2_Manufacturers.Text = "制造商：";
             // 
+            // gpDeviceLanguage
+            // 
+            this.gpDeviceLanguage.Controls.Add(this.cmbLanguage);
+            this.gpDeviceLanguage.Controls.Add(this.butWriteLanguage);
+            this.gpDeviceLanguage.Controls.Add(this.butReadLanguage);
+            this.gpDeviceLanguage.Location = new System.Drawing.Point(9, 237);
+            this.gpDeviceLanguage.Name = "gpDeviceLanguage";
+            this.gpDeviceLanguage.Size = new System.Drawing.Size(369, 49);
+            this.gpDeviceLanguage.TabIndex = 5;
+            this.gpDeviceLanguage.TabStop = false;
+            this.gpDeviceLanguage.Text = "设备语言";
+            // 
+            // cmbLanguage
+            // 
+            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Location = new System.Drawing.Point(29, 20);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(154, 20);
+            this.cmbLanguage.TabIndex = 59;
+            // 
+            // butWriteLanguage
+            // 
+            this.butWriteLanguage.Location = new System.Drawing.Point(306, 19);
+            this.butWriteLanguage.Name = "butWriteLanguage";
+            this.butWriteLanguage.Size = new System.Drawing.Size(48, 23);
+            this.butWriteLanguage.TabIndex = 57;
+            this.butWriteLanguage.Text = "写入";
+            this.butWriteLanguage.UseVisualStyleBackColor = true;
+            this.butWriteLanguage.Click += new System.EventHandler(this.ButWriteLanguage_Click);
+            // 
+            // butReadLanguage
+            // 
+            this.butReadLanguage.Location = new System.Drawing.Point(250, 19);
+            this.butReadLanguage.Name = "butReadLanguage";
+            this.butReadLanguage.Size = new System.Drawing.Size(48, 23);
+            this.butReadLanguage.TabIndex = 58;
+            this.butReadLanguage.Text = "读取";
+            this.butReadLanguage.UseVisualStyleBackColor = true;
+            this.butReadLanguage.Click += new System.EventHandler(this.ButReadLanguage_Click);
+            // 
             // gpMenuManagementPassword
             // 
             this.gpMenuManagementPassword.Controls.Add(this.btnWriteManageMenuPassword);
             this.gpMenuManagementPassword.Controls.Add(this.btnReadManageMenuPassword);
             this.gpMenuManagementPassword.Controls.Add(this.txtPassword);
-            this.gpMenuManagementPassword.Controls.Add(this.Lbl_p2_pwd);
-            this.gpMenuManagementPassword.Location = new System.Drawing.Point(9, 351);
+            this.gpMenuManagementPassword.Location = new System.Drawing.Point(9, 292);
             this.gpMenuManagementPassword.Name = "gpMenuManagementPassword";
-            this.gpMenuManagementPassword.Size = new System.Drawing.Size(733, 70);
+            this.gpMenuManagementPassword.Size = new System.Drawing.Size(733, 50);
             this.gpMenuManagementPassword.TabIndex = 4;
             this.gpMenuManagementPassword.TabStop = false;
             this.gpMenuManagementPassword.Text = "菜单管理密码";
             // 
             // btnWriteManageMenuPassword
             // 
-            this.btnWriteManageMenuPassword.Location = new System.Drawing.Point(671, 20);
+            this.btnWriteManageMenuPassword.Location = new System.Drawing.Point(671, 21);
             this.btnWriteManageMenuPassword.Name = "btnWriteManageMenuPassword";
             this.btnWriteManageMenuPassword.Size = new System.Drawing.Size(48, 23);
             this.btnWriteManageMenuPassword.TabIndex = 57;
@@ -1233,7 +1359,7 @@
             // 
             // btnReadManageMenuPassword
             // 
-            this.btnReadManageMenuPassword.Location = new System.Drawing.Point(615, 20);
+            this.btnReadManageMenuPassword.Location = new System.Drawing.Point(615, 21);
             this.btnReadManageMenuPassword.Name = "btnReadManageMenuPassword";
             this.btnReadManageMenuPassword.Size = new System.Drawing.Size(48, 23);
             this.btnReadManageMenuPassword.TabIndex = 58;
@@ -1243,159 +1369,61 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(9, 43);
+            this.txtPassword.Location = new System.Drawing.Point(10, 22);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(327, 21);
             this.txtPassword.TabIndex = 57;
             // 
-            // Lbl_p2_pwd
+            // gpDeviceVolume
             // 
-            this.Lbl_p2_pwd.AutoSize = true;
-            this.Lbl_p2_pwd.Location = new System.Drawing.Point(8, 28);
-            this.Lbl_p2_pwd.Name = "Lbl_p2_pwd";
-            this.Lbl_p2_pwd.Size = new System.Drawing.Size(41, 12);
-            this.Lbl_p2_pwd.TabIndex = 56;
-            this.Lbl_p2_pwd.Text = "密码：";
+            this.gpDeviceVolume.Controls.Add(this.cmbDriveVolume);
+            this.gpDeviceVolume.Controls.Add(this.butWriteVolume);
+            this.gpDeviceVolume.Controls.Add(this.butReadVolume);
+            this.gpDeviceVolume.Location = new System.Drawing.Point(404, 237);
+            this.gpDeviceVolume.Name = "gpDeviceVolume";
+            this.gpDeviceVolume.Size = new System.Drawing.Size(338, 49);
+            this.gpDeviceVolume.TabIndex = 6;
+            this.gpDeviceVolume.TabStop = false;
+            this.gpDeviceVolume.Text = "设备音量";
             // 
-            // gpScreenContent
+            // cmbDriveVolume
             // 
-            this.gpScreenContent.Controls.Add(this.btnWriteScreenDisplayContent);
-            this.gpScreenContent.Controls.Add(this.btnReadScreenDisplayContent);
-            this.gpScreenContent.Controls.Add(this.cbDisplay9);
-            this.gpScreenContent.Controls.Add(this.cbDisplay8);
-            this.gpScreenContent.Controls.Add(this.cbDisplay7);
-            this.gpScreenContent.Controls.Add(this.cbDisplay6);
-            this.gpScreenContent.Controls.Add(this.cbDisplay5);
-            this.gpScreenContent.Controls.Add(this.cbDisplay4);
-            this.gpScreenContent.Controls.Add(this.cbDisplay3);
-            this.gpScreenContent.Controls.Add(this.cbDisplay2);
-            this.gpScreenContent.Controls.Add(this.cbDisplay1);
-            this.gpScreenContent.Location = new System.Drawing.Point(9, 267);
-            this.gpScreenContent.Name = "gpScreenContent";
-            this.gpScreenContent.Size = new System.Drawing.Size(733, 78);
-            this.gpScreenContent.TabIndex = 3;
-            this.gpScreenContent.TabStop = false;
-            this.gpScreenContent.Text = "屏幕显示内容";
+            this.cmbDriveVolume.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDriveVolume.FormattingEnabled = true;
+            this.cmbDriveVolume.Location = new System.Drawing.Point(20, 22);
+            this.cmbDriveVolume.Name = "cmbDriveVolume";
+            this.cmbDriveVolume.Size = new System.Drawing.Size(157, 20);
+            this.cmbDriveVolume.TabIndex = 59;
             // 
-            // btnWriteScreenDisplayContent
+            // butWriteVolume
             // 
-            this.btnWriteScreenDisplayContent.Location = new System.Drawing.Point(671, 17);
-            this.btnWriteScreenDisplayContent.Name = "btnWriteScreenDisplayContent";
-            this.btnWriteScreenDisplayContent.Size = new System.Drawing.Size(48, 23);
-            this.btnWriteScreenDisplayContent.TabIndex = 56;
-            this.btnWriteScreenDisplayContent.Text = "写入";
-            this.btnWriteScreenDisplayContent.UseVisualStyleBackColor = true;
-            this.btnWriteScreenDisplayContent.Click += new System.EventHandler(this.BtnWriteScreenDisplayContent_Click);
+            this.butWriteVolume.Location = new System.Drawing.Point(276, 21);
+            this.butWriteVolume.Name = "butWriteVolume";
+            this.butWriteVolume.Size = new System.Drawing.Size(48, 23);
+            this.butWriteVolume.TabIndex = 57;
+            this.butWriteVolume.Text = "写入";
+            this.butWriteVolume.UseVisualStyleBackColor = true;
+            this.butWriteVolume.Click += new System.EventHandler(this.ButWriteVolume_Click);
             // 
-            // btnReadScreenDisplayContent
+            // butReadVolume
             // 
-            this.btnReadScreenDisplayContent.Location = new System.Drawing.Point(615, 17);
-            this.btnReadScreenDisplayContent.Name = "btnReadScreenDisplayContent";
-            this.btnReadScreenDisplayContent.Size = new System.Drawing.Size(48, 23);
-            this.btnReadScreenDisplayContent.TabIndex = 56;
-            this.btnReadScreenDisplayContent.Text = "读取";
-            this.btnReadScreenDisplayContent.UseVisualStyleBackColor = true;
-            this.btnReadScreenDisplayContent.Click += new System.EventHandler(this.BtnReadScreenDisplayContent_Click);
-            // 
-            // cbDisplay9
-            // 
-            this.cbDisplay9.AutoSize = true;
-            this.cbDisplay9.Location = new System.Drawing.Point(380, 56);
-            this.cbDisplay9.Name = "cbDisplay9";
-            this.cbDisplay9.Size = new System.Drawing.Size(60, 16);
-            this.cbDisplay9.TabIndex = 8;
-            this.cbDisplay9.Text = "用户号";
-            this.cbDisplay9.UseVisualStyleBackColor = true;
-            // 
-            // cbDisplay8
-            // 
-            this.cbDisplay8.AutoSize = true;
-            this.cbDisplay8.Location = new System.Drawing.Point(218, 56);
-            this.cbDisplay8.Name = "cbDisplay8";
-            this.cbDisplay8.Size = new System.Drawing.Size(72, 16);
-            this.cbDisplay8.TabIndex = 7;
-            this.cbDisplay8.Text = "记录时间";
-            this.cbDisplay8.UseVisualStyleBackColor = true;
-            // 
-            // cbDisplay7
-            // 
-            this.cbDisplay7.AutoSize = true;
-            this.cbDisplay7.Location = new System.Drawing.Point(9, 56);
-            this.cbDisplay7.Name = "cbDisplay7";
-            this.cbDisplay7.Size = new System.Drawing.Size(72, 16);
-            this.cbDisplay7.TabIndex = 6;
-            this.cbDisplay7.Text = "记录照片";
-            this.cbDisplay7.UseVisualStyleBackColor = true;
-            // 
-            // cbDisplay6
-            // 
-            this.cbDisplay6.AutoSize = true;
-            this.cbDisplay6.Location = new System.Drawing.Point(489, 21);
-            this.cbDisplay6.Name = "cbDisplay6";
-            this.cbDisplay6.Size = new System.Drawing.Size(48, 16);
-            this.cbDisplay6.TabIndex = 5;
-            this.cbDisplay6.Text = "卡号";
-            this.cbDisplay6.UseVisualStyleBackColor = true;
-            // 
-            // cbDisplay5
-            // 
-            this.cbDisplay5.AutoSize = true;
-            this.cbDisplay5.Location = new System.Drawing.Point(380, 21);
-            this.cbDisplay5.Name = "cbDisplay5";
-            this.cbDisplay5.Size = new System.Drawing.Size(72, 16);
-            this.cbDisplay5.TabIndex = 4;
-            this.cbDisplay5.Text = "人员照片";
-            this.cbDisplay5.UseVisualStyleBackColor = true;
-            // 
-            // cbDisplay4
-            // 
-            this.cbDisplay4.AutoSize = true;
-            this.cbDisplay4.Location = new System.Drawing.Point(304, 21);
-            this.cbDisplay4.Name = "cbDisplay4";
-            this.cbDisplay4.Size = new System.Drawing.Size(48, 16);
-            this.cbDisplay4.TabIndex = 3;
-            this.cbDisplay4.Text = "职务";
-            this.cbDisplay4.UseVisualStyleBackColor = true;
-            // 
-            // cbDisplay3
-            // 
-            this.cbDisplay3.AutoSize = true;
-            this.cbDisplay3.Location = new System.Drawing.Point(218, 21);
-            this.cbDisplay3.Name = "cbDisplay3";
-            this.cbDisplay3.Size = new System.Drawing.Size(48, 16);
-            this.cbDisplay3.TabIndex = 2;
-            this.cbDisplay3.Text = "部门";
-            this.cbDisplay3.UseVisualStyleBackColor = true;
-            // 
-            // cbDisplay2
-            // 
-            this.cbDisplay2.AutoSize = true;
-            this.cbDisplay2.Location = new System.Drawing.Point(107, 21);
-            this.cbDisplay2.Name = "cbDisplay2";
-            this.cbDisplay2.Size = new System.Drawing.Size(72, 16);
-            this.cbDisplay2.TabIndex = 1;
-            this.cbDisplay2.Text = "人员编号";
-            this.cbDisplay2.UseVisualStyleBackColor = true;
-            // 
-            // cbDisplay1
-            // 
-            this.cbDisplay1.AutoSize = true;
-            this.cbDisplay1.Location = new System.Drawing.Point(9, 21);
-            this.cbDisplay1.Name = "cbDisplay1";
-            this.cbDisplay1.Size = new System.Drawing.Size(48, 16);
-            this.cbDisplay1.TabIndex = 0;
-            this.cbDisplay1.Text = "人名";
-            this.cbDisplay1.UseVisualStyleBackColor = true;
+            this.butReadVolume.Location = new System.Drawing.Point(220, 21);
+            this.butReadVolume.Name = "butReadVolume";
+            this.butReadVolume.Size = new System.Drawing.Size(48, 23);
+            this.butReadVolume.TabIndex = 58;
+            this.butReadVolume.Text = "读取";
+            this.butReadVolume.UseVisualStyleBackColor = true;
+            this.butReadVolume.Click += new System.EventHandler(this.ButReadVolume_Click);
             // 
             // gpFace_fingerprint_threshold
             // 
             this.gpFace_fingerprint_threshold.Controls.Add(this.btnWriteComparisonThreshold);
             this.gpFace_fingerprint_threshold.Controls.Add(this.btnReadComparisonThreshold);
             this.gpFace_fingerprint_threshold.Controls.Add(this.cmbFingerprint);
-            this.gpFace_fingerprint_threshold.Controls.Add(this.Lbl_p2_FoFReadCardByte);
-            this.gpFace_fingerprint_threshold.Controls.Add(this.Lbl_p2_FoFWgOut);
+            this.gpFace_fingerprint_threshold.Controls.Add(this.Lbl_face_threshold);
+            this.gpFace_fingerprint_threshold.Controls.Add(this.Lbl_fp_threshold);
             this.gpFace_fingerprint_threshold.Controls.Add(this.cmbFace);
-            this.gpFace_fingerprint_threshold.Location = new System.Drawing.Point(9, 199);
+            this.gpFace_fingerprint_threshold.Location = new System.Drawing.Point(9, 169);
             this.gpFace_fingerprint_threshold.Name = "gpFace_fingerprint_threshold";
             this.gpFace_fingerprint_threshold.Size = new System.Drawing.Size(733, 62);
             this.gpFace_fingerprint_threshold.TabIndex = 2;
@@ -1431,23 +1459,23 @@
             this.cmbFingerprint.Size = new System.Drawing.Size(191, 20);
             this.cmbFingerprint.TabIndex = 55;
             // 
-            // Lbl_p2_FoFReadCardByte
+            // Lbl_face_threshold
             // 
-            this.Lbl_p2_FoFReadCardByte.AutoSize = true;
-            this.Lbl_p2_FoFReadCardByte.Location = new System.Drawing.Point(7, 17);
-            this.Lbl_p2_FoFReadCardByte.Name = "Lbl_p2_FoFReadCardByte";
-            this.Lbl_p2_FoFReadCardByte.Size = new System.Drawing.Size(65, 12);
-            this.Lbl_p2_FoFReadCardByte.TabIndex = 53;
-            this.Lbl_p2_FoFReadCardByte.Text = "读卡字节：";
+            this.Lbl_face_threshold.AutoSize = true;
+            this.Lbl_face_threshold.Location = new System.Drawing.Point(7, 17);
+            this.Lbl_face_threshold.Name = "Lbl_face_threshold";
+            this.Lbl_face_threshold.Size = new System.Drawing.Size(41, 12);
+            this.Lbl_face_threshold.TabIndex = 53;
+            this.Lbl_face_threshold.Text = "人脸：";
             // 
-            // Lbl_p2_FoFWgOut
+            // Lbl_fp_threshold
             // 
-            this.Lbl_p2_FoFWgOut.AutoSize = true;
-            this.Lbl_p2_FoFWgOut.Location = new System.Drawing.Point(378, 17);
-            this.Lbl_p2_FoFWgOut.Name = "Lbl_p2_FoFWgOut";
-            this.Lbl_p2_FoFWgOut.Size = new System.Drawing.Size(65, 12);
-            this.Lbl_p2_FoFWgOut.TabIndex = 54;
-            this.Lbl_p2_FoFWgOut.Text = "韦根输出：";
+            this.Lbl_fp_threshold.AutoSize = true;
+            this.Lbl_fp_threshold.Location = new System.Drawing.Point(378, 17);
+            this.Lbl_fp_threshold.Name = "Lbl_fp_threshold";
+            this.Lbl_fp_threshold.Size = new System.Drawing.Size(41, 12);
+            this.Lbl_fp_threshold.TabIndex = 54;
+            this.Lbl_fp_threshold.Text = "指纹：";
             // 
             // cmbFace
             // 
@@ -1466,20 +1494,18 @@
             this.gpWgOut.Controls.Add(this.Lbl_p2_OutputDataType);
             this.gpWgOut.Controls.Add(this.cmbWGByteSort);
             this.gpWgOut.Controls.Add(this.Lbl_p2_WgOrder);
-            this.gpWgOut.Controls.Add(this.cmbWGOutput);
-            this.gpWgOut.Controls.Add(this.Lbl_p2_WgOut);
-            this.gpWgOut.Controls.Add(this.cmbReadCardByte);
-            this.gpWgOut.Controls.Add(this.Lbl_p2_ReadCardByte);
+            this.gpWgOut.Controls.Add(this.cmbWGOutputCardByte);
+            this.gpWgOut.Controls.Add(this.Lbl_p2_WGOutputCardByte);
             this.gpWgOut.Location = new System.Drawing.Point(9, 95);
             this.gpWgOut.Name = "gpWgOut";
-            this.gpWgOut.Size = new System.Drawing.Size(733, 98);
+            this.gpWgOut.Size = new System.Drawing.Size(733, 68);
             this.gpWgOut.TabIndex = 1;
             this.gpWgOut.TabStop = false;
             this.gpWgOut.Text = "韦根输出";
             // 
             // btnWriteWiegandOutput
             // 
-            this.btnWriteWiegandOutput.Location = new System.Drawing.Point(671, 24);
+            this.btnWriteWiegandOutput.Location = new System.Drawing.Point(671, 16);
             this.btnWriteWiegandOutput.Name = "btnWriteWiegandOutput";
             this.btnWriteWiegandOutput.Size = new System.Drawing.Size(48, 23);
             this.btnWriteWiegandOutput.TabIndex = 46;
@@ -1489,7 +1515,7 @@
             // 
             // btnReadWiegandOutput
             // 
-            this.btnReadWiegandOutput.Location = new System.Drawing.Point(615, 24);
+            this.btnReadWiegandOutput.Location = new System.Drawing.Point(615, 16);
             this.btnReadWiegandOutput.Name = "btnReadWiegandOutput";
             this.btnReadWiegandOutput.Size = new System.Drawing.Size(48, 23);
             this.btnReadWiegandOutput.TabIndex = 45;
@@ -1501,7 +1527,7 @@
             // 
             this.cmbOutputType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOutputType.FormattingEnabled = true;
-            this.cmbOutputType.Location = new System.Drawing.Point(129, 62);
+            this.cmbOutputType.Location = new System.Drawing.Point(128, 41);
             this.cmbOutputType.Name = "cmbOutputType";
             this.cmbOutputType.Size = new System.Drawing.Size(134, 20);
             this.cmbOutputType.TabIndex = 51;
@@ -1509,7 +1535,7 @@
             // Lbl_p2_OutputDataType
             // 
             this.Lbl_p2_OutputDataType.AutoSize = true;
-            this.Lbl_p2_OutputDataType.Location = new System.Drawing.Point(128, 29);
+            this.Lbl_p2_OutputDataType.Location = new System.Drawing.Point(128, 21);
             this.Lbl_p2_OutputDataType.Name = "Lbl_p2_OutputDataType";
             this.Lbl_p2_OutputDataType.Size = new System.Drawing.Size(89, 12);
             this.Lbl_p2_OutputDataType.TabIndex = 50;
@@ -1519,7 +1545,7 @@
             // 
             this.cmbWGByteSort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWGByteSort.FormattingEnabled = true;
-            this.cmbWGByteSort.Location = new System.Drawing.Point(486, 62);
+            this.cmbWGByteSort.Location = new System.Drawing.Point(482, 41);
             this.cmbWGByteSort.Name = "cmbWGByteSort";
             this.cmbWGByteSort.Size = new System.Drawing.Size(113, 20);
             this.cmbWGByteSort.TabIndex = 49;
@@ -1527,47 +1553,29 @@
             // Lbl_p2_WgOrder
             // 
             this.Lbl_p2_WgOrder.AutoSize = true;
-            this.Lbl_p2_WgOrder.Location = new System.Drawing.Point(482, 29);
+            this.Lbl_p2_WgOrder.Location = new System.Drawing.Point(482, 21);
             this.Lbl_p2_WgOrder.Name = "Lbl_p2_WgOrder";
             this.Lbl_p2_WgOrder.Size = new System.Drawing.Size(77, 12);
             this.Lbl_p2_WgOrder.TabIndex = 48;
             this.Lbl_p2_WgOrder.Text = "WG字节顺序：";
             // 
-            // cmbWGOutput
+            // cmbWGOutputCardByte
             // 
-            this.cmbWGOutput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWGOutput.FormattingEnabled = true;
-            this.cmbWGOutput.Location = new System.Drawing.Point(3, 62);
-            this.cmbWGOutput.Name = "cmbWGOutput";
-            this.cmbWGOutput.Size = new System.Drawing.Size(63, 20);
-            this.cmbWGOutput.TabIndex = 47;
+            this.cmbWGOutputCardByte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWGOutputCardByte.FormattingEnabled = true;
+            this.cmbWGOutputCardByte.Location = new System.Drawing.Point(304, 41);
+            this.cmbWGOutputCardByte.Name = "cmbWGOutputCardByte";
+            this.cmbWGOutputCardByte.Size = new System.Drawing.Size(127, 20);
+            this.cmbWGOutputCardByte.TabIndex = 45;
             // 
-            // Lbl_p2_WgOut
+            // Lbl_p2_WGOutputCardByte
             // 
-            this.Lbl_p2_WgOut.AutoSize = true;
-            this.Lbl_p2_WgOut.Location = new System.Drawing.Point(5, 33);
-            this.Lbl_p2_WgOut.Name = "Lbl_p2_WgOut";
-            this.Lbl_p2_WgOut.Size = new System.Drawing.Size(65, 12);
-            this.Lbl_p2_WgOut.TabIndex = 46;
-            this.Lbl_p2_WgOut.Text = "韦根输出：";
-            // 
-            // cmbReadCardByte
-            // 
-            this.cmbReadCardByte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbReadCardByte.FormattingEnabled = true;
-            this.cmbReadCardByte.Location = new System.Drawing.Point(301, 62);
-            this.cmbReadCardByte.Name = "cmbReadCardByte";
-            this.cmbReadCardByte.Size = new System.Drawing.Size(127, 20);
-            this.cmbReadCardByte.TabIndex = 45;
-            // 
-            // Lbl_p2_ReadCardByte
-            // 
-            this.Lbl_p2_ReadCardByte.AutoSize = true;
-            this.Lbl_p2_ReadCardByte.Location = new System.Drawing.Point(304, 29);
-            this.Lbl_p2_ReadCardByte.Name = "Lbl_p2_ReadCardByte";
-            this.Lbl_p2_ReadCardByte.Size = new System.Drawing.Size(65, 12);
-            this.Lbl_p2_ReadCardByte.TabIndex = 45;
-            this.Lbl_p2_ReadCardByte.Text = "读卡字节：";
+            this.Lbl_p2_WGOutputCardByte.AutoSize = true;
+            this.Lbl_p2_WGOutputCardByte.Location = new System.Drawing.Point(304, 21);
+            this.Lbl_p2_WGOutputCardByte.Name = "Lbl_p2_WGOutputCardByte";
+            this.Lbl_p2_WGOutputCardByte.Size = new System.Drawing.Size(65, 12);
+            this.Lbl_p2_WGOutputCardByte.TabIndex = 45;
+            this.Lbl_p2_WGOutputCardByte.Text = "输出字节：";
             // 
             // gpLocalIdentity
             // 
@@ -1598,7 +1606,7 @@
             // 
             // txtLocalName
             // 
-            this.txtLocalName.Location = new System.Drawing.Point(3, 44);
+            this.txtLocalName.Location = new System.Drawing.Point(6, 44);
             this.txtLocalName.Name = "txtLocalName";
             this.txtLocalName.Size = new System.Drawing.Size(260, 21);
             this.txtLocalName.TabIndex = 5;
@@ -1616,7 +1624,7 @@
             // Lbl_p2_LocalName
             // 
             this.Lbl_p2_LocalName.AutoSize = true;
-            this.Lbl_p2_LocalName.Location = new System.Drawing.Point(4, 21);
+            this.Lbl_p2_LocalName.Location = new System.Drawing.Point(7, 21);
             this.Lbl_p2_LocalName.Name = "Lbl_p2_LocalName";
             this.Lbl_p2_LocalName.Size = new System.Drawing.Size(65, 12);
             this.Lbl_p2_LocalName.TabIndex = 4;
@@ -1663,51 +1671,287 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.cmbHelmetDetection);
+            this.tabPage3.Controls.Add(this.btnWriteHelmetDetection);
+            this.tabPage3.Controls.Add(this.lblHelmetDetection);
+            this.tabPage3.Controls.Add(this.btnReadHelmetDetection);
+            this.tabPage3.Controls.Add(this.cmbSaveRecordImage);
+            this.tabPage3.Controls.Add(this.butWriteSaveRecordImage);
+            this.tabPage3.Controls.Add(this.lblSaveRecordImage);
+            this.tabPage3.Controls.Add(this.butReadSaveRecordImage);
+            this.tabPage3.Controls.Add(this.cmbAuthenticationMode);
+            this.tabPage3.Controls.Add(this.butWriteAuthenticationMode);
+            this.tabPage3.Controls.Add(this.lblAuthenticationMode);
+            this.tabPage3.Controls.Add(this.butReadAuthenticationMode);
+            this.tabPage3.Controls.Add(this.btnReadFaceIdentifyRange);
+            this.tabPage3.Controls.Add(this.cmbFaceIdentifyRange);
+            this.tabPage3.Controls.Add(this.btnWriteFaceIdentifyRange);
+            this.tabPage3.Controls.Add(this.lblFaceIdentifyRange);
+            this.tabPage3.Controls.Add(this.cmdReadFaceBioassaySimilarity);
+            this.tabPage3.Controls.Add(this.lblFaceBioassaySimilarity);
+            this.tabPage3.Controls.Add(this.cmbFaceBioassaySimilarity);
+            this.tabPage3.Controls.Add(this.cmdWriteFaceBioassaySimilarity);
+            this.tabPage3.Controls.Add(this.cmbLightPattern);
+            this.tabPage3.Controls.Add(this.butWriteLightPattern);
+            this.tabPage3.Controls.Add(this.lblLightPattern);
+            this.tabPage3.Controls.Add(this.butReadLightPattern);
             this.tabPage3.Controls.Add(this.Btn_ReadFaceBioassay);
             this.tabPage3.Controls.Add(this.Btn_WriteFaceBioassay);
             this.tabPage3.Controls.Add(this.LabFaceBioassay);
-            this.tabPage3.Controls.Add(this.LblDoorAccessMode);
             this.tabPage3.Controls.Add(this.CmbFaceBioassay);
-            this.tabPage3.Controls.Add(this.cmbDoorAccessMode);
-            this.tabPage3.Controls.Add(this.butReadDoorOpenCheckMode);
-            this.tabPage3.Controls.Add(this.butWriteDoorOpenCheckMode);
             this.tabPage3.Controls.Add(this.Cmb_FaceBodyTemperature);
             this.tabPage3.Controls.Add(this.Lbl_Filllightmode);
-            this.tabPage3.Controls.Add(this.gpDeviceVolume);
             this.tabPage3.Controls.Add(this.Cmb_FaceMouthmuffle);
-            this.tabPage3.Controls.Add(this.gpDeviceLanguage);
             this.tabPage3.Controls.Add(this.Lbl_MaskRecognitionSwitch);
             this.tabPage3.Controls.Add(this.Cmb_FaceLEDMode);
             this.tabPage3.Controls.Add(this.But_WriteFaceMouthmufflePar);
             this.tabPage3.Controls.Add(this.Lbl_TemperatureExaminationAndFormat);
             this.tabPage3.Controls.Add(this.But_ReadFaceMouthmufflePar);
-            this.tabPage3.Controls.Add(this.But_ReadShortMessage);
             this.tabPage3.Controls.Add(this.But_ReadFaceLEDMode);
             this.tabPage3.Controls.Add(this.Lbl_TemperatureAlarmThreshold);
             this.tabPage3.Controls.Add(this.But_WriteFaceBodyTemperature);
-            this.tabPage3.Controls.Add(this.But_WriteShortMessage);
             this.tabPage3.Controls.Add(this.But_WriteFaceLEDMode);
             this.tabPage3.Controls.Add(this.Txt_BodyTemperatureAlarm);
             this.tabPage3.Controls.Add(this.But_ReadFaceBodyTemperature);
             this.tabPage3.Controls.Add(this.But_ReadFaceBodyTemperatureShow);
             this.tabPage3.Controls.Add(this.Lbl_TemperatureIndicatorSwitch);
-            this.tabPage3.Controls.Add(this.Lbl_ShortMessage);
             this.tabPage3.Controls.Add(this.But_WriteFaceBodyTemperatureAlarm);
             this.tabPage3.Controls.Add(this.But_WriteFaceBodyTemperatureShow);
             this.tabPage3.Controls.Add(this.cmb_FaceBodyTemperatureShow);
-            this.tabPage3.Controls.Add(this.Txt_ShortMessage);
             this.tabPage3.Controls.Add(this.But_ReadFaceBodyTemperatureAlarm);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(758, 708);
+            this.tabPage3.Size = new System.Drawing.Size(765, 706);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "参数3";
+            this.tabPage3.Text = "人脸识别参数";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // cmbHelmetDetection
+            // 
+            this.cmbHelmetDetection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbHelmetDetection.FormattingEnabled = true;
+            this.cmbHelmetDetection.Location = new System.Drawing.Point(181, 338);
+            this.cmbHelmetDetection.Name = "cmbHelmetDetection";
+            this.cmbHelmetDetection.Size = new System.Drawing.Size(270, 20);
+            this.cmbHelmetDetection.TabIndex = 69;
+            // 
+            // btnWriteHelmetDetection
+            // 
+            this.btnWriteHelmetDetection.Location = new System.Drawing.Point(475, 337);
+            this.btnWriteHelmetDetection.Name = "btnWriteHelmetDetection";
+            this.btnWriteHelmetDetection.Size = new System.Drawing.Size(75, 23);
+            this.btnWriteHelmetDetection.TabIndex = 67;
+            this.btnWriteHelmetDetection.Text = "写入";
+            this.btnWriteHelmetDetection.UseVisualStyleBackColor = true;
+            this.btnWriteHelmetDetection.Click += new System.EventHandler(this.btnWriteHelmetDetection_Click);
+            // 
+            // lblHelmetDetection
+            // 
+            this.lblHelmetDetection.Location = new System.Drawing.Point(16, 340);
+            this.lblHelmetDetection.Name = "lblHelmetDetection";
+            this.lblHelmetDetection.Size = new System.Drawing.Size(159, 17);
+            this.lblHelmetDetection.TabIndex = 70;
+            this.lblHelmetDetection.Text = "安全帽检测：";
+            this.lblHelmetDetection.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnReadHelmetDetection
+            // 
+            this.btnReadHelmetDetection.Location = new System.Drawing.Point(566, 337);
+            this.btnReadHelmetDetection.Name = "btnReadHelmetDetection";
+            this.btnReadHelmetDetection.Size = new System.Drawing.Size(75, 23);
+            this.btnReadHelmetDetection.TabIndex = 68;
+            this.btnReadHelmetDetection.Text = "读取";
+            this.btnReadHelmetDetection.UseVisualStyleBackColor = true;
+            this.btnReadHelmetDetection.Click += new System.EventHandler(this.btnReadHelmetDetection_Click);
+            // 
+            // cmbSaveRecordImage
+            // 
+            this.cmbSaveRecordImage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSaveRecordImage.FormattingEnabled = true;
+            this.cmbSaveRecordImage.Location = new System.Drawing.Point(181, 309);
+            this.cmbSaveRecordImage.Name = "cmbSaveRecordImage";
+            this.cmbSaveRecordImage.Size = new System.Drawing.Size(270, 20);
+            this.cmbSaveRecordImage.TabIndex = 59;
+            // 
+            // butWriteSaveRecordImage
+            // 
+            this.butWriteSaveRecordImage.Location = new System.Drawing.Point(475, 308);
+            this.butWriteSaveRecordImage.Name = "butWriteSaveRecordImage";
+            this.butWriteSaveRecordImage.Size = new System.Drawing.Size(75, 23);
+            this.butWriteSaveRecordImage.TabIndex = 57;
+            this.butWriteSaveRecordImage.Text = "写入";
+            this.butWriteSaveRecordImage.UseVisualStyleBackColor = true;
+            // 
+            // lblSaveRecordImage
+            // 
+            this.lblSaveRecordImage.Location = new System.Drawing.Point(16, 311);
+            this.lblSaveRecordImage.Name = "lblSaveRecordImage";
+            this.lblSaveRecordImage.Size = new System.Drawing.Size(159, 17);
+            this.lblSaveRecordImage.TabIndex = 66;
+            this.lblSaveRecordImage.Text = "保存现场照片：";
+            this.lblSaveRecordImage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // butReadSaveRecordImage
+            // 
+            this.butReadSaveRecordImage.Location = new System.Drawing.Point(566, 308);
+            this.butReadSaveRecordImage.Name = "butReadSaveRecordImage";
+            this.butReadSaveRecordImage.Size = new System.Drawing.Size(75, 23);
+            this.butReadSaveRecordImage.TabIndex = 58;
+            this.butReadSaveRecordImage.Text = "读取";
+            this.butReadSaveRecordImage.UseVisualStyleBackColor = true;
+            // 
+            // cmbAuthenticationMode
+            // 
+            this.cmbAuthenticationMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAuthenticationMode.FormattingEnabled = true;
+            this.cmbAuthenticationMode.Location = new System.Drawing.Point(181, 280);
+            this.cmbAuthenticationMode.Name = "cmbAuthenticationMode";
+            this.cmbAuthenticationMode.Size = new System.Drawing.Size(270, 20);
+            this.cmbAuthenticationMode.TabIndex = 59;
+            // 
+            // butWriteAuthenticationMode
+            // 
+            this.butWriteAuthenticationMode.Location = new System.Drawing.Point(475, 279);
+            this.butWriteAuthenticationMode.Name = "butWriteAuthenticationMode";
+            this.butWriteAuthenticationMode.Size = new System.Drawing.Size(75, 23);
+            this.butWriteAuthenticationMode.TabIndex = 57;
+            this.butWriteAuthenticationMode.Text = "写入";
+            this.butWriteAuthenticationMode.UseVisualStyleBackColor = true;
+            // 
+            // lblAuthenticationMode
+            // 
+            this.lblAuthenticationMode.Location = new System.Drawing.Point(16, 282);
+            this.lblAuthenticationMode.Name = "lblAuthenticationMode";
+            this.lblAuthenticationMode.Size = new System.Drawing.Size(159, 17);
+            this.lblAuthenticationMode.TabIndex = 65;
+            this.lblAuthenticationMode.Text = "认证模式：";
+            this.lblAuthenticationMode.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // butReadAuthenticationMode
+            // 
+            this.butReadAuthenticationMode.Location = new System.Drawing.Point(566, 279);
+            this.butReadAuthenticationMode.Name = "butReadAuthenticationMode";
+            this.butReadAuthenticationMode.Size = new System.Drawing.Size(75, 23);
+            this.butReadAuthenticationMode.TabIndex = 58;
+            this.butReadAuthenticationMode.Text = "读取";
+            this.butReadAuthenticationMode.UseVisualStyleBackColor = true;
+            // 
+            // btnReadFaceIdentifyRange
+            // 
+            this.btnReadFaceIdentifyRange.Location = new System.Drawing.Point(566, 133);
+            this.btnReadFaceIdentifyRange.Name = "btnReadFaceIdentifyRange";
+            this.btnReadFaceIdentifyRange.Size = new System.Drawing.Size(75, 23);
+            this.btnReadFaceIdentifyRange.TabIndex = 64;
+            this.btnReadFaceIdentifyRange.Text = "读取";
+            this.btnReadFaceIdentifyRange.UseVisualStyleBackColor = true;
+            this.btnReadFaceIdentifyRange.Click += new System.EventHandler(this.btnReadFaceIdentifyRange_Click);
+            // 
+            // cmbFaceIdentifyRange
+            // 
+            this.cmbFaceIdentifyRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFaceIdentifyRange.FormattingEnabled = true;
+            this.cmbFaceIdentifyRange.Location = new System.Drawing.Point(181, 134);
+            this.cmbFaceIdentifyRange.Name = "cmbFaceIdentifyRange";
+            this.cmbFaceIdentifyRange.Size = new System.Drawing.Size(270, 20);
+            this.cmbFaceIdentifyRange.TabIndex = 63;
+            // 
+            // btnWriteFaceIdentifyRange
+            // 
+            this.btnWriteFaceIdentifyRange.Location = new System.Drawing.Point(475, 133);
+            this.btnWriteFaceIdentifyRange.Name = "btnWriteFaceIdentifyRange";
+            this.btnWriteFaceIdentifyRange.Size = new System.Drawing.Size(75, 23);
+            this.btnWriteFaceIdentifyRange.TabIndex = 62;
+            this.btnWriteFaceIdentifyRange.Text = "写入";
+            this.btnWriteFaceIdentifyRange.UseVisualStyleBackColor = true;
+            this.btnWriteFaceIdentifyRange.Click += new System.EventHandler(this.btnWriteFaceIdentifyRange_Click);
+            // 
+            // lblFaceIdentifyRange
+            // 
+            this.lblFaceIdentifyRange.Location = new System.Drawing.Point(16, 136);
+            this.lblFaceIdentifyRange.Name = "lblFaceIdentifyRange";
+            this.lblFaceIdentifyRange.Size = new System.Drawing.Size(159, 17);
+            this.lblFaceIdentifyRange.TabIndex = 61;
+            this.lblFaceIdentifyRange.Text = "识别距离：";
+            this.lblFaceIdentifyRange.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmdReadFaceBioassaySimilarity
+            // 
+            this.cmdReadFaceBioassaySimilarity.Location = new System.Drawing.Point(566, 104);
+            this.cmdReadFaceBioassaySimilarity.Name = "cmdReadFaceBioassaySimilarity";
+            this.cmdReadFaceBioassaySimilarity.Size = new System.Drawing.Size(75, 23);
+            this.cmdReadFaceBioassaySimilarity.TabIndex = 60;
+            this.cmdReadFaceBioassaySimilarity.Text = "读取";
+            this.cmdReadFaceBioassaySimilarity.UseVisualStyleBackColor = true;
+            this.cmdReadFaceBioassaySimilarity.Click += new System.EventHandler(this.cmdReadFaceBioassaySimilarity_Click);
+            // 
+            // lblFaceBioassaySimilarity
+            // 
+            this.lblFaceBioassaySimilarity.Location = new System.Drawing.Point(16, 107);
+            this.lblFaceBioassaySimilarity.Name = "lblFaceBioassaySimilarity";
+            this.lblFaceBioassaySimilarity.Size = new System.Drawing.Size(159, 17);
+            this.lblFaceBioassaySimilarity.TabIndex = 60;
+            this.lblFaceBioassaySimilarity.Text = "活体检测阈值：";
+            this.lblFaceBioassaySimilarity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbFaceBioassaySimilarity
+            // 
+            this.cmbFaceBioassaySimilarity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFaceBioassaySimilarity.FormattingEnabled = true;
+            this.cmbFaceBioassaySimilarity.Location = new System.Drawing.Point(181, 105);
+            this.cmbFaceBioassaySimilarity.Name = "cmbFaceBioassaySimilarity";
+            this.cmbFaceBioassaySimilarity.Size = new System.Drawing.Size(270, 20);
+            this.cmbFaceBioassaySimilarity.TabIndex = 59;
+            // 
+            // cmdWriteFaceBioassaySimilarity
+            // 
+            this.cmdWriteFaceBioassaySimilarity.Location = new System.Drawing.Point(475, 104);
+            this.cmdWriteFaceBioassaySimilarity.Name = "cmdWriteFaceBioassaySimilarity";
+            this.cmdWriteFaceBioassaySimilarity.Size = new System.Drawing.Size(75, 23);
+            this.cmdWriteFaceBioassaySimilarity.TabIndex = 57;
+            this.cmdWriteFaceBioassaySimilarity.Text = "写入";
+            this.cmdWriteFaceBioassaySimilarity.UseVisualStyleBackColor = true;
+            this.cmdWriteFaceBioassaySimilarity.Click += new System.EventHandler(this.cmdWriteFaceBioassaySimilarity_Click);
+            // 
+            // cmbLightPattern
+            // 
+            this.cmbLightPattern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLightPattern.FormattingEnabled = true;
+            this.cmbLightPattern.Location = new System.Drawing.Point(181, 47);
+            this.cmbLightPattern.Name = "cmbLightPattern";
+            this.cmbLightPattern.Size = new System.Drawing.Size(270, 20);
+            this.cmbLightPattern.TabIndex = 59;
+            // 
+            // butWriteLightPattern
+            // 
+            this.butWriteLightPattern.Location = new System.Drawing.Point(475, 46);
+            this.butWriteLightPattern.Name = "butWriteLightPattern";
+            this.butWriteLightPattern.Size = new System.Drawing.Size(75, 23);
+            this.butWriteLightPattern.TabIndex = 57;
+            this.butWriteLightPattern.Text = "写入";
+            this.butWriteLightPattern.UseVisualStyleBackColor = true;
+            // 
+            // lblLightPattern
+            // 
+            this.lblLightPattern.Location = new System.Drawing.Point(16, 49);
+            this.lblLightPattern.Name = "lblLightPattern";
+            this.lblLightPattern.Size = new System.Drawing.Size(159, 17);
+            this.lblLightPattern.TabIndex = 13;
+            this.lblLightPattern.Text = "感光模式：";
+            this.lblLightPattern.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // butReadLightPattern
+            // 
+            this.butReadLightPattern.Location = new System.Drawing.Point(566, 46);
+            this.butReadLightPattern.Name = "butReadLightPattern";
+            this.butReadLightPattern.Size = new System.Drawing.Size(75, 23);
+            this.butReadLightPattern.TabIndex = 58;
+            this.butReadLightPattern.Text = "读取";
+            this.butReadLightPattern.UseVisualStyleBackColor = true;
             // 
             // Btn_ReadFaceBioassay
             // 
-            this.Btn_ReadFaceBioassay.Location = new System.Drawing.Point(438, 496);
+            this.Btn_ReadFaceBioassay.Location = new System.Drawing.Point(566, 75);
             this.Btn_ReadFaceBioassay.Name = "Btn_ReadFaceBioassay";
             this.Btn_ReadFaceBioassay.Size = new System.Drawing.Size(75, 23);
             this.Btn_ReadFaceBioassay.TabIndex = 12;
@@ -1717,7 +1961,7 @@
             // 
             // Btn_WriteFaceBioassay
             // 
-            this.Btn_WriteFaceBioassay.Location = new System.Drawing.Point(347, 496);
+            this.Btn_WriteFaceBioassay.Location = new System.Drawing.Point(475, 75);
             this.Btn_WriteFaceBioassay.Name = "Btn_WriteFaceBioassay";
             this.Btn_WriteFaceBioassay.Size = new System.Drawing.Size(75, 23);
             this.Btn_WriteFaceBioassay.TabIndex = 11;
@@ -1727,128 +1971,39 @@
             // 
             // LabFaceBioassay
             // 
-            this.LabFaceBioassay.AutoSize = true;
-            this.LabFaceBioassay.Location = new System.Drawing.Point(51, 477);
+            this.LabFaceBioassay.Location = new System.Drawing.Point(16, 78);
             this.LabFaceBioassay.Name = "LabFaceBioassay";
-            this.LabFaceBioassay.Size = new System.Drawing.Size(89, 12);
+            this.LabFaceBioassay.Size = new System.Drawing.Size(159, 17);
             this.LabFaceBioassay.TabIndex = 7;
             this.LabFaceBioassay.Text = "活体检测开关：";
-            // 
-            // LblDoorAccessMode
-            // 
-            this.LblDoorAccessMode.AutoSize = true;
-            this.LblDoorAccessMode.Location = new System.Drawing.Point(51, 427);
-            this.LblDoorAccessMode.Name = "LblDoorAccessMode";
-            this.LblDoorAccessMode.Size = new System.Drawing.Size(89, 12);
-            this.LblDoorAccessMode.TabIndex = 7;
-            this.LblDoorAccessMode.Text = "开门验证方式：";
+            this.LabFaceBioassay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // CmbFaceBioassay
             // 
             this.CmbFaceBioassay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbFaceBioassay.FormattingEnabled = true;
-            this.CmbFaceBioassay.Location = new System.Drawing.Point(53, 497);
+            this.CmbFaceBioassay.Location = new System.Drawing.Point(181, 76);
             this.CmbFaceBioassay.Name = "CmbFaceBioassay";
             this.CmbFaceBioassay.Size = new System.Drawing.Size(270, 20);
             this.CmbFaceBioassay.TabIndex = 10;
-            // 
-            // cmbDoorAccessMode
-            // 
-            this.cmbDoorAccessMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDoorAccessMode.FormattingEnabled = true;
-            this.cmbDoorAccessMode.Location = new System.Drawing.Point(53, 447);
-            this.cmbDoorAccessMode.Name = "cmbDoorAccessMode";
-            this.cmbDoorAccessMode.Size = new System.Drawing.Size(270, 20);
-            this.cmbDoorAccessMode.TabIndex = 10;
-            // 
-            // butReadDoorOpenCheckMode
-            // 
-            this.butReadDoorOpenCheckMode.Location = new System.Drawing.Point(438, 444);
-            this.butReadDoorOpenCheckMode.Name = "butReadDoorOpenCheckMode";
-            this.butReadDoorOpenCheckMode.Size = new System.Drawing.Size(75, 23);
-            this.butReadDoorOpenCheckMode.TabIndex = 8;
-            this.butReadDoorOpenCheckMode.Text = "读取";
-            this.butReadDoorOpenCheckMode.UseVisualStyleBackColor = true;
-            this.butReadDoorOpenCheckMode.Click += new System.EventHandler(this.butReadDoorOpenCheckMode_Click);
-            // 
-            // butWriteDoorOpenCheckMode
-            // 
-            this.butWriteDoorOpenCheckMode.Location = new System.Drawing.Point(347, 444);
-            this.butWriteDoorOpenCheckMode.Name = "butWriteDoorOpenCheckMode";
-            this.butWriteDoorOpenCheckMode.Size = new System.Drawing.Size(75, 23);
-            this.butWriteDoorOpenCheckMode.TabIndex = 9;
-            this.butWriteDoorOpenCheckMode.Text = "写入";
-            this.butWriteDoorOpenCheckMode.UseVisualStyleBackColor = true;
-            this.butWriteDoorOpenCheckMode.Click += new System.EventHandler(this.butWriteDoorOpenCheckMode_Click);
             // 
             // Cmb_FaceBodyTemperature
             // 
             this.Cmb_FaceBodyTemperature.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_FaceBodyTemperature.FormattingEnabled = true;
-            this.Cmb_FaceBodyTemperature.Location = new System.Drawing.Point(53, 224);
+            this.Cmb_FaceBodyTemperature.Location = new System.Drawing.Point(181, 192);
             this.Cmb_FaceBodyTemperature.Name = "Cmb_FaceBodyTemperature";
             this.Cmb_FaceBodyTemperature.Size = new System.Drawing.Size(270, 20);
             this.Cmb_FaceBodyTemperature.TabIndex = 5;
             // 
             // Lbl_Filllightmode
             // 
-            this.Lbl_Filllightmode.AutoSize = true;
-            this.Lbl_Filllightmode.Location = new System.Drawing.Point(51, 88);
+            this.Lbl_Filllightmode.Location = new System.Drawing.Point(16, 20);
             this.Lbl_Filllightmode.Name = "Lbl_Filllightmode";
-            this.Lbl_Filllightmode.Size = new System.Drawing.Size(77, 12);
+            this.Lbl_Filllightmode.Size = new System.Drawing.Size(159, 17);
             this.Lbl_Filllightmode.TabIndex = 0;
             this.Lbl_Filllightmode.Text = "补光灯模式：";
-            // 
-            // gpDeviceVolume
-            // 
-            this.gpDeviceVolume.Controls.Add(this.cmbDriveVolume);
-            this.gpDeviceVolume.Controls.Add(this.butWriteVolume);
-            this.gpDeviceVolume.Controls.Add(this.butReadVolume);
-            this.gpDeviceVolume.Controls.Add(this.Lbl_Volume);
-            this.gpDeviceVolume.Location = new System.Drawing.Point(420, 6);
-            this.gpDeviceVolume.Name = "gpDeviceVolume";
-            this.gpDeviceVolume.Size = new System.Drawing.Size(324, 79);
-            this.gpDeviceVolume.TabIndex = 6;
-            this.gpDeviceVolume.TabStop = false;
-            this.gpDeviceVolume.Text = "设备音量";
-            // 
-            // cmbDriveVolume
-            // 
-            this.cmbDriveVolume.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDriveVolume.FormattingEnabled = true;
-            this.cmbDriveVolume.Location = new System.Drawing.Point(18, 40);
-            this.cmbDriveVolume.Name = "cmbDriveVolume";
-            this.cmbDriveVolume.Size = new System.Drawing.Size(107, 20);
-            this.cmbDriveVolume.TabIndex = 59;
-            // 
-            // butWriteVolume
-            // 
-            this.butWriteVolume.Location = new System.Drawing.Point(229, 37);
-            this.butWriteVolume.Name = "butWriteVolume";
-            this.butWriteVolume.Size = new System.Drawing.Size(48, 23);
-            this.butWriteVolume.TabIndex = 57;
-            this.butWriteVolume.Text = "写入";
-            this.butWriteVolume.UseVisualStyleBackColor = true;
-            this.butWriteVolume.Click += new System.EventHandler(this.ButWriteVolume_Click);
-            // 
-            // butReadVolume
-            // 
-            this.butReadVolume.Location = new System.Drawing.Point(173, 37);
-            this.butReadVolume.Name = "butReadVolume";
-            this.butReadVolume.Size = new System.Drawing.Size(48, 23);
-            this.butReadVolume.TabIndex = 58;
-            this.butReadVolume.Text = "读取";
-            this.butReadVolume.UseVisualStyleBackColor = true;
-            this.butReadVolume.Click += new System.EventHandler(this.ButReadVolume_Click);
-            // 
-            // Lbl_Volume
-            // 
-            this.Lbl_Volume.AutoSize = true;
-            this.Lbl_Volume.Location = new System.Drawing.Point(16, 25);
-            this.Lbl_Volume.Name = "Lbl_Volume";
-            this.Lbl_Volume.Size = new System.Drawing.Size(41, 12);
-            this.Lbl_Volume.TabIndex = 56;
-            this.Lbl_Volume.Text = "音量：";
+            this.Lbl_Filllightmode.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Cmb_FaceMouthmuffle
             // 
@@ -1857,83 +2012,32 @@
             this.Cmb_FaceMouthmuffle.Items.AddRange(new object[] {
             "禁止",
             "启用"});
-            this.Cmb_FaceMouthmuffle.Location = new System.Drawing.Point(53, 168);
+            this.Cmb_FaceMouthmuffle.Location = new System.Drawing.Point(181, 163);
             this.Cmb_FaceMouthmuffle.Name = "Cmb_FaceMouthmuffle";
             this.Cmb_FaceMouthmuffle.Size = new System.Drawing.Size(270, 20);
             this.Cmb_FaceMouthmuffle.TabIndex = 5;
             // 
-            // gpDeviceLanguage
-            // 
-            this.gpDeviceLanguage.Controls.Add(this.cmbLanguage);
-            this.gpDeviceLanguage.Controls.Add(this.butWriteLanguage);
-            this.gpDeviceLanguage.Controls.Add(this.butReadLanguage);
-            this.gpDeviceLanguage.Controls.Add(this.Lbl_p3_Language);
-            this.gpDeviceLanguage.Location = new System.Drawing.Point(53, 6);
-            this.gpDeviceLanguage.Name = "gpDeviceLanguage";
-            this.gpDeviceLanguage.Size = new System.Drawing.Size(361, 79);
-            this.gpDeviceLanguage.TabIndex = 5;
-            this.gpDeviceLanguage.TabStop = false;
-            this.gpDeviceLanguage.Text = "设备语言";
-            // 
-            // cmbLanguage
-            // 
-            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Location = new System.Drawing.Point(26, 41);
-            this.cmbLanguage.Name = "cmbLanguage";
-            this.cmbLanguage.Size = new System.Drawing.Size(154, 20);
-            this.cmbLanguage.TabIndex = 59;
-            // 
-            // butWriteLanguage
-            // 
-            this.butWriteLanguage.Location = new System.Drawing.Point(258, 40);
-            this.butWriteLanguage.Name = "butWriteLanguage";
-            this.butWriteLanguage.Size = new System.Drawing.Size(48, 23);
-            this.butWriteLanguage.TabIndex = 57;
-            this.butWriteLanguage.Text = "写入";
-            this.butWriteLanguage.UseVisualStyleBackColor = true;
-            this.butWriteLanguage.Click += new System.EventHandler(this.ButWriteLanguage_Click);
-            // 
-            // butReadLanguage
-            // 
-            this.butReadLanguage.Location = new System.Drawing.Point(202, 40);
-            this.butReadLanguage.Name = "butReadLanguage";
-            this.butReadLanguage.Size = new System.Drawing.Size(48, 23);
-            this.butReadLanguage.TabIndex = 58;
-            this.butReadLanguage.Text = "读取";
-            this.butReadLanguage.UseVisualStyleBackColor = true;
-            this.butReadLanguage.Click += new System.EventHandler(this.ButReadLanguage_Click);
-            // 
-            // Lbl_p3_Language
-            // 
-            this.Lbl_p3_Language.AutoSize = true;
-            this.Lbl_p3_Language.Location = new System.Drawing.Point(24, 25);
-            this.Lbl_p3_Language.Name = "Lbl_p3_Language";
-            this.Lbl_p3_Language.Size = new System.Drawing.Size(41, 12);
-            this.Lbl_p3_Language.TabIndex = 56;
-            this.Lbl_p3_Language.Text = "语言：";
-            // 
             // Lbl_MaskRecognitionSwitch
             // 
-            this.Lbl_MaskRecognitionSwitch.AutoSize = true;
-            this.Lbl_MaskRecognitionSwitch.Location = new System.Drawing.Point(51, 144);
+            this.Lbl_MaskRecognitionSwitch.Location = new System.Drawing.Point(16, 165);
             this.Lbl_MaskRecognitionSwitch.Name = "Lbl_MaskRecognitionSwitch";
-            this.Lbl_MaskRecognitionSwitch.Size = new System.Drawing.Size(89, 12);
+            this.Lbl_MaskRecognitionSwitch.Size = new System.Drawing.Size(159, 17);
             this.Lbl_MaskRecognitionSwitch.TabIndex = 0;
             this.Lbl_MaskRecognitionSwitch.Text = "口罩识别开关：";
+            this.Lbl_MaskRecognitionSwitch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Cmb_FaceLEDMode
             // 
             this.Cmb_FaceLEDMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_FaceLEDMode.FormattingEnabled = true;
-            this.Cmb_FaceLEDMode.Location = new System.Drawing.Point(53, 112);
+            this.Cmb_FaceLEDMode.Location = new System.Drawing.Point(181, 18);
             this.Cmb_FaceLEDMode.Name = "Cmb_FaceLEDMode";
             this.Cmb_FaceLEDMode.Size = new System.Drawing.Size(270, 20);
             this.Cmb_FaceLEDMode.TabIndex = 5;
             // 
             // But_WriteFaceMouthmufflePar
             // 
-            this.But_WriteFaceMouthmufflePar.Location = new System.Drawing.Point(347, 165);
+            this.But_WriteFaceMouthmufflePar.Location = new System.Drawing.Point(475, 162);
             this.But_WriteFaceMouthmufflePar.Name = "But_WriteFaceMouthmufflePar";
             this.But_WriteFaceMouthmufflePar.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceMouthmufflePar.TabIndex = 4;
@@ -1943,16 +2047,16 @@
             // 
             // Lbl_TemperatureExaminationAndFormat
             // 
-            this.Lbl_TemperatureExaminationAndFormat.AutoSize = true;
-            this.Lbl_TemperatureExaminationAndFormat.Location = new System.Drawing.Point(51, 200);
+            this.Lbl_TemperatureExaminationAndFormat.Location = new System.Drawing.Point(16, 194);
             this.Lbl_TemperatureExaminationAndFormat.Name = "Lbl_TemperatureExaminationAndFormat";
-            this.Lbl_TemperatureExaminationAndFormat.Size = new System.Drawing.Size(101, 12);
+            this.Lbl_TemperatureExaminationAndFormat.Size = new System.Drawing.Size(159, 17);
             this.Lbl_TemperatureExaminationAndFormat.TabIndex = 0;
             this.Lbl_TemperatureExaminationAndFormat.Text = "体温检测及格式：";
+            this.Lbl_TemperatureExaminationAndFormat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // But_ReadFaceMouthmufflePar
             // 
-            this.But_ReadFaceMouthmufflePar.Location = new System.Drawing.Point(438, 165);
+            this.But_ReadFaceMouthmufflePar.Location = new System.Drawing.Point(566, 162);
             this.But_ReadFaceMouthmufflePar.Name = "But_ReadFaceMouthmufflePar";
             this.But_ReadFaceMouthmufflePar.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceMouthmufflePar.TabIndex = 4;
@@ -1960,19 +2064,9 @@
             this.But_ReadFaceMouthmufflePar.UseVisualStyleBackColor = true;
             this.But_ReadFaceMouthmufflePar.Click += new System.EventHandler(this.But_ReadFaceMouthmufflePar_Click);
             // 
-            // But_ReadShortMessage
-            // 
-            this.But_ReadShortMessage.Location = new System.Drawing.Point(438, 391);
-            this.But_ReadShortMessage.Name = "But_ReadShortMessage";
-            this.But_ReadShortMessage.Size = new System.Drawing.Size(75, 23);
-            this.But_ReadShortMessage.TabIndex = 4;
-            this.But_ReadShortMessage.Text = "读取";
-            this.But_ReadShortMessage.UseVisualStyleBackColor = true;
-            this.But_ReadShortMessage.Click += new System.EventHandler(this.But_ReadShortMessage_Click);
-            // 
             // But_ReadFaceLEDMode
             // 
-            this.But_ReadFaceLEDMode.Location = new System.Drawing.Point(438, 109);
+            this.But_ReadFaceLEDMode.Location = new System.Drawing.Point(566, 17);
             this.But_ReadFaceLEDMode.Name = "But_ReadFaceLEDMode";
             this.But_ReadFaceLEDMode.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceLEDMode.TabIndex = 4;
@@ -1982,16 +2076,16 @@
             // 
             // Lbl_TemperatureAlarmThreshold
             // 
-            this.Lbl_TemperatureAlarmThreshold.AutoSize = true;
-            this.Lbl_TemperatureAlarmThreshold.Location = new System.Drawing.Point(51, 256);
+            this.Lbl_TemperatureAlarmThreshold.Location = new System.Drawing.Point(16, 223);
             this.Lbl_TemperatureAlarmThreshold.Name = "Lbl_TemperatureAlarmThreshold";
-            this.Lbl_TemperatureAlarmThreshold.Size = new System.Drawing.Size(89, 12);
+            this.Lbl_TemperatureAlarmThreshold.Size = new System.Drawing.Size(159, 17);
             this.Lbl_TemperatureAlarmThreshold.TabIndex = 0;
             this.Lbl_TemperatureAlarmThreshold.Text = "体温报警阈值：";
+            this.Lbl_TemperatureAlarmThreshold.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // But_WriteFaceBodyTemperature
             // 
-            this.But_WriteFaceBodyTemperature.Location = new System.Drawing.Point(347, 221);
+            this.But_WriteFaceBodyTemperature.Location = new System.Drawing.Point(475, 191);
             this.But_WriteFaceBodyTemperature.Name = "But_WriteFaceBodyTemperature";
             this.But_WriteFaceBodyTemperature.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceBodyTemperature.TabIndex = 4;
@@ -1999,19 +2093,9 @@
             this.But_WriteFaceBodyTemperature.UseVisualStyleBackColor = true;
             this.But_WriteFaceBodyTemperature.Click += new System.EventHandler(this.But_WriteFaceBodyTemperature_Click);
             // 
-            // But_WriteShortMessage
-            // 
-            this.But_WriteShortMessage.Location = new System.Drawing.Point(347, 391);
-            this.But_WriteShortMessage.Name = "But_WriteShortMessage";
-            this.But_WriteShortMessage.Size = new System.Drawing.Size(75, 23);
-            this.But_WriteShortMessage.TabIndex = 4;
-            this.But_WriteShortMessage.Text = "写入";
-            this.But_WriteShortMessage.UseVisualStyleBackColor = true;
-            this.But_WriteShortMessage.Click += new System.EventHandler(this.But_WriteShortMessage_Click);
-            // 
             // But_WriteFaceLEDMode
             // 
-            this.But_WriteFaceLEDMode.Location = new System.Drawing.Point(347, 109);
+            this.But_WriteFaceLEDMode.Location = new System.Drawing.Point(475, 17);
             this.But_WriteFaceLEDMode.Name = "But_WriteFaceLEDMode";
             this.But_WriteFaceLEDMode.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceLEDMode.TabIndex = 4;
@@ -2021,7 +2105,7 @@
             // 
             // Txt_BodyTemperatureAlarm
             // 
-            this.Txt_BodyTemperatureAlarm.Location = new System.Drawing.Point(53, 280);
+            this.Txt_BodyTemperatureAlarm.Location = new System.Drawing.Point(181, 221);
             this.Txt_BodyTemperatureAlarm.Name = "Txt_BodyTemperatureAlarm";
             this.Txt_BodyTemperatureAlarm.Size = new System.Drawing.Size(270, 21);
             this.Txt_BodyTemperatureAlarm.TabIndex = 1;
@@ -2029,7 +2113,7 @@
             // 
             // But_ReadFaceBodyTemperature
             // 
-            this.But_ReadFaceBodyTemperature.Location = new System.Drawing.Point(438, 221);
+            this.But_ReadFaceBodyTemperature.Location = new System.Drawing.Point(566, 191);
             this.But_ReadFaceBodyTemperature.Name = "But_ReadFaceBodyTemperature";
             this.But_ReadFaceBodyTemperature.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceBodyTemperature.TabIndex = 4;
@@ -2039,7 +2123,7 @@
             // 
             // But_ReadFaceBodyTemperatureShow
             // 
-            this.But_ReadFaceBodyTemperatureShow.Location = new System.Drawing.Point(438, 334);
+            this.But_ReadFaceBodyTemperatureShow.Location = new System.Drawing.Point(566, 250);
             this.But_ReadFaceBodyTemperatureShow.Name = "But_ReadFaceBodyTemperatureShow";
             this.But_ReadFaceBodyTemperatureShow.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceBodyTemperatureShow.TabIndex = 4;
@@ -2049,25 +2133,16 @@
             // 
             // Lbl_TemperatureIndicatorSwitch
             // 
-            this.Lbl_TemperatureIndicatorSwitch.AutoSize = true;
-            this.Lbl_TemperatureIndicatorSwitch.Location = new System.Drawing.Point(51, 313);
+            this.Lbl_TemperatureIndicatorSwitch.Location = new System.Drawing.Point(16, 253);
             this.Lbl_TemperatureIndicatorSwitch.Name = "Lbl_TemperatureIndicatorSwitch";
-            this.Lbl_TemperatureIndicatorSwitch.Size = new System.Drawing.Size(113, 12);
+            this.Lbl_TemperatureIndicatorSwitch.Size = new System.Drawing.Size(159, 17);
             this.Lbl_TemperatureIndicatorSwitch.TabIndex = 3;
             this.Lbl_TemperatureIndicatorSwitch.Text = "体温数值显示开关：";
-            // 
-            // Lbl_ShortMessage
-            // 
-            this.Lbl_ShortMessage.AutoSize = true;
-            this.Lbl_ShortMessage.Location = new System.Drawing.Point(51, 369);
-            this.Lbl_ShortMessage.Name = "Lbl_ShortMessage";
-            this.Lbl_ShortMessage.Size = new System.Drawing.Size(53, 12);
-            this.Lbl_ShortMessage.TabIndex = 0;
-            this.Lbl_ShortMessage.Text = "短消息：";
+            this.Lbl_TemperatureIndicatorSwitch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // But_WriteFaceBodyTemperatureAlarm
             // 
-            this.But_WriteFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(347, 278);
+            this.But_WriteFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(475, 220);
             this.But_WriteFaceBodyTemperatureAlarm.Name = "But_WriteFaceBodyTemperatureAlarm";
             this.But_WriteFaceBodyTemperatureAlarm.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceBodyTemperatureAlarm.TabIndex = 4;
@@ -2077,7 +2152,7 @@
             // 
             // But_WriteFaceBodyTemperatureShow
             // 
-            this.But_WriteFaceBodyTemperatureShow.Location = new System.Drawing.Point(347, 334);
+            this.But_WriteFaceBodyTemperatureShow.Location = new System.Drawing.Point(475, 250);
             this.But_WriteFaceBodyTemperatureShow.Name = "But_WriteFaceBodyTemperatureShow";
             this.But_WriteFaceBodyTemperatureShow.Size = new System.Drawing.Size(75, 23);
             this.But_WriteFaceBodyTemperatureShow.TabIndex = 4;
@@ -2092,22 +2167,14 @@
             this.cmb_FaceBodyTemperatureShow.Items.AddRange(new object[] {
             "禁止显示体温",
             "显示体温信息"});
-            this.cmb_FaceBodyTemperatureShow.Location = new System.Drawing.Point(53, 337);
+            this.cmb_FaceBodyTemperatureShow.Location = new System.Drawing.Point(181, 251);
             this.cmb_FaceBodyTemperatureShow.Name = "cmb_FaceBodyTemperatureShow";
             this.cmb_FaceBodyTemperatureShow.Size = new System.Drawing.Size(270, 20);
             this.cmb_FaceBodyTemperatureShow.TabIndex = 2;
             // 
-            // Txt_ShortMessage
-            // 
-            this.Txt_ShortMessage.Location = new System.Drawing.Point(53, 393);
-            this.Txt_ShortMessage.Name = "Txt_ShortMessage";
-            this.Txt_ShortMessage.Size = new System.Drawing.Size(270, 21);
-            this.Txt_ShortMessage.TabIndex = 1;
-            this.Txt_ShortMessage.Text = "abcd";
-            // 
             // But_ReadFaceBodyTemperatureAlarm
             // 
-            this.But_ReadFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(438, 278);
+            this.But_ReadFaceBodyTemperatureAlarm.Location = new System.Drawing.Point(566, 220);
             this.But_ReadFaceBodyTemperatureAlarm.Name = "But_ReadFaceBodyTemperatureAlarm";
             this.But_ReadFaceBodyTemperatureAlarm.Size = new System.Drawing.Size(75, 23);
             this.But_ReadFaceBodyTemperatureAlarm.TabIndex = 4;
@@ -2115,207 +2182,60 @@
             this.But_ReadFaceBodyTemperatureAlarm.UseVisualStyleBackColor = true;
             this.But_ReadFaceBodyTemperatureAlarm.Click += new System.EventHandler(this.But_ReadFaceBodyTemperatureAlarm_Click);
             // 
-            // tabPar4
+            // tpNetwork
             // 
-            this.tabPar4.Controls.Add(this.gbThirdpartyAPI);
-            this.tabPar4.Controls.Add(this.gbAttendanceDevice);
-            this.tabPar4.Controls.Add(this.gbYZW);
-            this.tabPar4.Controls.Add(this.gbFaceBioassaySimilarity);
-            this.tabPar4.Controls.Add(this.gbFireUse);
-            this.tabPar4.Controls.Add(this.gbRecordQRCode);
-            this.tabPar4.Controls.Add(this.gbLightPattern);
-            this.tabPar4.Controls.Add(this.gbSaveRecordImage);
-            this.tabPar4.Controls.Add(this.gbAuthenticationMode);
-            this.tabPar4.Location = new System.Drawing.Point(4, 22);
-            this.tabPar4.Name = "tabPar4";
-            this.tabPar4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPar4.Size = new System.Drawing.Size(758, 708);
-            this.tabPar4.TabIndex = 5;
-            this.tabPar4.Text = "参数4";
-            this.tabPar4.UseVisualStyleBackColor = true;
+            this.tpNetwork.Controls.Add(this.gbOfflineRecordPush);
+            this.tpNetwork.Controls.Add(this.gbYZW);
+            this.tpNetwork.Controls.Add(this.gbClientDetail);
+            this.tpNetwork.Controls.Add(this.gbServerDetail);
+            this.tpNetwork.Location = new System.Drawing.Point(4, 22);
+            this.tpNetwork.Name = "tpNetwork";
+            this.tpNetwork.Padding = new System.Windows.Forms.Padding(3);
+            this.tpNetwork.Size = new System.Drawing.Size(765, 706);
+            this.tpNetwork.TabIndex = 4;
+            this.tpNetwork.Text = "客户端网络参数";
+            this.tpNetwork.UseVisualStyleBackColor = true;
             // 
-            // gbThirdpartyAPI
+            // gbOfflineRecordPush
             // 
-            this.gbThirdpartyAPI.Controls.Add(this.txtPlatformConfig);
-            this.gbThirdpartyAPI.Controls.Add(this.lblPlatformTypePar);
-            this.gbThirdpartyAPI.Controls.Add(this.lblPlatformType);
-            this.gbThirdpartyAPI.Controls.Add(this.cmbPlatformType);
-            this.gbThirdpartyAPI.Controls.Add(this.btnReadThirdpartyAPI);
-            this.gbThirdpartyAPI.Controls.Add(this.btnWriteThirdpartyAPI);
-            this.gbThirdpartyAPI.Location = new System.Drawing.Point(37, 518);
-            this.gbThirdpartyAPI.Name = "gbThirdpartyAPI";
-            this.gbThirdpartyAPI.Size = new System.Drawing.Size(696, 182);
-            this.gbThirdpartyAPI.TabIndex = 14;
-            this.gbThirdpartyAPI.TabStop = false;
-            this.gbThirdpartyAPI.Text = "第三方平台功能开关";
+            this.gbOfflineRecordPush.Controls.Add(this.cmbOfflineRecordPush);
+            this.gbOfflineRecordPush.Controls.Add(this.btnWriteOfflineRecordPush);
+            this.gbOfflineRecordPush.Controls.Add(this.btnReadOfflineRecordPush);
+            this.gbOfflineRecordPush.Location = new System.Drawing.Point(16, 306);
+            this.gbOfflineRecordPush.Name = "gbOfflineRecordPush";
+            this.gbOfflineRecordPush.Size = new System.Drawing.Size(378, 119);
+            this.gbOfflineRecordPush.TabIndex = 7;
+            this.gbOfflineRecordPush.TabStop = false;
+            this.gbOfflineRecordPush.Text = "离线记录推送";
             // 
-            // txtPlatformConfig
+            // cmbOfflineRecordPush
             // 
-            this.txtPlatformConfig.Location = new System.Drawing.Point(104, 55);
-            this.txtPlatformConfig.MaxLength = 2000;
-            this.txtPlatformConfig.Multiline = true;
-            this.txtPlatformConfig.Name = "txtPlatformConfig";
-            this.txtPlatformConfig.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtPlatformConfig.Size = new System.Drawing.Size(586, 121);
-            this.txtPlatformConfig.TabIndex = 66;
-            this.txtPlatformConfig.Text = "fy_ipaddr: 192.168.1.55\r\nfy_aeskey: 123123123123123123123\r\nfy_udp_port: 1111\r\nfy_" +
-    "tcp_port: 2222\r\nfy_ankang: 0";
-            this.txtPlatformConfig.WordWrap = false;
+            this.cmbOfflineRecordPush.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOfflineRecordPush.FormattingEnabled = true;
+            this.cmbOfflineRecordPush.Location = new System.Drawing.Point(45, 37);
+            this.cmbOfflineRecordPush.Name = "cmbOfflineRecordPush";
+            this.cmbOfflineRecordPush.Size = new System.Drawing.Size(107, 20);
+            this.cmbOfflineRecordPush.TabIndex = 59;
             // 
-            // lblPlatformTypePar
+            // btnWriteOfflineRecordPush
             // 
-            this.lblPlatformTypePar.Location = new System.Drawing.Point(12, 52);
-            this.lblPlatformTypePar.Name = "lblPlatformTypePar";
-            this.lblPlatformTypePar.Size = new System.Drawing.Size(86, 23);
-            this.lblPlatformTypePar.TabIndex = 65;
-            this.lblPlatformTypePar.Text = "参数：";
-            this.lblPlatformTypePar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnWriteOfflineRecordPush.Location = new System.Drawing.Point(229, 37);
+            this.btnWriteOfflineRecordPush.Name = "btnWriteOfflineRecordPush";
+            this.btnWriteOfflineRecordPush.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteOfflineRecordPush.TabIndex = 57;
+            this.btnWriteOfflineRecordPush.Text = "写入";
+            this.btnWriteOfflineRecordPush.UseVisualStyleBackColor = true;
+            this.btnWriteOfflineRecordPush.Click += new System.EventHandler(this.btnWriteOfflineRecordPush_Click);
             // 
-            // lblPlatformType
+            // btnReadOfflineRecordPush
             // 
-            this.lblPlatformType.Location = new System.Drawing.Point(13, 29);
-            this.lblPlatformType.Name = "lblPlatformType";
-            this.lblPlatformType.Size = new System.Drawing.Size(85, 23);
-            this.lblPlatformType.TabIndex = 64;
-            this.lblPlatformType.Text = "平台类型：";
-            this.lblPlatformType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cmbPlatformType
-            // 
-            this.cmbPlatformType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPlatformType.FormattingEnabled = true;
-            this.cmbPlatformType.Location = new System.Drawing.Point(104, 29);
-            this.cmbPlatformType.Name = "cmbPlatformType";
-            this.cmbPlatformType.Size = new System.Drawing.Size(463, 20);
-            this.cmbPlatformType.TabIndex = 63;
-            // 
-            // btnReadThirdpartyAPI
-            // 
-            this.btnReadThirdpartyAPI.Location = new System.Drawing.Point(588, 29);
-            this.btnReadThirdpartyAPI.Name = "btnReadThirdpartyAPI";
-            this.btnReadThirdpartyAPI.Size = new System.Drawing.Size(48, 23);
-            this.btnReadThirdpartyAPI.TabIndex = 60;
-            this.btnReadThirdpartyAPI.Text = "读取";
-            this.btnReadThirdpartyAPI.UseVisualStyleBackColor = true;
-            this.btnReadThirdpartyAPI.Click += new System.EventHandler(this.btnReadThirdpartyAPI_Click);
-            // 
-            // btnWriteThirdpartyAPI
-            // 
-            this.btnWriteThirdpartyAPI.Location = new System.Drawing.Point(642, 29);
-            this.btnWriteThirdpartyAPI.Name = "btnWriteThirdpartyAPI";
-            this.btnWriteThirdpartyAPI.Size = new System.Drawing.Size(48, 23);
-            this.btnWriteThirdpartyAPI.TabIndex = 57;
-            this.btnWriteThirdpartyAPI.Text = "写入";
-            this.btnWriteThirdpartyAPI.UseVisualStyleBackColor = true;
-            this.btnWriteThirdpartyAPI.Click += new System.EventHandler(this.btnWriteThirdpartyAPI_Click);
-            // 
-            // gbAttendanceDevice
-            // 
-            this.gbAttendanceDevice.Controls.Add(this.txtBroadcastVoiceNum);
-            this.gbAttendanceDevice.Controls.Add(this.lblBroadcastVoiceNum);
-            this.gbAttendanceDevice.Controls.Add(this.txtBeginAttendanceTime);
-            this.gbAttendanceDevice.Controls.Add(this.lblBeginAttendanceTime);
-            this.gbAttendanceDevice.Controls.Add(this.btnSendCMD_EnterSleep);
-            this.gbAttendanceDevice.Controls.Add(this.btnSendCMD_BeginAttendance);
-            this.gbAttendanceDevice.Controls.Add(this.btnSendCMD_BroadcastVoice);
-            this.gbAttendanceDevice.Location = new System.Drawing.Point(382, 379);
-            this.gbAttendanceDevice.Name = "gbAttendanceDevice";
-            this.gbAttendanceDevice.Size = new System.Drawing.Size(351, 119);
-            this.gbAttendanceDevice.TabIndex = 13;
-            this.gbAttendanceDevice.TabStop = false;
-            this.gbAttendanceDevice.Text = "点名机功能";
-            // 
-            // txtBroadcastVoiceNum
-            // 
-            this.txtBroadcastVoiceNum.Location = new System.Drawing.Point(156, 59);
-            this.txtBroadcastVoiceNum.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.txtBroadcastVoiceNum.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.txtBroadcastVoiceNum.Name = "txtBroadcastVoiceNum";
-            this.txtBroadcastVoiceNum.Size = new System.Drawing.Size(48, 21);
-            this.txtBroadcastVoiceNum.TabIndex = 65;
-            this.txtBroadcastVoiceNum.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // lblBroadcastVoiceNum
-            // 
-            this.lblBroadcastVoiceNum.Location = new System.Drawing.Point(15, 59);
-            this.lblBroadcastVoiceNum.Name = "lblBroadcastVoiceNum";
-            this.lblBroadcastVoiceNum.Size = new System.Drawing.Size(135, 21);
-            this.lblBroadcastVoiceNum.TabIndex = 64;
-            this.lblBroadcastVoiceNum.Text = "语音编号:";
-            this.lblBroadcastVoiceNum.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtBeginAttendanceTime
-            // 
-            this.txtBeginAttendanceTime.Location = new System.Drawing.Point(156, 25);
-            this.txtBeginAttendanceTime.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.txtBeginAttendanceTime.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.txtBeginAttendanceTime.Name = "txtBeginAttendanceTime";
-            this.txtBeginAttendanceTime.Size = new System.Drawing.Size(48, 21);
-            this.txtBeginAttendanceTime.TabIndex = 63;
-            this.txtBeginAttendanceTime.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
-            // lblBeginAttendanceTime
-            // 
-            this.lblBeginAttendanceTime.Location = new System.Drawing.Point(15, 25);
-            this.lblBeginAttendanceTime.Name = "lblBeginAttendanceTime";
-            this.lblBeginAttendanceTime.Size = new System.Drawing.Size(135, 21);
-            this.lblBeginAttendanceTime.TabIndex = 62;
-            this.lblBeginAttendanceTime.Text = "Attendance Time(s):";
-            this.lblBeginAttendanceTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnSendCMD_EnterSleep
-            // 
-            this.btnSendCMD_EnterSleep.Location = new System.Drawing.Point(208, 85);
-            this.btnSendCMD_EnterSleep.Name = "btnSendCMD_EnterSleep";
-            this.btnSendCMD_EnterSleep.Size = new System.Drawing.Size(130, 23);
-            this.btnSendCMD_EnterSleep.TabIndex = 61;
-            this.btnSendCMD_EnterSleep.Text = "立刻休眠";
-            this.btnSendCMD_EnterSleep.UseVisualStyleBackColor = true;
-            this.btnSendCMD_EnterSleep.Click += new System.EventHandler(this.btnSendCMD_EnterSleep_Click);
-            // 
-            // btnSendCMD_BeginAttendance
-            // 
-            this.btnSendCMD_BeginAttendance.Location = new System.Drawing.Point(208, 24);
-            this.btnSendCMD_BeginAttendance.Name = "btnSendCMD_BeginAttendance";
-            this.btnSendCMD_BeginAttendance.Size = new System.Drawing.Size(130, 23);
-            this.btnSendCMD_BeginAttendance.TabIndex = 60;
-            this.btnSendCMD_BeginAttendance.Text = "开始点名";
-            this.btnSendCMD_BeginAttendance.UseVisualStyleBackColor = true;
-            this.btnSendCMD_BeginAttendance.Click += new System.EventHandler(this.btnSendCMD_BeginAttendance_Click);
-            // 
-            // btnSendCMD_BroadcastVoice
-            // 
-            this.btnSendCMD_BroadcastVoice.Location = new System.Drawing.Point(208, 58);
-            this.btnSendCMD_BroadcastVoice.Name = "btnSendCMD_BroadcastVoice";
-            this.btnSendCMD_BroadcastVoice.Size = new System.Drawing.Size(130, 23);
-            this.btnSendCMD_BroadcastVoice.TabIndex = 57;
-            this.btnSendCMD_BroadcastVoice.Text = "播报语音";
-            this.btnSendCMD_BroadcastVoice.UseVisualStyleBackColor = true;
-            this.btnSendCMD_BroadcastVoice.Click += new System.EventHandler(this.btnSendCMD_BroadcastVoice_Click);
+            this.btnReadOfflineRecordPush.Location = new System.Drawing.Point(173, 37);
+            this.btnReadOfflineRecordPush.Name = "btnReadOfflineRecordPush";
+            this.btnReadOfflineRecordPush.Size = new System.Drawing.Size(48, 23);
+            this.btnReadOfflineRecordPush.TabIndex = 58;
+            this.btnReadOfflineRecordPush.Text = "读取";
+            this.btnReadOfflineRecordPush.UseVisualStyleBackColor = true;
+            this.btnReadOfflineRecordPush.Click += new System.EventHandler(this.btnReadOfflineRecordPush_Click);
             // 
             // gbYZW
             // 
@@ -2323,7 +2243,7 @@
             this.gbYZW.Controls.Add(this.cmdReadYZW_Push);
             this.gbYZW.Controls.Add(this.cmbYZW);
             this.gbYZW.Controls.Add(this.cmdWriteYZW_Push);
-            this.gbYZW.Location = new System.Drawing.Point(37, 379);
+            this.gbYZW.Location = new System.Drawing.Point(437, 306);
             this.gbYZW.Name = "gbYZW";
             this.gbYZW.Size = new System.Drawing.Size(320, 119);
             this.gbYZW.TabIndex = 12;
@@ -2368,274 +2288,6 @@
             this.cmdWriteYZW_Push.Text = "写入";
             this.cmdWriteYZW_Push.UseVisualStyleBackColor = true;
             this.cmdWriteYZW_Push.Click += new System.EventHandler(this.cmdWriteYZW_Push_Click);
-            // 
-            // gbFaceBioassaySimilarity
-            // 
-            this.gbFaceBioassaySimilarity.Controls.Add(this.cmdReadFaceBioassaySimilarity);
-            this.gbFaceBioassaySimilarity.Controls.Add(this.cmbFaceBioassaySimilarity);
-            this.gbFaceBioassaySimilarity.Controls.Add(this.cmdWriteFaceBioassaySimilarity);
-            this.gbFaceBioassaySimilarity.Location = new System.Drawing.Point(382, 283);
-            this.gbFaceBioassaySimilarity.Name = "gbFaceBioassaySimilarity";
-            this.gbFaceBioassaySimilarity.Size = new System.Drawing.Size(320, 79);
-            this.gbFaceBioassaySimilarity.TabIndex = 11;
-            this.gbFaceBioassaySimilarity.TabStop = false;
-            this.gbFaceBioassaySimilarity.Text = "活体检测阈值";
-            // 
-            // cmdReadFaceBioassaySimilarity
-            // 
-            this.cmdReadFaceBioassaySimilarity.Location = new System.Drawing.Point(210, 50);
-            this.cmdReadFaceBioassaySimilarity.Name = "cmdReadFaceBioassaySimilarity";
-            this.cmdReadFaceBioassaySimilarity.Size = new System.Drawing.Size(48, 23);
-            this.cmdReadFaceBioassaySimilarity.TabIndex = 60;
-            this.cmdReadFaceBioassaySimilarity.Text = "读取";
-            this.cmdReadFaceBioassaySimilarity.UseVisualStyleBackColor = true;
-            this.cmdReadFaceBioassaySimilarity.Click += new System.EventHandler(this.cmdReadFaceBioassaySimilarity_Click);
-            // 
-            // cmbFaceBioassaySimilarity
-            // 
-            this.cmbFaceBioassaySimilarity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFaceBioassaySimilarity.FormattingEnabled = true;
-            this.cmbFaceBioassaySimilarity.Location = new System.Drawing.Point(6, 23);
-            this.cmbFaceBioassaySimilarity.Name = "cmbFaceBioassaySimilarity";
-            this.cmbFaceBioassaySimilarity.Size = new System.Drawing.Size(308, 20);
-            this.cmbFaceBioassaySimilarity.TabIndex = 59;
-            // 
-            // cmdWriteFaceBioassaySimilarity
-            // 
-            this.cmdWriteFaceBioassaySimilarity.Location = new System.Drawing.Point(266, 50);
-            this.cmdWriteFaceBioassaySimilarity.Name = "cmdWriteFaceBioassaySimilarity";
-            this.cmdWriteFaceBioassaySimilarity.Size = new System.Drawing.Size(48, 23);
-            this.cmdWriteFaceBioassaySimilarity.TabIndex = 57;
-            this.cmdWriteFaceBioassaySimilarity.Text = "写入";
-            this.cmdWriteFaceBioassaySimilarity.UseVisualStyleBackColor = true;
-            this.cmdWriteFaceBioassaySimilarity.Click += new System.EventHandler(this.cmdWriteFaceBioassaySimilarity_Click);
-            // 
-            // gbFireUse
-            // 
-            this.gbFireUse.Controls.Add(this.cmdFireUse);
-            this.gbFireUse.Controls.Add(this.cmdWriteSendFireAlarm);
-            this.gbFireUse.Location = new System.Drawing.Point(43, 283);
-            this.gbFireUse.Name = "gbFireUse";
-            this.gbFireUse.Size = new System.Drawing.Size(320, 79);
-            this.gbFireUse.TabIndex = 10;
-            this.gbFireUse.TabStop = false;
-            this.gbFireUse.Text = "消防报警功能开关";
-            // 
-            // cmdFireUse
-            // 
-            this.cmdFireUse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmdFireUse.FormattingEnabled = true;
-            this.cmdFireUse.Location = new System.Drawing.Point(6, 23);
-            this.cmdFireUse.Name = "cmdFireUse";
-            this.cmdFireUse.Size = new System.Drawing.Size(308, 20);
-            this.cmdFireUse.TabIndex = 59;
-            // 
-            // cmdWriteSendFireAlarm
-            // 
-            this.cmdWriteSendFireAlarm.Location = new System.Drawing.Point(266, 50);
-            this.cmdWriteSendFireAlarm.Name = "cmdWriteSendFireAlarm";
-            this.cmdWriteSendFireAlarm.Size = new System.Drawing.Size(48, 23);
-            this.cmdWriteSendFireAlarm.TabIndex = 57;
-            this.cmdWriteSendFireAlarm.Text = "写入";
-            this.cmdWriteSendFireAlarm.UseVisualStyleBackColor = true;
-            this.cmdWriteSendFireAlarm.Click += new System.EventHandler(this.cmdWriteSendFireAlarm_Click);
-            // 
-            // gbRecordQRCode
-            // 
-            this.gbRecordQRCode.Controls.Add(this.txtRecordQRCodeURL);
-            this.gbRecordQRCode.Controls.Add(this.lblRecordQRCodeURL);
-            this.gbRecordQRCode.Controls.Add(this.label1);
-            this.gbRecordQRCode.Controls.Add(this.cmbRecordQRCode);
-            this.gbRecordQRCode.Controls.Add(this.butWriteRecordQRCode);
-            this.gbRecordQRCode.Controls.Add(this.butReadRecordQRCode);
-            this.gbRecordQRCode.Location = new System.Drawing.Point(43, 185);
-            this.gbRecordQRCode.Name = "gbRecordQRCode";
-            this.gbRecordQRCode.Size = new System.Drawing.Size(659, 79);
-            this.gbRecordQRCode.TabIndex = 9;
-            this.gbRecordQRCode.TabStop = false;
-            this.gbRecordQRCode.Text = "识别结果查询二维码生成开关";
-            // 
-            // txtRecordQRCodeURL
-            // 
-            this.txtRecordQRCodeURL.Location = new System.Drawing.Point(74, 51);
-            this.txtRecordQRCodeURL.MaxLength = 120;
-            this.txtRecordQRCodeURL.Name = "txtRecordQRCodeURL";
-            this.txtRecordQRCodeURL.Size = new System.Drawing.Size(579, 21);
-            this.txtRecordQRCodeURL.TabIndex = 62;
-            // 
-            // lblRecordQRCodeURL
-            // 
-            this.lblRecordQRCodeURL.Location = new System.Drawing.Point(7, 50);
-            this.lblRecordQRCodeURL.Name = "lblRecordQRCodeURL";
-            this.lblRecordQRCodeURL.Size = new System.Drawing.Size(61, 23);
-            this.lblRecordQRCodeURL.TabIndex = 61;
-            this.lblRecordQRCodeURL.Text = "URL：";
-            this.lblRecordQRCodeURL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(7, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 23);
-            this.label1.TabIndex = 60;
-            this.label1.Text = "开关：";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cmbRecordQRCode
-            // 
-            this.cmbRecordQRCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRecordQRCode.FormattingEnabled = true;
-            this.cmbRecordQRCode.Location = new System.Drawing.Point(74, 23);
-            this.cmbRecordQRCode.Name = "cmbRecordQRCode";
-            this.cmbRecordQRCode.Size = new System.Drawing.Size(94, 20);
-            this.cmbRecordQRCode.TabIndex = 59;
-            // 
-            // butWriteRecordQRCode
-            // 
-            this.butWriteRecordQRCode.Location = new System.Drawing.Point(605, 20);
-            this.butWriteRecordQRCode.Name = "butWriteRecordQRCode";
-            this.butWriteRecordQRCode.Size = new System.Drawing.Size(48, 23);
-            this.butWriteRecordQRCode.TabIndex = 57;
-            this.butWriteRecordQRCode.Text = "写入";
-            this.butWriteRecordQRCode.UseVisualStyleBackColor = true;
-            // 
-            // butReadRecordQRCode
-            // 
-            this.butReadRecordQRCode.Location = new System.Drawing.Point(549, 20);
-            this.butReadRecordQRCode.Name = "butReadRecordQRCode";
-            this.butReadRecordQRCode.Size = new System.Drawing.Size(48, 23);
-            this.butReadRecordQRCode.TabIndex = 58;
-            this.butReadRecordQRCode.Text = "读取";
-            this.butReadRecordQRCode.UseVisualStyleBackColor = true;
-            // 
-            // gbLightPattern
-            // 
-            this.gbLightPattern.Controls.Add(this.cmbLightPattern);
-            this.gbLightPattern.Controls.Add(this.butWriteLightPattern);
-            this.gbLightPattern.Controls.Add(this.butReadLightPattern);
-            this.gbLightPattern.Location = new System.Drawing.Point(43, 100);
-            this.gbLightPattern.Name = "gbLightPattern";
-            this.gbLightPattern.Size = new System.Drawing.Size(320, 79);
-            this.gbLightPattern.TabIndex = 8;
-            this.gbLightPattern.TabStop = false;
-            this.gbLightPattern.Text = "感光模式";
-            // 
-            // cmbLightPattern
-            // 
-            this.cmbLightPattern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLightPattern.FormattingEnabled = true;
-            this.cmbLightPattern.Location = new System.Drawing.Point(6, 23);
-            this.cmbLightPattern.Name = "cmbLightPattern";
-            this.cmbLightPattern.Size = new System.Drawing.Size(308, 20);
-            this.cmbLightPattern.TabIndex = 59;
-            // 
-            // butWriteLightPattern
-            // 
-            this.butWriteLightPattern.Location = new System.Drawing.Point(266, 50);
-            this.butWriteLightPattern.Name = "butWriteLightPattern";
-            this.butWriteLightPattern.Size = new System.Drawing.Size(48, 23);
-            this.butWriteLightPattern.TabIndex = 57;
-            this.butWriteLightPattern.Text = "写入";
-            this.butWriteLightPattern.UseVisualStyleBackColor = true;
-            // 
-            // butReadLightPattern
-            // 
-            this.butReadLightPattern.Location = new System.Drawing.Point(210, 50);
-            this.butReadLightPattern.Name = "butReadLightPattern";
-            this.butReadLightPattern.Size = new System.Drawing.Size(48, 23);
-            this.butReadLightPattern.TabIndex = 58;
-            this.butReadLightPattern.Text = "读取";
-            this.butReadLightPattern.UseVisualStyleBackColor = true;
-            // 
-            // gbSaveRecordImage
-            // 
-            this.gbSaveRecordImage.Controls.Add(this.cmbSaveRecordImage);
-            this.gbSaveRecordImage.Controls.Add(this.butWriteSaveRecordImage);
-            this.gbSaveRecordImage.Controls.Add(this.butReadSaveRecordImage);
-            this.gbSaveRecordImage.Location = new System.Drawing.Point(382, 15);
-            this.gbSaveRecordImage.Name = "gbSaveRecordImage";
-            this.gbSaveRecordImage.Size = new System.Drawing.Size(320, 79);
-            this.gbSaveRecordImage.TabIndex = 7;
-            this.gbSaveRecordImage.TabStop = false;
-            this.gbSaveRecordImage.Text = "照片保存开关";
-            // 
-            // cmbSaveRecordImage
-            // 
-            this.cmbSaveRecordImage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSaveRecordImage.FormattingEnabled = true;
-            this.cmbSaveRecordImage.Location = new System.Drawing.Point(6, 23);
-            this.cmbSaveRecordImage.Name = "cmbSaveRecordImage";
-            this.cmbSaveRecordImage.Size = new System.Drawing.Size(308, 20);
-            this.cmbSaveRecordImage.TabIndex = 59;
-            // 
-            // butWriteSaveRecordImage
-            // 
-            this.butWriteSaveRecordImage.Location = new System.Drawing.Point(266, 50);
-            this.butWriteSaveRecordImage.Name = "butWriteSaveRecordImage";
-            this.butWriteSaveRecordImage.Size = new System.Drawing.Size(48, 23);
-            this.butWriteSaveRecordImage.TabIndex = 57;
-            this.butWriteSaveRecordImage.Text = "写入";
-            this.butWriteSaveRecordImage.UseVisualStyleBackColor = true;
-            // 
-            // butReadSaveRecordImage
-            // 
-            this.butReadSaveRecordImage.Location = new System.Drawing.Point(210, 50);
-            this.butReadSaveRecordImage.Name = "butReadSaveRecordImage";
-            this.butReadSaveRecordImage.Size = new System.Drawing.Size(48, 23);
-            this.butReadSaveRecordImage.TabIndex = 58;
-            this.butReadSaveRecordImage.Text = "读取";
-            this.butReadSaveRecordImage.UseVisualStyleBackColor = true;
-            // 
-            // gbAuthenticationMode
-            // 
-            this.gbAuthenticationMode.Controls.Add(this.cmbAuthenticationMode);
-            this.gbAuthenticationMode.Controls.Add(this.butWriteAuthenticationMode);
-            this.gbAuthenticationMode.Controls.Add(this.butReadAuthenticationMode);
-            this.gbAuthenticationMode.Location = new System.Drawing.Point(43, 15);
-            this.gbAuthenticationMode.Name = "gbAuthenticationMode";
-            this.gbAuthenticationMode.Size = new System.Drawing.Size(320, 79);
-            this.gbAuthenticationMode.TabIndex = 6;
-            this.gbAuthenticationMode.TabStop = false;
-            this.gbAuthenticationMode.Text = "认证模式";
-            // 
-            // cmbAuthenticationMode
-            // 
-            this.cmbAuthenticationMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAuthenticationMode.FormattingEnabled = true;
-            this.cmbAuthenticationMode.Location = new System.Drawing.Point(6, 23);
-            this.cmbAuthenticationMode.Name = "cmbAuthenticationMode";
-            this.cmbAuthenticationMode.Size = new System.Drawing.Size(308, 20);
-            this.cmbAuthenticationMode.TabIndex = 59;
-            // 
-            // butWriteAuthenticationMode
-            // 
-            this.butWriteAuthenticationMode.Location = new System.Drawing.Point(266, 50);
-            this.butWriteAuthenticationMode.Name = "butWriteAuthenticationMode";
-            this.butWriteAuthenticationMode.Size = new System.Drawing.Size(48, 23);
-            this.butWriteAuthenticationMode.TabIndex = 57;
-            this.butWriteAuthenticationMode.Text = "写入";
-            this.butWriteAuthenticationMode.UseVisualStyleBackColor = true;
-            // 
-            // butReadAuthenticationMode
-            // 
-            this.butReadAuthenticationMode.Location = new System.Drawing.Point(210, 50);
-            this.butReadAuthenticationMode.Name = "butReadAuthenticationMode";
-            this.butReadAuthenticationMode.Size = new System.Drawing.Size(48, 23);
-            this.butReadAuthenticationMode.TabIndex = 58;
-            this.butReadAuthenticationMode.Text = "读取";
-            this.butReadAuthenticationMode.UseVisualStyleBackColor = true;
-            // 
-            // tpNetwork
-            // 
-            this.tpNetwork.Controls.Add(this.gbClientDetail);
-            this.tpNetwork.Controls.Add(this.gbServerDetail);
-            this.tpNetwork.Location = new System.Drawing.Point(4, 22);
-            this.tpNetwork.Name = "tpNetwork";
-            this.tpNetwork.Padding = new System.Windows.Forms.Padding(3);
-            this.tpNetwork.Size = new System.Drawing.Size(758, 708);
-            this.tpNetwork.TabIndex = 4;
-            this.tpNetwork.Text = "客户端网络参数";
-            this.tpNetwork.UseVisualStyleBackColor = true;
             // 
             // gbClientDetail
             // 
@@ -2722,29 +2374,6 @@
             this.cbxKeepAliveInterval.FormattingEnabled = true;
             this.cbxKeepAliveInterval.IntegralHeight = false;
             this.cbxKeepAliveInterval.ItemHeight = 12;
-            this.cbxKeepAliveInterval.Items.AddRange(new object[] {
-            "禁用",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "65535"});
             this.cbxKeepAliveInterval.Location = new System.Drawing.Point(184, 31);
             this.cbxKeepAliveInterval.MaxLength = 5;
             this.cbxKeepAliveInterval.Name = "cbxKeepAliveInterval";
@@ -2908,11 +2537,319 @@
             this.txtServerPort_1.TabIndex = 0;
             this.txtServerPort_1.Text = "9000";
             // 
+            // tpthirdparty
+            // 
+            this.tpthirdparty.Controls.Add(this.txtPlatformConfig);
+            this.tpthirdparty.Controls.Add(this.lblPlatformTypePar);
+            this.tpthirdparty.Controls.Add(this.lblPlatformType);
+            this.tpthirdparty.Controls.Add(this.cmbPlatformType);
+            this.tpthirdparty.Controls.Add(this.btnReadThirdpartyAPI);
+            this.tpthirdparty.Controls.Add(this.btnWriteThirdpartyAPI);
+            this.tpthirdparty.Location = new System.Drawing.Point(4, 22);
+            this.tpthirdparty.Name = "tpthirdparty";
+            this.tpthirdparty.Padding = new System.Windows.Forms.Padding(3);
+            this.tpthirdparty.Size = new System.Drawing.Size(765, 706);
+            this.tpthirdparty.TabIndex = 6;
+            this.tpthirdparty.Text = "第三方平台对接";
+            this.tpthirdparty.UseVisualStyleBackColor = true;
+            // 
+            // txtPlatformConfig
+            // 
+            this.txtPlatformConfig.Location = new System.Drawing.Point(124, 47);
+            this.txtPlatformConfig.MaxLength = 2000;
+            this.txtPlatformConfig.Multiline = true;
+            this.txtPlatformConfig.Name = "txtPlatformConfig";
+            this.txtPlatformConfig.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtPlatformConfig.Size = new System.Drawing.Size(586, 610);
+            this.txtPlatformConfig.TabIndex = 72;
+            this.txtPlatformConfig.Text = "fy_ipaddr: 192.168.1.55\r\nfy_aeskey: 123123123123123123123\r\nfy_udp_port: 1111\r\nfy_" +
+    "tcp_port: 2222\r\nfy_ankang: 0";
+            this.txtPlatformConfig.WordWrap = false;
+            // 
+            // lblPlatformTypePar
+            // 
+            this.lblPlatformTypePar.Location = new System.Drawing.Point(32, 44);
+            this.lblPlatformTypePar.Name = "lblPlatformTypePar";
+            this.lblPlatformTypePar.Size = new System.Drawing.Size(86, 23);
+            this.lblPlatformTypePar.TabIndex = 71;
+            this.lblPlatformTypePar.Text = "参数：";
+            this.lblPlatformTypePar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblPlatformType
+            // 
+            this.lblPlatformType.Location = new System.Drawing.Point(33, 21);
+            this.lblPlatformType.Name = "lblPlatformType";
+            this.lblPlatformType.Size = new System.Drawing.Size(85, 23);
+            this.lblPlatformType.TabIndex = 70;
+            this.lblPlatformType.Text = "平台类型：";
+            this.lblPlatformType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbPlatformType
+            // 
+            this.cmbPlatformType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlatformType.FormattingEnabled = true;
+            this.cmbPlatformType.Location = new System.Drawing.Point(124, 21);
+            this.cmbPlatformType.Name = "cmbPlatformType";
+            this.cmbPlatformType.Size = new System.Drawing.Size(463, 20);
+            this.cmbPlatformType.TabIndex = 69;
+            this.cmbPlatformType.SelectedIndexChanged += new System.EventHandler(this.cmbPlatformType_SelectedIndexChanged);
+            // 
+            // btnReadThirdpartyAPI
+            // 
+            this.btnReadThirdpartyAPI.Location = new System.Drawing.Point(608, 21);
+            this.btnReadThirdpartyAPI.Name = "btnReadThirdpartyAPI";
+            this.btnReadThirdpartyAPI.Size = new System.Drawing.Size(48, 23);
+            this.btnReadThirdpartyAPI.TabIndex = 68;
+            this.btnReadThirdpartyAPI.Text = "读取";
+            this.btnReadThirdpartyAPI.UseVisualStyleBackColor = true;
+            this.btnReadThirdpartyAPI.Click += new System.EventHandler(this.btnReadThirdpartyAPI_Click);
+            // 
+            // btnWriteThirdpartyAPI
+            // 
+            this.btnWriteThirdpartyAPI.Location = new System.Drawing.Point(662, 21);
+            this.btnWriteThirdpartyAPI.Name = "btnWriteThirdpartyAPI";
+            this.btnWriteThirdpartyAPI.Size = new System.Drawing.Size(48, 23);
+            this.btnWriteThirdpartyAPI.TabIndex = 67;
+            this.btnWriteThirdpartyAPI.Text = "写入";
+            this.btnWriteThirdpartyAPI.UseVisualStyleBackColor = true;
+            this.btnWriteThirdpartyAPI.Click += new System.EventHandler(this.btnWriteThirdpartyAPI_Click);
+            // 
+            // tabPar4
+            // 
+            this.tabPar4.Controls.Add(this.gpCacheContent);
+            this.tabPar4.Controls.Add(this.gbAttendanceDevice);
+            this.tabPar4.Controls.Add(this.gbRecordQRCode);
+            this.tabPar4.Location = new System.Drawing.Point(4, 22);
+            this.tabPar4.Name = "tabPar4";
+            this.tabPar4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPar4.Size = new System.Drawing.Size(765, 706);
+            this.tabPar4.TabIndex = 5;
+            this.tabPar4.Text = "其他功能";
+            this.tabPar4.UseVisualStyleBackColor = true;
+            // 
+            // gpCacheContent
+            // 
+            this.gpCacheContent.Controls.Add(this.txtCacheContent);
+            this.gpCacheContent.Controls.Add(this.btnReadCacheContent);
+            this.gpCacheContent.Controls.Add(this.btnWriteCacheContent);
+            this.gpCacheContent.Location = new System.Drawing.Point(37, 229);
+            this.gpCacheContent.Name = "gpCacheContent";
+            this.gpCacheContent.Size = new System.Drawing.Size(659, 50);
+            this.gpCacheContent.TabIndex = 14;
+            this.gpCacheContent.TabStop = false;
+            this.gpCacheContent.Text = "设备自定义字符串 30字节";
+            // 
+            // txtCacheContent
+            // 
+            this.txtCacheContent.Location = new System.Drawing.Point(7, 20);
+            this.txtCacheContent.MaxLength = 60;
+            this.txtCacheContent.Name = "txtCacheContent";
+            this.txtCacheContent.Size = new System.Drawing.Size(503, 21);
+            this.txtCacheContent.TabIndex = 1;
+            this.txtCacheContent.Text = "abcd";
+            // 
+            // btnReadCacheContent
+            // 
+            this.btnReadCacheContent.Location = new System.Drawing.Point(548, 18);
+            this.btnReadCacheContent.Name = "btnReadCacheContent";
+            this.btnReadCacheContent.Size = new System.Drawing.Size(48, 23);
+            this.btnReadCacheContent.TabIndex = 4;
+            this.btnReadCacheContent.Text = "读取";
+            this.btnReadCacheContent.UseVisualStyleBackColor = true;
+            this.btnReadCacheContent.Click += new System.EventHandler(this.btnReadCacheContent_Click);
+            // 
+            // btnWriteCacheContent
+            // 
+            this.btnWriteCacheContent.Location = new System.Drawing.Point(605, 18);
+            this.btnWriteCacheContent.Name = "btnWriteCacheContent";
+            this.btnWriteCacheContent.Size = new System.Drawing.Size(47, 23);
+            this.btnWriteCacheContent.TabIndex = 4;
+            this.btnWriteCacheContent.Text = "写入";
+            this.btnWriteCacheContent.UseVisualStyleBackColor = true;
+            this.btnWriteCacheContent.Click += new System.EventHandler(this.btnWriteCacheContent_Click);
+            // 
+            // gbAttendanceDevice
+            // 
+            this.gbAttendanceDevice.Controls.Add(this.txtBroadcastVoiceNum);
+            this.gbAttendanceDevice.Controls.Add(this.lblBroadcastVoiceNum);
+            this.gbAttendanceDevice.Controls.Add(this.txtBeginAttendanceTime);
+            this.gbAttendanceDevice.Controls.Add(this.lblBeginAttendanceTime);
+            this.gbAttendanceDevice.Controls.Add(this.btnSendCMD_EnterSleep);
+            this.gbAttendanceDevice.Controls.Add(this.btnSendCMD_BeginAttendance);
+            this.gbAttendanceDevice.Controls.Add(this.btnSendCMD_BroadcastVoice);
+            this.gbAttendanceDevice.Location = new System.Drawing.Point(37, 104);
+            this.gbAttendanceDevice.Name = "gbAttendanceDevice";
+            this.gbAttendanceDevice.Size = new System.Drawing.Size(659, 119);
+            this.gbAttendanceDevice.TabIndex = 13;
+            this.gbAttendanceDevice.TabStop = false;
+            this.gbAttendanceDevice.Text = "点名机功能";
+            this.gbAttendanceDevice.Visible = false;
+            // 
+            // txtBroadcastVoiceNum
+            // 
+            this.txtBroadcastVoiceNum.Location = new System.Drawing.Point(156, 61);
+            this.txtBroadcastVoiceNum.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.txtBroadcastVoiceNum.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtBroadcastVoiceNum.Name = "txtBroadcastVoiceNum";
+            this.txtBroadcastVoiceNum.Size = new System.Drawing.Size(48, 21);
+            this.txtBroadcastVoiceNum.TabIndex = 65;
+            this.txtBroadcastVoiceNum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblBroadcastVoiceNum
+            // 
+            this.lblBroadcastVoiceNum.Location = new System.Drawing.Point(15, 61);
+            this.lblBroadcastVoiceNum.Name = "lblBroadcastVoiceNum";
+            this.lblBroadcastVoiceNum.Size = new System.Drawing.Size(135, 21);
+            this.lblBroadcastVoiceNum.TabIndex = 64;
+            this.lblBroadcastVoiceNum.Text = "语音编号:";
+            this.lblBroadcastVoiceNum.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtBeginAttendanceTime
+            // 
+            this.txtBeginAttendanceTime.Location = new System.Drawing.Point(156, 25);
+            this.txtBeginAttendanceTime.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.txtBeginAttendanceTime.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.txtBeginAttendanceTime.Name = "txtBeginAttendanceTime";
+            this.txtBeginAttendanceTime.Size = new System.Drawing.Size(48, 21);
+            this.txtBeginAttendanceTime.TabIndex = 63;
+            this.txtBeginAttendanceTime.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // lblBeginAttendanceTime
+            // 
+            this.lblBeginAttendanceTime.Location = new System.Drawing.Point(15, 25);
+            this.lblBeginAttendanceTime.Name = "lblBeginAttendanceTime";
+            this.lblBeginAttendanceTime.Size = new System.Drawing.Size(135, 21);
+            this.lblBeginAttendanceTime.TabIndex = 62;
+            this.lblBeginAttendanceTime.Text = "点名时长(秒):";
+            this.lblBeginAttendanceTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnSendCMD_EnterSleep
+            // 
+            this.btnSendCMD_EnterSleep.Location = new System.Drawing.Point(523, 85);
+            this.btnSendCMD_EnterSleep.Name = "btnSendCMD_EnterSleep";
+            this.btnSendCMD_EnterSleep.Size = new System.Drawing.Size(130, 23);
+            this.btnSendCMD_EnterSleep.TabIndex = 61;
+            this.btnSendCMD_EnterSleep.Text = "立刻休眠";
+            this.btnSendCMD_EnterSleep.UseVisualStyleBackColor = true;
+            this.btnSendCMD_EnterSleep.Click += new System.EventHandler(this.btnSendCMD_EnterSleep_Click);
+            // 
+            // btnSendCMD_BeginAttendance
+            // 
+            this.btnSendCMD_BeginAttendance.Location = new System.Drawing.Point(523, 22);
+            this.btnSendCMD_BeginAttendance.Name = "btnSendCMD_BeginAttendance";
+            this.btnSendCMD_BeginAttendance.Size = new System.Drawing.Size(130, 23);
+            this.btnSendCMD_BeginAttendance.TabIndex = 60;
+            this.btnSendCMD_BeginAttendance.Text = "开始点名";
+            this.btnSendCMD_BeginAttendance.UseVisualStyleBackColor = true;
+            this.btnSendCMD_BeginAttendance.Click += new System.EventHandler(this.btnSendCMD_BeginAttendance_Click);
+            // 
+            // btnSendCMD_BroadcastVoice
+            // 
+            this.btnSendCMD_BroadcastVoice.Location = new System.Drawing.Point(523, 56);
+            this.btnSendCMD_BroadcastVoice.Name = "btnSendCMD_BroadcastVoice";
+            this.btnSendCMD_BroadcastVoice.Size = new System.Drawing.Size(130, 23);
+            this.btnSendCMD_BroadcastVoice.TabIndex = 57;
+            this.btnSendCMD_BroadcastVoice.Text = "播报语音";
+            this.btnSendCMD_BroadcastVoice.UseVisualStyleBackColor = true;
+            this.btnSendCMD_BroadcastVoice.Click += new System.EventHandler(this.btnSendCMD_BroadcastVoice_Click);
+            // 
+            // gbRecordQRCode
+            // 
+            this.gbRecordQRCode.Controls.Add(this.txtRecordQRCodeURL);
+            this.gbRecordQRCode.Controls.Add(this.lblRecordQRCodeURL);
+            this.gbRecordQRCode.Controls.Add(this.label1);
+            this.gbRecordQRCode.Controls.Add(this.cmbRecordQRCode);
+            this.gbRecordQRCode.Controls.Add(this.butWriteRecordQRCode);
+            this.gbRecordQRCode.Controls.Add(this.butReadRecordQRCode);
+            this.gbRecordQRCode.Location = new System.Drawing.Point(37, 19);
+            this.gbRecordQRCode.Name = "gbRecordQRCode";
+            this.gbRecordQRCode.Size = new System.Drawing.Size(659, 79);
+            this.gbRecordQRCode.TabIndex = 9;
+            this.gbRecordQRCode.TabStop = false;
+            this.gbRecordQRCode.Text = "识别结果查询二维码生成开关";
+            // 
+            // txtRecordQRCodeURL
+            // 
+            this.txtRecordQRCodeURL.Location = new System.Drawing.Point(74, 51);
+            this.txtRecordQRCodeURL.MaxLength = 120;
+            this.txtRecordQRCodeURL.Name = "txtRecordQRCodeURL";
+            this.txtRecordQRCodeURL.Size = new System.Drawing.Size(579, 21);
+            this.txtRecordQRCodeURL.TabIndex = 62;
+            // 
+            // lblRecordQRCodeURL
+            // 
+            this.lblRecordQRCodeURL.Location = new System.Drawing.Point(7, 50);
+            this.lblRecordQRCodeURL.Name = "lblRecordQRCodeURL";
+            this.lblRecordQRCodeURL.Size = new System.Drawing.Size(61, 23);
+            this.lblRecordQRCodeURL.TabIndex = 61;
+            this.lblRecordQRCodeURL.Text = "URL：";
+            this.lblRecordQRCodeURL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(7, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 23);
+            this.label1.TabIndex = 60;
+            this.label1.Text = "开关：";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbRecordQRCode
+            // 
+            this.cmbRecordQRCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRecordQRCode.FormattingEnabled = true;
+            this.cmbRecordQRCode.Location = new System.Drawing.Point(74, 23);
+            this.cmbRecordQRCode.Name = "cmbRecordQRCode";
+            this.cmbRecordQRCode.Size = new System.Drawing.Size(94, 20);
+            this.cmbRecordQRCode.TabIndex = 59;
+            // 
+            // butWriteRecordQRCode
+            // 
+            this.butWriteRecordQRCode.Location = new System.Drawing.Point(605, 20);
+            this.butWriteRecordQRCode.Name = "butWriteRecordQRCode";
+            this.butWriteRecordQRCode.Size = new System.Drawing.Size(48, 23);
+            this.butWriteRecordQRCode.TabIndex = 57;
+            this.butWriteRecordQRCode.Text = "写入";
+            this.butWriteRecordQRCode.UseVisualStyleBackColor = true;
+            // 
+            // butReadRecordQRCode
+            // 
+            this.butReadRecordQRCode.Location = new System.Drawing.Point(549, 20);
+            this.butReadRecordQRCode.Name = "butReadRecordQRCode";
+            this.butReadRecordQRCode.Size = new System.Drawing.Size(48, 23);
+            this.butReadRecordQRCode.TabIndex = 58;
+            this.butReadRecordQRCode.Text = "读取";
+            this.butReadRecordQRCode.UseVisualStyleBackColor = true;
+            // 
             // frmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(766, 734);
+            this.ClientSize = new System.Drawing.Size(773, 732);
             this.Controls.Add(this.tabControl1);
             this.Name = "frmSystem";
             this.Text = "基本参数";
@@ -2920,6 +2857,8 @@
             this.Load += new System.EventHandler(this.FrmSystem_Load);
             this.tabControl1.ResumeLayout(false);
             this.tpPar1.ResumeLayout(false);
+            this.gpSysatemStatus.ResumeLayout(false);
+            this.gpSysatemStatus.PerformLayout();
             this.gb4GModule.ResumeLayout(false);
             this.gbWatch.ResumeLayout(false);
             this.gbWatch.PerformLayout();
@@ -2938,12 +2877,14 @@
             this.gbPassword.ResumeLayout(false);
             this.gbPassword.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.gpShortMessage.ResumeLayout(false);
+            this.gpShortMessage.PerformLayout();
             this.gpOemInfo.ResumeLayout(false);
             this.gpOemInfo.PerformLayout();
+            this.gpDeviceLanguage.ResumeLayout(false);
             this.gpMenuManagementPassword.ResumeLayout(false);
             this.gpMenuManagementPassword.PerformLayout();
-            this.gpScreenContent.ResumeLayout(false);
-            this.gpScreenContent.PerformLayout();
+            this.gpDeviceVolume.ResumeLayout(false);
             this.gpFace_fingerprint_threshold.ResumeLayout(false);
             this.gpFace_fingerprint_threshold.PerformLayout();
             this.gpWgOut.ResumeLayout(false);
@@ -2952,29 +2893,23 @@
             this.gpLocalIdentity.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.gpDeviceVolume.ResumeLayout(false);
-            this.gpDeviceVolume.PerformLayout();
-            this.gpDeviceLanguage.ResumeLayout(false);
-            this.gpDeviceLanguage.PerformLayout();
-            this.tabPar4.ResumeLayout(false);
-            this.gbThirdpartyAPI.ResumeLayout(false);
-            this.gbThirdpartyAPI.PerformLayout();
-            this.gbAttendanceDevice.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtBroadcastVoiceNum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBeginAttendanceTime)).EndInit();
-            this.gbYZW.ResumeLayout(false);
-            this.gbFaceBioassaySimilarity.ResumeLayout(false);
-            this.gbFireUse.ResumeLayout(false);
-            this.gbRecordQRCode.ResumeLayout(false);
-            this.gbRecordQRCode.PerformLayout();
-            this.gbLightPattern.ResumeLayout(false);
-            this.gbSaveRecordImage.ResumeLayout(false);
-            this.gbAuthenticationMode.ResumeLayout(false);
             this.tpNetwork.ResumeLayout(false);
+            this.gbOfflineRecordPush.ResumeLayout(false);
+            this.gbYZW.ResumeLayout(false);
             this.gbClientDetail.ResumeLayout(false);
             this.gbClientDetail.PerformLayout();
             this.gbServerDetail.ResumeLayout(false);
             this.gbServerDetail.PerformLayout();
+            this.tpthirdparty.ResumeLayout(false);
+            this.tpthirdparty.PerformLayout();
+            this.tabPar4.ResumeLayout(false);
+            this.gpCacheContent.ResumeLayout(false);
+            this.gpCacheContent.PerformLayout();
+            this.gbAttendanceDevice.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtBroadcastVoiceNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBeginAttendanceTime)).EndInit();
+            this.gbRecordQRCode.ResumeLayout(false);
+            this.gbRecordQRCode.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2991,7 +2926,7 @@
         private System.Windows.Forms.TextBox txtRestartCount;
         private System.Windows.Forms.Label LblRestartCount;
         private System.Windows.Forms.Label lblFormatCount;
-        private System.Windows.Forms.Button btnReadSystemStatus;
+        private System.Windows.Forms.Button btnReadSystemRunStatus;
         private System.Windows.Forms.TextBox txtRunDay;
         private System.Windows.Forms.Label lblRunDay;
         private System.Windows.Forms.GroupBox gbTCP;
@@ -3071,34 +3006,19 @@
         private System.Windows.Forms.Label Lbl_p2_OutputDataType;
         private System.Windows.Forms.ComboBox cmbWGByteSort;
         private System.Windows.Forms.Label Lbl_p2_WgOrder;
-        private System.Windows.Forms.ComboBox cmbWGOutput;
-        private System.Windows.Forms.Label Lbl_p2_WgOut;
-        private System.Windows.Forms.ComboBox cmbReadCardByte;
-        private System.Windows.Forms.Label Lbl_p2_ReadCardByte;
+        private System.Windows.Forms.ComboBox cmbWGOutputCardByte;
+        private System.Windows.Forms.Label Lbl_p2_WGOutputCardByte;
         private System.Windows.Forms.GroupBox gpFace_fingerprint_threshold;
         private System.Windows.Forms.Button btnWriteComparisonThreshold;
         private System.Windows.Forms.Button btnReadComparisonThreshold;
         private System.Windows.Forms.ComboBox cmbFingerprint;
-        private System.Windows.Forms.Label Lbl_p2_FoFReadCardByte;
-        private System.Windows.Forms.Label Lbl_p2_FoFWgOut;
+        private System.Windows.Forms.Label Lbl_face_threshold;
+        private System.Windows.Forms.Label Lbl_fp_threshold;
         private System.Windows.Forms.ComboBox cmbFace;
-        private System.Windows.Forms.GroupBox gpScreenContent;
-        private System.Windows.Forms.CheckBox cbDisplay7;
-        private System.Windows.Forms.CheckBox cbDisplay6;
-        private System.Windows.Forms.CheckBox cbDisplay5;
-        private System.Windows.Forms.CheckBox cbDisplay4;
-        private System.Windows.Forms.CheckBox cbDisplay3;
-        private System.Windows.Forms.CheckBox cbDisplay2;
-        private System.Windows.Forms.CheckBox cbDisplay1;
-        private System.Windows.Forms.Button btnWriteScreenDisplayContent;
-        private System.Windows.Forms.Button btnReadScreenDisplayContent;
-        private System.Windows.Forms.CheckBox cbDisplay9;
-        private System.Windows.Forms.CheckBox cbDisplay8;
         private System.Windows.Forms.GroupBox gpMenuManagementPassword;
         private System.Windows.Forms.Button btnWriteManageMenuPassword;
         private System.Windows.Forms.Button btnReadManageMenuPassword;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Label Lbl_p2_pwd;
         private System.Windows.Forms.GroupBox gpOemInfo;
         private System.Windows.Forms.Button btnWriteOEM;
         private System.Windows.Forms.Button btnReadOEM;
@@ -3114,12 +3034,10 @@
         private System.Windows.Forms.ComboBox cmbDriveVolume;
         private System.Windows.Forms.Button butWriteVolume;
         private System.Windows.Forms.Button butReadVolume;
-        private System.Windows.Forms.Label Lbl_Volume;
         private System.Windows.Forms.GroupBox gpDeviceLanguage;
         private System.Windows.Forms.ComboBox cmbLanguage;
         private System.Windows.Forms.Button butWriteLanguage;
         private System.Windows.Forms.Button butReadLanguage;
-        private System.Windows.Forms.Label Lbl_p3_Language;
         private System.Windows.Forms.ComboBox Cmb_FaceBodyTemperature;
         private System.Windows.Forms.ComboBox Cmb_FaceMouthmuffle;
         private System.Windows.Forms.ComboBox Cmb_FaceLEDMode;
@@ -3138,7 +3056,6 @@
         private System.Windows.Forms.Label Lbl_TemperatureIndicatorSwitch;
         private System.Windows.Forms.ComboBox cmb_FaceBodyTemperatureShow;
         private System.Windows.Forms.TextBox Txt_ShortMessage;
-        private System.Windows.Forms.Label Lbl_ShortMessage;
         private System.Windows.Forms.TextBox Txt_BodyTemperatureAlarm;
         private System.Windows.Forms.Label Lbl_TemperatureAlarmThreshold;
         private System.Windows.Forms.Label Lbl_TemperatureExaminationAndFormat;
@@ -3164,10 +3081,6 @@
         private System.Windows.Forms.TextBox txtServerStatus;
         private System.Windows.Forms.Button butReadClientStatus_Result;
         private System.Windows.Forms.Button butRequireConnectServer;
-        private System.Windows.Forms.Label LblDoorAccessMode;
-        private System.Windows.Forms.ComboBox cmbDoorAccessMode;
-        private System.Windows.Forms.Button butReadDoorOpenCheckMode;
-        private System.Windows.Forms.Button butWriteDoorOpenCheckMode;
         private System.Windows.Forms.Label LabFaceBioassay;
         private System.Windows.Forms.ComboBox CmbFaceBioassay;
         private System.Windows.Forms.Button Btn_ReadFaceBioassay;
@@ -3181,28 +3094,21 @@
         private System.Windows.Forms.ComboBox cmbRecordQRCode;
         private System.Windows.Forms.Button butWriteRecordQRCode;
         private System.Windows.Forms.Button butReadRecordQRCode;
-        private System.Windows.Forms.GroupBox gbLightPattern;
         private System.Windows.Forms.ComboBox cmbLightPattern;
         private System.Windows.Forms.Button butWriteLightPattern;
         private System.Windows.Forms.Button butReadLightPattern;
-        private System.Windows.Forms.GroupBox gbSaveRecordImage;
         private System.Windows.Forms.ComboBox cmbSaveRecordImage;
         private System.Windows.Forms.Button butWriteSaveRecordImage;
         private System.Windows.Forms.Button butReadSaveRecordImage;
-        private System.Windows.Forms.GroupBox gbAuthenticationMode;
         private System.Windows.Forms.ComboBox cmbAuthenticationMode;
         private System.Windows.Forms.Button butWriteAuthenticationMode;
         private System.Windows.Forms.Button butReadAuthenticationMode;
         private System.Windows.Forms.Button butRestart;
         private System.Windows.Forms.TextBox txtFPVer;
         private System.Windows.Forms.Label lblFPVer;
-        private System.Windows.Forms.GroupBox gbFaceBioassaySimilarity;
         private System.Windows.Forms.Button cmdReadFaceBioassaySimilarity;
         private System.Windows.Forms.ComboBox cmbFaceBioassaySimilarity;
         private System.Windows.Forms.Button cmdWriteFaceBioassaySimilarity;
-        private System.Windows.Forms.GroupBox gbFireUse;
-        private System.Windows.Forms.ComboBox cmdFireUse;
-        private System.Windows.Forms.Button cmdWriteSendFireAlarm;
         private System.Windows.Forms.GroupBox gbYZW;
         private System.Windows.Forms.Button cmdSendReloadYZW_People;
         private System.Windows.Forms.Button cmdReadYZW_Push;
@@ -3221,12 +3127,38 @@
         private System.Windows.Forms.Button btnWrite4GModuleStatus;
         private System.Windows.Forms.Button btnRead4GModuleStatus;
         private System.Windows.Forms.Label lbl4GModuleStatus;
-        private System.Windows.Forms.GroupBox gbThirdpartyAPI;
+        private System.Windows.Forms.TabPage tpthirdparty;
         private System.Windows.Forms.TextBox txtPlatformConfig;
         private System.Windows.Forms.Label lblPlatformTypePar;
         private System.Windows.Forms.Label lblPlatformType;
         private System.Windows.Forms.ComboBox cmbPlatformType;
         private System.Windows.Forms.Button btnReadThirdpartyAPI;
         private System.Windows.Forms.Button btnWriteThirdpartyAPI;
+        private System.Windows.Forms.TextBox txtFaceVer;
+        private System.Windows.Forms.Label lblFaceVer;
+        private System.Windows.Forms.GroupBox gbOfflineRecordPush;
+        private System.Windows.Forms.ComboBox cmbOfflineRecordPush;
+        private System.Windows.Forms.Button btnWriteOfflineRecordPush;
+        private System.Windows.Forms.Button btnReadOfflineRecordPush;
+        private System.Windows.Forms.GroupBox gpSysatemStatus;
+        private System.Windows.Forms.Button btnReadSystemStatus;
+        private System.Windows.Forms.TextBox txtReadSystemStatus;
+        private System.Windows.Forms.Label lblFaceBioassaySimilarity;
+        private System.Windows.Forms.Label lblLightPattern;
+        private System.Windows.Forms.Label lblSaveRecordImage;
+        private System.Windows.Forms.Label lblAuthenticationMode;
+        private System.Windows.Forms.Button btnReadFaceIdentifyRange;
+        private System.Windows.Forms.ComboBox cmbFaceIdentifyRange;
+        private System.Windows.Forms.Button btnWriteFaceIdentifyRange;
+        private System.Windows.Forms.Label lblFaceIdentifyRange;
+        private System.Windows.Forms.ComboBox cmbHelmetDetection;
+        private System.Windows.Forms.Button btnWriteHelmetDetection;
+        private System.Windows.Forms.Label lblHelmetDetection;
+        private System.Windows.Forms.Button btnReadHelmetDetection;
+        private System.Windows.Forms.GroupBox gpShortMessage;
+        private System.Windows.Forms.GroupBox gpCacheContent;
+        private System.Windows.Forms.TextBox txtCacheContent;
+        private System.Windows.Forms.Button btnReadCacheContent;
+        private System.Windows.Forms.Button btnWriteCacheContent;
     }
 }

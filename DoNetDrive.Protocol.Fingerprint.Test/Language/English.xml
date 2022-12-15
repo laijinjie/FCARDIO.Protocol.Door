@@ -245,7 +245,7 @@
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteRecordQRcode    value ="Set Create QRCode Flag"  />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadLightPattern    value ="Read Light Pattern"                     />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteLightPattern    value ="Write Light Pattern"                    />
-		
+
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadYZW_Push    value ="Read YZW Use"                    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendReloadYZW_People    value ="YZW Reload People"                    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteYZW_Push    value ="Set YZW Use"                    />
@@ -253,9 +253,6 @@
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceBioassaySimilarity    value ="Set IR Threshold"                    />
 		<DoNetDrive_Protocol_Fingerprint_Alarm_SetFireAlarm    value ="Set Frie Use"                    />
 
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadThirdpartyAPI    value ="Read Thirdparty Config"                    />
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteThirdpartyAPI    value ="Write Thirdparty Config"                    />
-		
 
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_BeginAttendance    value ="Begin Attendance"                    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_SendCMD_BroadcastVoice    value ="Broadcast Voice"                    />
@@ -265,6 +262,32 @@
 
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceDevice4GModuleStatus    value ="Read 4G Module Status"    />
 		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceDevice4GModuleStatus    value ="Set 4G Module Status"    />
+
+
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadThirdpartyAPI    value ="Read thirdparty config"                    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteThirdpartyAPI    value ="Write thirdparty config"                    />
+
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadOfflineRecordPush    value ="Read offline record push"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteOfflineRecordPush    value ="Write offline record push"    />
+
+		<DoNetDrive_Protocol_Door_Door8800_SystemParameter_CacheContent_ReadCacheContent    value ="Read Custom Content"    />
+		<DoNetDrive_Protocol_Door_Door8800_SystemParameter_CacheContent_WriteCacheContent    value ="Write Custom Content"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceIdentifyRange   value ="Read Identify Range" />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceIdentifyRange   value ="Write Identify Range" />
+
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_Watch_BeginWatch_Broadcast         value="Begin Watch By Broadcast"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_Watch_CloseWatch_Broadcast         value="Close Watch By Broadcast"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceBioassay                   value="Read Face Bioassay"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceBioassay                  value="Write Face Bioassay"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteDriveVolume                   value="Write Drive Volume "    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteDriveLanguage                 value="Write Drive Language"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadDriveVolume                    value="Read Drive Volume"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadDriveLanguage                  value="Read Drive Language"    />
+		
+
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadHelmetDetection                value="Read Helmet Detection"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteHelmetDetection               value="Write Helmet Detection"    />
+
 		
 		<btlToolLift                        value="Lift" />
 		<butSearch value ="Search"/>
@@ -273,45 +296,58 @@
 	</frmMain>
 	<frmSystem>
 		<FormCaption value="Drive System Setting"/>
-		<tpPar1                  value="Page 1" />
+		<tpPar1                  value="Detail" />
+		<tabPage2                value = "Work"/>
+		<tabPage3                value = "Authentication"/>
+		<tpNetwork               value = "Client Network" />
+		
 		<gpSN                    value="SN" />
 		<LblDriveSN              value="SN:" />
 		<butReadSN               value="Read" />
 		<butWriteSN              value="Write" />
 		<butWriteSN_Broadcast    value="Broadcast Write" />
+
 		<gbPassword              value="Connect Password" />
 		<LblConnectPassword      value="Password:" />
 		<butReadConnectPassword  value="Read" />
 		<butWriteConnectPassword value="Write" />
 		<butResetConnectPassword value="Reset" />
+
 		<gbVersion               value="Version" />
-		<LblVersion              value="Version:" />
+		<LblVersion              value="Software:" />
+		<lblFaceVer              value="Face:" />
+		<lblFPVer                value="FP：" />
 		<btnReadVersion          value="Read" />
+
 		<gbTCP                   value="TCP/IP Detail" />
 		<lblMAC                  value="MAC:" />
+		<lblAutoIP               value="DHCP:" />
 		<LblIP                   value="IP:" />
 		<LblIPMask               value="IP Mask:" />
 		<LblIPGateway            value="Gateway:" />
 		<LblDNS                  value="DNS:" />
 		<LblDNSBackup            value="Backup DNS:" />
-		<lblAutoIP               value="DHCP:" />
 		<LblUDPPort              value="UDP Port:" />
 		<LblServerPort           value="Server Port:" />
 		<LblServerIP             value="Server IP:" />
 		<LblServerAddr           value="Server Domain:" />
 		<butRendTCPSetting       value="Read" />
 		<butWriteTCPSetting      value="Write" />
+
 		<gbRunStatus             value="Drive Run Status" />
 		<lblRunDay               value="Run Day:" />
 		<LblRestartCount         value="Restart Total:" />
 		<lblFormatCount          value="Format Total:" />
 		<LblStartTime            value="Boot Time:" />
+		<btnReadSystemRunStatus  value="Read"/>
+
 		<gbRecordMode            value="Record Save Mode" />
 		<lblRecordMode           value="Circulation:" />
 		<rBtnCover               value="ON" />
 		<rBtnNoCover             value="OFF" />
 		<btnReadRecordMode       value="Read" />
 		<btnWriteRecordMode      value="Write" />
+
 		<gbWatch                 value="Record Watch" />
 		<lbWatchStateTag         value="Status:" />
 		<lbWatchState            value="Closed" />
@@ -320,62 +356,65 @@
 		<btnReadWatchState       value="Status" />
 		<btnBeginWatch_Broadcast value="Broadcast Open" />
 		<btnCloseWatch_Broadcast value="Broadcast Close" />
-		<BtnFormatController     value="Format" />
-		<butRestart     value="Restart" />
-		<cmbInOut                value="in,out" />
-		<tpNetwork                      value = "Client Network" />
-		<gbServerDetail                 value = "Server Setting" />
-		<lblServerPort_1                value = "Server Port:" />
-		<lblServerIP_1                  value = "Server IP:" />
-		<LblServerDomain                value = "Server Domain:" />
-		<butReadNetworkServerDetail     value = "Read" />
-		<butWriteNetworkServerDetail    value = "Write" />
-		<gbClientDetail                 value = "Client Setting" />
+
+		<gpSysatemStatus         value = "Device Status"/>
+		<btnReadSystemStatus     value = "Read"/>
+		<ReadSystemStatusMsg     value = "Relay:{0},Door Sensors:{1}
+Locked Status:{2},Watch Status:{3}
+Alarm:{4}" />
+		
+		<BtnFormatController            value="Format" />
+
+		<gpCacheContent                 value="Custom Content (HEX Max:30 Bytes)" />
+		<btnReadCacheContent            value="Read" />
+		<btnWriteCacheContent           value="Write" />
+		<CacheContentLenErr             value="Need to enter a hexadecimal string!"   />
+
 		<LblKeepAliveInterval           value = "Connect after,every interval " />
 		<LblKeepAliveInterval1          value = "sec send a keepalive." />
 		<btnReadKeepAliveInterval       value = "Read" />
 		<btnWriteKeepAliveInterval      value = "Write" />
-		<butRequireSendKeepalivePacket  value = "Send Keepalive" />
-		<butReadClientWorkMode          value = "Read" />
-		<butWriteClientWorkMode         value = "Write" />
-		<butRequireConnectServer        value = "ReConnect" />
-		<butReadClientStatus_Result     value = "Read Status" />
-		<LblClientNetWorkMode           value = "Network Mode:" />
-		<LblServerStatus                value = "Client status:" />
+		<KeepAliveIntervalDisabled      value = "Disabled" />
 
-		<tabPage2                       value = "Parameter2"/>
 		<gpLocalIdentity                value = "Local Identity"/>
 		<Lbl_p2_DoorNum                 value = "Door Number:"/>
 		<Lbl_p2_InOut                   value = "Entry/Exit"/>
 		<btnReadLocalIdentity           value = "Read"/>
 		<btnWriteLocalIdentity          value = "Write"/>
 		<Lbl_p2_LocalName               value = "Local Name"/>
+		<cmbInOut                       value = "Entry/Exit" />
+
 		<gpWgOut                        value = "Wiegand Output"/>
-		<Lbl_p2_ReadCardByte            value = "Card Reading Byte"/>
+		<Lbl_p2_WGOutputCardByte        value = "Card Bytes"/>
 		<Lbl_p2_WgOut                   value = "On/Off"/>
 		<Lbl_p2_WgOrder                 value = "Order"/>
 		<Lbl_p2_OutputDataType          value = "Output data type"/>
 		<btnReadWiegandOutput           value = "Read"/>
 		<btnWriteWiegandOutput          value = "Write"/>
+		<ReadCardByteList               value = "WG26(3bytes),WG34(4bytes),WG26(2bytes),WG66(8bytes),Disable"/>
+		<OutputTypeList                 value = "User ID,Card Number"/>
+		<WGByteSortList                 value = "Big-endian,Little-endian"/>
+
 		<gpFace_fingerprint_threshold   value = "Face, fingerprint comparision threshold"/>
-		<Lbl_p2_FoFReadCardByte         value = "Face Recognition"/>
-		<Lbl_p2_FoFWgOut                value = "Fingerprint Recognition "/>
+		<Lbl_face_threshold             value = "Face Recognition"/>
+		<Lbl_fp_threshold               value = "FP Recognition "/>
 		<btnReadComparisonThreshold     value = "Read"/>
 		<btnWriteComparisonThreshold    value = "Write"/>
-		<gpScreenContent                value = "Screen Content"/>
-		<cbDisplay1                     value = "Name"/>
-		<cbDisplay2                     value = "User No."/>
-		<cbDisplay3                     value = "Department"/>
-		<cbDisplay4                     value = "Position"/>
-		<cbDisplay5                     value = "Photo"/>
-		<cbDisplay6                     value = "Card number"/>
-		<cbDisplay7                     value = "Record photo"/>
-		<cbDisplay8                     value = "Record time"/>
-		<cbDisplay9                     value = "User ID"/>
+
 		<gpMenuManagementPassword       value = "Menu management password"/>
-		<Lbl_p2_pwd                     value = "Password:"/>
 		<btnReadManageMenuPassword      value = "Read"/>
 		<btnWriteManageMenuPassword     value = "Write"/>
+
+		<gpDeviceLanguage               value = "Device Language"/>
+		<butReadLanguage                value = "Read"/>
+		<butWriteLanguage               value = "Write"/>
+		<DriveLanguageList                       
+value = "1--Chinese,2--English,3--Traditional Chinese,4-French,5-Russian,6-Brazil,7-Spanish,8-Italian,9-Japanese,10-Korean,11-Thai,12-Arabic,13-Portugal,14-Turkey,15-Indonesia,16-Ukraine"/>
+		
+		<gpDeviceVolume                 value = "Device Volume"/>
+		<butReadVolume                  value = "Read"/>
+		<butWriteVolume                 value = "Write"/>
+		
 		<gpOemInfo                      value = "OEM Info"/>
 		<Lbl_p2_Manufacturers           value = "Manufacturer"/>
 		<Lbl_p2_Url                     value = "Website:"/>
@@ -383,50 +422,108 @@
 		<btnReadOEM                     value = "Read"/>
 		<btnWriteOEM                    value = "Write"/>
 
-		<tabPage3                                value = "Parameter3"/>
-		<gpDeviceLanguage                        value = "Device Language"/>
-		<Lbl_p3_Language                         value = "Language"/>
-		<butReadLanguage                         value = "Read"/>
-		<butWriteLanguage                        value = "Write"/>
-		<gpDeviceVolume                          value = "Device Volume"/>
-		<Lbl_Volume                              value = "Volume"/>
-		<butReadVolume                           value = "Read"/>
-		<butWriteVolume                          value = "Write"/>
-		<Lbl_Filllightmode                       value = "LED light mode"/>
+		<gpShortMessage                 value = "Short Message:"/>
+		<But_WriteShortMessage          value = "Write"/>
+		<But_ReadShortMessage           value = "Read"/>
+		
+		<butRestart                     value="Restart" />
+
+
+		
+		<gbServerDetail                 value = "Server Setting" />
+		<lblServerPort_1                value = "Server Port:" />
+		<lblServerIP_1                  value = "Server IP:" />
+		<LblServerDomain                value = "Server Domain:" />
+		<butReadNetworkServerDetail     value = "Read" />
+		<butWriteNetworkServerDetail    value = "Write" />
+		
+		
+		
+		<gbClientDetail                 value = "Client Setting" />
+
+		<butRequireSendKeepalivePacket  value = "Send Keepalive" />
+		<butReadClientWorkMode          value = "Read" />
+		<butWriteClientWorkMode         value = "Write" />
+		<butRequireConnectServer        value = "ReConnect" />
+		<butReadClientStatus_Result     value = "Read Status" />
+		<LblClientNetWorkMode           value = "Network Mode:" />
+		<LblServerStatus                value = "Client status:" />
+		<ClientNetWorkMode              value = "Disable,UDP Client,TCP Client,TCP Client + TLS1.2"/>
+
+
+
+		<lblFaceBioassaySimilarity      value = "IR Detection Threshold:"/>
+		<cmdReadFaceBioassaySimilarity  value = "Read"/>
+		<cmdWriteFaceBioassaySimilarity value = "Write"/>
+		<FaceBioassayCmb                value = "OFF,ON"/>
+
+		<lblFaceIdentifyRange           value = "Identify Range:"/>
+		<btnReadFaceIdentifyRange       value = "Read"/>
+		<btnWriteFaceIdentifyRange      value = "Write"/>
+		<cmbFaceIdentifyRange           value = "Short(0.2m-0.5m),Middle(0.2m-1.5m),Max(0.2m - >1.5m)"/>
+
+		
+		
+		<Lbl_Filllightmode                       value = "LED Light Mode:"/>
 		<But_WriteFaceLEDMode                    value = "Write"/>
 		<But_ReadFaceLEDMode                     value = "Read"/>
-		<Lbl_MaskRecognitionSwitch               value = "Mask Detection Switch"/>
+		<FaceLEDModeList                         value = "Alawys off,always on,on when user detected"/>
+		
+		<Lbl_MaskRecognitionSwitch               value = "Mask Detection Switch:"/>
 		<But_WriteFaceMouthmufflePar             value = "Write"/>
 		<But_ReadFaceMouthmufflePar              value = "Read"/>
-		<Lbl_TemperatureExaminationAndFormat     value = "Temperature Detection&amp;Format"/>
+		<Cmb_FaceMouthmuffle                     value = "Disable,Enable"/>
+		
+		<Lbl_TemperatureExaminationAndFormat     value = "Temp Format:"/>
 		<But_WriteFaceBodyTemperature            value = "Write"/>
 		<But_ReadFaceBodyTemperature             value = "Read"/>
-		<Lbl_TemperatureAlarmThreshold           value = "Temperature Alarm Threshold"/>
+		<FaceBodyTemperatureList                 value = "Disable,Celsius(default),Fahrenheit"/>
+		
+		<Lbl_TemperatureAlarmThreshold           value = "Temp Alarm Threshold:"/>
 		<But_WriteFaceBodyTemperatureAlarm       value = "Write"/>
 		<But_ReadFaceBodyTemperatureAlarm        value = "Read"/>
-		<Lbl_TemperatureIndicatorSwitch          value = "Temperature Display Switch"/>
+		
+		<Lbl_TemperatureIndicatorSwitch          value = "Temp Display Switch:"/>
 		<But_WriteFaceBodyTemperatureShow        value = "Write"/>
 		<But_ReadFaceBodyTemperatureShow         value = "Read"/>
-		<Lbl_ShortMessage                        value = "Short Message:"/>
-		<But_WriteShortMessage                   value = "Write"/>
-		<But_ReadShortMessage                    value = "Read"/>
+
 		<LblDoorAccessMode                       value = "Door Access Mode:"/>
 		<butReadDoorOpenCheckMode                value = "Read"/>
 		<butWriteDoorOpenCheckMode               value = "Write"/>
-		<FaceBioassayCmb                         value = "Close,Infrared detection,Infrared and color"/>
-		<LabFaceBioassay                         value = "Bioassay mode："/>
+
+		<LabFaceBioassay                         value = "Bioassay Mode:"/>
 		<Btn_ReadFaceBioassay                    value = "Read"/>
 		<Btn_WriteFaceBioassay                   value = "Write"/>
 
-		<ClientNetWorkMode                       value = "Disable,UDP Client,TCP Client,TCP Client + TLS1.2"/>
-		<FaceBodyTemperatureList                 value = "Disable,Celsius(default),Fahrenheit"/>
-		<FaceLEDModeList                         value = "Alawys off,always on,on when user detected"/>
-		<ReadCardByteList                        value = "Bytes26(3byte),Bytes34(4byte),Bytes26(2byte),Bytes66(8byte),Disable"/>
+		
+		<lblAuthenticationMode                   value = "Authentication Mode:" />
+		<butWriteAuthenticationMode              value = "Write" />
+		<butReadAuthenticationMode               value = "Read" />
+		<AuthenticationModeList                  value = "1.Normal ,2.Face + PIN,3.Card + Face,4.Multiplayer,5.Identity Card"/>
+
+		
+		<lblSaveRecordImage                      value = "Save Photo:" />
+		<butWriteSaveRecordImage                 value = "Write" />
+		<butReadSaveRecordImage                  value = "Read" />
+		<SaveRecordImageList                     value = "ON,OFF"/>
+
+
+		<lblLightPattern                         value = "Video Brightness:" />
+		<butWriteLightPattern                    value = "Write" />
+		<butReadLightPattern                     value = "Read" />
+		<LightPatternList                        value = "1.Normal,2.Lighten,3.Darken"/>
+
+
+		<lblHelmetDetection                         value = "Helmet Detection:" />
+		<btnWriteHelmetDetection                    value = "Write" />
+		<btnReadHelmetDetection                     value = "Read" />
+		<cmbHelmetDetection                        value = "OFF,ON"/>
+		
 		<IsUseList                               value = "Enable,Disable"/>
-		<Cmb_FaceMouthmuffle                     value = "Disable,Enable"/>
-		<WGByteSortList                          value = "big-endian,little-endian"/>
-		<OutputTypeList                          value = "Output user ID ,Output card number"/>
-		<DriveLanguageList                       value = "1--Chinese,2--English,3--Traditional Chinese,4-French,5-Russian,6-Brazil,7-Spanish,8-Italian,9-Japanese,10-Korean,11-Thai,12-Arabic,13-Portugal,14-Turkey,15-Indonesia,16-Ukraine"/>
+		
+		
+		
+		
 		<DoorAccessModeList                      value = "1--Face/PIN/Card/FP,2--Face/Card/FP + PIN"/>
 		<Msg_1                                   value = "Communication password is 8-bit hexadecimal character, please enter again!. Please re-enter."/>
 		<Msg_2                                   value = "Please enter correct MAC address."/>
@@ -499,26 +596,19 @@
 		<Msg_69                                   value = "Disabled"/>
 		<Msg_70                                   value = "Connection Status"/>
 		<Msg_71                                   value = "The latest keep-alive package sending time"/>
-		<DoorAccessModeResult value = "Door access mode:"/>
-		<btnReadSystemStatus value = "Read"/>
-		<AuthenticationModeList value = "1.Normal ,2.Face + PIN,3.Card + Face,4.Multiplayer,5.Identity Card"/>
-		<SaveRecordImageList value = "ON,OFF"/>
-		<LightPatternList value = "1.Normal,2.Lighten,3.Darken"/>
+
+
 		<RecordQRCodeList value = "ON,OFF"/>
-		<gbFireUse value = "Fire Use"/>
 		<cmdWriteSendFireAlarm value = "Write"/>
-		<gbFaceBioassaySimilarity value = "IR Detection Threshold"/>
-		<cmdReadFaceBioassaySimilarity value = "Read"/>
-		<cmdWriteFaceBioassaySimilarity value = "Write"/>
+		
 		<gbYZW value = "YuZhuWang Use"/>
 		<cmdSendReloadYZW_People value = "Reload YZW People"/>
 		<cmdReadYZW_Push value = "Read"/>
 		<cmdWriteYZW_Push value = "Write"/>
 		<cmbYZW value = "OFF,ON"/>
 		<YZWMsg value = "YuZhuWang Use：{0}"/>
-		<cmbFireUse value = "OFF,ON"/>
 		<FaceBioassaySimilarityMsg value = "IR Threshold：{0}"/>
-		<tabPar4 value = "Par 4"/>
+		<tabPar4 value = "Ohter"/>
 		<gbAttendanceDevice value = "Attendance Device"/>
 		<btnSendCMD_BeginAttendance value = "Begin Attendance"/>
 		<lblBeginAttendanceTime value = "Attendance Time(s):"/>
@@ -533,14 +623,22 @@
 		<Items_4GModule value = "OFF,ON"/>
 		<Tips_4GModule value = "4G Module Status:{0}"/>
 
-		<cmbPlatformType value = "OFF,YuZhuWang,FuYang,HuAn"/>
+		<cmbPlatformType value = "OFF,Yuzhuwang,Fuyang,Hunan,Wuhan"/>
 		<lblPlatformType value = "Platform:"/>
 		<lblPlatformTypePar value = "Config:"/>
 		<gbThirdpartyAPI value = "Thirdparty API"/>
 		<btnReadThirdpartyAPI value = "Read"/>
 		<btnWriteThirdpartyAPI value = "Write"/>
 		<ThirdpartyAPIMsg value = "Platform:{0}"/>
-		
+
+
+		<gbOfflineRecordPush value = "Offline Record Push" />
+		<cmbOfflineRecordPush value = "OFF,ON" />
+		<btnWriteOfflineRecordPush value = "Write" />
+		<btnReadOfflineRecordPush value = "Read" />
+		<ReadOfflineRecordPushMsg value = "Offline record push:{0}" />
+
+
 	</frmSystem>
 	<frmTime>
 		<FormCaption              value="Clock" />
@@ -728,6 +826,9 @@
 		<Msg_11                                value="Password:" />
 		<Msg_12                                value="Door sensor alarm\r\n whether to enable:[0.disable]" />
 		<Msg_13                                value="TZ" />
+		<gbFireUse value = "Fire Use"/>
+		<cmbFireUse value = "OFF,ON"/>
+		<cmdWriteSendFireAlarm value = "Write"/>
 	</frmAlarm>
 	<frmHoliday>
 		<FormCaption              value="Holiday settings" />

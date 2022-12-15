@@ -758,7 +758,15 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             mUploadFolderUserCode = 800000 - 1;
             mFiles = new List<string>(sFiles);
             mUploadCommandDtl = mMainForm.GetCommandDetail();
+            if (mUploadCommandDtl == null)
+            {
+                mUploadIsRun = false;
+                mUploading = false;
+                return;
+            }
+                
             mUploadCommandDtl.CommandTimeout += MUploadCommandDtl_CommandTimeout;
+            mUploadCommandDtl.CommandErrorEvent += MUploadCommandDtl_CommandErrorEvent;
             if (bClearPeople)
             {
 
@@ -779,12 +787,42 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
 
         }
 
+        private void MUploadCommandDtl_CommandErrorEvent(object sender, CommandEventArgs e)
+        {
+            MUploadCommandDtl_CommandTimeout(sender, e);
+        }
+
         private void MUploadCommandDtl_CommandTimeout(object sender, CommandEventArgs e)
         {
             //SetRowTip("上传失败", Color.Red);
             SetRowTip(Lng("UF_Msg_11"), Color.Red);
-            mUploadIsRun = false;
-            mUploading = false;
+            //mUploadIsRun = false;
+            //mUploading = false;
+
+            Task.Run(() =>
+            {
+                do
+                {
+                    Task.Delay(10000);
+
+                    
+                    this.Invoke(() =>
+                    {
+                        mUploadCommandDtl = mMainForm.GetCommandDetail(false);
+
+                    });
+                    if (mUploadCommandDtl != null)
+                    {
+                        mUploadCommandDtl.CommandTimeout += MUploadCommandDtl_CommandTimeout;
+                        mUploadCommandDtl.CommandErrorEvent += MUploadCommandDtl_CommandErrorEvent;
+                        mUploadFolderIndex--;
+                        UploadNext();
+                        break;
+                    }
+                } while (true);
+
+
+            });
         }
 
         private void UploadFolder_ClearPerson_CommandCompleteEvent(object sender, CommandEventArgs e)

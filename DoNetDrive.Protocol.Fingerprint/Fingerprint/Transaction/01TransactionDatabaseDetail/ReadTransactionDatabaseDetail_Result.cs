@@ -4,7 +4,7 @@ using DoNetDrive.Protocol.Fingerprint.Data;
 namespace DoNetDrive.Protocol.Fingerprint.Transaction
 {
     /// <summary>
-    /// 读取控制器中的卡片数据库信息
+    /// 设备中的记录存储信息
     /// </summary>
     public class ReadTransactionDatabaseDetail_Result : INCommandResult
     {
@@ -19,7 +19,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Transaction
         public byte[] ResultContent;
 
         /// <summary>
-        /// 初始化参数
+        /// 创建设备中的记录存储信息
         /// </summary>
         public ReadTransactionDatabaseDetail_Result()
         {

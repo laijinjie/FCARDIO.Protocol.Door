@@ -262,12 +262,36 @@
 
 		<DoNetDrive_Protocol_Fingerprint_Transaction_ReadTransactionDatabaseByAll    value ="读取所有历史记录"    />
 
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceDevice4GModuleStatus    value ="读取4G网络模块开关"    />
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceDevice4GModuleStatus    value ="设置4G网络模块开关"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceDevice4GModuleStatus       value ="读取4G网络模块开关"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceDevice4GModuleStatus      value ="设置4G网络模块开关"    />
 
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadThirdpartyAPI    value ="读取第三方平台功能"                    />
-		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteThirdpartyAPI    value ="设置第三方平台功能"                    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadThirdpartyAPI                  value ="读取第三方平台功能"                    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteThirdpartyAPI                 value ="设置第三方平台功能"                    />
+																				            
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadOfflineRecordPush              value ="读取离线推送记录开关"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteOfflineRecordPush             value ="设置离线推送记录开关"    />
 
+		<DoNetDrive_Protocol_Door_Door8800_SystemParameter_CacheContent_ReadCacheContent    value ="读取自定义字符串"    />
+		<DoNetDrive_Protocol_Door_Door8800_SystemParameter_CacheContent_WriteCacheContent   value ="设置自定义字符串"    />
+
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceIdentifyRange              value ="读取识别距离" />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceIdentifyRange             value ="设置识别距离" />
+																					        
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_Watch_BeginWatch_Broadcast         value="广播开启监控"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_Watch_CloseWatch_Broadcast         value="广播关闭监控"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadFaceBioassay                   value="读取活体检测开关"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteFaceBioassay                  value="设置活体检测开关"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteDriveVolume                   value="设置音量"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteDriveLanguage                 value="设置语言"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadDriveVolume                    value="读取音量"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadDriveLanguage                  value="读取语言"    />
+																					        
+																					        
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_ReadHelmetDetection                value="读取安全帽检测"    />
+		<DoNetDrive_Protocol_Fingerprint_SystemParameter_WriteHelmetDetection               value="设置安全帽检测"    />
+
+		
+		
 		<btlToolLift                        value="电梯模块" />
 		<butSearch value ="搜索设备"/>
 		<tabDevice value ="设备列表"/>
@@ -275,45 +299,58 @@
 	</frmMain>
 	<frmSystem>
 		<FormCaption value="设备系统参数"/>
-		<tpPar1                  value="设备参数设置" />
+		<tpPar1                  value="设备信息" />
+		<tabPage2                       value = "工作参数"/>
+		<tabPage3                       value = "人脸识别参数"/>
+		<tpNetwork                      value = "客户端网络参数" />
+		
 		<gpSN                    value="SN" />
 		<LblDriveSN              value="SN：" />
 		<butReadSN               value="读取" />
 		<butWriteSN              value="写入" />
 		<butWriteSN_Broadcast    value="广播写" />
+
 		<gbPassword              value="通讯密码" />
 		<LblConnectPassword      value="密码：" />
 		<butReadConnectPassword  value="读取" />
 		<butWriteConnectPassword value="写入" />
 		<butResetConnectPassword value="重置" />
+
 		<gbVersion               value="版本号" />
-		<LblVersion              value="硬件版本号：" />
+		<LblVersion              value="固件：" />
+		<lblFaceVer              value="人脸：" />
+		<lblFPVer                value="指纹：" />
 		<btnReadVersion          value="读取" />
+
 		<gbTCP                   value="TCP/IP 连接参数" />
 		<lblMAC                  value="MAC地址：" />
+		<lblAutoIP               value="自动获得IP：" />
 		<LblIP                   value="IP地址：" />
 		<LblIPMask               value="子网掩码：" />
 		<LblIPGateway            value="网关IP：" />
 		<LblDNS                  value="DNS：" />
 		<LblDNSBackup            value="备用DNS：" />
-		<lblAutoIP               value="自动获得IP：" />
 		<LblUDPPort              value="本地UDP端口：" />
 		<LblServerPort           value="服务器端口：" />
 		<LblServerIP             value="服务器IP：" />
 		<LblServerAddr           value="服务器域名：" />
 		<butRendTCPSetting       value="读取" />
 		<butWriteTCPSetting      value="写入" />
+
 		<gbRunStatus             value="设备运行信息" />
 		<lblRunDay               value="设备已运行天数：" />
 		<LblRestartCount         value="看门狗复位次数：" />
 		<lblFormatCount          value="格式化次数：" />
 		<LblStartTime            value="上电时间：" />
+		<btnReadSystemRunStatus  value = "读取"/>
+
 		<gbRecordMode            value="记录存储方式" />
 		<lblRecordMode           value="记录满盘后：" />
 		<rBtnCover               value="循环覆盖存储" />
 		<rBtnNoCover             value="不再保存新纪录" />
 		<btnReadRecordMode       value="读取" />
 		<btnWriteRecordMode      value="写入" />
+
 		<gbWatch                 value="数据监控" />
 		<lbWatchStateTag         value="监控状态：" />
 		<lbWatchState            value="未开启" />
@@ -322,62 +359,65 @@
 		<btnReadWatchState       value="状态" />
 		<btnBeginWatch_Broadcast value="开启广播" />
 		<btnCloseWatch_Broadcast value="关闭广播" />
-		<BtnFormatController     value="初始化设备" />
-		<butRestart     value="重启" />
-		<cmbInOut                value="进,出" />
-		<tpNetwork                      value = "客户端网络参数" />
-		<gbServerDetail                 value = "服务器参数" />
-		<lblServerPort_1                value = "服务器端口号：" />
-		<lblServerIP_1                  value = "服务器IP：" />
-		<LblServerDomain                value = "服务器域名：" />
-		<butReadNetworkServerDetail     value = "读取" />
-		<butWriteNetworkServerDetail    value = "写入" />
-		<gbClientDetail                 value = "客户端参数" />
+
+		<gpSysatemStatus         value = "设备状态"/>
+		<btnReadSystemStatus     value = "读取"/>
+		<ReadSystemStatusMsg     value = "继电器物状态:{0}，门磁开关：{1}，锁定状态：{2}
+监控状态：{3}
+门报警状态：{4}" />
+		
+		<BtnFormatController            value="初始化设备" />
+
+		<gpCacheContent                 value="设备自定义字符串(HEX) 最大30字节" />
+		<btnReadCacheContent            value="读取" />
+		<btnWriteCacheContent           value="写入" />
+		<CacheContentLenErr             value="需要输入十六进制字符串！"   />
+
 		<LblKeepAliveInterval           value = "与服务器建立连接后，每隔" />
 		<LblKeepAliveInterval1          value = "秒，发送一次保活包" />
 		<btnReadKeepAliveInterval       value = "读取" />
 		<btnWriteKeepAliveInterval      value = "写入" />
-		<butRequireSendKeepalivePacket  value = "立即发送保活包" />
-		<butReadClientWorkMode          value = "读取" />
-		<butWriteClientWorkMode         value = "写入" />
-		<butRequireConnectServer        value = "立即重连服务器" />
-		<butReadClientStatus_Result     value = "获取状态" />
-		<LblClientNetWorkMode           value = "客户端网络模式：" />
-		<LblServerStatus                value = "客户端网络状态：" />
+		<KeepAliveIntervalDisabled      value = "失效" />
 
-		<tabPage2                       value = "参数2"/>
 		<gpLocalIdentity                value = "本机身份"/>
 		<Lbl_p2_DoorNum                 value = "门号："/>
 		<Lbl_p2_InOut                   value = "进出："/>
 		<btnReadLocalIdentity           value = "读取"/>
 		<btnWriteLocalIdentity          value = "写入"/>
 		<Lbl_p2_LocalName               value = "本机名称："/>
+		<cmbInOut                       value="进,出" />
+
 		<gpWgOut                        value = "韦根输出"/>
-		<Lbl_p2_ReadCardByte            value = "读卡字节："/>
+		<Lbl_p2_WGOutputCardByte        value = "读卡字节："/>
 		<Lbl_p2_WgOut                   value = "韦根输出："/>
 		<Lbl_p2_WgOrder                 value = "WG字节顺序："/>
 		<Lbl_p2_OutputDataType          value = "输出数据类型："/>
 		<btnReadWiegandOutput           value = "读取"/>
 		<btnWriteWiegandOutput          value = "写入"/>
+		<ReadCardByteList               value = "韦根26(三字节),韦根34（四字节）,韦根26（二字节）,韦根66（八字节）,禁用"/>
+		<WGByteSortList                 value = "高位在前低位在后,低位在前高位在后"/>
+		<OutputTypeList                 value = "输出用户号,输出人员卡号"/>
+
 		<gpFace_fingerprint_threshold   value = "人脸、指纹对比阈值"/>
-		<Lbl_p2_FoFReadCardByte         value = "人脸阈值："/>
-		<Lbl_p2_FoFWgOut                value = "指纹阈值："/>
+		<Lbl_face_threshold             value = "人脸阈值："/>
+		<Lbl_fp_threshold               value = "指纹阈值："/>
 		<btnReadComparisonThreshold     value = "读取"/>
 		<btnWriteComparisonThreshold    value = "写入"/>
-		<gpScreenContent                value = "屏幕显示内容"/>
-		<cbDisplay1                     value = "人名"/>
-		<cbDisplay2                     value = "人员编号"/>
-		<cbDisplay3                     value = "部门"/>
-		<cbDisplay4                     value = "职务"/>
-		<cbDisplay5                     value = "人员照片"/>
-		<cbDisplay6                     value = "卡号"/>
-		<cbDisplay7                     value = "记录照片"/>
-		<cbDisplay8                     value = "记录时间"/>
-		<cbDisplay9                     value = "用户号"/>
+
 		<gpMenuManagementPassword       value = "菜单管理密码"/>
-		<Lbl_p2_pwd                     value = "密码："/>
 		<btnReadManageMenuPassword      value = "读取"/>
 		<btnWriteManageMenuPassword     value = "写入"/>
+
+		<gpDeviceLanguage               value = "设备语言"/>
+		<butReadLanguage                value = "读取"/>
+		<butWriteLanguage               value = "写入"/>
+		<DriveLanguageList                       
+value = "1--中文,2--英文,3--中文繁体,4-法语,5-俄语,6-葡萄牙语,7-西班牙语,8-意大利语,9-日语,10-韩语,11-泰语,12-阿拉伯语,13-葡萄牙,14-土耳其,15-印尼,16-乌克兰"/>
+		
+		<gpDeviceVolume                 value = "设备音量"/>
+		<butReadVolume                  value = "读取"/>
+		<butWriteVolume                 value = "写入"/>
+		
 		<gpOemInfo                      value = "OEM信息"/>
 		<Lbl_p2_Manufacturers           value = "制造商："/>
 		<Lbl_p2_Url                     value = "网 址："/>
@@ -385,50 +425,101 @@
 		<btnReadOEM                     value = "读取"/>
 		<btnWriteOEM                    value = "写入"/>
 
-		<tabPage3                                value = "参数3"/>
-		<gpDeviceLanguage                        value = "设备语言"/>
-		<Lbl_p3_Language                         value = "语言"/>
-		<butReadLanguage                         value = "读取"/>
-		<butWriteLanguage                        value = "写入"/>
-		<gpDeviceVolume                          value = "设备音量"/>
-		<Lbl_Volume                              value = "音量"/>
-		<butReadVolume                           value = "读取"/>
-		<butWriteVolume                          value = "写入"/>
+		<gpShortMessage                 value = "短消息："/>
+		<But_WriteShortMessage          value = "写入"/>
+		<But_ReadShortMessage           value = "读取"/>
+		
+		
+		<butRestart                     value="重启" />
+
+		
+		<gbServerDetail                 value = "服务器参数" />
+		<lblServerPort_1                value = "服务器端口号：" />
+		<lblServerIP_1                  value = "服务器IP：" />
+		<LblServerDomain                value = "服务器域名：" />
+		<butReadNetworkServerDetail     value = "读取" />
+		<butWriteNetworkServerDetail    value = "写入" />
+		<gbClientDetail                 value = "客户端参数" />
+
+		<butRequireSendKeepalivePacket  value = "立即发送保活包" />
+		<butReadClientWorkMode          value = "读取" />
+		<butWriteClientWorkMode         value = "写入" />
+		<butRequireConnectServer        value = "立即重连服务器" />
+		<butReadClientStatus_Result     value = "获取状态" />
+		<LblClientNetWorkMode           value = "客户端网络模式：" />
+		<LblServerStatus                value = "客户端网络状态：" />
+		<ClientNetWorkMode                       value = "禁用,UDP Client,TCP Client,TCP Client + TLS1.2"/>
+
+
+
+		<lblFaceBioassaySimilarity      value = "活体检测阈值："/>
+		<cmdReadFaceBioassaySimilarity  value = "读取"/>
+		<cmdWriteFaceBioassaySimilarity value = "写入"/>
+		<FaceBioassayCmb                value = "关闭,启用"/>
+
+		<lblFaceIdentifyRange           value = "活体检测阈值："/>
+		<btnReadFaceIdentifyRange       value = "读取"/>
+		<btnWriteFaceIdentifyRange      value = "写入"/>
+		<cmbFaceIdentifyRange           value = "近距离（0.2-0.5米）,中距离（0.2-1.5米）,远距离（0.2-1.5米以上）"/>
+		
+
 		<Lbl_Filllightmode                       value = "补光灯模式："/>
 		<But_WriteFaceLEDMode                    value = "写入"/>
 		<But_ReadFaceLEDMode                     value = "读取"/>
+		<FaceLEDModeList                         value = "一直关,一直亮,检测到人员时开"/>
+		
 		<Lbl_MaskRecognitionSwitch               value = "口罩识别开关："/>
 		<But_WriteFaceMouthmufflePar             value = "写入"/>
 		<But_ReadFaceMouthmufflePar              value = "读取"/>
+		<Cmb_FaceMouthmuffle                     value = "禁用,启用"/>
+		
+		
 		<Lbl_TemperatureExaminationAndFormat     value = "体温检测及格式："/>
 		<But_WriteFaceBodyTemperature            value = "写入"/>
 		<But_ReadFaceBodyTemperature             value = "读取"/>
+		<FaceBodyTemperatureList                 value = "禁止,摄氏度（默认值）,华氏度"/>
+		
+
 		<Lbl_TemperatureAlarmThreshold           value = "体温报警阈值："/>
 		<But_WriteFaceBodyTemperatureAlarm       value = "写入"/>
 		<But_ReadFaceBodyTemperatureAlarm        value = "读取"/>
+
 		<Lbl_TemperatureIndicatorSwitch          value = "体温数值显示开关："/>
 		<But_WriteFaceBodyTemperatureShow        value = "写入"/>
 		<But_ReadFaceBodyTemperatureShow         value = "读取"/>
-		<Lbl_ShortMessage                        value = "短消息："/>
-		<But_WriteShortMessage                   value = "写入"/>
-		<But_ReadShortMessage                    value = "读取"/>
-		<LblDoorAccessMode                       value = "开门验证方式："/>
-		<butReadDoorOpenCheckMode                value = "读取"/>
-		<butWriteDoorOpenCheckMode               value = "写入"/>
-		<FaceBioassayCmb                         value = "关闭,红外探测,红外+彩色"/>
+
+
+
 		<LabFaceBioassay                         value = "活体检测方式："/>
 		<Btn_ReadFaceBioassay                    value = "读取"/>
 		<Btn_WriteFaceBioassay                   value = "写入"/>
 
-		<ClientNetWorkMode                       value = "禁用,UDP Client,TCP Client,TCP Client + TLS1.2"/>
-		<FaceBodyTemperatureList                 value = "禁止,摄氏度（默认值）,华氏度"/>
-		<FaceLEDModeList                         value = "一直关,一直亮,检测到人员时开"/>
-		<ReadCardByteList                        value = "韦根26(三字节),韦根34（四字节）,韦根26（二字节）,韦根66（八字节）,禁用"/>
+		<lblAuthenticationMode                   value = "认证模式：" />
+		<butWriteAuthenticationMode              value = "写入" />
+		<butReadAuthenticationMode               value = "读取" />
+		<AuthenticationModeList                  value = "1、标准模式,2、人脸+密码,3、卡+人脸,4、多人考勤,5、人证比对"/>
+									             
+		<lblSaveRecordImage                      value = "保存现场照片：" />
+		<butWriteSaveRecordImage                 value = "写入" />
+		<butReadSaveRecordImage                  value = "读取" />
+		<SaveRecordImageList                     value = "启用,禁用"/>
+
+
+		<lblLightPattern                         value = "感光模式：" />
+		<butWriteLightPattern                    value = "写入" />
+		<butReadLightPattern                     value = "读取" />
+		<LightPatternList                        value = "1、标准,2、增亮,3、减暗"/>
+
+		<lblHelmetDetection                         value = "安全帽检测：" />
+		<btnWriteHelmetDetection                    value = "写入" />
+		<btnReadHelmetDetection                     value = "读取" />
+		<cmbHelmetDetection                        value = "禁用,启用"/>
+
+
 		<IsUseList                               value = "启用,禁用"/>
-		<Cmb_FaceMouthmuffle                     value = "禁用,启用"/>
-		<WGByteSortList                          value = "高位在前低位在后,低位在前高位在后"/>
-		<OutputTypeList                          value = "输出用户号,输出人员卡号"/>
-		<DriveLanguageList                       value = "1--中文,2--英文,3--中文繁体,4-法语,5-俄语,6-葡萄牙语,7-西班牙语,8-意大利语,9-日语,10-韩语,11-泰语,12-阿拉伯语,13-葡萄牙,14-土耳其,15-印尼,16-乌克兰"/>
+		
+
+		
 		<DoorAccessModeList                      value = "1--人脸/密码/刷卡/指纹,2--人脸/刷卡/指纹  +  密码"/>
 		<Msg_1                                   value = "通讯密码 是8位十六进制字符，请重新输入！"/>
 		<Msg_2                                   value = "请输入正确MAC地址！"/>
@@ -501,27 +592,23 @@
 		<Msg_69                                   value = "已禁用"/>
 		<Msg_70                                   value = "连接状态"/>
 		<Msg_71                                   value = "最近一次保活包发送时间"/>
-		<DoorAccessModeResult value = "开门验证方式："/>
-		<btnReadSystemStatus value = "读取"/>
-		<AuthenticationModeList value = "1、标准模式,2、人脸+密码,3、卡+人脸,4、多人考勤,5、人证比对"/>
-		<SaveRecordImageList value = "启用,禁用"/>
-		<LightPatternList value = "1、标准,2、增亮,3、减暗"/>
+
+		
+		
+		
 		<RecordQRCodeList value = "启用,禁用"/>
 
-		<gbFireUse value = "消防报警功能开关"/>
-		<cmdWriteSendFireAlarm value = "写入"/>
-		<gbFaceBioassaySimilarity value = "活体检测阈值"/>
-		<cmdReadFaceBioassaySimilarity value = "读取"/>
-		<cmdWriteFaceBioassaySimilarity value = "写入"/>
+
+
+		
 		<gbYZW value = "云筑网功能开关"/>
 		<cmdSendReloadYZW_People value = "重新拉取人员"/>
 		<cmdReadYZW_Push value = "读取"/>
 		<cmdWriteYZW_Push value = "写入"/>
 		<cmbYZW value = "禁用,启用"/>
 		<YZWMsg value = "云筑网功能开关：{0}"/>
-		<cmbFireUse value = "禁用,启用"/>
 		<FaceBioassaySimilarityMsg value = "活体识别阈值：{0}"/>
-		<tabPar4 value = "参数4"/>
+		<tabPar4 value = "其他功能"/>
 		<gbAttendanceDevice value = "点名机功能"/>
 		<btnSendCMD_BeginAttendance value = "开始点名"/>
 		<lblBeginAttendanceTime value = "点名时长(秒):"/>
@@ -535,17 +622,27 @@
 		<gb4GModule value = "4G模块状态"/>
 		<Items_4GModule value = "禁用,启用"/>
 		<Tips_4GModule value = "4G模块状态:{0}"/>
-		
-		
-		<cmbPlatformType value = "禁用,云筑网,阜阳实名制,湖南实名制"/>
+
+
+		<cmbPlatformType value = "禁用,云筑网,阜阳实名制,湖南实名制,武汉实名制"/>
 		<lblPlatformType value = "平台类型："/>
 		<lblPlatformTypePar value = "工作参数："/>
-		<gbThirdpartyAPI value = "第三方平台功能"/>
+		<gbThirdpartyAPI value = "第三方平台对接"/>
 		<btnReadThirdpartyAPI value = "读取"/>
 		<btnWriteThirdpartyAPI value = "写入"/>
-		<ThirdpartyAPIMsg value = "第三方平台类型：{0}"/>
+		<ThirdpartyAPIMsg value = "平台类型：{0}"/>
+
+		<gbOfflineRecordPush value = "离线记录推送" />
+		<cmbOfflineRecordPush value = "禁用,启用" />
+		<btnWriteOfflineRecordPush value = "写入" />
+		<btnReadOfflineRecordPush value = "读取" />
+		<ReadOfflineRecordPushMsg value = "离线记录推送：{0}" />
 
 
+
+
+
+		
 	</frmSystem>
 	<frmTime>
 		<FormCaption              value="时钟" />
@@ -733,6 +830,9 @@
 		<Msg_11                                value="密码：" />
 		<Msg_12                                value="门磁报警 \r\n是否启用：【0、不启用】" />
 		<Msg_13                                value="时段" />
+		<gbFireUse value = "消防报警功能开关"/>
+		<cmbFireUse value = "禁用,启用"/>
+		<cmdWriteSendFireAlarm value = "写入"/>
 	</frmAlarm>
 	<frmHoliday>
 		<FormCaption              value="节假日设置" />

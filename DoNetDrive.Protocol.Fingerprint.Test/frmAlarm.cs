@@ -18,6 +18,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DoNetDrive.Common.Extensions;
 
 namespace DoNetDrive.Protocol.Fingerprint.Test
 {
@@ -153,13 +154,33 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             cbxWeek.Items.Clear();
             cbxWeek.Items.AddRange(Lng("WeekList").Split(','));
             cbxWeek.SelectedIndex = 0;
-            
+            IniFireUse();
+
+
         }
         private void FrmAlarm_FormClosed(object sender, FormClosedEventArgs e)
         {
             onlyObj = null;
         }
 
+
+        #region 消防报警功能开关
+        private void IniFireUse()
+        {
+            //"禁用,启用"
+            string[] FireUseList = Lng("cmbFireUse").SplitTrim(",");
+            cmdFireUse.Items.Clear();
+            cmdFireUse.Items.AddRange(FireUseList);
+            cmdFireUse.SelectedIndex = 0;
+            Lng(cmdWriteSendFireAlarm);
+        }
+        private void cmdWriteSendFireAlarm_Click(object sender, EventArgs e)
+        {
+            var cmdDtl = mMainForm.GetCommandDetail();
+            if (cmdDtl == null) return;
+            var cmd = new SetFireAlarm(cmdDtl, cmdFireUse.SelectedIndex == 1);
+            mMainForm.AddCommand(cmd);
+        }
         private void BtnSendFireAlarm_Click(object sender, EventArgs e)
         {
             var cmdDtl = mMainForm.GetCommandDetail();
@@ -168,6 +189,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             WriteSendFireAlarm write = new WriteSendFireAlarm(cmdDtl);
             mMainForm.AddCommand(write);
         }
+        #endregion
+
 
         private void BtnReadBlacklistAlarm_Click(object sender, EventArgs e)
         {

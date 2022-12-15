@@ -338,7 +338,7 @@
             this.btlToolLift.Name = "btlToolLift";
             this.btlToolLift.Size = new System.Drawing.Size(60, 22);
             this.btlToolLift.Text = "电梯扩展";
-            this.btlToolLift.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.btlToolLift.Click += new System.EventHandler(this.btlToolLift_Click);
             // 
             // gbSerialPort
             // 
@@ -948,9 +948,9 @@
             this.Controls.Add(this.gbDriveSN);
             this.Controls.Add(this.cmbConnType);
             this.Controls.Add(this.LblConnType);
-            this.Controls.Add(this.gbUDP);
             this.Controls.Add(this.gbSerialPort);
             this.Controls.Add(this.gpTCPServer);
+            this.Controls.Add(this.gbUDP);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

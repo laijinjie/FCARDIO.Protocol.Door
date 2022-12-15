@@ -9145,6 +9145,11 @@
             3--湖南省
             </summary>
         </member>
+        <member name="F:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteThirdpartyAPI_Parameter.PlatformDictionary">
+            <summary>
+            平台配置参数
+            </summary>
+        </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.SystemParameter.WriteThirdpartyAPI_Parameter.#ctor">
             <summary>
             构建一个空的第三方平台推送功能实例,默认禁用所有
@@ -9366,12 +9371,12 @@
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseDetail">
             <summary>
-            读取控制器中的卡片数据库信息
+            读取设备中的记录存储信息
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseDetail.#ctor(DoNetDrive.Core.Command.INCommandDetail)">
             <summary>
-            初始化参数
+            创建 读取设备中的记录存储信息命令
             </summary>
             <param name="detail"></param>
         </member>
@@ -9388,7 +9393,7 @@
         </member>
         <member name="T:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseDetail_Result">
             <summary>
-            读取控制器中的卡片数据库信息
+            设备中的记录存储信息
             </summary>
         </member>
         <member name="F:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseDetail_Result.DatabaseDetail">
@@ -9403,7 +9408,7 @@
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseDetail_Result.#ctor">
             <summary>
-            初始化参数
+            创建设备中的记录存储信息
             </summary>
         </member>
         <member name="M:DoNetDrive.Protocol.Fingerprint.Transaction.ReadTransactionDatabaseDetail_Result.Dispose">

@@ -17,6 +17,11 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN
     public class ReadSN : Door8800Command_ReadParameter
     {
         /// <summary>
+        /// 是否为UDP广播命令
+        /// </summary>
+        public bool UDPBroadcast { get; set; }
+
+        /// <summary>
         /// 获取控制器SN 初始化命令
         /// </summary>
         /// <param name="cd">包含命令所需的远程主机详情 （IP、端口、SN、密码、重发次数等）</param>
@@ -30,6 +35,10 @@ namespace DoNetDrive.Protocol.Door.Door8800.SystemParameter.SN
         protected override void CreatePacket0()
         {
             Packet(1, 2);
+            if (UDPBroadcast)
+            {
+                DoorPacket.SetUDPBroadcastPacket();
+            }
         }
 
         /// <summary>

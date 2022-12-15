@@ -116,6 +116,8 @@
             this.btnWriteGateMagneticAlarm = new System.Windows.Forms.Button();
             this.btnReadGateMagneticAlarm = new System.Windows.Forms.Button();
             this.Lbl_DoorWorkSetting = new System.Windows.Forms.Label();
+            this.cmdFireUse = new System.Windows.Forms.ComboBox();
+            this.cmdWriteSendFireAlarm = new System.Windows.Forms.Button();
             this.gpFireAlarm.SuspendLayout();
             this.gpBlacklistAlarmUse.SuspendLayout();
             this.gpAntiDisassemblyUse.SuspendLayout();
@@ -131,17 +133,19 @@
             // 
             // gpFireAlarm
             // 
+            this.gpFireAlarm.Controls.Add(this.cmdFireUse);
+            this.gpFireAlarm.Controls.Add(this.cmdWriteSendFireAlarm);
             this.gpFireAlarm.Controls.Add(this.btnSendFireAlarm);
             this.gpFireAlarm.Location = new System.Drawing.Point(13, 6);
             this.gpFireAlarm.Name = "gpFireAlarm";
-            this.gpFireAlarm.Size = new System.Drawing.Size(164, 59);
+            this.gpFireAlarm.Size = new System.Drawing.Size(775, 48);
             this.gpFireAlarm.TabIndex = 0;
             this.gpFireAlarm.TabStop = false;
             this.gpFireAlarm.Text = "消防报警";
             // 
             // btnSendFireAlarm
             // 
-            this.btnSendFireAlarm.Location = new System.Drawing.Point(6, 18);
+            this.btnSendFireAlarm.Location = new System.Drawing.Point(614, 19);
             this.btnSendFireAlarm.Name = "btnSendFireAlarm";
             this.btnSendFireAlarm.Size = new System.Drawing.Size(152, 23);
             this.btnSendFireAlarm.TabIndex = 0;
@@ -154,9 +158,9 @@
             this.gpBlacklistAlarmUse.Controls.Add(this.btnWriteBlacklistAlarm);
             this.gpBlacklistAlarmUse.Controls.Add(this.btnReadBlacklistAlarm);
             this.gpBlacklistAlarmUse.Controls.Add(this.cbBlacklistAlarmUse);
-            this.gpBlacklistAlarmUse.Location = new System.Drawing.Point(379, 71);
+            this.gpBlacklistAlarmUse.Location = new System.Drawing.Point(385, 124);
             this.gpBlacklistAlarmUse.Name = "gpBlacklistAlarmUse";
-            this.gpBlacklistAlarmUse.Size = new System.Drawing.Size(409, 59);
+            this.gpBlacklistAlarmUse.Size = new System.Drawing.Size(404, 59);
             this.gpBlacklistAlarmUse.TabIndex = 1;
             this.gpBlacklistAlarmUse.TabStop = false;
             this.gpBlacklistAlarmUse.Text = "黑名单报警";
@@ -196,7 +200,7 @@
             this.gpAntiDisassemblyUse.Controls.Add(this.btnWriteAntiDisassemblyAlarm);
             this.gpAntiDisassemblyUse.Controls.Add(this.btnReadAntiDisassemblyAlarm);
             this.gpAntiDisassemblyUse.Controls.Add(this.cbAntiDisassemblyUse);
-            this.gpAntiDisassemblyUse.Location = new System.Drawing.Point(13, 71);
+            this.gpAntiDisassemblyUse.Location = new System.Drawing.Point(13, 124);
             this.gpAntiDisassemblyUse.Name = "gpAntiDisassemblyUse";
             this.gpAntiDisassemblyUse.Size = new System.Drawing.Size(341, 59);
             this.gpAntiDisassemblyUse.TabIndex = 3;
@@ -241,9 +245,9 @@
             this.gpIllegalVerificationAlarmUse.Controls.Add(this.btnWriteIllegalVerification);
             this.gpIllegalVerificationAlarmUse.Controls.Add(this.btnReadIllegalVerification);
             this.gpIllegalVerificationAlarmUse.Controls.Add(this.cbIllegalVerificationAlarmUse);
-            this.gpIllegalVerificationAlarmUse.Location = new System.Drawing.Point(183, 6);
+            this.gpIllegalVerificationAlarmUse.Location = new System.Drawing.Point(13, 60);
             this.gpIllegalVerificationAlarmUse.Name = "gpIllegalVerificationAlarmUse";
-            this.gpIllegalVerificationAlarmUse.Size = new System.Drawing.Size(605, 59);
+            this.gpIllegalVerificationAlarmUse.Size = new System.Drawing.Size(776, 47);
             this.gpIllegalVerificationAlarmUse.TabIndex = 4;
             this.gpIllegalVerificationAlarmUse.TabStop = false;
             this.gpIllegalVerificationAlarmUse.Text = "非法验证报警";
@@ -314,7 +318,7 @@
             this.gpAlarmPasswordUse.Controls.Add(this.btnWriteAlarmPassword);
             this.gpAlarmPasswordUse.Controls.Add(this.btnReadAlarmPassword);
             this.gpAlarmPasswordUse.Controls.Add(this.cbAlarmPasswordUse);
-            this.gpAlarmPasswordUse.Location = new System.Drawing.Point(13, 136);
+            this.gpAlarmPasswordUse.Location = new System.Drawing.Point(13, 189);
             this.gpAlarmPasswordUse.Name = "gpAlarmPasswordUse";
             this.gpAlarmPasswordUse.Size = new System.Drawing.Size(775, 59);
             this.gpAlarmPasswordUse.TabIndex = 6;
@@ -393,7 +397,7 @@
             this.gpOpenDoorTimeoutAlarmUse.Controls.Add(this.btnWriteOpenDoorTimeoutAlarm);
             this.gpOpenDoorTimeoutAlarmUse.Controls.Add(this.btnReadOpenDoorTimeoutAlarm);
             this.gpOpenDoorTimeoutAlarmUse.Controls.Add(this.cbOpenDoorTimeoutAlarmUse);
-            this.gpOpenDoorTimeoutAlarmUse.Location = new System.Drawing.Point(13, 201);
+            this.gpOpenDoorTimeoutAlarmUse.Location = new System.Drawing.Point(13, 254);
             this.gpOpenDoorTimeoutAlarmUse.Name = "gpOpenDoorTimeoutAlarmUse";
             this.gpOpenDoorTimeoutAlarmUse.Size = new System.Drawing.Size(775, 59);
             this.gpOpenDoorTimeoutAlarmUse.TabIndex = 7;
@@ -463,7 +467,7 @@
             this.gpLegalVerificationCloseAlarmUse.Controls.Add(this.btnWriteLegalVerificationCloseAlarm);
             this.gpLegalVerificationCloseAlarmUse.Controls.Add(this.btnReadLegalVerificationCloseAlarm);
             this.gpLegalVerificationCloseAlarmUse.Controls.Add(this.cbLegalVerificationCloseAlarmUse);
-            this.gpLegalVerificationCloseAlarmUse.Location = new System.Drawing.Point(13, 267);
+            this.gpLegalVerificationCloseAlarmUse.Location = new System.Drawing.Point(13, 320);
             this.gpLegalVerificationCloseAlarmUse.Name = "gpLegalVerificationCloseAlarmUse";
             this.gpLegalVerificationCloseAlarmUse.Size = new System.Drawing.Size(775, 70);
             this.gpLegalVerificationCloseAlarmUse.TabIndex = 8;
@@ -510,7 +514,7 @@
             this.gpCloseAlarm.Controls.Add(this.checkBox3);
             this.gpCloseAlarm.Controls.Add(this.checkBox2);
             this.gpCloseAlarm.Controls.Add(this.checkBox1);
-            this.gpCloseAlarm.Location = new System.Drawing.Point(12, 342);
+            this.gpCloseAlarm.Location = new System.Drawing.Point(13, 395);
             this.gpCloseAlarm.Name = "gpCloseAlarm";
             this.gpCloseAlarm.Size = new System.Drawing.Size(776, 70);
             this.gpCloseAlarm.TabIndex = 9;
@@ -605,7 +609,7 @@
             this.gpDoorWorkSetting.Controls.Add(this.btnWriteGateMagneticAlarm);
             this.gpDoorWorkSetting.Controls.Add(this.btnReadGateMagneticAlarm);
             this.gpDoorWorkSetting.Controls.Add(this.Lbl_DoorWorkSetting);
-            this.gpDoorWorkSetting.Location = new System.Drawing.Point(13, 419);
+            this.gpDoorWorkSetting.Location = new System.Drawing.Point(13, 472);
             this.gpDoorWorkSetting.Name = "gpDoorWorkSetting";
             this.gpDoorWorkSetting.Size = new System.Drawing.Size(775, 216);
             this.gpDoorWorkSetting.TabIndex = 12;
@@ -1081,11 +1085,30 @@
             this.Lbl_DoorWorkSetting.TabIndex = 77;
             this.Lbl_DoorWorkSetting.Text = "功能开关：";
             // 
+            // cmdFireUse
+            // 
+            this.cmdFireUse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmdFireUse.FormattingEnabled = true;
+            this.cmdFireUse.Location = new System.Drawing.Point(20, 19);
+            this.cmdFireUse.Name = "cmdFireUse";
+            this.cmdFireUse.Size = new System.Drawing.Size(308, 20);
+            this.cmdFireUse.TabIndex = 61;
+            // 
+            // cmdWriteSendFireAlarm
+            // 
+            this.cmdWriteSendFireAlarm.Location = new System.Drawing.Point(345, 16);
+            this.cmdWriteSendFireAlarm.Name = "cmdWriteSendFireAlarm";
+            this.cmdWriteSendFireAlarm.Size = new System.Drawing.Size(78, 23);
+            this.cmdWriteSendFireAlarm.TabIndex = 60;
+            this.cmdWriteSendFireAlarm.Text = "写入";
+            this.cmdWriteSendFireAlarm.UseVisualStyleBackColor = true;
+            this.cmdWriteSendFireAlarm.Click += new System.EventHandler(this.cmdWriteSendFireAlarm_Click);
+            // 
             // frmAlarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 637);
+            this.ClientSize = new System.Drawing.Size(800, 722);
             this.Controls.Add(this.gpDoorWorkSetting);
             this.Controls.Add(this.gpCloseAlarm);
             this.Controls.Add(this.gpLegalVerificationCloseAlarmUse);
@@ -1214,5 +1237,7 @@
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.Button btnWriteCloseAlarm;
         private System.Windows.Forms.Button btnFillNowTime;
+        private System.Windows.Forms.ComboBox cmdFireUse;
+        private System.Windows.Forms.Button cmdWriteSendFireAlarm;
     }
 }

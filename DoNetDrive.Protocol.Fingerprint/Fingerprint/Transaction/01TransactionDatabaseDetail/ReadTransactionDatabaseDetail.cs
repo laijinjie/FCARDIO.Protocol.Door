@@ -5,12 +5,12 @@ using DoNetDrive.Protocol.OnlineAccess;
 namespace DoNetDrive.Protocol.Fingerprint.Transaction
 {
     /// <summary>
-    /// 读取控制器中的卡片数据库信息
+    /// 读取设备中的记录存储信息
     /// </summary>
     public class ReadTransactionDatabaseDetail : Door8800Command_ReadParameter
     {
         /// <summary>
-        /// 初始化参数
+        /// 创建 读取设备中的记录存储信息命令
         /// </summary>
         /// <param name="detail"></param>
         public ReadTransactionDatabaseDetail(INCommandDetail detail) : base(detail, null) { }

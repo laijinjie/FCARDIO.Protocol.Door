@@ -489,8 +489,8 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                         txtWriteIndex.Text = result.DatabaseDetail.ListTransaction[i].WriteIndex.ToString();
                         txtNewRecord.Text = result.DatabaseDetail.ListTransaction[i].readable().ToString();
                         txtReadIndex.Text = result.DatabaseDetail.ListTransaction[i].ReadIndex.ToString();
-                    // txtIsCircle.Text = result.DatabaseDetail.ListTransaction[i].IsCircle ? "【1、循环】" : "【0、未循环】";
-                });
+                        // txtIsCircle.Text = result.DatabaseDetail.ListTransaction[i].IsCircle ? "【1、循环】" : "【0、未循环】";
+                    });
                 }
             };
         }
@@ -530,14 +530,14 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
             var par = new ReadTransactionAndImageDatabase_Parameter(Quantity, true, sDir);
             par.AutoWriteReadIndex = chkAutoWriteIndex.Checked;
             par.AutoDownloadImage = chkAutoReadImage.Checked;
-            par.ImageDownloadCheckCallblack = (imgSerialNumber,record) =>
+            par.ImageDownloadCheckCallblack = (imgSerialNumber, record) =>
             {
-            /*int RandKey = ran.Next(1, 100);
-            if (RandKey > 60)
-            {
-                Console.WriteLine($"跳过照片，序号：{imgSerialNumber}");
-                return false;
-            }*/
+                /*int RandKey = ran.Next(1, 100);
+                if (RandKey > 60)
+                {
+                    Console.WriteLine($"跳过照片，序号：{imgSerialNumber}");
+                    return false;
+                }*/
                 return true;
             };
 
@@ -557,10 +557,11 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
                     sLogs.AppendLine(((OnlineAccess.OnlineAccessCommandDetail)cmdDtl).SN);
 
                     sLogs.AppendLine(Lng("Msg_2") + mWatchTypeNameList[result.TransactionList[0].TransactionType]);
-                //sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
-                sLogs.AppendLine(Lng("Msg_3", result.Quantity, result.TransactionList.Count, result.readable));
-                //按序号排序
-                result.TransactionList.Sort((x, y) => x.SerialNumber.CompareTo(y.SerialNumber));
+                    //sLogs.Append("读取计数：").Append(result.Quantity).Append("；实际数量：").Append(result.TransactionList.Count).Append("；剩余新记录数：").Append(result.readable).AppendLine();
+                    sLogs.AppendLine(Lng("Msg_3", result.Quantity, result.TransactionList.Count, result.readable));
+                    //按序号排序
+                    result.TransactionList.Sort((x, y) => x.SerialNumber.CompareTo(y.SerialNumber));
+
                     foreach (var t in result.TransactionList)
                     {
                         PrintCardAndImageTransactionList(t, sLogs);

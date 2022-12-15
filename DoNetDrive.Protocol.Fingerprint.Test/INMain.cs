@@ -25,7 +25,7 @@ namespace DoNetDrive.Protocol.Fingerprint.Test
         /// 获取一个命令详情，已经装配好通讯目标的所有信息
         /// </summary>
         /// <returns>命令详情</returns>
-        INCommandDetail GetCommandDetail();
+        INCommandDetail GetCommandDetail(bool showErr = true);
 
        
         /// <summary>
